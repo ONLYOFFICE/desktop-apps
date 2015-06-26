@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello ONLYOFFICE Documents</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <!-- debug begin -->
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <!-- debug end -->
+
+    <!-- release section -->
+    <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+    <!-- release end -->
+
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #wrap {
+            position:absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+        }
+    </style>
+
+    <style type="text/css">
+        .loadmask {
+            left: 0;
+            top: 0;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            border: none;
+            background-color: #f4f4f4;
+            z-index: 100;
+        }
+
+        .loader-page {
+            top: 50%;
+            left: 50%;
+            height: 180px;
+            position: absolute;
+            margin-top: -100px;
+            margin-left: -75px;
+        }
+
+        .loader-page-text {
+            display: inline-block;
+            font-size: 14px;
+            margin-left: 80px;
+            margin-top: 125px;
+            color: #888;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 20px;
+        }
+
+        .romb {
+            width: 40px;
+            height: 40px;
+            -webkit-transform: rotate(135deg) skew(20deg, 20deg);
+            -moz-transform: rotate(135deg) skew(20deg, 20deg);
+            -ms-transform: rotate(135deg) skew(20deg, 20deg);
+            -o-transform: rotate(135deg) skew(20deg, 20deg);
+            position: absolute;
+            background: red;
+            border-radius: 6px;
+            -webkit-animation: movedown 3s infinite ease;
+            -moz-animation: movedown 3s infinite ease;
+            -ms-animation: movedown 3s infinite ease;
+            -o-animation: movedown 3s infinite ease;
+            animation: movedown 3s infinite ease;
+        }
+
+        #blue {
+            z-index: 3;
+            background: #55bce6;
+            -webkit-animation-name: blue;
+            -moz-animation-name: blue;
+            -ms-animation-name: blue;
+            -o-animation-name: blue;
+            animation-name: blue;
+        }
+
+        #red {
+            z-index:1;
+            background: #de7a59;
+            -webkit-animation-name: red;
+            -moz-animation-name: red;
+            -ms-animation-name: red;
+            -o-animation-name: red;
+            animation-name: red;
+        }
+
+        #green {
+            z-index: 2;
+            background: #a1cb5c;
+            -webkit-animation-name: green;
+            -moz-animation-name: green;
+            -ms-animation-name: green;
+            -o-animation-name: green;
+            animation-name: green;
+        }
+
+        @-webkit-keyframes red {
+              0%    { top:120px; background: #de7a59; }
+             10%    { top:120px; background: #F2CBBF; }
+             14%    { background: #f4f4f4; top:120px; }
+             15%    { background: #f4f4f4; top:0;}
+             20%    { background: #E6E4E4; }
+             30%    { background: #D2D2D2; }
+             40%    { top:120px; }
+            100%    { top:120px; background: #de7a59; }
+        }
+
+        @keyframes red {
+              0%    { top:120px; background: #de7a59; }
+             10%    { top:120px; background: #F2CBBF; }
+             14%    { background: #f4f4f4; top:120px; }
+             15%    { background: #f4f4f4; top:0; }
+             20%    { background: #E6E4E4; }
+             30%    { background: #D2D2D2; }
+             40%    { top:120px; }
+            100%    { top:120px; background: #de7a59; }
+        }
+
+        @-webkit-keyframes green {
+              0%    { top:110px; background: #a1cb5c; opacity:1; }
+             10%    { top:110px; background: #CBE0AC; opacity:1; }
+             14%    { background: #f4f4f4; top:110px; opacity:1; }
+             15%    { background: #f4f4f4; top:0; opacity:1; }
+             20%    { background: #f4f4f4; top:0; opacity:0; }
+             25%    { background: #EFEFEF; top:0; opacity:1; }
+             30%    { background:#E6E4E4; }
+             70%    { top:110px; }
+            100%    { top:110px; background: #a1cb5c; }
+        }
+
+        @keyframes green {
+              0%    { top:110px; background: #a1cb5c; opacity:1; }
+             10%    { top:110px; background: #CBE0AC; opacity:1; }
+             14%    { background: #f4f4f4; top:110px; opacity:1; }
+             15%    { background: #f4f4f4; top:0; opacity:1; }
+             20%    { background: #f4f4f4; top:0; opacity:0; }
+             25%    { background: #EFEFEF; top:0; opacity:1; }
+             30%    { background:#E6E4E4; }
+             70%    { top:110px; }
+            100%    { top:110px; background: #a1cb5c; }
+        }
+
+        @-webkit-keyframes blue {
+              0%    { top:100px; background: #55bce6; opacity:1; }
+             10%    { top:100px; background: #BFE8F8; opacity:1; }
+             14%    { background: #f4f4f4; top:100px; opacity:1; }
+             15%    { background: #f4f4f4; top:0; opacity:1; }
+             20%    { background: #f4f4f4; top:0; opacity:0; }
+             25%    { background: #f4f4f4; top:0; opacity:0; }
+             45%    { background: #EFEFEF; top:0; opacity:0,2; }
+            100%    { top:100px; background: #55bce6; }
+        }
+
+        @keyframes blue {
+              0%    { top:100px; background: #55bce6; opacity:1; }
+             10%    { top:100px; background: #BFE8F8; opacity:1; }
+             14%    { background: #f4f4f4; top:100px; opacity:1; }
+             15%    { background: #f4f4f4; top:0; opacity:1; }
+             20%    { background: #f4f4f4; top:0; opacity:0; }
+             25%    { background: #fff; top:0; opacity:0; }
+             45%    { background: #EFEFEF; top:0; opacity:0,2; }
+            100%    { top:100px; background: #55bce6; }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="loading-mask" class="loadmask">
+            <div class="loader-page">
+                <div class="romb" id="blue"></div>
+                <div class="romb" id="green"></div>
+                <div class="romb" id="red"></div>
+                <div class="loader-page-text">Loading...</div>
+            </div>
+        </div>
+        <div id="placeholder">
+            <div id="area-login" class="district">
+                <div id="field-login-data">
+                    <label id="auth-wellcome" class="text">Login to ONLYOFFICE</label>
+                    <label id="auth-error" class="text-sub" id="auth-error">Login failed. Please, check the entered data and try again.</label>
+                    <input id="auth-portal" type="text" name="" spellcheck="false" class="auth-control first" placeholder="portal" value="">
+                    <input id="auth-email" type="text" name="" spellcheck="false" class="auth-control" placeholder="email" value="">
+                    <input id="auth-pass" type="password" name="" spellcheck="false" class="auth-control last" placeholder="password" value="">
+                </div>
+                <div id="field-pass-restore">
+                    <label id="label-pass-forgot" class="text-sub">Forgot password?</label>
+                    <a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">Restore</a>
+                </div>
+                <div id="field-btn-login">
+                    <button id="btn-login">Login</button>
+                    <!-- <label id="portal-question" class="text-sub" style="display: block;">Don't have ONLYOFFICE portal yet?</label> -->
+                    <!-- <a id="link-register" class="text-sub link" href="https://www.onlyoffice.com/registration.aspx?from=desktop">Register</a> -->
+                </div>
+                <div class="copyReserved text-sub">© Ascensio System SIA 2015. All rights reserved</div>
+            </div>
+            <div id="area-welcome" class="district">
+                <span class="separator"></span>
+                <div class="rel-box">
+                    <div class="abs-box">
+                        <span class="text" id="text-welcome">Welcome to ONLYOFFICE Desktop!</span>
+                        <span class="text" id="text-description">A new fast solution for work with documents using your ONLYOFFICE</span>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <img id="center-image">
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="locale.js"></script>
+
+    <!-- debug begin -->
+    <script type="text/javascript">var less=less||{};less.env='development';less.ieCompat=false;</script>
+    <script src="../vendor/less/dist/less-2.4.0.js" type="text/javascript"></script>
+    <!-- debug end -->
+    <script type="text/javascript" src="login.js"></script>
+</body>
+</html>

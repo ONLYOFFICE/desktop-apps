@@ -1,0 +1,31 @@
+QTabWidget::pane { background-color: #313437; border:none; }
+QTabWidget::tab-bar {width: auto; height: 29px; left: 111px; }
+
+QTabBar::tab { width:135px; background-color: #CFCFCF; border: 1px solid #CFCFCF; min-width: 41px; max-width: 135px; 
+height: 27px; margin-left: 0px; margin-right: 2px; margin-top: 0px; margin-bottom: 0px; border-top-left-radius: 3px; border-top-right-radius: 3px; }
+
+QTabBar::tab:hover {background-color: #DDDDDD; border-color: #DDDDDD; }
+QTabBar::tab:selected {background-color: #F1F1F1; border-color: #F1F1F1; }
+
+QTabWidget[active=false] QTabBar::tab:selected { background-color: #CFCFCF; border-color: #CFCFCF; }
+QTabWidget[active=false] QTabBar::tab:selected { background-color: #CFCFCF; border-color: #CFCFCF; }
+
+QTabBar::tab:first { }
+QTabBar::tab:only-one { }
+QTabBar::tab:last { }
+
+QTabBar::tear { width: 0px; }
+
+QTabBar QToolButton::left-arrow {margin:-2;background-color:#FFFFFF;border: 1px solid #FFFFFF; }
+QTabBar QToolButton::left-arrow { image: url(:/res/icons/changetab_left_normal.png); }
+QTabBar QToolButton::left-arrow:hover { image: url(:/res/icons/changetab_left_hover.png); }
+QTabBar QToolButton::left-arrow:disabled { image: url(:/res/icons/changetab_left_disabled.png); }
+QTabBar QToolButton::left-arrow:pressed { image: url(:/res/icons/changetab_left_active.png); }
+
+QTabBar QToolButton::right-arrow {margin:-2;background-color:#FFFFFF;border: 1px solid #FFFFFF;}
+QTabBar QToolButton::right-arrow { image: url(:/res/icons/changetab_right_normal.png); }
+QTabBar QToolButton::right-arrow:hover { image: url(:/res/icons/changetab_right_hover.png); }
+QTabBar QToolButton::right-arrow:disabled { image: url(:/res/icons/changetab_right_disabled.png); }
+QTabBar QToolButton::right-arrow:pressed { image: url(:/res/icons/changetab_right_active.png); }
+
+QTabBar::scroller { padding: 0px; margin: 0px;background-color:#FFFFFF;border: 1px solid #FFFFFF; width:10; }

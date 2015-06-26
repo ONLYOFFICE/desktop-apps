@@ -1,0 +1,74 @@
+{
+    "name": "desktop-editor-start-page",
+    "version": "0.0.1",
+    "homepage": "http://www.onlyoffice.com",
+    "private": true,
+    "dependencies": {
+        "grunt": "~0.4.2",
+        "grunt-exec": "~0.4.5",
+        "grunt-html-minify": "~0.3.1"
+    },
+    "desktop": {
+        "clean": [
+            "../deploy/*.png"
+        ],
+        "copy": {
+            "files": [
+                {
+                    "src": "../src/index.html.deploy",
+                    "dest": "../deploy/index.html"
+                },
+                {
+                    "expand": true,
+                    "cwd": "../src/",
+                    "src": [
+                        "*.png",
+                        "*.js"
+                    ],
+                    "dest": "../deploy/"
+                }
+            ]
+        },
+        "less": {
+            "files": {
+                "src": "../src/styles.less",
+                "dest": "../deploy/styles.css"
+            }
+        }
+    },
+    "obf_api": {
+        "ccvars": "../sdk/Word/variable.map",
+        "ccprops": "../sdk/Word/property.map",
+        "api": "../sdk/Word/apiExport.js",
+        "clientjs": [
+            "../deploy/apps/documenteditor/main/app-edit.js",
+            "../deploy/apps/documenteditor/main/app-view.js",
+            "../deploy/apps/documenteditor/mobile/app-all.js",
+            "../deploy/apps/documenteditor/embed/app-all.js",
+            "../deploy/apps/api/documents/cache-scripts.html"
+        ],
+        "ccres": "../deploy/sdk/Word/sdk-all.js"
+    },
+    "obf": {
+        "api": "../deploy/sdk/Word/sdk-all.js",
+        "pat": "asc_\\w+",
+        "keys": "-exp se -use-for-name",
+        "apply": [
+            "../deploy/sdk/Word/sdk-all.js",
+            "../deploy/apps/documenteditor/main/app-edit.js",
+            "../deploy/apps/documenteditor/main/app-view.js",
+            "../deploy/apps/documenteditor/mobile/app-all.js",
+            "../deploy/apps/documenteditor/embed/app-all.js"
+        ]
+    },
+    "tasks": {
+        "deploy": [
+            "increment-build",
+            "deploy-api",
+            "deploy-sdk",
+            "deploy-app-main",
+            "deploy-app-mobile",
+            "deploy-app-embed"
+        ]
+    }
+}
