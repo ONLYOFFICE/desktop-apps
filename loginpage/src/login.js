@@ -50,18 +50,19 @@ $(document).ready(function() {
             return;
         } 
 
-        var re_protocol = /^(https?:\/{2})/;
-        if (re_protocol.test(portal)) {
-            protocol = '';
-        }
-
-        // portal = /^(?:https?:\/{2})?([^\.]+\.[^\.]+\.\w+)/i.exec();
-        // if (!!portal && portal[1].length) {
-        //     portal = portal[1];
-        // } else {
-        //     showLoginError();
-        //     return;
+        // var re_protocol = /^(https?:\/{2})/;
+        // if (re_protocol.test(portal)) {
+        //     protocol = '';
         // }
+
+        portal = /^(https?:\/{2})?([^\/]+)/i.exec(portal);
+        if (!!portal && portal[2].length) {
+            portal[1] && (protocol = portal[1]);
+            portal = portal[2];
+        } else {
+            showLoginError();
+            return;
+        }
 
         var pass        = document.getElementById('auth-pass').value;
         var url         = protocol + portal + "/api/2.0/authentication.json";
