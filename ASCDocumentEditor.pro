@@ -96,34 +96,33 @@ DEFINES += \
     MNG_STORE_CHUNKS\
     MNG_ERROR_TELLTALE
 
-win32:contains(QMAKE_TARGET.arch, x86_64):{
+win32 {
+    DEFINES += JAS_WIN_MSVC_BUILD WIN32
+    RC_ICONS += ./res/icons/desktop_icons.ico
 
-RC_ICONS += ./res/icons/desktop_icons.ico
-QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-DEFINES += JAS_WIN_MSVC_BUILD WIN32
-LIBS += -L$$PWD/libs/app/cefbuilds/win64 -llibcef
+    contains(QMAKE_TARGET.arch, x86_64):{
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
+        LIBS += -L$$PWD/libs/app/cefbuilds/win64 -llibcef
 
-CONFIG(debug, debug|release) {
-    LIBS += -L$$PWD/libs/app/corebuilds/win64/debug -lascdocumentscore
-} else {
-    LIBS += -L$$PWD/libs/app/corebuilds/win64 -lascdocumentscore
-}
+        CONFIG(debug, debug|release) {
+            LIBS += -L$$PWD/libs/app/corebuilds/win64/debug -lascdocumentscore
+        } else {
+            LIBS += -L$$PWD/libs/app/corebuilds/win64 -lascdocumentscore
+        }
 
-    message(windows64)
-}
+        message(windows64)
+    }
 
-win32:!contains(QMAKE_TARGET.arch, x86_64):{
+    !contains(QMAKE_TARGET.arch, x86_64):{
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+        LIBS += -L$$PWD/libs/app/cefbuilds/win32 -llibcef
 
-RC_ICONS += ./res/icons/desktop_icons.ico
-QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-DEFINES += JAS_WIN_MSVC_BUILD WIN32
-LIBS += -L$$PWD/libs/app/cefbuilds/win32 -llibcef
+        CONFIG(debug, debug|release) {
+            LIBS += -L$$PWD/libs/app/corebuilds/win32/debug -lascdocumentscore
+        } else {
+            LIBS += -L$$PWD/libs/app/corebuilds/win32 -lascdocumentscore
+        }
 
-CONFIG(debug, debug|release) {
-    LIBS += -L$$PWD/libs/app/corebuilds/win32/debug -lascdocumentscore
-} else {
-    LIBS += -L$$PWD/libs/app/corebuilds/win32 -lascdocumentscore
-}
-
-    message(windows32)
+        message(windows32)
+    }
 }

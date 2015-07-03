@@ -14,6 +14,7 @@ VersionInfoVersion      ={#sAppVersion}
 AppPublisher            =Ascensio System SIA.
 AppPublisherURL         =http://www.onlyoffice.com/
 AppSupportURL           =http://www.onlyoffice.com/support.aspx
+AppCopyright            =Copyright (C) 2015 Ascensio System SIA.
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
