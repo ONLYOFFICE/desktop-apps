@@ -4,5 +4,5 @@ set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComp
 if exist ".svn" (
     TortoiseProc.exe /command:update /path:.\ /closeonend:0
 ) else (
-    TortoiseProc.exe /command:checkout /path:.\ /url:%LibsPath% /closeonend:0
+    TortoiseProc.exe /command:checkout /blockpathadjustments /path:.\ /url:%LibsPath% /closeonend:0
 )
