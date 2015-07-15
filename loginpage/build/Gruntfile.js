@@ -249,9 +249,20 @@ module.exports = function(grunt) {
             },
 
             uglify: {
+                options: {
+                    mangle: {
+                        sort:true
+                    },
+                    mangleProperties: true,
+                    compress: {
+                        unused:true,
+                        drop_console: true
+                    }
+                },
                 my_target: {
                     files: {
-                        '../deploy/login_min.js' : ['../deploy/login.js']
+                        '../deploy/login_min.js' : ['../deploy/login.js'],
+                        '../deploy/locale_min.js' : ['../deploy/locale.js']
                     }
                 }
             },

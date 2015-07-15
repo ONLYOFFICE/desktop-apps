@@ -3,13 +3,6 @@
 <head>
     <title>Hello ONLYOFFICE Documents</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=IE8"/>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
 
     <link rel="stylesheet" type="text/css" href="styles.css">
 
@@ -227,7 +220,7 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" replace="yes" src="locale.js"></script>
-    <script type="text/javascript" replace="yes" src="login.js"></script>
+    <script type="text/javascript" replace="yes" src="locale_min.js"></script>
+    <script type="text/javascript" replace="yes" src="login_min.js"></script>
 </body>
 </html>

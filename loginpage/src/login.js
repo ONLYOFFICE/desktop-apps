@@ -151,6 +151,9 @@ $(document).ready(function() {
         }
     });
 
+    // $('#auth-portal').val('testinfo.teamlab.info');
+    // $('#auth-email').val('maxim.kadushkin@avsmedia.net');
+
     $('#auth-pass').keypress(function(e){
         switch (e.which) {
         case 13:
@@ -173,9 +176,14 @@ $(document).ready(function() {
     function getUserInfo(token) {
         var _url_ = protocol + portal + "/api/2.0/people/@self.json";
 
-        $.ajax({
+        var opts = {
             url: _url_,
+            crossOrigin: true,
+            crossDomain: true,
             headers: {'Authorization': token},
+            beforeSend: function (xhr) {
+                // xhr.setRequestHeader ("Access-Control-Allow-Origin", "*");
+            },
             complete: function(e, status) {
                 if (status == 'success') {
                     var obj = JSON.parse(e.responseText);
@@ -206,7 +214,9 @@ $(document).ready(function() {
                 showLoginError();
                 setLoaderVisible(false);
             }
-        });
+        };
+
+        $.ajax(opts);
     }
 
     if (!!localStorage['ascportal'] && localStorage['ascportal'].length) {
