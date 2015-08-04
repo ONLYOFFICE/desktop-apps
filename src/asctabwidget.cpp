@@ -398,9 +398,8 @@ void CAscTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOpti
     if (m_capColor.name() != "nocolor")
         p->setPen(QPen(m_capColor));
 
-    QRect trect = t.rect;
-    trect.setLeft(t.rect.left() + t.iconSize.width() + 6);
-    trect.setWidth(trect.width() - 26);
+    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 6, t.rect.top()),
+                    QPoint(t.rect.right() - 26,t.rect.bottom() - 2));
     p->setFont(font());
 
     QString es = fontMetrics().elidedText(s, Qt::ElideRight, trect.width(), Qt::TextShowMnemonic);
@@ -462,7 +461,7 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
             continue;
 
         QString text = tab.text;
-        tab.text = "";
+//        tab.text = "";
         p.drawControl(QStyle::CE_TabBarTab, tab);
         drawTabCaption(&p, text, tab);
     }
@@ -477,7 +476,7 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
         }
         if (!d->dragInProgress) {
             QString text = tab.text;
-            tab.text = "";
+//            tab.text = "";
             p.drawControl(QStyle::CE_TabBarTab, tab);
             drawTabCaption(&p, text, tab);
         } else {

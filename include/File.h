@@ -36,6 +36,7 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
+#include <time.h>
 #include "Array.h"
 #include "errno.h"
 #include "Base64.h"
@@ -109,7 +110,7 @@ namespace NSFile
 
 			return s;
 		}
-		static std::wstring GetUnicodeFromCharPtr(std::string& sParam, INT bIsUtf8 = FALSE)
+		static std::wstring GetUnicodeFromCharPtr(const std::string& sParam, INT bIsUtf8 = FALSE)
 		{
 			return GetUnicodeFromCharPtr(sParam.c_str(), (LONG)sParam.length(), bIsUtf8);			
 		}
@@ -601,7 +602,6 @@ namespace NSFile
 		{
 			return m_pFile;
 		}
-
 		inline long GetFileSize()
 		{
 			return m_lFileSize;
@@ -674,12 +674,12 @@ namespace NSFile
 			m_lFilePosition = 0;
 			return true;
 		}
-		bool SeekFile(int lFilePosition)
+		bool SeekFile(int lFilePosition, int nSeekMode = 0)
 		{
 			if (!m_pFile)
 				return false;
 
-			m_lFilePosition = fseek(m_pFile, lFilePosition, 0);
+			m_lFilePosition = fseek(m_pFile, lFilePosition, nSeekMode);
 			return true;
 		}
 		bool ReadFile(BYTE* pData, DWORD nBytesToRead, DWORD& dwSizeRead)
@@ -690,13 +690,32 @@ namespace NSFile
 			dwSizeRead = (DWORD)fread((void*)pData, 1, nBytesToRead, m_pFile);
 			return true;
 		}
-		bool WriteFile(BYTE* pData, DWORD nBytesCount)
+		bool WriteFile(const BYTE* pData, DWORD nBytesCount)
 		{
 			if (!m_pFile)
 				return false;
 
-			size_t nCountWrite = fwrite((void*)pData, 1, nBytesCount, m_pFile);
+			size_t nCountWrite = fwrite((const void*)pData, 1, nBytesCount, m_pFile);
 			return true;
+		}
+		long TellFile()
+		{
+			if (!m_pFile)
+				return 0;
+
+			return ftell(m_pFile);
+		}
+		long SizeFile()
+		{
+			if (!m_pFile)
+				return 0;
+
+			long lPos = TellFile();
+			fseek(m_pFile, 0, SEEK_END);
+			m_lFileSize = ftell(m_pFile);
+			fseek(m_pFile, lPos, SEEK_SET);
+
+			return m_lFileSize;
 		}
 		void WriteStringUTF8(const std::wstring& strXml, bool bIsBOM = false)
 		{

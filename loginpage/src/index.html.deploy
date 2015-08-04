@@ -186,7 +186,7 @@
             </div>
         </div>
         <div id="placeholder">
-            <div id="area-login" class="district">
+            <div id="area-login">
                 <div id="field-login-data">
                     <label id="auth-wellcome" class="text">Login to ONLYOFFICE</label>
                     <label id="auth-error" class="text-sub" id="auth-error">Login failed. Please, check the entered data and try again.</label>
@@ -196,7 +196,7 @@
                 </div>
                 <div id="field-pass-restore">
                     <label id="label-pass-forgot" class="text-sub">Forgot password?</label>
-                    <a id="link-restore" target="popup" class="text-sub link" href="https://www.onlyoffice.com/signin.aspx">Restore</a>
+                    <a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">Restore</a>
                 </div>
                 <div id="field-btn-login">
                     <button id="btn-login">Login</button>
@@ -205,16 +205,16 @@
                 </div>
                 <div class="copyReserved text-sub">© Ascensio System SIA 2015. All rights reserved</div>
             </div>
-            <div id="area-welcome" class="district">
-                <span class="separator"></span>
+            <div id="area-welcome">
+                <div class="separator"></div>
                 <div class="rel-box">
-                    <div class="abs-box">
-                        <span class="text" id="text-welcome">Welcome to ONLYOFFICE Desktop!</span>
-                        <span class="text" id="text-description">A new fast solution for work with documents using your ONLYOFFICE</span>
-                    </div>
+                    <center class="abs-box">
+                        <h1 class="text" id="text-welcome">Welcome to ONLYOFFICE Desktop!</h1>
+                        <h3 class="text" id="text-description">A new fast solution for work with documents using your ONLYOFFICE</h3>
+                    </center>
                 </div>
                 <div class="separator"></div>
-                <img id="center-image">
+                <img id="centre-image">
             </div>
         </div>
     </div>

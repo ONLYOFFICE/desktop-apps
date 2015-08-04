@@ -606,6 +606,8 @@ void QMainPanel::loadStartPage()
                 QString().fromStdWString(sAppData) :
                 QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
     data_path += "/ONLYOFFICE/DesktopEditors/webdata/local/index.html";
+//    data_path = "ascdesktop://login.html";
+
 
     QString additional;
 
