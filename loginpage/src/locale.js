@@ -69,6 +69,32 @@ var de = {
     '#text-description':'Die neue schnelle Lösung für die Bearbeitung der Dokumente mithilfe von Ihrem ONLYOFFICE'
 }
 
+var fr = {
+    '#auth-wellcome':'Connexion à ONLYOFFICE',
+    '#auth-error':'Connexion échouée. Vérifiez les données d\'entrées s\'il vous plaît et essayez de vous connecter encore une fois',
+    '#auth-portal:placeholder':'portail',
+    '#auth-email:placeholder':'email',
+    '#auth-pass:placeholder':'mot de passe',
+    '#label-pass-forgot':'Mot de passe oublié?',
+    '#link-restore':'Récupérer',
+    '#btn-login':'Connexion',
+    '#text-welcome':'Bienvenue à ONLYOFFICE de bureau!',
+    '#text-description':'Une nouvelle solution rapide pour travailler avec les document en utilisant votre ONLYOFFICE'
+}
+
+var es = {
+    '#auth-wellcome':'Acceder a ONLYOFFICE',
+    '#auth-error':'El acceso se ha fallado. Por favor, compruebe los datos introducidos y vuelva a intentarlo',
+    '#auth-portal:placeholder':'portal',
+    '#auth-email:placeholder':'correo electrónico',
+    '#auth-pass:placeholder':'contraseña',
+    '#label-pass-forgot':'¿Ha olvidado la contraseña?',
+    '#link-restore':'Recuperar',
+    '#btn-login':'Iniciar sesión',
+    '#text-welcome':'¡Bienvenido a ONLYOFFICE de Escritorio!',
+    '#text-description':'Una nueva solución rápida para el manejo de documentos utilizando su ONLYOFFICE'
+}
+
 function getUrlParams() {
     var e,
     a = /\+/g,  

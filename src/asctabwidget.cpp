@@ -461,7 +461,7 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
             continue;
 
         QString text = tab.text;
-//        tab.text = "";
+        tab.text = "";
         p.drawControl(QStyle::CE_TabBarTab, tab);
         drawTabCaption(&p, text, tab);
     }
@@ -476,7 +476,7 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
         }
         if (!d->dragInProgress) {
             QString text = tab.text;
-//            tab.text = "";
+            tab.text = "";
             p.drawControl(QStyle::CE_TabBarTab, tab);
             drawTabCaption(&p, text, tab);
         } else {
