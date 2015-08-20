@@ -1,5 +1,6 @@
 @echo off
-set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors
+rem set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors
+set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor
 
 if exist ".svn" (
     TortoiseProc.exe /command:update /path:.\ /closeonend:0

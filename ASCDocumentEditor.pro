@@ -12,15 +12,15 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/es.ts \
                 ./langs/fr.ts
 
-INCLUDEPATH += ./include \
-        ./libs/lib/include
+INCLUDEPATH += ./libs/ChromiumBasedEditors/lib/include \
+                ./libs/ChromiumBasedEditors/lib/qcefview
 
 HEADERS += \
     ./src/mainwindow.h \
     ./src/qmainpanel.h \
     ./src/qwinhost.h \
     ./src/qwinwidget.h \
-    ./libs/lib/qcefview/qcefview.h \
+    ./libs/ChromiumBasedEditors/lib/qcefview/qcefview.h \
     ./src/asctabwidget.h \
     src/cascuser.h \
     src/version.h \
@@ -42,7 +42,7 @@ SOURCES += \
     ./src/qmainpanel.cpp \
     ./src/qwinhost.cpp \
     ./src/qwinwidget.cpp \
-    ./libs/lib/qcefview/qcefview.cpp \
+    ./libs/ChromiumBasedEditors/lib/qcefview/qcefview.cpp \
     src/cascuser.cpp \
     src/csavefilemessage.cpp \
     src/cuserprofilewidget.cpp \
@@ -102,12 +102,12 @@ win32 {
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        LIBS += -L$$PWD/libs/app/cefbuilds/win64 -llibcef
+        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/win64 -llibcef
 
         CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/libs/app/corebuilds/win64/debug -lascdocumentscore
+            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win64/debug -lascdocumentscore
         } else {
-            LIBS += -L$$PWD/libs/app/corebuilds/win64 -lascdocumentscore
+            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win64 -lascdocumentscore
         }
 
         message(windows64)
@@ -115,12 +115,12 @@ win32 {
 
     !contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        LIBS += -L$$PWD/libs/app/cefbuilds/win32 -llibcef
+        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/win32 -llibcef
 
         CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/libs/app/corebuilds/win32/debug -lascdocumentscore
+            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win32/debug -lascdocumentscore
         } else {
-            LIBS += -L$$PWD/libs/app/corebuilds/win32 -lascdocumentscore
+            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win32 -lascdocumentscore
         }
 
         message(windows32)

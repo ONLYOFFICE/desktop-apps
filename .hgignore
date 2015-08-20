@@ -4,9 +4,7 @@ build/Release/*
 build/Debug/*
 
 *.user
-libs/.svn
-libs/lib
-libs/app
+libs/*
 
 loginpage/build/node_modules/*
 loginpage/deploy/*

@@ -39,7 +39,7 @@
 #include <QtWidgets/QPushButton>
 
 #include "applicationmanager.h"
-#include "libs/lib/qcefview/qcefview.h"
+#include "qcefview.h"
 
 #include <QDebug>
 

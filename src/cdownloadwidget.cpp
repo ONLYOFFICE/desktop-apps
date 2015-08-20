@@ -40,7 +40,7 @@
 #include <QEvent>
 #include <QActionEvent>
 #include <QApplication>
-#include "libs/lib/qcefview/qcefview.h"
+#include "qcefview.h"
 
 #include <QDebug>
 
