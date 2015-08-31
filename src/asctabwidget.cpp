@@ -39,8 +39,6 @@
 #include <QLabel>
 #include <QStylePainter>
 #include <QDesktopWidget>
-#include "csavefilemessage.h"
-#include "defines.h"
 
 #include "private/qtabbar_p.h"
 
@@ -166,9 +164,16 @@ void QTabBarPrivate::layoutTab(int index)
         QPoint p = rect.topLeft();
         if ((index == pressedIndex) || paintWithOffsets) {
             if (vertical)
-                p.setY(p.y() + tab.dragOffset); else
-                p.setX(p.x() + tab.dragOffset);
+                p.setY(p.y() + tab.dragOffset);
+            else {
+                int new_x = ((index == 0 && tab.rect.left() + tab.dragOffset < 0) ||
+                                (++index == q->count() && tab.rect.right() + tab.dragOffset > q->width())) ?
+                        p.x() : p.x() + tab.dragOffset;
+
+                p.setX(new_x);
+            }
         }
+
         tab.rightWidget->move(p);
     }
 }
@@ -288,6 +293,17 @@ void QTabBarPrivate::moveTab(int index, int offset)
     q_func()->update();
 }
 
+int QTabBarPrivate::indexAtPos(const QPoint &p) const
+{
+    Q_Q(const QTabBar);
+    if (q->tabRect(currentIndex).contains(p))
+        return currentIndex;
+    for (int i = 0; i < tabList.count(); ++i)
+        if (tabList.at(i).enabled && q->tabRect(i).contains(p))
+            return i;
+    return -1;
+}
+
 void QTabBarPrivate::Tab::TabBarAnimation::updateCurrentValue(const QVariant &current)
 {
     priv->moveTab(priv->tabList.indexOf(*tab), current.toInt());
@@ -393,6 +409,38 @@ void CAscTabBar::mouseMoveEvent (QMouseEvent * event)
     optTabBase.documentMode = d->documentMode;
 }
 
+void CAscTabBar::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_D(QTabBar);
+    if (event->button() != Qt::LeftButton) {
+        event->ignore();
+        return;
+    }
+#ifdef Q_WS_MAC
+    d->previousPressedIndex = -1;
+#endif
+    if (d->movable && d->dragInProgress && d->validIndex(d->pressedIndex)) {
+        int length = d->tabList[d->pressedIndex].dragOffset;
+        int width = verticalTabs(d->shape)
+            ? tabRect(d->pressedIndex).height()
+            : tabRect(d->pressedIndex).width();
+        int duration = qMin(ANIMATION_DURATION,
+                (qAbs(length) * ANIMATION_DURATION) / width);
+        d->tabList[d->pressedIndex].startAnimation(d, duration);
+        d->dragInProgress = false;
+        d->movingTab->setVisible(false);
+        d->dragStartPosition = QPoint();
+    }
+
+    int i = d->indexAtPos(event->pos()) == d->pressedIndex ? d->pressedIndex : -1;
+    d->pressedIndex = -1;
+    QStyleOptionTabBarBaseV2 optTabBase;
+    optTabBase.initFrom(this);
+    optTabBase.documentMode = d->documentMode;
+    if (style()->styleHint(QStyle::SH_TabBar_SelectMouseType, &optTabBase, this) == QEvent::MouseButtonRelease)
+        setCurrentIndex(i);
+}
+
 void CAscTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)
 {
     if (m_capColor.name() != "nocolor")
@@ -430,6 +478,18 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
 
     for (int i = 0; i < d->tabList.count(); ++i)
          optTabBase.tabBarRect |= tabRect(i);
+
+    int bar_width = /*optTabBase.tabBarRect.*/width();
+    auto _apply_edges = [d, bar_width](int index, int left, int tabwidth) -> int {
+        int retleft = left;
+        if (index == 0 || ++index == d->tabList.count()) {
+            if (left < 0) retleft = 0; else
+            if (left + tabwidth > bar_width)
+                retleft = bar_width - tabwidth;
+        }
+
+        return retleft;
+    };
 
     optTabBase.selectedTabRect = tabRect(selected);
 
@@ -472,7 +532,8 @@ void CAscTabBar::paintEvent(QPaintEvent * event)
         initStyleOption(&tab, selected);
 
         if (d->paintWithOffsets && d->tabList[selected].dragOffset != 0) {
-            tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
+            int newleft = _apply_edges(selected, tab.rect.x() + d->tabList[selected].dragOffset, tab.rect.width());
+            tab.rect.moveLeft(newleft);
         }
         if (!d->dragInProgress) {
             QString text = tab.text;
