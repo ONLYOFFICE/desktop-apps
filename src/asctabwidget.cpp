@@ -447,7 +447,7 @@ void CAscTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOpti
         p->setPen(QPen(m_capColor));
 
     QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 6, t.rect.top()),
-                    QPoint(t.rect.right() - 26,t.rect.bottom() - 2));
+                    QPoint(t.rect.right() - 22,t.rect.bottom() - 2));
     p->setFont(font());
 
     QString es = fontMetrics().elidedText(s, Qt::ElideRight, trect.width(), Qt::TextShowMnemonic);

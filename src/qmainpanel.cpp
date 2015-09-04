@@ -209,10 +209,10 @@ QMainPanel::QMainPanel( HWND hWnd, CAscApplicationManager* pManager )
 //    m_pMainWidget->setVisible(false);
 //    loadStartPage();
 
-    m_pSeparator = new QWidget(centralWidget);
-    m_pSeparator->setObjectName("separator");
-    m_pSeparator->setStyleSheet("background-color:#D6D6D7");
-    m_pSeparator->setGeometry(0, 28*g_dpi_ratio, width(), 1);
+//    m_pSeparator = new QWidget(centralWidget);
+//    m_pSeparator->setObjectName("separator");
+//    m_pSeparator->setStyleSheet("background-color:#D6D6D7");
+//    m_pSeparator->setGeometry(0, 28*g_dpi_ratio, width(), 1);
 
     mainGridLayout->addWidget( centralWidget );
 
@@ -239,7 +239,7 @@ void QMainPanel::RecalculatePlaces()
 
     m_pTabs->setGeometry(0, 0, nWindowW, nWindowH);
     m_pButtonMain->setGeometry(0, 0, btnMainWidth, nCaptionH);
-    m_pSeparator->setGeometry(0, 28 * g_dpi_ratio, nWindowW, 1*g_dpi_ratio);
+//    m_pSeparator->setGeometry(0, 28 * g_dpi_ratio, nWindowW, 1*g_dpi_ratio);
 
 //    int nStartOffset = 12;
 //    int nBetweenApp = 12;

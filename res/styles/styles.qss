@@ -74,9 +74,9 @@ QPushButton#toolButtonMain[class=active],
         background-position: left top;
 }
 
-QPushButton#toolButtonMain[class=active]:pressed {
+/*QPushButton#toolButtonMain[class=active]:pressed {
         background-position: right top;
-}
+}*/
 
 QPushButton#toolButtonMain[class=normal],
     QPushButton#toolButtonMain[class=normal]:hover {
@@ -129,23 +129,34 @@ QPushButton#toolButtonDownload::menu-indicator {
     /*border: 1px solid white;*/
 }
 
-QTabBar::close-button {
-    background:transparent; 
-    background-repeat: no-repeat;
-    background-image: url(:/res/icons/tab_close_normal.png);
-    border:none;
-    width:8px;
-    height:11px;
-    margin-right:5px;
-    margin-top: 3px;
+QTabBar::tab {
+    padding-left: 7px;
+    /*padding-right: 2px;*/
 }
 
-QTabBar::close-button:hover {
-    background-image:url(:/res/icons/tab_close_hover.png);
+QTabBar::tear { width: 0px; }
+QTabBar::tab:first { }
+QTabBar::tab:only-one { }
+QTabBar::tab:last { }
+
+QTabBar::close-button {
+    /*background-image: url(:/res/icons/tab_close_normal.png);*/
+    border-image: url(:/res/icons/tab_close_normal.png) 0 0 0 0 stretch stretch;
+    background-clip: padding-box;
+    /*margin-top: -7px;*/
+    padding-top: 7px;
+    /*subcontrol-origin: content;*/
+    /*subcontrol-position: left;*/
+}
+
+CAscTabBar::close-button:hover {
+    /*background-image:url(:/res/icons/tab_close_hover.png);*/
+    border-image: url(:/res/icons/tab_close_hover.png) 0 0 0 0 stretch stretch;
 }
 
 QTabBar::close-button:pressed {
-    background-image:url(:/res/icons/tab_close_active.png);
+    /*background-image:url(:/res/icons/tab_close_active.png);*/
+    border-image: url(:/res/icons/tab_close_active.png) 0 0 0 0 stretch stretch;
 }
 
 /*MyLabel { qproperty-pixmap: url(pixmap.png); }*/

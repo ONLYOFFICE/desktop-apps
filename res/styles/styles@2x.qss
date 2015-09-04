@@ -32,20 +32,25 @@ QPushButton::menu-indicator {
     top: -2px;
 }
 
+QTabBar::tab {
+    padding-left: 14px;
+}
+
 QTabBar::close-button {
     background-image: url(:/res/icons/tab_close_normal_2x.png);
-    width:16px;
-    height:22px;
-    margin-right:10px;
-    margin-top: 6px;
+    border-image: none;
+    /*margin-right:10px;/*
+    /*margin-top: 8px;*/
 }
 
 QTabBar::close-button:hover {
     background-image:url(:/res/icons/tab_close_hover_2x.png);
+    border-image: none;
 }
 
 QTabBar::close-button:pressed {
     background-image:url(:/res/icons/tab_close_active_2x.png);
+    border-image: none;
 }
 
 QMenu#menuButtonProfile,
