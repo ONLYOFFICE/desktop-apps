@@ -102,27 +102,18 @@ win32 {
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/win64 -llibcef
-
-        CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win64/debug -lascdocumentscore
-        } else {
-            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win64 -lascdocumentscore
-        }
-
-        message(windows64)
-    }
-
-    !contains(QMAKE_TARGET.arch, x86_64):{
+        PLATFORM_BUILD = win64
+    } else {
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/win32 -llibcef
-
-        CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win32/debug -lascdocumentscore
-        } else {
-            LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/win32 -lascdocumentscore
-        }
-
-        message(windows32)
+        PLATFORM_BUILD = win32
     }
+
+    LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/$$PLATFORM_BUILD -llibcef
+    CONFIG(debug, debug|release) {
+        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
+    } else {
+        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
+    }
+
+    message($$PLATFORM_BUILD)
 }
