@@ -1,10 +1,10 @@
 syntax: glob
 
-build/Release/*
-build/Debug/*
+qt/build/Release/*
+qt/build/Debug/*
 
-*.user
-libs/*
+qt/*.user
+common/libs/*
 
-loginpage/build/node_modules/*
-loginpage/deploy/*
+commom/loginpage/build/node_modules/*
+common/loginpage/deploy/*

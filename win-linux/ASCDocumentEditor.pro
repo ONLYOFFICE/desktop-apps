@@ -6,21 +6,21 @@ CONFIG += c++11
 
 TARGET = DesktopEditors
 
-TRANSLATIONS = ./langs/en.ts \
-                ./langs/ru.ts \
-                ./langs/de.ts \
-                ./langs/es.ts \
-                ./langs/fr.ts
+TRANSLATIONS = ../common/langs/en.ts \
+                ../common/langs/ru.ts \
+                ../common/langs/de.ts \
+                ../common/langs/es.ts \
+                ../common/langs/fr.ts
 
-INCLUDEPATH += ./libs/ChromiumBasedEditors/lib/include \
-                ./libs/ChromiumBasedEditors/lib/qcefview
+INCLUDEPATH += ../common/libs/ChromiumBasedEditors/lib/include \
+                ../common/libs/ChromiumBasedEditors/lib/qcefview
 
 HEADERS += \
     ./src/mainwindow.h \
     ./src/qmainpanel.h \
     ./src/qwinhost.h \
     ./src/qwinwidget.h \
-    ./libs/ChromiumBasedEditors/lib/qcefview/qcefview.h \
+    ../common/libs/ChromiumBasedEditors/lib/qcefview/qcefview.h \
     ./src/asctabwidget.h \
     src/cascuser.h \
     src/version.h \
@@ -42,7 +42,7 @@ SOURCES += \
     ./src/qmainpanel.cpp \
     ./src/qwinhost.cpp \
     ./src/qwinwidget.cpp \
-    ./libs/ChromiumBasedEditors/lib/qcefview/qcefview.cpp \
+    ../common/libs/ChromiumBasedEditors/lib/qcefview/qcefview.cpp \
     src/cascuser.cpp \
     src/csavefilemessage.cpp \
     src/cuserprofilewidget.cpp \
@@ -108,11 +108,11 @@ win32 {
         PLATFORM_BUILD = win32
     }
 
-    LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/cefbuilds/$$PLATFORM_BUILD -llibcef
+    LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/cefbuilds/$$PLATFORM_BUILD -llibcef
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
     } else {
-        LIBS += -L$$PWD/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
+        LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
     }
 
     message($$PLATFORM_BUILD)

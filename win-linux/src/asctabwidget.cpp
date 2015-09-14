@@ -456,7 +456,7 @@ void CAscTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOpti
 }
 
 void CAscTabBar::paintEvent(QPaintEvent * event)
-{
+{    
     Q_D(QTabBar);
 
     if (verticalTabs(d->shape)) {
@@ -560,6 +560,10 @@ void CAscTabBar::setTabTextColor(const QColor& c)
     m_capColor = c;
 }
 
+//int CAscTabBar::insertTab(int index, const QIcon& icon, const QString &text)
+//{
+//    return QTabBar::insertTab(index, icon, text);
+//}
 
 /*
  *  TabWidget component
@@ -568,7 +572,7 @@ void CAscTabBar::setTabTextColor(const QColor& c)
 
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent), m_pMainButton(NULL),
-      m_dataFullScreen(0)
+      m_dataFullScreen(0)    
 {
     CAscTabBar * tabs = new CAscTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -589,6 +593,30 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons();});
 }
 
+//int CAscTabWidget::addTab(QWidget *child, const QString &label)
+//{
+//    return insertTab(-1, child, QIcon(), label);
+//}
+
+//int CAscTabWidget::insertTab(int index, QWidget *w, const QIcon& icon, const QString &label)
+//{
+//    int ret_index = QTabWidget::insertTab(index, w, icon, label);
+
+//    QWidget * btn = tabBar()->tabButton(ret_index, QTabBar::RightSide);
+//    if ( btn ) {
+////        QRect g = btn->geometry();
+////        btn->setGeometry(g.x() + 6, g.y() + 6, 16*g_dpi_ratio, 16*g_dpi_ratio);
+////        qDebug() << "pos: " << tabBar()->tabButton(ret_index, QTabBar::RightSide)->geometry();
+//    }
+
+//    return ret_index;
+//}
+
+//int CAscTabWidget::insertTab(int index, QWidget *w, const QString &label)
+//{
+//    return insertTab(index, w, QIcon(), label);
+//}
+
 int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring url)
 {
     Q_UNUSED(etType);
@@ -606,7 +634,7 @@ int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring
     CAscTabData * data = new CAscTabData(strName);
     data->setViewId(id_view);
 
-    int tab_index = this->addTab(pView, strName);
+    int tab_index = addTab(pView, strName);
     tabBar()->setTabData(tab_index, VPtr<CAscTabData>::asQVariant(data));
     tabBar()->setTabToolTip(tab_index, strName);
 

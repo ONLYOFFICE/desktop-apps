@@ -35,10 +35,10 @@
 #include <QTranslator>
 #include <QStandardPaths>
 #include <QLibraryInfo>
-#include "mainwindow.h"
 
 //#include "cefapplication.h"
 #include "cmyapplicationmanager.h"
+#include "mainwindow.h"
 #include "shlobj.h"
 
 #include <QDebug>

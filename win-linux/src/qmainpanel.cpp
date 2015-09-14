@@ -256,7 +256,10 @@ void QMainPanel::RecalculatePlaces()
 // Button events
 void QMainPanel::pushButtonMinimizeClicked()
 {
-    ShowWindow( parentWindow(), SW_MINIMIZE );
+    if (m_pButtonDownload->isVisible())
+    m_pButtonDownload->hide();    else
+    m_pButtonDownload->show();
+//    ShowWindow( parentWindow(), SW_MINIMIZE );
 }
 
 void QMainPanel::pushButtonMaximizeClicked()
