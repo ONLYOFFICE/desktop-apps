@@ -1,10 +1,10 @@
 syntax: glob
 
-qt/build/Release/*
-qt/build/Debug/*
+win-linux/build/Release/*
+win-linux/build/Debug/*
 
-qt/*.user
+win-linux/*.user
 common/libs/*
 
-commom/loginpage/build/node_modules/*
+common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
