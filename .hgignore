@@ -8,3 +8,7 @@ common/libs/*
 
 common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
+
+.DS_Store
+*.xcuserstate
+*.xcuserdatad
