@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC5A2D301BAC0739001ACEB1 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
+		FC5A2D331BAC0749001ACEB1 /* ASCDocumentEditor Helper.app in Resources */ = {isa = PBXBuildFile; fileRef = FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */; };
+		FC5A2D341BAC0749001ACEB1 /* Chromium Embedded Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */; };
 		FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
 		FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
 		FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
@@ -15,7 +18,7 @@
 		FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.m */; };
 		FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
 		FCBC426F1B9D650400405301 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.m */; };
-		FCBC42711B9D650400405301 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.m */; };
+		FCBC42711B9D650400405301 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
 		FCBC42761B9D650500405301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FCBC42791B9D650500405301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCBC42911B9D660400405301 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42901B9D660400405301 /* ASCTabsControl.m */; };
@@ -28,6 +31,36 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
+		FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "ASCDocumentEditor Helper.app"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/ASCDocumentEditor Helper.app"; sourceTree = SOURCE_ROOT; };
+		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
+		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
+		FC5A2D391BAC075E001ACEB1 /* applicationmanager_events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager_events.h; sourceTree = "<group>"; };
+		FC5A2D3A1BAC075E001ACEB1 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		FC5A2D3B1BAC075E001ACEB1 /* cefapplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cefapplication.h; sourceTree = "<group>"; };
+		FC5A2D3C1BAC075E001ACEB1 /* cefview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cefview.h; sourceTree = "<group>"; };
+		FC5A2D3D1BAC075E001ACEB1 /* keyboardchecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboardchecker.h; sourceTree = "<group>"; };
+		FC5A2D3E1BAC075E001ACEB1 /* qascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qascprinter.h; sourceTree = "<group>"; };
+		FC5A2D3F1BAC075E001ACEB1 /* spellchecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spellchecker.h; sourceTree = "<group>"; };
+		FC5A2D411BAC075E001ACEB1 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
+		FC5A2D421BAC075E001ACEB1 /* ASCVariant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCVariant.h; sourceTree = "<group>"; };
+		FC5A2D431BAC075E001ACEB1 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		FC5A2D441BAC075E001ACEB1 /* base_export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_export.h; sourceTree = "<group>"; };
+		FC5A2D451BAC075E001ACEB1 /* CalculatorCRC32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorCRC32.h; sourceTree = "<group>"; };
+		FC5A2D471BAC075E001ACEB1 /* CodePage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage.h; sourceTree = "<group>"; };
+		FC5A2D481BAC075E001ACEB1 /* CodePage1361.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage1361.h; sourceTree = "<group>"; };
+		FC5A2D491BAC075E001ACEB1 /* CodePage932.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage932.h; sourceTree = "<group>"; };
+		FC5A2D4A1BAC075E001ACEB1 /* CodePage936.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage936.h; sourceTree = "<group>"; };
+		FC5A2D4B1BAC075E001ACEB1 /* CodePage949.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage949.h; sourceTree = "<group>"; };
+		FC5A2D4C1BAC075E001ACEB1 /* CodePage950.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodePage950.h; sourceTree = "<group>"; };
+		FC5A2D4D1BAC075E001ACEB1 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directory.h; sourceTree = "<group>"; };
+		FC5A2D4E1BAC075E001ACEB1 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		FC5A2D4F1BAC075E001ACEB1 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		FC5A2D501BAC075E001ACEB1 /* String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
+		FC5A2D511BAC075E001ACEB1 /* StringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringBuilder.h; sourceTree = "<group>"; };
+		FC5A2D521BAC075E001ACEB1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		FC5A2D541BAC075E001ACEB1 /* Editor_Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Api.h; sourceTree = "<group>"; };
+		FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Defines.h; sourceTree = "<group>"; };
 		FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleWindow.h; path = Code/ASCTitleWindow.h; sourceTree = "<group>"; };
 		FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleWindow.m; path = Code/ASCTitleWindow.m; sourceTree = "<group>"; };
 		FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleBackground.h; path = Code/Views/ASCTitleBackground.h; sourceTree = "<group>"; };
@@ -47,7 +80,7 @@
 		FCBC426C1B9D650400405301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBC426D1B9D650400405301 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCBC426E1B9D650400405301 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FCBC42701B9D650400405301 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FCBC42701B9D650400405301 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		FCBC42751B9D650500405301 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FCBC42781B9D650500405301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCBC428F1B9D660400405301 /* ASCTabsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabsControl.h; path = Code/Controls/ASCTabsControl.h; sourceTree = "<group>"; };
@@ -71,12 +104,118 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5A2D301BAC0739001ACEB1 /* libascdocumentscore.dylib in Frameworks */,
+				FC5A2D341BAC0749001ACEB1 /* Chromium Embedded Framework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC5A2CFE1BABEF42001ACEB1 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D041BABEF74001ACEB1 /* bin */,
+				FC5A2CFF1BABEF53001ACEB1 /* include */,
+			);
+			name = SDK;
+			sourceTree = "<group>";
+		};
+		FC5A2CFF1BABEF53001ACEB1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors2 */,
+				FC5A2D401BAC075E001ACEB1 /* common */,
+				FC5A2D531BAC075E001ACEB1 /* Word_Api */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		FC5A2D041BABEF74001ACEB1 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */,
+				FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */,
+				FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */,
+			);
+			name = bin;
+			sourceTree = "<group>";
+		};
+		FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors2 */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D361BAC075E001ACEB1 /* lib */,
+			);
+			name = ChromiumBasedEditors2;
+			path = Vendor/ONLYOFFICE/headers/ChromiumBasedEditors2;
+			sourceTree = SOURCE_ROOT;
+		};
+		FC5A2D361BAC075E001ACEB1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D371BAC075E001ACEB1 /* include */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		FC5A2D371BAC075E001ACEB1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */,
+				FC5A2D391BAC075E001ACEB1 /* applicationmanager_events.h */,
+				FC5A2D3A1BAC075E001ACEB1 /* base.h */,
+				FC5A2D3B1BAC075E001ACEB1 /* cefapplication.h */,
+				FC5A2D3C1BAC075E001ACEB1 /* cefview.h */,
+				FC5A2D3D1BAC075E001ACEB1 /* keyboardchecker.h */,
+				FC5A2D3E1BAC075E001ACEB1 /* qascprinter.h */,
+				FC5A2D3F1BAC075E001ACEB1 /* spellchecker.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		FC5A2D401BAC075E001ACEB1 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D411BAC075E001ACEB1 /* Array.h */,
+				FC5A2D421BAC075E001ACEB1 /* ASCVariant.h */,
+				FC5A2D431BAC075E001ACEB1 /* Base64.h */,
+				FC5A2D441BAC075E001ACEB1 /* base_export.h */,
+				FC5A2D451BAC075E001ACEB1 /* CalculatorCRC32.h */,
+				FC5A2D461BAC075E001ACEB1 /* CPEncodings */,
+				FC5A2D4D1BAC075E001ACEB1 /* Directory.h */,
+				FC5A2D4E1BAC075E001ACEB1 /* File.h */,
+				FC5A2D4F1BAC075E001ACEB1 /* Path.h */,
+				FC5A2D501BAC075E001ACEB1 /* String.h */,
+				FC5A2D511BAC075E001ACEB1 /* StringBuilder.h */,
+				FC5A2D521BAC075E001ACEB1 /* Types.h */,
+			);
+			name = common;
+			path = Vendor/ONLYOFFICE/headers/common;
+			sourceTree = SOURCE_ROOT;
+		};
+		FC5A2D461BAC075E001ACEB1 /* CPEncodings */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D471BAC075E001ACEB1 /* CodePage.h */,
+				FC5A2D481BAC075E001ACEB1 /* CodePage1361.h */,
+				FC5A2D491BAC075E001ACEB1 /* CodePage932.h */,
+				FC5A2D4A1BAC075E001ACEB1 /* CodePage936.h */,
+				FC5A2D4B1BAC075E001ACEB1 /* CodePage949.h */,
+				FC5A2D4C1BAC075E001ACEB1 /* CodePage950.h */,
+			);
+			path = CPEncodings;
+			sourceTree = "<group>";
+		};
+		FC5A2D531BAC075E001ACEB1 /* Word_Api */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A2D541BAC075E001ACEB1 /* Editor_Api.h */,
+				FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */,
+			);
+			name = Word_Api;
+			path = Vendor/ONLYOFFICE/headers/Word_Api;
+			sourceTree = SOURCE_ROOT;
+		};
 		FCA0B33D1B9EB56E0073EDD4 /* Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +313,7 @@
 		FCBC426A1B9D650400405301 /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
+				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
 				FCA0B35E1B9F07A10073EDD4 /* UI */,
 				FCA0B33D1B9EB56E0073EDD4 /* Window */,
 				FCBC428E1B9D65CA00405301 /* Controls */,
@@ -191,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				FCBC426C1B9D650400405301 /* Info.plist */,
-				FCBC42701B9D650400405301 /* main.m */,
+				FCBC42701B9D650400405301 /* main.mm */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -222,6 +362,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE" */;
 			buildPhases = (
+				FC5A2D271BABF6E1001ACEB1 /* Copy Library */,
 				FCBC42641B9D650400405301 /* Sources */,
 				FCBC42651B9D650400405301 /* Frameworks */,
 				FCBC42661B9D650400405301 /* Resources */,
@@ -274,11 +415,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
+				FC5A2D331BAC0749001ACEB1 /* ASCDocumentEditor Helper.app in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\necho \"#\"\necho \"# Import Library\"\necho \"#\"\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nif [ ! -d \"$DSTLIB_DIR\" ]; then\nmkdir -p \"$DSTLIB_DIR\"\nfi\n\nCopyLibs() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyHeaders() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyLibs \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyLibs \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyHeaders \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyHeaders \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyHeaders \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCBC42641B9D650400405301 /* Sources */ = {
@@ -297,7 +456,7 @@
 				FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
-				FCBC42711B9D650400405301 /* main.m in Sources */,
+				FCBC42711B9D650400405301 /* main.mm in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.m in Sources */,
@@ -402,8 +561,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/mac",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_MAC,
+				);
 				INFOPLIST_FILE = ONLYOFFICE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -413,8 +585,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/mac",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_MAC,
+				);
 				INFOPLIST_FILE = ONLYOFFICE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

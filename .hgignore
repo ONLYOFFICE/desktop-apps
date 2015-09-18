@@ -12,3 +12,4 @@ common/loginpage/deploy/*
 .DS_Store
 *.xcuserstate
 *.xcuserdatad
+macos/Vendor/ONLYOFFICE
