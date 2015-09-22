@@ -31,17 +31,44 @@
 */
 
 //
-//  AppDelegate.h
-//  ONLYOFFICE
+//  NSString+OnlyOffice.m
+//  SpreadsheetEditor
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 7/7/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "mac_application.h"
+#import "NSString+OnlyOffice.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
+@implementation NSString (OnlyOffice)
+
++ (id)stringWithstdwstring:(const std::wstring&)string
+{
+    if (string.length() < 1) {
+        return @"";
+    }
+    
+    return [[NSString alloc] initWithBytes:(char*)string.data()
+                                    length:string.size()* sizeof(wchar_t)
+                                  encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF32LE)];
+}
+
+- (std::wstring)stdwstring
+{
+    NSStringEncoding encode = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF32LE);
+    NSData* data = [self dataUsingEncoding:encode];
+    
+    return std::wstring ((wchar_t*)[data bytes], [data length] / sizeof(wchar_t));
+}
+
++ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources
+{
+    size_t count = sources.size();
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:count];
+    for (size_t i = 0; i < count; ++i) {
+        [array addObject:[NSString stringWithstdwstring:sources[i]]];
+    }
+    return array;
+}
+
 @end
-

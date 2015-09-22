@@ -39,11 +39,18 @@
 //
 
 #import "ViewController.h"
+#import "mac_application.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTitleWindowController.h"
+#import "ASCHelper.h"
 #import "ASCConstants.h"
 #import "ASCUserInfoViewController.h"
+#import "NSView+ASCView.h"
+#import "AppDelegate.h"
+#import "NSCefView.h"
+
+#define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
 @interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate>
 @property (weak) ASCTabsControl *tabsControl;
@@ -61,6 +68,13 @@
                                                object:nil];
 }
 
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+    
+    // Update the view, if already loaded.
+}
+
+
 - (void)onWindowLoaded:(NSNotification *)notification {
     if (notification && notification.object) {
         ASCTitleWindowController *windowController = (ASCTitleWindowController *)notification.object;
@@ -76,6 +90,20 @@
     self.tabsControl.maxTabWidth = 135;
     
     [self.tabsControl.multicastDelegate addDelegate:self];
+    
+    NSInteger rootTabIndex = [self.tabView indexOfTabViewItemWithIdentifier:rootTabId];
+    
+    if (rootTabIndex != NSNotFound) {
+        NSTabViewItem * tab = [self.tabView tabViewItemAtIndex:rootTabIndex];
+
+        CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+        
+        NSCefView * cefView = [[NSCefView alloc] initWithFrame:tab.view.frame];
+        [cefView Create:appManager withType:cvwtSimple];
+        [cefView Load:@""];
+        [tab.view addSubview:cefView];
+        [cefView setupFillConstraints];
+    }
 }
 
 #pragma mark -
@@ -132,7 +160,7 @@
 - (void)onOnlyofficeButton:(id)sender {
     ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
     tab.title = [NSString stringWithFormat:@"Tab %lu", (unsigned long)rand() % 10000];
-    tab.type = 1 + ((unsigned long)rand() % 4); // ASCTabViewDocumentType;
+    tab.type = ASCTabViewDocumentType;
     [self.tabsControl addTab:tab];
 }
 

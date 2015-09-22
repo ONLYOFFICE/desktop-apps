@@ -31,16 +31,15 @@
 */
 
 //
-//  main.m
+//  ASCApplication.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/22/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "applicationmanager.h"
+#import "mac_application.h"
 
-int main(int argc, const char * argv[]) {
-    return NSApplicationMain(argc, argv);
-}
+@interface ASCApplication : NSAscApplication
+
+@end

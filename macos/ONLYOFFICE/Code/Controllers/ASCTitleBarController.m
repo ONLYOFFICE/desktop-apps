@@ -39,6 +39,7 @@
 //
 
 #import "ASCTitleBarController.h"
+#import "ASCTitleWindow.h"
 #import "ASCConstants.h"
 #import "NSView+ASCView.h"
 
@@ -65,7 +66,16 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (void)initialize {
-    NSWindow * window = [[[NSApplication sharedApplication] windows] firstObject];
+    NSArray * windows = [[NSApplication sharedApplication] windows];
+    
+    NSWindow * mainWindow = nil;
+    
+    for (NSWindow * window in windows) {
+        if ([window isKindOfClass:[ASCTitleWindow class]]) {
+            mainWindow = window;
+            break;
+        }
+    }
     
     self.closeButton = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSTitledWindowMask];
     [self.view addSubview:self.closeButton];
@@ -75,9 +85,9 @@ static float kASCWindowMinTitleWidth = 320;
     [self.view addSubview:self.fullscreenButton];
 
     
-    self.standardButtonsDefaults = @[[window standardWindowButton:NSWindowCloseButton],
-                                     [window standardWindowButton:NSWindowMiniaturizeButton],
-                                     [window standardWindowButton:NSWindowZoomButton]];
+    self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
+                                     [mainWindow standardWindowButton:NSWindowMiniaturizeButton],
+                                     [mainWindow standardWindowButton:NSWindowZoomButton]];
     
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
         [self.view addSubview:standardButton];
@@ -90,7 +100,7 @@ static float kASCWindowMinTitleWidth = 320;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowDidResize:)
                                                  name:NSWindowDidResizeNotification
-                                               object:window];
+                                               object:mainWindow];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onWindowSetFrame:)
@@ -114,8 +124,17 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (BOOL)isFullScreen {
-    NSWindow * window = [[[NSApplication sharedApplication] windows] firstObject];
-	return (([window styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask);
+    NSArray * windows = [[NSApplication sharedApplication] windows];
+    NSWindow * mainWindow = [[[NSApplication sharedApplication] windows] firstObject];
+    
+    for (NSWindow * window in windows) {
+        if ([window isKindOfClass:[ASCTitleWindow class]]) {
+            mainWindow = window;
+            break;
+        }
+    }
+    
+	return (([mainWindow styleMask] & NSFullScreenWindowMask) == NSFullScreenWindowMask);
 }
 
 - (void)doLayout {

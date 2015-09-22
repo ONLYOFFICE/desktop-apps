@@ -42,4 +42,5 @@
 
 @interface NSView (ASCView)
 - (void)removeAllConstraints;
+- (void)setupFillConstraints;
 @end

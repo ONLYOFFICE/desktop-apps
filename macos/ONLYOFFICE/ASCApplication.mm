@@ -31,17 +31,30 @@
 */
 
 //
-//  AppDelegate.h
+//  ASCApplication.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/22/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "mac_application.h"
+#import "ASCApplication.h"
+#import "ASCHelper.h"
+#import "NSString+OnlyOffice.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
+@implementation ASCApplication
+
+- (id)init {
+    self = [super init];
+    
+    return self;
+}
+
+- (void)initAppManager {
+    [ASCHelper copyVendorJS];
+    
+    [self getAppManager]->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
+}
+
+
 @end
-

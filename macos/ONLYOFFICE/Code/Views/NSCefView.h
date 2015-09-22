@@ -31,17 +31,19 @@
 */
 
 //
-//  AppDelegate.h
-//  ONLYOFFICE
+//  NSCefView.h
+//  CefViewTest
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Oleg Korshul on 14.09.15.
+//  Copyright (c) 2015 Ascensio System. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "mac_application.h"
+#include "applicationmanager.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
+@interface NSCefView : NSView
+
+- (void)Load:(NSString *)pEvent;
+- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
+
 @end
-

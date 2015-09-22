@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC5A2D301BAC0739001ACEB1 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
-		FC5A2D331BAC0749001ACEB1 /* ASCDocumentEditor Helper.app in Resources */ = {isa = PBXBuildFile; fileRef = FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */; };
-		FC5A2D341BAC0749001ACEB1 /* Chromium Embedded Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */; };
+		FC033D2F1BB163C600F6C55F /* ASCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC033D2E1BB163C600F6C55F /* ASCApplication.mm */; settings = {ASSET_TAGS = (); }; };
+		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
+		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
+		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
+		FC98BAD91BAC4CB100747944 /* cloud in Resources */ = {isa = PBXBuildFile; fileRef = FC98BAD81BAC4CB100747944 /* cloud */; };
 		FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
 		FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
 		FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
-		FCA9A1901BA6DC6000ABF3AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.m */; };
+		FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */; };
 		FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
 		FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.m */; };
 		FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
-		FCBC426F1B9D650400405301 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.m */; };
-		FCBC42711B9D650400405301 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
+		FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
+		FCBC42711B9D650400405301 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.m */; };
 		FCBC42761B9D650500405301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FCBC42791B9D650500405301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCBC42911B9D660400405301 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42901B9D660400405301 /* ASCTabsControl.m */; };
@@ -31,8 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
+		FC033D2D1BB163C600F6C55F /* ASCApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCApplication.h; sourceTree = "<group>"; };
+		FC033D2E1BB163C600F6C55F /* ASCApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCApplication.mm; sourceTree = "<group>"; };
+		FC033D321BB16B2700F6C55F /* ONLYOFFICE Helper.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "ONLYOFFICE Helper.app"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/ONLYOFFICE Helper.app"; sourceTree = SOURCE_ROOT; };
+		FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+OnlyOffice.h"; path = "Code/Utils/NSString+OnlyOffice.h"; sourceTree = "<group>"; };
+		FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+OnlyOffice.mm"; path = "Code/Utils/NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
-		FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "ASCDocumentEditor Helper.app"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/ASCDocumentEditor Helper.app"; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
 		FC5A2D391BAC075E001ACEB1 /* applicationmanager_events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager_events.h; sourceTree = "<group>"; };
@@ -61,6 +68,10 @@
 		FC5A2D521BAC075E001ACEB1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		FC5A2D541BAC075E001ACEB1 /* Editor_Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Api.h; sourceTree = "<group>"; };
 		FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Defines.h; sourceTree = "<group>"; };
+		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
+		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSCefView.h; path = Code/Views/NSCefView.h; sourceTree = "<group>"; };
+		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSCefView.mm; path = Code/Views/NSCefView.mm; sourceTree = "<group>"; };
+		FC98BAD81BAC4CB100747944 /* cloud */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cloud; path = Resources/cloud; sourceTree = "<group>"; };
 		FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleWindow.h; path = Code/ASCTitleWindow.h; sourceTree = "<group>"; };
 		FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleWindow.m; path = Code/ASCTitleWindow.m; sourceTree = "<group>"; };
 		FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleBackground.h; path = Code/Views/ASCTitleBackground.h; sourceTree = "<group>"; };
@@ -69,7 +80,7 @@
 		FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCHelper.m; path = Code/Utils/ASCHelper.m; sourceTree = "<group>"; };
 		FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCConstants.h; path = Code/Utils/ASCConstants.h; sourceTree = "<group>"; };
 		FCA9A18E1BA6DC6000ABF3AB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Code/Controllers/ViewController.h; sourceTree = "<group>"; };
-		FCA9A18F1BA6DC6000ABF3AB /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Code/Controllers/ViewController.m; sourceTree = "<group>"; };
+		FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = Code/Controllers/ViewController.mm; sourceTree = "<group>"; };
 		FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleBarController.h; path = Code/Controllers/ASCTitleBarController.h; sourceTree = "<group>"; };
 		FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleBarController.m; path = Code/Controllers/ASCTitleBarController.m; sourceTree = "<group>"; };
 		FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleWindowController.h; path = Code/Controllers/ASCTitleWindowController.h; sourceTree = "<group>"; };
@@ -79,8 +90,8 @@
 		FCBC42681B9D650400405301 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBC426C1B9D650400405301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCBC426D1B9D650400405301 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FCBC426E1B9D650400405301 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FCBC42701B9D650400405301 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		FCBC426E1B9D650400405301 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		FCBC42701B9D650400405301 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FCBC42751B9D650500405301 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FCBC42781B9D650500405301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCBC428F1B9D660400405301 /* ASCTabsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabsControl.h; path = Code/Controls/ASCTabsControl.h; sourceTree = "<group>"; };
@@ -104,8 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC5A2D301BAC0739001ACEB1 /* libascdocumentscore.dylib in Frameworks */,
-				FC5A2D341BAC0749001ACEB1 /* Chromium Embedded Framework.framework in Frameworks */,
+				FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +127,7 @@
 			children = (
 				FC5A2D041BABEF74001ACEB1 /* bin */,
 				FC5A2CFF1BABEF53001ACEB1 /* include */,
+				FC98BAD31BAC438800747944 /* Views */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -134,8 +145,8 @@
 		FC5A2D041BABEF74001ACEB1 /* bin */ = {
 			isa = PBXGroup;
 			children = (
+				FC033D321BB16B2700F6C55F /* ONLYOFFICE Helper.app */,
 				FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */,
-				FC5A2D311BAC0749001ACEB1 /* ASCDocumentEditor Helper.app */,
 				FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */,
 			);
 			name = bin;
@@ -161,6 +172,7 @@
 		FC5A2D371BAC075E001ACEB1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				FC033D251BB13B9900F6C55F /* mac_application.h */,
 				FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */,
 				FC5A2D391BAC075E001ACEB1 /* applicationmanager_events.h */,
 				FC5A2D3A1BAC075E001ACEB1 /* base.h */,
@@ -216,6 +228,23 @@
 			path = Vendor/ONLYOFFICE/headers/Word_Api;
 			sourceTree = SOURCE_ROOT;
 		};
+		FC98BAD31BAC438800747944 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC98BAD41BAC43B400747944 /* NSCefView.h */,
+				FC98BAD51BAC43B400747944 /* NSCefView.mm */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FC98BAD71BAC4C6300747944 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FC98BAD81BAC4CB100747944 /* cloud */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FCA0B33D1B9EB56E0073EDD4 /* Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +284,8 @@
 				FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */,
 				FCC8F6E91BA16CC0005A733F /* NSView+ASCView.h */,
 				FCC8F6EA1BA16CC0005A733F /* NSView+ASCView.m */,
+				FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */,
+				FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -272,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				FCA9A18E1BA6DC6000ABF3AB /* ViewController.h */,
-				FCA9A18F1BA6DC6000ABF3AB /* ViewController.m */,
+				FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -313,15 +344,19 @@
 		FCBC426A1B9D650400405301 /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
+				FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */,
 				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
 				FCA0B35E1B9F07A10073EDD4 /* UI */,
 				FCA0B33D1B9EB56E0073EDD4 /* Window */,
 				FCBC428E1B9D65CA00405301 /* Controls */,
 				FCA0B3561B9F00780073EDD4 /* Utils */,
 				FCBC426D1B9D650400405301 /* AppDelegate.h */,
-				FCBC426E1B9D650400405301 /* AppDelegate.m */,
+				FCBC426E1B9D650400405301 /* AppDelegate.mm */,
+				FC033D2D1BB163C600F6C55F /* ASCApplication.h */,
+				FC033D2E1BB163C600F6C55F /* ASCApplication.mm */,
 				FCBC42751B9D650500405301 /* Images.xcassets */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
+				FC98BAD71BAC4C6300747944 /* Resources */,
 				FCBC426B1B9D650400405301 /* Supporting Files */,
 			);
 			path = ONLYOFFICE;
@@ -331,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				FCBC426C1B9D650400405301 /* Info.plist */,
-				FCBC42701B9D650400405301 /* main.mm */,
+				FCBC42701B9D650400405301 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -366,6 +401,7 @@
 				FCBC42641B9D650400405301 /* Sources */,
 				FCBC42651B9D650400405301 /* Frameworks */,
 				FCBC42661B9D650400405301 /* Resources */,
+				FC257C5F1BAC1A60005D7E72 /* Rename symbols */,
 			);
 			buildRules = (
 			);
@@ -388,6 +424,12 @@
 				TargetAttributes = {
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 2WH24U26GJ;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -414,8 +456,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC98BAD91BAC4CB100747944 /* cloud in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
-				FC5A2D331BAC0749001ACEB1 /* ASCDocumentEditor Helper.app in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +465,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		FC257C5F1BAC1A60005D7E72 /* Rename symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Rename symbols";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "contents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Frameworks\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\n#codesign --force --verbose --sign \"${CODE_SIGN_IDENTITY}\" --deep --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\n\n#/usr/bin/codesign --force --sign 638174D12239CE1941D5C6C9E35B8B998FA9D07E --deep --entitlements /Users/ayuzhin/Library/Developer/Xcode/DerivedData/ONLYOFFICE-apoqytkkfszheddyibhzgkgnxrxn/Build/Intermediates/ONLYOFFICE.build/Debug/ONLYOFFICE.build/ONLYOFFICE.app.xcent --timestamp=none \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\n\ninstall_name_tool -change @executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib";
+		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,7 +491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\necho \"#\"\necho \"# Import Library\"\necho \"#\"\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nif [ ! -d \"$DSTLIB_DIR\" ]; then\nmkdir -p \"$DSTLIB_DIR\"\nfi\n\nCopyLibs() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyHeaders() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyLibs \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyLibs \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyHeaders \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyHeaders \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyHeaders \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\necho \"#\"\necho \"# Import Library\"\necho \"#\"\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nif [ ! -d \"$DSTLIB_DIR\" ]; then\nmkdir -p \"$DSTLIB_DIR\"\nfi\n\nCopyLibs() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyHeaders() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyLibs \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyLibs \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyHeaders \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyHeaders \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyHeaders \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -444,7 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCA9A1901BA6DC6000ABF3AB /* ViewController.m in Sources */,
+				FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */,
 				FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */,
 				FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */,
 				FCC8F6F51BA1C307005A733F /* ASCTabCloseButtonCell.m in Sources */,
@@ -454,12 +510,15 @@
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
 				FCBC42911B9D660400405301 /* ASCTabsControl.m in Sources */,
 				FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */,
+				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
-				FCBC42711B9D650400405301 /* main.mm in Sources */,
+				FCBC42711B9D650400405301 /* main.m in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,
+				FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
-				FCBC426F1B9D650400405301 /* AppDelegate.m in Sources */,
+				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
+				FC033D2F1BB163C600F6C55F /* ASCApplication.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,11 +619,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/mac",
 					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -576,7 +638,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -584,11 +649,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/mac",
 					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -600,7 +668,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
 				);
+				OTHER_CODE_SIGN_FLAGS = "--deep";
+				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

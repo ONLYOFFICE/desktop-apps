@@ -42,4 +42,24 @@
 
 @implementation ASCHelper
 
++ (NSString *)applicationDataPath {
+    return [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+}
+
++ (void)copyVendorJS {
+    NSString * applicationDataPath = [self applicationDataPath];
+    NSString * userVendorJsPath = [applicationDataPath stringByAppendingPathComponent:@"cloud"];
+    NSString * appVendorJsPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"cloud"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:userVendorJsPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:userVendorJsPath error:nil];
+    }
+    
+    NSError *error;
+    
+    if (![[NSFileManager defaultManager] copyItemAtPath:appVendorJsPath toPath:userVendorJsPath error:&error]) {
+        NSLog(@"Error copying vendor js files: %@", [error localizedDescription]);
+    }
+}
+
 @end

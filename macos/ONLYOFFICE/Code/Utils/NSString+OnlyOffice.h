@@ -31,17 +31,21 @@
 */
 
 //
-//  AppDelegate.h
-//  ONLYOFFICE
+//  NSString+OnlyOffice.h
+//  SpreadsheetEditor
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 7/7/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "mac_application.h"
+#import <string>
+#import <Foundation/Foundation.h>
+#import <vector>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
+@interface NSString (OnlyOffice)
+
++ (id)stringWithstdwstring:(const std::wstring&)string;
+- (std::wstring)stdwstring;
++ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
+
 @end
-

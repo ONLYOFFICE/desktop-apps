@@ -39,9 +39,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "applicationmanager.h"
 
 @interface ViewController : NSViewController
-
-
 @end
 

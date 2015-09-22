@@ -31,7 +31,7 @@
 */
 
 //
-//  AppDelegate.h
+//  main.m
 //  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 9/7/15.
@@ -39,9 +39,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "mac_application.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
-@end
-
+int main(int argc, const char * argv[]) {
+    return NSApplicationMain(argc, argv);
+}
