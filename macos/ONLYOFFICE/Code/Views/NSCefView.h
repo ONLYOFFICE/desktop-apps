@@ -42,6 +42,7 @@
 #include "applicationmanager.h"
 
 @interface NSCefView : NSView
+@property (nonatomic, readonly) NSInteger uuid;
 
 - (void)Load:(NSString *)pEvent;
 - (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;

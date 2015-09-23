@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FC033D2F1BB163C600F6C55F /* ASCApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC033D2E1BB163C600F6C55F /* ASCApplication.mm */; settings = {ASSET_TAGS = (); }; };
 		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
+		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; settings = {ASSET_TAGS = (); }; };
+		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; settings = {ASSET_TAGS = (); }; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC98BAD91BAC4CB100747944 /* cloud in Resources */ = {isa = PBXBuildFile; fileRef = FC98BAD81BAC4CB100747944 /* cloud */; };
@@ -39,6 +41,9 @@
 		FC033D321BB16B2700F6C55F /* ONLYOFFICE Helper.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "ONLYOFFICE Helper.app"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/ONLYOFFICE Helper.app"; sourceTree = SOURCE_ROOT; };
 		FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+OnlyOffice.h"; path = "Code/Utils/NSString+OnlyOffice.h"; sourceTree = "<group>"; };
 		FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+OnlyOffice.mm"; path = "Code/Utils/NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
+		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
+		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
+		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 		FC98BAD71BAC4C6300747944 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC3B777A1BB28CE900DB9705 /* login */,
 				FC98BAD81BAC4CB100747944 /* cloud */,
 			);
 			name = Resources;
@@ -304,6 +310,8 @@
 			children = (
 				FCA9A18E1BA6DC6000ABF3AB /* ViewController.h */,
 				FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */,
+				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
+				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -458,6 +466,7 @@
 			files = (
 				FC98BAD91BAC4CB100747944 /* cloud in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
+				FC3B777B1BB28CE900DB9705 /* login in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,7 +500,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\necho \"#\"\necho \"# Import Library\"\necho \"#\"\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nif [ ! -d \"$DSTLIB_DIR\" ]; then\nmkdir -p \"$DSTLIB_DIR\"\nfi\n\nCopyLibs() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyHeaders() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyLibs \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyLibs \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyHeaders \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyHeaders \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyHeaders \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"";
+			shellScript = "#!/bin/sh\n\nexit 0\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\n\necho \"#\"\necho \"# Import Login page\"\necho \"#\"\n\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\n\nif [ ! -d \"$DSTLOGINPAGE_DIR\" ]; then\n    mkdir -p \"$DSTLOGINPAGE_DIR\"\nfi\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.html \"$DSTLOGINPAGE_DIR\"/index.html\ncd \"$BASEDIR\"\n\necho \"#\"\necho \"# Import Library\"\necho \"#\"\n\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nif [ ! -d \"$DSTLIB_DIR\" ]; then\nmkdir -p \"$DSTLIB_DIR\"\nfi\n\nCopyFromSVN() {\n    if [ -d $1 ]; then\n        cd $1\n        svn up\n    else\n        mkdir -p $1\n        cd $1\n        svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyFromSVN \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyFromSVN \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyFromSVN \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyFromSVN \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyFromSVN \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -512,6 +521,7 @@
 				FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
+				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
 				FCBC42711B9D650400405301 /* main.m in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,

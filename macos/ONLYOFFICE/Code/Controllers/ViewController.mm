@@ -47,8 +47,10 @@
 #import "ASCConstants.h"
 #import "ASCUserInfoViewController.h"
 #import "NSView+ASCView.h"
+#import "NSString+OnlyOffice.h"
 #import "AppDelegate.h"
 #import "NSCefView.h"
+#import "ASCEventsController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -66,6 +68,11 @@
                                              selector:@selector(onWindowLoaded:)
                                                  name:ASCEventNameMainWindowLoaded
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFCreateTab:)
+                                                 name:CEFEventNameCreateTab
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -79,9 +86,14 @@
     if (notification && notification.object) {
         ASCTitleWindowController *windowController = (ASCTitleWindowController *)notification.object;
         windowController.titlebarController.delegate = self;
+        
         self.tabsControl = windowController.titlebarController.tabsControl;
         
         [self setupTabControl];
+        [self loadStartPage];
+        
+        // Create CEF event listener
+        [ASCEventsController sharedInstance];
     }
 }
 
@@ -90,19 +102,44 @@
     self.tabsControl.maxTabWidth = 135;
     
     [self.tabsControl.multicastDelegate addDelegate:self];
-    
+}
+
+- (void)loadStartPage {
     NSInteger rootTabIndex = [self.tabView indexOfTabViewItemWithIdentifier:rootTabId];
     
     if (rootTabIndex != NSNotFound) {
         NSTabViewItem * tab = [self.tabView tabViewItemAtIndex:rootTabIndex];
-
+        
         CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+        NSUserDefaults * preferences = [NSUserDefaults standardUserDefaults];
+        
+        NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] lowercaseString]];
+        NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
+        loginPage.queryItems            = @[countryCode, portalAddress];
+        loginPage.scheme                = NSURLFileScheme;
         
         NSCefView * cefView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [cefView Create:appManager withType:cvwtSimple];
-        [cefView Load:@""];
+        [cefView Load:[loginPage string]];
         [tab.view addSubview:cefView];
         [cefView setupFillConstraints];
+    }
+}
+
+#pragma mark -
+#pragma mark - CEF events handlers
+
+- (void)onCEFCreateTab:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        
+        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+        tab.title       = NSLocalizedString(@"Document", nil);
+        tab.type        = ASCTabViewOpeningType;
+        tab.url         = params[@"url"];
+
+        [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
     }
 }
 
@@ -116,33 +153,37 @@
 }
 
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
+    CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+    NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
+    [cefView Create:appManager withType:cvwtEditor];
+    [cefView Load:tab.url];
+    
+    tab.uuid = [NSString stringWithFormat:@"%ld", (long)cefView.uuid];
+    
     NSTabViewItem * item = [[NSTabViewItem alloc] initWithIdentifier:tab.uuid];
     item.label = tab.title;
-
-    NSTextField * text = [[NSTextField alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-    [text setStringValue:tab.title];
-    [item.view addSubview:text];
-    
     [self.tabView addTabViewItem:item];
+    [item.view addSubview:cefView];
+    [cefView setupFillConstraints];
 }
 
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab {
-    if ((rand() % 10) % 2) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"OK"];
-        [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"Delete the record?"];
-        [alert setInformativeText:@"Deleted records cannot be restored."];
-        [alert setAlertStyle:NSWarningAlertStyle];
-        
-        [alert beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSModalResponse returnCode) {
-            if(returnCode == NSAlertFirstButtonReturn) {
-                [control removeTab:tab];
-            }
-        }];
-
-        return NO;
-    }
+//    if ((rand() % 10) % 2) {
+//        NSAlert *alert = [[NSAlert alloc] init];
+//        [alert addButtonWithTitle:@"OK"];
+//        [alert addButtonWithTitle:@"Cancel"];
+//        [alert setMessageText:@"Delete the record?"];
+//        [alert setInformativeText:@"Deleted records cannot be restored."];
+//        [alert setAlertStyle:NSWarningAlertStyle];
+//        
+//        [alert beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSModalResponse returnCode) {
+//            if(returnCode == NSAlertFirstButtonReturn) {
+//                [control removeTab:tab];
+//            }
+//        }];
+//
+//        return NO;
+//    }
     return YES;
 }
 
@@ -158,10 +199,8 @@
 #pragma mark - ASCTitleBarController Delegate
 
 - (void)onOnlyofficeButton:(id)sender {
-    ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-    tab.title = [NSString stringWithFormat:@"Tab %lu", (unsigned long)rand() % 10000];
-    tab.type = ASCTabViewDocumentType;
-    [self.tabsControl addTab:tab];
+    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+    [self.tabsControl selectTab:nil];
 }
 
 - (void)onShowUserInfoController:(NSViewController *)controller {

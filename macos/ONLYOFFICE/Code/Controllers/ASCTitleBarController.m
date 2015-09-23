@@ -42,6 +42,7 @@
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
 #import "NSView+ASCView.h"
+#import "ASCTabView.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 320;
@@ -55,6 +56,7 @@ static float kASCWindowMinTitleWidth = 320;
 @property (nonatomic, weak) NSButton *fullscreenButton;
 @property (weak) IBOutlet NSTextField *titleLabel;
 @property (weak) IBOutlet NSView *titleContainerView;
+@property (weak) IBOutlet NSButton *portalButton;
 @end
 
 @implementation ASCTitleBarController
@@ -107,7 +109,19 @@ static float kASCWindowMinTitleWidth = 320;
                                                  name:ASCEventNameMainWindowSetFrame
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFChangedTabEditorType:)
+                                                 name:CEFEventNameTabEditorType
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFChangedTabEditorName:)
+                                                 name:CEFEventNameTabEditorNameChanged
+                                               object:nil];
+    
     [self.tabsControl.multicastDelegate addDelegate:self];
+    
+    [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
     
     [self.tabsControl removeAllConstraints];
     [self.titleLabel removeAllConstraints];
@@ -167,6 +181,53 @@ static float kASCWindowMinTitleWidth = 320;
 - (void)viewWillTransitionToSize:(NSSize)newSize {
     [self doLayout];
 }
+
+#pragma mark -
+#pragma mark - CEF events handler
+
+- (void)onCEFChangedTabEditorType:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * viewId       = params[@"viewId"];
+        NSInteger type          = [params[@"type"] integerValue];
+        
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if ([tab.uuid isEqualToString:viewId]) {
+                ASCTabViewType docType = ASCTabViewUnknownType;
+                switch (type) {
+                    case 0: docType = ASCTabViewDocumentType;       break;
+                    case 1: docType = ASCTabViewSpreadsheetType;    break;
+                    case 2: docType = ASCTabViewPresentationType;   break;
+                        
+                    default:
+                        break;
+                }
+                [tab setType:docType];
+                
+                break;
+            }
+        }
+    }
+}
+
+- (void)onCEFChangedTabEditorName:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * viewId       = params[@"viewId"];
+        NSString * name         = params[@"name"];
+        
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if ([tab.uuid isEqualToString:viewId]) {
+                [tab setTitle:name];
+                [tab setToolTip:name];
+                [self.tabsControl selectTab:tab];
+                
+                break;
+            }
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark - Actions
 
@@ -188,8 +249,10 @@ static float kASCWindowMinTitleWidth = 320;
     if (tab) {
         NSButton * btn = (NSButton *)tab;
         [self.titleLabel setStringValue:[NSString stringWithFormat:@"ONLYOFFICE  ▸  %@", btn.title]];
+        [self.portalButton setImage:[NSImage imageNamed:@"Documents_inactive_normal"]];
     } else {
         [self.titleLabel setStringValue:@"ONLYOFFICE"];
+        [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
     }
 }
 

@@ -31,51 +31,15 @@
 */
 
 //
-//  NSString+OnlyOffice.m
-//  SpreadsheetEditor
+//  ASCEventsController.h
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/23/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "NSString+OnlyOffice.h"
+#import <Foundation/Foundation.h>
 
-@implementation NSString (OnlyOffice)
-
-+ (id)stringWithstdwstring:(const std::wstring&)string
-{
-    if (string.length() < 1) {
-        return @"";
-    }
-    
-    return [[NSString alloc] initWithBytes:(char*)string.data()
-                                    length:string.size()* sizeof(wchar_t)
-                                  encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF32LE)];
-}
-
-- (std::wstring)stdwstring
-{
-    NSStringEncoding encode = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF32LE);
-    NSData* data = [self dataUsingEncoding:encode];
-    
-    return std::wstring ((wchar_t*)[data bytes], [data length] / sizeof(wchar_t));
-}
-
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources
-{
-    size_t count = sources.size();
-    NSMutableArray* array = [NSMutableArray arrayWithCapacity:count];
-    for (size_t i = 0; i < count; ++i) {
-        [array addObject:[NSString stringWithstdwstring:sources[i]]];
-    }
-    return array;
-}
-
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query {
-    if (![query length]) {
-        return self;
-    }
-    
-    return [NSString stringWithFormat:@"%@%@%@", self, ([self rangeOfString:@"?"].length > 0) ? @"&" : @"?", query];
-}
+@interface ASCEventsController : NSObject
++ (instancetype)sharedInstance;
 @end

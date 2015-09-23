@@ -908,6 +908,7 @@
                         </shadow>
                     </view>
                     <connections>
+                        <outlet property="portalButton" destination="afO-TB-NDv" id="gF9-rM-YGD"/>
                         <outlet property="tabsControl" destination="aGv-DD-716" id="eOq-aP-cel"/>
                         <outlet property="titleContainerView" destination="iPF-st-gBJ" id="lKP-KX-VKu"/>
                         <outlet property="titleLabel" destination="BFe-DK-gsq" id="KgR-h9-YyL"/>

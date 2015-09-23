@@ -58,7 +58,8 @@ typedef NS_ENUM(NSUInteger, ASCTabViewType) {
 
 @interface ASCTabView : ASCButton
 @property (nonatomic) ASCTabViewType type;
-@property (nonatomic, readonly) NSString *uuid;
+@property (nonatomic) NSString *uuid;
+@property (nonatomic) NSString *url;
 
 @property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
 @end

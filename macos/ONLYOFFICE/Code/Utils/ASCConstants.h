@@ -41,8 +41,15 @@
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
 
-// Event names
-static NSString * const ASCEventNameMainWindowSetFrame  = @"UI_mainWindowSetFrame";
-static NSString * const ASCEventNameMainWindowLoaded    = @"UI_mainWindowLoaded";
+// Settings
+static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 
+// Application event names
+static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
+static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
+
+// CEF event names
+static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
+static NSString * const CEFEventNameTabEditorType           = @"CEF_tabEditorType";
+static NSString * const CEFEventNameTabEditorNameChanged    = @"CEF_tabEditorNameChanged";
 #endif

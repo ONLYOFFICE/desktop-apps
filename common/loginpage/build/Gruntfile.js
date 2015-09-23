@@ -133,10 +133,7 @@ module.exports = function(grunt) {
             less: {
                 production: {
                     options: {
-                        compress: true,
-                        plugins: [
-                            new (require('less-plugin-clean-css'))()
-                        ],                    
+                        compress: true
                     },
                     files: {
                         "<%= pkg.main.less.files.dest %>": packageFile['main']['less']['files']['src']
@@ -231,10 +228,7 @@ module.exports = function(grunt) {
                 production: {
                     options: {
                         compress: true,
-                        ieCompat: false,
-                        plugins: [
-                            new (require('less-plugin-clean-css'))()
-                        ],                    
+                        ieCompat: false
                     },
                     files: {
                         "<%= pkg.desktop.less.files.dest %>": packageFile['desktop']['less']['files']['src']
@@ -293,7 +287,7 @@ module.exports = function(grunt) {
                             var script = grunt.file.read('../deploy/' + regexMatches[1]);
                             return '<script>' + script + '</script>';
                         }
-                    }]                
+                    }]
             });
 
             grunt.config('clean.files', ['../deploy/*.js','../deploy/*.css']);

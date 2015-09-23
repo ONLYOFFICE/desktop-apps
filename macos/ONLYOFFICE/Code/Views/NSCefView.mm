@@ -39,6 +39,7 @@
 //
 
 #import "NSCefView.h"
+#import "NSString+OnlyOffice.h"
 
 class CCefViewWrapper : public CCefViewWidgetImpl
 {
@@ -129,12 +130,12 @@ public:
 
 @implementation NSCefView
 
-- (id) initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         CALayer *viewLayer = [CALayer layer];
-        [viewLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0)]; //RGB plus Alpha Channel
+        [viewLayer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0)]; //RGB plus Alpha Channel
         [self setWantsLayer:YES]; // view's backing store is using a Core Animation Layer
         [self setLayer:viewLayer];
         
@@ -149,35 +150,37 @@ public:
     // Drawing code here.
 }
 
-- (void)setFrameOrigin:(NSPoint)newOrigin
-{
+- (void)setFrameOrigin:(NSPoint)newOrigin {
     [super setFrameOrigin:newOrigin];
     m_pCefView->moveEvent();
 }
 
-- (void) setFrameSize:(NSSize)newSize
-{
+- (void) setFrameSize:(NSSize)newSize {
     [super setFrameSize:newSize];
     m_pCefView->resizeEvent();
 }
 
--(void) Load:(NSString*)pEvent
-{
-    if (m_pCefView)
-        m_pCefView->GetCefView()->load(L"https://alexanderyuzhin.teamlab.info/products/files/?desktop=true");
+- (NSInteger)uuid {
+    if (m_pCefView) {
+        return m_pCefView->GetCefView()->GetId();
+    }
+    
+    return NSNotFound;
 }
 
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type
+- (void)Load:(NSString *)url
 {
-    switch (type)
-    {
-        case cvwtSimple:
-        {
+    if (m_pCefView)
+        m_pCefView->GetCefView()->load([url stdwstring]);
+}
+
+- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {
+    switch (type) {
+        case cvwtSimple: {
             m_pCefView->m_pCefView = manager->CreateCefView(m_pCefView);
             break;
         }
-        case cvwtEditor:
-        {
+        case cvwtEditor: {
             m_pCefView->m_pCefView = manager->CreateCefEditor(m_pCefView);
             break;
         }

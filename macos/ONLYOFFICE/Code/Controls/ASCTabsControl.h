@@ -64,7 +64,7 @@
 @property (readonly) ASCTabsMulticastDelegate* multicastDelegate;
 
 - (void)addTab:(ASCTabView *)tab;
+- (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
 - (void)removeTab:(ASCTabView *)tab;
 - (void)selectTab:(ASCTabView *)tab;
-
 @end

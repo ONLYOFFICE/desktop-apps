@@ -463,11 +463,11 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 - (void)selectTab:(ASCTabView *)selectedTab {
-    if (selectedTab) {        
-        for (ASCTabView * tab in self.tabs) {
-            [tab setState:(tab == selectedTab) ? NSOnState : NSOffState];
-        }
-        
+    for (ASCTabView * tab in self.tabs) {
+        [tab setState:(tab == selectedTab) ? NSOnState : NSOffState];
+    }
+    
+    if (selectedTab) {
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
             [context setAllowsImplicitAnimation:YES];
             [selectedTab.superview scrollRectToVisible:[selectedTab bounds]];
@@ -559,7 +559,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     }
 }
 
-- (void)addTab:(ASCTabView *)tab {
+- (void)addTab:(ASCTabView *)tab selected:(BOOL)selected {
     if (tab) {
         tab.hidden = YES;
         [self.tabs addObject:tab];
@@ -596,8 +596,14 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [_delegate tabs:self didAddTab:tab];
         }
         
-        [self selectTab:tab];
+        if (selected) {
+            [self selectTab:tab];
+        }
     }
+}
+
+- (void)addTab:(ASCTabView *)tab {
+    [self addTab:tab selected:YES];
 }
 
 - (void)removeTab:(ASCTabView *)tab {
