@@ -101,15 +101,19 @@ public:
                 case ASC_MENU_EVENT_TYPE_CEF_MODIFY_CHANGED: {
                     NSEditorApi::CAscDocumentModifyChanged * pData = (NSEditorApi::CAscDocumentModifyChanged *)pEvent->m_pData;
                     
-//                    QMetaObject::invokeMethod(m_pTabs, "onDocumentChanged", Qt::QueuedConnection,
-//                                              Q_ARG(int, pData->get_Id()), Q_ARG(bool, pData->get_Changed()));
-//                    
-//                    QMetaObject::invokeMethod(this, "onTabChanged", Qt::QueuedConnection, Q_ARG(int, m_pTabs->currentIndex()));
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameModifyChanged
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
+                                                                                 @"сhanged" : @(pData->get_Changed())
+                                                                                 }];
                     break;
                 }
                     
                 case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
-//                    QMetaObject::invokeMethod(this, "onLogout", Qt::QueuedConnection);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogout
+                                                                        object:nil
+                                                                      userInfo:nil];
                     break;
                 }
                     
@@ -125,10 +129,17 @@ public:
                 case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: {
                     NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
                     
-//                    if (QString::fromStdWString(pData->get_Name()).compare("login") == 0) {
-//                        QMetaObject::invokeMethod(this, "onLogin", Qt::QueuedConnection,
-//                                                  Q_ARG(QString, QString::fromStdWString(pData->get_Value())));
-//                    }
+                    NSRange range = [[NSString stringWithstdwstring:pData->get_Name()] rangeOfString:@"login"];
+                    
+                    if (range.location == 0) {
+                        NSString *jsonString = [NSString stringWithstdwstring:pData->get_Value()];
+                        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogin
+                                                                            object:nil
+                                                                          userInfo:json];
+                    }
                     break;
                 }
                     

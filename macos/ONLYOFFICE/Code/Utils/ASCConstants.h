@@ -52,4 +52,7 @@ static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoa
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
 static NSString * const CEFEventNameTabEditorType           = @"CEF_tabEditorType";
 static NSString * const CEFEventNameTabEditorNameChanged    = @"CEF_tabEditorNameChanged";
+static NSString * const CEFEventNameModifyChanged           = @"CEF_modifyChanged";
+static NSString * const CEFEventNameLogout                  = @"CEF_logout";
+static NSString * const CEFEventNameLogin                   = @"CEF_login";
 #endif

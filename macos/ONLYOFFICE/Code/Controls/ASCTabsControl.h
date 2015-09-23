@@ -66,5 +66,8 @@
 - (void)addTab:(ASCTabView *)tab;
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
 - (void)removeTab:(ASCTabView *)tab;
+- (void)removeAllTabs;
 - (void)selectTab:(ASCTabView *)tab;
+
+- (ASCTabView *)tabWithUUID:(NSString *)uuid;
 @end

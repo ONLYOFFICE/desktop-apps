@@ -119,6 +119,11 @@ static float kASCWindowMinTitleWidth = 320;
                                                  name:CEFEventNameTabEditorNameChanged
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFModifyChanged:)
+                                                 name:CEFEventNameModifyChanged
+                                               object:nil];
+    
     [self.tabsControl.multicastDelegate addDelegate:self];
     
     [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
@@ -191,21 +196,19 @@ static float kASCWindowMinTitleWidth = 320;
         NSString * viewId       = params[@"viewId"];
         NSInteger type          = [params[@"type"] integerValue];
         
-        for (ASCTabView * tab in self.tabsControl.tabs) {
-            if ([tab.uuid isEqualToString:viewId]) {
-                ASCTabViewType docType = ASCTabViewUnknownType;
-                switch (type) {
-                    case 0: docType = ASCTabViewDocumentType;       break;
-                    case 1: docType = ASCTabViewSpreadsheetType;    break;
-                    case 2: docType = ASCTabViewPresentationType;   break;
-                        
-                    default:
-                        break;
-                }
-                [tab setType:docType];
-                
-                break;
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab) {
+            ASCTabViewType docType = ASCTabViewUnknownType;
+            switch (type) {
+                case 0: docType = ASCTabViewDocumentType;       break;
+                case 1: docType = ASCTabViewPresentationType;   break;
+                case 2: docType = ASCTabViewSpreadsheetType;    break;
+                    
+                default:
+                    break;
             }
+            [tab setType:docType];
         }
     }
 }
@@ -215,18 +218,35 @@ static float kASCWindowMinTitleWidth = 320;
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * viewId       = params[@"viewId"];
         NSString * name         = params[@"name"];
+
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
-        for (ASCTabView * tab in self.tabsControl.tabs) {
-            if ([tab.uuid isEqualToString:viewId]) {
-                [tab setTitle:name];
-                [tab setToolTip:name];
+        if (tab) {
+            [tab setTitle:name];
+            [tab setToolTip:name];
+            [self.tabsControl selectTab:tab];
+        }
+    }
+}
+
+- (void)onCEFModifyChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * viewId       = params[@"viewId"];
+        BOOL changed            = [params[@"сhanged"] boolValue];
+        
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab) {
+            tab.changed = changed;
+            
+            if ([tab state] == NSOnState) {
                 [self.tabsControl selectTab:tab];
-                
-                break;
             }
         }
     }
 }
+
 
 #pragma mark -
 #pragma mark - Actions

@@ -60,6 +60,7 @@ typedef NS_ENUM(NSUInteger, ASCTabViewType) {
 @property (nonatomic) ASCTabViewType type;
 @property (nonatomic) NSString *uuid;
 @property (nonatomic) NSString *url;
+@property (nonatomic) BOOL changed;
 
 @property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
 @end

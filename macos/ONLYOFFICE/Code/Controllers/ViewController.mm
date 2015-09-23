@@ -56,6 +56,7 @@
 
 @interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate>
 @property (weak) ASCTabsControl *tabsControl;
+@property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
 @end
 
@@ -73,6 +74,13 @@
                                              selector:@selector(onCEFCreateTab:)
                                                  name:CEFEventNameCreateTab
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLogout:)
+                                                 name:CEFEventNameLogout
+                                               object:nil];
+    
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -90,6 +98,7 @@
         self.tabsControl = windowController.titlebarController.tabsControl;
         
         [self setupTabControl];
+        [self createStartPage];
         [self loadStartPage];
         
         // Create CEF event listener
@@ -104,26 +113,31 @@
     [self.tabsControl.multicastDelegate addDelegate:self];
 }
 
-- (void)loadStartPage {
+- (void)createStartPage {
     NSInteger rootTabIndex = [self.tabView indexOfTabViewItemWithIdentifier:rootTabId];
     
     if (rootTabIndex != NSNotFound) {
         NSTabViewItem * tab = [self.tabView tabViewItemAtIndex:rootTabIndex];
         
         CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
-        NSUserDefaults * preferences = [NSUserDefaults standardUserDefaults];
         
+        self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
+        [self.cefStartPageView Create:appManager withType:cvwtSimple];
+        [tab.view addSubview:self.cefStartPageView];
+        [self.cefStartPageView setupFillConstraints];
+    }
+}
+
+- (void)loadStartPage {
+    if (self.cefStartPageView ) {
+        NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
         NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] lowercaseString]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
         
-        NSCefView * cefView = [[NSCefView alloc] initWithFrame:tab.view.frame];
-        [cefView Create:appManager withType:cvwtSimple];
-        [cefView Load:[loginPage string]];
-        [tab.view addSubview:cefView];
-        [cefView setupFillConstraints];
+        [self.cefStartPageView Load:[loginPage string]];
     }
 }
 
@@ -141,6 +155,11 @@
 
         [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
     }
+}
+
+- (void)onCEFLogout:(NSNotification *)notification {
+    [self.tabsControl removeAllTabs];
+    [self loadStartPage];
 }
 
 #pragma mark -

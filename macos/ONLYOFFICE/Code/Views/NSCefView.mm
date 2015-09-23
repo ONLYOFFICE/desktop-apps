@@ -144,6 +144,13 @@ public:
     return self;
 }
 
+- (void)dealloc {
+    if (NULL != m_pCefView) {
+        delete m_pCefView;
+        m_pCefView = NULL;
+    }
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     

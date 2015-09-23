@@ -155,6 +155,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     }
 }
 
+- (NSString *)title {
+    return _changed ? [NSString stringWithFormat:@"%@*", [super title]] : [super title];
+}
+
 - (void)onCloseTabButton:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(tabDidClose:)]) {
         [_delegate tabDidClose:self];

@@ -237,6 +237,13 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self invalidateRestorableState];
 }
 
+- (ASCTabView *)tabWithUUID:(NSString *)uuid {
+    NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF.uuid == %@", uuid];
+    NSArray * filteredArray = [self.tabs filteredArrayUsingPredicate:bPredicate];
+    
+    return filteredArray.firstObject;
+}
+
 #pragma mark -
 #pragma mark - ScrollView Observation
 
@@ -634,6 +641,20 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             }
         }];
     }
+}
+
+- (void)removeAllTabs {
+    for (ASCTabView * tab in self.tabs) {
+        [tab removeFromSuperview];
+    }
+    
+    [self.tabs removeAllObjects];
+    
+    [self layoutTabs:nil animated:NO];
+    [self updateAuxiliaryButtons];
+    [self invalidateRestorableState];
+    
+    [self selectTab:nil];
 }
 
 #pragma mark -
