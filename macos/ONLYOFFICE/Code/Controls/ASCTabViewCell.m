@@ -48,6 +48,7 @@
 @property (nonatomic) NSColor * hoverActiveColor;
 @property (nonatomic) NSColor * clickColor;
 @property (nonatomic) NSColor * textColor;
+@property (nonatomic) NSColor * inactiveBorderColor;
 @end
 
 @implementation ASCTabViewCell
@@ -57,12 +58,13 @@
     if (self) {
         [self setLineBreakMode:NSLineBreakByTruncatingTail];
         
-        self.inactiveColor      = kColorRGB(207, 207, 207);
-        self.activeColor        = kColorRGB(241, 241, 241);
-        self.hoverInactiveColor = kColorRGB(221, 221, 221);
-        self.hoverActiveColor   = kColorRGB(247, 247, 247);
-        self.clickColor         = kColorRGB(247, 247, 247);
-        self.textColor          = kColorRGB(51, 51, 51);
+        self.inactiveColor          = kColorRGB(207, 207, 207);
+        self.activeColor            = kColorRGB(241, 241, 241);
+        self.hoverInactiveColor     = kColorRGB(221, 221, 221);
+        self.hoverActiveColor       = kColorRGB(247, 247, 247);
+        self.clickColor             = kColorRGB(247, 247, 247);
+        self.textColor              = kColorRGB(51, 51, 51);
+        self.inactiveBorderColor    = kColorRGB(175, 176, 177);
     }
     
     return self;
@@ -77,13 +79,13 @@
     NSColor *color = self.inactiveColor;
     
     if (self.state) {
-        color = (self.isHover) ? self.hoverActiveColor : self.activeColor;
+        color = (self.isHover) ? self.activeColor : self.activeColor;
     } else {
         color = (self.isHover) ? self.hoverInactiveColor : self.inactiveColor;
     }
     
     //// Rectangle Drawing
-    NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y + 1, cellFrame.size.width - 1, cellFrame.size.height);
+    NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width - 1, cellFrame.size.height);
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = [NSBezierPath bezierPath];
     [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 180 endAngle: 270];
@@ -94,6 +96,13 @@
     [color setFill];
     [rectanglePath fill];
 
+    if (!self.state) {
+        //// Bottom Line Drawing
+        NSBezierPath* bottomRectanglePath = [NSBezierPath bezierPathWithRect: NSMakeRect(NSMinX(rectangleRect), NSHeight(rectangleRect) - 1, NSWidth(rectangleRect), 1)];
+        [self.inactiveBorderColor setFill];
+        [bottomRectanglePath fill];
+    }
+    
     if (self.title) {
         [self drawTitle:[self attributedTitle] withFrame:cellFrame inView:controlView];
     }

@@ -831,12 +831,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv">
-                                <rect key="frame" x="83" y="0.0" width="108" height="30"/>
+                                <rect key="frame" x="83" y="0.0" width="108" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="27h-TZ-qE6"/>
+                                    <constraint firstAttribute="height" constant="31" id="27h-TZ-qE6"/>
                                     <constraint firstAttribute="width" constant="108" id="rYS-3g-y3E"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="Documents_inactive_normal" imagePosition="only" alignment="center" alternateImage="Documents_active_hover" imageScaling="proportionallyDown" inset="2" id="llV-Yc-IJ4">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="Documents_active_hover" imagePosition="only" alignment="center" alternateImage="Documents_active_hover" inset="2" id="llV-Yc-IJ4">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -879,22 +879,9 @@
                                     </customView>
                                 </subviews>
                             </customView>
-                            <customView wantsLayer="YES" alphaValue="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="1EP-uX-VQJ" userLabel="Shadow" customClass="ASCTitleBackground">
-                                <rect key="frame" x="0.0" y="-1" width="800" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="npc-tn-F8D"/>
-                                </constraints>
-                                <shadow key="shadow">
-                                    <size key="offset" width="0.0" height="1"/>
-                                    <color key="color" red="0.19215686274509802" green="0.20392156862745098" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
-                                </shadow>
-                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="1EP-uX-VQJ" firstAttribute="leading" secondItem="1M4-4k-lfG" secondAttribute="leading" id="1J9-Td-FZ9"/>
                             <constraint firstAttribute="trailing" secondItem="sAN-AD-cQX" secondAttribute="trailing" id="AVp-v8-bjd"/>
-                            <constraint firstAttribute="bottom" secondItem="1EP-uX-VQJ" secondAttribute="bottom" constant="-1" id="Phl-ar-wMs"/>
-                            <constraint firstAttribute="trailing" secondItem="1EP-uX-VQJ" secondAttribute="trailing" id="SYz-w3-8YW"/>
                             <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="Wg4-oE-g9S"/>
                             <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="pb9-ff-qgh"/>
                             <constraint firstItem="iPF-st-gBJ" firstAttribute="top" secondItem="1M4-4k-lfG" secondAttribute="top" constant="1" id="vI0-lw-ahx"/>
@@ -923,7 +910,6 @@
     <resources>
         <image name="Documents_active_hover" width="108" height="29"/>
         <image name="Documents_active_normal" width="108" height="29"/>
-        <image name="Documents_inactive_normal" width="108" height="29"/>
         <image name="icon-login_hover" width="12" height="12"/>
         <image name="icon-login_normal" width="12" height="12"/>
     </resources>
