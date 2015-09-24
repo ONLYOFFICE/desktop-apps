@@ -46,5 +46,6 @@
 
 - (void)Load:(NSString *)pEvent;
 - (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
+- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 
 @end

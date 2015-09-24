@@ -196,4 +196,9 @@ public:
     }
 }
 
+- (void)apply:(NSEditorApi::CAscMenuEvent *)event {
+    if (m_pCefView)
+        m_pCefView->GetCefView()->Apply(event);
+}
+
 @end

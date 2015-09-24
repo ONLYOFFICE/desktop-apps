@@ -79,8 +79,22 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFLogout:)
                                                  name:CEFEventNameLogout
-                                               object:nil];    
+                                               object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFSave:)
+                                                 name:CEFEventNameSave
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOpenUrl:)
+                                                 name:CEFEventNameOpenUrl
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFFullscreen:)
+                                                 name:CEFEventNameFullscreen
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -164,6 +178,45 @@
     [self loadStartPage];
 }
 
+- (void)onCEFSave:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * viewId = params[@"viewId"];
+        
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab) {
+            [self.tabsControl removeTab:tab];
+        }
+    }
+}
+
+- (void)onCEFOpenUrl:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * linkUrl = params[@"url"];
+        
+        if (linkUrl && linkUrl.length > 0) {
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:linkUrl]];
+        }
+    }
+}
+
+- (void)onCEFFullscreen:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        
+        BOOL isFullscreen = [params[@"fullscreen"] boolValue];
+        NSTabViewItem * item = [self.tabView selectedTabViewItem];
+        
+        if (isFullscreen) {
+            [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+        } else {
+            [item.view exitFullScreenModeWithOptions:nil];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate
 
@@ -189,26 +242,50 @@
 }
 
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab {
-//    if ((rand() % 10) % 2) {
-//        NSAlert *alert = [[NSAlert alloc] init];
-//        [alert addButtonWithTitle:@"OK"];
-//        [alert addButtonWithTitle:@"Cancel"];
-//        [alert setMessageText:@"Delete the record?"];
-//        [alert setInformativeText:@"Deleted records cannot be restored."];
-//        [alert setAlertStyle:NSWarningAlertStyle];
-//        
-//        [alert beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSModalResponse returnCode) {
-//            if(returnCode == NSAlertFirstButtonReturn) {
-//                [control removeTab:tab];
-//            }
-//        }];
-//
-//        return NO;
-//    }
+    if (tab.changed) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
+        [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        [alert beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSModalResponse returnCode) {
+            if(returnCode == NSAlertFirstButtonReturn) {
+                NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+                NSCefView * cefView = nil;
+                
+                if (item) {
+                    for (NSView * view in item.view.subviews) {
+                        if ([view isKindOfClass:[NSCefView class]]) {
+                            cefView = (NSCefView *)view;
+                            break;
+                        }
+                    }
+                }
+                
+                if (cefView) {
+                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
+                    
+                    pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
+                    [cefView apply:pEvent];
+                }
+            } else if (returnCode == NSAlertSecondButtonReturn) {
+                [control removeTab:tab];
+            }
+        }];
+        
+        return NO;
+    }
+
     return YES;
 }
 
 - (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab {
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    appManager->DestroyCefView([tab.uuid intValue]);
+    
     [self.tabView removeTabViewItem:[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]]];
 }
 

@@ -120,9 +120,11 @@ public:
                 case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
                     NSEditorApi::CAscTypeId* pId = (NSEditorApi::CAscTypeId*)pEvent->m_pData;
                     
-//                    QMetaObject::invokeMethod(m_pTabs, "onDocumentSave", Qt::QueuedConnection,
-//                                              Q_ARG(int, pId->get_Id()));
-                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSave
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pId->get_Id()]
+                                                                                 }];
                     break;
                 }
                     
@@ -168,7 +170,12 @@ public:
                 }
                 case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
                     NSEditorApi::CAscOnOpenExternalLink * pData = (NSEditorApi::CAscOnOpenExternalLink *)pEvent->m_pData;
-//                    QDesktopServices::openUrl(QUrl(QString().fromStdWString(pData->get_Url())));
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenUrl
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"url" : [NSString stringWithstdwstring:pData->get_Url()]
+                                                                                 }];
                     break;
                 }
                     
@@ -182,8 +189,11 @@ public:
                     
                 case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
                 case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
-//                    QMetaObject::invokeMethod(this, "onFullScreen", Qt::QueuedConnection,
-//                                              Q_ARG(bool, pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"fullscreen" : @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER)
+                                                                                 }];
                     break;
                 }
 

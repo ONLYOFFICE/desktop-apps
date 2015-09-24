@@ -56,4 +56,7 @@ static NSString * const CEFEventNameTabEditorNameChanged    = @"CEF_tabEditorNam
 static NSString * const CEFEventNameModifyChanged           = @"CEF_modifyChanged";
 static NSString * const CEFEventNameLogout                  = @"CEF_logout";
 static NSString * const CEFEventNameLogin                   = @"CEF_login";
+static NSString * const CEFEventNameSave                    = @"CEF_save";
+static NSString * const CEFEventNameOpenUrl                 = @"CEF_openUrl";
+static NSString * const CEFEventNameFullscreen              = @"CEF_fullscreen";
 #endif
