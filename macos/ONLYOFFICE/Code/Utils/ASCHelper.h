@@ -44,6 +44,7 @@
 #define kColorRGB(r, g, b)      [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
 
 @interface ASCHelper : NSObject
++ (NSMutableDictionary *)localSettings;
 + (NSString *)applicationDataPath;
 + (void)copyVendorJS;
 

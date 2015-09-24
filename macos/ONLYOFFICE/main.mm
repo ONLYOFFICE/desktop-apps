@@ -31,15 +31,28 @@
 */
 
 //
-//  ASCApplication.h
+//  main.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/22/15.
-//  Copyright © 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/7/15.
+//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "mac_application.h"
+#import <Cocoa/Cocoa.h>
+#include "mac_application.h"
+#import "NSString+OnlyOffice.h"
+#import "ASCHelper.h"
 
-@interface ASCApplication : NSAscApplication
+int main(int argc, const char * argv[]) {
+//    return NSApplicationMain(argc, argv);
+    [ASCHelper copyVendorJS];
+    
+    NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] init];
 
-@end
+    [NSAscApplicationWorker getAppManager]->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
+    
+    [worker Start:argc :argv];
+    int result = NSApplicationMain(argc, argv);
+    [worker End];
+    return result;
+}

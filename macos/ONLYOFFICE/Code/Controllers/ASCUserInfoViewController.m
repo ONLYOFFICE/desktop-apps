@@ -39,6 +39,8 @@
 //
 
 #import "ASCUserInfoViewController.h"
+#import "ASCHelper.h"
+#import "ASCConstants.h"
 
 @interface ASCUserInfoViewController ()
 
@@ -48,10 +50,53 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLogout:)
+                                                 name:CEFEventNameLogout
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLogin:)
+                                                 name:CEFEventNameLogin
+                                               object:nil];
 
-    [self.userNameText setStringValue:@"Исаков Дмитрий"];
-    [self.portalText setStringValue:@"nct.onlyoffice.com"];
-    [self.emailText setStringValue:@"dmitry.isakov@nct.onlyoffice.com"];
+    NSDictionary * userInfo = [[ASCHelper localSettings] valueForKey:ASCUserSettingsNameUserInfo];
+
+    if (userInfo) {
+        [self.userNameText setStringValue:userInfo[@"user"][@"displayName"]];
+        [self.portalText setStringValue:userInfo[@"portal"]];
+        [self.emailText setStringValue:userInfo[@"user"][@"email"]];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark -
+#pragma mark - CEF events handler
+
+- (void)onCEFLogout:(NSNotification *)notification {
+    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
+    
+    if (self.isViewLoaded && self.view.window) {
+        [self dismissViewController:self];
+    }
+}
+
+- (void)onCEFLogin:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * userInfo = (NSDictionary *)notification.userInfo;
+        
+        [[ASCHelper localSettings] setValue:userInfo forKey:ASCUserSettingsNameUserInfo];
+        
+        if (userInfo) {
+            [self.userNameText setStringValue:userInfo[@"user"][@"displayName"]];
+            [self.portalText setStringValue:userInfo[@"portal"]];
+            [self.emailText setStringValue:userInfo[@"user"][@"email"]];
+        }
+    }
 }
 
 #pragma mark -
@@ -62,7 +107,9 @@
         [_delegate onLogoutButton:self];
     }
     
-    [self dismissViewController:self];
+    if (self.isViewLoaded && self.view.window) {
+        [self dismissViewController:self];
+    }
 }
 
 @end

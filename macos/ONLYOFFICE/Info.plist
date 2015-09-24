@@ -29,6 +29,6 @@
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
-	<string>ASCApplication</string>
+	<string>NSApplication</string>
 </dict>
 </plist>

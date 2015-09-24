@@ -7,7 +7,7 @@
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
-                <application id="hnw-xV-0zn" customClass="ASCApplication" sceneMemberID="viewController">
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
                             <menuItem title="ONLYOFFICE" id="1Xt-HY-uBw">
@@ -912,6 +912,7 @@
                         <outlet property="tabsControl" destination="aGv-DD-716" id="eOq-aP-cel"/>
                         <outlet property="titleContainerView" destination="iPF-st-gBJ" id="lKP-KX-VKu"/>
                         <outlet property="titleLabel" destination="BFe-DK-gsq" id="KgR-h9-YyL"/>
+                        <outlet property="userProfileButton" destination="bYd-yR-16f" id="2FS-RI-aQS"/>
                     </connections>
                 </viewController>
                 <customObject id="gDf-Ym-x6b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

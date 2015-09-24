@@ -233,7 +233,7 @@ public:
         _listener = new ASCEventListener();
         
         if (_listener) {
-            CAscApplicationManager *appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+            CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
             
             if (appManager) {
                 appManager->SetEventListener(_listener);

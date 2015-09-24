@@ -51,6 +51,7 @@
 #import "AppDelegate.h"
 #import "NSCefView.h"
 #import "ASCEventsController.h"
+#import "NSString+OnlyOffice.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -78,8 +79,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFLogout:)
                                                  name:CEFEventNameLogout
-                                               object:nil];
-    
+                                               object:nil];    
     
 }
 
@@ -119,7 +119,7 @@
     if (rootTabIndex != NSNotFound) {
         NSTabViewItem * tab = [self.tabView tabViewItemAtIndex:rootTabIndex];
         
-        CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [self.cefStartPageView Create:appManager withType:cvwtSimple];
@@ -158,7 +158,9 @@
 }
 
 - (void)onCEFLogout:(NSNotification *)notification {
+    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
     [self.tabsControl removeAllTabs];
+    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
     [self loadStartPage];
 }
 
@@ -172,7 +174,7 @@
 }
 
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
-    CAscApplicationManager * appManager = [((NSAscApplication *)[NSApplication sharedApplication]) getAppManager];
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
     [cefView Create:appManager withType:cvwtEditor];
     [cefView Load:tab.url];
@@ -231,7 +233,16 @@
 #pragma mark - ASCUserInfoViewController Delegate
 
 - (void)onLogoutButton:(ASCUserInfoViewController *)controller {
-    NSLog(@"on logout");
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    NSDictionary * userInfo = [[ASCHelper localSettings] valueForKey:ASCUserSettingsNameUserInfo];
+    
+    if (userInfo) {
+        NSString * portal = userInfo[@"portal"];
+        
+        if (portal) {
+            appManager->Logout([portal stdwstring]);
+        }
+    }
 }
 
 #pragma mark -

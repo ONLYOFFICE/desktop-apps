@@ -43,6 +43,7 @@
 
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
+static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";

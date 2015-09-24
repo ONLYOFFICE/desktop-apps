@@ -43,6 +43,7 @@
 #import "ASCConstants.h"
 #import "NSView+ASCView.h"
 #import "ASCTabView.h"
+#import "ASCHelper.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 320;
@@ -57,6 +58,7 @@ static float kASCWindowMinTitleWidth = 320;
 @property (weak) IBOutlet NSTextField *titleLabel;
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
+@property (weak) IBOutlet NSButton *userProfileButton;
 @end
 
 @implementation ASCTitleBarController
@@ -124,8 +126,19 @@ static float kASCWindowMinTitleWidth = 320;
                                                  name:CEFEventNameModifyChanged
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLogout:)
+                                                 name:CEFEventNameLogout
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLogin:)
+                                                 name:CEFEventNameLogin
+                                               object:nil];
+    
     [self.tabsControl.multicastDelegate addDelegate:self];
     
+    [self.userProfileButton setHidden:YES];
     [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
     
     [self.tabsControl removeAllConstraints];
@@ -247,6 +260,18 @@ static float kASCWindowMinTitleWidth = 320;
     }
 }
 
+- (void)onCEFLogout:(NSNotification *)notification {
+    [self.userProfileButton setHidden:YES];
+}
+
+- (void)onCEFLogin:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * userInfo = (NSDictionary *)notification.userInfo;
+        
+        [[ASCHelper localSettings] setValue:userInfo forKey:ASCUserSettingsNameUserInfo];
+        [self.userProfileButton setHidden:NO];
+    }
+}
 
 #pragma mark -
 #pragma mark - Actions

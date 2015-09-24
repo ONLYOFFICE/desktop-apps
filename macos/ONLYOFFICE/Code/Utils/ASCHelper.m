@@ -40,6 +40,8 @@
 
 #import "ASCHelper.h"
 
+static NSMutableDictionary * localSettings;
+
 @implementation ASCHelper
 
 + (NSString *)applicationDataPath {
@@ -48,18 +50,28 @@
 
 + (void)copyVendorJS {
     NSString * applicationDataPath = [self applicationDataPath];
-    NSString * userVendorJsPath = [applicationDataPath stringByAppendingPathComponent:@"cloud"];
+    NSString * userVendorJsPath = [applicationDataPath stringByAppendingPathComponent:@"webapps"];
     NSString * appVendorJsPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"cloud"];
+    NSError * error;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:userVendorJsPath]) {
         [[NSFileManager defaultManager] removeItemAtPath:userVendorJsPath error:nil];
     }
     
-    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:userVendorJsPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:userVendorJsPath withIntermediateDirectories:NO attributes:nil error:&error];
+    }
     
-    if (![[NSFileManager defaultManager] copyItemAtPath:appVendorJsPath toPath:userVendorJsPath error:&error]) {
+    if (![[NSFileManager defaultManager] copyItemAtPath:appVendorJsPath toPath:[userVendorJsPath stringByAppendingPathComponent:@"cloud"] error:&error]) {
         NSLog(@"Error copying vendor js files: %@", [error localizedDescription]);
     }
+}
+
++ (NSMutableDictionary *)localSettings {
+    if (!localSettings)
+        localSettings = [NSMutableDictionary dictionary];
+    
+    return localSettings;
 }
 
 @end
