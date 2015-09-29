@@ -53,6 +53,7 @@
 #import "ASCEventsController.h"
 #import "NSString+OnlyOffice.h"
 #import "ASCDownloadController.h"
+#import "NSTimer+Block.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -106,6 +107,34 @@
                                              selector:@selector(onCEFDownload:)
                                                  name:CEFEventNameDownload
                                                object:nil];
+    
+    
+//    // DEBUG
+//    for (int i = 0; i < 5; i++) {
+//        NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = new NSEditorApi::CAscDownloadFileInfo();
+//        pDownloadFileInfo->put_Id(1000 + i);
+//        pDownloadFileInfo->put_FilePath(L"/Users/ayuzhin/Library/Developer/Xcode/DerivedData/ONLYOFFICE/Contents/Resources/cloud.png");
+//        pDownloadFileInfo->put_Url(L"http://onlyoffice.com");
+//        pDownloadFileInfo->put_Percent(0);
+//        
+//        [[ASCDownloadController sharedInstance] addDownload:[NSString stringWithFormat:@"%d", 1000+i] view:nil fileName:@"cloud.png"];
+//        [[ASCDownloadController sharedInstance] updateDownload:[NSString stringWithFormat:@"%d", 1000+i] data:[NSValue value:&pDownloadFileInfo withObjCType:@encode(void *)]];
+//        
+//        delete pDownloadFileInfo;
+//    }
+//    
+//    [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^{
+//        for (int i = 0; i < [[[ASCDownloadController sharedInstance] downloads] count]; i++) {
+//            NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = new NSEditorApi::CAscDownloadFileInfo();
+//            pDownloadFileInfo->put_FilePath(L"/Users/ayuzhin/Library/Developer/Xcode/DerivedData/ONLYOFFICE/Contents/Resources/cloud.png");
+//            pDownloadFileInfo->put_Percent(rand()%100);
+//            
+//            [[ASCDownloadController sharedInstance] updateDownload:[NSString stringWithFormat:@"%d", 1000+i] data:[NSValue value:&pDownloadFileInfo withObjCType:@encode(void *)]];
+//            
+//            delete pDownloadFileInfo;
+//
+//        }
+//    }];
 }
 
 - (void)setRepresentedObject:(id)representedObject {

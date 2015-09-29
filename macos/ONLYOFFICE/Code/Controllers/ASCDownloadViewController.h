@@ -31,65 +31,15 @@
 */
 
 //
-//  ASCMulticastDelegate.m
+//  ASCDownloadViewController.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/28/15.
+//  Created by Alexander Yuzhin on 9/29/15.
 //  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCMulticastDelegate.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation ASCMulticastDelegate {
-    // the array of observing delegates
-    NSMutableArray* _delegates;
-}
+@interface ASCDownloadViewController : NSViewController
 
-- (id)init {
-    if (self = [super init]) {
-        _delegates = [NSMutableArray array];
-    }
-    return self;
-}
-
-- (void)addDelegate:(id)delegate {
-    [_delegates addObject:delegate];
-}
-
-- (void)removeDelegate:(id)delegate {
-    [_delegates removeObject:delegate];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([super respondsToSelector:aSelector])
-        return YES;
-    
-    for (id delegate in _delegates) {
-        if ([delegate respondsToSelector:aSelector]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    NSMethodSignature* signature = [super methodSignatureForSelector:aSelector];
-    
-    if (!signature) {
-        for (id delegate in _delegates) {
-            if ([delegate respondsToSelector:aSelector]) {
-                return [delegate methodSignatureForSelector:aSelector];
-            }
-        }
-    }
-    return signature;
-}
-
-- (void)forwardInvocation:(NSInvocation *)anInvocation {
-    for (id delegate in _delegates) {
-        if ([delegate respondsToSelector:[anInvocation selector]]) {
-            [anInvocation invokeWithTarget:delegate];
-        }
-    }
-}
 @end

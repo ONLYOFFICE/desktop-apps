@@ -31,65 +31,31 @@
 */
 
 //
-//  ASCMulticastDelegate.m
+//  ASCDownloadCellView.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/28/15.
+//  Created by Alexander Yuzhin on 9/29/15.
 //  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCMulticastDelegate.h"
+#import "ASCDownloadCellView.h"
 
-@implementation ASCMulticastDelegate {
-    // the array of observing delegates
-    NSMutableArray* _delegates;
+@implementation ASCDownloadCellView
+
+- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+    [super setBackgroundStyle: NSBackgroundStyleLight];
 }
 
-- (id)init {
-    if (self = [super init]) {
-        _delegates = [NSMutableArray array];
+- (IBAction)onCancelButton:(NSButton *)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(onCancelButton:)]) {
+        [_delegate onCancelButton:self];
     }
-    return self;
 }
 
-- (void)addDelegate:(id)delegate {
-    [_delegates addObject:delegate];
-}
-
-- (void)removeDelegate:(id)delegate {
-    [_delegates removeObject:delegate];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if ([super respondsToSelector:aSelector])
-        return YES;
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
     
-    for (id delegate in _delegates) {
-        if ([delegate respondsToSelector:aSelector]) {
-            return YES;
-        }
-    }
-    return NO;
+    // Drawing code here.
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
-    NSMethodSignature* signature = [super methodSignatureForSelector:aSelector];
-    
-    if (!signature) {
-        for (id delegate in _delegates) {
-            if ([delegate respondsToSelector:aSelector]) {
-                return [delegate methodSignatureForSelector:aSelector];
-            }
-        }
-    }
-    return signature;
-}
-
-- (void)forwardInvocation:(NSInvocation *)anInvocation {
-    for (id delegate in _delegates) {
-        if ([delegate respondsToSelector:[anInvocation selector]]) {
-            [anInvocation invokeWithTarget:delegate];
-        }
-    }
-}
 @end
