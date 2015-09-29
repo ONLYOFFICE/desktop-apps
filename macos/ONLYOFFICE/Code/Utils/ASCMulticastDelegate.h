@@ -31,34 +31,15 @@
 */
 
 //
-//  ASCConstants.h
+//  ASCMulticastDelegate.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/28/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#ifndef ONLYOFFICE_ASCConstants_h
-#define ONLYOFFICE_ASCConstants_h
+#import <Foundation/Foundation.h>
 
-// Settings
-static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
-static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
-
-// Application event names
-static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
-static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
-
-// CEF event names
-static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
-static NSString * const CEFEventNameTabEditorType           = @"CEF_tabEditorType";
-static NSString * const CEFEventNameTabEditorNameChanged    = @"CEF_tabEditorNameChanged";
-static NSString * const CEFEventNameModifyChanged           = @"CEF_modifyChanged";
-static NSString * const CEFEventNameLogout                  = @"CEF_logout";
-static NSString * const CEFEventNameLogin                   = @"CEF_login";
-static NSString * const CEFEventNameSave                    = @"CEF_save";
-static NSString * const CEFEventNameOpenUrl                 = @"CEF_openUrl";
-static NSString * const CEFEventNameFullscreen              = @"CEF_fullscreen";
-static NSString * const CEFEventNameKeyboardDown            = @"CEF_keyboardDown";
-static NSString * const CEFEventNameDownload                = @"CEF_downloaded";
-#endif
+@interface ASCMulticastDelegate : NSObject
+- (void)addDelegate:(id)delegate;
+@end

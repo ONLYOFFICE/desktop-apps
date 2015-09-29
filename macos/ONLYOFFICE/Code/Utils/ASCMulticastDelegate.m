@@ -31,34 +31,61 @@
 */
 
 //
-//  ASCConstants.h
+//  ASCMulticastDelegate.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 9/28/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#ifndef ONLYOFFICE_ASCConstants_h
-#define ONLYOFFICE_ASCConstants_h
+#import "ASCMulticastDelegate.h"
 
-// Settings
-static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
-static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
+@implementation ASCMulticastDelegate {
+    // the array of observing delegates
+    NSMutableArray* _delegates;
+}
 
-// Application event names
-static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
-static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
+- (id)init {
+    if (self = [super init]) {
+        _delegates = [NSMutableArray array];
+    }
+    return self;
+}
 
-// CEF event names
-static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
-static NSString * const CEFEventNameTabEditorType           = @"CEF_tabEditorType";
-static NSString * const CEFEventNameTabEditorNameChanged    = @"CEF_tabEditorNameChanged";
-static NSString * const CEFEventNameModifyChanged           = @"CEF_modifyChanged";
-static NSString * const CEFEventNameLogout                  = @"CEF_logout";
-static NSString * const CEFEventNameLogin                   = @"CEF_login";
-static NSString * const CEFEventNameSave                    = @"CEF_save";
-static NSString * const CEFEventNameOpenUrl                 = @"CEF_openUrl";
-static NSString * const CEFEventNameFullscreen              = @"CEF_fullscreen";
-static NSString * const CEFEventNameKeyboardDown            = @"CEF_keyboardDown";
-static NSString * const CEFEventNameDownload                = @"CEF_downloaded";
-#endif
+- (void)addDelegate:(id)delegate {
+    [_delegates addObject:delegate];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([super respondsToSelector:aSelector])
+        return YES;
+    
+    for (id delegate in _delegates) {
+        if ([delegate respondsToSelector:aSelector]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    NSMethodSignature* signature = [super methodSignatureForSelector:aSelector];
+    
+    if (!signature) {
+        for (id delegate in _delegates) {
+            if ([delegate respondsToSelector:aSelector]) {
+                return [delegate methodSignatureForSelector:aSelector];
+            }
+        }
+    }
+    return signature;
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    for (id delegate in _delegates) {
+        if ([delegate respondsToSelector:[anInvocation selector]]) {
+            [anInvocation invokeWithTarget:delegate];
+        }
+    }
+}
+@end

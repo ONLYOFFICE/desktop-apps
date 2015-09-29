@@ -175,10 +175,10 @@ public:
     return NSNotFound;
 }
 
-- (void)Load:(NSString *)url
-{
-    if (m_pCefView)
+- (void)Load:(NSString *)url {
+    if (m_pCefView) {
         m_pCefView->GetCefView()->load([url stdwstring]);
+    }
 }
 
 - (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {
@@ -197,8 +197,15 @@ public:
 }
 
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event {
-    if (m_pCefView)
+    if (m_pCefView) {
         m_pCefView->GetCefView()->Apply(event);
+    }
+}
+
+- (void)setParentCef:(int)idx {
+    if (m_pCefView) {
+        m_pCefView->GetCefView()->SetParentCef(idx);
+    }
 }
 
 @end

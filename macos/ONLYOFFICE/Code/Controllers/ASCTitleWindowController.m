@@ -54,6 +54,15 @@
     [self setupToolbar];
 }
 
+//- (BOOL)windowShouldClose:(id)sender {
+//    NSLog(@"@s", __PRETTY_FUNCTION__);
+//    return YES;
+//}
+//
+//- (void)windowWillClose:(NSNotification *)notification {
+//    NSLog(@"@s", __PRETTY_FUNCTION__);
+//}
+
 - (void)setupToolbar {
     ASCTitleWindow *window = (ASCTitleWindow *)self.window;
     window.titleBarHeight = 30 - 22; // default height is 22

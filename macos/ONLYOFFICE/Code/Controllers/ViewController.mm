@@ -52,6 +52,7 @@
 #import "NSCefView.h"
 #import "ASCEventsController.h"
 #import "NSString+OnlyOffice.h"
+#import "ASCDownloadController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -94,6 +95,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFFullscreen:)
                                                  name:CEFEventNameFullscreen
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFKeyDown:)
+                                                 name:CEFEventNameKeyboardDown
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFDownload:)
+                                                 name:CEFEventNameDownload
                                                object:nil];
 }
 
@@ -213,6 +224,83 @@
             [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
         } else {
             [item.view exitFullScreenModeWithOptions:nil];
+        }
+    }
+}
+
+- (void)onCEFKeyDown:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        
+        NSValue * eventData = params[@"data"];
+        
+        if (eventData) {
+            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
+            
+//            int     keyCode = pData->get_KeyCode();
+//            bool    isCtrl  = pData->get_IsCtrl();
+            
+            RELEASEINTERFACE(pData);
+            
+//            NSF30FunctionKey
+//            NSKeyUp
+//            int code = NSCommandKeyMask;
+//            
+//            switch (keyCode) {
+//                case NSF4FunctionKey:
+//                    if (isCtrl) {
+//                        m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
+//                    }
+//                    break;
+//            }
+        }
+    }
+}
+
+- (void)onCEFDownload:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        NSValue * eventData = params[@"data"];
+        BOOL isStart        = [params[@"start"] boolValue];
+        
+        if (nil == appManager || nil == eventData)
+            return;
+        
+        NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = (NSEditorApi::CAscDownloadFileInfo *)[eventData pointerValue];
+        
+        NSString * idx = [NSString stringWithFormat:@"%d", pDownloadFileInfo->get_Id()];
+        
+        if (pDownloadFileInfo->get_IsComplete()) {
+            [[ASCDownloadController sharedInstance] removeDownload:idx];
+        } else if (pDownloadFileInfo->get_IsCanceled()) {
+            [[ASCDownloadController sharedInstance] removeDownload:idx];
+        } else {
+            id download = [[ASCDownloadController sharedInstance] downloadWithId:idx];
+            
+            if (nil == download) {
+                NSString * path = [NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()];
+                NSString * fileName = NSLocalizedString(@"Unconfirmed", nil);
+                
+                if (path && [path length] > 0) {
+                    fileName = [path lastPathComponent];
+                }
+                
+                NSCefView * pView = nil;
+                
+                if (isStart) {
+                    pView = [[NSCefView alloc] initWithFrame:CGRectZero];
+                    [pView Create:appManager withType:cvwtEditor];
+                    [pView setParentCef:pDownloadFileInfo->get_Id()];
+                    [pView Load:[NSString stringWithstdwstring:pDownloadFileInfo->get_Url()]];
+                    
+                    idx = [NSString stringWithFormat:@"%ld", (long)[pView uuid]];
+                }
+                
+                [[ASCDownloadController sharedInstance] addDownload:idx view:pView fileName:fileName];
+            }
+            
+            [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
         }
     }
 }

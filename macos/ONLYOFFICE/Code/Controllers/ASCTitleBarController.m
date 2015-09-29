@@ -59,6 +59,9 @@ static float kASCWindowMinTitleWidth = 320;
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
+@property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
+@property (weak) IBOutlet NSImageView *downloadImageView;
+@property (weak) IBOutlet NSView *downloadBackgroundView;
 @end
 
 @implementation ASCTitleBarController
@@ -98,6 +101,9 @@ static float kASCWindowMinTitleWidth = 320;
     }];
     
     self.standardButtons = @[self.closeButton, self.miniaturizeButton, self.fullscreenButton];
+    
+    self.downloadWidthConstraint.constant = .0f;
+    self.downloadImageView.canDrawSubviewsIntoLayer = YES;
     
     kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame);
     
@@ -139,7 +145,7 @@ static float kASCWindowMinTitleWidth = 320;
     [self.tabsControl.multicastDelegate addDelegate:self];
     
     [self.userProfileButton setHidden:YES];
-    [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
+    [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_normal"]];
     
     [self.tabsControl removeAllConstraints];
     [self.titleLabel removeAllConstraints];
@@ -282,6 +288,9 @@ static float kASCWindowMinTitleWidth = 320;
     }
 }
 
+- (IBAction)onDownloadButton:(id)sender {
+    NSLog(@"on download click");
+}
 
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate
@@ -297,7 +306,7 @@ static float kASCWindowMinTitleWidth = 320;
         [self.portalButton setImage:[NSImage imageNamed:@"Documents_inactive_normal"]];
     } else {
         [self.titleLabel setStringValue:@"ONLYOFFICE"];
-        [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_hover"]];
+        [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_normal"]];
     }
 }
 

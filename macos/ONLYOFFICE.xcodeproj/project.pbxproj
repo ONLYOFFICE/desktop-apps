@@ -31,6 +31,8 @@
 		FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F71BA1C6C8005A733F /* ASCButton.m */; };
 		FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */; };
 		FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */; };
+		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,10 @@
 		FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCButtonCell.m; path = Code/Controls/ASCButtonCell.m; sourceTree = "<group>"; };
 		FCC8F6FC1BA1D00A005A733F /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewCell.h; path = Code/Controls/ASCTabViewCell.h; sourceTree = "<group>"; };
 		FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewCell.m; path = Code/Controls/ASCTabViewCell.m; sourceTree = "<group>"; };
+		FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCMulticastDelegate.h; path = Code/Utils/ASCMulticastDelegate.h; sourceTree = "<group>"; };
+		FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCMulticastDelegate.m; path = Code/Utils/ASCMulticastDelegate.m; sourceTree = "<group>"; };
+		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadController.h; path = Code/Controllers/ASCDownloadController.h; sourceTree = "<group>"; };
+		FCD294681BB97D3300318930 /* ASCDownloadController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCDownloadController.mm; path = Code/Controllers/ASCDownloadController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +295,8 @@
 				FCC8F6EA1BA16CC0005A733F /* NSView+ASCView.m */,
 				FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */,
 				FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */,
+				FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */,
+				FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -309,6 +317,8 @@
 				FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */,
 				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
+				FCD294671BB97D3300318930 /* ASCDownloadController.h */,
+				FCD294681BB97D3300318930 /* ASCDownloadController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -481,7 +491,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Frameworks\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ninstall_name_tool -change @executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool -change @executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\n#codesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\n#codesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -517,6 +528,8 @@
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
+				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
+				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,

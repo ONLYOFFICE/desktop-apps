@@ -42,6 +42,6 @@
 #import "mac_application.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
-- (void)setViewController:(NSViewController *)controller;
+
 @end
 

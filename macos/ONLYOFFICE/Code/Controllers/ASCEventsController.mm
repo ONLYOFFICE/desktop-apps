@@ -156,14 +156,18 @@ public:
                     NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo*)pEvent->m_pData;
                     
 //                    ADDREFINTERFACE(pData);
-//                    QMetaObject::invokeMethod(m_pWidgetDownload, "onDocumentDownload", Qt::QueuedConnection,
-//                                              Q_ARG(void *, pData), Q_ARG(bool, pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START));
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDownload
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"data" : [NSValue value:&pData withObjCType:@encode(void *)],
+                                                                                 @"start": @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START)
+                                                                                 }];
                     break;
                 }
                     
                 case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-                    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
-//                    
+//                    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
+//
 //                    ADDREFINTERFACE(pData)
 //                    QMetaObject::invokeMethod(this, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
                     break;
@@ -182,8 +186,13 @@ public:
                 case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
                     NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)pEvent->m_pData;
                     
-//                    ADDREFINTERFACE(pData)
-//                    QMetaObject::invokeMethod(this, "onKeyDown", Qt::QueuedConnection, Q_ARG(void *, pData));
+                    ADDREFINTERFACE(pData);
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameKeyboardDown
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"data" : [NSValue value:&pData withObjCType:@encode(void *)]
+                                                                                 }];
                     break;
                 }
                     
