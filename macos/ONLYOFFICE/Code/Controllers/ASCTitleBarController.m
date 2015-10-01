@@ -186,7 +186,6 @@ static float kASCWindowMinTitleWidth = 320;
             [button setHidden:hidden];
             [button setNeedsDisplay:YES];
         }];
-
     };
     
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
@@ -288,8 +287,33 @@ static float kASCWindowMinTitleWidth = 320;
     }
 }
 
+- (IBAction)onUserInfoClick:(id)sender {
+    NSPopover * popover = [[NSPopover alloc] init];
+    NSViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCUserInfoControllerId"];
+    [popover setContentViewController:controller];
+    
+    popover.animates = YES;
+    popover.behavior = NSPopoverBehaviorTransient;
+    
+    [popover showRelativeToRect:[sender bounds]
+                         ofView:sender
+                  preferredEdge:NSRectEdgeMaxY];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(onShowUserInfoController:)]) {
+        [_delegate onShowUserInfoController:controller];
+    }
+}
+
 - (IBAction)onDownloadButton:(id)sender {
-    NSLog(@"on download click");
+    NSPopover * popover = [[NSPopover alloc] init];
+    [popover setContentViewController:[self.storyboard instantiateControllerWithIdentifier:@"ASCDownloadListControllerId"]];
+    
+    popover.animates = YES;
+    popover.behavior = NSPopoverBehaviorTransient;
+    
+    [popover showRelativeToRect:[sender bounds]
+                         ofView:sender
+                  preferredEdge:NSRectEdgeMaxY];
 }
 
 #pragma mark -

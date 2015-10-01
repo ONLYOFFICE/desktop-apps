@@ -63,9 +63,15 @@
 //    NSLog(@"@s", __PRETTY_FUNCTION__);
 //}
 
+float defaultTitleBarHeight() {
+    NSRect frame = NSMakeRect(0, 0, 800, 600);
+    NSRect contentRect = [NSWindow contentRectForFrameRect:frame styleMask: NSTitledWindowMask];
+    return NSHeight(frame) - NSHeight(contentRect);
+}
+
 - (void)setupToolbar {
     ASCTitleWindow *window = (ASCTitleWindow *)self.window;
-    window.titleBarHeight = 30 - 22; // default height is 22
+//    window.titleBarHeight = 30 - defaultTitleBarHeight();
     
     self.titlebarController = [self.storyboard instantiateControllerWithIdentifier:@"titleBarControllerID"];
 

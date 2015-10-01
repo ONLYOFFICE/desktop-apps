@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
@@ -657,6 +657,10 @@
                         <rect key="contentRect" x="453" y="215" width="800" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="800" height="600"/>
+                        <toolbar key="toolbar" implicitIdentifier="5B77B499-B428-4B61-B444-4B21C8952CC3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="labelOnly" sizeMode="regular" id="K5R-RO-aDh">
+                            <allowedToolbarItems/>
+                            <defaultToolbarItems/>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="Vva-hv-iGq"/>
                         </connections>
@@ -667,12 +671,12 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="399"/>
+            <point key="canvasLocation" x="243" y="478"/>
         </scene>
         <!--User Info View Controller-->
         <scene sceneID="Jn7-ZB-JpI">
             <objects>
-                <viewController id="UVp-OY-Us4" customClass="ASCUserInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ASCUserInfoControllerId" id="UVp-OY-Us4" customClass="ASCUserInfoViewController" sceneMemberID="viewController">
                     <view key="view" id="MV4-1Z-qXd">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="167"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -683,6 +687,7 @@
                                     <constraint firstAttribute="height" constant="17" id="PUd-yA-0zS"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="fs0-sN-Jno"/>
                                 </constraints>
+                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User Name" id="FoF-wl-Dxi">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -694,6 +699,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="JHj-Lo-Sh5"/>
                                 </constraints>
+                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Portal:" id="zwS-9G-S0N">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -705,6 +711,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Or6-Gu-L5B"/>
                                 </constraints>
+                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="9i7-kj-42B">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -717,6 +724,7 @@
                                     <constraint firstAttribute="height" constant="17" id="2Z8-tx-yLf"/>
                                     <constraint firstAttribute="width" constant="34" id="mfK-Go-vrc"/>
                                 </constraints>
+                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email:" id="Zsi-3o-ASl">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -729,6 +737,7 @@
                                     <constraint firstAttribute="height" constant="17" id="H8J-W9-OJ5"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Iew-ae-tXr"/>
                                 </constraints>
+                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="Rkd-xb-FRJ">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -740,12 +749,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="WRN-30-PHb"/>
                                 </constraints>
+                                <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IFv-Rl-0R4">
                                 <rect key="frame" x="20" y="0.0" width="230" height="49"/>
+                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="Logout" bezelStyle="regularSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="RmO-tv-UKh">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" size="12" name="HelveticaNeue"/>
@@ -778,6 +789,7 @@
                             <constraint firstItem="z7w-DR-5mK" firstAttribute="top" secondItem="Aiw-Pj-VjZ" secondAttribute="bottom" constant="12" id="tlW-Lg-Ze2"/>
                             <constraint firstAttribute="trailing" secondItem="WjX-hF-SNH" secondAttribute="trailing" constant="20" id="vJo-J7-Wqk"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="emailText" destination="FY0-wF-Zay" id="4ns-r2-acE"/>
@@ -792,7 +804,7 @@
         <!--Download View Controller-->
         <scene sceneID="FSG-kQ-eIr">
             <objects>
-                <viewController id="e6o-1y-Hxy" customClass="ASCDownloadViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ASCDownloadListControllerId" id="e6o-1y-Hxy" customClass="ASCDownloadViewController" sceneMemberID="viewController">
                     <view key="view" id="dEW-yf-Hlp">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="210"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -804,8 +816,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" floatsGroupRows="NO" id="jbW-uy-rCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="268" height="209"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="268" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -831,6 +844,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="QE6-qb-Pl8"/>
                                                                     </constraints>
+                                                                    <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="File Name" id="gm3-6i-EnL">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -842,6 +856,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="18" id="2ik-42-C9t"/>
                                                                     </constraints>
+                                                                    <animations/>
                                                                 </progressIndicator>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="23V-xr-uT3">
                                                                     <rect key="frame" x="186" y="16" width="75" height="16"/>
@@ -849,6 +864,7 @@
                                                                         <constraint firstAttribute="width" constant="75" id="3w1-7a-QHz"/>
                                                                         <constraint firstAttribute="height" constant="16" id="ABZ-aU-h1I"/>
                                                                     </constraints>
+                                                                    <animations/>
                                                                     <buttonCell key="cell" type="inline" title="Cancel" bezelStyle="inline" alignment="center" imageScaling="proportionallyDown" inset="2" id="m0C-e9-0oc">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="smallSystemBold"/>
@@ -868,6 +884,7 @@
                                                                 <constraint firstAttribute="bottom" secondItem="23V-xr-uT3" secondAttribute="bottom" constant="16" id="biv-7o-5Av"/>
                                                                 <constraint firstAttribute="trailing" secondItem="23V-xr-uT3" secondAttribute="trailing" constant="7" id="bqu-5q-5u0"/>
                                                             </constraints>
+                                                            <animations/>
                                                             <connections>
                                                                 <outlet property="cancelButton" destination="23V-xr-uT3" id="Em3-wT-S6A"/>
                                                                 <outlet property="progress" destination="Ye0-dv-VyU" id="gLc-2e-8Gh"/>
@@ -883,15 +900,19 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <animations/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="MTH-Mo-zJI">
+                                <animations/>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="MTH-Mo-zJI">
                                     <rect key="frame" x="-100" y="-100" width="268" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="sQ4-3d-lYr">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="sQ4-3d-lYr">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
                                 </scroller>
                             </scrollView>
                         </subviews>
@@ -901,6 +922,7 @@
                             <constraint firstItem="THf-tA-SkY" firstAttribute="top" secondItem="dEW-yf-Hlp" secondAttribute="top" constant="-1" id="pgk-It-Nkq"/>
                             <constraint firstAttribute="trailing" secondItem="THf-tA-SkY" secondAttribute="trailing" id="zTq-Tg-GV4"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="tableScrollView" destination="THf-tA-SkY" id="Ofh-Wo-VjN"/>
@@ -909,7 +931,7 @@
                 </viewController>
                 <customObject id="DCa-oa-czr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="270"/>
+            <point key="canvasLocation" x="951" y="275"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -921,12 +943,14 @@
                         <subviews>
                             <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="N1H-DH-xhd">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                <animations/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="ONLYOFFICE" identifier="1CEF624D-9FF3-432B-9967-61361B5BFE8B" image="Documents_active_normal" id="kcg-El-49G">
                                         <view key="view" id="PUE-XO-znT">
                                             <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <animations/>
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
@@ -938,6 +962,7 @@
                             <constraint firstAttribute="bottom" secondItem="N1H-DH-xhd" secondAttribute="bottom" id="ddP-pe-hZi"/>
                             <constraint firstAttribute="trailing" secondItem="N1H-DH-xhd" secondAttribute="trailing" id="jlu-5Q-i9o"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="tabView" destination="N1H-DH-xhd" id="WbH-hq-yHu"/>
@@ -945,40 +970,69 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="1183"/>
+            <point key="canvasLocation" x="243" y="1225"/>
         </scene>
         <!--Title Bar Controller-->
         <scene sceneID="dZG-dh-jaa">
             <objects>
                 <viewController storyboardIdentifier="titleBarControllerID" id="9zi-Wa-ufJ" customClass="ASCTitleBarController" sceneMemberID="viewController">
                     <view key="view" id="1M4-4k-lfG" customClass="ASCTitleBackground">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="sAN-AD-cQX">
-                                <rect key="frame" x="752" y="0.0" width="48" height="30"/>
+                                <rect key="frame" x="752" y="0.0" width="48" height="38"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-yR-16f">
-                                        <rect key="frame" x="9" y="5" width="30" height="21"/>
+                                        <rect key="frame" x="9" y="6" width="30" height="27"/>
+                                        <animations/>
                                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="icon-login_normal" imagePosition="overlaps" alignment="center" alternateImage="icon-login_hover" state="on" imageScaling="proportionallyDown" inset="2" id="Y6C-rv-Euq">
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <segue destination="UVp-OY-Us4" kind="popover" identifier="ASCUserInfoSegueID" popoverAnchorView="bYd-yR-16f" popoverBehavior="t" preferredEdge="maxY" id="mUQ-Tz-2PW"/>
+                                            <action selector="onUserInfoClick:" target="9zi-Wa-ufJ" id="NOG-Tc-1I6"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="PUh-yU-BlT"/>
+                                    <constraint firstAttribute="height" constant="38" id="PUh-yU-BlT"/>
                                     <constraint firstAttribute="width" constant="48" id="paH-gl-wx3"/>
                                 </constraints>
+                                <animations/>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh">
+                                <rect key="frame" x="722" y="0.0" width="30" height="38"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
+                                        <animations/>
+                                        <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" animates="YES" image="progress_download_icon" id="yAE-gi-Nvm"/>
+                                    </imageView>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDk-dQ-HGi">
+                                        <rect key="frame" x="0.0" y="5" width="30" height="27"/>
+                                        <animations/>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="jy9-fh-Ni3">
+                                            <behavior key="behavior" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="onDownloadButton:" target="9zi-Wa-ufJ" id="p4a-mB-avd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="MhZ-JW-eYH"/>
+                                    <constraint firstAttribute="height" constant="38" id="hU0-Fj-2ys"/>
+                                </constraints>
+                                <animations/>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="iPF-st-gBJ">
-                                <rect key="frame" x="194" y="0.0" width="528" height="29"/>
+                                <rect key="frame" x="194" y="0.0" width="528" height="38"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-DK-gsq">
-                                        <rect key="frame" x="135" y="0.0" width="423" height="24"/>
+                                        <rect key="frame" x="135" y="0.0" width="393" height="28"/>
+                                        <animations/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="ONLYOFFICE " drawsBackground="YES" usesSingleLineMode="YES" id="rG1-93-HjS">
                                             <font key="font" metaFont="cellTitle"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -987,8 +1041,13 @@
                                     </textField>
                                     <customView horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGv-DD-716" customClass="ASCTabsControl">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="29"/>
+                                        <animations/>
                                     </customView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="vsg-cC-UPz"/>
+                                </constraints>
+                                <animations/>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv">
                                 <rect key="frame" x="83" y="0.0" width="108" height="31"/>
@@ -996,6 +1055,7 @@
                                     <constraint firstAttribute="height" constant="31" id="27h-TZ-qE6"/>
                                     <constraint firstAttribute="width" constant="108" id="rYS-3g-y3E"/>
                                 </constraints>
+                                <animations/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="Documents_active_normal" imagePosition="only" alignment="center" alternateImage="Documents_active_normal" inset="2" id="llV-Yc-IJ4">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1004,40 +1064,13 @@
                                     <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
                                 </connections>
                             </button>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh">
-                                <rect key="frame" x="722" y="0.0" width="30" height="30"/>
-                                <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" animates="YES" image="progress_download_icon" id="yAE-gi-Nvm"/>
-                                        <connections>
-                                            <action selector="onDownloadButton:" target="9zi-Wa-ufJ" id="2HL-Xf-E0w"/>
-                                        </connections>
-                                    </imageView>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDk-dQ-HGi">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="jy9-fh-Ni3">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <segue destination="e6o-1y-Hxy" kind="popover" popoverAnchorView="HDk-dQ-HGi" popoverBehavior="t" preferredEdge="maxY" id="wor-RO-iTO"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="MhZ-JW-eYH"/>
-                                </constraints>
-                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="sAN-AD-cQX" secondAttribute="trailing" id="AVp-v8-bjd"/>
-                            <constraint firstItem="M3X-hR-EHh" firstAttribute="top" secondItem="1M4-4k-lfG" secondAttribute="top" id="Klk-HK-ky6"/>
                             <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="NSd-DS-T9w"/>
                             <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="Q0W-oW-bGL"/>
                             <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="Wg4-oE-g9S"/>
                             <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="pge-pd-M7E"/>
-                            <constraint firstItem="iPF-st-gBJ" firstAttribute="top" secondItem="1M4-4k-lfG" secondAttribute="top" constant="1" id="vI0-lw-ahx"/>
                             <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="vic-ho-Uzn"/>
                             <constraint firstAttribute="bottom" secondItem="afO-TB-NDv" secondAttribute="bottom" id="xMp-Ch-iAU"/>
                             <constraint firstItem="afO-TB-NDv" firstAttribute="leading" secondItem="1M4-4k-lfG" secondAttribute="leading" constant="83" id="yGh-ak-lKX"/>
@@ -1046,6 +1079,7 @@
                         <shadow key="shadow">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </shadow>
+                        <animations/>
                     </view>
                     <connections>
                         <outlet property="downloadBackgroundView" destination="M3X-hR-EHh" id="Cd9-iN-qsn"/>
