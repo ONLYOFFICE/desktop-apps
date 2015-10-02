@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+input,
+button {
+    font-family: 'Open Sans',sans-serif,Arial;
+}
+
 #wrap {
     overflow: auto;
     -webkit-user-select: none;
@@ -39,7 +44,7 @@
         #auth-error {
             color: #d43655;
             display: block;
-            margin-top: 14px;            
+            margin-top: 14px;
         }
     }
 }
@@ -144,7 +149,7 @@ button {
     }
 
     #centre-image {
-        content: data-uri('welcome_image.png');        
+        content: data-uri('welcome_image.png');
 
         @media screen and (max-width: 1470px) {
             content: data-uri('welcome_image_small.png');
