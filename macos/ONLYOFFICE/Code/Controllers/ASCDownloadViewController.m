@@ -60,15 +60,32 @@
     [[[ASCDownloadController sharedInstance] multicastDelegate] removeDelegate:self];
 }
 
+- (void)viewWillAppear {
+    [self updatePopoverSize];
+}
+
 - (void)updatePopoverSize {
-    int minHeight = self.tableView.rowHeight;
+    int minHeight = self.tableView.rowHeight - 2; // 2px to hide cell border
     int maxHeight = self.tableView.rowHeight * 3;
-    int newHeight = [[[ASCDownloadController sharedInstance] downloads] count] * self.tableView.rowHeight;
+    int newHeight = [[[ASCDownloadController sharedInstance] downloads] count] * self.tableView.rowHeight - 2; // 2px to hide cell border
+    int width     = 270;
     
     [self.tableScrollView setHasVerticalScroller:(newHeight > maxHeight)];
     [self.tableScrollView setVerticalScrollElasticity:(newHeight > maxHeight) ? NSScrollElasticityAutomatic : NSScrollElasticityNone];
     
-    self.preferredContentSize = NSMakeSize(270, MIN(MAX(minHeight, newHeight), maxHeight));
+    self.preferredContentSize = NSMakeSize(width, MIN(MAX(minHeight, newHeight), maxHeight));
+    
+    if (self.popover) {
+        NSSize oldSize = [[self.popover popoverWindow] frame].size;
+        NSSize newSize = NSMakeSize(270, MIN(MAX(minHeight, newHeight), maxHeight));
+        NSInteger delta = oldSize.height - newSize.height - self.popover.arrowWidth;
+        
+        if (delta > 0) {
+            NSRect rect = NSOffsetRect([[self.popover popoverWindow] frame], 0, delta);
+            [[[self.popover popoverWindow] contentView] setFrame:NSMakeRect(0, 0, width, newSize.height)];
+            [[self.popover popoverWindow] setFrame:NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width, newSize.height + self.popover.arrowWidth) display:YES];
+        }
+    }
 }
 
 #pragma mark -

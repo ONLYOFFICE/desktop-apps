@@ -44,6 +44,9 @@
 #import "NSView+ASCView.h"
 #import "ASCTabView.h"
 #import "ASCHelper.h"
+#import "SFBPopover.h"
+#import "ASCUserInfoViewController.h"
+#import "ASCDownloadViewController.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 320;
@@ -62,6 +65,7 @@ static float kASCWindowMinTitleWidth = 320;
 @property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
 @property (weak) IBOutlet NSImageView *downloadImageView;
 @property (weak) IBOutlet NSView *downloadBackgroundView;
+@property (nonatomic) SFBPopover * popover;
 @end
 
 @implementation ASCTitleBarController
@@ -280,6 +284,21 @@ static float kASCWindowMinTitleWidth = 320;
 
 #pragma mark -
 #pragma mark - Actions
+- (void)setupCustomPopover:(SFBPopover *)popover {
+    popover.closesWhenPopoverResignsKey     = YES;
+    popover.closesWhenApplicationBecomesInactive = YES;
+    popover.drawRoundCornerBesideArrow      = YES;
+    popover.borderColor                     = [NSColor clearColor];
+    popover.backgroundColor                 = [NSColor whiteColor];
+    popover.viewMargin                      = 0.0f;
+    popover.borderWidth                     = 0.0f;
+    popover.cornerRadius                    = 2.0f;
+    popover.drawsArrow                      = YES;
+    popover.movable                         = NO;
+    popover.arrowWidth                      = 20.0f;
+    popover.arrowHeight                     = 10.0f;
+    popover.distance                        = 10.0f;
+}
 
 - (IBAction)onOnlyofficeButton:(id)sender {
     if (_delegate && [_delegate respondsToSelector:@selector(onOnlyofficeButton:)]) {
@@ -288,16 +307,17 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (IBAction)onUserInfoClick:(id)sender {
-    NSPopover * popover = [[NSPopover alloc] init];
-    NSViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCUserInfoControllerId"];
-    [popover setContentViewController:controller];
+    ASCUserInfoViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCUserInfoControllerId"];
+    self.popover = [[SFBPopover alloc] initWithContentViewController:controller];
+    self.popover.arrowOffset = 8.0f;
+    [self setupCustomPopover:self.popover];
     
-    popover.animates = YES;
-    popover.behavior = NSPopoverBehaviorTransient;
-    
-    [popover showRelativeToRect:[sender bounds]
-                         ofView:sender
-                  preferredEdge:NSRectEdgeMaxY];
+    NSRect rectOfSender = [sender convertRect:[sender bounds] toView:nil];
+    NSPoint where = rectOfSender.origin;
+    where.x += rectOfSender.size.width / 2;
+
+    [controller setPopover:self.popover];
+    [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
     
     if (_delegate && [_delegate respondsToSelector:@selector(onShowUserInfoController:)]) {
         [_delegate onShowUserInfoController:controller];
@@ -305,15 +325,17 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (IBAction)onDownloadButton:(id)sender {
-    NSPopover * popover = [[NSPopover alloc] init];
-    [popover setContentViewController:[self.storyboard instantiateControllerWithIdentifier:@"ASCDownloadListControllerId"]];
+    ASCDownloadViewController * controller = [self.storyboard instantiateControllerWithIdentifier:@"ASCDownloadListControllerId"];
+    self.popover = [[SFBPopover alloc] initWithContentViewController:controller];
+    self.popover.arrowOffset = 40.0f;
+    [self setupCustomPopover:self.popover];
     
-    popover.animates = YES;
-    popover.behavior = NSPopoverBehaviorTransient;
+    NSRect rectOfSender = [sender convertRect:[sender bounds] toView:nil];
+    NSPoint where = rectOfSender.origin;
+    where.x += rectOfSender.size.width / 2;
     
-    [popover showRelativeToRect:[sender bounds]
-                         ofView:sender
-                  preferredEdge:NSRectEdgeMaxY];
+    [controller setPopover:self.popover];
+    [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
 }
 
 #pragma mark -

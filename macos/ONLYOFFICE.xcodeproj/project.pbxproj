@@ -12,6 +12,9 @@
 		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; settings = {ASSET_TAGS = (); }; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; settings = {ASSET_TAGS = (); }; };
+		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; settings = {ASSET_TAGS = (); }; };
+		FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; settings = {ASSET_TAGS = (); }; };
+		FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; settings = {ASSET_TAGS = (); }; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC98BAD91BAC4CB100747944 /* cloud in Resources */ = {isa = PBXBuildFile; fileRef = FC98BAD81BAC4CB100747944 /* cloud */; };
@@ -51,6 +54,12 @@
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
 		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
+		FC3BFDFA1BBE83AB0040C904 /* SFBPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopover.h; sourceTree = "<group>"; };
+		FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopover.m; sourceTree = "<group>"; };
+		FC3BFDFC1BBE83AB0040C904 /* SFBPopoverWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopoverWindow.h; sourceTree = "<group>"; };
+		FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindow.m; sourceTree = "<group>"; };
+		FC3BFDFE1BBE83AB0040C904 /* SFBPopoverWindowFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopoverWindowFrame.h; sourceTree = "<group>"; };
+		FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindowFrame.m; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
@@ -149,6 +158,35 @@
 				FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FC3BFDF91BBE83AB0040C904 /* SFBPopover */ = {
+			isa = PBXGroup;
+			children = (
+				FC3BFDFA1BBE83AB0040C904 /* SFBPopover.h */,
+				FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */,
+				FC3BFDFC1BBE83AB0040C904 /* SFBPopoverWindow.h */,
+				FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */,
+				FC3BFDFE1BBE83AB0040C904 /* SFBPopoverWindowFrame.h */,
+				FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */,
+			);
+			name = SFBPopover;
+			path = Vendor/SFBPopover;
+			sourceTree = SOURCE_ROOT;
+		};
+		FC3BFE031BBE83B60040C904 /* ASCTabs */ = {
+			isa = PBXGroup;
+			children = (
+				FCBC428F1B9D660400405301 /* ASCTabsControl.h */,
+				FCBC42901B9D660400405301 /* ASCTabsControl.m */,
+				FCBC42921B9D736700405301 /* ASCTabView.h */,
+				FCBC42931B9D736700405301 /* ASCTabView.m */,
+				FCC8F6F31BA1C307005A733F /* ASCTabCloseButtonCell.h */,
+				FCC8F6F41BA1C307005A733F /* ASCTabCloseButtonCell.m */,
+				FCC8F6FC1BA1D00A005A733F /* ASCTabViewCell.h */,
+				FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */,
+			);
+			name = ASCTabs;
 			sourceTree = "<group>";
 		};
 		FC5A2CFE1BABEF42001ACEB1 /* SDK */ = {
@@ -439,18 +477,12 @@
 		FCBC428E1B9D65CA00405301 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				FCBC428F1B9D660400405301 /* ASCTabsControl.h */,
-				FCBC42901B9D660400405301 /* ASCTabsControl.m */,
-				FCBC42921B9D736700405301 /* ASCTabView.h */,
-				FCBC42931B9D736700405301 /* ASCTabView.m */,
+				FC3BFE031BBE83B60040C904 /* ASCTabs */,
+				FC3BFDF91BBE83AB0040C904 /* SFBPopover */,
 				FCC8F6F61BA1C6C8005A733F /* ASCButton.h */,
 				FCC8F6F71BA1C6C8005A733F /* ASCButton.m */,
 				FCC8F6F91BA1C78C005A733F /* ASCButtonCell.h */,
 				FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */,
-				FCC8F6F31BA1C307005A733F /* ASCTabCloseButtonCell.h */,
-				FCC8F6F41BA1C307005A733F /* ASCTabCloseButtonCell.m */,
-				FCC8F6FC1BA1D00A005A733F /* ASCTabViewCell.h */,
-				FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -574,6 +606,7 @@
 				FCC8F6F51BA1C307005A733F /* ASCTabCloseButtonCell.m in Sources */,
 				FCBC42941B9D736700405301 /* ASCTabView.m in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.m in Sources */,
+				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
 				FCBC42911B9D660400405301 /* ASCTabsControl.m in Sources */,
@@ -582,6 +615,7 @@
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
+				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
@@ -592,6 +626,7 @@
 				FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
+				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,6 +39,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SFBPopover.h"
 
 @class ASCUserInfoViewController;
 
@@ -51,6 +52,6 @@
 @property (weak) IBOutlet NSTextField *userNameText;
 @property (weak) IBOutlet NSTextField *portalText;
 @property (weak) IBOutlet NSTextField *emailText;
-
+@property (weak) SFBPopover * popover;
 @property (nonatomic, assign) id <ASCUserInfoViewControllerDelegate> delegate;
 @end
