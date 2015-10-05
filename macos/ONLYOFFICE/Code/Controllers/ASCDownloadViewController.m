@@ -118,6 +118,12 @@
 #pragma mark ASCDownloadCellView Delegate
 
 - (void)onCancelButton:(ASCDownloadCellView *)cell {
+    id download = [[ASCDownloadController sharedInstance] downloadWithId:cell.uuid];
+    
+    if (download) {
+        download[@"canceled"] = @(YES);
+    }
+    
     [[ASCDownloadController sharedInstance] removeDownload:cell.uuid];
 }
 
@@ -131,7 +137,12 @@
 
 - (void)downloadController:(ASCDownloadController *)controler didRemovedDownload:(id)download {
     [self.tableView reloadData];
-    [self updatePopoverSize];
+    
+    if ([[[ASCDownloadController sharedInstance] downloads] count] < 1) {
+        [self.popover closePopover:nil];
+    } else {
+        [self updatePopoverSize];
+    }
 }
 
 - (void)downloadController:(ASCDownloadController *)controler didUpdatedDownload:(id)download {

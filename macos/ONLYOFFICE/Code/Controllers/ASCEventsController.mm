@@ -50,169 +50,182 @@
 #pragma mark -
 
 class ASCEventListener: public NSEditorApi::CAscMenuEventListener {
+    dispatch_queue_t eventListenerQueue;
 public:
-    virtual void OnEvent(NSEditorApi::CAscMenuEvent* pEvent)
+    ASCEventListener() : NSEditorApi::CAscMenuEventListener () {
+        eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
+    }
+    
+    virtual void OnEvent(NSEditorApi::CAscMenuEvent* pRawEvent)
     {
-        if (NULL == pEvent)
+        if (NULL == pRawEvent)
             return;
+     
+//        if (pRawEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START) {
+//            NSLog(@"ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START");
+//        }
         
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-            switch (pEvent->m_nType) {
-                case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
-                    NSEditorApi::CAscCreateTab *pData = (NSEditorApi::CAscCreateTab*)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_IdEqual()],
-                                                                                 @"url"     : [NSString stringWithstdwstring:pData->get_Url()],
-                                                                                 @"active"  : @(pData->get_Active())
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
-                    NSEditorApi::CAscTabEditorType * pData = (NSEditorApi::CAscTabEditorType*)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameTabEditorType
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
-                                                                                 @"type"    : @(pData->get_Type())
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE:
-                    break;
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_DOCUMENT_NAME: {
-                    NSEditorApi::CAscDocumentName* pData = (NSEditorApi::CAscDocumentName*)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameTabEditorNameChanged
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
-                                                                                 @"name"    : [NSString stringWithstdwstring:pData->get_Name()]
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_MODIFY_CHANGED: {
-                    NSEditorApi::CAscDocumentModifyChanged * pData = (NSEditorApi::CAscDocumentModifyChanged *)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameModifyChanged
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
-                                                                                 @"сhanged" : @(pData->get_Changed())
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogout
-                                                                        object:nil
-                                                                      userInfo:nil];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
-                    NSEditorApi::CAscTypeId* pId = (NSEditorApi::CAscTypeId*)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSave
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"viewId"  : [NSString stringWithFormat:@"%d", pId->get_Id()]
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: {
-                    NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
-                    
-                    NSRange range = [[NSString stringWithstdwstring:pData->get_Name()] rangeOfString:@"login"];
-                    
-                    if (range.location == 0) {
-                        NSString *jsonString = [NSString stringWithstdwstring:pData->get_Value()];
-                        NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-                        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        __block NSEditorApi::CAscMenuEvent * pEvent = pRawEvent;
+        
+        dispatch_async(eventListenerQueue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                switch (pEvent->m_nType) {
+                    case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
+                        NSEditorApi::CAscCreateTab *pData = (NSEditorApi::CAscCreateTab*)pEvent->m_pData;
                         
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogin
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                             object:nil
-                                                                          userInfo:json];
+                                                                          userInfo:@{
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_IdEqual()],
+                                                                                     @"url"     : [NSString stringWithstdwstring:pData->get_Url()],
+                                                                                     @"active"  : @(pData->get_Active())
+                                                                                     }];
+                        break;
                     }
-                    break;
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
+                        NSEditorApi::CAscTabEditorType * pData = (NSEditorApi::CAscTabEditorType*)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameTabEditorType
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
+                                                                                     @"type"    : @(pData->get_Type())
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE:
+                        break;
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_DOCUMENT_NAME: {
+                        NSEditorApi::CAscDocumentName* pData = (NSEditorApi::CAscDocumentName*)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameTabEditorNameChanged
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
+                                                                                     @"name"    : [NSString stringWithstdwstring:pData->get_Name()]
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_MODIFY_CHANGED: {
+                        NSEditorApi::CAscDocumentModifyChanged * pData = (NSEditorApi::CAscDocumentModifyChanged *)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameModifyChanged
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
+                                                                                     @"сhanged" : @(pData->get_Changed())
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogout
+                                                                            object:nil
+                                                                          userInfo:nil];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
+                        NSEditorApi::CAscTypeId* pId = (NSEditorApi::CAscTypeId*)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSave
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pId->get_Id()]
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: {
+                        NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
+                        
+                        NSRange range = [[NSString stringWithstdwstring:pData->get_Name()] rangeOfString:@"login"];
+                        
+                        if (range.location == 0) {
+                            NSString *jsonString = [NSString stringWithstdwstring:pData->get_Value()];
+                            NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogin
+                                                                                object:nil
+                                                                              userInfo:json];
+                        }
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE:
+                        break;
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
+                        break;
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START:
+                    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
+                        NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo*)pEvent->m_pData;
+                        
+//                        ADDREFINTERFACE(pData);
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDownload
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"data" : [NSValue value:&pData withObjCType:@encode(void *)],
+                                                                                     @"start": @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START)
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+                        //                    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
+                        //
+                        //                    ADDREFINTERFACE(pData)
+                        //                    QMetaObject::invokeMethod(this, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
+                        NSEditorApi::CAscOnOpenExternalLink * pData = (NSEditorApi::CAscOnOpenExternalLink *)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenUrl
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"url" : [NSString stringWithstdwstring:pData->get_Url()]
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
+                        NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)pEvent->m_pData;
+                        
+                        ADDREFINTERFACE(pData);
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameKeyboardDown
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"data" : [NSValue value:&pData withObjCType:@encode(void *)]
+                                                                                     }];
+                        break;
+                    }
+                        
+                    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
+                    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"fullscreen" : @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER)
+                                                                                     }];
+                        break;
+                    }
+                        
+                    default:
+                        break;
                 }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE:
-                    break;
-
-                case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
-                    break;
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START:
-                case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
-                    NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo*)pEvent->m_pData;
-                    
-//                    ADDREFINTERFACE(pData);
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDownload
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"data" : [NSValue value:&pData withObjCType:@encode(void *)],
-                                                                                 @"start": @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START)
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-//                    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
-//
-//                    ADDREFINTERFACE(pData)
-//                    QMetaObject::invokeMethod(this, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
-                    break;
-                }
-                case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
-                    NSEditorApi::CAscOnOpenExternalLink * pData = (NSEditorApi::CAscOnOpenExternalLink *)pEvent->m_pData;
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenUrl
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"url" : [NSString stringWithstdwstring:pData->get_Url()]
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
-                    NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)pEvent->m_pData;
-                    
-                    ADDREFINTERFACE(pData);
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameKeyboardDown
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"data" : [NSValue value:&pData withObjCType:@encode(void *)]
-                                                                                 }];
-                    break;
-                }
-                    
-                case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
-                case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"fullscreen" : @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER)
-                                                                                 }];
-                    break;
-                }
-
-                default:
-                    break;
-            }
-            
-            if (NULL != pEvent)
-                delete pEvent;
-        }];
+                
+                if (NULL != pEvent)
+                    delete pEvent;
+            });
+        });
     }
     
     virtual bool IsSupportEvent(int nEventType)

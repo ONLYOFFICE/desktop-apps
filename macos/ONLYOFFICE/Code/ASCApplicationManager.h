@@ -31,23 +31,25 @@
 */
 
 //
-//  NSCefView.h
-//  CefViewTest
+//  ASCApplicationManager.h
+//  ONLYOFFICE
 //
-//  Created by Oleg Korshul on 14.09.15.
-//  Copyright (c) 2015 Ascensio System. All rights reserved.
+//  Created by Alexander Yuzhin on 10/2/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#include "applicationmanager.h"
+#ifndef ASCApplicationManager_h
+#define ASCApplicationManager_h
 
-@interface NSCefView : NSView
-@property (nonatomic, readonly) NSInteger uuid;
+#include <stdio.h>
+#import "mac_application.h"
 
-- (void)Load:(NSString *)pEvent;
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
-- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
-- (void)setParentCef:(int)idx;
-- (void)internalClean;
+class ASCApplicationManager : public CAscApplicationManager {
+public:
+    ASCApplicationManager();
+    
+    virtual void StartSaveDialog(const std::wstring& sName);
+    virtual void EndSaveDialog(const std::wstring& sPath);
+};
 
-@end
+#endif /* ASCApplicationManager_h */

@@ -107,8 +107,12 @@
                                              selector:@selector(onCEFDownload:)
                                                  name:CEFEventNameDownload
                                                object:nil];
-    
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFStartSave:)
+                                                 name:CEFEventNameStartSaveDialog
+                                               object:nil];
+        
 //    // DEBUG
 //    for (int i = 0; i < 5; i++) {
 //        NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = new NSEditorApi::CAscDownloadFileInfo();
@@ -315,22 +319,43 @@
                     fileName = [path lastPathComponent];
                 }
                 
-                NSCefView * pView = nil;
-                
                 if (isStart) {
-                    pView = [[NSCefView alloc] initWithFrame:CGRectZero];
+                    NSCefView * pView = [[NSCefView alloc] initWithFrame:CGRectZero];
                     [pView Create:appManager withType:cvwtEditor];
                     [pView setParentCef:pDownloadFileInfo->get_Id()];
                     [pView Load:[NSString stringWithstdwstring:pDownloadFileInfo->get_Url()]];
                     
                     idx = [NSString stringWithFormat:@"%ld", (long)[pView uuid]];
+
+                    [[ASCDownloadController sharedInstance] addDownload:idx view:pView fileName:fileName];
                 }
-                
-                [[ASCDownloadController sharedInstance] addDownload:idx view:pView fileName:fileName];
             }
             
             [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
         }
+    }
+}
+
+- (void)onCEFStartSave:(NSNotification *)notification {
+    if (notification && notification.object) {
+        NSString * fileName = notification.object;
+        
+        NSSavePanel * savePanel = [NSSavePanel savePanel];
+//        [savePanel setDirectoryURL:[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject]]];
+        if (fileName && fileName.length > 0) {
+            [savePanel setAllowedFileTypes:@[fileName.pathExtension]];
+            [savePanel setNameFieldStringValue:[fileName lastPathComponent]];
+        }
+
+        [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            if (result == NSFileHandlingPanelOKButton) {
+                [savePanel orderOut:self];
+                
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                NSString * path = [[savePanel URL] path];
+                appManager->EndSaveDialog([path stdwstring]);
+            }
+        }];
     }
 }
 

@@ -145,6 +145,10 @@ public:
 }
 
 - (void)dealloc {
+    [self internalClean];
+}
+
+- (void)internalClean {
     if (NULL != m_pCefView) {
         delete m_pCefView;
         m_pCefView = NULL;
@@ -159,12 +163,17 @@ public:
 
 - (void)setFrameOrigin:(NSPoint)newOrigin {
     [super setFrameOrigin:newOrigin];
-    m_pCefView->moveEvent();
+    
+    if (m_pCefView) {
+        m_pCefView->moveEvent();
+    }
 }
 
 - (void) setFrameSize:(NSSize)newSize {
     [super setFrameSize:newSize];
-    m_pCefView->resizeEvent();
+    if (m_pCefView) {
+        m_pCefView->resizeEvent();
+    }
 }
 
 - (NSInteger)uuid {

@@ -47,11 +47,12 @@
 #import "SFBPopover.h"
 #import "ASCUserInfoViewController.h"
 #import "ASCDownloadViewController.h"
+#import "ASCDownloadController.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 320;
 
-@interface ASCTitleBarController ()  <ASCTabsControlDelegate>
+@interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
 @property (nonatomic) NSArray *standardButtons;
 
@@ -146,6 +147,7 @@ static float kASCWindowMinTitleWidth = 320;
                                                  name:CEFEventNameLogin
                                                object:nil];
     
+    [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
     [self.userProfileButton setHidden:YES];
@@ -354,6 +356,21 @@ static float kASCWindowMinTitleWidth = 320;
         [self.titleLabel setStringValue:@"ONLYOFFICE"];
         [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_normal"]];
     }
+}
+
+#pragma mark -
+#pragma mark ASCDownloadController Delegate
+
+- (void)downloadController:(ASCDownloadController *)controler didAddDownload:(id)download {
+    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 30.f : .0f;
+}
+
+- (void)downloadController:(ASCDownloadController *)controler didRemovedDownload:(id)download {
+    self.downloadWidthConstraint.constant = ([[controler downloads] count] > 0) ? 30.f : .0f;
+}
+
+- (void)downloadController:(ASCDownloadController *)controler didUpdatedDownload:(id)download {
+    //
 }
 
 #pragma mark -

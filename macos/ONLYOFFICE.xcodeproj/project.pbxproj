@@ -15,6 +15,7 @@
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; settings = {ASSET_TAGS = (); }; };
 		FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; settings = {ASSET_TAGS = (); }; };
 		FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; settings = {ASSET_TAGS = (); }; };
+		FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; settings = {ASSET_TAGS = (); }; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC98BAD91BAC4CB100747944 /* cloud in Resources */ = {isa = PBXBuildFile; fileRef = FC98BAD81BAC4CB100747944 /* cloud */; };
@@ -60,6 +61,8 @@
 		FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindow.m; sourceTree = "<group>"; };
 		FC3BFDFE1BBE83AB0040C904 /* SFBPopoverWindowFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopoverWindowFrame.h; sourceTree = "<group>"; };
 		FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindowFrame.m; sourceTree = "<group>"; };
+		FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 4; name = ASCApplicationManager.cpp; path = Code/ASCApplicationManager.cpp; sourceTree = "<group>"; };
+		FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCApplicationManager.h; path = Code/ASCApplicationManager.h; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors2 */,
 				FC5A2D401BAC075E001ACEB1 /* common */,
 				FC5A2D531BAC075E001ACEB1 /* Word_Api */,
+				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */,
+				FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */,
 				FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */,
 				FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */,
 				FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */,

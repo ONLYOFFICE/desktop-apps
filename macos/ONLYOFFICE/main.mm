@@ -42,12 +42,17 @@
 #include "mac_application.h"
 #import "NSString+OnlyOffice.h"
 #import "ASCHelper.h"
+#include "ASCApplicationManager.h"
+
+CAscApplicationManager * createASCApplicationManager() {
+    return new ASCApplicationManager();
+}
 
 int main(int argc, const char * argv[]) {
 //    return NSApplicationMain(argc, argv);
     [ASCHelper copyVendorJS];
     
-    NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] init];
+    NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
 
     [NSAscApplicationWorker getAppManager]->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
     

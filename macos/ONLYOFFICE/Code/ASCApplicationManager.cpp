@@ -31,23 +31,35 @@
 */
 
 //
-//  NSCefView.h
-//  CefViewTest
+//  ASCApplicationManager.cpp
+//  ONLYOFFICE
 //
-//  Created by Oleg Korshul on 14.09.15.
-//  Copyright (c) 2015 Ascensio System. All rights reserved.
+//  Created by Alexander Yuzhin on 10/2/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
+#include "ASCApplicationManager.h"
 #import <Cocoa/Cocoa.h>
-#include "applicationmanager.h"
+#import <AppKit/AppKit.h>
+#import "ASCConstants.h"
+#import "NSString+OnlyOffice.h"
 
-@interface NSCefView : NSView
-@property (nonatomic, readonly) NSInteger uuid;
+ASCApplicationManager::ASCApplicationManager() : CAscApplicationManager() {
+#ifdef DEBUG
+    NSLog(@"ASCApplicationManager");
+#endif
+}
 
-- (void)Load:(NSString *)pEvent;
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
-- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
-- (void)setParentCef:(int)idx;
-- (void)internalClean;
+void ASCApplicationManager::StartSaveDialog(const std::wstring& sName) {
+    std::wstring fileName(sName);
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartSaveDialog
+                                                            object:[NSString stringWithstdwstring:fileName]
+                                                          userInfo:nil];
+     }];
+}
 
-@end
+void ASCApplicationManager::EndSaveDialog(const std::wstring& sPath) {
+    CAscApplicationManager::EndSaveDialog(sPath);
+}

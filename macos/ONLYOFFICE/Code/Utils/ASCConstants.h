@@ -61,4 +61,6 @@ static NSString * const CEFEventNameOpenUrl                 = @"CEF_openUrl";
 static NSString * const CEFEventNameFullscreen              = @"CEF_fullscreen";
 static NSString * const CEFEventNameKeyboardDown            = @"CEF_keyboardDown";
 static NSString * const CEFEventNameDownload                = @"CEF_downloaded";
+static NSString * const CEFEventNameStartSaveDialog         = @"CEF_startSaveDialog";
+static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialog";
 #endif

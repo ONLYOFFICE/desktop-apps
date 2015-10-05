@@ -42,6 +42,7 @@
 #import "NSString+OnlyOffice.h"
 #import "mac_application.h"
 #import <objc/runtime.h>
+#import "NSCefView.h"
 
 static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownloadControllersMulticastDelegate";
 
@@ -118,6 +119,18 @@ static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownlo
     id download = [self downloadWithId:idx];
     
     if (download) {
+        NSCefView * view    = download[@"view"];
+        NSString * filePath = download[@"filePath"];
+        BOOL isCanceled     = [download[@"canceled"] boolValue];
+        
+        if (![view isEqual:[NSNull null]]) {
+            [view internalClean];
+        }
+        
+        if (isCanceled && filePath && [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        }
+        
         [_downloads removeObject:download];
         
         if (_delegate && [_delegate respondsToSelector:@selector(downloadController:didRemovedDownload:)]) {
@@ -131,8 +144,12 @@ static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownlo
     id download = [self downloadWithId:idx];
     
     if (download && pDownloadFileInfo) {
+        NSString * fileName = [[NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()] lastPathComponent];
         [download setObject:[NSNumber numberWithInt:pDownloadFileInfo->get_Percent()] forKey:@"percent"];
-        [download setObject:[[NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()] lastPathComponent] forKey:@"name"];
+        [download setObject:(fileName && fileName.length > 0) ? fileName : NSLocalizedString(@"Preparing...", nil) forKey:@"name"];
+        [download setObject:[NSString stringWithstdwstring:pDownloadFileInfo->get_Url()] forKey:@"url"];
+        [download setObject:[NSString stringWithstdwstring:pDownloadFileInfo->get_FilePath()] forKey:@"filePath"];
+        [download setObject:@(pDownloadFileInfo->get_IsCanceled()) forKey:@"canceled"];
         
         if (_delegate && [_delegate respondsToSelector:@selector(downloadController:didUpdatedDownload:)]) {
             [_delegate downloadController:self didUpdatedDownload:download];
