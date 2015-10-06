@@ -198,7 +198,7 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
                         NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)pEvent->m_pData;
                         
-                        ADDREFINTERFACE(pData);
+//                        ADDREFINTERFACE(pData);
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameKeyboardDown
                                                                             object:nil

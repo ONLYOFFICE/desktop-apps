@@ -42,5 +42,6 @@
 
 @interface ViewController : NSViewController
 - (BOOL)shouldTerminateApplication;
+- (BOOL)shouldCloseMainWindow;
 @end
 

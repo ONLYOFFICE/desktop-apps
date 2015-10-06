@@ -58,6 +58,14 @@
 - (BOOL)windowShouldClose:(id)sender {
     ASCTitleWindow * window = (ASCTitleWindow *)self.window;
     ViewController * controller = (ViewController *)window.contentViewController;
+    NSEvent * event = [window currentEvent];
+
+//    BOOL isCommandKey = ([event modifierFlags] & NSCommandKeyMask) != 0;
+
+    if (event != nil && (event.type != NSLeftMouseUp)) {
+        return [controller shouldCloseMainWindow];
+    }
+    
     return [controller shouldTerminateApplication];
 }
 

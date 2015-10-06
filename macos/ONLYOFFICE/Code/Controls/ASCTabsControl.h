@@ -70,4 +70,5 @@
 - (void)selectTab:(ASCTabView *)tab;
 
 - (ASCTabView *)tabWithUUID:(NSString *)uuid;
+- (ASCTabView *)selectedTab;
 @end

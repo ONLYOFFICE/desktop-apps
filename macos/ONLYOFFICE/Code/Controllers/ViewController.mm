@@ -249,6 +249,20 @@
     return YES;
 }
 
+- (BOOL)shouldCloseMainWindow {
+    if (self.tabsControl.tabs.count > 0) {
+        ASCTabView * tab = [self.tabsControl selectedTab];
+        
+        if (tab) {
+            if ([self tabs:self.tabsControl willRemovedTab:tab]) {
+                [self.tabsControl removeTab:tab];
+            }
+            return NO;
+        }
+    }    
+    return YES;
+}
+
 #pragma mark -
 #pragma mark - CEF events handlers
 
@@ -318,23 +332,13 @@
         NSValue * eventData = params[@"data"];
         
         if (eventData) {
-            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-            
+//            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
+//            
 //            int     keyCode = pData->get_KeyCode();
 //            bool    isCtrl  = pData->get_IsCtrl();
-            
-            RELEASEINTERFACE(pData);
-            
-//            NSF30FunctionKey
-//            NSKeyUp
-//            int code = NSCommandKeyMask;
 //            
-//            switch (keyCode) {
-//                case NSF4FunctionKey:
-//                    if (isCtrl) {
-//                        m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
-//                    }
-//                    break;
+//            if(isCtrl && keyCode == kVK_ANSI_W) {
+//                [self tabs:self.tabsControl willRemovedTab:[self.tabsControl selectedTab]];
 //            }
         }
     }
@@ -434,7 +438,7 @@
 }
 
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab {
-    if (tab.changed) {
+    if (tab && tab.changed) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
@@ -479,6 +483,22 @@
 - (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab {
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     appManager->DestroyCefView([tab.uuid intValue]);
+
+    NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+    NSCefView * cefView = nil;
+    
+    if (item) {
+        for (NSView * view in item.view.subviews) {
+            if ([view isKindOfClass:[NSCefView class]]) {
+                cefView = (NSCefView *)view;
+                break;
+            }
+        }
+        
+        if (cefView) {
+            [cefView internalClean];
+        }
+    }
     
     [self.tabView removeTabViewItem:[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]]];
     

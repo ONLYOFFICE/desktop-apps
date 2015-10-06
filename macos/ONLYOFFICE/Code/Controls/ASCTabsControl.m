@@ -244,6 +244,16 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     return filteredArray.firstObject;
 }
 
+- (ASCTabView *)selectedTab {
+    for (ASCTabView * tab in self.tabs) {
+        if (tab.state == NSOnState) {
+            return tab;
+        }
+    }
+    
+    return nil;
+}
+
 #pragma mark -
 #pragma mark - ScrollView Observation
 
