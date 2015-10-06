@@ -40,6 +40,12 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#   define DLog(...)
+#endif
+
 #define kColorRGBA(r, g, b, a)  [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:(a)]
 #define kColorRGB(r, g, b)      [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
 

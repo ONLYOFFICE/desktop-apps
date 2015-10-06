@@ -39,8 +39,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "applicationmanager.h"
 
 @interface ViewController : NSViewController
+- (BOOL)shouldTerminateApplication;
 @end
 

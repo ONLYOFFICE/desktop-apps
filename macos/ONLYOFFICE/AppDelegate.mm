@@ -39,12 +39,7 @@
 //
 
 #import "AppDelegate.h"
-
-#ifdef DEBUG
-#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#   define DLog(...)
-#endif
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -54,35 +49,26 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    DLog();
-    NSAppleEventManager* appleEventManager = [NSAppleEventManager sharedAppleEventManager];
-    [appleEventManager setEventHandler:self andSelector:@selector(handleQuitEvent:withReplyEvent:) forEventClass:kCoreEventClass andEventID:kAEQuitApplication];
-}
-
-- (void)handleQuitEvent:(NSAppleEventDescriptor*)event withReplyEvent:(NSAppleEventDescriptor*)replyEvent
-{
-    //[self terminate:self];
-    DLog();
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
-    DLog();
 }
 
-
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
-    DLog();
     return YES;
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)theApplication {
-    DLog();
-    return NSTerminateCancel;
-}
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    
+    if (mainWindow) {
+        ViewController * controller = (ViewController *)mainWindow.contentViewController;
+        
+        return [controller shouldTerminateApplication] ? NSTerminateNow : NSTerminateCancel;
+    }
 
-- (void)terminate:(nullable id)sender {
-    DLog();
+    return NSTerminateNow;
 }
 
 @end

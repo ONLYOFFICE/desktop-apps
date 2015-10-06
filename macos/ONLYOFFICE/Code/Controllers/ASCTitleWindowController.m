@@ -41,6 +41,7 @@
 #import "ASCTitleWindowController.h"
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
+#import "ViewController.h"
 
 @interface ASCTitleWindowController ()
 
@@ -54,14 +55,11 @@
     [self setupToolbar];
 }
 
-//- (BOOL)windowShouldClose:(id)sender {
-//    NSLog(@"@s", __PRETTY_FUNCTION__);
-//    return YES;
-//}
-//
-//- (void)windowWillClose:(NSNotification *)notification {
-//    NSLog(@"@s", __PRETTY_FUNCTION__);
-//}
+- (BOOL)windowShouldClose:(id)sender {
+    ASCTitleWindow * window = (ASCTitleWindow *)self.window;
+    ViewController * controller = (ViewController *)window.contentViewController;
+    return [controller shouldTerminateApplication];
+}
 
 float defaultTitleBarHeight() {
     NSRect frame = NSMakeRect(0, 0, 800, 600);

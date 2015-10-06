@@ -47,6 +47,11 @@
 
 @implementation ASCTitleWindow
 
+- (BOOL)windowShouldClose:(id)sender {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    return YES;
+}
+
 - (NSWindowTitleVisibility)titleVisibility {
     return NSWindowTitleHidden;
 }

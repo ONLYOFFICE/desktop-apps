@@ -39,6 +39,7 @@
 //
 
 #import "ViewController.h"
+#import "applicationmanager.h"
 #import "mac_application.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
@@ -61,6 +62,7 @@
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
+@property (nonatomic) BOOL shouldTerminateApp;
 @end
 
 @implementation ViewController
@@ -112,33 +114,6 @@
                                              selector:@selector(onCEFStartSave:)
                                                  name:CEFEventNameStartSaveDialog
                                                object:nil];
-        
-//    // DEBUG
-//    for (int i = 0; i < 5; i++) {
-//        NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = new NSEditorApi::CAscDownloadFileInfo();
-//        pDownloadFileInfo->put_Id(1000 + i);
-//        pDownloadFileInfo->put_FilePath(L"/Users/ayuzhin/Library/Developer/Xcode/DerivedData/ONLYOFFICE/Contents/Resources/cloud.png");
-//        pDownloadFileInfo->put_Url(L"http://onlyoffice.com");
-//        pDownloadFileInfo->put_Percent(0);
-//        
-//        [[ASCDownloadController sharedInstance] addDownload:[NSString stringWithFormat:@"%d", 1000+i] view:nil fileName:@"cloud.png"];
-//        [[ASCDownloadController sharedInstance] updateDownload:[NSString stringWithFormat:@"%d", 1000+i] data:[NSValue value:&pDownloadFileInfo withObjCType:@encode(void *)]];
-//        
-//        delete pDownloadFileInfo;
-//    }
-//    
-//    [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^{
-//        for (int i = 0; i < [[[ASCDownloadController sharedInstance] downloads] count]; i++) {
-//            NSEditorApi::CAscDownloadFileInfo * pDownloadFileInfo = new NSEditorApi::CAscDownloadFileInfo();
-//            pDownloadFileInfo->put_FilePath(L"/Users/ayuzhin/Library/Developer/Xcode/DerivedData/ONLYOFFICE/Contents/Resources/cloud.png");
-//            pDownloadFileInfo->put_Percent(rand()%100);
-//            
-//            [[ASCDownloadController sharedInstance] updateDownload:[NSString stringWithFormat:@"%d", 1000+i] data:[NSValue value:&pDownloadFileInfo withObjCType:@encode(void *)]];
-//            
-//            delete pDownloadFileInfo;
-//
-//        }
-//    }];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -197,6 +172,81 @@
         
         [self.cefStartPageView Load:[loginPage string]];
     }
+}
+
+#pragma mark -
+#pragma mark - Public
+
+- (BOOL)shouldTerminateApplication {
+    NSInteger unsaved = 0;
+    
+    for (ASCTabView * tab in self.tabsControl.tabs) {
+        if (tab.changed) {
+            unsaved++;
+        }
+    }
+    
+    if (unsaved > 0) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Review Changes..."];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert addButtonWithTitle:@"Save and Quit"];
+        [alert setMessageText:[NSString stringWithFormat:@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", (long)unsaved]];
+        [alert setInformativeText:@"If you don't review your documents, all your changeses will be saved."];
+        [alert setAlertStyle:NSInformationalAlertStyle];
+        
+        NSInteger result = [alert runModal];
+        
+        if (result == NSAlertFirstButtonReturn) {
+            // "Review Changes..." clicked
+            self.shouldTerminateApp = YES;
+            
+            NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
+            for (ASCTabView * tab in tabs) {
+                if (tab.changed) {
+                    [self tabs:self.tabsControl willRemovedTab:tab];
+                } else {
+                    [self.tabsControl removeTab:tab];
+                }
+            }
+        } else if (result == NSAlertSecondButtonReturn) {
+            // "Cancel" clicked
+            return NO;
+        } else {
+            // "Save and Quit" clicked
+            self.shouldTerminateApp = YES;
+            
+            NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
+            for (ASCTabView * tab in tabs) {
+                if (tab.changed) {
+                    NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+                    NSCefView * cefView = nil;
+                    
+                    if (item) {
+                        for (NSView * view in item.view.subviews) {
+                            if ([view isKindOfClass:[NSCefView class]]) {
+                                cefView = (NSCefView *)view;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (cefView) {
+                        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
+                        
+                        pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
+                        [cefView apply:pEvent];
+                    }
+                } else {
+                    [self.tabsControl removeTab:tab];
+                }
+            }
+        }
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark -
@@ -415,6 +465,8 @@
                 }
             } else if (returnCode == NSAlertSecondButtonReturn) {
                 [control removeTab:tab];
+            } else if (returnCode == NSAlertThirdButtonReturn) {
+                self.shouldTerminateApp = NO;
             }
         }];
         
@@ -429,6 +481,10 @@
     appManager->DestroyCefView([tab.uuid intValue]);
     
     [self.tabView removeTabViewItem:[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]]];
+    
+    if (self.shouldTerminateApp && self.tabsControl.tabs.count < 1) {
+        [NSApp terminate:nil];
+    }
 }
 
 - (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab {
