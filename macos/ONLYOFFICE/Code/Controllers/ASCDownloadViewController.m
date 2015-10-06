@@ -41,6 +41,7 @@
 #import "ASCDownloadViewController.h"
 #import "ASCDownloadController.h"
 #import "ASCDownloadCellView.h"
+#import "GTMNSString+HTML.h"
 
 @interface ASCDownloadViewController() <NSTableViewDelegate, NSTableViewDataSource, ASCDownloadControllerDelegate, ASCDownloadCellViewDelegate>
 @property (weak) IBOutlet NSTableView *tableView;
@@ -102,7 +103,7 @@
     id download = [[[ASCDownloadController sharedInstance] downloads] objectAtIndex:row];
 
     ASCDownloadCellView * cellView  = [tableView makeViewWithIdentifier:@"ASCDownloadTableViewCellId" owner:self];
-    cellView.textField.stringValue  = download[@"name"];
+    cellView.textField.stringValue  = [download[@"name"] gtm_stringByUnescapingFromHTML];
     cellView.progress.doubleValue   = [download[@"percent"] doubleValue];
     cellView.uuid                   = download[@"idx"];
     cellView.delegate               = self;

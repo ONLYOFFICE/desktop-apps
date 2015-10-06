@@ -682,20 +682,20 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aiw-Pj-VjZ">
-                                <rect key="frame" x="18" y="130" width="234" height="17"/>
+                                <rect key="frame" x="18" y="128" width="234" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="PUd-yA-0zS"/>
+                                    <constraint firstAttribute="height" constant="19" id="PUd-yA-0zS"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="fs0-sN-Jno"/>
                                 </constraints>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="User Name" id="FoF-wl-Dxi">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="User Name" usesSingleLineMode="YES" id="FoF-wl-Dxi">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z7w-DR-5mK">
-                                <rect key="frame" x="18" y="102" width="44" height="16"/>
+                                <rect key="frame" x="18" y="100" width="44" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="JHj-Lo-Sh5"/>
                                 </constraints>
@@ -707,19 +707,19 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-hF-SNH">
-                                <rect key="frame" x="78" y="102" width="174" height="16"/>
+                                <rect key="frame" x="78" y="100" width="174" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Or6-Gu-L5B"/>
                                 </constraints>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="9i7-kj-42B">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="none" usesSingleLineMode="YES" id="9i7-kj-42B">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X1r-fW-N3h">
-                                <rect key="frame" x="18" y="73" width="38" height="17"/>
+                                <rect key="frame" x="18" y="71" width="38" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="2Z8-tx-yLf"/>
                                     <constraint firstAttribute="width" constant="34" id="mfK-Go-vrc"/>
@@ -732,20 +732,20 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FY0-wF-Zay">
-                                <rect key="frame" x="78" y="72" width="174" height="17"/>
+                                <rect key="frame" x="78" y="70" width="174" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="H8J-W9-OJ5"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Iew-ae-tXr"/>
                                 </constraints>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="Rkd-xb-FRJ">
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="none" usesSingleLineMode="YES" id="Rkd-xb-FRJ">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wrb-Yp-5M3">
-                                <rect key="frame" x="0.0" y="47" width="270" height="5"/>
+                                <rect key="frame" x="0.0" y="45" width="270" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="WRN-30-PHb"/>
                                 </constraints>
@@ -755,7 +755,7 @@
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IFv-Rl-0R4">
-                                <rect key="frame" x="20" y="0.0" width="230" height="49"/>
+                                <rect key="frame" x="20" y="0.0" width="230" height="47"/>
                                 <animations/>
                                 <buttonCell key="cell" type="bevel" title="Logout" bezelStyle="regularSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="RmO-tv-UKh">
                                     <behavior key="behavior" lightByContents="YES"/>

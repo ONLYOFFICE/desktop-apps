@@ -41,6 +41,7 @@
 #import "ASCUserInfoViewController.h"
 #import "ASCHelper.h"
 #import "ASCConstants.h"
+#import "GTMNSString+HTML.h"
 
 @interface ASCUserInfoViewController ()
 
@@ -64,8 +65,8 @@
     NSDictionary * userInfo = [[ASCHelper localSettings] valueForKey:ASCUserSettingsNameUserInfo];
 
     if (userInfo) {
-        [self.userNameText setStringValue:userInfo[@"user"][@"displayName"]];
-        [self.portalText setStringValue:userInfo[@"portal"]];
+        [self.userNameText setStringValue:[userInfo[@"user"][@"displayName"] gtm_stringByUnescapingFromHTML]];
+        [self.portalText setStringValue:[userInfo[@"portal"] gtm_stringByUnescapingFromHTML]];
         [self.emailText setStringValue:userInfo[@"user"][@"email"]];
     }
 }
@@ -92,8 +93,8 @@
         [[ASCHelper localSettings] setValue:userInfo forKey:ASCUserSettingsNameUserInfo];
         
         if (userInfo) {
-            [self.userNameText setStringValue:userInfo[@"user"][@"displayName"]];
-            [self.portalText setStringValue:userInfo[@"portal"]];
+            [self.userNameText setStringValue:[userInfo[@"user"][@"displayName"] gtm_stringByUnescapingFromHTML]];
+            [self.portalText setStringValue:[userInfo[@"portal"] gtm_stringByUnescapingFromHTML]];
             [self.emailText setStringValue:userInfo[@"user"][@"email"]];
         }
     }
