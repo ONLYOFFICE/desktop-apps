@@ -42,6 +42,8 @@
 		FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */; };
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; settings = {ASSET_TAGS = (); }; };
+		FCFA5D061BC54665003E2B44 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFA5D081BC54665003E2B44 /* InfoPlist.strings */; };
+		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +145,11 @@
 		FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCMulticastDelegate.m; path = Code/Utils/ASCMulticastDelegate.m; sourceTree = "<group>"; };
 		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadController.h; path = Code/Controllers/ASCDownloadController.h; sourceTree = "<group>"; };
 		FCD294681BB97D3300318930 /* ASCDownloadController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCDownloadController.mm; path = Code/Controllers/ASCDownloadController.mm; sourceTree = "<group>"; };
+		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		FCFA5D071BC54665003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FCFC000E1BC54ADB00939341 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FCFC000F1BC5569B00939341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +485,8 @@
 		FCBC426B1B9D650400405301 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCFC000B1BC54ACC00939341 /* Localizable.strings */,
+				FCFA5D081BC54665003E2B44 /* InfoPlist.strings */,
 				FCBC426C1B9D650400405301 /* Info.plist */,
 				FCBC42701B9D650400405301 /* main.mm */,
 			);
@@ -526,7 +535,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ASC;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ascensio System SIA";
 				TargetAttributes = {
 					FCBC42671B9D650400405301 = {
@@ -547,6 +556,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -564,6 +574,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC98BAD91BAC4CB100747944 /* cloud in Resources */,
+				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
+				FCFA5D061BC54665003E2B44 /* InfoPlist.strings in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
 				FC3B777B1BB28CE900DB9705 /* login in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
@@ -649,8 +661,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				FCBC42781B9D650500405301 /* Base */,
+				FCFA5D021BC54631003E2B44 /* ru */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FCFA5D081BC54665003E2B44 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCFA5D071BC54665003E2B44 /* ru */,
+				FCFC000F1BC5569B00939341 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FCFC000B1BC54ACC00939341 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCFC000C1BC54ACC00939341 /* Base */,
+				FCFC000E1BC54ADB00939341 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -677,6 +708,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -760,6 +792,7 @@
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
+				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -790,6 +823,7 @@
 				);
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
+				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
