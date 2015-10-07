@@ -1,4 +1,4 @@
-IDI_ICON1   ICON    DISCARDABLE "./res/icons/desktop_icons.ico"
+MAINICON   ICON    DISCARDABLE "./res/icons/desktopeditors.ico"
 
 #include <windows.h>
 #include "src/version.h"
@@ -29,3 +29,4 @@ BEGIN
         VALUE "Translation", 0x409, 1252
     END
 END
+

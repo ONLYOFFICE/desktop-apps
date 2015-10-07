@@ -256,10 +256,7 @@ void QMainPanel::RecalculatePlaces()
 // Button events
 void QMainPanel::pushButtonMinimizeClicked()
 {
-    if (m_pButtonDownload->isVisible())
-    m_pButtonDownload->hide();    else
-    m_pButtonDownload->show();
-//    ShowWindow( parentWindow(), SW_MINIMIZE );
+    ShowWindow( parentWindow(), SW_MINIMIZE );
 }
 
 void QMainPanel::pushButtonMaximizeClicked()
@@ -608,7 +605,7 @@ void QMainPanel::loadStartPage()
     QString data_path = sAppData.size() > 0 ?
                 QString().fromStdWString(sAppData) :
                 QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    data_path += "/ONLYOFFICE/DesktopEditors/webdata/local/index.html";
+    data_path += "/ONLYOFFICE/DesktopEditors/webdata/local/index.html";    
 //    data_path = "ascdesktop://login.html";
 
 

@@ -54,7 +54,6 @@ SOURCES += \
 #    src/casclabel.cpp
 
 RESOURCES += resources.qrc
-
 RC_FILE = version.rc
 
 LIBS += -lwininet \
@@ -98,7 +97,7 @@ DEFINES += \
 
 win32 {
     DEFINES += JAS_WIN_MSVC_BUILD WIN32
-    RC_ICONS += ./res/icons/desktop_icons.ico
+    RC_ICONS += ./res/icons/desktopeditors.ico
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02

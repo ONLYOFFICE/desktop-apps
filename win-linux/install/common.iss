@@ -201,9 +201,9 @@ begin
 
 
 [Files]
-Source: data\desktop_icons.ico;                    DestDir: {app}\;
+Source: ..\res\icons\desktopeditors.ico;           DestDir: {app}\;
 Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
-Source: ..\loginpage\deploy\*;                     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
+Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
 Source: data\dictionaries\*;                       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: data\fonts\LICENSE.txt;                    DestDir: {app}\;
@@ -225,8 +225,8 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktop_icons.ico;
-Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktop_icons.ico;
+Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
+Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]

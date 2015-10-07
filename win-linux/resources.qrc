@@ -54,7 +54,7 @@
         <file>res/icons/profile_hover_2x.png</file>
         <file>res/icons/profile_disabled.png</file>
         <file>res/icons/profile_disabled_2x.png</file>
-        <file>res/icons/desktop_icons.ico</file>
+        <file>res/icons/desktopeditors.ico</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>

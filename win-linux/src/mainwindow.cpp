@@ -84,7 +84,7 @@ CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int 
     wcx.hbrBackground = windowBackground;
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
-    QIcon icon(":/res/icons/desktop_icons.ico");
+    QIcon icon(":/res/icons/desktopeditors.ico");
     wcx.hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
                                         icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
 
