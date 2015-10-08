@@ -730,6 +730,7 @@
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2015 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2015 Ascensio System SIA. All rights reserved.</target>
       </trans-unit>
     </body>
   </file>
