@@ -188,11 +188,11 @@
     
     if (unsaved > 0) {
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Review Changes..."];
-        [alert addButtonWithTitle:@"Cancel"];
-        [alert addButtonWithTitle:@"Save and Quit"];
-        [alert setMessageText:[NSString stringWithFormat:@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", (long)unsaved]];
-        [alert setInformativeText:@"If you don't review your documents, all your changeses will be saved."];
+        [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save and Quit", nil)];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
+        [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
         [alert setAlertStyle:NSInformationalAlertStyle];
         
         NSInteger result = [alert runModal];

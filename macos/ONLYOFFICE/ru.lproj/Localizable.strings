@@ -1,0 +1,36 @@
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Вы хотите сохранить изменения сделанные в документе \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document" = "Документ";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be saved." = "Если Вы не просмотрите эти документы, все внесенные изменения будут сохранены.";
+
+/* No comment provided by engineer. */
+"No" = "Нет";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Подготовка...";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Просмотреть изменения...";
+
+/* No comment provided by engineer. */
+"Save and Quit" = "Подтвердить завершение";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Неподтвержденный";
+
+/* No comment provided by engineer. */
+"Yes" = "Да";
+
+/* No comment provided by engineer. */
+"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У Вас %ld ONLYOFFICE Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
