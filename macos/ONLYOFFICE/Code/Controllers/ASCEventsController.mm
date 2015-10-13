@@ -163,7 +163,6 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
                         break;
                         
-                    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START:
                     case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
                         NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo*)pEvent->m_pData;
                         
@@ -171,8 +170,7 @@ public:
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDownload
                                                                             object:nil
                                                                           userInfo:@{
-                                                                                     @"data" : [NSValue value:&pData withObjCType:@encode(void *)],
-                                                                                     @"start": @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START)
+                                                                                     @"data" : [NSValue value:&pData withObjCType:@encode(void *)]
                                                                                      }];
                         break;
                     }

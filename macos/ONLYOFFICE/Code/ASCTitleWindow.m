@@ -60,7 +60,7 @@
     if (_dummyTitlebarAccessoryViewController) {
         [self removeTitlebarAccessoryViewControllerAtIndex:0];
     }
-    
+       
     NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 10, titleBarHeight)];
     _dummyTitlebarAccessoryViewController = [NSTitlebarAccessoryViewController new];
     _dummyTitlebarAccessoryViewController.view = view;

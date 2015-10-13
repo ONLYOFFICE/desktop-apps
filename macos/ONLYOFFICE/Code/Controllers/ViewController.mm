@@ -333,10 +333,11 @@
         
         if (eventData) {
 //            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-//            
-//            int     keyCode = pData->get_KeyCode();
-//            bool    isCtrl  = pData->get_IsCtrl();
-//            
+//
+//            int     keyCode     = pData->get_KeyCode();
+//            bool    isCtrl      = pData->get_IsCtrl();
+//            BOOL    isCommand   = pData->get_IsCommandMac();
+//
 //            if(isCtrl && keyCode == kVK_ANSI_W) {
 //                [self tabs:self.tabsControl willRemovedTab:[self.tabsControl selectedTab]];
 //            }
@@ -349,7 +350,6 @@
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         NSValue * eventData = params[@"data"];
-        BOOL isStart        = [params[@"start"] boolValue];
         
         if (nil == appManager || nil == eventData)
             return;
@@ -373,16 +373,7 @@
                     fileName = [path lastPathComponent];
                 }
                 
-                if (isStart) {
-                    NSCefView * pView = [[NSCefView alloc] initWithFrame:CGRectZero];
-                    [pView Create:appManager withType:cvwtEditor];
-                    [pView setParentCef:pDownloadFileInfo->get_Id()];
-                    [pView Load:[NSString stringWithstdwstring:pDownloadFileInfo->get_Url()]];
-                    
-                    idx = [NSString stringWithFormat:@"%ld", (long)[pView uuid]];
-
-                    [[ASCDownloadController sharedInstance] addDownload:idx view:pView fileName:fileName];
-                }
+                [[ASCDownloadController sharedInstance] addDownload:idx fileName:fileName];
             }
             
             [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
@@ -391,8 +382,9 @@
 }
 
 - (void)onCEFStartSave:(NSNotification *)notification {
-    if (notification && notification.object) {
-        NSString * fileName = notification.object;
+    if (notification && notification.userInfo) {
+        NSString * fileName = notification.userInfo[@"fileName"];
+        NSNumber * idx      = notification.userInfo[@"idx"];
         
         NSSavePanel * savePanel = [NSSavePanel savePanel];
 //        [savePanel setDirectoryURL:[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject]]];
@@ -401,13 +393,15 @@
             [savePanel setNameFieldStringValue:[fileName lastPathComponent]];
         }
 
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [savePanel orderOut:self];
+           
             if (result == NSFileHandlingPanelOKButton) {
-                [savePanel orderOut:self];
-                
-                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                NSString * path = [[savePanel URL] path];
-                appManager->EndSaveDialog([path stdwstring]);
+                appManager->EndSaveDialog([[[savePanel URL] path] stdwstring], [idx unsignedIntValue]);
+            } else {
+                appManager->EndSaveDialog(L"", [idx unsignedIntValue]);
             }
         }];
     }

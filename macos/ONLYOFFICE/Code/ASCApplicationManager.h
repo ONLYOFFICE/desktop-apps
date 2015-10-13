@@ -48,8 +48,8 @@ class ASCApplicationManager : public CAscApplicationManager {
 public:
     ASCApplicationManager();
     
-    virtual void StartSaveDialog(const std::wstring& sName);
-    virtual void EndSaveDialog(const std::wstring& sPath);
+    virtual void StartSaveDialog(const std::wstring& sName, unsigned int nId);
+    virtual void EndSaveDialog(const std::wstring& sPath, unsigned int nId);
 };
 
 #endif /* ASCApplicationManager_h */

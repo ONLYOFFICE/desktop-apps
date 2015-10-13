@@ -50,16 +50,20 @@ ASCApplicationManager::ASCApplicationManager() : CAscApplicationManager() {
 #endif
 }
 
-void ASCApplicationManager::StartSaveDialog(const std::wstring& sName) {
+
+void ASCApplicationManager::StartSaveDialog(const std::wstring& sName, unsigned int nId) {
     std::wstring fileName(sName);
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartSaveDialog
-                                                            object:[NSString stringWithstdwstring:fileName]
-                                                          userInfo:nil];
+                                                            object:nil
+                                                          userInfo:@{
+                                                                     @"filename": [NSString stringWithstdwstring:fileName],
+                                                                     @"idx"     : @(nId)
+                                                                     }];
      }];
 }
 
-void ASCApplicationManager::EndSaveDialog(const std::wstring& sPath) {
-    CAscApplicationManager::EndSaveDialog(sPath);
+void ASCApplicationManager::EndSaveDialog(const std::wstring& sName, unsigned int nId) {
+    CAscApplicationManager::EndSaveDialog(sName, nId);
 }

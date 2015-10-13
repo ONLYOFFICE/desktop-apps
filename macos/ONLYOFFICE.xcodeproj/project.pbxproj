@@ -174,10 +174,10 @@
 		FCD2B91A1BC64F1700F54560 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B91B1BC64F1800F54560 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B91C1BC64F1900F54560 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		FCD2B9241BC68FBD00F54560 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFA5D071BC54665003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FCFC000E1BC54ADB00939341 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFC000F1BC5569B00939341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -750,10 +750,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				FCFC000C1BC54ACC00939341 /* Base */,
-				FCFC000E1BC54ADB00939341 /* ru */,
 				FCD2B9091BC6489800F54560 /* de */,
 				FCD2B90C1BC648A500F54560 /* es */,
 				FCD2B90F1BC648A900F54560 /* fr */,
+				FCD2B9241BC68FBD00F54560 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -945,6 +945,7 @@
 				FCD2B9141BC64D5F00F54560 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
