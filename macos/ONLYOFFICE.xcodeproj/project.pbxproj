@@ -24,7 +24,7 @@
 		FC1127551BBA8A7E00AA3648 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127541BBA8A7E00AA3648 /* NSTimer+Block.m */; settings = {ASSET_TAGS = (); }; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; settings = {ASSET_TAGS = (); }; };
 		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
-		FC2CB1871BC3D41500DA42EB /* GTMNSStrinп+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2CB1861BC3D41500DA42EB /* GTMNSStrinп+HTML.m */; settings = {ASSET_TAGS = (); }; };
+		FC394E651BCE4AD2001B4B7C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */; settings = {ASSET_TAGS = (); }; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; settings = {ASSET_TAGS = (); }; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; settings = {ASSET_TAGS = (); }; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; settings = {ASSET_TAGS = (); }; };
@@ -71,7 +71,7 @@
 		FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+OnlyOffice.h"; path = "Code/Utils/NSString+OnlyOffice.h"; sourceTree = "<group>"; };
 		FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+OnlyOffice.mm"; path = "Code/Utils/NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
 		FC2CB1851BC3D41500DA42EB /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "Code/Utils/GTMNSString+HTML.h"; sourceTree = "<group>"; };
-		FC2CB1861BC3D41500DA42EB /* GTMNSStrinп+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSStrinп+HTML.m"; path = "Code/Utils/GTMNSStrinп+HTML.m"; sourceTree = "<group>"; };
+		FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "Code/Utils/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
 		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
@@ -403,7 +403,7 @@
 				FC1127531BBA8A7E00AA3648 /* NSTimer+Block.h */,
 				FC1127541BBA8A7E00AA3648 /* NSTimer+Block.m */,
 				FC2CB1851BC3D41500DA42EB /* GTMNSString+HTML.h */,
-				FC2CB1861BC3D41500DA42EB /* GTMNSStrinп+HTML.m */,
+				FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -693,6 +693,7 @@
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
+				FC394E651BCE4AD2001B4B7C /* GTMNSString+HTML.m in Sources */,
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
@@ -703,7 +704,6 @@
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
-				FC2CB1871BC3D41500DA42EB /* GTMNSStrinп+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
