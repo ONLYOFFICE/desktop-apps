@@ -58,7 +58,7 @@ void ASCApplicationManager::StartSaveDialog(const std::wstring& sName, unsigned 
         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartSaveDialog
                                                             object:nil
                                                           userInfo:@{
-                                                                     @"filename": [NSString stringWithstdwstring:fileName],
+                                                                     @"fileName": [NSString stringWithstdwstring:fileName],
                                                                      @"idx"     : @(nId)
                                                                      }];
      }];
