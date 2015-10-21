@@ -5,4 +5,4 @@
 # sudo npm install -g appdmg
 #
 
-appdmg appdmg.json ~/Desktop/ONLYOFFICE.dmg
+appdmg "$(dirname $0)"/appdmg.json ~/Desktop/ONLYOFFICE.dmg
