@@ -40,6 +40,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "PFMoveApplication.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +50,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+#ifndef MAS
+    PFMoveToApplicationsFolderIfNecessary();
+#endif
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
