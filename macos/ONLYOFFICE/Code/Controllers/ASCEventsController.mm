@@ -160,9 +160,6 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE:
                         break;
                         
-                    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
-                        break;
-                        
                     case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
                         NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo*)pEvent->m_pData;
                         
@@ -175,13 +172,21 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS:
+                        break;
+                        
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-                        //                    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
-                        //
-                        //                    ADDREFINTERFACE(pData)
-                        //                    QMetaObject::invokeMethod(this, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
+                        NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventPrintDialog
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId"      : @(pData->get_Id()),
+                                                                                     @"countPages"  : @(pData->get_PagesCount())
+                                                                                     }];
                         break;
                     }
+                        
                     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
                         NSEditorApi::CAscOnOpenExternalLink * pData = (NSEditorApi::CAscOnOpenExternalLink *)pEvent->m_pData;
                         

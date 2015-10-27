@@ -41,6 +41,7 @@
 #import "ViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
+#import "nsascprinter.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTitleWindowController.h"
@@ -58,7 +59,9 @@
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
-@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate>
+@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
+    NSAscPrinterContext * m_pContext;
+}
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
@@ -113,6 +116,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFStartSave:)
                                                  name:CEFEventNameStartSaveDialog
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOnBeforePrintEnd:)
+                                                 name:CEFEventPrintDialog
                                                object:nil];
 }
 
@@ -406,6 +413,27 @@
         }];
     }
 }
+
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo {
+    if (m_pContext) {
+        m_pContext->EndPaint();
+    }
+}
+
+- (void)onCEFOnBeforePrintEnd:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSNumber * viewId       = notification.userInfo[@"viewId"];
+        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+        
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        
+        if (appManager) {
+            m_pContext = new NSAscPrinterContext(appManager);
+            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+        }
+    }
+}
+
 
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate

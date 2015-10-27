@@ -225,6 +225,7 @@
 		FCD2B91B1BC64F1800F54560 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B91C1BC64F1900F54560 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B9241BC68FBD00F54560 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FCD65B931BDFAFCB008361F1 /* nsascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsascprinter.h; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFA5D071BC54665003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -349,6 +350,7 @@
 				FC5A2D3B1BAC075E001ACEB1 /* cefapplication.h */,
 				FC5A2D3C1BAC075E001ACEB1 /* cefview.h */,
 				FC5A2D3D1BAC075E001ACEB1 /* keyboardchecker.h */,
+				FCD65B931BDFAFCB008361F1 /* nsascprinter.h */,
 				FC5A2D3E1BAC075E001ACEB1 /* qascprinter.h */,
 				FC5A2D3F1BAC075E001ACEB1 /* spellchecker.h */,
 			);
