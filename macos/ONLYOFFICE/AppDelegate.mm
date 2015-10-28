@@ -40,7 +40,10 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "PFMoveApplication.h"
+
+#ifndef MAS
+    #import "PFMoveApplication.h"
+#endif
 
 @interface AppDelegate ()
 
