@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="1UK-8n-QPP.title">
         <source>Customize Toolbar…</source>
-        <target>Customize Toolbar…</target>
+        <target>Настроить панель…</target>
         <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title">
@@ -17,77 +17,77 @@
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title">
         <source>Find</source>
-        <target>Find</target>
+        <target>Найти</target>
         <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
       </trans-unit>
       <trans-unit id="1tx-W0-xDw.title">
         <source>Lower</source>
-        <target>Lower</target>
+        <target>Ниже</target>
         <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title">
         <source>Raise</source>
-        <target>Raise</target>
+        <target>Выше</target>
         <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
       </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title">
         <source>Transformations</source>
-        <target>Transformations</target>
+        <target>Преобразования</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title">
         <source>Spelling</source>
-        <target>Spelling</target>
+        <target>Правописание</target>
         <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
       </trans-unit>
       <trans-unit id="3Om-Ey-2VK.title">
         <source>Use Default</source>
-        <target>Use Default</target>
+        <target>По умолчанию</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
       </trans-unit>
       <trans-unit id="3rS-ZA-NoH.title">
         <source>Speech</source>
-        <target>Speech</target>
+        <target>Речь</target>
         <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
       </trans-unit>
       <trans-unit id="4EN-yA-p0u.title">
         <source>Find</source>
-        <target>Find</target>
+        <target>Найти</target>
         <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
       </trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
         <source>Quit ONLYOFFICE</source>
-        <target>Quit ONLYOFFICE</target>
+        <target>Завершить ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
       </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Редактировать</target>
         <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
       </trans-unit>
       <trans-unit id="5Vv-lz-BsD.title">
         <source>Copy Style</source>
-        <target>Copy Style</target>
+        <target>Копировать стиль</target>
         <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
       </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title">
         <source>About ONLYOFFICE</source>
-        <target>About ONLYOFFICE</target>
+        <target>О программе ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
       </trans-unit>
       <trans-unit id="6dh-zS-Vam.title">
         <source>Redo</source>
-        <target>Redo</target>
+        <target>Повторить</target>
         <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
       </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
         <source>Writing Direction</source>
-        <target>Writing Direction</target>
+        <target>Направление письма</target>
         <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
       </trans-unit>
       <trans-unit id="9i7-kj-42B.title">
         <source>none</source>
-        <target>none</target>
+        <target>нет</target>
         <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title">
@@ -117,7 +117,7 @@
       </trans-unit>
       <trans-unit id="BOF-NM-1cW.title">
         <source>Preferences…</source>
-        <target>Preferences…</target>
+        <target>Настройки…</target>
         <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
       </trans-unit>
       <trans-unit id="BgM-ve-c93.title">
@@ -127,12 +127,12 @@
       </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title">
         <source>Save As…</source>
-        <target>Save As…</target>
+        <target>Сохранить как…</target>
         <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title">
         <source>Close</source>
-        <target>Close</target>
+        <target>Закрыть</target>
         <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
       </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title">
@@ -142,17 +142,17 @@
       </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title">
         <source>Help</source>
-        <target>Help</target>
+        <target>Помощь</target>
         <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
         <source>ONLYOFFICE Help</source>
-        <target>ONLYOFFICE Help</target>
+        <target>Справка ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "ONLYOFFICE Help"; ObjectID = "FKE-Sm-Kum";</note>
       </trans-unit>
       <trans-unit id="Fal-I4-PZk.title">
         <source>Text</source>
-        <target>Text</target>
+        <target>Текст</target>
         <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
       </trans-unit>
       <trans-unit id="FeM-D8-WVr.title">
@@ -162,27 +162,27 @@
       </trans-unit>
       <trans-unit id="FoF-wl-Dxi.title">
         <source>User Name</source>
-        <target>User Name</target>
+        <target>Имя</target>
         <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
       </trans-unit>
       <trans-unit id="GB9-OM-e27.title">
         <source>Bold</source>
-        <target>Bold</target>
+        <target>Жирный</target>
         <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
       </trans-unit>
       <trans-unit id="GEO-Iw-cKr.title">
         <source>Format</source>
-        <target>Format</target>
+        <target>Формат</target>
         <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
       </trans-unit>
       <trans-unit id="GUa-eO-cwY.title">
         <source>Use Default</source>
-        <target>Use Default</target>
+        <target>По умолчанию</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
       </trans-unit>
       <trans-unit id="Gi5-1S-RQB.title">
         <source>Font</source>
-        <target>Font</target>
+        <target>Шрифт</target>
         <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
       </trans-unit>
       <trans-unit id="H1b-Si-o9J.title">
@@ -192,7 +192,7 @@
       </trans-unit>
       <trans-unit id="H8h-7b-M4v.title">
         <source>View</source>
-        <target>View</target>
+        <target>Вид</target>
         <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
       </trans-unit>
       <trans-unit id="HFQ-gK-NFA.title">
@@ -207,7 +207,7 @@
       </trans-unit>
       <trans-unit id="HyV-fh-RgO.title">
         <source>View</source>
-        <target>View</target>
+        <target>Вид</target>
         <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
       </trans-unit>
       <trans-unit id="I0S-gh-46l.title">
@@ -217,7 +217,7 @@
       </trans-unit>
       <trans-unit id="IAo-SY-fd9.title">
         <source>Open…</source>
-        <target>Open…</target>
+        <target>Открыть…</target>
         <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
       </trans-unit>
       <trans-unit id="IQv-IB-iLA.title">
@@ -242,12 +242,12 @@
       </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title">
         <source>Show All</source>
-        <target>Show All</target>
+        <target>Показать все</target>
         <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
       </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title">
         <source>Bring All to Front</source>
-        <target>Bring All to Front</target>
+        <target>Все окна - на передний план</target>
         <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
       </trans-unit>
       <trans-unit id="LVM-kO-fVI.title">
@@ -267,7 +267,7 @@
       </trans-unit>
       <trans-unit id="NMo-om-nkz.title">
         <source>Services</source>
-        <target>Services</target>
+        <target>Службы</target>
         <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
       </trans-unit>
       <trans-unit id="Nop-cj-93Q.title">
@@ -277,7 +277,7 @@
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
         <source>Minimize</source>
-        <target>Minimize</target>
+        <target>Свернуть</target>
         <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
       </trans-unit>
       <trans-unit id="OaQ-X3-Vso.title">
@@ -287,7 +287,7 @@
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title">
         <source>Hide ONLYOFFICE</source>
-        <target>Hide ONLYOFFICE</target>
+        <target>Скрыть ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
       </trans-unit>
       <trans-unit id="OwM-mh-QMV.title">
@@ -312,7 +312,7 @@
       </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title">
         <source>Zoom</source>
-        <target>Zoom</target>
+        <target>Изменить масштаб</target>
         <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
       </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title">
@@ -322,12 +322,12 @@
       </trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title">
         <source>none</source>
-        <target>none</target>
+        <target>нет</target>
         <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
       </trans-unit>
       <trans-unit id="RmO-tv-UKh.title">
         <source>Logout</source>
-        <target>Logout</target>
+        <target>Выйти</target>
         <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
       </trans-unit>
       <trans-unit id="Rqc-34-cIF.title">
@@ -347,7 +347,7 @@
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
         <source>Window</source>
-        <target>Window</target>
+        <target>Окно</target>
         <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
       </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title">
@@ -362,7 +362,7 @@
       </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title">
         <source>Hide Others</source>
-        <target>Hide Others</target>
+        <target>Скрыть остальные</target>
         <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
       </trans-unit>
       <trans-unit id="Vjx-xi-njq.title">
@@ -372,7 +372,7 @@
       </trans-unit>
       <trans-unit id="W48-6f-4Dl.title">
         <source>Edit</source>
-        <target>Edit</target>
+        <target>Редактировать</target>
         <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
       </trans-unit>
       <trans-unit id="WRG-CD-K1S.title">
@@ -382,7 +382,7 @@
       </trans-unit>
       <trans-unit id="Was-JA-tGl.title">
         <source>New</source>
-        <target>New</target>
+        <target>Новый</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "Was-JA-tGl";</note>
       </trans-unit>
       <trans-unit id="WeT-3V-zwk.title">
@@ -392,7 +392,7 @@
       </trans-unit>
       <trans-unit id="Xz5-n4-O0W.title">
         <source>Find…</source>
-        <target>Find…</target>
+        <target>Найти…</target>
         <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
       </trans-unit>
       <trans-unit id="YEy-JH-Tfz.title">
@@ -417,7 +417,7 @@
       </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title">
         <source>Email:</source>
-        <target>Email:</target>
+        <target>Е-майл:</target>
         <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
       </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title">
@@ -427,22 +427,22 @@
       </trans-unit>
       <trans-unit id="aTl-1u-JFS.title">
         <source>Print…</source>
-        <target>Print…</target>
+        <target>Печать…</target>
         <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
       </trans-unit>
       <trans-unit id="aUF-d1-5bR.title">
         <source>Window</source>
-        <target>Window</target>
+        <target>Окно</target>
         <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
       </trans-unit>
       <trans-unit id="aXa-aM-Jaq.title">
         <source>Font</source>
-        <target>Font</target>
+        <target>Шрифт</target>
         <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
       </trans-unit>
       <trans-unit id="agt-UL-0e3.title">
         <source>Use Default</source>
-        <target>Use Default</target>
+        <target>По умолчанию</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
       <trans-unit id="bgn-CT-cEk.title">
@@ -452,7 +452,7 @@
       </trans-unit>
       <trans-unit id="bib-Uj-vzu.title">
         <source>File</source>
-        <target>File</target>
+        <target>Файл</target>
         <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
       </trans-unit>
       <trans-unit id="buJ-ug-pKt.title">
@@ -487,27 +487,27 @@
       </trans-unit>
       <trans-unit id="d9c-me-L2H.title">
         <source>Text</source>
-        <target>Text</target>
+        <target>Текст</target>
         <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
       </trans-unit>
       <trans-unit id="dMs-cI-mzQ.title">
         <source>File</source>
-        <target>File</target>
+        <target>Файл</target>
         <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
       </trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title">
         <source>Undo</source>
-        <target>Undo</target>
+        <target>Отменить</target>
         <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
       </trans-unit>
       <trans-unit id="gVA-U4-sdL.title">
         <source>Paste</source>
-        <target>Paste</target>
+        <target>Вставить</target>
         <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
       </trans-unit>
       <trans-unit id="gm3-6i-EnL.title">
         <source>File Name</source>
-        <target>File Name</target>
+        <target>Имя файла</target>
         <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
       </trans-unit>
       <trans-unit id="hQb-2v-fYv.title">
@@ -522,7 +522,7 @@
       </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title">
         <source>Services</source>
-        <target>Services</target>
+        <target>Службы</target>
         <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
       </trans-unit>
       <trans-unit id="i1d-Er-qST.title">
@@ -557,7 +557,7 @@
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Отмена</target>
         <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
       </trans-unit>
       <trans-unit id="mK6-2p-4JG.title">
@@ -567,12 +567,12 @@
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title">
         <source>Ligatures</source>
-        <target>Ligatures</target>
+        <target>Лигатуры</target>
         <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
       </trans-unit>
       <trans-unit id="oas-Oc-fiZ.title">
         <source>Open Recent</source>
-        <target>Open Recent</target>
+        <target>Недавние</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
       <trans-unit id="ogc-rX-tC1.title">
@@ -582,12 +582,12 @@
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title">
         <source>Delete</source>
-        <target>Delete</target>
+        <target>Удалить</target>
         <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
       </trans-unit>
       <trans-unit id="pxx-59-PXV.title">
         <source>Save…</source>
-        <target>Save…</target>
+        <target>Сохранить…</target>
         <note>Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title">
@@ -597,7 +597,7 @@
       </trans-unit>
       <trans-unit id="qIS-W8-SiK.title">
         <source>Page Setup…</source>
-        <target>Page Setup…</target>
+        <target>Настройки страницы…</target>
         <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
       </trans-unit>
       <trans-unit id="rG1-93-HjS.title">
@@ -627,7 +627,7 @@
       </trans-unit>
       <trans-unit id="tXI-mr-wws.title">
         <source>Open Recent</source>
-        <target>Open Recent</target>
+        <target>Недавние</target>
         <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
       </trans-unit>
       <trans-unit id="tlD-Oa-oAM.title">
@@ -642,7 +642,7 @@
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title">
         <source>Cut</source>
-        <target>Cut</target>
+        <target>Вырезать</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
       </trans-unit>
       <trans-unit id="vKC-jM-MkH.title">
@@ -682,7 +682,7 @@
       </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title">
         <source>Help</source>
-        <target>Help</target>
+        <target>Помощь</target>
         <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
       </trans-unit>
       <trans-unit id="wrb-Yp-5M3.title">
@@ -692,7 +692,7 @@
       </trans-unit>
       <trans-unit id="x3v-GG-iWU.title">
         <source>Copy</source>
-        <target>Copy</target>
+        <target>Копировать</target>
         <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
       </trans-unit>
       <trans-unit id="xQD-1f-W4t.title">
@@ -712,7 +712,7 @@
       </trans-unit>
       <trans-unit id="zwS-9G-S0N.title">
         <source>Portal:</source>
-        <target>Portal:</target>
+        <target>Портал:</target>
         <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
       </trans-unit>
     </body>

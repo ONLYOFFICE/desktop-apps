@@ -94,7 +94,7 @@
 		FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F71BA1C6C8005A733F /* ASCButton.m */; };
 		FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */; };
 		FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */; };
-		FCCCF35B1BE0E924009B57A8 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF35A1BE0E924009B57A8 /* PFMoveApplication.m */; };
+		FCCCF3661BE0F8AA009B57A8 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
@@ -206,7 +206,7 @@
 		FCC8F6FC1BA1D00A005A733F /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewCell.h; path = Code/Controls/ASCTabViewCell.h; sourceTree = "<group>"; };
 		FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewCell.m; path = Code/Controls/ASCTabViewCell.m; sourceTree = "<group>"; };
 		FCCCF3581BE0E6DE009B57A8 /* Info-MAS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-MAS.plist"; sourceTree = "<group>"; };
-		FCCCF35A1BE0E924009B57A8 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFMoveApplication.m; path = Vendor/PFMoveApplication/PFMoveApplication.m; sourceTree = SOURCE_ROOT; };
+		FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFMoveApplication.m; path = Vendor/PFMoveApplication/PFMoveApplication.m; sourceTree = SOURCE_ROOT; };
 		FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCMulticastDelegate.h; path = Code/Utils/ASCMulticastDelegate.h; sourceTree = "<group>"; };
 		FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCMulticastDelegate.m; path = Code/Utils/ASCMulticastDelegate.m; sourceTree = "<group>"; };
 		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadController.h; path = Code/Controllers/ASCDownloadController.h; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				FC6718341BD9194D0028600F /* PFMoveApplication.h */,
-				FCCCF35A1BE0E924009B57A8 /* PFMoveApplication.m */,
+				FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */,
 			);
 			name = PFMoveApplication;
 			sourceTree = "<group>";
@@ -890,7 +890,7 @@
 				FC1127551BBA8A7E00AA3648 /* NSTimer+Block.m in Sources */,
 				FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
-				FCCCF35B1BE0E924009B57A8 /* PFMoveApplication.m in Sources */,
+				FCCCF3661BE0F8AA009B57A8 /* PFMoveApplication.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
