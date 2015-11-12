@@ -30,55 +30,54 @@
  *
 */
 
-#include "cfiledialog.h"
-#include <QFileDialog>
+#ifndef CASCAPPLICATIONMANAGERWRAPPER
+#define CASCAPPLICATIONMANAGERWRAPPER
 
-#include <QDebug>
+#include "qascmainpanel.h"
+#include "applicationmanager.h"
 
-#if defined(_WIN32)
-CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
-#else
-CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
-#endif
+class CAscApplicationManagerWrapper : public CAscApplicationManager
 {
+private:
+    QAscMainPanel * m_pPanel;
 
-}
-
-CFileDialogWrapper::~CFileDialogWrapper()
-{
-
-}
-
-bool CFileDialogWrapper::showModal(QString& fileName)
-{
-    QString filter = tr("All files (*.*)"), ext_in;
-    QRegExp reExtension("\\.(\\w{1,10})$");
-    if (!(reExtension.indexIn(fileName) < 0)) {
-        ext_in = reExtension.cap(1);
-        filter.prepend(getFilter(ext_in) + ";;");
+public:
+    CAscApplicationManagerWrapper()
+    {
+        m_pPanel = NULL;
     }
 
-    QWidget * p = qobject_cast<QWidget *>(parent());
-//    QFileDialog dlg(p);
-//    fileName = dlg.getSaveFileName(p, tr("Save As"), fileName, filter);
-    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
+public:
+    void StartSaveDialog(const std::wstring& sName, unsigned int nId)
+    {
+        // сделал через QMainPanel - чтобы использовать сигналы-слоты.
+        // если сделать QAscApplicationManager : public QObject, то он будет прокидывать
+        // слоты родителю. Т.е. классу CAscApplicationManager.
+        // А в либе я не буду затачиваться на QT
 
-    return fileName.length() > 0;
-}
-
-QString CFileDialogWrapper::getFilter(const QString& extension) const
-{
-    QString out = extension.toLower();
-    if (extension.contains(QRegExp("^docx?$"))) {
-        return tr("Word Document") + " (*." + out +")";
-    } else
-    if (extension.contains(QRegExp("^xlsx?$"))) {
-        return tr("Excel Workbook") + " (*." + out + ")";
-    } else
-    if (extension.contains(QRegExp("^pptx?$"))) {
-        return tr("PowerPoint Presentation") + " (*." + out + ")";
-    } else {
-        out.replace(0, 1, extension.left(1).toUpper());
-        return tr("%1 File (*.%2)").arg(out).arg(out.toLower());
+//        m_pPanel->openDialogSave(sName);
+        QMetaObject::invokeMethod(m_pPanel, "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName), Q_ARG(uint, nId));
     }
-}
+
+    void OnNeedCheckKeyboard()
+    {
+//        m_pPanel->checkKeyboard();
+        QMetaObject::invokeMethod(m_pPanel, "onNeedCheckKeyboard", Qt::QueuedConnection);
+    }
+
+    int GetPlatformKeyboardLayout()
+    {
+        if (this->IsPlatformKeyboardSupport())
+            return CAscApplicationManager::GetPlatformKeyboardLayout();
+
+        return -1;
+    }
+
+    void setMainPanel(QAscMainPanel * p)
+    {
+        m_pPanel = p;
+    }
+};
+
+#endif // QASCAPPLICATIONMANAGER
+

@@ -30,44 +30,33 @@
  *
 */
 
-#ifndef QASCAPPLICATIONMANAGER
-#define QASCAPPLICATIONMANAGER
+#ifndef CMAINWINDOW_H
+#define CMAINWINDOW_H
 
-#include "../../lib/include/cefapplication.h"
-#include "../../lib/include/applicationmanager.h"
+#include <QMainWindow>
+#include "applicationmanager.h"
 
-#include <QFileDialog>
-#include "qmainpanel.h"
-
-class CMyApplicationManager : public CAscApplicationManager
+class CMainWindow : public QMainWindow
 {
+    Q_OBJECT
+
+public:
+    explicit CMainWindow(QWidget *parent = 0);
+    explicit CMainWindow(CAscApplicationManager *);
+
+protected:
+    void closeEvent(QCloseEvent *);
+    void showEvent(QShowEvent *);
+    bool event(QEvent *event);
+
 private:
-    QMainPanel * m_pPanel;
+    QWidget *   m_pMainPanel;
 
-public:
-    CMyApplicationManager()
-    {
-        m_pPanel = NULL;
-        qRegisterMetaType<std::wstring>("std::wstring");
-    }
-
-public:
-    void setMainPanel(QMainPanel * panel)
-    {
-        m_pPanel = panel;
-    }
-
-    virtual void StartSaveDialog(const std::wstring& sName)
-    {
-        // сделал через QMainPanel - чтобы использовать сигналы-слоты.
-        // если сделать QAscApplicationManager : public QObject, то он будет прокидывать
-        // слоты родителю. Т.е. классу CAscApplicationManager.
-        // А в либе я не буду затачиваться на QT
-
-//        ((QMainPanel*)m_pPanel)->sendDialogSave(sName);
-        QMetaObject::invokeMethod(m_pPanel, "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName));
-    }
+signals:
+public slots:
+private slots:
+    void slot_windowChangeState(Qt::WindowState);
+    void slot_windowClose();
 };
 
-#endif // QASCAPPLICATIONMANAGER
-
+#endif // CMAINWINDOW_H

@@ -50,20 +50,16 @@ using namespace NSEditorApi;
 
 class CDownloadWidget::CDownloadItem {
 public:
-    CDownloadItem(QCefView * p, QWidget * w)
-        : _p_view(p), _p_progress(w), _is_temp(true)
+    CDownloadItem(QWidget * w)
+        : _p_progress(w), _is_temp(true)
     {}
 
-    QCefView * view() const { return _p_view; }
     QWidget * progress() const { return _p_progress; }
-//    void * info() const { return _p_info; }
 
-    bool is_temporary() const { return true; }
+    bool is_temporary() const { return _is_temp; }
     void set_is_temporary(bool v) { _is_temp = v; }
 private:
-    QCefView * _p_view;
     QWidget * _p_progress;
-//    void * _p_info;
     bool _is_temp;
 };
 
@@ -128,7 +124,7 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
         return;
 
     CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-    int id = pData->get_Id();
+    int id = pData->get_IdDownload();
 
     std::map<int, CDownloadItem *>::iterator iter = m_mapDownloads.find(id);
     if (pData->get_IsComplete()) {
@@ -147,18 +143,8 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
                 file_name = getFileName(path);
             }
 
-            QCefView * pView = NULL;
-            if (manual) {
-                pView = new QCefView(NULL);
-                pView->Create(m_pManager, cvwtEditor);
-                pView->GetCefView()->SetParentCef(id);
-                pView->GetCefView()->load(pData->get_Url());
-
-                id = pView->GetCefView()->GetId();
-            }
-
             QWidget * download_field = addFile(file_name, id);
-            CDownloadItem * item = new CDownloadItem(pView, download_field);
+            CDownloadItem * item = new CDownloadItem(download_field);
 
             iter = m_mapDownloads.insert( std::pair<int, CDownloadItem *>(id, item) ).first;
 
@@ -173,8 +159,6 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
 
         updateProgress(iter, pData);
     }
-
-    RELEASEINTERFACE(pData);
 }
 
 void CDownloadWidget::updateLayoutGeomentry()
@@ -205,12 +189,10 @@ void CDownloadWidget::removeFile(MapItem iter)
 //        CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(di->info());
 //        RELEASEINTERFACE(pData)
 
-        QCefView * pView = di->view();
         QWidget * pItemWidget = di->progress();
 
         layout()->removeWidget(pItemWidget);
 
-        RELEASEOBJECT(pView)
         RELEASEOBJECT(pItemWidget)
         RELEASEOBJECT(di)
 

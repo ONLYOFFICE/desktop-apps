@@ -33,15 +33,26 @@
 #ifndef CFILEDIALOG_H
 #define CFILEDIALOG_H
 
+#include <QObject>
+
+#ifdef _WIN32
 #include "qwinwidget.h"
 
-class CFileDialogWinWrapper : public QWinWidget
+class CFileDialogWrapper : public QWinWidget
 {
     Q_OBJECT
 
 public:
-    explicit CFileDialogWinWrapper(HWND);
-    ~CFileDialogWinWrapper();
+    explicit CFileDialogWrapper(HWND);
+#else
+class CFileDialogWrapper : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit CFileDialogWrapper(QWidget * p = 0);
+#endif
+    ~CFileDialogWrapper();
 
     bool showModal(QString&);
 

@@ -35,19 +35,25 @@
 #include <QTranslator>
 #include <QStandardPaths>
 #include <QLibraryInfo>
-#include "mainwindow.h"
 
 //#include "cefapplication.h"
-#include "cmyapplicationmanager.h"
+//#include "cmyapplicationmanager.h"
+#include "cascapplicationmanagerwrapper.h"
+#include "linux/cmainwindow.h"
+
+#ifdef _WIN32
+#include "mainwindow.h"
 #include "shlobj.h"
+#endif
 
 #include <QDebug>
 #include <QFileInfo>
 #include <QSettings>
 #include <QScreen>
+#include <QApplication>
 
 
-byte g_dpi_ratio = 1;
+BYTE g_dpi_ratio = 1;
 QString g_lang;
 
 int main( int argc, char *argv[] )
@@ -55,13 +61,19 @@ int main( int argc, char *argv[] )
     QString user_data_path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/ONLYOFFICE/DesktopEditors";
 
     auto setup_paths = [user_data_path](CAscApplicationManager * manager) {
-        WCHAR szPath[MAX_PATH];
         std::wstring sAppData(L"");
+
+#ifdef _WIN32
+        WCHAR szPath[MAX_PATH];
         if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
             sAppData = std::wstring(szPath);
             NSCommon::string_replace(sAppData, L"\\", L"/");
             sAppData += L"/ONLYOFFICE/DesktopEditors";
         }
+#else
+        sAppData = QString("/var/lib/onlyoffice/desktopeditors").toStdWString();
+        // TODO: check directory permissions and warn the user
+#endif
 
         QString app_path = QCoreApplication::applicationDirPath();
 
@@ -81,20 +93,27 @@ int main( int argc, char *argv[] )
     bool bIsChromiumSubprocess = false;
     for (int i(0); i < argc; ++i) {
         if ((0 == strcmp("--type=gpu-process", argv[i])) ||
-                    (0 == strcmp("--type=renderer", argv[i]))) {
+                (0 == strcmp("--type=renderer", argv[i])) ||
+                (0 == strcmp("--type=zygote", argv[i])))
+        {
             bIsChromiumSubprocess = true;
             break;
         }
     }
 
+    bool bIsOwnMessageLoop = false;
     if ( bIsChromiumSubprocess ) {
         QApplication aa(argc, argv);
         CApplicationCEF oCef;
         CAscApplicationManager oManager;
 
         setup_paths(&oManager);
+        oCef.Init_CEF(&oManager, argc, argv);
 
-        oCef.Init_CEF(&oManager);
+        int nResult = oCef.RunMessageLoop(bIsOwnMessageLoop);
+        if (bIsOwnMessageLoop)
+            return nResult;
+
         return aa.exec();
     }
 
@@ -103,10 +122,14 @@ int main( int argc, char *argv[] )
     HANDLE hMutex = CreateMutex(NULL, FALSE, mutex_name);
 
     GetLastError() == ERROR_ALREADY_EXISTS && (hMutex = NULL);
+#else
 #endif
 
-    QApplication app(argc, argv);
+    /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
+    QApplication app(argc, argv);
+    /**                      **/
+
     QSettings reg_system(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
     QSettings reg_user(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
     reg_user.setFallbacksEnabled(false);
@@ -138,11 +161,12 @@ int main( int argc, char *argv[] )
     }
 
 
-    CAscApplicationManager * pApplicationManager = new CMyApplicationManager();
+    /* the order is important */
+    CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
     setup_paths(pApplicationManager);
+    application_cef->Init_CEF(pApplicationManager, argc, argv);
     pApplicationManager->CheckFonts();
-
-    application_cef->Init_CEF(pApplicationManager);
+    /**                      **/
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 #ifdef _WIN32
@@ -177,28 +201,30 @@ int main( int argc, char *argv[] )
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     app.setFont( mainFont );
 
+
+#ifdef _WIN32
     // Background color
     HBRUSH windowBackground = CreateSolidBrush( RGB(49, 52, 55) );
 
     // Create window
-    QRect _window_rect = reg_user.value("position",
-                                QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
-
-    QRect _screen_size = app.primaryScreen()->availableGeometry();
-    if (_screen_size.width() < _window_rect.width())
-        _window_rect.setWidth(_screen_size.width()), _window_rect.setLeft(0);
-
-    if (_screen_size.height() < _window_rect.height())
-        _window_rect.setHeight(_screen_size.width()), _window_rect.setTop(0);
-
     CMainWindow window( &app, windowBackground, _window_rect, pApplicationManager );
-    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
-
+    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );    
 
     ((CMyApplicationManager *)pApplicationManager)->setMainPanel(window.mainPanel);
+#elif defined(Q_OS_LINUX)
+    // Create window
+    CMainWindow w(pApplicationManager);
 
-    // Launch
-    app.exec();
+    w.show();
+    w.setWindowTitle("Desktop Editors");
+#endif
+
+    bIsOwnMessageLoop = false;
+    application_cef->RunMessageLoop(bIsOwnMessageLoop);
+    if (!bIsOwnMessageLoop) {
+        // Launch
+        app.exec();
+    }
 
     // release all subprocesses
     pApplicationManager->CloseApplication();

@@ -30,44 +30,42 @@
  *
 */
 
-#ifndef QASCAPPLICATIONMANAGER
-#define QASCAPPLICATIONMANAGER
+#ifndef CCEFEVENTTRANSFORMER_H
+#define CCEFEVENTTRANSFORMER_H
 
-#include "../../lib/include/cefapplication.h"
-#include "../../lib/include/applicationmanager.h"
+#include <QObject>
+#include "../../../Word_Api/Editor_Api.h"
 
-#include <QFileDialog>
-#include "qmainpanel.h"
 
-class CMyApplicationManager : public CAscApplicationManager
+class CCefEventsTransformer : public NSEditorApi::CAscMenuEventListener
 {
+
+public:
+    explicit CCefEventsTransformer(QObject *parent = 0);
+
+protected:
+    void OnEvent(NSEditorApi::CAscMenuEvent *);
+
+signals:
 private:
-    QMainPanel * m_pPanel;
+    QObject * pObjParent;
 
-public:
-    CMyApplicationManager()
-    {
-        m_pPanel = NULL;
-        qRegisterMetaType<std::wstring>("std::wstring");
-    }
+public slots:
+//    virtual void onDocumentOpen(std::wstring url, int id, bool active);
+//    virtual void onDocumentType(int id, int type);
+//    virtual void onDocumentName(int id, QString name);
+//    virtual void onDocumentChanged(int id, bool changed);
+//    virtual void onDocumentDownload(void * data, bool start);
+//    virtual void onDocumentPrint(void * data);
 
-public:
-    void setMainPanel(QMainPanel * panel)
-    {
-        m_pPanel = panel;
-    }
+//    virtual void onLogout();
+//    virtual void onLogin(QString params);
 
-    virtual void StartSaveDialog(const std::wstring& sName)
-    {
-        // сделал через QMainPanel - чтобы использовать сигналы-слоты.
-        // если сделать QAscApplicationManager : public QObject, то он будет прокидывать
-        // слоты родителю. Т.е. классу CAscApplicationManager.
-        // А в либе я не буду затачиваться на QT
+//    virtual void onLink(QString url);
+//    virtual void onKeyDown(void *);
+//    virtual void onFullScreen(bool);
 
-//        ((QMainPanel*)m_pPanel)->sendDialogSave(sName);
-        QMetaObject::invokeMethod(m_pPanel, "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName));
-    }
+//    void onDialogSave(std::wstring sName);
 };
 
-#endif // QASCAPPLICATIONMANAGER
-
+#endif // CCEFEVENTTRANSFORMER_H

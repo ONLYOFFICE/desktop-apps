@@ -39,12 +39,10 @@
 #include <QLabel>
 #include <QStylePainter>
 #include <QDesktopWidget>
-#include "csavefilemessage.h"
-#include "defines.h"
 
 #include "private/qtabbar_p.h"
 
-extern byte g_dpi_ratio;
+extern BYTE g_dpi_ratio;
 
 /*
  *

@@ -36,10 +36,10 @@
 #include <QKeyEvent>
 #include "libs/common/Types.h"
 
-//#ifdef Q_WS_WIN32
+#ifdef Q_WS_WIN32
 //#define WINVER 0x0500
 #include <windows.h>
-//#endif // Q_WS_WIN32
+#endif // Q_WS_WIN32
 
 #include <QDebug>
 
@@ -71,8 +71,12 @@ public:
 };
 
 
-CPrintProgress::CPrintProgress(HWND hParentWnd)
-    : QWinWidget(hParentWnd), m_Dlg(this), m_fLayout(new QFormLayout),
+#if defined(_WIN32)
+CPrintProgress::CPrintProgress(HWND hParentWnd) : QWinWidget(hParentWnd),
+#else
+CPrintProgress::CPrintProgress(QWidget * parent) : QObject(parent),
+#endif
+    m_Dlg(parent), m_fLayout(new QFormLayout),
     m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
 {
     m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
@@ -127,6 +131,7 @@ void CPrintProgress::startProgress()
 {
 //    m_Dlg.adjustSize();
 
+#ifdef _WIN32
     RECT rc;
     ::GetWindowRect(parentWindow(), &rc);
 
@@ -134,6 +139,7 @@ void CPrintProgress::startProgress()
     int y = (rc.bottom - rc.top - m_Dlg.height())/2;
 
     m_Dlg.move(x, y);
+#endif
     m_Dlg.show();
 }
 

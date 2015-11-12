@@ -35,15 +35,16 @@
 #include <QMovie>
 #include <QStyleOption>
 #include <QStylePainter>
-
 #include <QGraphicsEffect>
 
 #include <QDebug>
 
+extern uchar g_dpi_ratio;
+
 CPushButton::CPushButton(QWidget *parent)
     : QPushButton(parent), _movie(NULL)
 {
-    setIconSize(QSize(12,12));
+    setIconSize(QSize(16*g_dpi_ratio,16*g_dpi_ratio));
 
     int START_OPACITY = 0;
 
@@ -119,6 +120,11 @@ void CPushButton::setEnabled(bool enable)
     startIconAnimation(enable);
 
     QPushButton::setEnabled(enable);
+}
+
+void CPushButton::setVisible(bool visible, bool animation)
+{
+    animation ? setVisible(visible) : QPushButton::setVisible(visible);
 }
 
 void CPushButton::setVisible(bool visible)
