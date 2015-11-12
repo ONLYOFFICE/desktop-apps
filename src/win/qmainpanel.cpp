@@ -659,7 +659,7 @@ void QMainPanel::checkModified(byte action)
     }
 
     if (action == WAIT_MODIFIED_CLOSE) {
-        PostQuitMessage(0);
+        m_pManager->DestroyCefView(-1);
     } else
     if (action == WAIT_MODIFIED_LOGOUT) {
         m_pManager->Logout(m_pWidgetProfile->info()->portal().toStdWString());

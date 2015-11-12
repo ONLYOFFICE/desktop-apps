@@ -41,7 +41,7 @@
 #include <QFile>
 #include <QPixmap>
 #include <QDialog>
-#include "defines.h"
+#include "../defines.h"
 
 #include <QSettings>
 #include <QDebug>
@@ -70,6 +70,17 @@ CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int 
     visible( false ),
     mainPanel(NULL)
 {
+//    GET_REGISTRY_USER(reg_user)
+
+//    // adjust window size
+//    QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
+//    QRect _screen_size = app.primaryScreen()->availableGeometry();
+//    if (_screen_size.width() < _window_rect.width())
+//        _window_rect.setWidth(_screen_size.width()), _window_rect.setLeft(0);
+
+//    if (_screen_size.height() < _window_rect.height())
+//        _window_rect.setHeight(_screen_size.width()), _window_rect.setTop(0);
+
     m_pManager = pManager;
     m_pManager->StartSpellChecker();
 
@@ -416,7 +427,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         return 1;
     }
     case WM_ENDSESSION:
-        window->m_pManager->CloseApplication();
+        window->m_pManager->DestroyCefView(-1);
         break;
 
     case WM_WINDOWPOSCHANGING: {
