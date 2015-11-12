@@ -37,7 +37,9 @@
         <file>res/icons/changetab_right_disabled.png</file>
         <file>res/icons/changetab_right_disabled_2x.png</file>
         <file>res/icons/mainpage.png</file>
+        <file>res/icons/mainpage_ra.png</file>
         <file>res/icons/mainpage_2x.png</file>
+        <file>res/icons/mainpage_ra_2x.png</file>
         <file>res/icons/message_icons.png</file>
         <file>res/icons/message_icons_2x.png</file>
         <file>res/icons/downloading.gif</file>
@@ -47,6 +49,7 @@
         <file>res/icons/maximize.png</file>
         <file>res/icons/maximize_2x.png</file>
         <file>res/icons/menu-indicator.png</file>
+        <file>res/icons/menu-indicator-dark.png</file>
         <file>res/icons/menu-indicator_2x.png</file>
         <file>res/icons/profile_normal.png</file>
         <file>res/icons/profile_normal_2x.png</file>
@@ -54,6 +57,15 @@
         <file>res/icons/profile_hover_2x.png</file>
         <file>res/icons/profile_disabled.png</file>
         <file>res/icons/profile_disabled_2x.png</file>
+        <file>res/icons/profile_dark_normal.png</file>
+        <file>res/icons/profile_dark_normal_2x.png</file>
+        <file>res/icons/profile_dark_hover.png</file>
+        <file>res/icons/profile_dark_hover_2x.png</file>
+        <file>res/icons/profile_dark_disabled.png</file>
+        <file>res/icons/profile_dark_disabled_2x.png</file>
+        <file>res/icons/radiobox.png</file>
+        <file>res/icons/checkbox.png</file>
+        <file>res/icons/arrow_down.png</file>
         <file>res/icons/desktop_icons.ico</file>
     </qresource>
     <qresource prefix="/styles">
@@ -72,5 +84,6 @@
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
+        <file alias="tabbar_flw.qss">res/styles/tabbar_flwin.qss</file>
     </qresource>
 </RCC>

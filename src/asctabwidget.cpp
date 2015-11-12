@@ -529,6 +529,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
     setIconSize(QSize(18*g_dpi_ratio, 10*g_dpi_ratio));
     setProperty("active", false);
+    setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons();});
 }
@@ -539,6 +540,8 @@ int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring
 
     if (!m_pManager || !url.length())
         return -1;
+
+    setProperty("empty", false);
 
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
