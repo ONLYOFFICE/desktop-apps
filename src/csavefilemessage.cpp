@@ -96,7 +96,7 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent) : QObject(parent),
     m_pDlg.setLayout(layout);
     m_pDlg.setMinimumWidth(400*g_dpi_ratio);
 
-    QObject::connect(btn_yes, SIGNAL(clicked()), this, SLOT(onYesClicked()));
+    connect(btn_yes, &QPushButton::clicked, this, &CSaveFileMessage::onYesClicked);
     connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
 }

@@ -64,10 +64,12 @@ private:
 };
 
 CDownloadWidget::CDownloadWidget(QWidget *parent)
-    : QWidget(parent), m_pManager(NULL), m_parentButton(NULL)
+    : QWidget(parent)
+    , m_parentButton(NULL)
+    , m_pManager(NULL)
 {
     setLayout(new QVBoxLayout);
-    connect(this, SIGNAL(cancelDownload(int)), this, SLOT(onDownloadCanceled(int)), Qt::QueuedConnection);
+    connect(this, &CDownloadWidget::downloadCanceled, this, &CDownloadWidget::slot_downloadCanceled, Qt::QueuedConnection);
 
     setMaximumWidth(DOWNLOAD_WIDGET_MAX_WIDTH);
 }
@@ -99,7 +101,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
         if (m_parentButton)
             m_parentButton->menu()->close();
 
-        emit cancelDownload(id);
+        emit downloadCanceled(id);
     });
 
     progress->setTextVisible(false);
@@ -118,7 +120,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     return widget;
 }
 
-void CDownloadWidget::onDocumentDownload(void * info, bool manual)
+void CDownloadWidget::downloadProcess(void * info)
 {
     if (NULL == m_pManager || info == NULL )
         return;
@@ -131,7 +133,7 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
         removeFile(iter);
     } else
     if (pData->get_IsCanceled()) {
-        onDownloadCanceled(id);
+        slot_downloadCanceled(id);
     } else {
         if (iter == m_mapDownloads.end()) {
 //            ADDREFINTERFACE(pData);
@@ -171,7 +173,7 @@ void CDownloadWidget::updateLayoutGeomentry()
     }
 }
 
-void CDownloadWidget::onDownloadCanceled(int id)
+void CDownloadWidget::slot_downloadCanceled(int id)
 {
     removeFile(id);
 }

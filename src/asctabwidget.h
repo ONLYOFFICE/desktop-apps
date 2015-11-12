@@ -43,7 +43,6 @@
 
 #include <QDebug>
 
-
 class CAscTabBar : public QTabBar
 {
     Q_OBJECT
@@ -73,7 +72,7 @@ class CAscTabWidget : public QTabWidget
 
     struct CFullScreenData {
     public:
-        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _index(i), _data(d) {}
+        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _data(d), _index(i) {}
         CFullScreenData() : CFullScreenData(-1, 0, 0) {}
 
         QWidget * widget() { return _widget; }
@@ -107,6 +106,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent* e);
+    void closeEditor(int, bool, bool);
 
 public:
     int         tabIndexByView(int);
@@ -125,12 +125,16 @@ public:
     void setFocusedView(int index = -1);
     void setFullScreen(bool);
 
+    void openDocument(std::wstring, int, bool);
+//    void changeDocumentType(int, int);
+    void applyDocumentChanging(int id, int type);
+    void applyDocumentChanging(int id, QString name);
+    void applyDocumentChanging(int id, bool iscontentchanged);
+
 public slots:
-    void onDocumentOpen(std::wstring, bool, int);
-    void onDocumentNameChanged(int, QString);
-    void onDocumentChanged(int, bool);
+//    void onDocumentNameChanged(int, QString);
+//    void onDocumentChanged(int, bool);
     void onDocumentSave(int);
-    void onDocumentType(int, int);
 };
 
 #endif // ASCTABWIDGET
