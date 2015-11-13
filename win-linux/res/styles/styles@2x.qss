@@ -1,0 +1,138 @@
+
+QPushButton#toolButtonMaximize {
+    background-image:url(:/res/icons/maximize_2x.png);
+}
+
+QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
+    background-image:url(:/res/icons/minimize-close_2x.png);
+}
+
+QPushButton#toolButtonMain {
+    background-image:url(:/res/icons/mainpage_2x.png);
+}
+
+QPushButton#toolButtonMain[theme=rightangle] {
+    background-image: url(:/res/icons/mainpage_ra_2x.png);
+}
+
+QPushButton#toolButtonProfile {
+    background-image:url(:/res/icons/profile_normal_2x.png);
+    background-repeat: no-repeat;
+}
+
+QPushButton#toolButtonProfile:disabled {
+    background-image:url(:/res/icons/profile_disabled_2x.png);
+}
+
+QPushButton#toolButtonProfile:hover {
+    background-image:url(:/res/icons/profile_hover_2x.png);
+}
+
+QPushButton::menu-indicator {
+    width: 20px;
+    height: 20px;
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 0 repeat repeat;
+    left: -4px;
+    top: -2px;
+}
+
+QPushButton::menu-indicator:disabled {
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 20 repeat repeat;
+}
+
+QPushButton::menu-indicator:hover {
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 20 0 0 repeat repeat;
+}
+
+QPushButton[theme=dark]::menu-indicator:disabled {
+    border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;
+}
+
+QPushButton[theme=dark]::menu-indicator:hover {
+    border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;
+}
+
+QTabBar::tab {
+    padding-left: 14px;
+}
+
+QTabBar::tab {
+    padding-left: 14px;
+}
+
+QTabBar::close-button {
+    background-image: url(:/res/icons/tab_close_normal_2x.png);
+    border-image: none;
+    /*margin-right:10px;/*
+    /*margin-top: 8px;*/
+}
+
+QTabBar::close-button:hover {
+    background-image:url(:/res/icons/tab_close_hover_2x.png);
+    border-image: none;
+}
+
+QTabBar::close-button:pressed {
+    background-image:url(:/res/icons/tab_close_active_2x.png);
+    border-image: none;
+}
+
+QMenu#menuButtonProfile,
+    QMenu#menuButtonDownload {
+    border: 2px solid #d1d1d1;
+}
+
+QMenu#menuButtonProfile::item,
+    QMenu#menuButtonDownload::item {
+    padding: 10px 40px;
+    font-size: 24px;
+    height: 68px;
+}
+
+QMenu#menuButtonProfile::separator, 
+    QMenu#menuButtonDownload::separator {
+    height: 2px;
+    margin-top: 20px;
+}
+
+CUserProfileWidget QLabel {
+    font-size: 24px;
+    margin: 0 18px;
+}
+
+CUserProfileWidget QLabel#labelName {
+    font-size: 32px;
+    margin-top: 28px;
+    margin-bottom: 16px;
+}
+
+CUserProfileWidget QLabel#labelPortal,
+    CUserProfileWidget QLabel#labelEmail {
+    font-family: 'Open Sans',sans-serif,Arial; 
+    margin-left: 6px;
+}
+
+CDownloadWidget QProgressBar {
+    border-radius: 4px;
+    max-height: 10px;
+    margin-right: 20px;
+    margin-top: 2px;
+}
+
+CDownloadWidget QProgressBar::chunk {
+    border-radius: 4px;
+}
+
+CDownloadWidget QPushButton#buttonCancel {
+    font-family: 'Open Sans',sans-serif,Arial;
+    font-size: 24px;
+}
+
+CDownloadWidget QLabel#labelName {
+    font-size: 32px;
+    font-family: 'Open Sans',sans-serif,Arial;     
+}
+
+QLabel[class=msg-icon] {
+    background-image: url(":/res/icons/message_icons_2x.png");
+}

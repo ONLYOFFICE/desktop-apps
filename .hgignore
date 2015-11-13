@@ -1,10 +1,16 @@
 syntax: glob
 
-build/Release/*
-build/Debug/*
+win-linux/build/Release/*
+win-linux/build/Debug/*
 
-*.user
-libs/*
+win-linux/*.user
+common/libs/*
 
-loginpage/build/node_modules/*
-loginpage/deploy/*
+common/loginpage/build/node_modules/*
+common/loginpage/deploy/*
+
+.DS_Store
+*.xcuserstate
+*.xcuserdatad
+macos/Vendor/ONLYOFFICE
+macos/Production/Production/ONLYOFFICE.app
