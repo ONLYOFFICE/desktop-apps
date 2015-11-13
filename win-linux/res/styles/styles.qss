@@ -155,7 +155,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 }
 
 QTabBar::tab {
-    /*padding-left: 7px;*/
+    padding-left: 7px;
     /*padding-right: 2px;*/
 }
 
@@ -177,6 +177,56 @@ CAscTabBar::close-button:hover {
 
 QTabBar::close-button:pressed {
     image:url(:/res/icons/tab_close_active.png);
+}
+
+QTabBar QToolButton, QTabBar QToolButton,
+    QTabBar QToolButton:disabled {
+    margin:-2px;
+    background-color:#cfcfcf;
+    border:1px solid #cfcfcf;
+}
+
+QTabBar QToolButton:hover {
+    background-color:#ddd;
+    border-color:#ddd;
+}
+
+QTabBar QToolButton::left-arrow{
+    image: url(:/res/icons/changetab_left_normal.png);
+}
+
+QTabBar QToolButton::left-arrow:hover {
+    image: url(:/res/icons/changetab_left_hover.png);
+}
+
+QTabBar QToolButton::left-arrow:disabled {
+    image: url(:/res/icons/changetab_left_disabled.png);
+}
+
+QTabBar QToolButton::left-arrow:pressed {
+    image: url(:/res/icons/changetab_left_active.png);
+}
+
+QTabBar QToolButton::right-arrow {
+    image: url(:/res/icons/changetab_right_normal.png);
+}
+
+QTabBar QToolButton::right-arrow:hover {
+    image: url(:/res/icons/changetab_right_hover.png);
+}
+QTabBar QToolButton::right-arrow:disabled {
+    image: url(:/res/icons/changetab_right_disabled.png);
+}
+
+QTabBar QToolButton::right-arrow:pressed {
+    image: url(:/res/icons/changetab_right_active.png);
+}
+
+QTabBar::scroller {
+    /*padding-left: 0px;*/
+    /*margin-left: 0px;*/
+    /*background-color:#0f0;*/
+    width:16px;
 }
 
 /*MyLabel { qproperty-pixmap: url(pixmap.png); }*/

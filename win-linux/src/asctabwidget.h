@@ -86,6 +86,29 @@ class CAscTabWidget : public QTabWidget
         int _index;
     };
 
+    struct size_params {
+        struct tab_bounds {
+            int min, max, cst;
+        } tab;
+
+        int main_button_width;
+        int main_button_span;
+        int tabs_span;
+        int title_width;
+        int tools_width;
+        int custom_offset;
+
+        void apply_dpi(int dpi) {
+            tab.max     *= dpi;
+            tab.min     *= dpi;
+            tabs_span   *= dpi;
+            title_width *= dpi;
+            tools_width *= dpi;
+            main_button_width *= dpi;
+            main_button_span  *= dpi;
+        }
+    };
+
 public:
     QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
@@ -94,6 +117,7 @@ public:
 private:
     std::map<int, QCefView*> m_mapDownloads;
     CFullScreenData * m_dataFullScreen;
+    size_params m_widthParams;
 
 signals:
 //    void sendAddEditor();
@@ -132,6 +156,7 @@ public:
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, QString name);
     void applyDocumentChanging(int id, bool iscontentchanged);
+    void applyCustomTheme(bool iscustom);
 
 public slots:
 //    void onDocumentNameChanged(int, QString);

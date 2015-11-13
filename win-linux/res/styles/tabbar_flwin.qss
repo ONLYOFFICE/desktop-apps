@@ -12,17 +12,3 @@ QTabBar::tab:selected {background-color: #f1f1f1; border-color: #f1f1f1;}
 
 QTabWidget[active=false] QTabBar::tab:selected {background-color: #cfcfcf; border-color: #cfcfcf; border-bottom-color:#afb0b1;}
 QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #ddd;}
-
-QTabBar QToolButton::left-arrow {margin:-2;background-color:#FFF;border: 1px solid #FFF; }
-QTabBar QToolButton::left-arrow { image: url(:/res/icons/changetab_left_normal.png); }
-QTabBar QToolButton::left-arrow:hover { image: url(:/res/icons/changetab_left_hover.png); }
-QTabBar QToolButton::left-arrow:disabled { image: url(:/res/icons/changetab_left_disabled.png); }
-QTabBar QToolButton::left-arrow:pressed { image: url(:/res/icons/changetab_left_active.png); }
-
-QTabBar QToolButton::right-arrow {margin:-2;background-color:#FFF;border: 1px solid #FFF;}
-QTabBar QToolButton::right-arrow { image: url(:/res/icons/changetab_right_normal.png); }
-QTabBar QToolButton::right-arrow:hover { image: url(:/res/icons/changetab_right_hover.png); }
-QTabBar QToolButton::right-arrow:disabled { image: url(:/res/icons/changetab_right_disabled.png); }
-QTabBar QToolButton::right-arrow:pressed { image: url(:/res/icons/changetab_right_active.png); }
-
-QTabBar::scroller { padding: 0px; margin: 0px;background-color:#FFF;border: 1px solid #FFF; width:10; }

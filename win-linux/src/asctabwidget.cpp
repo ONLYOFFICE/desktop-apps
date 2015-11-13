@@ -572,6 +572,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
+    , m_widthParams{{41, 135, 9}, 108, 3, 0, 100, 140, 0}
 {
     CAscTabBar * tabs = new CAscTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -586,6 +587,8 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons();});
+
+    m_widthParams.apply_dpi(g_dpi_ratio);
 }
 
 int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring url)
@@ -683,29 +686,30 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
 
 void CAscTabWidget::adjustTabsSize()
 {
-    int nMin = 41 * g_dpi_ratio;
-    int nMax = 135 * g_dpi_ratio;
+//    int nMin = 41 * g_dpi_ratio;    // min tab width
+//    int nMax = 135 * g_dpi_ratio;   // max tab width
 
-    int nFirst = 44 * g_dpi_ratio;
-    int nStartOffset = 5 * g_dpi_ratio;
-    int nBetweenApp = 5 * g_dpi_ratio;
-    int nButtonW = 16 * g_dpi_ratio;
-    int nEndOffset = 140 * g_dpi_ratio;
+//    int nFirst = 44 * g_dpi_ratio;          // main button's width
+//    int nStartOffset = 5 * g_dpi_ratio;     // offset from main button
+//    int nBetweenApp = 5 * g_dpi_ratio;      //
+//    int nButtonW = 16 * g_dpi_ratio;        // tool button width
+//    int nEndOffset = 140 * g_dpi_ratio;     // space for a caption
 
-    int nControlWidth = this->parentWidget()->width();
-    int nTabBarWidth = nControlWidth - nFirst - nStartOffset - nEndOffset - 3 * nButtonW - 2 * nBetweenApp;
+    int nControlWidth = parentWidget()->width();
+//    int nTabBarWidth = nControlWidth - nFirst - nStartOffset - nEndOffset - 3 * nButtonW - 2 * nBetweenApp;
+    int nTabBarWidth = nControlWidth
+            - m_widthParams.main_button_width - m_widthParams.main_button_span
+            - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
 
-    int nCountTabs = this->tabBar()->count();
-    if (nCountTabs == 0)
-        nCountTabs = 1;
+    int nCountTabs = tabBar()->count();
+    if (nCountTabs == 0) nCountTabs = 1;
 
-    int nTabWidth = (nTabBarWidth - (2 + 2) * nCountTabs) / nCountTabs;
-    if (nTabWidth > nMax) nTabWidth = nMax;
-    if (nTabWidth < nMin) nTabWidth = nMin;
+    int nTabWidth = (nTabBarWidth - /*(2+2)*/9 * nCountTabs) / nCountTabs;      // magic (2+2)
+    if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
+    if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-    int nMinTabBarWidth = (nTabWidth + 2 + 2) * nCountTabs;
-    if (nTabBarWidth > nMinTabBarWidth)
-        nTabBarWidth = nMinTabBarWidth;
+    int nMinTabBarWidth = (nTabWidth + /*(2+2)*/9) * nCountTabs;
+    if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
 
     QString cssStyle = styleSheet();
     cssStyle
@@ -716,6 +720,12 @@ void CAscTabWidget::adjustTabsSize()
 
 //    qDebug() << "styles: " << cssStyle;
     setStyleSheet(cssStyle);
+}
+
+void CAscTabWidget::applyCustomTheme(bool iscustom)
+{
+    m_widthParams.tools_width = (iscustom ? 50 : 140) * g_dpi_ratio;
+    m_widthParams.title_width = (iscustom ? 100 : 0) * g_dpi_ratio;
 }
 
 void CAscTabWidget::updateIcons()

@@ -177,9 +177,9 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     QFile styleFile(_tabs_stylesheet_file);
     styleFile.open( QFile::ReadOnly );
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
-
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
+    m_pTabs->applyCustomTheme(isCustomWindow);
 
     // profile menu
     QMenu * menuProfile = new QMenu;
