@@ -7,11 +7,11 @@ CONFIG += c++11
 
 TARGET = DesktopEditors
 
-TRANSLATIONS = ../common/langs/en.ts \
-                ../common/langs/ru.ts \
-                ../common/langs/de.ts \
-                ../common/langs/es.ts \
-                ../common/langs/fr.ts
+TRANSLATIONS = ./langs/en.ts \
+                ./langs/ru.ts \
+                ./langs/de.ts \
+                ./langs/es.ts \
+                ./langs/fr.ts
 
 CHROMIUM_LIB_PATH = ../common/libs/ChromiumBasedEditors2
 

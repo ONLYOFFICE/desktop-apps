@@ -66,7 +66,7 @@
         <file>res/icons/radiobox.png</file>
         <file>res/icons/checkbox.png</file>
         <file>res/icons/arrow_down.png</file>
-        <file>res/icons/desktop_icons.ico</file>
+        <file>res/icons/desktopeditors.ico</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
