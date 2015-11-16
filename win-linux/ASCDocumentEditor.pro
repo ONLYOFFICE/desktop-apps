@@ -32,7 +32,11 @@ HEADERS += \
     src/cprintdialog.h \
     src/cmyapplicationmanager.h \
     src/cfiledialog.h \
-    src/cprintprogress.h
+    src/cprintprogress.h \
+    src/ctabbar.h
+#    src/ctabbar_p.h \
+#    src/ctabstyle.h \
+#    src/ctabstyle_p.h
 #    src/casclabel.h
 
 SOURCES += \
@@ -50,7 +54,9 @@ SOURCES += \
     src/cpushbutton.cpp \
     src/cprintdialog.cpp \
     src/cfiledialog.cpp \
-    src/cprintprogress.cpp
+    src/cprintprogress.cpp \
+    src/ctabbar.cpp
+#    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
 RESOURCES += resources.qrc

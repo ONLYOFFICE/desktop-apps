@@ -43,31 +43,6 @@
 
 #include <QDebug>
 
-class CAscTabBar : public QTabBar
-{
-    Q_OBJECT
-public:
-    explicit CAscTabBar(QWidget *parent = 0);
-    ~CAscTabBar();
-
-    void setTabTextColor(const QColor&);
-    void setTabIcons(int, QIcon *, QIcon *);
-//    int insertTab(int, const QIcon&, const QString &);
-private:
-    QColor m_capColor;
-
-protected:
-    void mouseMoveEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-    void paintEvent(QPaintEvent *);
-
-private:
-    void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
-
-    Q_DECLARE_PRIVATE(QTabBar)
-};
-
-
 class CAscTabWidget : public QTabWidget
 {
     Q_OBJECT
@@ -105,9 +80,6 @@ public:
     int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
-//    int  addTab(QWidget *, const QString &);
-//    int  insertTab(int, QWidget *w, const QIcon& icon, const QString &label);
-//    int  insertTab(int, QWidget *w, const QString &label);
 
 protected:
     void resizeEvent(QResizeEvent* e);
