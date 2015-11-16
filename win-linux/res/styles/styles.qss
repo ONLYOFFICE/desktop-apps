@@ -140,11 +140,12 @@ QTabBar::tab:only-one { }
 QTabBar::tab:last { }
 
 QTabBar::close-button {
-    /*background-image: url(:/res/icons/tab_close_normal.png);*/
-    border-image: url(:/res/icons/tab_close_normal.png) 0 0 0 0 stretch stretch;
-    background-clip: padding-box;
+    padding: 5px;
+    background-image: url(:/res/icons/tab_close_normal.png);
+    /*border-image: url(:/res/icons/tab_close_normal.png) 0 0 0 0 repeat repeat;*/
+    /*background-clip: padding-box;*/
     /*margin-top: -7px;*/
-    padding-top: 7px;
+    /*padding-top: 7px;*/
     /*subcontrol-origin: content;*/
     /*subcontrol-position: left;*/
 }
