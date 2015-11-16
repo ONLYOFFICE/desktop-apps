@@ -45,14 +45,29 @@ static NSMutableDictionary * localSettings;
 @implementation ASCHelper
 
 + (NSString *)applicationDataPath {
-    return [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
+#ifndef MAS
+    path = [path stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
+#endif
+    return path;
 }
 
 + (void)copyVendorJS {
+    NSError * error;
     NSString * applicationDataPath = [self applicationDataPath];
+
+#ifndef MAS
+    if (![[NSFileManager defaultManager] fileExistsAtPath:applicationDataPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:applicationDataPath withIntermediateDirectories:NO attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Error copying application path: %@", [error localizedDescription]);
+        }
+    }
+#endif
+
     NSString * userVendorJsPath = [applicationDataPath stringByAppendingPathComponent:@"webdata"];
     NSString * appVendorJsPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"cloud"];
-    NSError * error;
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:userVendorJsPath]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:userVendorJsPath withIntermediateDirectories:NO attributes:nil error:&error];

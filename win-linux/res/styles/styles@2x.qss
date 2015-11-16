@@ -11,6 +11,10 @@ QPushButton#toolButtonMain {
     background-image:url(:/res/icons/mainpage_2x.png);
 }
 
+QPushButton#toolButtonMain[theme=rightangle] {
+    background-image: url(:/res/icons/mainpage_ra_2x.png);
+}
+
 QPushButton#toolButtonProfile {
     background-image:url(:/res/icons/profile_normal_2x.png);
     background-repeat: no-repeat;
@@ -27,9 +31,29 @@ QPushButton#toolButtonProfile:hover {
 QPushButton::menu-indicator {
     width: 20px;
     height: 20px;
-    background-image: url(:/res/icons/menu-indicator_2x.png);
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 0 repeat repeat;
     left: -4px;
     top: -2px;
+}
+
+QPushButton::menu-indicator:disabled {
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 20 repeat repeat;
+}
+
+QPushButton::menu-indicator:hover {
+    border-image: url(:/res/icons/menu-indicator_2x.png) 0 20 0 0 repeat repeat;
+}
+
+QPushButton[theme=dark]::menu-indicator:disabled {
+    border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;
+}
+
+QPushButton[theme=dark]::menu-indicator:hover {
+    border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;
+}
+
+QTabBar::tab {
+    padding-left: 14px;
 }
 
 QTabBar::tab {

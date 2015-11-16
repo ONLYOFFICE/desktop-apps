@@ -1,0 +1,15 @@
+Package: onlyoffice-desktopeditors
+Version: 0.0.2-4
+Architecture: amd64
+Section: editors
+Maintainer: Ascensio System SIA <support@onlyoffice.com>
+#Source: ca-certificates-local
+#Build-Depends: debhelper (>= 8.0.0)
+Pre-Depends: dpkg (>= 1.14.0)
+#Depends: libgtkglext1 (>=1.0)
+#Standards-Version: 3.9.4
+Priority: optional
+Installed-Size: 183024
+Description: ONLYOFFICE DesktopEditors installation package
+ ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from onlyoffice cloud portal on local computer without browser using.
+

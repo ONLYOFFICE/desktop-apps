@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@documents@</string>
+            <key>documents</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>ld</string>
+                <key>one</key>
+                <string>У Вас один ONLYOFFICE Документ с неподтвержденными изменениями. Просмотреть документы перед завершением?</string>
+                <key>few</key>
+                <string>У Вас %ld ONLYOFFICE Документа с неподтвержденными изменениями. Просмотреть документы перед завершением?</string>
+                <key>other</key>
+                <string>У Вас %ld ONLYOFFICE Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?</string>
+            </dict>
+        </dict>
+    </dict>
+</plist>

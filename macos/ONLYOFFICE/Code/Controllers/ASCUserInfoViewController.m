@@ -81,8 +81,12 @@
 - (void)onCEFLogout:(NSNotification *)notification {
     [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
     
-    if (self.isViewLoaded && self.view.window) {
-        [self dismissViewController:self];
+//    if (self.isViewLoaded && self.view.window) {
+//        [self dismissViewController:self];
+//    }
+    
+    if (self.popover) {
+        [self.popover closePopover:nil];
     }
 }
 

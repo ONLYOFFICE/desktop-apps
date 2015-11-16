@@ -50,28 +50,26 @@ using namespace NSEditorApi;
 
 class CDownloadWidget::CDownloadItem {
 public:
-    CDownloadItem(QCefView * p, QWidget * w)
-        : _p_view(p), _p_progress(w), _is_temp(true)
+    CDownloadItem(QWidget * w)
+        : _p_progress(w), _is_temp(true)
     {}
 
-    QCefView * view() const { return _p_view; }
     QWidget * progress() const { return _p_progress; }
-//    void * info() const { return _p_info; }
 
-    bool is_temporary() const { return true; }
+    bool is_temporary() const { return _is_temp; }
     void set_is_temporary(bool v) { _is_temp = v; }
 private:
-    QCefView * _p_view;
     QWidget * _p_progress;
-//    void * _p_info;
     bool _is_temp;
 };
 
 CDownloadWidget::CDownloadWidget(QWidget *parent)
-    : QWidget(parent), m_pManager(NULL), m_parentButton(NULL)
+    : QWidget(parent)
+    , m_parentButton(NULL)
+    , m_pManager(NULL)
 {
     setLayout(new QVBoxLayout);
-    connect(this, SIGNAL(cancelDownload(int)), this, SLOT(onDownloadCanceled(int)), Qt::QueuedConnection);
+    connect(this, &CDownloadWidget::downloadCanceled, this, &CDownloadWidget::slot_downloadCanceled, Qt::QueuedConnection);
 
     setMaximumWidth(DOWNLOAD_WIDGET_MAX_WIDTH);
 }
@@ -103,7 +101,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
         if (m_parentButton)
             m_parentButton->menu()->close();
 
-        emit cancelDownload(id);
+        emit downloadCanceled(id);
     });
 
     progress->setTextVisible(false);
@@ -122,20 +120,20 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     return widget;
 }
 
-void CDownloadWidget::onDocumentDownload(void * info, bool manual)
+void CDownloadWidget::downloadProcess(void * info)
 {
     if (NULL == m_pManager || info == NULL )
         return;
 
     CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-    int id = pData->get_Id();
+    int id = pData->get_IdDownload();
 
     std::map<int, CDownloadItem *>::iterator iter = m_mapDownloads.find(id);
     if (pData->get_IsComplete()) {
         removeFile(iter);
     } else
     if (pData->get_IsCanceled()) {
-        onDownloadCanceled(id);
+        slot_downloadCanceled(id);
     } else {
         if (iter == m_mapDownloads.end()) {
 //            ADDREFINTERFACE(pData);
@@ -147,18 +145,8 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
                 file_name = getFileName(path);
             }
 
-            QCefView * pView = NULL;
-            if (manual) {
-                pView = new QCefView(NULL);
-                pView->Create(m_pManager, cvwtEditor);
-                pView->GetCefView()->SetParentCef(id);
-                pView->GetCefView()->load(pData->get_Url());
-
-                id = pView->GetCefView()->GetId();
-            }
-
             QWidget * download_field = addFile(file_name, id);
-            CDownloadItem * item = new CDownloadItem(pView, download_field);
+            CDownloadItem * item = new CDownloadItem(download_field);
 
             iter = m_mapDownloads.insert( std::pair<int, CDownloadItem *>(id, item) ).first;
 
@@ -173,8 +161,6 @@ void CDownloadWidget::onDocumentDownload(void * info, bool manual)
 
         updateProgress(iter, pData);
     }
-
-    RELEASEINTERFACE(pData);
 }
 
 void CDownloadWidget::updateLayoutGeomentry()
@@ -187,7 +173,7 @@ void CDownloadWidget::updateLayoutGeomentry()
     }
 }
 
-void CDownloadWidget::onDownloadCanceled(int id)
+void CDownloadWidget::slot_downloadCanceled(int id)
 {
     removeFile(id);
 }
@@ -205,12 +191,10 @@ void CDownloadWidget::removeFile(MapItem iter)
 //        CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(di->info());
 //        RELEASEINTERFACE(pData)
 
-        QCefView * pView = di->view();
         QWidget * pItemWidget = di->progress();
 
         layout()->removeWidget(pItemWidget);
 
-        RELEASEOBJECT(pView)
         RELEASEOBJECT(pItemWidget)
         RELEASEOBJECT(di)
 

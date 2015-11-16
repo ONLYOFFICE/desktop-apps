@@ -36,8 +36,6 @@
 #include "../../lib/include/cefapplication.h"
 #include "../../lib/include/applicationmanager.h"
 
-#include <shlwapi.h>
-#include <shlobj.h>
 #include <QFileDialog>
 #include "qmainpanel.h"
 

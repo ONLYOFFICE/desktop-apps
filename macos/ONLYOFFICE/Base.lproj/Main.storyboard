@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -58,17 +58,17 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                                        <menuItem title="New" hidden="YES" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="Open…" hidden="YES" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Recent" id="tXI-mr-wws">
+                                        <menuItem title="Open Recent" hidden="YES" id="tXI-mr-wws">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="oas-Oc-fiZ">
                                                 <items>
@@ -81,23 +81,23 @@
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
+                                        <menuItem isSeparatorItem="YES" hidden="YES" id="m54-Is-iLE"/>
                                         <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                             <connections>
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
+                                        <menuItem title="Save…" hidden="YES" keyEquivalent="s" id="pxx-59-PXV">
                                             <connections>
                                                 <action selector="saveDocument:" target="Ady-hI-5gd" id="teZ-XB-qJY"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
+                                        <menuItem title="Save As…" hidden="YES" keyEquivalent="S" id="Bw7-FT-i3A">
                                             <connections>
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="mDf-zr-I0C"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert to Saved" id="KaW-ft-85H">
+                                        <menuItem title="Revert to Saved" hidden="YES" id="KaW-ft-85H">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
@@ -118,7 +118,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Edit" id="5QF-Oa-p0T">
+                            <menuItem title="Edit" hidden="YES" id="5QF-Oa-p0T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="W48-6f-4Dl">
                                     <items>
@@ -337,7 +337,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Format" id="jxT-CU-nIS">
+                            <menuItem title="Format" hidden="YES" id="jxT-CU-nIS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Format" id="GEO-Iw-cKr">
                                     <items>
@@ -579,7 +579,7 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="H8h-7b-M4v">
+                            <menuItem title="View" hidden="YES" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
@@ -629,7 +629,7 @@
                                     <items>
                                         <menuItem title="ONLYOFFICE Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                                <action selector="onShowHelp:" target="Voe-Tx-rLC" id="dwg-r0-5fC"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -678,11 +678,11 @@
             <objects>
                 <viewController storyboardIdentifier="ASCUserInfoControllerId" id="UVp-OY-Us4" customClass="ASCUserInfoViewController" sceneMemberID="viewController">
                     <view key="view" id="MV4-1Z-qXd">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="167"/>
+                        <rect key="frame" x="0.0" y="0.0" width="284" height="167"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aiw-Pj-VjZ">
-                                <rect key="frame" x="18" y="128" width="234" height="19"/>
+                                <rect key="frame" x="18" y="128" width="248" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="PUd-yA-0zS"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="fs0-sN-Jno"/>
@@ -695,19 +695,19 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z7w-DR-5mK">
-                                <rect key="frame" x="18" y="100" width="44" height="16"/>
+                                <rect key="frame" x="18" y="100" width="54" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="JHj-Lo-Sh5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JHj-Lo-Sh5"/>
                                 </constraints>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Portal:" id="zwS-9G-S0N">
                                     <font key="font" metaFont="cellTitle"/>
-                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-hF-SNH">
-                                <rect key="frame" x="78" y="100" width="174" height="16"/>
+                                <rect key="frame" x="92" y="100" width="174" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Or6-Gu-L5B"/>
                                 </constraints>
@@ -719,10 +719,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X1r-fW-N3h">
-                                <rect key="frame" x="18" y="71" width="38" height="17"/>
+                                <rect key="frame" x="18" y="71" width="54" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="2Z8-tx-yLf"/>
-                                    <constraint firstAttribute="width" constant="34" id="mfK-Go-vrc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="mfK-Go-vrc"/>
                                 </constraints>
                                 <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email:" id="Zsi-3o-ASl">
@@ -732,7 +732,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FY0-wF-Zay">
-                                <rect key="frame" x="78" y="70" width="174" height="17"/>
+                                <rect key="frame" x="92" y="70" width="174" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="H8J-W9-OJ5"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Iew-ae-tXr"/>
@@ -745,7 +745,7 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wrb-Yp-5M3">
-                                <rect key="frame" x="0.0" y="45" width="270" height="5"/>
+                                <rect key="frame" x="0.0" y="45" width="284" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="WRN-30-PHb"/>
                                 </constraints>
@@ -755,7 +755,7 @@
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IFv-Rl-0R4">
-                                <rect key="frame" x="20" y="0.0" width="230" height="47"/>
+                                <rect key="frame" x="20" y="0.0" width="244" height="47"/>
                                 <animations/>
                                 <buttonCell key="cell" type="bevel" title="Logout" bezelStyle="regularSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="RmO-tv-UKh">
                                     <behavior key="behavior" lightByContents="YES"/>
@@ -772,9 +772,9 @@
                             <constraint firstItem="wrb-Yp-5M3" firstAttribute="top" secondItem="FY0-wF-Zay" secondAttribute="bottom" constant="22" id="5rd-qE-bE8"/>
                             <constraint firstItem="Aiw-Pj-VjZ" firstAttribute="leading" secondItem="MV4-1Z-qXd" secondAttribute="leading" constant="20" id="9kf-sK-s89"/>
                             <constraint firstItem="Aiw-Pj-VjZ" firstAttribute="top" secondItem="MV4-1Z-qXd" secondAttribute="top" constant="20" id="BsR-E5-nli"/>
-                            <constraint firstItem="WjX-hF-SNH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z7w-DR-5mK" secondAttribute="trailing" constant="20" id="I1X-BO-ptd"/>
+                            <constraint firstItem="WjX-hF-SNH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z7w-DR-5mK" secondAttribute="trailing" constant="3" id="I1X-BO-ptd"/>
                             <constraint firstItem="FY0-wF-Zay" firstAttribute="width" secondItem="WjX-hF-SNH" secondAttribute="width" id="JFu-zb-cFG"/>
-                            <constraint firstItem="FY0-wF-Zay" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X1r-fW-N3h" secondAttribute="trailing" constant="24" id="Jl1-6x-WYA"/>
+                            <constraint firstItem="FY0-wF-Zay" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X1r-fW-N3h" secondAttribute="trailing" constant="3" id="Jl1-6x-WYA"/>
                             <constraint firstAttribute="bottom" secondItem="IFv-Rl-0R4" secondAttribute="bottom" id="LzA-Ag-YJU"/>
                             <constraint firstAttribute="trailing" secondItem="wrb-Yp-5M3" secondAttribute="trailing" id="VFB-kT-Uly"/>
                             <constraint firstAttribute="trailing" secondItem="FY0-wF-Zay" secondAttribute="trailing" constant="20" id="Z4M-h7-4N9"/>
@@ -799,7 +799,7 @@
                 </viewController>
                 <customObject id="BLj-dx-pSf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="5.5"/>
+            <point key="canvasLocation" x="958" y="5.5"/>
         </scene>
         <!--Download View Controller-->
         <scene sceneID="FSG-kQ-eIr">
@@ -809,14 +809,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="270" height="208"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="THf-tA-SkY">
-                                <rect key="frame" x="0.0" y="-2" width="270" height="211"/>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="THf-tA-SkY">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mlF-13-wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="270" height="211"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" floatsGroupRows="NO" id="jbW-uy-rCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>

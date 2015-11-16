@@ -122,6 +122,11 @@ void CPushButton::setEnabled(bool enable)
     QPushButton::setEnabled(enable);
 }
 
+void CPushButton::setVisible(bool visible, bool animation)
+{
+    animation ? setVisible(visible) : QPushButton::setVisible(visible);
+}
+
 void CPushButton::setVisible(bool visible)
 {
     if (visible != QPushButton::isVisible()) {

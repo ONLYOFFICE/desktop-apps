@@ -42,7 +42,6 @@
 #import "NSString+OnlyOffice.h"
 #import "mac_application.h"
 #import <objc/runtime.h>
-#import "NSCefView.h"
 
 static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownloadControllersMulticastDelegate";
 
@@ -95,9 +94,8 @@ static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownlo
         return multicastDelegate;
 }
 
-- (void)addDownload:(NSString *)idx view:(NSView *)cefView fileName:(NSString *)fileName {
+- (void)addDownload:(NSString *)idx fileName:(NSString *)fileName {
     NSMutableDictionary * download = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                     @"view"     : cefView ? cefView : [NSNull null],
                                                                                      @"idx"      : idx,
                                                                                      @"name"     : fileName,
                                                                                      @"url"      : @"",
@@ -119,16 +117,17 @@ static NSString * const kASCDownloadControllerMulticastDelegateKey = @"ASCDownlo
     id download = [self downloadWithId:idx];
     
     if (download) {
-        NSCefView * view    = download[@"view"];
         NSString * filePath = download[@"filePath"];
         BOOL isCanceled     = [download[@"canceled"] boolValue];
-        
-        if (![view isEqual:[NSNull null]]) {
-            [view internalClean];
-        }
+
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         if (isCanceled && filePath && [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        }
+        
+        if (appManager) {
+            appManager->CancelDownload([download[@"idx"] intValue]);
         }
         
         [_downloads removeObject:download];

@@ -48,6 +48,7 @@ public:
     void startIconAnimation(bool);
 
     void setEnabled(bool);
+    void setVisible(bool visible, bool animation);
 
 protected:
     void paintEvent(QPaintEvent *);

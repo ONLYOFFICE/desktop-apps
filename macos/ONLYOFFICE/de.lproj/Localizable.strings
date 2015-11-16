@@ -1,0 +1,36 @@
+/* No comment provided by engineer. */
+"Cancel" = "Abbrechen";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Wollen Sie die Änderungen, die an dem Dokument vorgenommen wurde, speichern \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document" = "Dokument";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be saved." = "Falls Sie Ihre Dokumente nicht überprüfen, werden alle Änderungen gespeichert.";
+
+/* No comment provided by engineer. */
+"No" = "Nein";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Vorbereitung...";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Änderungen  Nachsehen...";
+
+/* No comment provided by engineer. */
+"Save and Quit" = "Speichern und Beenden";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Unbestätigt";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
+/* No comment provided by engineer. */
+"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Sie haben %ld ONLYOFFICE-Dokumente mit unbestätigten Änderungen. Wollen Sie diese Änderungen vor dem Beenden überprüfen?";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ihre Änderungen verloren gehen, falls Sie sie nicht speichern.";
+

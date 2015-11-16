@@ -41,6 +41,7 @@
 #import "ViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
+#import "nsascprinter.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTitleWindowController.h"
@@ -58,7 +59,9 @@
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
-@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate>
+@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
+    NSAscPrinterContext * m_pContext;
+}
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
@@ -114,6 +117,10 @@
                                              selector:@selector(onCEFStartSave:)
                                                  name:CEFEventNameStartSaveDialog
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOnBeforePrintEnd:)
+                                                 name:CEFEventPrintDialog
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -165,7 +172,7 @@
     if (self.cefStartPageView ) {
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
-        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode] lowercaseString]];
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
@@ -188,11 +195,11 @@
     
     if (unsaved > 0) {
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Review Changes..."];
-        [alert addButtonWithTitle:@"Cancel"];
-        [alert addButtonWithTitle:@"Save and Quit"];
-        [alert setMessageText:[NSString stringWithFormat:@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", (long)unsaved]];
-        [alert setInformativeText:@"If you don't review your documents, all your changeses will be saved."];
+        [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save and Quit", nil)];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
+        [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
         [alert setAlertStyle:NSInformationalAlertStyle];
         
         NSInteger result = [alert runModal];
@@ -333,10 +340,11 @@
         
         if (eventData) {
 //            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-//            
-//            int     keyCode = pData->get_KeyCode();
-//            bool    isCtrl  = pData->get_IsCtrl();
-//            
+//
+//            int     keyCode     = pData->get_KeyCode();
+//            bool    isCtrl      = pData->get_IsCtrl();
+//            BOOL    isCommand   = pData->get_IsCommandMac();
+//
 //            if(isCtrl && keyCode == kVK_ANSI_W) {
 //                [self tabs:self.tabsControl willRemovedTab:[self.tabsControl selectedTab]];
 //            }
@@ -349,7 +357,6 @@
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         NSValue * eventData = params[@"data"];
-        BOOL isStart        = [params[@"start"] boolValue];
         
         if (nil == appManager || nil == eventData)
             return;
@@ -373,16 +380,7 @@
                     fileName = [path lastPathComponent];
                 }
                 
-                if (isStart) {
-                    NSCefView * pView = [[NSCefView alloc] initWithFrame:CGRectZero];
-                    [pView Create:appManager withType:cvwtEditor];
-                    [pView setParentCef:pDownloadFileInfo->get_Id()];
-                    [pView Load:[NSString stringWithstdwstring:pDownloadFileInfo->get_Url()]];
-                    
-                    idx = [NSString stringWithFormat:@"%ld", (long)[pView uuid]];
-
-                    [[ASCDownloadController sharedInstance] addDownload:idx view:pView fileName:fileName];
-                }
+                [[ASCDownloadController sharedInstance] addDownload:idx fileName:fileName];
             }
             
             [[ASCDownloadController sharedInstance] updateDownload:idx data:eventData];
@@ -391,8 +389,9 @@
 }
 
 - (void)onCEFStartSave:(NSNotification *)notification {
-    if (notification && notification.object) {
-        NSString * fileName = notification.object;
+    if (notification && notification.userInfo) {
+        NSString * fileName = notification.userInfo[@"fileName"];
+        NSNumber * idx      = notification.userInfo[@"idx"];
         
         NSSavePanel * savePanel = [NSSavePanel savePanel];
 //        [savePanel setDirectoryURL:[NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(NSDownloadsDirectory, NSUserDomainMask, YES) firstObject]]];
@@ -401,17 +400,40 @@
             [savePanel setNameFieldStringValue:[fileName lastPathComponent]];
         }
 
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [savePanel orderOut:self];
+           
             if (result == NSFileHandlingPanelOKButton) {
-                [savePanel orderOut:self];
-                
-                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                NSString * path = [[savePanel URL] path];
-                appManager->EndSaveDialog([path stdwstring]);
+                appManager->EndSaveDialog([[[savePanel URL] path] stdwstring], [idx unsignedIntValue]);
+            } else {
+                appManager->EndSaveDialog(L"", [idx unsignedIntValue]);
             }
         }];
     }
 }
+
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo {
+    if (m_pContext) {
+        m_pContext->EndPaint();
+    }
+}
+
+- (void)onCEFOnBeforePrintEnd:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSNumber * viewId       = notification.userInfo[@"viewId"];
+        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+        
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        
+        if (appManager) {
+            m_pContext = new NSAscPrinterContext(appManager);
+            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+        }
+    }
+}
+
 
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate

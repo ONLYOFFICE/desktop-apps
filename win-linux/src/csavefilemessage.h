@@ -33,17 +33,28 @@
 #ifndef CSAVEFILEMESSAGE_H
 #define CSAVEFILEMESSAGE_H
 
+#if defined(_WIN32)
 #include "qwinwidget.h"
+#endif
+
 #include <QDialog>
 #include <QFormLayout>
 
-class CSaveFileMessage : public QWinWidget
+class CSaveFileMessage
+#ifdef _WIN32
+    : public QWinWidget
 {
     Q_OBJECT
-//    Q_DECLARE_TR_FUNCTIONS(MyClass)
-
 public:
     CSaveFileMessage(HWND hParentWnd);
+#else
+    : public QObject
+{
+    Q_OBJECT
+
+public:
+    CSaveFileMessage(QWidget * parent = 0);
+#endif
     ~CSaveFileMessage();
 
     int  showModal();

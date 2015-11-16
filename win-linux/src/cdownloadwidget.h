@@ -49,6 +49,7 @@ public:
     ~CDownloadWidget();
 
     void setManagedElements(CAscApplicationManager *, QPushButton *);
+    void downloadProcess(void *);
 //    void updateProgress();
 //    void cancelAll();
 
@@ -68,11 +69,10 @@ private:
     std::map<int, CDownloadItem *> m_mapDownloads;
 
 signals:
-    void cancelDownload(int);
+    void downloadCanceled(int);
 
-public slots:
-    void onDocumentDownload(void *, bool);
-    void onDownloadCanceled(int);
+private slots:
+    void slot_downloadCanceled(int);
 };
 
 #endif // CDOWNLOADWIDGET_H

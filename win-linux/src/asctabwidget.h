@@ -49,7 +49,7 @@ class CAscTabWidget : public QTabWidget
 
     struct CFullScreenData {
     public:
-        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _index(i), _data(d) {}
+        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _data(d), _index(i) {}
         CFullScreenData() : CFullScreenData(-1, 0, 0) {}
 
         QWidget * widget() { return _widget; }
@@ -61,6 +61,29 @@ class CAscTabWidget : public QTabWidget
         int _index;
     };
 
+    struct size_params {
+        struct tab_bounds {
+            int min, max, cst;
+        } tab;
+
+        int main_button_width;
+        int main_button_span;
+        int tabs_span;
+        int title_width;
+        int tools_width;
+        int custom_offset;
+
+        void apply_dpi(int dpi) {
+            tab.max     *= dpi;
+            tab.min     *= dpi;
+            tabs_span   *= dpi;
+            title_width *= dpi;
+            tools_width *= dpi;
+            main_button_width *= dpi;
+            main_button_span  *= dpi;
+        }
+    };
+
 public:
     QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
@@ -69,6 +92,7 @@ public:
 private:
     std::map<int, QCefView*> m_mapDownloads;
     CFullScreenData * m_dataFullScreen;
+    size_params m_widthParams;
 
 signals:
 //    void sendAddEditor();
@@ -83,6 +107,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent* e);
+    void closeEditor(int, bool, bool);
 
 public:
     int         tabIndexByView(int);
@@ -101,12 +126,17 @@ public:
     void setFocusedView(int index = -1);
     void setFullScreen(bool);
 
+    void openDocument(std::wstring, int, bool);
+//    void changeDocumentType(int, int);
+    void applyDocumentChanging(int id, int type);
+    void applyDocumentChanging(int id, QString name);
+    void applyDocumentChanging(int id, bool iscontentchanged);
+    void applyCustomTheme(bool iscustom);
+
 public slots:
-    void onDocumentOpen(std::wstring, bool, int);
-    void onDocumentNameChanged(int, QString);
-    void onDocumentChanged(int, bool);
+//    void onDocumentNameChanged(int, QString);
+//    void onDocumentChanged(int, bool);
     void onDocumentSave(int);
-    void onDocumentType(int, int);
 };
 
 #endif // ASCTABWIDGET

@@ -42,7 +42,7 @@
 
 #include "private/qtabbar_p.h"
 
-extern byte g_dpi_ratio;
+extern BYTE g_dpi_ratio;
 
 /*
  *
@@ -79,7 +79,7 @@ private:
 };
 
 CAscTabData::CAscTabData(const QString& t)
-    : _is_changed(false), _is_closed(false), _title(t), _panel_id(-1)
+    : _title(t), _is_changed(false), _is_closed(false), _panel_id(-1)
 {}
 
 void CAscTabData::setTitle(const QString& t)
@@ -133,6 +133,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
+    , m_widthParams{{41, 135, 9}, 108, 3, 0, 100, 140, 0}
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -145,40 +146,14 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     tabBar()->setMovable(true);
     setTabsClosable(true);
 
-    QFile styleFile( ":/sep-styles/tabbar.qss" );
-    if (g_dpi_ratio > 1) styleFile.setFileName(":/styles@2x/tabbar.qss");
-    styleFile.open( QFile::ReadOnly );
-    setStyleSheet(QString(styleFile.readAll()));
-
     setIconSize(QSize(18*g_dpi_ratio, 10*g_dpi_ratio));
     setProperty("active", false);
+    setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons();});
+
+    m_widthParams.apply_dpi(g_dpi_ratio);
 }
-
-//int CAscTabWidget::addTab(QWidget *child, const QString &label)
-//{
-//    return insertTab(-1, child, QIcon(), label);
-//}
-
-//int CAscTabWidget::insertTab(int index, QWidget *w, const QIcon& icon, const QString &label)
-//{
-//    int ret_index = QTabWidget::insertTab(index, w, icon, label);
-
-//    QWidget * btn = tabBar()->tabButton(ret_index, QTabBar::RightSide);
-//    if ( btn ) {
-////        QRect g = btn->geometry();
-////        btn->setGeometry(g.x() + 6, g.y() + 6, 16*g_dpi_ratio, 16*g_dpi_ratio);
-////        qDebug() << "pos: " << tabBar()->tabButton(ret_index, QTabBar::RightSide)->geometry();
-//    }
-
-//    return ret_index;
-//}
-
-//int CAscTabWidget::insertTab(int index, QWidget *w, const QString &label)
-//{
-//    return insertTab(index, w, QIcon(), label);
-//}
 
 int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring url)
 {
@@ -186,6 +161,8 @@ int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring
 
     if (!m_pManager || !url.length())
         return -1;
+
+    setProperty("empty", false);
 
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
@@ -201,7 +178,7 @@ int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring
     tabBar()->setTabData(tab_index, VPtr<CAscTabData>::asQVariant(data));
     tabBar()->setTabToolTip(tab_index, strName);
 
-    onDocumentType(id_view, etType);
+    applyDocumentChanging(id_view, etType);
 
 //    emit sendAddEditor();
     resizeEvent(NULL);
@@ -209,30 +186,45 @@ int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring
     return tab_index;
 }
 
-void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
+void CAscTabWidget::closeEditor(int i, bool m, bool r)
 {
-    if (!(index < 0) && index < count()) {
-        CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(index) );
-        if (doc && (!checkmodified || !doc->changed())) {
+    if (!(i < 0) && i < count()) {
+        CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
+        if (doc && (!m || !doc->changed())) {
             m_pManager->DestroyCefView(doc->viewId());
 
-            QCefView * view = (QCefView *)widget(index);
+            QCefView * view = (QCefView *)widget(i);
 
             RELEASEOBJECT(doc)
             RELEASEOBJECT(view)
 
             adjustTabsSize();
 
-            emit tabClosed(index, tabBar()->count());
+            if (r) emit tabClosed(i, tabBar()->count());
+        }
+
+        if (r) {
+            setProperty("empty", tabBar()->count()==0);
+            style()->polish(this);
         }
     }
+}
+
+void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
+{
+    closeEditor(index, checkmodified, true);
 }
 
 void CAscTabWidget::closeAllEditors()
 {
     for (int i = tabBar()->count(); i-- > 0; ) {
-        closeEditorByIndex(i);
+        closeEditor(i, false, false);
     }
+
+//    if (!tabBar()->count()) {
+//        setProperty("empty", true);
+//        style()->polish(this);
+//    }
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)
@@ -258,29 +250,30 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
 
 void CAscTabWidget::adjustTabsSize()
 {
-    int nMin = 41 * g_dpi_ratio;
-    int nMax = 135 * g_dpi_ratio;
+//    int nMin = 41 * g_dpi_ratio;    // min tab width
+//    int nMax = 135 * g_dpi_ratio;   // max tab width
 
-    int nFirst = 44 * g_dpi_ratio;
-    int nStartOffset = 5 * g_dpi_ratio;
-    int nBetweenApp = 5 * g_dpi_ratio;
-    int nButtonW = 16 * g_dpi_ratio;
-    int nEndOffset = 140 * g_dpi_ratio;
+//    int nFirst = 44 * g_dpi_ratio;          // main button's width
+//    int nStartOffset = 5 * g_dpi_ratio;     // offset from main button
+//    int nBetweenApp = 5 * g_dpi_ratio;      //
+//    int nButtonW = 16 * g_dpi_ratio;        // tool button width
+//    int nEndOffset = 140 * g_dpi_ratio;     // space for a caption
 
-    int nControlWidth = this->parentWidget()->width();
-    int nTabBarWidth = nControlWidth - nFirst - nStartOffset - nEndOffset - 3 * nButtonW - 2 * nBetweenApp;
+    int nControlWidth = parentWidget()->width();
+//    int nTabBarWidth = nControlWidth - nFirst - nStartOffset - nEndOffset - 3 * nButtonW - 2 * nBetweenApp;
+    int nTabBarWidth = nControlWidth
+            - m_widthParams.main_button_width - m_widthParams.main_button_span
+            - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
 
-    int nCountTabs = this->tabBar()->count();
-    if (nCountTabs == 0)
-        nCountTabs = 1;
+    int nCountTabs = tabBar()->count();
+    if (nCountTabs == 0) nCountTabs = 1;
 
-    int nTabWidth = (nTabBarWidth - (2 + 2) * nCountTabs) / nCountTabs;
-    if (nTabWidth > nMax) nTabWidth = nMax;
-    if (nTabWidth < nMin) nTabWidth = nMin;
+    int nTabWidth = (nTabBarWidth - /*(2+2)*/9 * nCountTabs) / nCountTabs;      // magic (2+2)
+    if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
+    if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-    int nMinTabBarWidth = (nTabWidth + 2 + 2) * nCountTabs;
-    if (nTabBarWidth > nMinTabBarWidth)
-        nTabBarWidth = nMinTabBarWidth;
+    int nMinTabBarWidth = (nTabWidth + /*(2+2)*/9) * nCountTabs;
+    if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
 
     QString cssStyle = styleSheet();
     cssStyle
@@ -291,6 +284,12 @@ void CAscTabWidget::adjustTabsSize()
 
 //    qDebug() << "styles: " << cssStyle;
     setStyleSheet(cssStyle);
+}
+
+void CAscTabWidget::applyCustomTheme(bool iscustom)
+{
+    m_widthParams.tools_width = (iscustom ? 50 : 140) * g_dpi_ratio;
+    m_widthParams.title_width = (iscustom ? 100 : 0) * g_dpi_ratio;
 }
 
 void CAscTabWidget::updateIcons()
@@ -364,14 +363,14 @@ int CAscTabWidget::tabIndexByView(int viewId)
     return -1;
 }
 
-void CAscTabWidget::onDocumentOpen(std::wstring path, bool select, int id)
+void CAscTabWidget::openDocument(std::wstring url, int id, bool select)
 {
     if (id > 0) {
         int tabIndex = tabIndexByView(id);
         if (!(tabIndex < 0))
             setCurrentIndex(tabIndex);
     } else {
-        int index = addEditor(tr("Document"), etUndefined, path);
+        int index = addEditor(tr("Document"), etUndefined, url);
         updateIcons();
 
         if (select && !(index < 0))
@@ -379,7 +378,7 @@ void CAscTabWidget::onDocumentOpen(std::wstring path, bool select, int id)
     }
 }
 
-void CAscTabWidget::onDocumentNameChanged(int viewId, QString name)
+void CAscTabWidget::applyDocumentChanging(int viewId, QString name)
 {
     int tabIndex = tabIndexByView(viewId);
 
@@ -391,7 +390,7 @@ void CAscTabWidget::onDocumentNameChanged(int viewId, QString name)
     }
 }
 
-void CAscTabWidget::onDocumentChanged(int viewId, bool state)
+void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
 {
     int tabIndex = tabIndexByView(viewId);
     if (!(tabIndex < 0)) {
@@ -410,12 +409,12 @@ void CAscTabWidget::onDocumentSave(int viewId)
     if (!(tabIndex < 0)) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) );
         if (doc->closed()) {
-            closeEditorByIndex(tabIndex, false);
+            closeEditor(tabIndex, false, true);
         }
     }
 }
 
-void CAscTabWidget::onDocumentType(int id, int type)
+void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
     CCefView * pView = m_pManager->GetViewById(id);
     if (NULL != pView && pView->GetType() == cvwtEditor) {

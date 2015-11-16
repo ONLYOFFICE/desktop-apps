@@ -13,3 +13,4 @@ common/loginpage/deploy/*
 *.xcuserstate
 *.xcuserdatad
 macos/Vendor/ONLYOFFICE
+macos/Production/Production/ONLYOFFICE.app

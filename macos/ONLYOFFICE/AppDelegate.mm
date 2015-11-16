@@ -41,6 +41,10 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 
+#ifndef MAS
+    #import "PFMoveApplication.h"
+#endif
+
 @interface AppDelegate ()
 
 @end
@@ -49,6 +53,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+#ifndef MAS
+    PFMoveToApplicationsFolderIfNecessary();
+#endif
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -69,6 +76,13 @@
     }
 
     return NSTerminateNow;
+}
+
+#pragma mark -
+#pragma mark - Menu
+
+- (IBAction)onShowHelp:(NSMenuItem *)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx"]];
 }
 
 @end

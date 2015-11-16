@@ -57,7 +57,7 @@
 
 + (instancetype)sharedInstance;
 - (id)downloadWithId:(NSString *)idx;
-- (void)addDownload:(NSString *)idx view:(NSView *)cefView fileName:(NSString *)fileName;
+- (void)addDownload:(NSString *)idx fileName:(NSString *)fileName;
 - (void)removeDownload:(NSString *)idx;
 - (void)updateDownload:(NSString *)idx data:(NSValue *)data;
 

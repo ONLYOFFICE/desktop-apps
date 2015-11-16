@@ -30,7 +30,7 @@
  *
 */
 
-#include "CSaveFileMessage.h"
+#include "csavefilemessage.h"
 #include "asctabwidget.h"
 
 #include <QVBoxLayout>
@@ -38,17 +38,20 @@
 #include <QCheckBox>
 #include <QLabel>
 
-//#ifdef Q_WS_WIN32
+#ifdef Q_WS_WIN32
 //#define WINVER 0x0500
 #include <windows.h>
-//#endif // Q_WS_WIN32
+#endif // Q_WS_WIN32
 
 #include <QDebug>
-extern byte g_dpi_ratio;
+extern BYTE g_dpi_ratio;
 
-CSaveFileMessage::CSaveFileMessage(HWND hParentWnd) :
-    QWinWidget(hParentWnd),
-    m_pDlg(this), m_result(0), m_fLayout(new QFormLayout), m_mapFiles(NULL)
+#if defined(_WIN32)
+CSaveFileMessage::CSaveFileMessage(HWND hParentWnd) : QWinWidget(hParentWnd),
+#else
+CSaveFileMessage::CSaveFileMessage(QWidget * parent) : QObject(parent),
+#endif
+    m_pDlg(parent), m_result(0), m_fLayout(new QFormLayout), m_mapFiles(NULL)
 {
     m_pDlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
                           | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
@@ -93,7 +96,7 @@ CSaveFileMessage::CSaveFileMessage(HWND hParentWnd) :
     m_pDlg.setLayout(layout);
     m_pDlg.setMinimumWidth(400*g_dpi_ratio);
 
-    QObject::connect(btn_yes, SIGNAL(clicked()), this, SLOT(onYesClicked()));
+    connect(btn_yes, &QPushButton::clicked, this, &CSaveFileMessage::onYesClicked);
     connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
 }
@@ -106,6 +109,7 @@ int CSaveFileMessage::showModal()
 {
     m_pDlg.adjustSize();
 
+#if defined(_WIN32)
     RECT rc;
     ::GetWindowRect(parentWindow(), &rc);
 
@@ -113,6 +117,8 @@ int CSaveFileMessage::showModal()
     int y = (rc.bottom - rc.top - m_pDlg.height())/2;
 
     m_pDlg.move(x, y);
+#endif
+
     m_pDlg.exec();
 
     return m_result;

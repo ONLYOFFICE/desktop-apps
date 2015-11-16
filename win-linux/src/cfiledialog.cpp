@@ -35,18 +35,21 @@
 
 #include <QDebug>
 
-CFileDialogWinWrapper::CFileDialogWinWrapper(HWND hParentWnd)
-    : QWinWidget(hParentWnd)
+#if defined(_WIN32)
+CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
+#else
+CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
+#endif
 {
 
 }
 
-CFileDialogWinWrapper::~CFileDialogWinWrapper()
+CFileDialogWrapper::~CFileDialogWrapper()
 {
 
 }
 
-bool CFileDialogWinWrapper::showModal(QString& fileName)
+bool CFileDialogWrapper::showModal(QString& fileName)
 {
     QString filter = tr("All files (*.*)"), ext_in;
     QRegExp reExtension("\\.(\\w{1,10})$");
@@ -55,13 +58,15 @@ bool CFileDialogWinWrapper::showModal(QString& fileName)
         filter.prepend(getFilter(ext_in) + ";;");
     }
 
-    QFileDialog dlg(this);
-    fileName = dlg.getSaveFileName(this, tr("Save As"), fileName, filter);
+    QWidget * p = qobject_cast<QWidget *>(parent());
+//    QFileDialog dlg(p);
+//    fileName = dlg.getSaveFileName(p, tr("Save As"), fileName, filter);
+    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
 
     return fileName.length() > 0;
 }
 
-QString CFileDialogWinWrapper::getFilter(const QString& extension) const
+QString CFileDialogWrapper::getFilter(const QString& extension) const
 {
     QString out = extension.toLower();
     if (extension.contains(QRegExp("^docx?$"))) {
