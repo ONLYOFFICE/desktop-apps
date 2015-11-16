@@ -197,7 +197,7 @@ $(document).ready(function() {
 
                         localStorage.setItem('ascportal', portal);
                         // window.AscDesktopEditor.setAuth(protocol + portal, portal, '/', token);
-                        document.cookie = "asc_auth_key=" + token + ";domain=" + protocol + portal + ";path=/";
+                        document.cookie = "asc_auth_key=" + token + ";domain=" + protocol + portal + ";path=/;HttpOnly";
                         window.location.replace(protocol + portal + startmodule);
                     } else {
                         console.log('authentication error: ' + obj.statusCode);
