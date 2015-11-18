@@ -38,7 +38,7 @@
 #include <QFormLayout>
 
 #ifdef _WIN32
-#include "qwinwidget.h"
+#include "win/qwinwidget.h"
 
 class CPrintProgress : public QWinWidget
 {

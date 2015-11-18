@@ -36,7 +36,7 @@
 #include <QObject>
 
 #ifdef _WIN32
-#include "qwinwidget.h"
+#include "win/qwinwidget.h"
 
 class CFileDialogWrapper : public QWinWidget
 {

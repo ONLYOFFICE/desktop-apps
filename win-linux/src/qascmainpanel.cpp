@@ -48,7 +48,9 @@
 #include "cfiledialog.h"
 #include "qascprinter.h"
 
-#ifndef _WIN32
+#ifdef _WIN32
+#include "cprintdialog.h"
+#else
 #define VK_F4 0x73
 #endif
 
@@ -136,6 +138,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_boxTitleBtns = new QWidget(centralWidget);
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     QLabel * label = new QLabel(APP_TITLE);
+    label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
     layoutBtns->setMargin(0);
     layoutBtns->setSpacing(14*g_dpi_ratio);

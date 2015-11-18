@@ -99,7 +99,6 @@ CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int 
     wcx.hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
                                         icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
 
-    RegisterClassExW( &wcx );
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 

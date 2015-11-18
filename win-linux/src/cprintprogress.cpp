@@ -36,7 +36,7 @@
 #include <QKeyEvent>
 #include "../common/libs/common/Types.h"
 
-#ifdef Q_WS_WIN32
+#ifdef _WIN32
 //#define WINVER 0x0500
 #include <windows.h>
 #endif // Q_WS_WIN32
@@ -72,11 +72,15 @@ public:
 
 
 #if defined(_WIN32)
-CPrintProgress::CPrintProgress(HWND hParentWnd) : QWinWidget(hParentWnd),
+CPrintProgress::CPrintProgress(HWND hParentWnd)
+    : QWinWidget(hParentWnd),
+      m_Dlg(this),
 #else
-CPrintProgress::CPrintProgress(QWidget * parent) : QObject(parent),
+CPrintProgress::CPrintProgress(QWidget * parent)
+    : QObject(parent),
+      m_Dlg(parent),
 #endif
-    m_Dlg(parent), m_fLayout(new QFormLayout),
+    m_fLayout(new QFormLayout),
     m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
 {
     m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint

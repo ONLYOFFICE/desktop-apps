@@ -33,7 +33,7 @@
 #ifndef CPRINTDIALOG_H
 #define CPRINTDIALOG_H
 
-#include "qwinwidget.h"
+#include "win/qwinwidget.h"
 #include <QPrintDialog>
 
 

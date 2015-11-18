@@ -47,11 +47,15 @@
 extern BYTE g_dpi_ratio;
 
 #if defined(_WIN32)
-CSaveFileMessage::CSaveFileMessage(HWND hParentWnd) : QWinWidget(hParentWnd),
+CSaveFileMessage::CSaveFileMessage(HWND hParentWnd)
+    : QWinWidget(hParentWnd),
+      m_pDlg(this),
 #else
-CSaveFileMessage::CSaveFileMessage(QWidget * parent) : QObject(parent),
+CSaveFileMessage::CSaveFileMessage(QWidget * parent)
+    : QObject(parent),
+    m_pDlg(parent),
 #endif
-    m_pDlg(parent), m_result(0), m_fLayout(new QFormLayout), m_mapFiles(NULL)
+    m_result(0), m_fLayout(new QFormLayout), m_mapFiles(NULL)
 {
     m_pDlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
                           | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);

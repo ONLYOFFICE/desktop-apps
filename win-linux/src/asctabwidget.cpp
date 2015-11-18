@@ -40,6 +40,10 @@
 #include <QStylePainter>
 #include <QDesktopWidget>
 
+#include "ctabbar.h"
+#include "ctabstyle.h"
+#include "../common/libs/common/Types.h"
+
 #include "private/qtabbar_p.h"
 
 extern BYTE g_dpi_ratio;
@@ -126,14 +130,11 @@ bool CAscTabData::closed() const
  *
 */
 
-#include "ctabbar.h"
-#include "ctabstyle.h"
-
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
-    , m_widthParams{{41, 135, 9}, 108, 3, 0, 100, 140, 0}
+    , m_widthParams({{41, 135, 9}, 108, 3, 0, 100, 140, 0})
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -515,6 +516,7 @@ void CAscTabWidget::setFullScreen(bool apply)
             insertTab(index, fsWidget, doc->title());
             tabBar()->setTabData(index, VPtr<CAscTabData>::asQVariant(doc));
             tabBar()->setTabToolTip(index, doc->title());
+            tabBar()->setCurrentIndex(index);
 
             RELEASEOBJECT(m_dataFullScreen)
 
@@ -528,6 +530,11 @@ void CAscTabWidget::setFullScreen(bool apply)
                     fsWidget, VPtr<void>::asPtr(tabBar()->tabData(currentIndex())));
 
             removeTab(currentIndex());
+
+//            QIcon icon(":/res/icons/desktop_icons.ico");
+//            HICON hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
+//                                                icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
+//            SendMessage((HWND)fsWidget->winId(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
             fsWidget->setParent(0);
             fsWidget->showFullScreen();

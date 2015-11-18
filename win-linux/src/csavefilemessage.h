@@ -34,7 +34,7 @@
 #define CSAVEFILEMESSAGE_H
 
 #if defined(_WIN32)
-#include "qwinwidget.h"
+#include "win/qwinwidget.h"
 #endif
 
 #include <QDialog>
