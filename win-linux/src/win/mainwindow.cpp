@@ -56,11 +56,7 @@ extern byte g_dpi_ratio;
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
-CMainWindow::CMainWindow(QApplication *app, HBRUSH windowBackground, const QRect& r, CAscApplicationManager* pManager ) :
-    CMainWindow(app, windowBackground, r.left(), r.top(), r.width(), r.height(), pManager)
-{}
-
-CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int x, const int y, const int width, const int height, CAscApplicationManager* pManager ) :
+CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground) :
     hWnd(0),
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
@@ -70,16 +66,16 @@ CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int 
     visible( false ),
     mainPanel(NULL)
 {
-//    GET_REGISTRY_USER(reg_user)
+    GET_REGISTRY_USER(reg_user)
 
-//    // adjust window size
-//    QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
-//    QRect _screen_size = app.primaryScreen()->availableGeometry();
-//    if (_screen_size.width() < _window_rect.width())
-//        _window_rect.setWidth(_screen_size.width()), _window_rect.setLeft(0);
+    // adjust window size
+    QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
+    QRect _screen_size = qApp->primaryScreen()->availableGeometry();
+    if (_screen_size.width() < _window_rect.width())
+        _window_rect.setWidth(_screen_size.width()), _window_rect.setLeft(0);
 
-//    if (_screen_size.height() < _window_rect.height())
-//        _window_rect.setHeight(_screen_size.width()), _window_rect.setTop(0);
+    if (_screen_size.height() < _window_rect.height())
+        _window_rect.setHeight(_screen_size.width()), _window_rect.setTop(0);
 
     m_pManager = pManager;
     m_pManager->StartSpellChecker();
@@ -102,8 +98,8 @@ CMainWindow::CMainWindow( QApplication *app, HBRUSH windowBackground, const int 
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindowW( L"WindowClass", L"ONLYOFFICE Desktop Editors", static_cast<DWORD>(Style::windowed), x, y, width, height, 0, 0, hInstance, nullptr );
-
+    hWnd = CreateWindowW( L"WindowClass", L"ONLYOFFICE Desktop Editors", static_cast<DWORD>(Style::windowed),
+                          _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );
 

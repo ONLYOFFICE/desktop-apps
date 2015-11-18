@@ -33,13 +33,12 @@
 #ifndef CASCAPPLICATIONMANAGERWRAPPER
 #define CASCAPPLICATIONMANAGERWRAPPER
 
-#include "qascmainpanel.h"
 #include "applicationmanager.h"
 
 class CAscApplicationManagerWrapper : public CAscApplicationManager
 {
 private:
-    QAscMainPanel * m_pPanel;
+    QObject * m_pPanel;
 
 public:
     CAscApplicationManagerWrapper()
@@ -73,7 +72,7 @@ public:
         return -1;
     }
 
-    void setMainPanel(QAscMainPanel * p)
+    void setMainPanel(QObject * p)
     {
         m_pPanel = p;
     }

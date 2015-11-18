@@ -53,8 +53,7 @@ public:
     HINSTANCE               hInstance;
     CAscApplicationManager* m_pManager;
 
-    CMainWindow( QApplication *app, HBRUSH windowBackground, const QRect&, CAscApplicationManager* pManager );
-    CMainWindow( QApplication *app, HBRUSH windowBackground, const int x, const int y, const int width, const int height, CAscApplicationManager* pManager );
+    CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground);
     ~CMainWindow();
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);

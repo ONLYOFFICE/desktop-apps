@@ -207,16 +207,14 @@ int main( int argc, char *argv[] )
     HBRUSH windowBackground = CreateSolidBrush( RGB(49, 52, 55) );
 
     // Create window
-    CMainWindow window( &app, windowBackground, _window_rect, pApplicationManager );
-    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );    
-
-    ((CMyApplicationManager *)pApplicationManager)->setMainPanel(window.mainPanel);
+    CMainWindow window(pApplicationManager, windowBackground);
+    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
 #elif defined(Q_OS_LINUX)
     // Create window
-    CMainWindow w(pApplicationManager);
+    CMainWindow window(pApplicationManager);
 
-    w.show();
-    w.setWindowTitle("Desktop Editors");
+    window.show();
+    window.setWindowTitle("Desktop Editors");
 #endif
 
     bIsOwnMessageLoop = false;
