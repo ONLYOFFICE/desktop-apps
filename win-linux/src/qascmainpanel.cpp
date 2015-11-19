@@ -47,6 +47,7 @@
 #include "cprintprogress.h"
 #include "cfiledialog.h"
 #include "qascprinter.h"
+#include "../common/libs/common/Types.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
@@ -266,7 +267,7 @@ void QAscMainPanel::RecalculatePlaces()
 
 void QAscMainPanel::pushButtonMinimizeClicked()
 {
-//    emit mainWindowChangeState(Qt::WindowMinimized);
+    emit mainWindowChangeState(Qt::WindowMinimized);
 
 //    QPrinter printer;
 //    QPrintDialog *dialog = new QPrintDialog(&printer, this);
@@ -389,7 +390,7 @@ void QAscMainPanel::onTabCloseRequest(int index)
 {
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CSaveFileMessage saveDlg(parentWindow());
+        CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
 #else
         CSaveFileMessage saveDlg(this);
 #endif
@@ -507,6 +508,12 @@ void QAscMainPanel::loadStartPage()
     ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
 }
 
+void QAscMainPanel::goStart()
+{
+    loadStartPage();
+    toggleButtonMain(true);
+}
+
 void QAscMainPanel::checkModified(BYTE action)
 {
     QMap<int, QString> mapModified;
@@ -518,7 +525,7 @@ void QAscMainPanel::checkModified(BYTE action)
 
     if (mapModified.size()) {
 #ifdef _WIN32
-        CSaveFileMessage saveDlg(parentWindow());
+        CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
 #else
         CSaveFileMessage saveDlg(this);
 #endif
@@ -545,17 +552,15 @@ void QAscMainPanel::checkModified(BYTE action)
     }
 
     if (action == WAIT_MODIFIED_CLOSE) {
-#if defined(_WIN32)
-        PostQuitMessage(0);
-#elif defined(Q_OS_LINUX)
         emit mainWindowClose();
-#endif
     } else
     if (action == WAIT_MODIFIED_LOGOUT) {
         m_pManager->Logout(m_pWidgetProfile->info()->portal().toStdWString());
 
         m_pButtonProfile->setDisabled(true);
         m_pWidgetProfile->parseProfile("");
+
+        goStart();
     }
 }
 
@@ -583,7 +588,7 @@ void QAscMainPanel::onDocumentPrint(void * opts)
     printer->setFromTo(1, pagesCount);
 
 #ifdef _WIN32
-    CPrintDialogWinWrapper wrapper(printer, parentWindow());
+    CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
     QPrintDialog * dialog = wrapper.q_dialog();
 #else
     QPrintDialog * dialog =  new QPrintDialog(printer, this);
@@ -620,9 +625,10 @@ void QAscMainPanel::onDocumentPrint(void * opts)
                 NSEditorApi::CAscMenuEvent * pEvent;
 
 #if defined(_WIN32)
-                EnableWindow(parentWindow(), FALSE);
+//                EnableWindow(parentWindow(), FALSE);
+                EnableWindow((HWND)parentWidget()->winId(), FALSE);
 
-                CPrintProgress progressDlg(parentWindow());
+                CPrintProgress progressDlg((HWND)parentWidget()->winId());
 #else
                 CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
 #endif
@@ -660,7 +666,8 @@ void QAscMainPanel::onDocumentPrint(void * opts)
 
                 pView->Apply(pEvent);
 #if defined(_WIN32)
-                EnableWindow(parentWindow(), TRUE);
+//                EnableWindow(parentWindow(), TRUE);
+                EnableWindow((HWND)parentWidget()->winId(), TRUE);
 #endif
             }
         } else {
@@ -694,7 +701,7 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
         if (sName.size()) {
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
 #ifdef _WIN32
-            CFileDialogWrapper dlg(parentWindow());
+            CFileDialogWrapper dlg((HWND)parentWidget()->winId());
 #else
             CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
@@ -713,20 +720,28 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 
 void QAscMainPanel::onFullScreen(bool apply)
 {
-#ifdef _WIN32
-    if (!apply) {
-        ShowWindow(parentWindow(), m_isMaximized ? SW_MAXIMIZE : SW_SHOW);
+    if (apply) {
+        m_isMaximized = m_mainWindowState == Qt::WindowMaximized;
+
         m_pTabs->setFullScreen(apply);
+        emit mainWindowChangeState(Qt::WindowFullScreen);
     } else {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        GetWindowPlacement(parentWindow(), &wp);
-
-        m_isMaximized = wp.showCmd == SW_MAXIMIZE;
-
+        emit mainWindowChangeState(m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState);
         m_pTabs->setFullScreen(apply);
-        ShowWindow(parentWindow(), SW_HIDE);
     }
-#endif
+
+//    if (!apply) {
+//        ShowWindow(parentWindow(), m_isMaximized ? SW_MAXIMIZE : SW_SHOW);
+//        m_pTabs->setFullScreen(apply);
+//    } else {
+//        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+//        GetWindowPlacement(parentWindow(), &wp);
+
+//        m_isMaximized = wp.showCmd == SW_MAXIMIZE;
+
+//        m_pTabs->setFullScreen(apply);
+//        ShowWindow(parentWindow(), SW_HIDE);
+//    }
 }
 
 void QAscMainPanel::onKeyDown(void * eventData)

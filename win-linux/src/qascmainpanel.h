@@ -60,16 +60,17 @@ public:
     CAscApplicationManager * getAscApplicationManager();
     void applyMainWindowState(Qt::WindowState);
 
+    void goStart();
+    void focus();
+    void checkModified(BYTE action);
+
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
-    void loadStartPage();
     void toggleButtonMain(bool);
-    void checkModified(BYTE action);
-
-    void focus();
+    void loadStartPage();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);

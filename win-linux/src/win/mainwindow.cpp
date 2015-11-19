@@ -41,12 +41,15 @@
 #include <QFile>
 #include <QPixmap>
 #include <QDialog>
-#include "../defines.h"
+#include <QScreen>
+
+#include "../cascapplicationmanagerwrapper.h"
 
 #include <QSettings>
 #include <QDebug>
 
 HWND gWinId = 0;
+
 
 //QMainPanel*     CMainWindow::mainPanel;
 //QApplication*   CMainWindow::a;
@@ -64,7 +67,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     aeroShadow( true ),
     closed( false ),
     visible( false ),
-    mainPanel(NULL)
+    m_pWinPanel(NULL)
 {
     GET_REGISTRY_USER(reg_user)
 
@@ -79,6 +82,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
 
     m_pManager = pManager;
     m_pManager->StartSpellChecker();
+    m_pManager->StartKeyboardChecker();
 
     WNDCLASSEXW wcx = { 0 };
     wcx.cbSize = sizeof( WNDCLASSEX );
@@ -105,27 +109,26 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    mainPanel = new QMainPanel( hWnd, m_pManager );
-    gWinId = ( HWND )mainPanel->winId();
+    m_pWinPanel = new CWinPanel(hWnd, m_pManager);
+    ((CAscApplicationManagerWrapper *)pManager)->setMainPanel(m_pWinPanel->getMainPanel());
 
-    SetWindowPos(gWinId, NULL, 0, 0, width, height, SWP_FRAMECHANGED);
+    gWinId = ( HWND )m_pWinPanel->winId();
 
-    GET_REGISTRY_USER(reg_user)
+    SetWindowPos(gWinId, NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
+
     bool _is_maximized = reg_user.value("maximized", false).toBool();
     show(_is_maximized);
 //    visible = true;
     toggleBorderless(_is_maximized);
-    mainPanel->loadStartPage();
+    m_pWinPanel->goStartPage();
 
     if (_is_maximized) {
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(hWnd, &wp)) {
-            wp.rcNormalPosition = {x, y, x+width, y+height};
+            wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.left()};
             SetWindowPlacement(hWnd, &wp);
         }
     }
-
-    a = app;
 
     m_nTimerLanguageId = 5000;
 
@@ -235,7 +238,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //        str += "\n";
 //        OutputDebugStringA( str.toLocal8Bit().data() );
 
-        window->mainPanel->focus();
+        window->m_pWinPanel->focus();
         break;
     }
 
@@ -255,12 +258,12 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
-        window->mainPanel->checkModified(WAIT_MODIFIED_CLOSE);
+        window->m_pWinPanel->doClose();
         return 0;
 
     case WM_DESTROY:
     {
-        PostQuitMessage(0);
+//        PostQuitMessage(0);
         break;
     }
 
@@ -337,7 +340,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     }
 
     case WM_SIZE:
-        if (window->mainPanel) {
+        if (window->m_pWinPanel) {
             RECT lpWindowRect, clientRect;
             GetWindowRect(hWnd, &lpWindowRect);
             GetClientRect(hWnd, &clientRect);
@@ -349,10 +352,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             int nMaxOffsetR = 0;
             int nMaxOffsetB = 0;
 
-            QPushButton* pushButtonMaximize = window->mainPanel->findChild<QPushButton*>( "toolButtonMaximize" );
             if ( wParam == SIZE_MAXIMIZED ) {
-                pushButtonMaximize->setProperty("class", "min");
-
                 LONG lTestW = 640;
                 LONG lTestH = 480;
                 RECT wrect{0,0,lTestW,lTestH};
@@ -365,19 +365,18 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
                 if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
 
                 // TODO: вот тут бордер!!!
-                window->mainPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
+                window->m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
+                window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);
             } else {
-                pushButtonMaximize->setProperty("class", "normal");
                 border_size = 3 * g_dpi_ratio;
 
                 // TODO: вот тут бордер!!!
-                window->mainPanel->setGeometry(border_size, border_size,
+                window->m_pWinPanel->setGeometry(border_size, border_size,
                                 clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
+                window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
             }
-
-            pushButtonMaximize->style()->polish(pushButtonMaximize);
 
             HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
                                 lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,

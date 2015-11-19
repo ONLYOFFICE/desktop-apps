@@ -39,11 +39,12 @@
 //#include "cefapplication.h"
 //#include "cmyapplicationmanager.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "linux/cmainwindow.h"
 
 #ifdef _WIN32
-#include "mainwindow.h"
+#include "win/mainwindow.h"
 #include "shlobj.h"
+#else
+#include "linux/cmainwindow.h"
 #endif
 
 #include <QDebug>
@@ -67,7 +68,7 @@ int main( int argc, char *argv[] )
         WCHAR szPath[MAX_PATH];
         if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
             sAppData = std::wstring(szPath);
-            NSCommon::string_replace(sAppData, L"\\", L"/");
+            std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
             sAppData += L"/ONLYOFFICE/DesktopEditors";
         }
 #else

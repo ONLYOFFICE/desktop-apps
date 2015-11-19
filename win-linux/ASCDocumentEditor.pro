@@ -52,7 +52,7 @@ SOURCES += \
     src/cfiledialog.cpp \
     src/cprintprogress.cpp \
     src/ccefeventstransformer.cpp \
-    src/qascmainpanel.cpp
+    src/qascmainpanel.cpp \
     src/ctabbar.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
@@ -102,13 +102,13 @@ win32 {
     HEADERS += ./src/win/mainwindow.h \
                 ./src/win/qwinwidget.h \
                 ./src/win/qwinhost.h \
-                ./src/win/qmainpanel.h \
+                ./src/win/cwinpanel.h \
                 ./src/win/cprintdialog.h
 
     SOURCES += ./src/win/mainwindow.cpp \
                 ./src/win/qwinwidget.cpp \
                 ./src/win/qwinhost.cpp \
-                ./src/win/qmainpanel.cpp
+                ./src/win/cwinpanel.cpp \
                 ./src/cprintdialog.cpp
 
     LIBS += -lwininet \
@@ -149,11 +149,11 @@ win32 {
         PLATFORM_BUILD = win32
     }
 
-    LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/cefbuilds/$$PLATFORM_BUILD -llibcef
+    LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/cefbuilds/$$PLATFORM_BUILD -llibcef
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
     } else {
-        LIBS += -L$$PWD/../common/libs/ChromiumBasedEditors/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
+        LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
     }
 
     message($$PLATFORM_BUILD)

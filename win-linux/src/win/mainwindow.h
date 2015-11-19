@@ -34,7 +34,7 @@
 
 #include "applicationmanager.h"
 
-#include "qmainpanel.h"
+#include "cwinpanel.h"
 #include "qwinwidget.h"
 
 #include <QtWidgets/QApplication>
@@ -78,8 +78,7 @@ public:
     void removeMaximumSize();
 
 public:
-    QApplication *a;
-    QMainPanel *mainPanel;
+    CWinPanel * m_pWinPanel;
 
 private:
 

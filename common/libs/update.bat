@@ -1,5 +1,5 @@
 @echo off
-rem set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors
+rem set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2
 set LibsPath=svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor
 
 if exist ".svn" (
