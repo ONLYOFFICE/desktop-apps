@@ -12,6 +12,10 @@
     background: #313437; 
 }
 
+#labelAppTitle {
+    color: #fff;
+}
+
 QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
     QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
     QPushButton#toolButtonProfile, QPushButton#toolButtonDownload { 
