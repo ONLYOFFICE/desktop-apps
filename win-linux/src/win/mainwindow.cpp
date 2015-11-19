@@ -44,16 +44,12 @@
 #include <QScreen>
 
 #include "../cascapplicationmanagerwrapper.h"
+#include "../defines.h"
 
 #include <QSettings>
 #include <QDebug>
 
 HWND gWinId = 0;
-
-
-//QMainPanel*     CMainWindow::mainPanel;
-//QApplication*   CMainWindow::a;
-
 extern byte g_dpi_ratio;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);

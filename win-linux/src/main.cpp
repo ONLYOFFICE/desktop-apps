@@ -36,9 +36,8 @@
 #include <QStandardPaths>
 #include <QLibraryInfo>
 
-//#include "cefapplication.h"
-//#include "cmyapplicationmanager.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "defines.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -136,8 +135,8 @@ int main( int argc, char *argv[] )
     splash.show();
     app.processEvents();
 
-    QSettings reg_system(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
-    QSettings reg_user(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 
     // read setup language and set application locale

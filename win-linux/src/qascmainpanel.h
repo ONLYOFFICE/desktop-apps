@@ -45,9 +45,6 @@
 #include "applicationmanager.h"
 #include "ccefeventstransformer.h"
 
-#define APP_NAME "DesktopEditors"
-#define GET_REGISTRY_USER(variable) \
-    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
 
 struct CPrintData;
 

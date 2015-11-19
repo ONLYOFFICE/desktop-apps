@@ -40,10 +40,6 @@
 
 #include "applicationmanager.h"
 
-#define APP_NAME "DesktopEditors"
-#define GET_REGISTRY_USER(variable) \
-    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
-
 class CWinPanel : public QWinWidget
 {
     Q_OBJECT
