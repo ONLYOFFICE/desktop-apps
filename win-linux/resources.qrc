@@ -67,6 +67,7 @@
         <file>res/icons/checkbox.png</file>
         <file>res/icons/arrow_down.png</file>
         <file>res/icons/desktopeditors.ico</file>
+        <file>res/icons/splash.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>

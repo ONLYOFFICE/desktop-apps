@@ -52,6 +52,7 @@
 #include <QSettings>
 #include <QScreen>
 #include <QApplication>
+#include <QSplashScreen>
 
 
 BYTE g_dpi_ratio = 1;
@@ -131,6 +132,10 @@ int main( int argc, char *argv[] )
     QApplication app(argc, argv);
     /**                      **/
 
+    QSplashScreen splash(QPixmap(":/res/icons/splash.png"));
+    splash.show();
+    app.processEvents();
+
     QSettings reg_system(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
     QSettings reg_user(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
     reg_user.setFallbacksEnabled(false);
@@ -202,7 +207,6 @@ int main( int argc, char *argv[] )
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     app.setFont( mainFont );
 
-
 #ifdef _WIN32
     // Background color
     HBRUSH windowBackground = CreateSolidBrush( RGB(49, 52, 55) );
@@ -217,6 +221,8 @@ int main( int argc, char *argv[] )
     window.show();
     window.setWindowTitle("Desktop Editors");
 #endif
+
+    splash.finish(window.m_pWinPanel);
 
     bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
