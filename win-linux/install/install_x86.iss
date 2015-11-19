@@ -15,8 +15,8 @@ Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafte
 
 Source: ..\build\Release\release\DesktopEditors.exe;     DestDir: {app}; 
 
-Source: ..\..\common\libs\ChromiumBasedEditors\app\corebuilds\win32\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\common\libs\ChromiumBasedEditors\app\cefbuilds\win32\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win32\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\common\libs\ChromiumBasedEditors2\app\cefbuilds\win32\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 Source: data\libs\qt\win32\*;                               DestDir: {app}\; Flags: ignoreversion recursesubdirs;
 
 
