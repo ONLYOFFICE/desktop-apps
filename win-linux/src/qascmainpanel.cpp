@@ -688,8 +688,6 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 {
     GET_REGISTRY_USER(_reg_user);
 
-    qDebug() << "NAME: " << QString().fromStdWString(sName);
-
     QString savePath = _reg_user.value("savePath").value<QString>();
     if (savePath.isEmpty() || !QDir(savePath).exists())
         savePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);

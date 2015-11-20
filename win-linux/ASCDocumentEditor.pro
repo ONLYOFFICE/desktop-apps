@@ -33,7 +33,7 @@ HEADERS += \
     src/cprintprogress.h \
     src/ccefeventstransformer.h \
     src/qascmainpanel.h \
-    src/cascapplicationmanagerwrapper.h
+    src/cascapplicationmanagerwrapper.h \
     src/ctabbar.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
