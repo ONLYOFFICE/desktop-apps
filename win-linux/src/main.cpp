@@ -131,9 +131,11 @@ int main( int argc, char *argv[] )
     QApplication app(argc, argv);
     /**                      **/
 
+#ifdef _WIN32
     QSplashScreen splash(QPixmap(":/res/icons/splash.png"));
     splash.show();
     app.processEvents();
+#endif
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
@@ -213,6 +215,8 @@ int main( int argc, char *argv[] )
     // Create window
     CMainWindow window(pApplicationManager, windowBackground);
     window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
+
+    splash.finish(window.m_pWinPanel);
 #elif defined(Q_OS_LINUX)
     // Create window
     CMainWindow window(pApplicationManager);
@@ -221,7 +225,6 @@ int main( int argc, char *argv[] )
     window.setWindowTitle("Desktop Editors");
 #endif
 
-    splash.finish(window.m_pWinPanel);
 
     bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
