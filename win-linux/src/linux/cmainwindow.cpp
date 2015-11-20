@@ -31,6 +31,7 @@
 */
 
 #include "cmainwindow.h"
+#include "../defines.h"
 #include "../qascmainpanel.h"
 #include "../cascapplicationmanagerwrapper.h"
 #include <QProxyStyle>
@@ -55,10 +56,6 @@ CMainWindow::CMainWindow(QWidget *parent)
     resize(1200, 700);
 
     qApp->setStyle(new CStyleTweaks);
-
-    GET_REGISTRY_USER(reg_user)
-    restoreGeometry(reg_user.value("position").toByteArray());
-    restoreState(reg_user.value("windowstate").toByteArray());
 }
 
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
@@ -70,6 +67,10 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
 
     ((CAscApplicationManagerWrapper *)pAppManager)->setMainPanel((QAscMainPanel *)m_pMainPanel);
 
+    GET_REGISTRY_USER(reg_user)
+    restoreGeometry(reg_user.value("position").toByteArray());
+    restoreState(reg_user.value("windowstate").toByteArray());
+
     QMetaObject::connectSlotsByName(this);
 
     pAppManager->StartSpellChecker();
@@ -79,13 +80,10 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
 }
 
-void CMainWindow::closeEvent(QCloseEvent *)
+void CMainWindow::closeEvent(QCloseEvent * e)
 {
-    ((QAscMainPanel *)m_pMainPanel)->getAscApplicationManager()->GetApplication()->ExitMessageLoop();
-
-    GET_REGISTRY_USER(reg_user)
-    reg_user.setValue("position", saveGeometry());
-    reg_user.setValue("windowstate", saveState());
+    ((QAscMainPanel *)m_pMainPanel)->checkModified(WAIT_MODIFIED_CLOSE);
+    e->ignore();
 }
 
 void CMainWindow::showEvent(QShowEvent * e)
@@ -131,5 +129,13 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 
 void CMainWindow::slot_windowClose()
 {
+    if (windowState() != Qt::WindowFullScreen) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", saveGeometry());
+        reg_user.setValue("windowstate", saveState());
+    }
+
+    ((QAscMainPanel *)m_pMainPanel)->getAscApplicationManager()->GetApplication()->ExitMessageLoop();
+
     close();
 }
