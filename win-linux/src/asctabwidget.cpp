@@ -530,13 +530,18 @@ void CAscTabWidget::setFullScreen(bool apply)
                     fsWidget, VPtr<void>::asPtr(tabBar()->tabData(currentIndex())));
 
             removeTab(currentIndex());
+#ifdef _WIN32
 
 //            QIcon icon(":/res/icons/desktop_icons.ico");
 //            HICON hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
 //                                                icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
 //            SendMessage((HWND)fsWidget->winId(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
-            fsWidget->setParent(0);
+            fsWidget->setParent(nullptr);
+#else
+            QWidget * grandpa = qobject_cast<QWidget *>(parent()->parent());
+            if (grandpa) fsWidget->setParent(grandpa);
+#endif
             fsWidget->showFullScreen();
 
             QPoint pt = mapToGlobal(pos());

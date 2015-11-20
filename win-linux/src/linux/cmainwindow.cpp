@@ -114,16 +114,24 @@ bool CMainWindow::event(QEvent * event)
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 {
-    setWindowState(s);
+    if (s == Qt::WindowFullScreen) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", saveGeometry());
+        reg_user.setValue("windowstate", saveState());
 
-    switch (s) {
-    case Qt::WindowMaximized:
-    case Qt::WindowMinimized:
-        break;
-    default:
-    case Qt::WindowNoState:
-        activateWindow();
-        break;        
+        showFullScreen();
+    } else {
+        setWindowState(s);
+
+        switch (s) {
+        case Qt::WindowMaximized:
+        case Qt::WindowMinimized:
+            break;
+        default:
+        case Qt::WindowNoState:
+            activateWindow();
+            break;
+        }
     }
 }
 
