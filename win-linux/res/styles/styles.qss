@@ -71,6 +71,8 @@ QPushButton#toolButtonClose[class=normal]:hover,
 
 QPushButton#toolButtonMain {
     background-image: url(:/res/icons/mainpage.png);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 QPushButton#toolButtonMain[theme=rightangle] {
