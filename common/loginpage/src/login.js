@@ -66,9 +66,10 @@ $(document).ready(function() {
 
         var pass        = document.getElementById('auth-pass').value;
         var url         = protocol + portal + "/api/2.0/authentication.json";
+        var check_url   = protocol + portal + "/api/2.0/people/@self.json";
 
         setLoaderVisible(true);
-        if (checkResourceExists(url) == 0) {
+        if (checkResourceExists(check_url) == 0) {
             // TODO: divide to login error and wrong portal error
             showLoginError();
             setLoaderVisible(false);
@@ -266,7 +267,7 @@ function checkResourceExists(url) {
     reader.open('get', url, false);
     reader.send(null);
     switch (reader.status) {
-    case 0:
+    case 0: case 401:
     case 200: return 1;
     case 404: return 0;
     default: return -1;
