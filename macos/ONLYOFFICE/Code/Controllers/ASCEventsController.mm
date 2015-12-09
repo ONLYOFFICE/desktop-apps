@@ -324,7 +324,7 @@ public:
 //                    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
 //                        CAscExecCommand * pData = (CAscExecCommand *)pEvent->m_pData;
 //                        std::wstring cmd = pData->get_Command();
-//                        if (cmd.compare(L"open:portal") == 0) {
+//                        if (cmd.compare(L"portal:open") == 0) {
 //                            QMetaObject::invokeMethod( pObjParent, "onPortalOpen", Qt::QueuedConnection,
 //                                                      Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
 //                        }
