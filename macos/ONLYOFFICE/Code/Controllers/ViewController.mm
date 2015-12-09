@@ -177,12 +177,12 @@
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
         
-        [self.cefStartPageView Load:[loginPage string]];
+        [self.cefStartPageView LoadWithUrl:[loginPage string]];
     }
 }
 
 #pragma mark -
-#pragma mark - Public
+#pragma mark Public
 
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
@@ -271,7 +271,7 @@
 }
 
 #pragma mark -
-#pragma mark - CEF events handlers
+#pragma mark CEF events handlers
 
 - (void)onCEFCreateTab:(NSNotification *)notification {
     if (notification && notification.userInfo) {
@@ -280,7 +280,7 @@
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = NSLocalizedString(@"Document", nil);
         tab.type        = ASCTabViewOpeningType;
-        tab.url         = params[@"url"];
+        tab.params      = params;
 
         [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
     }
@@ -436,7 +436,7 @@
 
 
 #pragma mark -
-#pragma mark - ASCTabsControl Delegate
+#pragma mark ASCTabsControl Delegate
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
     if (tab) {
@@ -445,18 +445,49 @@
 }
 
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
-    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
-    [cefView Create:appManager withType:cvwtEditor];
-    [cefView Load:tab.url];
-    
-    tab.uuid = [NSString stringWithFormat:@"%ld", (long)cefView.uuid];
-    
-    NSTabViewItem * item = [[NSTabViewItem alloc] initWithIdentifier:tab.uuid];
-    item.label = tab.title;
-    [self.tabView addTabViewItem:item];
-    [item.view addSubview:cefView];
-    [cefView setupFillConstraints];
+    if (tab.params) {
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
+        
+        ASCTabActionType action = (ASCTabActionType)[tab.params[@"action"] intValue];
+        
+        if (action == ASCTabActionOpenPortal) {
+            [cefView Create:appManager withType:cvwtSimple];
+        } else {
+            [cefView Create:appManager withType:cvwtEditor];
+        }
+        
+        switch (action) {
+            case ASCTabActionOpenPortal:
+            case ASCTabActionOpenUrl: {
+                [cefView LoadWithUrl:tab.params[@"url"]];
+                break;
+            }
+            case ASCTabActionCreateFile: {
+                int docType = [tab.params[@"type"] intValue];
+                NSString * docName = NSLocalizedString(@"New Document.docx", nil);
+                
+                switch (docType) {
+                    case 1: docName = NSLocalizedString(@"New Spreadsheet", nil); 	break;
+                    case 2: docName = NSLocalizedString(@"New Presentation", nil);  break;
+                }
+                
+                [cefView CreateFileWithName:docName type:docType];
+                break;
+            }
+            default:
+                break;
+        }
+        
+        
+        tab.uuid = [NSString stringWithFormat:@"%ld", (long)cefView.uuid];
+        
+        NSTabViewItem * item = [[NSTabViewItem alloc] initWithIdentifier:tab.uuid];
+        item.label = tab.title;
+        [self.tabView addTabViewItem:item];
+        [item.view addSubview:cefView];
+        [cefView setupFillConstraints];
+    }
 }
 
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab {
@@ -534,7 +565,7 @@
 }
 
 #pragma mark -
-#pragma mark - ASCTitleBarController Delegate
+#pragma mark ASCTitleBarController Delegate
 
 - (void)onOnlyofficeButton:(id)sender {
     [self.tabView selectTabViewItemWithIdentifier:rootTabId];
@@ -547,7 +578,7 @@
 }
 
 #pragma mark -
-#pragma mark - ASCUserInfoViewController Delegate
+#pragma mark ASCUserInfoViewController Delegate
 
 - (void)onLogoutButton:(ASCUserInfoViewController *)controller {
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
@@ -563,7 +594,7 @@
 }
 
 #pragma mark -
-#pragma mark - Debug
+#pragma mark Debug
 
 //- (IBAction)onAddTab:(id)sender {
 //    ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];

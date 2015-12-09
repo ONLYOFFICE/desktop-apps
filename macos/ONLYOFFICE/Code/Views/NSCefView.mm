@@ -184,10 +184,21 @@ public:
     return NSNotFound;
 }
 
-- (void)Load:(NSString *)url {
+- (void)LoadWithUrl:(NSString *)url {
     if (m_pCefView) {
         m_pCefView->GetCefView()->load([url stdwstring]);
     }
+}
+
+- (void)CreateFileWithName:(NSString *)name type:(NSInteger)type {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->CreateLocalFile((int)type, [name stdwstring]);
+        }
+    }
+
 }
 
 - (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {

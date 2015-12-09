@@ -50,11 +50,26 @@ CAscApplicationManager * createASCApplicationManager() {
 
 int main(int argc, const char * argv[]) {
 //    return NSApplicationMain(argc, argv);
+    
     [ASCHelper copyVendorJS];
     
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
-
-    [NSAscApplicationWorker getAppManager]->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    
+    // setup common user directory
+    appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
+    
+    // setup Editors directory
+    appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/apps/api/documents/index.html"] stdwstring];
+    
+    // setup Dictionary directory
+    appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Dictionary"] stdwstring];
+    
+    // setup Recovery directory
+    appManager->m_oSettings.recover_path = [[ASCHelper recoveryDataPath] stdwstring];
+    
+    // setup Converter directory
+    appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];;
     
     [worker Start:argc :argv];
     int result = NSApplicationMain(argc, argv);

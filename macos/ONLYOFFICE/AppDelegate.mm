@@ -79,7 +79,7 @@
 }
 
 #pragma mark -
-#pragma mark - Menu
+#pragma mark Menu
 
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx"]];

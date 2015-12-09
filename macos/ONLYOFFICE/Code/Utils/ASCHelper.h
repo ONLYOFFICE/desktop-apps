@@ -52,6 +52,7 @@
 @interface ASCHelper : NSObject
 + (NSMutableDictionary *)localSettings;
 + (NSString *)applicationDataPath;
++ (NSString *)recoveryDataPath;
 + (void)copyVendorJS;
 
 @end

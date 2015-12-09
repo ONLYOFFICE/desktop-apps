@@ -41,6 +41,16 @@
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
 
+typedef NS_ENUM(int, ASCTabActionType) {
+    ASCTabActionUnknown = -1,
+    ASCTabActionOpenPortal,
+    ASCTabActionOpenUrl,
+    ASCTabActionCreateFile,
+    ASCTabActionOpenFile,
+    ASCTabActionOpenRecentFile,
+    ASCTabActionOpenRecoverFile
+};
+
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
