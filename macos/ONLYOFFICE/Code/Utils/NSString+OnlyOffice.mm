@@ -39,6 +39,8 @@
 //
 
 #import "NSString+OnlyOffice.h"
+/** Need for MD5 & SHA hashes */
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (OnlyOffice)
 
@@ -77,5 +79,21 @@
     }
     
     return [NSString stringWithFormat:@"%@%@%@", self, ([self rangeOfString:@"?"].length > 0) ? @"&" : @"?", query];
+}
+
+- (NSString *)md5 {
+    NSUInteger length = CC_MD5_DIGEST_LENGTH;
+    
+    const char *cStr = [self UTF8String];
+    unsigned char result[length];
+    
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:length * 2];
+    
+    for(int i = 0; i < length; i++)
+        [output appendFormat:@"%02x", result[i]];
+    
+    return output;
 }
 @end

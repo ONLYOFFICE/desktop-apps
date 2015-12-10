@@ -169,10 +169,16 @@ public:
     }
 }
 
-- (void) setFrameSize:(NSSize)newSize {
+- (void)setFrameSize:(NSSize)newSize {
     [super setFrameSize:newSize];
     if (m_pCefView) {
         m_pCefView->resizeEvent();
+    }
+}
+
+- (void)setParentCef:(int)idx {
+    if (m_pCefView) {
+        m_pCefView->GetCefView()->SetParentCef(idx);
     }
 }
 
@@ -184,33 +190,7 @@ public:
     return NSNotFound;
 }
 
-- (void)LoadWithUrl:(NSString *)url {
-    if (m_pCefView) {
-        m_pCefView->GetCefView()->load([url stdwstring]);
-    }
-}
-
-- (void)CreateFileWithName:(NSString *)name type:(NSInteger)type {
-    if (m_pCefView) {
-        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
-        
-        if (editorView) {
-            editorView->CreateLocalFile((int)type, [name stdwstring]);
-        }
-    }
-}
-
-- (void)OpenFileWithName:(NSString *)name type:(NSInteger)type {
-    if (m_pCefView) {
-        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
-        
-        if (editorView) {
-            editorView->OpenLocalFile([name stdwstring], (int)type);
-        }
-    }
-}
-
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {
+- (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {
     switch (type) {
         case cvwtSimple: {
             m_pCefView->m_pCefView = manager->CreateCefView(m_pCefView);
@@ -231,10 +211,53 @@ public:
     }
 }
 
-- (void)setParentCef:(int)idx {
+- (void)loadWithUrl:(NSString *)url {
     if (m_pCefView) {
-        m_pCefView->GetCefView()->SetParentCef(idx);
+        m_pCefView->GetCefView()->load([url stdwstring]);
     }
 }
+
+- (void)createFileWithName:(NSString *)name type:(NSInteger)type {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->CreateLocalFile((int)type, [name stdwstring]);
+        }
+    }
+}
+
+- (void)openFileWithName:(NSString *)name type:(NSInteger)type {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->OpenLocalFile([name stdwstring], (int)type);
+        }
+    }
+}
+
+- (void)openRecentFileWithId:(NSInteger)index {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->OpenRecentFile((int)index);
+        }
+    }
+}
+
+- (void)openRecoverFileWithId:(NSInteger)index {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->OpenRecoverFile((int)index);
+        }
+    }
+}
+
+
+
 
 @end

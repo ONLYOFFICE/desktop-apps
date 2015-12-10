@@ -132,6 +132,12 @@
                                              selector:@selector(onCEFSaveLocalFile:)
                                                  name:CEFEventNameSaveLocal
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOpenLocalImage:)
+                                                 name:CEFEventNameOpenImage
+                                               object:nil];
+    
     
 }
 
@@ -174,7 +180,7 @@
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
-        [self.cefStartPageView Create:appManager withType:cvwtSimple];
+        [self.cefStartPageView create:appManager withType:cvwtSimple];
         [tab.view addSubview:self.cefStartPageView];
         [self.cefStartPageView setupFillConstraints];
     }
@@ -189,7 +195,7 @@
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
         
-        [self.cefStartPageView LoadWithUrl:[loginPage string]];
+        [self.cefStartPageView loadWithUrl:[loginPage string]];
     }
 }
 
@@ -290,11 +296,32 @@
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-        tab.title       = NSLocalizedString(@"Document", nil);
+        tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         tab.type        = ASCTabViewOpeningType;
         tab.params      = params;
 
-        [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+        NSString * docUUID = params[@"hash"];
+        
+        if (docUUID && docUUID.length > 0) {
+            ASCTabView * existTab = nil;
+            
+            for (ASCTabView * tab in self.tabsControl.tabs) {
+                NSString * localUUID = tab.params[@"hash"];
+                
+                if ([docUUID isEqualToString:localUUID]) {
+                    existTab = tab;
+                    break;
+                }
+            }
+            
+            if (existTab) {
+                [self.tabsControl selectTab:existTab];
+            } else {
+                [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+            }
+        } else {
+            [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+        }
     }
 }
 
@@ -522,11 +549,44 @@
                                                                              }];
             }
         }];
-
     }
 }
 
+- (void)onCEFOpenLocalImage:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSString * directory = notification.userInfo[@"path"];
+        NSInteger fileId = [notification.userInfo[@"fileId"] intValue];
+        
+        if (!directory || directory.length < 1) {
+            directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        }
+        
+        NSOpenPanel * openPanel = [NSOpenPanel openPanel];
 
+        openPanel.canChooseDirectories = NO;
+        openPanel.allowsMultipleSelection = NO;
+        openPanel.canChooseFiles = YES;
+        openPanel.allowedFileTypes = [ASCConstants images];
+        openPanel.directoryURL = [NSURL URLWithString:directory];
+        
+        [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [openPanel orderOut:self];
+            
+            if (result == NSFileHandlingPanelOKButton) {
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                
+                NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
+                imageInfo->put_Id((int)fileId);
+                imageInfo->put_Path([[[openPanel URL] path] stdwstring]);
+                
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
+                pEvent->m_pData = imageInfo;
+                
+                appManager->Apply(pEvent);
+            }
+        }];
+    }
+}
 
 
 #pragma mark -
@@ -546,15 +606,15 @@
         ASCTabActionType action = (ASCTabActionType)[tab.params[@"action"] intValue];
         
         if (action == ASCTabActionOpenPortal) {
-            [cefView Create:appManager withType:cvwtSimple];
+            [cefView create:appManager withType:cvwtSimple];
         } else {
-            [cefView Create:appManager withType:cvwtEditor];
+            [cefView create:appManager withType:cvwtEditor];
         }
         
         switch (action) {
             case ASCTabActionOpenPortal:
             case ASCTabActionOpenUrl: {
-                [cefView LoadWithUrl:tab.params[@"url"]];
+                [cefView loadWithUrl:tab.params[@"url"]];
                 break;
             }
                 
@@ -563,11 +623,11 @@
                 NSString * docName = [NSLocalizedString(@"New Document", nil) stringByAppendingString:@".docx"];
                 
                 switch (docType) {
-                    case 1: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];     break;
+                    case 1: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];    break;
                     case 2: docName = [NSLocalizedString(@"New Presentation", nil) stringByAppendingString:@".pptx"];   break;
                 }
                 
-                [cefView CreateFileWithName:docName type:docType];
+                [cefView createFileWithName:docName type:docType];
                 break;
             }
                 
@@ -576,11 +636,22 @@
                 
                 if (filePath) {
                     int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
-                    [cefView OpenFileWithName:filePath type:fileFormatType];                    
+                    [cefView openFileWithName:filePath type:fileFormatType];
                 }
                 
                 break;
             }
+            case ASCTabActionOpenLocalRecoverFile: {
+                NSInteger docId = [tab.params[@"fileId"] intValue];
+                [cefView openRecoverFileWithId:docId];
+                break;
+            }
+            case ASCTabActionOpenLocalRecentFile: {
+                NSInteger docId = [tab.params[@"fileId"] intValue];
+                [cefView openRecentFileWithId:docId];
+                break;
+            }
+
             default:
                 break;
         }

@@ -41,6 +41,8 @@
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
 
+#define ADDREFINTERFACE(x) if (x) {x->AddRef();}
+
 typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionUnknown = -1,
     ASCTabActionOpenPortal,
@@ -77,6 +79,7 @@ static NSString * const CEFEventNameStartSaveDialog         = @"CEF_startSaveDia
 static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialog";
 static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog";
 static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
+static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;
