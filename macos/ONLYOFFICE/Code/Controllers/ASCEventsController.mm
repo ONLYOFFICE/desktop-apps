@@ -179,7 +179,7 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
                         NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)pEvent->m_pData;
                         
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventPrintDialog
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePrintDialog
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"viewId"      : @(pData->get_Id()),
@@ -223,34 +223,26 @@ public:
                     }
                         
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
-                        NSEditorApi::CAscLocalFileOpen * pData = (NSEditorApi::CAscLocalFileOpen*)pEvent->m_pData;
-                        pData->get_Directory();
+                        NSEditorApi::CAscLocalFileOpen * pData = (NSEditorApi::CAscLocalFileOpen *)pEvent->m_pData;
                         
-                        /*
-                         int file_format = CCefViewEditor::GetFileFormat(file_path);
-                         
-                         QCefView* pView = new QCefView(this);
-                         CCefView * cview = pView->GetCefView();
-                         ((CCefViewEditor*)cview)->OpenLocalFile(file_path, file_format);
-                         */
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"directory": [NSString stringWithstdwstring:pData->get_Directory()]
+                                                                                     }];
                         break;
                     }
                         
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE:
-                    {
-                        NSEditorApi::CAscLocalFileCreate * pData = (NSEditorApi::CAscLocalFileCreate*)pEvent->m_pData;
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
+                        NSEditorApi::CAscLocalFileCreate * pData = (NSEditorApi::CAscLocalFileCreate *)pEvent->m_pData;
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                             object:nil
                                                                           userInfo:@{
-                                                                                     @"action"  : @(ASCTabActionCreateFile),
+                                                                                     @"action"  : @(ASCTabActionCreateLocalFile),
                                                                                      @"type"    : @(pData->get_Type()),
                                                                                      @"active"  : @(YES)
                                                                                      }];
-                        /*
-                         ((CCefViewEditor*)cview)->CreateLocalFile(type, file_name);
-                         */
                         break;
                     }
 //                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
@@ -284,26 +276,21 @@ public:
 //                         */
 //                        break;
 //                    }
-//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE:
-//                    {
-//                        NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
+                        NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
 //                        pData->get_Path();
-//                        
-//                        ADDREFINTERFACE(pData);
-//                        emit signal_LocalFile_SaveDialog(pData);
-//                        
-//                        /*
-//                         CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
-//                         pData->put_Path(file_path);
-//                         int format = CAscApplicationManager::GetFileFormatByExtentionForSave(pData->get_Path());
-//                         pData->put_FileType(format > -1 ? format : 0);
-//                         
-//                         CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-//                         pEvent->m_pData = pData;
-//                         m_pManager->Apply(pEvent);
-//                         */
-//                        break;
-//                    }
+                        
+                        pData->AddRef();
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"fileType": @(pData->get_FileType()),
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()]
+                                                                                     }];
+                        break;
+                    }
 //                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE:
 //                    {
 //                        NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;

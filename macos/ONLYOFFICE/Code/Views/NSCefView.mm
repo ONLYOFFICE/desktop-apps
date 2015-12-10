@@ -198,7 +198,16 @@ public:
             editorView->CreateLocalFile((int)type, [name stdwstring]);
         }
     }
+}
 
+- (void)OpenFileWithName:(NSString *)name type:(NSInteger)type {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->OpenLocalFile([name stdwstring], (int)type);
+        }
+    }
 }
 
 - (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type {

@@ -31,26 +31,32 @@
 */
 
 //
-//  NSCefView.h
-//  CefViewTest
+//  ASCConstants.m
+//  ONLYOFFICE
 //
-//  Created by Oleg Korshul on 14.09.15.
-//  Copyright (c) 2015 Ascensio System. All rights reserved.
+//  Created by Alexander Yuzhin on 12/10/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#include "applicationmanager.h"
+#import <Foundation/Foundation.h>
+#import "ASCConstants.h"
 
-@interface NSCefView : NSView
-@property (nonatomic, readonly) NSInteger uuid;
+@implementation ASCConstants
 
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
-- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
-- (void)setParentCef:(int)idx;
-- (void)internalClean;
++ (NSArray *)images {
+    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico"];
+}
 
-- (void)LoadWithUrl:(NSString *)url;
-- (void)CreateFileWithName:(NSString *)name type:(NSInteger)type;
-- (void)OpenFileWithName:(NSString *)name type:(NSInteger)type;
++ (NSArray *)documents {
+    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps"];
+}
+
++ (NSArray *)spreadsheets {
+    return @[@"xls", @"xlsx", @"csv", @"ods"];
+}
+
++ (NSArray *)presentations {
+    return @[@"ppt", @"pptx", @"ppsx", @"odp"];
+}
 
 @end

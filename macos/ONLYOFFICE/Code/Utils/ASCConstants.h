@@ -45,10 +45,11 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionUnknown = -1,
     ASCTabActionOpenPortal,
     ASCTabActionOpenUrl,
-    ASCTabActionCreateFile,
-    ASCTabActionOpenFile,
-    ASCTabActionOpenRecentFile,
-    ASCTabActionOpenRecoverFile
+    ASCTabActionCreateLocalFile,
+    ASCTabActionOpenLocalFile,
+    ASCTabActionOpenLocalRecentFile,
+    ASCTabActionOpenLocalRecoverFile,
+    ASCTabActionSaveLocalFile,
 };
 
 // Settings
@@ -67,11 +68,21 @@ static NSString * const CEFEventNameModifyChanged           = @"CEF_modifyChange
 static NSString * const CEFEventNameLogout                  = @"CEF_logout";
 static NSString * const CEFEventNameLogin                   = @"CEF_login";
 static NSString * const CEFEventNameSave                    = @"CEF_save";
+static NSString * const CEFEventNameSaveLocal               = @"CEF_saveLocal";
 static NSString * const CEFEventNameOpenUrl                 = @"CEF_openUrl";
 static NSString * const CEFEventNameFullscreen              = @"CEF_fullscreen";
 static NSString * const CEFEventNameKeyboardDown            = @"CEF_keyboardDown";
 static NSString * const CEFEventNameDownload                = @"CEF_downloaded";
 static NSString * const CEFEventNameStartSaveDialog         = @"CEF_startSaveDialog";
 static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialog";
-static NSString * const CEFEventPrintDialog                 = @"CEF_printDialog";
+static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog";
+static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
+
+@interface ASCConstants : NSObject
++ (NSArray *)images;
++ (NSArray *)documents;
++ (NSArray *)spreadsheets;
++ (NSArray *)presentations;
+@end
+
 #endif

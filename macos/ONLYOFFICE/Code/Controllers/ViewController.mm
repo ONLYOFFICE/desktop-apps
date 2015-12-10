@@ -117,10 +117,22 @@
                                              selector:@selector(onCEFStartSave:)
                                                  name:CEFEventNameStartSaveDialog
                                                object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFOnBeforePrintEnd:)
-                                                 name:CEFEventPrintDialog
+                                                 name:CEFEventNamePrintDialog
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOnOpenLocalFile:)
+                                                 name:CEFEventNameOpenLocalFile
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFSaveLocalFile:)
+                                                 name:CEFEventNameSaveLocal
+                                               object:nil];
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -306,6 +318,49 @@
     }
 }
 
+- (void)onCEFSaveLocalFile:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * directiry    = params[@"path"];
+        NSString * viewId       = params[@"viewId"];
+        NSInteger fileType      = [params[@"fileType"] intValue];
+        
+        NSSavePanel * savePanel = [NSSavePanel savePanel];
+        
+        if (!directiry || directiry.length < 1) {
+            directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        }
+        
+        savePanel.directoryURL = [NSURL URLWithString:directiry];
+        savePanel.canCreateDirectories = YES;
+        savePanel.canSelectHiddenExtension = NO;
+        
+        [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [savePanel orderOut:self];
+            
+            if (result == NSFileHandlingPanelOKButton) {
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                
+                NSEditorApi::CAscLocalSaveFileDialog * saveData = new NSEditorApi::CAscLocalSaveFileDialog();
+                saveData->put_Path([[[savePanel URL] path] stdwstring]);
+                saveData->put_Id([viewId intValue]);
+                saveData->put_FileType((int)fileType);
+                
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
+                pEvent->m_pData = saveData;
+                
+                appManager->Apply(pEvent);
+                
+                ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+                
+                if (tab) {
+                    [self.tabsControl removeTab:tab];
+                }
+            }
+        }];
+    }
+}
+
 - (void)onCEFOpenUrl:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
@@ -434,6 +489,45 @@
     }
 }
 
+- (void)onCEFOnOpenLocalFile:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSString * directory = notification.userInfo[@"directory"];
+        
+        if (!directory || directory.length < 1) {
+            directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        }
+        
+        NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+        NSMutableArray * filter = [NSMutableArray array];
+        [filter addObjectsFromArray:[ASCConstants documents]];
+        [filter addObjectsFromArray:[ASCConstants spreadsheets]];
+        [filter addObjectsFromArray:[ASCConstants presentations]];
+        
+        openPanel.canChooseDirectories = NO;
+        openPanel.allowsMultipleSelection = NO;
+        openPanel.canChooseFiles = YES;
+        openPanel.allowedFileTypes = filter;
+        openPanel.directoryURL = [NSURL URLWithString:directory];
+
+        [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [openPanel orderOut:self];
+            
+            if (result == NSFileHandlingPanelOKButton) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                    object:nil
+                                                                  userInfo:@{
+                                                                             @"action"  : @(ASCTabActionOpenLocalFile),
+                                                                             @"file"    : [[openPanel URL] path],
+                                                                             @"active"  : @(YES)
+                                                                             }];
+            }
+        }];
+
+    }
+}
+
+
+
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
@@ -463,16 +557,28 @@
                 [cefView LoadWithUrl:tab.params[@"url"]];
                 break;
             }
-            case ASCTabActionCreateFile: {
+                
+            case ASCTabActionCreateLocalFile: {
                 int docType = [tab.params[@"type"] intValue];
-                NSString * docName = NSLocalizedString(@"New Document.docx", nil);
+                NSString * docName = [NSLocalizedString(@"New Document", nil) stringByAppendingString:@".docx"];
                 
                 switch (docType) {
-                    case 1: docName = NSLocalizedString(@"New Spreadsheet", nil); 	break;
-                    case 2: docName = NSLocalizedString(@"New Presentation", nil);  break;
+                    case 1: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];     break;
+                    case 2: docName = [NSLocalizedString(@"New Presentation", nil) stringByAppendingString:@".pptx"];   break;
                 }
                 
                 [cefView CreateFileWithName:docName type:docType];
+                break;
+            }
+                
+            case ASCTabActionOpenLocalFile: {
+                NSString * filePath = tab.params[@"file"];
+                
+                if (filePath) {
+                    int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
+                    [cefView OpenFileWithName:filePath type:fileFormatType];                    
+                }
+                
                 break;
             }
             default:
