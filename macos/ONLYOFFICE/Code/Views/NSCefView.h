@@ -44,13 +44,15 @@
 @interface NSCefView : NSView
 @property (nonatomic, readonly) NSInteger uuid;
 
-- (void)Create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
+- (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 - (void)setParentCef:(int)idx;
 - (void)internalClean;
 
-- (void)LoadWithUrl:(NSString *)url;
-- (void)CreateFileWithName:(NSString *)name type:(NSInteger)type;
-- (void)OpenFileWithName:(NSString *)name type:(NSInteger)type;
+- (void)loadWithUrl:(NSString *)url;
+- (void)createFileWithName:(NSString *)name type:(NSInteger)type;
+- (void)openFileWithName:(NSString *)name type:(NSInteger)type;
+- (void)openRecentFileWithId:(NSInteger)index;
+- (void)openRecoverFileWithId:(NSInteger)index;
 
 @end

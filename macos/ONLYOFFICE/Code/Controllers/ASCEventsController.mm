@@ -43,6 +43,7 @@
 #import "ASCConstants.h"
 #import "NSString+OnlyOffice.h"
 
+
 #pragma mark -
 #pragma mark ========================================================
 #pragma mark ASCEventListener
@@ -79,7 +80,8 @@ public:
                                                                                      @"action"  : @(ASCTabActionOpenUrl),
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_IdEqual()],
                                                                                      @"url"     : [NSString stringWithstdwstring:pData->get_Url()],
-                                                                                     @"active"  : @(pData->get_Active())
+                                                                                     @"active"  : @(pData->get_Active()),
+                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
                                                                                      }];
                         break;
                     }
@@ -241,46 +243,30 @@ public:
                                                                           userInfo:@{
                                                                                      @"action"  : @(ASCTabActionCreateLocalFile),
                                                                                      @"type"    : @(pData->get_Type()),
-                                                                                     @"active"  : @(YES)
+                                                                                     @"active"  : @(YES),
+                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
                                                                                      }];
                         break;
                     }
-//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
-//                    {
-//                        NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
-//                        pData->get_Path();
-//                        pData->get_IsRecover() == false;
-//                        pData->get_Id();
-//                        
-//                        ADDREFINTERFACE(pData);
-//                        emit signal_LocalFile_RecentOpen(pData);
-//                        
-//                        /*
-//                         ((CCefViewEditor*)cview)->OpenRecentFile(id);
-//                         */
-//                        break;
-//                    }
-//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
-//                    {
-//                        NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
-//                        
-//                        pData->get_Path();
-//                        pData->get_IsRecover();
-//                        pData->get_Id();
-//                        
-//                        ADDREFINTERFACE(pData);
-//                        emit signal_LocalFile_RecentOpen(pData);
-//                        
-//                        /*
-//                         ((CCefViewEditor*)cview)->OpenRecoverFile(id);
-//                         */
-//                        break;
-//                    }
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
+                        NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
+                        
+                        BOOL isRecover = pData->get_IsRecover();
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"action"  : isRecover ? @(ASCTabActionOpenLocalRecoverFile) : @(ASCTabActionOpenLocalRecentFile),
+                                                                                     @"active"  : @(YES),
+                                                                                     @"fileId"  : @(pData->get_Id()),
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                     }];
+                        break;
+                    }
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
                         NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
-//                        pData->get_Path();
-                        
-                        pData->AddRef();
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
                                                                             object:nil
@@ -291,32 +277,33 @@ public:
                                                                                      }];
                         break;
                     }
-//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE:
-//                    {
-//                        NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
-//                        
-//                        ADDREFINTERFACE(pData);
-//                        emit signal_LocalFile_AddImage(pData);
-//                        
-//                        /*
-//                         CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-//                         
-//                         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
-//                         pData->put_Path(file_path);
-//                         pEvent->m_pData = pData;
-//                         m_pManager->Apply(pEvent);
-//                         */
-//                        break;
-//                    }
-//                    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
-//                        CAscExecCommand * pData = (CAscExecCommand *)pEvent->m_pData;
-//                        std::wstring cmd = pData->get_Command();
-//                        if (cmd.compare(L"portal:open") == 0) {
-//                            QMetaObject::invokeMethod( pObjParent, "onPortalOpen", Qt::QueuedConnection,
-//                                                      Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-//                        }
-//                        break;
-//                    }
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
+                        NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenImage
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"fileId"  : @(pData->get_Id())
+                                                                                     }];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
+                        NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
+                        std::wstring cmd = pData->get_Command();
+                        
+                        if (cmd.compare(L"portal:open") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"action"  : @(ASCTabActionOpenPortal),
+                                                                                         @"url"     : [NSString stringWithstdwstring:pData->get_Param()],
+                                                                                         @"active"  : @(YES),
+                                                                                         @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                         }];
+                        }
+                        break;
+                    }
                         
                     default:
                         break;
