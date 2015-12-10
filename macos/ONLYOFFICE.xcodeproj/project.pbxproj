@@ -28,6 +28,8 @@
 		FC1127551BBA8A7E00AA3648 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127541BBA8A7E00AA3648 /* NSTimer+Block.m */; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
+		FC38163B1C19B12B002922CD /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC38163A1C19B12B002922CD /* dictionaries */; };
+		FC38163C1C19B12B002922CD /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC38163A1C19B12B002922CD /* dictionaries */; };
 		FC394E651BCE4AD2001B4B7C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
@@ -120,6 +122,7 @@
 		FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+OnlyOffice.h"; path = "Code/Utils/NSString+OnlyOffice.h"; sourceTree = "<group>"; };
 		FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+OnlyOffice.mm"; path = "Code/Utils/NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
 		FC2CB1851BC3D41500DA42EB /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "Code/Utils/GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		FC38163A1C19B12B002922CD /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../common/package/dictionaries; sourceTree = "<group>"; };
 		FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "Code/Utils/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
@@ -448,6 +451,7 @@
 		FC98BAD71BAC4C6300747944 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC38163A1C19B12B002922CD /* dictionaries */,
 				FC0907401C186A7A00D9E881 /* converter */,
 				FC09073D1C1855A400D9E881 /* editors */,
 				FC3B777A1BB28CE900DB9705 /* login */,
@@ -746,6 +750,7 @@
 				FC6718221BD913C00028600F /* cloud in Resources */,
 				FC09073F1C1855A400D9E881 /* editors in Resources */,
 				FC6718231BD913C00028600F /* Localizable.strings in Resources */,
+				FC38163C1C19B12B002922CD /* dictionaries in Resources */,
 				FC6718241BD913C00028600F /* InfoPlist.strings in Resources */,
 				FC6718251BD913C00028600F /* Images.xcassets in Resources */,
 				FC6718261BD913C00028600F /* login in Resources */,
@@ -759,6 +764,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC09073E1C1855A400D9E881 /* editors in Resources */,
+				FC38163B1C19B12B002922CD /* dictionaries in Resources */,
 				FC98BAD91BAC4CB100747944 /* cloud in Resources */,
 				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
 				FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */,

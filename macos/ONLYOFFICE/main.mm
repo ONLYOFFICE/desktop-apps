@@ -63,7 +63,7 @@ int main(int argc, const char * argv[]) {
     appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/apps/api/documents/index.html"] stdwstring];
     
     // setup Dictionary directory
-    appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Dictionary"] stdwstring];
+    appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"dictionaries"] stdwstring];
     
     // setup Recovery directory
     appManager->m_oSettings.recover_path = [[ASCHelper recoveryDataPath] stdwstring];
