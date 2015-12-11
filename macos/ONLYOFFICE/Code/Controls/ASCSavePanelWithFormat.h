@@ -31,37 +31,18 @@
 */
 
 //
-//  ASCTabView.h
+//  ASCSavePanelWithFormat.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/11/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "ASCButton.h"
 
-@class ASCTabView;
+@interface ASCSavePanelWithFormat : NSSavePanel
+@property (nonatomic) NSArray * filters;
+@property (nonatomic) NSInteger filterType;
 
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
-
-@protocol ASCTabViewDelegate  <NSObject>
-@optional
-- (void)tabDidClose:(ASCTabView *)tab;
-@end
-
-@interface ASCTabView : ASCButton
-@property (nonatomic) ASCTabViewType type;
-@property (nonatomic) NSString *uuid;
-@property (nonatomic) NSDictionary *params;
-@property (nonatomic) BOOL changed;
-
-@property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
++ (ASCSavePanelWithFormat *)savePanel;
 @end

@@ -268,11 +268,28 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
                         NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
                         
+                        NSMutableArray * supportFormats = [NSMutableArray array];
+                        
+                        for(std::vector<int>::iterator it = pData->get_SupportFormats().begin(); it != pData->get_SupportFormats().end(); ++it) {
+                            int type = *it;
+                            
+                            NSDictionary * info = [ASCConstants ascFormatsInfo][@(type)];
+                            
+                            if (info) {
+                                [supportFormats addObject:@{
+                                                            @"type"         : @(type),
+                                                            @"description"  : info[@"description"],
+                                                            @"extension"    : info[@"extension"]
+                                                            }];
+                            }
+                        }
+                        
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"fileType": @(pData->get_FileType()),
+                                                                                     @"suppertFormats" : supportFormats,
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()]
                                                                                      }];
                         break;

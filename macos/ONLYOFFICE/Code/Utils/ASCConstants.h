@@ -86,6 +86,8 @@ static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
 + (NSArray *)documents;
 + (NSArray *)spreadsheets;
 + (NSArray *)presentations;
+
++ (NSDictionary *)ascFormatsInfo;
 @end
 
 #endif

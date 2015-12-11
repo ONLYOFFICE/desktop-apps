@@ -56,6 +56,7 @@
 #import "NSString+OnlyOffice.h"
 #import "ASCDownloadController.h"
 #import "NSTimer+Block.h"
+#import "ASCSavePanelWithFormat.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -350,10 +351,14 @@
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * directiry    = params[@"path"];
         NSString * viewId       = params[@"viewId"];
+        NSArray * formats       = params[@"suppertFormats"];
 
         __block NSInteger fileType = [params[@"fileType"] intValue];
         
-        NSSavePanel * savePanel = [NSSavePanel savePanel];
+        ASCSavePanelWithFormat * savePanel = [ASCSavePanelWithFormat savePanel];
+        
+        savePanel.filters = formats;
+        savePanel.filterType = fileType;
         
         if (!directiry || directiry.length < 1) {
             directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -361,32 +366,29 @@
         
         savePanel.directoryURL = [NSURL URLWithString:directiry];
         savePanel.canCreateDirectories = YES;
-        savePanel.canSelectHiddenExtension = NO;
         savePanel.nameFieldStringValue = [[directiry lastPathComponent] stringByDeletingPathExtension];
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
+
+            NSEditorApi::CAscLocalSaveFileDialog * saveData = new NSEditorApi::CAscLocalSaveFileDialog();
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
             if (result == NSFileHandlingPanelOKButton) {
-                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                NSString * extension = [ASCConstants ascFormatsInfo][@([savePanel filterType])][@"extension"];
+                NSString * path = [NSString stringWithFormat:@"%@.%@", [[savePanel URL] path], extension];
                 
-                NSString * path = [NSString stringWithFormat:@"%@.%@", [[savePanel URL] path], [directiry pathExtension]];
-                
-                if (fileType < 1) {
-                    fileType = CAscApplicationManager::GetFileFormatByExtentionForSave([path stdwstring]);
-                    fileType = fileType > -1 ? fileType : 0;
-                }
-                                
-                NSEditorApi::CAscLocalSaveFileDialog * saveData = new NSEditorApi::CAscLocalSaveFileDialog();
                 saveData->put_Path([path stdwstring]);
                 saveData->put_Id([viewId intValue]);
-                saveData->put_FileType((int)fileType);
-                
-                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-                pEvent->m_pData = saveData;
-                
-                appManager->Apply(pEvent);
+                saveData->put_FileType((int)[savePanel filterType]);
+            } else {
+                saveData->put_Path(L"");
             }
+            
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
+            pEvent->m_pData = saveData;
+            
+            appManager->Apply(pEvent);
         }];
     }
 }
@@ -615,7 +617,10 @@
         }
         
         switch (action) {
-            case ASCTabActionOpenPortal:
+            case ASCTabActionOpenPortal: {
+                tab.type  = ASCTabViewPortal;
+                tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
+            }
             case ASCTabActionOpenUrl: {
                 [cefView loadWithUrl:tab.params[@"url"]];
                 break;

@@ -106,6 +106,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                // ASCTabViewSpreadsheetType
                @{@"normal": @"icon_tabs_se_inactive", @"active": @"icon_tabs_se_active"},
                // ASCTabViewPresentationType
+               @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"},
+               // ASCTabViewPortal
                @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"}
                ];
     
