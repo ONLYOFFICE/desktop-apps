@@ -350,7 +350,8 @@
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * directiry    = params[@"path"];
         NSString * viewId       = params[@"viewId"];
-        NSInteger fileType      = [params[@"fileType"] intValue];
+
+        __block NSInteger fileType = [params[@"fileType"] intValue];
         
         NSSavePanel * savePanel = [NSSavePanel savePanel];
         
@@ -361,6 +362,7 @@
         savePanel.directoryURL = [NSURL URLWithString:directiry];
         savePanel.canCreateDirectories = YES;
         savePanel.canSelectHiddenExtension = NO;
+        savePanel.nameFieldStringValue = [[directiry lastPathComponent] stringByDeletingPathExtension];
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
@@ -368,8 +370,15 @@
             if (result == NSFileHandlingPanelOKButton) {
                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                 
+                NSString * path = [NSString stringWithFormat:@"%@.%@", [[savePanel URL] path], [directiry pathExtension]];
+                
+                if (fileType < 1) {
+                    fileType = CAscApplicationManager::GetFileFormatByExtentionForSave([path stdwstring]);
+                    fileType = fileType > -1 ? fileType : 0;
+                }
+                                
                 NSEditorApi::CAscLocalSaveFileDialog * saveData = new NSEditorApi::CAscLocalSaveFileDialog();
-                saveData->put_Path([[[savePanel URL] path] stdwstring]);
+                saveData->put_Path([path stdwstring]);
                 saveData->put_Id([viewId intValue]);
                 saveData->put_FileType((int)fileType);
                 
@@ -377,12 +386,6 @@
                 pEvent->m_pData = saveData;
                 
                 appManager->Apply(pEvent);
-                
-                ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-                
-                if (tab) {
-                    [self.tabsControl removeTab:tab];
-                }
             }
         }];
     }
