@@ -382,6 +382,7 @@
                 saveData->put_Id([viewId intValue]);
                 saveData->put_FileType((int)[savePanel filterType]);
             } else {
+                saveData->put_Id([viewId intValue]);
                 saveData->put_Path(L"");
             }
             
