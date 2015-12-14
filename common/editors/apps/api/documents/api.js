@@ -260,48 +260,58 @@
         };
 
         var _checkConfigParams = function() {
-            if (!_config.document || !_config.document.url || (typeof _config.document.fileType !== 'string' && typeof _config.documentType !== 'string')) {
-                window.alert("One or more required parameter for the config object is not set");
-                return false;
-            }
-
-            var appMap = {
-                    'text': 'docx',
-                    'text-pdf': 'pdf',
-                    'spreadsheet': 'xlsx',
-                    'presentation': 'pptx'
-                }, app;
-
-            if (typeof _config.documentType === 'string') {
-                app = appMap[_config.documentType.toLowerCase()];
-                if (!app) {
-                    window.alert("The \"documentType\" parameter for the config object is invalid. Please correct it.");
+            if (_config.document) {
+                if (!_config.document.url || ((typeof _config.document.fileType !== 'string' || _config.document.fileType=='') &&
+                                              (typeof _config.documentType !== 'string' || _config.documentType==''))) {
+                    window.alert("One or more required parameter for the config object is not set");
                     return false;
-                } else if (typeof _config.document.fileType !== 'string') {
-                    _config.document.fileType = app;
+                }
+
+                var appMap = {
+                        'text': 'docx',
+                        'text-pdf': 'pdf',
+                        'spreadsheet': 'xlsx',
+                        'presentation': 'pptx'
+                    }, app;
+
+                if (typeof _config.documentType === 'string' && _config.documentType != '') {
+                    app = appMap[_config.documentType.toLowerCase()];
+                    if (!app) {
+                        window.alert("The \"documentType\" parameter for the config object is invalid. Please correct it.");
+                        return false;
+                    } else if (typeof _config.document.fileType !== 'string' || _config.document.fileType == '') {
+                        _config.document.fileType = app;
+                    }
+                }
+
+                if (typeof _config.document.fileType === 'string' && _config.document.fileType != '') {
+                    var type = /^(?:(xls|xlsx|ods|csv|xlst|xlsy|gsheet)|(pps|ppsx|ppt|pptx|odp|pptt|ppty|gslides)|(doc|docx|doct|odt|gdoc|txt|rtf|pdf|mht|htm|html|epub|djvu|xps))$/
+                                    .exec(_config.document.fileType);
+                    if (!type) {
+                        window.alert("The \"document.fileType\" parameter for the config object is invalid. Please correct it.");
+                        return false;
+                    } else if (typeof _config.documentType !== 'string' || _config.documentType == ''){
+                        if (typeof type[1] === 'string') _config.documentType = 'spreadsheet'; else
+                        if (typeof type[2] === 'string') _config.documentType = 'presentation'; else
+                        if (typeof type[3] === 'string') _config.documentType = 'text';
+                    }
+                }
+
+                var type = /^(?:(pdf|djvu|xps))$/.exec(_config.document.fileType);
+                if (type && typeof type[1] === 'string') {
+                    if (!_config.document.permissions)
+                        _config.document.permissions = {};
+                    _config.document.permissions.download = _config.document.permissions.edit = false;
+                }
+
+                if (!_config.document.title || _config.document.title=='')
+                    _config.document.title = 'Unnamed.' + _config.document.fileType;
+
+                if (!_config.document.key) {
+                    _config.document.key = 'xxxxxxxxxxxxxxxxxxxx'.replace(/[x]/g, function (c) {var r = Math.random() * 16 | 0; return r.toString(16);});
                 }
             }
-
-            if (typeof _config.document.fileType === 'string') {
-                var type = /^(?:(xls|xlsx|ods|csv|xlst|xlsy|gsheet)|(pps|ppsx|ppt|pptx|odp|pptt|ppty|gslides)|(doc|docx|odt|txt|rtf|pdf|html|epub))$/
-                                .exec(_config.document.fileType);
-                if (!type) {
-                    window.alert("The \"document.fileType\" parameter for the config object is invalid. Please correct it.");
-                    return false;
-                } else if (typeof _config.documentType !== 'string'){
-                    if (typeof type[1] === 'string') _config.documentType = 'spreadsheet'; else
-                    if (typeof type[2] === 'string') _config.documentType = 'presentation'; else
-                    if (typeof type[3] === 'string') _config.documentType = 'text';
-                }
-            }
-
-            if (!_config.document.title || _config.document.title=='')
-                _config.document.title = 'Unnamed.' + _config.document.fileType;
-
-            if (!_config.document.key) {
-                _config.document.key = 'xxxxxxxxxxxxxxxxxxxx'.replace(/[x]/g, function (c) {var r = Math.random() * 16 | 0; return r.toString(16);});
-            }
-
+            
             return true;
         };
         
@@ -478,6 +488,9 @@
                 if (result[1] == 'desktop') {
                     _config.editorConfig.targetApp = result[1];
                     _config.editorConfig.canBackToFolder = false;
+                    _config.editorConfig.canUseHistory = false;
+                    if (!_config.editorConfig.customization) _config.editorConfig.customization = {};
+                    _config.editorConfig.customization.about = false;
                 }
             }
         })();
