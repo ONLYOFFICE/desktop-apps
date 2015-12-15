@@ -314,9 +314,15 @@ public:
                                                                                 object:nil
                                                                               userInfo:@{
                                                                                          @"action"  : @(ASCTabActionOpenPortal),
-                                                                                         @"url"     : [NSString stringWithstdwstring:pData->get_Param()],
+                                                                                         @"url"     : [NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/?desktop=true"],
                                                                                          @"active"  : @(YES),
                                                                                          @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                         }];
+                        } else if (cmd.compare(L"portal:logout") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"url"     : [NSString stringWithstdwstring:pData->get_Param()],
                                                                                          }];
                         }
                         break;

@@ -50,9 +50,7 @@ CAscApplicationManager * createASCApplicationManager() {
 
 int main(int argc, const char * argv[]) {
 //    return NSApplicationMain(argc, argv);
-    
-    [ASCHelper copyVendorJS];
-    
+        
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     

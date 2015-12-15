@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, ASCTabViewType) {
 @interface ASCTabView : ASCButton
 @property (nonatomic) ASCTabViewType type;
 @property (nonatomic) NSString *uuid;
-@property (nonatomic) NSDictionary *params;
+@property (nonatomic) NSMutableDictionary *params;
 @property (nonatomic) BOOL changed;
 
 @property (nonatomic, assign) id <ASCTabViewDelegate> delegate;

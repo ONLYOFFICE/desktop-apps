@@ -248,7 +248,10 @@ static float kASCWindowMinTitleWidth = 320;
         if (tab) {
             [tab setTitle:name];
             [tab setToolTip:name];
-            [self.tabsControl selectTab:tab];
+            
+            if ([tab state] == NSOnState) {
+                [self.tabsControl selectTab:tab];
+            }
         }
     }
 }

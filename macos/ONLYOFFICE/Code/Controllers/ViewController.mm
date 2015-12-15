@@ -49,6 +49,7 @@
 #import "ASCConstants.h"
 #import "ASCUserInfoViewController.h"
 #import "NSView+ASCView.h"
+#import "NSAlert+SynchronousSheet.h"
 #import "NSString+OnlyOffice.h"
 #import "AppDelegate.h"
 #import "NSCefView.h"
@@ -139,6 +140,10 @@
                                                  name:CEFEventNameOpenImage
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalLogout:)
+                                                 name:CEFEventNamePortalLogout
+                                               object:nil];
     
 }
 
@@ -232,7 +237,7 @@
                 if (tab.changed) {
                     [self tabs:self.tabsControl willRemovedTab:tab];
                 } else {
-                    [self.tabsControl removeTab:tab];
+                    [self.tabsControl removeTab:tab selected:NO];
                 }
             }
         } else if (result == NSAlertSecondButtonReturn) {
@@ -243,10 +248,13 @@
             self.shouldTerminateApp = YES;
             
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
+            
             for (ASCTabView * tab in tabs) {
                 if (tab.changed) {
                     NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
                     NSCefView * cefView = nil;
+                    
+                    tab.params[@"shouldClose"] = @(YES);
                     
                     if (item) {
                         for (NSView * view in item.view.subviews) {
@@ -290,69 +298,30 @@
 }
 
 #pragma mark -
-#pragma mark CEF events handlers
+#pragma mark Internal
 
-- (void)onCEFCreateTab:(NSNotification *)notification {
-    if (notification && notification.userInfo) {
-        NSDictionary * params = (NSDictionary *)notification.userInfo;
-        
-        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-        tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
-        tab.type        = ASCTabViewOpeningType;
-        tab.params      = params;
-
-        NSString * docUUID = params[@"hash"];
-        
-        if (docUUID && docUUID.length > 0) {
-            ASCTabView * existTab = nil;
+- (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value {
+    if (param && value && value.length > 0) {
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            NSString * tabValue = tab.params[param];
             
-            for (ASCTabView * tab in self.tabsControl.tabs) {
-                NSString * localUUID = tab.params[@"hash"];
-                
-                if ([docUUID isEqualToString:localUUID]) {
-                    existTab = tab;
-                    break;
-                }
+            if (tabValue && tabValue.length > 0 && [tabValue isEqualToString:value]) {
+                return tab;
             }
-            
-            if (existTab) {
-                [self.tabsControl selectTab:existTab];
-            } else {
-                [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
-            }
-        } else {
-            [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
         }
     }
+    return nil;
 }
 
-- (void)onCEFLogout:(NSNotification *)notification {
-    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
-    [self.tabsControl removeAllTabs];
-    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
-    [self loadStartPage];
-}
-
-- (void)onCEFSave:(NSNotification *)notification {
-    if (notification && notification.userInfo) {
-        NSDictionary * params = (NSDictionary *)notification.userInfo;
-        NSString * viewId = params[@"viewId"];
-        
-        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-        
-        if (tab) {
-            [self.tabsControl removeTab:tab];
-        }
-    }
-}
-
-- (void)onCEFSaveLocalFile:(NSNotification *)notification {
-    if (notification && notification.userInfo) {
-        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+- (void)saveLocalFileWithTab:(ASCTabView *)tab {
+    if (tab) {
+        NSDictionary * params   = tab.params;
         NSString * directiry    = params[@"path"];
         NSString * viewId       = params[@"viewId"];
         NSArray * formats       = params[@"suppertFormats"];
-
+        
+        [self.tabsControl selectTab:tab];
+        
         __block NSInteger fileType = [params[@"fileType"] intValue];
         
         ASCSavePanelWithFormat * savePanel = [ASCSavePanelWithFormat savePanel];
@@ -370,7 +339,7 @@
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
-
+            
             NSEditorApi::CAscLocalSaveFileDialog * saveData = new NSEditorApi::CAscLocalSaveFileDialog();
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
@@ -391,6 +360,66 @@
             
             appManager->Apply(pEvent);
         }];
+    }
+}
+
+#pragma mark -
+#pragma mark CEF events handlers
+
+- (void)onCEFCreateTab:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        
+        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+        tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
+        tab.type        = ASCTabViewOpeningType;
+        tab.params      = [params mutableCopy];
+
+        ASCTabView * existTab = nil;
+        
+        existTab = [self tabWithParam:@"url" value:params[@"url"]];
+        
+        if (!existTab) {
+            existTab = [self tabWithParam:@"path" value:params[@"path"]];
+        }        
+        
+        if (existTab) {
+            [self.tabsControl selectTab:existTab];
+        } else {
+            [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+        }
+    }
+}
+
+- (void)onCEFLogout:(NSNotification *)notification {
+    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
+    [self.tabsControl removeAllTabs];
+    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+    [self loadStartPage];
+}
+
+- (void)onCEFSave:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * viewId = params[@"viewId"];
+        
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
+            [self.tabsControl removeTab:tab];
+        }
+    }
+}
+
+- (void)onCEFSaveLocalFile:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        
+        ASCTabView * tab = [self tabWithParam:@"hash" value:params[@"hash"]];
+
+        if (tab) {
+            [self saveLocalFileWithTab:tab];
+        }
     }
 }
 
@@ -594,6 +623,90 @@
     }
 }
 
+- (void)onCEFPortalLogout:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSString * url = notification.userInfo[@"url"];
+        
+        if (url) {
+            NSMutableArray * portalTabs = [NSMutableArray array];
+            NSInteger unsaved = 0;
+            
+            for (ASCTabView * tab in self.tabsControl.tabs) {
+                NSString * tabUrl = tab.params[@"url"];
+                
+                if (tabUrl && tabUrl.length > 0 && [tabUrl rangeOfString:url].location != NSNotFound) {
+                    [portalTabs addObject:tab];
+                    
+                    if (tab.changed) {
+                        unsaved++;
+                    }
+                }
+            }
+            
+            if (unsaved > 0) {
+                NSAlert *alert = [[NSAlert alloc] init];
+                
+                [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Save and Quit", nil)];
+                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
+                [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
+                [alert setAlertStyle:NSInformationalAlertStyle];
+                
+                NSInteger result = [alert runModal];
+                
+                if (result == NSAlertFirstButtonReturn) {
+                    // "Review Changes..." clicked
+                    
+                    for (ASCTabView * tab in portalTabs) {
+                        if (tab.changed) {
+                            [self tabs:self.tabsControl willRemovedTab:tab];
+                        } else {
+                            [self.tabsControl removeTab:tab selected:NO];
+                        }
+                    }
+                } else if (result == NSAlertSecondButtonReturn) {
+                    return;
+                } else {
+                    // "Save and Quit" clicked
+
+                    for (ASCTabView * tab in portalTabs) {
+                        if (tab.changed) {
+                            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+                            NSCefView * cefView = nil;
+                            
+                            tab.params[@"shouldClose"] = @(YES);
+                            
+                            if (item) {
+                                for (NSView * view in item.view.subviews) {
+                                    if ([view isKindOfClass:[NSCefView class]]) {
+                                        cefView = (NSCefView *)view;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                            if (cefView) {
+                                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
+                                
+                                pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
+                                [cefView apply:pEvent];
+                            }
+                        } else {
+                            [self.tabsControl removeTab:tab];
+                        }
+                    }
+                }
+            } else {
+                for (ASCTabView * tab in portalTabs) {
+                    [self.tabsControl removeTab:tab selected:NO];
+                }
+                
+                [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+            }
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
@@ -632,8 +745,8 @@
                 NSString * docName = [NSLocalizedString(@"New Document", nil) stringByAppendingString:@".docx"];
                 
                 switch (docType) {
-                    case 1: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];    break;
-                    case 2: docName = [NSLocalizedString(@"New Presentation", nil) stringByAppendingString:@".pptx"];   break;
+                    case 1: docName = [NSLocalizedString(@"New Presentation", nil) stringByAppendingString:@".pptx"];   break;
+                    case 2: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];    break;
                 }
                 
                 [cefView createFileWithName:docName type:docType];
@@ -686,32 +799,36 @@
         [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
         [alert setAlertStyle:NSWarningAlertStyle];
         
-        [alert beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSModalResponse returnCode) {
-            if(returnCode == NSAlertFirstButtonReturn) {
-                NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-                NSCefView * cefView = nil;
-                
-                if (item) {
-                    for (NSView * view in item.view.subviews) {
-                        if ([view isKindOfClass:[NSCefView class]]) {
-                            cefView = (NSCefView *)view;
-                            break;
-                        }
+        [self.tabsControl selectTab:tab];
+        
+        NSInteger returnCode = [alert runModalSheet];
+
+        if(returnCode == NSAlertFirstButtonReturn) {
+            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+            NSCefView * cefView = nil;
+            
+            tab.params[@"shouldClose"] = @(YES);
+            
+            if (item) {
+                for (NSView * view in item.view.subviews) {
+                    if ([view isKindOfClass:[NSCefView class]]) {
+                        cefView = (NSCefView *)view;
+                        break;
                     }
                 }
-                
-                if (cefView) {
-                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
-                    
-                    pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
-                    [cefView apply:pEvent];
-                }
-            } else if (returnCode == NSAlertSecondButtonReturn) {
-                [control removeTab:tab];
-            } else if (returnCode == NSAlertThirdButtonReturn) {
-                self.shouldTerminateApp = NO;
             }
-        }];
+            
+            if (cefView) {
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
+                
+                pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
+                [cefView apply:pEvent];
+            }
+        } else if (returnCode == NSAlertSecondButtonReturn) {
+            [control removeTab:tab];
+        } else if (returnCode == NSAlertThirdButtonReturn) {
+            self.shouldTerminateApp = NO;
+        }
         
         return NO;
     }

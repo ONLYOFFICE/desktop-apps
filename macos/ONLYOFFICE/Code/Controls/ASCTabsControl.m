@@ -255,7 +255,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 #pragma mark -
-#pragma mark - ScrollView Observation
+#pragma mark ScrollView Observation
 
 - (void)startObservingScrollView {
     [self.scrollView addObserver:self forKeyPath:@"frame" options:0 context:&kASCTabsScrollViewObservationContext];
@@ -293,7 +293,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 #pragma mark -
-#pragma mark - Notifiacation Handlers
+#pragma mark Notifiacation Handlers
 
 - (void)scrollViewDidScroll:(NSNotification *)notification {
     [self layoutTabs:nil animated:NO];
@@ -302,7 +302,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 #pragma mark -
-#pragma mark - Internal
+#pragma mark Internal
 
 - (void)layoutTabs:(NSArray *)tabs animated:(BOOL)anim {
     if (!tabs) {
@@ -623,8 +623,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addTab:tab selected:YES];
 }
 
-- (void)removeTab:(ASCTabView *)tab {
+- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected {
     if (tab) {
+        NSInteger tabIndex = tab.tag;
+        
         [self.tabs removeObject:tab];
         
         if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
@@ -644,13 +646,25 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [self updateAuxiliaryButtons];
             [self invalidateRestorableState];
             
-            if ([self.tabs count] > tab.tag) {
-                [self selectTab:[self.tabs objectAtIndex:tab.tag]];
-            } else {
-                [self selectTab:nil];
+            if (selected) {                
+                NSInteger tabsCount = [self.tabs count];
+                
+                if (tabsCount > tabIndex) {
+                    [self selectTab:[self.tabs objectAtIndex:tabIndex]];
+                } else if (tabsCount > tabIndex - 1 && tabIndex - 1 >= 0) {
+                    [self selectTab:[self.tabs objectAtIndex:tabIndex - 1]];
+                } else if (tabsCount > 0) {
+                    [self selectTab:[self.tabs objectAtIndex:tabsCount - 1]];
+                } else {
+                    [self selectTab:nil];
+                }
             }
         }];
     }
+}
+
+- (void)removeTab:(ASCTabView *)tab {
+    [self removeTab:tab selected:YES];
 }
 
 - (void)removeAllTabs {
@@ -668,7 +682,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 #pragma mark -
-#pragma mark - ASCTabView Delegate
+#pragma mark ASCTabView Delegate
 
 - (void)tabDidClose:(ASCTabView *)tab {
     if (_delegate && [_delegate respondsToSelector:@selector(tabs:didRemovedTab:)]) {
@@ -681,7 +695,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 #pragma mark -
-#pragma mark - Drawning
+#pragma mark Drawning
 
 - (void)drawRect:(NSRect)dirtyRect {
 //    [[NSColor redColor] setFill];

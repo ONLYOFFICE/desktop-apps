@@ -80,6 +80,7 @@ static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialo
 static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog";
 static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
 static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
+static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;
