@@ -413,11 +413,13 @@
 
 - (void)onCEFSaveLocalFile:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * viewId = params[@"viewId"];
         
-        ASCTabView * tab = [self tabWithParam:@"hash" value:params[@"hash"]];
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
 
         if (tab) {
+            [tab.params addEntriesFromDictionary:params];
             [self saveLocalFileWithTab:tab];
         }
     }
