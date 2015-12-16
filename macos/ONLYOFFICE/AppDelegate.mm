@@ -63,6 +63,22 @@
 #endif
 }
 
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
+    return YES;
+}
+
+- (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames {
+    for (NSString * filePath in filenames) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                            object:nil
+                                                          userInfo:@{
+                                                                     @"action"  : @(ASCTabActionOpenLocalFile),
+                                                                     @"file"    : filePath,
+                                                                     @"active"  : @(YES)
+                                                                     }];
+    }
+}
+    
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }

@@ -40,8 +40,8 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kSettingsCurrentTab = @"asc.onlyoffice.currentTab";
-static NSString * const kSettingsLastOpenDirectory = @"asc.onlyoffice.lastOpenDirectory";
+static NSString * const kSettingsCurrentTab         = @"asc.onlyoffice.currentTab";
+static NSString * const kSettingsLastOpenDirectory  = @"asc.onlyoffice.lastOpenDirectory";
 
 @interface ASCSharedSettings : NSObject
 + (instancetype)sharedInstance;

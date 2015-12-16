@@ -132,12 +132,13 @@ public:
                     }
                         
                     case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
-                        NSEditorApi::CAscTypeId* pId = (NSEditorApi::CAscTypeId*)pEvent->m_pData;
+                        NSEditorApi::CAscDocumentOnSaveData* saveData = (NSEditorApi::CAscDocumentOnSaveData*)pEvent->m_pData;
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSave
                                                                             object:nil
                                                                           userInfo:@{
-                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", pId->get_Id()]
+                                                                                     @"viewId"  : [NSString stringWithFormat:@"%d", saveData->get_Id()],
+                                                                                     @"cancel"  : @(saveData->get_IsCancel())
                                                                                      }];
                         break;
                     }
