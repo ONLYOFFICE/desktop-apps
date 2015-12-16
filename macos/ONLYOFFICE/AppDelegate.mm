@@ -167,9 +167,37 @@
 }
 
 - (IBAction)onMenuSaveAs:(NSMenuItem *)sender {
+    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    NSCefView * cefView = [controller cefViewWithTab:tab];
+    
+    if (cefView) {
+        NSEditorApi::CAscEditorExecuteCommand * pData = new NSEditorApi::CAscEditorExecuteCommand();
+        pData->put_Command(L"saveAs");
+        
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+        pEvent->m_pData = pData;
+        
+        [cefView apply:pEvent];
+    }
 }
 
 - (IBAction)onMenuPrint:(NSMenuItem *)sender {
+    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    NSCefView * cefView = [controller cefViewWithTab:tab];
+    
+    if (cefView) {
+        NSEditorApi::CAscEditorExecuteCommand * pData = new NSEditorApi::CAscEditorExecuteCommand();
+        pData->put_Command(L"print");
+        
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+        pEvent->m_pData = pData;
+        
+        [cefView apply:pEvent];
+    }
 }
 
 @end
