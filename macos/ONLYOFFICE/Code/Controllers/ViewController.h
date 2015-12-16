@@ -39,9 +39,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "ASCTabView.h"
+#import "NSCefView.h"
 
 @interface ViewController : NSViewController
 - (BOOL)shouldTerminateApplication;
 - (BOOL)shouldCloseMainWindow;
+- (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 @end
 

@@ -58,6 +58,7 @@
 #import "ASCDownloadController.h"
 #import "NSTimer+Block.h"
 #import "ASCSavePanelWithFormat.h"
+#import "ASCSharedSettings.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -251,19 +252,9 @@
             
             for (ASCTabView * tab in tabs) {
                 if (tab.changed) {
-                    NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-                    NSCefView * cefView = nil;
+                    NSCefView * cefView = [self cefViewWithTab:tab];
                     
                     tab.params[@"shouldClose"] = @(YES);
-                    
-                    if (item) {
-                        for (NSView * view in item.view.subviews) {
-                            if ([view isKindOfClass:[NSCefView class]]) {
-                                cefView = (NSCefView *)view;
-                                break;
-                            }
-                        }
-                    }
                     
                     if (cefView) {
                         NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
@@ -295,6 +286,28 @@
         }
     }    
     return YES;
+}
+
+- (NSCefView *)cefViewWithTab:(ASCTabView *)tab {
+    NSTabViewItem * item = nil;
+    NSCefView * cefView = nil;
+    
+    if (tab) {
+        item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+    } else {
+        item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:rootTabId]];
+    }
+    
+    if (item) {
+        for (NSView * view in item.view.subviews) {
+            if ([view isKindOfClass:[NSCefView class]]) {
+                cefView = (NSCefView *)view;
+                break;
+            }
+        }
+    }
+    
+    return cefView;
 }
 
 #pragma mark -
@@ -674,19 +687,9 @@
 
                     for (ASCTabView * tab in portalTabs) {
                         if (tab.changed) {
-                            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-                            NSCefView * cefView = nil;
+                            NSCefView * cefView = [self cefViewWithTab:tab];
                             
                             tab.params[@"shouldClose"] = @(YES);
-                            
-                            if (item) {
-                                for (NSView * view in item.view.subviews) {
-                                    if ([view isKindOfClass:[NSCefView class]]) {
-                                        cefView = (NSCefView *)view;
-                                        break;
-                                    }
-                                }
-                            }
                             
                             if (cefView) {
                                 NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
@@ -714,6 +717,8 @@
 #pragma mark ASCTabsControl Delegate
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
+    [[ASCSharedSettings sharedInstance] setSetting:tab forKey:kSettingsCurrentTab];
+    
     if (tab) {
         [self.tabView selectTabViewItemWithIdentifier:tab.uuid];
     }
@@ -806,24 +811,12 @@
         NSInteger returnCode = [alert runModalSheet];
 
         if(returnCode == NSAlertFirstButtonReturn) {
-            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-            NSCefView * cefView = nil;
+            NSCefView * cefView = [self cefViewWithTab:tab];
             
             tab.params[@"shouldClose"] = @(YES);
             
-            if (item) {
-                for (NSView * view in item.view.subviews) {
-                    if ([view isKindOfClass:[NSCefView class]]) {
-                        cefView = (NSCefView *)view;
-                        break;
-                    }
-                }
-            }
-            
             if (cefView) {
-                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
-                
-                pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
+                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
                 [cefView apply:pEvent];
             }
         } else if (returnCode == NSAlertSecondButtonReturn) {
@@ -842,20 +835,10 @@
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     appManager->DestroyCefView([tab.uuid intValue]);
 
-    NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
-    NSCefView * cefView = nil;
-    
-    if (item) {
-        for (NSView * view in item.view.subviews) {
-            if ([view isKindOfClass:[NSCefView class]]) {
-                cefView = (NSCefView *)view;
-                break;
-            }
-        }
-        
-        if (cefView) {
-            [cefView internalClean];
-        }
+    NSCefView * cefView = [self cefViewWithTab:tab];
+
+    if (cefView) {
+        [cefView internalClean];
     }
     
     [self.tabView removeTabViewItem:[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]]];

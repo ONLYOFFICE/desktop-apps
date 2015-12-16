@@ -39,7 +39,12 @@
 //
 
 #import "AppDelegate.h"
+#import "ASCConstants.h"
 #import "ViewController.h"
+#import "ASCSharedSettings.h"
+#import "ASCTabView.h"
+#import "NSString+OnlyOffice.h"
+#import "NSCefView.h"
 
 #ifndef MAS
     #import "PFMoveApplication.h"
@@ -78,11 +83,77 @@
     return NSTerminateNow;
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)item {
+    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    
+    if ([item action] == @selector(onMenuNew:)) {
+        return YES;
+    } else if ([item action] == @selector(onMenuOpen:)) {
+        return YES;
+    } else if ([item action] == @selector(onMenuSave:)) {
+        return nil != tab;
+    } else if ([item action] == @selector(onMenuSaveAs:)) {
+        return nil != tab;
+    } else if ([item action] == @selector(onMenuPrint:)) {
+        return nil != tab;
+    } else if ([item action] == @selector(onShowHelp:)) {
+        return YES;
+    }
+    
+    return [super validateMenuItem:item];
+}
+
 #pragma mark -
 #pragma mark Menu
 
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx"]];
+}
+
+- (IBAction)onMenuNew:(NSMenuItem *)sender {
+    if (100 == sender.tag) {
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                        object:nil
+                                                      userInfo:@{
+                                                                 @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                 @"type"    : @(sender.tag),
+                                                                 @"active"  : @(YES)
+                                                                 }];
+}
+
+- (IBAction)onMenuOpen:(NSMenuItem *)sender {
+    NSString * directiry = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLastOpenDirectory];
+    
+    if (!directiry || directiry.length < 1) {
+        directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile
+                                                        object:nil
+                                                      userInfo:@{
+                                                                 @"directory": directiry
+                                                                 }];
+}
+
+- (IBAction)onMenuSave:(NSMenuItem *)sender {
+    ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    NSCefView * cefView = [controller cefViewWithTab:tab];
+    
+    if (cefView) {
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
+        [cefView apply:pEvent];
+    }
+}
+
+- (IBAction)onMenuSaveAs:(NSMenuItem *)sender {
+}
+
+- (IBAction)onMenuPrint:(NSMenuItem *)sender {
 }
 
 @end

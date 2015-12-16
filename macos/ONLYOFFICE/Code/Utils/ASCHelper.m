@@ -80,32 +80,6 @@ static NSMutableDictionary * localSettings;
     return recoveryPath;
 }
 
-+ (void)copyVendorJS {
-    NSError * error;
-    NSString * applicationDataPath = [self applicationDataPath];
-
-#ifndef MAS
-    if (![[NSFileManager defaultManager] fileExistsAtPath:applicationDataPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:applicationDataPath withIntermediateDirectories:NO attributes:nil error:&error];
-        
-        if (error) {
-            NSLog(@"Error copying application path: %@", [error localizedDescription]);
-        }
-    }
-#endif
-
-    NSString * userVendorJsPath = [applicationDataPath stringByAppendingPathComponent:@"webdata"];
-    NSString * appVendorJsPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"cloud"];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:userVendorJsPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:userVendorJsPath withIntermediateDirectories:NO attributes:nil error:&error];
-        
-        if (![[NSFileManager defaultManager] copyItemAtPath:appVendorJsPath toPath:[userVendorJsPath stringByAppendingPathComponent:@"cloud"] error:&error]) {
-            NSLog(@"Error copying vendor js files: %@", [error localizedDescription]);
-        }
-    }
-}
-
 + (NSMutableDictionary *)localSettings {
     if (!localSettings)
         localSettings = [NSMutableDictionary dictionary];

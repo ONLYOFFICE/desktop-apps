@@ -101,4 +101,5 @@ float defaultTitleBarHeight() {
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameMainWindowLoaded object:self];
 }
 
+
 @end

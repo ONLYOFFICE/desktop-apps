@@ -63,82 +63,82 @@
 + (NSDictionary *)ascFormatsInfo {
     return @{
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX): @{
-                     @"description" : @"DOCX",
+                     @"description" : @"Word 2007 Document",
                      @"extension"   : @"docx"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC): @{
-                     @"description" : @"DOC",
+                     @"description" : @"Word 97-2003 Document",
                      @"extension"   : @"doc"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT): @{
-                     @"description" : @"ODT",
+                     @"description" : @"OpenOffice Document",
                      @"extension"   : @"odt"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF): @{
-                     @"description" : @"RTF",
+                     @"description" : @"Rich Text Document",
                      @"extension"   : @"rtf"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT): @{
-                     @"description" : @"TXT",
+                     @"description" : @"Plain Text",
                      @"extension"   : @"txt"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML): @{
-                     @"description" : @"HTML",
+                     @"description" : @"Web Page",
                      @"extension"   : @"html"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT): @{
-                     @"description" : @"MHT",
+                     @"description" : @"Web Page",
                      @"extension"   : @"mht"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
-                     @"description" : @"EPUB",
+                     @"description" : @"Mobipocket e-book",
                      @"extension"   : @"epub"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
-                     @"description" : @"PPTX",
+                     @"description" : @"PowerPoint 2007 Presentation",
                      @"extension"   : @"pptx"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT): @{
-                     @"description" : @"PPT",
+                     @"description" : @"PowerPoint 97-2003 Presentation",
                      @"extension"   : @"ppt"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
-                     @"description" : @"ODP",
+                     @"description" : @"OpenOffice Presentation",
                      @"extension"   : @"odp"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX): @{
-                     @"description" : @"DOCX",
-                     @"extension"   : @"docx"
+                     @"description" : @"PowerPoint Slide Show",
+                     @"extension"   : @"ppsx"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
-                     @"description" : @"XLSX",
+                     @"description" : @"Excel 2007 Spreadsheet",
                      @"extension"   : @"xlsx"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS): @{
-                     @"description" : @"XLS",
+                     @"description" : @"Excel 97-2003 Spreadsheet",
                      @"extension"   : @"xls"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS): @{
-                     @"description" : @"ODS",
+                     @"description" : @"OpenOffice Spreadsheet",
                      @"extension"   : @"ods"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV): @{
-                     @"description" : @"CSV",
+                     @"description" : @"Comma-Separated Values",
                      @"extension"   : @"csv"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
-                     @"description" : @"PDF",
+                     @"description" : @"PDF File",
                      @"extension"   : @"pdf"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU): @{
-                     @"description" : @"DJVU",
+                     @"description" : @"DjVu File",
                      @"extension"   : @"djvu"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS): @{
-                     @"description" : @"XPS",
+                     @"description" : @"XML Paper Specification",
                      @"extension"   : @"xps"
                      }
              };

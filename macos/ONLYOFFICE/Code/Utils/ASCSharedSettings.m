@@ -31,26 +31,50 @@
 */
 
 //
-//  ASCHelper.h
+//  ASCSharedSettings.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/15/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ASCSharedSettings.h"
 
-#ifdef DEBUG
-#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#   define DLog(...)
-#endif
+@interface ASCSharedSettings()
+@property (nonatomic) NSMutableDictionary * settings;
+@end
 
-#define kColorRGBA(r, g, b, a)  [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:(a)]
-#define kColorRGB(r, g, b)      [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
+@implementation ASCSharedSettings
 
-@interface ASCHelper : NSObject
-+ (NSMutableDictionary *)localSettings;
-+ (NSString *)applicationDataPath;
-+ (NSString *)recoveryDataPath;
++ (instancetype)sharedInstance {
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _settings = [NSMutableDictionary dictionary];
+    }
+    
+    return self;
+}
+
+- (void)setSetting:(id)setting forKey:(id <NSCopying>)aKey {
+    if (setting) {
+        [_settings setObject:setting forKey:aKey];
+    } else {
+        [_settings removeObjectForKey:aKey];
+    }
+}
+
+- (id)settingByKey:(id)key {
+    return [_settings objectForKey:key];
+}
+
 @end

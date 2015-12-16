@@ -31,26 +31,21 @@
 */
 
 //
-//  ASCHelper.h
+//  ASCSharedSettings.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/15/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#ifdef DEBUG
-#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#   define DLog(...)
-#endif
+static NSString * const kSettingsCurrentTab = @"asc.onlyoffice.currentTab";
+static NSString * const kSettingsLastOpenDirectory = @"asc.onlyoffice.lastOpenDirectory";
 
-#define kColorRGBA(r, g, b, a)  [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:(a)]
-#define kColorRGB(r, g, b)      [NSColor colorWithCalibratedRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
+@interface ASCSharedSettings : NSObject
++ (instancetype)sharedInstance;
 
-@interface ASCHelper : NSObject
-+ (NSMutableDictionary *)localSettings;
-+ (NSString *)applicationDataPath;
-+ (NSString *)recoveryDataPath;
+- (void)setSetting:(id)setting forKey:(id <NSCopying>)aKey;
+- (id)settingByKey:(id)key;
 @end

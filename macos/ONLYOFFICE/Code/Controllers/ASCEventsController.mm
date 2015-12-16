@@ -80,8 +80,7 @@ public:
                                                                                      @"action"  : @(ASCTabActionOpenUrl),
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_IdEqual()],
                                                                                      @"url"     : [NSString stringWithstdwstring:pData->get_Url()],
-                                                                                     @"active"  : @(pData->get_Active()),
-                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                     @"active"  : @(pData->get_Active())
                                                                                      }];
                         break;
                     }
@@ -235,6 +234,23 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
+                        NSEditorApi::CAscLocalOpenFiles * pData = (NSEditorApi::CAscLocalOpenFiles *)pEvent->m_pData;
+                        
+                        for(std::vector<std::wstring>::iterator it = pData->get_Files().begin(); it != pData->get_Files().end(); ++it) {
+                            std::wstring filePath = *it;
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"action"  : @(ASCTabActionOpenLocalFile),
+                                                                                         @"file"    : [NSString stringWithstdwstring:filePath],
+                                                                                         @"active"  : @(YES)
+                                                                                         }];
+                        }
+                        break;
+                    }
+                        
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
                         NSEditorApi::CAscLocalFileCreate * pData = (NSEditorApi::CAscLocalFileCreate *)pEvent->m_pData;
                         
@@ -243,8 +259,7 @@ public:
                                                                           userInfo:@{
                                                                                      @"action"  : @(ASCTabActionCreateLocalFile),
                                                                                      @"type"    : @(pData->get_Type()),
-                                                                                     @"active"  : @(YES),
-                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                     @"active"  : @(YES)
                                                                                      }];
                         break;
                     }
@@ -260,8 +275,7 @@ public:
                                                                                      @"action"  : isRecover ? @(ASCTabActionOpenLocalRecoverFile) : @(ASCTabActionOpenLocalRecentFile),
                                                                                      @"active"  : @(YES),
                                                                                      @"fileId"  : @(pData->get_Id()),
-                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
-                                                                                     @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()]
                                                                                      }];
                         break;
                     }
@@ -315,8 +329,7 @@ public:
                                                                               userInfo:@{
                                                                                          @"action"  : @(ASCTabActionOpenPortal),
                                                                                          @"url"     : [NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/?desktop=true"],
-                                                                                         @"active"  : @(YES),
-                                                                                         @"hash"    : [[NSUUID UUID] UUIDString]
+                                                                                         @"active"  : @(YES)
                                                                                          }];
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
