@@ -151,7 +151,7 @@ static float kASCWindowMinTitleWidth = 320;
     [self.tabsControl.multicastDelegate addDelegate:self];
     
     [self.userProfileButton setHidden:YES];
-    [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_normal"]];
+    [self.portalButton setState:NSOnState];
     
     [self.tabsControl removeAllConstraints];
     [self.titleLabel removeAllConstraints];
@@ -354,10 +354,10 @@ static float kASCWindowMinTitleWidth = 320;
     if (tab) {
         NSButton * btn = (NSButton *)tab;
         [self.titleLabel setStringValue:[NSString stringWithFormat:@"ONLYOFFICE  ▸  %@", btn.title]];
-        [self.portalButton setImage:[NSImage imageNamed:@"Documents_inactive_normal"]];
+        [self.portalButton setState:NSOffState];
     } else {
         [self.titleLabel setStringValue:@"ONLYOFFICE"];
-        [self.portalButton setImage:[NSImage imageNamed:@"Documents_active_normal"]];
+        [self.portalButton setState:NSOnState];
     }
 }
 
