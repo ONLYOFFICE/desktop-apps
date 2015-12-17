@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -69,6 +69,10 @@
         <source>Writing Direction</source>
         <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
       </trans-unit>
+      <trans-unit id="9aQ-wl-gjS.title">
+        <source>New</source>
+        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
+      </trans-unit>
       <trans-unit id="9i7-kj-42B.title">
         <source>none</source>
         <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
@@ -104,6 +108,10 @@
       <trans-unit id="Bw7-FT-i3A.title">
         <source>Save As…</source>
         <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
+      <trans-unit id="DOj-j9-dza.title">
+        <source>Spreadsheet</source>
+        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title">
         <source>Close</source>
@@ -277,6 +285,10 @@
         <source>Jump to Selection</source>
         <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
       </trans-unit>
+      <trans-unit id="TEm-B8-gsH.title">
+        <source>Document</source>
+        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
+      </trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
         <source>Window</source>
         <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
@@ -304,10 +316,6 @@
       <trans-unit id="WRG-CD-K1S.title">
         <source>Underline</source>
         <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
-      </trans-unit>
-      <trans-unit id="Was-JA-tGl.title">
-        <source>New</source>
-        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "Was-JA-tGl";</note>
       </trans-unit>
       <trans-unit id="WeT-3V-zwk.title">
         <source>Paste and Match Style</source>
@@ -409,9 +417,17 @@
         <source>File Name</source>
         <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
       </trans-unit>
+      <trans-unit id="hD5-Cz-ItX.title">
+        <source>New</source>
+        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
+      </trans-unit>
       <trans-unit id="hQb-2v-fYv.title">
         <source>Smart Quotes</source>
         <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
+      </trans-unit>
+      <trans-unit id="hkB-TU-Ps1.title">
+        <source>Presentation</source>
+        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
       </trans-unit>
       <trans-unit id="hz2-CU-CR7.title">
         <source>Check Document Now</source>
@@ -470,8 +486,8 @@
         <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
       </trans-unit>
       <trans-unit id="pxx-59-PXV.title">
-        <source>Save…</source>
-        <note>Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV";</note>
+        <source>Save</source>
+        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title">
         <source>Find Next</source>
@@ -575,9 +591,25 @@
       </trans-unit>
     </body>
   </file>
+  <file original="ONLYOFFICE/Info-MAS.plist" source-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2015 Ascensio System SIA. All rights reserved.</source>
+      </trans-unit>
+    </body>
+  </file>
   <file original="ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -593,7 +625,7 @@
   </file>
   <file original="ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.0.1" build-num="7A1001"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
     <body>
       <trans-unit id="Cancel">
@@ -604,16 +636,28 @@
         <source>Do you want to save the changes made to the document "%@"?</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Document">
-        <source>Document</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be saved.">
         <source>If you don't review your documents, all your changeses will be saved.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="New Document">
+        <source>New Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New Presentation">
+        <source>New Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="New Spreadsheet">
+        <source>New Spreadsheet</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No">
         <source>No</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing...">

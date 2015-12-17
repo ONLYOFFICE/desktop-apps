@@ -12,5 +12,6 @@ common/loginpage/deploy/*
 .DS_Store
 *.xcuserstate
 *.xcuserdatad
+.idea
 macos/Vendor/ONLYOFFICE
 macos/Production/Production/ONLYOFFICE.app

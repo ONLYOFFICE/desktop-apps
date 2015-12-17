@@ -5,13 +5,22 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Вы хотите сохранить изменения сделанные в документе \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document" = "Документ";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be saved." = "Если Вы не просмотрите эти документы, все внесенные изменения будут сохранены.";
 
 /* No comment provided by engineer. */
+"New Document" = "Новый документ";
+
+/* No comment provided by engineer. */
+"New Presentation" = "Новая презентация";
+
+/* No comment provided by engineer. */
+"New Spreadsheet" = "Новая таблица";
+
+/* No comment provided by engineer. */
 "No" = "Нет";
+
+/* No comment provided by engineer. */
+"Opening" = "Открытие";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Подготовка...";
