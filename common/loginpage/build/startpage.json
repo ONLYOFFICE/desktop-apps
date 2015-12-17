@@ -19,6 +19,16 @@
                     "dest": "../deploy/index.html"
                 },
                 {
+                    "src": "../vendor/jquery/jquery.min.js",
+                    "dest": "../deploy/jquery.min.js"
+                },
+                {
+                    "expand": true,
+                    "cwd": "../vendor/bootstrap",
+                    "src": ["*.js"],
+                    "dest": "../deploy/"
+                },
+                {
                     "expand": true,
                     "cwd": "../src/",
                     "src": [

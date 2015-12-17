@@ -1,0 +1,157 @@
+
+@title-height: 40px;
+
+/*.message-dlg {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    padding: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1px solid @color-gray-light;
+    border-radius: @border-radius;
+    background: #fff;
+    font-family: 'Open Sans',sans-serif,Arial;
+
+    label {
+        display: block;
+    }
+}
+*/
+
+/*.auth-control {
+    color: @color-gray-dark;
+    border: 1px solid @color-gray-light;
+    border-bottom: 0 none;
+    width: 100%;
+    padding: 15px 19px;
+    outline: 0;
+    font-size: 14px;
+
+    &.first {
+        border-radius: @border-radius @border-radius 0 0;
+    }
+
+    &.last {
+        border-radius: 0 0 @border-radius @border-radius;
+        border-bottom: 1px solid @color-gray-light;
+    }
+
+    &::-webkit-input-placeholder {
+        color: @color-gray-light;
+    }
+
+    &#auth-portal {
+        margin-top: 22px;
+    }
+}
+#field-btn-login {
+    margin-top: 26px;
+
+    #btn-login {
+        margin-bottom: 42px;
+    }
+
+    #portal-question {
+        margin-bottom: 6px;
+    }
+}
+*/
+.dlg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-48%);
+    background: #fff;
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px @color-gray;
+
+    border: 1px solid @color-gray-2;
+
+    .title {
+        height: @title-height;
+        border-bottom: 1px solid @color-gray-2;
+        display: flex;
+        color: @color-gray-dark;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 5px 24px;
+        background: @color-gray-2;
+
+        .caption {
+            flex:1;
+            text-align: left;
+            font-size: 18px;
+        }
+    }
+
+    .body {
+        /*position: absolute;*/
+        width: 100%;
+        top: @title-height;
+        bottom: 0;
+    }
+
+    .tool.close {
+        width:12px;
+        height:12px;
+        background: data-uri('sprite.png') no-repeat -72px -168px;        
+        border: 1px solid @color-gray-2;
+        cursor: pointer;
+        float: right;
+
+        &:hover {
+            background-position-x:-82px;
+        }
+    }
+}
+
+.modal-mask {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #fff;
+    opacity: 0.4;
+}
+
+.tbox {
+    color: @color-gray-dark;
+    border: 1px solid @color-gray-3;
+    width: 100%;
+    outline: 0;
+    background: #fff;
+    font-size: 14px;
+
+    height: 40px;
+    border-radius: 3px;
+}
+
+::-webkit-input-placeholder {
+   color: @color-gray;
+}
+
+.dlg-login {
+    .body {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .tbox {
+        padding: 0 15px;
+        margin: 12px 0;
+    }
+
+    #btn-login {
+        margin-left: 30px;
+    }
+}
+
+#box-btn-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
