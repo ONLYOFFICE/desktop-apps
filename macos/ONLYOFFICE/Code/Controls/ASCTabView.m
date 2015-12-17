@@ -41,6 +41,7 @@
 #import "ASCTabView.h"
 #import "ASCTabCloseButtonCell.h"
 #import "ASCTabViewCell.h"
+#import "ASCHelper.h"
 
 static NSUInteger const kASTabViewCloseButtonSize = 12;
 
@@ -154,6 +155,11 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         if ([iconName length] > 0) {
             self.image = [NSImage imageNamed:iconName];
         }
+    }
+    
+    if (type == ASCTabViewPortal) {
+        ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
+        tabViewCell.activeColor = kColorRGB(255, 255, 255);
     }
 }
 

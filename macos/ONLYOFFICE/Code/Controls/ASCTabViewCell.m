@@ -42,13 +42,6 @@
 #import "ASCHelper.h"
 
 @interface ASCTabViewCell()
-@property (nonatomic) NSColor * inactiveColor;
-@property (nonatomic) NSColor * activeColor;
-@property (nonatomic) NSColor * hoverInactiveColor;
-@property (nonatomic) NSColor * hoverActiveColor;
-@property (nonatomic) NSColor * clickColor;
-@property (nonatomic) NSColor * textColor;
-@property (nonatomic) NSColor * inactiveBorderColor;
 @end
 
 @implementation ASCTabViewCell
