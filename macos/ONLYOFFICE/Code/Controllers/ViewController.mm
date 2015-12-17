@@ -376,6 +376,30 @@
     }
 }
 
+- (BOOL)canOpenFile:(NSString *)path tab:(ASCTabView *)tab {
+    BOOL canOpen = NO;
+    
+    if (path) {
+        int fileFormatType = CCefViewEditor::GetFileFormat([path stdwstring]);
+        canOpen = (0 != fileFormatType);
+    }
+    
+    if (!canOpen) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
+        [alert setMessageText:NSLocalizedString(@"File can not be open.", nil)];
+        [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"File \"%@\" can not be open or not exist.", nil), path]];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert beginSheetModalForWindow:[NSApp mainWindow]  completionHandler:^(NSModalResponse returnCode) {
+            if (tab) {
+                [self.tabsControl removeTab:tab];
+            }
+        }];
+    }
+    
+    return canOpen;
+}
+
 #pragma mark -
 #pragma mark CEF events handlers
 
@@ -763,7 +787,7 @@
             case ASCTabActionOpenLocalFile: {
                 NSString * filePath = tab.params[@"file"];
                 
-                if (filePath) {
+                if ([self canOpenFile:filePath tab:tab]) {
                     int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
                     [cefView openFileWithName:filePath type:fileFormatType];
                 }
@@ -772,12 +796,22 @@
             }
             case ASCTabActionOpenLocalRecoverFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-                [cefView openRecoverFileWithId:docId];
+                NSString * filePath = tab.params[@"path"];
+                
+                if ([self canOpenFile:filePath tab:tab]) {
+                    [cefView openRecoverFileWithId:docId];
+                }
+                
                 break;
             }
             case ASCTabActionOpenLocalRecentFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-                [cefView openRecentFileWithId:docId];
+                NSString * filePath = tab.params[@"path"];
+                
+                if ([self canOpenFile:filePath tab:tab]) {
+                    [cefView openRecentFileWithId:docId];
+                }
+                
                 break;
             }
 
