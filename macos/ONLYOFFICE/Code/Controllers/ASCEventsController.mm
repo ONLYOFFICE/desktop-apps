@@ -323,11 +323,16 @@ public:
                         std::wstring cmd = pData->get_Command();
                         
                         if (cmd.compare(L"portal:open") == 0) {
+                            NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/"]];
+                            NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+                            NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+                            urlPage.queryItems            = @[countryCode, portalAddress];
+                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                 object:nil
                                                                               userInfo:@{
                                                                                          @"action"  : @(ASCTabActionOpenPortal),
-                                                                                         @"url"     : [NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/?desktop=true"],
+                                                                                         @"url"     : [urlPage string],
                                                                                          @"active"  : @(YES)
                                                                                          }];
                         } else if (cmd.compare(L"portal:logout") == 0) {
