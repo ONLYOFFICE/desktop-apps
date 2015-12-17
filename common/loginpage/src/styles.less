@@ -9,7 +9,7 @@
 @color-gray: #666666;
 @color-gray-dark: #333;
 @color-gray-8: #444;
-@color-gray-9: #333;
+@color-gray-9: #f5f5f5;
 
 @color-blue-2: #5b9bea;
 @color-blue-3: #5293e2;
@@ -253,8 +253,16 @@ li.menu-item {
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
 
+        &:hover {
+            background-color: @color-gray-2;
+        }
+
         &.selected {
-            background: @color-gray-2;
+            background: @color-gray-9;
+
+            &:hover {
+                background-color: @color-gray-2;
+            }
         }
 
         a {
