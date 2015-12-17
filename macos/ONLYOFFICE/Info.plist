@@ -8,13 +8,65 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>docx</string>
-			</array>
+			<array/>
 			<key>CFBundleTypeName</key>
 			<string>OpenOffice XML Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.wordprocessingml.document</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Plain Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>PDF</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.pdf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>OpenOffice XML Spreadsheet</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.spreadsheetml.sheet</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>OpenOffice XML Presentation</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.presentation</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -34,7 +86,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>

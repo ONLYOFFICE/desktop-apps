@@ -173,6 +173,50 @@
              45%    { background: #EFEFEF; top:0; opacity:0,2; }
             100%    { top:100px; background: #55bce6; }
         }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Bold.ttf');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-BoldItalic.ttf');
+            font-weight: normal;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-ExtraBold.ttf');
+            font-weight: bolder;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-ExtraBoldItalic.ttf');
+            font-weight: bolder;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Italic.ttf');
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Light.ttf');
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-LightItalic.ttf');
+            font-weight: lighter;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Regular.ttf');
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
@@ -234,7 +278,7 @@
     <script type="text/javascript" replace="yes" src="bootstrap.mods.js"></script>
     <script type="text/javascript" replace="yes" src="utils.js"></script>
     <script type="text/javascript" replace="yes" src="templates.js"></script>
-    <script type="text/javascript" replace="yes" src="dlglogin.js"></script>    
+    <script type="text/javascript" replace="yes" src="dlglogin.js"></script>
     <script type="text/javascript" replace="yes" src="panels.js"></script>
     <script type="text/javascript" replace="yes" src="locale.js"></script>
     <script type="text/javascript" replace="yes" src="model.js"></script>
