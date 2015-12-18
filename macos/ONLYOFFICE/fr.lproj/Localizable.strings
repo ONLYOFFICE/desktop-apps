@@ -5,7 +5,13 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Voulez-vous enregistrer les modifications apportées au document \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document" = "Document";
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "File can not be open.";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be saved." = "Si vous ne voyez pas ces documents, toutes vos modifications seront enregistrées.";
@@ -14,16 +20,31 @@
 "No" = "Non";
 
 /* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Opening" = "Opening";
+
+/* No comment provided by engineer. */
 "Preparing..." = "Prétraitement...";
 
 /* No comment provided by engineer. */
-"Review Changes..." = " Voir les modifications...";
+"Presentation %ld.pptx" = "Presentation %ld.pptx";
 
 /* No comment provided by engineer. */
-"Save and Quit" = " Sauvegardez et quittez";
+"Review Changes..." = "Voir les modifications...";
+
+/* No comment provided by engineer. */
+"Save and Quit" = "Sauvegardez et quittez";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Non confirmé";
+
+/* No comment provided by engineer. */
+"Untitled" = "Untitled";
 
 /* No comment provided by engineer. */
 "Yes" = "Oui";

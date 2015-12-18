@@ -640,6 +640,10 @@
         <source>Do you want to save the changes made to the document "%@"?</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
         <source>File "%@" can not be open or not exist.</source>
         <note>No comment provided by engineer.</note>
@@ -650,18 +654,6 @@
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be saved.">
         <source>If you don't review your documents, all your changeses will be saved.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Document">
-        <source>New Document</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Presentation">
-        <source>New Presentation</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Spreadsheet">
-        <source>New Spreadsheet</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No">
@@ -680,6 +672,10 @@
         <source>Preparing...</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
         <note>No comment provided by engineer.</note>
@@ -688,8 +684,16 @@
         <source>Save and Quit</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">

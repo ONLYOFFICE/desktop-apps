@@ -785,29 +785,24 @@
         <target>Voulez-vous enregistrer les modifications apportées au document "%@"?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Document %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
         <source>File "%@" can not be open or not exist.</source>
+        <target>File "%@" can not be open or not exist.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open.">
         <source>File can not be open.</source>
+        <target>File can not be open.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be saved.">
         <source>If you don't review your documents, all your changeses will be saved.</source>
         <target>Si vous ne voyez pas ces documents, toutes vos modifications seront enregistrées.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Document">
-        <source>New Document</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Presentation">
-        <source>New Presentation</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Spreadsheet">
-        <source>New Spreadsheet</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No">
@@ -817,10 +812,12 @@
       </trans-unit>
       <trans-unit id="OK">
         <source>OK</source>
+        <target>OK</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening">
         <source>Opening</source>
+        <target>Opening</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing...">
@@ -828,19 +825,34 @@
         <target>Prétraitement...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Presentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
-        <target> Voir les modifications...</target>
+        <target>Voir les modifications...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save and Quit">
         <source>Save and Quit</source>
-        <target> Sauvegardez et quittez</target>
+        <target>Sauvegardez et quittez</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Spreadsheet %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Non confirmé</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Untitled</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">

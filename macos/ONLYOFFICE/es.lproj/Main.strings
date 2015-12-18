@@ -223,9 +223,6 @@
 /* Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S"; */
 "WRG-CD-K1S.title" = "Underline";
 
-/* Class = "NSMenuItem"; title = "New"; ObjectID = "Was-JA-tGl"; */
-"Was-JA-tGl.title" = "Nuevo";
-
 /* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk"; */
 "WeT-3V-zwk.title" = "Paste and Match Style";
 
@@ -346,7 +343,7 @@
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k"; */
 "pa3-QI-u2k.title" = "Eliminar";
 
-/* Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV"; */
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV"; */
 "pxx-59-PXV.title" = "Guardar…";
 
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye"; */

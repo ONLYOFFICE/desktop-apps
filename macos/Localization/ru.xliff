@@ -791,6 +791,11 @@
         <target>Вы хотите сохранить изменения сделанные в документе "%@"?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Документ %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
         <source>File "%@" can not be open or not exist.</source>
         <target>Файл "%@" не может быть открыт или не существует.</target>
@@ -806,21 +811,6 @@
         <target>Если Вы не просмотрите эти документы, все внесенные изменения будут сохранены.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="New Document">
-        <source>New Document</source>
-        <target>Новый документ</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Presentation">
-        <source>New Presentation</source>
-        <target>Новая презентация</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="New Spreadsheet">
-        <source>New Spreadsheet</source>
-        <target>Новая таблица</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="No">
         <source>No</source>
         <target>Нет</target>
@@ -828,6 +818,7 @@
       </trans-unit>
       <trans-unit id="OK">
         <source>OK</source>
+        <target>OK</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening">
@@ -840,6 +831,11 @@
         <target>Подготовка...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Презентация %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
         <target>Просмотреть изменения...</target>
@@ -850,9 +846,19 @@
         <target>Подтвердить завершение</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Книга %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Неподтвержденный</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Без названия</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">

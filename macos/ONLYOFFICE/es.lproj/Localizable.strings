@@ -5,7 +5,13 @@
 "Do you want to save the changes made to the document \"%@\"?" = "¿Desea guardar los cambios realizados en el documento \"% @\" ?";
 
 /* No comment provided by engineer. */
-"Document" = "Documento";
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "File can not be open.";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be saved." = "Si no revisa sus documentos, se guardarán todos sus cambios.";
@@ -14,7 +20,16 @@
 "No" = "No";
 
 /* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Opening" = "Opening";
+
+/* No comment provided by engineer. */
 "Preparing..." = "Preparando...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentation %ld.pptx";
 
 /* No comment provided by engineer. */
 "Review Changes..." = "Revisar Cambios...";
@@ -23,7 +38,13 @@
 "Save and Quit" = "Guardar y Salir";
 
 /* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
+
+/* No comment provided by engineer. */
 "Unconfirmed" = "Sin Confirmar";
+
+/* No comment provided by engineer. */
+"Untitled" = "Untitled";
 
 /* No comment provided by engineer. */
 "Yes" = "Sí";
