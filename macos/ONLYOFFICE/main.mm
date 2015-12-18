@@ -71,6 +71,11 @@ int main(int argc, const char * argv[]) {
     // setup Converter directory
     appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];;
     
+    // setup localization
+    NSString * locale = [NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+    std::wstring wLocale = [locale stdwstring];
+    appManager->InitAdditionalEditorParams(wLocale);
+    
     [worker Start:argc :argv];
     int result = NSApplicationMain(argc, argv);
     [worker End];
