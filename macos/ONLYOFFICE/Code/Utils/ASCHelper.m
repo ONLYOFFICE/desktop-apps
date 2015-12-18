@@ -80,6 +80,36 @@ static NSMutableDictionary * localSettings;
     return recoveryPath;
 }
 
++ (void)createCloudPath {
+    NSError * error;
+    NSString * applicationDataPath = [self applicationDataPath];
+    
+#ifndef MAS
+    if (![[NSFileManager defaultManager] fileExistsAtPath:applicationDataPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:applicationDataPath withIntermediateDirectories:NO attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Error copying application path: %@", [error localizedDescription]);
+        }
+    }
+#endif
+    
+    NSString * webDataPath = [applicationDataPath stringByAppendingPathComponent:@"webdata"];
+    NSString * cloudPath   = [webDataPath stringByAppendingPathComponent:@"cloud"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:webDataPath]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:webDataPath withIntermediateDirectories:NO attributes:nil error:&error]) {
+            NSLog(@"Error create webdata path: %@", [error localizedDescription]);
+        }
+    }
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:cloudPath]) {
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:cloudPath withIntermediateDirectories:NO attributes:nil error:&error]) {
+            NSLog(@"Error create cloud path: %@", [error localizedDescription]);
+        }
+    }
+}
+
 + (NSMutableDictionary *)localSettings {
     if (!localSettings)
         localSettings = [NSMutableDictionary dictionary];
