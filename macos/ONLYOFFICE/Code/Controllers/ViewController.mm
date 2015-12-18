@@ -64,6 +64,9 @@
 
 @interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
+    NSUInteger documentNameCounter;
+    NSUInteger spreadsheetNameCounter;
+    NSUInteger presentationNameCounter;
 }
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
@@ -145,7 +148,6 @@
                                              selector:@selector(onCEFPortalLogout:)
                                                  name:CEFEventNamePortalLogout
                                                object:nil];
-    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -773,11 +775,13 @@
                 
             case ASCTabActionCreateLocalFile: {
                 int docType = [tab.params[@"type"] intValue];
-                NSString * docName = [NSLocalizedString(@"New Document", nil) stringByAppendingString:@".docx"];
+                
+                NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {
-                    case 1: docName = [NSLocalizedString(@"New Presentation", nil) stringByAppendingString:@".pptx"];   break;
-                    case 2: docName = [NSLocalizedString(@"New Spreadsheet", nil) stringByAppendingString:@".xlsx"];    break;
+                    case 0: docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++documentNameCounter]; break;
+                    case 1: docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter]; break;
+                    case 2: docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++spreadsheetNameCounter];   break;
                 }
                 
                 [cefView createFileWithName:docName type:docType];

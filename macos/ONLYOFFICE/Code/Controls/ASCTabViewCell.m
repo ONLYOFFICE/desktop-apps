@@ -138,7 +138,7 @@
 - (NSAttributedString *)attributedTitle {
     NSMutableAttributedString *attributedTitle  = [[super attributedTitle] mutableCopy];
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-//    NSFont *font = [NSFont fontWithName:@"HelveticaNeue-Medium" size:11];
+    NSFont *font = [NSFont systemFontOfSize:11];
     NSColor *color = self.textColor;
     
     [paragraphStyle setAlignment:NSLeftTextAlignment];
@@ -147,7 +147,7 @@
     [attributedTitle addAttributes:@{
                                      NSForegroundColorAttributeName:color,
                                      NSParagraphStyleAttributeName:paragraphStyle,
-//                                     NSFontAttributeName:font
+                                     NSFontAttributeName:font
                                      }
                              range:NSMakeRange(0, attributedTitle.length)];
     return attributedTitle;

@@ -110,7 +110,7 @@ static float kASCWindowMinTitleWidth = 320;
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
     
-    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame);
+    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2; // OSX 10.11 magic
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowDidResize:)
