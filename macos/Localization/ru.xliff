@@ -575,6 +575,11 @@
         <target>ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
+      <trans-unit id="llV-Yc-IJ4.title">
+        <source>MENU</source>
+        <target>МЕНЮ</target>
+        <note>Class = "NSButtonCell"; title = "MENU"; ObjectID = "llV-Yc-IJ4";</note>
+      </trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
         <source>Cancel</source>
         <target>Отмена</target>
@@ -786,6 +791,16 @@
         <target>Вы хотите сохранить изменения сделанные в документе "%@"?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Файл "%@" не может быть открыт или не существует.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+         <target>Файл не может быть открыт.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be saved.">
         <source>If you don't review your documents, all your changeses will be saved.</source>
         <target>Если Вы не просмотрите эти документы, все внесенные изменения будут сохранены.</target>
@@ -809,6 +824,10 @@
       <trans-unit id="No">
         <source>No</source>
         <target>Нет</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening">

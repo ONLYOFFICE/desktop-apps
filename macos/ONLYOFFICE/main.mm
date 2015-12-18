@@ -50,6 +50,8 @@ CAscApplicationManager * createASCApplicationManager() {
 
 int main(int argc, const char * argv[]) {
 //    return NSApplicationMain(argc, argv);
+    
+    [ASCHelper createCloudPath];
         
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];

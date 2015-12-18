@@ -5,6 +5,12 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Вы хотите сохранить изменения сделанные в документе \"%@\"?";
 
 /* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Файл \"%@\" не может быть открыт или не существует.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Файл не может быть открыт.";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be saved." = "Если Вы не просмотрите эти документы, все внесенные изменения будут сохранены.";
 
 /* No comment provided by engineer. */
