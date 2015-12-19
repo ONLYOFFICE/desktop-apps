@@ -420,7 +420,11 @@
         
         if (!existTab) {
             existTab = [self tabWithParam:@"path" value:params[@"path"]];
-        }        
+        }
+        
+        if (!existTab) {
+            existTab = [self tabWithParam:@"file" value:params[@"file"]];
+        }
         
         if (existTab) {
             [self.tabsControl selectTab:existTab];
