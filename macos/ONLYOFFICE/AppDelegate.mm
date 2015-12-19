@@ -123,7 +123,20 @@
 #pragma mark Menu
 
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx"]];
+    NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
+    NSString * helpUrl = @"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx";
+    
+    if ([@"ru" isEqualToString:langCode]) {
+        helpUrl = @"http://helpcenter.onlyoffice.com/ru/ONLYOFFICE-Editors/index.aspx";
+    } else if ([@"de" isEqualToString:langCode]) {
+        helpUrl = @"http://helpcenter.onlyoffice.com/de/ONLYOFFICE-Editors/index.aspx";
+    } else if ([@"fr" isEqualToString:langCode]) {
+        helpUrl = @"http://helpcenter.onlyoffice.com/fr/ONLYOFFICE-Editors/index.aspx";
+    } else if ([@"es" isEqualToString:langCode]) {
+        helpUrl = @"http://helpcenter.onlyoffice.com/es/ONLYOFFICE-Editors/index.aspx";
+    }
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpUrl]];
 }
 
 - (IBAction)onMenuNew:(NSMenuItem *)sender {
