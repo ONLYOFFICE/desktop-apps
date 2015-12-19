@@ -72,6 +72,7 @@
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldTerminateApp;
+@property (nonatomic) BOOL shouldLogoutPortal;
 @end
 
 @implementation ViewController
@@ -88,10 +89,10 @@
                                              selector:@selector(onCEFCreateTab:)
                                                  name:CEFEventNameCreateTab
                                                object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFLogout:)
-                                                 name:CEFEventNameLogout
+                                             selector:@selector(onCEFChangedTabEditorName:)
+                                                 name:CEFEventNameTabEditorNameChanged
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -420,7 +421,7 @@
         
         if (!existTab) {
             existTab = [self tabWithParam:@"path" value:params[@"path"]];
-        }        
+        }
         
         if (existTab) {
             [self.tabsControl selectTab:existTab];
@@ -430,11 +431,17 @@
     }
 }
 
-- (void)onCEFLogout:(NSNotification *)notification {
-    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
-    [self.tabsControl removeAllTabs];
-    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
-    [self loadStartPage];
+- (void)onCEFChangedTabEditorName:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * viewId = params[@"viewId"];
+       
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab) {
+            [tab.params addEntriesFromDictionary:params];
+        }
+    }
 }
 
 - (void)onCEFSave:(NSNotification *)notification {
@@ -620,7 +627,7 @@
                                                                     object:nil
                                                                   userInfo:@{
                                                                              @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                             @"file"    : [[openPanel URL] path],
+                                                                             @"path"    : [[openPanel URL] path],
                                                                              @"active"  : @(YES)
                                                                              }];
             }
@@ -669,6 +676,8 @@
         NSString * url = notification.userInfo[@"url"];
         
         if (url) {
+            self.shouldLogoutPortal = YES;
+            
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
             
@@ -736,6 +745,21 @@
                 [self.tabView selectTabViewItemWithIdentifier:rootTabId];
             }
         }
+        
+        if (self.shouldLogoutPortal) {
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+            
+            appManager->Logout([url stdwstring]);
+            
+            NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+            pCommand->put_Command(L"portal:logout");
+            pCommand->put_Param([url stdwstring]);
+            
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+            pEvent->m_pData = pCommand;
+            
+            appManager->Apply(pEvent);
+        }
     }
 }
 
@@ -789,7 +813,7 @@
             }
                 
             case ASCTabActionOpenLocalFile: {
-                NSString * filePath = tab.params[@"file"];
+                NSString * filePath = tab.params[@"path"];
                 
                 if ([self canOpenFile:filePath tab:tab]) {
                     int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
@@ -861,6 +885,7 @@
             [control removeTab:tab];
         } else if (returnCode == NSAlertThirdButtonReturn) {
             self.shouldTerminateApp = NO;
+            self.shouldLogoutPortal = NO;
         }
         
         return NO;

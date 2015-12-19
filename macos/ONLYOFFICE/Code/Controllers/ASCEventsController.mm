@@ -107,7 +107,9 @@ public:
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()],
-                                                                                     @"name"    : [NSString stringWithstdwstring:pData->get_Name()]
+                                                                                     @"name"    : [NSString stringWithstdwstring:pData->get_Name()],
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"url"     : [NSString stringWithstdwstring:pData->get_Url()]
                                                                                      }];
                         break;
                     }
@@ -125,9 +127,6 @@ public:
                     }
                         
                     case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogout
-                                                                            object:nil
-                                                                          userInfo:nil];
                         break;
                     }
                         
@@ -243,7 +242,7 @@ public:
                                                                                 object:nil
                                                                               userInfo:@{
                                                                                          @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                                         @"file"    : [NSString stringWithstdwstring:filePath],
+                                                                                         @"path"    : [NSString stringWithstdwstring:filePath],
                                                                                          @"active"  : @(YES)
                                                                                          }];
                         }
