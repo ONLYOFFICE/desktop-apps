@@ -88,6 +88,11 @@
                                              selector:@selector(onCEFCreateTab:)
                                                  name:CEFEventNameCreateTab
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFChangedTabEditorName:)
+                                                 name:CEFEventNameTabEditorNameChanged
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFLogout:)
@@ -422,14 +427,23 @@
             existTab = [self tabWithParam:@"path" value:params[@"path"]];
         }
         
-        if (!existTab) {
-            existTab = [self tabWithParam:@"file" value:params[@"file"]];
-        }
-        
         if (existTab) {
             [self.tabsControl selectTab:existTab];
         } else {
             [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+        }
+    }
+}
+
+- (void)onCEFChangedTabEditorName:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * viewId = params[@"viewId"];
+       
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        
+        if (tab) {
+            [tab.params addEntriesFromDictionary:params];
         }
     }
 }
@@ -624,7 +638,7 @@
                                                                     object:nil
                                                                   userInfo:@{
                                                                              @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                             @"file"    : [[openPanel URL] path],
+                                                                             @"path"    : [[openPanel URL] path],
                                                                              @"active"  : @(YES)
                                                                              }];
             }
@@ -793,7 +807,7 @@
             }
                 
             case ASCTabActionOpenLocalFile: {
-                NSString * filePath = tab.params[@"file"];
+                NSString * filePath = tab.params[@"path"];
                 
                 if ([self canOpenFile:filePath tab:tab]) {
                     int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);

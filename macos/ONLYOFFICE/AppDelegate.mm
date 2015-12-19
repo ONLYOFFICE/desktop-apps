@@ -73,7 +73,7 @@
                                                             object:nil
                                                           userInfo:@{
                                                                      @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                     @"file"    : filePath,
+                                                                     @"path"    : filePath,
                                                                      @"active"  : @(YES)
                                                                      }];
     }
