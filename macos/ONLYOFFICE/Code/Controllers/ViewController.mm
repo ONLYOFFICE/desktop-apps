@@ -72,6 +72,7 @@
 @property (nonatomic) NSCefView * cefStartPageView;
 @property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldTerminateApp;
+@property (nonatomic) BOOL shouldLogoutPortal;
 @end
 
 @implementation ViewController
@@ -92,11 +93,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFChangedTabEditorName:)
                                                  name:CEFEventNameTabEditorNameChanged
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFLogout:)
-                                                 name:CEFEventNameLogout
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -448,13 +444,6 @@
     }
 }
 
-- (void)onCEFLogout:(NSNotification *)notification {
-    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
-    [self.tabsControl removeAllTabs];
-    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
-    [self loadStartPage];
-}
-
 - (void)onCEFSave:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
@@ -687,6 +676,8 @@
         NSString * url = notification.userInfo[@"url"];
         
         if (url) {
+            self.shouldLogoutPortal = YES;
+            
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
             
@@ -753,6 +744,21 @@
                 
                 [self.tabView selectTabViewItemWithIdentifier:rootTabId];
             }
+        }
+        
+        if (self.shouldLogoutPortal) {
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+            
+            appManager->Logout([url stdwstring]);
+            
+            NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+            pCommand->put_Command(L"portal:logout");
+            pCommand->put_Param([url stdwstring]);
+            
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+            pEvent->m_pData = pCommand;
+            
+            appManager->Apply(pEvent);
         }
     }
 }
@@ -879,6 +885,7 @@
             [control removeTab:tab];
         } else if (returnCode == NSAlertThirdButtonReturn) {
             self.shouldTerminateApp = NO;
+            self.shouldLogoutPortal = NO;
         }
         
         return NO;

@@ -53,11 +53,6 @@
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFLogout:)
-                                                 name:CEFEventNameLogout
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFLogin:)
                                                  name:CEFEventNameLogin
                                                object:nil];
@@ -77,18 +72,6 @@
 
 #pragma mark -
 #pragma mark - CEF events handler
-
-- (void)onCEFLogout:(NSNotification *)notification {
-    [[ASCHelper localSettings] removeObjectForKey:ASCUserSettingsNameUserInfo];
-    
-//    if (self.isViewLoaded && self.view.window) {
-//        [self dismissViewController:self];
-//    }
-    
-    if (self.popover) {
-        [self.popover closePopover:nil];
-    }
-}
 
 - (void)onCEFLogin:(NSNotification *)notification {
     if (notification && notification.userInfo) {

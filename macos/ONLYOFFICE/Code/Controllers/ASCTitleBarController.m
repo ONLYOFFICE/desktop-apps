@@ -136,12 +136,7 @@ static float kASCWindowMinTitleWidth = 320;
                                              selector:@selector(onCEFModifyChanged:)
                                                  name:CEFEventNameModifyChanged
                                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFLogout:)
-                                                 name:CEFEventNameLogout
-                                               object:nil];
-    
+       
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFLogin:)
                                                  name:CEFEventNameLogin
@@ -272,10 +267,6 @@ static float kASCWindowMinTitleWidth = 320;
             }
         }
     }
-}
-
-- (void)onCEFLogout:(NSNotification *)notification {
-    [self.userProfileButton setHidden:YES];
 }
 
 - (void)onCEFLogin:(NSNotification *)notification {

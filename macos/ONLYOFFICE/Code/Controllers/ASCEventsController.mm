@@ -127,9 +127,6 @@ public:
                     }
                         
                     case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogout
-                                                                            object:nil
-                                                                          userInfo:nil];
                         break;
                     }
                         
