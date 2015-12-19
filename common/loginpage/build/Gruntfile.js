@@ -282,7 +282,7 @@ module.exports = function(grunt) {
                             return '<style type="text/css">' + css + '</style>';
                         }
                     },{
-                        from: /(\<.+javascript.+replace.+"(\w+(\.min)?\.js).+\/script\>)/g,
+                        from: /(\<.+javascript.+replace.+"(\w+(\.min|\.mods)?\.js).+\/script\>)/g,
                         to: function(matchedWord, index, fullText, regexMatches) {
                             if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
                                 grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
