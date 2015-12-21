@@ -237,7 +237,7 @@
   "SSE.Views.AutoFilterDialog.txtEmpty": "Enter cell filter",
   "SSE.Views.AutoFilterDialog.txtTitle": "Filter",
   "SSE.Views.AutoFilterDialog.warnNoSelected": "You must choose at least one value",
-  "SSE.Views.CellEditor.textManager": "Manager",
+  "SSE.Views.CellEditor.textManager": "Name Manager",
   "SSE.Views.CellEditor.tipFormula": "Insert Function",
   "SSE.Views.CellRangeDialog.errorMaxRows": "ERROR! The maximum number of data series per chart is 255",
   "SSE.Views.CellRangeDialog.textCancel": "Cancel",

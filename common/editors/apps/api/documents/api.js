@@ -301,7 +301,7 @@
                 if (type && typeof type[1] === 'string') {
                     if (!_config.document.permissions)
                         _config.document.permissions = {};
-                    _config.document.permissions.download = _config.document.permissions.edit = false;
+                    _config.document.permissions.edit = false;
                 }
 
                 if (!_config.document.title || _config.document.title=='')

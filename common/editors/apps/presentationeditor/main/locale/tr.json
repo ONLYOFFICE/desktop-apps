@@ -102,6 +102,7 @@
   "PE.Controllers.Main.downloadTextText": "Sunum yükleniyor...",
   "PE.Controllers.Main.downloadTitleText": "Sunum Yükleniyor",
   "PE.Controllers.Main.errorCoAuthoringDisconnect": "Sunucu bağlantısı kesildi. Döküman şu an düzenlenemez.",
+  "PE.Controllers.Main.errorConnectToServer": "The document could not be saved. Please check connection settings or contact your administrator.<br>When you click the 'OK' button, you will be prompted to download the document.<br><br>Find more information about connecting Document Server <a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">here</a>",
   "PE.Controllers.Main.errorDatabaseConnection": "Harci hata. <br>Veri tabanı bağlantı hatası. Hata devam ederse lütfen destek ile iletişime geçin.",
   "PE.Controllers.Main.errorDataRange": "Yanlış veri aralığı.",
   "PE.Controllers.Main.errorDefaultMessage": "Hata kodu: %1",

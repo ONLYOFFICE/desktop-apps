@@ -123,6 +123,7 @@
   "DE.Controllers.Main.downloadTextText": "Загрузка документа...",
   "DE.Controllers.Main.downloadTitleText": "Загрузка документа",
   "DE.Controllers.Main.errorCoAuthoringDisconnect": "Потеряно соединение с сервером. В данный момент нельзя отредактировать документ.",
+  "DE.Controllers.Main.errorConnectToServer": "Не удается сохранить документ. Проверьте параметры подключения или обратитесь к вашему администратору.<br>Когда вы нажмете на кнопку 'OK', вам будет предложено скачать документ.<br><br>Дополнительную информацию о подключении Document Server можно найти <a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">здесь</a>",
   "DE.Controllers.Main.errorDatabaseConnection": "Внешняя ошибка.<br>Ошибка подключения к базе данных. Если ошибка повторяется, пожалуйста, обратитесь в службу поддержки.",
   "DE.Controllers.Main.errorDataRange": "Некорректный диапазон данных.",
   "DE.Controllers.Main.errorDefaultMessage": "Код ошибки: %1",

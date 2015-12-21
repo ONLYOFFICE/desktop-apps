@@ -123,6 +123,7 @@
   "DE.Controllers.Main.downloadTextText": "Baixando documento...",
   "DE.Controllers.Main.downloadTitleText": "Baixando documento",
   "DE.Controllers.Main.errorCoAuthoringDisconnect": "Conexão com servidor perdida. O documento não pode ser editado neste momento.",
+  "DE.Controllers.Main.errorConnectToServer": "The document could not be saved. Please check connection settings or contact your administrator.<br>When you click the 'OK' button, you will be prompted to download the document.<br><br>Find more information about connecting Document Server <a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">here</a>",
   "DE.Controllers.Main.errorDatabaseConnection": "Erro externo.<br>Erro de conexão ao banco de dados. Entre em contato com o suporte caso o erro persista.",
   "DE.Controllers.Main.errorDataRange": "Intervalo de dados incorreto.",
   "DE.Controllers.Main.errorDefaultMessage": "Código do erro: %1",

@@ -102,6 +102,7 @@
   "PE.Controllers.Main.downloadTextText": "Präsentation wird heruntergeladen...",
   "PE.Controllers.Main.downloadTitleText": "Herunterladen der Präsentation",
   "PE.Controllers.Main.errorCoAuthoringDisconnect": "Verbindung zum Server verloren. Das Dokument kann momentan nicht bearbeitet werden.",
+  "PE.Controllers.Main.errorConnectToServer": "Das Dokument konnte nicht gespeichert werden. Bitte überprüfen Sie die Verbindungseinstellungen, oder richten Sie Ihnen an Ihren Administrator.<br>Wann Sie die Taste \"OK\" klicken, werden Sie aufgefordert das Dokument herunterzuladen.<br><br>Finden Sie mehr Information über Verbindung des Dokument Servers <a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">here</a>",
   "PE.Controllers.Main.errorDatabaseConnection": "Externer Fehler.<br>Fehler beim Verbinden zur Datenbank. Bitte wenden Sie sich an den Kundendienst, falls der Fehler bestehen bleibt.",
   "PE.Controllers.Main.errorDataRange": "Falscher Datenbereich.",
   "PE.Controllers.Main.errorDefaultMessage": "Fehlercode: %1",

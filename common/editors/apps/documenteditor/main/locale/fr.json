@@ -123,6 +123,7 @@
   "DE.Controllers.Main.downloadTextText": "Téléchargement du document...",
   "DE.Controllers.Main.downloadTitleText": "Téléchargement du document",
   "DE.Controllers.Main.errorCoAuthoringDisconnect": "Connexion au serveur perdue. Le document ne peut être modifié en ce moment.",
+  "DE.Controllers.Main.errorConnectToServer": "Le document n'a pas pu être enregistré. Veuillez vérifier les paramètres de connexion ou contactez votre administrateur.<br>Lorsque vous cliquez sur le bouton 'OK', vous serez invité à télécharger le document.<br><br>Trouvez plus d'informations sur la connexion Document Server<a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">here</a>",
   "DE.Controllers.Main.errorDatabaseConnection": "Erreur externe.<br>Erreur de connexion à la base de données. Si l'erreur persiste veillez contactez l'assistance technique.",
   "DE.Controllers.Main.errorDataRange": "Plage de données incorrecte.",
   "DE.Controllers.Main.errorDefaultMessage": "Code d'erreur: %1",

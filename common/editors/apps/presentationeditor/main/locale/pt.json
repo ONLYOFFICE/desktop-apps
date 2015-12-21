@@ -102,6 +102,7 @@
   "PE.Controllers.Main.downloadTextText": "Baixando apresentação...",
   "PE.Controllers.Main.downloadTitleText": "Baixando apresentação",
   "PE.Controllers.Main.errorCoAuthoringDisconnect": "Conexão com servidor perdida. O documento não pode ser editado neste momento.",
+  "PE.Controllers.Main.errorConnectToServer": "The document could not be saved. Please check connection settings or contact your administrator.<br>When you click the 'OK' button, you will be prompted to download the document.<br><br>Find more information about connecting Document Server <a href=\"https://api.onlyoffice.com/editors/callback\" target=\"_blank\">here</a>",
   "PE.Controllers.Main.errorDatabaseConnection": "Erro externo.<br>Erro de conexão ao banco de dados. Entre em contato com o suporte caso o erro persista.",
   "PE.Controllers.Main.errorDataRange": "Intervalo de dados incorreto.",
   "PE.Controllers.Main.errorDefaultMessage": "Código do erro: %1",

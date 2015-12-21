@@ -769,6 +769,7 @@
   "DE.Views.FileMenu.btnBackCaption": "Go to Documents",
   "DE.Views.FileMenu.btnCreateNewCaption": "Create New",
   "DE.Views.FileMenu.btnDownloadCaption": "Download as...",
+  "DE.Views.FileMenu.textDownload": "Download",
   "DE.Views.FileMenu.btnHelpCaption": "Help...",
   "DE.Views.FileMenu.btnHistoryCaption": "Version History",
   "DE.Views.FileMenu.btnInfoCaption": "Document Info...",
