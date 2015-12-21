@@ -381,10 +381,16 @@
 
 - (BOOL)canOpenFile:(NSString *)path tab:(ASCTabView *)tab {
     BOOL canOpen = NO;
-    
+
     if (path) {
-        int fileFormatType = CCefViewEditor::GetFileFormat([path stdwstring]);
-        canOpen = (0 != fileFormatType);
+        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        if (urlFile && [urlFile host]) {
+            canOpen = YES;
+        } else {
+            int fileFormatType = CCefViewEditor::GetFileFormat([path stdwstring]);
+            canOpen = (0 != fileFormatType);
+        }
     }
     
     if (!canOpen) {
