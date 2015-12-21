@@ -62,7 +62,7 @@
 
 //    BOOL isCommandKey = ([event modifierFlags] & NSCommandKeyMask) != 0;
 
-    if (event != nil && (event.type != NSLeftMouseUp)) {
+    if (event != nil && ((event.type != NSLeftMouseUp) || event.window == nil)) {
         return [controller shouldCloseMainWindow];
     }
     
