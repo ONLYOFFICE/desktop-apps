@@ -72,8 +72,33 @@ int main(int argc, const char * argv[]) {
     appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];;
     
     // setup localization
-    NSString * locale = [NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
-    std::wstring wLocale = [locale stdwstring];
+    NSMutableArray * params = [NSMutableArray array];
+    [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+    
+    // setup username
+    NSString * fullName = NSFullUserName();
+    
+    if (fullName) {
+        NSRange range = [fullName rangeOfString:@" "];
+        
+        NSString *firstName = fullName;
+        NSString *lastName = @"";
+        
+        if (range.location != NSNotFound) {
+            firstName = [fullName substringToIndex:range.location];
+            lastName = [fullName substringFromIndex:range.location + 1];
+        }
+        
+        if (firstName) {
+            [params addObject:[NSString stringWithFormat:@"userfname=%@", firstName]];
+        }
+        
+        if (lastName) {
+            [params addObject:[NSString stringWithFormat:@"userlname=%@", lastName]];
+        }
+    }
+    
+    std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
     
     [worker Start:argc :argv];
