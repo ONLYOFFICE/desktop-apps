@@ -215,6 +215,10 @@
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                        object:nil
+                                                      userInfo:@{@"fullscreen" : @(NO)}];
+    
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
             unsaved++;
@@ -278,6 +282,10 @@
 }
 
 - (BOOL)shouldCloseMainWindow {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                        object:nil
+                                                      userInfo:@{@"fullscreen" : @(NO)}];
+    
     if (self.tabsControl.tabs.count > 0) {
         ASCTabView * tab = [self.tabsControl selectedTab];
         
@@ -499,6 +507,22 @@
             [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
         } else {
             [item.view exitFullScreenModeWithOptions:nil];
+            
+            ASCTabView * tab = [self.tabsControl selectedTab];
+            
+            if (tab) {
+                NSCefView * cefView = [self cefViewWithTab:tab];
+                
+                if (cefView) {
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_Command(L"editor:stopDemonstration");
+                    
+                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                    pEvent->m_pData = pCommand;
+                    
+                    [cefView apply:pEvent];
+                }
+            }
         }
     }
 }
