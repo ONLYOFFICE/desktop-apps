@@ -28,6 +28,7 @@ OutputDir               =.\
 Compression             =lzma
 PrivilegesRequired      =admin
 AppMutex                =TEAMLAB
+ChangesEnvironment      = yes
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl;
@@ -199,29 +200,73 @@ begin
     Result := IntToStr(fileTimeNano100/10000 - 11644473600000);
  end;
 
+function NeedsAddPath(Param: string): boolean;
+var
+  OrigPath: string;
+begin
+  if not RegQueryStringValue(GetHKLM(), 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', OrigPath)
+  then begin
+    Result := True;
+    exit;
+  end;
+  // look for the path with leading and trailing semicolon
+  // Pos() returns 0 if not found
+  Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
+end;
+
+const
+  SMTO_ABORTIFHUNG = 2;
+  WM_WININICHANGE = $001A;
+  WM_SETTINGCHANGE = WM_WININICHANGE;
+
+type
+  WPARAM = UINT_PTR;
+  LPARAM = INT_PTR;
+  LRESULT = INT_PTR;
+
+function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
+  external 'SendMessageTimeoutA@user32.dll stdcall';  
+
+procedure RefreshEnvironment;
+var
+  S: AnsiString;
+  MsgResult: DWORD;
+begin
+  S := 'Environment';
+  SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
+end;
 
 [Files]
-Source: ..\res\icons\desktopeditors.ico;           DestDir: {app}\;
-Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
-Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
-Source: data\dictionaries\*;                       DestDir: {app}\dictionaries; Flags: recursesubdirs;
+Source: .\launch.bat;           DestDir: {app}\;
 
-Source: data\fonts\LICENSE.txt;                    DestDir: {app}\;
-Source: data\fonts\OpenSans-Bold.ttf;              DestDir: {fonts}; FontInstall: Open Sans Bold;             Flags: onlyifdoesntexist uninsneveruninstall;
-Source: data\fonts\OpenSans-Bold.ttf;              DestDir: {fonts}; FontInstall: Open Sans Bold;             Flags: onlyifdoesntexist uninsneveruninstall;
-;Source: data\fonts\OpenSans-BoldItalic.ttf;        DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
-Source: data\fonts\OpenSans-Regular.ttf;           DestDir: {fonts}; FontInstall: Open Sans Regular;          Flags: onlyifdoesntexist uninsneveruninstall;
-;Source: data\fonts\OpenSans-Italic.ttf;            DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
-Source: data\fonts\OpenSans-ExtraBold.ttf;         DestDir: {fonts}; FontInstall: Open Sans Extrabold;        Flags: onlyifdoesntexist uninsneveruninstall;
-;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;   DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
-Source: data\fonts\OpenSans-Light.ttf;             DestDir: {fonts}; FontInstall: Open Sans Light;            Flags: onlyifdoesntexist uninsneveruninstall;
-;Source: data\fonts\OpenSans-LightItalic.ttf;       DestDir: {fonts}; FontInstall: Open Sans Light Italic;     Flags: onlyifdoesntexist uninsneveruninstall;
-Source: data\fonts\OpenSans-Semibold.ttf;          DestDir: {fonts}; FontInstall: Open Sans Semibold;         Flags: onlyifdoesntexist uninsneveruninstall;
-;Source: data\fonts\OpenSans-SemiboldItalic.ttf;    DestDir: {fonts}; FontInstall: Open Sans Semibold Italic;  Flags: onlyifdoesntexist uninsneveruninstall;
+Source: ..\res\icons\desktopeditors.ico;           DestDir: {app}\;
+;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
+Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
+Source: ..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
+
+Source: ..\..\common\editors\apps\*;                DestDir: {app}\editors\apps;   Flags: recursesubdirs;
+Source: ..\..\common\editors\vendor\*;              DestDir: {app}\editors\vendor; Flags: recursesubdirs;
+Source: ..\..\common\converter\empty\*;             DestDir: {app}\converter\empty; Flags: recursesubdirs;
+Source: ..\..\common\converter\DoctRenderer.config; DestDir: {app}\converter;
+Source: ..\..\common\converter\windows\icudt.dll;   DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\common\libs\ChromiumBasedEditors2\app\jsbuilds\*; DestDir: {app}\editors\sdk; Flags: recursesubdirs;
+
+Source: ..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
+Source: ..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;           DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
+;Source: data\fonts\OpenSans-BoldItalic.ttf;                DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
+;Source: data\fonts\OpenSans-Italic.ttf;                    DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
+;Source: data\fonts\OpenSans-LightItalic.ttf;               DestDir: {fonts}; FontInstall: Open Sans Light Italic;     Flags: onlyifdoesntexist uninsneveruninstall;
+;Source: data\fonts\OpenSans-SemiboldItalic.ttf;            DestDir: {fonts}; FontInstall: Open Sans Semibold Italic;  Flags: onlyifdoesntexist uninsneveruninstall;
 
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
+Name: fileassoc; Description: "Associate application with documents";   GroupDescription: "File association";
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
@@ -230,7 +275,8 @@ Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: 
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
-Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent
+;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
+Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 [Ini]
@@ -240,6 +286,37 @@ Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: po
 Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
 Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: lang;  ValueData: {language};
 Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime};
+Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
+
+Root: HKCR; Subkey: ".doc";                                ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Word.Document.8";                    Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Word.Document.8";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Word.Document.8\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";            Flags: uninsdeletevalue
+Root: HKCR; Subkey: "Word.Document.8\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";   Flags: uninsdeletevalue
+
+Root: HKCR; Subkey: ".docx";                                ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Word.Document.12";                  Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Word.Document.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word Document";           Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Word.Document.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
+Root: HKCR; Subkey: "Word.Document.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
+
+Root: HKCR; Subkey: ".xls";                               ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Excel.Sheet.8";                       Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Excel.Sheet.8";                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel 97-2003 Worksheet";   Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Excel.Sheet.8\DefaultIcon";          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";             Flags: uninsdeletevalue
+Root: HKCR; Subkey: "Excel.Sheet.8\shell\open\command";   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";    Flags: uninsdeletevalue
+
+Root: HKCR; Subkey: ".xlsx";                              ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Excel.Sheet.12";                    Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Excel.Sheet.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Worksheet";         Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "Excel.Sheet.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
+Root: HKCR; Subkey: "Excel.Sheet.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
+
+Root: HKCR; Subkey: ".ppt";                                 ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "PowerPoint.Show.8";                         Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "PowerPoint.Show.8";                    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Presentation"; Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "PowerPoint.Show.8\DefaultIcon";        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";                   Flags: uninsdeletevalue
+Root: HKCR; Subkey: "PowerPoint.Show.8\shell\open\command"; ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          Flags: uninsdeletevalue
+
+Root: HKCR; Subkey: ".pptx";                                  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "PowerPoint.Show.12";                Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "PowerPoint.Show.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Presentation"; Flags: createvalueifdoesntexist
+Root: HKCR; Subkey: "PowerPoint.Show.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
+Root: HKCR; Subkey: "PowerPoint.Show.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#ASC_PATH}\*;  
