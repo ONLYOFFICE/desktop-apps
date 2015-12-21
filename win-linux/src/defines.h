@@ -33,8 +33,9 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define rePortalName "^https?:\\/\\/(.+)"
-#define reFileExtension "\\.(\\w{1,10})$"
+#define rePortalName        "^https?:\\/\\/(.+)"
+#define reFileExtension     "\\.(\\w{1,10})$"
+#define reUserName          "([^\\.]+)\\.?([^\\.]+)?"
 
 #define WAIT_MODIFIED_CLOSE     1
 #define WAIT_MODIFIED_LOGOUT    2
