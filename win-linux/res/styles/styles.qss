@@ -70,9 +70,11 @@ QPushButton#toolButtonClose[class=normal]:hover,
 }
 
 QPushButton#toolButtonMain {
-    background-image: url(:/res/icons/mainpage.png);
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    background: #fff;
+    border-radius: 0;
+    font-size: 10px;
+    font-family: 'Open Sans',sans-serif;
+    font-weight: bold;
 }
 
 QPushButton#toolButtonMain[theme=rightangle] {
@@ -80,23 +82,23 @@ QPushButton#toolButtonMain[theme=rightangle] {
 }
 
 QPushButton#toolButtonMain[class=active],
-    QPushButton#toolButtonMain[class=active]:hover {
-        background-position: left top;
+    QPushButton#toolButtonMain[class=active]:hover
+{
+    color: #666666;
 }
-
-/*QPushButton#toolButtonMain[class=active]:pressed {
-        background-position: right top;
-}*/
 
 QPushButton#toolButtonMain[class=normal],
-    QPushButton#toolButtonMain[class=normal]:hover {
-        background-position: left bottom;
-}
-    
-QPushButton#toolButtonMain[class=normal]:pressed {
-    background-position: right bottom;
+    QPushButton#toolButtonMain[class=normal]:hover
+{
+    color: #fff;
+    background: #60656a;
+    border-bottom: 1px solid #4f5458;
 }
 
+QPushButton#toolButtonMain[class=normal]:hover {
+    background: #696e74;
+}
+    
 QPushButton#toolButtonProfile {
     /*border:1px solid green;*/
     image:url(:/res/icons/profile_normal.png);
@@ -175,6 +177,7 @@ QTabBar::close-button {
     margin-top: -1px;
     /*padding: 7px;*/
     icon-size:16px;
+    /*background-color: rgba(255, 255, 255, 0);*/
 }
 
 CAscTabBar::close-button:hover {

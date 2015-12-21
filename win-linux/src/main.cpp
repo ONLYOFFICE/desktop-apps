@@ -81,6 +81,7 @@ int main( int argc, char *argv[] )
         if (sAppData.size() > 0) {
             manager->m_oSettings.SetUserDataPath(sAppData);
             manager->m_oSettings.cookie_path = (user_data_path + "/data").toStdWString();
+            manager->m_oSettings.recover_path = (user_data_path + "/data/recover").toStdWString();
             manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/data/fonts").toStdWString();
 
             QDir().mkpath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
@@ -89,6 +90,8 @@ int main( int argc, char *argv[] )
         }
 
         manager->m_oSettings.spell_dictionaries_path = (app_path + "/Dictionaries").toStdWString();
+        manager->m_oSettings.file_converter_path = (app_path + "/converter").toStdWString();
+        manager->m_oSettings.local_editors_path = (app_path + "/editors/apps/api/documents/index.html").toStdWString();
     };
 
     bool bIsChromiumSubprocess = false;
@@ -102,20 +105,12 @@ int main( int argc, char *argv[] )
         }
     }
 
-    bool bIsOwnMessageLoop = false;
     if ( bIsChromiumSubprocess ) {
-        QApplication aa(argc, argv);
         CApplicationCEF oCef;
         CAscApplicationManager oManager;
 
         setup_paths(&oManager);
-        oCef.Init_CEF(&oManager, argc, argv);
-
-        int nResult = oCef.RunMessageLoop(bIsOwnMessageLoop);
-        if (bIsOwnMessageLoop)
-            return nResult;
-
-        return aa.exec();
+        return oCef.Init_CEF(&oManager, argc, argv);
     }
 
 #ifdef _WIN32
@@ -131,8 +126,28 @@ int main( int argc, char *argv[] )
     QApplication app(argc, argv);
     /**                      **/
 
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 #ifdef _WIN32
-    QSplashScreen splash(QPixmap(":/res/icons/splash.png"));
+    g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
+#else
+    g_dpi_ratio = app.devicePixelRatio();
+#endif
+
+#ifdef _WIN32
+
+//    FILE* f = fopen(QString(user_data_path + "/main.log").toLatin1(), "a+");
+//    fprintf(f, "-----------------------------------------------\n");
+//    for (int i = 0; i < argc; ++i)
+//    {
+//        fprintf(f, argv[i]);
+//        fprintf(f, "\n");
+//    }
+//    fprintf(f, "-----------------------------------------------\n");
+//    fclose(f);
+
+    QSplashScreen splash(g_dpi_ratio > 1 ?
+            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+
     splash.show();
     app.processEvents();
 #endif
@@ -174,13 +189,6 @@ int main( int argc, char *argv[] )
     application_cef->Init_CEF(pApplicationManager, argc, argv);
     pApplicationManager->CheckFonts();
     /**                      **/
-
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
-#ifdef _WIN32
-    g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
-#else
-    g_dpi_ratio = app.devicePixelRatio();
-#endif
 
     QByteArray css;
     QFile file;
@@ -225,8 +233,7 @@ int main( int argc, char *argv[] )
     window.setWindowTitle("Desktop Editors");
 #endif
 
-
-    bIsOwnMessageLoop = false;
+    bool bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
     if (!bIsOwnMessageLoop) {
         // Launch

@@ -91,7 +91,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     wcx.hbrBackground = windowBackground;
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
-    QIcon icon(":/res/icons/desktop_icons.ico");
+    QIcon icon(":/res/icons/desktopeditors.ico");
     wcx.hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
                                         icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
 
@@ -254,6 +254,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
+//        qDebug() << "WM_CLOSE action";
         window->m_pWinPanel->doClose();
         return 0;
 

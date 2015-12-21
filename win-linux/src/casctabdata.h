@@ -30,30 +30,45 @@
  *
 */
 
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef CASCTABDATA_H
+#define CASCTABDATA_H
 
-#define rePortalName "^https?:\\/\\/(.+)"
-#define reFileExtension "\\.(\\w{1,10})$"
 
-#define WAIT_MODIFIED_CLOSE     1
-#define WAIT_MODIFIED_LOGOUT    2
+#include <QString>
+#include "qcefview.h"
 
-#define FILE_DOWNLOAD_START     3
-#define FILE_DOWNLOAD_END       4
+typedef CefViewWrapperType CefType;
+using namespace std;
 
-#define APP_NAME "DesktopEditors"
-#define GET_REGISTRY_USER(variable) \
-    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
-#define GET_REGISTRY_SYSTEM(variable) \
-    QSettings variable(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
+struct CAscTabData
+{
+public:
+    CAscTabData(const QString &, CefType wt = cvwtEditor);
+    ~CAscTabData() {}
 
-#define LOCAL_PATH_OPEN         1
-#define LOCAL_PATH_SAVE         2
+    void    setTitle(const QString&);
+    void    setChanged(bool);
+    void    setViewId(int);
+//    void    setLocal(bool);
+    void    setUrl(const wstring&);
+    void    close();
+    void    reuse();
+    QString title(bool orig = false) const;
+    bool    changed() const;
+    int     viewId() const;
+    bool    closed() const;
+//    bool    local() const;
+    CefType viewType() const;
+    wstring url() const;
+    bool    isViewType(CefType) const;
+private:
+    QString _title;
+    bool    _is_changed;
+    bool    _is_closed;
+//    bool    _is_local;
+    int     _panel_id;
+    CefType _vtype;
+    wstring _url;
+};
 
-#define MODAL_RESULT_YES        1
-#define MODAL_RESULT_NO         0
-#define MODAL_RESULT_CANCEL     -1
-
-#endif // DEFINES_H
-
+#endif // CASCTABDATA_H

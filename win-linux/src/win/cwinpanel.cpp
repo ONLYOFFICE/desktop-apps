@@ -81,6 +81,38 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
     connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowClose, this, &CWinPanel::slot_windowClose);
 
+    /*
+    CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
+    vector<std::wstring>& vctFiles = pData->get_Files();
+
+    for (vector<wstring>::iterator i = vctFiles.begin(); i != vctFiles.end(); i++) {
+        COpenOptions opts = {(*i), etLocalFile};
+        m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
+        openLocalFile(opts);
+    }
+
+    */
+
+
+    QStringList * in_files = new QStringList;
+
+    QStringListIterator i(qApp->arguments()); i.next();
+    while (i.hasNext()) {
+        QFileInfo info(i.next());
+        if (info.isFile()) {
+            in_files->append(info.absoluteFilePath());
+        }
+    }
+
+    if (in_files->size()) {
+        QTimer::singleShot(10, this, [this, in_files]{
+            m_pMainPanel->doOpenLocalFiles(*in_files);
+            delete in_files;
+        });
+    } else {
+        delete in_files;
+    }
+
 //    m_pManager->SetEventListener(this);
 }
 
@@ -169,7 +201,7 @@ void CWinPanel::slot_windowClose()
 
 void CWinPanel::doClose()
 {
-    m_pMainPanel->checkModified(WAIT_MODIFIED_CLOSE);
+    m_pMainPanel->pushButtonCloseClicked();
 }
 
 void CWinPanel::slot_windowChangeState(Qt::WindowState s)

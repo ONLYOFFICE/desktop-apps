@@ -32,6 +32,9 @@
 
 #include "cfiledialog.h"
 #include <QFileDialog>
+#include "defines.h"
+
+#include "../common/libs/OfficeFileFormats.h"
 
 #include <QDebug>
 
@@ -41,6 +44,30 @@ CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
 {
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]   = tr("DOCX Document (*.docx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]    = tr("DOC Document (*.doc)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]    = tr("ODT Document (*.odt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]    = tr("RTF File (*.rtf)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]    = tr("TXT File (*.txt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]   = tr("HTML File (*.html)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]    = tr("MHT File (*.mht)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP]    = tr("ODP File (*.odp)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File (*.ppsx)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File (*.xlsx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS]     = tr("XLS File (*.xls)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File (*.ods)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV]     = tr("CSV File (*.csv)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
 
 }
 
@@ -49,19 +76,39 @@ CFileDialogWrapper::~CFileDialogWrapper()
 
 }
 
-bool CFileDialogWrapper::showModal(QString& fileName)
+bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 {
-    QString filter = tr("All files (*.*)"), ext_in;
-    QRegExp reExtension("\\.(\\w{1,10})$");
-    if (!(reExtension.indexIn(fileName) < 0)) {
-        ext_in = reExtension.cap(1);
-        filter.prepend(getFilter(ext_in) + ";;");
+//    QString filter = tr("All files (*.*)"), ext_in;
+    QString _filters, _sel_filter, ext_in;
+
+    QRegExp re(reFileExtension);
+    if (!(re.indexIn(fileName) < 0)) {
+        ext_in = re.cap(1);
     }
 
-    QWidget * p = qobject_cast<QWidget *>(parent());
-//    QFileDialog dlg(p);
-//    fileName = dlg.getSaveFileName(p, tr("Save As"), fileName, filter);
-    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
+    if (m_filters.length() > 0) {
+        _filters = m_filters;
+
+        QRegExp reFilter("([\\w\\s]+\\(\\*\\."+ext_in+"+\\))", Qt::CaseInsensitive);
+        if ( !(reFilter.indexIn(m_filters) < 0) ) {
+            _sel_filter = reFilter.cap(1);
+        }
+    } else {
+        _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN], ext_in;
+
+        _sel_filter = getFilter(ext_in);
+        _filters.append(";;" + _sel_filter);
+    }
+
+//    QWidget * p = qobject_cast<QWidget *>(parent());
+//    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
+
+    fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
+
+    m_format = 0;
+    if (m_filters.length()) {
+        m_format = getKey(_sel_filter);
+    }
 
     return fileName.length() > 0;
 }
@@ -81,4 +128,47 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
         out.replace(0, 1, extension.left(1).toUpper());
         return tr("%1 File (*.%2)").arg(out).arg(out.toLower());
     }
+}
+
+QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter)
+{
+    QString _filter_ = filter.length() ? filter : tr("All files (*.*)");
+//    QWidget * p = qobject_cast<QWidget *>(parent());
+
+    return QFileDialog::getOpenFileName(this, tr("Open Document"), path, _filter_);
+}
+
+QString CFileDialogWrapper::modalOpenImage(const QString& path)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+
+    return modalOpen(path, filter);
+}
+
+void CFileDialogWrapper::setFormats(std::vector<int>& vf)
+{
+    m_filters.clear();
+
+    if ( vf.size() ) {
+        std::vector<int>::iterator i = vf.begin();
+        m_filters = m_mapFilters.value(*(i++));
+        while (i != vf.end()) {
+            m_filters += ";;" + m_mapFilters.value(*(i++));
+        }
+    }
+}
+
+int CFileDialogWrapper::getKey(const QString &value)
+{
+    foreach (QString v, m_mapFilters) {
+        if (v == value)
+           return m_mapFilters.key(value);
+    }
+    return -1;
+}
+
+int CFileDialogWrapper::getFormat()
+{
+    return m_format;
 }

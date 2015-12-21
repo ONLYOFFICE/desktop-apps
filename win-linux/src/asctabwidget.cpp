@@ -39,10 +39,13 @@
 #include <QLabel>
 #include <QStylePainter>
 #include <QDesktopWidget>
+#include <QFileInfo>
 
 #include "ctabbar.h"
 #include "ctabstyle.h"
+#include "casctabdata.h"
 #include "../common/libs/common/Types.h"
+#include "defines.h"
 
 #include "private/qtabbar_p.h"
 
@@ -61,69 +64,44 @@ public:
     static QVariant asQVariant(T * ptr){return qVariantFromValue((void *) ptr);}
 };
 
-struct CAscTabData
-{
-public:
-    CAscTabData(const QString &);
-    ~CAscTabData() {}
 
-    void    setTitle(const QString&);
-    void    setChanged(bool);
-    void    setViewId(int);
-    void    close();
-    QString title(bool orig = false) const;
-    bool    changed() const;
-    int     viewId() const;
-    bool    closed() const;
-private:
-    QString _title;
-    bool _is_changed;
-    bool _is_closed;
-    int _panel_id;
-};
+/*
+ *
+ * COpenOptions structure definition
+ *
+*/
 
-CAscTabData::CAscTabData(const QString& t)
-    : _title(t), _is_changed(false), _is_closed(false), _panel_id(-1)
+COpenOptions::COpenOptions() :
+    type(etUndefined), id(-1)
 {}
 
-void CAscTabData::setTitle(const QString& t)
-{
-    _title = t;
-}
+COpenOptions::COpenOptions(wstring _url_) :
+    COpenOptions(_url_, etUndefined, -1)
+{}
 
-QString CAscTabData::title(bool orig) const
-{
-    return !orig && _is_changed ? _title + "*": _title;
-}
+COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_) :
+    COpenOptions(_url_, _type_, -1)
+{}
 
-void CAscTabData::setChanged(bool s)
-{
-    _is_changed = s;
-}
+COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_, int _id_) :
+    type(_type_), url(QString::fromStdWString(_url_)), id(_id_), wurl(_url_)
+{}
 
-bool CAscTabData::changed() const
-{
-    return _is_changed;
-}
+COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_) :
+    COpenOptions(_name_, _type_, _url_, -1)
+{}
 
-void CAscTabData::setViewId(int id)
-{
-    _panel_id = id;
-}
+COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_) :
+    name(_name_), type(_type_), url(_url_), id(_id_)
+{}
 
-int CAscTabData::viewId() const
-{
-    return _panel_id;
-}
+COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, std::wstring _url_, int _id_) :
+    name(_name_), type(_type_), url(QString::fromStdWString(_url_)), id(_id_), wurl(_url_)
+{}
 
-void CAscTabData::close() {
-    _is_closed = true;
-}
-
-bool CAscTabData::closed() const
-{
-    return _is_closed;
-}
+COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
+    COpenOptions(_name_, _type_, "")
+{}
 
 /*
  *  TabWidget component
@@ -156,33 +134,66 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     m_widthParams.apply_dpi(g_dpi_ratio);
 }
 
-int CAscTabWidget::addEditor(QString strName, AscEditorType etType, std::wstring url)
+int CAscTabWidget::addEditor(COpenOptions& opts)
 {
-    Q_UNUSED(etType);
-
-    if (!m_pManager || !url.length())
+    if (!m_pManager ||
+            (!(opts.url.length() > 0) && opts.type != etNewFile))
         return -1;
 
     setProperty("empty", false);
+
+    int file_format = 0;
+    if (opts.type == etLocalFile) {
+        file_format = CCefViewEditor::GetFileFormat(opts.wurl);
+        if (file_format == 0)
+            /* TODO: show error for file format */
+            return -255;
+    }
 
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->Create(m_pManager, cvwtEditor);
-    pView->GetCefView()->load(url);
-    int id_view = pView->GetCefView()->GetId();
 
-    CAscTabData * data = new CAscTabData(strName);
-    data->setViewId(id_view);
+    int tab_index = -1;
+    bool res_open = true;
+    CCefView * cview = pView->GetCefView();    
+    if (opts.type == etLocalFile) {
+        ((CCefViewEditor*)cview)->OpenLocalFile(opts.wurl, file_format);
+        opts.type = etUndefined;
+    } else
+    if (opts.type == etRecoveryFile) {
+        res_open = ((CCefViewEditor*)cview)->OpenRecoverFile(opts.id);
+        opts.type = etUndefined;
+    } else
+    if (opts.type == etRecentFile) {
+        res_open = ((CCefViewEditor*)cview)->OpenRecentFile(opts.id);
+        opts.type = etUndefined;
+    } else
+    if (opts.type == etNewFile) {
+        ((CCefViewEditor*)cview)->CreateLocalFile(opts.format, opts.name.toStdWString());
+        opts.type = AscEditorType(opts.format);
+    } else {
+        cview->load(opts.wurl);
+    }
 
-    int tab_index = addTab(pView, strName);
-    tabBar()->setTabData(tab_index, VPtr<CAscTabData>::asQVariant(data));
-    tabBar()->setTabToolTip(tab_index, strName);
+    if (res_open) {
+        int id_view = cview->GetId();
 
-    applyDocumentChanging(id_view, etType);
+        CAscTabData * data = new CAscTabData(opts.name);
+        data->setViewId(id_view);
+        data->setUrl(opts.wurl);
+    //    data->setLocal(etType == etLocalFile);
 
-//    emit sendAddEditor();
-    resizeEvent(NULL);
+        tab_index = addTab(pView, opts.name);
+        tabBar()->setTabData(tab_index, VPtr<CAscTabData>::asQVariant(data));
+        tabBar()->setTabToolTip(tab_index, opts.name);
+
+        applyDocumentChanging(id_view, opts.type);
+        resizeEvent(NULL);
+    } else {
+        RELEASEOBJECT(pView)
+    }
 
     return tab_index;
 }
@@ -226,6 +237,50 @@ void CAscTabWidget::closeAllEditors()
 //        setProperty("empty", true);
 //        style()->polish(this);
 //    }
+}
+
+int CAscTabWidget::addPortal(QString url)
+{
+    Q_UNUSED(url);
+
+    if (!m_pManager || !url.length())
+        return -1;
+
+    setProperty("empty", false);
+
+    QCefView* pView = new QCefView(this);
+    pView->SetBackgroundCefColor(244, 244, 244);
+    pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
+    pView->Create(m_pManager, cvwtSimple);
+    pView->GetCefView()->load((url + "/products/files/?desktop=true").toStdWString());
+    int id_view = pView->GetCefView()->GetId();
+
+    QRegularExpression re(rePortalName);
+    QRegularExpressionMatch match = re.match(url);
+    QString portal = match.hasMatch() ? match.captured(1) : url;
+
+    CAscTabData * data = new CAscTabData(portal, cvwtSimple);
+    data->setViewId(id_view);
+
+    /* find out the index of the last portal's tab */
+//    CAscTabData * doc;
+//    int tab_index = 0;
+//    for (int i(count()); i-- > 0; ) {
+//        doc = VPtr<CAscTabData>::asPtr(tabBar()->tabData(i));
+
+//        if (doc && doc->viewType() == cvwtSimple)
+//            tab_index = i;
+//    }
+    int tab_index = -1;
+
+    tab_index = insertTab(tab_index, pView, portal);
+    tabBar()->setTabData(tab_index, VPtr<CAscTabData>::asQVariant(data));
+    tabBar()->setTabToolTip(tab_index, url);
+
+//    updateTabIcon(tabIndexByView(id));
+
+    resizeEvent(NULL);
+    return tab_index;
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)
@@ -301,11 +356,15 @@ void CAscTabWidget::updateIcons()
         CCefViewEditor * pEditor = (CCefViewEditor *)((QCefView*)(widget(i)))->GetCefView();
 
         if (pEditor) {
-            switch (pEditor->GetEditorType()) {
-            case etPresentation: icon_name = i == current ? ":/pe_active.png" : ":/pe_normal.png"; break;
-            case etSpreadsheet:  icon_name = i == current ? ":/se_active.png" : ":/se_normal.png"; break;
-            case etDocument:     icon_name = i == current ? ":/de_active.png" : ":/de_normal.png"; break;
-            default:             icon_name = ":/newdocument.png"; break;
+            if (pEditor->GetType() == cvwtSimple) {
+                icon_name = ":/portal.png";
+            } else {
+                switch (pEditor->GetEditorType()) {
+                case etPresentation: icon_name = i == current ? ":/pe_active.png" : ":/pe_normal.png"; break;
+                case etSpreadsheet:  icon_name = i == current ? ":/se_active.png" : ":/se_normal.png"; break;
+                case etDocument:     icon_name = i == current ? ":/de_active.png" : ":/de_normal.png"; break;
+                default:             icon_name = ":/newdocument.png"; break;
+                }
             }
 
             if (g_dpi_ratio > 1)
@@ -322,14 +381,18 @@ void CAscTabWidget::updateTabIcon(int index)
         CCefViewEditor * pEditor = (CCefViewEditor *)((QCefView*)(widget(index)))->GetCefView();
 
         if (pEditor) {
-            bool is_active = isActive() && index == currentIndex();
             QString icon_name;
+            if (pEditor->GetType() == cvwtSimple) {
+                icon_name = ":/portal.png";
+            } else {
+                bool is_active = isActive() && index == currentIndex();
 
-            switch (pEditor->GetEditorType()) {
-            case etPresentation: icon_name = is_active ? ":/pe_active.png" : ":/pe_normal.png"; break;
-            case etSpreadsheet:  icon_name = is_active ? ":/se_active.png" : ":/se_normal.png"; break;
-            case etDocument:     icon_name = is_active ? ":/de_active.png" : ":/de_normal.png"; break;
-            default:             icon_name = ":/newdocument.png"; break;
+                switch (pEditor->GetEditorType()) {
+                case etPresentation: icon_name = is_active ? ":/pe_active.png" : ":/pe_normal.png"; break;
+                case etSpreadsheet:  icon_name = is_active ? ":/se_active.png" : ":/se_normal.png"; break;
+                case etDocument:     icon_name = is_active ? ":/de_active.png" : ":/de_normal.png"; break;
+                default:             icon_name = ":/newdocument.png"; break;
+                }
             }
 
             if (g_dpi_ratio > 1)
@@ -364,22 +427,96 @@ int CAscTabWidget::tabIndexByView(int viewId)
     return -1;
 }
 
-void CAscTabWidget::openDocument(std::wstring url, int id, bool select)
+int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 {
-    if (id > 0) {
-        int tabIndex = tabIndexByView(id);
+    CAscTabData * doc;
+    for (int i(count()); i-- > 0; ) {
+        doc = VPtr<CAscTabData>::asPtr(tabBar()->tabData(i));
+
+        if (doc && doc->viewType() == vt && doc->title() == t)
+            return i;
+    }
+
+    return -1;
+}
+
+void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
+{
+    int tabIndex;
+    if (opts.id > 0) {
+        tabIndex = tabIndexByView(opts.id);
         if (!(tabIndex < 0))
             setCurrentIndex(tabIndex);
     } else {
-        int index = addEditor(tr("Document"), etUndefined, url);
+        opts.name   = tr("Document");
+        opts.type   = etUndefined;
+        tabIndex    = addEditor(opts);
+
         updateIcons();
 
-        if (select && !(index < 0))
-            tabBar()->setCurrentIndex(index);
+        if (select && !(tabIndex < 0))
+            tabBar()->setCurrentIndex(tabIndex);
     }
 }
 
-void CAscTabWidget::applyDocumentChanging(int viewId, QString name)
+int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
+{
+    QString name = QFileInfo(opts.url).fileName();
+    int tabIndex = tabIndexByTitle(name, cvwtEditor);
+
+    if (tabIndex < 0){
+        opts.name = name;
+        tabIndex = addEditor(opts);
+
+        if (!(tabIndex < 0))
+            updateIcons();
+    }
+
+    if (select && !(tabIndex < 0))
+        tabBar()->setCurrentIndex(tabIndex);
+
+    /* TODO: rise message if index < 0 */
+
+    return tabIndex;
+}
+
+int CAscTabWidget::openPortal(const QString& url)
+{
+    int out_val = 1;
+
+    QRegularExpression re(rePortalName);
+    QRegularExpressionMatch match = re.match(url);
+    QString portal_name = match.hasMatch() ? match.captured(1) : url;
+
+    int tabIndex = tabIndexByTitle(portal_name, cvwtSimple);
+    if (tabIndex < 0) {
+        tabIndex = addPortal(url), out_val = 2;
+    }
+
+    setCurrentIndex(tabIndex);
+    return out_val;
+}
+
+void CAscTabWidget::closePortal(const QString& name, bool editors)
+{
+    closeEditorByIndex(tabIndexByTitle(name, cvwtSimple));
+
+    if (editors) {
+        wstring wname = name.toStdWString();
+        CAscTabData * doc;
+        for (int i = tabBar()->count(); i-- > 0; ) {
+            doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
+
+            if (doc->viewType() == cvwtEditor &&
+                    doc->url().find(wname) != wstring::npos)
+            {
+                closeEditor(i, false, false);
+            }
+        }
+    }
+}
+
+void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& descr)
 {
     int tabIndex = tabIndexByView(viewId);
 
@@ -387,7 +524,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, QString name)
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) );
         doc->setTitle(name);
         tabBar()->setTabText(tabIndex, doc->title());
-        tabBar()->setTabToolTip(tabIndex, name);
+        tabBar()->setTabToolTip(tabIndex, descr);
     }
 }
 
@@ -396,7 +533,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
     int tabIndex = tabIndexByView(viewId);
     if (!(tabIndex < 0)) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) );
-        if (doc->changed() != state) {
+        if (doc->changed() != state && (!doc->closed() || state)) {
             doc->setChanged(state);
             tabBar()->setTabText(tabIndex, doc->title());
             tabBar()->setTabToolTip(tabIndex, doc->title());
@@ -404,13 +541,13 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
     }
 }
 
-void CAscTabWidget::onDocumentSave(int viewId)
+void CAscTabWidget::applyDocumentSave(int id, bool cancel)
 {
-    int tabIndex = tabIndexByView(viewId);
+    int tabIndex = tabIndexByView(id);
     if (!(tabIndex < 0)) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) );
         if (doc->closed()) {
-            closeEditor(tabIndex, false, true);
+            cancel ? doc->reuse() : closeEditor(tabIndex, false, true);
         }
     }
 }
@@ -496,10 +633,56 @@ bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(index) );
-        return doc->changed();
+        return doc->changed() && !doc->closed();
     }
 
     return false;
+}
+
+bool CAscTabWidget::closedByIndex(int index) {
+    if (!(index < 0) && index < count()) {
+        CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(index) );
+        return doc->closed();
+    }
+
+    return true;
+}
+
+MapEditors CAscTabWidget::modified(const QString& portalname)
+{
+    QMap<int, QString> mapModified;
+    wstring portal = portalname.toStdWString();
+    CAscTabData * doc;
+    for (int i(tabBar()->count()); i-- > 0; i++) {
+        doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
+
+        if (doc->isViewType(cvwtEditor) &&
+                doc->changed() && !doc->closed() &&
+                (portal.length() == 0 || doc->url().find(portal) != wstring::npos))
+        {
+            mapModified.insert(viewByIndex(i), titleByIndex(i, true));
+        }
+    }
+
+    return mapModified;
+}
+
+int CAscTabWidget::findModified(const QString& portalname)
+{
+    wstring portal = portalname.toStdWString();
+    CAscTabData * doc;
+    for (int i(tabBar()->count()); i-- > 0; ) {
+        doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
+
+        if ( doc->isViewType(cvwtEditor) &&
+                doc->changed() && !doc->closed() &&
+                (portal.length() == 0 || doc->url().find(portal) != wstring::npos))
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 void CAscTabWidget::setFullScreen(bool apply)

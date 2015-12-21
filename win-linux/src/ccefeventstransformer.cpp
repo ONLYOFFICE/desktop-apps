@@ -35,9 +35,10 @@
 #include "../../../common/Types.h"
 
 #include <QDebug>
+using namespace NSEditorApi;
 
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
-    : NSEditorApi::CAscMenuEventListener()
+    : CAscMenuEventListener()
 {
     pObjParent = parent;
 
@@ -51,25 +52,25 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
 
     switch (pEvent->m_nType) {
     case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
-        NSEditorApi::CAscCreateTab * pData = (NSEditorApi::CAscCreateTab *)pEvent->m_pData;
+        CAscCreateTab * pData = (CAscCreateTab *)pEvent->m_pData;
 
-        QMetaObject::invokeMethod(pObjParent, "onDocumentOpen", Qt::QueuedConnection,
+        QMetaObject::invokeMethod(pObjParent, "onCloudDocumentOpen", Qt::QueuedConnection,
                 Q_ARG(std::wstring, pData->get_Url()), Q_ARG(int, pData->get_IdEqual()), Q_ARG(bool, pData->get_Active()));
 
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
-        NSEditorApi::CAscTabEditorType * pData = (NSEditorApi::CAscTabEditorType*)pEvent->m_pData;
+        CAscTabEditorType * pData = (CAscTabEditorType *)pEvent->m_pData;
 
         QMetaObject::invokeMethod(pObjParent, "onDocumentType", Qt::QueuedConnection, Q_ARG(int, pData->get_Id()), Q_ARG(int, pData->get_Type()));
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_DOCUMENT_NAME: {
-        NSEditorApi::CAscDocumentName* pData = (NSEditorApi::CAscDocumentName*)pEvent->m_pData;
+        CAscDocumentName * pData = (CAscDocumentName *)pEvent->m_pData;
 
-        QMetaObject::invokeMethod(pObjParent, "onDocumentName", Qt::QueuedConnection,
-                Q_ARG(int, pData->get_Id()), Q_ARG(QString, QString::fromStdWString(pData->get_Name())));
+        ADDREFINTERFACE(pData)
+        QMetaObject::invokeMethod(pObjParent, "onDocumentName", Qt::QueuedConnection, Q_ARG(void *, pData));
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_MODIFY_CHANGED: {
@@ -81,15 +82,17 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
-        NSEditorApi::CAscTypeId * pId = (NSEditorApi::CAscTypeId*)pEvent->m_pData;
-        QMetaObject::invokeMethod(pObjParent, "onDocumentSave", Qt::QueuedConnection, Q_ARG(int, pId->get_Id()));
+        CAscDocumentOnSaveData * pData = (CAscDocumentOnSaveData *)pEvent->m_pData;
+        QMetaObject::invokeMethod(pObjParent, "onDocumentSave", Qt::QueuedConnection,
+                                  Q_ARG(int, pData->get_Id()), Q_ARG(bool, pData->get_IsCancel()));
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
-        QMetaObject::invokeMethod(pObjParent, "onLogout", Qt::QueuedConnection);
+        /* will be used synchronous action after logout immediately */
+//        QMetaObject::invokeMethod(pObjParent, "onLogout", Qt::QueuedConnection);
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: {
+    case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: { // ? deprecated ?
         NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
 
 //        OutputDebugString(pData->get_Value().c_str());
@@ -134,6 +137,60 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         QMetaObject::invokeMethod(pObjParent, "onFullScreen", Qt::QueuedConnection,
                         Q_ARG(bool, pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
         break;
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
+        CAscLocalFileOpen * pData = (CAscLocalFileOpen*)pEvent->m_pData;
+        QMetaObject::invokeMethod( pObjParent, "onLocalFileOpen", Qt::QueuedConnection,
+                                   Q_ARG(QString, QString().fromStdWString(pData->get_Directory())) );
+        break;}
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
+        CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)pEvent->m_pData;
+        ADDREFINTERFACE(pData);
+
+        QMetaObject::invokeMethod(pObjParent, "onLocalFilesOpen", Qt::QueuedConnection, Q_ARG(void *, pData));
+        break; }
+
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
+        CAscLocalFileCreate * pData = (CAscLocalFileCreate *)pEvent->m_pData;
+        QMetaObject::invokeMethod(pObjParent, "onLocalFileCreate", Qt::QueuedConnection, Q_ARG(int, pData->get_Type()));
+        break;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
+        CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)pEvent->m_pData;
+
+        ADDREFINTERFACE(pData);
+        QMetaObject::invokeMethod(pObjParent, "onLocalFileRecent", Qt::QueuedConnection, Q_ARG(void *, pData));
+        break;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
+        CAscLocalSaveFileDialog * pData = (CAscLocalSaveFileDialog *)pEvent->m_pData;
+
+        ADDREFINTERFACE(pData);
+        QMetaObject::invokeMethod(pObjParent, "onLocalFileSaveAs", Qt::QueuedConnection, Q_ARG(void *, pData));
+        break;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
+        CAscLocalOpenFileDialog * pData = (CAscLocalOpenFileDialog *)pEvent->m_pData;
+
+        ADDREFINTERFACE(pData);
+//        emit signal_LocalFile_AddImage(pData);
+        QMetaObject::invokeMethod(pObjParent, "onLocalGetImage", Qt::QueuedConnection, Q_ARG(void *, pData));
+
+        break;}
+    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
+        CAscExecCommand * pData = (CAscExecCommand *)pEvent->m_pData;
+        std::wstring cmd = pData->get_Command();
+
+        if (cmd.compare(L"portal:open") == 0) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalOpen", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if (cmd.compare(L"portal:logout") == 0) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        }
+        break;
+    }
     }
 
     RELEASEINTERFACE(pEvent);

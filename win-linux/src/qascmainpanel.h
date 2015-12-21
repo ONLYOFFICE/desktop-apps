@@ -59,7 +59,8 @@ public:
 
     void goStart();
     void focus();
-    void checkModified(BYTE action);
+    int  checkModified(const QString&);
+    void doOpenLocalFile(COpenOptions&);
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
@@ -68,6 +69,9 @@ private:
     void resizeEvent(QResizeEvent* event);
     void toggleButtonMain(bool);
     void loadStartPage();
+    void checkLocalUsedPath(int);
+    void doLogout(const QString&);
+    int  trySaveDocument(int);
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
@@ -85,10 +89,11 @@ public slots:
     void onTabCloseRequest(int);
     void onMenuLogout();
 
-    void onDocumentOpen(std::wstring, int, bool);
+    void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);
-    void onDocumentName(int id, QString name);
+    void onDocumentName(void *);
     void onDocumentChanged(int id, bool changed);
+    void onDocumentSave(int id, bool cancel);
     void onDocumentDownload(void * info);
 
     void onLogin(QString);
@@ -101,6 +106,18 @@ public slots:
     void onLink(QString);
 
     void onNeedCheckKeyboard();
+
+    void onLocalFileOpen(QString);
+    void onLocalFilesOpen(void *);
+    void onLocalFileCreate(int);
+    void onLocalFileRecent(void *);
+    void onLocalFileSaveAs(void *);
+    void onLocalGetImage(void *);
+    void onPortalOpen(QString);
+    void onPortalLogout(QString);
+
+    void doOpenLocalFiles(const vector<wstring> *);
+    void doOpenLocalFiles(const QStringList&);
 
 private:
     std::wstring    m_sDownloadName;
@@ -128,6 +145,11 @@ private:
     CPrintData *    m_printData;
     Qt::WindowState m_mainWindowState;
 
+    QString m_lastOpenPath,
+            m_lastSavePath;
+
+    QString m_savePortal;
+    int m_saveAction;
 public:
     WId GetHwndForKeyboard()
     {

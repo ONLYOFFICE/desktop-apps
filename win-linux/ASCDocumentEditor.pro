@@ -34,7 +34,9 @@ HEADERS += \
     src/ccefeventstransformer.h \
     src/qascmainpanel.h \
     src/cascapplicationmanagerwrapper.h \
-    src/ctabbar.h
+    src/ctabbar.h \
+    src/casctabdata.h \
+    src/win/cmessage.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -53,7 +55,9 @@ SOURCES += \
     src/cprintprogress.cpp \
     src/ccefeventstransformer.cpp \
     src/qascmainpanel.cpp \
-    src/ctabbar.cpp
+    src/ctabbar.cpp \
+    src/casctabdata.cpp \
+    src/win/cmessage.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -140,6 +144,11 @@ win32 {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
+
+#    PRE_TARGETDEPS += ../common/converter/windows/x64/DjVuFile.dll \
+#                        ../common/converter/windows/x64/PdfReader.dll \
+#                        ../common/converter/windows/x64/PdfWriter.dll \
+#                        ../common/converter/windows/x64/XpsFile.dll
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02

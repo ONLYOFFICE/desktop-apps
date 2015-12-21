@@ -41,6 +41,8 @@
 #include <QStandardPaths>
 #include <QApplication>
 #include <QDesktopServices>
+#include <QRegularExpression>
+#include <QMessageBox>
 
 #include "defines.h"
 #include "csavefilemessage.h"
@@ -55,7 +57,12 @@
 #define VK_F4 0x73
 #endif
 
+using namespace NSEditorApi;
+
 #define APP_TITLE "ONLYOFFICE"
+#define BUTTON_MAIN_WIDTH   68
+#define TITLE_HEIGHT        29
+
 extern BYTE     g_dpi_ratio;
 extern QString  g_lang;
 
@@ -76,6 +83,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
       , m_mainWindowState(Qt::WindowNoState)
 {
     m_pManager = manager;
+    m_pManager->InitAdditionalEditorParams(QString("lang="+g_lang).toStdWString());
 
     setObjectName("mainPanel");
 
@@ -145,12 +153,13 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     layoutBtns->setSpacing(14*g_dpi_ratio);
     layoutBtns->addWidget(label);
     layoutBtns->addWidget(m_pButtonDownload);
-    layoutBtns->addWidget(m_pButtonProfile);
+//    layoutBtns->addWidget(m_pButtonProfile);
 
     // Main
-    m_pButtonMain = new QPushButton( "", centralWidget );
+    m_pButtonMain = new QPushButton( tr("MENU"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
@@ -231,11 +240,11 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 //    m_pSeparator->setGeometry(0, 0, width(), 1);
 
 //    m_pMainWidget->setVisible(false);
-    loadStartPage();
 
     mainGridLayout->addWidget( centralWidget );
 
     RecalculatePlaces();
+    loadStartPage();
 
 //    m_pTabs->addEditor("editor1 editor21", etDocument, L"https://testinfo.teamlab.info");
 //    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
@@ -245,18 +254,28 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pManager->SetEventListener(this);
     m_pButtonDownload->setVisible(false, false);
 
-//    qRegisterMetaType<std::wstring>("std::wstring");
+    GET_REGISTRY_USER(_reg_user);
+
+    QString _path_ = _reg_user.value("openPath").value<QString>();
+    m_lastOpenPath = _path_.length() > 0 && !QDir(_path_).exists() ?
+        _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+
+    _path_ = _reg_user.value("savePath").value<QString>();
+    m_lastSavePath = _path_.length() > 0 && !QDir(_path_).exists() ?
+        _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+
+//    m_savePortal;
+    m_saveAction = 0; // undefined
 }
 
 void QAscMainPanel::RecalculatePlaces()
 {
     int nWindowW = width();
     int nWindowH = height();
-    int nCaptionH = 29 * g_dpi_ratio;
-    int btnMainWidth = 108 * g_dpi_ratio;
+    int nCaptionH = TITLE_HEIGHT * g_dpi_ratio;
+    int btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
 
     m_pTabs->setGeometry(0, 0, nWindowW, nWindowH);
-    m_pButtonMain->setGeometry(0, 0, btnMainWidth, nCaptionH);
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
     int docCaptionW = nWindowW - m_pTabs->tabBar()->width() - btnMainWidth - (24*g_dpi_ratio);
@@ -268,13 +287,6 @@ void QAscMainPanel::RecalculatePlaces()
 void QAscMainPanel::pushButtonMinimizeClicked()
 {
     emit mainWindowChangeState(Qt::WindowMinimized);
-
-//    QPrinter printer;
-//    QPrintDialog *dialog = new QPrintDialog(&printer, this);
-//    dialog->setWindowTitle(tr("Print Document"));
-
-//    if (dialog->exec() != QDialog::Accepted)
-//           return;
 }
 
 void QAscMainPanel::pushButtonMaximizeClicked()
@@ -288,7 +300,41 @@ void QAscMainPanel::pushButtonMaximizeClicked()
 
 void QAscMainPanel::pushButtonCloseClicked()
 {
-    checkModified(WAIT_MODIFIED_CLOSE);
+    qDebug() << "pushButtonCloseClicked action";
+
+    // if close doesn't act
+    if (m_saveAction != 2) {
+        int _index_, _answ_;
+
+        while (true) {
+            // find a modified document
+            _index_ = m_pTabs->findModified("");
+            if ( _index_ < 0 ) {
+                // no modified documents
+                m_pTabs->closeAllEditors();
+                QTimer::singleShot(10, this, [=]{emit mainWindowClose();});
+                break;
+            } else {
+                // attempt to save the modified document
+                _answ_ = trySaveDocument(_index_);
+
+                // deny saving
+                if ( _answ_ == MODAL_RESULT_NO ) {
+                    m_pTabs->closeEditorByIndex(_index_, false);
+                    continue;
+                } else
+                // saving in progress
+                if ( _answ_ == MODAL_RESULT_YES ) {
+                    m_saveAction = 2; // close portal
+                    m_savePortal = "";
+                    break;
+                } else
+                if ( _answ_ == MODAL_RESULT_CANCEL) {
+                    break;
+                }
+            }
+        }
+    }
 }
 
 void QAscMainPanel::applyMainWindowState(Qt::WindowState s)
@@ -388,18 +434,29 @@ void QAscMainPanel::onTabChanged(int index)
 
 void QAscMainPanel::onTabCloseRequest(int index)
 {
+    if (trySaveDocument(index) == MODAL_RESULT_NO)
+        m_pTabs->closeEditorByIndex(index, false);
+}
+
+int QAscMainPanel::trySaveDocument(int index)
+{
+    if (m_pTabs->closedByIndex(index)) return MODAL_RESULT_YES;
+
+    int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
         CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
 #else
         CSaveFileMessage saveDlg(this);
 #endif
+        m_pTabs->setCurrentIndex(index);
         saveDlg.setFiles(m_pTabs->titleByIndex(index));
 
-        switch (saveDlg.showModal()) {
-        case 0: return;
-        case -1: break;
-        case 1:
+        modal_res = saveDlg.showModal();
+        switch (modal_res) {
+        case MODAL_RESULT_CANCEL: break;
+        case MODAL_RESULT_NO: break;
+        case MODAL_RESULT_YES:
         default:{
             m_pTabs->editorCloseRequest(index);
 
@@ -409,11 +466,11 @@ void QAscMainPanel::onTabCloseRequest(int index)
             pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
             pView->GetCefView()->Apply(pEvent);
 
-            return;}
+            break;}
         }
     }
 
-    m_pTabs->closeEditorByIndex(index, false);
+    return modal_res;
 }
 
 void QAscMainPanel::onNeedCheckKeyboard()
@@ -423,14 +480,72 @@ void QAscMainPanel::onNeedCheckKeyboard()
 
 void QAscMainPanel::onMenuLogout()
 {
-    if (m_pWidgetProfile->info()->logged()) {
-        checkModified(WAIT_MODIFIED_LOGOUT);
+//    if (m_pWidgetProfile->info()->logged()) {
+//        if (checkModified(portal) != MODAL_RESULT_CANCEL) {
+//            m_pManager->Logout(m_pWidgetProfile->info()->portal().toStdWString());
+
+//            m_pButtonProfile->setDisabled(true);
+//            m_pWidgetProfile->parseProfile("");
+
+//            goStart();
+//        }
+//    }
+}
+
+void QAscMainPanel::doLogout(const QString& portal)
+{
+    m_pTabs->closePortal(portal, true);
+    RecalculatePlaces();
+
+    wstring wp = portal.toStdWString();
+    m_pManager->Logout(wp);
+
+    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+    pCommand->put_Command(L"portal:logout");
+    pCommand->put_Param(wp);
+
+    CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+    goStart();
+}
+
+void QAscMainPanel::onPortalLogout(QString portal)
+{
+    if (m_saveAction > 1) return;
+
+    int _index_, _answ_;
+    while (true) {
+        _index_ = m_pTabs->findModified(portal);
+        if ( _index_ < 0 ) {
+            doLogout(portal);
+            break;
+        } else {
+            _answ_ = trySaveDocument(_index_);
+
+            if ( _answ_ == MODAL_RESULT_NO ) {
+                m_pTabs->closeEditorByIndex(_index_, false);
+                continue;
+            } else
+            if ( _answ_ == MODAL_RESULT_YES ) {
+                m_saveAction = 1; // close portal
+                m_savePortal = portal;
+                break;
+            } else
+            if ( _answ_ == MODAL_RESULT_CANCEL ) {
+                break;
+            }
+        }
     }
 }
 
-void QAscMainPanel::onDocumentOpen(std::wstring url, int id, bool select)
+void QAscMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
-    m_pTabs->openDocument(url, id, select);
+    COpenOptions opts = {url};
+    opts.id = id;
+
+    m_pTabs->openCloudDocument(opts, select);
 
     if (id < 0)
         RecalculatePlaces();
@@ -441,21 +556,238 @@ void QAscMainPanel::onDocumentOpen(std::wstring url, int id, bool select)
         });
 }
 
+void QAscMainPanel::checkLocalUsedPath(int t)
+{
+    GET_REGISTRY_USER(_reg_user)
+
+    QString _path_;
+    if (t == LOCAL_PATH_OPEN) {
+        _path_ = _reg_user.value("openPath").value<QString>();
+        m_lastOpenPath = _path_.length() > 0 && !QDir(_path_).exists() ?
+            _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    } else {
+        _path_ = _reg_user.value("savePath").value<QString>();
+        m_lastSavePath = _path_.length() > 0 && !QDir(_path_).exists() ?
+            _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    }
+}
+
+void QAscMainPanel::onLocalGetImage(void * d)
+{
+#ifdef _WIN32
+    CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+#else
+    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
+#endif
+
+    checkLocalUsedPath(LOCAL_PATH_OPEN);
+
+    QString file_path = dlg.modalOpenImage(m_lastOpenPath);
+    if (!file_path.isEmpty()) {
+        m_lastOpenPath = QFileInfo(file_path).absoluteDir().absolutePath();
+    }
+
+    /* data consits id of cefview */
+    CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
+
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
+    pData->put_Path(file_path.toStdWString());
+    pEvent->m_pData = pData;
+    m_pManager->Apply(pEvent);
+
+    /* release would be made in the method Apply */
+//    RELEASEINTERFACE(pData);
+}
+
+void QAscMainPanel::onLocalFileOpen(QString path)
+{
+#ifdef _WIN32
+    CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+#else
+    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
+#endif
+
+    if (path.length() > 0 && QDir(path).exists()) {
+        GET_REGISTRY_USER(_reg_user);
+
+        m_lastOpenPath = QString(path);
+        _reg_user.setValue("openPath", m_lastOpenPath);
+    } else {
+        checkLocalUsedPath(LOCAL_PATH_OPEN);
+    }
+
+    QString file_path = dlg.modalOpen(m_lastOpenPath);
+    if (!file_path.isEmpty()) {
+        m_lastOpenPath = QFileInfo(file_path).absoluteDir().absolutePath();
+
+        COpenOptions opts = {"", etLocalFile, file_path};
+        opts.wurl = file_path.toStdWString();
+        doOpenLocalFile(opts);
+    }
+}
+
+#include "win/cmessage.h"
+void QAscMainPanel::doOpenLocalFile(COpenOptions& opts)
+{
+    QFileInfo info(opts.url);
+    if (!info.exists()) { return; }
+    if (!info.isFile()) { return; }
+
+    int result = m_pTabs->openLocalDocument(opts, true);
+    if (!(result < 0)) {
+        RecalculatePlaces();
+
+        QTimer::singleShot(200, this, [=]{
+            toggleButtonMain(false);
+        });
+    } else
+    if (result == -255) {
+        CMessage mess((HWND)winId());
+        mess.error(tr("Error"), tr("File format not supported."));
+    }
+}
+
+void QAscMainPanel::onLocalFileRecent(void * d)
+{
+    CAscLocalOpenFileRecent_Recover * pData = static_cast<CAscLocalOpenFileRecent_Recover *>(d);
+
+    COpenOptions opts = { pData->get_Path(),
+          pData->get_IsRecover() ? etRecoveryFile : etRecentFile, pData->get_Id() };
+
+    RELEASEINTERFACE(pData);
+
+    QRegularExpression re(rePortalName);
+    QRegularExpressionMatch match = re.match(opts.url);
+
+    if (!match.hasMatch()) {
+        if ( !QFileInfo(opts.url).exists() ) {
+            /* TODO: show the error */
+
+            CMessage mess((HWND)winId());
+            mess.error(tr("Error"), tr("File doesn't exists"));
+
+//            QMessageBox::critical(this, tr("Error"), tr("File doesn't exists"), QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        }
+    }
+
+//    openLocalFile(opts);
+    int result = m_pTabs->openLocalDocument(opts, true);
+    if (!(result < 0)) {
+        RecalculatePlaces();
+
+        QTimer::singleShot(200, this, [=]{
+            toggleButtonMain(false);
+        });
+    } else
+    if (result == -255) {
+        CMessage mess((HWND)winId());
+        mess.error(tr("Error"), tr("File format not supported."));
+    }
+}
+
+void QAscMainPanel::onLocalFileCreate(int fformat)
+{
+    static short docx_count = 0;
+    static short xlsx_count = 0;
+    static short pptx_count = 0;
+
+    QString new_name;
+    switch (fformat) {
+    case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
+    case etSpreadsheet: new_name  = tr("Book%1.xlsx").arg(++xlsx_count); break;
+    case etPresentation: new_name  = tr("Presentation%1.pptx").arg(++pptx_count); break;
+    default: new_name = tr("Document.asc"); break;
+    }
+
+    COpenOptions opts = {new_name, etNewFile};
+    opts.format = fformat;
+
+    int tabIndex = m_pTabs->addEditor(opts);
+
+    if (!(tabIndex < 0)) {
+        m_pTabs->updateIcons();
+        m_pTabs->setCurrentIndex(tabIndex);
+
+        RecalculatePlaces();
+
+        QTimer::singleShot(200, this, [=]{
+            toggleButtonMain(false);
+        });
+    }
+}
+
+void QAscMainPanel::onLocalFilesOpen(void * data)
+{
+    CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
+    vector<wstring> vctFiles = pData->get_Files();
+
+    doOpenLocalFiles(&vctFiles);
+
+    RELEASEINTERFACE(pData);
+}
+
+void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
+{
+    for (vector<wstring>::const_iterator i = vec->begin(); i != vec->end(); i++) {
+        COpenOptions opts = {(*i), etLocalFile};
+        m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
+        doOpenLocalFile(opts);
+    }
+}
+
+void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
+{
+    QStringListIterator i(list);
+    while (i.hasNext()) {
+        COpenOptions opts = {i.next().toStdWString(), etLocalFile};
+
+        m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
+        doOpenLocalFile(opts);
+    }
+}
+
 void QAscMainPanel::onDocumentType(int id, int type)
 {
     m_pTabs->applyDocumentChanging(id, type);
 }
 
-void QAscMainPanel::onDocumentName(int id, QString name)
+void QAscMainPanel::onDocumentName(void * data)
 {
-    m_pTabs->applyDocumentChanging(id, name);
+    CAscDocumentName * pData = static_cast<CAscDocumentName *>(data);
+
+    QString name = QString::fromStdWString(pData->get_Name());
+    QString descr = pData->get_Url().size() > 0 ? name : QString::fromStdWString(pData->get_Path());
+
+    if (!descr.length()) descr = name;
+    m_pTabs->applyDocumentChanging(pData->get_Id(), name, descr);
     onTabChanged(m_pTabs->currentIndex());
+
+    RELEASEINTERFACE(pData);
 }
 
 void QAscMainPanel::onDocumentChanged(int id, bool changed)
 {
     m_pTabs->applyDocumentChanging(id, changed);
     onTabChanged(m_pTabs->currentIndex());
+}
+
+void QAscMainPanel::onDocumentSave(int id, bool cancel)
+{
+    m_pTabs->applyDocumentSave(id, cancel);
+
+    if (!cancel && m_saveAction != 0) {
+        if (m_saveAction == 1) {
+            m_saveAction = 0;
+            onPortalLogout(m_savePortal);
+        } else
+        if (m_saveAction == 2) {
+            m_saveAction = 0;
+            pushButtonCloseClicked();
+        }
+    } else {
+        m_saveAction = 0;
+    }
 }
 
 void QAscMainPanel::onDocumentDownload(void * info)
@@ -477,15 +809,15 @@ void QAscMainPanel::onLogin(QString params)
 
 void QAscMainPanel::onLogout()
 {
-    m_pTabs->closeAllEditors();
-    loadStartPage();
+//    m_pTabs->closeAllEditors();
+//    loadStartPage();
 }
 
 void QAscMainPanel::onJSMessage(QString key, QString value)
 {
-    if (key == "login") {
-        onLogin(value);
-    }
+//    if (key == "login") {
+//        onLogin(value);
+//    }
 }
 
 void QAscMainPanel::loadStartPage()
@@ -504,25 +836,27 @@ void QAscMainPanel::loadStartPage()
         additional.append(arg_portal);
     }
 
-    std::wstring start_path = ("file://" + data_path + additional).toStdWString();
+#ifndef QT_DEBUG
+    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+#else
+//    std::wstring start_path = ("file://" + data_path + additional).toStdWString();
+    std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/src/index.html").toStdWString();
+//    std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/deploy/index.html").toStdWString();
+#endif
     ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
 }
 
 void QAscMainPanel::goStart()
 {
-    loadStartPage();
+//    loadStartPage();
     toggleButtonMain(true);
 }
 
-void QAscMainPanel::checkModified(BYTE action)
+int QAscMainPanel::checkModified(const QString& portalname)
 {
-    QMap<int, QString> mapModified;
-    for (int i = 0; i < m_pTabs->count(); i++) {
-        if (m_pTabs->modifiedByIndex(i)) {
-            mapModified.insert(m_pTabs->viewByIndex(i), m_pTabs->titleByIndex(i, true));
-        }
-    }
+    QMap<int, QString> mapModified = m_pTabs->modified(portalname);
 
+    int out_res = MODAL_RESULT_YES;
     if (mapModified.size()) {
 #ifdef _WIN32
         CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
@@ -531,10 +865,11 @@ void QAscMainPanel::checkModified(BYTE action)
 #endif
         saveDlg.setFiles(&mapModified);
 
-        switch (saveDlg.showModal()) {
-        case 0: return;
-        case -1: break;
-        case 1:
+        out_res = saveDlg.showModal();
+        switch (out_res) {
+        case MODAL_RESULT_NO: break;
+        case MODAL_RESULT_CANCEL: break;
+        case MODAL_RESULT_YES:
         default:{
             if (mapModified.size()) {
                 CCefView * pView;
@@ -543,7 +878,7 @@ void QAscMainPanel::checkModified(BYTE action)
                     i.next();
 
                     pView = m_pManager->GetViewById(i.key());
-                    pView->Apply(new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
+                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
                 }
             }
 
@@ -551,17 +886,7 @@ void QAscMainPanel::checkModified(BYTE action)
         }
     }
 
-    if (action == WAIT_MODIFIED_CLOSE) {
-        emit mainWindowClose();
-    } else
-    if (action == WAIT_MODIFIED_LOGOUT) {
-        m_pManager->Logout(m_pWidgetProfile->info()->portal().toStdWString());
-
-        m_pButtonProfile->setDisabled(true);
-        m_pWidgetProfile->parseProfile("");
-
-        goStart();
-    }
+    return out_res;
 }
 
 void QAscMainPanel::onDocumentPrint(void * opts)
@@ -704,7 +1029,7 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
             CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
 
-            if (dlg.showModal(fullPath)) {
+            if (dlg.modalSaveAs(fullPath)) {
                 savePath = QFileInfo(fullPath).absolutePath();
                 _reg_user.setValue("savePath", savePath);
             }
@@ -714,6 +1039,57 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 
         saveInProcess = false;
     }
+}
+
+void QAscMainPanel::onLocalFileSaveAs(void * d)
+{
+    CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
+
+    QFileInfo info(QString::fromStdWString(pData->get_Path()));
+    if (info.absoluteDir().exists()) {
+        m_lastSavePath = info.absoluteDir().absolutePath();
+    }
+
+    if (!QDir(m_lastSavePath).exists()) {
+        m_lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    }
+
+    if (info.fileName().size()) {
+        QString fullPath = m_lastSavePath + "/" + info.fileName();
+
+#ifdef _WIN32
+        CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+#else
+        CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
+#endif
+        dlg.setFormats(pData->get_SupportFormats());
+
+        CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
+        pSaveData->put_Id(pData->get_Id());
+        pSaveData->put_Path(L"");
+
+        if (dlg.modalSaveAs(fullPath)) {
+            GET_REGISTRY_USER(_reg_user);
+
+            m_lastSavePath = QDir(fullPath).absolutePath();
+            _reg_user.setValue("savePath", m_lastSavePath);
+
+            pSaveData->put_Path(fullPath.toStdWString());
+            int format = dlg.getFormat() > 0 ? dlg.getFormat() :
+                    CAscApplicationManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+
+            pSaveData->put_FileType(format > -1 ? format : 0);
+        }
+
+        CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
+        pEvent->m_pData = pSaveData;
+        m_pManager->Apply(pEvent);
+
+//        RELEASEINTERFACE(pData)
+//        RELEASEINTERFACE(pEvent)
+    }
+
+    RELEASEINTERFACE(pData);
 }
 
 void QAscMainPanel::onFullScreen(bool apply)
@@ -763,4 +1139,17 @@ void QAscMainPanel::onKeyDown(void * eventData)
 void QAscMainPanel::onLink(QString url)
 {
     QDesktopServices::openUrl(QUrl(url));
+    qDebug() << "open link: " << url;
+}
+
+void QAscMainPanel::onPortalOpen(QString url)
+{
+    int res = m_pTabs->openPortal(url);
+    if (res == 2) { RecalculatePlaces(); }
+
+    if (!(res < 0)) {
+        QTimer::singleShot(200, this, [=]{
+            toggleButtonMain(false);
+        });
+    }
 }

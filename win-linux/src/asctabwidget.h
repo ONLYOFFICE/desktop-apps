@@ -43,6 +43,32 @@
 
 #include <QDebug>
 
+#define etLocalFile     AscEditorType(254)
+#define etRecoveryFile  AscEditorType(253)
+#define etRecentFile    AscEditorType(252)
+#define etNewFile       AscEditorType(251)
+
+using namespace std;
+typedef CefViewWrapperType CefType;
+typedef QMap<int, QString> MapEditors;
+
+struct COpenOptions {
+    COpenOptions();
+    COpenOptions(wstring _url_);
+    COpenOptions(wstring _url_, AscEditorType _type_);
+    COpenOptions(wstring _url_, AscEditorType _type_, int _id_);
+    COpenOptions(QString _name_, AscEditorType _type_);
+    COpenOptions(QString _name_, AscEditorType _type_, QString _url_);
+    COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_);
+    COpenOptions(QString _name_, AscEditorType _type_, wstring _url_, int _id_);
+
+    QString name;
+    AscEditorType type;
+    QString url;
+    int id, format;
+    std::wstring wurl;
+};
+
 class CAscTabWidget : public QTabWidget
 {
     Q_OBJECT
@@ -101,9 +127,12 @@ signals:
 public:
     CAscTabWidget(QWidget *parent = 0);
 
-    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
+//    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
+    int  addEditor(COpenOptions&);
+    int  addPortal(QString url);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
+    void closePortal(const QString&, bool editors = false);
 
 protected:
     void resizeEvent(QResizeEvent* e);
@@ -112,10 +141,16 @@ protected:
 public:
     int         tabIndexByView(int);
     int         viewByIndex(int);
+    int         tabIndexByView(QString);
+    int         tabIndexByTitle(QString t, CefType vt);
     QString     titleByIndex(int, bool original = true);
     bool        modifiedByIndex(int);
     int         modifiedCount();
+    bool        closedByIndex(int);
     void        editorCloseRequest(int);
+
+    MapEditors  modified(const QString& portal);
+    int         findModified(const QString& portal);
 
     void adjustTabsSize();
     void activate(bool);
@@ -126,17 +161,20 @@ public:
     void setFocusedView(int index = -1);
     void setFullScreen(bool);
 
-    void openDocument(std::wstring, int, bool);
+    void openCloudDocument(COpenOptions&, bool);
+    int  openLocalDocument(COpenOptions&, bool);
 //    void changeDocumentType(int, int);
     void applyDocumentChanging(int id, int type);
-    void applyDocumentChanging(int id, QString name);
+    void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
+    void applyDocumentSave(int, bool);
+
+    int  openPortal(const QString& url);
 
 public slots:
 //    void onDocumentNameChanged(int, QString);
 //    void onDocumentChanged(int, bool);
-    void onDocumentSave(int);
 };
 
 #endif // ASCTABWIDGET

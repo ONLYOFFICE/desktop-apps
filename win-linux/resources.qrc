@@ -18,6 +18,8 @@
         <file alias="se_active@2x.png">res/icons/tabicon_se_active_2x.png</file>
         <file alias="se_normal.png">res/icons/tabicon_se_normal.png</file>
         <file alias="se_normal@2x.png">res/icons/tabicon_se_normal_2x.png</file>
+        <file alias="portal.png">res/icons/tabicon_portal.png</file>
+        <file alias="portal@2x.png">res/icons/tabicon_portal_2x.png</file>
         <file alias="newdocument.png">res/icons/tabicon_opening.png</file>
         <file alias="newdocument@2x.png">res/icons/tabicon_opening_2x.png</file>
         <file>res/icons/changetab_left_active.png</file>
@@ -68,6 +70,7 @@
         <file>res/icons/arrow_down.png</file>
         <file>res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.png</file>
+        <file>res/icons/splash_2x.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>

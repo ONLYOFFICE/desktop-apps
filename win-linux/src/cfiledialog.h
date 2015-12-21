@@ -34,6 +34,7 @@
 #define CFILEDIALOG_H
 
 #include <QObject>
+#include <QMap>
 
 #ifdef _WIN32
 #include "win/qwinwidget.h"
@@ -54,10 +55,20 @@ public:
 #endif
     ~CFileDialogWrapper();
 
-    bool showModal(QString&);
+    bool    modalSaveAs(QString&);
+    QString modalOpen(const QString&, const QString& filter = QString(""));
+    QString modalOpenImage(const QString&);
+
+    void    setFormats(std::vector<int>&);
+    int     getFormat();
 
 private:
     QString getFilter(const QString&) const;
+    int getKey(const QString &value);
+
+    QString m_filters;
+    QMap<int, QString> m_mapFilters;
+    int m_format;
 
 signals:
 

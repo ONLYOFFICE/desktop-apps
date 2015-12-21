@@ -37,6 +37,7 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QLabel>
+#include "defines.h"
 
 #ifdef Q_WS_WIN32
 //#define WINVER 0x0500
@@ -55,7 +56,7 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
     : QObject(parent),
     m_pDlg(parent),
 #endif
-    m_result(0), m_fLayout(new QFormLayout), m_mapFiles(NULL)
+    m_result(MODAL_RESULT_CANCEL), m_fLayout(new QFormLayout), m_mapFiles(NULL)
 {
     m_pDlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
                           | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
@@ -135,20 +136,6 @@ void CSaveFileMessage::setFiles(QMap<int, QString> * f)
     int count = m_mapFiles->size();
 
     QWidget * chb;
-//    QMapIterator<int,QString> i(*m_mapFiles);
-//    while (i.hasNext()) {
-//        i.next();
-
-//        if (count > 1) {
-//            chb = new QCheckBox(i.value());
-//            qobject_cast<QCheckBox*>(chb)->setCheckState(Qt::Checked);
-//            chb->setProperty("view_id", i.key());
-//        } else {
-//            chb = new QLabel(i.value());
-//        }
-
-//        m_fLayout->addWidget(chb);
-//    }
 
     QString str;
     for (auto k : m_mapFiles->keys()) {
@@ -185,18 +172,18 @@ void CSaveFileMessage::onYesClicked()
         }
     }
 
-    m_result = 1;
+    m_result = MODAL_RESULT_YES;
     m_pDlg.accept();
 }
 
 void CSaveFileMessage::onNoClicked()
 {
-    m_result = -1;
+    m_result = MODAL_RESULT_NO;
     m_pDlg.reject();
 }
 
 void CSaveFileMessage::onCancelClicked()
 {
-    m_result = 0;
+    m_result = MODAL_RESULT_CANCEL;
     m_pDlg.reject();
 }

@@ -30,30 +30,76 @@
  *
 */
 
-#ifndef DEFINES_H
-#define DEFINES_H
+#include "casctabdata.h"
 
-#define rePortalName "^https?:\\/\\/(.+)"
-#define reFileExtension "\\.(\\w{1,10})$"
+CAscTabData::CAscTabData(const QString& t, CefType wt)
+    : _title(t), _is_changed(false), _is_closed(false)
+//    , _is_local(false)
+    , _panel_id(-1)
+    , _vtype(wt)
+    , _url()
+{}
 
-#define WAIT_MODIFIED_CLOSE     1
-#define WAIT_MODIFIED_LOGOUT    2
+void CAscTabData::setTitle(const QString& t)
+{
+    _title = t;
+}
 
-#define FILE_DOWNLOAD_START     3
-#define FILE_DOWNLOAD_END       4
+QString CAscTabData::title(bool orig) const
+{
+    return !orig && _is_changed ? _title + "*": _title;
+}
 
-#define APP_NAME "DesktopEditors"
-#define GET_REGISTRY_USER(variable) \
-    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
-#define GET_REGISTRY_SYSTEM(variable) \
-    QSettings variable(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
+void CAscTabData::setChanged(bool s)
+{
+    _is_changed = s;
+}
 
-#define LOCAL_PATH_OPEN         1
-#define LOCAL_PATH_SAVE         2
+bool CAscTabData::changed() const
+{
+    return _is_changed;
+}
 
-#define MODAL_RESULT_YES        1
-#define MODAL_RESULT_NO         0
-#define MODAL_RESULT_CANCEL     -1
+void CAscTabData::setViewId(int id)
+{
+    _panel_id = id;
+}
 
-#endif // DEFINES_H
+int CAscTabData::viewId() const
+{
+    return _panel_id;
+}
 
+void CAscTabData::close() {
+    _is_closed = true;
+}
+
+void CAscTabData::reuse()
+{
+    _is_closed = false;
+}
+
+bool CAscTabData::closed() const
+{
+    return _is_closed;
+}
+
+CefType CAscTabData::viewType() const
+{
+    return _vtype;
+}
+
+void CAscTabData::setUrl(const wstring& u)
+{
+    _url = u;
+}
+
+wstring CAscTabData::url() const
+{
+    return _url;
+}
+
+bool CAscTabData::isViewType(CefType vt) const
+{
+    return vt == _vtype;
+}

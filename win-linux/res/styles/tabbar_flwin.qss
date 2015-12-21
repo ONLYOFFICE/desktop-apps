@@ -1,9 +1,9 @@
 /* styles for a frameless main window */
 QTabWidget::pane {background-color: #313437; border:none;}
-QTabWidget::tab-bar {width: auto; height: 29px; left: 111px; }
+QTabWidget::tab-bar {width: auto; height: 29px; left: 70px; }
 
 QTabBar::tab { width:135px; background-color: #CFCFCF; border: 0 none; min-width: 41px; max-width: 135px;
-height: 27px; margin: 0 1px 0 0; border-top-left-radius: 2px; border-top-right-radius: 2px; }
+height: 27px; margin: 0 1px 0 0; }
 
 QTabBar::tab {border-bottom:1px solid #afb0b1; border-top:1px solid #cfcfcf;}
 
