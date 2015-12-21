@@ -61,6 +61,11 @@
 #ifndef MAS
     PFMoveToApplicationsFolderIfNecessary();
 #endif
+    
+    // Remove 'Start Dictation' and 'Special Characters' from menu
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledDictationMenuItem"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledCharacterPaletteMenuItem"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
