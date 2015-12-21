@@ -153,11 +153,11 @@ $(document).ready(function() {
         }
         
         $listRecentDirs.empty();
-        for (let i in _dirs) {
-            if (!utils.getUrlProtocol(_dirs[i].full)) {
-                $item = $(Templates.produceFilesItem( _dirs[i] ));
+        for (let dir of _dirs) {
+            if (!utils.getUrlProtocol(dir.full)) {
+                $item = $(Templates.produceFilesItem( dir ));
             
-                $item.click({path: _dirs[i].full}, onRecentFolderClick);
+                $item.click({path: dir.full}, onRecentFolderClick);
                 $listRecentDirs.append($item);
             }
         }
@@ -183,8 +183,6 @@ $(document).ready(function() {
         Menu.closeAll();
         sizeRecoveryList();
     });
-
-    $('.login').click(onConnectClick);
 
     if (window.AscDesktopEditor) {
         window.AscDesktopEditor.LocalFileRecents && window.AscDesktopEditor.LocalFileRecents();
@@ -226,19 +224,25 @@ $(document).ready(function() {
         view: $('.action-panel.recent #box-recent')
         ,list: '.table-files.list'
     });
+    recentCollection.events.erased.attach(function(collection){
+        collection.view.find(collection.list).parent().addClass('empty');
+    });
     recentCollection.events.inserted.attach(function(collection, model){
         let $list = collection.view.find('.table-files.list');
         
         let $item = $(Templates.produceFilesItem(model));
-        $list.append($item);    
+        $list.append($item);
+        $list.parent().removeClass('empty');
     });
     recentCollection.events.click.attach(function(collection, model){
+        console.log('click');
         openFile(OPEN_FILE_RECENT, model.fileid);
     });
     recentCollection.events.contextmenu.attach(function(collection, model, e){
         menuFiles.actionlist = 'recent';
         menuFiles.show({left: e.clientX, top: e.clientY}, model);
     });
+    recentCollection.empty();    
     /**/
 
     /** recent collection **/
@@ -262,20 +266,29 @@ $(document).ready(function() {
     /**/
 
     updatePortals(); 
-    selectAction('recent');
-    // selectAction('welcome');
+
+    if (!localStorage.welcome) {
+        Templates.createWelcomePanel('.action-panel.welcome');
+        selectAction('welcome');
+
+        localStorage.setItem('welcome', 'have been');
+    } else 
+        selectAction('recent');
+
     setLoaderVisible(false);
 
     // var arr = [
     //     {"id":0,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF,"path":"https://testinfo.teamlab.info/New Document.docx","modifyed":"11.12.2015 18:45"},
     //     {"id":1,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU,"path":"C:\\Users\\maxim.kadushkin\\Documents\\DPIConfig_SmallPCs.docx","modifyed":"11.12.2015 18:22"},
-    //     {"id":2,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS,"path":"C:\\Users\\maxim.kadushkin\\Documents\\New Spreadsheet.xlsx","modifyed":"11.12.2015 17:58"},
+    //     {"id":2,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS,"path":"/Users/ayuzhin/Develop/Web/test.html","modifyed":"11.12.2015 17:58"},
     //     {"id":3,"type":utils.defines.FileFormat.FILE_PRESENTATION_PPTX,"path":"https://testinfo.teamlab.info\\Sadfasd.docx","modifyed":"10.12.2015 17:25"},
     //     {"id":4,"type":utils.defines.FileFormat.FILE_SPREADSHEET_CSV,"path":"https://testinfo.teamlab.info\\Sadfasd.docx","modifyed":"10.12.2015 17:25"},
     //     {"id":5,"type":utils.defines.FileFormat.FILE_SPREADSHEET_ODS,"path":"https://testinfo.teamlab.info\\Sadfasd.docx","modifyed":"10.12.2015 17:25"},
     //     {"id":6,"type":utils.defines.FileFormat.FILE_SPREADSHEET_XLS,"path":"https://testinfo.teamlab.info\\Office 365 Value Added Reseller Guide.docx","modifyed":"10.12.2015 16:46"}
     // ];
     // window.onupdaterecents(arr);
+
+    $('.login').click(onConnectClick);
 });
 
 var portalCollection;
@@ -423,13 +436,15 @@ function clickMenuPortals(menu, action, data) {
         onLogoutClick({data:model.name});
     } else
     if (/\:forget/.test(action)) {
-        if (PortalsStore.forget(model.name))
+        if (PortalsStore.forget(model.name)) {
+            // onLogoutClick({data:model.name});
             updatePortals();
+        }
     }
 };
 
 function onConnectClick() {
-    doLogin('testinfo.teamlab.info', 'maxim.kadushkin@avsmedia.net');
+    doLogin(/*'testinfo.teamlab.info', 'maxim.kadushkin@avsmedia.net'*/);
 };
 
 function doLogin(p, u) {
@@ -478,11 +493,11 @@ function openFile(type, params) {
             if (window.AscDesktopEditor[_method]) {
                 window.AscDesktopEditor[_method](parseInt(params));
             } else {
-                alert("desktop!!! (" + _method + ": " + params + ")");
+                // alert("desktop!!! (" + _method + ": " + params + ")");
             }
         }
     } else {
-        alert("desktop!!! AscDesktopEditor object haven't found");
+        // alert("desktop!!! AscDesktopEditor object haven't found");
     }
 }
 

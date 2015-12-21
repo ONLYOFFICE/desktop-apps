@@ -257,7 +257,7 @@
                 <!-- <button id="btn-add2">Add 2</button> -->
             </div>
             <div class="main-column col-center after-left">
-              <div class="action-panel create"><label>new file</label></div>
+              <div class="action-panel welcome"></div>
               <div class="action-panel recent">
                 <div class="flexbox">
                   <div id="box-recovery" class="flex-item"></div>

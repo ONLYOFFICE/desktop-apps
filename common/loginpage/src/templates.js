@@ -37,8 +37,10 @@ Templates = (function() { 'use strict';
         var _html = '<div id="box-empty-portals" class="empty">' +
                       '<h3 class="text-welcome">Take all advantages of ONLYOFFICE</h3>' +
                       '<h4 class="text-description">Log in to your portal and add you team members.</h4>' +
-                      '<button class="btn primary login">Connect portal</button>' +
-                      '<button class="btn">Create portal</button>' +
+                      '<div class="tools-connect">'+
+                        '<button class="btn primary login">Connect portal</button>' +
+                        '<button class="btn newportal">Create portal</button>' +
+                      '</div>'+
                     '</div>'+
                     '<div id="box-portals">' +
                     '</div>';
@@ -75,6 +77,7 @@ Templates = (function() { 'use strict';
                 .replace(/\%id/, info.elid);
     };
 
+    var textNoFiles = 'There are no files';
     function addRecentFiles(opts) {
         opts.id&&(opts.id='id="'+opts.id+'"')||(opts.id='');
 
@@ -93,8 +96,10 @@ Templates = (function() { 'use strict';
         }
         
         _html += '</table>'+                
-                    '<div class="table-box flex-fill"><table %id class="table-files list">'+
-                    '</div></table></div>';
+                    '<div class="table-box flex-fill">'+
+                      '<table %id class="table-files list"></table>'+
+                      '<h3 class="text-emptylist">' + textNoFiles + '</h3>' +
+                    '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
     };
@@ -118,8 +123,25 @@ Templates = (function() { 'use strict';
         $(holder).append(_html.replace(/\%caption/, caption));
     };
 
+    var welWelcome = 'Welcome to ONLYOFFICE Desktop Editors!';
+    var welDescr = 'A new fast solution for work with documents using your ONLYOFFICE.';
+    var btnConnect = 'Connect Portal';
+    var btnCreatePortal = 'Create Portal';
+    function addWelcomePanel(holder) {        
+        var _html = '<section class="center"><h3>'+ welWelcome +'</h1>'+
+                    '<h4 class="text-description">'+ welDescr +'</h4>'+
+                    '<img class="img-welcome">'+
+                    '<div class="tools-connect">'+
+                      '<button class="btn primary login">'+ btnConnect +'</button>' +
+                      '<button class="btn newportal">'+ btnCreatePortal +'</button>'+
+                    '</div></section>';
+
+        $(holder).append(_html);
+    };
+
     return {
         addConnectPanel: addConnectPanel,
+        createWelcomePanel: addWelcomePanel,
         insertFilesTable: addRecentFiles,
         produceFilesItem: makeFilesItem,
         producePortalItem: makePortalItem

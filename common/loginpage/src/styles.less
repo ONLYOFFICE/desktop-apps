@@ -119,6 +119,11 @@ button {
         &:active {
             background-color: @color-blue-2;
         }
+
+        &:disabled {
+            background-color: @color-blue-light;
+            color: #a7cff8;
+        }
     }
 
     &:hover {
@@ -127,6 +132,11 @@ button {
 
     &:active {
         background-color: @color-gray-5;
+    }
+    
+    &:disabled {
+        background-color: @color-gray-4;
+        cursor: default;
     }
 }
 
@@ -157,7 +167,7 @@ button {
     margin-left: @col-width;
 }
 
-#area-welcome
+/*#area-welcome
 {
     #text-welcome {
         font-size: 36px;
@@ -175,24 +185,8 @@ button {
             content: data-uri('welcome_image_small.png');
         }
     }
-
-    .rel-box {
-        /*height: 26%;*/
-        margin-bottom: 55px;
-
-        .abs-box {
-/*            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-right: -50%;
-            transform: translate(-50%,-50%);
-*/        }
-    }
-
-    .separator:first-child {
-        height: 12vh;
-    }
 }
+*/
 
 .tool-quick-menu {
     height: 250px;
@@ -376,9 +370,6 @@ li.menu-item {
 
 #box-empty-portals {
     margin: 60px 0 0 0;
-    button {
-        margin: 22px 5px;
-    }
 }
 
 .lst-tools {
@@ -390,11 +381,6 @@ li.menu-item {
     border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
-
-    .table-box {
-        height: 100%;
-        overflow-y: scroll;
-    }
 
     caption {
         text-align: left;
@@ -524,6 +510,16 @@ li.menu-item {
     }
 }
 
+.table-box {
+    /*height: 100%;*/
+    /*overflow-y: scroll;*/
+
+    &:not(.empty) .text-emptylist {
+        display: none;
+    }
+}
+
+
 #tbl-filesrcv {
     .descr {
         display: none;
@@ -565,4 +561,29 @@ li.menu-item {
 
 .menu-container {
     position: absolute;
+}
+
+.tools-connect {
+    .btn {
+        margin: 22px 5px;
+    }
+}
+
+.img-welcome {
+    content: data-uri('welcome_image.png');
+}
+
+.welcome {
+    position: relative;
+
+    .center {
+        position: absolute;
+        top: 44%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .img-welcome {
+        margin: 48px 0;
+    }
 }

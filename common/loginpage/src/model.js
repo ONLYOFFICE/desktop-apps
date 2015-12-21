@@ -59,13 +59,19 @@ function Collection(attributes) {
     this.view = attributes.view;
     this.list = attributes.list;
 
+    var _time = Date.now();
     this.on_item_changed = function(model) {
         this.events.changed.notify(model);
     }.bind(this);
 
     this.on_item_click = function(e) {
-        this.events.click.notify(e.data);
+        if (Date.now()-_time > 800) {
+            _time = Date.now();
+            this.events.click.notify(e.data);
+        }
+
         e.preventDefault();
+        return false;
     }.bind(this);
 
     this.on_item_ctxmenu = function(e) {
