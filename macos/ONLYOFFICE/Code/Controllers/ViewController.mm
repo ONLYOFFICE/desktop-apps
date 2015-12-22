@@ -231,7 +231,7 @@
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
-        [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
+        [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
         [alert setAlertStyle:NSInformationalAlertStyle];
         
         NSInteger result = [alert runModal];
@@ -719,7 +719,7 @@
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
-                [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
+                [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
                 [alert setAlertStyle:NSInformationalAlertStyle];
                 
                 NSInteger result = [alert runModal];

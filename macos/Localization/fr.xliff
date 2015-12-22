@@ -805,9 +805,9 @@
         <target>File can not be open.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="If you don't review your documents, all your changeses will be saved.">
-        <source>If you don't review your documents, all your changeses will be saved.</source>
-        <target>Si vous ne voyez pas ces documents, toutes vos modifications seront enregistrées.</target>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changeses will be lost.</source>
+        <target>If you don't review your documents, all your changeses will be lost.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No">
