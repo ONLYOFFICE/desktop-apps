@@ -229,7 +229,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Save and Quit", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
         [alert setAlertStyle:NSInformationalAlertStyle];
@@ -252,27 +252,16 @@
             // "Cancel" clicked
             return NO;
         } else {
-            // "Save and Quit" clicked
+            // "Delete and Quit" clicked
             self.shouldTerminateApp = YES;
             
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             
             for (ASCTabView * tab in tabs) {
-                if (tab.changed) {
-                    NSCefView * cefView = [self cefViewWithTab:tab];
-                    
-                    tab.params[@"shouldClose"] = @(YES);
-                    
-                    if (cefView) {
-                        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
-                        
-                        pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
-                        [cefView apply:pEvent];
-                    }
-                } else {
-                    [self.tabsControl removeTab:tab];
-                }
+                [self.tabsControl removeTab:tab selected:NO];
             }
+            
+            [self.tabView selectTabViewItemWithIdentifier:rootTabId];
         }
         
         return NO;
@@ -728,7 +717,7 @@
                 
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Save and Quit", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be saved.", nil)];
                 [alert setAlertStyle:NSInformationalAlertStyle];
@@ -748,23 +737,10 @@
                 } else if (result == NSAlertSecondButtonReturn) {
                     return;
                 } else {
-                    // "Save and Quit" clicked
+                    // "Delete and Quit" clicked
 
                     for (ASCTabView * tab in portalTabs) {
-                        if (tab.changed) {
-                            NSCefView * cefView = [self cefViewWithTab:tab];
-                            
-                            tab.params[@"shouldClose"] = @(YES);
-                            
-                            if (cefView) {
-                                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
-                                
-                                pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
-                                [cefView apply:pEvent];
-                            }
-                        } else {
-                            [self.tabsControl removeTab:tab];
-                        }
+                        [self.tabsControl removeTab:tab selected:NO];
                     }
                 }
             } else {

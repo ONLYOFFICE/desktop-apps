@@ -66,6 +66,17 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledDictationMenuItem"];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledCharacterPaletteMenuItem"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+//    // Hotkey conflict resolve
+//    [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyDownMask handler:^NSEvent * _Nullable(NSEvent * _Nonnull event) {
+//        NSEventModifierFlags flags = [event modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+//        if((flags - (NSShiftKeyMask | NSControlKeyMask) == 0) && ([event keyCode] == 2)) { // Shift+Ctrl+D
+//            //
+//        }
+//        
+//        return event;
+//    }];
 }
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {

@@ -62,20 +62,20 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="New" id="hD5-Cz-ItX">
                                                 <items>
-                                                    <menuItem title="Document" keyEquivalent="d" id="TEm-B8-gsH">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                    <menuItem title="Document" keyEquivalent="D" id="TEm-B8-gsH">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                                         <connections>
                                                             <action selector="onMenuNew:" target="Voe-Tx-rLC" id="cdg-JB-e0S"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Spreadsheet" tag="2" keyEquivalent="s" id="DOj-j9-dza">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                    <menuItem title="Spreadsheet" tag="2" keyEquivalent="S" id="DOj-j9-dza">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                                         <connections>
                                                             <action selector="onMenuNew:" target="Voe-Tx-rLC" id="hf7-OS-QsS"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Presentation" tag="1" keyEquivalent="p" id="hkB-TU-Ps1">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                    <menuItem title="Presentation" tag="1" keyEquivalent="P" id="hkB-TU-Ps1">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                                         <connections>
                                                             <action selector="onMenuNew:" target="Voe-Tx-rLC" id="csS-Nz-KxR"/>
                                                         </connections>
