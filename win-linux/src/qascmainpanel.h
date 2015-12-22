@@ -72,6 +72,8 @@ private:
     void checkLocalUsedPath(int);
     void doLogout(const QString&);
     int  trySaveDocument(int);
+
+    void fillUserName(QString& fn, QString& ln);
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);

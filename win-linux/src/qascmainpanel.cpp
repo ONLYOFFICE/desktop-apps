@@ -83,7 +83,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
       , m_mainWindowState(Qt::WindowNoState)
 {
     m_pManager = manager;
-    m_pManager->InitAdditionalEditorParams(QString("lang="+g_lang).toStdWString());
 
     setObjectName("mainPanel");
 
@@ -266,6 +265,11 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
 //    m_savePortal;
     m_saveAction = 0; // undefined
+
+    QString fn, ln;
+    fillUserName(fn, ln);
+    QString params = "lang="+g_lang+"&userfname="+fn+"&userlname="+ln;
+    m_pManager->InitAdditionalEditorParams(params.toStdWString());
 }
 
 void QAscMainPanel::RecalculatePlaces()
@@ -1139,7 +1143,6 @@ void QAscMainPanel::onKeyDown(void * eventData)
 void QAscMainPanel::onLink(QString url)
 {
     QDesktopServices::openUrl(QUrl(url));
-    qDebug() << "open link: " << url;
 }
 
 void QAscMainPanel::onPortalOpen(QString url)
@@ -1151,5 +1154,23 @@ void QAscMainPanel::onPortalOpen(QString url)
         QTimer::singleShot(200, this, [=]{
             toggleButtonMain(false);
         });
+    }
+}
+
+void QAscMainPanel::fillUserName(QString& firstname, QString& lastname)
+{
+    QString _full_name = qgetenv("USER");
+    if (_full_name.isEmpty())
+        _full_name = qgetenv("USERNAME");
+
+    if (_full_name.isEmpty())
+        _full_name = "Unknown.User";
+
+    QRegularExpression re(reUserName);
+    QRegularExpressionMatch match = re.match(_full_name);
+
+    if (match.hasMatch()) {
+        firstname = match.captured(1);
+        lastname = match.captured(2);
     }
 }
