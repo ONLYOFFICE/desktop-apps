@@ -69,7 +69,12 @@ int main(int argc, const char * argv[]) {
     appManager->m_oSettings.recover_path = [[ASCHelper recoveryDataPath] stdwstring];
     
     // setup Converter directory
-    appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];;
+    appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];
+    
+    // setup editor fonts directory
+    std::vector<std::wstring> fontsDirectories;
+    fontsDirectories.push_back([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/fonts"] stdwstring]);
+    appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
     
     // setup localization
     NSMutableArray * params = [NSMutableArray array];
