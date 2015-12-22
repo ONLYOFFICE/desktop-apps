@@ -636,6 +636,10 @@
         <source>Cancel</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
         <note>No comment provided by engineer.</note>
@@ -678,10 +682,6 @@
       </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Save and Quit">
-        <source>Save and Quit</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">

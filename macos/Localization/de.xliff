@@ -780,9 +780,15 @@
         <target>Abbrechen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Delete and Quit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
         <target>Wollen Sie die Änderungen, die an dem Dokument vorgenommen wurde, speichern "%@"?</target>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
         <source>Document %ld.docx</source>
@@ -832,11 +838,6 @@
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
         <target>Änderungen  Nachsehen...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Save and Quit">
-        <source>Save and Quit</source>
-        <target>Speichern und Beenden</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
