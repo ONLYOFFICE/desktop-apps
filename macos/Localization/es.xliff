@@ -134,6 +134,10 @@
         <target>Guardar como...</target>
         <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
       </trans-unit>
+      <trans-unit id="CJU-dx-a9l.title">
+        <source>Acknowledgments</source>
+        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
+      </trans-unit>
       <trans-unit id="DOj-j9-dza.title">
         <source>Spreadsheet</source>
         <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
@@ -664,6 +668,10 @@
         <target>Cortar</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
       </trans-unit>
+      <trans-unit id="ud7-wC-A79.title">
+        <source>Check for Updates…</source>
+        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
+      </trans-unit>
       <trans-unit id="vKC-jM-MkH.title">
         <source>Paste Style</source>
         <target>Paste Style</target>
@@ -775,6 +783,10 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
     <body>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
         <target>Cancelar</target>
