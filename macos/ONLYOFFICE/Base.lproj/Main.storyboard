@@ -650,6 +650,13 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
+                                        <menuItem title="Acknowledgments" id="CJU-dx-a9l">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="onMenuAcknowledgments:" target="Voe-Tx-rLC" id="l5J-XJ-sBT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="wdG-cl-JBn"/>
                                         <menuItem title="ONLYOFFICE Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="onShowHelp:" target="Voe-Tx-rLC" id="dwg-r0-5fC"/>

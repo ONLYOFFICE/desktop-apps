@@ -45,6 +45,8 @@
 @interface ViewController : NSViewController
 - (BOOL)shouldTerminateApplication;
 - (BOOL)shouldCloseMainWindow;
+
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
+- (void)openAcknowledgments;
 @end
 

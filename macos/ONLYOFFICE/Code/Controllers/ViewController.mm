@@ -209,6 +209,24 @@
     }
 }
 
+- (void)openAcknowledgments {
+    NSURLComponents *acknowledgmentsPage = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]];
+    acknowledgmentsPage.scheme = NSURLFileScheme;
+    
+    ASCTabView * existTab = [self tabWithParam:@"url" value:[acknowledgmentsPage string]];
+    
+    if (existTab) {
+        [self.tabsControl selectTab:existTab];
+    } else {
+        ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+        tab.title       = NSLocalizedString(@"Acknowledgments", nil);
+        tab.type        = ASCTabViewPortal;
+        tab.params      = [@{@"url" : [acknowledgmentsPage string]} mutableCopy];
+        
+        [self.tabsControl addTab:tab selected:YES];
+    }
+}
+
 #pragma mark -
 #pragma mark Public
 
@@ -418,9 +436,7 @@
         tab.type        = ASCTabViewOpeningType;
         tab.params      = [params mutableCopy];
 
-        ASCTabView * existTab = nil;
-        
-        existTab = [self tabWithParam:@"url" value:params[@"url"]];
+        ASCTabView * existTab = [self tabWithParam:@"url" value:params[@"url"]];
         
         if (!existTab) {
             existTab = [self tabWithParam:@"path" value:params[@"path"]];
@@ -795,8 +811,13 @@
         
         switch (action) {
             case ASCTabActionOpenPortal: {
-                tab.type  = ASCTabViewPortal;
-                tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
+                tab.type = ASCTabViewPortal;
+                
+                NSString * newTitle = [[NSURL URLWithString:tab.params[@"url"]] host];
+                
+                if (newTitle && newTitle.length > 0) {
+                    tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
+                }
             }
             case ASCTabActionOpenUrl: {
                 [cefView loadWithUrl:tab.params[@"url"]];

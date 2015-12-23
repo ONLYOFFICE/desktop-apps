@@ -130,6 +130,8 @@
         return nil != tab;
     } else if ([item action] == @selector(onShowHelp:)) {
         return YES;
+    } else if ([item action] == @selector(onMenuAcknowledgments:)) {
+        return YES;
     }
     
     return [super validateMenuItem:item];
@@ -229,4 +231,9 @@
     }
 }
 
+- (IBAction)onMenuAcknowledgments:(NSMenuItem *)sender {
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    [controller openAcknowledgments];
+}
 @end
