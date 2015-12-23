@@ -20,6 +20,11 @@
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for Updates…" keyEquivalent="u" id="ud7-wC-A79">
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="mg6-13-ksd" id="Whs-l9-OTO"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -672,9 +677,10 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+                <customObject id="mg6-13-ksd" customClass="SUUpdater"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74.5" y="-84"/>
+            <point key="canvasLocation" x="-153" y="-84"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -684,9 +690,9 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="453" y="215" width="800" height="600"/>
+                        <rect key="contentRect" x="453" y="215" width="1024" height="768"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="800" height="600"/>
+                        <value key="minSize" type="size" width="1024" height="768"/>
                         <toolbar key="toolbar" implicitIdentifier="5B77B499-B428-4B61-B444-4B21C8952CC3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="labelOnly" sizeMode="regular" id="K5R-RO-aDh">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
@@ -701,7 +707,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="478"/>
+            <point key="canvasLocation" x="131" y="577"/>
         </scene>
         <!--User Info View Controller-->
         <scene sceneID="Jn7-ZB-JpI">
@@ -950,16 +956,16 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="N1H-DH-xhd">
-                                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="ONLYOFFICE" identifier="1CEF624D-9FF3-432B-9967-61361B5BFE8B" image="Documents_active_normal" id="kcg-El-49G">
                                         <view key="view" id="PUE-XO-znT">
-                                            <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </view>
                                     </tabViewItem>
@@ -979,18 +985,18 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="1225"/>
+            <point key="canvasLocation" x="131" y="1520"/>
         </scene>
         <!--Title Bar Controller-->
         <scene sceneID="dZG-dh-jaa">
             <objects>
                 <viewController storyboardIdentifier="titleBarControllerID" id="9zi-Wa-ufJ" customClass="ASCTitleBarController" sceneMemberID="viewController">
                     <view key="view" id="1M4-4k-lfG" customClass="ASCTitleBackground">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="38"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="38"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="sAN-AD-cQX">
-                                <rect key="frame" x="752" y="0.0" width="48" height="38"/>
+                                <rect key="frame" x="976" y="0.0" width="48" height="38"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-yR-16f">
                                         <rect key="frame" x="9" y="6" width="30" height="27"/>
@@ -1009,7 +1015,7 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh">
-                                <rect key="frame" x="722" y="0.0" width="30" height="38"/>
+                                <rect key="frame" x="946" y="0.0" width="30" height="38"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
@@ -1032,10 +1038,10 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="iPF-st-gBJ">
-                                <rect key="frame" x="148" y="0.0" width="574" height="38"/>
+                                <rect key="frame" x="148" y="0.0" width="798" height="38"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-DK-gsq">
-                                        <rect key="frame" x="135" y="0.0" width="393" height="28"/>
+                                        <rect key="frame" x="135" y="0.0" width="663" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="ONLYOFFICE " drawsBackground="YES" usesSingleLineMode="YES" id="rG1-93-HjS">
                                             <font key="font" metaFont="cellTitle"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1093,7 +1099,7 @@
                 </viewController>
                 <customObject id="gDf-Ym-x6b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="6"/>
+            <point key="canvasLocation" x="131" y="18"/>
         </scene>
     </scenes>
     <resources>
