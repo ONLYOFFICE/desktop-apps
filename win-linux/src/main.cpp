@@ -95,44 +95,30 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.additional_fonts_folder.push_back((app_path + "/fonts").toStdWString());
     };
 
-    bool bIsChromiumSubprocess = false;
-    for (int i(0); i < argc; ++i) {
-        if ((0 == strcmp("--type=gpu-process", argv[i])) ||
-                (0 == strcmp("--type=renderer", argv[i])) ||
-                (0 == strcmp("--type=zygote", argv[i])))
-        {
-            bIsChromiumSubprocess = true;
-            break;
-        }
-    }
-
-    if ( bIsChromiumSubprocess ) {
-        CApplicationCEF oCef;
-        CAscApplicationManager oManager;
-
-        setup_paths(&oManager);
-        return oCef.Init_CEF(&oManager, argc, argv);
-    }
-
 #ifdef _WIN32
     LPCTSTR mutex_name = (LPCTSTR)QString("TEAMLAB").data();
     HANDLE hMutex = CreateMutex(NULL, FALSE, mutex_name);
 
-    GetLastError() == ERROR_ALREADY_EXISTS && (hMutex = NULL);
+    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+        hMutex = NULL;
+    }
 #else
 #endif
+
+    QApplication app(argc, argv);
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
-    QApplication app(argc, argv);
-    /**                      **/
-
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
-#ifdef _WIN32
-    g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
-#else
-    g_dpi_ratio = app.devicePixelRatio();
-#endif
+    CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
+    setup_paths(pApplicationManager);
+    int code = application_cef->Init_CEF(pApplicationManager, argc, argv);
+    if (application_cef->IsChromiumSubprocess()) {
+        delete application_cef;
+        delete pApplicationManager;
+        return code;
+    }
+    /* ********************** */
 
 #ifdef _WIN32
 
@@ -151,7 +137,11 @@ int main( int argc, char *argv[] )
 
     splash.show();
     app.processEvents();
+#else
+    g_dpi_ratio = app.devicePixelRatio();
 #endif
+
+    pApplicationManager->CheckFonts();
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
@@ -182,14 +172,6 @@ int main( int argc, char *argv[] )
             QDir(user_data_path + "/data/fonts").removeRecursively();
         }
     }
-
-
-    /* the order is important */
-    CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
-    setup_paths(pApplicationManager);
-    application_cef->Init_CEF(pApplicationManager, argc, argv);
-    pApplicationManager->CheckFonts();
-    /**                      **/
 
     QByteArray css;
     QFile file;
