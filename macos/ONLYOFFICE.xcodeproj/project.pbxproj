@@ -475,6 +475,22 @@
 			name = PFMoveApplication;
 			sourceTree = "<group>";
 		};
+		FC739BE31C2BE8F700887739 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FC1127561BBAAC4600AA3648 /* Views */,
+				FCA0B35F1B9F07B30073EDD4 /* Controller */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		FC739BE41C2BE90600887739 /* Licence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Licence;
+			sourceTree = "<group>";
+		};
 		FC98BAD31BAC438800747944 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,13 +512,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		FCA0B33D1B9EB56E0073EDD4 /* Window */ = {
+		FCA0B33D1B9EB56E0073EDD4 /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
 				FCA0B34F1B9EFFDF0073EDD4 /* Views */,
 				FCA0B34E1B9EFFD10073EDD4 /* Controllers */,
 			);
-			name = Window;
+			name = "Main Window";
 			sourceTree = "<group>";
 		};
 		FCA0B34E1B9EFFD10073EDD4 /* Controllers */ = {
@@ -555,10 +571,11 @@
 		FCA0B35E1B9F07A10073EDD4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FC739BE31C2BE8F700887739 /* Common */,
+				FCA0B33D1B9EB56E0073EDD4 /* Main Window */,
 				FCAA9A391BBA7E7600F3C47F /* Download */,
 				FCAF3EFA1BA31CF600B42BAA /* User Info */,
-				FC1127561BBAAC4600AA3648 /* Views */,
-				FCA0B35F1B9F07B30073EDD4 /* Controller */,
+				FC739BE41C2BE90600887739 /* Licence */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -643,7 +660,6 @@
 				FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */,
 				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
 				FCA0B35E1B9F07A10073EDD4 /* UI */,
-				FCA0B33D1B9EB56E0073EDD4 /* Window */,
 				FCBC428E1B9D65CA00405301 /* Controls */,
 				FCA0B3561B9F00780073EDD4 /* Utils */,
 				FC67182F1BD918250028600F /* Vendor */,
