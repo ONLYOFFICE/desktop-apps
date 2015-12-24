@@ -50,9 +50,11 @@
 #include "cfiledialog.h"
 #include "qascprinter.h"
 #include "../common/libs/common/Types.h"
+#include "win/cmessage.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
+extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
 #endif
@@ -155,7 +157,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 //    layoutBtns->addWidget(m_pButtonProfile);
 
     // Main
-    m_pButtonMain = new QPushButton( tr("MENU"), centralWidget );
+    m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
@@ -304,8 +306,6 @@ void QAscMainPanel::pushButtonMaximizeClicked()
 
 void QAscMainPanel::pushButtonCloseClicked()
 {
-    qDebug() << "pushButtonCloseClicked action";
-
     // if close doesn't act
     if (m_saveAction != 2) {
         int _index_, _answ_;
@@ -449,7 +449,7 @@ int QAscMainPanel::trySaveDocument(int index)
     int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
+        CSaveFileMessage saveDlg(gTopWinId);
 #else
         CSaveFileMessage saveDlg(this);
 #endif
@@ -630,7 +630,6 @@ void QAscMainPanel::onLocalFileOpen(QString path)
     }
 }
 
-#include "win/cmessage.h"
 void QAscMainPanel::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);
@@ -646,8 +645,8 @@ void QAscMainPanel::doOpenLocalFile(COpenOptions& opts)
         });
     } else
     if (result == -255) {
-        CMessage mess((HWND)winId());
-        mess.error(tr("Error"), tr("File format not supported."));
+        CMessage mess(gTopWinId);
+        mess.showModal(tr("File format not supported."));
     }
 }
 
@@ -665,12 +664,8 @@ void QAscMainPanel::onLocalFileRecent(void * d)
 
     if (!match.hasMatch()) {
         if ( !QFileInfo(opts.url).exists() ) {
-            /* TODO: show the error */
-
-            CMessage mess((HWND)winId());
-            mess.error(tr("Error"), tr("File doesn't exists"));
-
-//            QMessageBox::critical(this, tr("Error"), tr("File doesn't exists"), QMessageBox::Ok, QMessageBox::Ok);
+            CMessage mess(gTopWinId);
+            mess.showModal(tr("File doesn't exists"));
             return;
         }
     }
@@ -685,8 +680,8 @@ void QAscMainPanel::onLocalFileRecent(void * d)
         });
     } else
     if (result == -255) {
-        CMessage mess((HWND)winId());
-        mess.error(tr("Error"), tr("File format not supported."));
+        CMessage mess(gTopWinId);
+        mess.showModal(tr("File format not supported."));
     }
 }
 
@@ -863,7 +858,7 @@ int QAscMainPanel::checkModified(const QString& portalname)
     int out_res = MODAL_RESULT_YES;
     if (mapModified.size()) {
 #ifdef _WIN32
-        CSaveFileMessage saveDlg((HWND)parentWidget()->winId());
+        CSaveFileMessage saveDlg(gTopWinId);
 #else
         CSaveFileMessage saveDlg(this);
 #endif
@@ -1028,7 +1023,7 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
         if (sName.size()) {
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
 #ifdef _WIN32
-            CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+            CFileDialogWrapper dlg(gTopWinId);
 #else
             CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
@@ -1062,7 +1057,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         QString fullPath = m_lastSavePath + "/" + info.fileName();
 
 #ifdef _WIN32
-        CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+        CFileDialogWrapper dlg(gTopWinId);
 #else
         CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif

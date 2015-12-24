@@ -50,6 +50,7 @@
 #include <QDebug>
 
 HWND gWinId = 0;
+HWND gTopWinId;
 extern byte g_dpi_ratio;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
@@ -109,6 +110,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     ((CAscApplicationManagerWrapper *)pManager)->setMainPanel(m_pWinPanel->getMainPanel());
 
     gWinId = ( HWND )m_pWinPanel->winId();
+    gTopWinId = hWnd;
 
     SetWindowPos(gWinId, NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
 
