@@ -420,11 +420,33 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         return 1;
     }
     case WM_ENDSESSION:
-        window->m_pManager->DestroyCefView(-1);
+//        window->m_pManager->DestroyCefView(-1);
+        window->m_pManager->CloseApplication();
+
         break;
 
-    case WM_WINDOWPOSCHANGING: {
-        break; }
+    case WM_WINDOWPOSCHANGING: { break; }
+    case WM_COPYDATA: {
+        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
+        if (pcds->dwData == 1) {
+            int nArgs;
+            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
+
+            if (szArglist != NULL) {
+                QStringList in_files;
+                for(int i(0); i < nArgs; i++) {
+                    in_files.append(QString::fromStdWString(szArglist[i]));
+                }
+
+                if (in_files.size()) {
+                    window->m_pWinPanel->parseInputArgs(in_files);
+                    SetForegroundWindow(hWnd);
+                }
+            }
+
+            LocalFree(szArglist);
+        }
+        break;}
 #if 0
     case WM_INPUTLANGCHANGE:
     case WM_INPUTLANGCHANGEREQUEST:

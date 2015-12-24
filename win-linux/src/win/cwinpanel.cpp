@@ -93,10 +93,16 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
     */
 
+    parseInputArgs(qApp->arguments());
 
+//    m_pManager->SetEventListener(this);
+}
+
+void CWinPanel::parseInputArgs(const QStringList& inlist)
+{
     QStringList * in_files = new QStringList;
 
-    QStringListIterator i(qApp->arguments()); i.next();
+    QStringListIterator i(inlist); i.next();
     while (i.hasNext()) {
         QFileInfo info(i.next());
         if (info.isFile()) {
@@ -112,8 +118,6 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     } else {
         delete in_files;
     }
-
-//    m_pManager->SetEventListener(this);
 }
 
 bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)

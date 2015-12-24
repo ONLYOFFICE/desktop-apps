@@ -56,6 +56,7 @@ public:
     void focus();
     void applyWindowState(Qt::WindowState);
     void doClose();
+    void parseInputArgs(const QStringList& in);
 private:
     HWND windowHandle;
 

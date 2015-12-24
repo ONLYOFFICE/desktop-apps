@@ -121,16 +121,23 @@ int main( int argc, char *argv[] )
     /* ********************** */
 
 #ifdef _WIN32
+    if (hMutex == NULL) {
+        HWND hwnd = FindWindow(L"WindowClass", NULL);
+        if (hwnd != NULL) {
+            WCHAR * cm_line = GetCommandLine();
 
-//    FILE* f = fopen(QString(user_data_path + "/main.log").toLatin1(), "a+");
-//    fprintf(f, "-----------------------------------------------\n");
-//    for (int i = 0; i < argc; ++i)
-//    {
-//        fprintf(f, argv[i]);
-//        fprintf(f, "\n");
-//    }
-//    fprintf(f, "-----------------------------------------------\n");
-//    fclose(f);
+            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
+            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
+            MyCDS.lpData = cm_line;
+
+            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
+        }
+
+        pApplicationManager->CloseApplication();
+        return 0;
+    }
+
+    g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
 
     QSplashScreen splash(g_dpi_ratio > 1 ?
             QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
