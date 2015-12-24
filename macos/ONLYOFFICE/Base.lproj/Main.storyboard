@@ -827,7 +827,7 @@
                 </viewController>
                 <customObject id="BLj-dx-pSf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="5.5"/>
+            <point key="canvasLocation" x="932" y="-29.5"/>
         </scene>
         <!--Download View Controller-->
         <scene sceneID="FSG-kQ-eIr">
@@ -949,7 +949,108 @@
                 </viewController>
                 <customObject id="DCa-oa-czr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="275"/>
+            <point key="canvasLocation" x="1285" y="-9"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="eoX-Cc-8yg">
+            <objects>
+                <windowController id="80L-bR-oHq" sceneMemberID="viewController">
+                    <window key="window" title="ONLYOFFICE Activation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qti-2R-I2m">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="313" width="480" height="150"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                    </window>
+                    <connections>
+                        <segue destination="eb1-ke-RIJ" kind="relationship" relationship="window.shadowedContentViewController" id="lkP-RY-Z8v"/>
+                    </connections>
+                </windowController>
+                <customObject id="S2c-HE-qcd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="266"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vEg-aU-aNg">
+            <objects>
+                <viewController id="eb1-ke-RIJ" sceneMemberID="viewController">
+                    <view key="view" id="Yyd-pW-Pco">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5KT-uS-QOD">
+                                <rect key="frame" x="18" y="113" width="444" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="ACo-wg-wjj"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copy and paste your ONLYOFFICE registration data here:" id="jep-MJ-EBv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dn-At-Xqp">
+                                <rect key="frame" x="20" y="83" width="440" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="D7E-6W-jDn"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Wlr-ED-yFE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNc-Ry-AWP">
+                                <rect key="frame" x="18" y="44" width="444" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="7KD-78-jCd"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Info" id="yGK-Fg-qtS">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N3N-FI-Vlm">
+                                <rect key="frame" x="376" y="8" width="90" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="8nW-3I-ES9"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Register" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cmz-jq-Ope">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSA-rg-kXF">
+                                <rect key="frame" x="254" y="8" width="117" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="jcH-lF-0z1"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Buy Online..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AF1-Nc-smx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5KT-uS-QOD" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="5yV-JF-LLf"/>
+                            <constraint firstItem="5KT-uS-QOD" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="7dN-aT-KZ0"/>
+                            <constraint firstAttribute="trailing" secondItem="5KT-uS-QOD" secondAttribute="trailing" constant="20" id="8QT-M9-g4b"/>
+                            <constraint firstItem="LNc-Ry-AWP" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="DwF-2L-CjO"/>
+                            <constraint firstAttribute="trailing" secondItem="6dn-At-Xqp" secondAttribute="trailing" constant="20" id="KLP-g9-rck"/>
+                            <constraint firstAttribute="trailing" secondItem="LNc-Ry-AWP" secondAttribute="trailing" constant="20" id="KNk-Az-5dN"/>
+                            <constraint firstItem="LNc-Ry-AWP" firstAttribute="top" secondItem="6dn-At-Xqp" secondAttribute="bottom" constant="8" id="T1E-vz-h7J"/>
+                            <constraint firstAttribute="trailing" secondItem="N3N-FI-Vlm" secondAttribute="trailing" constant="20" id="UNt-zm-Xwj"/>
+                            <constraint firstItem="N3N-FI-Vlm" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="8" id="afY-x7-OPV"/>
+                            <constraint firstItem="N3N-FI-Vlm" firstAttribute="leading" secondItem="kSA-rg-kXF" secondAttribute="trailing" constant="17" id="aiE-S4-fkm"/>
+                            <constraint firstItem="6dn-At-Xqp" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="ctq-7T-0nq"/>
+                            <constraint firstItem="6dn-At-Xqp" firstAttribute="top" secondItem="5KT-uS-QOD" secondAttribute="bottom" constant="8" id="dzN-dg-Ggu"/>
+                            <constraint firstItem="kSA-rg-kXF" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="8" id="ixl-vd-sl0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="RZH-Cz-Eqq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="547"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
