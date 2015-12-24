@@ -24,6 +24,7 @@ Source: ..\..\common\converter\windows\win64\*;           DestDir: {app}\convert
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win64\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\cefbuilds\win64\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 Source: data\libs\qt\win64\*;                               DestDir: {app}\; Flags: ignoreversion recursesubdirs;
+Source: data\libs\chromium\win64\dbghelp.dll;               DestDir: {sys}\; Flags: onlyifdoesntexist;
 
 ;
 ; some files placed in common.iss
