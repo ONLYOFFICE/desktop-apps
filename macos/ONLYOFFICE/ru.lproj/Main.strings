@@ -343,8 +343,8 @@
 /* Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G"; */
 "kcg-El-49G.label" = "ONLYOFFICE";
 
-/* Class = "NSButtonCell"; title = "MENU"; ObjectID = "llV-Yc-IJ4"; */
-"llV-Yc-IJ4.title" = "МЕНЮ";
+/* Class = "NSButtonCell"; title = "FILE"; ObjectID = "llV-Yc-IJ4"; */
+"llV-Yc-IJ4.title" = "ФАЙЛ";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc"; */
 "m0C-e9-0oc.title" = "Отмена";

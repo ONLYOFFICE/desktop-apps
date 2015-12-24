@@ -114,6 +114,10 @@
         <target>Spelling automatisch korrigieren</target>
         <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
       </trans-unit>
+      <trans-unit id="AF1-Nc-smx.title">
+        <source>Buy Online...</source>
+        <note>Class = "NSButtonCell"; title = "Buy Online..."; ObjectID = "AF1-Nc-smx";</note>
+      </trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
         <source>Main Menu</source>
         <target>Hauptmenü</target>
@@ -481,6 +485,10 @@
         <target>Kein Verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
       </trans-unit>
+      <trans-unit id="cmz-jq-Ope.title">
+        <source>Register</source>
+        <note>Class = "NSButtonCell"; title = "Register"; ObjectID = "cmz-jq-Ope";</note>
+      </trans-unit>
       <trans-unit id="cqv-fj-IhA.title">
         <source>Selection</source>
         <target>Auswahl</target>
@@ -564,6 +572,10 @@
         <target>	Rechts nach Links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
       </trans-unit>
+      <trans-unit id="jep-MJ-EBv.title">
+        <source>Copy and paste your ONLYOFFICE registration data here:</source>
+        <note>Class = "NSTextFieldCell"; title = "Copy and paste your ONLYOFFICE registration data here:"; ObjectID = "jep-MJ-EBv";</note>
+      </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
         <source>Format</source>
         <target>Format</target>
@@ -575,8 +587,8 @@
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
       <trans-unit id="llV-Yc-IJ4.title">
-        <source>MENU</source>
-        <note>Class = "NSButtonCell"; title = "MENU"; ObjectID = "llV-Yc-IJ4";</note>
+        <source>FILE</source>
+        <note>Class = "NSButtonCell"; title = "FILE"; ObjectID = "llV-Yc-IJ4";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
         <source>Cancel</source>
@@ -622,6 +634,10 @@
         <source>Page Setup…</source>
         <target>Seiteneinrichtung…</target>
         <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
+      <trans-unit id="qti-2R-I2m.title">
+        <source>ONLYOFFICE Activation</source>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE Activation"; ObjectID = "qti-2R-I2m";</note>
       </trans-unit>
       <trans-unit id="rG1-93-HjS.title">
         <source>ONLYOFFICE </source>
@@ -731,6 +747,10 @@
         <source>Speech</source>
         <target>Rede</target>
         <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
+      </trans-unit>
+      <trans-unit id="yGK-Fg-qtS.title">
+        <source>Info</source>
+        <note>Class = "NSTextFieldCell"; title = "Info"; ObjectID = "yGK-Fg-qtS";</note>
       </trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
         <source>Show Substitutions</source>
