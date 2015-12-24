@@ -33,31 +33,31 @@ ChangesEnvironment      = yes
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl;
 Name: ru; MessagesFile: compiler:Languages\Russian.isl;
-Name: de; MessagesFile: compiler:Languages\German.isl;
-Name: fr; MessagesFile: compiler:Languages\French.isl;
-Name: es; MessagesFile: compiler:Languages\Spanish.isl;
+;Name: de; MessagesFile: compiler:Languages\German.isl;
+;Name: fr; MessagesFile: compiler:Languages\French.isl;
+;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
 
 [CustomMessages]
 en.Launch =Launch %1
 ru.Launch =Запустить %1
-de.Launch =%1 starten
-fr.Launch =Lancer %1
-es.Launch =Ejecutar %1
+;de.Launch =%1 starten
+;fr.Launch =Lancer %1
+;es.Launch =Ejecutar %1
 ;it.Launch =Eseguire %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
-de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
-fr.CreateDesktopIcon =Crйer l'icфne du bureau pour %1
-es.CreateDesktopIcon =Crear %1 &icono en el escritorio
+;de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
+;fr.CreateDesktopIcon =Crйer l'icфne du bureau pour %1
+;es.CreateDesktopIcon =Crear %1 &icono en el escritorio
 ;it.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонент. Пожалуйста, подождите...
-de.InstallAdditionalComponents =Installation zusдtzlicher Systemkomponenten. Bitte warten...
-fr.InstallAdditionalComponents =L'installation des composants supplйmentaires du systиme. Attendez...
-es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
+;de.InstallAdditionalComponents =Installation zusдtzlicher Systemkomponenten. Bitte warten...
+;fr.InstallAdditionalComponents =L'installation des composants supplйmentaires du systиme. Attendez...
+;es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
 ;it.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 ;======================================================================================================
 ;en.AdditionalTasks =Tasks:
@@ -69,16 +69,16 @@ es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. 
 ;======================================================================================================
 en.Uninstall =Uninstall
 ru.Uninstall =Удаление
-de.Uninstall =Deinstallieren
-fr.Uninstall =Desinstaller
-es.Uninstall =Desinstalar
+;de.Uninstall =Deinstallieren
+;fr.Uninstall =Desinstaller
+;es.Uninstall =Desinstalar
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
-de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
-fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
-es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
+;de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
+;fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
+;es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 ;it.Uninstall =Disinstalla
 
 [Code]
@@ -236,6 +236,9 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
+[Dirs]
+Name: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
+
 [Files]
 Source: .\launch.bat;           DestDir: {app}\;
 
@@ -290,9 +293,8 @@ Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postins
 
 [Registry]
 Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
-Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: lang;  ValueData: {language};
+Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};
 Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime};
-Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
 
 Root: HKCR; Subkey: ".doc";                                ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Word.Document.8";                    Flags: createvalueifdoesntexist
 Root: HKCR; Subkey: "Word.Document.8";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: createvalueifdoesntexist
@@ -324,5 +326,7 @@ Root: HKCR; Subkey: "PowerPoint.Show.12";                     ValueType:string;V
 Root: HKCR; Subkey: "PowerPoint.Show.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
 Root: HKCR; Subkey: "PowerPoint.Show.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
 
+Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
+
 [UninstallDelete]
-Type: filesandordirs; Name: {commonappdata}\{#ASC_PATH}\*;  
+Type: filesandordirs; Name: {commonappdata}\{#ASC_PATH}\*;  AfterInstall: RefreshEnvironment;

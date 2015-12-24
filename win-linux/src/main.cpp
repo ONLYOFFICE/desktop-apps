@@ -155,7 +155,7 @@ int main( int argc, char *argv[] )
     reg_user.setFallbacksEnabled(false);
 
     // read setup language and set application locale
-    g_lang = reg_system.value("lang").value<QString>();
+    g_lang = reg_system.value("locale").value<QString>();
     QTranslator tr;
     if (g_lang.length()) {
         tr.load(g_lang, ":/langs/langs");
