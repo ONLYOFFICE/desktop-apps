@@ -25,21 +25,21 @@
                 info: {
                     author: 'author name',
                     folder: 'path to document',
-                    created: <creation date>,
+                    created: '<creation date>',
                     sharingSettings: [
                         {
                             user: 'user name',
-                            permissions: <permissions>,
+                            permissions: '<permissions>',
                             isLink: false
                         },
                         ...
                     ]
                 },
                 permissions: {
-                    edit: <can edit>,
+                    edit: <can edit>, // default = true
                     download: <can download>,
                     reader: <can view in readable mode>
-                    review: <review mode only>
+                    review: <can review> // default = edit
                 }
             },
             editorConfig: {
@@ -103,8 +103,7 @@
                         text: 'Go to London'
                     },
                     chat: false,
-                    comments: false,
-                    review: false
+                    comments: false
                 }
             },
             events: {
@@ -529,7 +528,7 @@
     };
 
     DocsAPI.DocEditor.version = function() {
-        return '3.0b.759';
+        return '3.0b.760';
     };
 
     MessageDispatcher = function(fn, scope) {

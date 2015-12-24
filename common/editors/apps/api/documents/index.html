@@ -195,7 +195,7 @@
             }
 
             function onDocumentSave(event) {
-                var url = event.data;
+                var url = event.data;                
                 // if you want to async save process return false
                 // and call api.processSaveResult when ready
             }
@@ -250,7 +250,7 @@
                     createUrl       : 'http://www.example.com/create',
 
                     user: {
-                        id: urlParams["userid"] || 'uid-901', firstname: urlParams["userfname"], lastname: urlParams["userlname"]
+                        id: urlParams["userid"] || 'uid-901', firstname: urlParams["userfname"] || 'Mitchell', lastname: urlParams["userlname"] || 'Hamish'
                     },
                     recent          : [
                         {title: 'Memory.docx',          url: 'http://onlyoffice.com',  folder: 'Document Editor'},
