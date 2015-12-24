@@ -74,11 +74,11 @@ Menu.prototype.init = function(parent) {
 
     $container.on({
         'hide.bs.dropdown': function(){
-            console.log('before hide menu');
+            // console.log('before hide menu');
         },
         'hidden.bs.dropdown': function() {
             me.contextdata = [];
-            console.log('after hide menu');
+            // console.log('after hide menu');
         }
     });
 };

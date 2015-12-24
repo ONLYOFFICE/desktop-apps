@@ -34,40 +34,29 @@
 LoginDlg = function() {
     "use strict";
 
-    var linkForgotPass = 'Forgot password?';
-    var linkCreatePortal = 'Create a portal';
-    var dlgLoginTitle = 'Connect portal';
-    var btnLogin = 'Login';
-    var errLogin = 'Wrong portal name or login or email';
-    var errLoginPortal = 'Check the portal name';
-    var errLoginEmail = 'Check the email address';
-    var errLoginServer = 'Wrong server answer during login';
-    var errLoginAuth = 'Error on query user information';
-    var errLoginPass = 'Check the password';
-
     var $el, $mask;
     var _tpl = '<div class="dlg dlg-login">' +
                   '<div class="title">'+
-                    '<label class="caption">'+dlgLoginTitle+'</label>'+
+                    '<label class="caption">'+utils.Lang.loginTitle+'</label>'+
                     '<span class="tool close"></span>'+
                   '</div>'+
                   '<div class="body">'+
                     '<div class="logo"></div>'+
                     '<section id="box-lbl-error">'+
-                      '<p id="auth-error" class="msg-error">' + errLogin + '</p>' +
+                      '<p id="auth-error" class="msg-error">' + utils.Lang.errLogin + '</p>' +
                     '</section>'+
-                    '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="portal" value="">' +
-                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="email" value="">' +
-                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="password" value="">' +
+                    '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="'+utils.Lang.pshPortal+'" value="">' +
+                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
+                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
                     '<div id="box-btn-login">'+
-                      '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + linkForgotPass + '</a>'+
+                      '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
                       '<div><img class="img-loader">' +
-                      '<button id="btn-login" class="btn primary">'+btnLogin+'</button></div>'+
+                      '<button id="btn-login" class="btn primary">' + utils.Lang.btnLogin + '</button></div>'+
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link" target="popup" href="https://www.onlyoffice.com/registration.aspx">' + linkCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link" target="popup" href="https://www.onlyoffice.com/registration.aspx">' + utils.Lang.btnCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
@@ -77,18 +66,45 @@ LoginDlg = function() {
     var portal = undefined,
         email = undefined;
     var events = {};
+    var STATUS_EXIST = 1;
+    var STATUS_NOT_EXIST = 0;
+    var STATUS_UNKNOWN = -1;
+    var STATUS_NO_CONNECTION = -255;
 
-    function checkResourceExists(url) {
+    function checkResourceExists(url, callback) {
         var reader = new XMLHttpRequest();
+        // reader.timout = 15000;
+        // reader.onreadystatechange = function() {
+        reader.onload = function() {
+            var out_res = undefined;
 
-        reader.open('get', url, false);
+            if (reader.readyState != 4) { return; }
+
+            switch (reader.status) {
+            case 0: case 401:
+            case 200: out_res = STATUS_EXIST; break;
+            case 404: out_res = STATUS_NOT_EXIST; break;
+            default: out_res = STATUS_UNKNOWN; break;
+            }
+
+            callback && callback(out_res);
+        };
+
+        // reader.ontimeout = function() {
+        //     callback && callback(STATUS_NO_CONNECTION);
+        // };
+
+        setTimeout(function(){
+            reader.abort();
+            callback && callback(STATUS_NO_CONNECTION);
+        }, 20000);
+        
+        reader.onerror = function(e) {
+            console.log('on error');
+        };
+
+        reader.open('get', url, true);
         reader.send(null);
-        switch (reader.status) {
-        case 0: case 401:
-        case 200: return 1;
-        case 404: return 0;
-        default: return -1;
-        }
     }
 
     function sendData(url, data, target) {
@@ -130,12 +146,12 @@ LoginDlg = function() {
 
         var re_wrong_symb = /[\s\\]/;
         if (!portal.length || re_wrong_symb.test(portal)) {
-            showLoginError(errLoginPortal, '#auth-portal');
+            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
 
         if (!email.length || re_wrong_symb.test(email)) {
-            showLoginError(errLoginEmail, '#auth-email');
+            showLoginError(utils.Lang.errLoginEmail, '#auth-email');
             return;
         }
 
@@ -144,13 +160,13 @@ LoginDlg = function() {
             portal[1] && (protocol = portal[1]);
             portal = portal[2];
         } else {
-            showLoginError(errLoginPortal, '#auth-portal');
+            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
 
         var pass = $el.find('#auth-pass').val();
         if (!pass || pass.length < 0) {
-            showLoginError(errLoginPass, '#auth-pass');
+            showLoginError(utils.Lang.errLoginPass, '#auth-pass');
             return;
         }
 
@@ -159,22 +175,27 @@ LoginDlg = function() {
 
         disableDialog(true);
         // setLoaderVisible(true);
-        if (checkResourceExists(check_url) == 0) {
-            showLoginError(errLoginPortal, '#auth-portal');
-            // setLoaderVisible(false);
-        } else {
-            var iframe = document.createElement("iframe");
-            iframe.name = "frameLogin";
-            iframe.style.display = "none";
+        checkResourceExists(check_url, function(r){
+            if (r == 0) {
+                showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
+                // setLoaderVisible(false);
+            } else 
+            if (r == STATUS_NO_CONNECTION) {
+                showLoginError(utils.Lang.errConnection);
+            } else {
+                var iframe = document.createElement("iframe");
+                iframe.name = "frameLogin";
+                iframe.style.display = "none";
 
-            iframe.addEventListener("load", function () {
-                window.AscDesktopEditor.GetFrameContent("frameLogin");
-            });
+                iframe.addEventListener("load", function () {
+                    window.AscDesktopEditor.GetFrameContent("frameLogin");
+                });
 
-            document.body.appendChild(iframe);
+                document.body.appendChild(iframe);
 
-            sendData(url, {userName: email, password: pass}, iframe);
-        }
+                sendData(url, {userName: email, password: pass}, iframe);
+            }
+        });
     };
 
     function showLoginError(error, el) {
@@ -205,7 +226,7 @@ LoginDlg = function() {
                 if (obj) {
                     if (obj.statusCode != 201) {
                         console.log('server error: ' + obj.statusCode);
-                        showLoginError(errLoginServer);
+                        showLoginError(utils.Lang.errLoginServer);
                     } else
                     if (!obj.response.sms) {
                         getUserInfo(obj.response.token);
@@ -219,7 +240,7 @@ LoginDlg = function() {
                     }
                 } else {
                     console.log('server error: wrong json');
-                    showLoginError(errLoginServer);
+                    showLoginError(utils.Lang.errLoginServer);
                 }
 
                 // setLoaderVisible(false);
@@ -266,17 +287,17 @@ LoginDlg = function() {
                         doClose(1);
                     } else {
                         console.log('authentication error: ' + obj.statusCode);
-                        showLoginError(errLoginAuth);
+                        showLoginError(utils.Lang.errLoginAuth);
                     }
                 } else {
                     console.log('authentication error: ' + status);
-                    showLoginError(errLoginAuth);
+                    showLoginError(utils.Lang.errLoginAuth);
                     // setLoaderVisible(false);
                 }
             },
             error: function(e, status, error) {
                 console.log('server error: ' + status + ', ' + error);
-                showLoginError(errLoginAuth);
+                showLoginError(utils.Lang.errLoginAuth);
                 // setLoaderVisible(false);
             }
         };

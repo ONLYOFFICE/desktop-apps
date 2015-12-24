@@ -31,29 +31,93 @@
 */
 
 var en = {
+    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
+    welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
+    btnConnect: 'Connect Portal',
+    btnCreatePortal: 'Create Portal',
+    btnAddPortal: 'Add Portal',
+    btnLogin: 'Login',
+    btnBrowse: 'Browse',
+    portalEmptyTitle: 'Take all advantages of ONLYOFFICE',
+    portalEmptyDescr: 'Log in to your portal and add you team members.',
+    portalListTitle: 'Connected portals',
+    textNoFiles: 'There are no files',
+    listRecoveryTitle:'Recover files',
+    listRecentFileTitle:'Recent files',
+    listRecentDirTitle:'Recent folders',
+    menuFileOpen: 'Open',
+    menuRemoveModel: 'Remove from list',
+    menuClear: 'Clear',
+    menuLogout: 'Logout',
+    textMyComputer: 'My Computer',
+    linkForgotPass: 'Forgot password?',
+    loginTitle: 'Connect Portal',
+    errLogin: 'Wrong portal name, login or email',
+    errLoginPortal: 'Check the portal name',
+    errLoginEmail: 'Check the email address',
+    errLoginServer: 'Incorrect server response during login',
+    errLoginAuth: 'Error on user information query',
+    errLoginPass: 'Check the password',
+    errConnection: 'Check network connection',
+    pshPortal: 'portal',
+    pshEmail: 'email',
+    pshPass: 'password',
+    newDoc: 'DOCUMENT',
+    newXlsx: 'WORKBOOK',
+    newPptx: 'PRESENTATION',
+    actCreateNew: 'Create new',
+    actRecentFiles: 'Recent files',
+    actOpenLocal: 'Open local file',
+    actConnectTo: 'Connect to server',
+
     '#auth-wellcome':'Login to ONLYOFFICE',
     '#auth-error':'Login failed. Please, check the entered data and try again.',
-    '#auth-portal:placeholder':'portal',
-    '#auth-email:placeholder':'email',
-    '#auth-pass:placeholder':'password',
-    '#label-pass-forgot':'Forgot password?',
     '#link-restore':'Restore',
-    '#btn-login':'Login',
-    '#text-welcome':'Welcome to ONLYOFFICE Desktop!',
-    '#text-description':'A new fast solution for work with documents using your ONLYOFFICE'
 }
 
 var ru = {
+    welWelcome: 'Добро пожаловать в ONLYOFFICE Desktop!',
+    welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
+    btnConnect: 'Войти на портал',
+    btnCreatePortal: 'Создать портал',
+    btnAddPortal: 'Добавить портал',
+    btnLogin: 'Войти',
+    btnBrowse: 'Открыть',
+    portalEmptyTitle: 'Ощутите все преимущества ONLYOFFICE',
+    portalEmptyDescr: 'Войдите на портал и добавьте других участников.',
+    portalListTitle: 'Подключенные порталы',
+    textNoFiles: 'Нет файлов для просмотра',
+    listRecoveryTitle:'Файлы для восстановления',
+    listRecentFileTitle:'Последние файлы',
+    listRecentDirTitle:'Последние папки',
+    menuFileOpen: 'Открыть',
+    menuRemoveModel: 'Удалить из списка',
+    menuClear: 'Очистить',
+    menuLogout: 'Выйти',
+    textMyComputer: 'Мой компьютер',
+    linkForgotPass: 'Забыли пароль?',
+    loginTitle: 'Войти на портал',
+    errLogin: 'Неправильный логин, пароль или email',
+    errLoginPortal: 'Проверьте имя портала',
+    errLoginEmail: 'Проверьте email',
+    errLoginServer: 'Ошибка сервера при попытке входа',
+    errLoginAuth: 'Ошибка при запросе информации о пользователе',
+    errLoginPass: 'Проверьте пароль',
+    errConnection: 'Проверьте сетевое соединение',
+    pshPortal: 'Портал',
+    pshEmail: 'Еmail',
+    pshPass: 'Пароль',
+    newDoc: 'Документ',
+    newXlsx: 'Таблица',
+    newPptx: 'Презентация',
+    actCreateNew: 'Создать',
+    actRecentFiles: 'Последние файлы',
+    actOpenLocal: 'Открыть локальный файл',
+    actConnectTo: 'Войти на портал',
+
     '#auth-wellcome':'Войти в ONLYOFFICE',
     '#auth-error':'Ошибка авторизации. Пожалуйста, проверьте введенные данные.',
-    '#auth-portal:placeholder':'Портал',
-    '#auth-email:placeholder':'Е-майл',
-    '#auth-pass:placeholder':'Пароль',
-    '#label-pass-forgot':'Забыли пароль?',
     '#link-restore':'Восстановить',
-    '#btn-login':'Войти',
-    '#text-welcome':'Добро пожаловать в ONLYOFFICE Desktop!',
-    '#text-description':'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE'
 }
 
 var de = {
@@ -110,6 +174,12 @@ function getUrlParams() {
 }
 
 (function applyLocale(lang) {
+    !lang && (lang = 'en');
+    utils.Lang = window[lang];
+})(getUrlParams()['lang']);
+
+/*
+(function embedLocale(lang) {
     var lobj = window[lang];
     if (!!lang && lang.length && !!lobj) {
         var elem, res, s;
@@ -131,3 +201,4 @@ function getUrlParams() {
         }
     } 
 })(getUrlParams()['lang']);
+*/

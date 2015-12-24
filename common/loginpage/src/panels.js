@@ -47,20 +47,21 @@ $(document).ready(function() {
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     Templates.addConnectPanel('#pnl-connect');
-    Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption:'Recovery files', coltitle:false});
-    Templates.insertFilesTable({holder:'#box-recent', caption:'Recent files', coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption: utils.Lang.listRecoveryTitle, coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recent-folders', caption:utils.Lang.listRecentDirTitle, coltitle:false});
 
     /* popup menu */
     var menuFiles = new Menu({
         id: 'pp-menu-files',
         items: [{
-            caption: 'Open',
+            caption: utils.Lang.menuFileOpen,
             action: 'files:open'
         },{
-            caption: 'Remove from list',
+            caption: utils.Lang.menuRemoveModel,
             action: 'files:forget'
         },{
-            caption: 'Clear',
+            caption: utils.Lang.menuClear,
             action: 'files:clear'
         }]
     });
@@ -71,44 +72,45 @@ $(document).ready(function() {
     var menuPortals = new Menu({
         id: 'pp-menu-portals',
         items: [{
-            caption: 'Open',
+            caption: utils.Lang.menuFileOpen,
             action: 'portal:open'
         },{
-            caption: 'Logout',            
+            caption: utils.Lang.menuLogout,
             action: 'portal:logout'
         },{
-            caption: 'Remove from list',
+            caption: utils.Lang.menuRemoveModel,
             action: 'portal:forget'
         }]
     });
 
     menuPortals.init('#placeholder');
     menuPortals.events.itemclick.attach(clickMenuPortals);
-    /**/
-    
-    Templates.insertFilesTable({holder:'#box-recent-folders', caption:'Recent folders', coltitle:false});
-    
+    /**/    
+   
     { 
         let $el = $('.action-panel.open');
         $el.find('#box-open-acts').appendTo($el.find('.table-box').parent()); 
         $el.find('#btn-openlocal').click(function() {
             openFile(OPEN_FILE_FOLDER, '');
-        });
+        }).text(utils.Lang.btnBrowse);
     }
+
+    $('h3.createnew').text(utils.Lang.actCreateNew);
+    $('a[action="new:docx"]').text(utils.Lang.newDoc);
+    $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
+    $('a[action="new:pptx"]').text(utils.Lang.newPptx);
+    $('a[action=recent]').text(utils.Lang.actRecentFiles);
+    $('a[action=open]').text(utils.Lang.actOpenLocal);
+    $('a[action=connect]').text(utils.Lang.actConnectTo);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
     var $headerRecovery = $boxRecovery.find('.header');
     var $scrboxRecovery = $boxRecovery.find('.flex-fill');
 
-    var $boxRecent = $('.action-panel.recent #box-recent');
-    var $listRecent = $boxRecent.find('.table-files.list');
-    var $scrboxRecent = $boxRecent.find('.flex-fill');
-
-    var $boxRecentDirs = $('.action-panel #box-recent-folders');
-    var $listRecentDirs = $boxRecentDirs.find('.table-files.list');
-    var $scrboxRecentDirs = $boxRecentDirs.find('.flex-fill');
-
+    // var $boxRecent = $('.action-panel.recent #box-recent');
+    // var $listRecent = $boxRecent.find('.table-files.list');
+    // var $scrboxRecent = $boxRecent.find('.flex-fill');
 
     // $('button#btn-add').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
@@ -152,6 +154,10 @@ $(document).ready(function() {
             recentCollection.add( new FileModel(_files[i]) );
         }
         
+        var $boxRecentDirs = $('.action-panel #box-recent-folders');
+        var $listRecentDirs = $boxRecentDirs.find('.table-files.list');        
+        // var $scrboxRecentDirs = $boxRecentDirs.find('.flex-fill');
+
         $listRecentDirs.empty();
         for (let dir of _dirs) {
             if (!utils.getUrlProtocol(dir.full)) {
@@ -265,6 +271,11 @@ $(document).ready(function() {
     });
     /**/
 
+    /* test information */
+    // var info = {portal:"https://testinfo.teamlab.info",user:"Maxim Kadushkin",email:"Maxim.Kadushkin@avsmedia.net"};
+    // PortalsStore.keep(info);
+    /* **************** */
+
     updatePortals(); 
 
     if (!localStorage.welcome) {
@@ -272,11 +283,15 @@ $(document).ready(function() {
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
+        $('.newportal').click(function(){
+            window.open('https://www.onlyoffice.com/registration.aspx');
+        });
     } else 
         selectAction('recent');
 
     setLoaderVisible(false);
 
+    /* test information */
     // var arr = [
     //     {"id":0,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF,"path":"https://testinfo.teamlab.info/New Document.docx","modifyed":"11.12.2015 18:45"},
     //     {"id":1,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU,"path":"C:\\Users\\maxim.kadushkin\\Documents\\DPIConfig_SmallPCs.docx","modifyed":"11.12.2015 18:22"},
@@ -287,6 +302,8 @@ $(document).ready(function() {
     //     {"id":6,"type":utils.defines.FileFormat.FILE_SPREADSHEET_XLS,"path":"https://testinfo.teamlab.info\\Office 365 Value Added Reseller Guide.docx","modifyed":"10.12.2015 16:46"}
     // ];
     // window.onupdaterecents(arr);
+    // window.onupdaterecovers(arr);
+    /* **************** */
 
     $('.login').click(onConnectClick);
 });
@@ -333,7 +350,7 @@ function parseRecent(p) {
         let name = /([^\\/]+)$/.exec(full)[1], parent;
         if (!name) {
             name = full ;
-            parent = 'My Computer';
+            parent = utils.Lang.textMyComputer;
         } else
             parent = full.slice(0, full.length - name.length - 1);
 
@@ -369,6 +386,10 @@ function onRecentFolderClick(e) {
 }
 
 function onNewFileClick(e) {
+    var me = this;
+    if (me.click_lock===true) return;
+    me.click_lock = true;
+
     var t = -1;
     switch (e.currentTarget.attributes['action'].value) {
     case 'new:docx': t = 0; break;
@@ -378,19 +399,11 @@ function onNewFileClick(e) {
     }
 
     createFile(t);
-}
 
-// function onPortalClick(e) {
-//     var info = e.data;
-//     var model = portalCollection.find('name', info);
-//     if (model) {
-//         model.logged ?
-//             window.AscDesktopEditor.execCommand("portal:open", model.path) :
-//             doLogin(model.path, model.email);
-//     } else {
-//         console.log('portal model not found');
-//     }
-// }
+    setTimeout(function(){
+        me.click_lock = false;
+    }, utils.defines.DBLCLICK_LOCK_TIMEOUT);
+}
 
 function onLogoutClick(e) {
     var info = e.data;
@@ -399,8 +412,6 @@ function onLogoutClick(e) {
     // model && model.set('logged', false);
 
     window.AscDesktopEditor.execCommand("portal:logout", info);
-
-    console.log('portal:logout ' + info);
 
     if (e.stopPropagation)
         e.stopPropagation();

@@ -152,6 +152,8 @@ utils.defines.FileFormat = {
     FILE_CROSSPLATFORM_XPS: FILE_CROSSPLATFORM + 0x0004,
 };
 
+utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
+
 utils.parseFileFormat = function(format) {
     switch (format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_DOC:

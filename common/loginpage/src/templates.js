@@ -35,18 +35,18 @@ Templates = (function() { 'use strict';
 
     var addConnectPanel = function(parentnode) {
         var _html = '<div id="box-empty-portals" class="empty">' +
-                      '<h3 class="text-welcome">Take all advantages of ONLYOFFICE</h3>' +
-                      '<h4 class="text-description">Log in to your portal and add you team members.</h4>' +
+                      '<h3 class="text-welcome">' + utils.Lang.portalEmptyTitle + '</h3>' +
+                      '<h4 class="text-description">' + utils.Lang.portalEmptyDescr + '</h4>' +
                       '<div class="tools-connect">'+
-                        '<button class="btn primary login">Connect portal</button>' +
-                        '<button class="btn newportal">Create portal</button>' +
+                        '<button class="btn primary login">' + utils.Lang.btnConnect + '</button>' +
+                        '<button class="btn newportal">' + utils.Lang.btnCreatePortal + '</button>' +
                       '</div>'+
                     '</div>'+
                     '<div id="box-portals">' +
                     '</div>';
 
         $(parentnode).append(_html);
-        addPortalsTable('#box-portals', 'Connected portals');
+        addPortalsTable('#box-portals', utils.Lang.portalListTitle);
     };
 
     function makeFilesItem(info) {
@@ -77,7 +77,6 @@ Templates = (function() { 'use strict';
                 .replace(/\%id/, info.elid);
     };
 
-    var textNoFiles = 'There are no files';
     function addRecentFiles(opts) {
         opts.id&&(opts.id='id="'+opts.id+'"')||(opts.id='');
 
@@ -98,7 +97,7 @@ Templates = (function() { 'use strict';
         _html += '</table>'+                
                     '<div class="table-box flex-fill">'+
                       '<table %id class="table-files list"></table>'+
-                      '<h3 class="text-emptylist">' + textNoFiles + '</h3>' +
+                      '<h3 class="text-emptylist">' + utils.Lang.textNoFiles + '</h3>' +
                     '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
@@ -115,25 +114,22 @@ Templates = (function() { 'use strict';
                   '</tr>';
         
         _html += '</table>'+                
-                    '<div class="table-box flex-fill"><table class="table-files list">'+
-                    '</div></table>'+
-                    '<div class="lst-tools"><button id="btn-addportal" class="btn login">Add portal</button></div>'+
+                    '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
+                    '<div class="lst-tools">'+
+                      '<button id="btn-addportal" class="btn login">' + utils.Lang.btnAddPortal + '</button>'+
+                    '</div>'+
                 '</div>';
 
         $(holder).append(_html.replace(/\%caption/, caption));
     };
 
-    var welWelcome = 'Welcome to ONLYOFFICE Desktop Editors!';
-    var welDescr = 'A new fast solution for work with documents using your ONLYOFFICE.';
-    var btnConnect = 'Connect Portal';
-    var btnCreatePortal = 'Create Portal';
     function addWelcomePanel(holder) {        
-        var _html = '<section class="center"><h3>'+ welWelcome +'</h1>'+
-                    '<h4 class="text-description">'+ welDescr +'</h4>'+
+        var _html = '<section class="center"><h3>'+ utils.Lang.welWelcome +'</h1>'+
+                    '<h4 class="text-description">'+ utils.Lang.welDescr +'</h4>'+
                     '<img class="img-welcome">'+
                     '<div class="tools-connect">'+
-                      '<button class="btn primary login">'+ btnConnect +'</button>' +
-                      '<button class="btn newportal">'+ btnCreatePortal +'</button>'+
+                      '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
+                      '<button class="btn newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
                     '</div></section>';
 
         $(holder).append(_html);

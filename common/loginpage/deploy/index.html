@@ -712,6 +712,8 @@ utils.defines.FileFormat = {
     FILE_CROSSPLATFORM_XPS: FILE_CROSSPLATFORM + 0x0004,
 };
 
+utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
+
 utils.parseFileFormat = function(format) {
     switch (format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_DOC:
@@ -739,23 +741,195 @@ utils.parseFileFormat = function(format) {
 
     return '';
 };</script>
+    <script>var en = {
+    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
+    welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
+    btnConnect: 'Connect Portal',
+    btnCreatePortal: 'Create Portal',
+    btnAddPortal: 'Add Portal',
+    btnLogin: 'Login',
+    btnBrowse: 'Browse',
+    portalEmptyTitle: 'Take all advantages of ONLYOFFICE',
+    portalEmptyDescr: 'Log in to your portal and add you team members.',
+    portalListTitle: 'Connected portals',
+    textNoFiles: 'There are no files',
+    listRecoveryTitle:'Recover files',
+    listRecentFileTitle:'Recent files',
+    listRecentDirTitle:'Recent folders',
+    menuFileOpen: 'Open',
+    menuRemoveModel: 'Remove from list',
+    menuClear: 'Clear',
+    menuLogout: 'Logout',
+    textMyComputer: 'My Computer',
+    linkForgotPass: 'Forgot password?',
+    loginTitle: 'Connect Portal',
+    errLogin: 'Wrong portal name, login or email',
+    errLoginPortal: 'Check the portal name',
+    errLoginEmail: 'Check the email address',
+    errLoginServer: 'Incorrect server response during login',
+    errLoginAuth: 'Error on user information query',
+    errLoginPass: 'Check the password',
+    errConnection: 'Check network connection',
+    pshPortal: 'portal',
+    pshEmail: 'email',
+    pshPass: 'password',
+    newDoc: 'DOCUMENT',
+    newXlsx: 'WORKBOOK',
+    newPptx: 'PRESENTATION',
+    actCreateNew: 'Create new',
+    actRecentFiles: 'Recent files',
+    actOpenLocal: 'Open local file',
+    actConnectTo: 'Connect to server',
+
+    '#auth-wellcome':'Login to ONLYOFFICE',
+    '#auth-error':'Login failed. Please, check the entered data and try again.',
+    '#link-restore':'Restore',
+}
+
+var ru = {
+    welWelcome: 'Добро пожаловать в ONLYOFFICE Desktop!',
+    welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
+    btnConnect: 'Войти на портал',
+    btnCreatePortal: 'Создать портал',
+    btnAddPortal: 'Добавить портал',
+    btnLogin: 'Войти',
+    btnBrowse: 'Открыть',
+    portalEmptyTitle: 'Ощутите все преимущества ONLYOFFICE',
+    portalEmptyDescr: 'Войдите на портал и добавьте других участников.',
+    portalListTitle: 'Подключенные порталы',
+    textNoFiles: 'Нет файлов для просмотра',
+    listRecoveryTitle:'Файлы для восстановления',
+    listRecentFileTitle:'Последние файлы',
+    listRecentDirTitle:'Последние папки',
+    menuFileOpen: 'Открыть',
+    menuRemoveModel: 'Удалить из списка',
+    menuClear: 'Очистить',
+    menuLogout: 'Выйти',
+    textMyComputer: 'Мой компьютер',
+    linkForgotPass: 'Забыли пароль?',
+    loginTitle: 'Войти на портал',
+    errLogin: 'Неправильный логин, пароль или email',
+    errLoginPortal: 'Проверьте имя портала',
+    errLoginEmail: 'Проверьте email',
+    errLoginServer: 'Ошибка сервера при попытке входа',
+    errLoginAuth: 'Ошибка при запросе информации о пользователе',
+    errLoginPass: 'Проверьте пароль',
+    errConnection: 'Проверьте сетевое соединение',
+    pshPortal: 'Портал',
+    pshEmail: 'Еmail',
+    pshPass: 'Пароль',
+    newDoc: 'Документ',
+    newXlsx: 'Таблица',
+    newPptx: 'Презентация',
+    actCreateNew: 'Создать',
+    actRecentFiles: 'Последние файлы',
+    actOpenLocal: 'Открыть локальный файл',
+    actConnectTo: 'Войти на портал',
+
+    '#auth-wellcome':'Войти в ONLYOFFICE',
+    '#auth-error':'Ошибка авторизации. Пожалуйста, проверьте введенные данные.',
+    '#link-restore':'Восстановить',
+}
+
+var de = {
+    '#auth-wellcome':'Melden Sie sich bei ONLYOFFICE and',
+    '#auth-error':'Anmeldung fehlgeschlagen. Überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut.',
+    '#auth-portal:placeholder':'Portal',
+    '#auth-email:placeholder':'E-Mail',
+    '#auth-pass:placeholder':'Kennwort',
+    '#label-pass-forgot':'Kennwort vergessen?',
+    '#link-restore':'Wiederherstellen',
+    '#btn-login':'Anmelden',
+    '#text-welcome':'Willkommen bei !ONLYOFFICE Desktop!',
+    '#text-description':'Die neue schnelle Lösung für die Bearbeitung der Dokumente mithilfe von Ihrem ONLYOFFICE'
+}
+
+var fr = {
+    '#auth-wellcome':'Connexion à ONLYOFFICE',
+    '#auth-error':'Connexion échouée. Vérifiez les données d\'entrées s\'il vous plaît et essayez de vous connecter encore une fois',
+    '#auth-portal:placeholder':'portail',
+    '#auth-email:placeholder':'email',
+    '#auth-pass:placeholder':'mot de passe',
+    '#label-pass-forgot':'Mot de passe oublié?',
+    '#link-restore':'Récupérer',
+    '#btn-login':'Connexion',
+    '#text-welcome':'Bienvenue à ONLYOFFICE de bureau!',
+    '#text-description':'Une nouvelle solution rapide pour travailler avec les document en utilisant votre ONLYOFFICE'
+}
+
+var es = {
+    '#auth-wellcome':'Acceder a ONLYOFFICE',
+    '#auth-error':'El acceso se ha fallado. Por favor, compruebe los datos introducidos y vuelva a intentarlo',
+    '#auth-portal:placeholder':'portal',
+    '#auth-email:placeholder':'correo electrónico',
+    '#auth-pass:placeholder':'contraseña',
+    '#label-pass-forgot':'¿Ha olvidado la contraseña?',
+    '#link-restore':'Recuperar',
+    '#btn-login':'Iniciar sesión',
+    '#text-welcome':'¡Bienvenido a ONLYOFFICE de Escritorio!',
+    '#text-description':'Una nueva solución rápida para el manejo de documentos utilizando su ONLYOFFICE'
+}
+
+function getUrlParams() {
+    var e,
+    a = /\+/g,  
+    r = /([^&=]+)=?([^&]*)/g,
+    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+    q = window.location.search.substring(1),
+    urlParams = {};
+
+    while (e = r.exec(q))
+        urlParams[d(e[1])] = d(e[2]);
+
+    return urlParams;
+}
+
+(function applyLocale(lang) {
+    !lang && (lang = 'en');
+    utils.Lang = window[lang];
+})(getUrlParams()['lang']);
+
+/*
+(function embedLocale(lang) {
+    var lobj = window[lang];
+    if (!!lang && lang.length && !!lobj) {
+        var elem, res, s;
+        for (var prop in lobj) {
+            s = lobj[prop];            
+            res = /([^\:]+)\:?(\w+)?$/.exec(prop);
+            if (res) {
+                elem = $(res[1]);
+
+                if (elem.length) {
+                    if (res[2] && res[2].length) {
+                        elem.attr(res[2], s);
+                    } else {
+                        // if (elem.is('button')) 
+                            elem.html(s);
+                    }
+                }
+            }
+        }
+    } 
+})(getUrlParams()['lang']);
+*/</script>
     <script>
 Templates = (function() { 'use strict';
 
     var addConnectPanel = function(parentnode) {
         var _html = '<div id="box-empty-portals" class="empty">' +
-                      '<h3 class="text-welcome">Take all advantages of ONLYOFFICE</h3>' +
-                      '<h4 class="text-description">Log in to your portal and add you team members.</h4>' +
+                      '<h3 class="text-welcome">' + utils.Lang.portalEmptyTitle + '</h3>' +
+                      '<h4 class="text-description">' + utils.Lang.portalEmptyDescr + '</h4>' +
                       '<div class="tools-connect">'+
-                        '<button class="btn primary login">Connect portal</button>' +
-                        '<button class="btn newportal">Create portal</button>' +
+                        '<button class="btn primary login">' + utils.Lang.btnConnect + '</button>' +
+                        '<button class="btn newportal">' + utils.Lang.btnCreatePortal + '</button>' +
                       '</div>'+
                     '</div>'+
                     '<div id="box-portals">' +
                     '</div>';
 
         $(parentnode).append(_html);
-        addPortalsTable('#box-portals', 'Connected portals');
+        addPortalsTable('#box-portals', utils.Lang.portalListTitle);
     };
 
     function makeFilesItem(info) {
@@ -786,7 +960,6 @@ Templates = (function() { 'use strict';
                 .replace(/\%id/, info.elid);
     };
 
-    var textNoFiles = 'There are no files';
     function addRecentFiles(opts) {
         opts.id&&(opts.id='id="'+opts.id+'"')||(opts.id='');
 
@@ -807,7 +980,7 @@ Templates = (function() { 'use strict';
         _html += '</table>'+                
                     '<div class="table-box flex-fill">'+
                       '<table %id class="table-files list"></table>'+
-                      '<h3 class="text-emptylist">' + textNoFiles + '</h3>' +
+                      '<h3 class="text-emptylist">' + utils.Lang.textNoFiles + '</h3>' +
                     '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
@@ -824,25 +997,22 @@ Templates = (function() { 'use strict';
                   '</tr>';
         
         _html += '</table>'+                
-                    '<div class="table-box flex-fill"><table class="table-files list">'+
-                    '</div></table>'+
-                    '<div class="lst-tools"><button id="btn-addportal" class="btn login">Add portal</button></div>'+
+                    '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
+                    '<div class="lst-tools">'+
+                      '<button id="btn-addportal" class="btn login">' + utils.Lang.btnAddPortal + '</button>'+
+                    '</div>'+
                 '</div>';
 
         $(holder).append(_html.replace(/\%caption/, caption));
     };
 
-    var welWelcome = 'Welcome to ONLYOFFICE Desktop Editors!';
-    var welDescr = 'A new fast solution for work with documents using your ONLYOFFICE.';
-    var btnConnect = 'Connect Portal';
-    var btnCreatePortal = 'Create Portal';
     function addWelcomePanel(holder) {        
-        var _html = '<section class="center"><h3>'+ welWelcome +'</h1>'+
-                    '<h4 class="text-description">'+ welDescr +'</h4>'+
+        var _html = '<section class="center"><h3>'+ utils.Lang.welWelcome +'</h1>'+
+                    '<h4 class="text-description">'+ utils.Lang.welDescr +'</h4>'+
                     '<img class="img-welcome">'+
                     '<div class="tools-connect">'+
-                      '<button class="btn primary login">'+ btnConnect +'</button>' +
-                      '<button class="btn newportal">'+ btnCreatePortal +'</button>'+
+                      '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
+                      '<button class="btn newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
                     '</div></section>';
 
         $(holder).append(_html);
@@ -860,40 +1030,29 @@ Templates = (function() { 'use strict';
 LoginDlg = function() {
     "use strict";
 
-    var linkForgotPass = 'Forgot password?';
-    var linkCreatePortal = 'Create a portal';
-    var dlgLoginTitle = 'Connect portal';
-    var btnLogin = 'Login';
-    var errLogin = 'Wrong portal name or login or email';
-    var errLoginPortal = 'Check the portal name';
-    var errLoginEmail = 'Check the email address';
-    var errLoginServer = 'Wrong server answer during login';
-    var errLoginAuth = 'Error on query user information';
-    var errLoginPass = 'Check the password';
-
     var $el, $mask;
     var _tpl = '<div class="dlg dlg-login">' +
                   '<div class="title">'+
-                    '<label class="caption">'+dlgLoginTitle+'</label>'+
+                    '<label class="caption">'+utils.Lang.loginTitle+'</label>'+
                     '<span class="tool close"></span>'+
                   '</div>'+
                   '<div class="body">'+
                     '<div class="logo"></div>'+
                     '<section id="box-lbl-error">'+
-                      '<p id="auth-error" class="msg-error">' + errLogin + '</p>' +
+                      '<p id="auth-error" class="msg-error">' + utils.Lang.errLogin + '</p>' +
                     '</section>'+
-                    '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="portal" value="">' +
-                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="email" value="">' +
-                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="password" value="">' +
+                    '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="'+utils.Lang.pshPortal+'" value="">' +
+                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
+                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
                     '<div id="box-btn-login">'+
-                      '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + linkForgotPass + '</a>'+
+                      '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
                       '<div><img class="img-loader">' +
-                      '<button id="btn-login" class="btn primary">'+btnLogin+'</button></div>'+
+                      '<button id="btn-login" class="btn primary">' + utils.Lang.btnLogin + '</button></div>'+
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link" target="popup" href="https://www.onlyoffice.com/registration.aspx">' + linkCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link" target="popup" href="https://www.onlyoffice.com/registration.aspx">' + utils.Lang.btnCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
@@ -903,18 +1062,45 @@ LoginDlg = function() {
     var portal = undefined,
         email = undefined;
     var events = {};
+    var STATUS_EXIST = 1;
+    var STATUS_NOT_EXIST = 0;
+    var STATUS_UNKNOWN = -1;
+    var STATUS_NO_CONNECTION = -255;
 
-    function checkResourceExists(url) {
+    function checkResourceExists(url, callback) {
         var reader = new XMLHttpRequest();
+        // reader.timout = 15000;
+        // reader.onreadystatechange = function() {
+        reader.onload = function() {
+            var out_res = undefined;
 
-        reader.open('get', url, false);
+            if (reader.readyState != 4) { return; }
+
+            switch (reader.status) {
+            case 0: case 401:
+            case 200: out_res = STATUS_EXIST; break;
+            case 404: out_res = STATUS_NOT_EXIST; break;
+            default: out_res = STATUS_UNKNOWN; break;
+            }
+
+            callback && callback(out_res);
+        };
+
+        // reader.ontimeout = function() {
+        //     callback && callback(STATUS_NO_CONNECTION);
+        // };
+
+        setTimeout(function(){
+            reader.abort();
+            callback && callback(STATUS_NO_CONNECTION);
+        }, 20000);
+        
+        reader.onerror = function(e) {
+            console.log('on error');
+        };
+
+        reader.open('get', url, true);
         reader.send(null);
-        switch (reader.status) {
-        case 0: case 401:
-        case 200: return 1;
-        case 404: return 0;
-        default: return -1;
-        }
     }
 
     function sendData(url, data, target) {
@@ -956,12 +1142,12 @@ LoginDlg = function() {
 
         var re_wrong_symb = /[\s\\]/;
         if (!portal.length || re_wrong_symb.test(portal)) {
-            showLoginError(errLoginPortal, '#auth-portal');
+            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
 
         if (!email.length || re_wrong_symb.test(email)) {
-            showLoginError(errLoginEmail, '#auth-email');
+            showLoginError(utils.Lang.errLoginEmail, '#auth-email');
             return;
         }
 
@@ -970,13 +1156,13 @@ LoginDlg = function() {
             portal[1] && (protocol = portal[1]);
             portal = portal[2];
         } else {
-            showLoginError(errLoginPortal, '#auth-portal');
+            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
 
         var pass = $el.find('#auth-pass').val();
         if (!pass || pass.length < 0) {
-            showLoginError(errLoginPass, '#auth-pass');
+            showLoginError(utils.Lang.errLoginPass, '#auth-pass');
             return;
         }
 
@@ -985,22 +1171,27 @@ LoginDlg = function() {
 
         disableDialog(true);
         // setLoaderVisible(true);
-        if (checkResourceExists(check_url) == 0) {
-            showLoginError(errLoginPortal, '#auth-portal');
-            // setLoaderVisible(false);
-        } else {
-            var iframe = document.createElement("iframe");
-            iframe.name = "frameLogin";
-            iframe.style.display = "none";
+        checkResourceExists(check_url, function(r){
+            if (r == 0) {
+                showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
+                // setLoaderVisible(false);
+            } else 
+            if (r == STATUS_NO_CONNECTION) {
+                showLoginError(utils.Lang.errConnection);
+            } else {
+                var iframe = document.createElement("iframe");
+                iframe.name = "frameLogin";
+                iframe.style.display = "none";
 
-            iframe.addEventListener("load", function () {
-                window.AscDesktopEditor.GetFrameContent("frameLogin");
-            });
+                iframe.addEventListener("load", function () {
+                    window.AscDesktopEditor.GetFrameContent("frameLogin");
+                });
 
-            document.body.appendChild(iframe);
+                document.body.appendChild(iframe);
 
-            sendData(url, {userName: email, password: pass}, iframe);
-        }
+                sendData(url, {userName: email, password: pass}, iframe);
+            }
+        });
     };
 
     function showLoginError(error, el) {
@@ -1031,7 +1222,7 @@ LoginDlg = function() {
                 if (obj) {
                     if (obj.statusCode != 201) {
                         console.log('server error: ' + obj.statusCode);
-                        showLoginError(errLoginServer);
+                        showLoginError(utils.Lang.errLoginServer);
                     } else
                     if (!obj.response.sms) {
                         getUserInfo(obj.response.token);
@@ -1045,7 +1236,7 @@ LoginDlg = function() {
                     }
                 } else {
                     console.log('server error: wrong json');
-                    showLoginError(errLoginServer);
+                    showLoginError(utils.Lang.errLoginServer);
                 }
 
                 // setLoaderVisible(false);
@@ -1092,17 +1283,17 @@ LoginDlg = function() {
                         doClose(1);
                     } else {
                         console.log('authentication error: ' + obj.statusCode);
-                        showLoginError(errLoginAuth);
+                        showLoginError(utils.Lang.errLoginAuth);
                     }
                 } else {
                     console.log('authentication error: ' + status);
-                    showLoginError(errLoginAuth);
+                    showLoginError(utils.Lang.errLoginAuth);
                     // setLoaderVisible(false);
                 }
             },
             error: function(e, status, error) {
                 console.log('server error: ' + status + ', ' + error);
-                showLoginError(errLoginAuth);
+                showLoginError(utils.Lang.errLoginAuth);
                 // setLoaderVisible(false);
             }
         };
@@ -1198,20 +1389,21 @@ $(document).ready(function() {
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     Templates.addConnectPanel('#pnl-connect');
-    Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption:'Recovery files', coltitle:false});
-    Templates.insertFilesTable({holder:'#box-recent', caption:'Recent files', coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption: utils.Lang.listRecoveryTitle, coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
+    Templates.insertFilesTable({holder:'#box-recent-folders', caption:utils.Lang.listRecentDirTitle, coltitle:false});
 
     /* popup menu */
     var menuFiles = new Menu({
         id: 'pp-menu-files',
         items: [{
-            caption: 'Open',
+            caption: utils.Lang.menuFileOpen,
             action: 'files:open'
         },{
-            caption: 'Remove from list',
+            caption: utils.Lang.menuRemoveModel,
             action: 'files:forget'
         },{
-            caption: 'Clear',
+            caption: utils.Lang.menuClear,
             action: 'files:clear'
         }]
     });
@@ -1222,44 +1414,45 @@ $(document).ready(function() {
     var menuPortals = new Menu({
         id: 'pp-menu-portals',
         items: [{
-            caption: 'Open',
+            caption: utils.Lang.menuFileOpen,
             action: 'portal:open'
         },{
-            caption: 'Logout',            
+            caption: utils.Lang.menuLogout,
             action: 'portal:logout'
         },{
-            caption: 'Remove from list',
+            caption: utils.Lang.menuRemoveModel,
             action: 'portal:forget'
         }]
     });
 
     menuPortals.init('#placeholder');
     menuPortals.events.itemclick.attach(clickMenuPortals);
-    /**/
-    
-    Templates.insertFilesTable({holder:'#box-recent-folders', caption:'Recent folders', coltitle:false});
-    
+    /**/    
+   
     { 
         let $el = $('.action-panel.open');
         $el.find('#box-open-acts').appendTo($el.find('.table-box').parent()); 
         $el.find('#btn-openlocal').click(function() {
             openFile(OPEN_FILE_FOLDER, '');
-        });
+        }).text(utils.Lang.btnBrowse);
     }
+
+    $('h3.createnew').text(utils.Lang.actCreateNew);
+    $('a[action="new:docx"]').text(utils.Lang.newDoc);
+    $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
+    $('a[action="new:pptx"]').text(utils.Lang.newPptx);
+    $('a[action=recent]').text(utils.Lang.actRecentFiles);
+    $('a[action=open]').text(utils.Lang.actOpenLocal);
+    $('a[action=connect]').text(utils.Lang.actConnectTo);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
     var $headerRecovery = $boxRecovery.find('.header');
     var $scrboxRecovery = $boxRecovery.find('.flex-fill');
 
-    var $boxRecent = $('.action-panel.recent #box-recent');
-    var $listRecent = $boxRecent.find('.table-files.list');
-    var $scrboxRecent = $boxRecent.find('.flex-fill');
-
-    var $boxRecentDirs = $('.action-panel #box-recent-folders');
-    var $listRecentDirs = $boxRecentDirs.find('.table-files.list');
-    var $scrboxRecentDirs = $boxRecentDirs.find('.flex-fill');
-
+    // var $boxRecent = $('.action-panel.recent #box-recent');
+    // var $listRecent = $boxRecent.find('.table-files.list');
+    // var $scrboxRecent = $boxRecent.find('.flex-fill');
 
     // $('button#btn-add').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
@@ -1303,6 +1496,10 @@ $(document).ready(function() {
             recentCollection.add( new FileModel(_files[i]) );
         }
         
+        var $boxRecentDirs = $('.action-panel #box-recent-folders');
+        var $listRecentDirs = $boxRecentDirs.find('.table-files.list');        
+        // var $scrboxRecentDirs = $boxRecentDirs.find('.flex-fill');
+
         $listRecentDirs.empty();
         for (let dir of _dirs) {
             if (!utils.getUrlProtocol(dir.full)) {
@@ -1416,6 +1613,11 @@ $(document).ready(function() {
     });
     /**/
 
+    /* test information */
+    // var info = {portal:"https://testinfo.teamlab.info",user:"Maxim Kadushkin",email:"Maxim.Kadushkin@avsmedia.net"};
+    // PortalsStore.keep(info);
+    /* **************** */
+
     updatePortals(); 
 
     if (!localStorage.welcome) {
@@ -1428,6 +1630,7 @@ $(document).ready(function() {
 
     setLoaderVisible(false);
 
+    /* test information */
     // var arr = [
     //     {"id":0,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF,"path":"https://testinfo.teamlab.info/New Document.docx","modifyed":"11.12.2015 18:45"},
     //     {"id":1,"type":utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU,"path":"C:\\Users\\maxim.kadushkin\\Documents\\DPIConfig_SmallPCs.docx","modifyed":"11.12.2015 18:22"},
@@ -1438,6 +1641,8 @@ $(document).ready(function() {
     //     {"id":6,"type":utils.defines.FileFormat.FILE_SPREADSHEET_XLS,"path":"https://testinfo.teamlab.info\\Office 365 Value Added Reseller Guide.docx","modifyed":"10.12.2015 16:46"}
     // ];
     // window.onupdaterecents(arr);
+    // window.onupdaterecovers(arr);
+    /* **************** */
 
     $('.login').click(onConnectClick);
 });
@@ -1484,7 +1689,7 @@ function parseRecent(p) {
         let name = /([^\\/]+)$/.exec(full)[1], parent;
         if (!name) {
             name = full ;
-            parent = 'My Computer';
+            parent = utils.Lang.textMyComputer;
         } else
             parent = full.slice(0, full.length - name.length - 1);
 
@@ -1520,6 +1725,10 @@ function onRecentFolderClick(e) {
 }
 
 function onNewFileClick(e) {
+    var me = this;
+    if (me.click_lock===true) return;
+    me.click_lock = true;
+
     var t = -1;
     switch (e.currentTarget.attributes['action'].value) {
     case 'new:docx': t = 0; break;
@@ -1529,19 +1738,11 @@ function onNewFileClick(e) {
     }
 
     createFile(t);
-}
 
-// function onPortalClick(e) {
-//     var info = e.data;
-//     var model = portalCollection.find('name', info);
-//     if (model) {
-//         model.logged ?
-//             window.AscDesktopEditor.execCommand("portal:open", model.path) :
-//             doLogin(model.path, model.email);
-//     } else {
-//         console.log('portal model not found');
-//     }
-// }
+    setTimeout(function(){
+        me.click_lock = false;
+    }, utils.defines.DBLCLICK_LOCK_TIMEOUT);
+}
 
 function onLogoutClick(e) {
     var info = e.data;
@@ -1550,8 +1751,6 @@ function onLogoutClick(e) {
     // model && model.set('logged', false);
 
     window.AscDesktopEditor.execCommand("portal:logout", info);
-
-    console.log('portal:logout ' + info);
 
     if (e.stopPropagation)
         e.stopPropagation();
@@ -1702,108 +1901,6 @@ document.getElementById('wrap').ondragover = function (e) {
     e.preventDefault();
     return false;
 };
-</script>
-    <script>var en = {
-    '#auth-wellcome':'Login to ONLYOFFICE',
-    '#auth-error':'Login failed. Please, check the entered data and try again.',
-    '#auth-portal:placeholder':'portal',
-    '#auth-email:placeholder':'email',
-    '#auth-pass:placeholder':'password',
-    '#label-pass-forgot':'Forgot password?',
-    '#link-restore':'Restore',
-    '#btn-login':'Login',
-    '#text-welcome':'Welcome to ONLYOFFICE Desktop!',
-    '#text-description':'A new fast solution for work with documents using your ONLYOFFICE'
-}
-
-var ru = {
-    '#auth-wellcome':'Войти в ONLYOFFICE',
-    '#auth-error':'Ошибка авторизации. Пожалуйста, проверьте введенные данные.',
-    '#auth-portal:placeholder':'Портал',
-    '#auth-email:placeholder':'Е-майл',
-    '#auth-pass:placeholder':'Пароль',
-    '#label-pass-forgot':'Забыли пароль?',
-    '#link-restore':'Восстановить',
-    '#btn-login':'Войти',
-    '#text-welcome':'Добро пожаловать в ONLYOFFICE Desktop!',
-    '#text-description':'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE'
-}
-
-var de = {
-    '#auth-wellcome':'Melden Sie sich bei ONLYOFFICE and',
-    '#auth-error':'Anmeldung fehlgeschlagen. Überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut.',
-    '#auth-portal:placeholder':'Portal',
-    '#auth-email:placeholder':'E-Mail',
-    '#auth-pass:placeholder':'Kennwort',
-    '#label-pass-forgot':'Kennwort vergessen?',
-    '#link-restore':'Wiederherstellen',
-    '#btn-login':'Anmelden',
-    '#text-welcome':'Willkommen bei !ONLYOFFICE Desktop!',
-    '#text-description':'Die neue schnelle Lösung für die Bearbeitung der Dokumente mithilfe von Ihrem ONLYOFFICE'
-}
-
-var fr = {
-    '#auth-wellcome':'Connexion à ONLYOFFICE',
-    '#auth-error':'Connexion échouée. Vérifiez les données d\'entrées s\'il vous plaît et essayez de vous connecter encore une fois',
-    '#auth-portal:placeholder':'portail',
-    '#auth-email:placeholder':'email',
-    '#auth-pass:placeholder':'mot de passe',
-    '#label-pass-forgot':'Mot de passe oublié?',
-    '#link-restore':'Récupérer',
-    '#btn-login':'Connexion',
-    '#text-welcome':'Bienvenue à ONLYOFFICE de bureau!',
-    '#text-description':'Une nouvelle solution rapide pour travailler avec les document en utilisant votre ONLYOFFICE'
-}
-
-var es = {
-    '#auth-wellcome':'Acceder a ONLYOFFICE',
-    '#auth-error':'El acceso se ha fallado. Por favor, compruebe los datos introducidos y vuelva a intentarlo',
-    '#auth-portal:placeholder':'portal',
-    '#auth-email:placeholder':'correo electrónico',
-    '#auth-pass:placeholder':'contraseña',
-    '#label-pass-forgot':'¿Ha olvidado la contraseña?',
-    '#link-restore':'Recuperar',
-    '#btn-login':'Iniciar sesión',
-    '#text-welcome':'¡Bienvenido a ONLYOFFICE de Escritorio!',
-    '#text-description':'Una nueva solución rápida para el manejo de documentos utilizando su ONLYOFFICE'
-}
-
-function getUrlParams() {
-    var e,
-    a = /\+/g,  
-    r = /([^&=]+)=?([^&]*)/g,
-    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
-    q = window.location.search.substring(1),
-    urlParams = {};
-
-    while (e = r.exec(q))
-        urlParams[d(e[1])] = d(e[2]);
-
-    return urlParams;
-}
-
-(function applyLocale(lang) {
-    var lobj = window[lang];
-    if (!!lang && lang.length && !!lobj) {
-        var elem, res, s;
-        for (var prop in lobj) {
-            s = lobj[prop];            
-            res = /([^\:]+)\:?(\w+)?$/.exec(prop);
-            if (res) {
-                elem = $(res[1]);
-
-                if (elem.length) {
-                    if (res[2] && res[2].length) {
-                        elem.attr(res[2], s);
-                    } else {
-                        // if (elem.is('button')) 
-                            elem.html(s);
-                    }
-                }
-            }
-        }
-    } 
-})(getUrlParams()['lang']);
 </script>
     <script>'use strict';
 
@@ -1985,11 +2082,11 @@ Menu.prototype.init = function(parent) {
 
     $container.on({
         'hide.bs.dropdown': function(){
-            console.log('before hide menu');
+            // console.log('before hide menu');
         },
         'hidden.bs.dropdown': function() {
             me.contextdata = [];
-            console.log('after hide menu');
+            // console.log('after hide menu');
         }
     });
 };
