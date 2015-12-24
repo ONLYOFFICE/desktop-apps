@@ -5,7 +5,9 @@
 #include "qwinwidget.h"
 #endif
 
-#include <QWidget>
+#include <QFormLayout>
+#include <QDialog>
+#include <QLabel>
 
 class CMessage : public QWinWidget
 {
@@ -15,10 +17,18 @@ public:
     explicit CMessage(HWND hParentWnd);
 
     void error(const QString& title, const QString& text);
+    int showModal(const QString&);
+
+private:
+    QDialog m_pDlg;
+    int m_result;
+    QFormLayout * m_fLayout;
+    QLabel * m_message;
 
 signals:
 
 public slots:
+    void onYesClicked();
 };
 
 #endif // CMESSAGE_H

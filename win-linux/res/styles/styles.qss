@@ -331,6 +331,9 @@ QLabel[class=msg-icon] {
 QLabel[class=msg-icon][type=msg-question] {
     background-position: bottom right;
 }
+QLabel[class=msg-icon][type=msg-error] {
+    background-position: top left;
+}
 /**/
 QPrintDialog, QPrintPropertiesDialog {
     background-color:#fff;
