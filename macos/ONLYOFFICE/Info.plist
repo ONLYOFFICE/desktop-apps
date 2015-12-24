@@ -10,7 +10,7 @@
 			<key>CFBundleTypeExtensions</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice XML Document</string>
+			<string>Office Open XML Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -50,7 +50,7 @@
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice XML Spreadsheet</string>
+			<string>Office Open XML Spreadsheet</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -60,7 +60,7 @@
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice XML Presentation</string>
+			<string>Office Open XML Presentation</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>

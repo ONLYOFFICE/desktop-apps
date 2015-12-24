@@ -62,6 +62,12 @@ h3, caption {
     color: @color-header;
 }
 
+h4 {
+    font-weight: 100;
+    font-size: 18px;
+    color: @color-gray-light;
+}
+
 .main-column {
     height: 100%;
 }
@@ -523,6 +529,14 @@ li.menu-item {
     }
 }
 
+.text-emptylist::before {
+    content: '';
+    display: block;
+    background: data-uri('sprite.png')  -72px -48px no-repeat;
+    width: 58px;
+    height: 78px;
+    margin: 50px auto 10px;;
+}
 
 #tbl-filesrcv {
     .descr {

@@ -53,7 +53,7 @@ Templates = (function() { 'use strict';
         var _tpl = !!info.uid ? '<tr id=' + info.uid + '>' : '<tr>';
         _tpl += '<td class="row-cell cicon"><span class="icon %type" /></td>' +
                         '<td class="row-cell cname"><p class="name primary">%name</p><p class="descr minor">%descr</p></td>';
-        if (info.type != 'folder') 
+        if (info.type != 'folder')
             _tpl += '<td class="row-cell cdate minor">%date</td>'.replace(/\%date/, info.date);
 
         return _tpl.replace(/\%name/, info.name)
@@ -93,11 +93,11 @@ Templates = (function() { 'use strict';
                             '<th class="cell-date">Date</th>' +
                         '</tr>';
         }
-        
-        _html += '</table>'+                
+
+        _html += '</table>'+
                     '<div class="table-box flex-fill">'+
                       '<table %id class="table-files list"></table>'+
-                      '<h3 class="text-emptylist">' + utils.Lang.textNoFiles + '</h3>' +
+                      '<h4 class="text-emptylist">' + utils.Lang.textNoFiles + '</h4>' +
                     '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
@@ -112,8 +112,8 @@ Templates = (function() { 'use strict';
                     '<th class="cell-user"></th>' +
                     '<th class="cell-email" colspan="2"></th>' +
                   '</tr>';
-        
-        _html += '</table>'+                
+
+        _html += '</table>'+
                     '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
                     '<div class="lst-tools">'+
                       '<button id="btn-addportal" class="btn login">' + utils.Lang.btnAddPortal + '</button>'+
@@ -123,7 +123,7 @@ Templates = (function() { 'use strict';
         $(holder).append(_html.replace(/\%caption/, caption));
     };
 
-    function addWelcomePanel(holder) {        
+    function addWelcomePanel(holder) {
         var _html = '<section class="center"><h3>'+ utils.Lang.welWelcome +'</h1>'+
                     '<h4 class="text-description">'+ utils.Lang.welDescr +'</h4>'+
                     '<img class="img-welcome">'+
