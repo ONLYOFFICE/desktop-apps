@@ -37,6 +37,7 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QLabel>
+#include <QMessageBox>
 #include "defines.h"
 
 #ifdef Q_WS_WIN32
@@ -87,9 +88,10 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
     h_layout2->addWidget(icon, 0, Qt::AlignTop);
     h_layout2->addLayout(m_fLayout, 1);
 
-    QPushButton * btn_yes       = new QPushButton("&Yes");
-    QPushButton * btn_no        = new QPushButton("&No");
-    QPushButton * btn_cancel    = new QPushButton("&Cancel");
+    QPushButton * btn_yes       = new QPushButton(tr("&Yes"));
+    QPushButton * btn_no        = new QPushButton(tr("&No"));
+    QPushButton * btn_cancel    = new QPushButton(tr("&Cancel"));
+
     QWidget * box = new QWidget;
     box->setLayout(new QHBoxLayout);
     box->layout()->addWidget(btn_yes);
