@@ -218,7 +218,8 @@ button {
 
             &::before {
                 content: '';
-                background: data-uri('sprite.png') no-repeat;
+                background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
+                background-repeat: no-repeat;
                 float: left;
                 width: 36px;
                 height: 48px;
@@ -359,7 +360,9 @@ li.menu-item {
         width: 23px;
         height: 23px;
         padding: 0;
-        background: data-uri('sprite.png') -72px -141px no-repeat;
+        background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
+        background-repeat: no-repeat;
+        background-position: -72px -141px;
 
         &:hover {
             background-position-x: -96px;
@@ -423,7 +426,9 @@ li.menu-item {
     .icon {
         &::before {
             content: '';
-            background: data-uri('sprite.png') no-repeat 0 -48px;
+            background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
+            background-repeat: no-repeat;
+            background-position: 0 -48px;
             float: left;
             width: 24px;
             height: 30px;
@@ -532,7 +537,9 @@ li.menu-item {
 .text-emptylist::before {
     content: '';
     display: block;
-    background: data-uri('sprite.png')  -72px -48px no-repeat;
+    background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
+    background-repeat: no-repeat;
+    background-position: -72px -48px;
     width: 58px;
     height: 78px;
     margin: 50px auto 10px;;
@@ -588,7 +595,7 @@ li.menu-item {
 }
 
 .img-welcome {
-    content: data-uri('welcome_image.png');
+    content: -webkit-image-set(data-uri('welcome_image.png') 1x, data-uri('welcome_image@2x.png') 2x);
 }
 
 .welcome {
