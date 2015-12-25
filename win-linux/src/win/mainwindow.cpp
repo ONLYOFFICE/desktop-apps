@@ -256,7 +256,6 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
-//        qDebug() << "WM_CLOSE action";
         window->m_pWinPanel->doClose();
         return 0;
 
