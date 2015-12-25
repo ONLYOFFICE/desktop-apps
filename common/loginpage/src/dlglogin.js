@@ -80,6 +80,7 @@ LoginDlg = function() {
 
             if (reader.readyState != 4) { return; }
 
+            clearTimeout(tId);
             switch (reader.status) {
             case 0: case 401:
             case 200: out_res = STATUS_EXIST; break;
@@ -94,17 +95,21 @@ LoginDlg = function() {
         //     callback && callback(STATUS_NO_CONNECTION);
         // };
 
-        setTimeout(function(){
+        var tId = setTimeout(function(){
             reader.abort();
             callback && callback(STATUS_NO_CONNECTION);
         }, 20000);
         
         reader.onerror = function(e) {
-            console.log('on error');
+            setTimeout(_doload, 50);
         };
 
-        reader.open('get', url, true);
-        reader.send(null);
+        function _doload() {
+            reader.open('get', url, true);
+            reader.send(null);
+        };
+
+        _doload();
     }
 
     function sendData(url, data, target) {

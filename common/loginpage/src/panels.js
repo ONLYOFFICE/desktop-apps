@@ -461,10 +461,10 @@ function onConnectClick() {
 function doLogin(p, u) {
     var dlg = new LoginDlg();
     dlg.onsuccess(function(info){
+        window.AscDesktopEditor.execCommand("portal:open", info.portal);
+
         PortalsStore.keep(info);
         updatePortals();
-
-        window.AscDesktopEditor.execCommand("portal:open", info.portal);
     });
     dlg.show(p, u);
 }
