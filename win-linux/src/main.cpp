@@ -61,7 +61,7 @@ int main( int argc, char *argv[] )
 {
     QString user_data_path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/ONLYOFFICE/DesktopEditors";
 
-    auto setup_paths = [user_data_path](CAscApplicationManager * manager) {
+    auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
         std::wstring sAppData(L"");
 
 #ifdef _WIN32
@@ -80,9 +80,10 @@ int main( int argc, char *argv[] )
 
         if (sAppData.size() > 0) {
             manager->m_oSettings.SetUserDataPath(sAppData);
-            manager->m_oSettings.cookie_path = (user_data_path + "/data").toStdWString();
-            manager->m_oSettings.recover_path = (user_data_path + "/data/recover").toStdWString();
-            manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/data/fonts").toStdWString();
+            QDir().mkpath(user_data_path.append("/data"));
+            manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
+            manager->m_oSettings.recover_path = (user_data_path + "/recover").toStdWString();
+            manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/fonts").toStdWString();
 
             QDir().mkpath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
         } else {
