@@ -3,6 +3,7 @@
 #define NAME_EXE_OUT        'DesktopEditors.exe'
 #define ASC_PATH            'ONLYOFFICE\DesktopEditors'
 #define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
+#define REG_SC_PATH         'Software\Classes\OnlyOffice'
 
 #define PATH_EXE            '..\Build\Release\release\DesktopEditors.exe'
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
@@ -296,35 +297,45 @@ Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
 Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};
 Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime};
 
-Root: HKCR; Subkey: ".doc";                                ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Word.Document.8";                    Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Word.Document.8";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Word.Document.8\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";            Flags: uninsdeletevalue
-Root: HKCR; Subkey: "Word.Document.8\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";   Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.doc;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.8";              Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";            
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";   
 
-Root: HKCR; Subkey: ".docx";                                ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Word.Document.12";                  Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Word.Document.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word Document";           Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Word.Document.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
-Root: HKCR; Subkey: "Word.Document.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.docx;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.12";            Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word Document";           Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           
+Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKCR; Subkey: ".xls";                               ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Excel.Sheet.8";                       Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Excel.Sheet.8";                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel 97-2003 Worksheet";   Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Excel.Sheet.8\DefaultIcon";          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";             Flags: uninsdeletevalue
-Root: HKCR; Subkey: "Excel.Sheet.8\shell\open\command";   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";    Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.xls;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.8";                  Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel 97-2003 Worksheet";   Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";             
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";    
 
-Root: HKCR; Subkey: ".xlsx";                              ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Excel.Sheet.12";                    Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Excel.Sheet.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Worksheet";         Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "Excel.Sheet.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
-Root: HKCR; Subkey: "Excel.Sheet.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.xlsx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.12";               Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12;                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Worksheet";         Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\DefaultIcon;          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           
+Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\shell\open\command;   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKCR; Subkey: ".ppt";                                 ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "PowerPoint.Show.8";                         Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "PowerPoint.Show.8";                    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Presentation"; Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "PowerPoint.Show.8\DefaultIcon";        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";                   Flags: uninsdeletevalue
-Root: HKCR; Subkey: "PowerPoint.Show.8\shell\open\command"; ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.ppt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.8";                         Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Presentation"; Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";                   
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          
 
-Root: HKCR; Subkey: ".pptx";                                  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "PowerPoint.Show.12";                Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "PowerPoint.Show.12";                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Presentation"; Flags: createvalueifdoesntexist
-Root: HKCR; Subkey: "PowerPoint.Show.12\DefaultIcon";         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           Flags: uninsdeletevalue
-Root: HKCR; Subkey: "PowerPoint.Show.12\shell\open\command";  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  Flags: uninsdeletevalue
+Root: HKLM; Subkey: Software\Classes\.pptx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.12";                Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Presentation"; Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           
+Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+
+Root: HKLM; Subkey: Software\Classes\.pdf;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Pdf.1";                Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Pdf document";                    Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           
+Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+
+Root: HKLM; Subkey: Software\Classes\.djvu;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Djvu.1";               Flags: uninsdeletevalue
+Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Djvu file";                       Flags: uninsdeletekey
+Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#NAME_EXE_OUT},0";           
+Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
 

@@ -19,8 +19,7 @@ Source: ..\..\common\converter\windows\win32\*;           DestDir: {app}\convert
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win32\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\cefbuilds\win32\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 Source: data\libs\qt\win32\*;                             DestDir: {app}\; Flags: ignoreversion recursesubdirs;
-;Source: data\libs\chromium\win_xp\dbghelp.dll;            DestDir: {sys}\; Flags: onlyifdoesntexist; OnlyBelowVersion: 6.0;
-;Source: data\libs\chromium\win32\dbghelp.dll;             DestDir: {sys}\; Flags: onlyifdoesntexist; MinVersion: 6.0;
-Source: data\libs\chromium\win32\dbghelp.dll;             DestDir: {sys}\; Flags: onlyifdoesntexist;
+Source: data\libs\chromium\win_xp\dbghelp.dll;            DestDir: {app}\; Flags: onlyifdoesntexist; OnlyBelowVersion: 6.0;
+Source: data\libs\chromium\win32\dbghelp.dll;             DestDir: {app}\; Flags: onlyifdoesntexist; MinVersion: 6.0;
 
 
