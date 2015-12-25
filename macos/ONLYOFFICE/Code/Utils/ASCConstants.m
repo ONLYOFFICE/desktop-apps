@@ -63,82 +63,82 @@
 + (NSDictionary *)ascFormatsInfo {
     return @{
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX): @{
-                     @"description" : @"Word 2007 Document",
+                     @"description" : NSLocalizedString(@"Word 2007 Document", nil),
                      @"extension"   : @"docx"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC): @{
-                     @"description" : @"Word 97-2003 Document",
+                     @"description" : NSLocalizedString(@"Word 97-2003 Document", nil),
                      @"extension"   : @"doc"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT): @{
-                     @"description" : @"OpenOffice Document",
+                     @"description" : NSLocalizedString(@"OpenOffice Document", nil),
                      @"extension"   : @"odt"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF): @{
-                     @"description" : @"Rich Text Document",
+                     @"description" : NSLocalizedString(@"Rich Text Document", nil),
                      @"extension"   : @"rtf"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT): @{
-                     @"description" : @"Plain Text",
+                     @"description" : NSLocalizedString(@"Plain Text", nil),
                      @"extension"   : @"txt"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML): @{
-                     @"description" : @"Web Page",
+                     @"description" : NSLocalizedString(@"Web Page", nil),
                      @"extension"   : @"html"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT): @{
-                     @"description" : @"Web Page",
+                     @"description" : NSLocalizedString(@"Web Page", nil),
                      @"extension"   : @"mht"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
-                     @"description" : @"Mobipocket e-book",
+                     @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
                      @"extension"   : @"epub"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
-                     @"description" : @"PowerPoint 2007 Presentation",
+                     @"description" : NSLocalizedString(@"PowerPoint 2007 Presentation", nil),
                      @"extension"   : @"pptx"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT): @{
-                     @"description" : @"PowerPoint 97-2003 Presentation",
+                     @"description" : NSLocalizedString(@"PowerPoint 97-2003 Presentation", nil),
                      @"extension"   : @"ppt"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
-                     @"description" : @"OpenOffice Presentation",
+                     @"description" : NSLocalizedString(@"OpenOffice Presentation", nil),
                      @"extension"   : @"odp"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX): @{
-                     @"description" : @"PowerPoint Slide Show",
+                     @"description" : NSLocalizedString(@"PowerPoint Slide Show", nil),
                      @"extension"   : @"ppsx"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
-                     @"description" : @"Excel 2007 Spreadsheet",
+                     @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS): @{
-                     @"description" : @"Excel 97-2003 Spreadsheet",
+                     @"description" : NSLocalizedString(@"Excel 97-2003 Spreadsheet", nil),
                      @"extension"   : @"xls"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS): @{
-                     @"description" : @"OpenOffice Spreadsheet",
+                     @"description" : NSLocalizedString(@"OpenOffice Spreadsheet", nil),
                      @"extension"   : @"ods"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV): @{
-                     @"description" : @"Comma-Separated Values",
+                     @"description" : NSLocalizedString(@"Comma-Separated Values", nil),
                      @"extension"   : @"csv"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
-                     @"description" : @"PDF File",
+                     @"description" : NSLocalizedString(@"PDF File", nil),
                      @"extension"   : @"pdf"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU): @{
-                     @"description" : @"DjVu File",
+                     @"description" : NSLocalizedString(@"DjVu File", nil),
                      @"extension"   : @"djvu"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS): @{
-                     @"description" : @"XML Paper Specification",
+                     @"description" : NSLocalizedString(@"XML Paper Specification", nil),
                      @"extension"   : @"xps"
                      }
              };

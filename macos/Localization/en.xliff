@@ -668,8 +668,16 @@
         <source>Cancel</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Delete and Quit">
         <source>Delete and Quit</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
@@ -678,6 +686,14 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx">
         <source>Document %ld.docx</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
@@ -692,6 +708,10 @@
         <source>If you don't review your documents, all your changeses will be lost.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No">
         <source>No</source>
         <note>No comment provided by engineer.</note>
@@ -700,8 +720,40 @@
         <source>OK</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Opening">
         <source>Opening</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing...">
@@ -716,6 +768,10 @@
         <source>Review Changes...</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
         <source>Spreadsheet %ld.xlsx</source>
         <note>No comment provided by engineer.</note>
@@ -726,6 +782,22 @@
       </trans-unit>
       <trans-unit id="Untitled">
         <source>Untitled</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">
