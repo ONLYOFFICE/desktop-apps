@@ -11,7 +11,7 @@ if exist ".svn" (
 )
 
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
-%OS%==32BIT && set OSNAME=win32 || set OSNAME=win64
+if %OS%==32BIT (set OSNAME=win32) else (set OSNAME=win64)
 
 set trunk_path=svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk
 set export_path=..\converter\windows
