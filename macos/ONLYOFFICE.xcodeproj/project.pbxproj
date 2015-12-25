@@ -107,6 +107,7 @@
 		FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F71BA1C6C8005A733F /* ASCButton.m */; };
 		FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */; };
 		FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */; };
+		FCCCF3661BE0F8AA009B57A8 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCCDBB6E1C22F019001788BA /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCDBB6D1C22F019001788BA /* ASCMenuButtonCell.m */; };
 		FCCDBB6F1C22F019001788BA /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCDBB6D1C22F019001788BA /* ASCMenuButtonCell.m */; };
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
@@ -190,6 +191,7 @@
 		FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Defines.h; sourceTree = "<group>"; };
 		FC67182D1BD913C00028600F /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6718301BD918CA0028600F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FC6718341BD9194D0028600F /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFMoveApplication.h; path = Vendor/PFMoveApplication/PFMoveApplication.h; sourceTree = SOURCE_ROOT; };
 		FC6718451BD91B3A0028600F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718471BD91B3F0028600F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718481BD91B410028600F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MoveApplication.strings; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		FCC8F6FC1BA1D00A005A733F /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewCell.h; path = Code/Controls/ASCTabViewCell.h; sourceTree = "<group>"; };
 		FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewCell.m; path = Code/Controls/ASCTabViewCell.m; sourceTree = "<group>"; };
 		FCCCF3581BE0E6DE009B57A8 /* Info-MAS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-MAS.plist"; sourceTree = "<group>"; };
+		FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFMoveApplication.m; path = Vendor/PFMoveApplication/PFMoveApplication.m; sourceTree = SOURCE_ROOT; };
 		FCCDBB6C1C22F019001788BA /* ASCMenuButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCMenuButtonCell.h; path = Code/Controls/ASCMenuButtonCell.h; sourceTree = "<group>"; };
 		FCCDBB6D1C22F019001788BA /* ASCMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCMenuButtonCell.m; path = Code/Controls/ASCMenuButtonCell.m; sourceTree = "<group>"; };
 		FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCMulticastDelegate.h; path = Code/Utils/ASCMulticastDelegate.h; sourceTree = "<group>"; };
@@ -449,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				FC3BFDF91BBE83AB0040C904 /* SFBPopover */,
+				FC6718331BD9193E0028600F /* PFMoveApplication */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -460,6 +464,15 @@
 				FC6718301BD918CA0028600F /* Security.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC6718331BD9193E0028600F /* PFMoveApplication */ = {
+			isa = PBXGroup;
+			children = (
+				FC6718341BD9194D0028600F /* PFMoveApplication.h */,
+				FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */,
+			);
+			name = PFMoveApplication;
 			sourceTree = "<group>";
 		};
 		FC739BE31C2BE8F700887739 /* Common */ = {
@@ -965,6 +978,7 @@
 				FC1127551BBA8A7E00AA3648 /* NSTimer+Block.m in Sources */,
 				FCC8F6FE1BA1D00A005A733F /* ASCTabViewCell.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
+				FCCCF3661BE0F8AA009B57A8 /* PFMoveApplication.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
