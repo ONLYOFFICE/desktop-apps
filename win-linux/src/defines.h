@@ -44,6 +44,7 @@
 #define FILE_DOWNLOAD_END       4
 
 #define APP_NAME "DesktopEditors"
+#define APP_TITLE "ONLYOFFICE"
 #define GET_REGISTRY_USER(variable) \
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
 #define GET_REGISTRY_SYSTEM(variable) \

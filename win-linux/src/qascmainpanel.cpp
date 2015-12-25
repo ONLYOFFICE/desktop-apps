@@ -61,7 +61,6 @@ extern HWND gTopWinId;
 
 using namespace NSEditorApi;
 
-#define APP_TITLE "ONLYOFFICE"
 #define BUTTON_MAIN_WIDTH   68
 #define TITLE_HEIGHT        29
 
@@ -696,7 +695,7 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
     case etSpreadsheet: new_name  = tr("Book%1.xlsx").arg(++xlsx_count); break;
     case etPresentation: new_name  = tr("Presentation%1.pptx").arg(++pptx_count); break;
-    default: new_name = tr("Document.asc"); break;
+    default: new_name = "Document.asc"; break;
     }
 
     COpenOptions opts = {new_name, etNewFile};

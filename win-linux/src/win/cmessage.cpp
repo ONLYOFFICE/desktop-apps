@@ -30,7 +30,7 @@ CMessage::CMessage(HWND hParentWnd)
     icon->setProperty("type","msg-error");
     icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
-    m_message = new QLabel(tr("some message"));
+    m_message = new QLabel("some message");
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
@@ -50,7 +50,7 @@ CMessage::CMessage(HWND hParentWnd)
 
     m_pDlg.setLayout(layout);
     m_pDlg.setMinimumWidth(300*g_dpi_ratio);
-    m_pDlg.setWindowTitle("ONLYOFFICE Documents");
+    m_pDlg.setWindowTitle(APP_TITLE);
 
     connect(btn_yes, &QPushButton::clicked, this, &CMessage::onYesClicked);
 //    connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
