@@ -54,6 +54,10 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
+static NSString * kRegHelpUrl   = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
+static NSString * kRegBuyUrl    = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
+static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
+
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";

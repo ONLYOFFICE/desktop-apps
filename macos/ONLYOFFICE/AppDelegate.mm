@@ -118,6 +118,8 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     
+    BOOL isActivated = NO;
+    
     if ([item action] == @selector(onMenuNew:)) {
         return YES;
     } else if ([item action] == @selector(onMenuOpen:)) {
@@ -132,6 +134,12 @@
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
         return YES;
+    } else if ([item action] == @selector(onMenuBuyNow:)) {
+        [item setHidden:isActivated];
+        return !isActivated;
+    } else if ([item action] == @selector(onMenuActivation:)) {
+        [item setHidden:isActivated];
+        return !isActivated;
     }
     
     return [super validateMenuItem:item];
@@ -142,16 +150,16 @@
 
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
     NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
-    NSString * helpUrl = @"http://helpcenter.onlyoffice.com/ONLYOFFICE-Editors/index.aspx";
+    NSString * helpUrl  = [NSString stringWithFormat:kHelpUrl, @""];
     
     if ([@"ru" isEqualToString:langCode]) {
-        helpUrl = @"http://helpcenter.onlyoffice.com/ru/ONLYOFFICE-Editors/index.aspx";
+        helpUrl = [NSString stringWithFormat:kHelpUrl, @"ru/"];
     } else if ([@"de" isEqualToString:langCode]) {
-        helpUrl = @"http://helpcenter.onlyoffice.com/de/ONLYOFFICE-Editors/index.aspx";
+        helpUrl = [NSString stringWithFormat:kHelpUrl, @"de/"];
     } else if ([@"fr" isEqualToString:langCode]) {
-        helpUrl = @"http://helpcenter.onlyoffice.com/fr/ONLYOFFICE-Editors/index.aspx";
+        helpUrl = [NSString stringWithFormat:kHelpUrl, @"fr/"];
     } else if ([@"es" isEqualToString:langCode]) {
-        helpUrl = @"http://helpcenter.onlyoffice.com/es/ONLYOFFICE-Editors/index.aspx";
+        helpUrl = [NSString stringWithFormat:kHelpUrl, @"es/"];
     }
     
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpUrl]];
@@ -236,4 +244,18 @@
     ViewController * controller = (ViewController *)mainWindow.contentViewController;
     [controller openAcknowledgments];
 }
+
+- (IBAction)onMenuBuyNow:(NSMenuItem *)sender {
+}
+
+- (IBAction)onMenuActivation:(NSMenuItem *)sender {
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    
+    if (mainWindow) {
+        ViewController * controller = (ViewController *)mainWindow.contentViewController;
+        NSWindowController * activationWindow = [controller.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
+        [activationWindow showWindow:nil];
+    }
+}
+
 @end

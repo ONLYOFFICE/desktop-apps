@@ -28,6 +28,10 @@
 		FC1127551BBA8A7E00AA3648 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127541BBA8A7E00AA3648 /* NSTimer+Block.m */; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
+		FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
+		FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
+		FC25A1AD1C2E883D00063A42 /* ASCRegistrationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.m */; };
+		FC25A1B31C2EA7D100063A42 /* ASCRegistrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */; };
 		FC38163B1C19B12B002922CD /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC38163A1C19B12B002922CD /* dictionaries */; };
 		FC38163C1C19B12B002922CD /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC38163A1C19B12B002922CD /* dictionaries */; };
 		FC394E651BCE4AD2001B4B7C /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */; };
@@ -172,6 +176,12 @@
 		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCPopoverLightView.m; path = Code/Views/ASCPopoverLightView.m; sourceTree = "<group>"; };
 		FC257C5B1BAC163A005D7E72 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+OnlyOffice.h"; path = "Code/Utils/NSString+OnlyOffice.h"; sourceTree = "<group>"; };
 		FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+OnlyOffice.mm"; path = "Code/Utils/NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
+		FC25A1A51C2E844800063A42 /* ASCTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewController.h; path = Code/Controllers/ASCTabViewController.h; sourceTree = "<group>"; };
+		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewController.m; path = Code/Controllers/ASCTabViewController.m; sourceTree = "<group>"; };
+		FC25A1AB1C2E883D00063A42 /* ASCRegistrationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCRegistrationController.h; path = Code/Controllers/ASCRegistrationController.h; sourceTree = "<group>"; };
+		FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCRegistrationController.m; path = Code/Controllers/ASCRegistrationController.m; sourceTree = "<group>"; };
+		FC25A1B11C2EA7D100063A42 /* ASCRegistrationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCRegistrationWindowController.h; path = Code/Controllers/ASCRegistrationWindowController.h; sourceTree = "<group>"; };
+		FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCRegistrationWindowController.m; path = Code/Controllers/ASCRegistrationWindowController.m; sourceTree = "<group>"; };
 		FC2CB1851BC3D41500DA42EB /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "Code/Utils/GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		FC38163A1C19B12B002922CD /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../common/package/dictionaries; sourceTree = "<group>"; };
 		FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "Code/Utils/GTMNSString+HTML.m"; sourceTree = "<group>"; };
@@ -349,6 +359,25 @@
 				FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FC25A1A91C2E880900063A42 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				FC25A1AA1C2E881500063A42 /* Controller */,
+			);
+			name = Registration;
+			sourceTree = "<group>";
+		};
+		FC25A1AA1C2E881500063A42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FC25A1AB1C2E883D00063A42 /* ASCRegistrationController.h */,
+				FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.m */,
+				FC25A1B11C2EA7D100063A42 /* ASCRegistrationWindowController.h */,
+				FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		FC3BFDF91BBE83AB0040C904 /* SFBPopover */ = {
@@ -638,6 +667,7 @@
 			children = (
 				FC739BE31C2BE8F700887739 /* Common */,
 				FCA0B33D1B9EB56E0073EDD4 /* Main Window */,
+				FC25A1A91C2E880900063A42 /* Registration */,
 				FCAA9A391BBA7E7600F3C47F /* Download */,
 				FCAF3EFA1BA31CF600B42BAA /* User Info */,
 				FC739BE41C2BE90600887739 /* Licence */,
@@ -654,6 +684,8 @@
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 				FCD294671BB97D3300318930 /* ASCDownloadController.h */,
 				FCD294681BB97D3300318930 /* ASCDownloadController.mm */,
+				FC25A1A51C2E844800063A42 /* ASCTabViewController.h */,
+				FC25A1A61C2E844800063A42 /* ASCTabViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1027,6 +1059,7 @@
 				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
 				FC67180C1BD913C00028600F /* ASCTabsControl.m in Sources */,
 				FC67180D1BD913C00028600F /* NSTimer+Block.m in Sources */,
+				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC67180E1BD913C00028600F /* ASCTabViewCell.m in Sources */,
 				FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */,
 				FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */,
@@ -1059,6 +1092,7 @@
 				FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */,
 				FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */,
+				FC25A1AD1C2E883D00063A42 /* ASCRegistrationController.m in Sources */,
 				FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */,
 				FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */,
 				FCC8F6F51BA1C307005A733F /* ASCTabCloseButtonCell.m in Sources */,
@@ -1080,6 +1114,7 @@
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC8F6FB1BA1C78C005A733F /* ASCButtonCell.m in Sources */,
+				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
 				FCCDBB6E1C22F019001788BA /* ASCMenuButtonCell.m in Sources */,
 				FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */,
@@ -1087,6 +1122,7 @@
 				FC257C5D1BAC163A005D7E72 /* NSString+OnlyOffice.mm in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
+				FC25A1B31C2EA7D100063A42 /* ASCRegistrationWindowController.m in Sources */,
 				FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,

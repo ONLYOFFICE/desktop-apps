@@ -26,6 +26,18 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Buy Now..." id="ecv-ob-kOc">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="onMenuBuyNow:" target="Voe-Tx-rLC" id="z7u-if-UbD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Activation..." id="fff-K1-E5b">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="onMenuActivation:" target="Voe-Tx-rLC" id="cgs-LQ-DwJ"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
@@ -954,44 +966,74 @@
         <!--Window Controller-->
         <scene sceneID="eoX-Cc-8yg">
             <objects>
-                <windowController id="80L-bR-oHq" sceneMemberID="viewController">
-                    <window key="window" title="ONLYOFFICE Activation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qti-2R-I2m">
+                <windowController storyboardIdentifier="ASCActivationWindowControllerId" id="80L-bR-oHq" customClass="ASCRegistrationWindowController" sceneMemberID="viewController">
+                    <window key="window" title="Activation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qti-2R-I2m">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="150"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="80L-bR-oHq" id="HCB-A4-zz8"/>
+                        </connections>
                     </window>
                     <connections>
-                        <segue destination="eb1-ke-RIJ" kind="relationship" relationship="window.shadowedContentViewController" id="lkP-RY-Z8v"/>
+                        <segue destination="uAG-km-5UA" kind="relationship" relationship="window.shadowedContentViewController" id="Hnx-QJ-fL0"/>
                     </connections>
                 </windowController>
                 <customObject id="S2c-HE-qcd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1030" y="266"/>
         </scene>
-        <!--View Controller-->
+        <!--Tab View Controller-->
+        <scene sceneID="0if-nc-BdO">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="uAG-km-5UA" customClass="ASCTabViewController" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="iec-s2-aML"/>
+                        <tabViewItem id="JLc-kv-hfs"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="sng-MX-l8D">
+                        <rect key="frame" x="0.0" y="9" width="480" height="149"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="uAG-km-5UA" id="EGJ-Nq-URy"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <segue destination="eb1-ke-RIJ" kind="relationship" relationship="tabItems" id="W9x-xp-EPR"/>
+                        <segue destination="7Fa-DF-A4G" kind="relationship" relationship="tabItems" id="Omk-BQ-IKB"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="Cz2-En-z3a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="258"/>
+        </scene>
+        <!--License Activation-->
         <scene sceneID="vEg-aU-aNg">
             <objects>
-                <viewController id="eb1-ke-RIJ" sceneMemberID="viewController">
+                <viewController title="License Activation" id="eb1-ke-RIJ" customClass="ASCRegistrationController" sceneMemberID="viewController">
                     <view key="view" id="Yyd-pW-Pco">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="572" height="157"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5KT-uS-QOD">
-                                <rect key="frame" x="18" y="113" width="444" height="17"/>
+                                <rect key="frame" x="110" y="120" width="444" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="ACo-wg-wjj"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copy and paste your ONLYOFFICE registration data here:" id="jep-MJ-EBv">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Please enter your Activation Key:" id="jep-MJ-EBv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dn-At-Xqp">
-                                <rect key="frame" x="20" y="83" width="440" height="22"/>
+                                <rect key="frame" x="112" y="90" width="440" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="D7E-6W-jDn"/>
+                                    <constraint firstAttribute="width" constant="440" id="s2w-xa-ZKO"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Wlr-ED-yFE">
                                     <font key="font" metaFont="system"/>
@@ -1000,57 +1042,170 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNc-Ry-AWP">
-                                <rect key="frame" x="18" y="44" width="444" height="31"/>
+                                <rect key="frame" x="110" y="51" width="444" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="7KD-78-jCd"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Info" id="yGK-Fg-qtS">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If you have already purchased ONLYOFFICE, you should find your activation key in an email confirmation." id="yGK-Fg-qtS">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N3N-FI-Vlm">
-                                <rect key="frame" x="376" y="8" width="90" height="32"/>
+                                <rect key="frame" x="426" y="13" width="132" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="8nW-3I-ES9"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8nW-3I-ES9"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Register" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cmz-jq-Ope">
+                                <buttonCell key="cell" type="push" title="Activate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cmz-jq-Ope">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onRegistrationClick:" target="eb1-ke-RIJ" id="ChW-uC-yeb"/>
+                                </connections>
+                            </button>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gAz-YE-vkb">
+                                <rect key="frame" x="18" y="17" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kUb-LQ-tLP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onHelpClick:" target="eb1-ke-RIJ" id="WRA-IY-96a"/>
+                                </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSA-rg-kXF">
-                                <rect key="frame" x="254" y="8" width="117" height="32"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="psS-yA-BvJ">
+                                <rect key="frame" x="20" y="65" width="72" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="jcH-lF-0z1"/>
+                                    <constraint firstAttribute="width" constant="72" id="HGO-bO-d4f"/>
+                                    <constraint firstAttribute="height" constant="72" id="Msr-e1-qLk"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="IeO-SZ-7HU"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSA-rg-kXF">
+                                <rect key="frame" x="289" y="13" width="132" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="jcH-lF-0z1"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Buy Online..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AF1-Nc-smx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="onBuyOnlineClick:" target="eb1-ke-RIJ" id="1k4-nT-udE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="5KT-uS-QOD" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="5yV-JF-LLf"/>
+                            <constraint firstItem="6dn-At-Xqp" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="20" id="7YG-8V-gKk"/>
                             <constraint firstItem="5KT-uS-QOD" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="7dN-aT-KZ0"/>
                             <constraint firstAttribute="trailing" secondItem="5KT-uS-QOD" secondAttribute="trailing" constant="20" id="8QT-M9-g4b"/>
-                            <constraint firstItem="LNc-Ry-AWP" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="DwF-2L-CjO"/>
+                            <constraint firstItem="5KT-uS-QOD" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="20" id="BVw-qz-Up3"/>
+                            <constraint firstAttribute="bottom" secondItem="kSA-rg-kXF" secondAttribute="bottom" constant="20" id="Cnx-Dd-VDh"/>
+                            <constraint firstAttribute="bottom" secondItem="gAz-YE-vkb" secondAttribute="bottom" constant="20" id="H6I-E6-Muf"/>
+                            <constraint firstItem="gAz-YE-vkb" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="10" id="K4y-Ff-aOc"/>
                             <constraint firstAttribute="trailing" secondItem="6dn-At-Xqp" secondAttribute="trailing" constant="20" id="KLP-g9-rck"/>
                             <constraint firstAttribute="trailing" secondItem="LNc-Ry-AWP" secondAttribute="trailing" constant="20" id="KNk-Az-5dN"/>
+                            <constraint firstItem="gAz-YE-vkb" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="Pfx-Po-m3p"/>
                             <constraint firstItem="LNc-Ry-AWP" firstAttribute="top" secondItem="6dn-At-Xqp" secondAttribute="bottom" constant="8" id="T1E-vz-h7J"/>
                             <constraint firstAttribute="trailing" secondItem="N3N-FI-Vlm" secondAttribute="trailing" constant="20" id="UNt-zm-Xwj"/>
-                            <constraint firstItem="N3N-FI-Vlm" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="8" id="afY-x7-OPV"/>
+                            <constraint firstItem="LNc-Ry-AWP" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="20" id="Xsp-jG-Pbj"/>
+                            <constraint firstItem="kSA-rg-kXF" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="10" id="Znd-SQ-KqY"/>
                             <constraint firstItem="N3N-FI-Vlm" firstAttribute="leading" secondItem="kSA-rg-kXF" secondAttribute="trailing" constant="17" id="aiE-S4-fkm"/>
-                            <constraint firstItem="6dn-At-Xqp" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="ctq-7T-0nq"/>
+                            <constraint firstItem="psS-yA-BvJ" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="d7D-9R-kIa"/>
                             <constraint firstItem="6dn-At-Xqp" firstAttribute="top" secondItem="5KT-uS-QOD" secondAttribute="bottom" constant="8" id="dzN-dg-Ggu"/>
-                            <constraint firstItem="kSA-rg-kXF" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="8" id="ixl-vd-sl0"/>
+                            <constraint firstItem="psS-yA-BvJ" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="20" id="qr0-0N-iAZ"/>
+                            <constraint firstItem="N3N-FI-Vlm" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="10" id="uwO-ms-HkQ"/>
+                            <constraint firstAttribute="bottom" secondItem="N3N-FI-Vlm" secondAttribute="bottom" constant="20" id="znA-sG-oSu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="keyField" destination="6dn-At-Xqp" id="luT-gD-o78"/>
+                    </connections>
                 </viewController>
                 <customObject id="RZH-Cz-Eqq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="547"/>
+            <point key="canvasLocation" x="2281.5" y="257.5"/>
+        </scene>
+        <!--License Activation-->
+        <scene sceneID="TdI-3Q-ieF">
+            <objects>
+                <viewController title="License Activation" id="7Fa-DF-A4G" customClass="ASCRegistrationController" sceneMemberID="viewController">
+                    <view key="view" id="b20-8Q-vEp">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="276"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AbG-32-fhc">
+                                <rect key="frame" x="18" y="71" width="354" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="CTh-bg-MSC"/>
+                                    <constraint firstAttribute="width" constant="350" id="E5M-Et-Xb8"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="You have successfully activated ONLYOFFICE." id="jBt-El-yRL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w87-Nn-nwG">
+                                <rect key="frame" x="144" y="13" width="102" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="N6h-xB-gDy"/>
+                                    <constraint firstAttribute="width" constant="90" id="oT4-nj-xLQ"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ipn-Y0-ytQ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onSuccessClose:" target="7Fa-DF-A4G" id="OBy-vz-GqT"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-4E-aev">
+                                <rect key="frame" x="18" y="116" width="354" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="BM1-Kc-pce"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Thank You!" id="kpa-Sr-jPV">
+                                    <font key="font" metaFont="system" size="28"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G98-Po-0Ih">
+                                <rect key="frame" x="159" y="174" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="IOD-dI-tvJ"/>
+                                    <constraint firstAttribute="height" constant="72" id="MKL-4O-aKE"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="HQg-LZ-XjY"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="w87-Nn-nwG" firstAttribute="top" secondItem="AbG-32-fhc" secondAttribute="bottom" constant="30" id="2wu-mj-3Q4"/>
+                            <constraint firstAttribute="trailing" secondItem="eEn-4E-aev" secondAttribute="trailing" constant="20" id="8vE-2g-Bb8"/>
+                            <constraint firstAttribute="trailing" secondItem="AbG-32-fhc" secondAttribute="trailing" constant="20" id="B1N-wZ-Mli"/>
+                            <constraint firstItem="eEn-4E-aev" firstAttribute="leading" secondItem="b20-8Q-vEp" secondAttribute="leading" constant="20" id="KlF-sW-FCI"/>
+                            <constraint firstItem="w87-Nn-nwG" firstAttribute="centerX" secondItem="b20-8Q-vEp" secondAttribute="centerX" id="Kw0-bx-0bd"/>
+                            <constraint firstItem="G98-Po-0Ih" firstAttribute="top" secondItem="b20-8Q-vEp" secondAttribute="top" constant="30" id="Lgx-Xd-dcd"/>
+                            <constraint firstItem="G98-Po-0Ih" firstAttribute="centerX" secondItem="b20-8Q-vEp" secondAttribute="centerX" id="QSE-eb-UEE"/>
+                            <constraint firstItem="AbG-32-fhc" firstAttribute="top" secondItem="eEn-4E-aev" secondAttribute="bottom" constant="8" id="ajP-hJ-h7j"/>
+                            <constraint firstAttribute="bottom" secondItem="w87-Nn-nwG" secondAttribute="bottom" constant="20" id="kD4-RQ-HVT"/>
+                            <constraint firstItem="AbG-32-fhc" firstAttribute="leading" secondItem="b20-8Q-vEp" secondAttribute="leading" constant="20" id="u3T-aj-MYN"/>
+                            <constraint firstItem="eEn-4E-aev" firstAttribute="top" secondItem="G98-Po-0Ih" secondAttribute="bottom" constant="24" id="yQp-ey-pOL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="R90-sz-4Xg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2881.5" y="327"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1064,7 +1219,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
-                                    <tabViewItem label="ONLYOFFICE" identifier="1CEF624D-9FF3-432B-9967-61361B5BFE8B" image="Documents_active_normal" id="kcg-El-49G">
+                                    <tabViewItem label="ONLYOFFICE" identifier="1CEF624D-9FF3-432B-9967-61361B5BFE8B" id="kcg-El-49G">
                                         <view key="view" id="PUE-XO-znT">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="790"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1204,7 +1359,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Documents_active_normal" width="108" height="29"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="icon-login_hover" width="12" height="12"/>
         <image name="icon-login_normal" width="12" height="12"/>
         <image name="progress_download_icon" width="128" height="128"/>
