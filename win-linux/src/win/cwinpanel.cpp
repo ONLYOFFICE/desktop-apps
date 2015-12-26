@@ -199,8 +199,9 @@ void CWinPanel::applyWindowState(Qt::WindowState state)
 
 void CWinPanel::slot_windowClose()
 {
-    m_pManager->GetApplication()->ExitMessageLoop();
-    PostQuitMessage(0);
+    m_pManager->DestroyCefView(-1);
+//    m_pManager->GetApplication()->ExitMessageLoop();
+//    PostQuitMessage(0);
 }
 
 void CWinPanel::doClose()
