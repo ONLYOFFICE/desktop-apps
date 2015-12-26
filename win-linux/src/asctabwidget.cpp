@@ -688,10 +688,13 @@ int CAscTabWidget::findModified(const QString& portalname)
 void CAscTabWidget::setFullScreen(bool apply)
 {
     QWidget * fsWidget;
+    static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
             fsWidget = m_dataFullScreen->widget();
             fsWidget->showNormal();
+
+            disconnect(cefConnection);
 
             int index = m_dataFullScreen->tabindex();
             CAscTabData * doc = (CAscTabData *)m_dataFullScreen->data();
@@ -714,18 +717,26 @@ void CAscTabWidget::setFullScreen(bool apply)
 
             removeTab(currentIndex());
 #ifdef _WIN32
-
-//            QIcon icon(":/res/icons/desktop_icons.ico");
-//            HICON hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
-//                                                icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
-//            SendMessage((HWND)fsWidget->winId(), WM_SETICON, ICON_BIG, (LPARAM)hIcon);
-
+            fsWidget->setWindowIcon(QIcon(":/res/icons/desktopeditors.ico"));
             fsWidget->setParent(nullptr);
 #else
             QWidget * grandpa = qobject_cast<QWidget *>(parent()->parent());
             if (grandpa) fsWidget->setParent(grandpa);
 #endif
             fsWidget->showFullScreen();
+
+            cefConnection = connect((QCefView *)fsWidget, &QCefView::closeWidget, [=](QCloseEvent * e){
+                e->ignore();
+
+                NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                pCommand->put_Command(L"editor:stopDemonstration");
+
+                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                pEvent->m_pData = pCommand;
+                ((QCefView *)fsWidget)->GetCefView()->Apply(pEvent);
+
+                emit closeAppRequest();
+            });
 
             QPoint pt = mapToGlobal(pos());
             fsWidget->setGeometry(QApplication::desktop()->screenGeometry(pt));

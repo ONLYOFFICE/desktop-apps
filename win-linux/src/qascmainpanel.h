@@ -90,6 +90,7 @@ public slots:
     void onTabClosed(int, int);
     void onTabCloseRequest(int);
     void onMenuLogout();
+    void onAppCloseRequest();
 
     void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);

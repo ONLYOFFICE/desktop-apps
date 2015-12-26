@@ -106,6 +106,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabClosed(int, int)), this, SLOT(onTabClosed(int, int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
+    connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &QAscMainPanel::onAppCloseRequest);
 
     QSize small_btn_size(16*g_dpi_ratio, 16*g_dpi_ratio);
     QSize wide_btn_size(29*g_dpi_ratio, 16*g_dpi_ratio);
@@ -338,6 +339,12 @@ void QAscMainPanel::pushButtonCloseClicked()
             }
         }
     }
+}
+
+void QAscMainPanel::onAppCloseRequest()
+{
+    onFullScreen(false);
+    pushButtonCloseClicked();
 }
 
 void QAscMainPanel::applyMainWindowState(Qt::WindowState s)

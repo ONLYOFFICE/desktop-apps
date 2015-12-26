@@ -123,6 +123,7 @@ private:
 signals:
 //    void sendAddEditor();
     void tabClosed(int, int);
+    void closeAppRequest();
 
 public:
     CAscTabWidget(QWidget *parent = 0);
