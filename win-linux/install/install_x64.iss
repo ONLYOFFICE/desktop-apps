@@ -5,7 +5,8 @@
 AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
 OutputBaseFileName      =DesktopEditors_x64
-MinVersion              =0,5.0.2195
+;MinVersion              =0,5.0.2195
+MinVersion              =6.0
 ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowLanguageDialog      = false
