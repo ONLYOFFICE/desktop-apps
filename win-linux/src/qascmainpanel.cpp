@@ -165,7 +165,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
     if (isCustomWindow) {
-        _tabs_stylesheet_file += "tabbar_flw.qss";
+        _tabs_stylesheet_file += "tabbar.qss";
         palette.setColor(QPalette::Background, QColor("#313437"));
 
         layoutBtns->addWidget(m_pButtonMinimize);
