@@ -344,6 +344,26 @@ public:
                         break;
                     }
                         
+                    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL: {
+                        NSEditorApi::CAscLicenceActual * pData = (NSEditorApi::CAscLicenceActual *)pEvent->m_pData;
+                        
+                        if (pData) {                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLicenseInfo
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"path"          : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                         @"product"       : @(pData->get_ProductId()),
+                                                                                         @"daysLeft"      : @(pData->get_DaysLeft()),
+                                                                                         @"daysBetween"   : @(pData->get_DaysBetween()),
+                                                                                         @"licence"       : @(pData->get_Licence())
+                                                                                         }];
+                        }
+                    }                        
+                        
+                    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY: {
+                        break;
+                    }
+                        
                     default:
                         break;
                 }

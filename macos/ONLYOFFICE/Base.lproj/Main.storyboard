@@ -1010,6 +1010,122 @@
             </objects>
             <point key="canvasLocation" x="1620" y="258"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="EyC-Tq-1jt">
+            <objects>
+                <windowController storyboardIdentifier="ASCTryWindowControllerId" id="POb-DI-UWJ" customClass="ASCTrialWindowController" sceneMemberID="viewController">
+                    <window key="window" title="ONLYOFFICE" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="QvS-Co-rdD">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="280" y="308" width="395" height="175"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="POb-DI-UWJ" id="K9q-IV-HUa"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="fug-wa-QH5" kind="relationship" relationship="window.shadowedContentViewController" id="BKd-lX-7Ba"/>
+                    </connections>
+                </windowController>
+                <customObject id="Ask-g5-Gl6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1072.5" y="642.5"/>
+        </scene>
+        <!--ONLYOFFICE-->
+        <scene sceneID="poO-ef-qnb">
+            <objects>
+                <viewController title="ONLYOFFICE" id="fug-wa-QH5" customClass="ASCTrialController" sceneMemberID="viewController">
+                    <view key="view" id="iYk-4a-odQ">
+                        <rect key="frame" x="0.0" y="0.0" width="396" height="174"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wx3-xS-7Kt">
+                                <rect key="frame" x="20" y="82" width="72" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="Iwm-3v-KSg"/>
+                                    <constraint firstAttribute="width" constant="72" id="rYb-ZX-1hz"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="hF9-Og-rkD"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TY5-kf-QXi">
+                                <rect key="frame" x="110" y="137" width="268" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="Da6-ot-na2"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you for evaluating ONLYOFFICE!" id="zbg-CZ-mv3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-9q-zVx">
+                                <rect key="frame" x="110" y="61" width="268" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="qap-0B-lvd"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eWZ-KX-JtO">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <string key="title">Your subscription is about to expire(%1 days left).We have a special offer for you.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0rt-25-GZU">
+                                <rect key="frame" x="106" y="13" width="135" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="N77-6L-3En"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Activate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MDC-GR-pev">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onActivation:" target="fug-wa-QH5" id="uJP-OG-CN4"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="byU-mY-X4q">
+                                <rect key="frame" x="247" y="13" width="135" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="MeM-V6-2EE"/>
+                                    <constraint firstAttribute="width" constant="123" id="dNk-yO-V5P"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K6Z-jH-qTl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onContinue:" target="fug-wa-QH5" id="atr-km-VbR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0rt-25-GZU" secondAttribute="bottom" constant="20" id="1mD-j7-ykU"/>
+                            <constraint firstItem="y5a-9q-zVx" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="20" id="3Fk-T7-fwk"/>
+                            <constraint firstAttribute="trailing" secondItem="byU-mY-X4q" secondAttribute="trailing" constant="20" id="6HF-SH-Wyd"/>
+                            <constraint firstAttribute="bottom" secondItem="byU-mY-X4q" secondAttribute="bottom" constant="20" id="I8B-4l-yPR"/>
+                            <constraint firstItem="TY5-kf-QXi" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="20" id="JgT-j8-9hC"/>
+                            <constraint firstItem="byU-mY-X4q" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="20" id="XLa-uC-kHP"/>
+                            <constraint firstItem="Wx3-xS-7Kt" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="20" id="XMg-qV-GSK"/>
+                            <constraint firstAttribute="trailing" secondItem="TY5-kf-QXi" secondAttribute="trailing" constant="20" id="Y4E-rr-HAv"/>
+                            <constraint firstAttribute="trailing" secondItem="y5a-9q-zVx" secondAttribute="trailing" constant="20" id="aFl-C1-dkQ"/>
+                            <constraint firstItem="y5a-9q-zVx" firstAttribute="top" secondItem="TY5-kf-QXi" secondAttribute="bottom" constant="20" id="afc-tm-HHW"/>
+                            <constraint firstItem="Wx3-xS-7Kt" firstAttribute="leading" secondItem="iYk-4a-odQ" secondAttribute="leading" constant="20" id="lN3-nZ-SMi"/>
+                            <constraint firstItem="0rt-25-GZU" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="20" id="oDp-Pq-O7s"/>
+                            <constraint firstItem="byU-mY-X4q" firstAttribute="leading" secondItem="0rt-25-GZU" secondAttribute="trailing" constant="18" id="wE5-bD-k1D"/>
+                            <constraint firstItem="TY5-kf-QXi" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="20" id="y9s-WI-5u6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activateButton" destination="0rt-25-GZU" id="uO5-Nc-n23"/>
+                        <outlet property="headerField" destination="TY5-kf-QXi" id="BA3-FV-6qY"/>
+                        <outlet property="messageField" destination="y5a-9q-zVx" id="s5O-LG-Hmg"/>
+                        <outlet property="tryButton" destination="byU-mY-X4q" id="EF3-XV-WPl"/>
+                    </connections>
+                </viewController>
+                <customObject id="egK-fL-LSg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1593" y="643"/>
+        </scene>
         <!--License Activation-->
         <scene sceneID="vEg-aU-aNg">
             <objects>

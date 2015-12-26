@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-        <key>You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+        <key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
         <dict>
             <key>NSStringLocalizedFormatKey</key>
             <string>%#@documents@</string>
@@ -13,9 +13,9 @@
                 <key>NSStringFormatValueTypeKey</key>
                 <string>ld</string>
                 <key>one</key>
-                <string>Sie haben ein Dokument mit unbestätigten Änderungen. Wollen Sie die Dokumente vor dem Abschluss sichten?</string>
+                <string>Sie haben %ld Dokument mit unbestätigten Änderungen. Wollen Sie die Dokumente vor dem Abschluss sichten?</string>
                 <key>other</key>
-                <string>Sie haben andere Dokumente mit unbestätigten Änderungen. Wollen Sie die Dokumente vor dem Abschluss sichten?</string>
+                <string>Sie haben %ld Dokumente mit unbestätigten Änderungen. Wollen Sie die Dokumente vor dem Abschluss sichten?</string>
             </dict>
         </dict>
     </dict>

@@ -53,5 +53,6 @@
 + (NSMutableDictionary *)localSettings;
 + (NSString *)applicationDataPath;
 + (NSString *)recoveryDataPath;
++ (NSString *)licensePath;
 + (void)createCloudPath;
 @end

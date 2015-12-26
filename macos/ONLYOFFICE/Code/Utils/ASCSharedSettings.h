@@ -42,6 +42,7 @@
 
 static NSString * const kSettingsCurrentTab         = @"asc.onlyoffice.currentTab";
 static NSString * const kSettingsLastOpenDirectory  = @"asc.onlyoffice.lastOpenDirectory";
+static NSString * const kSettingsLicenseInfo        = @"asc.onlyoffice.prodInfo";
 
 @interface ASCSharedSettings : NSObject
 + (instancetype)sharedInstance;

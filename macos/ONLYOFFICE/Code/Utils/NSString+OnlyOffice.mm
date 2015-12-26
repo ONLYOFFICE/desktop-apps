@@ -63,6 +63,11 @@
     return std::wstring ((wchar_t*)[data bytes], [data length] / sizeof(wchar_t));
 }
 
+- (std::string)stdstring
+{
+    return std::string([self UTF8String]);
+}
+
 + (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources
 {
     size_t count = sources.size();

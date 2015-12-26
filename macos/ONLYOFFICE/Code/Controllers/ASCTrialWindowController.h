@@ -31,23 +31,15 @@
 */
 
 //
-//  NSString+OnlyOffice.h
-//  SpreadsheetEditor
+//  ASCTrialWindowController.h
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/26/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <string>
-#import <Foundation/Foundation.h>
-#import <vector>
+#import <Cocoa/Cocoa.h>
 
-@interface NSString (OnlyOffice)
+@interface ASCTrialWindowController : NSWindowController
 
-+ (id)stringWithstdwstring:(const std::wstring&)string;
-- (std::wstring)stdwstring;
-- (std::string)stdstring;
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query;
-- (NSString *)md5;
 @end

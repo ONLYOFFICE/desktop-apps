@@ -54,6 +54,8 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
+static int ONLYOFFICE_PRODUCT_ID = 300;
+
 static NSString * kRegHelpUrl   = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 static NSString * kRegBuyUrl    = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
@@ -65,6 +67,7 @@ static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
+static NSString * const ASCEventNameShowActivation          = @"UI_showActivation";
 
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
@@ -84,6 +87,7 @@ static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog"
 static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
 static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
 static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout";
+static NSString * const CEFEventNameLicenseInfo             = @"CEF_lInfo";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;

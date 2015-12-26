@@ -342,12 +342,14 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
+    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    
     if (tab) {
         NSButton * btn = (NSButton *)tab;
-        [self.titleLabel setStringValue:[NSString stringWithFormat:@"ONLYOFFICE  ▸  %@", btn.title]];
+        [self.titleLabel setStringValue:[NSString stringWithFormat:@"%@  ▸  %@", productName, btn.title]];
         [self.portalButton setState:NSOffState];
     } else {
-        [self.titleLabel setStringValue:@"ONLYOFFICE"];
+        [self.titleLabel setStringValue:productName];
         [self.portalButton setState:NSOnState];
     }
 }

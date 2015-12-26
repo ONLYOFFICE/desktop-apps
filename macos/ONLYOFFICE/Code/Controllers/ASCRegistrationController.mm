@@ -39,7 +39,10 @@
 //
 
 #import "ASCRegistrationController.h"
+#import "mac_application.h"
 #import "ASCConstants.h"
+#import "ASCHelper.h"
+#import "NSString+OnlyOffice.h"
 
 @interface ASCRegistrationController ()
 @property (nonatomic) NSTabViewController * tabViewController;
@@ -50,11 +53,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLicenseInfo:)
+                                                 name:CEFEventNameLicenseInfo
+                                               object:nil];
+}
+
+- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(nullable id)sender {
     self.tabViewController = sender;
+}
+
+#pragma mark -
+#pragma mark CEF Events
+
+- (void)onCEFLicenseInfo:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        
+    }
 }
 
 #pragma mark -
@@ -99,7 +119,20 @@
 }
 
 - (IBAction)onRegistrationClick:(NSButton *)sender {
-    [self.tabViewController setSelectedTabViewItemIndex:1];
+//    [self.tabViewController setSelectedTabViewItemIndex:1];
+    NSString * licenseDirectory = [ASCHelper licensePath];
+    
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    
+    NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
+    keyData->put_Path([licenseDirectory stdwstring]);
+    keyData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+    keyData->put_Key([[self.keyField stringValue] stdstring]);
+    
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
+    pEvent->m_pData = keyData;
+    
+    appManager->Apply(pEvent);
 }
 
 @end

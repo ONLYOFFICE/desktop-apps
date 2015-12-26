@@ -249,13 +249,9 @@
 }
 
 - (IBAction)onMenuActivation:(NSMenuItem *)sender {
-    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    
-    if (mainWindow) {
-        ViewController * controller = (ViewController *)mainWindow.contentViewController;
-        NSWindowController * activationWindow = [controller.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
-        [activationWindow showWindow:nil];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameShowActivation
+                                                        object:nil
+                                                      userInfo:nil];
 }
 
 @end

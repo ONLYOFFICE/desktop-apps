@@ -31,23 +31,31 @@
 */
 
 //
-//  NSString+OnlyOffice.h
-//  SpreadsheetEditor
+//  ASCTrialWindowController.m
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/26/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <string>
-#import <Foundation/Foundation.h>
-#import <vector>
+#import "ASCTrialWindowController.h"
 
-@interface NSString (OnlyOffice)
+@interface ASCTrialWindowController ()
 
-+ (id)stringWithstdwstring:(const std::wstring&)string;
-- (std::wstring)stdwstring;
-- (std::string)stdstring;
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query;
-- (NSString *)md5;
+@end
+
+@implementation ASCTrialWindowController
+
+- (void)windowDidLoad {
+    [super windowDidLoad];
+}
+
+- (void)showWindow:(id)sender {
+    [NSApp runModalForWindow:self.window];
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [NSApp stopModal];
+}
+
 @end

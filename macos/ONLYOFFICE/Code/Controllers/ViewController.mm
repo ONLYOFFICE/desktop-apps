@@ -84,6 +84,11 @@
                                              selector:@selector(onWindowLoaded:)
                                                  name:ASCEventNameMainWindowLoaded
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onShowActivation:)
+                                                 name:ASCEventNameShowActivation
+                                               object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFCreateTab:)
@@ -171,7 +176,14 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
+
+        [self checkLicense];
     }
+}
+
+- (void)onShowActivation:(NSNotification *)notification {
+    NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
+    [activationWindow showWindow:nil];
 }
 
 - (void)setupTabControl {
@@ -206,6 +218,47 @@
         loginPage.scheme                = NSURLFileScheme;
         
         [self.cefStartPageView loadWithUrl:[loginPage string]];
+    }
+}
+
+- (void)checkLicense {
+    NSDictionary * licenceInfo;
+    NSString * licenseDirectory = [ASCHelper licensePath];
+    
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    
+    NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
+    licenceData->put_Path([licenseDirectory stdwstring]);
+    licenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+    
+    ADDREFINTERFACE(licenceData);
+    
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = licenceData;
+    
+    NSEditorApi::CAscMenuEvent * resultEvent = appManager->ApplySync(pEvent);
+    
+    if (resultEvent) {
+        NSEditorApi::CAscLicenceActual * resultLicenceData = (NSEditorApi::CAscLicenceActual *)resultEvent->m_pData;
+        
+        if (resultLicenceData) {
+            licenceInfo = @{
+                            @"path"          : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
+                            @"product"       : @(resultLicenceData->get_ProductId()),
+                            @"daysLeft"      : @(resultLicenceData->get_DaysLeft()),
+                            @"daysBetween"   : @(resultLicenceData->get_DaysBetween()),
+                            @"licence"       : @(resultLicenceData->get_Licence())
+                            };
+            
+            [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
+        }
+    }
+    
+    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue])) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+            [activationWindow showWindow:nil];
+        });
     }
 }
 
@@ -244,11 +297,13 @@
     }
     
     if (unsaved > 0) {
+        NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+        
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
         [alert setAlertStyle:NSInformationalAlertStyle];
         
@@ -729,12 +784,13 @@
             }
             
             if (unsaved > 0) {
-                NSAlert *alert = [[NSAlert alloc] init];
+                NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
                 
+                NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
-                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved]];
+                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
                 [alert setAlertStyle:NSInformationalAlertStyle];
                 

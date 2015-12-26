@@ -69,7 +69,7 @@
     return [controller shouldTerminateApplication];
 }
 
-float defaultTitleBarHeight() {
+- (float)defaultTitleBarHeight {
     NSRect frame = NSMakeRect(0, 0, 800, 600);
     NSRect contentRect = [NSWindow contentRectForFrameRect:frame styleMask: NSTitledWindowMask];
     return NSHeight(frame) - NSHeight(contentRect);

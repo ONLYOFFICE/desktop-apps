@@ -45,26 +45,26 @@ static NSMutableDictionary * localSettings;
 @implementation ASCHelper
 
 + (NSString *)applicationDataPath {
+    NSError * error;
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) firstObject];
 #ifndef MAS
     path = [path stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
+        
+        if (error) {
+            NSLog(@"Error creating application path: %@", [error localizedDescription]);
+        }
+    }
 #endif
+    
     return path;
 }
 
 + (NSString *)recoveryDataPath {
     NSError * error;
     NSString * applicationDataPath = [self applicationDataPath];
-
-#ifndef MAS
-    if (![[NSFileManager defaultManager] fileExistsAtPath:applicationDataPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:applicationDataPath withIntermediateDirectories:NO attributes:nil error:&error];
-        
-        if (error) {
-            NSLog(@"Error copying application path: %@", [error localizedDescription]);
-        }
-    }
-#endif
     
     NSString * recoveryPath = [applicationDataPath stringByAppendingPathComponent:@"recovery"];
     
@@ -80,20 +80,26 @@ static NSMutableDictionary * localSettings;
     return recoveryPath;
 }
 
-+ (void)createCloudPath {
++ (NSString *)licensePath {
     NSError * error;
     NSString * applicationDataPath = [self applicationDataPath];
+    NSString * licenseDirectory = [applicationDataPath stringByAppendingPathComponent:@"license"];
     
-#ifndef MAS
-    if (![[NSFileManager defaultManager] fileExistsAtPath:applicationDataPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:applicationDataPath withIntermediateDirectories:NO attributes:nil error:&error];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:licenseDirectory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:licenseDirectory withIntermediateDirectories:NO attributes:nil error:&error];
         
         if (error) {
             NSLog(@"Error copying application path: %@", [error localizedDescription]);
         }
     }
-#endif
     
+    return licenseDirectory;
+}
+
++ (void)createCloudPath {
+    NSError * error;
+    NSString * applicationDataPath = [self applicationDataPath];
+        
     NSString * webDataPath = [applicationDataPath stringByAppendingPathComponent:@"webdata"];
     NSString * cloudPath   = [webDataPath stringByAppendingPathComponent:@"cloud"];
     
@@ -109,6 +115,7 @@ static NSMutableDictionary * localSettings;
         }
     }
 }
+
 
 + (NSMutableDictionary *)localSettings {
     if (!localSettings)

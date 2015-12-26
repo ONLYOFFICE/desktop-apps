@@ -31,23 +31,42 @@
 */
 
 //
-//  NSString+OnlyOffice.h
-//  SpreadsheetEditor
+//  ASCTrialController.m
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 12/26/15.
+//  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <string>
-#import <Foundation/Foundation.h>
-#import <vector>
+#import "ASCTrialController.h"
+#import "ASCConstants.h"
 
-@interface NSString (OnlyOffice)
+@interface ASCTrialController ()
+@property (weak) IBOutlet NSTextField *headerField;
+@property (weak) IBOutlet NSTextField *messageField;
+@property (weak) IBOutlet NSButton *tryButton;
+@property (weak) IBOutlet NSButton *activateButton;
+@end
 
-+ (id)stringWithstdwstring:(const std::wstring&)string;
-- (std::wstring)stdwstring;
-- (std::string)stdstring;
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query;
-- (NSString *)md5;
+@implementation ASCTrialController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+#pragma mark -
+#pragma mark Actions
+
+- (IBAction)onActivation:(NSButton *)sender {
+    [self.view.window close];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameShowActivation
+                                                        object:nil
+                                                      userInfo:nil];
+}
+
+- (IBAction)onContinue:(NSButton *)sender {
+    [self.view.window close];
+}
+
 @end
