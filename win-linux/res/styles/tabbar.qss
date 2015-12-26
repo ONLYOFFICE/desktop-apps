@@ -1,12 +1,14 @@
-QTabWidget::pane { border:none; border-top: 1px solid #b6b6b6; top:-1px;}
-QTabWidget[empty=true]::pane { top: 28px; }
-QTabWidget::tab-bar {width: auto; height: 29px; left: 67px; }
+/* styles for a frameless main window */
+QTabWidget::pane {background-color: #313437; border:none;}
+QTabWidget::tab-bar {width: auto; height: 29px; left: 70px; }
 
-QTabBar::tab { width:135px; background-color: #c2c2c2; border: 1px solid #afb0b1; min-width: 41px; max-width: 135px;
-height: 27px; margin: 0 -1px 0 0; }
+QTabBar::tab { width:135px; background-color: #CFCFCF; border: 0 none; min-width: 41px; max-width: 135px;
+height: 27px; margin: 0 1px 0 0; }
 
-QTabBar::tab:hover {background-color: #cfcfcf;}
-QTabBar::tab:selected {background-color: #f1f1f1; border-bottom-color: #f1f1f1;}
+QTabBar::tab {border-bottom:1px solid #afb0b1; border-top:1px solid #cfcfcf;}
 
-QTabWidget[active=false] QTabBar::tab:selected {background-color:#c2c2c2; border-color:#afb0b1;}
-QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #cfcfcf;}
+QTabBar::tab:hover {background-color: #ddd; border-top-color:#ddd;}
+QTabBar::tab:selected {background-color: #f1f1f1; border-color: #f1f1f1;}
+
+QTabWidget[active=false] QTabBar::tab:selected {background-color: #cfcfcf; border-color: #cfcfcf; border-bottom-color:#afb0b1;}
+QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #ddd;}

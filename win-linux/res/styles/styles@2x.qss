@@ -8,7 +8,8 @@ QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
 }
 
 QPushButton#toolButtonMain {
-    background-image:url(:/res/icons/mainpage_2x.png);
+    /*background-image:url(:/res/icons/mainpage_2x.png);*/
+    font-size: 20px;
 }
 
 QPushButton#toolButtonMain[theme=rightangle] {
@@ -61,20 +62,19 @@ QTabBar::tab {
 }
 
 QTabBar::close-button {
-    background-image: url(:/res/icons/tab_close_normal_2x.png);
-    border-image: none;
-    /*margin-right:10px;/*
-    /*margin-top: 8px;*/
+    image: url(:/res/icons/tab_close_normal_2x.png);
+    /*border-image: none;*/
+    /*margin-right:10px;*/
+    margin-top: -2px;
+    /*icon-size: 32px;*/
 }
 
 QTabBar::close-button:hover {
     background-image:url(:/res/icons/tab_close_hover_2x.png);
-    border-image: none;
 }
 
 QTabBar::close-button:pressed {
     background-image:url(:/res/icons/tab_close_active_2x.png);
-    border-image: none;
 }
 
 QMenu#menuButtonProfile,
@@ -135,4 +135,16 @@ CDownloadWidget QLabel#labelName {
 
 QLabel[class=msg-icon] {
     background-image: url(":/res/icons/message_icons_2x.png");
+}
+
+QPushButton {
+    border: 2px solid #cbcbcb;
+    padding:0 40px;
+    height: 44px;
+    border-radius:4px;
+    font-size: 22px;
+}
+
+QDialog QPushButton {
+    min-width: 80px;
 }
