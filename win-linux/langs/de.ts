@@ -23,137 +23,137 @@
         <location filename="../src/cfiledialog.cpp" line="15"/>
         <location filename="../src/cfiledialog.cpp" line="103"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Alle Dateien (*.*)</translation>
+        <translation>Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="17"/>
         <source>DOCX Document (*.docx)</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX Dokument (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="18"/>
         <source>DOC Document (*.doc)</source>
-        <translation type="unfinished"></translation>
+        <translation>DOC Dokument (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="19"/>
         <source>ODT Document (*.odt)</source>
-        <translation type="unfinished"></translation>
+        <translation>ODT Dokument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="20"/>
         <source>RTF File (*.rtf)</source>
-        <translation type="unfinished"></translation>
+        <translation>RTF Datei (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="21"/>
         <source>TXT File (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>TXT Datei (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="22"/>
         <source>HTML File (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Datei (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="23"/>
         <source>MHT File (*.mht)</source>
-        <translation type="unfinished"></translation>
+        <translation>MHT Datei (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="24"/>
         <source>EPUB File (*.epub)</source>
-        <translation type="unfinished"></translation>
+        <translation>EPUB Datei (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="26"/>
         <source>PPTX File (*.pptx)</source>
-        <translation type="unfinished"></translation>
+        <translation>PPTX Datei (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="27"/>
         <source>PPT File (*.ppt)</source>
-        <translation type="unfinished"></translation>
+        <translation>PPT Datei (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="28"/>
         <source>ODP File (*.odp)</source>
-        <translation type="unfinished"></translation>
+        <translation>ODP Datei (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="29"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation type="unfinished"></translation>
+        <translation>PPSX Datei (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="31"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation type="unfinished"></translation>
+        <translation>XLSX Datei (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="32"/>
         <source>XLS File (*.xls)</source>
-        <translation type="unfinished"></translation>
+        <translation>XLS Datei (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="33"/>
         <source>ODS File (*.ods)</source>
-        <translation type="unfinished"></translation>
+        <translation>ODS Datei (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="34"/>
         <source>CSV File (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV Datei (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="36"/>
         <source>PDF File (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF Datei (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="37"/>
         <source>DJVU File (*.djvu)</source>
-        <translation type="unfinished"></translation>
+        <translation>DJVU Datei (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="38"/>
         <source>XPS File (*.xps)</source>
-        <translation type="unfinished"></translation>
+        <translation>XPS Datei (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="74"/>
         <source>Save As</source>
-        <translation type="unfinished">Speichern unter</translation>
+        <translation>Speichern unter</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="88"/>
         <source>Word Document</source>
-        <translation type="unfinished">Word Dokument</translation>
+        <translation>Word Dokument</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="91"/>
         <source>Excel Workbook</source>
-        <translation type="unfinished">Excel Arbeitsmappe</translation>
+        <translation>Excel Arbeitsmappe</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="94"/>
         <source>PowerPoint Presentation</source>
-        <translation type="unfinished">PowerPoint Präsentation</translation>
+        <translation>PowerPoint Präsentation</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="97"/>
         <source>%1 File (*.%2)</source>
-        <translation type="unfinished">%1 Datei (*.%2)</translation>
+        <translation>%1 Datei (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="106"/>
         <source>Open Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument öffnen</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="112"/>
         <source>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
     </message>
 </context>
 <context>
@@ -161,7 +161,7 @@
     <message>
         <location filename="../src/win/cmessage.cpp" line="40"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -169,22 +169,22 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="65"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Druck des Dokuments: Seite %1 von %2</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="67"/>
         <source>Document is preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorbereitung des Dokuments</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="73"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="83"/>
         <source>Printing...</source>
-        <translation type="unfinished"></translation>
+        <translation>Drucken...</translation>
     </message>
 </context>
 <context>
@@ -197,17 +197,17 @@
     <message>
         <location filename="../src/csavefilemessage.cpp" line="59"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../src/csavefilemessage.cpp" line="60"/>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="../src/csavefilemessage.cpp" line="61"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -228,43 +228,43 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="127"/>
         <source>FILE</source>
-        <translation type="unfinished"></translation>
+        <translation>DATEI</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="178"/>
         <source>Logout</source>
-        <translation type="unfinished">Ausloggen</translation>
+        <translation>Ausloggen</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="616"/>
         <location filename="../src/qascmainpanel.cpp" line="651"/>
         <source>File format not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateiformat wird nicht unterstützt.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="635"/>
         <source>File doesn&apos;t exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei existiert nicht</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="663"/>
         <source>Document%1.docx</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument%1.docx</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="664"/>
         <source>Book%1.xlsx</source>
-        <translation type="unfinished"></translation>
+        <translation>Buch%1.xlsx</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="665"/>
         <source>Presentation%1.pptx</source>
-        <translation type="unfinished"></translation>
+        <translation>Präsentation%1.pptx</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="888"/>
         <source>Print Document</source>
-        <translation type="unfinished">Dokument drucken</translation>
+        <translation>Dokument drucken</translation>
     </message>
 </context>
 </TS>
