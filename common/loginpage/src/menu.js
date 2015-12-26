@@ -90,6 +90,7 @@ Menu.prototype.show = function(pos, data) {
     $el.css(pos);
     $el.find('ul').dropdown('toggle');
     this.contextdata = data;
+    Menu.opened = true;
 };
 
 Menu.prototype.disableItem = function(action, disable) {
@@ -101,14 +102,18 @@ Menu.prototype.disableItem = function(action, disable) {
     }
 };
 
+Menu.opened = false;
+
 Menu.closeAll = function() {
     $('.menu-container.open').removeClass('open');
+    Menu.opened = false;
 };
 
 window.Menu = Menu;
 
 $(document).on('keydown', function(e) {
     if (e.keyCode == 27) {
-        $('.menu-container').removeClass('open');
+        // $('.menu-container').removeClass('open');
+        Menu.closeAll();
     }
 });

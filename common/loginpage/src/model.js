@@ -65,6 +65,8 @@ function Collection(attributes) {
     }.bind(this);
 
     this.on_item_click = function(e) {
+        Menu.opened && Menu.closeAll();
+
         if (Date.now()-_time > 800) {
             _time = Date.now();
             this.events.click.notify(e.data);
