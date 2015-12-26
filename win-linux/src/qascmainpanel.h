@@ -61,6 +61,8 @@ public:
     void focus();
     int  checkModified(const QString&);
     void doOpenLocalFile(COpenOptions&);
+    void doOpenLocalFiles(const vector<wstring> *);
+    void doOpenLocalFiles(const QStringList&);
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
@@ -72,6 +74,10 @@ private:
     void checkLocalUsedPath(int);
     void doLogout(const QString&);
     int  trySaveDocument(int);
+    void doActivate(const QString&);
+    void checkActivation();
+    wstring commonDataPath() const;
+    void doLicenseWarning(void *);
 
     void fillUserName(QString& fn, QString& ln);
 signals:
@@ -118,9 +124,8 @@ public slots:
     void onLocalGetImage(void *);
     void onPortalOpen(QString);
     void onPortalLogout(QString);
-
-    void doOpenLocalFiles(const vector<wstring> *);
-    void doOpenLocalFiles(const QStringList&);
+    void onActivate(QString);
+    void onActivated(void *);
 
 private:
     std::wstring    m_sDownloadName;

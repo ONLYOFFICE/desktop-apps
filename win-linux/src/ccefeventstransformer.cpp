@@ -188,9 +188,19 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if (cmd.compare(L"app:activate") == 0) {
+            QMetaObject::invokeMethod( pObjParent, "onActivate", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         }
         break;
     }
+    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL:
+        CAscLicenceActual * pData = (CAscLicenceActual *)pEvent->m_pData;
+
+        ADDREFINTERFACE(pData);
+        QMetaObject::invokeMethod(pObjParent, "onActivated", Qt::QueuedConnection, Q_ARG(void *, pData));
+        break;
     }
 
     RELEASEINTERFACE(pEvent);

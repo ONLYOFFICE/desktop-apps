@@ -54,6 +54,8 @@
 
 #ifdef _WIN32
 #include "cprintdialog.h"
+#include "shlobj.h"
+
 extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
@@ -818,6 +820,77 @@ void QAscMainPanel::onLogout()
 //    loadStartPage();
 }
 
+void QAscMainPanel::onActivate(QString key)
+{
+    doActivate(key);
+}
+
+void QAscMainPanel::onActivated(void * data)
+{
+    doLicenseWarning(data);
+
+    CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
+    RELEASEINTERFACE(pData)
+}
+
+void QAscMainPanel::doActivate(const QString& key)
+{
+    wstring sAppData = commonDataPath();
+    if (sAppData.size()) {
+        QDir().mkpath(QString::fromStdWString(sAppData));
+
+        CAscLicenceKey * pData = new CAscLicenceKey;
+        pData->AddRef();
+        pData->put_Key(key.toStdString());
+        pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+        pData->put_Path(sAppData);
+
+        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
+        pEvent->m_pData = pData;
+        m_pManager->Apply(pEvent);
+    } else {
+        CMessage mess(gTopWinId);
+        mess.showModal(tr("Internal activatio error"), QMessageBox::Critical);
+    }
+}
+
+void QAscMainPanel::checkActivation()
+{
+    CAscLicenceActual * pData = new CAscLicenceActual;
+    pData->AddRef();
+    pData->put_Path(commonDataPath());
+    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = pData;
+    m_pManager->Apply(pEvent);
+
+    doLicenseWarning(pData);
+    RELEASEINTERFACE(pData)
+}
+
+void QAscMainPanel::doLicenseWarning(void * data)
+{
+    CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
+
+    if (!pData->get_Licence()) {
+        CMessage mess(gTopWinId);
+        mess.showModal(tr("The program is non-activated"), QMessageBox::Information);
+    } else {
+//        if (pData->get_DaysBetween() > 0) {
+            // the license checked more then 1 day before
+            if (pData->get_DaysLeft() < 15) {
+                QString text = tr("%1 days left before the licence end").arg(pData->get_DaysLeft());
+
+                CMessage mess(gTopWinId);
+                mess.showModal(text, QMessageBox::Information);
+            }
+//        }
+    }
+
+    qDebug() << "doLicenseWarning: " << pData->get_DaysBetween();
+}
+
 void QAscMainPanel::onJSMessage(QString key, QString value)
 {
 //    if (key == "login") {
@@ -1174,4 +1247,23 @@ void QAscMainPanel::fillUserName(QString& firstname, QString& lastname)
         firstname = match.captured(1);
         lastname = match.captured(2);
     }
+}
+
+wstring QAscMainPanel::commonDataPath() const
+{
+    std::wstring sAppData(L"");
+#ifdef _WIN32
+    WCHAR szPath[MAX_PATH];
+    if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
+        sAppData = std::wstring(szPath);
+        std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
+        sAppData += L"/ONLYOFFICE/License";
+    }
+
+#else
+    sAppData = QString("/var/lib/onlyoffice/desktopeditors").toStdWString();
+    // TODO: check directory permissions and warn the user
+#endif
+
+    return sAppData;
 }

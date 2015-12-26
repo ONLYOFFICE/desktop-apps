@@ -598,17 +598,25 @@ li.menu-item {
     content: -webkit-image-set(data-uri('welcome_image.png') 1x, data-uri('welcome_image@2x.png') 2x);
 }
 
+.center {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .welcome {
     position: relative;
-
-    .center {
-        position: absolute;
-        top: 44%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 
     .img-welcome {
         margin: 48px 0;
     }
+}
+
+.activate {
+    input {
+        width: 500px;
+        margin: 0 20px;
+    }
+
 }

@@ -241,7 +241,6 @@ $(document).ready(function() {
         $list.parent().removeClass('empty');
     });
     recentCollection.events.click.attach(function(collection, model){
-        console.log('click');
         openFile(OPEN_FILE_RECENT, model.fileid);
     });
     recentCollection.events.contextmenu.attach(function(collection, model, e){
@@ -306,6 +305,10 @@ $(document).ready(function() {
     /* **************** */
 
     $('.login').click(onConnectClick);
+
+    // Templates.createActivationPanel('');
+    // selectAction('activate');
+    // $('.doactivate').click(onActivateClick);
 });
 
 var portalCollection;
@@ -452,6 +455,10 @@ function clickMenuPortals(menu, action, data) {
             updatePortals();
         }
     }
+};
+
+function onActivateClick(e) {
+    window.AscDesktopEditor.execCommand("app:activate", $(e.currentTarget).parent().find('#txt-key-activate'));
 };
 
 function onConnectClick() {

@@ -135,7 +135,19 @@ Templates = (function() { 'use strict';
         $(holder).append(_html);
     };
 
+    function addActivatePanel(holder) {
+        var _html = '<section class="center">'+
+                      '<div>'+
+                        '<input id="txt-key-activate" class="tbox" type="text" placeholder="input activation key">' +
+                        '<button class="btn doactivate">Activate</button>'
+                      '</div>' +
+                    '</section>';
+
+        $('.action-panel.activate').append(_html);
+    };
+
     return {
+        createActivationPanel: addActivatePanel,
         addConnectPanel: addConnectPanel,
         createWelcomePanel: addWelcomePanel,
         insertFilesTable: addRecentFiles,

@@ -57,5 +57,6 @@
 #define MODAL_RESULT_NO         0
 #define MODAL_RESULT_CANCEL     -1
 
+#define PROD_ID_DESKTOP_EDITORS 300
 #endif // DEFINES_H
 
