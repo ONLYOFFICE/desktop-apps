@@ -5,6 +5,7 @@
 #include "qwinwidget.h"
 #endif
 
+#include <QMessageBox>
 #include <QFormLayout>
 #include <QDialog>
 #include <QLabel>
@@ -17,13 +18,14 @@ public:
     explicit CMessage(HWND hParentWnd);
 
     void error(const QString& title, const QString& text);
-    int showModal(const QString&);
+    int showModal(const QString&, QMessageBox::Icon);
 
 private:
     QDialog m_pDlg;
     int m_result;
     QFormLayout * m_fLayout;
     QLabel * m_message;
+    QLabel * m_typeIcon;
 
 signals:
 

@@ -1,7 +1,6 @@
 #include "cmessage.h"
 #include "../defines.h"
 
-#include <QMessageBox>
 #include <QDialogButtonBox>
 #include <QPushButton>
 
@@ -25,16 +24,15 @@ CMessage::CMessage(HWND hParentWnd)
     layout->addLayout(h_layout2, 1);
     layout->addLayout(h_layout1, 0);
 
-    QLabel * icon = new QLabel;
-    icon->setProperty("class","msg-icon");
-    icon->setProperty("type","msg-error");
-    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
+    m_typeIcon = new QLabel;
+    m_typeIcon->setProperty("class","msg-icon");
+    m_typeIcon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
     m_message = new QLabel("some message");
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
-    h_layout2->addWidget(icon, 0, Qt::AlignTop);
+    h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
     h_layout2->addLayout(m_fLayout, 1);
 
     QPushButton * btn_yes       = new QPushButton(tr("&OK"));
@@ -68,15 +66,18 @@ void CMessage::error(const QString& title, const QString& text)
     msgBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
                           | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     msgBox.exec();
-
-//    msgBox->setModal( false ); // if you want it non-modal
-//    msgBox->open( this, SLOT(msgBoxClosed(QAbstractButton*)) );
-//    QMessageBox::critical(new CMessage(wnd), title, text, QMessageBox::Ok, QMessageBox::Ok);
 }
 
-int CMessage::showModal(const QString& mess)
+int CMessage::showModal(const QString& mess, QMessageBox::Icon icon)
 {
     m_message->setText(mess);
+    if (icon == QMessageBox::Critical) {
+        m_typeIcon->setProperty("type","msg-error");
+    } else
+    if (icon == QMessageBox::Information) {
+        m_typeIcon->setProperty("type","msg-info");
+    }
+
     m_pDlg.adjustSize();
 
 #if defined(_WIN32)

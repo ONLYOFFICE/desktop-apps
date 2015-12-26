@@ -334,6 +334,9 @@ QLabel[class=msg-icon][type=msg-question] {
 QLabel[class=msg-icon][type=msg-error] {
     background-position: top left;
 }
+QLabel[class=msg-icon][type=msg-info] {
+    background-position: bottom left;
+}
 /**/
 QPrintDialog, QPrintPropertiesDialog {
     background-color:#fff;
@@ -359,6 +362,10 @@ QPushButton {
     height: 22px;
     border-radius:2px;
     font-size: 12px;
+}
+
+QDialog QPushButton {
+    min-width: 40px;
 }
 
 QPrintDialog QToolButton{

@@ -645,7 +645,7 @@ void QAscMainPanel::doOpenLocalFile(COpenOptions& opts)
     } else
     if (result == -255) {
         CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."));
+        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
     }
 }
 
@@ -664,7 +664,7 @@ void QAscMainPanel::onLocalFileRecent(void * d)
     if (!match.hasMatch()) {
         if ( !QFileInfo(opts.url).exists() ) {
             CMessage mess(gTopWinId);
-            mess.showModal(tr("File doesn't exists"));
+            mess.showModal(tr("File doesn't exists"), QMessageBox::Critical);
             return;
         }
     }
@@ -680,7 +680,7 @@ void QAscMainPanel::onLocalFileRecent(void * d)
     } else
     if (result == -255) {
         CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."));
+        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
     }
 }
 
