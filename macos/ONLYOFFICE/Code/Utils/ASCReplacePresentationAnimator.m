@@ -31,40 +31,28 @@
 */
 
 //
-//  ASCRegistrationWindowController.m
+//  ASCReplacePresentationAnimator.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 12/26/15.
+//  Created by Alexander Yuzhin on 12/28/15.
 //  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCRegistrationWindowController.h"
+#import "ASCReplacePresentationAnimator.h"
 
-@interface ASCRegistrationWindowController ()
+@interface ASCReplacePresentationAnimator()
 
 @end
 
-@implementation ASCRegistrationWindowController
+@implementation ASCReplacePresentationAnimator
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-}
+- (void)animatePresentationOfViewController:(NSViewController *)viewController fromViewController:(NSViewController *)fromViewController {
+    NSWindow *window = fromViewController.view.window;
 
-- (void)showWindow:(id)sender {
-    [self.window center];
-    [NSApp runModalForWindow:self.window];
-}
-
-- (void)windowWillClose:(NSNotification *)notification {
-    [NSApp stopModal];
-}
-
-- (void)setContentViewController:(NSViewController *)viewController {
-    [super setContentViewController:viewController];
-
-////    viewController.view.hidden = YES;
+    [window setContentViewController:viewController];
+    
+//    fromViewController.view.hidden = YES;
 //    
-//    NSWindow *window = self.window;
 //    NSRect oldWindowFrame = window.frame;
 //    window.title = viewController.title;
 //    
@@ -76,7 +64,9 @@
 //    
 //    NSRect windowFrame = [window frameRectForContentRect:viewFrame];
 //    windowFrame.origin = NSMakePoint(window.frame.origin.x + (NSWidth(oldWindowFrame) - NSWidth(windowFrame)) * 0.5, NSMaxY(window.frame) - NSHeight(windowFrame));
-//
+//    
+//    viewController.view.wantsLayer = YES;
+//    viewController.view.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
 //    
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
 //        [[window animator] setFrame:windowFrame display:YES];
@@ -86,6 +76,18 @@
 //            [[viewController.view animator] setHidden:NO];
 //        } completionHandler:NULL];
 //    }];
+}
+
+- (void)animateDismissalOfViewController:(NSViewController *)viewController fromViewController:(NSViewController *)fromViewController {
+    NSWindow *window = viewController.view.window;
+    
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [[viewController.view animator] setAlphaValue:0];
+    } completionHandler:^{
+        [fromViewController.view setAlphaValue:0];
+        [window setContentViewController:fromViewController];
+        [[fromViewController.view animator] setAlphaValue:1.0];
+    }];
 }
 
 @end

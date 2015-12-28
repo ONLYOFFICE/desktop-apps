@@ -977,38 +977,12 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="uAG-km-5UA" kind="relationship" relationship="window.shadowedContentViewController" id="Hnx-QJ-fL0"/>
+                        <segue destination="eb1-ke-RIJ" kind="relationship" relationship="window.shadowedContentViewController" id="Fx2-hD-Ygz"/>
                     </connections>
                 </windowController>
                 <customObject id="S2c-HE-qcd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1030" y="266"/>
-        </scene>
-        <!--Tab View Controller-->
-        <scene sceneID="0if-nc-BdO">
-            <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="uAG-km-5UA" customClass="ASCTabViewController" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem id="iec-s2-aML"/>
-                        <tabViewItem id="JLc-kv-hfs"/>
-                    </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="sng-MX-l8D">
-                        <rect key="frame" x="0.0" y="9" width="480" height="149"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
-                        <tabViewItems/>
-                        <connections>
-                            <outlet property="delegate" destination="uAG-km-5UA" id="EGJ-Nq-URy"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <segue destination="eb1-ke-RIJ" kind="relationship" relationship="tabItems" id="W9x-xp-EPR"/>
-                        <segue destination="7Fa-DF-A4G" kind="relationship" relationship="tabItems" id="Omk-BQ-IKB"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="Cz2-En-z3a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1620" y="258"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="EyC-Tq-1jt">
@@ -1029,7 +1003,7 @@
                 </windowController>
                 <customObject id="Ask-g5-Gl6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.5" y="642.5"/>
+            <point key="canvasLocation" x="980.5" y="630.5"/>
         </scene>
         <!--ONLYOFFICE-->
         <scene sceneID="poO-ef-qnb">
@@ -1052,7 +1026,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="Da6-ot-na2"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you for evaluating ONLYOFFICE!" id="zbg-CZ-mv3">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you for evaluating %@!" id="zbg-CZ-mv3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1065,7 +1039,10 @@
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eWZ-KX-JtO">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <string key="title">Your subscription is about to expire(%1 days left).We have a special offer for you.</string>
+                                    <string key="title">Your subscription is about to expire
+(%@ days left).
+
+We have a special offer for you.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1078,6 +1055,9 @@
                                 <buttonCell key="cell" type="push" title="Activate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MDC-GR-pev">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onActivation:" target="fug-wa-QH5" id="uJP-OG-CN4"/>
@@ -1124,12 +1104,12 @@
                 </viewController>
                 <customObject id="egK-fL-LSg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1593" y="643"/>
+            <point key="canvasLocation" x="1595" y="630"/>
         </scene>
         <!--License Activation-->
         <scene sceneID="vEg-aU-aNg">
             <objects>
-                <viewController title="License Activation" id="eb1-ke-RIJ" customClass="ASCRegistrationController" sceneMemberID="viewController">
+                <viewController title="License Activation" storyboardIdentifier="ASCActivationControllerId" id="eb1-ke-RIJ" customClass="ASCRegistrationController" sceneMemberID="viewController">
                     <view key="view" id="Yyd-pW-Pco">
                         <rect key="frame" x="0.0" y="0.0" width="572" height="157"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1162,7 +1142,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="7KD-78-jCd"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If you have already purchased ONLYOFFICE, you should find your activation key in an email confirmation." id="yGK-Fg-qtS">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If you have already purchased %@, you should find your activation key in an email confirmation." id="yGK-Fg-qtS">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1240,17 +1220,18 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="infoField" destination="LNc-Ry-AWP" id="L4Z-jT-kBj"/>
                         <outlet property="keyField" destination="6dn-At-Xqp" id="luT-gD-o78"/>
                     </connections>
                 </viewController>
                 <customObject id="RZH-Cz-Eqq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2281.5" y="257.5"/>
+            <point key="canvasLocation" x="1683" y="271.5"/>
         </scene>
         <!--License Activation-->
         <scene sceneID="TdI-3Q-ieF">
             <objects>
-                <viewController title="License Activation" id="7Fa-DF-A4G" customClass="ASCRegistrationController" sceneMemberID="viewController">
+                <viewController title="License Activation" storyboardIdentifier="ASCActivationSuccessControllerId" id="7Fa-DF-A4G" customClass="ASCRegistrationController" sceneMemberID="viewController">
                     <view key="view" id="b20-8Q-vEp">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="276"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1261,7 +1242,7 @@ DQ
                                     <constraint firstAttribute="height" constant="37" id="CTh-bg-MSC"/>
                                     <constraint firstAttribute="width" constant="350" id="E5M-Et-Xb8"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="You have successfully activated ONLYOFFICE." id="jBt-El-yRL">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="You have successfully activated %@." id="jBt-El-yRL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1318,10 +1299,13 @@ DQ
                             <constraint firstItem="eEn-4E-aev" firstAttribute="top" secondItem="G98-Po-0Ih" secondAttribute="bottom" constant="24" id="yQp-ey-pOL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="infoSuccessField" destination="AbG-32-fhc" id="zWG-22-9zQ"/>
+                    </connections>
                 </viewController>
                 <customObject id="R90-sz-4Xg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881.5" y="327"/>
+            <point key="canvasLocation" x="2299" y="329"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
