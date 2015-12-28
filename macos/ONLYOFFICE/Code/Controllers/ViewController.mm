@@ -236,25 +236,23 @@
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
     pEvent->m_pData = licenceData;
     
-    NSEditorApi::CAscMenuEvent * resultEvent = appManager->ApplySync(pEvent);
+    appManager->Apply(pEvent);
     
-    if (resultEvent) {
-        NSEditorApi::CAscLicenceActual * resultLicenceData = (NSEditorApi::CAscLicenceActual *)resultEvent->m_pData;
+    NSEditorApi::CAscLicenceActual * resultLicenceData = licenceData;
+    
+    if (resultLicenceData) {
+        licenceInfo = @{
+                        @"path"          : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
+                        @"product"       : @(resultLicenceData->get_ProductId()),
+                        @"daysLeft"      : @(resultLicenceData->get_DaysLeft()),
+                        @"daysBetween"   : @(resultLicenceData->get_DaysBetween()),
+                        @"licence"       : @(resultLicenceData->get_Licence())
+                        };
         
-        if (resultLicenceData) {
-            licenceInfo = @{
-                            @"path"          : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
-                            @"product"       : @(resultLicenceData->get_ProductId()),
-                            @"daysLeft"      : @(resultLicenceData->get_DaysLeft()),
-                            @"daysBetween"   : @(resultLicenceData->get_DaysBetween()),
-                            @"licence"       : @(resultLicenceData->get_Licence())
-                            };
-            
-            [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
-        }
+        [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
     }
     
-    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue])) {
+    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 14)) {
         NSOperationQueue *operationQueue = [NSOperationQueue new];
         
         NSBlockOperation *startUpCompletionOperation = [NSBlockOperation blockOperationWithBlock:^{

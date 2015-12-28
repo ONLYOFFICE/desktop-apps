@@ -50,6 +50,9 @@
 @implementation ASCTitleWindowController
 
 - (void)windowDidLoad {
+    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    self.window.title = productName;
+    
     [super windowDidLoad];
     
     [self setupToolbar];

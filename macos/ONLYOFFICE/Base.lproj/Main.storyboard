@@ -17,7 +17,7 @@
                                         <menuItem title="About ONLYOFFICE" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <action selector="onMenuAbout:" target="Voe-Tx-rLC" id="1bp-rS-auW"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Check for Updates…" keyEquivalent="u" id="ud7-wC-A79">
@@ -47,7 +47,7 @@
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem title="Hide ONLYOFFICE" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
-                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                                <action selector="onMenuHide:" target="Voe-Tx-rLC" id="hC1-e4-RJq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
@@ -65,7 +65,7 @@
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit ONLYOFFICE" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
-                                                <action selector="terminate:" target="Ady-hI-5gd" id="c9U-4b-Ui6"/>
+                                                <action selector="onMenuQuit:" target="Voe-Tx-rLC" id="YXV-9l-jlp"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -674,7 +674,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wdG-cl-JBn"/>
-                                        <menuItem title="ONLYOFFICE Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Product Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="onShowHelp:" target="Voe-Tx-rLC" id="dwg-r0-5fC"/>
                                             </connections>

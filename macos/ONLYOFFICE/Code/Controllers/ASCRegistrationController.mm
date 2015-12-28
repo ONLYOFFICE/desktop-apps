@@ -44,6 +44,9 @@
 #import "ASCHelper.h"
 #import "NSString+OnlyOffice.h"
 #import "ASCReplacePresentationAnimator.h"
+#import "ASCSharedSettings.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface ASCRegistrationController () 
 @property (weak) IBOutlet NSTextField *keyField;
@@ -85,7 +88,18 @@
 
 - (void)onCEFLicenseInfo:(NSNotification *)notification {
     if (notification && notification.userInfo) {
+        NSDictionary * licenceInfo = notification.userInfo;
         
+        if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
+            [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
+            
+            NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
+            [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
+        } else {
+            [[ASCSharedSettings sharedInstance] setSetting:nil forKey:kSettingsLicenseInfo];
+            
+            [self shakeWindow];
+        }
     }
 }
 
@@ -113,6 +127,32 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpUrl]];
 }
 
+- (CAKeyframeAnimation *)shakeAnimation:(NSRect)frame {
+    static int numberOfShakes = 3;
+    static float durationOfShake = 0.5f;
+    static float vigourOfShake = 0.02f;
+    
+    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
+    
+    CGMutablePathRef shakePath = CGPathCreateMutable();
+    CGPathMoveToPoint(shakePath, NULL, NSMinX(frame), NSMinY(frame));
+    int index;
+    
+    for (index = 0; index < numberOfShakes; ++index) {
+        CGPathAddLineToPoint(shakePath, NULL, NSMinX(frame) - frame.size.width * vigourOfShake, NSMinY(frame));
+        CGPathAddLineToPoint(shakePath, NULL, NSMinX(frame) + frame.size.width * vigourOfShake, NSMinY(frame));
+    }
+    CGPathCloseSubpath(shakePath);
+    shakeAnimation.path = shakePath;
+    shakeAnimation.duration = durationOfShake;
+    return shakeAnimation;
+}
+
+- (void)shakeWindow {
+    [self.view.window setAnimations:[NSDictionary dictionaryWithObject:[self shakeAnimation:[self.view.window frame]] forKey:@"frameOrigin"]];
+    [[self.view.window animator] setFrameOrigin:[self.view.window frame].origin];
+}
+
 - (IBAction)onBuyOnlineClick:(NSButton *)sender {
     NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
     NSString * helpUrl  = [NSString stringWithFormat:kRegBuyUrl, @""];
@@ -131,25 +171,19 @@
 }
 
 - (IBAction)onRegistrationClick:(NSButton *)sender {
-    NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
-//    [self.view.window.windowController setContentViewController:activationSuccessController];
-    [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
-
+    NSString * licenseDirectory = [ASCHelper licensePath];
     
-//    [self.tabViewController setSelectedTabViewItemIndex:1];
-//    NSString * licenseDirectory = [ASCHelper licensePath];
-//    
-//    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-//    
-//    NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
-//    keyData->put_Path([licenseDirectory stdwstring]);
-//    keyData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
-//    keyData->put_Key([[self.keyField stringValue] stdstring]);
-//    
-//    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
-//    pEvent->m_pData = keyData;
-//    
-//    appManager->Apply(pEvent);
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    
+    NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
+    keyData->put_Path([licenseDirectory stdwstring]);
+    keyData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+    keyData->put_Key([[self.keyField stringValue] stdstring]);
+    
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
+    pEvent->m_pData = keyData;
+    
+    appManager->Apply(pEvent);
 }
 
 @end

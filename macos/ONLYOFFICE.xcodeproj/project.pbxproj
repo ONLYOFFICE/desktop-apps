@@ -112,6 +112,78 @@
 		FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FC6718311BD918CA0028600F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
 		FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
+		FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
+		FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
+		FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
+		FC7FD39A1C315DD6008F6641 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */; };
+		FC7FD39B1C315DD6008F6641 /* ASCRegistrationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.mm */; };
+		FC7FD39C1C315DD6008F6641 /* NSView+ASCView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6EA1BA16CC0005A733F /* NSView+ASCView.m */; };
+		FC7FD39D1C315DD6008F6641 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F71BA1C6C8005A733F /* ASCButton.m */; };
+		FC7FD39E1C315DD6008F6641 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F41BA1C307005A733F /* ASCTabCloseButtonCell.m */; };
+		FC7FD39F1C315DD6008F6641 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42931B9D736700405301 /* ASCTabView.m */; };
+		FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
+		FC7FD3A11C315DD6008F6641 /* ASCTrialController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E9DC71C2EBFFD0043100E /* ASCTrialController.m */; };
+		FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; };
+		FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
+		FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
+		FC7FD3A51C315DD6008F6641 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42901B9D660400405301 /* ASCTabsControl.m */; };
+		FC7FD3A61C315DD6008F6641 /* NSTimer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127541BBA8A7E00AA3648 /* NSTimer+Block.m */; };
+		FC7FD3A71C315DD6008F6641 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FD1BA1D00A005A733F /* ASCTabViewCell.m */; };
+		FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
+		FC7FD3A91C315DD6008F6641 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCCF3651BE0F8AA009B57A8 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
+		FC7FD3AB1C315DD6008F6641 /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
+		FC7FD3AC1C315DD6008F6641 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
+		FC7FD3AD1C315DD6008F6641 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
+		FC7FD3AE1C315DD6008F6641 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FC394E641BCE4AD2001B4B7C /* GTMNSString+HTML.m */; };
+		FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
+		FC7FD3B01C315DD6008F6641 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
+		FC7FD3B11C315DD6008F6641 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */; };
+		FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
+		FC7FD3B31C315DD6008F6641 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
+		FC7FD3B41C315DD6008F6641 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCDBB6D1C22F019001788BA /* ASCMenuButtonCell.m */; };
+		FC7FD3B51C315DD6008F6641 /* ASCDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */; };
+		FC7FD3B61C315DD6008F6641 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
+		FC7FD3B71C315DD6008F6641 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC257C5C1BAC163A005D7E72 /* NSString+OnlyOffice.mm */; };
+		FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
+		FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
+		FC7FD3BA1C315DD6008F6641 /* ASCRegistrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */; };
+		FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
+		FC7FD3BC1C315DD6008F6641 /* ASCTrialWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E9DC41C2EBE600043100E /* ASCTrialWindowController.m */; };
+		FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
+		FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
+		FC7FD3BF1C315DD6008F6641 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
+		FC7FD3C01C315DD6008F6641 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F89901C20430300248757 /* NSAlert+SynchronousSheet.m */; };
+		FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
+		FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
+		FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
+		FC7FD3C61C315DD6008F6641 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452391C2D7A3C0055052F /* file-xps.icns */; };
+		FC7FD3C71C315DD6008F6641 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452321C2D7A3C0055052F /* file-odt.icns */; };
+		FC7FD3C81C315DD6008F6641 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC64522F1C2D7A3C0055052F /* file-html.icns */; };
+		FC7FD3C91C315DD6008F6641 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452371C2D7A3C0055052F /* file-txt.icns */; };
+		FC7FD3CA1C315DD6008F6641 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
+		FC7FD3CB1C315DD6008F6641 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452381C2D7A3C0055052F /* file-xls.icns */; };
+		FC7FD3CC1C315DD6008F6641 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452311C2D7A3C0055052F /* file-ods.icns */; };
+		FC7FD3CD1C315DD6008F6641 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452341C2D7A3C0055052F /* file-pps.icns */; };
+		FC7FD3CE1C315DD6008F6641 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC64522D1C2D7A3C0055052F /* file-djvu.icns */; };
+		FC7FD3CF1C315DD6008F6641 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC38163A1C19B12B002922CD /* dictionaries */; };
+		FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
+		FC7FD3D11C315DD6008F6641 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452351C2D7A3C0055052F /* file-ppt.icns */; };
+		FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
+		FC7FD3D31C315DD6008F6641 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFA5D081BC54665003E2B44 /* InfoPlist.strings */; };
+		FC7FD3D51C315DD6008F6641 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452301C2D7A3C0055052F /* file-odp.icns */; };
+		FC7FD3D61C315DD6008F6641 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452331C2D7A3C0055052F /* file-pdf.icns */; };
+		FC7FD3D71C315DD6008F6641 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
+		FC7FD3D81C315DD6008F6641 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
+		FC7FD3D91C315DD6008F6641 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC8EFE041C2A8D1600BB2A43 /* dsa_pub.pem */; };
+		FC7FD3DA1C315DD6008F6641 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC64522C1C2D7A3C0055052F /* file-csv.icns */; };
+		FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
+		FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
+		FC7FD3DD1C315DD6008F6641 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC64522E1C2D7A3C0055052F /* file-doc.icns */; };
+		FC7FD3DE1C315DD6008F6641 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC6452361C2D7A3C0055052F /* file-rtf.icns */; };
+		FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC7FD3E81C315DF1008F6641 /* IvolgaPRO.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC7FD3E71C315DF1008F6641 /* IvolgaPRO.plist */; };
+		FC7FD3EA1C315E9B008F6641 /* IvolgaPRO-Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */; };
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
@@ -156,6 +228,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		FC7FD3E01C315DD6008F6641 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC8EFE021C2A86CE00BB2A43 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +340,9 @@
 		FC6718481BD91B410028600F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718491BD91B420028600F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC67184A1BD91B430028600F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IvolgaPRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC7FD3E71C315DF1008F6641 /* IvolgaPRO.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IvolgaPRO.plist; sourceTree = "<group>"; };
+		FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "IvolgaPRO-Images.xcassets"; sourceTree = "<group>"; };
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCReplacePresentationAnimator.h; path = Code/Utils/ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
 		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCReplacePresentationAnimator.m; path = Code/Utils/ASCReplacePresentationAnimator.m; sourceTree = "<group>"; };
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
@@ -346,6 +432,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7FD3C11C315DD6008F6641 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */,
+				FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */,
+				FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +875,7 @@
 			children = (
 				FCBC42681B9D650400405301 /* ONLYOFFICE.app */,
 				FC67182D1BD913C00028600F /* ONLYOFFICE.app */,
+				FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -795,6 +892,7 @@
 				FCBC426D1B9D650400405301 /* AppDelegate.h */,
 				FCBC426E1B9D650400405301 /* AppDelegate.mm */,
 				FCBC42751B9D650500405301 /* Images.xcassets */,
+				FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC98BAD71BAC4C6300747944 /* Resources */,
 				FC6718321BD918D90028600F /* Frameworks */,
@@ -811,6 +909,7 @@
 				FCFA5D081BC54665003E2B44 /* InfoPlist.strings */,
 				FC6718441BD91B3A0028600F /* MoveApplication.strings */,
 				FCBC426C1B9D650400405301 /* Info.plist */,
+				FC7FD3E71C315DF1008F6641 /* IvolgaPRO.plist */,
 				FCCCF3581BE0E6DE009B57A8 /* Info-MAS.plist */,
 				FCBC42701B9D650400405301 /* main.mm */,
 			);
@@ -853,6 +952,26 @@
 			name = "ONLYOFFICE-MAS";
 			productName = ONLYOFFICE;
 			productReference = FC67182D1BD913C00028600F /* ONLYOFFICE.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FC7FD3941C315DD6008F6641 /* IvolgaPRO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "IvolgaPRO" */;
+			buildPhases = (
+				FC7FD3951C315DD6008F6641 /* Copy Library */,
+				FC7FD3961C315DD6008F6641 /* Sources */,
+				FC7FD3C11C315DD6008F6641 /* Frameworks */,
+				FC7FD3C51C315DD6008F6641 /* Resources */,
+				FC7FD3DF1C315DD6008F6641 /* Rename symbols */,
+				FC7FD3E01C315DD6008F6641 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IvolgaPRO;
+			productName = ONLYOFFICE;
+			productReference = FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FCBC42671B9D650400405301 /* ONLYOFFICE */ = {
@@ -925,6 +1044,7 @@
 			projectRoot = "";
 			targets = (
 				FCBC42671B9D650400405301 /* ONLYOFFICE */,
+				FC7FD3941C315DD6008F6641 /* IvolgaPRO */,
 				FC6717FE1BD913C00028600F /* ONLYOFFICE-MAS */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
 			);
@@ -959,6 +1079,39 @@
 				FC64523F1C2D7A3C0055052F /* file-doc.icns in Resources */,
 				FC6452491C2D7A3C0055052F /* file-pdf.icns in Resources */,
 				FC6452551C2D7A3C0055052F /* file-xps.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7FD3C51C315DD6008F6641 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC7FD3E81C315DF1008F6641 /* IvolgaPRO.plist in Resources */,
+				FC7FD3C61C315DD6008F6641 /* file-xps.icns in Resources */,
+				FC7FD3C71C315DD6008F6641 /* file-odt.icns in Resources */,
+				FC7FD3C81C315DD6008F6641 /* file-html.icns in Resources */,
+				FC7FD3C91C315DD6008F6641 /* file-txt.icns in Resources */,
+				FC7FD3CA1C315DD6008F6641 /* editors in Resources */,
+				FC7FD3CB1C315DD6008F6641 /* file-xls.icns in Resources */,
+				FC7FD3CC1C315DD6008F6641 /* file-ods.icns in Resources */,
+				FC7FD3CD1C315DD6008F6641 /* file-pps.icns in Resources */,
+				FC7FD3CE1C315DD6008F6641 /* file-djvu.icns in Resources */,
+				FC7FD3CF1C315DD6008F6641 /* dictionaries in Resources */,
+				FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */,
+				FC7FD3D11C315DD6008F6641 /* file-ppt.icns in Resources */,
+				FC7FD3EA1C315E9B008F6641 /* IvolgaPRO-Images.xcassets in Resources */,
+				FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */,
+				FC7FD3D31C315DD6008F6641 /* InfoPlist.strings in Resources */,
+				FC7FD3D51C315DD6008F6641 /* file-odp.icns in Resources */,
+				FC7FD3D61C315DD6008F6641 /* file-pdf.icns in Resources */,
+				FC7FD3D71C315DD6008F6641 /* login in Resources */,
+				FC7FD3D81C315DD6008F6641 /* converter in Resources */,
+				FC7FD3D91C315DD6008F6641 /* dsa_pub.pem in Resources */,
+				FC7FD3DA1C315DD6008F6641 /* file-csv.icns in Resources */,
+				FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */,
+				FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */,
+				FC7FD3DD1C315DD6008F6641 /* file-doc.icns in Resources */,
+				FC7FD3DE1C315DD6008F6641 /* file-rtf.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1055,6 +1208,35 @@
 			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool -change @executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
+		FC7FD3951C315DD6008F6641 /* Copy Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nexit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n    mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCWEBFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTWEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nSRCCOMMONLICENCE_DIR=\"$BASEDIR\"/ONLYOFFICE/Resources\nDSTCOMMONLICENCE_DIR=\"$DSTLOGINPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTWEBFONTS_DIR\"\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.html \"$DSTLOGINPAGE_DIR\"/index.html\ncp -R \"$SRCWEBFONTS_DIR\"/LICENSE.txt \"$DSTWEBFONTS_DIR\"/LICENSE.txt\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Light.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\n\ncp -R \"$SRCCOMMONLICENCE_DIR\"/acknowledgments.html \"$DSTCOMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCEDITORPAGE_DIR=\"$BASEDIR\"/../common/editors\nDSTEDITORPAGE_DIR=\"$DST_DIR\"/editors\nSRCEDITORFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTEDITORFONTS_DIR=\"$DSTEDITORPAGE_DIR\"/fonts\nJS_SDK_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/jsbuilds\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTEDITORFONTS_DIR\"\n\ncp -R \"$SRCEDITORFONTS_DIR\"/ariblk.ttf \"$DSTEDITORFONTS_DIR\"/ariblk.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Asana-Math.ttf \"$DSTEDITORFONTS_DIR\"/Asana-Math.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bold.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bolditalic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bolditalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-italic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-regular.ttf \"$DSTEDITORFONTS_DIR\"/caladea-regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Bold.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Italic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Regular.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/LICENSE.txt \"$DSTEDITORFONTS_DIR\"/LICENSE.txt\n\nsvn export --force \"$JS_SDK_SVN\" \"$DSTEDITORPAGE_DIR\"/sdk\ncp -R \"$SRCEDITORPAGE_DIR\" \"$DSTEDITORPAGE_DIR\"/..\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Library\"\necho \"---------------------------------------------------------------------------------------\"\n\nDSTLIB_DIR=\"$DST_DIR\"/libs\nDSTHEADERS_DIR=\"$DST_DIR\"/headers\nDSTJSEDITOR_DIR=\"$DST_DIR\"/editors\n\nCEFBUILDS_DIR=\"$DSTLIB_DIR\"/cefbuilds\nCOREBUILDS_DIR=\"$DSTLIB_DIR\"/corebuilds\n\nLIBHEADERS_DIR=\"$DSTHEADERS_DIR\"/ChromiumBasedEditors2/lib/include\nCOMMONHEADERS_DIR=\"$DSTHEADERS_DIR\"/common\nAPIHEADERS_DIR=\"$DSTHEADERS_DIR\"/Word_Api\n\nCEFBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/cefbuilds/mac\"\nCOREBUILDS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/app/corebuilds/mac\"\n\nLIBHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/ChromiumBasedEditors2/lib/include\"\nCOMMONHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/common\"\nAPIHEADERS_SVN=\"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor/Word_Api\"\n\nCreateDir \"$DSTLIB_DIR\"\n\nCopyFromSVN() {\n    if [ -d $1 ]; then\n    cd $1\n    svn up\n    else\n    mkdir -p $1\n    cd $1\n    svn co $2 .\n    fi\n    \n    cd \"$BASEDIR\"\n}\n\nCopyFromSVN \"$CEFBUILDS_DIR\" \"$CEFBUILDS_SVN\"\nCopyFromSVN \"$COREBUILDS_DIR\" \"$COREBUILDS_SVN\"\n\nCopyFromSVN \"$LIBHEADERS_DIR\" \"$LIBHEADERS_SVN\"\nCopyFromSVN \"$COMMONHEADERS_DIR\" \"$COMMONHEADERS_SVN\"\nCopyFromSVN \"$APIHEADERS_DIR\" \"$APIHEADERS_SVN\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCCONVERTER_DIR=\"$BASEDIR\"/../common/converter\nDSTCONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DSTCONVERTER_DIR\"\n\ncp -R \"$SRCCONVERTER_DIR\" \"$DST_DIR\"\n\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libDjVuFile.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libdoctrenderer.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libHtmlFile.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libHtmlRenderer.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libPdfReader.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libPdfWriter.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libUnicodeConverter.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/lib/mac_64/libXpsFile.dylib\" \"$DSTCONVERTER_DIR\"\n\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicuuc.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicuuc.55.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicuuc.55.1.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicudata.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicudata.55.dylib\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/UnicodeConverter/icubuilds/mac/build_release-55-1/lib/libicudata.55.1.dylib\" \"$DSTCONVERTER_DIR\"\n\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/AsyncServerComponents/Bin/Mac/x2t\" \"$DSTCONVERTER_DIR\"\nsvn export --force \"svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/SDK/bin/mac/icudtl_dat.S\" \"$DSTCONVERTER_DIR\"\n\nchmod +x \"$DSTCONVERTER_DIR\"/x2t\n";
+		};
+		FC7FD3DF1C315DD6008F6641 /* Rename symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Rename symbols";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/\"${TARGET_NAME}\"\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			showEnvVarsInLog = 0;
+		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1114,6 +1296,55 @@
 				FC67181C1BD913C00028600F /* ASCTitleBackground.m in Sources */,
 				FC67181D1BD913C00028600F /* AppDelegate.mm in Sources */,
 				FC67181E1BD913C00028600F /* SFBPopoverWindowFrame.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC7FD3961C315DD6008F6641 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */,
+				FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */,
+				FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */,
+				FC7FD39A1C315DD6008F6641 /* ViewController.mm in Sources */,
+				FC7FD39B1C315DD6008F6641 /* ASCRegistrationController.mm in Sources */,
+				FC7FD39C1C315DD6008F6641 /* NSView+ASCView.m in Sources */,
+				FC7FD39D1C315DD6008F6641 /* ASCButton.m in Sources */,
+				FC7FD39E1C315DD6008F6641 /* ASCTabCloseButtonCell.m in Sources */,
+				FC7FD39F1C315DD6008F6641 /* ASCTabView.m in Sources */,
+				FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */,
+				FC7FD3A11C315DD6008F6641 /* ASCTrialController.m in Sources */,
+				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
+				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
+				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
+				FC7FD3A51C315DD6008F6641 /* ASCTabsControl.m in Sources */,
+				FC7FD3A61C315DD6008F6641 /* NSTimer+Block.m in Sources */,
+				FC7FD3A71C315DD6008F6641 /* ASCTabViewCell.m in Sources */,
+				FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */,
+				FC7FD3A91C315DD6008F6641 /* PFMoveApplication.m in Sources */,
+				FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */,
+				FC7FD3AB1C315DD6008F6641 /* ASCTitleBarController.m in Sources */,
+				FC7FD3AC1C315DD6008F6641 /* SFBPopover.m in Sources */,
+				FC7FD3AD1C315DD6008F6641 /* ASCEventsController.mm in Sources */,
+				FC7FD3AE1C315DD6008F6641 /* GTMNSString+HTML.m in Sources */,
+				FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */,
+				FC7FD3B01C315DD6008F6641 /* ASCDownloadController.mm in Sources */,
+				FC7FD3B11C315DD6008F6641 /* ASCButtonCell.m in Sources */,
+				FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */,
+				FC7FD3B31C315DD6008F6641 /* main.mm in Sources */,
+				FC7FD3B41C315DD6008F6641 /* ASCMenuButtonCell.m in Sources */,
+				FC7FD3B51C315DD6008F6641 /* ASCDownloadViewController.m in Sources */,
+				FC7FD3B61C315DD6008F6641 /* ASCTitleWindow.m in Sources */,
+				FC7FD3B71C315DD6008F6641 /* NSString+OnlyOffice.mm in Sources */,
+				FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */,
+				FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */,
+				FC7FD3BA1C315DD6008F6641 /* ASCRegistrationWindowController.m in Sources */,
+				FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormat.m in Sources */,
+				FC7FD3BC1C315DD6008F6641 /* ASCTrialWindowController.m in Sources */,
+				FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */,
+				FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */,
+				FC7FD3BF1C315DD6008F6641 /* ASCReplacePresentationAnimator.m in Sources */,
+				FC7FD3C01C315DD6008F6641 /* NSAlert+SynchronousSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1533,76 @@
 			};
 			name = Release;
 		};
+		FC7FD3E31C315DD6008F6641 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+					"$(PROJECT_DIR)/ONLYOFFICE",
+					"$(PROJECT_DIR)/Vendor/Sparkle",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_MAC,
+				);
+				INFOPLIST_FILE = ONLYOFFICE/IvolgaPRO.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-headerpad_max_install_names",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		FC7FD3E41C315DD6008F6641 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: Ascensio System SIA (2WH24U26GJ)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/cefbuilds",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+					"$(PROJECT_DIR)/ONLYOFFICE",
+					"$(PROJECT_DIR)/Vendor/Sparkle",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_MAC,
+				);
+				INFOPLIST_FILE = ONLYOFFICE/IvolgaPRO.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/ONLYOFFICE/libs/corebuilds",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-headerpad_max_install_names",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
 		FCBC42861B9D650500405301 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1474,6 +1775,15 @@
 			buildConfigurations = (
 				FC67182B1BD913C00028600F /* Debug */,
 				FC67182C1BD913C00028600F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "IvolgaPRO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC7FD3E31C315DD6008F6641 /* Debug */,
+				FC7FD3E41C315DD6008F6641 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

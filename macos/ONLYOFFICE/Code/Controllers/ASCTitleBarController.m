@@ -80,6 +80,9 @@ static float kASCWindowMinTitleWidth = 320;
 - (void)initialize {
     NSArray * windows = [[NSApplication sharedApplication] windows];
     
+    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    
+    
     NSWindow * mainWindow = nil;
     
     for (NSWindow * window in windows) {
@@ -109,6 +112,8 @@ static float kASCWindowMinTitleWidth = 320;
     
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
+    
+    [self.titleLabel setStringValue:productName];
     
     kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2; // OSX 10.11 magic
     

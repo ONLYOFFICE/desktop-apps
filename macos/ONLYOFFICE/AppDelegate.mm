@@ -117,10 +117,21 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
+    NSDictionary * licenseInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
     
-    BOOL isActivated = NO;
+    BOOL isActivated = licenseInfo && licenseInfo[@"licence"] && [licenseInfo[@"licence"] boolValue];
     
-    if ([item action] == @selector(onMenuNew:)) {
+    if ([item action] == @selector(onMenuAbout:)) {
+        [item setTitle:[NSString stringWithFormat:@"About %@", productName]];
+        return YES;
+    } else if ([item action] == @selector(onMenuHide:)) {
+        [item setTitle:[NSString stringWithFormat:@"Hide %@", productName]];
+        return YES;
+    } else if ([item action] == @selector(onMenuQuit:)) {
+        [item setTitle:[NSString stringWithFormat:@"Quit %@", productName]];
+        return YES;
+    } else if ([item action] == @selector(onMenuNew:)) {
         return YES;
     } else if ([item action] == @selector(onMenuOpen:)) {
         return YES;
@@ -131,6 +142,7 @@
     } else if ([item action] == @selector(onMenuPrint:)) {
         return nil != tab;
     } else if ([item action] == @selector(onShowHelp:)) {
+        [item setTitle:[NSString stringWithFormat:@"%@ Help", productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
         return YES;
@@ -253,5 +265,20 @@
                                                         object:nil
                                                       userInfo:nil];
 }
+
+- (IBAction)onMenuAbout:(NSMenuItem *)sender {
+    [NSApp orderFrontStandardAboutPanel:sender];
+}
+
+- (IBAction)onMenuHide:(NSMenuItem *)sender {
+    [NSApp hide:sender];
+}
+
+- (IBAction)onMenuQuit:(NSMenuItem *)sender {
+    [NSApp terminate:sender];
+}
+
+
+
 
 @end
