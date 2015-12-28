@@ -253,8 +253,9 @@
               <li class="menu-item">
                 <a action="connect">Connect to server</a>
               </li>
-                <!-- <button id="btn-add">Add</button> -->
-                <!-- <button id="btn-add2">Add 2</button> -->
+              <li class="menu-item">
+                <a action="activate">Activate</a>
+              </li>
             </div>
             <div class="main-column col-center after-left">
               <div class="action-panel welcome"></div>
@@ -269,6 +270,7 @@
                 <div id="box-open-acts" class="lst-tools"><button id="btn-openlocal">Browse</button></div>
               </div>
               <div id="pnl-connect" class="action-panel connect"></div>
+              <div class="action-panel activate"></div>
             </div>
         </div>
     </div>

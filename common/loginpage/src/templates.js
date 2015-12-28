@@ -136,14 +136,20 @@ Templates = (function() { 'use strict';
     };
 
     function addActivatePanel(holder) {
-        var _html = '<section class="center">'+
-                      '<div>'+
-                        '<input id="txt-key-activate" class="tbox" type="text" placeholder="input activation key">' +
-                        '<button class="btn doactivate">Activate</button>'
+        var _html = '<div style="position:relative;height:100%;">' +
+                    '<section class="center">'+
+                      '<h3 class="text-welcome">' + utils.Lang.licPanelTitle + '</h3>' +
+                      '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
+                      '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
+                      '<div class="lr-flex">'+
+                        '<a class="text-sub link" target="popup" href="https://www.ivolgapro.ru/">' + utils.Lang.licGetLicense + '</a>'+
+                        '<span />'+ 
+                        '<button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button>' +
                       '</div>' +
-                    '</section>';
+                    '</section>'+
+                    '</div>';
 
-        $('.action-panel.activate').append(_html);
+        return $('.action-panel.activate').append(_html);
     };
 
     return {

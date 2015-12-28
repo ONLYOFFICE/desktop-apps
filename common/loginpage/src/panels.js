@@ -50,6 +50,8 @@ $(document).ready(function() {
     Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption: utils.Lang.listRecoveryTitle, coltitle:false});
     Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
     Templates.insertFilesTable({holder:'#box-recent-folders', caption:utils.Lang.listRecentDirTitle, coltitle:false});
+    Templates.createActivationPanel('');
+    $('a[action=activate]').parent().hide();
 
     /* popup menu */
     var menuFiles = new Menu({
@@ -102,6 +104,7 @@ $(document).ready(function() {
     $('a[action=recent]').text(utils.Lang.actRecentFiles);
     $('a[action=open]').text(utils.Lang.actOpenLocal);
     $('a[action=connect]').text(utils.Lang.actConnectTo);
+    $('a[action=activate]').text(utils.Lang.actActivate);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
@@ -305,10 +308,7 @@ $(document).ready(function() {
     /* **************** */
 
     $('.login').click(onConnectClick);
-
-    // Templates.createActivationPanel('');
-    // selectAction('activate');
-    // $('.doactivate').click(onActivateClick);
+    $('.doactivate').click(onActivateClick);
 });
 
 var portalCollection;
@@ -491,6 +491,14 @@ window.on_native_message = function(cmd, param) {
         var model = portalCollection.find('name', short_name);
 
         !!model && model.set('logged', false);
+    } else 
+    if (cmd == 'lic:active') {
+        $('a[action=activate]').parent()[param=='1'?'hide':'show']();        
+        $('#txt-key-activate').focus();
+        selectAction('activate');
+    } else 
+    if (cmd == 'lic:sendkey') {
+        // $('a[action=activate]').parent()['show']();
     }
     
     console.log(cmd, param);

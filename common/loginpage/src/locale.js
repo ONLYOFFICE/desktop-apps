@@ -67,7 +67,13 @@ var en = {
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
-    actConnectTo: 'Connect to server'
+    actConnectTo: 'Connect to server',
+    actActivate: 'Activate',
+    licKeyHolder: 'input activation key',
+    btnActivate: 'Activate',
+    licGetLicense: 'Get license now',
+    licPanelTitle: 'Enter product key',
+    licPanelDescr: 'You can receve key by e-mail.'
 }
 
 var ru = {
@@ -107,7 +113,13 @@ var ru = {
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
-    actConnectTo: 'Войти на портал'
+    actConnectTo: 'Войти на портал',
+    actActivate: 'Активировать',
+    licKeyHolder: 'введите ключ активации',
+    btnActivate: 'Активировать',
+    licGetLicense: 'Получить ключ активации',
+    licPanelTitle: 'Введите ключ активации',
+    licPanelDescr: 'Ваш ключ продукта указан в сообщении высланном на е-майл.'
 }
 
 var de = {
@@ -147,7 +159,12 @@ var de = {
     actCreateNew: 'Neu erstllen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
-    actConnectTo: 'Mit Server verbinden'
+    actConnectTo: 'Mit Server verbinden',
+    licKeyHolder: 'input activation key',
+    btnActivate: 'Activate',
+    licGetLicense: 'Get license now',
+    licPanelTitle: 'Enter product key',
+    licPanelDescr: 'You can receve key by e-mail.'
 }
 
 var fr = {
@@ -200,7 +217,12 @@ var es = {
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
-    actConnectTo: 'Conectar al servidor'
+    actConnectTo: 'Conectar al servidor',
+    licKeyHolder: 'input activation key',
+    btnActivate: 'Activate',
+    licGetLicense: 'Get license now',
+    licPanelTitle: 'Enter product key',
+    licPanelDescr: 'You can receve key by e-mail.'
 }
 
 function getUrlParams() {

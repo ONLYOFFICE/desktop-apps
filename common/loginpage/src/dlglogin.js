@@ -48,7 +48,7 @@ LoginDlg = function() {
                     '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="'+utils.Lang.pshPortal+'" value="">' +
                     '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
                     '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
-                    '<div id="box-btn-login">'+
+                    '<div id="box-btn-login" class="lr-flex">'+
                       '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
                       '<div><img class="img-loader">' +
