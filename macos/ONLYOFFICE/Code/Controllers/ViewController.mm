@@ -183,7 +183,7 @@
 
 - (void)onShowActivation:(NSNotification *)notification {
     NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
-    [activationWindow showWindow:nil];
+    [activationWindow showWindow:[NSApp mainWindow]];
 }
 
 - (void)setupTabControl {
@@ -255,10 +255,16 @@
     }
     
     if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue])) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
-            [activationWindow showWindow:nil];
-        });
+        NSOperationQueue *operationQueue = [NSOperationQueue new];
+        
+        NSBlockOperation *startUpCompletionOperation = [NSBlockOperation blockOperationWithBlock:^{
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+                [NSApp runModalForWindow:activationWindow.window];
+            }];
+        }];
+        
+        [operationQueue addOperation:startUpCompletionOperation];
     }
 }
 

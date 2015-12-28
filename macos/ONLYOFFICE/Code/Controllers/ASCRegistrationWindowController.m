@@ -51,11 +51,41 @@
 }
 
 - (void)showWindow:(id)sender {
+    [self.window center];
     [NSApp runModalForWindow:self.window];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
     [NSApp stopModal];
+}
+
+- (void)setContentViewController:(NSViewController *)viewController {
+    [super setContentViewController:viewController];
+
+////    viewController.view.hidden = YES;
+//    
+//    NSWindow *window = self.window;
+//    NSRect oldWindowFrame = window.frame;
+//    window.title = viewController.title;
+//    
+//    NSRect viewFrame = viewController.view.frame;
+//    viewFrame.size = viewController.view.fittingSize;
+//    
+//    NSArray *constraints = viewController.view.constraints;
+//    [viewController.view removeConstraints:constraints];
+//    
+//    NSRect windowFrame = [window frameRectForContentRect:viewFrame];
+//    windowFrame.origin = NSMakePoint(window.frame.origin.x + (NSWidth(oldWindowFrame) - NSWidth(windowFrame)) * 0.5, NSMaxY(window.frame) - NSHeight(windowFrame));
+//
+//    
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//        [[window animator] setFrame:windowFrame display:YES];
+//    } completionHandler:^{
+//        [viewController.view addConstraints:constraints];
+//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//            [[viewController.view animator] setHidden:NO];
+//        } completionHandler:NULL];
+//    }];
 }
 
 @end

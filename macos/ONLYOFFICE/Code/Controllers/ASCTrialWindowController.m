@@ -48,14 +48,16 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    self.window.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
 }
 
 - (void)showWindow:(id)sender {
+    [self.window center];
     [NSApp runModalForWindow:self.window];
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [NSApp stopModal];
+    [NSApp stopModalWithCode:1];
 }
 
 @end
