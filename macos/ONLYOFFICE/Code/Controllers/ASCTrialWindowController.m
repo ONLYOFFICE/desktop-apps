@@ -48,7 +48,9 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    self.window.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+//    self.window.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    self.contentViewController.view.layer.cornerRadius = 10.0;
+    self.window.backgroundColor = [NSColor whiteColor];
 }
 
 - (void)showWindow:(id)sender {

@@ -48,6 +48,9 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    self.contentViewController.view.layer.cornerRadius = 10.0;
+    self.window.backgroundColor = [NSColor whiteColor];
 }
 
 - (void)showWindow:(id)sender {

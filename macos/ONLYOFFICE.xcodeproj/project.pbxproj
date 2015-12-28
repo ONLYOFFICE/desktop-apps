@@ -401,10 +401,10 @@
 		FC25A1AA1C2E881500063A42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FC25A1AB1C2E883D00063A42 /* ASCRegistrationController.h */,
-				FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.mm */,
 				FC25A1B11C2EA7D100063A42 /* ASCRegistrationWindowController.h */,
 				FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */,
+				FC25A1AB1C2E883D00063A42 /* ASCRegistrationController.h */,
+				FC25A1AC1C2E883D00063A42 /* ASCRegistrationController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
