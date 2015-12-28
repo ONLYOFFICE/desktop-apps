@@ -156,6 +156,7 @@
         extend(_config, DocsAPI.DocEditor.defaultConfig);
         _config.editorConfig.canUseHistory = _config.events && !!_config.events.onRequestHistory;
         _config.editorConfig.canSendEmailAddresses = _config.events && !!_config.events.onRequestEmailAddresses;
+        _config.editorConfig.canRequestEditRights = _config.events && !!_config.events.onRequestEditRights;
 
         var onMouseUp = function (evt) {
             _processMouse(evt);
@@ -239,7 +240,7 @@
                     res;
 
                 if (msg.event === 'onRequestEditRights' && !handler) {
-                    _applyEditRights(true, 'handler is\'n defined');
+                    _applyEditRights(false, 'handler is\'n defined');
                 } else
                 if (msg.event === 'onInternalMessage' && msg.data && msg.data.type == 'localstorage') {
                     _callLocalStorage(msg.data.data);
@@ -528,7 +529,7 @@
     };
 
     DocsAPI.DocEditor.version = function() {
-        return '3.0b.760';
+        return '3.0b.759';
     };
 
     MessageDispatcher = function(fn, scope) {
