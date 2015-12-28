@@ -53,16 +53,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tabView.delegate = self;
+    
+    for (NSTabViewItem * tabViewItem in self.tabView.tabViewItems) {
+        [tabViewItem.viewController prepareForSegue:[[NSStoryboardSegue alloc] init] sender:self];
+    }
 }
+
 
 #pragma mark -
 #pragma mark NSTabViewDelegate Method
+
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
     [super tabView:tabView didSelectTabViewItem:tabViewItem];
     
     tabView.hidden = YES;
     
     NSWindow *window = self.view.window;
+    NSRect oldWindowFrame = window.frame;
     window.title = tabViewItem.viewController.title;
     
     NSRect viewFrame = tabViewItem.view.frame;
@@ -72,7 +81,7 @@
     [tabViewItem.view removeConstraints:constraints];
     
     NSRect windowFrame = [window frameRectForContentRect:viewFrame];
-    windowFrame.origin = NSMakePoint(window.frame.origin.x, NSMaxY(window.frame) - NSHeight(windowFrame));
+    windowFrame.origin = NSMakePoint(window.frame.origin.x + (NSWidth(oldWindowFrame) - NSWidth(windowFrame)) * 0.5, NSMaxY(window.frame) - NSHeight(windowFrame));
     
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         [[window animator] setFrame:windowFrame display:YES];

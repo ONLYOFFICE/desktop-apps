@@ -40,6 +40,7 @@
 
 #import "ASCTrialController.h"
 #import "ASCConstants.h"
+#import "ASCSharedSettings.h"
 
 @interface ASCTrialController ()
 @property (weak) IBOutlet NSTextField *headerField;
@@ -52,12 +53,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    
+    [self.headerField setStringValue:[NSString stringWithFormat:@"Thank you for evaluating %@!", productName]];
+    
+    if (licenceInfo) {
+        [self.messageField setStringValue:[NSString stringWithFormat:@"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.", [licenceInfo[@"daysLeft"] intValue]]];
+    } else {
+        [self.messageField setStringValue:[NSString stringWithFormat:@"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount."]];
+    }
 }
 
 #pragma mark -
 #pragma mark Actions
 
 - (IBAction)onActivation:(NSButton *)sender {
+    [NSApp stopModal];
     [self.view.window close];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameShowActivation

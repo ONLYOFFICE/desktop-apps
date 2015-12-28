@@ -31,33 +31,16 @@
 */
 
 //
-//  ASCTrialWindowController.m
+//  ASCReplacePresentationAnimator.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 12/26/15.
+//  Created by Alexander Yuzhin on 12/28/15.
 //  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCTrialWindowController.h"
+#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-@interface ASCTrialWindowController ()
-
-@end
-
-@implementation ASCTrialWindowController
-
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    self.window.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
-}
-
-- (void)showWindow:(id)sender {
-    [self.window center];
-    [NSApp runModalForWindow:self.window];
-}
-
-- (void)windowWillClose:(NSNotification *)notification {
-    [NSApp stopModalWithCode:1];
-}
+@interface ASCReplacePresentationAnimator : NSObject <NSViewControllerPresentationAnimator>
 
 @end
