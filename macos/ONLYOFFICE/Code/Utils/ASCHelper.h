@@ -55,4 +55,5 @@
 + (NSString *)recoveryDataPath;
 + (NSString *)licensePath;
 + (void)createCloudPath;
++ (NSString *)appName;
 @end

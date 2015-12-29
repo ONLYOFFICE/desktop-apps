@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>IvolgaPRO Changelog</title>
+        <link>http://download.onlyoffice.com/install/desktop/editors/mac/IvolgaPRO.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.0</title>
+            <pubDate>Tue Dec 29 11:12:40 MSK 2015</pubDate>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/ver-1.0/IvolgaPRO-1.0.zip" sparkle:version="30" sparkle:shortVersionString="1.0" length="188341184" type="application/octet-stream" sparkle:dsaSignature="MCwCFEBKipg9QC+MM6TwrjaMD91nfpvWAhRR6tSZbglehVuvOj5AKzFDEIvgGQ==" />
+        </item>
+    </channel>
+</rss>

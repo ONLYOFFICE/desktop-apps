@@ -227,6 +227,22 @@
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     
+    // First launch
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
+        generateLicenceData->put_Path([licenseDirectory stdwstring]);
+        generateLicenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+        
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+        pEvent->m_pData = generateLicenceData;
+
+        appManager->Apply(pEvent);
+    }
+    
+    // Checking license
     NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
     licenceData->put_Path([licenseDirectory stdwstring]);
     licenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
@@ -253,16 +269,10 @@
     }
     
     if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 14)) {
-        NSOperationQueue *operationQueue = [NSOperationQueue new];
-        
-        NSBlockOperation *startUpCompletionOperation = [NSBlockOperation blockOperationWithBlock:^{
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
-                [NSApp runModalForWindow:activationWindow.window];
-            }];
-        }];
-        
-        [operationQueue addOperation:startUpCompletionOperation];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+            [NSApp runModalForWindow:activationWindow.window];
+        });
     }
 }
 
@@ -301,7 +311,7 @@
     }
     
     if (unsaved > 0) {
-        NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+        NSString * productName = [ASCHelper appName];
         
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
@@ -788,7 +798,7 @@
             }
             
             if (unsaved > 0) {
-                NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+                NSString * productName = [ASCHelper appName];
                 
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];

@@ -43,6 +43,9 @@
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Повторить";
 
+/* Class = "NSViewController"; title = "License Activation"; ObjectID = "7Fa-DF-A4G"; */
+"7Fa-DF-A4G.title" = "Активация лицензии";
+
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
 "8mr-sm-Yjd.title" = "Направление письма";
 
@@ -63,6 +66,9 @@
 
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
 "78Y-hA-62v.title" = "Correct Spelling Automatically";
+
+/* Class = "NSButtonCell"; title = "Buy Online..."; ObjectID = "AF1-Nc-smx"; */
+"AF1-Nc-smx.title" = "Купить онлайн...";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
@@ -91,8 +97,8 @@
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "Помощь";
 
-/* Class = "NSMenuItem"; title = "ONLYOFFICE Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "Справка ONLYOFFICE";
+/* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "Справка";
 
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
 "Fal-I4-PZk.title" = "Текст";
@@ -145,6 +151,9 @@
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV"; */
 "J7y-lM-qPV.title" = "Use None";
 
+/* Class = "NSButtonCell"; title = "Continue"; ObjectID = "K6Z-jH-qTl"; */
+"K6Z-jH-qTl.title" = "Продолжить";
+
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
 "KaW-ft-85H.title" = "Revert to Saved";
 
@@ -159,6 +168,9 @@
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU"; */
 "Lbh-J2-qVU.title" = "	Left to Right";
+
+/* Class = "NSButtonCell"; title = "Activate"; ObjectID = "MDC-GR-pev"; */
+"MDC-GR-pev.title" = "Активировать";
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Copy Ruler";
@@ -286,6 +298,9 @@
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR"; */
 "cDB-IK-hbR.title" = "Use None";
 
+/* Class = "NSButtonCell"; title = "Activate"; ObjectID = "cmz-jq-Ope"; */
+"cmz-jq-Ope.title" = "Активировать";
+
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
 "cqv-fj-IhA.title" = "Selection";
 
@@ -303,6 +318,24 @@
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Отменить";
+
+/* Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left).\n\nWe have a special offer for you."; ObjectID = "eWZ-KX-JtO"; */
+"eWZ-KX-JtO.title" = "Ваша подписка заканчивается
+(осталось %@ дней).
+
+У нас есть специальное предложение для Вас.";
+
+/* Class = "NSViewController"; title = "License Activation"; ObjectID = "eb1-ke-RIJ"; */
+"eb1-ke-RIJ.title" = "Активация лицензии";
+
+/* Class = "NSMenuItem"; title = "Buy Now..."; ObjectID = "ecv-ob-kOc"; */
+"ecv-ob-kOc.title" = "Купить...";
+
+/* Class = "NSMenuItem"; title = "Activation..."; ObjectID = "fff-K1-E5b"; */
+"fff-K1-E5b.title" = "Активировать...";
+
+/* Class = "NSViewController"; title = "ONLYOFFICE"; ObjectID = "fug-wa-QH5"; */
+"fug-wa-QH5.title" = "";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Вставить";
@@ -334,14 +367,23 @@
 /* Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2"; */
 "jBQ-r6-VK2.title" = "Kern";
 
+/* Class = "NSTextFieldCell"; title = "You have successfully activated %@."; ObjectID = "jBt-El-yRL"; */
+"jBt-El-yRL.title" = "Вы успешно активировали %@.";
+
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx"; */
 "jFq-tB-4Kx.title" = "	Right to Left";
+
+/* Class = "NSTextFieldCell"; title = "Please enter your Activation Key:"; ObjectID = "jep-MJ-EBv"; */
+"jep-MJ-EBv.title" = "Пожалуйста введите свой код активации:";
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS"; */
 "jxT-CU-nIS.title" = "Format";
 
 /* Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G"; */
 "kcg-El-49G.label" = "ONLYOFFICE";
+
+/* Class = "NSTextFieldCell"; title = "Thank You!"; ObjectID = "kpa-Sr-jPV"; */
+"kpa-Sr-jPV.title" = "Спасибо!";
 
 /* Class = "NSButtonCell"; title = "FILE"; ObjectID = "llV-Yc-IJ4"; */
 "llV-Yc-IJ4.title" = "ФАЙЛ";
@@ -372,6 +414,9 @@
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
 "qIS-W8-SiK.title" = "Настройки страницы…";
+
+/* Class = "NSWindow"; title = "Activation"; ObjectID = "qti-2R-I2m"; */
+"qti-2R-I2m.title" = "Активация";
 
 /* Class = "NSTextFieldCell"; title = "ONLYOFFICE "; ObjectID = "rG1-93-HjS"; */
 "rG1-93-HjS.title" = "ONLYOFFICE ";
@@ -439,8 +484,14 @@
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0"; */
 "xrE-MZ-jX0.title" = "Speech";
 
+/* Class = "NSTextFieldCell"; title = "If you have already purchased %@, you should find your activation key in an email confirmation."; ObjectID = "yGK-Fg-qtS"; */
+"yGK-Fg-qtS.title" = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.";
+
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "Show Substitutions";
+
+/* Class = "NSTextFieldCell"; title = "Thank you for evaluating %@!"; ObjectID = "zbg-CZ-mv3"; */
+"zbg-CZ-mv3.title" = "Спасибо за оценку %@!";
 
 /* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
 "zwS-9G-S0N.title" = "Портал:";

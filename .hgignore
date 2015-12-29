@@ -16,3 +16,4 @@ common/converter/*
 .idea
 macos/Vendor/ONLYOFFICE
 macos/Production/Production/ONLYOFFICE.app
+macos/Production/Production/IvolgaPRO.app
