@@ -159,7 +159,7 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/win/cmessage.cpp" line="40"/>
+        <location filename="../src/win/cmessage.cpp" line="38"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -226,43 +226,84 @@
 <context>
     <name>QAscMainPanel</name>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="127"/>
+        <location filename="../src/qascmainpanel.cpp" line="131"/>
         <source>FILE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="178"/>
+        <location filename="../src/qascmainpanel.cpp" line="182"/>
         <source>Logout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="616"/>
-        <location filename="../src/qascmainpanel.cpp" line="651"/>
+        <location filename="../src/qascmainpanel.cpp" line="627"/>
+        <location filename="../src/qascmainpanel.cpp" line="662"/>
         <source>File format not supported.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="635"/>
+        <location filename="../src/qascmainpanel.cpp" line="646"/>
         <source>File doesn&apos;t exists</source>
         <translation>File does not exist</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="663"/>
+        <location filename="../src/qascmainpanel.cpp" line="674"/>
         <source>Document%1.docx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="664"/>
+        <location filename="../src/qascmainpanel.cpp" line="675"/>
         <source>Book%1.xlsx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="665"/>
+        <location filename="../src/qascmainpanel.cpp" line="676"/>
         <source>Presentation%1.pptx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="888"/>
+        <location filename="../src/qascmainpanel.cpp" line="824"/>
+        <source>Internal activation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="851"/>
+        <source>Buy Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="852"/>
+        <source>The program is unregistered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="858"/>
+        <source>Activation successfully finished!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="867"/>
+        <source>The program is non-activated!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="875"/>
+        <source>%1 days left before the license end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="866"/>
+        <source>Activate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="866"/>
+        <location filename="../src/qascmainpanel.cpp" line="878"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="993"/>
         <source>Print Document</source>
         <translation type="unfinished"></translation>
     </message>

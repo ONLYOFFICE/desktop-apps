@@ -161,7 +161,7 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/win/cmessage.cpp" line="40"/>
+        <location filename="../src/win/cmessage.cpp" line="38"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -228,44 +228,85 @@
 <context>
     <name>QAscMainPanel</name>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="127"/>
+        <location filename="../src/qascmainpanel.cpp" line="131"/>
         <source>FILE</source>
         <translation>ФАЙЛ</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="178"/>
+        <location filename="../src/qascmainpanel.cpp" line="182"/>
         <source>Logout</source>
         <translation>Выйти</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="616"/>
-        <location filename="../src/qascmainpanel.cpp" line="651"/>
+        <location filename="../src/qascmainpanel.cpp" line="627"/>
+        <location filename="../src/qascmainpanel.cpp" line="662"/>
         <source>File format not supported.</source>
         <translation>Формат файла не поддерживается.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="635"/>
+        <location filename="../src/qascmainpanel.cpp" line="646"/>
         <source>File doesn&apos;t exists</source>
         <translation>Файл не существует</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="663"/>
+        <location filename="../src/qascmainpanel.cpp" line="674"/>
         <source>Document%1.docx</source>
         <translatorcomment>дефолтное название документа при создании. %1 заменяется числом</translatorcomment>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="664"/>
+        <location filename="../src/qascmainpanel.cpp" line="675"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="665"/>
+        <location filename="../src/qascmainpanel.cpp" line="676"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="888"/>
+        <location filename="../src/qascmainpanel.cpp" line="824"/>
+        <source>Internal activation error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="851"/>
+        <source>Buy Now</source>
+        <translation type="unfinished">Купить</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="852"/>
+        <source>The program is unregistered</source>
+        <translation>Незарегистрированная версия приложения. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="858"/>
+        <source>Activation successfully finished!</source>
+        <translation>Активация прошла успешно.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="867"/>
+        <source>The program is non-activated!</source>
+        <translation>Срок действия лицензии закончился. Нажмите &quot;Активировать&quot; для ввода лицензии.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="875"/>
+        <source>%1 days left before the license end</source>
+        <translation type="unfinished">До окончания лицензии осталось %1 дней</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="866"/>
+        <source>Activate</source>
+        <translation type="unfinished">Активировать</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="866"/>
+        <location filename="../src/qascmainpanel.cpp" line="878"/>
+        <source>Continue</source>
+        <translation type="unfinished">Продолжить</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="993"/>
         <source>Print Document</source>
         <translation>Печать документа</translation>
     </message>
