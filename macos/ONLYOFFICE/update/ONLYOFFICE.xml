@@ -6,11 +6,11 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 1.1 (internal update test)</title>
+            <title>Version 1.0</title>
             <pubDate>Wed Dec 23 14:29:13 MSK 2015</pubDate>
-            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
-            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
-            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ver-1.0/ONLYOFFICE-1.0.zip" sparkle:version="999" sparkle:shortVersionString="1.1" length="186903125" type="application/octet-stream" sparkle:dsaSignature="MCwCFFsp0SyvS7hhx53WC46ZdyupEqBNAhR0HCi2sXrldX0n5unOfQWrxugAag==" />
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/ver-1.0/ONLYOFFICE-1.0.zip" sparkle:version="21" sparkle:shortVersionString="1.0" length="186903125" type="application/octet-stream" sparkle:dsaSignature="MCwCFFsp0SyvS7hhx53WC46ZdyupEqBNAhR0HCi2sXrldX0n5unOfQWrxugAag==" />
         </item>
     </channel>
 </rss>

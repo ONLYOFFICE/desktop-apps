@@ -227,6 +227,22 @@
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     
+    // First launch
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
+        generateLicenceData->put_Path([licenseDirectory stdwstring]);
+        generateLicenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+        
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+        pEvent->m_pData = generateLicenceData;
+
+        appManager->Apply(pEvent);
+    }
+    
+    // Checking license
     NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
     licenceData->put_Path([licenseDirectory stdwstring]);
     licenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
@@ -257,17 +273,6 @@
             NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
             [NSApp runModalForWindow:activationWindow.window];
         });
-        
-//        NSOperationQueue *operationQueue = [NSOperationQueue new];
-//        
-//        NSBlockOperation *startUpCompletionOperation = [NSBlockOperation blockOperationWithBlock:^{
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
-//                [NSApp runModalForWindow:activationWindow.window];
-//            }];
-//        }];
-//        
-//        [operationQueue addOperation:startUpCompletionOperation];
     }
 }
 
