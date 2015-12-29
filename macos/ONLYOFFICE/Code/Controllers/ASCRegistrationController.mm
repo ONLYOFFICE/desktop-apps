@@ -64,14 +64,14 @@
                                                  name:CEFEventNameLicenseInfo
                                                object:nil];
     
-    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    NSString * productName = [ASCHelper appName];
     
     if (self.infoField) {
-        [self.infoField setStringValue:[NSString stringWithFormat:@"If you have already purchased %@, you should find your activation key in an email confirmation.", productName]];
+        [self.infoField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"If you have already purchased %@, you should find your activation key in an email confirmation.", nil), productName]];
     }
          
     if (self.infoSuccessField) {
-        [self.infoSuccessField setStringValue:[NSString stringWithFormat:@"You have successfully activated %@.", productName]];
+        [self.infoSuccessField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName]];
     }
 }
 
@@ -79,7 +79,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(nullable id)sender {
+- (void)viewWillAppear {
+    [super viewWillAppear];
     [self.keyField becomeFirstResponder];
 }
 

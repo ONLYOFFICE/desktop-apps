@@ -45,6 +45,7 @@
 #import "ASCTabView.h"
 #import "NSString+OnlyOffice.h"
 #import "NSCefView.h"
+#import "ASCHelper.h"
 
 #ifndef MAS
     #import "PFMoveApplication.h"
@@ -118,18 +119,18 @@
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     NSDictionary * licenseInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
-    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    NSString * productName = [ASCHelper appName];
     
     BOOL isActivated = licenseInfo && licenseInfo[@"licence"] && [licenseInfo[@"licence"] boolValue];
     
     if ([item action] == @selector(onMenuAbout:)) {
-        [item setTitle:[NSString stringWithFormat:@"About %@", productName]];
+        [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuHide:)) {
-        [item setTitle:[NSString stringWithFormat:@"Hide %@", productName]];
+        [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"Hide %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuQuit:)) {
-        [item setTitle:[NSString stringWithFormat:@"Quit %@", productName]];
+        [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"Quit %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuNew:)) {
         return YES;
@@ -142,7 +143,7 @@
     } else if ([item action] == @selector(onMenuPrint:)) {
         return nil != tab;
     } else if ([item action] == @selector(onShowHelp:)) {
-        [item setTitle:[NSString stringWithFormat:@"%@ Help", productName]];
+        [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Help", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
         return YES;
@@ -258,6 +259,20 @@
 }
 
 - (IBAction)onMenuBuyNow:(NSMenuItem *)sender {
+    NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
+    NSString * buyUrl  = [NSString stringWithFormat:kRegBuyUrl, @""];
+    
+    if ([@"ru" isEqualToString:langCode]) {
+        buyUrl = [NSString stringWithFormat:kRegBuyUrl, @"ru/"];
+    } else if ([@"de" isEqualToString:langCode]) {
+        buyUrl = [NSString stringWithFormat:kRegBuyUrl, @"de/"];
+    } else if ([@"fr" isEqualToString:langCode]) {
+        buyUrl = [NSString stringWithFormat:kRegBuyUrl, @"fr/"];
+    } else if ([@"es" isEqualToString:langCode]) {
+        buyUrl = [NSString stringWithFormat:kRegBuyUrl, @"es/"];
+    }
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:buyUrl]];
 }
 
 - (IBAction)onMenuActivation:(NSMenuItem *)sender {

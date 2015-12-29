@@ -42,6 +42,7 @@
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
 #import "ViewController.h"
+#import "ASCHelper.h"
 
 @interface ASCTitleWindowController ()
 
@@ -50,7 +51,7 @@
 @implementation ASCTitleWindowController
 
 - (void)windowDidLoad {
-    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    NSString * productName = [ASCHelper appName];
     self.window.title = productName;
     
     [super windowDidLoad];

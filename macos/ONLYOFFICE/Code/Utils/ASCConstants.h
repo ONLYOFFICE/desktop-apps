@@ -56,9 +56,15 @@ typedef NS_ENUM(int, ASCTabActionType) {
 
 static int ONLYOFFICE_PRODUCT_ID = 300;
 
+#ifdef _PRODUCT_IVOLGA
+static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru";
+static NSString * kRegBuyUrl    = @"http://www.ivolgapro.ru";
+static NSString * kHelpUrl      = @"http://www.ivolgapro.ru";
+#else
 static NSString * kRegHelpUrl   = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 static NSString * kRegBuyUrl    = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
+#endif
 
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";

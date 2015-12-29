@@ -41,6 +41,8 @@
 #import "ASCTrialController.h"
 #import "ASCConstants.h"
 #import "ASCSharedSettings.h"
+#import "ASCHelper.h"
+#import "ASCReplacePresentationAnimator.h"
 
 @interface ASCTrialController ()
 @property (weak) IBOutlet NSTextField *headerField;
@@ -54,15 +56,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString * productName = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    NSString * productName = [ASCHelper appName];
     NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
     
-    [self.headerField setStringValue:[NSString stringWithFormat:@"Thank you for evaluating %@!", productName]];
+    [self.headerField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Thank you for evaluating %@!", nil), productName]];
     
-    if (licenceInfo) {
-        [self.messageField setStringValue:[NSString stringWithFormat:@"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.", [licenceInfo[@"daysLeft"] intValue]]];
+    if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
+        [self.messageField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])]];
     } else {
-        [self.messageField setStringValue:[NSString stringWithFormat:@"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount."]];
+        [self.messageField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.", nil)]];
     }
 }
 
@@ -70,12 +72,8 @@
 #pragma mark Actions
 
 - (IBAction)onActivation:(NSButton *)sender {
-    [NSApp stopModal];
-    [self.view.window close];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameShowActivation
-                                                        object:nil
-                                                      userInfo:nil];
+    NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationControllerId"];
+    [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
 }
 
 - (IBAction)onContinue:(NSButton *)sender {

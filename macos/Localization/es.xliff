@@ -80,6 +80,10 @@
         <target>Rehacer</target>
         <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
       </trans-unit>
+      <trans-unit id="7Fa-DF-A4G.title">
+        <source>License Activation</source>
+        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "7Fa-DF-A4G";</note>
+      </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
         <source>Writing Direction</source>
         <target>Dirección de Escritura</target>
@@ -162,9 +166,9 @@
         <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
-        <source>ONLYOFFICE Help</source>
+        <source>Product Help</source>
         <target>Ayuda ONLYOFFICE </target>
-        <note>Class = "NSMenuItem"; title = "ONLYOFFICE Help"; ObjectID = "FKE-Sm-Kum";</note>
+        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
       </trans-unit>
       <trans-unit id="Fal-I4-PZk.title">
         <source>Text</source>
@@ -241,6 +245,10 @@
         <target>ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
+      <trans-unit id="Ipn-Y0-ytQ.title">
+        <source>OK</source>
+        <note>Class = "NSButtonCell"; title = "OK"; ObjectID = "Ipn-Y0-ytQ";</note>
+      </trans-unit>
       <trans-unit id="J5U-5w-g23.title">
         <source>Justify</source>
         <target>Justify</target>
@@ -250,6 +258,10 @@
         <source>Use None</source>
         <target>Use None</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
+      </trans-unit>
+      <trans-unit id="K6Z-jH-qTl.title">
+        <source>Continue</source>
+        <note>Class = "NSButtonCell"; title = "Continue"; ObjectID = "K6Z-jH-qTl";</note>
       </trans-unit>
       <trans-unit id="KaW-ft-85H.title">
         <source>Revert to Saved</source>
@@ -275,6 +287,10 @@
         <source>	Left to Right</source>
         <target>	Left to Right</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
+      </trans-unit>
+      <trans-unit id="MDC-GR-pev.title">
+        <source>Activate</source>
+        <note>Class = "NSButtonCell"; title = "Activate"; ObjectID = "MDC-GR-pev";</note>
       </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
         <source>Copy Ruler</source>
@@ -486,8 +502,8 @@
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
       </trans-unit>
       <trans-unit id="cmz-jq-Ope.title">
-        <source>Register</source>
-        <note>Class = "NSButtonCell"; title = "Register"; ObjectID = "cmz-jq-Ope";</note>
+        <source>Activate</source>
+        <note>Class = "NSButtonCell"; title = "Activate"; ObjectID = "cmz-jq-Ope";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title">
         <source>Selection</source>
@@ -518,6 +534,29 @@
         <source>Undo</source>
         <target>Deshacer</target>
         <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
+      <trans-unit id="eWZ-KX-JtO.title">
+        <source>Your subscription is about to expire
+(%@ days left).
+
+We have a special offer for you.</source>
+        <note>Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left).\n\nWe have a special offer for you."; ObjectID = "eWZ-KX-JtO";</note>
+      </trans-unit>
+      <trans-unit id="eb1-ke-RIJ.title">
+        <source>License Activation</source>
+        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "eb1-ke-RIJ";</note>
+      </trans-unit>
+      <trans-unit id="ecv-ob-kOc.title">
+        <source>Buy Now...</source>
+        <note>Class = "NSMenuItem"; title = "Buy Now..."; ObjectID = "ecv-ob-kOc";</note>
+      </trans-unit>
+      <trans-unit id="fff-K1-E5b.title">
+        <source>Activation...</source>
+        <note>Class = "NSMenuItem"; title = "Activation..."; ObjectID = "fff-K1-E5b";</note>
+      </trans-unit>
+      <trans-unit id="fug-wa-QH5.title">
+        <source>ONLYOFFICE</source>
+        <note>Class = "NSViewController"; title = "ONLYOFFICE"; ObjectID = "fug-wa-QH5";</note>
       </trans-unit>
       <trans-unit id="gVA-U4-sdL.title">
         <source>Paste</source>
@@ -567,14 +606,18 @@
         <target>Kern</target>
         <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
       </trans-unit>
+      <trans-unit id="jBt-El-yRL.title">
+        <source>You have successfully activated %@.</source>
+        <note>Class = "NSTextFieldCell"; title = "You have successfully activated %@."; ObjectID = "jBt-El-yRL";</note>
+      </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
         <source>	Right to Left</source>
         <target>	Right to Left</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
       </trans-unit>
       <trans-unit id="jep-MJ-EBv.title">
-        <source>Copy and paste your ONLYOFFICE registration data here:</source>
-        <note>Class = "NSTextFieldCell"; title = "Copy and paste your ONLYOFFICE registration data here:"; ObjectID = "jep-MJ-EBv";</note>
+        <source>Please enter your Activation Key:</source>
+        <note>Class = "NSTextFieldCell"; title = "Please enter your Activation Key:"; ObjectID = "jep-MJ-EBv";</note>
       </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
         <source>Format</source>
@@ -585,6 +628,10 @@
         <source>ONLYOFFICE</source>
         <target>ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="kpa-Sr-jPV.title">
+        <source>Thank You!</source>
+        <note>Class = "NSTextFieldCell"; title = "Thank You!"; ObjectID = "kpa-Sr-jPV";</note>
       </trans-unit>
       <trans-unit id="llV-Yc-IJ4.title">
         <source>FILE</source>
@@ -636,8 +683,8 @@
         <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
       </trans-unit>
       <trans-unit id="qti-2R-I2m.title">
-        <source>ONLYOFFICE Activation</source>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE Activation"; ObjectID = "qti-2R-I2m";</note>
+        <source>Activation</source>
+        <note>Class = "NSWindow"; title = "Activation"; ObjectID = "qti-2R-I2m";</note>
       </trans-unit>
       <trans-unit id="rG1-93-HjS.title">
         <source>ONLYOFFICE </source>
@@ -749,13 +796,17 @@
         <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
       </trans-unit>
       <trans-unit id="yGK-Fg-qtS.title">
-        <source>Info</source>
-        <note>Class = "NSTextFieldCell"; title = "Info"; ObjectID = "yGK-Fg-qtS";</note>
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <note>Class = "NSTextFieldCell"; title = "If you have already purchased %@, you should find your activation key in an email confirmation."; ObjectID = "yGK-Fg-qtS";</note>
       </trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
         <source>Show Substitutions</source>
         <target>Show Substitutions</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
+      </trans-unit>
+      <trans-unit id="zbg-CZ-mv3.title">
+        <source>Thank you for evaluating %@!</source>
+        <note>Class = "NSTextFieldCell"; title = "Thank you for evaluating %@!"; ObjectID = "zbg-CZ-mv3";</note>
       </trans-unit>
       <trans-unit id="zwS-9G-S0N.title">
         <source>Portal:</source>
@@ -764,7 +815,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Info-MAS.plist" source-language="en" datatype="plaintext" target-language="es">
+  <file original="ONLYOFFICE/Resources/IvolgaPRO/Info.plist" source-language="en" datatype="plaintext" target-language="es">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
@@ -776,12 +827,11 @@
         <source>1.0</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2015 Ascensio System SIA. All rights reserved.</source>
-        <target>Copyright © 2015 Ascensio System SIA. Reservados todos los derechos.</target>
+        <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="es">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="es">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
@@ -793,16 +843,41 @@
         <source>1.0</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2015 Ascensio System SIA. All rights reserved.</source>
-        <target>Copyright © 2015 Ascensio System SIA. Reservados todos los derechos.</target>
+        <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="es">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="es">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
     </header>
     <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Help</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>About %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Acknowledgments">
         <source>Acknowledgments</source>
         <target>Acknowledgments</target>
@@ -810,7 +885,7 @@
       </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
-        <target>Cancelar</target>
+        <target>Cancel</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -830,7 +905,7 @@
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>¿Desea guardar los cambios realizados en el documento "%@" ?</target>
+        <target>Do you want to save the changes made to the document "%@"?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
@@ -853,14 +928,29 @@
         <target>File "%@" can not be open or not exist.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>File Format:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File can not be open.">
         <source>File can not be open.</source>
         <target>File can not be open.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>Hide %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
         <source>If you don't review your documents, all your changeses will be lost.</source>
         <target>If you don't review your documents, all your changeses will be lost.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target>If you have already purchased %@, you should find your activation key in an email confirmation.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book">
@@ -925,7 +1015,7 @@
       </trans-unit>
       <trans-unit id="Preparing...">
         <source>Preparing...</source>
-        <target>Preparando...</target>
+        <target>Preparing...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx">
@@ -933,9 +1023,14 @@
         <target>Presentation %ld.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>Quit %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
-        <target>Revisar Cambios...</target>
+        <target>Review Changes...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Rich Text Document">
@@ -948,9 +1043,14 @@
         <target>Spreadsheet %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Thank you for evaluating %@!">
+        <source>Thank you for evaluating %@!</source>
+        <target>Thank you for evaluating %@!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
-        <target>Sin Confirmar</target>
+        <target>Unconfirmed</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">
@@ -980,17 +1080,46 @@
       </trans-unit>
       <trans-unit id="Yes">
         <source>Yes</source>
-        <target>Sí</target>
+        <target>Yes</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?">
-        <source>You have %ld ONLYOFFICE documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>Tiene %ld documentos ONLYOFFICE  con los cambios no confirmados. ¿Quiere revisar estos cambios antes de salir?</target>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have successfully activated %@.">
+        <source>You have successfully activated %@.</source>
+        <target>You have successfully activated %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target>Sus cambios se perderán si no los guarda.</target>
+        <target>Your changes will be lost if you don’t save them.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.">
+        <source>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.">
+        <source>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</source>
+        <target>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
