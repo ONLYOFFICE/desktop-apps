@@ -60,6 +60,8 @@ public:
     void goStart();
     void focus();
     int  checkModified(const QString&);
+    void checkActivation();
+    void selfActivation();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
@@ -75,9 +77,9 @@ private:
     void doLogout(const QString&);
     int  trySaveDocument(int);
     void doActivate(const QString&);
-    void checkActivation();
     wstring commonDataPath() const;
     void doLicenseWarning(void *);
+    void sendLicenseToJS(bool);
 
     void fillUserName(QString& fn, QString& ln);
 signals:
@@ -158,6 +160,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+    bool m_waitActiveLic;
 public:
     WId GetHwndForKeyboard()
     {
