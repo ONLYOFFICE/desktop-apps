@@ -77,14 +77,14 @@ var en = {
 }
 
 var ru = {
-    welWelcome: 'Добро пожаловать в ONLYOFFICE Desktop!',
+    welWelcome: 'Добро пожаловать в Иволга ПРО!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
     btnConnect: 'Войти на портал',
     btnCreatePortal: 'Создать портал',
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
-    portalEmptyTitle: 'Ощутите все преимущества ONLYOFFICE',
+    portalEmptyTitle: 'Ощутите все преимущества Иволга ПРО',
     portalEmptyDescr: 'Войдите на портал и добавьте других участников.',
     portalListTitle: 'Подключенные порталы',
     textNoFiles: 'Нет файлов для просмотра',
