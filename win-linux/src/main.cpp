@@ -59,7 +59,7 @@ QString g_lang;
 
 int main( int argc, char *argv[] )
 {
-    QString user_data_path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/ONLYOFFICE/DesktopEditors";
+    QString user_data_path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + APP_DATA_PATH;
 
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
         std::wstring sAppData(L"");
@@ -69,7 +69,7 @@ int main( int argc, char *argv[] )
         if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
             sAppData = std::wstring(szPath);
             std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-            sAppData += L"/ONLYOFFICE/DesktopEditors";
+            sAppData.append(QString(APP_DATA_PATH).toStdWString());
         }
 #else
         sAppData = QString("/var/lib/onlyoffice/desktopeditors").toStdWString();
@@ -149,8 +149,6 @@ int main( int argc, char *argv[] )
     g_dpi_ratio = app.devicePixelRatio();
 #endif
 
-    pApplicationManager->CheckFonts();
-
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
@@ -223,6 +221,7 @@ int main( int argc, char *argv[] )
     window.show();
     window.setWindowTitle("Desktop Editors");
 #endif
+    pApplicationManager->CheckFonts();
 
     bool bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
