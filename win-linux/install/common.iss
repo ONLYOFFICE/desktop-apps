@@ -18,12 +18,12 @@
 [Setup]
 AppVerName              ={#sAppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
-AppPublisher            =ZAO "New Communication Technologies".
+AppPublisher            =ЗАО "Новые Коммуникационные Технологии"
 ;AppPublisherURL         =http://www.onlyoffice.com/
 ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
 AppPublisherURL         =http://www.ivolgapro.com/
 AppSupportURL           =http://www.ivolgapro.com/support.aspx
-AppCopyright            =Copyright (C) 2015 ZAO "New Communication Technologies".
+AppCopyright            =Copyright (C) 2015 ЗАО "Новые Коммуникационные Технологии".
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
@@ -41,8 +41,8 @@ AppMutex                =TEAMLAB
 ChangesEnvironment      = yes
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_Иволга.rtf;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_Иволга.rtf;
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
