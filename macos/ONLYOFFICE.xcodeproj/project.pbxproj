@@ -211,6 +211,8 @@
 		FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
 		FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
 		FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
+		FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FCB455001C326A4E00FEACF2 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
 		FCBC42711B9D650400405301 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
 		FCBC42761B9D650500405301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
@@ -395,6 +397,8 @@
 		FCAC6DF71C195FA6003D2457 /* ASCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCConstants.m; path = Code/Utils/ASCConstants.m; sourceTree = "<group>"; };
 		FCAF3EFB1BA31D3C00B42BAA /* ASCUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCUserInfoViewController.h; path = Code/Controllers/ASCUserInfoViewController.h; sourceTree = "<group>"; };
 		FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCUserInfoViewController.m; path = Code/Controllers/ASCUserInfoViewController.m; sourceTree = "<group>"; };
+		FCB454FD1C326A4E00FEACF2 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
+		FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		FCBC42681B9D650400405301 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBC426D1B9D650400405301 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCBC426E1B9D650400405301 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -710,6 +714,7 @@
 		FC67182F1BD918250028600F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FCB454FC1C326A4E00FEACF2 /* PFMoveApplication */,
 				FC3BFDF91BBE83AB0040C904 /* SFBPopover */,
 			);
 			name = Vendor;
@@ -896,6 +901,16 @@
 			);
 			name = Controllers;
 			sourceTree = "<group>";
+		};
+		FCB454FC1C326A4E00FEACF2 /* PFMoveApplication */ = {
+			isa = PBXGroup;
+			children = (
+				FCB454FD1C326A4E00FEACF2 /* PFMoveApplication.h */,
+				FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */,
+			);
+			name = PFMoveApplication;
+			path = Vendor/PFMoveApplication;
+			sourceTree = SOURCE_ROOT;
 		};
 		FCBC425F1B9D650400405301 = {
 			isa = PBXGroup;
@@ -1353,6 +1368,7 @@
 				FC7FD39F1C315DD6008F6641 /* ASCTabView.m in Sources */,
 				FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */,
 				FC7FD3A11C315DD6008F6641 /* ASCTrialController.m in Sources */,
+				FCB455001C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
 				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
 				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
@@ -1401,6 +1417,7 @@
 				FCBC42941B9D736700405301 /* ASCTabView.m in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
 				FC1E9DC81C2EBFFD0043100E /* ASCTrialController.m in Sources */,
+				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
