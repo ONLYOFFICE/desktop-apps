@@ -27,7 +27,8 @@ AppCopyright            =Copyright (C) 2015 ZAO "New Communication Technologies"
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
-DefaultGroupName        =ONLYOFFICE
+;DefaultGroupName        =ONLYOFFICE
+DefaultGroupName        =Иволга ПРО
 DisableProgramGroupPage = yes
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
@@ -40,8 +41,8 @@ AppMutex                =TEAMLAB
 ChangesEnvironment      = yes
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_Иволга.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_Иволга.rtf;
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
