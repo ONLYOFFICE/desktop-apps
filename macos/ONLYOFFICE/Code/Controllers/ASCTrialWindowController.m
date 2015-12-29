@@ -48,7 +48,7 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-//    self.window.title = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+//    self.window.title = [ASCHelper appName];
     self.contentViewController.view.layer.cornerRadius = 10.0;
     self.window.backgroundColor = [NSColor whiteColor];
 }
@@ -59,7 +59,7 @@
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
-    [NSApp stopModalWithCode:1];
+    [NSApp stopModal];
 }
 
 @end

@@ -59,7 +59,7 @@
     
     NSTextField *label = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 20, 120, 22)];
     [label setEditable:NO];
-    [label setStringValue:@"File Format:"];
+    [label setStringValue:NSLocalizedString(@"File Format:", nil)];
     [label setBordered:NO];
     [label setBezeled:NO];
     [label setDrawsBackground:NO];
