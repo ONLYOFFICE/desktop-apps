@@ -223,7 +223,12 @@ begin
 
     //to milliseconds and unix windows epoche offset removed
     Result := IntToStr(fileTimeNano100/10000 - 11644473600000);
- end;
+end;
+
+function libExists(const dllname: String) : boolean;
+begin
+  Result := not FileExists(ExpandConstant('{sys}\'+dllname));
+end;
 
 function NeedsAddPath(Param: string): boolean;
 var
