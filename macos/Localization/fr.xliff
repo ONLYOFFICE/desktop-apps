@@ -55,6 +55,10 @@
         <target>Trouver</target>
         <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
       </trans-unit>
+      <trans-unit id="4et-TX-a4m.title">
+        <source>License Agreement</source>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
         <source>Quit ONLYOFFICE</source>
         <target>Terminer ONLYOFFICE</target>
@@ -824,7 +828,7 @@ We have a special offer for you.</source>
         <source>$(PRODUCT_NAME)</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>1.0</source>
+        <source>1.0.1</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
@@ -951,6 +955,11 @@ We have a special offer for you.</source>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
         <target>If you have already purchased %@, you should find your activation key in an email confirmation.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>License Agreement</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book">

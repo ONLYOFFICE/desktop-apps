@@ -55,6 +55,11 @@
         <target>Найти</target>
         <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
       </trans-unit>
+      <trans-unit id="4et-TX-a4m.title">
+        <source>License Agreement</source>
+        <target>Пользовательское соглашение</target>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
         <source>Quit ONLYOFFICE</source>
         <target>Завершить ONLYOFFICE</target>
@@ -852,7 +857,7 @@ We have a special offer for you.</source>
         <target>Иволга ПРО</target>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>1.0</source>
+        <source>1.0.1</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
@@ -982,6 +987,11 @@ We have a special offer for you.</source>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
         <target>Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>Пользовательское соглашение</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book">
@@ -1147,6 +1157,10 @@ Now you can prolong or upgrade your subscription with a discount.</source>
 (%d days left).
 
 We have a special offer for you.</source>
+        <target>Ваша подписка истекает
+(%d дней осталось).
+
+У нас есть специальное предложение для Вас.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
