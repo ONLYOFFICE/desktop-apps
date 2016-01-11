@@ -32,6 +32,8 @@
 
 'use strict';
 $(document).ready(function() {
+    hideAction('connect', true);
+
     $('.tool-menu > .menu-item > a').click(
         function(e){
             var $el = $(this);
@@ -320,7 +322,12 @@ function selectAction(action) {
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
     $('.action-panel.' + action).show();
-}
+};
+
+function hideAction(action, hide) {
+    $('.tool-menu a[action='+action+']').parent()[hide?'hide':'show']();
+    $('.action-panel.' + action)[hide?'hide':'show']();
+};
 
 function setLoaderVisible(isvisible, timeout) {
     setTimeout(function(){
