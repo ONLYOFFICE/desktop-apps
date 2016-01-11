@@ -39,6 +39,7 @@
 //
 
 #import "ASCTrialWindowController.h"
+#import "ASCHelper.h"
 
 @interface ASCTrialWindowController ()
 
@@ -50,7 +51,7 @@
     [super windowDidLoad];
 //    self.window.title = [ASCHelper appName];
     self.contentViewController.view.layer.cornerRadius = 10.0;
-    self.window.backgroundColor = [NSColor whiteColor];
+    self.window.backgroundColor = kColorRGB(245, 245, 245);
 }
 
 - (void)showWindow:(id)sender {

@@ -39,6 +39,7 @@
 //
 
 #import "ASCRegistrationWindowController.h"
+#import "ASCHelper.h"
 
 @interface ASCRegistrationWindowController ()
 
@@ -50,7 +51,7 @@
     [super windowDidLoad];
     
     self.contentViewController.view.layer.cornerRadius = 10.0;
-    self.window.backgroundColor = [NSColor whiteColor];
+    self.window.backgroundColor = kColorRGB(245, 245, 245);
 }
 
 - (void)showWindow:(id)sender {
