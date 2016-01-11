@@ -389,6 +389,9 @@ function onRecentFolderClick(e) {
 }
 
 function onNewFileClick(e) {
+    if ($(e.currentTarget).parent().hasClass('disabled'))
+        return;
+    
     var me = this;
     if (me.click_lock===true) return;
     me.click_lock = true;
@@ -496,6 +499,9 @@ window.on_native_message = function(cmd, param) {
         $('a[action=activate]').parent()[param=='1'?'hide':'show']();        
         $('#txt-key-activate').focus();
         selectAction('activate');
+
+        var new_doc_items = $('.tool-quick-menu .menu-item');
+        new_doc_items[param=='1'?'removeClass':'addClass']('disabled');
     } else 
     if (cmd == 'lic:sendkey') {
         // $('a[action=activate]').parent()['show']();

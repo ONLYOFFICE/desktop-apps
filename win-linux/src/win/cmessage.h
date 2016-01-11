@@ -19,6 +19,7 @@ public:
 
     void error(const QString& title, const QString& text);
     int showModal(const QString&, QMessageBox::Icon);
+    void setButtons(const QString&, const QString&);
 
 private:
     QDialog m_pDlg;
@@ -26,6 +27,7 @@ private:
     QFormLayout * m_fLayout;
     QLabel * m_message;
     QLabel * m_typeIcon;
+    QWidget * m_boxButtons;
 
 signals:
 

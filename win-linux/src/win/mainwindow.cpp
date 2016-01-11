@@ -99,7 +99,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindowW( L"WindowClass", L"ONLYOFFICE Desktop Editors", static_cast<DWORD>(Style::windowed),
+    hWnd = CreateWindowW( L"WindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(Style::windowed),
                           _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );

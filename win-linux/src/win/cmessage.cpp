@@ -29,6 +29,7 @@ CMessage::CMessage(HWND hParentWnd)
     m_typeIcon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
     m_message = new QLabel("some message");
+    m_message->setWordWrap(true);
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
@@ -38,13 +39,13 @@ CMessage::CMessage(HWND hParentWnd)
     QPushButton * btn_yes       = new QPushButton(tr("&OK"));
 //    QPushButton * btn_no        = new QPushButton("&No");
 //    QPushButton * btn_cancel    = new QPushButton("&Cancel");
-    QWidget * box = new QWidget;
-    box->setLayout(new QHBoxLayout);
-    box->layout()->addWidget(btn_yes);
+    m_boxButtons = new QWidget;
+    m_boxButtons->setLayout(new QHBoxLayout);
+    m_boxButtons->layout()->addWidget(btn_yes);
 //    box->layout()->addWidget(btn_no);
 //    box->layout()->addWidget(btn_cancel);
-    box->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
-    h_layout1->addWidget(box, 0, Qt::AlignCenter);
+    m_boxButtons->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
+    h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
 
     m_pDlg.setLayout(layout);
     m_pDlg.setMinimumWidth(300*g_dpi_ratio);
@@ -99,4 +100,27 @@ void CMessage::onYesClicked()
 {
     m_result = MODAL_RESULT_YES;
     m_pDlg.accept();
+}
+
+void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
+{
+    foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
+        delete w;
+    }
+
+    QPushButton * _btn = new QPushButton(cbtn1);
+    m_boxButtons->layout()->addWidget(_btn);
+    connect(_btn, &QPushButton::clicked, [=](){
+        m_result = 201;
+        m_pDlg.accept();
+    });
+
+    if (cbtn2.size()) {
+        _btn = new QPushButton(cbtn1);
+        m_boxButtons->layout()->addWidget(_btn);
+        connect(_btn, &QPushButton::clicked, [=](){
+            m_result = 202;
+            m_pDlg.accept();
+        });
+    }
 }

@@ -84,6 +84,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         m_pWidgetProfile(new CUserProfileWidget), m_pWidgetDownload(new CDownloadWidget)
       , m_printData(new CPrintData)
       , m_mainWindowState(Qt::WindowNoState)
+      , m_waitActiveLic(false)
 {
     m_pManager = manager;
 
@@ -838,6 +839,7 @@ void QAscMainPanel::doActivate(const QString& key)
     wstring sAppData = commonDataPath();
     if (sAppData.size()) {
         QDir().mkpath(QString::fromStdWString(sAppData));
+        m_waitActiveLic = true;
 
         CAscLicenceKey * pData = new CAscLicenceKey;
         pData->AddRef();
@@ -850,7 +852,7 @@ void QAscMainPanel::doActivate(const QString& key)
         m_pManager->Apply(pEvent);
     } else {
         CMessage mess(gTopWinId);
-        mess.showModal(tr("Internal activatio error"), QMessageBox::Critical);
+        mess.showModal(tr("Internal activation error"), QMessageBox::Critical);
     }
 }
 
@@ -873,22 +875,44 @@ void QAscMainPanel::doLicenseWarning(void * data)
 {
     CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
 
+    CMessage mess(gTopWinId);
     if (!pData->get_Licence()) {
-        CMessage mess(gTopWinId);
-        mess.showModal(tr("The program is non-activated"), QMessageBox::Information);
+        sendLicenseToJS(false);
+
+        mess.setButtons(tr("Buy Now"), "");
+        int res = mess.showModal(tr("The program is unregistered"), QMessageBox::Information);
+        if (res == 201) {
+            onLink(URL_BUYNOW);
+        }
     } else {
-//        if (pData->get_DaysBetween() > 0) {
+        if (m_waitActiveLic) {
+            mess.showModal(tr("Activation successfully finished!"), QMessageBox::Information);
+            sendLicenseToJS(true);
+        } else
+        if (pData->get_DaysBetween() > 0) {
             // the license checked more then 1 day before
+            if (pData->get_DaysLeft() == 0) {
+                sendLicenseToJS(true);
+
+                mess.setButtons(tr("Activate"), tr("Continue"));
+                int res = mess.showModal(tr("The program is non-activated!"), QMessageBox::Information);
+                if (res == 201) {
+                    pushButtonMainClicked();
+                }
+            } else
             if (pData->get_DaysLeft() < 15) {
-                QString text = tr("%1 days left before the licence end").arg(pData->get_DaysLeft());
+                sendLicenseToJS(true);
+
+                QString text = tr("%1 days left before the license end").arg(pData->get_DaysLeft());
 
                 CMessage mess(gTopWinId);
+                mess.setButtons(tr("Continue"), "");
                 mess.showModal(text, QMessageBox::Information);
+            } else {
+                sendLicenseToJS(false);
             }
-//        }
+        }
     }
-
-    qDebug() << "doLicenseWarning: " << pData->get_DaysBetween();
 }
 
 void QAscMainPanel::onJSMessage(QString key, QString value)
@@ -1257,7 +1281,11 @@ wstring QAscMainPanel::commonDataPath() const
     if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
         sAppData = std::wstring(szPath);
         std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-        sAppData += L"/ONLYOFFICE/License";
+        sAppData.append(QString(APP_LICENSE_PATH).toStdWString());
+    }
+
+    if (sAppData.size()) {
+        QDir().mkpath(QString::fromStdWString(sAppData));
     }
 
 #else
@@ -1266,4 +1294,30 @@ wstring QAscMainPanel::commonDataPath() const
 #endif
 
     return sAppData;
+}
+
+void QAscMainPanel::sendLicenseToJS(bool active)
+{
+    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+    pCommand->put_Command(L"lic:active");
+    pCommand->put_Param(QString::number(active).toStdWString());
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+}
+
+void QAscMainPanel::selfActivation()
+{
+    CAscLicenceActual * pData = new CAscLicenceActual;
+    pData->put_Path(commonDataPath());
+    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+
+    qDebug() << "common path: " << QString::fromStdWString(commonDataPath());
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+    pEvent->m_pData = pData;
+
+    m_pManager->Apply(pEvent);
 }

@@ -1,9 +1,13 @@
-﻿#define sAppName            'ONLYOFFICE Desktop Editors'
+﻿;#define sAppName            'ONLYOFFICE Desktop Editors'
+#define sAppName            'Иволга ПРО'
 
 #define NAME_EXE_OUT        'DesktopEditors.exe'
-#define ASC_PATH            'ONLYOFFICE\DesktopEditors'
-#define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
-#define REG_SC_PATH         'Software\Classes\OnlyOffice'
+;#define ASC_PATH            'ONLYOFFICE\DesktopEditors'
+;#define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
+;#define REG_SC_PATH         'Software\Classes\OnlyOffice'
+#define ASC_PATH            'IvolgaPRO\DesktopEditors'
+#define ASC_REG_PATH        'Software\IvolgaPRO\DesktopEditors'
+#define REG_SC_PATH         'Software\Classes\IvolgaPRO'
 
 #define PATH_EXE            '..\Build\Release\release\DesktopEditors.exe'
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
@@ -14,14 +18,17 @@
 [Setup]
 AppVerName              ={#sAppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
-AppPublisher            =Ascensio System SIA.
-AppPublisherURL         =http://www.onlyoffice.com/
-AppSupportURL           =http://www.onlyoffice.com/support.aspx
-AppCopyright            =Copyright (C) 2015 Ascensio System SIA.
+AppPublisher            =ЗАО "Новые Коммуникационные Технологии"
+;AppPublisherURL         =http://www.onlyoffice.com/
+;AppSupportURL           =http://www.onlyoffice.com/support.aspx
+AppPublisherURL         =http://www.ivolgapro.com/
+AppSupportURL           =http://www.ivolgapro.com/support.aspx
+AppCopyright            =Copyright (C) 2015 ЗАО "Новые Коммуникационные Технологии".
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
-DefaultGroupName        =ONLYOFFICE
+;DefaultGroupName        =ONLYOFFICE
+DefaultGroupName        =Иволга ПРО
 DisableProgramGroupPage = yes
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
@@ -34,8 +41,8 @@ AppMutex                =TEAMLAB
 ChangesEnvironment      = yes
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
@@ -216,7 +223,12 @@ begin
 
     //to milliseconds and unix windows epoche offset removed
     Result := IntToStr(fileTimeNano100/10000 - 11644473600000);
- end;
+end;
+
+function libExists(const dllname: String) : boolean;
+begin
+  Result := not FileExists(ExpandConstant('{sys}\'+dllname));
+end;
 
 function NeedsAddPath(Param: string): boolean;
 var
@@ -294,7 +306,7 @@ Source: ..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts
 
 [Tasks]
 Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
-Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
+;Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
@@ -311,94 +323,94 @@ Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postins
 ;Filename: {app}\opts; Section: app; Key: lang; String: {language};
 
 [Registry]
-Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
-Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};
-Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime};
+;Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
+Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
+Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 
-Root: HKLM; Subkey: Software\Classes\.doc;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.8";              Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},7";            
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";   
+;Root: HKLM; Subkey: Software\Classes\.doc;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.8";              Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word 97 - 2003 Document";  Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},7";            
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.8\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";   
 
-Root: HKLM; Subkey: Software\Classes\.docx;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.12";            Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word Document";           Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},7";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.docx;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.12";            Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12;                     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Word Document";           Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\DefaultIcon;         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},7";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.12\shell\open\command;  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.xls;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.8";                  Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel 97-2003 Worksheet";   Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},12";             
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";    
+;Root: HKLM; Subkey: Software\Classes\.xls;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.8";                  Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel 97-2003 Worksheet";   Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},12";             
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.8\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";    
 
-Root: HKLM; Subkey: Software\Classes\.xlsx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.12";               Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12;                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Worksheet";         Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\DefaultIcon;          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},12";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\shell\open\command;   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.xlsx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.12";               Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12;                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Worksheet";         Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\DefaultIcon;          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},12";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.12\shell\open\command;   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.ppt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.8";                         Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Presentation"; Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},1";                   
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          
+;Root: HKLM; Subkey: Software\Classes\.ppt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.8";                         Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Presentation"; Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},1";                   
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.8\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          
 
-Root: HKLM; Subkey: Software\Classes\.pptx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.12";                Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Presentation"; Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},1";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.pptx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.12";                Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Presentation"; Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},1";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.12\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.pps;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.SlideShow.8";                       Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8;                   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Slide Show"; Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8\DefaultIcon;       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},2";                   
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          
+;Root: HKLM; Subkey: Software\Classes\.pps;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.SlideShow.8";                       Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8;                   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint 97-2003 Slide Show"; Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8\DefaultIcon;       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},2";                   
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.8\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";          
 
-Root: HKLM; Subkey: Software\Classes\.ppsx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.SlideShow.12";                Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12;                  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Slide Show"; Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12\DefaultIcon;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},2";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.ppsx;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.SlideShow.12";                Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12;                  ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft PowerPoint Slide Show"; Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12\DefaultIcon;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},2";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.SlideShow.12\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.odt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.21";            Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21;                   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Document";               Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21\DefaultIcon;       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},8";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.odt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Document.21";            Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21;                   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Document";               Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21\DefaultIcon;       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},8";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Document.21\shell\open\command;ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.ods;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.21";             Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21;                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Worksheet";            Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21\DefaultIcon;          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},13";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21\shell\open\command;   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.ods;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Sheet.21";             Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21;                      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Worksheet";            Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21\DefaultIcon;          ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},13";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Sheet.21\shell\open\command;   ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.odp;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.21";              Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Presentation";         Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},3";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.odp;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Show.21";              Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OpenOffice Presentation";         Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21\DefaultIcon;           ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},3";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Show.21\shell\open\command;    ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.csv;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Csv.1";                            Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Comma Separated Values File"; Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},14";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.csv;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Csv.1";                            Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Microsoft Excel Comma Separated Values File"; Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},14";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Csv.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.rtf;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Rtf.1";                Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Rich Text Format";                Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},9";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.rtf;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Rtf.1";                Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Rich Text Format";                Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},9";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Rtf.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.txt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Txt.1";                Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Txt file";                        Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},6";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.txt;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Txt.1";                Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Txt file";                        Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},6";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Txt.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.xps;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Xps.1";              Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Xps file";                      Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},6";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.xps;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Xps.1";              Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Xps file";                      Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},6";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Xps.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.pdf;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Pdf.1";                Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Pdf document";                    Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},5";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
+;Root: HKLM; Subkey: Software\Classes\.pdf;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Pdf.1";                Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1;                         ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Pdf document";                    Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\DefaultIcon;             ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},5";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Pdf.1\shell\open\command;      ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1""";  
 
-Root: HKLM; Subkey: Software\Classes\.djvu;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Djvu.1";               Flags: uninsdeletevalue
-Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Djvu file";                       Flags: uninsdeletekey
-Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},4";           
-Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1"""; 
+;Root: HKLM; Subkey: Software\Classes\.djvu;                       ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "OnlyOffice.Djvu.1";               Flags: uninsdeletevalue
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1;                        ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "Djvu file";                       Flags: uninsdeletekey
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\DefaultIcon;            ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: "{app}\{#iconsExe},4";           
+;Root: HKLM; Subkey: {#REG_SC_PATH}.Djvu.1\shell\open\command;     ValueType:string;ValueName:""; Tasks:fileassoc; ValueData: """{app}\{#NAME_EXE_OUT}"" ""%1"""; 
 
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
 

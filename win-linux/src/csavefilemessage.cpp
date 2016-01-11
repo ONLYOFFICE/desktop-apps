@@ -102,7 +102,7 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
 
     m_pDlg.setLayout(layout);
     m_pDlg.setMinimumWidth(400*g_dpi_ratio);
-    m_pDlg.setWindowTitle("ONLYOFFICE Documents");
+    m_pDlg.setWindowTitle(APP_TITLE);
 
     connect(btn_yes, &QPushButton::clicked, this, &CSaveFileMessage::onYesClicked);
     connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));

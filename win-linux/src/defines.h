@@ -43,12 +43,21 @@
 #define FILE_DOWNLOAD_START     3
 #define FILE_DOWNLOAD_END       4
 
-#define APP_NAME "DesktopEditors"
-#define APP_TITLE "ONLYOFFICE"
+//#define APP_NAME "DesktopEditors"
+//#define APP_TITLE "ONLYOFFICE"
+//#define REG_GROUP_KEY "ONLYOFFICE"
+#define REG_APP_NAME "DesktopEditors"
+//#define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#define APP_TITLE "Иволга ПРО"
+#define WINDOW_NAME "Иволга ПРО"
+#define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
+#define APP_LICENSE_PATH "/IvolgaPRO/License"
+#define REG_GROUP_KEY "IvolgaPRO"
+#define URL_BUYNOW "http://ivolgapro.ru"
 #define GET_REGISTRY_USER(variable) \
-    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, "ONLYOFFICE", APP_NAME);
+    QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
 #define GET_REGISTRY_SYSTEM(variable) \
-    QSettings variable(QSettings::SystemScope, "ONLYOFFICE", APP_NAME);
+    QSettings variable(QSettings::SystemScope, REG_GROUP_KEY, REG_APP_NAME);
 
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2
