@@ -276,22 +276,30 @@
     }
 }
 
-- (void)openAcknowledgments {
-    NSURLComponents *acknowledgmentsPage = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]];
-    acknowledgmentsPage.scheme = NSURLFileScheme;
+- (void)openLocalPage:(NSString *)path title:(NSString *)title {
+    NSURLComponents *urlPage = [NSURLComponents componentsWithString:path];
+    urlPage.scheme = NSURLFileScheme;
     
-    ASCTabView * existTab = [self tabWithParam:@"url" value:[acknowledgmentsPage string]];
+    ASCTabView * existTab = [self tabWithParam:@"url" value:[urlPage string]];
     
     if (existTab) {
         [self.tabsControl selectTab:existTab];
     } else {
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
-        tab.title       = NSLocalizedString(@"Acknowledgments", nil);
+        tab.title       = title;
         tab.type        = ASCTabViewPortal;
-        tab.params      = [@{@"url" : [acknowledgmentsPage string]} mutableCopy];
+        tab.params      = [@{@"url" : [urlPage string]} mutableCopy];
         
         [self.tabsControl addTab:tab selected:YES];
     }
+}
+
+- (void)openAcknowledgments {
+    [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] title:NSLocalizedString(@"Acknowledgments", nil)];
+}
+
+- (void)openEULA {
+    [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"html"] title:NSLocalizedString(@"License Agreement", nil)];
 }
 
 #pragma mark -

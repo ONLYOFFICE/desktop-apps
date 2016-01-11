@@ -673,6 +673,12 @@
                                                 <action selector="onMenuAcknowledgments:" target="Voe-Tx-rLC" id="l5J-XJ-sBT"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="License Agreement" id="4et-TX-a4m">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="onMenuEULA:" target="Voe-Tx-rLC" id="2lA-bI-nm9"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wdG-cl-JBn"/>
                                         <menuItem title="Product Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>

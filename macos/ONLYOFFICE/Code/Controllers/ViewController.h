@@ -48,5 +48,6 @@
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (void)openAcknowledgments;
+- (void)openEULA;
 @end
 
