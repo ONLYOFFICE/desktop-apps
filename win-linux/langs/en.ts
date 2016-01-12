@@ -274,7 +274,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="869"/>
         <source>The program is unregistered</source>
-        <translation type="unfinished">Unregistered application version. You cannot create and edit local files. Click &quot;Buy now&quot; to buy the license.</translation>
+        <translation>Unregistered application version. You cannot create and edit local files. Click &quot;Buy now&quot; to buy the license.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="876"/>

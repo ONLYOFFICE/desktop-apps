@@ -277,7 +277,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="869"/>
         <source>The program is unregistered</source>
-        <translation type="unfinished">Незарегистрированная версия приложения. Вы не сможете создавать и редакторировать локальные файлы. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
+        <translation>Незарегистрированная версия приложения. Вы не сможете создавать и редакторировать локальные файлы. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="876"/>

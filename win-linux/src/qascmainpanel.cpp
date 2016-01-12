@@ -711,8 +711,6 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     m_pManager->Apply(pEvent);
     /* ************************* */
 
-    pData->put_IsDemo(false);
-    pData->put_DaysLeft(0);
     pData->put_DaysBetween(1);
     if (!pData->get_Licence() || !pData->get_DaysLeft()) {
         doLicenseWarning(pData);
