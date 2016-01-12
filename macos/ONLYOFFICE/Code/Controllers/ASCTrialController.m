@@ -74,12 +74,12 @@
         } else {
             title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for using %@!", nil), productName];
             
-            if ([licenceInfo[@"daysLeft"] intValue] < 14) {
-                // license is ending
-                message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
-            } else if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+            if ([licenceInfo[@"daysLeft"] intValue] < 1) {
                 // license is end
                 message = [NSString stringWithFormat:NSLocalizedString(@"The license expired.\nYou cannot create and edit local files.", nil)];
+            } else if ([licenceInfo[@"daysLeft"] intValue] < 14) {
+                // license is ending
+                message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
             }
         }
     }

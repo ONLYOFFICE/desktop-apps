@@ -1039,12 +1039,12 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-9q-zVx">
-                                <rect key="frame" x="178" y="71" width="311" height="60"/>
+                                <rect key="frame" x="178" y="56" width="311" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="9iq-Ma-WG3"/>
+                                    <constraint firstAttribute="height" constant="75" id="9iq-Ma-WG3"/>
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eWZ-KX-JtO">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <string key="title">Your subscription is about to expire
 (%@ days left).</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1086,7 +1086,7 @@ DQ
                             <constraint firstItem="y5a-9q-zVx" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="35" id="3QE-cx-78l"/>
                             <constraint firstItem="byU-mY-X4q" firstAttribute="leading" secondItem="0rt-25-GZU" secondAttribute="trailing" constant="17" id="3hb-bj-kKI"/>
                             <constraint firstItem="TY5-kf-QXi" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="35" id="4L2-i0-HX9"/>
-                            <constraint firstItem="byU-mY-X4q" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="30" id="6zY-eY-eVW"/>
+                            <constraint firstItem="byU-mY-X4q" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="15" id="6zY-eY-eVW"/>
                             <constraint firstAttribute="bottom" secondItem="byU-mY-X4q" secondAttribute="bottom" constant="20" id="BGc-s5-avM"/>
                             <constraint firstItem="y5a-9q-zVx" firstAttribute="top" secondItem="TY5-kf-QXi" secondAttribute="bottom" constant="20" id="JPg-jQ-fk0"/>
                             <constraint firstAttribute="trailing" secondItem="TY5-kf-QXi" secondAttribute="trailing" constant="20" id="K8h-Qu-8IW"/>
@@ -1095,7 +1095,7 @@ DQ
                             <constraint firstAttribute="trailing" secondItem="byU-mY-X4q" secondAttribute="trailing" constant="20" id="WOv-KS-FDq"/>
                             <constraint firstAttribute="trailing" secondItem="y5a-9q-zVx" secondAttribute="trailing" constant="20" id="ksA-wT-AYd"/>
                             <constraint firstAttribute="bottom" secondItem="0rt-25-GZU" secondAttribute="bottom" constant="20" id="ssU-YO-Eip"/>
-                            <constraint firstItem="0rt-25-GZU" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="30" id="zBP-wO-hKF"/>
+                            <constraint firstItem="0rt-25-GZU" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="15" id="zBP-wO-hKF"/>
                         </constraints>
                     </view>
                     <connections>

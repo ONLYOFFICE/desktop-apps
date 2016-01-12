@@ -551,14 +551,12 @@
       </trans-unit>
       <trans-unit id="eWZ-KX-JtO.title">
         <source>Your subscription is about to expire
-(%@ days left).
-
-We have a special offer for you.</source>
+(%@ days left).</source>
         <target>Ваша подписка заканчивается
 (осталось %@ дней).
 
 У нас есть специальное предложение для Вас.</target>
-        <note>Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left).\n\nWe have a special offer for you."; ObjectID = "eWZ-KX-JtO";</note>
+        <note>Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left)."; ObjectID = "eWZ-KX-JtO";</note>
       </trans-unit>
       <trans-unit id="eb1-ke-RIJ.title">
         <source>License Activation</source>
@@ -909,6 +907,11 @@ We have a special offer for you.</source>
         <target>Справка %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="%d days are left until the license expiration.">
+        <source>%d days are left until the license expiration.</source>
+        <target>До окончания лицензии осталось %d дней.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@">
         <source>About %@</source>
         <target>О программе %@</target>
@@ -1089,9 +1092,35 @@ We have a special offer for you.</source>
         <target>Спасибо за оценку %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Thank you for using %@!">
+        <source>Thank you for using %@!</source>
+        <target>Спасибо за использование %@!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The license expired.\nYou cannot create and edit local files.">
+        <source>The license expired.
+You cannot create and edit local files.</source>
+        <target>Срок действия лицензии закончился.
+Вы не сможете создавать и редактировать локальные файлы.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The trial period is over.\nYou cannot create and edit documents.">
+        <source>The trial period is over.
+You cannot create and edit documents.</source>
+        <target>Пробный период завершён.
+Вы не можете создавать и редактировать документы.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Неподтвержденный</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unregistered application version.\nYou cannot create and edit local files.">
+        <source>Unregistered application version.
+You cannot create and edit local files.</source>
+        <target>Незарегистрированная версия приложения.
+Вы не сможете создавать и редакторировать локальные файлы.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">
@@ -1124,6 +1153,13 @@ We have a special offer for you.</source>
         <target>Да</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>У Вас %ld %@ Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?</target>
@@ -1137,30 +1173,6 @@ We have a special offer for you.</source>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Ваши изменения будут потеряны, если вы не сохраните их.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.">
-        <source>Your subscription has expired.
-
-The program works in the non-activated mode.
-
-Now you can prolong or upgrade your subscription with a discount.</source>
-        <target>Ваша подписка закончилась.
-
-Приложение работает в неактивированном режиме.
-
-Теперь Вы можете продлить или обновить подписку со скидкой.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.">
-        <source>Your subscription is about to expire
-(%d days left).
-
-We have a special offer for you.</source>
-        <target>Ваша подписка истекает
-(%d дней осталось).
-
-У нас есть специальное предложение для Вас.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

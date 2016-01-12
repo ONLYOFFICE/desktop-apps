@@ -2,6 +2,9 @@
 "%@ Help" = "Справка %@";
 
 /* No comment provided by engineer. */
+"%d days are left until the license expiration." = "До окончания лицензии осталось %d дней.";
+
+/* No comment provided by engineer. */
 "About %@" = "О программе %@";
 
 /* No comment provided by engineer. */
@@ -110,7 +113,25 @@
 "Thank you for evaluating %@!" = "Спасибо за оценку %@!";
 
 /* No comment provided by engineer. */
+"Thank you for using %@!" = "Спасибо за использование %@!";
+
+/* No comment provided by engineer. */
+"The license expired.
+You cannot create and edit local files." = "Срок действия лицензии закончился.
+Вы не сможете создавать и редактировать локальные файлы.";
+
+/* No comment provided by engineer. */
+"The trial period is over.
+You cannot create and edit documents." = "Пробный период завершён.
+Вы не можете создавать и редактировать документы.";
+
+/* No comment provided by engineer. */
 "Unconfirmed" = "Неподтвержденный";
+
+/* No comment provided by engineer. */
+"Unregistered application version.
+You cannot create and edit local files." = "Незарегистрированная версия приложения.
+Вы не сможете создавать и редакторировать локальные файлы.";
 
 /* No comment provided by engineer. */
 "Untitled" = "Без названия";
@@ -131,6 +152,11 @@
 "Yes" = "Да";
 
 /* No comment provided by engineer. */
+"You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents." = "Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.";
+
+/* No comment provided by engineer. */
 "You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У Вас %ld %@ Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?";
 
 /* No comment provided by engineer. */
@@ -138,24 +164,4 @@
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
-
-/* No comment provided by engineer. */
-"Your subscription has expired.
-
-The program works in the non-activated mode.
-
-Now you can prolong or upgrade your subscription with a discount." = "Ваша подписка закончилась.
-
-Приложение работает в неактивированном режиме.
-
-Теперь Вы можете продлить или обновить подписку со скидкой.";
-
-/* No comment provided by engineer. */
-"Your subscription is about to expire
-(%d days left).
-
-We have a special offer for you." = "Ваша подписка истекает
-(%d дней осталось).
-
-У нас есть специальное предложение для Вас.";
 
