@@ -1016,47 +1016,45 @@
             <objects>
                 <viewController title="ONLYOFFICE" id="fug-wa-QH5" customClass="ASCTrialController" sceneMemberID="viewController">
                     <view key="view" id="iYk-4a-odQ">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="184"/>
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="188"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wx3-xS-7Kt">
-                                <rect key="frame" x="30" y="46" width="128" height="128"/>
+                                <rect key="frame" x="30" y="53" width="115" height="115"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="6V8-Zr-Iuk"/>
-                                    <constraint firstAttribute="width" constant="128" id="EEq-BF-3RG"/>
+                                    <constraint firstAttribute="height" constant="115" id="6V8-Zr-Iuk"/>
+                                    <constraint firstAttribute="width" constant="115" id="EEq-BF-3RG"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="hF9-Og-rkD"/>
+                                <imageCell key="cell" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="hF9-Og-rkD"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TY5-kf-QXi">
-                                <rect key="frame" x="191" y="157" width="298" height="17"/>
+                                <rect key="frame" x="178" y="151" width="311" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="871-zE-0Ga"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thank you for evaluating %@!" id="zbg-CZ-mv3">
-                                    <font key="font" metaFont="titleBar"/>
+                                    <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-9q-zVx">
-                                <rect key="frame" x="191" y="71" width="298" height="56"/>
+                                <rect key="frame" x="178" y="71" width="311" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="9iq-Ma-WG3"/>
+                                    <constraint firstAttribute="height" constant="60" id="9iq-Ma-WG3"/>
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eWZ-KX-JtO">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="system"/>
                                     <string key="title">Your subscription is about to expire
-(%@ days left).
-
-We have a special offer for you.</string>
+(%@ days left).</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0rt-25-GZU">
-                                <rect key="frame" x="188" y="13" width="150" height="32"/>
+                                <rect key="frame" x="174" y="13" width="157" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="138" id="QDr-6z-zBP"/>
+                                    <constraint firstAttribute="width" constant="145" id="QDr-6z-zBP"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Activate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MDC-GR-pev">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1070,9 +1068,9 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="byU-mY-X4q">
-                                <rect key="frame" x="343" y="13" width="150" height="32"/>
+                                <rect key="frame" x="336" y="13" width="157" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="138" id="wSY-0D-CBH"/>
+                                    <constraint firstAttribute="width" constant="145" id="wSY-0D-CBH"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K6Z-jH-qTl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1084,15 +1082,15 @@ DQ
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Wx3-xS-7Kt" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="10" id="2Zv-70-FVC"/>
+                            <constraint firstItem="Wx3-xS-7Kt" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="20" id="2Zv-70-FVC"/>
                             <constraint firstItem="y5a-9q-zVx" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="35" id="3QE-cx-78l"/>
                             <constraint firstItem="byU-mY-X4q" firstAttribute="leading" secondItem="0rt-25-GZU" secondAttribute="trailing" constant="17" id="3hb-bj-kKI"/>
                             <constraint firstItem="TY5-kf-QXi" firstAttribute="leading" secondItem="Wx3-xS-7Kt" secondAttribute="trailing" constant="35" id="4L2-i0-HX9"/>
                             <constraint firstItem="byU-mY-X4q" firstAttribute="top" secondItem="y5a-9q-zVx" secondAttribute="bottom" constant="30" id="6zY-eY-eVW"/>
                             <constraint firstAttribute="bottom" secondItem="byU-mY-X4q" secondAttribute="bottom" constant="20" id="BGc-s5-avM"/>
-                            <constraint firstItem="y5a-9q-zVx" firstAttribute="top" secondItem="TY5-kf-QXi" secondAttribute="bottom" constant="30" id="JPg-jQ-fk0"/>
+                            <constraint firstItem="y5a-9q-zVx" firstAttribute="top" secondItem="TY5-kf-QXi" secondAttribute="bottom" constant="20" id="JPg-jQ-fk0"/>
                             <constraint firstAttribute="trailing" secondItem="TY5-kf-QXi" secondAttribute="trailing" constant="20" id="K8h-Qu-8IW"/>
-                            <constraint firstItem="TY5-kf-QXi" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="10" id="MWR-Zy-xRY"/>
+                            <constraint firstItem="TY5-kf-QXi" firstAttribute="top" secondItem="iYk-4a-odQ" secondAttribute="top" constant="20" id="MWR-Zy-xRY"/>
                             <constraint firstItem="Wx3-xS-7Kt" firstAttribute="leading" secondItem="iYk-4a-odQ" secondAttribute="leading" constant="30" id="Pzr-wp-AXq"/>
                             <constraint firstAttribute="trailing" secondItem="byU-mY-X4q" secondAttribute="trailing" constant="20" id="WOv-KS-FDq"/>
                             <constraint firstAttribute="trailing" secondItem="y5a-9q-zVx" secondAttribute="trailing" constant="20" id="ksA-wT-AYd"/>
@@ -1109,18 +1107,18 @@ DQ
                 </viewController>
                 <customObject id="egK-fL-LSg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1726.5" y="624"/>
+            <point key="canvasLocation" x="1742.5" y="624"/>
         </scene>
         <!--License Activation-->
         <scene sceneID="vEg-aU-aNg">
             <objects>
                 <viewController title="License Activation" storyboardIdentifier="ASCActivationControllerId" id="eb1-ke-RIJ" customClass="ASCRegistrationController" sceneMemberID="viewController">
                     <view key="view" id="Yyd-pW-Pco">
-                        <rect key="frame" x="0.0" y="0.0" width="645" height="197"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="187"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5KT-uS-QOD">
-                                <rect key="frame" x="183" y="150" width="444" height="17"/>
+                                <rect key="frame" x="178" y="150" width="444" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="ACo-wg-wjj"/>
                                 </constraints>
@@ -1131,7 +1129,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6dn-At-Xqp">
-                                <rect key="frame" x="185" y="120" width="440" height="22"/>
+                                <rect key="frame" x="180" y="120" width="440" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="D7E-6W-jDn"/>
                                     <constraint firstAttribute="width" constant="440" id="s2w-xa-ZKO"/>
@@ -1143,7 +1141,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNc-Ry-AWP">
-                                <rect key="frame" x="183" y="81" width="444" height="31"/>
+                                <rect key="frame" x="178" y="81" width="444" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="7KD-78-jCd"/>
                                 </constraints>
@@ -1154,7 +1152,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N3N-FI-Vlm">
-                                <rect key="frame" x="499" y="13" width="132" height="32"/>
+                                <rect key="frame" x="494" y="13" width="132" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8nW-3I-ES9"/>
                                 </constraints>
@@ -1180,15 +1178,15 @@ DQ
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="psS-yA-BvJ">
-                                <rect key="frame" x="30" y="39" width="120" height="128"/>
+                                <rect key="frame" x="30" y="52" width="115" height="115"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="HGO-bO-d4f"/>
-                                    <constraint firstAttribute="height" constant="128" id="Msr-e1-qLk"/>
+                                    <constraint firstAttribute="width" constant="115" id="HGO-bO-d4f"/>
+                                    <constraint firstAttribute="height" constant="115" id="Msr-e1-qLk"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="IeO-SZ-7HU"/>
+                                <imageCell key="cell" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="IeO-SZ-7HU"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kSA-rg-kXF">
-                                <rect key="frame" x="362" y="13" width="132" height="32"/>
+                                <rect key="frame" x="357" y="13" width="132" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="jcH-lF-0z1"/>
                                 </constraints>
@@ -1203,7 +1201,7 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstItem="6dn-At-Xqp" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="35" id="7YG-8V-gKk"/>
-                            <constraint firstItem="5KT-uS-QOD" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="30" id="7dN-aT-KZ0"/>
+                            <constraint firstItem="5KT-uS-QOD" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="7dN-aT-KZ0"/>
                             <constraint firstAttribute="trailing" secondItem="5KT-uS-QOD" secondAttribute="trailing" constant="20" id="8QT-M9-g4b"/>
                             <constraint firstItem="5KT-uS-QOD" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="35" id="BVw-qz-Up3"/>
                             <constraint firstAttribute="bottom" secondItem="kSA-rg-kXF" secondAttribute="bottom" constant="20" id="Cnx-Dd-VDh"/>
@@ -1216,7 +1214,7 @@ DQ
                             <constraint firstItem="LNc-Ry-AWP" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="35" id="Xsp-jG-Pbj"/>
                             <constraint firstItem="kSA-rg-kXF" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="40" id="Znd-SQ-KqY"/>
                             <constraint firstItem="N3N-FI-Vlm" firstAttribute="leading" secondItem="kSA-rg-kXF" secondAttribute="trailing" constant="17" id="aiE-S4-fkm"/>
-                            <constraint firstItem="psS-yA-BvJ" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="30" id="d7D-9R-kIa"/>
+                            <constraint firstItem="psS-yA-BvJ" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="d7D-9R-kIa"/>
                             <constraint firstItem="6dn-At-Xqp" firstAttribute="top" secondItem="5KT-uS-QOD" secondAttribute="bottom" constant="8" id="dzN-dg-Ggu"/>
                             <constraint firstItem="psS-yA-BvJ" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="30" id="qr0-0N-iAZ"/>
                             <constraint firstItem="N3N-FI-Vlm" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="40" id="uwO-ms-HkQ"/>
@@ -1237,7 +1235,7 @@ DQ
             <objects>
                 <viewController title="License Activation" storyboardIdentifier="ASCActivationSuccessControllerId" id="7Fa-DF-A4G" customClass="ASCRegistrationController" sceneMemberID="viewController">
                     <view key="view" id="b20-8Q-vEp">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="348"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="335"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AbG-32-fhc">
@@ -1281,10 +1279,10 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G98-Po-0Ih">
-                                <rect key="frame" x="131" y="190" width="128" height="128"/>
+                                <rect key="frame" x="138" y="190" width="115" height="115"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="IOD-dI-tvJ"/>
-                                    <constraint firstAttribute="height" constant="128" id="MKL-4O-aKE"/>
+                                    <constraint firstAttribute="width" constant="115" id="IOD-dI-tvJ"/>
+                                    <constraint firstAttribute="height" constant="115" id="MKL-4O-aKE"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="HQg-LZ-XjY"/>
                             </imageView>
