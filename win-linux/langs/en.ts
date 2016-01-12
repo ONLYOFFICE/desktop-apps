@@ -274,7 +274,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="869"/>
         <source>The program is unregistered</source>
-        <translation>Unregistered application version. You cannot create and edit local files. Click &quot;Buy now&quot; to buy the license.</translation>
+        <translation>Unregistered application version.&lt;br&gt; You cannot create and edit local files. Click &quot;Buy now&quot; to buy the license.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="876"/>
@@ -284,17 +284,17 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="885"/>
         <source>The trial period is over.</source>
-        <translation>The trial period is over, you cannot create and edit documents.</translation>
+        <translation>The trial period is over.&lt;br&gt;You cannot create and edit documents.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="887"/>
         <source>Trial period expired for %1 days.</source>
-        <translation type="unfinished">You are using a trial version of the application. The trial period will end in %1 days, after that you will not be able to create and edit documents.</translation>
+        <translation>You are using a trial version of the application.&lt;br&gt;The trial period will end in %1 days, after that you will not be able to create and edit documents.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="901"/>
         <source>The program is non-activated!</source>
-        <translation>The license expired. You cannot create and edit local files. Click &quot;Activate&quot; to enter the product key.</translation>
+        <translation>The license expired.&lt;br&gt;You cannot create and edit local files. Click &quot;Activate&quot; to enter the product key.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="909"/>

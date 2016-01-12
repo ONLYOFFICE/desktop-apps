@@ -277,7 +277,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="869"/>
         <source>The program is unregistered</source>
-        <translation>Незарегистрированная версия приложения. Вы не сможете создавать и редакторировать локальные файлы. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
+        <translation>Незарегистрированная версия приложения.&lt;br&gt;Вы не сможете создавать и редактировать&lt;br&gt;локальные файлы. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="876"/>
@@ -287,17 +287,17 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="885"/>
         <source>The trial period is over.</source>
-        <translation>Пробный период офиса завершён, Вы не можете создавать и редактировать документы.</translation>
+        <translation>Пробный период офиса завершён.&lt;br&gt;Вы не можете создавать и редактировать документы.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="887"/>
         <source>Trial period expired for %1 days.</source>
-        <translation>Вы используете пробную версию приложения. Пробный период закончится через %1 дней, после этого Вы не сможете создавать и редактировать документы.</translation>
+        <translation>Вы используете пробную версию приложения.&lt;br&gt;Пробный период закончится через %1 дней, после &lt;br&gt;этого Вы не сможете создавать и редактировать документы..</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="901"/>
         <source>The program is non-activated!</source>
-        <translation>Срок действия лицензии закончился. Вы не сможете создавать и редактировать локальные файлы. Нажмите &quot;Активировать&quot; для ввода лицензии.</translation>
+        <translation>Срок действия лицензии закончился.&lt;br&gt;Вы не сможете создавать и редактировать&lt;br&gt;локальные файлы. Нажмите &quot;Активировать&quot; для ввода лицензии.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="909"/>
