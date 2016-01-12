@@ -442,7 +442,7 @@
   "SSE.Views.FileMenu.btnRecentFilesCaption": "Ouvrir récent...",
   "SSE.Views.FileMenu.btnReturnCaption": "Retour au classeur",
   "SSE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "SSE.Views.FileMenu.btnSaveAs": "Enregistrer sous",
+  "SSE.Views.FileMenu.btnSaveAsCaption": "Enregistrer sous",
   "SSE.Views.FileMenu.btnSaveCaption": "Enregistrer",
   "SSE.Views.FileMenu.btnSettingsCaption": "Paramètres avancés...",
   "SSE.Views.FileMenu.btnToEditCaption": "Modifier la feuille de calcul",

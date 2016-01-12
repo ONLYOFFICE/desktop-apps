@@ -776,7 +776,7 @@
   "DE.Views.FileMenu.btnRecentFilesCaption": "En sonunucuyu aç...",
   "DE.Views.FileMenu.btnReturnCaption": "Dökümana Geri Dön",
   "DE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "DE.Views.FileMenu.btnSaveAs": "Save as",
+  "DE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "DE.Views.FileMenu.btnSaveCaption": "Kaydet",
   "DE.Views.FileMenu.btnSettingsCaption": "Gelişmiş Ayarlar...",
   "DE.Views.FileMenu.btnToEditCaption": "Döküman Düzenle",

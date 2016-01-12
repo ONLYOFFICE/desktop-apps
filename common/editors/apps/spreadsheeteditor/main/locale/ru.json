@@ -442,7 +442,7 @@
   "SSE.Views.FileMenu.btnRecentFilesCaption": "Открыть последние...",
   "SSE.Views.FileMenu.btnReturnCaption": "Вернуться к таблице",
   "SSE.Views.FileMenu.btnRightsCaption": "Права доступа...",
-  "SSE.Views.FileMenu.btnSaveAs": "Сохранить как",
+  "SSE.Views.FileMenu.btnSaveAsCaption": "Сохранить как",
   "SSE.Views.FileMenu.btnSaveCaption": "Сохранить",
   "SSE.Views.FileMenu.btnSettingsCaption": "Дополнительные параметры...",
   "SSE.Views.FileMenu.btnToEditCaption": "Редактировать таблицу",
