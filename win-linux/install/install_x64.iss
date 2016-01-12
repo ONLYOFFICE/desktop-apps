@@ -11,6 +11,7 @@ ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowLanguageDialog      = false
 ;ShowUndisplayableLanguages = true
+;UsePreviousLanguage=no
 
 [Code]
 
