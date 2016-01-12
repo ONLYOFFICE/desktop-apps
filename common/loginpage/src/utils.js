@@ -153,6 +153,7 @@ utils.defines.FileFormat = {
 };
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
+utils.defines.linkBuyNow = "http://www.ivolgapro.ru/buynow";
 
 utils.parseFileFormat = function(format) {
     switch (format) {

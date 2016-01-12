@@ -142,7 +142,7 @@ Templates = (function() { 'use strict';
                       '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
                       '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
                       '<div class="lr-flex">'+
-                        '<a class="text-sub link" target="popup" href="https://www.ivolgapro.ru/">' + utils.Lang.licGetLicense + '</a>'+
+                        '<a class="text-sub link" target="popup" href="' + utils.defines.linkBuyNow + '">' + utils.Lang.licGetLicense + '</a>'+
                         '<span />'+ 
                         '<button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button>' +
                       '</div>' +
