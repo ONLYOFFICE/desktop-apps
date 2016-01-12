@@ -28,8 +28,8 @@ CMessage::CMessage(HWND hParentWnd)
     m_typeIcon->setProperty("class","msg-icon");
     m_typeIcon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
-    m_message = new QLabel("some message");
-    m_message->setWordWrap(true);
+    m_message = new QLabel;
+//    m_message->setWordWrap(true);
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
@@ -48,7 +48,7 @@ CMessage::CMessage(HWND hParentWnd)
     h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
 
     m_pDlg.setLayout(layout);
-    m_pDlg.setMinimumWidth(300*g_dpi_ratio);
+    m_pDlg.setMinimumWidth(350*g_dpi_ratio);
     m_pDlg.setWindowTitle(APP_TITLE);
 
     connect(btn_yes, &QPushButton::clicked, this, &CMessage::onYesClicked);
@@ -116,7 +116,7 @@ void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
     });
 
     if (cbtn2.size()) {
-        _btn = new QPushButton(cbtn1);
+        _btn = new QPushButton(cbtn2);
         m_boxButtons->layout()->addWidget(_btn);
         connect(_btn, &QPushButton::clicked, [=](){
             m_result = 202;
