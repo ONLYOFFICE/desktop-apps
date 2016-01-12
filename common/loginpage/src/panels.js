@@ -34,18 +34,7 @@
 $(document).ready(function() {
     hideAction('connect', true);
 
-    $('.tool-menu > .menu-item > a').click(
-        function(e){
-            var $el = $(this);
-            var action = $el.attr('action');
-
-            $('.tool-menu > .menu-item').removeClass('selected');
-            $el.parent().addClass('selected');
-            $('.action-panel').hide();
-            $('.action-panel.' + action).show();
-        }
-    );
-
+    $('.tool-menu > .menu-item > a').click(onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     Templates.addConnectPanel('#pnl-connect');
@@ -317,6 +306,21 @@ var portalCollection;
 var recentCollection;
 var recoveryCollection;
 
+function onActionClick(e) {
+    var $el = $(this);
+    var action = $el.attr('action');
+
+    if (action == 'open' && 
+            !recentCollection.size() && !recoveryCollection.size()) {
+        openFile(OPEN_FILE_FOLDER, '');
+    } else {
+        $('.tool-menu > .menu-item').removeClass('selected');
+        $el.parent().addClass('selected');
+        $('.action-panel').hide();
+        $('.action-panel.' + action).show();
+    }
+};
+
 function selectAction(action) {
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
@@ -503,12 +507,15 @@ window.on_native_message = function(cmd, param) {
         !!model && model.set('logged', false);
     } else 
     if (cmd == 'lic:active') {
-        $('a[action=activate]').parent()[param=='1'?'hide':'show']();        
-        $('#txt-key-activate').focus();
-        selectAction('activate');
+        let is_active_license = param == '1';
+        $('a[action=activate]').parent()[is_active_license?'hide':'show']();        
 
-        var new_doc_items = $('.tool-quick-menu .menu-item');
-        new_doc_items[param=='1'?'removeClass':'addClass']('disabled');
+        // var new_doc_items = $('.tool-quick-menu .menu-item');
+        // new_doc_items[is_active_license?'removeClass':'addClass']('inactive');
+    } else 
+    if (cmd == 'lic:selectpanel') {
+        selectAction('activate');
+        $('#txt-key-activate').focus();
     } else 
     if (cmd == 'lic:sendkey') {
         // $('a[action=activate]').parent()['show']();
