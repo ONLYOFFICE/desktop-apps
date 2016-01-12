@@ -50,6 +50,9 @@
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.";
 
 /* No comment provided by engineer. */
+"License Agreement" = "Пользовательское соглашение";
+
+/* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket e-book";
 
 /* No comment provided by engineer. */
@@ -146,4 +149,13 @@ Now you can prolong or upgrade your subscription with a discount." = "Ваша �
 Приложение работает в неактивированном режиме.
 
 Теперь Вы можете продлить или обновить подписку со скидкой.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you." = "Ваша подписка истекает
+(%d дней осталось).
+
+У нас есть специальное предложение для Вас.";
 

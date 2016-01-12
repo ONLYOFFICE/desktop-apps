@@ -229,6 +229,7 @@
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
+		FCF8071B1C43D07E00475CFD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCF8071D1C43D07E00475CFD /* EULA.html */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
 		FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
 		FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
@@ -438,6 +439,11 @@
 		FCD2B91C1BC64F1900F54560 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B9241BC68FBD00F54560 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCD65B931BDFAFCB008361F1 /* nsascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsascprinter.h; sourceTree = "<group>"; };
+		FCF8071C1C43D07E00475CFD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/EULA.html; sourceTree = "<group>"; };
+		FCF8071E1C43D08100475CFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EULA.html; sourceTree = "<group>"; };
+		FCF8071F1C43D08200475CFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
+		FCF807201C43D08300475CFD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
+		FCF807211C43D08400475CFD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFD46241C1ADAB300FDDCEE /* OfficeFileFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfficeFileFormats.h; path = ../../../../../common/libs/OfficeFileFormats.h; sourceTree = "<group>"; };
@@ -489,6 +495,7 @@
 		FC081E991C32576700F9881C /* IvolgaPRO */ = {
 			isa = PBXGroup;
 			children = (
+				FCF8071D1C43D07E00475CFD /* EULA.html */,
 				FC081E9F1C32580900F9881C /* Info.plist */,
 				FC081EA91C32589800F9881C /* InfoPlist.strings */,
 			);
@@ -738,13 +745,6 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
-		FC739BE41C2BE90600887739 /* Licence */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Licence;
-			sourceTree = "<group>";
-		};
 		FC98BAD31BAC438800747944 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,7 +838,6 @@
 				FC1E9DC11C2EBDF90043100E /* Trial */,
 				FCAA9A391BBA7E7600F3C47F /* Download */,
 				FCAF3EFA1BA31CF600B42BAA /* User Info */,
-				FC739BE41C2BE90600887739 /* Licence */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1059,6 +1058,9 @@
 							};
 						};
 					};
+					FC7FD3941C315DD6008F6641 = {
+						DevelopmentTeam = 2WH24U26GJ;
+					};
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 2WH24U26GJ;
@@ -1154,6 +1156,7 @@
 				FC081EF31C325E8400F9881C /* file-xps.icns in Resources */,
 				FC081EA71C32589800F9881C /* InfoPlist.strings in Resources */,
 				FC081EFB1C325EE900F9881C /* dictionaries in Resources */,
+				FCF8071B1C43D07E00475CFD /* EULA.html in Resources */,
 				FC7FD3D71C315DD6008F6641 /* login in Resources */,
 				FC081EA01C32580900F9881C /* Info.plist in Resources */,
 				FC081EF71C325E9100F9881C /* acknowledgments.html in Resources */,
@@ -1216,7 +1219,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/DocumentsCore\\ Helper.app \"${dst}\"/DocumentsCore\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/DocumentsCore\\ Helper.app/Contents/MacOS/DocumentsCore\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/DocumentsCore Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -1259,7 +1262,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/ONLYOFFICE\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool -change @executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/DocumentsCore\\ Helper.app \"${dst}\"/DocumentsCore\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/DocumentsCore\\ Helper.app/Contents/MacOS/DocumentsCore\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/DocumentsCore Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FC7FD3951C315DD6008F6641 /* Copy Library */ = {
@@ -1288,7 +1291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/\"${TARGET_NAME}\"\\ Helper.app \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/\"${TARGET_NAME}\"\\ Helper.app/Contents/MacOS/\"${TARGET_NAME}\"\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\nlibs_path=${SRCROOT}/Vendor/ONLYOFFICE/libs\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\ncp -R \"${libs_path}\"/cefbuilds/DocumentsCore\\ Helper.app \"${dst}\"/DocumentsCore\\ Helper.app\ncp -R \"${libs_path}\"/cefbuilds/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -R \"${libs_path}\"/corebuilds/libascdocumentscore.dylib \"${dst}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\nchmod +x \"${dst}\"/DocumentsCore\\ Helper.app/Contents/MacOS/DocumentsCore\\ Helper\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/DocumentsCore Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
@@ -1525,6 +1528,19 @@
 				FCD2B91C1BC64F1900F54560 /* fr */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		FCF8071D1C43D07E00475CFD /* EULA.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FCF8071C1C43D07E00475CFD /* ru */,
+				FCF8071E1C43D08100475CFD /* Base */,
+				FCF8071F1C43D08200475CFD /* de */,
+				FCF807201C43D08300475CFD /* es */,
+				FCF807211C43D08400475CFD /* fr */,
+			);
+			name = EULA.html;
+			path = IvolgaPRO;
 			sourceTree = "<group>";
 		};
 		FCFC000B1BC54ACC00939341 /* Localizable.strings */ = {

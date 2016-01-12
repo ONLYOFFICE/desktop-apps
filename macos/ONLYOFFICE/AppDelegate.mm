@@ -147,6 +147,8 @@
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
         return YES;
+    } else if ([item action] == @selector(onMenuEULA:)) {
+        return YES;
     } else if ([item action] == @selector(onMenuBuyNow:)) {
         [item setHidden:isActivated];
         return !isActivated;
@@ -256,6 +258,12 @@
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
     ViewController * controller = (ViewController *)mainWindow.contentViewController;
     [controller openAcknowledgments];
+}
+
+- (IBAction)onMenuEULA:(NSMenuItem *)sender {
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    [controller openEULA];
 }
 
 - (IBAction)onMenuBuyNow:(NSMenuItem *)sender {
