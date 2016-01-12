@@ -57,6 +57,9 @@
     [super windowDidLoad];
     
     [self setupToolbar];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameMainWindowLoaded
+                                                        object:self];
 }
 
 - (BOOL)windowShouldClose:(id)sender {
@@ -101,8 +104,6 @@
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     // height
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
-        
-    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameMainWindowLoaded object:self];
 }
 
 

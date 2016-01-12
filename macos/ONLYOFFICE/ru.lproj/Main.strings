@@ -322,7 +322,7 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Отменить";
 
-/* Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left).\n\nWe have a special offer for you."; ObjectID = "eWZ-KX-JtO"; */
+/* Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left)."; ObjectID = "eWZ-KX-JtO"; */
 "eWZ-KX-JtO.title" = "Ваша подписка заканчивается
 (осталось %@ дней).
 

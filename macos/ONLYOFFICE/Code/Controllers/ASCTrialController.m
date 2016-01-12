@@ -59,13 +59,33 @@
     NSString * productName = [ASCHelper appName];
     NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
     
-    [self.headerField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Thank you for evaluating %@!", nil), productName]];
+    NSString * title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for evaluating %@!", nil), productName];
+    NSString * message = [NSString stringWithFormat:NSLocalizedString(@"Unregistered application version.\nYou cannot create and edit local files.", nil)];
     
     if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
-        [self.messageField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])]];
-    } else {
-        [self.messageField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.", nil)]];
+        if ([licenceInfo[@"demo"] boolValue]) {
+            // trial
+            message = [NSString stringWithFormat:NSLocalizedString(@"You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
+            
+            if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+                // trial is end
+                message = [NSString stringWithFormat:NSLocalizedString(@"The trial period is over.\nYou cannot create and edit documents.", nil)];
+            }
+        } else {
+            title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for using %@!", nil), productName];
+            
+            if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+                // license is end
+                message = [NSString stringWithFormat:NSLocalizedString(@"The license expired.\nYou cannot create and edit local files.", nil)];
+            } else if ([licenceInfo[@"daysLeft"] intValue] < 14) {
+                // license is ending
+                message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
+            }
+        }
     }
+    
+    [self.headerField setStringValue:title];
+    [self.messageField setStringValue:message];
 }
 
 #pragma mark -

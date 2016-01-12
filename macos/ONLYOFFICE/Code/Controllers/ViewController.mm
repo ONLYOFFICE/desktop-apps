@@ -262,14 +262,15 @@
                         @"product"       : @(resultLicenceData->get_ProductId()),
                         @"daysLeft"      : @(resultLicenceData->get_DaysLeft()),
                         @"daysBetween"   : @(resultLicenceData->get_DaysBetween()),
-                        @"licence"       : @(resultLicenceData->get_Licence())
+                        @"licence"       : @(resultLicenceData->get_Licence()),
+                        @"demo"          : @(resultLicenceData->get_IsDemo())
                         };
         
         [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
     }
     
-    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 14)) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 14 && ![licenceInfo[@"demo"] boolValue])) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
             [NSApp runModalForWindow:activationWindow.window];
         });
@@ -522,6 +523,17 @@
         if (existTab) {
             [self.tabsControl selectTab:existTab];
         } else {
+            if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFile)]) {
+                NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+                
+                if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 0)) {
+                    NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+                    [NSApp runModalForWindow:activationWindow.window];
+                    
+                    return;
+                }
+            }
+            
             [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
         }
     }

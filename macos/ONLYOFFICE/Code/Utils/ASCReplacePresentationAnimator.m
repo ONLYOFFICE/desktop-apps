@@ -71,7 +71,9 @@
 //    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
 //        [[window animator] setFrame:windowFrame display:YES];
 //    } completionHandler:^{
+//        [window setContentViewController:viewController];
 //        [viewController.view addConstraints:constraints];
+//        
 //        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
 //            [[viewController.view animator] setHidden:NO];
 //        } completionHandler:NULL];

@@ -121,7 +121,7 @@
     NSDictionary * licenseInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
     NSString * productName = [ASCHelper appName];
     
-    BOOL isActivated = licenseInfo && licenseInfo[@"licence"] && [licenseInfo[@"licence"] boolValue];
+    BOOL isActivated = (licenseInfo && licenseInfo[@"licence"] && [licenseInfo[@"licence"] boolValue] && [licenseInfo[@"daysLeft"] intValue] > 14 && ![licenseInfo[@"demo"] boolValue]);
     
     if ([item action] == @selector(onMenuAbout:)) {
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), productName]];
