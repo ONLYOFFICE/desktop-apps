@@ -33,6 +33,8 @@ CMessage::CMessage(HWND hParentWnd)
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
+    m_fLayout->setSpacing(0);
+    m_fLayout->setContentsMargins(10,0,5,0);
     h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
     h_layout2->addLayout(m_fLayout, 1);
 

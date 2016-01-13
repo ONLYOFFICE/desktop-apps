@@ -292,7 +292,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="887"/>
         <source>Trial period expired for %1 days.</source>
-        <translation>Вы используете пробную версию приложения.&lt;br&gt;Пробный период закончится через %1 дней, после &lt;br&gt;этого Вы не сможете создавать и редактировать документы..</translation>
+        <translation>Вы используете пробную версию приложения.&lt;br&gt;Пробный период закончится через %1 дней, после &lt;br&gt;этого Вы не сможете создавать и редактировать документы.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="901"/>
