@@ -2,7 +2,7 @@
 
 
 [Setup]
-AppName                 ={#sAppName}
+AppName                 ={cm:AppName}
 AppVersion              ={#sAppVersion}
 OutputBaseFileName      =DesktopEditors_x64
 ;MinVersion              =0,5.0.2195
@@ -11,7 +11,7 @@ ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowLanguageDialog      = false
 ;ShowUndisplayableLanguages = true
-;UsePreviousLanguage=no
+UsePreviousLanguage=no
 
 [Code]
 

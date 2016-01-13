@@ -16,7 +16,7 @@
 #define iconsExe            'projicons.exe'
 
 [Setup]
-AppVerName              ={#sAppName} {#sAppVerShort}
+AppVerName              ={cm:AppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
 AppPublisher            =ZAO "New Communication Technologies".
 ;AppPublisherURL         =http://www.onlyoffice.com/
@@ -28,7 +28,7 @@ UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
 ;DefaultGroupName        =ONLYOFFICE
-DefaultGroupName        ={#sAppName}
+DefaultGroupName        ={cm:AppName}
 DisableProgramGroupPage = yes
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
@@ -49,9 +49,10 @@ Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\Lic
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
 
 [CustomMessages]
+;======================================================================================================
 en.AppName=Ivolga PRO
 ru.AppName=Иволга ПРО
-
+;======================================================================================================
 en.Launch =Launch %1
 ru.Launch =Запустить %1
 ;de.Launch =%1 starten
@@ -308,18 +309,18 @@ Source: ..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts
 
 
 [Tasks]
-Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
+Name: desktopicon; Description: {cm:CreateDesktopIcon,{cm:AppName}}; GroupDescription: {cm:AdditionalIcons};
 ;Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
-Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
+Name: {commondesktop}\{cm:AppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
+Name: {group}\{cm:AppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
+Filename: {app}\launch.bat; Description: {cm:Launch,{cm:AppName}}; Flags: postinstall nowait skipifsilent runhidden;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 [Ini]
