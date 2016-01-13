@@ -700,29 +700,47 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     static short xlsx_count = 0;
     static short pptx_count = 0;
 
-    QString new_name;
-    switch (fformat) {
-    case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
-    case etSpreadsheet: new_name  = tr("Book%1.xlsx").arg(++xlsx_count); break;
-    case etPresentation: new_name  = tr("Presentation%1.pptx").arg(++pptx_count); break;
-    default: new_name = "Document.asc"; break;
+    /* check the active license */
+    CAscLicenceActual * pData = new CAscLicenceActual;
+    pData->AddRef();
+    pData->put_Path(commonDataPath());
+    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = pData;
+    m_pManager->Apply(pEvent);
+    /* ************************* */
+
+    pData->put_DaysBetween(1);
+    if (!pData->get_Licence() || !pData->get_DaysLeft()) {
+        doLicenseWarning(pData);
+    } else {
+        QString new_name;
+        switch (fformat) {
+        case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
+        case etSpreadsheet: new_name  = tr("Book%1.xlsx").arg(++xlsx_count); break;
+        case etPresentation: new_name  = tr("Presentation%1.pptx").arg(++pptx_count); break;
+        default: new_name = "Document.asc"; break;
+        }
+
+        COpenOptions opts = {new_name, etNewFile};
+        opts.format = fformat;
+
+        int tabIndex = m_pTabs->addEditor(opts);
+
+        if (!(tabIndex < 0)) {
+            m_pTabs->updateIcons();
+            m_pTabs->setCurrentIndex(tabIndex);
+
+            RecalculatePlaces();
+
+            QTimer::singleShot(200, this, [=]{
+                toggleButtonMain(false);
+            });
+        }
     }
 
-    COpenOptions opts = {new_name, etNewFile};
-    opts.format = fformat;
-
-    int tabIndex = m_pTabs->addEditor(opts);
-
-    if (!(tabIndex < 0)) {
-        m_pTabs->updateIcons();
-        m_pTabs->setCurrentIndex(tabIndex);
-
-        RecalculatePlaces();
-
-        QTimer::singleShot(200, this, [=]{
-            toggleButtonMain(false);
-        });
-    }
+    RELEASEINTERFACE(pData)
 }
 
 void QAscMainPanel::onLocalFilesOpen(void * data)
@@ -877,31 +895,46 @@ void QAscMainPanel::doLicenseWarning(void * data)
 
     CMessage mess(gTopWinId);
     if (!pData->get_Licence()) {
-        sendLicenseToJS(false);
-
         mess.setButtons(tr("Buy Now"), "");
-        int res = mess.showModal(tr("The program is unregistered"), QMessageBox::Information);
-        if (res == 201) {
+        if (201 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
             onLink(URL_BUYNOW);
         }
+
+        syncLicenseToJS(false);
     } else {
         if (m_waitActiveLic) {
             mess.showModal(tr("Activation successfully finished!"), QMessageBox::Information);
-            sendLicenseToJS(true);
+            syncLicenseToJS(true);
+        } else
+        if (pData->get_IsDemo()) {
+            syncLicenseToJS(false, false);
+            mess.setButtons(tr("Activate"), tr("Continue"));
+
+            int res = 0;
+            if (pData->get_DaysLeft() == 0) {
+                res = mess.showModal(tr("The trial period is over.").arg(pData->get_DaysLeft()), QMessageBox::Information);
+            } else {
+                res = mess.showModal(tr("Trial period expired for %1 days.").arg(pData->get_DaysLeft()), QMessageBox::Information);
+            }
+
+            if (res == 201) {
+                syncLicenseToJS(false, true);
+                pushButtonMainClicked();
+            }
         } else
         if (pData->get_DaysBetween() > 0) {
             // the license checked more then 1 day before
             if (pData->get_DaysLeft() == 0) {
-                sendLicenseToJS(true);
+                syncLicenseToJS(false, false);
 
                 mess.setButtons(tr("Activate"), tr("Continue"));
-                int res = mess.showModal(tr("The program is non-activated!"), QMessageBox::Information);
-                if (res == 201) {
+                if (201 == mess.showModal(tr("The program is non-activated!"), QMessageBox::Information)) {
+                    syncLicenseToJS(false, true);
                     pushButtonMainClicked();
                 }
             } else
             if (pData->get_DaysLeft() < 15) {
-                sendLicenseToJS(true);
+                syncLicenseToJS(false);
 
                 QString text = tr("%1 days left before the license end").arg(pData->get_DaysLeft());
 
@@ -909,7 +942,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
                 mess.setButtons(tr("Continue"), "");
                 mess.showModal(text, QMessageBox::Information);
             } else {
-                sendLicenseToJS(false);
+                syncLicenseToJS(true);
             }
         }
     }
@@ -941,7 +974,7 @@ void QAscMainPanel::loadStartPage()
 #ifndef QT_DEBUG
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
 #else
-//    std::wstring start_path = ("file://" + data_path + additional).toStdWString();
+//    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/src/index.html").toStdWString();
 //    std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/deploy/index.html").toStdWString();
 #endif
@@ -1296,7 +1329,7 @@ wstring QAscMainPanel::commonDataPath() const
     return sAppData;
 }
 
-void QAscMainPanel::sendLicenseToJS(bool active)
+void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 {
     CAscExecCommandJS * pCommand = new CAscExecCommandJS;
     pCommand->put_Command(L"lic:active");
@@ -1306,6 +1339,16 @@ void QAscMainPanel::sendLicenseToJS(bool active)
     pEvent->m_pData = pCommand;
 
     ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+
+    if (!active && proceed) {
+        pCommand = new CAscExecCommandJS;
+        pCommand->put_Command(L"lic:selectpanel");
+
+        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+
+        ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+    }
 }
 
 void QAscMainPanel::selfActivation()
@@ -1313,8 +1356,6 @@ void QAscMainPanel::selfActivation()
     CAscLicenceActual * pData = new CAscLicenceActual;
     pData->put_Path(commonDataPath());
     pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    qDebug() << "common path: " << QString::fromStdWString(commonDataPath());
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
     pEvent->m_pData = pData;

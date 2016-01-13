@@ -776,7 +776,7 @@
   "DE.Views.FileMenu.btnRecentFilesCaption": "Открыть последние...",
   "DE.Views.FileMenu.btnReturnCaption": "Вернуться к документу",
   "DE.Views.FileMenu.btnRightsCaption": "Права доступа...",
-  "DE.Views.FileMenu.btnSaveAs": "Сохранить как",
+  "DE.Views.FileMenu.btnSaveAsCaption": "Сохранить как",
   "DE.Views.FileMenu.btnSaveCaption": "Сохранить",
   "DE.Views.FileMenu.btnSettingsCaption": "Дополнительные параметры...",
   "DE.Views.FileMenu.btnToEditCaption": "Редактировать",

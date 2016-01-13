@@ -442,7 +442,7 @@
   "SSE.Views.FileMenu.btnRecentFilesCaption": "Open Recent...",
   "SSE.Views.FileMenu.btnReturnCaption": "Back to Spreadsheet",
   "SSE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "SSE.Views.FileMenu.btnSaveAs": "Save as",
+  "SSE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "SSE.Views.FileMenu.btnSaveCaption": "Save",
   "SSE.Views.FileMenu.btnSettingsCaption": "Advanced Settings...",
   "SSE.Views.FileMenu.btnToEditCaption": "Edit Spreadsheet",

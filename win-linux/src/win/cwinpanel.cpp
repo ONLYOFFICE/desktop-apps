@@ -92,8 +92,6 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
     */
 
-    parseInputArgs(qApp->arguments());
-
 //    m_pManager->SetEventListener(this);
 
     QString _file_name;
@@ -127,6 +125,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
             delete _timer;
 
             m_pMainPanel->checkActivation();
+            parseInputArgs(qApp->arguments());
         }
     });
     _timer->start(1000);

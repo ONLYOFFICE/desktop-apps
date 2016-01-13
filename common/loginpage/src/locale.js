@@ -73,7 +73,7 @@ var en = {
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
-    licPanelDescr: 'You can receve key by e-mail.'
+    licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
 }
 
 var ru = {
@@ -119,7 +119,7 @@ var ru = {
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
-    licPanelDescr: 'Ваш ключ продукта указан в сообщении высланном на е-майл.'
+    licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанной при покупке.'
 }
 
 var de = {

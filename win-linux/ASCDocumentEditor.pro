@@ -63,6 +63,7 @@ SOURCES += \
 
 RESOURCES += resources.qrc
 RC_FILE = version.rc
+#RES_FILE = version.res
 
 DEFINES += \
     _QT \

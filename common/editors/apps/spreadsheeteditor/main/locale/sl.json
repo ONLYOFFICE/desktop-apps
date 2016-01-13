@@ -442,7 +442,7 @@
   "SSE.Views.FileMenu.btnRecentFilesCaption": "Odpri nedavno...",
   "SSE.Views.FileMenu.btnReturnCaption": "Nazaj na preglednico",
   "SSE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "SSE.Views.FileMenu.btnSaveAs": "Save as",
+  "SSE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "SSE.Views.FileMenu.btnSaveCaption": "Shrani",
   "SSE.Views.FileMenu.btnSettingsCaption": "Napredne nastavitve...",
   "SSE.Views.FileMenu.btnToEditCaption": "Uredi razpredelnico",

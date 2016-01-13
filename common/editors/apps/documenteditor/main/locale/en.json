@@ -776,7 +776,7 @@
   "DE.Views.FileMenu.btnRecentFilesCaption": "Open Recent...",
   "DE.Views.FileMenu.btnReturnCaption": "Back to Document",
   "DE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "DE.Views.FileMenu.btnSaveAs": "Save as",
+  "DE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "DE.Views.FileMenu.btnSaveCaption": "Save",
   "DE.Views.FileMenu.btnSettingsCaption": "Advanced Settings...",
   "DE.Views.FileMenu.btnToEditCaption": "Edit Document",

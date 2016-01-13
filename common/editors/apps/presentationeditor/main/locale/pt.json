@@ -322,7 +322,7 @@
   "PE.Views.FileMenu.btnRecentFilesCaption": "Abrir recente...",
   "PE.Views.FileMenu.btnReturnCaption": "Voltar para a apresentação",
   "PE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "PE.Views.FileMenu.btnSaveAs": "Save as",
+  "PE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "PE.Views.FileMenu.btnSaveCaption": "Salvar",
   "PE.Views.FileMenu.btnSettingsCaption": "Configurações avançadas...",
   "PE.Views.FileMenu.btnToEditCaption": "Editar apresentação",

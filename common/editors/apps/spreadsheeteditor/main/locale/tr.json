@@ -442,7 +442,7 @@
   "SSE.Views.FileMenu.btnRecentFilesCaption": "En sonunucuyu aç...",
   "SSE.Views.FileMenu.btnReturnCaption": "Spreadsheete geri dön",
   "SSE.Views.FileMenu.btnRightsCaption": "Access Rights...",
-  "SSE.Views.FileMenu.btnSaveAs": "Save as",
+  "SSE.Views.FileMenu.btnSaveAsCaption": "Save as",
   "SSE.Views.FileMenu.btnSaveCaption": "Kaydet",
   "SSE.Views.FileMenu.btnSettingsCaption": "Gelişmiş Ayarlar...",
   "SSE.Views.FileMenu.btnToEditCaption": "Spreadsheet düzenle",

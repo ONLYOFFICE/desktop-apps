@@ -79,7 +79,7 @@ private:
     void doActivate(const QString&);
     wstring commonDataPath() const;
     void doLicenseWarning(void *);
-    void sendLicenseToJS(bool);
+    void syncLicenseToJS(bool, bool proceed = true);
 
     void fillUserName(QString& fn, QString& ln);
 signals:

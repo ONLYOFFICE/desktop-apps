@@ -18,17 +18,17 @@
 [Setup]
 AppVerName              ={#sAppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
-AppPublisher            =ЗАО "Новые Коммуникационные Технологии"
+AppPublisher            =ZAO "New Communication Technologies".
 ;AppPublisherURL         =http://www.onlyoffice.com/
 ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
 AppPublisherURL         =http://www.ivolgapro.com/
 AppSupportURL           =http://www.ivolgapro.com/support.aspx
-AppCopyright            =Copyright (C) 2015 ЗАО "Новые Коммуникационные Технологии".
+AppCopyright            =Copyright (C) 2016 ZAO "New Communication Technologies".
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
 ;DefaultGroupName        =ONLYOFFICE
-DefaultGroupName        =Иволга ПРО
+DefaultGroupName        ={#sAppName}
 DisableProgramGroupPage = yes
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
@@ -49,6 +49,9 @@ Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\Lic
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
 
 [CustomMessages]
+en.AppName=Ivolga PRO
+ru.AppName=Иволга ПРО
+
 en.Launch =Launch %1
 ru.Launch =Запустить %1
 ;de.Launch =%1 starten

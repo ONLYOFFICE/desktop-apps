@@ -715,6 +715,7 @@ utils.defines.FileFormat = {
 };
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
+utils.defines.linkBuyNow = "http://www.ivolgapro.ru/buynow";
 
 utils.parseFileFormat = function(format) {
     switch (format) {
@@ -786,7 +787,7 @@ utils.parseFileFormat = function(format) {
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
-    licPanelDescr: 'You can receve key by e-mail.'
+    licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
 }
 
 var ru = {
@@ -832,7 +833,7 @@ var ru = {
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
-    licPanelDescr: 'Ваш ключ продукта указан в сообщении высланном на е-майл.'
+    licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанной при покупке.'
 }
 
 var de = {
@@ -1093,7 +1094,7 @@ Templates = (function() { 'use strict';
                       '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
                       '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
                       '<div class="lr-flex">'+
-                        '<a class="text-sub link" target="popup" href="https://www.ivolgapro.ru/">' + utils.Lang.licGetLicense + '</a>'+
+                        '<a class="text-sub link" target="popup" href="' + utils.defines.linkBuyNow + '">' + utils.Lang.licGetLicense + '</a>'+
                         '<span />'+ 
                         '<button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button>' +
                       '</div>' +
@@ -1467,18 +1468,7 @@ function doLogin() {
 $(document).ready(function() {
     hideAction('connect', true);
 
-    $('.tool-menu > .menu-item > a').click(
-        function(e){
-            var $el = $(this);
-            var action = $el.attr('action');
-
-            $('.tool-menu > .menu-item').removeClass('selected');
-            $el.parent().addClass('selected');
-            $('.action-panel').hide();
-            $('.action-panel.' + action).show();
-        }
-    );
-
+    $('.tool-menu > .menu-item > a').click(onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     Templates.addConnectPanel('#pnl-connect');
@@ -1750,6 +1740,21 @@ var portalCollection;
 var recentCollection;
 var recoveryCollection;
 
+function onActionClick(e) {
+    var $el = $(this);
+    var action = $el.attr('action');
+
+    if (action == 'open' && 
+            !recentCollection.size() && !recoveryCollection.size()) {
+        openFile(OPEN_FILE_FOLDER, '');
+    } else {
+        $('.tool-menu > .menu-item').removeClass('selected');
+        $el.parent().addClass('selected');
+        $('.action-panel').hide();
+        $('.action-panel.' + action).show();
+    }
+};
+
 function selectAction(action) {
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
@@ -1936,12 +1941,15 @@ window.on_native_message = function(cmd, param) {
         !!model && model.set('logged', false);
     } else 
     if (cmd == 'lic:active') {
-        $('a[action=activate]').parent()[param=='1'?'hide':'show']();        
-        $('#txt-key-activate').focus();
-        selectAction('activate');
+        let is_active_license = param == '1';
+        $('a[action=activate]').parent()[is_active_license?'hide':'show']();        
 
-        var new_doc_items = $('.tool-quick-menu .menu-item');
-        new_doc_items[param=='1'?'removeClass':'addClass']('disabled');
+        // var new_doc_items = $('.tool-quick-menu .menu-item');
+        // new_doc_items[is_active_license?'removeClass':'addClass']('inactive');
+    } else 
+    if (cmd == 'lic:selectpanel') {
+        selectAction('activate');
+        $('#txt-key-activate').focus();
     } else 
     if (cmd == 'lic:sendkey') {
         // $('a[action=activate]').parent()['show']();
