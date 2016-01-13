@@ -49,35 +49,35 @@
 - (void)animatePresentationOfViewController:(NSViewController *)viewController fromViewController:(NSViewController *)fromViewController {
     NSWindow *window = fromViewController.view.window;
 
-    [window setContentViewController:viewController];
+//    [window setContentViewController:viewController];
     
-//    fromViewController.view.hidden = YES;
-//    
-//    NSRect oldWindowFrame = window.frame;
-//    window.title = viewController.title;
-//    
-//    NSRect viewFrame = viewController.view.frame;
-//    viewFrame.size = viewController.view.fittingSize;
-//    
-//    NSArray *constraints = viewController.view.constraints;
-//    [viewController.view removeConstraints:constraints];
-//    
-//    NSRect windowFrame = [window frameRectForContentRect:viewFrame];
-//    windowFrame.origin = NSMakePoint(window.frame.origin.x + (NSWidth(oldWindowFrame) - NSWidth(windowFrame)) * 0.5, NSMaxY(window.frame) - NSHeight(windowFrame));
-//    
-//    viewController.view.wantsLayer = YES;
-//    viewController.view.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
-//    
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        [[window animator] setFrame:windowFrame display:YES];
-//    } completionHandler:^{
-//        [window setContentViewController:viewController];
-//        [viewController.view addConstraints:constraints];
-//        
-//        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//            [[viewController.view animator] setHidden:NO];
-//        } completionHandler:NULL];
-//    }];
+    fromViewController.view.hidden = YES;
+    
+    NSRect oldWindowFrame = window.frame;
+    window.title = viewController.title;
+    
+    NSRect viewFrame = viewController.view.frame;
+    viewFrame.size = viewController.view.fittingSize;
+    
+    NSArray *constraints = viewController.view.constraints;
+    [viewController.view removeConstraints:constraints];
+    
+    NSRect windowFrame = [window frameRectForContentRect:viewFrame];
+    windowFrame.origin = NSMakePoint(window.frame.origin.x + (NSWidth(oldWindowFrame) - NSWidth(windowFrame)) * 0.5, NSMaxY(window.frame) - NSHeight(windowFrame));
+    
+    viewController.view.wantsLayer = YES;
+    viewController.view.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
+    
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        [[window animator] setFrame:windowFrame display:YES];
+    } completionHandler:^{
+        [window setContentViewController:viewController];
+        [viewController.view addConstraints:constraints];
+        
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [[viewController.view animator] setHidden:NO];
+        } completionHandler:NULL];
+    }];
 }
 
 - (void)animateDismissalOfViewController:(NSViewController *)viewController fromViewController:(NSViewController *)fromViewController {

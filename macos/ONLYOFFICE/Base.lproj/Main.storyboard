@@ -1016,11 +1016,11 @@
             <objects>
                 <viewController title="ONLYOFFICE" id="fug-wa-QH5" customClass="ASCTrialController" sceneMemberID="viewController">
                     <view key="view" id="iYk-4a-odQ">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="188"/>
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="187"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wx3-xS-7Kt">
-                                <rect key="frame" x="30" y="53" width="115" height="115"/>
+                                <rect key="frame" x="30" y="52" width="115" height="115"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="115" id="6V8-Zr-Iuk"/>
                                     <constraint firstAttribute="width" constant="115" id="EEq-BF-3RG"/>
@@ -1028,7 +1028,7 @@
                                 <imageCell key="cell" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="hF9-Og-rkD"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TY5-kf-QXi">
-                                <rect key="frame" x="178" y="151" width="311" height="17"/>
+                                <rect key="frame" x="178" y="150" width="311" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="871-zE-0Ga"/>
                                 </constraints>
@@ -1039,9 +1039,9 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="y5a-9q-zVx">
-                                <rect key="frame" x="178" y="56" width="311" height="75"/>
+                                <rect key="frame" x="178" y="56" width="311" height="74"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="9iq-Ma-WG3"/>
+                                    <constraint firstAttribute="height" constant="74" id="9iq-Ma-WG3"/>
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="eWZ-KX-JtO">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1107,7 +1107,7 @@ DQ
                 </viewController>
                 <customObject id="egK-fL-LSg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742.5" y="624"/>
+            <point key="canvasLocation" x="1742.5" y="624.5"/>
         </scene>
         <!--License Activation-->
         <scene sceneID="vEg-aU-aNg">
