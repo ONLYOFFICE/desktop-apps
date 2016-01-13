@@ -1734,6 +1734,11 @@ $(document).ready(function() {
 
     $('.login').click(onConnectClick);
     $('.doactivate').click(onActivateClick);
+    $('#txt-key-activate').on('keypress', function(e) {
+        if (e.which == 13) {
+            onActivateClick();
+        }
+    });
 });
 
 var portalCollection;
@@ -1906,7 +1911,8 @@ function clickMenuPortals(menu, action, data) {
 };
 
 function onActivateClick(e) {
-    window.AscDesktopEditor.execCommand("app:activate", $(e.currentTarget).parent().find('#txt-key-activate'));
+    var key = $('#txt-key-activate').val();
+    !!key && window.AscDesktopEditor.execCommand("app:activate", key);
 };
 
 function onConnectClick() {
@@ -1942,7 +1948,15 @@ window.on_native_message = function(cmd, param) {
     } else 
     if (cmd == 'lic:active') {
         let is_active_license = param == '1';
-        $('a[action=activate]').parent()[is_active_license?'hide':'show']();        
+        let $menuitem = $('a[action=activate]').parent();
+        let is_selected = $menuitem.hasClass('selected');
+        $menuitem[is_active_license?'hide':'show']();        
+        
+        if (is_active_license) {
+            $('.action-panel.activate').hide();
+
+            is_selected && selectAction('recent');
+        }
 
         // var new_doc_items = $('.tool-quick-menu .menu-item');
         // new_doc_items[is_active_license?'removeClass':'addClass']('inactive');

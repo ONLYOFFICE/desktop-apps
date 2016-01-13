@@ -903,8 +903,8 @@ void QAscMainPanel::doLicenseWarning(void * data)
         syncLicenseToJS(false);
     } else {
         if (m_waitActiveLic) {
-            mess.showModal(tr("Activation successfully finished!"), QMessageBox::Information);
             syncLicenseToJS(true);
+            mess.showModal(tr("Activation successfully finished!"), QMessageBox::Information);
         } else
         if (pData->get_IsDemo()) {
             syncLicenseToJS(false, false);
