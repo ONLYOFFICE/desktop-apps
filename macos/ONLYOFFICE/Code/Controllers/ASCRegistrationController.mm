@@ -100,8 +100,6 @@
             NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
             [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
         } else {
-            [[ASCSharedSettings sharedInstance] setSetting:nil forKey:kSettingsLicenseInfo];
-            
             [self shakeWindow];
         }
     }
