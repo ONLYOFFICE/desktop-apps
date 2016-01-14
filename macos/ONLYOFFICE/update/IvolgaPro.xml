@@ -13,11 +13,11 @@
             <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/ver-1.0/IvolgaPRO-1.0.zip" sparkle:version="30" sparkle:shortVersionString="1.0" length="188341184" type="application/octet-stream" sparkle:dsaSignature="MCwCFEBKipg9QC+MM6TwrjaMD91nfpvWAhRR6tSZbglehVuvOj5AKzFDEIvgGQ==" />
         </item>
         <item>
-            <title>Version 1.0.1</title>
-            <pubDate>Wed Jan 13 10:52:32 MSK 2016</pubDate>
+            <title>Version 1.0.2</title>
+            <pubDate>Wed Jan 13 17:07:54 MSK 2016</pubDate>
             <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
             <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
-            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/IvolgaPRO-1.0.1.zip" sparkle:version="32" sparkle:shortVersionString="1.0.1" length="188918340" type="application/octet-stream" sparkle:dsaSignature="MCwCFB59y7mwYRobSxLt08V/whQMHv45AhRYLxskd6cLJEpObvtNLp2+K5nPfA==" />
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/IvolgaPRO-1.0.2.zip" sparkle:version="34" sparkle:shortVersionString="1.0.2" length="188381797" type="application/octet-stream" sparkle:dsaSignature="MCwCFACgLeBfz5yYVmM+OXE02Lo9CEUlAhQVSFBlsYskDXT4rVjilg5MzKyoRA==" />
         </item>
     </channel>
 </rss>
