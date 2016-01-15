@@ -40,7 +40,7 @@
 #define VER_PRODUCTVERSION_STR      "0.2\0"
 
 #define VER_COMPANYNAME_STR         "ZAO 'New Communication Technologies'\0"
-#define VER_FILEDESCRIPTION_STR     "Ivolga PRO Desktop Editors\0"
+#define VER_FILEDESCRIPTION_STR     "Ivolga PRO\0"
 #define VER_INTERNALNAME_STR        "Desktop Editors\0"
 #define VER_LEGALCOPYRIGHT_STR      "ZAO 'New Communication Technologies' 2016\0"
 #define VER_LEGALTRADEMARKS1_STR    "All rights reserved\0"
