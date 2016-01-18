@@ -55,6 +55,7 @@
 }
 
 - (void)showWindow:(id)sender {
+    [self.window makeKeyAndOrderFront:[NSApp mainWindow]];
     [self.window center];
     [NSApp runModalForWindow:self.window];
 }

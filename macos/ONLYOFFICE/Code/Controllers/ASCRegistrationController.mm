@@ -52,6 +52,7 @@
 @property (weak) IBOutlet NSTextField *keyField;
 @property (weak) IBOutlet NSTextField *infoField;
 @property (weak) IBOutlet NSTextField *infoSuccessField;
+@property (weak) IBOutlet NSProgressIndicator *activityIndicator;
 @end
 
 @implementation ASCRegistrationController
@@ -73,6 +74,9 @@
     if (self.infoSuccessField) {
         [self.infoSuccessField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName]];
     }
+    
+    [self.activityIndicator startAnimation:self];
+    [self.activityIndicator setHidden:YES];
 }
 
 - (void)dealloc {
@@ -93,6 +97,8 @@
 - (void)onCEFLicenseInfo:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * licenceInfo = notification.userInfo;
+        
+        [self.activityIndicator setHidden:YES];
         
         if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
             [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
@@ -173,6 +179,8 @@
 }
 
 - (IBAction)onRegistrationClick:(NSButton *)sender {
+    [self.activityIndicator setHidden:NO];
+    
     NSString * licenseDirectory = [ASCHelper licensePath];
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];

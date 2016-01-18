@@ -1198,8 +1198,16 @@ DQ
                                     <action selector="onBuyOnlineClick:" target="eb1-ke-RIJ" id="1k4-nT-udE"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Vna-In-TRD">
+                                <rect key="frame" x="599" y="123" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="7b2-x2-FVC"/>
+                                    <constraint firstAttribute="width" constant="16" id="KIE-5m-T8u"/>
+                                </constraints>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Vna-In-TRD" secondAttribute="trailing" constant="25" id="3eK-Ar-b0t"/>
                             <constraint firstItem="6dn-At-Xqp" firstAttribute="leading" secondItem="psS-yA-BvJ" secondAttribute="trailing" constant="35" id="7YG-8V-gKk"/>
                             <constraint firstItem="5KT-uS-QOD" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="7dN-aT-KZ0"/>
                             <constraint firstAttribute="trailing" secondItem="5KT-uS-QOD" secondAttribute="trailing" constant="20" id="8QT-M9-g4b"/>
@@ -1216,12 +1224,14 @@ DQ
                             <constraint firstItem="N3N-FI-Vlm" firstAttribute="leading" secondItem="kSA-rg-kXF" secondAttribute="trailing" constant="17" id="aiE-S4-fkm"/>
                             <constraint firstItem="psS-yA-BvJ" firstAttribute="top" secondItem="Yyd-pW-Pco" secondAttribute="top" constant="20" id="d7D-9R-kIa"/>
                             <constraint firstItem="6dn-At-Xqp" firstAttribute="top" secondItem="5KT-uS-QOD" secondAttribute="bottom" constant="8" id="dzN-dg-Ggu"/>
+                            <constraint firstItem="Vna-In-TRD" firstAttribute="top" secondItem="5KT-uS-QOD" secondAttribute="bottom" constant="11" id="gKs-c1-ahE"/>
                             <constraint firstItem="psS-yA-BvJ" firstAttribute="leading" secondItem="Yyd-pW-Pco" secondAttribute="leading" constant="30" id="qr0-0N-iAZ"/>
                             <constraint firstItem="N3N-FI-Vlm" firstAttribute="top" secondItem="LNc-Ry-AWP" secondAttribute="bottom" constant="40" id="uwO-ms-HkQ"/>
                             <constraint firstAttribute="bottom" secondItem="N3N-FI-Vlm" secondAttribute="bottom" constant="20" id="znA-sG-oSu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Vna-In-TRD" id="Yzv-Yu-Ad3"/>
                         <outlet property="infoField" destination="LNc-Ry-AWP" id="L4Z-jT-kBj"/>
                         <outlet property="keyField" destination="6dn-At-Xqp" id="luT-gD-o78"/>
                     </connections>

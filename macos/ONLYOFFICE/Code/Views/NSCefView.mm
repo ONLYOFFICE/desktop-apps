@@ -150,6 +150,10 @@ public:
 
 - (void)internalClean {
     if (NULL != m_pCefView) {
+        if (m_pCefView->GetCefView()) {
+            m_pCefView->GetCefView()->OnDestroyWidgetImpl();
+        }
+        
         delete m_pCefView;
         m_pCefView = NULL;
     }
