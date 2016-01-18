@@ -2,7 +2,7 @@
 
 
 [Setup]
-AppName                 ={#sAppName}
+AppName                 ={cm:AppName}
 AppVersion              ={#sAppVersion}
 OutputBaseFileName      =DesktopEditors_x86
 MinVersion              =0,5.0.2195
