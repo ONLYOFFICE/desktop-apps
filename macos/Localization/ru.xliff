@@ -381,7 +381,7 @@
       </trans-unit>
       <trans-unit id="Ruw-6m-B2m.title">
         <source>Select All</source>
-        <target>Select All</target>
+        <target>Выбрать все</target>
         <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
       </trans-unit>
       <trans-unit id="S0p-oC-mLd.title">
