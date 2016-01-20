@@ -33,16 +33,16 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             0,2,2,168
-#define VER_FILEVERSION_STR         "0.2.2.168\0"
+#define VER_FILEVERSION             0,2,2,170
+#define VER_FILEVERSION_STR         "0.2.2.170\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
 #define VER_PRODUCTVERSION_STR      "0.2\0"
 
-#define VER_COMPANYNAME_STR         "ZAO 'New Communication Technologies'\0"
+#define VER_COMPANYNAME_STR         "Novie kommunikacionnie tehnologii CJSC\0"
 #define VER_FILEDESCRIPTION_STR     "Ivolga PRO\0"
 #define VER_INTERNALNAME_STR        "Desktop Editors\0"
-#define VER_LEGALCOPYRIGHT_STR      "ZAO 'New Communication Technologies' 2016\0"
+#define VER_LEGALCOPYRIGHT_STR      "Novie kommunikacionnie tehnologii CJSC, 2016\0"
 #define VER_LEGALTRADEMARKS1_STR    "All rights reserved\0"
 #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
 #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"

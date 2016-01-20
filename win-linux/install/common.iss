@@ -18,12 +18,12 @@
 [Setup]
 AppVerName              ={cm:AppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
-AppPublisher            =ZAO "New Communication Technologies".
+AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
 ;AppPublisherURL         =http://www.onlyoffice.com/
 ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
 AppPublisherURL         =http://www.ivolgapro.com/
 AppSupportURL           =http://www.ivolgapro.com/support.aspx
-AppCopyright            =Copyright (C) 2016 ZAO "New Communication Technologies".
+AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
