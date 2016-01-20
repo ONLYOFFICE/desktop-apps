@@ -39,7 +39,8 @@
                     edit: <can edit>, // default = true
                     download: <can download>,
                     reader: <can view in readable mode>
-                    review: <can review> // default = edit
+                    review: <can review> // default = edit,
+                    print: <can print> // default = true
                 }
             },
             editorConfig: {

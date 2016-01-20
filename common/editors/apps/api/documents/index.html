@@ -81,13 +81,17 @@
                     url: urlParams["url"] || '_offline_',
                     title: urlParams["title"],
                     fileType: urlParams["filetype"],
-                    vkey: urlParams["vkey"]
+                    vkey: urlParams["vkey"],
+                    permissions: {
+                        edit: true,
+                        download: true
+                    }
                 };
             }
 
             function getEditorConfig(urlParams) {
                 return {
-                    mode            : urlParams["mode"],
+                    mode            : urlParams["mode"] || 'edit',
                     lang            : urlParams["lang"] || 'en',
                     user: {
                         id: urlParams["userid"], firstname: urlParams["userfname"], lastname: urlParams["userlname"]

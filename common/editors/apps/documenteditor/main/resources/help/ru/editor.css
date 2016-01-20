@@ -120,3 +120,6 @@ a:hover
 {
 text-decoration: none;
 }
+a.sup_link {
+text-decoration: none;	
+}
