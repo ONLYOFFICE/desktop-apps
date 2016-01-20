@@ -944,6 +944,8 @@ void QAscMainPanel::doLicenseWarning(void * data)
             } else {
                 syncLicenseToJS(true);
             }
+        } else {
+            syncLicenseToJS(true);
         }
     }
 }

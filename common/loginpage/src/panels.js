@@ -32,8 +32,6 @@
 
 'use strict';
 $(document).ready(function() {
-    hideAction('connect', true);
-
     $('.tool-menu > .menu-item > a').click(onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
@@ -42,6 +40,7 @@ $(document).ready(function() {
     Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
     Templates.insertFilesTable({holder:'#box-recent-folders', caption:utils.Lang.listRecentDirTitle, coltitle:false});
     Templates.createActivationPanel('');
+    
     $('a[action=activate]').parent().hide();
 
     /* popup menu */
@@ -184,11 +183,6 @@ $(document).ready(function() {
         sizeRecoveryList();
     });
 
-    if (window.AscDesktopEditor) {
-        window.AscDesktopEditor.LocalFileRecents && window.AscDesktopEditor.LocalFileRecents();
-        window.AscDesktopEditor.LocalFileRecovers && window.AscDesktopEditor.LocalFileRecovers();
-    } 
-
     /**/
     portalCollection = new Collection({
         view: $('.action-panel.connect #box-portals')
@@ -282,6 +276,10 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
+    // hide "connect" panel temporarily
+    hideAction('connect', true);
+    $('.tools-connect').hide();
+
     setLoaderVisible(false);
 
     /* test information */
@@ -305,6 +303,13 @@ $(document).ready(function() {
             onActivateClick();
         }
     });
+
+    setTimeout(function(){
+        if (window.AscDesktopEditor) {
+            window.AscDesktopEditor.LocalFileRecovers();
+            window.AscDesktopEditor.LocalFileRecents();
+        } 
+    }, 50);
 });
 
 var portalCollection;
@@ -348,19 +353,22 @@ function parseRecent(p) {
     var out_files_arr = [],
         dirs_arr = [];
 
+    var re_name = /([^\\/]+\.[a-zA-Z0-9]{3,})$/;
     for (let _f_ of p) {
-        let fn =  _f_.path,
-            name = /([^\\/]+\.[a-zA-Z0-9]{3,})$/.exec(fn)[1],
-            path = fn.slice(0, fn.length - name.length - 1);
-        out_files_arr.push({
-            id: _f_.id,
-            type: utils.parseFileFormat(_f_.type),
-            name: name,
-            descr: path,
-            date: _f_.modifyed
-        });
+        let fn =  _f_.path;
+        if (re_name.test(fn)) {
+            let name = re_name.exec(fn)[1],
+                path = fn.slice(0, fn.length - name.length - 1);
+            out_files_arr.push({
+                id: _f_.id,
+                type: utils.parseFileFormat(_f_.type),
+                name: name,
+                descr: path,
+                date: _f_.modifyed
+            });
 
-        dirs_arr.indexOf(path) < 0 && dirs_arr.push(path);
+            dirs_arr.indexOf(path) < 0 && dirs_arr.push(path);
+        }
     }
 
     var out_dirs_arr = [];
