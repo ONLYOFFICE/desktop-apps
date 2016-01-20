@@ -133,7 +133,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="91"/>
         <source>Excel Workbook</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel Spreadsheet</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="94"/>
