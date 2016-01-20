@@ -109,7 +109,6 @@ public slots:
 
     void onLogin(QString);
     void onLogout();
-    void onJSMessage(QString, QString);
     void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);

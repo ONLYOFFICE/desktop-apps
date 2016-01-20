@@ -92,15 +92,13 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
 //        QMetaObject::invokeMethod(pObjParent, "onLogout", Qt::QueuedConnection);
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: { // ? deprecated ?
-        NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
-
-//        OutputDebugString(pData->get_Value().c_str());
-        QString cmd = QString::fromStdWString(pData->get_Name());
-        if (cmd.compare("login") == 0) {
-            QMetaObject::invokeMethod(pObjParent, "onLogin", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Value())));
-        }
-        break; }
+//    case ASC_MENU_EVENT_TYPE_CEF_JS_MESSAGE: { // deprecated
+//        NSEditorApi::CAscJSMessage * pData = (NSEditorApi::CAscJSMessage *)pEvent->m_pData;
+//        QString cmd = QString::fromStdWString(pData->get_Name());
+//        if (cmd.compare("login") == 0) {
+//            QMetaObject::invokeMethod(pObjParent, "onLogin", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Value())));
+//        }
+//        break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;

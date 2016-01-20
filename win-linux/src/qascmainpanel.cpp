@@ -948,13 +948,6 @@ void QAscMainPanel::doLicenseWarning(void * data)
     }
 }
 
-void QAscMainPanel::onJSMessage(QString key, QString value)
-{
-//    if (key == "login") {
-//        onLogin(value);
-//    }
-}
-
 void QAscMainPanel::loadStartPage()
 {
     QString data_path = QString().fromStdWString(m_pManager->m_oSettings.app_data_path) + "/webdata/local/index.html";
