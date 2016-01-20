@@ -112,7 +112,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
-    , m_widthParams({{41, 135, 9}, 108, 3, 0, 100, 140, 0})
+    , m_widthParams({{100, 135, 9}, 108, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -315,25 +315,27 @@ void CAscTabWidget::adjustTabsSize()
 //    int nButtonW = 16 * g_dpi_ratio;        // tool button width
 //    int nEndOffset = 140 * g_dpi_ratio;     // space for a caption
 
-    int nControlWidth = parentWidget()->width();
-//    int nTabBarWidth = nControlWidth - nFirst - nStartOffset - nEndOffset - 3 * nButtonW - 2 * nBetweenApp;
-    int nTabBarWidth = nControlWidth
-            - m_widthParams.main_button_width - m_widthParams.main_button_span
-            - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
+    int nTabBarWidth    = 0,
+        nTabWidth       = m_widthParams.tab.max,
+        nCountTabs      = tabBar()->count();
 
-    int nCountTabs = tabBar()->count();
-    if (nCountTabs == 0) nCountTabs = 1;
+    if (nCountTabs != 0) {
+        int nControlWidth = parentWidget()->width();
+        nTabBarWidth = nControlWidth
+                - m_widthParams.main_button_width - m_widthParams.main_button_span
+                - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
 
-    int nTabWidth = (nTabBarWidth - /*(2+2)*/9 * nCountTabs) / nCountTabs;      // magic (2+2)
-    if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
-    if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
+        int nTabWidth = (nTabBarWidth - /*(2+2)*/9 * nCountTabs) / nCountTabs;      // magic (2+2)
+        if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
+        if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-    int nMinTabBarWidth = (nTabWidth + /*(2+2)*/9) * nCountTabs;
-    if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
+        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/9) * nCountTabs;
+        if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
+    }
 
     QString cssStyle = styleSheet();
     cssStyle
-        .replace(QRegExp("QTabWidget::tab-bar\\s?\\{\\s?width\\:\\s?(\\d+px|auto)", Qt::CaseInsensitive),
+        .replace(QRegExp("QTabWidget::tab-bar\\s?\\{\\s?width\\:\\s?(\\-?\\d+px|auto)", Qt::CaseInsensitive),
                     QString("QTabWidget::tab-bar { width: %1px").arg(nTabBarWidth))
         .replace(QRegExp("QTabBar::tab\\s?\\{\\s?width\\:\\s?\\d+px", Qt::CaseInsensitive),
                     QString("QTabBar::tab { width: %1px").arg(nTabWidth));
@@ -345,7 +347,7 @@ void CAscTabWidget::adjustTabsSize()
 void CAscTabWidget::applyCustomTheme(bool iscustom)
 {
     m_widthParams.tools_width = (iscustom ? 50 : 140) * g_dpi_ratio;
-    m_widthParams.title_width = (iscustom ? 100 : 0) * g_dpi_ratio;
+    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * g_dpi_ratio;
 }
 
 void CAscTabWidget::updateIcons()

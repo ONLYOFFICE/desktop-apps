@@ -77,6 +77,36 @@ QTabBar::close-button:pressed {
     background-image:url(:/res/icons/tab_close_active_2x.png);
 }
 
+QTabBar QToolButton,
+    QTabBar QToolButton:disabled {
+    margin-right:-2px;
+    border-width:2px;
+}
+
+QTabBar QToolButton::left-arrow {
+    border-image: url(:/res/icons/changetab_left_normal_2x.png) 0;
+    border-top-width: 14px;
+    border-bottom-width: 14px;
+}
+
+QTabBar QToolButton::left-arrow:disabled {
+    border-image: url(:/res/icons/changetab_left_disabled_2x.png) 0;
+}
+
+QTabBar QToolButton::right-arrow {
+    border-image: url(:/res/icons/changetab_right_normal_2x.png) 0;
+    border-top-width: 14px;
+    border-bottom-width: 14px;
+}
+
+QTabBar QToolButton::right-arrow:disabled {
+    border-image: url(:/res/icons/changetab_right_disabled_2x.png) 0;
+}
+
+QTabBar::scroller {
+    width:32px;
+}
+
 QMenu#menuButtonProfile,
     QMenu#menuButtonDownload {
     border: 2px solid #d1d1d1;
