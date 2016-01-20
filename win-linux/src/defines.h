@@ -43,17 +43,25 @@
 #define FILE_DOWNLOAD_START     3
 #define FILE_DOWNLOAD_END       4
 
-//#define APP_NAME "DesktopEditors"
-//#define APP_TITLE "ONLYOFFICE"
-//#define REG_GROUP_KEY "ONLYOFFICE"
+#define _IVOLGA_PRO
+#ifdef _IVOLGA_PRO
+  #define APP_TITLE g_lang.compare("ru") == 0 ? "Иволга ПРО" : "Ivolga PRO"
+  #define WINDOW_NAME APP_TITLE
+  #define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
+  #define APP_LICENSE_PATH "/IvolgaPRO/License"
+  #define REG_GROUP_KEY "IvolgaPRO"
+  #define URL_BUYNOW "http://ivolgapro.ru"
+#else
+  #define APP_NAME "DesktopEditors"
+  #define APP_TITLE "ONLYOFFICE"
+  #define APP_LICENSE_PATH "/ONLYOFFICE/License"
+  #define REG_GROUP_KEY "ONLYOFFICE"
+  #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#endif
+
+#define WINDOW_TITLE_MIN_WIDTH 400
 #define REG_APP_NAME "DesktopEditors"
-//#define WINDOW_NAME "ONLYOFFICE Desktop Editors"
-#define APP_TITLE "Иволга ПРО"
-#define WINDOW_NAME "Иволга ПРО"
-#define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
-#define APP_LICENSE_PATH "/IvolgaPRO/License"
-#define REG_GROUP_KEY "IvolgaPRO"
-#define URL_BUYNOW "http://ivolgapro.ru"
+
 #define GET_REGISTRY_USER(variable) \
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
 #define GET_REGISTRY_SYSTEM(variable) \

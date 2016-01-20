@@ -47,6 +47,7 @@
 
 #include <QDebug>
 extern BYTE g_dpi_ratio;
+extern QString g_lang;
 
 #if defined(_WIN32)
 CSaveFileMessage::CSaveFileMessage(HWND hParentWnd)

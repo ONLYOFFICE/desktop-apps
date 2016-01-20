@@ -8,6 +8,7 @@
 #include "qcefview.h"
 
 extern BYTE g_dpi_ratio;
+extern QString g_lang;
 
 CMessage::CMessage(HWND hParentWnd)
     : QWinWidget(hParentWnd)
