@@ -41,7 +41,7 @@ button {
     overflow: auto;
     -webkit-user-select: none;
     user-select: none;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #placeholder {
@@ -50,8 +50,9 @@ button {
     height: 100%;
     /*padding: 25px;*/
     font-family: 'Open Sans',sans-serif;
-    min-width: 1024px;
-    min-height: 600px;
+    min-width: 790px;
+    min-height: 560px;
+    display: flex;
 
     /*@media(min-width: 1200) {}*/
 }
@@ -82,6 +83,11 @@ h4 {
     width: @col-width;
     float: left;
     border-right: 1px solid @color-gray-3;
+
+    @media screen and (max-width: 1000px) {
+        width: 32%;
+        max-width: @col-width;
+    }
 }
 
 .col-center {
@@ -178,7 +184,8 @@ button {
 }
 
 .after-left {
-    margin-left: @col-width;
+    /*margin-left: @col-width;*/
+    flex-grow: 1;
 }
 
 /*#area-welcome
@@ -627,10 +634,11 @@ li.menu-item {
 .activate {
     .center {
         top: 34%;
+        width: 90%;
+        max-width: 700px;
     }
 
     input {
-        width: 700px;
         margin: 60px 0 20px;
     }
 
