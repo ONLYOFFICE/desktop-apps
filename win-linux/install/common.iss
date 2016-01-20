@@ -38,7 +38,8 @@ OutputDir               =.\
 Compression             =lzma
 PrivilegesRequired      =admin
 AppMutex                =TEAMLAB
-ChangesEnvironment      = yes
+ChangesEnvironment      =yes
+SetupMutex              =ASC
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
