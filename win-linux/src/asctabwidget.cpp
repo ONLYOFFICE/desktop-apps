@@ -329,7 +329,7 @@ void CAscTabWidget::adjustTabsSize()
         if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
         if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/9) * nCountTabs;
+        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(9 * g_dpi_ratio/*?*/)) * nCountTabs;
         if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
     }
 

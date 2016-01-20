@@ -440,10 +440,10 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
                 if (in_files.size()) {
                     window->m_pWinPanel->parseInputArgs(in_files);
-                    SetForegroundWindow(hWnd);
                 }
             }
 
+            SetForegroundWindow(hWnd);
             LocalFree(szArglist);
         }
         break;}
