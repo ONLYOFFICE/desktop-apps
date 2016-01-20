@@ -62,7 +62,7 @@ var en = {
     pshEmail: 'email',
     pshPass: 'password',
     newDoc: 'DOCUMENT',
-    newXlsx: 'WORKBOOK',
+    newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATION',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
