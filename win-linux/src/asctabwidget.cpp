@@ -129,7 +129,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
-    QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons();});
+    QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
 
     m_widthParams.apply_dpi(g_dpi_ratio);
 }
