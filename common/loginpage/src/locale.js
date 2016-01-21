@@ -33,7 +33,7 @@
 var en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
-    btnConnect: 'Connect Portal',
+    btnConnect: 'Collaboration',
     btnCreatePortal: 'Create Portal',
     btnAddPortal: 'Add Portal',
     btnLogin: 'Login',
