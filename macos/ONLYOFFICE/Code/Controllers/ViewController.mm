@@ -945,12 +945,8 @@
                 break;
             }
             case ASCTabActionOpenLocalRecoverFile: {
-                NSInteger docId = [tab.params[@"fileId"] intValue];
-                NSString * filePath = tab.params[@"path"];
-                
-                if ([self canOpenFile:filePath tab:tab]) {
-                    [cefView openRecoverFileWithId:docId];
-                }
+                NSInteger docId = [tab.params[@"fileId"] intValue];               
+                [cefView openRecoverFileWithId:docId];
                 
                 break;
             }
