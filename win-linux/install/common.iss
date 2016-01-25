@@ -1,12 +1,18 @@
-﻿;#define sAppName            'ONLYOFFICE Desktop Editors'
+﻿#define _IVO_
 
-#define NAME_EXE_OUT        'DesktopEditors.exe'
-;#define ASC_PATH            'ONLYOFFICE\DesktopEditors'
-;#define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
-;#define REG_SC_PATH         'Software\Classes\OnlyOffice'
-#define ASC_PATH            'IvolgaPRO\DesktopEditors'
-#define ASC_REG_PATH        'Software\IvolgaPRO\DesktopEditors'
-#define REG_SC_PATH         'Software\Classes\IvolgaPRO'
+#define sAppName            'ONLYOFFICE Desktop Editors'
+#define ASC_PATH            'ONLYOFFICE\DesktopEditors'
+#define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
+#define REG_SC_PATH         'Software\Classes\OnlyOffice'
+
+#ifdef _IVO_
+  #define sAppName          'Иволга ПРО'
+  #define NAME_EXE_OUT      'IvolgaPRO.exe'
+  #define ASC_PATH          'IvolgaPRO\DesktopEditors'
+  #define ASC_REG_PATH      'Software\IvolgaPRO\DesktopEditors'
+  #define REG_SC_PATH       'Software\Classes\IvolgaPRO'
+#endif
+
 
 #define PATH_EXE            '..\Build\Release\release\DesktopEditors.exe'
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
@@ -16,19 +22,25 @@
 #include "associate_page.iss"
 
 [Setup]
-AppVerName              ={cm:AppName} {#sAppVerShort}
+AppVerName              ={#sAppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
-AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
-;AppPublisherURL         =http://www.onlyoffice.com/
-;AppSupportURL           =http://www.onlyoffice.com/support.aspx
-AppPublisherURL         =http://www.ivolgapro.com/
-AppSupportURL           =http://www.ivolgapro.com/support.aspx
-AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
+
+#ifdef _IVO_
+  AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
+  AppPublisherURL         =http://www.ivolgapro.com/
+  AppSupportURL           =http://www.ivolgapro.com/support.aspx
+  AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
+  LicenseFile             =license\License_ivolga.rtf
+#else
+  ;AppPublisherURL         =http://www.onlyoffice.com/
+  ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
+#endif
+
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
 ;DefaultGroupName        =ONLYOFFICE
-DefaultGroupName        ={cm:AppName}
+DefaultGroupName        ={#sAppName}
 DisableProgramGroupPage = yes
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
@@ -42,17 +54,20 @@ ChangesEnvironment      =yes
 SetupMutex              =ASC
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
+#ifndef _IVO_
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
+  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
+#endif
 
 [CustomMessages]
+#ifndef _IVO_
 ;======================================================================================================
-en.AppName=Ivolga PRO
-ru.AppName=Иволга ПРО
+;en.AppName=Ivolga PRO
+;ru.AppName=Иволга ПРО
 ;======================================================================================================
 en.Launch =Launch %1
 ru.Launch =Запустить %1
@@ -96,6 +111,15 @@ ru.WarningWrongArchitecture =Вы устанавливаете %1-битную �
 ;es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
+#else
+
+Launch=Запустить %1
+CreateDesktopIcon=Создать иконку %1 на &рабочем столе
+InstallAdditionalComponents =Установка дополнительных системных компонент. Пожалуйста, подождите...
+Uninstall=Удаление
+WarningWrongArchitecture=Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
+
+#endif
 
 [Code]
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
@@ -297,18 +321,18 @@ Source: ..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts
 
 
 [Tasks]
-Name: desktopicon; Description: {cm:CreateDesktopIcon,{cm:AppName}}; GroupDescription: {cm:AdditionalIcons};
+Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
 ;Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{cm:AppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
-Name: {group}\{cm:AppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
+Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
+Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\launch.bat; Description: {cm:Launch,{cm:AppName}}; Flags: postinstall nowait skipifsilent runhidden;
+Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 [Ini]

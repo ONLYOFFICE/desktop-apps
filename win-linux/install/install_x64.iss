@@ -2,16 +2,20 @@
 
 
 [Setup]
-AppName                 ={cm:AppName}
+AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
+#ifdef _IVO_
+OutputBaseFileName      =Ivolgapro_x64
+#else
 OutputBaseFileName      =DesktopEditors_x64
+#endif
 ;MinVersion              =0,5.0.2195
 MinVersion              =6.0
 ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowLanguageDialog      = false
 ;ShowUndisplayableLanguages = true
-UsePreviousLanguage=no
+;UsePreviousLanguage=no
 
 [Code]
 

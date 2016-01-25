@@ -3,6 +3,23 @@
 ChangesAssociations=true
 
 [CustomMessages]
+#ifdef _IVO_
+
+  AssociateDescription =Ассоциировать типы файлов офисных документов с %1
+  AssociateCaption =Ассоциации файлов
+  AssociateDont =Не ассоциировать
+  AssociateAll =Ассоциировать все
+  AssociateSel =Ассоциировать выбранные
+  AssociateAudio =Типы файлов
+  extMSWord =Документ Microsoft Word
+  extMSExcel =Книга Microsoft Excel
+  extMSPresentation =Презентация Microsoft PowerPoint
+  extMSSlideshow =Слайдшоу Microsoft PowerPoint
+  extODT =Текстовый документ OpenDocument
+  extODS =Электронная таблица OpenDocument
+  extODP =Презентация OpenDocument
+
+#else
 
 en.AssociateDescription =Associate office document file types with %1
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
@@ -66,6 +83,8 @@ ru.extODS =Электронная таблица OpenDocument
 
 en.extODP =OpenDocument Presentation
 ru.extODP =Презентация OpenDocument
+
+#endif
 
 [Code]
 
