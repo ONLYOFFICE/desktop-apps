@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="419"/>
+        <location filename="../src/asctabwidget.cpp" line="421"/>
         <source>Document</source>
         <translation>Opening...</translation>
     </message>
@@ -159,7 +159,7 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/win/cmessage.cpp" line="39"/>
+        <location filename="../src/win/cmessage.cpp" line="42"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -190,22 +190,22 @@
 <context>
     <name>CSaveFileMessage</name>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="53"/>
+        <location filename="../src/csavefilemessage.cpp" line="54"/>
         <source>Do you want to save modified files?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="59"/>
+        <location filename="../src/csavefilemessage.cpp" line="60"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="60"/>
+        <location filename="../src/csavefilemessage.cpp" line="61"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="61"/>
+        <location filename="../src/csavefilemessage.cpp" line="62"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -247,75 +247,80 @@
         <translation>File does not exist</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="690"/>
+        <location filename="../src/qascmainpanel.cpp" line="688"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="691"/>
+        <location filename="../src/qascmainpanel.cpp" line="689"/>
         <source>Book%1.xlsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="692"/>
+        <location filename="../src/qascmainpanel.cpp" line="690"/>
         <source>Presentation%1.pptx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="843"/>
+        <location filename="../src/qascmainpanel.cpp" line="841"/>
         <source>Internal activation error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="868"/>
+        <location filename="../src/qascmainpanel.cpp" line="870"/>
+        <source>Activation failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="875"/>
         <source>Buy Now</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="869"/>
+        <location filename="../src/qascmainpanel.cpp" line="876"/>
         <source>The program is unregistered</source>
         <translation>Unregistered application version.&lt;br&gt; You cannot create and edit local files. Click &quot;Buy now&quot; to buy the license.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="876"/>
+        <location filename="../src/qascmainpanel.cpp" line="868"/>
         <source>Activation successfully finished!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="885"/>
+        <location filename="../src/qascmainpanel.cpp" line="888"/>
         <source>The trial period is over.</source>
         <translation>The trial period is over.&lt;br&gt;You cannot create and edit documents.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="887"/>
+        <location filename="../src/qascmainpanel.cpp" line="890"/>
         <source>Trial period expired for %1 days.</source>
         <translation>You are using a trial version of the application.&lt;br&gt;The trial period will end in %1 days, after that you will not be able to create and edit documents.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="901"/>
+        <location filename="../src/qascmainpanel.cpp" line="904"/>
         <source>The program is non-activated!</source>
         <translation>The license expired.&lt;br&gt;You cannot create and edit local files. Click &quot;Activate&quot; to enter the product key.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="909"/>
+        <location filename="../src/qascmainpanel.cpp" line="912"/>
         <source>%1 days left before the license end</source>
         <translation>%1 days are left until the license expiration.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="881"/>
-        <location filename="../src/qascmainpanel.cpp" line="900"/>
+        <location filename="../src/qascmainpanel.cpp" line="884"/>
+        <location filename="../src/qascmainpanel.cpp" line="903"/>
         <source>Activate</source>
         <translation>Activate</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="881"/>
-        <location filename="../src/qascmainpanel.cpp" line="900"/>
-        <location filename="../src/qascmainpanel.cpp" line="912"/>
+        <location filename="../src/qascmainpanel.cpp" line="884"/>
+        <location filename="../src/qascmainpanel.cpp" line="903"/>
+        <location filename="../src/qascmainpanel.cpp" line="915"/>
         <source>Continue</source>
         <translation>Continue</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1027"/>
+        <location filename="../src/qascmainpanel.cpp" line="1025"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
