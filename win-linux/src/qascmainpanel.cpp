@@ -672,7 +672,7 @@ void QAscMainPanel::onLocalFileRecent(void * d)
     QRegularExpressionMatch match = re.match(opts.url);
 
     if (!match.hasMatch()) {
-        if ( !QFileInfo(opts.url).exists() ) {
+        if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
             CMessage mess(gTopWinId);
             mess.showModal(tr("File doesn't exists"), QMessageBox::Critical);
             return;
@@ -894,6 +894,15 @@ void QAscMainPanel::doLicenseWarning(void * data)
     CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
 
     CMessage mess(gTopWinId);
+    if (m_waitActiveLic) {
+        QString desr;
+        if (pData->get_Licence()) {
+            desr = tr("Activation successfully finished!");
+            syncLicenseToJS(true);
+        } else desr = tr("Activation failed!");
+
+        mess.showModal(desr, QMessageBox::Information);
+    } else
     if (!pData->get_Licence()) {
         mess.setButtons(tr("Buy Now"), "");
         if (201 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
@@ -902,10 +911,6 @@ void QAscMainPanel::doLicenseWarning(void * data)
 
         syncLicenseToJS(false);
     } else {
-        if (m_waitActiveLic) {
-            syncLicenseToJS(true);
-            mess.showModal(tr("Activation successfully finished!"), QMessageBox::Information);
-        } else
         if (pData->get_IsDemo()) {
             syncLicenseToJS(false, false);
             mess.setButtons(tr("Activate"), tr("Continue"));
