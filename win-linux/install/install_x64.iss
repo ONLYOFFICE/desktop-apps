@@ -13,7 +13,6 @@ OutputBaseFileName      =DesktopEditors_x64
 MinVersion              =6.0
 ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
-;ShowLanguageDialog      = false
 ;ShowUndisplayableLanguages = true
 ;UsePreviousLanguage=no
 

@@ -30,7 +30,9 @@ VersionInfoVersion      ={#sAppVersion}
   AppPublisherURL         =http://www.ivolgapro.com/
   AppSupportURL           =http://www.ivolgapro.com/support.aspx
   AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
-  LicenseFile             =license\License_ivolga.rtf
+
+  ShowLanguageDialog      =no
+  LanguageDetectionMethod =none
 #else
   ;AppPublisherURL         =http://www.onlyoffice.com/
   ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
@@ -42,6 +44,7 @@ DefaultDirName          ={pf}\{#ASC_PATH}
 ;DefaultGroupName        =ONLYOFFICE
 DefaultGroupName        ={#sAppName}
 DisableProgramGroupPage = yes
+DisableWelcomePage      = no
 AllowNoIcons            = yes
 WizardImageFile         = data\dialogpicture.bmp
 WizardSmallImageFile    = data\dialogicon.bmp
@@ -54,17 +57,19 @@ ChangesEnvironment      =yes
 SetupMutex              =ASC
 
 [Languages]
-#ifndef _IVO_
+#ifdef _IVO_
   Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
   Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
+#else
+  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
+#endif
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
-#endif
 
 [CustomMessages]
-#ifndef _IVO_
 ;======================================================================================================
 ;en.AppName=Ivolga PRO
 ;ru.AppName=Иволга ПРО
@@ -111,15 +116,9 @@ ru.WarningWrongArchitecture =Вы устанавливаете %1-битную �
 ;es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
-#else
 
-Launch=Запустить %1
-CreateDesktopIcon=Создать иконку %1 на &рабочем столе
-InstallAdditionalComponents =Установка дополнительных системных компонент. Пожалуйста, подождите...
-Uninstall=Удаление
-WarningWrongArchitecture=Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
-
-#endif
+;en.AssociateDescription =Associate office document file types with %1
+;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
 [Code]
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';

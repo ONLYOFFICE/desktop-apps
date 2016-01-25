@@ -3,30 +3,15 @@
 ChangesAssociations=true
 
 [CustomMessages]
+
 #ifdef _IVO_
-
-  AssociateDescription =Ассоциировать типы файлов офисных документов с %1
-  AssociateCaption =Ассоциации файлов
-  AssociateDont =Не ассоциировать
-  AssociateAll =Ассоциировать все
-  AssociateSel =Ассоциировать выбранные
-  AssociateAudio =Типы файлов
-  extMSWord =Документ Microsoft Word
-  extMSExcel =Книга Microsoft Excel
-  extMSPresentation =Презентация Microsoft PowerPoint
-  extMSSlideshow =Слайдшоу Microsoft PowerPoint
-  extODT =Текстовый документ OpenDocument
-  extODS =Электронная таблица OpenDocument
-  extODP =Презентация OpenDocument
-
-#else
-
-en.AssociateDescription =Associate office document file types with %1
-ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
+en.AssociateDescription =Associate office document file types with Ivolga PRO
+ru.AssociateDescription =Ассоциировать типы файлов офисных документов с Иволга ПРО
 ;de.AssociateDescription =Video- und Audiodateitypen mit AVS Media Player assoziieren
 ;fr.AssociateDescription =Associer des types de fichiers vidйo et audio а AVS Media Player
 ;es.AssociateDescription =Asociar tipos de archivos de vнdeo y audio con AVS Media Player
 ;it.AssociateDescription =Associare i tipi di file video/audio ad AVS Media Player
+#endif
 
 en.AssociateCaption =File Associations
 ru.AssociateCaption =Ассоциации файлов
@@ -83,8 +68,6 @@ ru.extODS =Электронная таблица OpenDocument
 
 en.extODP =OpenDocument Presentation
 ru.extODP =Презентация OpenDocument
-
-#endif
 
 [Code]
 
@@ -208,7 +191,7 @@ var
 begin
   initExensions();
 
-  associatePage := CreateCustomPage(wpSelectTasks, ExpandConstant('{cm:AssociateCaption}'), ExpandConstant('{cm:AssociateDescription, {cm:AppName}}'));
+  associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
   lblAudio          := TLabel.Create(associatePage);
   lblAudio.Parent   := associatePage.Surface;
