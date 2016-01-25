@@ -79,7 +79,7 @@ var en = {
 var ru = {
     welWelcome: 'Добро пожаловать в Иволга ПРО!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
-    btnConnect: 'Войти на портал',
+    btnConnect: 'Совместная работа',
     btnCreatePortal: 'Создать портал',
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
@@ -125,7 +125,7 @@ var ru = {
 var de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
     welDescr: 'Eine neue schnelle Lösung für die Arbeit mit Dokumenten mithilfe Ihrer ONLYOFFICE.',
-    btnConnect: 'Mit Portal verbinden',
+    btnConnect: 'Zusammenarbeit',
     btnCreatePortal: 'Portal erstellen',
     btnAddPortal: 'Portal hinzufügen',
     btnLogin: 'Anmelden',
@@ -183,7 +183,7 @@ var fr = {
 var es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
-    btnConnect: 'Conectar Portal',
+    btnConnect: 'Colaboración',
     btnCreatePortal: 'Crear Portal',
     btnAddPortal: 'Añadir Portal',
     btnLogin: 'Iniciar Sesión',
