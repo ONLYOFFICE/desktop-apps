@@ -26,5 +26,12 @@
             <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
             <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/IvolgaPRO-1.0.4.zip" sparkle:version="40" sparkle:shortVersionString="1.0.4" length="187960232" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCDdZnOb4CzZXJelN9XKoEu8G77jAIUXoMv1Z+v2yvUc/5eWDol/ViOXfE=" />
         </item>
+        <item>
+            <title>Version 1.0.6</title>
+            <pubDate>Mon Jan 25 16:21:47 MSK 2016</pubDate>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/IvolgaPRO/IvolgaPRO-1.0.6.zip" sparkle:version="53" sparkle:shortVersionString="1.0.6" length="189714919" type="application/octet-stream" sparkle:dsaSignature="MCwCFAfND+/a34zRUI68G7/Tw76L2gNoAhQxv7eUlbTtopmy5A88op86L+dXTA==" />
+        </item>
     </channel>
 </rss>
