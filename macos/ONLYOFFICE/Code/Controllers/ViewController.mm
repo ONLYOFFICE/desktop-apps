@@ -522,6 +522,8 @@
             existTab = [self tabWithParam:@"path" value:params[@"path"]];
         }
         
+        [self.view.window makeKeyAndOrderFront:nil];
+        
         if (existTab) {
             [self.tabsControl selectTab:existTab];
         } else {
@@ -903,6 +905,8 @@
         } else {
             [cefView create:appManager withType:cvwtEditor];
         }
+        
+        [self.view.window makeKeyAndOrderFront:nil];
         
         switch (action) {
             case ASCTabActionOpenPortal: {
