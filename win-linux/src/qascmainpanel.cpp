@@ -275,6 +275,12 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     fillUserName(fn, ln);
     QString params = "lang="+g_lang+"&userfname="+fn+"&userlname="+ln;
     m_pManager->InitAdditionalEditorParams(params.toStdWString());
+
+#ifndef _IVOLGA_PRO
+    QTimer::singleShot(500, this, [=]{
+        hideMainPagePanel(ACTIONPANEL_CONNECT, false);
+    });
+#endif
 }
 
 void QAscMainPanel::RecalculatePlaces()
@@ -904,23 +910,21 @@ void QAscMainPanel::doLicenseWarning(void * data)
         mess.showModal(desr, QMessageBox::Information);
     } else
     if (!pData->get_Licence()) {
+        syncLicenseToJS(false);
+
         mess.setButtons(tr("Buy Now"), "");
         if (201 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
             onLink(URL_BUYNOW);
         }
-
-        syncLicenseToJS(false);
     } else {
         if (pData->get_IsDemo()) {
             syncLicenseToJS(false, false);
             mess.setButtons(tr("Activate"), tr("Continue"));
 
             int res = 0;
-            if (pData->get_DaysLeft() == 0) {
-                res = mess.showModal(tr("The trial period is over.").arg(pData->get_DaysLeft()), QMessageBox::Information);
-            } else {
+            if (pData->get_DaysLeft() == 0)
+                res = mess.showModal(tr("The trial period is over.").arg(pData->get_DaysLeft()), QMessageBox::Information); else
                 res = mess.showModal(tr("Trial period expired for %1 days.").arg(pData->get_DaysLeft()), QMessageBox::Information);
-            }
 
             if (res == 201) {
                 syncLicenseToJS(false, true);
@@ -1361,4 +1365,25 @@ void QAscMainPanel::selfActivation()
     pEvent->m_pData = pData;
 
     m_pManager->Apply(pEvent);
+}
+
+void QAscMainPanel::hideMainPagePanel(int panel, bool hide)
+{
+    wstring _panel;
+    switch (panel) {
+    case ACTIONPANEL_CONNECT: _panel = L"connect"; break;
+    }
+
+    if (_panel.size()) {
+        CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+        pCommand->put_Command(wstring(L"panel:hide:").append(_panel));
+        pCommand->put_Param(QString::number(hide).toStdWString());
+
+        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+
+        ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+
+        qDebug() << "hide connect panel";
+    }
 }

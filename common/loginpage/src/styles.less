@@ -50,7 +50,7 @@ button {
     height: 100%;
     /*padding: 25px;*/
     font-family: 'Open Sans',sans-serif;
-    min-width: 790px;
+    min-width: 900px;
     min-height: 560px;
     display: flex;
 
@@ -261,13 +261,18 @@ button {
 
 li.menu-item {
     list-style: none;
-    padding: 0 27px;
+    /*padding: 0 27px;*/
+
+    &.extra {
+        display: none;
+    }
 
     a {
         display: block;
         text-decoration: none;
         color: @color-gray-8;
         font-size: 14px;
+        padding: 0 27px;
         cursor: pointer;
     }
 }

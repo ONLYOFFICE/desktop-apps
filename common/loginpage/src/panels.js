@@ -41,8 +41,6 @@ $(document).ready(function() {
     Templates.insertFilesTable({holder:'#box-recent-folders', caption:utils.Lang.listRecentDirTitle, coltitle:false});
     Templates.createActivationPanel('');
     
-    $('a[action=activate]').parent().hide();
-
     /* popup menu */
     var menuFiles = new Menu({
         id: 'pp-menu-files',
@@ -276,10 +274,6 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
-    // hide "connect" panel temporarily
-    hideAction('connect', true);
-    $('.tools-connect').hide();
-
     setLoaderVisible(false);
 
     /* test information */
@@ -339,7 +333,8 @@ function selectAction(action) {
 };
 
 function hideAction(action, hide) {
-    $('.tool-menu a[action='+action+']').parent()[hide?'hide':'show']();
+    var mitem = $('.tool-menu a[action='+action+']').parent();
+    mitem.removeClass('extra')[hide?'hide':'show']();
     $('.action-panel.' + action)[hide?'hide':'show']();
 };
 
@@ -540,6 +535,15 @@ window.on_native_message = function(cmd, param) {
     } else 
     if (cmd == 'lic:sendkey') {
         // $('a[action=activate]').parent()['show']();
+    } else
+    if (/^panel\:hide/.test(cmd)) {
+        let hide = param == '1';
+        let panel = /\:hide\:(\w+)$/.exec(cmd)[1];
+
+    console.log("hide panel: ", panel, hide);
+        if (panel.length) {
+            hideAction(panel, hide);
+        }
     }
     
     console.log(cmd, param);

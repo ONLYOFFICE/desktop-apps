@@ -65,6 +65,7 @@ public:
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
+    void hideMainPagePanel(int, bool hide = true);
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
