@@ -1,8 +1,9 @@
 @echo off
-set LibsPath=svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor
+set fileserver=192.168.3.15
+set LibsPath=svn://%fileserver%/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor
 
 if exist ".svn" (
-    svn update
+    svn update --accept tf
 ) else (
     svn checkout %LibsPath% ./. --depth empty
     svn update --set-depth infinity ChromiumBasedEditors2
@@ -13,7 +14,7 @@ if exist ".svn" (
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
 if %OS%==32BIT (set OSNAME=win32) else (set OSNAME=win64)
 
-set trunk_path=svn://192.168.3.15/activex/AVS/Sources/TeamlabOffice/trunk
+set trunk_path=svn://%fileserver%/activex/AVS/Sources/TeamlabOffice/trunk
 set export_path=..\converter\windows
 if %OS%==32BIT (
     md %export_path%\%OSNAME%
