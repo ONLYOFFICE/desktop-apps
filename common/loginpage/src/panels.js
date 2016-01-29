@@ -274,6 +274,7 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
+    $('.tools-connect').hide();
     setLoaderVisible(false);
 
     /* test information */
