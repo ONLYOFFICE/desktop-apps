@@ -250,10 +250,10 @@
               <li class="menu-item">
                 <a action="open">Open local file</a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item extra">
                 <a action="connect">Connect to server</a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item extra">
                 <a action="activate">Activate</a>
               </li>
             </div>
@@ -1467,7 +1467,7 @@ function doLogin() {
 </script>
     <script>'use strict';
 $(document).ready(function() {
-    $('.tool-menu > .menu-item a').click(onActionClick);
+    $('.tool-menu > .menu-item > a').click(onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     Templates.addConnectPanel('#pnl-connect');
@@ -1708,10 +1708,6 @@ $(document).ready(function() {
         });
     } else 
         selectAction('recent');
-
-    // hide "connect" panel temporarily
-    // hideAction('connect', true);
-    // $('.tools-connect').hide();
 
     setLoaderVisible(false);
 

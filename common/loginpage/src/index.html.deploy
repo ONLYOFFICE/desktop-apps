@@ -250,10 +250,10 @@
               <li class="menu-item">
                 <a action="open">Open local file</a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item extra">
                 <a action="connect">Connect to server</a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item extra">
                 <a action="activate">Activate</a>
               </li>
             </div>
