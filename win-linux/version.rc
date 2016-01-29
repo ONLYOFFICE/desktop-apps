@@ -1,4 +1,8 @@
+#ifdef _IVOLGA_PRO
+MAINICON   ICON    DISCARDABLE "./res/icons/ivolga/desktopeditors.ico"
+#else
 MAINICON   ICON    DISCARDABLE "./res/icons/desktopeditors.ico"
+#endif
 
 #include <windows.h>
 #include "src/version.h"

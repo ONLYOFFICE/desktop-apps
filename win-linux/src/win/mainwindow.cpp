@@ -93,7 +93,11 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     wcx.hbrBackground = windowBackground;
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
+#ifdef _IVOLGA_PRO
+    QIcon icon(":/ivolga/app.ico");
+#else
     QIcon icon(":/res/icons/desktopeditors.ico");
+#endif
     wcx.hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
                                         icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
 
@@ -125,7 +129,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(hWnd, &wp)) {
             wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.left()};
-            SetWindowPlacement(hWnd, &wp);
+            SetWindowPlacement(hWnd, &wp);            
         }
     }
 

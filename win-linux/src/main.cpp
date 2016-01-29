@@ -140,8 +140,13 @@ int main( int argc, char *argv[] )
 
     g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
 
+  #ifdef _IVOLGA_PRO
+    QSplashScreen splash(g_dpi_ratio > 1 ?
+            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"));
+  #else
     QSplashScreen splash(g_dpi_ratio > 1 ?
             QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+  #endif
 
     splash.show();
     app.processEvents();

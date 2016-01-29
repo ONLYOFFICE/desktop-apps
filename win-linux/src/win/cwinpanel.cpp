@@ -123,12 +123,13 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
         if (m_pMainPanel->isVisible()) {
             _timer->stop();
             delete _timer;
-
+#ifdef _IVOLGA_PRO
             m_pMainPanel->checkActivation();
+#endif
             parseInputArgs(qApp->arguments());
         }
     });
-    _timer->start(1000);
+    _timer->start(2000);
 }
 
 void CWinPanel::parseInputArgs(const QStringList& inlist)

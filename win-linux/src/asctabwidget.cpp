@@ -719,7 +719,11 @@ void CAscTabWidget::setFullScreen(bool apply)
 
             removeTab(currentIndex());
 #ifdef _WIN32
+  #ifdef _IVOLGA_PRO
+            fsWidget->setWindowIcon(QIcon(":/ivolga/app.ico"));
+  #else
             fsWidget->setWindowIcon(QIcon(":/res/icons/desktopeditors.ico"));
+  #endif
             fsWidget->setParent(nullptr);
 #else
             QWidget * grandpa = qobject_cast<QWidget *>(parent()->parent());

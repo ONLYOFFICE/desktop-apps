@@ -76,6 +76,7 @@ DEFINES += \
     MNG_STORE_CHUNKS\
     MNG_ERROR_TELLTALE
 
+#DEFINES += _IVOLGA_PRO
 
 linux-g++ {
     contains(QMAKE_HOST.arch, x86_64):{
