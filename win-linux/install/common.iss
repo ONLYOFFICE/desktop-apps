@@ -1,11 +1,13 @@
-﻿#define _IVO_
+﻿
+;#define _IVOLGA_PRO
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
 #define ASC_PATH            'ONLYOFFICE\DesktopEditors'
 #define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
 #define REG_SC_PATH         'Software\Classes\OnlyOffice'
+#define NAME_EXE_OUT        'DesktopEditors.exe'
 
-#ifdef _IVO_
+#ifdef _IVOLGA_PRO
   #define sAppName          'Иволга ПРО'
   #define NAME_EXE_OUT      'IvolgaPRO.exe'
   #define ASC_PATH          'IvolgaPRO\DesktopEditors'
@@ -25,29 +27,34 @@
 AppVerName              ={#sAppName} {#sAppVerShort}
 VersionInfoVersion      ={#sAppVersion}
 
-#ifdef _IVO_
+#ifdef _IVOLGA_PRO
   AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
-  AppPublisherURL         =http://www.ivolgapro.com/
-  AppSupportURL           =http://www.ivolgapro.com/support.aspx
+  AppPublisherURL         =http://www.ivolgapro.ru/
+  AppSupportURL           =http://www.ivolgapro.ru/support.aspx
   AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
+  DefaultGroupName        ={#sAppName}
+  WizardImageFile         = data\ivolga\dialogpicture.bmp
+  WizardSmallImageFile    = data\ivolga\dialogicon.bmp
 
   ShowLanguageDialog      =no
   LanguageDetectionMethod =none
 #else
-  ;AppPublisherURL         =http://www.onlyoffice.com/
-  ;AppSupportURL           =http://www.onlyoffice.com/support.aspx
+  AppPublisher            =Ascensio System SIA.
+  AppPublisherURL         =http://www.onlyoffice.com/
+  AppSupportURL           =http://www.onlyoffice.com/support.aspx
+  AppCopyright            =Copyright (C) 2016 Ascensio System SIA.
+
+  DefaultGroupName        =ONLYOFFICE
+  WizardImageFile         = data\dialogpicture.bmp
+  WizardSmallImageFile    = data\dialogicon.bmp
 #endif
 
 UsePreviousAppDir       =no
 DirExistsWarning        =no
 DefaultDirName          ={pf}\{#ASC_PATH}
-;DefaultGroupName        =ONLYOFFICE
-DefaultGroupName        ={#sAppName}
 DisableProgramGroupPage = yes
 DisableWelcomePage      = no
 AllowNoIcons            = yes
-WizardImageFile         = data\dialogpicture.bmp
-WizardSmallImageFile    = data\dialogicon.bmp
 UninstallDisplayIcon    = {app}\{#NAME_EXE_OUT}
 OutputDir               =.\
 Compression             =lzma
@@ -57,12 +64,12 @@ ChangesEnvironment      =yes
 SetupMutex              =ASC
 
 [Languages]
-#ifdef _IVO_
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
-  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
+#ifdef _IVOLGA_PRO
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
+  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
 #else
-  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: license\License_ivolga.rtf;
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: license\License_ivolga.rtf;
+  Name: en; MessagesFile: compiler:Default.isl; 
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; 
 #endif
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
@@ -136,12 +143,21 @@ begin
   begin 
     if Is64BitInstallMode then
     begin
+#ifdef _IVOLGA_PRO
+      if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\IvolgaPRO\DesktopEditors') then
+#else
       if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\DesktopEditors') then
+#endif
       begin      
         MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,64,32}'), mbInformation, MB_OK)
         OutResult := False
       end
-    end else if RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\DesktopEditors') then
+    end else
+#ifdef _IVOLGA_PRO
+    if RegKeyExists(GetHKLM(), 'SOFTWARE\IvolgaPRO\DesktopEditors') then
+#else
+    if RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\DesktopEditors') then
+#endif
     begin
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
       OutResult := False
@@ -287,8 +303,14 @@ Name: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 [Files]
 Source: .\launch.bat;           DestDir: {app}\;
 
-Source: ..\res\icons\desktopeditors.ico;           DestDir: {app}\;
-Source: data\projicons.exe;                        DestDir: {app}\;
+Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
+#ifdef _IVOLGA_PRO
+Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
+Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+#else
+Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
+Source: data\projicons_asc.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+#endif
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
 Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
 Source: ..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
@@ -325,13 +347,13 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\desktopeditors.ico;
-Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\desktopeditors.ico;
+Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico;
+Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\app.ico;
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\launch.bat; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
+Filename: {app}\launch.bat; Parameters: {#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 [Ini]

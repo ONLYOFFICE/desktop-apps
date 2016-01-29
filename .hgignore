@@ -9,6 +9,7 @@ common/libs/*
 common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
 common/converter/*
+*/.svn/*
 
 .DS_Store
 *.xcuserstate

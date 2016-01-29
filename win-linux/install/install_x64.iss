@@ -1,10 +1,10 @@
-#include "common.iss"
+﻿#include "common.iss"
 
 
 [Setup]
 AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
-#ifdef _IVO_
+#ifdef _IVOLGA_PRO
 OutputBaseFileName      =Ivolgapro_x64
 #else
 OutputBaseFileName      =DesktopEditors_x64
@@ -21,8 +21,6 @@ ArchitecturesInstallIn64BitMode=x64
 [Files]
 Source: data\vcredist\vcredist_x64.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x64.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
-
-Source: ..\build\Release\release\DesktopEditors.exe; DestDir: {app}; 
 
 Source: ..\..\common\converter\windows\win64\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
 

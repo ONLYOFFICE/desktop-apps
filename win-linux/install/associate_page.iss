@@ -1,73 +1,76 @@
-
+п»ї
 [Setup]
 ChangesAssociations=true
 
 [CustomMessages]
 
-#ifdef _IVO_
+#ifdef _IVOLGA_PRO
 en.AssociateDescription =Associate office document file types with Ivolga PRO
-ru.AssociateDescription =Ассоциировать типы файлов офисных документов с Иволга ПРО
+ru.AssociateDescription =РђСЃСЃРѕС†РёРёСЂРѕРІР°С‚СЊ С‚РёРїС‹ С„Р°Р№Р»РѕРІ РѕС„РёСЃРЅС‹С… РґРѕРєСѓРјРµРЅС‚РѕРІ СЃ РРІРѕР»РіР° РџР Рћ
+#else
+en.AssociateDescription =Associate office document file types with ONLYOFFICE
+ru.AssociateDescription =РђСЃСЃРѕС†РёРёСЂРѕРІР°С‚СЊ С‚РёРїС‹ С„Р°Р№Р»РѕРІ РѕС„РёСЃРЅС‹С… РґРѕРєСѓРјРµРЅС‚РѕРІ СЃ ONLYOFFICE
 ;de.AssociateDescription =Video- und Audiodateitypen mit AVS Media Player assoziieren
-;fr.AssociateDescription =Associer des types de fichiers vidйo et audio а AVS Media Player
-;es.AssociateDescription =Asociar tipos de archivos de vнdeo y audio con AVS Media Player
+;fr.AssociateDescription =Associer des types de fichiers vidР№o et audio Р° AVS Media Player
+;es.AssociateDescription =Asociar tipos de archivos de vРЅdeo y audio con AVS Media Player
 ;it.AssociateDescription =Associare i tipi di file video/audio ad AVS Media Player
 #endif
 
 en.AssociateCaption =File Associations
-ru.AssociateCaption =Ассоциации файлов
+ru.AssociateCaption =РђСЃСЃРѕС†РёР°С†РёРё С„Р°Р№Р»РѕРІ
 ;de.AssociateCaption =Dateiassoziationen
 ;fr.AssociateCaption =Associations de fichiers
 ;es.AssociateCaption =Asociaciones de archivos
 ;it.AssociateCaption =Associazioni dei file
 
 en.AssociateDont =Do not associate
-ru.AssociateDont =Не ассоциировать
+ru.AssociateDont =РќРµ Р°СЃСЃРѕС†РёРёСЂРѕРІР°С‚СЊ
 ;de.AssociateDont =Nicht assoziieren
 ;fr.AssociateDont =Ne pas associer
 ;es.AssociateDont =No asociar
 ;it.AssociateDont =Non associare
 
 en.AssociateAll =Associate all
-ru.AssociateAll =Ассоциировать все
+ru.AssociateAll =РђСЃСЃРѕС†РёРёСЂРѕРІР°С‚СЊ РІСЃРµ
 ;de.AssociateAll =Alle assoziieren
 ;fr.AssociateAll =Associer tous
 ;es.AssociateAll =Asociar todo
 ;it.AssociateAll =Associare tutto
 
 en.AssociateSel =Associate selected
-ru.AssociateSel =Ассоциировать выбранные
-;de.AssociateSel =Ausgewдhlte assoziieren
-;fr.AssociateSel =Associer sйlectionnйs
+ru.AssociateSel =РђСЃСЃРѕС†РёРёСЂРѕРІР°С‚СЊ РІС‹Р±СЂР°РЅРЅС‹Рµ
+;de.AssociateSel =AusgewРґhlte assoziieren
+;fr.AssociateSel =Associer sР№lectionnР№s
 ;es.AssociateSel =Asociar seleccionado
 ;it.AssociateSel =Associare selezione
 
 en.AssociateAudio =File types
-ru.AssociateAudio =Типы файлов
+ru.AssociateAudio =РўРёРїС‹ С„Р°Р№Р»РѕРІ
 ;de.AssociateAudio =Audiodateitypen
 ;fr.AssociateAudio =Types de fichiers audio
 ;es.AssociateAudio =Tipos de archivos de audio
 ;it.AssociateAudio =Tipi di file audio
 
 en.extMSWord =Microsoft Word Document
-ru.extMSWord =Документ Microsoft Word
+ru.extMSWord =Р”РѕРєСѓРјРµРЅС‚ Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
-ru.extMSExcel =Книга Microsoft Excel
+ru.extMSExcel =РљРЅРёРіР° Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
-ru.extMSPresentation =Презентация Microsoft PowerPoint
+ru.extMSPresentation =РџСЂРµР·РµРЅС‚Р°С†РёСЏ Microsoft PowerPoint
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
-ru.extMSSlideshow =Слайдшоу Microsoft PowerPoint
+ru.extMSSlideshow =РЎР»Р°Р№РґС€РѕСѓ Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
-ru.extODT =Текстовый документ OpenDocument
+ru.extODT =РўРµРєСЃС‚РѕРІС‹Р№ РґРѕРєСѓРјРµРЅС‚ OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
-ru.extODS =Электронная таблица OpenDocument
+ru.extODS =Р­Р»РµРєС‚СЂРѕРЅРЅР°СЏ С‚Р°Р±Р»РёС†Р° OpenDocument
 
 en.extODP =OpenDocument Presentation
-ru.extODP =Презентация OpenDocument
+ru.extODP =РџСЂРµР·РµРЅС‚Р°С†РёСЏ OpenDocument
 
 [Code]
 
@@ -254,6 +257,7 @@ begin
       if not RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]) then begin
         if Length(argsArray[1]) <> 0 then
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], '', argsArray[1]);
+
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#NAME_EXE_OUT}" "%1"'));
       end;
@@ -276,7 +280,8 @@ begin
               ((Length(progId1) <> 0) and (CompareText(progId1, argsArray[0]) <> 0)) then 
         begin
           RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
-          RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
+          RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
+          //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
         end;
 
       end;
