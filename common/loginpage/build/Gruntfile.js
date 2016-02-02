@@ -1,9 +1,7 @@
 module.exports = function(grunt) {
     var _ = require('lodash'),
         defaultConfig,
-        packageFile,
-        revisionHash = '@@REVISION',
-        revisionTimeStamp = '@@REVISIONDATE';
+        packageFile;
 
 
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -276,13 +274,13 @@ module.exports = function(grunt) {
                     src: '../deploy/index.html',
                     overwrite: true,
                     replacements: [{
-                        from: /(\<.+stylesheet.+href="(\w+\.css)\"\>)/,
+                        from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,
                         to: function(matchedWord, index, fullText, regexMatches) {
                             var css = grunt.file.read('../deploy/' + regexMatches[1]);
                             return '<style type="text/css">' + css + '</style>';
                         }
                     },{
-                        from: /(\<.+javascript.+replace.+"(\w+(\.min|\.mods)?\.js).+\/script\>)/g,
+                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\.]+\.js)\"\>\<\/script\>)/g,
                         to: function(matchedWord, index, fullText, regexMatches) {
                             if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
                                 grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
