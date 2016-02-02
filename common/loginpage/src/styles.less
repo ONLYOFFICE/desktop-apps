@@ -229,8 +229,6 @@ button {
 
             &::before {
                 content: '';
-                background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
-                background-repeat: no-repeat;
                 float: left;
                 width: 36px;
                 height: 48px;
@@ -257,6 +255,10 @@ button {
             }
         }
     }
+}
+
+.img-el, .img-before-el::before {
+    background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x) no-repeat;
 }
 
 li.menu-item {
@@ -383,8 +385,7 @@ li.menu-item {
         width: 23px;
         height: 23px;
         padding: 0;
-        background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
-        background-repeat: no-repeat;
+        background-color: transparent;
         background-position: -72px -141px;
 
         &:hover {
@@ -449,8 +450,6 @@ li.menu-item {
     .icon {
         &::before {
             content: '';
-            background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
-            background-repeat: no-repeat;
             background-position: 0 -48px;
             float: left;
             width: 24px;
@@ -560,8 +559,6 @@ li.menu-item {
 .text-emptylist::before {
     content: '';
     display: block;
-    background-image: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x);
-    background-repeat: no-repeat;
     background-position: -72px -48px;
     width: 58px;
     height: 78px;

@@ -38,7 +38,7 @@ window.LoginDlg = function() {
     var _tpl = '<div class="dlg dlg-login">' +
                   '<div class="title">'+
                     '<label class="caption">'+utils.Lang.loginTitle+'</label>'+
-                    '<span class="tool close"></span>'+
+                    '<span class="tool close img-el"></span>'+
                   '</div>'+
                   '<div class="body">'+
                     // '<div class="logo"></div>'+

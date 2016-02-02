@@ -51,7 +51,7 @@ window.Templates = (function() { 'use strict';
 
     function makeFilesItem(info) {
         var _tpl = !!info.uid ? '<tr id=' + info.uid + '>' : '<tr>';
-        _tpl += '<td class="row-cell cicon"><span class="icon %type" /></td>' +
+        _tpl += '<td class="row-cell cicon"><span class="icon img-before-el %type" /></td>' +
                         '<td class="row-cell cname"><p class="name primary">%name</p><p class="descr minor">%descr</p></td>';
         if (info.type != 'folder')
             _tpl += '<td class="row-cell cdate minor">%date</td>'.replace(/\%date/, info.date);
@@ -67,7 +67,7 @@ window.Templates = (function() { 'use strict';
                         '<td class="row-cell cemail minor"><span>%email</span></td>' +
                         '<td class="cell-tools">'+
                           '<div class="hlayout">'+
-                            '<button class="btn-quick logout"></button>'+
+                            '<button class="btn-quick logout img-el"></button>'+
                           '</span>'+
                         '</td>';
 
@@ -97,7 +97,7 @@ window.Templates = (function() { 'use strict';
         _html += '</table>'+
                     '<div class="table-box flex-fill">'+
                       '<table %id class="table-files list"></table>'+
-                      '<h4 class="text-emptylist">' + utils.Lang.textNoFiles + '</h4>' +
+                      '<h4 class="text-emptylist img-before-el">' + utils.Lang.textNoFiles + '</h4>' +
                     '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
