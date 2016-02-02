@@ -77,14 +77,14 @@ var en = {
 }
 
 var ru = {
-    welWelcome: 'Добро пожаловать в Иволга ПРО!',
+    welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
     btnConnect: 'Совместная работа',
     btnCreatePortal: 'Создать портал',
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
-    portalEmptyTitle: 'Ощутите все преимущества Иволга ПРО',
+    portalEmptyTitle: 'Ощутите все преимущества ONLYOFFICE',
     portalEmptyDescr: 'Войдите на портал и добавьте других участников.',
     portalListTitle: 'Подключенные порталы',
     textNoFiles: 'Нет файлов для просмотра',
@@ -242,6 +242,7 @@ function getUrlParams() {
 (function applyLocale(lang) {
     !lang && (lang = 'en');
     utils.Lang = window[lang];
+    utils.Lang._code = lang;
 })(getUrlParams()['lang']);
 
 /*

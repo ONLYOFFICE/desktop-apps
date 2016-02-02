@@ -182,3 +182,19 @@ utils.parseFileFormat = function(format) {
 
     return '';
 };
+
+utils.fn = {};
+utils.fn.extend = function(dest, src) {
+    for (var prop in src) {
+        if (src.hasOwnProperty(prop)) {
+            if (typeof dest[prop] === 'object' &&
+                        typeof src[prop] === 'object') {
+                utils.extend(dest[prop], src[prop])
+            } else {
+                dest[prop] = src[prop];
+            }
+        }
+    }
+
+    return dest;
+};
