@@ -31,7 +31,7 @@
 */
 
 
-LoginDlg = function() {
+window.LoginDlg = function() {
     "use strict";
 
     var $el, $mask;
@@ -41,7 +41,7 @@ LoginDlg = function() {
                     '<span class="tool close"></span>'+
                   '</div>'+
                   '<div class="body">'+
-                    '<div class="logo"></div>'+
+                    // '<div class="logo"></div>'+
                     '<section id="box-lbl-error">'+
                       '<p id="auth-error" class="msg-error">' + utils.Lang.errLogin + '</p>' +
                     '</section>'+
@@ -172,6 +172,12 @@ LoginDlg = function() {
         var pass = $el.find('#auth-pass').val();
         if (!pass || pass.length < 0) {
             showLoginError(utils.Lang.errLoginPass, '#auth-pass');
+            return;
+        }
+
+        /* onlyoffice.com|.eu|.sg */
+        if (!/\x6F\x6E\x6C\x79\x6F\x66\x66\x69\x63\x65\x2E(?:\x63\x6F\x6D|\x65\x75|\x73\x67)$/.test(portal)) {
+            showLoginError('prohibited portal name', '#auth-portal');
             return;
         }
 
@@ -354,7 +360,9 @@ LoginDlg = function() {
             }
             !!email && $e.val(email);
 
-            $el.width(450).height(470);
+            // $el.width(450).height(470);
+            // set height without logo
+            $el.width(450).height(430);
 
             $el.find('.tool.close').bind('click', onCloseClick);
             $el.find('#btn-login').click(onLoginClick);
