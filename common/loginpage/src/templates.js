@@ -31,7 +31,7 @@
 */
 
 
-Templates = (function() { 'use strict';
+window.Templates = (function() { 'use strict';
 
     var addConnectPanel = function(parentnode) {
         var _html = '<div id="box-empty-portals" class="empty">' +

@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     // grunt.loadNpmTasks('grunt-contrib-imagemin');
     // grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-text-replace');
@@ -240,12 +241,31 @@ module.exports = function(grunt) {
                 }
             },
 
+            concat: {
+                options: {
+                    stripBanners: true,
+                    banner: '/*\n' +
+                    ' * Copyright (c) Ascensio System SIA <%= grunt.template.today("yyyy") %>. All rights reserved\n' +
+                    ' *\n' +
+                    ' * <%= pkg.homepage %> \n' +
+                    ' *\n' +
+                    ' */\n'
+                },
+                dist: {
+                    files: {
+                        "<%= pkg.desktop.concat.files.dest %>" : [packageFile.desktop.concat.files.src],
+                        "<%= pkg.desktop.concat['files:ivolga'].dest %>" : [packageFile.desktop.concat["files:ivolga"].src]
+                    }
+                }
+            },
+
             uglify: {
                 options: {
-                    mangle: {
-                        sort:true
-                    },
-                    mangleProperties: true,
+                    // mangle: {
+                    //     sort:true
+                    // },
+                    /*mangleProperties: true,*/
+                    mangle:false,
                     compress: {
                         unused:true,
                         drop_console: true
@@ -253,8 +273,22 @@ module.exports = function(grunt) {
                 },
                 my_target: {
                     files: {
-                        '../deploy/login_min.js' : ['../deploy/login.js'],
-                        '../deploy/locale_min.js' : ['../deploy/locale.js']
+                        '../deploy/build.min.js' : ['../deploy/build.js'],
+                        '../deploy/build.ivolga.min.js' : ['../deploy/build.ivolga.js']
+                    }
+                }
+            },
+
+            htmlmin: {
+                dist: {
+                    options: {
+                        removeComments: true,
+                        collapseWhitespace: true,
+                        minifyCSS: true
+                    },
+                    files: {
+                        '../deploy/index.html': '../deploy/index.html',
+                        '../deploy/index.ivolga.html': '../deploy/index.ivolga.html'
                     }
                 }
             },
@@ -271,7 +305,7 @@ module.exports = function(grunt) {
     grunt.registerTask('compile-html', function(){
         if (!grunt.option('external-image')) {
             grunt.config('replace.insert-css', {
-                    src: '../deploy/index.html',
+                    src: ['../deploy/index.html','../deploy/index.ivolga.html'],
                     overwrite: true,
                     replacements: [{
                         from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,
@@ -317,7 +351,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'clean', 'uglify', 'compile-html']);
+    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'concat', 'clean', 'uglify', 'htmlmin', 'compile-html']);
 
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };

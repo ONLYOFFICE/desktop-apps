@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello ONLYOFFICE Documents</title>
+    <title>Hello Documents</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -277,13 +277,6 @@
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>
-    <script type="text/javascript" replace="yes" src="bootstrap.mods.js"></script>
-    <script type="text/javascript" replace="yes" src="utils.js"></script>
-    <script type="text/javascript" replace="yes" src="locale.js"></script>
-    <script type="text/javascript" replace="yes" src="templates.js"></script>
-    <script type="text/javascript" replace="yes" src="dlglogin.js"></script>
-    <script type="text/javascript" replace="yes" src="panels.js"></script>
-    <script type="text/javascript" replace="yes" src="model.js"></script>
-    <script type="text/javascript" replace="yes" src="menu.js"></script>
+    <script type="text/javascript" replace="yes" src="build.min.js"></script>
 </body>
 </html>

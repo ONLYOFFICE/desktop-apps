@@ -19,6 +19,10 @@
                     "dest": "../deploy/index.html"
                 },
                 {
+                    "src": "../src/index.html.ivolga.deploy",
+                    "dest": "../deploy/index.ivolga.html"
+                },
+                {
                     "src": "../vendor/jquery/jquery.min.js",
                     "dest": "../deploy/jquery.min.js"
                 },
@@ -43,6 +47,33 @@
             "files": {
                 "src": "../src/styles.less",
                 "dest": "../deploy/styles.css"
+            }
+        },
+        "concat": {
+            "files": {
+                "src": [
+                    "../src/utils.js"
+                    ,"../src/locale.js"
+                    ,"../src/templates.js"
+                    ,"../src/dlglogin.js"
+                    ,"../src/panels.js"
+                    ,"../src/model.js"
+                    ,"../src/menu.js"
+                ],
+                "dest": "../deploy/build.js"
+            },
+            "files:ivolga": {
+                "src": [
+                    "../src/utils.js"
+                    ,"../src/locale.js"
+                    ,"../src/i18n.ivolga.js"
+                    ,"../src/templates.js"
+                    ,"../src/dlglogin.js"
+                    ,"../src/panels.js"
+                    ,"../src/model.js"
+                    ,"../src/menu.js"
+                ],
+                "dest": "../deploy/build.ivolga.js"
             }
         }
     },
