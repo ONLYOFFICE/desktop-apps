@@ -307,12 +307,14 @@ Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName:
 #ifdef _IVOLGA_PRO
 Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+Source: ..\..\common\loginpage\deploy\index.html.ivolga; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 #else
 Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_asc.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+Source: ..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 #endif
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
-Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
+;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
 Source: ..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\common\editors\apps\*;                DestDir: {app}\editors\apps;   Flags: recursesubdirs;
