@@ -220,19 +220,21 @@ button {
 
     > li {
         &.menu-item{
-            padding: 5px 20px;
+            padding: 5px 20px 5px 0;
+            a {
+                padding: 0;
+            }
         }
 
         a {
             line-height: 48px;
-            padding-left: 35px;
 
             &::before {
                 content: '';
                 float: left;
                 width: 36px;
                 height: 48px;
-                margin: 0 0 0 -55px;
+                margin-right: 19px;
             }
         }
 
