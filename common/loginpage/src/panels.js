@@ -274,7 +274,11 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
-    $('.tools-connect').hide();
+    if (!window.LoginDlg) {
+        $('.tools-connect').hide();
+        hideAction('connect');
+    }
+
     setLoaderVisible(false);
 
     /* test information */
@@ -335,8 +339,8 @@ function selectAction(action) {
 
 function hideAction(action, hide) {
     var mitem = $('.tool-menu a[action='+action+']').parent();
-    mitem.removeClass('extra')[hide?'hide':'show']();
-    $('.action-panel.' + action)[hide?'hide':'show']();
+    mitem.removeClass('extra')[hide===true?'show':'hide']();
+    $('.action-panel.' + action)[hide===true?'show':'hide']();
 };
 
 function setLoaderVisible(isvisible, timeout) {
