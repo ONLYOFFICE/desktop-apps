@@ -279,12 +279,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     fillUserName(fn, ln);
     QString params = "lang="+g_lang+"&userfname="+fn+"&userlname="+ln;
     m_pManager->InitAdditionalEditorParams(params.toStdWString());
-
-#ifndef _IVOLGA_PRO
-    QTimer::singleShot(500, this, [=]{
-        hideMainPagePanel(ACTIONPANEL_CONNECT, false);
-    });
-#endif
 }
 
 void QAscMainPanel::RecalculatePlaces()
@@ -1369,25 +1363,4 @@ void QAscMainPanel::selfActivation()
     pEvent->m_pData = pData;
 
     m_pManager->Apply(pEvent);
-}
-
-void QAscMainPanel::hideMainPagePanel(int panel, bool hide)
-{
-    wstring _panel;
-    switch (panel) {
-    case ACTIONPANEL_CONNECT: _panel = L"connect"; break;
-    }
-
-    if (_panel.size()) {
-        CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-        pCommand->put_Command(wstring(L"panel:hide:").append(_panel));
-        pCommand->put_Param(QString::number(hide).toStdWString());
-
-        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-        pEvent->m_pData = pCommand;
-
-        ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
-
-        qDebug() << "hide connect panel";
-    }
 }
