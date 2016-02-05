@@ -66,10 +66,10 @@ SetupMutex              =ASC
 [Languages]
 #ifdef _IVOLGA_PRO
   Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
-  Name: en; MessagesFile: compiler:Default.isl; LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
 #else
-  Name: en; MessagesFile: compiler:Default.isl; 
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; 
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\License_onlyoffice.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\License_onlyoffice.rtf;
 #endif
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
@@ -308,10 +308,12 @@ Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName:
 Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.ivolga.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\common\package\license\License_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 #else
 Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_asc.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\common\package\license\License_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 #endif
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
