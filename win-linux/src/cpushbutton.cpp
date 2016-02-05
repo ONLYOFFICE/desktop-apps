@@ -160,7 +160,7 @@ void CPushButton::paintEvent(QPaintEvent * e)
     option.icon = QIcon();
     p.drawControl(QStyle::CE_PushButton, option);
 
-    QRect r = QRect(QPoint(0,0), option.iconSize);
+    QRect r = QRect(QPoint(0, 5*g_dpi_ratio), option.iconSize);
     p.drawItemPixmap(r, Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap());
 }
 

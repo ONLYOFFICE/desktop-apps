@@ -1,4 +1,13 @@
 
+#labelAppTitle {
+    margin-top: -4px;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
+    QPushButton#toolButtonProfile, QPushButton#toolButtonDownload {
+        padding: 12px;
+}
+
 QPushButton#toolButtonMaximize {
     background-image:url(:/res/icons/maximize_2x.png);
 }
@@ -51,6 +60,11 @@ QPushButton[theme=dark]::menu-indicator:disabled {
 
 QPushButton[theme=dark]::menu-indicator:hover {
     border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;
+}
+
+QPushButton#toolButtonDownload::menu-indicator {
+    top: -20px;
+    left: -8px;
 }
 
 QTabBar::tab {

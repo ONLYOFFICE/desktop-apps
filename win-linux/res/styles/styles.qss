@@ -14,14 +14,40 @@
 
 #labelAppTitle {
     color: #fff;
+    margin-top: -2px;
 }
 
 QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
     QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
-    QPushButton#toolButtonProfile, QPushButton#toolButtonDownload { 
-    border: none;
-    margin: 0;
-    padding: 0;
+    QPushButton#toolButtonProfile, QPushButton#toolButtonDownload {
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-radius:0;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
+    QPushButton#toolButtonProfile, QPushButton#toolButtonDownload {
+        background-origin: content;
+        padding: 6px;
+}
+
+
+QPushButton#toolButtonDownload {
+    /*background-color:#f00;*/
+}
+
+QPushButton[act=tool] {
+    /*background-origin: content;*/
+    /*padding: 6px;*/
+}
+
+QPushButton[act=tool]:hover {
+    background-color:#60656a;
+}
+
+QPushButton[act=tool]:pressed {
+    background-color:#1f2123;
 }
 
 QPushButton#toolButtonMaximize {
@@ -71,7 +97,6 @@ QPushButton#toolButtonClose[class=normal]:hover,
 
 QPushButton#toolButtonMain {
     background: #fff;
-    border-radius: 0;
     font-size: 10px;
     font-family: 'Open Sans',sans-serif;
     font-weight: bold;
@@ -155,11 +180,12 @@ QPushButton[theme=dark]::menu-indicator:hover {
 }
 
 QPushButton#toolButtonDownload {
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
 }
 
 QPushButton#toolButtonDownload::menu-indicator {
-    /*border: 1px solid white;*/
+    top: -10px;
+    left: -4px;
 }
 
 QTabBar::tab {

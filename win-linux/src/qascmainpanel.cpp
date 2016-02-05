@@ -65,6 +65,7 @@ using namespace NSEditorApi;
 
 #define BUTTON_MAIN_WIDTH   68
 #define TITLE_HEIGHT        29
+#define TOOLBTN_HEIGHT      29
 
 extern BYTE     g_dpi_ratio;
 extern QString  g_lang;
@@ -111,13 +112,14 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &QAscMainPanel::onAppCloseRequest);
 
-    QSize small_btn_size(16*g_dpi_ratio, 16*g_dpi_ratio);
-    QSize wide_btn_size(29*g_dpi_ratio, 16*g_dpi_ratio);
+    QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     if (isCustomWindow) {
         // Minimize
         m_pButtonMinimize = new QPushButton(centralWidget);
         m_pButtonMinimize->setObjectName( "toolButtonMinimize" );
         m_pButtonMinimize->setProperty("class", "normal");
+        m_pButtonMinimize->setProperty("act", "tool");
         m_pButtonMinimize->setFixedSize(small_btn_size);
         QObject::connect( m_pButtonMinimize, SIGNAL( clicked() ), this, SLOT( pushButtonMinimizeClicked() ) );
 
@@ -125,6 +127,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         m_pButtonMaximize = new QPushButton(centralWidget);
         m_pButtonMaximize->setObjectName( "toolButtonMaximize" );
         m_pButtonMaximize->setProperty("class", "normal");
+        m_pButtonMaximize->setProperty("act", "tool");
         m_pButtonMaximize->setFixedSize(small_btn_size);
         QObject::connect( m_pButtonMaximize, SIGNAL( clicked() ), this, SLOT( pushButtonMaximizeClicked() ) );
 
@@ -132,6 +135,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         m_pButtonClose = new QPushButton(centralWidget);
         m_pButtonClose->setObjectName( "toolButtonClose" );
         m_pButtonClose->setProperty("class", "normal");
+        m_pButtonClose->setProperty("act", "tool");
         m_pButtonClose->setFixedSize(small_btn_size);
         QObject::connect( m_pButtonClose, SIGNAL( clicked() ), this, SLOT( pushButtonCloseClicked() ) );
     }
@@ -143,10 +147,10 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     // download
     m_pButtonDownload->setObjectName("toolButtonDownload");
-    m_pButtonDownload->setFixedSize(wide_btn_size);
-    m_pButtonDownload->setFixedSize(QSize(35*g_dpi_ratio, 16*g_dpi_ratio));
+//    m_pButtonDownload->setFixedSize(wide_btn_size);
+    m_pButtonDownload->setFixedSize(QSize(33*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio));
     m_pButtonDownload->setAnimatedIcon(
-                g_dpi_ratio > 1 ? ":/res/icons/downloading@2x.gif" : ":/res/icons/downloading.gif" );
+                g_dpi_ratio > 1 ? ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
 
     m_boxTitleBtns = new QWidget(centralWidget);
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
@@ -154,7 +158,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
     layoutBtns->setMargin(0);
-    layoutBtns->setSpacing(14*g_dpi_ratio);
+    layoutBtns->setSpacing(1*g_dpi_ratio);
     layoutBtns->addWidget(label);
     layoutBtns->addWidget(m_pButtonDownload);
 //    layoutBtns->addWidget(m_pButtonProfile);
@@ -175,7 +179,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         layoutBtns->addWidget(m_pButtonMaximize);
         layoutBtns->addWidget(m_pButtonClose);
 
-        m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, 16*g_dpi_ratio);
+        m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
         _tabs_stylesheet_file += "tabbar.qss";
 
@@ -294,8 +298,8 @@ void QAscMainPanel::RecalculatePlaces()
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
     int docCaptionW = nWindowW - m_pTabs->tabBar()->width() - btnMainWidth - (24*g_dpi_ratio);
-    m_boxTitleBtns->setFixedSize(docCaptionW, 16 * g_dpi_ratio);
-    m_boxTitleBtns->move(nWindowW - m_boxTitleBtns->width() - (14*g_dpi_ratio), 4 * g_dpi_ratio);
+    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * g_dpi_ratio);
+    m_boxTitleBtns->move(nWindowW - m_boxTitleBtns->width() - (14*g_dpi_ratio), 0 * g_dpi_ratio);
     m_pMainWidget->setGeometry(0, nCaptionH, nWindowW, nWindowH - nCaptionH);
 }
 
