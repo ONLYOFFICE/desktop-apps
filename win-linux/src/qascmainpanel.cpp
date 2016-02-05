@@ -293,7 +293,7 @@ void QAscMainPanel::RecalculatePlaces()
 
     int docCaptionW = nWindowW - m_pTabs->tabBar()->width() - btnMainWidth - (24*g_dpi_ratio);
     m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * g_dpi_ratio);
-    m_boxTitleBtns->move(nWindowW - m_boxTitleBtns->width() - (14*g_dpi_ratio), 0 * g_dpi_ratio);
+    m_boxTitleBtns->move(nWindowW - m_boxTitleBtns->width() - (4*g_dpi_ratio), 0 * g_dpi_ratio);
     m_pMainWidget->setGeometry(0, nCaptionH, nWindowW, nWindowH - nCaptionH);
 }
 
