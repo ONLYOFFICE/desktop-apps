@@ -36,7 +36,7 @@ if %OS%==32BIT (
 :: update libraries
 if %is_update_libs%==y (
     pushd ..\common\libs 
-    remcall update.bat
+    call update.bat
     popd
 
     if not errorlevel  0 (
