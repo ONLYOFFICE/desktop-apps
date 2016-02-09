@@ -50,7 +50,7 @@
 #include "cfiledialog.h"
 #include "qascprinter.h"
 #include "../common/libs/common/Types.h"
-#include "win/cmessage.h"
+#include "cmessage.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"

@@ -36,7 +36,7 @@ HEADERS += \
     src/cascapplicationmanagerwrapper.h \
     src/ctabbar.h \
     src/casctabdata.h \
-    src/win/cmessage.h
+    src/cmessage.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -57,7 +57,7 @@ SOURCES += \
     src/qascmainpanel.cpp \
     src/ctabbar.cpp \
     src/casctabdata.cpp \
-    src/win/cmessage.cpp
+    src/cmessage.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
