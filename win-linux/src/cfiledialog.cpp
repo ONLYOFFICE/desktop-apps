@@ -103,7 +103,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 //    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
 
-    fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
+    fileName = QFileDialog::getSaveFileName((QWidget *)parent(), tr("Save As"), fileName, _filters, &_sel_filter);
 
     m_format = 0;
     if (m_filters.length()) {
@@ -135,7 +135,11 @@ QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter
     QString _filter_ = filter.length() ? filter : tr("All files (*.*)");
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
+#ifdef _WIN32
     return QFileDialog::getOpenFileName(this, tr("Open Document"), path, _filter_);
+#else
+    return QFileDialog::getOpenFileName((QWidget *)parent(), tr("Open Document"), path, _filter_);
+#endif
 }
 
 QString CFileDialogWrapper::modalOpenImage(const QString& path)

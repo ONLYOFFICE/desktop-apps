@@ -59,6 +59,7 @@
 extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
+#define gTopWinId this
 #endif
 
 using namespace NSEditorApi;
@@ -278,7 +279,8 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     QString fn, ln;
     fillUserName(fn, ln);
     QString params = "lang="+g_lang+"&userfname="+fn+"&userlname="+ln;
-    m_pManager->InitAdditionalEditorParams(params.toStdWString());
+    wstring wparams = params.toStdWString();
+    m_pManager->InitAdditionalEditorParams(wparams);
 }
 
 void QAscMainPanel::RecalculatePlaces()
@@ -976,9 +978,19 @@ void QAscMainPanel::loadStartPage()
 #ifndef QT_DEBUG
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
 #else
+  #ifdef _WIN32
 //    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/src/index.html").toStdWString();
 //    std::wstring start_path = QString("file:///E:/Work/Projects/ASCDocumentEditor/common/loginpage/deploy/index.html").toStdWString();
+  #elif __linux__
+    #ifdef _IVOLGA_PRO
+    std::wstring start_path = QString("file:///" + qgetenv("HOME") + "/QTProject/Desktop/common/loginpage/deploy/index.ivolga.html").toStdWString();
+    #else
+    std::wstring start_path = QString("file:///" + qgetenv("HOME") + "/QTProject/Desktop/common/loginpage/deploy/index.html").toStdWString();
+    #endif
+
+    start_path.append(additional.toStdWString());
+  #endif
 #endif
     ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
 }
@@ -1324,8 +1336,12 @@ wstring QAscMainPanel::commonDataPath() const
     }
 
 #else
-    sAppData = QString("/var/lib/onlyoffice/desktopeditors").toStdWString();
-    // TODO: check directory permissions and warn the user
+    sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
+    QFileInfo fi(QString::fromStdWString(sAppData));
+    if (fi.isDir() && !fi.isWritable()) {
+        // TODO: check directory permissions and warn the user
+        qDebug() << "directory permission error";
+    }
 #endif
 
     return sAppData;

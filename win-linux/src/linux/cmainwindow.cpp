@@ -82,7 +82,7 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
 
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
-    ((QAscMainPanel *)m_pMainPanel)->checkModified(WAIT_MODIFIED_CLOSE);
+    ((QAscMainPanel *)m_pMainPanel)->pushButtonCloseClicked();
     e->ignore();
 }
 
@@ -143,7 +143,7 @@ void CMainWindow::slot_windowClose()
         reg_user.setValue("windowstate", saveState());
     }
 
-    ((QAscMainPanel *)m_pMainPanel)->getAscApplicationManager()->GetApplication()->ExitMessageLoop();
+    ((QAscMainPanel *)m_pMainPanel)->getAscApplicationManager()->DestroyCefView(-1);
 
-    close();
+//    close();
 }

@@ -48,9 +48,17 @@
 #ifdef _IVOLGA_PRO
   #define APP_TITLE g_lang.compare("ru") == 0 ? "Иволга ПРО" : "Ivolga PRO"
   #define WINDOW_NAME APP_TITLE
-  #define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
-  #define APP_LICENSE_PATH "/IvolgaPRO/License"
-  #define REG_GROUP_KEY "IvolgaPRO"
+
+  #ifdef __linux
+    #define APP_DATA_PATH "/ivolgapro/desktopeditors"
+    #define APP_LICENSE_PATH "/ivolgapro/license"
+    #define REG_GROUP_KEY "ivolgapro"
+  #else
+    #define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
+    #define APP_LICENSE_PATH "/IvolgaPRO/License"
+    #define REG_GROUP_KEY "IvolgaPRO"
+  #endif
+
   #define URL_BUYNOW "http://ivolgapro.ru"
 #else
   #define APP_NAME "DesktopEditors"
@@ -79,6 +87,10 @@
 
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
+
+#ifdef __linux
+typedef unsigned char BYTE;
+#endif
 
 #endif // DEFINES_H
 

@@ -72,8 +72,12 @@ int main( int argc, char *argv[] )
             sAppData.append(QString(APP_DATA_PATH).toStdWString());
         }
 #else
-        sAppData = QString("/var/lib/onlyoffice/desktopeditors").toStdWString();
-        // TODO: check directory permissions and warn the user
+        sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
+        QFileInfo fi(QString::fromStdWString(sAppData));
+        if (fi.isDir() && !fi.isWritable()) {
+            // TODO: check directory permissions and warn the user
+            qDebug() << "directory permission error";
+        }
 #endif
 
         QString app_path = QCoreApplication::applicationDirPath();
@@ -224,7 +228,7 @@ int main( int argc, char *argv[] )
     CMainWindow window(pApplicationManager);
 
     window.show();
-    window.setWindowTitle("Desktop Editors");
+    window.setWindowTitle(WINDOW_NAME);
 #endif
     pApplicationManager->CheckFonts();
 
