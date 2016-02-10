@@ -52,8 +52,24 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	#mkdir -p common/desktopeditor
-	#cp -rf ../Release/* common/desktopeditor/
+	mkdir -p common/opt/$(COMPANY_NAME)/converter
+	cp -rf ../../../common/converter/linux/* common/opt/$(COMPANY_NAME)/converter
+
+	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/
+	cp -rf ../../../common/package/editors common/opt/$(COMPANY_NAME)/
+	cp -rf ../../../win-linux/install/data/libs/qt/linux64/platforms common/opt/$(COMPANY_NAME)/
+
+	mkdir -p common/opt/$(COMPANY_NAME)/local
+	cp -rf ../../../common/loginpage/deploy/* common/opt/$(COMPANY_NAME)/local
+
+	mkdir -p common/opt/$(COMPANY_NAME)/local/fonts
+	cp  ../../../common/package/fonts/OpenSans-*.ttf common/opt/$(COMPANY_NAME)/local/fonts
+
+	mkdir -p common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+	cp  ../../../common/package/fonts/Asana-Math.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+
+	#locales
 
 	#chmod u+x $(DOCUMENTSERVER)/NodeJsProjects/FileConverter/Bin/x2t
 	#chmod u+x $(DOCUMENTSERVER)/NodeJsProjects/FileConverter/Bin/HtmlFileInternal/HtmlFileInternal
