@@ -103,7 +103,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 //    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
 
+#ifdef _WIN32
+    fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
+#else
     fileName = QFileDialog::getSaveFileName((QWidget *)parent(), tr("Save As"), fileName, _filters, &_sel_filter);
+#endif
 
     m_format = 0;
     if (m_filters.length()) {

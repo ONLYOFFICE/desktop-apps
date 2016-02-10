@@ -44,10 +44,11 @@ extern QString g_lang;
 
 #ifdef _WIN32
 CMessage::CMessage(HWND hParentWnd) : QWinWidget(hParentWnd)
+  , m_pDlg(this)
 #else
 CMessage::CMessage(QWidget * parent) : QObject(parent)
+  , m_pDlg(parent)
 #endif
-    , m_pDlg(parent)
     , m_result(MODAL_RESULT_CANCEL)
     , m_fLayout(new QFormLayout)
 {
