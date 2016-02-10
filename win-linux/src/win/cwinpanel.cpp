@@ -111,8 +111,10 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
         QFile _file(_file_name);
         bool _is = _file.open(QFile::WriteOnly);
         if (_is) {
-            _file.write("1", 1);
+            _file.write("ȒѬ", 2);
             _file.close();
+
+            SetFileAttributes(_file_name.toStdWString().c_str(), FILE_ATTRIBUTE_HIDDEN);
         }
 
         _reg_user.setValue("license", "1");
@@ -123,9 +125,8 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
         if (m_pMainPanel->isVisible()) {
             _timer->stop();
             delete _timer;
-#ifdef _IVOLGA_PRO
+
             m_pMainPanel->checkActivation();
-#endif
             parseInputArgs(qApp->arguments());
         }
     });

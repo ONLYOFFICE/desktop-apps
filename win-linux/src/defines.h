@@ -39,8 +39,6 @@
 #define reFileExtension     "\\.(\\w{1,10})$"
 #define reUserName          "([^\\.]+)\\.?([^\\.]+)?"
 
-#define WAIT_MODIFIED_CLOSE     1
-#define WAIT_MODIFIED_LOGOUT    2
 
 #define FILE_DOWNLOAD_START     3
 #define FILE_DOWNLOAD_END       4
