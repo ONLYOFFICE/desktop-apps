@@ -162,8 +162,22 @@ int main( int argc, char *argv[] )
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 
+#ifdef __linux
+    g_lang = reg_user.value("locale").value<QString>();
+
+    if (!g_lang.size()) {
+  #ifdef _IVOLGA_PRO
+        g_lang = "ru";
+  #else
+        g_lang = QLocale::system().name().left(2);
+        if (!QFile(":/langs/langs/" + g_lang + ".qm").exists()) g_lang = "en";
+  #endif
+    }
+#else
     // read setup language and set application locale
     g_lang = reg_system.value("locale").value<QString>();
+#endif
+
     QTranslator tr;
     if (g_lang.length()) {
         tr.load(g_lang, ":/langs/langs");

@@ -36,6 +36,8 @@
 #include "../cascapplicationmanagerwrapper.h"
 #include <QProxyStyle>
 #include <QApplication>
+#include <QFileInfo>
+#include <QTimer>
 
 class CStyleTweaks : public QProxyStyle
 {
@@ -78,6 +80,60 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
 
     connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
     connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
+
+    QString _file_name = QString("/var/lib").append(APP_DATA_PATH).append("/../.doceditors.asc");
+
+    bool _activate = !QFileInfo(_file_name).exists();
+    if (_activate)
+        _activate = !reg_user.contains("license"); else
+        reg_user.setValue("license", "ȒѬ");
+
+    if (_activate) {
+        ((QAscMainPanel *)m_pMainPanel)->selfActivation();
+
+        QFile _file(_file_name);
+        bool _is = _file.open(QFile::WriteOnly);
+        if (_is) {
+            _file.write("ȒѬ", 2);
+            _file.close();
+        }
+
+        reg_user.setValue("license", "ȒѬ");
+    }
+
+    QTimer * _timer = new QTimer;
+    connect(_timer, &QTimer::timeout, [=]{
+        if (m_pMainPanel->isVisible()) {
+            _timer->stop();
+            delete _timer;
+
+            ((QAscMainPanel *)m_pMainPanel)->checkActivation();
+            parseInputArgs(qApp->arguments());
+        }
+    });
+    _timer->start(2000);
+}
+
+void CMainWindow::parseInputArgs(const QStringList& inlist)
+{
+    QStringList * in_files = new QStringList;
+
+    QStringListIterator i(inlist); i.next();
+    while (i.hasNext()) {
+        QFileInfo info(i.next());
+        if (info.isFile()) {
+            in_files->append(info.absoluteFilePath());
+        }
+    }
+
+    if (in_files->size()) {
+        QTimer::singleShot(10, this, [this, in_files] {
+            ((QAscMainPanel *)m_pMainPanel)->doOpenLocalFiles(*in_files);
+            delete in_files;
+        });
+    } else {
+        delete in_files;
+    }
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)

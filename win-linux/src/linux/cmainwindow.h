@@ -44,6 +44,8 @@ public:
     explicit CMainWindow(QWidget *parent = 0);
     explicit CMainWindow(CAscApplicationManager *);
 
+    void parseInputArgs(const QStringList&);
+
 protected:
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
