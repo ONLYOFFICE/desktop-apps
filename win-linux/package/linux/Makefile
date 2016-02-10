@@ -79,7 +79,7 @@ $(RPM):
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(DEB):
-	cd deb/$(PACKAGE_NAME) && dpkg-buildpackage -b -uc -us
+	cd deb/$(PACKAGE_NAME) && fakeroot dpkg-deb --build linux && mv linux.deb $(DEB)
 
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
