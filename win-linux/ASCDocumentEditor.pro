@@ -14,6 +14,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts
 
 CHROMIUM_LIB_PATH = ../common/libs/ChromiumBasedEditors2
+COMMON_LIB_PATH = ../common/converter/linux
 
 INCLUDEPATH += $$CHROMIUM_LIB_PATH/lib/include \
                 $$CHROMIUM_LIB_PATH/lib/qcefview
@@ -86,9 +87,11 @@ linux-g++ {
     }
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+    QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
 
     LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/cefbuilds/$$PLATFORM_BUILD -lcef
     LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
+    LIBS += -L$$PWD/$$COMMON_LIB_PATH -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
 
     HEADERS += src/linux/cmainwindow.h
     SOURCES += src/linux/cmainwindow.cpp
