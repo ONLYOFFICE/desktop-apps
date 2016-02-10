@@ -70,6 +70,7 @@ window.LoginDlg = function() {
     var STATUS_NOT_EXIST = 0;
     var STATUS_UNKNOWN = -1;
     var STATUS_NO_CONNECTION = -255;
+    var PROD_ID = 4;
 
     function checkResourceExists(url, callback) {
         var reader = new XMLHttpRequest();
@@ -240,6 +241,7 @@ window.LoginDlg = function() {
                         showLoginError(utils.Lang.errLoginServer);
                     } else
                     if (!obj.response.sms) {
+                        clientCheckin();
                         getUserInfo(obj.response.token);
 
                         setTimeout(function(){
@@ -314,6 +316,10 @@ window.LoginDlg = function() {
         };
 
         $.ajax(opts);
+    };
+
+    function clientCheckin() {
+        $.post(protocol + portal + "/api/2.0/portal/mobile/registration", {type: PROD_ID});
     };
 
     function bindEvents() {
