@@ -52,6 +52,7 @@
 #include <QScreen>
 #include <QApplication>
 #include <QSplashScreen>
+#include <QRegularExpression>
 
 
 BYTE g_dpi_ratio = 1;
@@ -162,8 +163,18 @@ int main( int argc, char *argv[] )
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 
+    /* read lang fom different places
+     * cmd argument --lang:en apply the language one time
+     * cmd argument --keeplang:en also keep the language for next sessions
+    */
+    int _arg_i;
+    if (!(_arg_i = app.arguments().indexOf(QRegExp(reCmdLang)) < 0)) {
+        g_lang = app.arguments().at(_arg_i).right(2);
+    }
+
 #ifdef __linux
-    g_lang = reg_user.value("locale").value<QString>();
+    if (!g_lang.size())
+        g_lang = reg_user.value("locale").value<QString>();
 
     if (!g_lang.size()) {
   #ifdef _IVOLGA_PRO
@@ -175,7 +186,8 @@ int main( int argc, char *argv[] )
     }
 #else
     // read setup language and set application locale
-    g_lang = reg_system.value("locale").value<QString>();
+    if (!g_lang.size())
+        g_lang = reg_system.value("locale").value<QString>();
 #endif
 
     QTranslator tr;
@@ -183,6 +195,7 @@ int main( int argc, char *argv[] )
         tr.load(g_lang, ":/langs/langs");
         app.installTranslator(&tr);
     }
+    /**/
 
     // read installation time and clean cash folders if expired
     if (reg_system.contains("timestamp")) {
