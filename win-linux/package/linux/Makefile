@@ -8,7 +8,7 @@ RPM_ARCH = x86_64
 DEB_ARCH = amd64
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
-DEB_BUILD_DIR = $(PWD)/deb
+DEB_BUILD_DIR = $(PWD)/
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
