@@ -118,11 +118,19 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
 {
     QStringList * in_files = new QStringList;
 
+    QString _arg;
+
     QStringListIterator i(inlist); i.next();
     while (i.hasNext()) {
-        QFileInfo info(i.next());
+        _arg = i.next();
+
+        QFileInfo info(_arg);
         if (info.isFile()) {
             in_files->append(info.absoluteFilePath());
+        } else
+        if (_arg.contains(QRegExp(reCmdKeepLang))) {
+            GET_REGISTRY_USER(reg_user)
+            reg_user.setValue("locale", _arg.right(2));
         }
     }
 
