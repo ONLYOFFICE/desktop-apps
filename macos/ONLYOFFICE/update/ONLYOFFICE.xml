@@ -9,8 +9,15 @@
             <title>Version 1.0</title>
             <pubDate>Wed Dec 23 14:29:13 MSK 2015</pubDate>
             <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
-            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ru/ReleaseNotes.html</sparkle:releaseNotesLink>
-            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/ver-1.0/ONLYOFFICE-1.0.zip" sparkle:version="21" sparkle:shortVersionString="1.0" length="186903125" type="application/octet-stream" sparkle:dsaSignature="MCwCFFsp0SyvS7hhx53WC46ZdyupEqBNAhR0HCi2sXrldX0n5unOfQWrxugAag==" />
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/ONLYOFFICE-1.0.zip" sparkle:version="21" sparkle:shortVersionString="1.0" length="186903125" type="application/octet-stream" sparkle:dsaSignature="MCwCFFsp0SyvS7hhx53WC46ZdyupEqBNAhR0HCi2sXrldX0n5unOfQWrxugAag==" />
+        </item>
+        <item>
+            <title>Version 1.0.3</title>
+            <pubDate>Thu Feb  4 13:00:51 MSK 2016</pubDate>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/changes/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ONLYOFFICE/ONLYOFFICE-1.0.3.zip" sparkle:version="47" sparkle:shortVersionString="1.0.3" length="189713736" type="application/octet-stream" sparkle:dsaSignature="MCwCFEpJLn0jcfyi/6i/PmSzDOS9slLlAhRINyQ4TYMKy8dLNKpyNicPhyWbkg==" />
         </item>
     </channel>
 </rss>
