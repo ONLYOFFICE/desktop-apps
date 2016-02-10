@@ -85,6 +85,6 @@
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
-        <file>res/styles/tabbar_nix.qss</file>
+        <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
     </qresource>
 </RCC>

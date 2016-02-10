@@ -182,7 +182,10 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
         m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
-        _tabs_stylesheet_file += "tabbar.qss";
+#ifdef __linux__
+        _tabs_stylesheet_file += "tabbar.nix.qss";
+#endif
+        m_pButtonMain->setProperty("theme", "light");
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -190,7 +193,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
         palette.setBrush(QPalette::Background, QBrush(gradient));
 
-        m_pButtonMain->setProperty("theme", "rightangle");
         m_pButtonProfile->setProperty("theme", "dark");
         label->setFixedHeight(0);
         m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
@@ -202,6 +204,8 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
+
+    styleFile.close();
 
     // profile menu
     QMenu * menuProfile = new QMenu;

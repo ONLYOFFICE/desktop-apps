@@ -325,11 +325,11 @@ void CAscTabWidget::adjustTabsSize()
                 - m_widthParams.main_button_width - m_widthParams.main_button_span
                 - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
 
-        int nTabWidth = (nTabBarWidth - /*(2+2)*/9 * nCountTabs) / nCountTabs;      // magic (2+2)
+        int nTabWidth = (nTabBarWidth - /*(2+2)*/10 * nCountTabs) / nCountTabs;      // magic (2+2)
         if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
         if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(9 * g_dpi_ratio/*?*/)) * nCountTabs;
+        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(10 * g_dpi_ratio/*?*/)) * nCountTabs;
         if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
     }
 
@@ -346,7 +346,7 @@ void CAscTabWidget::adjustTabsSize()
 
 void CAscTabWidget::applyCustomTheme(bool iscustom)
 {
-    m_widthParams.tools_width = (iscustom ? 50 : 140) * g_dpi_ratio;
+    m_widthParams.tools_width = (iscustom ? 50 : 0) * g_dpi_ratio;
     m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * g_dpi_ratio;
 }
 

@@ -102,8 +102,9 @@ QPushButton#toolButtonMain {
     font-weight: bold;
 }
 
-QPushButton#toolButtonMain[theme=rightangle] {
-    background-image: url(:/res/icons/mainpage_ra.png);
+QPushButton#toolButtonMain[theme=light] {
+    border: 1px solid #b6b6b6;
+    border-bottom: 0 none;
 }
 
 QPushButton#toolButtonMain[class=active],
@@ -118,6 +119,13 @@ QPushButton#toolButtonMain[class=normal],
     color: #fff;
     background: #60656a;
     border-bottom: 1px solid #4f5458;
+}
+
+QPushButton#toolButtonMain[class=normal][theme=light],
+    QPushButton#toolButtonMain[class=normal][theme=light]:hover
+{
+    border: 0 none;
+    border-bottom: 1px solid #b6b6b6;
 }
 
 QPushButton#toolButtonMain[class=normal]:hover {
