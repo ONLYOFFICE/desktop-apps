@@ -72,6 +72,8 @@ desktopeditor:
 	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
 	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
 	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
+  
+  chmod a+x common/usr/bin/desktopeditors
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
