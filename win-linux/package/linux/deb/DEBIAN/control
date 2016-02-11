@@ -6,7 +6,8 @@ Maintainer: Ascensio System SIA <support@onlyoffice.com>
 #Source: ca-certificates-local
 #Build-Depends: debhelper (>= 8.0.0)
 Pre-Depends: dpkg (>= 1.14.0)
-#Depends: libgtkglext1 (>=1.0)
+Depends: x11-common, libxss1, libcurl3, libgtkglext1 (>=1.0), libcairo2, fonts-dejavu, fonts-opensymbol
+Recommends: fonts-liberation, ttf-mscorefonts-installer, fonts-crosextra-carlito, fonts-takao-gothic 
 #Standards-Version: 3.9.4
 Priority: optional
 Installed-Size: 183024
