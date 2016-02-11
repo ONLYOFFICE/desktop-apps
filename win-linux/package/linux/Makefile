@@ -59,8 +59,8 @@ desktopeditor:
 	cp -rf ../../../common/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 	cp -rf ../../../win-linux/install/data/libs/qt/linux64/platforms common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
-	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local
-	cp -rf ../../../common/loginpage/deploy/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local
+	mkdir -p common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+	cp -rf ../../../common/loginpage/deploy/* common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
 
 	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 	cp  ../../../common/package/fonts/OpenSans-*.ttf common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
@@ -84,6 +84,7 @@ deb-version:
 	mkdir -p deb/opt
 	cp -rfp common/opt/$(COMPANY_NAME) deb/opt/
 	cp -rfp common/usr deb/
+	cp -rfp common/var deb/
 
 	chmod 755 deb/DEBIAN/post*
 	chmod 755 deb/DEBIAN/pre*
