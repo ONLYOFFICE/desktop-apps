@@ -84,6 +84,9 @@ deb-version:
 	mkdir -p deb/opt
 	cp -rfp common/opt/$(COMPANY_NAME) deb/opt/
 	cp -rfp common/usr deb/
+
+	chmod 755 deb/DEBIAN/post*
+	chmod 755 deb/DEBIAN/pre*
 	#sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/debian/changelog
 
 apt-rpm-version:
