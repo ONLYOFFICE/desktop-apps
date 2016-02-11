@@ -52,18 +52,18 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	mkdir -p common/opt/$(COMPANY_NAME)/converter
-	cp -rf ../../../common/converter/linux/* common/opt/$(COMPANY_NAME)/converter
+	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
+	cp -rf ../../../common/converter/linux/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
 
-	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/
-	cp -rf ../../../common/package/editors common/opt/$(COMPANY_NAME)/
-	cp -rf ../../../win-linux/install/data/libs/qt/linux64/platforms common/opt/$(COMPANY_NAME)/
+	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../common/package/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../win-linux/install/data/libs/qt/linux64/platforms common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
-	mkdir -p common/opt/$(COMPANY_NAME)/local
-	cp -rf ../../../common/loginpage/deploy/* common/opt/$(COMPANY_NAME)/local
+	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local
+	cp -rf ../../../common/loginpage/deploy/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local
 
-	mkdir -p common/opt/$(COMPANY_NAME)/local/fonts
-	cp  ../../../common/package/fonts/OpenSans-*.ttf common/opt/$(COMPANY_NAME)/local/fonts
+	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
+	cp  ../../../common/package/fonts/OpenSans-*.ttf common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 
 	mkdir -p common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
