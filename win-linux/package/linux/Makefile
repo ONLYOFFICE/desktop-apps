@@ -56,7 +56,7 @@ desktopeditor:
 	cp -rf ../../../common/converter/linux/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
 
 	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
-	cp -rf ../../../common/package/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../common/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 	cp -rf ../../../win-linux/install/data/libs/qt/linux64/platforms common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
 	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local
