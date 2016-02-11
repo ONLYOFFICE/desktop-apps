@@ -32,5 +32,3 @@ fi
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
-unlink /usr/bin/desktopeditors
-
