@@ -25,5 +25,3 @@ fi
 
 mkdir -p /var/lib/onlyoffice/desktopeditors
 chmod -R 777 /var/lib/onlyoffice/desktopeditors
-
-ln -snf /opt/onlyoffice/desktopeditors/DesktopEditors /usr/bin/desktopeditors
