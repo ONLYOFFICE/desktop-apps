@@ -69,11 +69,9 @@ desktopeditor:
 	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 	cp  ../../../common/package/fonts/Asana-Math.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 
-	#locales
-
-	#chmod u+x $(DOCUMENTSERVER)/NodeJsProjects/FileConverter/Bin/x2t
-	#chmod u+x $(DOCUMENTSERVER)/NodeJsProjects/FileConverter/Bin/HtmlFileInternal/HtmlFileInternal
-	#chmod u+x $(DOCUMENTSERVER)/Tools/AllFontsGen
+	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
+	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
+	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
@@ -82,8 +80,8 @@ rpm-version:
 
 deb-version:
 	mkdir -p deb/opt
-	cp -rf common/opt/$(COMPANY_NAME) deb/opt/
-	cp -rf common/usr deb/
+	cp -rfp common/opt/$(COMPANY_NAME) deb/opt/
+	cp -rfp common/usr deb/
 	#sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/debian/changelog
 
 apt-rpm-version:
