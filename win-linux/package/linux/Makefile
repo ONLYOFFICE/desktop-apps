@@ -69,11 +69,11 @@ desktopeditor:
 	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 	cp  ../../../common/package/fonts/Asana-Math.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 
-	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
-	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
-	chmod a+x common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
-  
-  chmod a+x common/usr/bin/desktopeditors
+	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
+	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
+	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
+
+	chmod 777 common/usr/bin/desktopeditors
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
