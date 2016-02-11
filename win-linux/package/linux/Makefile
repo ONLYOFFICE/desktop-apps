@@ -15,7 +15,8 @@ RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 
-REPO = $(PWD)/repo
+REPO_NAME := repo
+REPO = $(PWD)/$(REPO_NAME)
 
 RPM_REPO_OS_NAME = centos
 RPM_REPO_OS_VER = 7
@@ -119,22 +120,22 @@ deploy-deb: $(DEB)
 	mkdir -p $(REPO)
 
 	cp -rv $(DEB) $(REPO);
-	dpkg-scanpackages -m repo /dev/null | gzip -9c > $(REPO)/Packages.gz
+	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(REPO)/Packages.gz
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/repo --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/repo --acl public-read --delete
+	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(REPO) s3://$(REPO_NAME)-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(REPO_NAME) --acl public-read --delete
 
 deploy-apt-rpm: $(APT_RPM)
 	rm -rfv $(REPO)
 	mkdir -p $(REPO)
 
 	for i in i586 i686 x86_64 noarch; do \
-		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.repo" ; \
+		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
 	done
 
-	cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.repo;
+	cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
 
-	genbasedir --topdir=$(REPO) $(RPM_ARCH) repo
+	genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
 
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
