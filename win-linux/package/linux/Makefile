@@ -59,8 +59,8 @@ desktopeditor:
 	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 	cp -rf ../../../common/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
-	rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
-	cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
+	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
   
 	mkdir -p common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
 	cp -rf ../../../common/loginpage/deploy/* common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
