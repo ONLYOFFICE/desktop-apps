@@ -39,6 +39,7 @@ rm -rf "$RPM_BUILD_ROOT"
 %attr(777, root, root) /usr/bin/desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/ivolga/*
+%attr(-, root, root) /var/lib/ivolga/desktopeditors/*
 
 %pre
 
