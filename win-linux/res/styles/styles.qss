@@ -224,10 +224,10 @@ QTabBar::close-button:pressed {
 
 QTabBar QToolButton,
     QTabBar QToolButton:disabled {
-    margin-right:-1px;
+    /*margin-right:-1px;*/
     background-color:#cfcfcf;
     border:1px solid #afb0b1;
-    border-top: 0 none;
+    /*border-top: 0 none;*/
 }
 
 QTabBar QToolButton:hover {
