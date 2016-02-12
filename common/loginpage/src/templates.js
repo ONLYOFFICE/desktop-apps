@@ -34,13 +34,18 @@
 window.Templates = (function() { 'use strict';
 
     var addConnectPanel = function(parentnode) {
-        var _html = '<div id="box-empty-portals" class="empty">' +
-                      '<h3 class="text-welcome">' + utils.Lang.portalEmptyTitle + '</h3>' +
-                      '<h4 class="text-description">' + utils.Lang.portalEmptyDescr + '</h4>' +
-                      '<div class="tools-connect">'+
-                        '<button class="btn primary login">' + utils.Lang.btnConnect + '</button>' +
-                        '<button class="btn newportal">' + utils.Lang.btnCreatePortal + '</button>' +
-                      '</div>'+
+        var _html = '<div id="box-empty-portals" class="empty flex-center">' +
+                      '<section class="center-box">'+
+                        '<h3 style="margin-top:0;">'+ utils.Lang.portalEmptyTitle +'</h3>'+
+                        '<h4 class="text-description">'+ utils.Lang.portalEmptyDescr +'</h4>'+
+                        '<img class="img-welcome">'+
+                        '<div class="tools-connect">'+
+                          '<button class="btn primary newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
+                          '<section class="link-connect">'+
+                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login" href="#">'+ utils.Lang.btnConnect +'</a>'+
+                          '</section>'+
+                        '</div>'+
+                      '</section>'+
                     '</div>'+
                     '<div id="box-portals">' +
                     '</div>';
@@ -124,13 +129,19 @@ window.Templates = (function() { 'use strict';
     };
 
     function addWelcomePanel(holder) {
-        var _html = '<section class="center"><h3>'+ utils.Lang.welWelcome +'</h1>'+
-                    '<h4 class="text-description">'+ utils.Lang.welDescr +'</h4>'+
-                    '<img class="img-welcome">'+
-                    '<div class="tools-connect">'+
-                      '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
-                      '<button class="btn newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
-                    '</div></section>';
+        var _html = '<div class="flex-center">' +
+                      '<section class="center-box">'+
+                        '<h3 style="margin-top:0;">'+ utils.Lang.welWelcome +'</h3>'+
+                        '<h4 class="text-description">'+ utils.Lang.welDescr +'</h4>'+
+                        '<img class="img-welcome">'+
+                        '<div class="tools-connect">'+
+                        // '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
+                          '<button class="btn primary newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
+                          '<section class="link-connect">'+
+                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login" href="#">'+ utils.Lang.btnConnect +'</a>'+
+                          '</section>'+
+                        '</div>'+
+                      '</section>'+'</div>';
 
         $(holder).append(_html);
     };
