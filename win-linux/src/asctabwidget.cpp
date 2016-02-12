@@ -112,7 +112,8 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
-    , m_widthParams({{100, 135, 9}, 108, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
+    , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
+    , m_isCustomStyle(true)
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -321,9 +322,11 @@ void CAscTabWidget::adjustTabsSize()
 
     if (nCountTabs != 0) {
         int nControlWidth = parentWidget()->width();
-        nTabBarWidth = nControlWidth
+        nTabBarWidth = m_isCustomStyle ?
+                nControlWidth
                 - m_widthParams.main_button_width - m_widthParams.main_button_span
-                - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset;
+                - m_widthParams.title_width - m_widthParams.tools_width - m_widthParams.custom_offset :
+                nControlWidth - m_widthParams.main_button_width;
 
         int nTabWidth = (nTabBarWidth - /*(2+2)*/10 * nCountTabs) / nCountTabs;      // magic (2+2)
         if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
@@ -346,6 +349,7 @@ void CAscTabWidget::adjustTabsSize()
 
 void CAscTabWidget::applyCustomTheme(bool iscustom)
 {
+    m_isCustomStyle = iscustom;
     m_widthParams.tools_width = (iscustom ? 50 : 0) * g_dpi_ratio;
     m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * g_dpi_ratio;
 }
