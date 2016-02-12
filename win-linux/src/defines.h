@@ -63,9 +63,17 @@
 #else
   #define APP_NAME "DesktopEditors"
   #define APP_TITLE "ONLYOFFICE"
-  #define APP_LICENSE_PATH "/ONLYOFFICE/License"
-  #define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
-  #define REG_GROUP_KEY "ONLYOFFICE"
+
+  #ifdef __linux
+    #define APP_DATA_PATH "/onlyoffice/desktopeditors"
+    #define APP_LICENSE_PATH "/onlyoffice/license"
+    #define REG_GROUP_KEY "onlyoffice"
+  #else
+    #define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
+    #define APP_LICENSE_PATH "/ONLYOFFICE/License"
+    #define REG_GROUP_KEY "ONLYOFFICE"
+  #endif
+
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://onlyoffice.com"
 #endif
