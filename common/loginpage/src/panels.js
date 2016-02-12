@@ -500,6 +500,7 @@ function doLogin(p, u) {
 
         PortalsStore.keep(info);
         updatePortals();
+        selectAction('connect');
     });
     dlg.show(p, u);
 }
