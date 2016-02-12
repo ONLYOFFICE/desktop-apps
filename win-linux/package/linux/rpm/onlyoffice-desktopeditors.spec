@@ -39,7 +39,7 @@ rm -rf "$RPM_BUILD_ROOT"
 %attr(777, root, root) /usr/bin/desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/onlyoffice/*
-
+%attr(-, root, root) /var/lib/onlyoffice/desktopeditors/*
 %pre
 
 %post
