@@ -268,12 +268,13 @@ $(document).ready(function() {
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
-        $('.newportal').click(function(){
-            window.open('https://www.onlyoffice.com/registration.aspx');
-        });
     } else 
         selectAction('recent');
 
+    $('.newportal').click(function(){
+        window.open('https://www.onlyoffice.com/registration.aspx');
+    });
+    
     if (!window.LoginDlg) {
         $('.tools-connect').hide();
         hideAction('connect');
