@@ -236,6 +236,9 @@ window.LoginDlg = function() {
                 }
 
                 if (obj) {
+                    if (obj.statusCode == 402) {
+                        showLoginError(obj.error.message);
+                    } else
                     if (obj.statusCode != 201) {
                         console.log('server error: ' + obj.statusCode);
                         showLoginError(utils.Lang.errLoginServer);
