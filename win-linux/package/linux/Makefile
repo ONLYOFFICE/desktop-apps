@@ -50,7 +50,9 @@ clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
-		$(REPO)
+		$(REPO) \
+		common/usr/share/fonts \
+		common/var/lib
 
 desktopeditor:
 	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
