@@ -81,6 +81,7 @@ h4 {
 
 .col-left {
     min-width: @col-width;
+    max-width: @col-width;
     float: left;
     border-right: 1px solid @color-gray-3;
 
@@ -621,9 +622,17 @@ li.menu-item {
 
 .center {
     position: absolute;
-    top: 44%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
 }
 
 .welcome {
@@ -636,7 +645,7 @@ li.menu-item {
 
 .activate {
     .center {
-        top: 34%;
+        margin-top: -3em;
         width: 90%;
         max-width: 700px;
     }
