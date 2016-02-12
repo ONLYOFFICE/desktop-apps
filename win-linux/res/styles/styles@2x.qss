@@ -21,8 +21,15 @@ QPushButton#toolButtonMain {
     font-size: 20px;
 }
 
-QPushButton#toolButtonMain[theme=rightangle] {
-    background-image: url(:/res/icons/mainpage_ra_2x.png);
+QPushButton#toolButtonMain[theme=light] {
+    border-width: 2px;
+    border-bottom: 0 none;
+}
+
+QPushButton#toolButtonMain[class=normal],
+    QPushButton#toolButtonMain[class=normal]:hover
+{
+    border-bottom-width: 2px;
 }
 
 QPushButton#toolButtonProfile {
@@ -80,15 +87,15 @@ QTabBar::close-button {
     /*border-image: none;*/
     /*margin-right:10px;*/
     margin-top: -2px;
-    /*icon-size: 32px;*/
+    icon-size: 32px;
 }
 
 QTabBar::close-button:hover {
-    background-image:url(:/res/icons/tab_close_hover_2x.png);
+    image:url(:/res/icons/tab_close_hover_2x.png);
 }
 
 QTabBar::close-button:pressed {
-    background-image:url(:/res/icons/tab_close_active_2x.png);
+    image:url(:/res/icons/tab_close_active_2x.png);
 }
 
 QTabBar QToolButton,
