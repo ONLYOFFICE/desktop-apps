@@ -66,7 +66,7 @@
                 "src": [
                     "../src/utils.js"
                     ,"../src/locale.js"
-                    ,"../src/i18n.ivolga.js"
+                    ,"../src/l10n.ivolga.js"
                     ,"../src/templates.js"
                     ,"../src/panels.js"
                     ,"../src/model.js"
