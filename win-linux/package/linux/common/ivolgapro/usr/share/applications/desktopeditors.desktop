@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
-Name=Desktop Editors
+Name=Ivolga Pro
 Type=Application
-GenericName=IvolgaPro Desktop Editors
+GenericName=Ivolga Pro Desktop Editors
 Comment=Edit office documents
 Exec=/usr/bin/desktopeditors
 Terminal=false
