@@ -61,8 +61,8 @@ static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru";
 static NSString * kRegBuyUrl    = @"http://www.ivolgapro.ru/buynow";
 static NSString * kHelpUrl      = @"http://www.ivolgapro.ru";
 #else
-static NSString * kRegHelpUrl   = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
-static NSString * kRegBuyUrl    = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
+static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
+static NSString * kRegBuyUrl    = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 #endif
 
