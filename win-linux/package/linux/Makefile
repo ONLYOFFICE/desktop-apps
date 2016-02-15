@@ -95,7 +95,7 @@ deb-version:
 
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/pre*
-	#sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/debian/changelog
+	sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
 
 apt-rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i apt-rpm/$(PACKAGE_NAME).spec
