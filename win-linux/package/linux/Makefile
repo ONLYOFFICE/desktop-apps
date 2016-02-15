@@ -91,10 +91,10 @@ rpm-version:
 	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
 
 deb-version:
-	cp -rfp common/$(COMPANY_NAME)/* deb/
+	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
 
-	chmod 755 deb/DEBIAN/post*
-	chmod 755 deb/DEBIAN/pre*
+	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
+	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/pre*
 	#sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/debian/changelog
 
 apt-rpm-version:
