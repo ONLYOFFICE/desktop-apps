@@ -36,6 +36,12 @@ DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 DOCUMENTSERVER = common/documentserver
 
+ifeq ($(COMPANY_NAME), onlyoffice)
+INDEX_HTML := index.html
+elseif
+INDEX_HTML := index.$(COMPANY_NAME).html
+endif
+
 .PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version
 
 all: rpm apt-rpm deb
@@ -55,32 +61,31 @@ clean:
 		common/var/lib
 
 desktopeditor:
-	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
-	cp -rf ../../../common/converter/linux/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
+	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
+	cp -rf ../../../common/converter/linux/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
 
-	cp -rf ../../../common/package/dictionaries common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
-	cp -rf ../../../common/editors common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../common/package/dictionaries common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../common/editors common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
-	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
-  
-	mkdir -p common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-	cp -rf ../../../common/loginpage/deploy/* common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
-	mkdir -p common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
-	cp  ../../../common/package/fonts/OpenSans-*.ttf common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
+
+	mkdir -p common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+	cp -rf ../../../common/loginpage/deploy/$(INDEX_HTML) common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
+
+	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
+	cp  ../../../common/package/fonts/OpenSans-*.ttf common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 
 	mkdir -p common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 	cp  ../../../common/package/fonts/Asana-Math.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 
-	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
-	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
-	chmod 777 common/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
+	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
+	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
+	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
 
-	chmod 777 common/usr/bin/desktopeditors
-
-	sed 's/{{COMPANY_NAME}}/'$(COMPANY_NAME)'/'  -i common/usr/bin/desktopeditors
+	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
@@ -88,10 +93,7 @@ rpm-version:
 	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
 
 deb-version:
-	mkdir -p deb/opt
-	cp -rfp common/opt/$(COMPANY_NAME) deb/opt/
-	cp -rfp common/usr deb/
-	cp -rfp common/var deb/
+	cp -rfp common/$(COMPANY_NAME)/* deb/
 
 	chmod 755 deb/DEBIAN/post*
 	chmod 755 deb/DEBIAN/pre*
