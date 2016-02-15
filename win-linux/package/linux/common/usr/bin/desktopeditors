@@ -1,5 +1,5 @@
 #!/bin/sh
 
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/onlyoffice/desktopeditors:/opt/onlyoffice/desktopeditors/converter/
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/{{COMPANY_NAME}}/desktopeditors:/opt/{{COMPANY_NAME}}/desktopeditors/converter/
 export LD_LIBRARY_PATH
-exec /opt/onlyoffice/desktopeditors/DesktopEditors
+exec /opt/{{COMPANY_NAME}}/desktopeditors/DesktopEditors
