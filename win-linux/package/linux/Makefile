@@ -56,9 +56,7 @@ clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
-		$(REPO) \
-		common/usr/share/fonts \
-		common/var/lib
+		$(REPO)
 
 desktopeditor:
 	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
@@ -108,7 +106,7 @@ $(RPM):
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(DEB):
-	fakeroot dpkg-deb --build deb && mv deb.deb $(DEB)
+	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv $(PACKAGE_NAME).deb $(DEB)
 
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
