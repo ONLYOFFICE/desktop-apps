@@ -37,9 +37,9 @@ DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DOCUMENTSERVER = common/documentserver
 
 ifeq ($(COMPANY_NAME), onlyoffice)
-INDEX_HTML := index.html
+INDEX_HTML = index.html
 elseif
-INDEX_HTML := index.$(COMPANY_NAME).html
+INDEX_HTML = index.$(COMPANY_NAME).html
 endif
 
 .PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version
