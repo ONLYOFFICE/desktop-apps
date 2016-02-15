@@ -106,7 +106,7 @@ $(RPM):
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(DEB):
-	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv $(PACKAGE_NAME).deb $(DEB)
+	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
