@@ -1,0 +1,5 @@
+#!/bin/sh
+
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ivolgapro/desktopeditors:/opt/ivolgapro/desktopeditors/converter/
+export LD_LIBRARY_PATH
+exec /opt/ivolgapro/desktopeditors/DesktopEditors
