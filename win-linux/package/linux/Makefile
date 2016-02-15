@@ -72,7 +72,7 @@ desktopeditor:
 
 
 	mkdir -p common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-	cp -rf ../../../common/loginpage/deploy/$(INDEX_HTML) common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
+	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
 
 	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 	cp  ../../../common/package/fonts/OpenSans-*.ttf common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
