@@ -80,6 +80,8 @@ desktopeditor:
 
 	chmod 777 common/usr/bin/desktopeditors
 
+	sed 's/{{COMPANY_NAME}}/'$(COMPANY_NAME)'/'  -i common/usr/bin/desktopeditors
+
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i rpm/$(PACKAGE_NAME).spec
