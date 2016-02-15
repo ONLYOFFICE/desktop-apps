@@ -71,15 +71,15 @@ desktopeditor:
 	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 
 
-	mkdir -p common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-	cp -rf ../../../common/loginpage/deploy/$(INDEX_HTML) common/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
+	mkdir -p common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+	cp -rf ../../../common/loginpage/deploy/$(INDEX_HTML) common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
 
 	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 	cp  ../../../common/package/fonts/OpenSans-*.ttf common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
 
-	mkdir -p common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-	cp  ../../../common/package/fonts/Carlito-*.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-	cp  ../../../common/package/fonts/Asana-Math.ttf common/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+	mkdir -p common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+	cp  ../../../common/package/fonts/Carlito-*.ttf common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+	cp  ../../../common/package/fonts/Asana-Math.ttf common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 
 	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
 	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal

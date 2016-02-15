@@ -24,12 +24,8 @@ rm -rf "$RPM_BUILD_ROOT"
 %install
 
 #install desktopeditor files
-mkdir -p "$RPM_BUILD_ROOT/opt"
-cp -r ../../../common/opt/onlyoffice "$RPM_BUILD_ROOT/opt"
-
 mkdir -p "$RPM_BUILD_ROOT"
-cp -r ../../../common/usr "$RPM_BUILD_ROOT/"
-cp -r ../../../common/var "$RPM_BUILD_ROOT/"
+cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"
