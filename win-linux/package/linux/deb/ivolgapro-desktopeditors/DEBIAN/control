@@ -1,5 +1,5 @@
 Package: ivolgapro-desktopeditors
-Version: 0.0.2-4
+Version: {{PACKAGE_VERSION}}
 Architecture: amd64
 Section: editors
 Maintainer: Novie kommunikacionnie tehnologii, CJSC <support@ivolgapro.ru>

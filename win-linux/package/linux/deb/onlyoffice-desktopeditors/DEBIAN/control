@@ -1,5 +1,5 @@
 Package: onlyoffice-desktopeditors
-Version: 0.0.2-4
+Version: {{PACKAGE_VERSION}}
 Architecture: amd64
 Section: editors
 Maintainer: Ascensio System SIA <support@onlyoffice.com>
