@@ -61,6 +61,7 @@ clean:
 desktopeditor:
 	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
 	cp -rf ../../../common/converter/linux/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
+	cp -rf ../../../common/converter/empty common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
 
 	cp -rf ../../../common/package/dictionaries common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
 	cp -rf ../../../common/editors common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
