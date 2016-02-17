@@ -611,6 +611,13 @@
         
         if (isFullscreen) {
             [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
+            
+            ASCTabView * tab = [self.tabsControl selectedTab];
+            
+            if (tab) {
+                NSCefView * cefView = [self cefViewWithTab:tab];
+                [cefView focus];
+            }
         } else {
             [item.view exitFullScreenModeWithOptions:nil];
             

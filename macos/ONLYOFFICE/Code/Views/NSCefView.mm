@@ -261,7 +261,15 @@ public:
     }
 }
 
-
+- (void)focus {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->focus();
+        }
+    }
+}
 
 
 @end
