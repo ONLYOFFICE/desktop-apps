@@ -177,7 +177,7 @@
         // Create CEF event listener
         [ASCEventsController sharedInstance];
 
-        [self checkLicense];
+        [self startupActions];
     }
 }
 
@@ -221,31 +221,36 @@
     }
 }
 
+- (void)startupActions {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
+        [NSTimer scheduledTimerWithTimeInterval:1.0
+                                        repeats:NO
+                                          block:^{
+                                              NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCVersionSelectWindowControllerId"];
+                                              [activationWindow showWindow:self];
+                                              [self checkLicense];
+                                          }];
+    } else {
+        [self checkLicense];
+    }
+}
+
 - (void)checkLicense {
     NSDictionary * licenceInfo;
     NSString * licenseDirectory = [ASCHelper licensePath];
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
     
-    // First launch
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-
-        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
-        generateLicenceData->put_Path([licenseDirectory stdwstring]);
-        generateLicenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
-        
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
-        pEvent->m_pData = generateLicenceData;
-
-        appManager->Apply(pEvent);
-    }
-    
+    ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+       
     // Checking license
     NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
     licenceData->put_Path([licenseDirectory stdwstring]);
-    licenceData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+#ifdef _PRODUCT_IVOLGA
+    licenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#else
+    licenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
+#endif
     
     ADDREFINTERFACE(licenceData);
     
