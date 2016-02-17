@@ -1343,9 +1343,11 @@ wstring QAscMainPanel::commonDataPath() const
 #else
     sAppData = QString("/var/lib").append(APP_LICENSE_PATH).toStdWString();
     QFileInfo fi(QString::fromStdWString(sAppData));
-    if (fi.isDir() && !fi.isWritable()) {
-        // TODO: check directory permissions and warn the user
-        qDebug() << "directory permission error";
+    if (!QDir().mkpath(fi.absoluteFilePath())) {
+        if (!fi.isWritable()) {
+            // TODO: check directory permissions and warn the user
+            qDebug() << "directory permission error";
+        }
     }
 #endif
 
