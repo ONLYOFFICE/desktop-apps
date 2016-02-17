@@ -54,7 +54,16 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
-static int ONLYOFFICE_PRODUCT_ID = 300;
+typedef NS_ENUM(int, ASCVersionType) {
+    ASCASCVersionTypeUnknown    = 0,
+    
+    ASCVersionTypeForHome       = 101,
+    ASCVersionTypeForBusiness   = 102
+};
+
+static int PRODUCT_ID_AVS        = 300;
+static int PRODUCT_ID_IVOLGAPRO  = 301;
+static int PRODUCT_ID_ONLYOFFICE = 302;
 
 #ifdef _PRODUCT_IVOLGA
 static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru";
