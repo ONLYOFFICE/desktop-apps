@@ -101,6 +101,12 @@
 		FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
 		FC3F89911C20430300248757 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F89901C20430300248757 /* NSAlert+SynchronousSheet.m */; };
 		FC3F89921C20430300248757 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3F89901C20430300248757 /* NSAlert+SynchronousSheet.m */; };
+		FC4273381C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4273371C734A1300116793 /* ASCVersionSelectWindowController.m */; };
+		FC4273391C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4273371C734A1300116793 /* ASCVersionSelectWindowController.m */; };
+		FC42733A1C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4273371C734A1300116793 /* ASCVersionSelectWindowController.m */; };
+		FC42733D1C7351A800116793 /* ASCVersionSelectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */; };
+		FC42733E1C7351A800116793 /* ASCVersionSelectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */; };
+		FC42733F1C7351A800116793 /* ASCVersionSelectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
 		FC6718011BD913C00028600F /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
 		FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
@@ -197,6 +203,8 @@
 		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
+		FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
@@ -333,6 +341,10 @@
 		FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCApplicationManager.h; path = Code/ASCApplicationManager.h; sourceTree = "<group>"; };
 		FC3F898F1C20430300248757 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAlert+SynchronousSheet.h"; path = "Code/Utils/NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
 		FC3F89901C20430300248757 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAlert+SynchronousSheet.m"; path = "Code/Utils/NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
+		FC4273361C734A1300116793 /* ASCVersionSelectWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCVersionSelectWindowController.h; path = Code/Controllers/ASCVersionSelectWindowController.h; sourceTree = "<group>"; };
+		FC4273371C734A1300116793 /* ASCVersionSelectWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCVersionSelectWindowController.m; path = Code/Controllers/ASCVersionSelectWindowController.m; sourceTree = "<group>"; };
+		FC42733B1C7351A800116793 /* ASCVersionSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCVersionSelectController.h; path = Code/Controllers/ASCVersionSelectController.h; sourceTree = "<group>"; };
+		FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCVersionSelectController.mm; path = Code/Controllers/ASCVersionSelectController.mm; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = Vendor/ONLYOFFICE/libs/corebuilds/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "Vendor/ONLYOFFICE/libs/cefbuilds/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
@@ -379,6 +391,7 @@
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCReplacePresentationAnimator.h; path = Code/Utils/ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
 		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCReplacePresentationAnimator.m; path = Code/Utils/ASCReplacePresentationAnimator.m; sourceTree = "<group>"; };
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		FC981B3B1C744D39006F669C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSCefView.h; path = Code/Views/NSCefView.h; sourceTree = "<group>"; };
 		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSCefView.mm; path = Code/Views/NSCefView.mm; sourceTree = "<group>"; };
@@ -470,6 +483,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */,
 				FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */,
 				FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */,
 				FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */,
@@ -480,6 +494,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */,
 				FC6718311BD918CA0028600F /* Security.framework in Frameworks */,
 				FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */,
 				FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */,
@@ -615,6 +630,17 @@
 			name = ASCTabs;
 			sourceTree = "<group>";
 		};
+		FC4273351C7349C100116793 /* Version Select */ = {
+			isa = PBXGroup;
+			children = (
+				FC4273361C734A1300116793 /* ASCVersionSelectWindowController.h */,
+				FC4273371C734A1300116793 /* ASCVersionSelectWindowController.m */,
+				FC42733B1C7351A800116793 /* ASCVersionSelectController.h */,
+				FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */,
+			);
+			name = "Version Select";
+			sourceTree = "<group>";
+		};
 		FC5A2CFE1BABEF42001ACEB1 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,6 +763,7 @@
 		FC6718321BD918D90028600F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC981B3B1C744D39006F669C /* WebKit.framework */,
 				FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */,
 				FC6718301BD918CA0028600F /* Security.framework */,
 			);
@@ -843,6 +870,7 @@
 				FCA0B33D1B9EB56E0073EDD4 /* Main Window */,
 				FC25A1A91C2E880900063A42 /* Registration */,
 				FC1E9DC11C2EBDF90043100E /* Trial */,
+				FC4273351C7349C100116793 /* Version Select */,
 				FCAA9A391BBA7E7600F3C47F /* Download */,
 				FCAF3EFA1BA31CF600B42BAA /* User Info */,
 			);
@@ -1324,6 +1352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC42733A1C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */,
 				FC6718011BD913C00028600F /* ASCApplicationManager.cpp in Sources */,
 				FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */,
 				FC6718031BD913C00028600F /* ViewController.mm in Sources */,
@@ -1351,6 +1380,7 @@
 				FC6718141BD913C00028600F /* GTMNSString+HTML.m in Sources */,
 				FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */,
 				FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */,
+				FC42733F1C7351A800116793 /* ASCVersionSelectController.mm in Sources */,
 				FC6718171BD913C00028600F /* ASCButtonCell.m in Sources */,
 				FC6718181BD913C00028600F /* main.mm in Sources */,
 				FC6718191BD913C00028600F /* ASCDownloadViewController.m in Sources */,
@@ -1372,6 +1402,7 @@
 				FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */,
 				FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */,
 				FC7FD39A1C315DD6008F6641 /* ViewController.mm in Sources */,
+				FC42733E1C7351A800116793 /* ASCVersionSelectController.mm in Sources */,
 				FC7FD39B1C315DD6008F6641 /* ASCRegistrationController.mm in Sources */,
 				FC7FD39C1C315DD6008F6641 /* NSView+ASCView.m in Sources */,
 				FC7FD39D1C315DD6008F6641 /* ASCButton.m in Sources */,
@@ -1380,6 +1411,7 @@
 				FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */,
 				FC7FD3A11C315DD6008F6641 /* ASCTrialController.m in Sources */,
 				FCB455001C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
+				FC4273391C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */,
 				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
 				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
 				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
@@ -1421,6 +1453,7 @@
 				FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */,
 				FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */,
+				FC42733D1C7351A800116793 /* ASCVersionSelectController.mm in Sources */,
 				FC25A1AD1C2E883D00063A42 /* ASCRegistrationController.mm in Sources */,
 				FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */,
 				FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */,
@@ -1429,6 +1462,7 @@
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
 				FC1E9DC81C2EBFFD0043100E /* ASCTrialController.m in Sources */,
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
+				FC4273381C734A1300116793 /* ASCVersionSelectWindowController.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
