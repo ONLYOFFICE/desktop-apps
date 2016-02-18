@@ -42,6 +42,9 @@
 #ifdef _WIN32
 #include "win/mainwindow.h"
 #include "shlobj.h"
+
+#include <QSplashScreen>
+QSplashScreen * g_splash = NULL;
 #else
 #include "linux/cmainwindow.h"
 #endif
@@ -51,7 +54,6 @@
 #include <QSettings>
 #include <QScreen>
 #include <QApplication>
-#include <QSplashScreen>
 #include <QRegularExpression>
 
 
@@ -149,11 +151,12 @@ int main( int argc, char *argv[] )
     QSplashScreen splash(g_dpi_ratio > 1 ?
             QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"));
   #else
-    QSplashScreen splash(g_dpi_ratio > 1 ?
-            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
+            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"),
+                                 Qt::WindowStaysOnTopHint);
   #endif
 
-    splash.show();
+    g_splash->show();
     app.processEvents();
 #else
     g_dpi_ratio = app.devicePixelRatio();
@@ -249,7 +252,7 @@ int main( int argc, char *argv[] )
     CMainWindow window(pApplicationManager, windowBackground);
     window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
 
-    splash.finish(window.m_pWinPanel);
+//    splash.finish(window.m_pWinPanel);
 #elif defined(Q_OS_LINUX)
     // Create window
     CMainWindow window(pApplicationManager);
