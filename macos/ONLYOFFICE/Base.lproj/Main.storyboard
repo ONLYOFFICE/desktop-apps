@@ -1156,7 +1156,7 @@ DQ
                                     <constraint firstAttribute="height" constant="17" id="Yf8-Yc-odT"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Select how you will use %@" id="I8Z-6D-Kvn">
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="12"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1232,7 +1232,7 @@ DQ
                                 </constraints>
                                 <buttonCell key="cell" type="bevel" title="License agreement" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="4GM-km-e8N">
                                     <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="12"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="KRO-Tf-SDi" kind="sheet" id="258-iF-5pA"/>
