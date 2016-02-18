@@ -162,14 +162,20 @@
         NSPoint eventLocation = [theEvent locationInWindow];
 
         if (NSPointInRect(eventLocation, self.homeView.frame)) {
-            [self createKfH];
+            [[NSUserDefaults standardUserDefaults] setInteger:ASCVersionTypeForHome forKey:@"hasVersionMode"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [self forceSide:ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE];
             
             self.shouldTerminate = NO;
             [NSApp stopModal];
         }
         
         if (NSPointInRect(eventLocation, self.businessView.frame)) {
-            [self createKfB];
+            [[NSUserDefaults standardUserDefaults] setInteger:ASCVersionTypeForBusiness forKey:@"hasVersionMode"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [self forceSide:ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO];
             
             self.shouldTerminate = NO;
             [NSApp stopModal];
@@ -177,8 +183,7 @@
     }
 }
 
-// Generate key for home
-- (void)createKfH {
+- (void)forceSide:(int)eventType {
     NSString * licenseDirectory = [ASCHelper licensePath];
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
@@ -193,39 +198,11 @@
         generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
 #endif
         
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(eventType);
         pEvent->m_pData = generateLicenceData;
         
         appManager->Apply(pEvent);
         
-        [[NSUserDefaults standardUserDefaults] setInteger:ASCVersionTypeForHome forKey:@"hasVersionMode"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
-// Generate key for business
-- (void)createKfB {
-    NSString * licenseDirectory = [ASCHelper licensePath];
-    
-    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    
-    // First launch
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
-        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
-        generateLicenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-        generateLicenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
-#else
-        generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
-#endif
-        
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
-        pEvent->m_pData = generateLicenceData;
-        
-        appManager->Apply(pEvent);
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:ASCVersionTypeForBusiness forKey:@"hasVersionMode"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
