@@ -140,6 +140,9 @@ You cannot create and edit local files." = "Незарегистрированн
 "Untitled" = "Без названия";
 
 /* No comment provided by engineer. */
+"Version %@ (%@)" = "Версия %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
 "Web Page" = "Веб страница";
 
 /* No comment provided by engineer. */
@@ -170,4 +173,10 @@ The trial period will end in %d days, after that you will not be able to create 
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
+/* No comment provided by engineer. */
+"for Business" = "для Бизнеса";
+
+/* No comment provided by engineer. */
+"for Home" = "для Дома";
 
