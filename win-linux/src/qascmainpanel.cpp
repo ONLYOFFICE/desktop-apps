@@ -1203,9 +1203,9 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
     QFileInfo info(QString::fromStdWString(pData->get_Path()));
-    if (info.absoluteDir().exists()) {
-        m_lastSavePath = info.absoluteDir().absolutePath();
-    }
+//    if (info.absoluteDir().exists()) {
+//        m_lastSavePath = info.absoluteDir().absolutePath();
+//    }
 
     if (!QDir(m_lastSavePath).exists()) {
         m_lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
@@ -1228,7 +1228,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         if (dlg.modalSaveAs(fullPath)) {
             GET_REGISTRY_USER(_reg_user);
 
-            m_lastSavePath = QDir(fullPath).absolutePath();
+            m_lastSavePath = QFileInfo(fullPath).absoluteDir().absolutePath();
             _reg_user.setValue("savePath", m_lastSavePath);
 
             pSaveData->put_Path(fullPath.toStdWString());
@@ -1260,19 +1260,6 @@ void QAscMainPanel::onFullScreen(bool apply)
         emit mainWindowChangeState(m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState);
         m_pTabs->setFullScreen(apply);
     }
-
-//    if (!apply) {
-//        ShowWindow(parentWindow(), m_isMaximized ? SW_MAXIMIZE : SW_SHOW);
-//        m_pTabs->setFullScreen(apply);
-//    } else {
-//        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-//        GetWindowPlacement(parentWindow(), &wp);
-
-//        m_isMaximized = wp.showCmd == SW_MAXIMIZE;
-
-//        m_pTabs->setFullScreen(apply);
-//        ShowWindow(parentWindow(), SW_HIDE);
-//    }
 }
 
 void QAscMainPanel::onKeyDown(void * eventData)
