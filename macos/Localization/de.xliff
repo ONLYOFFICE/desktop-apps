@@ -96,6 +96,10 @@
         <source>License Activation</source>
         <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "7Fa-DF-A4G";</note>
       </trans-unit>
+      <trans-unit id="8Ga-Cu-VGe.title">
+        <source>License agreement</source>
+        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
+      </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
         <source>Writing Direction</source>
         <target>Schreibrichtung</target>
@@ -466,6 +470,10 @@
         <target>Links Ausrichten</target>
         <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
       </trans-unit>
+      <trans-unit id="ZbA-hc-8PE.title">
+        <source>Version</source>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
+      </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title">
         <source>Email:</source>
         <target>Email:</target>
@@ -723,6 +731,10 @@
         <target>Smart  Striche</target>
         <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
       </trans-unit>
+      <trans-unit id="sGd-zc-V0B.title">
+        <source>Copyright info</source>
+        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
+      </trans-unit>
       <trans-unit id="sd8-yS-TXT.title">
         <source>Box</source>
         <note>Class = "NSBox"; title = "Box"; ObjectID = "sd8-yS-TXT";</note>
@@ -814,6 +826,10 @@
         <source>Copy</source>
         <target>Kopieren</target>
         <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
+      <trans-unit id="xCO-ey-2lo.title">
+        <source>Product</source>
+        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
       </trans-unit>
       <trans-unit id="xQD-1f-W4t.title">
         <source>Use All</source>
@@ -1120,6 +1136,10 @@ You cannot create and edit local files.</source>
         <target>Untitled</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Web Page">
         <source>Web Page</source>
         <target>Web Page</target>
@@ -1167,6 +1187,14 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Your changes will be lost if you don’t save them.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="for Business">
+        <source>for Business</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="for Home">
+        <source>for Home</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

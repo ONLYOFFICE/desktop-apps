@@ -55,6 +55,9 @@
 /* Class = "NSViewController"; title = "License Activation"; ObjectID = "7Fa-DF-A4G"; */
 "7Fa-DF-A4G.title" = "Активация лицензии";
 
+/* Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe"; */
+"8Ga-Cu-VGe.title" = "Пользовательское соглашение";
+
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
 "8mr-sm-Yjd.title" = "Направление письма";
 
@@ -280,6 +283,9 @@
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
 "ZM1-6Q-yy1.title" = "Align Left";
 
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE"; */
+"ZbA-hc-8PE.title" = "Версия";
+
 /* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
 "Zsi-3o-ASl.title" = "Е-майл:";
 
@@ -445,6 +451,9 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Smart Dashes";
 
+/* Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B"; */
+"sGd-zc-V0B.title" = "Авторское право";
+
 /* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
 "snW-S8-Cw5.title" = "Show Toolbar";
 
@@ -498,6 +507,9 @@
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Копировать";
+
+/* Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo"; */
+"xCO-ey-2lo.title" = "Продукт";
 
 /* Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t"; */
 "xQD-1f-W4t.title" = "Use All";

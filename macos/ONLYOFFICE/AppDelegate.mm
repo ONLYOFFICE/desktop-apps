@@ -290,7 +290,15 @@
 }
 
 - (IBAction)onMenuAbout:(NSMenuItem *)sender {
-    [NSApp orderFrontStandardAboutPanel:sender];
+//    [NSApp orderFrontStandardAboutPanel:sender];
+    NSWindow * mainWindow = [NSApp mainWindow];
+    
+    if (mainWindow) {
+        ViewController * controller = (ViewController *)mainWindow.contentViewController;
+        
+        NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
+        [NSApp runModalForWindow:windowController.window];
+    }
 }
 
 - (IBAction)onMenuHide:(NSMenuItem *)sender {
