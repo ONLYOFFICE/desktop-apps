@@ -64,8 +64,8 @@ fi
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
-mkdir -p /var/lib/ivolgapro/desktopeditors
-chmod -R 777 /var/lib/ivolgapro/desktopeditors
+mkdir -p /var/lib/ivolgapro
+chmod -R 777 /var/lib/ivolgapro
 
 ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
 
