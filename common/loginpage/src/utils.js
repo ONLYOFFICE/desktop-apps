@@ -198,3 +198,13 @@ utils.fn.extend = function(dest, src) {
 
     return dest;
 };
+
+utils.fn.parseVersion = function(str) {
+    var _re_edition = /edition\:([\w\s]+)/.exec(str),
+        _re_version = /num\:([\d\.]+)/.exec(str);
+
+    return {
+        edition: !!_re_edition ? _re_edition[1] : undefined,
+        version: !!_re_version ? _re_version[1] : undefined
+    }
+};
