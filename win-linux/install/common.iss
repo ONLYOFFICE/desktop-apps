@@ -307,7 +307,7 @@ Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName:
 #ifdef _IVOLGA_PRO
 Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
-Source: ..\..\common\loginpage\deploy\index.ivolga.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 Source: ..\..\common\package\license\License_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 #else
 Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 

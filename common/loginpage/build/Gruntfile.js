@@ -274,7 +274,7 @@ module.exports = function(grunt) {
                 my_target: {
                     files: {
                         '../deploy/build.min.js' : ['../deploy/build.js'],
-                        '../deploy/build.ivolga.min.js' : ['../deploy/build.ivolga.js']
+                        '../deploy/build.ivolgapro.min.js' : ['../deploy/build.ivolgapro.js']
                     }
                 }
             },
@@ -288,7 +288,7 @@ module.exports = function(grunt) {
                     },
                     files: {
                         '../deploy/index.html': '../deploy/index.html',
-                        '../deploy/index.ivolga.html': '../deploy/index.ivolga.html'
+                        '../deploy/index.ivolgapro.html': '../deploy/index.ivolgapro.html'
                     }
                 }
             },
@@ -305,7 +305,7 @@ module.exports = function(grunt) {
     grunt.registerTask('compile-html', function(){
         if (!grunt.option('external-image')) {
             grunt.config('replace.insert-css', {
-                    src: ['../deploy/index.html','../deploy/index.ivolga.html'],
+                    src: ['../deploy/index.html','../deploy/index.ivolgapro.html'],
                     overwrite: true,
                     replacements: [{
                         from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,
