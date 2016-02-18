@@ -271,6 +271,16 @@ module.exports = function(grunt) {
                         drop_console: true
                     }
                 },
+                separate_target: {
+                    options: {
+                        mangle: {
+                            sort: true
+                        }
+                    },
+                    files: {
+                        '../src/dlglogin.min.js' : ['../src/dlglogin.js']
+                    }
+                },
                 my_target: {
                     files: {
                         '../deploy/build.min.js' : ['../deploy/build.js'],
@@ -351,7 +361,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'concat', 'clean', 'uglify', 'htmlmin', 'compile-html']);
+    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'uglify:separate_target', 'concat', 'clean', 'uglify', 'htmlmin', 'compile-html']);
 
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };
