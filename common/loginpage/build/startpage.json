@@ -55,7 +55,7 @@
                     "../src/utils.js"
                     ,"../src/locale.js"
                     ,"../src/templates.js"
-                    ,"../src/dlglogin.js"
+                    ,"../src/dlglogin.min.js"
                     ,"../src/panels.js"
                     ,"../src/model.js"
                     ,"../src/menu.js"
