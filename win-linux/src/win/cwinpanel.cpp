@@ -111,7 +111,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
         QFile _file(_file_name);
         bool _is = _file.open(QFile::WriteOnly);
         if (_is) {
-            _file.write("ȒѬ", 2);
+            _file.write("ȒѬ  ", 7);
             _file.close();
 
             SetFileAttributes(_file_name.toStdWString().c_str(), FILE_ATTRIBUTE_HIDDEN);
