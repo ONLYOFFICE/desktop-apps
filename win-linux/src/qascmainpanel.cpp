@@ -51,6 +51,7 @@
 #include "qascprinter.h"
 #include "../common/libs/common/Types.h"
 #include "cmessage.h"
+#include "utils.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
