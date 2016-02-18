@@ -120,38 +120,15 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
         _reg_user.setValue("license", "1");
     }
 
-    QTimer * _timer = new QTimer;
-    connect(_timer, &QTimer::timeout, [=]{
-        if (m_pMainPanel->isVisible()) {
-            _timer->stop();
-            delete _timer;
-
-            m_pMainPanel->checkActivation();
-            parseInputArgs(qApp->arguments());
-        }
-    });
-    _timer->start(2000);
+    parseInputArgs(qApp->arguments());
 }
 
-void CWinPanel::parseInputArgs(const QStringList& inlist)
+void CWinPanel::parseInputArgs(const QStringList& args)
 {
-    QStringList * in_files = new QStringList;
-
-    QStringListIterator i(inlist); i.next();
-    while (i.hasNext()) {
-        QFileInfo info(i.next());
-        if (info.isFile()) {
-            in_files->append(info.absoluteFilePath());
-        }
-    }
-
-    if (in_files->size()) {
-        QTimer::singleShot(10, this, [this, in_files]{
-            m_pMainPanel->doOpenLocalFiles(*in_files);
-            delete in_files;
-        });
-    } else {
-        delete in_files;
+    int _arg_i;
+    if (!(_arg_i = args.indexOf(QRegExp(reCmdKeepLang)) < 0)) {
+        GET_REGISTRY_USER(_reg_user);
+        _reg_user.setValue("locale", args.at(_arg_i).right(2));
     }
 }
 
