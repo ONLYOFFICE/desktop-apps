@@ -107,6 +107,9 @@
 "Rich Text Document" = "Расширенный текстовый формат";
 
 /* No comment provided by engineer. */
+"Select how you will use %@" = "Выберите каким образом вы будете использовать %@";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Книга %ld.xlsx";
 
 /* No comment provided by engineer. */
@@ -138,6 +141,9 @@ You cannot create and edit local files." = "Незарегистрированн
 
 /* No comment provided by engineer. */
 "Web Page" = "Веб страница";
+
+/* No comment provided by engineer. */
+"Welcome to %@" = "Добро пожаловать в %@";
 
 /* No comment provided by engineer. */
 "Word 97-2003 Document" = "Документ Word 97-2003";
