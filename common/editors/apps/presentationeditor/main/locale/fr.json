@@ -323,6 +323,7 @@
   "PE.Views.FileMenu.btnReturnCaption": "Retour à la présentation",
   "PE.Views.FileMenu.btnRightsCaption": "Access Rights...",
   "PE.Views.FileMenu.btnSaveAsCaption": "Enregistrer sous",
+  "del_PE.Views.FileMenu.btnSaveAs": "Enregistrer sous",
   "PE.Views.FileMenu.btnSaveCaption": "Enregistrer",
   "PE.Views.FileMenu.btnSettingsCaption": "Paramètres avancés...",
   "PE.Views.FileMenu.btnToEditCaption": "Modifier la présentation",
