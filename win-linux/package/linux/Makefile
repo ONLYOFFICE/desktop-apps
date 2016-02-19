@@ -36,21 +36,43 @@ DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 DOCUMENTSERVER = common/documentserver
 
+PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
+CONVERTER_PATH := $(PROGRAM_PATH)/converter
+FONTS_PATH := common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
+LOCAL_PATH := common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+
 ifeq ($(COMPANY_NAME), onlyoffice)
 INDEX_HTML := index.html
 else
 INDEX_HTML := index.$(COMPANY_NAME).html
 endif
 
-.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version
+RPM_DEPENDENCY += desktopeditor
+RPM_DEPENDENCY += rpm-version
+RPM_DEPENDENCY += $(RPM)
 
-all: rpm apt-rpm deb
+ifeq ($(RPM_REPO_OS_VER), 6)
+RPM_DEPENDENCY += libstdc++-addon
+RPM_DEPENDENCY += libc-addon
+endif
 
-rpm: desktopeditor rpm-version $(RPM)
+DEB_DEPENDENCY += desktopeditor
+DEB_DEPENDENCY += deb-version
+DEB_DEPENDENCY += $(DEB)
 
-deb: desktopeditor deb-version $(DEB)
+ifeq ($(DEB_REPO_OS_VER), precise)
+DEB_DEPENDENCY += libstdc++-addon
+endif
 
-apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version libstdc++-addon libc-addon
+
+all: rpm deb apt-rpm
+
+rpm: $(RPM_DEPENDENCY)
+
+deb: $(DEB_DEPENDENCY)
+
+apt-rpm: desktopeditor libstdc++-addon apt-rpm-version $(APT_RPM)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
@@ -59,36 +81,62 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
-	cp -rf ../../../common/converter/linux/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter
+	mkdir -p $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/linux/* $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/empty $(CONVERTER_PATH)
 
-	cp -rf ../../../common/package/dictionaries common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
-	cp -rf ../../../common/editors common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
+	cp -rf ../../../common/editors $(PROGRAM_PATH)/
 
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
-	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/
+	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
 
+	mkdir -p $(LOCAL_PATH)
+	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) $(LOCAL_PATH)/index.html
 
-	mkdir -p common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local/index.html
+	mkdir -p $(LOCAL_PATH)/fonts
+	cp  ../../../common/package/fonts/OpenSans-*.ttf $(LOCAL_PATH)/fonts
 
-	mkdir -p common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
-	cp  ../../../common/package/fonts/OpenSans-*.ttf common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/local/fonts
+	mkdir -p $(FONTS_PATH)
+	cp  ../../../common/package/fonts/Carlito-*.ttf $(FONTS_PATH)
+	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
 
-	mkdir -p common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-	cp  ../../../common/package/fonts/Carlito-*.ttf common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-	cp  ../../../common/package/fonts/Asana-Math.ttf common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-
-	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/DesktopEditors
-	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/HtmlFileInternal
-	chmod 777 common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)/converter/x2t
+	chmod 777 $(PROGRAM_PATH)/DesktopEditors
+	chmod 777 $(CONVERTER_PATH)/HtmlFileInternal
+	chmod 777 $(CONVERTER_PATH)/x2t
 
 	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
+
+libstdc++-addon:
+	LIB_X64=/lib/x86_64-linux-gnu
+	USR_LIB_X64=/usr/lib/x86_64-linux-gnu \
+	cp -t $(PROGRAM_PATH)/ \
+		USR_LIB_X64/libffi.so.6 \
+		USR_LIB_X64/libgio-2.0.so.0 \
+		LIB_X64/libglib-2.0.so.0 \
+		USR_LIB_X64/libgmodule-2.0.so.0 \
+		USR_LIB_X64/libgobject-2.0.so.0 \
+		LIB_X64/libpcre.so.3 \
+		USR_LIB_X64/libstdc++.so.6
+
+	sed 's/libstdc++6 (>=4.8),//'  -i deb/$(PACKAGE_NAME)/DEBIAN/control  
+	sed 's/libstdc++ >= 4.8.0,//'  -i rpm/$(PACKAGE_NAME).spec
+	sed 's/libstdc++ >= 4.8.0,//'  -i apt-rpm/$(PACKAGE_NAME).spec
+
+libc-addon:
+	LIB_X64=/lib/x86_64-linux-gnu \
+	cp -t $(PROGRAM_PATH)/ \
+		LIB_X64/ld-linux-x86-64.so.2 \
+		LIB_X64/libc.so.6
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
+
+ifeq ($(RPM_REPO_OS_VER), 6)
+	rm -rf $(PROGRAM_PATH)/platformthemes/
+endif
 
 deb-version:
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
