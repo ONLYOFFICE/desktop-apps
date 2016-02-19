@@ -8,7 +8,7 @@ URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
 Requires: libX11, libXScrnSaver, libcurl, libgtkglext, libcairo, fonts-ttf-dejavu
-Suggests: fonts-ttf-liberation, fonts-ttf-ms, fonts-ttf-crosextra-carlito
+#Suggests: fonts-ttf-liberation, fonts-ttf-ms, fonts-ttf-crosextra-carlito
 BuildArch: x86_64
 AutoReq: no
 AutoProv: no

@@ -8,7 +8,7 @@ URL: http://ivolgapro.com/
 Vendor: Novie kommunikacionnie tehnologii, CJSC
 Packager: Novie kommunikacionnie tehnologii, CJSC <support@ivolgapro.ru>
 Requires: libX11, libXScrnSaver, libcurl, libgtkglext, libcairo, fonts-ttf-dejavu
-Suggests: fonts-ttf-liberation, fonts-ttf-ms, fonts-ttf-crosextra-carlito
+#Suggests: fonts-ttf-liberation, fonts-ttf-ms, fonts-ttf-crosextra-carlito
 BuildArch: x86_64
 AutoReq: no
 AutoProv: no
