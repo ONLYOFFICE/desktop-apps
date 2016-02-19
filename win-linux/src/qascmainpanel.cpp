@@ -1370,7 +1370,7 @@ void QAscMainPanel::onStartPageReady()
 {
 #ifdef _WIN32
     if (g_splash) {
-        g_splash->setParent((QWidget *)parent());
+//        g_splash->setParent((QWidget *)parent());
         g_splash->close();
 
         delete g_splash, g_splash = NULL;
@@ -1381,14 +1381,16 @@ void QAscMainPanel::onStartPageReady()
     _ver.append(";num:").append(VER_FILEVERSION_STR);
 //    cmdMainPage("app:version", _ver);
 
-    checkActivation();
+    QTimer::singleShot(200, this, [=]{
+        checkActivation();
 
-    QStringList * in_files = Utils::getInputFiles(qApp->arguments());
+        QStringList * in_files = Utils::getInputFiles(qApp->arguments());
 
-    if (in_files->size())
-        doOpenLocalFiles(*in_files);
+        if (in_files->size())
+            doOpenLocalFiles(*in_files);
 
-    delete in_files;
+        delete in_files;
+    });
 }
 
 void QAscMainPanel::cmdMainPage(const QString& cmd, const QString& args) const
