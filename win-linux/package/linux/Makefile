@@ -49,20 +49,18 @@ endif
 
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
-RPM_DEPENDENCY += $(RPM)
-
 ifeq ($(RPM_REPO_OS_VER), 6)
 RPM_DEPENDENCY += libstdc++-addon
 RPM_DEPENDENCY += libc-addon
 endif
+RPM_DEPENDENCY += $(RPM)
 
 DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
-DEB_DEPENDENCY += $(DEB)
-
 ifeq ($(DEB_REPO_OS_VER), precise)
 DEB_DEPENDENCY += libstdc++-addon
 endif
+DEB_DEPENDENCY += $(DEB)
 
 LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
