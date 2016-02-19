@@ -47,15 +47,32 @@ else
 INDEX_HTML := index.$(COMPANY_NAME).html
 endif
 
-.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version
+RPM_DEPENDENCY += desktopeditor
+RPM_DEPENDENCY += deb-version
+RPM_DEPENDENCY += $(DEB)
 
-all: rpm apt-rpm deb
+ifeq ($(RPM_REPO_OS_VER), 6)
+RPM_DEPENDENCY += libstdc++-addon
+RPM_DEPENDENCY += libc-addon
+endif
 
-rpm: desktopeditor rpm-version $(RPM)
+DEB_DEPENDENCY += desktopeditor
+DEB_DEPENDENCY += deb-version
+DEB_DEPENDENCY += $(DEB)
 
-deb: desktopeditor deb-version $(DEB)
+ifeq ($(DEB_REPO_OS_VER), precise)
+DEB_DEPENDENCY += libstdc++-addon
+endif
 
-apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version libstdc++-addon libc-addon
+
+all: rpm deb apt-rpm
+
+rpm: $(RPM_DEPENDENCY)
+
+deb: $(DEB_DEPENDENCY)
+
+apt-rpm: desktopeditor libstdc++-addon apt-rpm-version $(APT_RPM)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
@@ -74,7 +91,6 @@ desktopeditor:
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
 	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
 
-
 	mkdir -p $(LOCAL_PATH)
 	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) $(LOCAL_PATH)/index.html
 
@@ -91,11 +107,33 @@ desktopeditor:
 
 	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
 
+libstdc++-addon:
+	LIB_X64=/lib/x86_64-linux-gnu
+	USR_LIB_X64=/usr/lib/x86_64-linux-gnu \
+	cp -t $(PROGRAM_PATH)/ \
+		USR_LIB_X64/libffi.so.6 \
+		USR_LIB_X64/libgio-2.0.so.0 \
+		LIB_X64/libglib-2.0.so.0 \
+		USR_LIB_X64/libgmodule-2.0.so.0 \
+		USR_LIB_X64/libgobject-2.0.so.0 \
+		LIB_X64/libpcre.so.3 \
+		USR_LIB_X64/libstdc++.so.6
+
+	sed 's/libstdc++6 (>=4.8),//'  -i deb/$(PACKAGE_NAME)/DEBIAN/control  
+	sed 's/libstdc++ >= 4.8.0,//'  -i rpm/$(PACKAGE_NAME).spec
+	sed 's/libstdc++ >= 4.8.0,//'  -i apt-rpm/$(PACKAGE_NAME).spec
+
+libc-addon:
+	LIB_X64=/lib/x86_64-linux-gnu \
+	cp -t $(PROGRAM_PATH)/ \
+		LIB_X64/ld-linux-x86-64.so.2 \
+		LIB_X64/libc.so.6
+
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
-  
+
 ifeq ($(RPM_REPO_OS_VER), 6)
 	rm -rf $(PROGRAM_PATH)/platformthemes/
 endif
