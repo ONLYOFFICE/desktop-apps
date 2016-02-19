@@ -274,7 +274,7 @@ $(document).ready(function() {
     $('.newportal').click(function(){
         window.open('https://www.onlyoffice.com/registration.aspx');
     });
-    
+
     if (!window.LoginDlg) {
         $('.tools-connect').hide();
         hideAction('connect');
@@ -308,6 +308,8 @@ $(document).ready(function() {
         if (window.AscDesktopEditor) {
             window.AscDesktopEditor.LocalFileRecovers();
             window.AscDesktopEditor.LocalFileRecents();
+
+            window.AscDesktopEditor.execCommand('app:onready', '');
         } 
     }, 50);
 });
@@ -547,13 +549,22 @@ window.on_native_message = function(cmd, param) {
         let hide = param == '1';
         let panel = /\:hide\:(\w+)$/.exec(cmd)[1];
 
-    console.log("hide panel: ", panel, hide);
         if (panel.length) {
             hideAction(panel, hide);
         }
+    } else
+    if (/app\:version/.test(cmd)) {
+        fillVersion(param);
     }
     
     console.log(cmd, param);
+};
+
+function fillVersion(version) {
+    var _v = utils.fn.extend(utils.fn.parseVersion(version));
+
+    Templates.createAboutPanel($('.action-panel.about'), _v);
+    $('a[action=about]').parent().removeClass('extra');
 };
 
 function openFile(type, params) {

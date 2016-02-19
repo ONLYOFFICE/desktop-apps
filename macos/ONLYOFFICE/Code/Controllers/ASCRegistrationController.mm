@@ -187,7 +187,11 @@
     
     NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
     keyData->put_Path([licenseDirectory stdwstring]);
-    keyData->put_ProductId(ONLYOFFICE_PRODUCT_ID);
+#ifdef _PRODUCT_IVOLGA
+    keyData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#else
+    keyData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
+#endif
     keyData->put_Key([[self.keyField stringValue] stdstring]);
     
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);

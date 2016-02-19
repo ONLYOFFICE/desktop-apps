@@ -176,12 +176,6 @@ window.LoginDlg = function() {
             return;
         }
 
-        /* onlyoffice.com|.eu|.sg */
-        if (!/\x6F\x6E\x6C\x79\x6F\x66\x66\x69\x63\x65\x2E(?:\x63\x6F\x6D|\x65\x75|\x73\x67)$/.test(portal)) {
-            showLoginError('prohibited portal name', '#auth-portal');
-            return;
-        }
-
         var url         = protocol + portal + "/api/2.0/authentication.json";
         var check_url   = protocol + portal + "/api/2.0/people/@self.json";        
 

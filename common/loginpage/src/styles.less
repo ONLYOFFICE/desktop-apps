@@ -283,6 +283,7 @@ li.menu-item {
 }
 
 .tool-menu {
+    position: relative;
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
 
@@ -300,6 +301,12 @@ li.menu-item {
 
         a {
             line-height: 55px;
+        }
+        
+        &.bottom {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
     }
 }
@@ -670,4 +677,17 @@ li.menu-item {
         margin: 60px 0 20px;
     }
 
+}
+
+.box-ver {
+    text-align: left;
+    font-size: 13px;
+
+    .row-copyright {
+        margin-bottom: 0;
+    }
+
+    .row-link {
+        margin-top: 0;
+    }
 }

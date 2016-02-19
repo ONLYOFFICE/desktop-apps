@@ -45,6 +45,7 @@
 
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
+#include "../utils.h"
 
 #include <QSettings>
 #include <QDebug>
@@ -437,13 +438,18 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
 
             if (szArglist != NULL) {
-                QStringList in_files;
+                QStringList _in_args;
                 for(int i(0); i < nArgs; i++) {
-                    in_files.append(QString::fromStdWString(szArglist[i]));
+                    _in_args.append(QString::fromStdWString(szArglist[i]));
                 }
 
-                if (in_files.size()) {
-                    window->m_pWinPanel->parseInputArgs(in_files);
+                if (_in_args.size()) {
+                    QStringList * _file_list = Utils::getInputFiles(_in_args);
+
+                    if (_file_list->size())
+                        window->m_pWinPanel->getMainPanel()->doOpenLocalFiles(*_file_list);
+
+                    delete _file_list;
                 }
             }
 

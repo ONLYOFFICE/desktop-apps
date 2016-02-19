@@ -36,6 +36,7 @@
 	{"src": "HelpfulHints/Navigation.htm", "name": "View Settings and Navigation Tools"},
 	{"src": "HelpfulHints/Search.htm", "name": "Search and Replace Function"},
 	{"src": "HelpfulHints/CollaborativeEditing.htm", "name": "Collaborative Document Editing"},
+	{"src": "HelpfulHints/Review.htm", "name": "Document Review"},
 	{"src": "HelpfulHints/SpellChecking.htm", "name": "Spell-checking"},
 	{"src": "HelpfulHints/KeyboardShortcuts.htm", "name": "Keyboard Shortcuts"}
 ]

@@ -734,6 +734,7 @@ void CAscTabWidget::setFullScreen(bool apply)
             if (grandpa) fsWidget->setParent(grandpa);
 #endif
             fsWidget->showFullScreen();
+            ((QCefView *)fsWidget)->GetCefView()->focus();
 
             cefConnection = connect((QCefView *)fsWidget, &QCefView::closeWidget, [=](QCloseEvent * e){
                 e->ignore();
