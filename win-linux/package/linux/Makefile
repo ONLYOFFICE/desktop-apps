@@ -108,16 +108,16 @@ desktopeditor:
 	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
 
 libstdc++-addon:
-	LIB_X64=/lib/x86_64-linux-gnu
+	LIB_X64=/lib/x86_64-linux-gnu \
 	USR_LIB_X64=/usr/lib/x86_64-linux-gnu \
 	cp -t $(PROGRAM_PATH)/ \
-		USR_LIB_X64/libffi.so.6 \
-		USR_LIB_X64/libgio-2.0.so.0 \
-		LIB_X64/libglib-2.0.so.0 \
-		USR_LIB_X64/libgmodule-2.0.so.0 \
-		USR_LIB_X64/libgobject-2.0.so.0 \
-		LIB_X64/libpcre.so.3 \
-		USR_LIB_X64/libstdc++.so.6
+		$$USR_LIB_X64/libffi.so.6 \
+		$$USR_LIB_X64/libgio-2.0.so.0 \
+		$$LIB_X64/libglib-2.0.so.0 \
+		$$USR_LIB_X64/libgmodule-2.0.so.0 \
+		$$USR_LIB_X64/libgobject-2.0.so.0 \
+		$$LIB_X64/libpcre.so.3 \
+		$$USR_LIB_X64/libstdc++.so.6
 
 	sed 's/libstdc++6 (>=4.8),//'  -i deb/$(PACKAGE_NAME)/DEBIAN/control  
 	sed 's/libstdc++ >= 4.8.0,//'  -i rpm/$(PACKAGE_NAME).spec
@@ -126,8 +126,8 @@ libstdc++-addon:
 libc-addon:
 	LIB_X64=/lib/x86_64-linux-gnu \
 	cp -t $(PROGRAM_PATH)/ \
-		LIB_X64/ld-linux-x86-64.so.2 \
-		LIB_X64/libc.so.6
+		$$LIB_X64/ld-linux-x86-64.so.2 \
+		$$LIB_X64/libc.so.6
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
