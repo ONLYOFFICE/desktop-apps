@@ -56,6 +56,7 @@
 #include "cprintdialog.h"
 #include "../defines.h"
 
+#include "../cchooselicensedialog.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -135,6 +136,9 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
         _reg_user.setValue("license", "1");
     }
+
+//    CChooseLicenseDialog dlg(this);
+//    dlg.exec();
 
     parseInputArgs(qApp->arguments());
 }
