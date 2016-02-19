@@ -163,10 +163,48 @@ window.Templates = (function() { 'use strict';
         return $('.action-panel.activate').append(_html);
     };
 
+    function getAboutPanel(holder, opts) {
+        var _html = '<div class="box-ver">' +
+                      '<img class="ver-logo %brand">'+                      
+                      '<div class="ver-version">%appname ver. %ver</div>%edition<p></p>'+
+                      '<div class="ver-copyright">%cpr</div>'+
+                      '<a class="ver-site" target="popup" href="%link">%txtlink</a>'
+                    '</div>';
+
+        _html = _html
+                .replace(/\%edition/,!!opts.edition?'<div class="ver-edition">%edition</div>':'')
+                .replace(/\%edition/, opts.edition);
+
+        let _img_cls, _cpr, _link, _site, _app;
+        if (opts.brand=='ivo') {
+            _img_cls = 'ivolga';
+            _cpr = '© 2015-2016 ЗАО "НКТ"';
+            _link = 'http://ivolgapro.ru';
+            _site = 'www.ivolgapro.ru';
+            _app = utils.Lang._code=='ru'?'Иволга ПРО':'IvolgaPRO';
+        } else {
+            _img_cls = 'only';
+            _cpr = '© 2016 Ascensio System SIA';
+            _link = 'http://onlyoffice.com';
+            _site = 'www.onlyoffice.com';
+            _app = 'ONLYOFFICE Desktop Editors'
+        }
+        
+        _html = _html.replace(/\%brand/, _img_cls)
+            .replace(/\%cpr/, _cpr)
+            .replace(/\%ver/, opts.version)
+            .replace(/\%link/, _link)
+            .replace(/\%txtlink/, _site)
+            .replace(/\%appname/, _app);
+
+        return $(holder).append(_html);
+    };
+
     return {
         createActivationPanel: addActivatePanel,
         addConnectPanel: addConnectPanel,
         createWelcomePanel: addWelcomePanel,
+        createAboutPanel: getAboutPanel,
         insertFilesTable: addRecentFiles,
         produceFilesItem: makeFilesItem,
         producePortalItem: makePortalItem

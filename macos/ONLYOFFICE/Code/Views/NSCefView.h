@@ -48,6 +48,7 @@
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 - (void)setParentCef:(int)idx;
 - (void)internalClean;
+- (void)focus;
 
 - (void)loadWithUrl:(NSString *)url;
 - (void)createFileWithName:(NSString *)name type:(NSInteger)type;

@@ -80,6 +80,7 @@ private:
     wstring commonDataPath() const;
     void doLicenseWarning(void *);
     void syncLicenseToJS(bool, bool proceed = true);
+    void cmdMainPage(const QString&, const QString&) const;
 
     void fillUserName(QString& fn, QString& ln);
 signals:
@@ -127,6 +128,8 @@ public slots:
     void onPortalLogout(QString);
     void onActivate(QString);
     void onActivated(void *);
+
+    void onStartPageReady();
 
 private:
     std::wstring    m_sDownloadName;

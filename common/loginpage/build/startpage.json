@@ -20,7 +20,7 @@
                 },
                 {
                     "src": "../src/index.html.ivolga.deploy",
-                    "dest": "../deploy/index.ivolga.html"
+                    "dest": "../deploy/index.ivolgapro.html"
                 },
                 {
                     "src": "../vendor/jquery/jquery.min.js",
@@ -55,7 +55,7 @@
                     "../src/utils.js"
                     ,"../src/locale.js"
                     ,"../src/templates.js"
-                    ,"../src/dlglogin.js"
+                    ,"../src/dlglogin.min.js"
                     ,"../src/panels.js"
                     ,"../src/model.js"
                     ,"../src/menu.js"
@@ -72,7 +72,7 @@
                     ,"../src/model.js"
                     ,"../src/menu.js"
                 ],
-                "dest": "../deploy/build.ivolga.js"
+                "dest": "../deploy/build.ivolgapro.js"
             }
         }
     },

@@ -191,6 +191,10 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
             QMetaObject::invokeMethod( pObjParent, "onActivate", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         }
+        else
+        if (cmd.compare(L"app:onready") == 0) {
+            QMetaObject::invokeMethod( pObjParent, "onStartPageReady", Qt::QueuedConnection );
+        }
         break;
     }
     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL:
