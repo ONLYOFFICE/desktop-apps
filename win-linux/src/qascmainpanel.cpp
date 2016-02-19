@@ -51,11 +51,14 @@
 #include "qascprinter.h"
 #include "../common/libs/common/Types.h"
 #include "cmessage.h"
+#include "utils.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
 #include "shlobj.h"
+#include <QSplashScreen>
 
+extern QSplashScreen * g_splash;
 extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
@@ -1200,9 +1203,9 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
     QFileInfo info(QString::fromStdWString(pData->get_Path()));
-    if (info.absoluteDir().exists()) {
-        m_lastSavePath = info.absoluteDir().absolutePath();
-    }
+//    if (info.absoluteDir().exists()) {
+//        m_lastSavePath = info.absoluteDir().absolutePath();
+//    }
 
     if (!QDir(m_lastSavePath).exists()) {
         m_lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
@@ -1225,7 +1228,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         if (dlg.modalSaveAs(fullPath)) {
             GET_REGISTRY_USER(_reg_user);
 
-            m_lastSavePath = QDir(fullPath).absolutePath();
+            m_lastSavePath = QFileInfo(fullPath).absoluteDir().absolutePath();
             _reg_user.setValue("savePath", m_lastSavePath);
 
             pSaveData->put_Path(fullPath.toStdWString());
@@ -1257,19 +1260,6 @@ void QAscMainPanel::onFullScreen(bool apply)
         emit mainWindowChangeState(m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState);
         m_pTabs->setFullScreen(apply);
     }
-
-//    if (!apply) {
-//        ShowWindow(parentWindow(), m_isMaximized ? SW_MAXIMIZE : SW_SHOW);
-//        m_pTabs->setFullScreen(apply);
-//    } else {
-//        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-//        GetWindowPlacement(parentWindow(), &wp);
-
-//        m_isMaximized = wp.showCmd == SW_MAXIMIZE;
-
-//        m_pTabs->setFullScreen(apply);
-//        ShowWindow(parentWindow(), SW_HIDE);
-//    }
 }
 
 void QAscMainPanel::onKeyDown(void * eventData)
@@ -1343,9 +1333,11 @@ wstring QAscMainPanel::commonDataPath() const
 #else
     sAppData = QString("/var/lib").append(APP_LICENSE_PATH).toStdWString();
     QFileInfo fi(QString::fromStdWString(sAppData));
-    if (fi.isDir() && !fi.isWritable()) {
-        // TODO: check directory permissions and warn the user
-        qDebug() << "directory permission error";
+    if (!QDir().mkpath(fi.absoluteFilePath())) {
+        if (!fi.isWritable()) {
+            // TODO: check directory permissions and warn the user
+            qDebug() << "directory permission error";
+        }
     }
 #endif
 
@@ -1354,23 +1346,10 @@ wstring QAscMainPanel::commonDataPath() const
 
 void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 {
-    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(L"lic:active");
-    pCommand->put_Param(QString::number(active).toStdWString());
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-    pEvent->m_pData = pCommand;
-
-    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+    cmdMainPage("lic:active", QString::number(active));
 
     if (!active && proceed) {
-        pCommand = new CAscExecCommandJS;
-        pCommand->put_Command(L"lic:selectpanel");
-
-        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-        pEvent->m_pData = pCommand;
-
-        ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+        cmdMainPage("lic:selectpanel", "");
     }
 }
 
@@ -1384,4 +1363,46 @@ void QAscMainPanel::selfActivation()
     pEvent->m_pData = pData;
 
     m_pManager->Apply(pEvent);
+}
+
+#include "version.h"
+void QAscMainPanel::onStartPageReady()
+{
+#ifdef _WIN32
+    if (g_splash) {
+        g_splash->setParent((QWidget *)parent());
+        g_splash->close();
+
+        delete g_splash, g_splash = NULL;
+    }
+#endif
+
+    QString _ver = "edition:"+tr("Home Edition");
+    _ver.append(";num:").append(VER_FILEVERSION_STR);
+//    cmdMainPage("app:version", _ver);
+
+    checkActivation();
+
+    QStringList * in_files = Utils::getInputFiles(qApp->arguments());
+
+    if (in_files->size())
+        doOpenLocalFiles(*in_files);
+
+    delete in_files;
+}
+
+void QAscMainPanel::cmdMainPage(const QString& cmd, const QString& args) const
+{
+    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+    pCommand->put_Command(cmd.toStdWString());
+    if (args.size())
+        pCommand->put_Param(args.toStdWString());
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
+
+//    RELEASEOBJECT(pEvent)
+//    RELEASEOBJECT(pCommand)
 }

@@ -323,6 +323,7 @@
   "PE.Views.FileMenu.btnReturnCaption": "Sunuma Geri Dön",
   "PE.Views.FileMenu.btnRightsCaption": "Access Rights...",
   "PE.Views.FileMenu.btnSaveAsCaption": "Save as",
+  "del_PE.Views.FileMenu.btnSaveAs": "Save as",
   "PE.Views.FileMenu.btnSaveCaption": "Kaydet",
   "PE.Views.FileMenu.btnSettingsCaption": "Gelişmiş Ayarlar...",
   "PE.Views.FileMenu.btnToEditCaption": "Sunumu Düzenle",
