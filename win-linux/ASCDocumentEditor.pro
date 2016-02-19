@@ -35,6 +35,7 @@ HEADERS += \
     src/ccefeventstransformer.h \
     src/qascmainpanel.h \
     src/cascapplicationmanagerwrapper.h \
+    src/cchooselicensedialog.h \
     src/ctabbar.h \
     src/casctabdata.h \
     src/cmessage.h \
@@ -56,6 +57,7 @@ SOURCES += \
     src/cfiledialog.cpp \
     src/cprintprogress.cpp \
     src/ccefeventstransformer.cpp \
+    src/cchooselicensedialog.cpp \
     src/qascmainpanel.cpp \
     src/ctabbar.cpp \
     src/casctabdata.cpp \

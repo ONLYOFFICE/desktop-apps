@@ -108,6 +108,8 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
     connect(btn_yes, &QPushButton::clicked, this, &CSaveFileMessage::onYesClicked);
     connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
+
+    setStyleSheet("QPushButton:focus{border-color:#3a83db;}");
 }
 
 CSaveFileMessage::~CSaveFileMessage()
