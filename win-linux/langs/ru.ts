@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="182"/>
         <source>Logout</source>
-        <translation type="unfinished">Выйти</translation>
+        <translation>Выйти</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="626"/>
@@ -282,7 +282,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="876"/>
         <source>The program is unregistered</source>
-        <translation>Незарегистрированная версия приложения.&lt;br&gt;Вы не сможете создавать и редактировать&lt;br&gt;локальные файлы. Нажмите &quot;Купить&quot;, что бы приобрести лицензию.</translation>
+        <translation>Незарегистрированная версия приложения.&lt;br&gt;Вы не можете создавать и редактировать локальные файлы.&lt;br&gt;Нажмите &quot;Купить&quot;, чтобы приобрести лицензию.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="868"/>

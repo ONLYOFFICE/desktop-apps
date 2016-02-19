@@ -60,6 +60,12 @@
         <file>res/icons/splash.png</file>
         <file>res/icons/splash_2x.png</file>
     </qresource>
+    <qresource prefix="/license">
+        <file alias="busines.png">res/icons/lic_busines.png</file>
+        <file alias="busines@2x.png">res/icons/lic_busines_2x.png</file>
+        <file alias="home.png">res/icons/lic_home.png</file>
+        <file alias="home@2x.png">res/icons/lic_home_2x.png</file>
+    </qresource>
     <qresource prefix="/ivolga">
         <file alias="app.ico">res/icons/ivolga/desktopeditors.ico</file>
         <file alias="splash.png">res/icons/ivolga/splash.png</file>

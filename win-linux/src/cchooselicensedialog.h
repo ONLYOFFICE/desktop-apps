@@ -30,37 +30,28 @@
  *
 */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef CHOOSELICENSEDIALOG_H
+#define CHOOSELICENSEDIALOG_H
 
-#define VER_FILEVERSION             0,2,2,188
-#define VER_FILEVERSION_STR         "0.2.2.188\0"
+#include <QDialog>
 
-#define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "0.2\0"
+class CChooseLicenseDialog : public QDialog
+{
+    Q_OBJECT
+public:
+    explicit CChooseLicenseDialog(QWidget *parent = 0);
 
-#ifdef _IVOLGA_PRO
-#define VER_COMPANYNAME_STR         "Novie kommunikacionnie tehnologii CJSC\0"
-#define VER_FILEDESCRIPTION_STR     "Ivolga PRO\0"
-#define VER_INTERNALNAME_STR        "Desktop Editors\0"
-#define VER_LEGALCOPYRIGHT_STR      "Novie kommunikacionnie tehnologii CJSC, 2016\0"
-#define VER_LEGALTRADEMARKS1_STR    "All rights reserved\0"
-#define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
-#define VER_ORIGINALFILENAME_STR    "ivolgapro.exe\0"
-#define VER_PRODUCTNAME_STR         "Ivolga PRO\0"
-#define VER_COMPANYDOMAIN_STR       "www.ivolgapro.ru\0"
-#else
-#define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
-#define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"
-#define VER_INTERNALNAME_STR        "Desktop Editors\0"
-#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2016\0"
-#define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved\0"
-#define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
-#define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
-#define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
-#define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
+    int license() const;
+    void setEULAPath(const QString&);
 
-#endif
+private:
+    int m_license;
+    QString m_eulaPath;
 
-#endif
+    void reject();
+signals:
 
+public slots:
+};
+
+#endif // CHOOSELICENSEDIALOG_H
