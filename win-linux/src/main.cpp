@@ -148,8 +148,8 @@ int main( int argc, char *argv[] )
     g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
 
   #ifdef _IVOLGA_PRO
-    QSplashScreen splash(g_dpi_ratio > 1 ?
-            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"));
+    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
+            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"), Qt::WindowStaysOnTopHint);
   #else
     g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
             QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"),
@@ -175,10 +175,10 @@ int main( int argc, char *argv[] )
         g_lang = app.arguments().at(_arg_i).right(2);
     }
 
-#ifdef __linux
     if (!g_lang.size())
         g_lang = reg_user.value("locale").value<QString>();
 
+#ifdef __linux
     if (!g_lang.size()) {
   #ifdef _IVOLGA_PRO
         g_lang = "ru";
