@@ -64,7 +64,7 @@ ifeq ($(DEB_REPO_OS_VER), precise)
 DEB_DEPENDENCY += libstdc++-addon
 endif
 
-LIB_X64 := /lib/x86_64-linux-gnu \
+LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 .PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version libstdc++-addon libc-addon
