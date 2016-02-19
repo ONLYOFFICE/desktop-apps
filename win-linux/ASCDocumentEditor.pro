@@ -37,7 +37,8 @@ HEADERS += \
     src/cascapplicationmanagerwrapper.h \
     src/ctabbar.h \
     src/casctabdata.h \
-    src/cmessage.h
+    src/cmessage.h \
+    src/utils.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h

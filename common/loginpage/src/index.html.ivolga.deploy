@@ -277,6 +277,6 @@
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>
-    <script type="text/javascript" replace="yes" src="build.ivolga.min.js"></script>
+    <script type="text/javascript" replace="yes" src="build.ivolgapro.min.js"></script>
 </body>
 </html>

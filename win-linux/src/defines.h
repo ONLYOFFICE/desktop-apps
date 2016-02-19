@@ -33,8 +33,6 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define PROD_ID_DESKTOP_EDITORS 300
-
 #define rePortalName        "^https?:\\/\\/(.+)"
 #define reFileExtension     "\\.(\\w{1,10})$"
 #define reUserName          "([^\\.]+)\\.?([^\\.]+)?"
@@ -46,6 +44,8 @@
 #define FILE_DOWNLOAD_END       4
 
 #ifdef _IVOLGA_PRO
+  #define PROD_ID_DESKTOP_EDITORS 301
+
   #define APP_TITLE g_lang.compare("ru") == 0 ? "Иволга ПРО" : "Ivolga PRO"
   #define WINDOW_NAME APP_TITLE
 
@@ -59,8 +59,10 @@
     #define REG_GROUP_KEY "IvolgaPRO"
   #endif
 
-  #define URL_BUYNOW "http://ivolgapro.ru"
+  #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
 #else
+  #define PROD_ID_DESKTOP_EDITORS 300
+
   #define APP_NAME "DesktopEditors"
   #define APP_TITLE "ONLYOFFICE"
 
@@ -75,7 +77,7 @@
   #endif
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
-  #define URL_BUYNOW "http://onlyoffice.com"
+  #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400
