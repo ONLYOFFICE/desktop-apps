@@ -48,8 +48,8 @@ INDEX_HTML := index.$(COMPANY_NAME).html
 endif
 
 RPM_DEPENDENCY += desktopeditor
-RPM_DEPENDENCY += deb-version
-RPM_DEPENDENCY += $(DEB)
+RPM_DEPENDENCY += rpm-version
+RPM_DEPENDENCY += $(RPM)
 
 ifeq ($(RPM_REPO_OS_VER), 6)
 RPM_DEPENDENCY += libstdc++-addon
