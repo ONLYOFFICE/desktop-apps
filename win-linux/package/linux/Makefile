@@ -73,7 +73,7 @@ rpm: $(RPM_DEPENDENCY)
 
 deb: $(DEB_DEPENDENCY)
 
-apt-rpm: desktopeditor libstdc++-addon apt-rpm-version $(APT_RPM)
+apt-rpm: desktopeditor libstdc++-addon libc-addon apt-rpm-version $(APT_RPM)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
