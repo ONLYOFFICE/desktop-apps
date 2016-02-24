@@ -43,6 +43,9 @@
 #import "ASCSharedSettings.h"
 #import "ASCHelper.h"
 #import "ASCReplacePresentationAnimator.h"
+#import "applicationmanager.h"
+#import "mac_application.h"
+#import "NSString+OnlyOffice.h"
 
 @interface ASCTrialController ()
 @property (weak) IBOutlet NSTextField *headerField;
@@ -100,8 +103,30 @@
 #pragma mark Actions
 
 - (IBAction)onActivation:(NSButton *)sender {
-    NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationControllerId"];
-    [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
+    ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+    
+    if (licenseType == ASCVersionTypeForBusiness) {
+        NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationControllerId"];
+        [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
+    } else {
+        NSString * licenseDirectory = [ASCHelper licensePath];
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+        
+        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
+        generateLicenceData->put_Path([licenseDirectory stdwstring]);
+#ifdef _PRODUCT_IVOLGA
+        generateLicenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#else
+        generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
+#endif
+        
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE);
+        pEvent->m_pData = generateLicenceData;
+        
+        appManager->Apply(pEvent);
+
+        [self.view.window close];
+    }
 }
 
 - (IBAction)onContinue:(NSButton *)sender {
