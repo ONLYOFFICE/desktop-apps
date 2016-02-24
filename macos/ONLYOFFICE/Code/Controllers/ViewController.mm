@@ -154,6 +154,11 @@
                                              selector:@selector(onCEFPortalLogout:)
                                                  name:CEFEventNamePortalLogout
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLicenseInfo:)
+                                                 name:CEFEventNameLicenseInfo
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -230,7 +235,13 @@
                                           block:^{
                                               NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCVersionSelectWindowControllerId"];
                                               [activationWindow showWindow:self];
-                                              [self checkLicense];
+                                              
+                                              ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+                                              
+                                              // Check sync if a business license else async
+                                              if (licenseType == ASCVersionTypeForBusiness) {
+                                                  [self checkLicense];
+                                              }
                                           }];
     } else {
         [self checkLicense];
@@ -904,6 +915,17 @@
         }
     }
 }
+
+- (void)onCEFLicenseInfo:(NSNotification *)notification {
+    NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    
+    BOOL isLicence = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
+    
+    if (!isLicence) {
+        [self checkLicense];
+    }
+}
+
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
