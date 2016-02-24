@@ -870,7 +870,7 @@
         <source>$(PRODUCT_NAME)</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>1.0.9</source>
+        <source>1.1</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2016 Novye Kommunikacionnye Tehnologii, ZAO. All rights reserved.</source>
@@ -933,9 +933,17 @@
         <target>Acknowledgments</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Application activation failed">
+        <source>Application activation failed</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
         <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Check your Internet connection settings and retry activation the application.">
+        <source>Check your Internet connection settings and retry activation the application.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
