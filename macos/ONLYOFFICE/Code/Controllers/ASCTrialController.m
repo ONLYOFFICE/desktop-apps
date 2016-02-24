@@ -59,28 +59,36 @@
     NSString * productName = [ASCHelper appName];
     NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
     
+    BOOL isLicence      = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
+    BOOL isEnding       = (isLicence && [licenceInfo[@"daysLeft"] intValue] < 14);
+    BOOL isFree         = (isLicence && [licenceInfo[@"free"] boolValue]);
+    BOOL isDemo         = (isLicence && [licenceInfo[@"demo"] boolValue]);
+    BOOL isBusiness     = (isLicence && !isFree && !isDemo);
+    BOOL isServerError  = (licenceInfo && [licenceInfo[@"serverUnavailable"] boolValue]);
+    
     NSString * title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for evaluating %@!", nil), productName];
     NSString * message = [NSString stringWithFormat:NSLocalizedString(@"Unregistered application version.\nYou cannot create and edit local files.", nil)];
     
-    if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
-        if ([licenceInfo[@"demo"] boolValue]) {
-            // trial
-            message = [NSString stringWithFormat:NSLocalizedString(@"You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
-            
-            if ([licenceInfo[@"daysLeft"] intValue] < 1) {
-                // trial is end
-                message = [NSString stringWithFormat:NSLocalizedString(@"The trial period is over.\nYou cannot create and edit documents.", nil)];
-            }
-        } else {
-            title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for using %@!", nil), productName];
-            
-            if ([licenceInfo[@"daysLeft"] intValue] < 1) {
-                // license is end
-                message = [NSString stringWithFormat:NSLocalizedString(@"The license expired.\nYou cannot create and edit local files.", nil)];
-            } else if ([licenceInfo[@"daysLeft"] intValue] < 14) {
-                // license is ending
-                message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
-            }
+    if (isServerError) {
+        title = NSLocalizedString(@"Application activation failed", nil);
+        message = NSLocalizedString(@"Check your Internet connection settings and retry activation the application.", nil);
+    } else if (isDemo) {
+        // trial
+        message = [NSString stringWithFormat:NSLocalizedString(@"You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
+        
+        if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+            // trial is end
+            message = [NSString stringWithFormat:NSLocalizedString(@"The trial period is over.\nYou cannot create and edit documents.", nil)];
+        }
+    } else if (isBusiness) {
+        title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for using %@!", nil), productName];
+        
+        if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+            // license is end
+            message = [NSString stringWithFormat:NSLocalizedString(@"The license expired.\nYou cannot create and edit local files.", nil)];
+        } else if (isEnding) {
+            // license is ending
+            message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
         }
     }
     
