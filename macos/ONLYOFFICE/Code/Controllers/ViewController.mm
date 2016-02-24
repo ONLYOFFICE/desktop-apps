@@ -154,6 +154,11 @@
                                              selector:@selector(onCEFPortalLogout:)
                                                  name:CEFEventNamePortalLogout
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFLicenseInfo:)
+                                                 name:CEFEventNameLicenseInfo
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -222,13 +227,21 @@
 }
 
 - (void)startupActions {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
+    ASCVersionType versionType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"] || (ASCASCVersionTypeUnknown == versionType)) {
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                         repeats:NO
                                           block:^{
                                               NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCVersionSelectWindowControllerId"];
                                               [activationWindow showWindow:self];
-                                              [self checkLicense];
+                                              
+                                              ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+                                              
+                                              // Check sync if a business license else async
+                                              if (licenseType == ASCVersionTypeForBusiness) {
+                                                  [self checkLicense];
+                                              }
                                           }];
     } else {
         [self checkLicense];
@@ -263,18 +276,27 @@
     
     if (resultLicenceData) {
         licenceInfo = @{
-                        @"path"          : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
-                        @"product"       : @(resultLicenceData->get_ProductId()),
-                        @"daysLeft"      : @(resultLicenceData->get_DaysLeft()),
-                        @"daysBetween"   : @(resultLicenceData->get_DaysBetween()),
-                        @"licence"       : @(resultLicenceData->get_Licence()),
-                        @"demo"          : @(resultLicenceData->get_IsDemo())
+                        @"path"                 : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
+                        @"product"              : @(resultLicenceData->get_ProductId()),
+                        @"daysLeft"             : @(resultLicenceData->get_DaysLeft()),
+                        @"daysBetween"          : @(resultLicenceData->get_DaysBetween()),
+                        @"licence"              : @(resultLicenceData->get_Licence()),
+                        @"demo"                 : @(resultLicenceData->get_IsDemo()),
+                        @"free"                 : @(resultLicenceData->get_IsFree() && licenseType == ASCVersionTypeForHome),
+                        @"serverUnavailable"    : @(resultLicenceData->get_IsServerUnavailable())
                         };
         
         [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
     }
+
+    BOOL isLicence      = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
+    BOOL isEnding       = (isLicence && [licenceInfo[@"daysLeft"] intValue] < 14);
+    BOOL isFree         = (isLicence && [licenceInfo[@"free"] boolValue]);
+    BOOL isDemo         = (isLicence && [licenceInfo[@"demo"] boolValue]);
+    BOOL isBusiness     = (isLicence && !isFree && !isDemo);
+    BOOL isServerError  = (licenceInfo && [licenceInfo[@"serverUnavailable"] boolValue]);
     
-    if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 14 && ![licenceInfo[@"demo"] boolValue])) {
+    if (isServerError || !isLicence || ((isDemo || isBusiness) && isEnding)) {
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                         repeats:NO
                                           block:^{
@@ -893,6 +915,17 @@
         }
     }
 }
+
+- (void)onCEFLicenseInfo:(NSNotification *)notification {
+    NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    
+    BOOL isLicence = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
+    
+    if (!isLicence) {
+        [self checkLicense];
+    }
+}
+
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
