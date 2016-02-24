@@ -73,7 +73,7 @@ rpm: $(RPM_DEPENDENCY)
 
 deb: $(DEB_DEPENDENCY)
 
-apt-rpm: desktopeditor libstdc++-addon libc-addon apt-rpm-version $(APT_RPM)
+apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
@@ -109,23 +109,23 @@ desktopeditor:
 	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
 
 libstdc++-addon:
-	cp -t $(PROGRAM_PATH)/ \
-		$(USR_LIB_X64)/libffi.so.6 \
-		$(USR_LIB_X64)/libgio-2.0.so.0 \
-		$(LIB_X64)/libglib-2.0.so.0 \
-		$(USR_LIB_X64)/libgmodule-2.0.so.0 \
-		$(USR_LIB_X64)/libgobject-2.0.so.0 \
-		$(LIB_X64)/libpcre.so.3 \
-		$(USR_LIB_X64)/libstdc++.so.6
+	#cp -t $(PROGRAM_PATH)/ \
+		#$(USR_LIB_X64)/libffi.so.6 \
+		#$(USR_LIB_X64)/libgio-2.0.so.0 \
+		#$(LIB_X64)/libglib-2.0.so.0 \
+		#$(USR_LIB_X64)/libgmodule-2.0.so.0 \
+		#$(USR_LIB_X64)/libgobject-2.0.so.0 \
+		#$(LIB_X64)/libpcre.so.3 \
+		#$(USR_LIB_X64)/libstdc++.so.6
 
 	sed 's/libstdc++6 (>=4.8),//'  -i deb/$(PACKAGE_NAME)/DEBIAN/control  
 	sed 's/libstdc++ >= 4.8.0,//'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/libstdc++ >= 4.8.0,//'  -i apt-rpm/$(PACKAGE_NAME).spec
 
 libc-addon:
-	cp -t $(PROGRAM_PATH)/ \
-		$(LIB_X64)/ld-linux-x86-64.so.2 \
-		$(LIB_X64)/libc.so.6
+	#cp -t $(PROGRAM_PATH)/ \
+		#$(LIB_X64)/ld-linux-x86-64.so.2 \
+		#$(LIB_X64)/libc.so.6
 
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
