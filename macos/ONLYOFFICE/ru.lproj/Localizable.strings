@@ -11,7 +11,13 @@
 "Acknowledgments" = "Лицензии";
 
 /* No comment provided by engineer. */
+"Application activation failed" = "Не удалось активировать программу";
+
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Check your Internet connection settings and retry activation the application." = "Проверьте параметры подключения к интернету и попробуйте активировать программу еще раз.";
 
 /* No comment provided by engineer. */
 "Comma-Separated Values" = "Значения, разделённые запятыми";
