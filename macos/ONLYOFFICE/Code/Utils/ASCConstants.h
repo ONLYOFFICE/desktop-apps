@@ -66,9 +66,9 @@ static int PRODUCT_ID_IVOLGAPRO  = 301;
 static int PRODUCT_ID_ONLYOFFICE = 302;
 
 #ifdef _PRODUCT_IVOLGA
-static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru";
+static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru/help";
 static NSString * kRegBuyUrl    = @"http://www.ivolgapro.ru/buynow";
-static NSString * kHelpUrl      = @"http://www.ivolgapro.ru";
+static NSString * kHelpUrl      = @"http://www.ivolgapro.ru/help";
 #else
 static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kRegBuyUrl    = @"https://onlyoffice.com/desktopeditors.aspx";

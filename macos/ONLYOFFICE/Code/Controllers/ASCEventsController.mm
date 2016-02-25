@@ -350,12 +350,15 @@ public:
                         if (pData) {                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLicenseInfo
                                                                                 object:nil
-                                                                              userInfo:@{
-                                                                                         @"path"          : [NSString stringWithstdwstring:pData->get_Path()],
-                                                                                         @"product"       : @(pData->get_ProductId()),
-                                                                                         @"daysLeft"      : @(pData->get_DaysLeft()),
-                                                                                         @"daysBetween"   : @(pData->get_DaysBetween()),
-                                                                                         @"licence"       : @(pData->get_Licence())
+                                                                              userInfo:@{                                                                                         
+                                                                                         @"path"                 : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                         @"product"              : @(pData->get_ProductId()),
+                                                                                         @"daysLeft"             : @(pData->get_DaysLeft()),
+                                                                                         @"daysBetween"          : @(pData->get_DaysBetween()),
+                                                                                         @"licence"              : @(pData->get_Licence()),
+                                                                                         @"demo"                 : @(pData->get_IsDemo()),
+                                                                                         @"free"                 : @(pData->get_IsFree()),
+                                                                                         @"serverUnavailable"    : @(pData->get_IsServerUnavailable())
                                                                                          }];
                         }
                     }                        
