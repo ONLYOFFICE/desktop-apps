@@ -84,7 +84,8 @@ clean:
 desktopeditor:
 	mkdir -p $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/linux/* $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/* $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/empty $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
 
 	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
