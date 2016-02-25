@@ -86,9 +86,9 @@ desktopeditor:
 	cp -rf ../../../common/converter/linux/*.so* $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/linux/*.S $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/linux/x2t $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/linux/HtmlFileInternal $(PROGRAM_PATH)
 	cp -rf ../../../common/converter/empty $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/HtmlFileInternal $(PROGRAM_PATH)
 
 	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
