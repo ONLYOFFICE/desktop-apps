@@ -46,6 +46,7 @@
 #import "applicationmanager.h"
 #import "mac_application.h"
 #import "NSString+OnlyOffice.h"
+#import "ASCLicenseManager.h"
 
 @interface ASCTrialController ()
 @property (weak) IBOutlet NSTextField *headerField;
@@ -60,38 +61,31 @@
     [super viewDidLoad];
     
     NSString * productName = [ASCHelper appName];
-    NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
-    
-    BOOL isLicence      = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
-    BOOL isEnding       = (isLicence && [licenceInfo[@"daysLeft"] intValue] < 14);
-    BOOL isFree         = (isLicence && [licenceInfo[@"free"] boolValue]);
-    BOOL isDemo         = (isLicence && [licenceInfo[@"demo"] boolValue]);
-    BOOL isBusiness     = (isLicence && !isFree && !isDemo);
-    BOOL isServerError  = (licenceInfo && [licenceInfo[@"serverUnavailable"] boolValue]);
-    
+    ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
+        
     NSString * title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for evaluating %@!", nil), productName];
     NSString * message = [NSString stringWithFormat:NSLocalizedString(@"Unregistered application version.\nYou cannot create and edit local files.", nil)];
     
-    if (isServerError) {
+    if (license.serverError) {
         title = NSLocalizedString(@"Application activation failed", nil);
         message = NSLocalizedString(@"Check your Internet connection settings and retry activation the application.", nil);
-    } else if (isDemo) {
+    } else if (license.demo) {
         // trial
-        message = [NSString stringWithFormat:NSLocalizedString(@"You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
+        message = [NSString stringWithFormat:NSLocalizedString(@"You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.", nil), MAX(0, license.daysLeft)];
         
-        if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+        if (license.daysLeft < 1) {
             // trial is end
             message = [NSString stringWithFormat:NSLocalizedString(@"The trial period is over.\nYou cannot create and edit documents.", nil)];
         }
-    } else if (isBusiness) {
+    } else if (license.business) {
         title = [NSString stringWithFormat:NSLocalizedString(@"Thank you for using %@!", nil), productName];
         
-        if ([licenceInfo[@"daysLeft"] intValue] < 1) {
+        if (license.daysLeft < 1) {
             // license is end
             message = [NSString stringWithFormat:NSLocalizedString(@"The license expired.\nYou cannot create and edit local files.", nil)];
-        } else if (isEnding) {
+        } else if (license.ending) {
             // license is ending
-            message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, [licenceInfo[@"daysLeft"] intValue])];
+            message = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), MAX(0, license.daysLeft)];
         }
     }
     
@@ -109,22 +103,7 @@
         NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationControllerId"];
         [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
     } else {
-        NSString * licenseDirectory = [ASCHelper licensePath];
-        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-        
-        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
-        generateLicenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-        generateLicenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
-#else
-        generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
-#endif
-        
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE);
-        pEvent->m_pData = generateLicenceData;
-        
-        appManager->Apply(pEvent);
-
+        [[ASCLicenseManager sharedInstance] createLicense:ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE];
         [self.view.window close];
     }
 }
