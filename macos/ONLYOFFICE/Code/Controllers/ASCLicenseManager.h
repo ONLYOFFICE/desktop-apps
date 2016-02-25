@@ -31,21 +31,37 @@
 */
 
 //
-//  ASCSharedSettings.h
+//  ASCLicenseManager.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 12/15/15.
-//  Copyright © 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 25.02.16.
+//  Copyright © 2016 Ascensio System SIA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kSettingsCurrentTab         = @"asc.onlyoffice.currentTab";
-static NSString * const kSettingsLastOpenDirectory  = @"asc.onlyoffice.lastOpenDirectory";
+@interface ASCLicenseInfo : NSObject
+@property (nonatomic) NSString * path;
+@property (nonatomic) NSInteger productId;
+@property (nonatomic) NSInteger daysLeft;
+@property (nonatomic) NSInteger daysBetween;
+@property (nonatomic) BOOL exist;
+@property (nonatomic) BOOL free;
+@property (nonatomic) BOOL demo;
+@property (nonatomic) BOOL business;
+@property (nonatomic) BOOL ending;
+@property (nonatomic) BOOL serverError;
 
-@interface ASCSharedSettings : NSObject
+- (void)initWithDictionary:(NSDictionary *)dictionary;
+@end
+
+@interface ASCLicenseManager : NSObject
+@property (nonatomic) ASCLicenseInfo * licence;
+
 + (instancetype)sharedInstance;
 
-- (void)setSetting:(id)setting forKey:(id <NSCopying>)aKey;
-- (id)settingByKey:(id)key;
+- (void)readLicense;
+- (void)createLicense:(int)type;
+- (void)sendKey:(NSString *)key;
+
 @end
