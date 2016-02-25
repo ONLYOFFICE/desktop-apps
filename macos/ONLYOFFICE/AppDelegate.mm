@@ -46,6 +46,7 @@
 #import "NSString+OnlyOffice.h"
 #import "NSCefView.h"
 #import "ASCHelper.h"
+#import "ASCLicenseManager.h"
 
 #ifndef MAS
     #import "PFMoveApplication.h"
@@ -118,10 +119,11 @@
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
-    NSDictionary * licenseInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
     NSString * productName = [ASCHelper appName];
+    ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
     
-    BOOL isActivated = (licenseInfo && licenseInfo[@"licence"] && [licenseInfo[@"licence"] boolValue] && [licenseInfo[@"daysLeft"] intValue] > 14 && ![licenseInfo[@"demo"] boolValue]);
+    BOOL isActivated = !(license.serverError || !license.exist || ((license.demo || license.business) && license.ending));
     
     if ([item action] == @selector(onMenuAbout:)) {
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), productName]];
@@ -150,7 +152,7 @@
     } else if ([item action] == @selector(onMenuEULA:)) {
         return YES;
     } else if ([item action] == @selector(onMenuBuyNow:)) {
-        [item setHidden:isActivated];
+        [item setHidden:isActivated || licenseType == ASCVersionTypeForHome];
         return !isActivated;
     } else if ([item action] == @selector(onMenuActivation:)) {
         [item setHidden:isActivated];
