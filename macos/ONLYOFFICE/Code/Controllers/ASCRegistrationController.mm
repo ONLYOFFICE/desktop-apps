@@ -73,7 +73,16 @@
     }
          
     if (self.infoSuccessField) {
-        [self.infoSuccessField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName]];
+        ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName];
+        
+        if (licenseType == ASCVersionTypeForHome) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"Your version of %@ for home use successfully activated.", nil), productName];
+        } else if (licenseType == ASCVersionTypeForBusiness) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"Your version of %@ for use in business successfully activated.", nil), productName];
+        }
+        
+        [self.infoSuccessField setStringValue:message];
     }
     
     [self.activityIndicator startAnimation:self];

@@ -1197,6 +1197,14 @@ The trial period will end in %d days, after that you will not be able to create 
         <target>Your changes will be lost if you don’t save them.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Your version of %@ for home use successfully activated.">
+        <source>Your version of %@ for home use successfully activated.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your version of %@ for use in business successfully activated.">
+        <source>Your version of %@ for use in business successfully activated.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="for Business">
         <source>for Business</source>
         <note>No comment provided by engineer.</note>

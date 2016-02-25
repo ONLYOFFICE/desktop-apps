@@ -879,7 +879,7 @@
       </trans-unit>
       <trans-unit id="yGK-Fg-qtS.title">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target>Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.</target>
+        <target>Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением покупки.</target>
         <note>Class = "NSTextFieldCell"; title = "If you have already purchased %@, you should find your activation key in an email confirmation."; ObjectID = "yGK-Fg-qtS";</note>
       </trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
@@ -1158,7 +1158,7 @@
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
-        <target>Спасибо за оценку %@!</target>
+        <target>Спасибо за то, что выбрали %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for using %@!">
@@ -1252,6 +1252,16 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Ваши изменения будут потеряны, если вы не сохраните их.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your version of %@ for home use successfully activated.">
+        <source>Your version of %@ for home use successfully activated.</source>
+        <target>Ваша версия %@ для домашнего использования успешно активирована.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your version of %@ for use in business successfully activated.">
+        <source>Your version of %@ for use in business successfully activated.</source>
+        <target>Ваша версия %@ для бизнеса успешно активирована.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="for Business">
