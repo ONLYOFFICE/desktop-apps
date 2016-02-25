@@ -105,4 +105,4 @@ fi
 
 set -e 		# fail on any error
 
-rm -rf /var/lib/onlyoffice
+rm -rf /var/lib/onlyoffice/desktopeditors
