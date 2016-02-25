@@ -83,9 +83,12 @@ clean:
 
 desktopeditor:
 	mkdir -p $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/linux/* $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/linux/*.so* $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/linux/*.S $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/linux/x2t $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/empty $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
+	cp -rf ../../../common/converter/HtmlFileInternal $(PROGRAM_PATH)
 
 	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
@@ -104,7 +107,7 @@ desktopeditor:
 	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
 
 	chmod 777 $(PROGRAM_PATH)/DesktopEditors
-	chmod 777 $(CONVERTER_PATH)/HtmlFileInternal
+	chmod 777 $(PROGRAM_PATH)/HtmlFileInternal
 	chmod 777 $(CONVERTER_PATH)/x2t
 
 	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
