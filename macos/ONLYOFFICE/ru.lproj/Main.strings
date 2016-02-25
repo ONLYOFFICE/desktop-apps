@@ -518,7 +518,7 @@
 "xrE-MZ-jX0.title" = "Speech";
 
 /* Class = "NSTextFieldCell"; title = "If you have already purchased %@, you should find your activation key in an email confirmation."; ObjectID = "yGK-Fg-qtS"; */
-"yGK-Fg-qtS.title" = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.";
+"yGK-Fg-qtS.title" = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением покупки.";
 
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "Show Substitutions";
