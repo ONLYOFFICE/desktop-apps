@@ -181,6 +181,12 @@ The trial period will end in %d days, after that you will not be able to create 
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
 
 /* No comment provided by engineer. */
+"Your version of %@ for home use successfully activated." = "Ваша версия %@ для домашнего использования успешно активирована.";
+
+/* No comment provided by engineer. */
+"Your version of %@ for use in business successfully activated." = "Ваша версия %@ для бизнеса успешно активирована.";
+
+/* No comment provided by engineer. */
 "for Business" = "для Бизнеса";
 
 /* No comment provided by engineer. */
