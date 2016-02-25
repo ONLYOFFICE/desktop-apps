@@ -106,4 +106,4 @@ fi
 
 set -e 		# fail on any error
 
-rm -rf /var/lib/ivolgapro
+rm -rf /var/lib/ivolgapro/desktopeditors
