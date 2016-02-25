@@ -231,6 +231,9 @@
 		FCBC42791B9D650500405301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCBC42911B9D660400405301 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42901B9D660400405301 /* ASCTabsControl.m */; };
 		FCBC42941B9D736700405301 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42931B9D736700405301 /* ASCTabView.m */; };
+		FCC26DF61C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC26DF51C7EDEAF00901C6D /* ASCLicenseManager.mm */; };
+		FCC26DF71C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC26DF51C7EDEAF00901C6D /* ASCLicenseManager.mm */; };
+		FCC26DF81C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC26DF51C7EDEAF00901C6D /* ASCLicenseManager.mm */; };
 		FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6EA1BA16CC0005A733F /* NSView+ASCView.m */; };
 		FCC8F6F51BA1C307005A733F /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F41BA1C307005A733F /* ASCTabCloseButtonCell.m */; };
 		FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC8F6F71BA1C6C8005A733F /* ASCButton.m */; };
@@ -434,6 +437,8 @@
 		FCBC42901B9D660400405301 /* ASCTabsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabsControl.m; path = Code/Controls/ASCTabsControl.m; sourceTree = "<group>"; };
 		FCBC42921B9D736700405301 /* ASCTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabView.h; path = Code/Controls/ASCTabView.h; sourceTree = "<group>"; };
 		FCBC42931B9D736700405301 /* ASCTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabView.m; path = Code/Controls/ASCTabView.m; sourceTree = "<group>"; };
+		FCC26DF41C7EDEAF00901C6D /* ASCLicenseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCLicenseManager.h; path = Code/Controllers/ASCLicenseManager.h; sourceTree = "<group>"; };
+		FCC26DF51C7EDEAF00901C6D /* ASCLicenseManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCLicenseManager.mm; path = Code/Controllers/ASCLicenseManager.mm; sourceTree = "<group>"; };
 		FCC8F6E91BA16CC0005A733F /* NSView+ASCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSView+ASCView.h"; path = "Code/Utils/NSView+ASCView.h"; sourceTree = "<group>"; };
 		FCC8F6EA1BA16CC0005A733F /* NSView+ASCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSView+ASCView.m"; path = "Code/Utils/NSView+ASCView.m"; sourceTree = "<group>"; };
 		FCC8F6F31BA1C307005A733F /* ASCTabCloseButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabCloseButtonCell.h; path = Code/Controls/ASCTabCloseButtonCell.h; sourceTree = "<group>"; };
@@ -911,6 +916,8 @@
 				FCD294681BB97D3300318930 /* ASCDownloadController.mm */,
 				FC25A1A51C2E844800063A42 /* ASCTabViewController.h */,
 				FC25A1A61C2E844800063A42 /* ASCTabViewController.m */,
+				FCC26DF41C7EDEAF00901C6D /* ASCLicenseManager.h */,
+				FCC26DF51C7EDEAF00901C6D /* ASCLicenseManager.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1414,6 +1421,7 @@
 				FC3F89921C20430300248757 /* NSAlert+SynchronousSheet.m in Sources */,
 				FC67181C1BD913C00028600F /* ASCTitleBackground.m in Sources */,
 				FC67181D1BD913C00028600F /* AppDelegate.mm in Sources */,
+				FCC26DF81C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */,
 				FC67181E1BD913C00028600F /* SFBPopoverWindowFrame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1431,6 +1439,7 @@
 				FC7FD39C1C315DD6008F6641 /* NSView+ASCView.m in Sources */,
 				FC7FD39D1C315DD6008F6641 /* ASCButton.m in Sources */,
 				FC7FD39E1C315DD6008F6641 /* ASCTabCloseButtonCell.m in Sources */,
+				FCC26DF71C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */,
 				FC7FD39F1C315DD6008F6641 /* ASCTabView.m in Sources */,
 				FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */,
 				FC7FD3A11C315DD6008F6641 /* ASCTrialController.mm in Sources */,
@@ -1483,6 +1492,7 @@
 				FCC8F6EB1BA16CC0005A733F /* NSView+ASCView.m in Sources */,
 				FCC8F6F81BA1C6C8005A733F /* ASCButton.m in Sources */,
 				FCC8F6F51BA1C307005A733F /* ASCTabCloseButtonCell.m in Sources */,
+				FCC26DF61C7EDEAF00901C6D /* ASCLicenseManager.mm in Sources */,
 				FCBC42941B9D736700405301 /* ASCTabView.m in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
 				FC1E9DC81C2EBFFD0043100E /* ASCTrialController.mm in Sources */,

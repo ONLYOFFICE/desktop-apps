@@ -119,7 +119,7 @@
 "Spreadsheet %ld.xlsx" = "Книга %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Thank you for evaluating %@!" = "Спасибо за оценку %@!";
+"Thank you for evaluating %@!" = "Спасибо за то, что выбрали %@!";
 
 /* No comment provided by engineer. */
 "Thank you for using %@!" = "Спасибо за использование %@!";
@@ -179,6 +179,12 @@ The trial period will end in %d days, after that you will not be able to create 
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
+/* No comment provided by engineer. */
+"Your version of %@ for home use successfully activated." = "Ваша версия %@ для домашнего использования успешно активирована.";
+
+/* No comment provided by engineer. */
+"Your version of %@ for use in business successfully activated." = "Ваша версия %@ для бизнеса успешно активирована.";
 
 /* No comment provided by engineer. */
 "for Business" = "для Бизнеса";
