@@ -46,6 +46,7 @@
 #import "ASCReplacePresentationAnimator.h"
 #import "ASCSharedSettings.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ASCLicenseManager.h"
 
 
 @interface ASCRegistrationController () 
@@ -72,7 +73,16 @@
     }
          
     if (self.infoSuccessField) {
-        [self.infoSuccessField setStringValue:[NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName]];
+        ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+        NSString * message = [NSString stringWithFormat:NSLocalizedString(@"You have successfully activated %@.", nil), productName];
+        
+        if (licenseType == ASCVersionTypeForHome) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"Your version of %@ for home use successfully activated.", nil), productName];
+        } else if (licenseType == ASCVersionTypeForBusiness) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"Your version of %@ for use in business successfully activated.", nil), productName];
+        }
+        
+        [self.infoSuccessField setStringValue:message];
     }
     
     [self.activityIndicator startAnimation:self];
@@ -100,8 +110,10 @@
         
         [self.activityIndicator setHidden:YES];
         
-        if (licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue]) {
-            [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
+        ASCLicenseInfo * license = [[ASCLicenseInfo alloc] initWithDictionary:licenceInfo];
+        
+        if (license.exist) {
+            [[ASCLicenseManager sharedInstance] setLicence:license];
             
             NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
             [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
@@ -181,23 +193,7 @@
 - (IBAction)onRegistrationClick:(NSButton *)sender {
     [self.activityIndicator setHidden:NO];
     
-    NSString * licenseDirectory = [ASCHelper licensePath];
-    
-    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    
-    NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
-    keyData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-    keyData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
-#else
-    keyData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
-#endif
-    keyData->put_Key([[self.keyField stringValue] stdstring]);
-    
-    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
-    pEvent->m_pData = keyData;
-    
-    appManager->Apply(pEvent);
+    [[ASCLicenseManager sharedInstance] sendKey:[self.keyField stringValue]];
 }
 
 @end

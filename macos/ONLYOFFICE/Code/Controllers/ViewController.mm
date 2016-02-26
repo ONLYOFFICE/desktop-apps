@@ -59,6 +59,8 @@
 #import "NSTimer+Block.h"
 #import "ASCSavePanelWithFormat.h"
 #import "ASCSharedSettings.h"
+#import "ASCReplacePresentationAnimator.h"
+#import "ASCLicenseManager.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -187,8 +189,14 @@
 }
 
 - (void)onShowActivation:(NSNotification *)notification {
-    NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
-    [activationWindow showWindow:[NSApp mainWindow]];
+    ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
+    
+    if (licenseType == ASCVersionTypeForHome) {
+        [[ASCLicenseManager sharedInstance] createLicense:ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE];
+    } else {
+        NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
+        [activationWindow showWindow:[NSApp mainWindow]];
+    }
 }
 
 - (void)setupTabControl {
@@ -248,55 +256,12 @@
     }
 }
 
-- (void)checkLicense {
-    NSDictionary * licenceInfo;
-    NSString * licenseDirectory = [ASCHelper licensePath];
+- (void)checkLicense {    
+    [[ASCLicenseManager sharedInstance] readLicense];
     
-    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
     
-    ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
-       
-    // Checking license
-    NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
-    licenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-    licenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
-#else
-    licenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
-#endif
-    
-    ADDREFINTERFACE(licenceData);
-    
-    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
-    pEvent->m_pData = licenceData;
-    
-    appManager->Apply(pEvent);
-    
-    NSEditorApi::CAscLicenceActual * resultLicenceData = licenceData;
-    
-    if (resultLicenceData) {
-        licenceInfo = @{
-                        @"path"                 : [NSString stringWithstdwstring:resultLicenceData->get_Path()],
-                        @"product"              : @(resultLicenceData->get_ProductId()),
-                        @"daysLeft"             : @(resultLicenceData->get_DaysLeft()),
-                        @"daysBetween"          : @(resultLicenceData->get_DaysBetween()),
-                        @"licence"              : @(resultLicenceData->get_Licence()),
-                        @"demo"                 : @(resultLicenceData->get_IsDemo()),
-                        @"free"                 : @(resultLicenceData->get_IsFree() && licenseType == ASCVersionTypeForHome),
-                        @"serverUnavailable"    : @(resultLicenceData->get_IsServerUnavailable())
-                        };
-        
-        [[ASCSharedSettings sharedInstance] setSetting:licenceInfo forKey:kSettingsLicenseInfo];
-    }
-
-    BOOL isLicence      = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
-    BOOL isEnding       = (isLicence && [licenceInfo[@"daysLeft"] intValue] < 14);
-    BOOL isFree         = (isLicence && [licenceInfo[@"free"] boolValue]);
-    BOOL isDemo         = (isLicence && [licenceInfo[@"demo"] boolValue]);
-    BOOL isBusiness     = (isLicence && !isFree && !isDemo);
-    BOOL isServerError  = (licenceInfo && [licenceInfo[@"serverUnavailable"] boolValue]);
-    
-    if (isServerError || !isLicence || ((isDemo || isBusiness) && isEnding)) {
+    if (license.serverError || !license.exist || ((license.demo || license.business) && license.ending)) {
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                         repeats:NO
                                           block:^{
@@ -555,9 +520,9 @@
             [self.tabsControl selectTab:existTab];
         } else {
             if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFile)]) {
-                NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+                ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
                 
-                if (!(licenceInfo && licenceInfo[@"licence"] && [licenceInfo[@"licence"] boolValue] && [licenceInfo[@"daysLeft"] intValue] > 0)) {
+                if (!(license.exist && license.daysLeft > 0)) {
                     [NSTimer scheduledTimerWithTimeInterval:.1
                                                     repeats:NO
                                                       block:^{
@@ -917,12 +882,41 @@
 }
 
 - (void)onCEFLicenseInfo:(NSNotification *)notification {
-    NSDictionary * licenceInfo = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsLicenseInfo];
+    if (notification && notification.userInfo) {
+        NSDictionary * licenceInfo = notification.userInfo;
+        ASCLicenseInfo * license = [[ASCLicenseInfo alloc] initWithDictionary:licenceInfo];
+        ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
     
-    BOOL isLicence = (licenceInfo && [licenceInfo[@"licence"] boolValue]);
-    
-    if (!isLicence) {
-        [self checkLicense];
+        if (licenseType == ASCVersionTypeForHome) {
+            if (license.exist) {
+                [[ASCLicenseManager sharedInstance] setLicence:license];
+                
+                [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                repeats:NO
+                                                  block:^{
+                                                      NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+                                                      [activationWindow.window makeKeyAndOrderFront:[NSApp mainWindow]];
+                                                      [activationWindow.window center];
+                                                      
+                                                      NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
+                                                      [activationWindow.contentViewController presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
+                                                      [NSApp runModalForWindow:activationWindow.window];
+                                                  }];
+            } else if (license.serverError) {
+                [[[ASCLicenseManager sharedInstance] licence] setServerError:YES];
+                
+                [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                repeats:NO
+                                                  block:^{
+                                                      NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+                                                      [activationWindow showWindow:self];
+                                                      
+                                                      [[[ASCLicenseManager sharedInstance] licence] setServerError:NO];
+                                                  }];
+            } else {
+                [self checkLicense];
+            }
+        }
     }
 }
 

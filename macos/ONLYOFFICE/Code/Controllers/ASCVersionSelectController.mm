@@ -45,6 +45,7 @@
 #import "NSString+OnlyOffice.h"
 #import "ASCHelper.h"
 #import "ASCConstants.h"
+#import "ASCLicenseManager.h"
 
 @interface ASCVersionSelectController ()
 @property (weak) IBOutlet NSButton *licenseButton;
@@ -184,25 +185,10 @@
 }
 
 - (void)forceSide:(int)eventType {
-    NSString * licenseDirectory = [ASCHelper licensePath];
-    
-    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-    
     // First launch
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"]) {
-        NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
-        generateLicenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-        generateLicenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
-#else
-        generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
-#endif
-        
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(eventType);
-        pEvent->m_pData = generateLicenceData;
-        
-        appManager->Apply(pEvent);
-        
+        [[ASCLicenseManager sharedInstance] createLicense:eventType];
+
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasLaunchedOnce"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
