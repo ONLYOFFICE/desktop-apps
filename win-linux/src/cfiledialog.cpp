@@ -33,6 +33,7 @@
 #include "cfiledialog.h"
 #include <QFileDialog>
 #include "defines.h"
+#include "utils.h"
 
 #include "../common/libs/OfficeFileFormats.h"
 
