@@ -60,8 +60,9 @@
   #endif
 
   #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
+  #define LIC_KEY_FILENAME "doceditors.ivo.asc"
 #else
-  #define PROD_ID_DESKTOP_EDITORS 300
+  #define PROD_ID_DESKTOP_EDITORS 302
 
   #define APP_NAME "DesktopEditors"
   #define APP_TITLE "ONLYOFFICE"
@@ -78,6 +79,7 @@
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
+  #define LIC_KEY_FILE "doceditors.asc"
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400
