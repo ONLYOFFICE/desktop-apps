@@ -768,6 +768,8 @@ void QAscMainPanel::onLocalFilesOpen(void * data)
 
 void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
+    if (qApp->activeModalWidget()) return;
+
     for (vector<wstring>::const_iterator i = vec->begin(); i != vec->end(); i++) {
         COpenOptions opts = {(*i), etLocalFile};
         m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
@@ -777,6 +779,8 @@ void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 
 void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
 {
+    if (qApp->activeModalWidget()) return;
+
     QStringListIterator i(list);
     while (i.hasNext()) {
         COpenOptions opts = {i.next().toStdWString(), etLocalFile};
