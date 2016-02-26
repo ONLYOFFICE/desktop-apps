@@ -1,6 +1,6 @@
 @echo off
 
-set compiler="C:\Qt\Qt5.4.2\Tools\QtCreator\bin\jom.exe"
+set compiler="C:\Qt\Qt5.5.1\Tools\QtCreator\bin\jom.exe"
 set release_path=build\Release
 set root_path=%~dp0
 set parent_path="\\VBOXSVR\AscDocumentEditor\install"
@@ -20,13 +20,13 @@ if %is_update_libs%==0 if %is_compile_app%==0 if %is_build_install%==0 goto :exi
 
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
 if %OS%==32BIT (
-    set qmake="C:\Qt\Qt5.4.2\5.4\msvc2013_opengl\bin\qmake.exe" 
+    set qmake="C:\Qt\Qt5.5.1\5.5\msvc2013\bin\qmake.exe" 
     set vcvars="C:\Program Files\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
     set iscc="C:\Program Files\Inno Setup 5\ISCC.exe"
     set iss_project=install_x86.iss
     set inst_name=DesktopEditors_x86.exe
 ) else (
-    set qmake="C:\Qt\Qt5.4.2\5.4\msvc2013_64_opengl\bin\qmake.exe" 
+    set qmake="C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\qmake.exe" 
     set vcvars="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
     set iscc="C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
     set iss_project=install_x64.iss
