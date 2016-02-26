@@ -165,12 +165,13 @@ window.Templates = (function() { 'use strict';
 
     function getAboutPanel(holder, opts) {
         var _html = '<div class="box-ver">' +
-                      '<img class="ver-logo %brand">'+                      
-                      '<div class="ver-version">%appname ver. %ver</div>%edition<p></p>'+
+                      '<div class="img-el ver-logo %brand"></div><p></p>'+                      
+                      '<div class="ver-version">%appname version %ver</div>%edition<p></p>'+
                       '<div class="ver-copyright">%cpr</div>'+
                       '<a class="ver-site" target="popup" href="%link">%txtlink</a>'
                     '</div>';
 
+        !!opts.active && (opts.edition = !!opts.edition?opts.edition+'. '+opts.active:opts.active);
         _html = _html
                 .replace(/\%edition/,!!opts.edition?'<div class="ver-edition">%edition</div>':'')
                 .replace(/\%edition/, opts.edition);
