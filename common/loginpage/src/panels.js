@@ -93,6 +93,7 @@ $(document).ready(function() {
     $('a[action=open]').text(utils.Lang.actOpenLocal);
     $('a[action=connect]').text(utils.Lang.actConnectTo);
     $('a[action=activate]').text(utils.Lang.actActivate);
+    $('a[action=about]').text(utils.Lang.actAbout);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
@@ -561,7 +562,7 @@ window.on_native_message = function(cmd, param) {
 };
 
 function fillVersion(version) {
-    var _v = utils.fn.extend(utils.fn.parseVersion(version));
+    var _v = utils.fn.extend(utils.fn.parseVersion(version), {brand:window.brand});
 
     Templates.createAboutPanel($('.action-panel.about'), _v);
     $('a[action=about]').parent().removeClass('extra');
