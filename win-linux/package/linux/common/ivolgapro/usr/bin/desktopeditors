@@ -1,5 +1,5 @@
 #!/bin/sh
-
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/ivolgapro/desktopeditors:/opt/ivolgapro/desktopeditors/converter/
+APP_DIR=/opt/ivolgapro/desktopeditors
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$APP_DIR:$APP_DIR/converter/
 export LD_LIBRARY_PATH
-exec /opt/ivolgapro/desktopeditors/DesktopEditors
+cd $APP_DIR && exec $APP_DIR/DesktopEditors
