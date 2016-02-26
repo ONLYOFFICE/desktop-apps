@@ -52,7 +52,7 @@
 @property (nonatomic) BOOL ending;
 @property (nonatomic) BOOL serverError;
 
-- (void)initWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end
 
 @interface ASCLicenseManager : NSObject
