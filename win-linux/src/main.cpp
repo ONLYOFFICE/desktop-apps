@@ -55,7 +55,8 @@ QSplashScreen * g_splash = NULL;
 #include <QScreen>
 #include <QApplication>
 #include <QRegularExpression>
-
+#include "cstyletweaks.h"
+#include "utils.h"
 
 BYTE g_dpi_ratio = 1;
 QString g_lang;
