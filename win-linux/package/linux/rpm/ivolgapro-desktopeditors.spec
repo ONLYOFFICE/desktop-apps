@@ -67,7 +67,7 @@ fi
 mkdir -p /var/lib/ivolgapro
 chmod -R 777 /var/lib/ivolgapro
 
-ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
+ln -sf /usr/lib64/libcurl.so.4 /opt/ivolgapro/desktopeditors/libcurl-gnutls.so.4
 
 %preun
 
