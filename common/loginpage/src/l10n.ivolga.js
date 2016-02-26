@@ -40,6 +40,6 @@
         }
     };
 
-    !!_extra[utils.Lang._code] &&
-        utils.fn.extend(utils.Lang, _extra[utils.Lang._code]);
+    !!_extra[utils.inParams.lang] &&
+        utils.fn.extend(utils.Lang, _extra[utils.inParams.lang]);
 }();
