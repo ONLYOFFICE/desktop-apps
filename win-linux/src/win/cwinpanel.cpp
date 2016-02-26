@@ -68,19 +68,6 @@
 extern byte g_dpi_ratio;
 extern QString g_lang;
 
-class CStyleTweaks : public QProxyStyle
-{
-    public:
-        void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
-        {
-            /* do not draw focus rectangles - this permits modern styling */
-            if (element == QStyle::PE_FrameFocusRect)
-                return;
-
-            QProxyStyle::drawPrimitive(element, option, painter, widget);
-        }
-};
-
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
 {        
@@ -88,8 +75,6 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     m_pManager = pManager;
 
 //    setObjectName("mainPanel");
-
-    qApp->setStyle(new CStyleTweaks);
 
     m_pMainPanel = new QAscMainPanel(this, pManager, true);
     show();
