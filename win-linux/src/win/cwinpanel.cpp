@@ -55,15 +55,12 @@
 #include "qascprinter.h"
 #include "cprintdialog.h"
 #include "../defines.h"
-
-#include "../cchooselicensedialog.h"
+#include "../utils.h"
 
 //#include <QScreen>
 #include <QSettings>
-#include "shlobj.h"
 
 #include <QPrinterInfo>
-#include <QProxyStyle>
 
 extern byte g_dpi_ratio;
 extern QString g_lang;
@@ -96,34 +93,10 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    m_pManager->SetEventListener(this);
 
-    QString _file_name;
-    WCHAR szPath[MAX_PATH];
-    if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
-        _file_name = QString::fromWCharArray(szPath);
-        _file_name.append("\\doceditors.asc");
-    }
-
-    GET_REGISTRY_USER(_reg_user);
-    bool _activate = !QFileInfo(_file_name).exists();
-    _activate ? (_activate = !_reg_user.contains("license")) : _reg_user.setValue("license", "1");
-
-    if (_activate) {
+    if (Utils::firstStart(true)) {
         m_pMainPanel->selfActivation();
-
-        QFile _file(_file_name);
-        bool _is = _file.open(QFile::WriteOnly);
-        if (_is) {
-            _file.write("ȒѬ  ", 7);
-            _file.close();
-
-            SetFileAttributes(_file_name.toStdWString().c_str(), FILE_ATTRIBUTE_HIDDEN);
-        }
-
-        _reg_user.setValue("license", "1");
+        Utils::markFirstStart();
     }
-
-//    CChooseLicenseDialog dlg(this);
-//    dlg.exec();
 
     parseInputArgs(qApp->arguments());
 }
