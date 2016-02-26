@@ -110,10 +110,11 @@
         
         [self.activityIndicator setHidden:YES];
         
-        ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
-        [license initWithDictionary:licenceInfo];
+        ASCLicenseInfo * license = [[ASCLicenseInfo alloc] initWithDictionary:licenceInfo];
         
         if (license.exist) {
+            [[ASCLicenseManager sharedInstance] setLicence:license];
+            
             NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
             [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
         } else {

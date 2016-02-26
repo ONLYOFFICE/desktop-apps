@@ -47,7 +47,7 @@
 
 @implementation ASCLicenseInfo
 
-- (void)initWithDictionary:(NSDictionary *)dictionary {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (dictionary) {        
         ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
         
@@ -59,9 +59,11 @@
         self.demo           = [dictionary[@"demo"] boolValue];
         self.free           = [dictionary[@"free"] boolValue] && (licenseType == ASCVersionTypeForHome);
         self.serverError    = [dictionary[@"serverUnavailable"] boolValue];
-        self.ending         = self.daysLeft < 14;
+        self.ending         = self.daysLeft < 31;
         self.business       = self.exist && !self.free && !self.demo;
     }
+    
+    return self;
 }
 
 @end
