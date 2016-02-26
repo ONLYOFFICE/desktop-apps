@@ -30,27 +30,17 @@
  *
 */
 
-#ifndef UTILS_H
-#define UTILS_H
+#include "cstyletweaks.h"
 
-#include <QStringList>
-#include <QFileInfo>
+CStyleTweaks::CStyleTweaks() : QProxyStyle()
+{
+}
 
-using namespace std;
+void CStyleTweaks::drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
+{
+    /* do not draw focus rectangles - this permits modern styling */
+    if (element == QStyle::PE_FrameFocusRect)
+        return;
 
-class Utils {
-public:
-    static QStringList * getInputFiles(const QStringList& inlist);
-    static bool firstStart(bool restore = false);
-    static bool markFirstStart();
-    static QString getLocalUsedPath(int type);
-
-    static void createTempLicense();
-    static bool isTempLicense();
-    static void removeTempLicense();
-    static QString licenseDir();
-    static wstring licenseDirW();
-};
-
-#endif // UTILS_H
-
+    QProxyStyle::drawPrimitive(element, option, painter, widget);
+}

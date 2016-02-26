@@ -39,25 +39,10 @@
 #include <QFileInfo>
 #include <QTimer>
 
-class CStyleTweaks : public QProxyStyle
-{
-    public:
-        void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const
-        {
-            /* do not draw focus rectangles - this permits modern styling */
-            if (element == QStyle::PE_FrameFocusRect)
-                return;
-
-            QProxyStyle::drawPrimitive(element, option, painter, widget);
-        }
-};
-
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     resize(1200, 700);
-
-    qApp->setStyle(new CStyleTweaks);
 }
 
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)

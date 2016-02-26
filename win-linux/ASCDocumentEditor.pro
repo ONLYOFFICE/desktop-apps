@@ -39,7 +39,8 @@ HEADERS += \
     src/ctabbar.h \
     src/casctabdata.h \
     src/cmessage.h \
-    src/utils.h
+    src/utils.h \
+    src/cstyletweaks.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -61,7 +62,9 @@ SOURCES += \
     src/qascmainpanel.cpp \
     src/ctabbar.cpp \
     src/casctabdata.cpp \
-    src/cmessage.cpp
+    src/cmessage.cpp \
+    src/utils.cpp \
+    src/cstyletweaks.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

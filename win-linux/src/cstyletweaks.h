@@ -30,27 +30,18 @@
  *
 */
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef CSTYLETWEAKS_H
+#define CSTYLETWEAKS_H
 
-#include <QStringList>
-#include <QFileInfo>
+#include <QProxyStyle>
 
-using namespace std;
-
-class Utils {
+class CStyleTweaks : public QProxyStyle
+{
 public:
-    static QStringList * getInputFiles(const QStringList& inlist);
-    static bool firstStart(bool restore = false);
-    static bool markFirstStart();
-    static QString getLocalUsedPath(int type);
+    CStyleTweaks();
 
-    static void createTempLicense();
-    static bool isTempLicense();
-    static void removeTempLicense();
-    static QString licenseDir();
-    static wstring licenseDirW();
+public:
+    void drawPrimitive(PrimitiveElement, const QStyleOption *, QPainter *, const QWidget *widget = 0) const;
 };
 
-#endif // UTILS_H
-
+#endif // CSTYLETWEAKS_H
