@@ -882,15 +882,15 @@
 }
 
 - (void)onCEFLicenseInfo:(NSNotification *)notification {
-    ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
-    
-    if (!license.exist) {
-        [self checkLicense];
-        
+    if (notification && notification.userInfo) {
+        NSDictionary * licenceInfo = notification.userInfo;
+        ASCLicenseInfo * license = [[ASCLicenseInfo alloc] initWithDictionary:licenceInfo];
         ASCVersionType licenseType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
-        
+    
         if (licenseType == ASCVersionTypeForHome) {
             if (license.exist) {
+                [[ASCLicenseManager sharedInstance] setLicence:license];
+                
                 [NSTimer scheduledTimerWithTimeInterval:1.0
                                                 repeats:NO
                                                   block:^{
@@ -901,8 +901,20 @@
                                                       NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
                                                       [activationWindow.contentViewController presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
                                                       [NSApp runModalForWindow:activationWindow.window];
-                                                      
                                                   }];
+            } else if (license.serverError) {
+                [[[ASCLicenseManager sharedInstance] licence] setServerError:YES];
+                
+                [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                repeats:NO
+                                                  block:^{
+                                                      NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCTryWindowControllerId"];
+                                                      [activationWindow showWindow:self];
+                                                      
+                                                      [[[ASCLicenseManager sharedInstance] licence] setServerError:NO];
+                                                  }];
+            } else {
+                [self checkLicense];
             }
         }
     }
