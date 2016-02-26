@@ -100,6 +100,11 @@
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
+#define LICENSE_TYPE_FREE       255
+#define LICENSE_TYPE_BUSINESS   254
+#define LICENSE_TYPE_TRIAL      253
+#define LICENSE_TYPE_NONE       0
+
 #ifdef __linux
 typedef unsigned char BYTE;
 #endif
