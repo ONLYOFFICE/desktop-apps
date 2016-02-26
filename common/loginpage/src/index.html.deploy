@@ -46,7 +46,7 @@
             height: 180px;
             position: absolute;
             margin-top: -100px;
-            margin-left: -75px;
+            /*margin-left: -75px;*/
         }
 
         .loader-page-text {
