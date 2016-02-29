@@ -55,7 +55,13 @@
     
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSDictionary * localizedInfoDictionary = [[NSBundle mainBundle] localizedInfoDictionary];
+    
+    NSString * locProductName   = localizedInfoDictionary[@"CFBundleName"];
+    NSString * locCopyright     = localizedInfoDictionary[@"NSHumanReadableCopyright"];
 
+    locProductName  = locProductName ? locProductName : infoDictionary[@"CFBundleName"];
+    locCopyright    = locCopyright ? locCopyright : infoDictionary[@"NSHumanReadableCopyright"];
+    
     // Setup license button view
     NSMutableAttributedString * attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self.licenseButton attributedTitle]];
     long len = [attrTitle length];
@@ -66,24 +72,23 @@
 
     // Product name
     ASCVersionType versionType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
-    NSString * productName = [localizedInfoDictionary objectForKey:@"CFBundleName"];
     
     if (ASCVersionTypeForBusiness == versionType) {
-        productName = [NSString stringWithFormat:@"%@ %@", productName, NSLocalizedString(@"for Business", nil)];
+        locProductName = [NSString stringWithFormat:@"%@ %@", locProductName, NSLocalizedString(@"for Business", nil)];
     } else if (ASCVersionTypeForHome == versionType) {
-        productName = [NSString stringWithFormat:@"%@ %@", productName, NSLocalizedString(@"for Home", nil)];
+        locProductName = [NSString stringWithFormat:@"%@ %@", locProductName, NSLocalizedString(@"for Home", nil)];
     }
     
-    [self.appNameText setStringValue:productName];
+    [self.appNameText setStringValue:locProductName];
 
     // Version
     [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@)", nil), [infoDictionary objectForKey:@"CFBundleShortVersionString"], [infoDictionary objectForKey:@"CFBundleVersion"]]];
     
     // Copyright
-    [self.copyrightText setStringValue:[localizedInfoDictionary objectForKey:@"NSHumanReadableCopyright"]];
+    [self.copyrightText setStringValue:locCopyright];
     
     // Window
-    [self setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), [localizedInfoDictionary objectForKey:@"CFBundleName"]]];
+    [self setTitle:[NSString stringWithFormat:NSLocalizedString(@"About %@", nil), locProductName]];
 }
 
 - (void)viewDidAppear {
