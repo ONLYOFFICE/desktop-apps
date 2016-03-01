@@ -36,22 +36,20 @@
 #include <QStringList>
 #include <QFileInfo>
 
+using namespace std;
+
 class Utils {
 public:
-    static QStringList * getInputFiles(const QStringList& inlist)
-    {
-        QStringList * _ret_files_list = new QStringList;
+    static QStringList * getInputFiles(const QStringList& inlist);
+    static bool firstStart(bool restore = false);
+    static bool markFirstStart();
+    static QString getLocalUsedPath(int type);
 
-        QStringListIterator i(inlist); i.next();
-        while (i.hasNext()) {
-            QFileInfo info(i.next());
-            if (info.isFile()) {
-                _ret_files_list->append(info.absoluteFilePath());
-            }
-        }
-
-        return _ret_files_list;
-    }
+    static void createTempLicense();
+    static bool isTempLicense();
+    static void removeTempLicense();
+    static QString licenseDir();
+    static wstring licenseDirW();
 };
 
 #endif // UTILS_H

@@ -539,6 +539,13 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
     int tabIndex = tabIndexByView(viewId);
     if (!(tabIndex < 0)) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) );
+
+        /* TODO: if exists the saving error, sdk rise the changing event
+         * again. maybe not good action.
+        */
+        if (state && doc->closed()) doc->reuse();
+        /**/
+
         if (doc->changed() != state && (!doc->closed() || state)) {
             doc->setChanged(state);
             tabBar()->setTabText(tabIndex, doc->title());
