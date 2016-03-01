@@ -59,7 +59,7 @@
             height: 180px;
             position: absolute;
             margin-top: -100px;
-            margin-left: -75px;
+            /*margin-left: -75px;*/
         }
 
         .loader-page-text {
@@ -76,46 +76,27 @@
             width: 40px;
             height: 40px;
             -webkit-transform: rotate(135deg) skew(20deg, 20deg);
-            -moz-transform: rotate(135deg) skew(20deg, 20deg);
-            -ms-transform: rotate(135deg) skew(20deg, 20deg);
-            -o-transform: rotate(135deg) skew(20deg, 20deg);
             position: absolute;
             background: red;
             border-radius: 6px;
-            -webkit-animation: movedown 3s infinite ease;
-            -moz-animation: movedown 3s infinite ease;
-            -ms-animation: movedown 3s infinite ease;
-            -o-animation: movedown 3s infinite ease;
             animation: movedown 3s infinite ease;
         }
 
         #blue {
             z-index: 3;
             background: #55bce6;
-            -webkit-animation-name: blue;
-            -moz-animation-name: blue;
-            -ms-animation-name: blue;
-            -o-animation-name: blue;
             animation-name: blue;
         }
 
         #red {
             z-index:1;
             background: #de7a59;
-            -webkit-animation-name: red;
-            -moz-animation-name: red;
-            -ms-animation-name: red;
-            -o-animation-name: red;
             animation-name: red;
         }
 
         #green {
             z-index: 2;
             background: #a1cb5c;
-            -webkit-animation-name: green;
-            -moz-animation-name: green;
-            -ms-animation-name: green;
-            -o-animation-name: green;
             animation-name: green;
         }
 
@@ -236,10 +217,11 @@
     <div id="wrap">
         <div id="loading-mask" class="loadmask">
             <div class="loader-page">
-                <div class="romb" id="blue"></div>
-                <div class="romb" id="green"></div>
-                <div class="romb" id="red"></div>
+                <!-- <div class="romb" id="blue"></div> -->
+                <!-- <div class="romb" id="green"></div> -->
+                <!-- <div class="romb" id="red"></div> -->
                 <!-- <div class="loader-page-text">Loading...</div> -->
+                <!-- <img src="loader_48.gif" height="48" width="48"> -->
             </div>
         </div>
         <div class="modal-mask"></div>
@@ -294,11 +276,12 @@
         </div>
     </div>
 
-    <script>window.brand="ivolga"</script>
+    <script>window.brand="ivo"</script>
     <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap/dropdown.js"></script>
     <!-- <script type="text/javascript" src="../vendor/bootstrap/bootstrap.mods.js"></script> -->
     <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="sdk.js"></script>
     <script type="text/javascript" src="locale.js"></script>
     <script type="text/javascript" src="templates.js"></script>
     <script type="text/javascript" src="dlglogin.js"></script>

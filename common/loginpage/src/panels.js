@@ -93,6 +93,7 @@ $(document).ready(function() {
     $('a[action=open]').text(utils.Lang.actOpenLocal);
     $('a[action=connect]').text(utils.Lang.actConnectTo);
     $('a[action=activate]').text(utils.Lang.actActivate);
+    $('a[action=about]').text(utils.Lang.actAbout);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
@@ -280,7 +281,8 @@ $(document).ready(function() {
         hideAction('connect');
     }
 
-    setLoaderVisible(false);
+    if (!utils.inParams.waitingloader)
+        setLoaderVisible(false);
 
     /* test information */
     // var arr = [
@@ -312,6 +314,10 @@ $(document).ready(function() {
             window.AscDesktopEditor.execCommand('app:onready', '');
         } 
     }, 50);
+
+    // window.sdk.on('onupdaterecents', function(){
+    //     console.log('onupdaterecents');
+    // });
 });
 
 var portalCollection;
@@ -555,13 +561,16 @@ window.on_native_message = function(cmd, param) {
     } else
     if (/app\:version/.test(cmd)) {
         fillVersion(param);
+    } else 
+    if (/app\:ready/) {
+        setLoaderVisible(false);
     }
     
     console.log(cmd, param);
 };
 
 function fillVersion(version) {
-    var _v = utils.fn.extend(utils.fn.parseVersion(version));
+    var _v = utils.fn.extend(utils.fn.parseVersion(version), {brand:window.brand});
 
     Templates.createAboutPanel($('.action-panel.about'), _v);
     $('a[action=about]').parent().removeClass('extra');
