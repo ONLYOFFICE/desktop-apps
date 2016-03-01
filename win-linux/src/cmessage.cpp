@@ -152,7 +152,7 @@ void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
     QPushButton * _btn = new QPushButton(cbtn1);
     m_boxButtons->layout()->addWidget(_btn);
     connect(_btn, &QPushButton::clicked, [=](){
-        m_result = 201;
+        m_result = MODAL_RESULT_BTN1;
         m_pDlg.accept();
     });
 
@@ -160,7 +160,7 @@ void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
         _btn = new QPushButton(cbtn2);
         m_boxButtons->layout()->addWidget(_btn);
         connect(_btn, &QPushButton::clicked, [=](){
-            m_result = 202;
+            m_result = MODAL_RESULT_BTN2;
             m_pDlg.accept();
         });
     }

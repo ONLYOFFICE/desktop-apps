@@ -52,6 +52,7 @@
 #include "../common/libs/common/Types.h"
 #include "cmessage.h"
 #include "utils.h"
+#include "version.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
@@ -72,6 +73,7 @@ using namespace NSEditorApi;
 #define TOOLBTN_HEIGHT      29
 
 extern BYTE     g_dpi_ratio;
+extern BYTE     g_lic_type;
 extern QString  g_lang;
 
 struct CPrintData {
@@ -89,7 +91,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         m_pWidgetProfile(new CUserProfileWidget), m_pWidgetDownload(new CDownloadWidget)
       , m_printData(new CPrintData)
       , m_mainWindowState(Qt::WindowNoState)
-      , m_waitActiveLic(false)
+      , m_waitLicense(false)
 {
     m_pManager = manager;
 
@@ -272,13 +274,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     GET_REGISTRY_USER(_reg_user);
 
-    QString _path_ = _reg_user.value("openPath").value<QString>();
-    m_lastOpenPath = _path_.length() > 0 && !QDir(_path_).exists() ?
-        _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-
-    _path_ = _reg_user.value("savePath").value<QString>();
-    m_lastSavePath = _path_.length() > 0 && !QDir(_path_).exists() ?
-        _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
 
 //    m_savePortal;
     m_saveAction = 0; // undefined
@@ -582,22 +578,6 @@ void QAscMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
         });
 }
 
-void QAscMainPanel::checkLocalUsedPath(int t)
-{
-    GET_REGISTRY_USER(_reg_user)
-
-    QString _path_;
-    if (t == LOCAL_PATH_OPEN) {
-        _path_ = _reg_user.value("openPath").value<QString>();
-        m_lastOpenPath = _path_.length() > 0 && !QDir(_path_).exists() ?
-            _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    } else {
-        _path_ = _reg_user.value("savePath").value<QString>();
-        m_lastSavePath = _path_.length() > 0 && !QDir(_path_).exists() ?
-            _path_ : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-    }
-}
-
 void QAscMainPanel::onLocalGetImage(void * d)
 {
 #ifdef _WIN32
@@ -606,7 +586,7 @@ void QAscMainPanel::onLocalGetImage(void * d)
     CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
 
-    checkLocalUsedPath(LOCAL_PATH_OPEN);
+    m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
 
     QString file_path = dlg.modalOpenImage(m_lastOpenPath);
     if (!file_path.isEmpty()) {
@@ -639,7 +619,7 @@ void QAscMainPanel::onLocalFileOpen(QString path)
         m_lastOpenPath = QString(path);
         _reg_user.setValue("openPath", m_lastOpenPath);
     } else {
-        checkLocalUsedPath(LOCAL_PATH_OPEN);
+        m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
     }
 
     QString file_path = dlg.modalOpen(m_lastOpenPath);
@@ -716,7 +696,7 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     /* check the active license */
     CAscLicenceActual * pData = new CAscLicenceActual;
     pData->AddRef();
-    pData->put_Path(commonDataPath());
+    pData->put_Path(Utils::licenseDirW());
     pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
@@ -768,6 +748,8 @@ void QAscMainPanel::onLocalFilesOpen(void * data)
 
 void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
+    if (qApp->activeModalWidget()) return;
+
     for (vector<wstring>::const_iterator i = vec->begin(); i != vec->end(); i++) {
         COpenOptions opts = {(*i), etLocalFile};
         m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
@@ -777,6 +759,8 @@ void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 
 void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
 {
+    if (qApp->activeModalWidget()) return;
+
     QStringListIterator i(list);
     while (i.hasNext()) {
         COpenOptions opts = {i.next().toStdWString(), etLocalFile};
@@ -867,10 +851,9 @@ void QAscMainPanel::onActivated(void * data)
 
 void QAscMainPanel::doActivate(const QString& key)
 {
-    wstring sAppData = commonDataPath();
+    wstring sAppData = Utils::licenseDirW();
     if (sAppData.size()) {
-        QDir().mkpath(QString::fromStdWString(sAppData));
-        m_waitActiveLic = true;
+        m_waitLicense = true;
 
         CAscLicenceKey * pData = new CAscLicenceKey;
         pData->AddRef();
@@ -891,7 +874,7 @@ void QAscMainPanel::checkActivation()
 {
     CAscLicenceActual * pData = new CAscLicenceActual;
     pData->AddRef();
-    pData->put_Path(commonDataPath());
+    pData->put_Path(Utils::licenseDirW());
     pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
@@ -902,40 +885,102 @@ void QAscMainPanel::checkActivation()
     RELEASEINTERFACE(pData)
 }
 
+int QAscMainPanel::getLicenseType()
+{
+    CAscLicenceActual * pData = new CAscLicenceActual;
+    pData->AddRef();
+    pData->put_Path(Utils::licenseDirW());
+    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = pData;
+    m_pManager->Apply(pEvent);
+
+    BYTE _ret_type = LICENSE_TYPE_NONE;
+    if (pData->get_IsFree())    _ret_type = LICENSE_TYPE_FREE; else
+    if (pData->get_IsDemo())    _ret_type = LICENSE_TYPE_TRIAL; else
+    if (pData->get_Licence())   _ret_type = LICENSE_TYPE_BUSINESS;
+
+    RELEASEINTERFACE(pData)
+
+    return _ret_type;
+}
+
 void QAscMainPanel::doLicenseWarning(void * data)
 {
     CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
 
     CMessage mess(gTopWinId);
-    if (m_waitActiveLic) {
-        QString desr;
-        if (pData->get_Licence()) {
-            desr = tr("Activation successfully finished!");
-            syncLicenseToJS(true);
-        } else desr = tr("Activation failed!");
+    if (pData->get_IsServerUnavailable()) {
+        QString descr = tr("Activation failed! Check internet connection and try again.");
 
-        mess.showModal(desr, QMessageBox::Information);
-    } else
-    if (!pData->get_Licence()) {
-        syncLicenseToJS(false);
-
-        mess.setButtons(tr("Buy Now"), "");
-        if (201 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
-            onLink(URL_BUYNOW);
-        }
-    } else {
-        if (pData->get_IsDemo()) {
-            syncLicenseToJS(false, false);
+        if (g_lic_type == LICENSE_TYPE_FREE) {
             mess.setButtons(tr("Activate"), tr("Continue"));
 
-            int res = 0;
-            if (pData->get_DaysLeft() == 0)
-                res = mess.showModal(tr("The trial period is over.").arg(pData->get_DaysLeft()), QMessageBox::Information); else
-                res = mess.showModal(tr("Trial period expired for %1 days.").arg(pData->get_DaysLeft()), QMessageBox::Information);
+            if (MODAL_RESULT_BTN1 == mess.showModal(descr, QMessageBox::Information)) {
+                selfActivation();
+            } else {
+                beginProgram(false);
+                Utils::createTempLicense();
+            }
+        } else {
+            mess.showModal(descr, QMessageBox::Information);
+            beginProgram(false, false);
+        }
+    } else
+    if (!pData->get_Licence()) {
+        if ( Utils::isTempLicense() ) {
+            mess.setButtons(tr("Activate"), tr("Continue"));
+            if (MODAL_RESULT_BTN1 == mess.showModal(tr("The application isn't activated!"), QMessageBox::Information)) {
+                g_lic_type = LICENSE_TYPE_FREE;
+                selfActivation();
+            } else {
+                beginProgram(false);
+            }
+        } else
+        if ( m_waitLicense ) {
+            mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
+        } else {
+            syncLicenseToJS(false);
 
-            if (res == 201) {
-                syncLicenseToJS(false, true);
-                pushButtonMainClicked();
+            mess.setButtons(tr("Buy Now"), "");
+            if (MODAL_RESULT_BTN1 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
+                onLink(URL_BUYNOW);
+            }
+        }
+    } else {
+        Utils::removeTempLicense();
+
+        if (m_waitLicense) {
+            QString descr = tr("Congrats! %1 (%2) was succefully activated!")
+#ifdef _IVOLGA_PRO
+            .arg(APP_TITLE);
+#else
+            .arg("ONLYOFFICE Desktop Editors");
+#endif
+            QString _edition;
+            if (pData->get_IsFree()) {
+                _edition = tr("Home");
+            } else
+            if (!pData->get_IsDemo()) {
+                _edition = tr("Business");
+            }
+
+            beginProgram(false);
+            mess.showModal(descr.arg(_edition), QMessageBox::Information);
+        } else
+        if (pData->get_IsDemo()) {
+            syncLicenseToJS(false, false);
+
+            if (pData->get_DaysLeft() == 0) {
+                mess.setButtons(tr("Activate"), tr("Continue"));
+
+                if (MODAL_RESULT_BTN1 == mess.showModal(tr("The trial period is over."), QMessageBox::Information)) {
+                    syncLicenseToJS(false, true);
+                    pushButtonMainClicked();
+                }
+            } else {
+                mess.showModal(tr("Trial period expired for %1 days.").arg(pData->get_DaysLeft()), QMessageBox::Information);
             }
         } else
         if (pData->get_DaysBetween() > 0) {
@@ -944,7 +989,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
                 syncLicenseToJS(false, false);
 
                 mess.setButtons(tr("Activate"), tr("Continue"));
-                if (201 == mess.showModal(tr("The program is non-activated!"), QMessageBox::Information)) {
+                if (MODAL_RESULT_BTN1 == mess.showModal(tr("The program is non-activated!"), QMessageBox::Information)) {
                     syncLicenseToJS(false, true);
                     pushButtonMainClicked();
                 }
@@ -971,9 +1016,9 @@ void QAscMainPanel::loadStartPage()
     QString data_path = QString().fromStdWString(m_pManager->m_oSettings.app_data_path) + "/webdata/local/index.html";
 //    data_path = "ascdesktop://login.html";    
 
-    QString additional;
+    QString additional = "?waitingloader=yes";
     if (!g_lang.isEmpty())
-        additional.append("?lang=" + g_lang);
+        additional.append("&lang=" + g_lang);
 
     GET_REGISTRY_USER(_reg_user);
     QString _portal = _reg_user.value("portal").value<QString>();
@@ -1200,6 +1245,8 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 
 void QAscMainPanel::onLocalFileSaveAs(void * d)
 {
+    QString _lastSavePath = Utils::getLocalUsedPath(LOCAL_PATH_SAVE);
+
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
     QFileInfo info(QString::fromStdWString(pData->get_Path()));
@@ -1207,12 +1254,12 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
 //        m_lastSavePath = info.absoluteDir().absolutePath();
 //    }
 
-    if (!QDir(m_lastSavePath).exists()) {
-        m_lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    if (!QDir(_lastSavePath).exists()) {
+        _lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     }
 
     if (info.fileName().size()) {
-        QString fullPath = m_lastSavePath + "/" + info.fileName();
+        QString fullPath = _lastSavePath + "/" + info.fileName();
 
 #ifdef _WIN32
         CFileDialogWrapper dlg(gTopWinId);
@@ -1226,10 +1273,8 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Path(L"");
 
         if (dlg.modalSaveAs(fullPath)) {
-            GET_REGISTRY_USER(_reg_user);
-
-            m_lastSavePath = QFileInfo(fullPath).absoluteDir().absolutePath();
-            _reg_user.setValue("savePath", m_lastSavePath);
+            GET_REGISTRY_USER(_reg_user)
+            _reg_user.setValue("savePath", QFileInfo(fullPath).absoluteDir().absolutePath());
 
             pSaveData->put_Path(fullPath.toStdWString());
             int format = dlg.getFormat() > 0 ? dlg.getFormat() :
@@ -1315,35 +1360,6 @@ void QAscMainPanel::fillUserName(QString& firstname, QString& lastname)
     }
 }
 
-wstring QAscMainPanel::commonDataPath() const
-{
-    std::wstring sAppData(L"");
-#ifdef _WIN32
-    WCHAR szPath[MAX_PATH];
-    if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
-        sAppData = std::wstring(szPath);
-        std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-        sAppData.append(QString(APP_LICENSE_PATH).toStdWString());
-    }
-
-    if (sAppData.size()) {
-        QDir().mkpath(QString::fromStdWString(sAppData));
-    }
-
-#else
-    sAppData = QString("/var/lib").append(APP_LICENSE_PATH).toStdWString();
-    QFileInfo fi(QString::fromStdWString(sAppData));
-    if (!QDir().mkpath(fi.absoluteFilePath())) {
-        if (!fi.isWritable()) {
-            // TODO: check directory permissions and warn the user
-            qDebug() << "directory permission error";
-        }
-    }
-#endif
-
-    return sAppData;
-}
-
 void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 {
     cmdMainPage("lic:active", QString::number(active));
@@ -1356,16 +1372,22 @@ void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 void QAscMainPanel::selfActivation()
 {
     CAscLicenceActual * pData = new CAscLicenceActual;
-    pData->put_Path(commonDataPath());
+    pData->put_Path(Utils::licenseDirW());
     pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
 
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+    CAscMenuEvent * pEvent;
+    if (g_lic_type == LICENSE_TYPE_FREE) {
+        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE);
+        m_waitLicense = true;
+    } else {
+        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
+    }
+
     pEvent->m_pData = pData;
 
     m_pManager->Apply(pEvent);
 }
 
-#include "version.h"
 void QAscMainPanel::onStartPageReady()
 {
 #ifdef _WIN32
@@ -1377,12 +1399,34 @@ void QAscMainPanel::onStartPageReady()
     }
 #endif
 
-    QString _ver = "edition:"+tr("Home Edition");
-    _ver.append(";num:").append(VER_FILEVERSION_STR);
-//    cmdMainPage("app:version", _ver);
+    if (!m_waitLicense) {
+        Utils::isTempLicense() ?
+            checkActivation() : beginProgram();
+    }
+}
 
-    QTimer::singleShot(200, this, [=]{
-        checkActivation();
+void QAscMainPanel::beginProgram(bool checklic, bool veredition)
+{
+    QTimer::singleShot(20, this, [=]{
+        QString _tpl_ver = "num:%1;edition:%2;active:%3;";
+        QString _str_active, _str_edition;
+        if (veredition) {
+            int _lic_type = getLicenseType();
+            if ( _lic_type == LICENSE_TYPE_NONE && Utils::isTempLicense() ) {
+                _str_active = tr("Non-activated.");
+                _lic_type = LICENSE_TYPE_FREE;
+            } else
+            if ( _lic_type == LICENSE_TYPE_TRIAL ) {
+                _str_active = tr("Trial.");
+            }
+
+            _str_edition = _lic_type == LICENSE_TYPE_FREE ? tr("Home Edition") : tr("Business Edition");
+        }
+
+        cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition, _str_active));
+        cmdMainPage("app:ready", "");
+
+        if (checklic) checkActivation();
 
         QStringList * in_files = Utils::getInputFiles(qApp->arguments());
 

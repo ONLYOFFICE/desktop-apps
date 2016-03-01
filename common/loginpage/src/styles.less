@@ -667,8 +667,13 @@ li.menu-item {
 }
 
 .activate {
-    .center {
-        margin-top: -3em;
+    .flexbox {
+        align-items: center;
+        justify-content: center;
+    }
+
+    section {
+        margin-top: -15%;
         width: 90%;
         max-width: 700px;
     }
@@ -689,5 +694,15 @@ li.menu-item {
 
     .row-link {
         margin-top: 0;
+    }
+
+    .ver-logo {
+        width: 142px;
+        height: 32px;
+        background-position-y: -230px;
+
+        &.ivolga {
+            background-position-y: -198px;
+        }
     }
 }

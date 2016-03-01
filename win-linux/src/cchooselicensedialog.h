@@ -48,10 +48,10 @@ private:
     int m_license;
     QString m_eulaPath;
 
-    void reject();
 signals:
 
 public slots:
+    void reject();
 };
 
 #endif // CHOOSELICENSEDIALOG_H

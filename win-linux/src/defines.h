@@ -60,8 +60,9 @@
   #endif
 
   #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
+  #define LIC_KEY_FILENAME "doceditors.ivo.asc"
 #else
-  #define PROD_ID_DESKTOP_EDITORS 300
+  #define PROD_ID_DESKTOP_EDITORS 302
 
   #define APP_NAME "DesktopEditors"
   #define APP_TITLE "ONLYOFFICE"
@@ -78,6 +79,7 @@
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
+  #define LIC_KEY_FILE "doceditors.asc"
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400
@@ -94,9 +96,16 @@
 #define MODAL_RESULT_YES        1
 #define MODAL_RESULT_NO         0
 #define MODAL_RESULT_CANCEL     -1
+#define MODAL_RESULT_BTN1       201
+#define MODAL_RESULT_BTN2       202
 
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
+
+#define LICENSE_TYPE_FREE       255
+#define LICENSE_TYPE_BUSINESS   254
+#define LICENSE_TYPE_TRIAL      253
+#define LICENSE_TYPE_NONE       0
 
 #ifdef __linux
 typedef unsigned char BYTE;
