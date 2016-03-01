@@ -38,6 +38,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "cchooselicensedialog.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -55,9 +56,11 @@ QSplashScreen * g_splash = NULL;
 #include <QScreen>
 #include <QApplication>
 #include <QRegularExpression>
-
+#include "cstyletweaks.h"
+#include "utils.h"
 
 BYTE g_dpi_ratio = 1;
+BYTE g_lic_type = LICENSE_TYPE_BUSINESS;
 QString g_lang;
 
 int main( int argc, char *argv[] )
@@ -146,22 +149,9 @@ int main( int argc, char *argv[] )
     }
 
     g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
-
-  #ifdef _IVOLGA_PRO
-    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
-            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"), Qt::WindowStaysOnTopHint);
-  #else
-    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
-            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"),
-                                 Qt::WindowStaysOnTopHint);
-  #endif
-
-    g_splash->show();
-    app.processEvents();
 #else
     g_dpi_ratio = app.devicePixelRatio();
 #endif
-
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
@@ -198,7 +188,31 @@ int main( int argc, char *argv[] )
         tr.load(g_lang, ":/langs/langs");
         app.installTranslator(&tr);
     }
-    /**/
+    /* applying languages finished */
+
+
+    if (Utils::firstStart()) {
+        CChooseLicenseDialog dlg;
+        dlg.setEULAPath("./LICENSE.rtf");
+        g_lic_type = dlg.exec();
+    }
+
+#ifdef _WIN32
+  #ifdef _IVOLGA_PRO
+    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
+            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"), Qt::WindowStaysOnTopHint);
+  #else
+    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
+            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"),
+                                 Qt::WindowStaysOnTopHint);
+  #endif
+
+    g_splash->show();
+    app.processEvents();
+#endif
+
+    /* prevent drawing of focus rectangle on a button */
+    app.setStyle(new CStyleTweaks);
 
     // read installation time and clean cash folders if expired
     if (reg_system.contains("timestamp")) {

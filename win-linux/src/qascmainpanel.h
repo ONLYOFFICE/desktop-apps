@@ -62,6 +62,7 @@ public:
     int  checkModified(const QString&);
     void checkActivation();
     void selfActivation();
+    int  getLicenseType();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
@@ -73,14 +74,13 @@ private:
     void resizeEvent(QResizeEvent* event);
     void toggleButtonMain(bool);
     void loadStartPage();
-    void checkLocalUsedPath(int);
     void doLogout(const QString&);
     int  trySaveDocument(int);
     void doActivate(const QString&);
-    wstring commonDataPath() const;
     void doLicenseWarning(void *);
     void syncLicenseToJS(bool, bool proceed = true);
     void cmdMainPage(const QString&, const QString&) const;
+    void beginProgram(bool checklic = true, bool veredition = true);
 
     void fillUserName(QString& fn, QString& ln);
 signals:
@@ -157,12 +157,11 @@ private:
     CPrintData *    m_printData;
     Qt::WindowState m_mainWindowState;
 
-    QString m_lastOpenPath,
-            m_lastSavePath;
+    QString m_lastOpenPath;
 
     QString m_savePortal;
     int m_saveAction;
-    bool m_waitActiveLic;
+    bool m_waitLicense;
 public:
     WId GetHwndForKeyboard()
     {

@@ -195,7 +195,7 @@
         [[ASCLicenseManager sharedInstance] createLicense:ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE];
     } else {
         NSWindowController * activationWindow = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationWindowControllerId"];
-        [activationWindow showWindow:[NSApp mainWindow]];
+        [activationWindow showWindow:self];
     }
 }
 

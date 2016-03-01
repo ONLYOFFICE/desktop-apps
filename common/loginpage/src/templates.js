@@ -147,8 +147,8 @@ window.Templates = (function() { 'use strict';
     };
 
     function addActivatePanel(holder) {
-        var _html = '<div style="position:relative;height:100%;">' +
-                    '<section class="center">'+
+        var _html = '<div class="flexbox">' +
+                    '<section>'+
                       '<h3 class="text-welcome">' + utils.Lang.licPanelTitle + '</h3>' +
                       '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
                       '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
@@ -165,12 +165,13 @@ window.Templates = (function() { 'use strict';
 
     function getAboutPanel(holder, opts) {
         var _html = '<div class="box-ver">' +
-                      '<img class="ver-logo %brand">'+                      
-                      '<div class="ver-version">%appname ver. %ver</div>%edition<p></p>'+
+                      '<div class="img-el ver-logo %brand"></div><p></p>'+                      
+                      '<div class="ver-version">%appname version %ver</div>%edition<p></p>'+
                       '<div class="ver-copyright">%cpr</div>'+
                       '<a class="ver-site" target="popup" href="%link">%txtlink</a>'
                     '</div>';
 
+        !!opts.active && (opts.edition = !!opts.edition?opts.edition+'. '+opts.active:opts.active);
         _html = _html
                 .replace(/\%edition/,!!opts.edition?'<div class="ver-edition">%edition</div>':'')
                 .replace(/\%edition/, opts.edition);
@@ -181,7 +182,7 @@ window.Templates = (function() { 'use strict';
             _cpr = '© 2015-2016 ЗАО "НКТ"';
             _link = 'http://ivolgapro.ru';
             _site = 'www.ivolgapro.ru';
-            _app = utils.Lang._code=='ru'?'Иволга ПРО':'IvolgaPRO';
+            _app = utils.inParams.lang=='ru'?'Иволга ПРО':'IvolgaPRO';
         } else {
             _img_cls = 'only';
             _cpr = '© 2016 Ascensio System SIA';

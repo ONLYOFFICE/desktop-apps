@@ -70,6 +70,7 @@ var en = {
     actOpenLocal: 'Open local file',
     actConnectTo: 'Connect to server',
     actActivate: 'Activate',
+    actAbout: 'About',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
@@ -117,6 +118,7 @@ var ru = {
     actOpenLocal: 'Открыть локальный файл',
     actConnectTo: 'Войти на портал',
     actActivate: 'Активировать',
+    actAbout: 'О программе',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
@@ -227,25 +229,10 @@ var es = {
     licPanelDescr: 'You can receve key by e-mail.'
 }
 
-function getUrlParams() {
-    var e,
-    a = /\+/g,  
-    r = /([^&=]+)=?([^&]*)/g,
-    d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
-    q = window.location.search.substring(1),
-    urlParams = {};
-
-    while (e = r.exec(q))
-        urlParams[d(e[1])] = d(e[2]);
-
-    return urlParams;
-}
-
-(function applyLocale(lang) {
++function applyLocale(lang) {
     !lang && (lang = 'en');
     utils.Lang = window[lang];
-    utils.Lang._code = lang;
-})(getUrlParams()['lang']);
+}(window.utils.inParams.lang);
 
 /*
 (function embedLocale(lang) {

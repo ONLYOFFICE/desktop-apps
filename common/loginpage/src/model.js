@@ -152,7 +152,7 @@ function PortalModel(attributes) {
     this.email  = attributes.email || '';
 };
 
-PortalModel.prototype = new Model();
+PortalModel.prototype = Object.create(Model.prototype); /*new Model();*/
 PortalModel.prototype.constructor = PortalModel;
 
 function FileModel(attributes) {

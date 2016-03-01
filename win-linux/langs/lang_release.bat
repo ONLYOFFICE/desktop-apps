@@ -1,1 +1,1 @@
-C:\Qt\Qt5.4.2\5.4\msvc2013_64_opengl\bin\lrelease.exe ../ASCDocumentEditor.pro
+C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\lrelease.exe ../ASCDocumentEditor.pro

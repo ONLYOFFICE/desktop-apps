@@ -38,11 +38,13 @@
 #include <QVariant>
 #include <QDesktopServices>
 #include <QUrl>
+#include "defines.h"
 
 extern uchar g_dpi_ratio;
+extern QString g_lang;
 
 CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
-  , m_license(1)
+  , m_license(LICENSE_TYPE_BUSINESS)
 {
     QVBoxLayout * _layout = new QVBoxLayout;
     QLabel * _labelWelcome = new QLabel;
@@ -51,22 +53,25 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
 
     QString _str_welcome = tr("Welcome to %1!");
 #ifdef _IVOLGA_PRO
-    _labelWelcome->setText(_str_welcome.arg("Ivolga PRO"));
+    _labelWelcome->setText(_str_welcome.arg(APP_TITLE));
+    setWindowIcon(QIcon(":/ivolga/app.ico"));
 #else
     _labelWelcome->setText(_str_welcome.arg("OnlyOffice"));
+    setWindowIcon(QIcon(":/res/icons/desktopeditors.ico"));
 #endif
 
     _labelWelcome->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _labelChoose->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _labelLicense->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
+    _labelWelcome->setObjectName("labelWelcome");
+    _labelChoose->setObjectName("labelChoose");
+    _labelLicense->setObjectName("labelGoLicense");
+
     _layout->addWidget(_labelWelcome, 0, Qt::AlignHCenter);
     _layout->addWidget(_labelChoose, 0, Qt::AlignHCenter);
 
     _layout->setContentsMargins(30,20,30,30);
-    _labelWelcome->setStyleSheet("font-weight:bold;margin-bottom:10px");
-    _labelChoose->setStyleSheet("margin-bottom:30px");
-    _labelLicense->setStyleSheet("margin-top:20px");;
 
     QHBoxLayout * _hbox = new QHBoxLayout;
     QToolButton * _btn1 = new QToolButton;
@@ -90,12 +95,11 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
                 _btn1->setIcon(QIcon(":/license/home.png")), _btn2->setIcon(QIcon(":/license/busines.png"));
 
     connect(_btn1, &QToolButton::clicked, [=](){
-        m_license = 2;
-        accept();
+        done((m_license = LICENSE_TYPE_FREE));
     });
 
     connect(_btn2, &QToolButton::clicked, [=](){
-        accept();
+        done(m_license);
     });
 
     QFrame * _vline = new QFrame;
@@ -112,6 +116,11 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     connect(_labelLicense, &QLabel::linkActivated, [=](){
         if (m_eulaPath.size()) {
             m_eulaPath.prepend("file:///");
+
+            /* TODO: workaround opening of eula whith applyed file association */
+            m_eulaPath = "http://ivolgapro.ru/Documents/LicenseAgreement.pdf";
+            /**/
+
             QDesktopServices::openUrl(QUrl(m_eulaPath));
         }
     });
@@ -121,15 +130,19 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     QString _css = "QToolButton{padding:20px; border:0 none; font-weight:bold;}";
     _css.append("QToolButton{border-radius:5px;}");
     _css.append("QToolButton:hover{background:#e5e5e5;}");
+    _css.append("#labelWelcome{font-size:20px; color:#3d4a6b; font-weight:100; margin-bottom:0px}");
+    _css.append("#labelChoose{margin-bottom:10px}");
+    _css.append("#labelGoLicense{margin-top:20px}");
     _css.append(".QFrame{border:5px solid #fff; background-color:#f0f0f0;}");
     _css.append(".QFrame{border-left:0 none; border-right:0 none;}");
     _css.append("QDialog{background:#fff;}");
+    _css.append("*{font-family:'Open Sans',sans-serif; font-size:15px; color:#333;}");
 
     setStyleSheet(_css);
     setLayout(_layout);
 
     setFixedSize(500, 385);
-    setWindowTitle("License");
+    setWindowTitle(APP_TITLE);
 
     setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
 }
@@ -139,11 +152,12 @@ int CChooseLicenseDialog::license() const
     return m_license;
 }
 
-void CChooseLicenseDialog::reject()
-{
-}
-
 void CChooseLicenseDialog::setEULAPath(const QString& path)
 {
     m_eulaPath = path;
+}
+
+void CChooseLicenseDialog::reject()
+{
+
 }
