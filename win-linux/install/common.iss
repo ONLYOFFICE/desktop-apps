@@ -65,11 +65,11 @@ SetupMutex              =ASC
 
 [Languages]
 #ifdef _IVOLGA_PRO
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\License_ivolga.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_ivolga.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_ivolga.rtf;
 #else
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\License_onlyoffice.rtf;
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\License_onlyoffice.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
 #endif
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
@@ -308,12 +308,14 @@ Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName:
 Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
-Source: ..\..\common\package\license\License_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
+;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
+Source: ..\..\common\package\license\eula_ivolga.htm; DestDir: {app}; DestName: LICENSE.htm;
 #else
 Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: data\projicons_asc.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
-Source: ..\..\common\package\license\License_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
+;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
+Source: ..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
 #endif
 Source: ..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
