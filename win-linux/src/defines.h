@@ -53,14 +53,15 @@
     #define APP_DATA_PATH "/ivolgapro/desktopeditors"
     #define APP_LICENSE_PATH "/ivolgapro/license"
     #define REG_GROUP_KEY "ivolgapro"
+    #define LIC_KEY_FILENAME ".doceditors.ivo.asc"
   #else
     #define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
     #define APP_LICENSE_PATH "/IvolgaPRO/License"
     #define REG_GROUP_KEY "IvolgaPRO"
+    #define LIC_KEY_FILENAME "doceditors.ivo.asc"
   #endif
 
   #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
-  #define LIC_KEY_FILENAME "doceditors.ivo.asc"
 #else
   #define PROD_ID_DESKTOP_EDITORS 302
 
@@ -71,15 +72,16 @@
     #define APP_DATA_PATH "/onlyoffice/desktopeditors"
     #define APP_LICENSE_PATH "/onlyoffice/license"
     #define REG_GROUP_KEY "onlyoffice"
+    #define LIC_KEY_FILENAME ".doceditors.asc"
   #else
     #define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
     #define APP_LICENSE_PATH "/ONLYOFFICE/License"
     #define REG_GROUP_KEY "ONLYOFFICE"
+    #define LIC_KEY_FILENAME "doceditors.asc"
   #endif
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
-  #define LIC_KEY_FILE "doceditors.asc"
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400

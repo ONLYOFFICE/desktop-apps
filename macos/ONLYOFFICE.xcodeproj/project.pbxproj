@@ -73,9 +73,6 @@
 		FC081EF21C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
 		FC081EF31C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
 		FC081EF41C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
-		FC081EF61C325E9100F9881C /* acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF51C325E9100F9881C /* acknowledgments.html */; };
-		FC081EF71C325E9100F9881C /* acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF51C325E9100F9881C /* acknowledgments.html */; };
-		FC081EF81C325E9100F9881C /* acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF51C325E9100F9881C /* acknowledgments.html */; };
 		FC081EFA1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC081EFB1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC081EFC1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
@@ -312,7 +309,6 @@
 		FC081EC81C325E8400F9881C /* file-txt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-txt.icns"; sourceTree = "<group>"; };
 		FC081EC91C325E8400F9881C /* file-xls.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xls.icns"; sourceTree = "<group>"; };
 		FC081ECA1C325E8400F9881C /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
-		FC081EF51C325E9100F9881C /* acknowledgments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = acknowledgments.html; sourceTree = "<group>"; };
 		FC081EF91C325EE900F9881C /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../common/package/dictionaries; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
@@ -822,7 +818,6 @@
 				FC081E981C32575800F9881C /* ONLYOFFICE */,
 				FC081E9A1C3257A800F9881C /* ONLYOFFICE-MAS */,
 				FC081E921C3256A600F9881C /* dsa_pub.pem */,
-				FC081EF51C325E9100F9881C /* acknowledgments.html */,
 				FC081EBC1C325E8400F9881C /* file-formats */,
 				FC081EF91C325EE900F9881C /* dictionaries */,
 				FC0907401C186A7A00D9E881 /* converter */,
@@ -1182,7 +1177,6 @@
 				FC09073F1C1855A400D9E881 /* editors in Resources */,
 				FC6718231BD913C00028600F /* Localizable.strings in Resources */,
 				FC081EEB1C325E8400F9881C /* file-rtf.icns in Resources */,
-				FC081EF81C325E9100F9881C /* acknowledgments.html in Resources */,
 				FC081E9C1C3257F600F9881C /* Info.plist in Resources */,
 				FC081EE81C325E8400F9881C /* file-ppt.icns in Resources */,
 				FC081EE21C325E8400F9881C /* file-pdf.icns in Resources */,
@@ -1224,7 +1218,6 @@
 				FCF8071B1C43D07E00475CFD /* EULA.html in Resources */,
 				FC7FD3D71C315DD6008F6641 /* login in Resources */,
 				FC081EA01C32580900F9881C /* Info.plist in Resources */,
-				FC081EF71C325E9100F9881C /* acknowledgments.html in Resources */,
 				FC081ECF1C325E8400F9881C /* file-djvu.icns in Resources */,
 				FC081ED81C325E8400F9881C /* file-odp.icns in Resources */,
 				FC7FD3D81C315DD6008F6641 /* converter in Resources */,
@@ -1260,7 +1253,6 @@
 				FC081EFA1C325EE900F9881C /* dictionaries in Resources */,
 				FC3B777B1BB28CE900DB9705 /* login in Resources */,
 				FC081E9E1C3257FF00F9881C /* Info.plist in Resources */,
-				FC081EF61C325E9100F9881C /* acknowledgments.html in Resources */,
 				FC081ECE1C325E8400F9881C /* file-djvu.icns in Resources */,
 				FC081ED71C325E8400F9881C /* file-odp.icns in Resources */,
 				FC0907411C186A7A00D9E881 /* converter in Resources */,

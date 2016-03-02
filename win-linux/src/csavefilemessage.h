@@ -48,7 +48,7 @@ class CSaveFileMessage
 public:
     CSaveFileMessage(HWND hParentWnd);
 #else
-    : public QObject
+    : public QWidget
 {
     Q_OBJECT
 
