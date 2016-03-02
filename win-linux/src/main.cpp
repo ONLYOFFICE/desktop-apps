@@ -193,7 +193,7 @@ int main( int argc, char *argv[] )
 
     if (Utils::firstStart()) {
         CChooseLicenseDialog dlg;
-        dlg.setEULAPath("./LICENSE.rtf");
+        dlg.setEULAPath("./LICENSE.htm");
         g_lic_type = dlg.exec();
     }
 
