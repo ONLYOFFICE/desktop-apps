@@ -136,6 +136,7 @@
   "SSE.Controllers.Main.errorFillRange": "Could not fill the selected range of cells.<br>All the merged cells need to be the same size.",
   "SSE.Controllers.Main.errorFormulaName": "An error in the entered formula.<br>Incorrect formula name is used.",
   "SSE.Controllers.Main.errorFormulaParsing": "Internal error while parsing the formula.",
+  "SSE.Controllers.Main.errorFrmlWrongReferences": "The function refers to a sheet that does not exist.<br>Please check the data and try again.",
   "SSE.Controllers.Main.errorInvalidRef": "Enter a correct name for the selection or a valid reference to go to.",
   "SSE.Controllers.Main.errorKeyEncrypt": "Unknown key descriptor",
   "SSE.Controllers.Main.errorKeyExpire": "Key descriptor expired",

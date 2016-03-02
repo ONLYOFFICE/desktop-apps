@@ -142,6 +142,7 @@
   "SSE.Controllers.Main.errorLockedAll": "Die Operation kann durchgeführt werden, weil das Blatt von einem anderen Benutzer gesperrt wird.",
   "SSE.Controllers.Main.errorLockedWorksheetRename": "Umbenennen des Blattes ist derzeit nicht möglich, denn es wird gleichzeitig von einem anderen Benutzer umbenannt.",
   "SSE.Controllers.Main.errorMoveRange": "Unmöglich einen Teil der vereinigten Zelle ändern",
+  "SSE.Controllers.Main.errorOpenWarning": "The length of one of the formulas in the file exceeded<br>the allowed number of characters and it was removed.",
   "SSE.Controllers.Main.errorOperandExpected": "Operand erwartet",
   "SSE.Controllers.Main.errorPasteMaxRange": "Das Kopieren und Einfügen Bereich nicht übereinstimmt.<br>Bitte wählen Sie einen Bereich mit der gleichen Größe oder klicken Sie auf die erste Zelle in einer Zeile, um die kopierten Zellen hinzuzufügen.",
   "SSE.Controllers.Main.errorProcessSaveResult": "Speichern fehlgeschlagen",
