@@ -115,13 +115,7 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     _labelLicense->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
     connect(_labelLicense, &QLabel::linkActivated, [=](){
         if (m_eulaPath.size()) {
-            m_eulaPath.prepend("file:///");
-
-            /* TODO: workaround opening of eula whith applyed file association */
-            m_eulaPath = "http://ivolgapro.ru/Documents/LicenseAgreement.pdf";
-            /**/
-
-            QDesktopServices::openUrl(QUrl(m_eulaPath));
+            QDesktopServices::openUrl(QUrl::fromLocalFile(m_eulaPath));
         }
     });
 
