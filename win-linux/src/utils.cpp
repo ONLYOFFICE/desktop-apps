@@ -40,6 +40,8 @@
 #include "shlobj.h"
 #endif
 
+#include <QDebug>
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = new QStringList;
@@ -134,7 +136,7 @@ void Utils::createTempLicense()
 #ifdef _WIN32
     _file_name.append("/home.lic");
 #else
-    _file_name.append("/.home.lic";
+    _file_name.append("/.home.lic");
 #endif
 
     QFile _file(_file_name);
@@ -154,7 +156,7 @@ bool Utils::isTempLicense()
 #ifdef _WIN32
     _file_name.append("/home.lic");
 #else
-    _file_name.append("/.home.lic";
+    _file_name.append("/.home.lic");
 #endif
 
     return QFileInfo(_file_name).exists();
@@ -166,7 +168,7 @@ void Utils::removeTempLicense()
 #ifdef _WIN32
     _file_name.append("/home.lic");
 #else
-    _file_name.append("/.home.lic";
+    _file_name.append("/.home.lic");
 #endif
 
     QFile::remove(_file_name);
