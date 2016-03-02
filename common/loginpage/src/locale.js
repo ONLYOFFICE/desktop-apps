@@ -230,7 +230,7 @@ var es = {
 }
 
 +function applyLocale(lang) {
-    !lang && (lang = 'en');
+    (!lang || !window[lang]) && (lang = 'en');
     utils.Lang = window[lang];
 }(window.utils.inParams.lang);
 
