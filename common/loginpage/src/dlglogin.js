@@ -238,7 +238,7 @@ window.LoginDlg = function() {
                         showLoginError(utils.Lang.errLoginServer);
                     } else
                     if (!obj.response.sms) {
-                        clientCheckin();
+                        clientCheckin(obj.response.token);
                         getUserInfo(obj.response.token);
 
                         setTimeout(function(){
@@ -315,8 +315,13 @@ window.LoginDlg = function() {
         $.ajax(opts);
     };
 
-    function clientCheckin() {
-        $.post(protocol + portal + "/api/2.0/portal/mobile/registration", {type: PROD_ID});
+    function clientCheckin(token) {
+        $.ajax({
+            url: protocol + portal + "/api/2.0/portal/mobile/registration", 
+            method: 'post',
+            headers: {'Authorization': token},
+            data: {type: PROD_ID}
+        });
     };
 
     function bindEvents() {
