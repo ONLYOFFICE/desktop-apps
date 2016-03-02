@@ -142,6 +142,7 @@
   "SSE.Controllers.Main.errorLockedAll": "The operation could not be done as the sheet has been locked by another user.",
   "SSE.Controllers.Main.errorLockedWorksheetRename": "The sheet cannot be renamed at the moment as it is being renamed by another user",
   "SSE.Controllers.Main.errorMoveRange": "Dela združene celice ni mogoče spremeniti",
+  "SSE.Controllers.Main.errorOpenWarning": "The length of one of the formulas in the file exceeded<br>the allowed number of characters and it was removed.",
   "SSE.Controllers.Main.errorOperandExpected": "Operand pričakovan",
   "SSE.Controllers.Main.errorPasteMaxRange": "The copy and paste area does not match.<br>Please select an area with the same size or click the first cell in a row to paste the copied cells.",
   "SSE.Controllers.Main.errorProcessSaveResult": "Shranjevanje ni bilo uspešno",
