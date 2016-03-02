@@ -37,7 +37,7 @@
 #include <QProxyStyle>
 #include <QApplication>
 #include <QFileInfo>
-#include <QTimer>
+#include "../utils.h"
 
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -63,27 +63,13 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     pAppManager->StartSpellChecker();
     pAppManager->StartKeyboardChecker();
 
-    connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
-    connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
+    QAscMainPanel * pMainPanel = qobject_cast<QAscMainPanel *>(m_pMainPanel);
+    connect(pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
+    connect(pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
 
-    QString _file_name = QString("/var/lib").append(APP_DATA_PATH).append("/../.doceditors.asc");
-
-    bool _activate = !QFileInfo(_file_name).exists();
-    if (_activate)
-        _activate = !reg_user.contains("license"); else
-        reg_user.setValue("license", "ȒѬ");
-
-    if (_activate) {
-        ((QAscMainPanel *)m_pMainPanel)->selfActivation();
-
-        QFile _file(_file_name);
-        bool _is = _file.open(QFile::WriteOnly);
-        if (_is) {
-            _file.write("ȒѬ", 2);
-            _file.close();
-        }
-
-        reg_user.setValue("license", "ȒѬ");
+    if (Utils::firstStart(true)) {
+        pMainPanel->selfActivation();
+        Utils::markFirstStart();
     }
 
     parseInputArgs(qApp->arguments());

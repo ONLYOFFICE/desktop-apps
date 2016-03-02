@@ -55,7 +55,7 @@ CSaveFileMessage::CSaveFileMessage(HWND hParentWnd)
       m_pDlg(this),
 #else
 CSaveFileMessage::CSaveFileMessage(QWidget * parent)
-    : QObject(parent),
+    : QWidget(parent),
     m_pDlg(parent),
 #endif
     m_result(MODAL_RESULT_CANCEL), m_fLayout(new QFormLayout), m_mapFiles(NULL)
