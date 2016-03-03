@@ -939,6 +939,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
             }
         } else
         if ( m_waitLicense ) {
+            m_waitLicense = false;
             mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
         } else {
             syncLicenseToJS(false);
@@ -952,6 +953,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
         Utils::removeTempLicense();
 
         if (m_waitLicense) {
+            m_waitLicense = false;
             QString descr = tr("Congrats! %1 (%2) was succefully activated!")
 #ifdef _IVOLGA_PRO
             .arg(APP_TITLE);
