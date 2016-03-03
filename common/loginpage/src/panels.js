@@ -100,9 +100,9 @@ $(document).ready(function() {
     var $headerRecovery = $boxRecovery.find('.header');
     var $scrboxRecovery = $boxRecovery.find('.flex-fill');
 
-    // var $boxRecent = $('.action-panel.recent #box-recent');
+    var $boxRecent = $('.action-panel.recent #box-recent');
     // var $listRecent = $boxRecent.find('.table-files.list');
-    // var $scrboxRecent = $boxRecent.find('.flex-fill');
+    var $scrboxRecent = $boxRecent.find('.flex-fill');
 
     // $('button#btn-add').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
@@ -132,6 +132,8 @@ $(document).ready(function() {
             $boxRecovery.find('> .flexbox').css('height', '');
             $listRecovery.find('tr > td:last-child').css('padding-left', '');
         }
+
+        $scrboxRecent.height($boxRecent.height() - $boxRecent.find('.header').height());
     };
 
     window.onupdaterecents = function(params) {
