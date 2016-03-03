@@ -93,6 +93,8 @@ desktopeditor:
 	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
 
+	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
+
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
 	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
 
