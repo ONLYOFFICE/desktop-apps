@@ -193,7 +193,7 @@ int main( int argc, char *argv[] )
 
     if (Utils::firstStart()) {
         CChooseLicenseDialog dlg;
-        dlg.setEULAPath("./LICENSE.htm");
+        dlg.setEULAPath(QString("%1/LICENSE.htm").arg(QCoreApplication::applicationDirPath()));
         g_lic_type = dlg.exec();
     }
 
