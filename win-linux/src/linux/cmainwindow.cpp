@@ -46,7 +46,7 @@ CMainWindow::CMainWindow(QWidget *parent)
 }
 
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
-    : CMainWindow()
+    : CMainWindow((QWidget *)0) /* doesn't compile via gcc 4.8 without parameter */
 {
     m_pMainPanel = new QAscMainPanel(this, pAppManager, false);
 //    m_pMainPanel = new QAscMainPanel(this, pAppManager, true);
