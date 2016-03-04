@@ -25,3 +25,4 @@ fi
 
 mkdir -p /var/lib/ivolgapro
 chmod -R 777 /var/lib/ivolgapro
+chmod -R 777 /opt/ivolgapro/desktopeditors/*
