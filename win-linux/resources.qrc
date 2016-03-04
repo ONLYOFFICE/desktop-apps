@@ -56,7 +56,7 @@
         <file>res/icons/radiobox.png</file>
         <file>res/icons/checkbox.png</file>
         <file>res/icons/arrow_down.png</file>
-        <file>res/icons/desktopeditors.ico</file>
+        <file alias="app.ico">res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.png</file>
         <file>res/icons/splash_2x.png</file>
     </qresource>
