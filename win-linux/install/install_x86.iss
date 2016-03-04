@@ -20,6 +20,11 @@ Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafte
 Source: ..\..\common\converter\windows\win32\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win32\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\common\libs\ChromiumBasedEditors2\app\cefbuilds\win32\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+#ifdef _IVOLGA_PRO
+Source: data\projicons_nct_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+#else
+Source: data\projicons_asc_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+#endif
 Source: data\libs\qt\win32\*;                             DestDir: {app}\; Flags: ignoreversion recursesubdirs;
 Source: data\libs\chromium\win_xp\dbghelp.dll;            DestDir: {app}\; Flags: onlyifdoesntexist; OnlyBelowVersion: 6.0;
 Source: data\libs\chromium\win32\dbghelp.dll;             DestDir: {app}\; Flags: onlyifdoesntexist; MinVersion: 6.0; Check: libExists('dbghelp.dll');
