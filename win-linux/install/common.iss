@@ -306,13 +306,11 @@ Source: .\launch.bat;           DestDir: {app}\;
 Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
 #ifdef _IVOLGA_PRO
 Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
-Source: data\projicons_nct.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\common\package\license\eula_ivolga.htm; DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\common\package\license\eula_ivolgapro.htm; DestDir: {app}; DestName: LICENSE.htm;
 #else
 Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: data\projicons_asc.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 Source: ..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
