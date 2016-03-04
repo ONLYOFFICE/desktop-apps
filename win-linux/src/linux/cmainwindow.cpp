@@ -48,6 +48,12 @@ CMainWindow::CMainWindow(QWidget *parent)
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     : CMainWindow((QWidget *)0) /* doesn't compile via gcc 4.8 without parameter */
 {
+#ifdef _IVOLGA_PRO
+    setWindowIcon(QIcon(":/ivolga/app.ico"));
+#else
+    setWindowIcon(QIcon(":/app.ico"));
+#endif
+
     m_pMainPanel = new QAscMainPanel(this, pAppManager, false);
 //    m_pMainPanel = new QAscMainPanel(this, pAppManager, true);
     setCentralWidget(m_pMainPanel);
