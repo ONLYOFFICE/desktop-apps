@@ -94,6 +94,7 @@ desktopeditor:
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
+	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
 	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
