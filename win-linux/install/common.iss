@@ -65,8 +65,8 @@ SetupMutex              =ASC
 
 [Languages]
 #ifdef _IVOLGA_PRO
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_ivolga.rtf;
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_ivolga.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_ivolgapro.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_ivolgapro.rtf;
 #else
   Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
   Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
