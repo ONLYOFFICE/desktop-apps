@@ -147,8 +147,8 @@ window.LoginDlg = function() {
     function onLoginClick(e) {
         hideLoginError();
 
-        portal = $el.find('#auth-portal').val();
-        email = $el.find('#auth-email').val();
+        portal = $el.find('#auth-portal').val().trim();
+        email = $el.find('#auth-email').val().trim();
 
         var re_wrong_symb = /[\s\\]/;
         if (!portal.length || re_wrong_symb.test(portal)) {

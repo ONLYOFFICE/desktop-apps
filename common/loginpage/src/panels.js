@@ -100,9 +100,10 @@ $(document).ready(function() {
     var $headerRecovery = $boxRecovery.find('.header');
     var $scrboxRecovery = $boxRecovery.find('.flex-fill');
 
-    // var $boxRecent = $('.action-panel.recent #box-recent');
+    var $boxRecent = $('.action-panel.recent #box-recent');
     // var $listRecent = $boxRecent.find('.table-files.list');
-    // var $scrboxRecent = $boxRecent.find('.flex-fill');
+    var $scrboxRecent = $boxRecent.find('.flex-fill');
+    var separatorHeight = $('<div id="recovery-sep"></div>').insertAfter($('#box-recovery')).height();
 
     // $('button#btn-add').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
@@ -123,15 +124,19 @@ $(document).ready(function() {
 
     function sizeRecoveryList() {
         // set fixed height for scrollbar appearing. 
-        $boxRecovery.find('> .flexbox').css('height', '');
-        let fix_height = $boxRecovery.height() - $headerRecovery.height();
-        if (fix_height < $listRecovery.get(0).scrollHeight) {
-            $boxRecovery.find('> .flexbox').height($boxRecovery.height());
-            $listRecovery.find('tr > td:last-child').css('padding-left', Scroll_offset);
-        } else {
-            $boxRecovery.find('> .flexbox').css('height', '');
-            $listRecovery.find('tr > td:last-child').css('padding-left', '');
-        }
+        var _available_height = $boxRecent.parent().height() - separatorHeight,
+            _box_recent_height = _available_height * 0.5; 
+
+        $boxRecovery.height(_available_height * 0.5);
+
+        var $table_box = $boxRecovery.find('.table-box');
+        if ( !$table_box.hasScrollBar() ) {
+            let _new_recovery_height = $table_box.find('.table-files.list').height() + $headerRecovery.height();
+            $boxRecovery.height(_new_recovery_height);
+            _box_recent_height = _available_height - _new_recovery_height;
+        } 
+
+        $boxRecent.height() != _box_recent_height && $boxRecent.height(_box_recent_height);
     };
 
     window.onupdaterecents = function(params) {
@@ -175,6 +180,7 @@ $(document).ready(function() {
 
         setTimeout(function(){sizeRecoveryList()}, 10);
         $boxRecovery[recoveryCollection.size() > 0 ? 'show' : 'hide']();
+        $('#recovery-sep')[recoveryCollection.size() > 0 ? 'show' : 'hide']();
     };
 
     $(window).resize(function(){
