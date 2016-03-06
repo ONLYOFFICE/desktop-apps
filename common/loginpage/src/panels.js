@@ -124,19 +124,23 @@ $(document).ready(function() {
 
     function sizeRecoveryList() {
         // set fixed height for scrollbar appearing. 
-        var _available_height = $boxRecent.parent().height() - separatorHeight,
-            _box_recent_height = _available_height * 0.5; 
+        if ($boxRecovery.is(':hidden')) {
+            $boxRecent.css('height', '');
+        } else {
+            var _available_height = $boxRecent.parent().height() - separatorHeight,
+                _box_recent_height = _available_height * 0.5; 
 
-        $boxRecovery.height(_available_height * 0.5);
+            $boxRecovery.height(_available_height * 0.5);
 
-        var $table_box = $boxRecovery.find('.table-box');
-        if ( !$table_box.hasScrollBar() ) {
-            let _new_recovery_height = $table_box.find('.table-files.list').height() + $headerRecovery.height();
-            $boxRecovery.height(_new_recovery_height);
-            _box_recent_height = _available_height - _new_recovery_height;
-        } 
+            var $table_box = $boxRecovery.find('.table-box');
+            if ( !$table_box.hasScrollBar() ) {
+                let _new_recovery_height = $table_box.find('.table-files.list').height() + $headerRecovery.height();
+                $boxRecovery.height(_new_recovery_height);
+                _box_recent_height = _available_height - _new_recovery_height;
+            }
 
-        $boxRecent.height() != _box_recent_height && $boxRecent.height(_box_recent_height);
+            $boxRecent.height() != _box_recent_height && $boxRecent.height(_box_recent_height);
+        }
     };
 
     window.onupdaterecents = function(params) {
@@ -178,9 +182,9 @@ $(document).ready(function() {
             recoveryCollection.add( new FileModel(item) );
         }
 
-        setTimeout(function(){sizeRecoveryList()}, 10);
         $boxRecovery[recoveryCollection.size() > 0 ? 'show' : 'hide']();
         $('#recovery-sep')[recoveryCollection.size() > 0 ? 'show' : 'hide']();
+        sizeRecoveryList();
     };
 
     $(window).resize(function(){
