@@ -124,11 +124,13 @@ $(document).ready(function() {
 
     function sizeRecoveryList() {
         // set fixed height for scrollbar appearing. 
+        var _available_height = $boxRecent.parent().height();
+        var _box_recent_height = _available_height; 
         if ($boxRecovery.is(':hidden')) {
-            $boxRecent.css('height', '');
+            // $boxRecent.height($boxRecent.parent().height());
         } else {
-            var _available_height = $boxRecent.parent().height() - separatorHeight,
-                _box_recent_height = _available_height * 0.5; 
+            _available_height -= separatorHeight
+            _box_recent_height *= 0.5; 
 
             $boxRecovery.height(_available_height * 0.5);
 
@@ -138,9 +140,9 @@ $(document).ready(function() {
                 $boxRecovery.height(_new_recovery_height);
                 _box_recent_height = _available_height - _new_recovery_height;
             }
-
-            $boxRecent.height() != _box_recent_height && $boxRecent.height(_box_recent_height);
         }
+
+        /*$boxRecent.height() != _box_recent_height &&*/ $boxRecent.height(_box_recent_height);
     };
 
     window.onupdaterecents = function(params) {
