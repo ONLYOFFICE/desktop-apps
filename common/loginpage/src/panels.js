@@ -122,10 +122,21 @@ $(document).ready(function() {
     //     sizeRecoveryList();
     // });
 
+    // 
+
+        // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
+        $('.tool-menu > .menu-item > a[action=recent]').on('click.once', function(e){
+            $(e.target).off('.once');
+            sizeRecoveryList();
+        });
+
     function sizeRecoveryList() {
         // set fixed height for scrollbar appearing. 
         var _available_height = $boxRecent.parent().height();
-        var _box_recent_height = _available_height; 
+        var _box_recent_height = _available_height;
+
+        console.log('height: ' + _available_height);
+
         if ($boxRecovery.is(':hidden')) {
             // $boxRecent.height($boxRecent.parent().height());
         } else {
