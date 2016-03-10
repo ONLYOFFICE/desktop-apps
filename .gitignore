@@ -1,4 +1,3 @@
-syntax: glob
 
 win-linux/build/Release/*
 win-linux/build/Debug/*
