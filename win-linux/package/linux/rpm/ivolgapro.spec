@@ -7,8 +7,8 @@ Group: Applications/Office
 URL: http://ivolgapro.com/
 Vendor: Novie kommunikacionnie tehnologii, CJSC
 Packager: Novie kommunikacionnie tehnologii, CJSC <support@ivolgapro.ru>
-Requires: libX11, libXScrnSaver, libcurl, libgtkglext, libcairo, fonts-ttf-dejavu
-#Suggests: fonts-ttf-liberation, fonts-ttf-ms, fonts-ttf-crosextra-carlito
+Requires: libX11, libXScrnSaver, libcurl, gtkglext-libs, libstdc++ >= 4.8.0, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts
+#Suggests: liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts, google-crosextra-carlito-fonts
 BuildArch: x86_64
 AutoReq: no
 AutoProv: no
@@ -33,7 +33,7 @@ rm -rf "$RPM_BUILD_ROOT"
 
 %files
 %attr(777, root, root) /opt/ivolgapro/desktopeditors/*
-%attr(777, root, root) /usr/bin/desktopeditors
+%attr(777, root, root) /usr/bin/ivolgapro
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/ivolgapro/*
 %attr(-, root, root) /var/lib/ivolgapro/desktopeditors/*
@@ -67,7 +67,7 @@ fi
 mkdir -p /var/lib/ivolgapro
 chmod -R 777 /var/lib/ivolgapro
 
-ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
+ln -sf /usr/lib64/libcurl.so.4 /opt/ivolgapro/desktopeditors/libcurl-gnutls.so.4
 
 %preun
 

@@ -4,7 +4,7 @@ Name=Ivolga Pro
 Type=Application
 GenericName=Ivolga Pro Desktop Editors
 Comment=Edit office documents
-Exec=/usr/bin/desktopeditors
+Exec=/usr/bin/ivolgapro
 Terminal=false
 Icon=asc-de
 Categories=Office;
@@ -13,5 +13,5 @@ Categories=Office;
 Actions=NewEditor;
 [Desktop Action NewEditor]
 Name=New Editor
-Exec=/usr/bin/desktopeditors
+Exec=/usr/bin/ivolgapro
 
