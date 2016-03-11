@@ -1,6 +1,12 @@
 COMPANY_NAME := onlyoffice
 PRODUCT_NAME := desktopeditors
+
+ifeq ($(COMPANY_NAME), onlyoffice)
 PACKAGE_NAME := $(COMPANY_NAME)-$(PRODUCT_NAME)
+else
+PACKAGE_NAME := $(COMPANY_NAME)
+endif
+
 PRODUCT_VERSION := 1.1.2
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
@@ -109,12 +115,6 @@ desktopeditor:
 	cp  ../../../common/package/fonts/Carlito-*.ttf $(FONTS_PATH)
 	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
 
-	chmod 777 $(PROGRAM_PATH)/DesktopEditors
-	chmod 777 $(PROGRAM_PATH)/HtmlFileInternal
-	chmod 777 $(CONVERTER_PATH)/x2t
-
-	chmod 777 common/$(COMPANY_NAME)/usr/bin/desktopeditors
-
 libstdc++-addon:
 	#cp -t $(PROGRAM_PATH)/ \
 		#$(USR_LIB_X64)/libffi.so.6 \
@@ -148,6 +148,7 @@ deb-version:
 
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/pre*
+	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
 	sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
 
 apt-rpm-version:
