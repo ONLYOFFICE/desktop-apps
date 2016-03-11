@@ -49,8 +49,10 @@ LOCAL_PATH := common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/web
 
 ifeq ($(COMPANY_NAME), onlyoffice)
 INDEX_HTML := index.html
+START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/desktopeditors
 else
 INDEX_HTML := index.$(COMPANY_NAME).html
+START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/$(COMPANY_NAME)
 endif
 
 RPM_DEPENDENCY += desktopeditor
@@ -114,6 +116,8 @@ desktopeditor:
 	mkdir -p $(FONTS_PATH)
 	cp  ../../../common/package/fonts/Carlito-*.ttf $(FONTS_PATH)
 	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
+
+	chmod 777 $(START_SCRIPT)
 
 libstdc++-addon:
 	#cp -t $(PROGRAM_PATH)/ \
