@@ -1,4 +1,4 @@
-Package: ivolgapro-desktopeditors
+Package: {{PACKAGE_NAME}}
 Version: {{PACKAGE_VERSION}}
 Architecture: amd64
 Section: editors
