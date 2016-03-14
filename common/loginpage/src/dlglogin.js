@@ -233,20 +233,19 @@ window.LoginDlg = function() {
                     if (obj.statusCode == 402) {
                         showLoginError(obj.error.message);
                     } else
+                    if (obj.statusCode == 500) {
+                        showLoginError(utils.Lang.errLogin);
+                    } else
                     if (obj.statusCode != 201) {
                         console.log('server error: ' + obj.statusCode);
                         showLoginError(utils.Lang.errLoginServer);
                     } else
+                    if (obj.response.sms) {
+                        showLoginError('Two-factor authentication isn\'t supported yet.');
+                    } else
                     if (!obj.response.sms) {
                         clientCheckin(obj.response.token);
                         getUserInfo(obj.response.token);
-
-                        setTimeout(function(){
-                            var frame = document.getElementsByName('frameLogin');
-                            frame && frame.length > 0 && frame[0].remove();
-                        },10);
-
-                        return;
                     }
                 } else {
                     console.log('server error: wrong json');
@@ -254,6 +253,11 @@ window.LoginDlg = function() {
                 }
 
                 // setLoaderVisible(false);
+
+                setTimeout(function(){
+                    var frame = document.getElementsByName('frameLogin');
+                    frame && frame.length > 0 && frame[0].remove();
+                },10);
             }
         }
     };
