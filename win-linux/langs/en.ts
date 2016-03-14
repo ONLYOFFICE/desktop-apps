@@ -14,27 +14,27 @@
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="19"/>
         <source>Choose type of the license</source>
-        <translation type="unfinished"></translation>
+        <translation>Choose license type</translation>
     </message>
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="22"/>
         <source>Welcome to %1!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="51"/>
         <source>HOME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="58"/>
         <source>COMMERCIAL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="82"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>License Agreement</translation>
     </message>
 </context>
 <context>
@@ -61,103 +61,103 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="19"/>
         <source>DOC Document (*.doc)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="20"/>
         <source>ODT Document (*.odt)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="21"/>
         <source>RTF File (*.rtf)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="22"/>
         <source>TXT File (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="23"/>
         <source>HTML File (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="24"/>
         <source>MHT File (*.mht)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="25"/>
         <source>EPUB File (*.epub)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="27"/>
         <source>PPTX File (*.pptx)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="28"/>
         <source>PPT File (*.ppt)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="29"/>
         <source>ODP File (*.odp)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="30"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="32"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="33"/>
         <source>XLS File (*.xls)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="34"/>
         <source>ODS File (*.ods)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="35"/>
         <source>CSV File (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="37"/>
         <source>PDF File (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="38"/>
         <source>DJVU File (*.djvu)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="39"/>
         <source>XPS File (*.xps)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="76"/>
         <location filename="../src/cfiledialog.cpp" line="78"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="93"/>
         <source>Word Document</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="96"/>
@@ -167,23 +167,23 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="99"/>
         <source>PowerPoint Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="102"/>
         <source>%1 File (*.%2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="112"/>
         <location filename="../src/cfiledialog.cpp" line="114"/>
         <source>Open Document</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="121"/>
         <source>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="46"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -209,12 +209,12 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="73"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="83"/>
         <source>Printing...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -227,17 +227,17 @@
     <message>
         <location filename="../src/csavefilemessage.cpp" line="60"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/csavefilemessage.cpp" line="61"/>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/csavefilemessage.cpp" line="62"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="196"/>
         <source>Logout</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="619"/>
@@ -299,27 +299,27 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="902"/>
         <source>The application isn&apos;t activated!</source>
-        <translation type="unfinished"></translation>
+        <translation>The application is not activated!&lt;br&gt;You cannot create and edit local files.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="931"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Home Edition</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="934"/>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation>Business Edition</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1384"/>
         <source>Non-activated.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1388"/>
         <source>Trial.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="914"/>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="883"/>
         <source>Activation failed! Check internet connection and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activation failed.&lt;br&gt;Check the internet connection and try again.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="886"/>
@@ -376,22 +376,22 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="910"/>
         <source>Activation failed! Check entered data and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Activation failed. Check the entered data and try again.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="923"/>
         <source>Congrats! %1 (%2) was succefully activated!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Congratulations!&lt;br&gt;%1 (%2) has been succefully activated!</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1391"/>
         <source>Home Edition</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1391"/>
         <source>Business Edition</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1092"/>
