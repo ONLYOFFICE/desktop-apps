@@ -121,7 +121,7 @@ desktopeditor:
 
 	chmod 777 $(START_SCRIPT)
 
-	cp -t $(PROGRAM_PATH)/ \
+	cp -r -t $(PROGRAM_PATH)/ \
 		$(QT_PATH)/plugins/bearer \
 		$(QT_PATH)/plugins/imageformats \
 		$(QT_PATH)/plugins/platforms \
