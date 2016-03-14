@@ -383,6 +383,15 @@ li.menu-item {
 #box-portals {
     display: none;
 
+    .table-files {
+        table-layout: auto;
+    }
+
+    .cportal, .cuser, .cemail {
+        /*width: 25%;*/
+        padding: 0 0 0 8px;
+    }
+
     .cell-tools {
         width: 45px;
         padding: 0 8px 0 0;
@@ -434,6 +443,10 @@ li.menu-item {
         border: 0 none;
         border-bottom: 1px solid @color-gray-3;
         font-weight: normal;
+
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
     }
 
     .column-title:not(.hidden) th, td {
@@ -523,19 +536,6 @@ li.menu-item {
         .name, .descr {
             margin: 0;
         }
-    }
-
-    .cportal {
-        width: 25%;
-        padding: 0 0 0 8px;
-    }
-
-    .cuser {
-        width: 25%;
-    }
-
-    .cemail {
-        /*width: 50%;*/
     }
 
     .btn-quick {
