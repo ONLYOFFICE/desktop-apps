@@ -15,7 +15,7 @@
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="19"/>
         <source>Choose type of the license</source>
-        <translation type="unfinished">Выберите как Вы будете использовать приложение</translation>
+        <translation>Выберите как Вы будете использовать приложение</translation>
     </message>
     <message>
         <location filename="../src/cchooselicensedialog.cpp" line="22"/>
@@ -317,7 +317,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1384"/>
         <source>Non-activated.</source>
-        <translation>Требуется активация.</translation>
+        <translation type="unfinished">Требуется активация.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="1388"/>

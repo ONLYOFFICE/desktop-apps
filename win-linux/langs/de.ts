@@ -302,60 +302,60 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="931"/>
+        <location filename="../src/qascmainpanel.cpp" line="933"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="934"/>
+        <location filename="../src/qascmainpanel.cpp" line="936"/>
         <source>Business</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1384"/>
+        <location filename="../src/qascmainpanel.cpp" line="1386"/>
         <source>Non-activated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1388"/>
+        <location filename="../src/qascmainpanel.cpp" line="1390"/>
         <source>Trial.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="914"/>
+        <location filename="../src/qascmainpanel.cpp" line="915"/>
         <source>Buy Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="915"/>
+        <location filename="../src/qascmainpanel.cpp" line="916"/>
         <source>The program is unregistered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="946"/>
+        <location filename="../src/qascmainpanel.cpp" line="948"/>
         <source>The trial period is over.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="951"/>
+        <location filename="../src/qascmainpanel.cpp" line="953"/>
         <source>Trial period expired for %1 days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="960"/>
+        <location filename="../src/qascmainpanel.cpp" line="962"/>
         <source>The program is non-activated!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="968"/>
+        <location filename="../src/qascmainpanel.cpp" line="970"/>
         <source>%1 days left before the license end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="886"/>
         <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="944"/>
-        <location filename="../src/qascmainpanel.cpp" line="959"/>
+        <location filename="../src/qascmainpanel.cpp" line="946"/>
+        <location filename="../src/qascmainpanel.cpp" line="961"/>
         <source>Activate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -367,34 +367,34 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="886"/>
         <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="944"/>
-        <location filename="../src/qascmainpanel.cpp" line="959"/>
-        <location filename="../src/qascmainpanel.cpp" line="971"/>
+        <location filename="../src/qascmainpanel.cpp" line="946"/>
+        <location filename="../src/qascmainpanel.cpp" line="961"/>
+        <location filename="../src/qascmainpanel.cpp" line="973"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="910"/>
+        <location filename="../src/qascmainpanel.cpp" line="911"/>
         <source>Activation failed! Check entered data and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="923"/>
+        <location filename="../src/qascmainpanel.cpp" line="925"/>
         <source>Congrats! %1 (%2) was succefully activated!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1391"/>
+        <location filename="../src/qascmainpanel.cpp" line="1393"/>
         <source>Home Edition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1391"/>
+        <location filename="../src/qascmainpanel.cpp" line="1393"/>
         <source>Business Edition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1092"/>
+        <location filename="../src/qascmainpanel.cpp" line="1094"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>
