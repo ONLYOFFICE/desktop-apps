@@ -73,6 +73,8 @@ DEB_DEPENDENCY += $(DEB)
 LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
+QT_PATH := /opt/qt55
+
 .PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm
@@ -118,6 +120,22 @@ desktopeditor:
 	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
 
 	chmod 777 $(START_SCRIPT)
+
+	cp -t $(PROGRAM_PATH)/ \
+		$(QT_PATH)/plugins/bearer \
+		$(QT_PATH)/plugins/imageformats \
+		$(QT_PATH)/plugins/platforms \
+		$(QT_PATH)/plugins/platformthemes \
+		$(QT_PATH)/plugins/printsupport \
+		$(QT_PATH)/lib/libQt5Core.so.5 \
+		$(QT_PATH)/lib/libQt5DBus.so.5 \
+		$(QT_PATH)/lib/libQt5Gui.so.5 \
+		$(QT_PATH)/lib/libQt5PrintSupport.so.5 \
+		$(QT_PATH)/lib/libQt5Widgets.so.5 \
+		$(QT_PATH)/lib/libQt5XcbQpa.so.5 \
+		$(USR_LIB_X64)/libicudata.so.52 \
+		$(USR_LIB_X64)/libicui18n.so.52 \
+		$(USR_LIB_X64)/libicuuc.so.52
 
 libstdc++-addon:
 	#cp -t $(PROGRAM_PATH)/ \
