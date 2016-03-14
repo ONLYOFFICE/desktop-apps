@@ -256,6 +256,9 @@
               <li class="menu-item extra">
                 <a action="activate">Activate</a>
               </li>
+              <li class="menu-item bottom extra">
+                <a action="about">About</a>
+              </li>
             </div>
             <div class="main-column col-center after-left">
               <div class="action-panel welcome"></div>
@@ -271,6 +274,7 @@
               </div>
               <div id="pnl-connect" class="action-panel connect"></div>
               <div class="action-panel activate"></div>
+              <div class="action-panel about"></div>
             </div>
         </div>
     </div>
