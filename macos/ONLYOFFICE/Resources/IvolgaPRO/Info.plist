@@ -239,7 +239,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://download.onlyoffice.com/install/desktop/editors/mac/ivolga.xml</string>
+	<string>http://download.onlyoffice.com/install/desktop/editors/mac/ivolgapro.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUScheduledCheckInterval</key>
