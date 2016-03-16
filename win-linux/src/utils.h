@@ -50,6 +50,8 @@ public:
     static void removeTempLicense();
     static QString licenseDir();
     static wstring licenseDirW();
+
+    static bool makepath(const QString&);
 };
 
 #endif // UTILS_H
