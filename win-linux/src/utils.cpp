@@ -38,6 +38,8 @@
 
 #ifdef _WIN32
 #include "shlobj.h"
+#else
+#include <sys/stat.h>
 #endif
 
 #include <QDebug>
@@ -197,7 +199,7 @@ wstring Utils::licenseDirW()
 #else
     sAppData = QString("/var/lib").append(APP_LICENSE_PATH).toStdWString();
     QFileInfo fi(QString::fromStdWString(sAppData));
-    if (!QDir().mkpath(fi.absoluteFilePath())) {
+    if (!Utils::makepath(fi.absoluteFilePath())) {
         if (!fi.isWritable()) {
             // TODO: check directory permissions and warn the user
             qDebug() << "directory permission error";
@@ -208,3 +210,11 @@ wstring Utils::licenseDirW()
     return sAppData;
 }
 
+bool Utils::makepath(const QString& p)
+{
+#ifdef __linux
+    mode_t _mask = umask(0);
+    (_mask & S_IRWXO) && umask(_mask & ~S_IRWXO);
+#endif
+    return QDir().mkpath(p);
+}
