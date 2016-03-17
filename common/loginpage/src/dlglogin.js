@@ -49,14 +49,14 @@ window.LoginDlg = function() {
                     '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
                     '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
                     '<div id="box-btn-login" class="lr-flex">'+
-                      '<a id="link-restore" class="text-sub link" target="popup" href="#">' + utils.Lang.linkForgotPass + '</a>'+
+                      '<a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
                       '<div><img class="img-loader">' +
                       '<button id="btn-login" class="btn primary">' + utils.Lang.btnLogin + '</button></div>'+
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link" target="popup" href="#">' + utils.Lang.btnCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.btnCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
