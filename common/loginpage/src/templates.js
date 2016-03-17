@@ -42,7 +42,7 @@ window.Templates = (function() { 'use strict';
                         '<div class="tools-connect">'+
                           '<button class="btn primary newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
                           '<section class="link-connect">'+
-                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login" href="#">'+ utils.Lang.btnConnect +'</a>'+
+                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login link" href="#">'+ utils.Lang.btnConnect +'</a>'+
                           '</section>'+
                         '</div>'+
                       '</section>'+
@@ -138,7 +138,7 @@ window.Templates = (function() { 'use strict';
                         // '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
                           '<button class="btn primary newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
                           '<section class="link-connect">'+
-                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login" href="#">'+ utils.Lang.btnConnect +'</a>'+
+                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login link" href="#">'+ utils.Lang.btnConnect +'</a>'+
                           '</section>'+
                         '</div>'+
                       '</section>'+'</div>';
@@ -168,7 +168,7 @@ window.Templates = (function() { 'use strict';
                       '<div class="img-el ver-logo %brand"></div><p></p>'+                      
                       '<div class="ver-version">%appname version %ver</div>%edition<p></p>'+
                       '<div class="ver-copyright">%cpr</div>'+
-                      '<a class="ver-site" target="popup" href="%link">%txtlink</a>'
+                      '<a class="ver-site link" target="popup" href="%link">%txtlink</a>'
                     '</div>';
 
         !!opts.active && (opts.edition = !!opts.edition?opts.edition+'. '+opts.active:opts.active);
