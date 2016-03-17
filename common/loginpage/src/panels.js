@@ -107,18 +107,15 @@ $(document).ready(function() {
 
     // $('button#btn-add').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
-    //     var item = Templates.produceFilesItem(info);
-    //     $listRecent.append(item);
-    //     if ($scrboxRecent.hasScrollBar()) {
-    //         $listRecent.find('tr > td:last-child').css('padding-left',Scroll_offset);
-    //         console.log('has scroll bar');
-    //     }
+    //     recentCollection.add( new FileModel(info) );
     // });
 
     // $('button#btn-add2').click(function(e) {
     //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/folder'};
-    //     var item = Templates.produceFilesItem(info);
-    //     $listRecovery.append(item);
+    //     recoveryCollection.add( new FileModel(info) );
+
+    //     $boxRecovery[recoveryCollection.size() > 0 ? 'show' : 'hide']();
+    //     $('#recovery-sep')[recoveryCollection.size() > 0 ? 'show' : 'hide']();
     //     sizeRecoveryList();
     // });
 
@@ -132,10 +129,8 @@ $(document).ready(function() {
 
     function sizeRecoveryList() {
         // set fixed height for scrollbar appearing. 
-        var _available_height = $boxRecent.parent().height();
+        var _available_height = $boxRecent.parents('.action-panel').height();
         var _box_recent_height = _available_height;
-
-        console.log('height: ' + _available_height);
 
         if ($boxRecovery.is(':hidden')) {
             // $boxRecent.height($boxRecent.parent().height());
