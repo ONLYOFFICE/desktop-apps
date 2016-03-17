@@ -153,7 +153,15 @@ utils.defines.FileFormat = {
 };
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
-utils.defines.linkBuyNow = window.brand == 'ivo' ? "http://www.ivolgapro.ru/buynow" : "http://www.onlyoffice.com/";
+utils.defines.links = window.brand == 'ivo' ? {
+    buynow: "http://www.ivolgapro.ru/buynow",
+    regnew: 'http://www.ivolgapro.ru/registration',
+    restorepass: 'http://www.ivolgapro.ru/signin'
+} : {
+    buynow: 'http://www.onlyoffice.com/',
+    regnew: 'https://www.onlyoffice.com/registration.aspx',
+    restorepass: 'https://www.onlyoffice.com/signin.aspx'
+};
 
 utils.parseFileFormat = function(format) {
     switch (format) {

@@ -132,7 +132,7 @@
               <li class="menu-item">
                 <a action="open">Open local file</a>
               </li>
-              <li class="menu-item extra">
+              <li class="menu-item">
                 <a action="connect">Connect to server</a>
               </li>
               <li class="menu-item extra">
