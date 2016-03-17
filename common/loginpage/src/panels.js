@@ -291,7 +291,7 @@ $(document).ready(function() {
         selectAction('recent');
 
     $('.newportal').click(function(){
-        window.open('https://www.onlyoffice.com/registration.aspx');
+        window.open(utils.defines.links.regnew);
     });
 
     if (!window.LoginDlg) {
@@ -324,7 +324,7 @@ $(document).ready(function() {
         }
     });
 
-    setTimeout(function(){
+    setTimeout(()=>{
         if (window.AscDesktopEditor) {
             window.AscDesktopEditor.LocalFileRecovers();
             window.AscDesktopEditor.LocalFileRecents();
