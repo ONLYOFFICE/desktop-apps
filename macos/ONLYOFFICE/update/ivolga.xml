@@ -50,5 +50,15 @@
                 <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ivolgapro/1.0.7-1.1.delta" sparkle:version="76" sparkle:shortVersionString="1.1" sparkle:deltaFrom="61" length="6055631" type="application/octet-stream" sparkle:dsaSignature="MCwCFBazV8lzFD1be/xcfevOkxl7Cb+iAhRwhCjvHoDzhGzpW5VfZm2uTTb1yg==" />
             </sparkle:deltas>
         </item>
+        <item>
+            <title>Version 1.1.3</title>
+            <pubDate>Thu Mar 17 15:06:48 MSK 2016</pubDate>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/ivolgapro/changes/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/ivolgapro/changes/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ivolgapro/IvolgaPRO-1.1.3.zip" sparkle:version="83" sparkle:shortVersionString="1.1.3" length="167922199" type="application/octet-stream" sparkle:dsaSignature="MCwCFFp3w9Wbi9GDGCz/32arNK1/ex4FAhRuv8mJXLJ4rs+Bv5zjcV+zA3PYfA==" />
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/ivolgapro/1.1-1.1.3.delta" sparkle:version="83" sparkle:shortVersionString="1.1.3" sparkle:deltaFrom="76" length="2134702" type="application/octet-stream" sparkle:dsaSignature="MCwCFAcwB5OuaDiA0ha5Mf4BOt6LSWBTAhQ6eVey4xGpjZR6S9dyApg6BX2VNA==" />
+            </sparkle:deltas>
+        </item>
     </channel>
 </rss>
