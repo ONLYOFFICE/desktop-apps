@@ -49,14 +49,14 @@ window.LoginDlg = function() {
                     '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
                     '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
                     '<div id="box-btn-login" class="lr-flex">'+
-                      '<a id="link-restore" class="text-sub link" target="popup" href="https://www.onlyoffice.com/signin.aspx">' + utils.Lang.linkForgotPass + '</a>'+
+                      '<a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
                       '<div><img class="img-loader">' +
                       '<button id="btn-login" class="btn primary">' + utils.Lang.btnLogin + '</button></div>'+
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link" target="popup" href="https://www.onlyoffice.com/registration.aspx">' + utils.Lang.btnCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.btnCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
@@ -355,6 +355,14 @@ window.LoginDlg = function() {
         $el.find('.img-loader')[disable?'show':'hide']();
     };
 
+    function onRestorePass() {
+        window.open(utils.defines.links.restorepass);
+    };
+
+    function onCreatePortal() {
+        window.open(utils.defines.links.regnew);
+    };
+
     return {
         show: function(portal, email) {
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
@@ -378,6 +386,8 @@ window.LoginDlg = function() {
 
             $el.find('.tool.close').bind('click', onCloseClick);
             $el.find('#btn-login').click(onLoginClick);
+            $el.find('#link-restore').click(onRestorePass);
+            $el.find('#link-create').click(onCreatePortal);
 
             bindEvents();
             $mask.show();
