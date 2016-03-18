@@ -33,6 +33,11 @@
 
 +function() {
     var _extra = {
+        en: {
+            welWelcome: 'Welcome to Ivolga PRO!',
+            welDescr: 'A new fast solution for work with documents using your Ivolga PRO.',
+            portalEmptyTitle: 'Take all advantages of Ivolga PRO'
+        },
         ru: {
             welWelcome: 'Добро пожаловать в Иволга ПРО!',
             welDescr: 'Пакет офисных приложений для создания, редактирования и просмотра текстовых документов, электронных таблиц и презентаций',
