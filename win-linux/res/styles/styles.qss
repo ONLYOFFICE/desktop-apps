@@ -396,6 +396,7 @@ QPushButton {
 
 QDialog QPushButton {
     min-width: 40px;
+    color:#444;
 }
 
 QPrintDialog QToolButton{
@@ -453,12 +454,13 @@ QPrintDialog QComboBox:!editable:on {
 QComboBox {
     selection-background-color: red;
     show-decoration-selected: 0;
+    background-color: #fff;
 }
 
 QComboBox QAbstractItemView {
     border: 1px solid #cbcbcb;
     border-radius:2px;
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     selection-background-color: rgb(170, 170, 255);
 }
 
@@ -469,6 +471,7 @@ QPrintDialog QRadioButton::indicator{
 
 QPrintDialog QRadioButton, QPrintDialog QCheckBox {
     font-size: 11px;
+    color: 444;
 }
 
 QPrintDialog QRadioButton::indicator::unchecked{
@@ -497,6 +500,7 @@ QSpinBox, QDoubleSpinBox, QTimeEdit {
     border-radius:2px;
     height:22px;
     font-size: 11px;
+    background-color:#fff;
 }
 
 *::up-arrow, *::down-arrow {
@@ -541,6 +545,7 @@ QPrintDialog QTabBar::tab {
     border-top-right-radius: 2px;
     margin-right:-1px;
     font-size: 11px;
+    color:#444;
 }
 
 QPrintDialog QTabBar::tab:last {
