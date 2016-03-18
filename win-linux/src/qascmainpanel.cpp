@@ -1329,7 +1329,11 @@ void QAscMainPanel::onKeyDown(void * eventData)
 
 void QAscMainPanel::onLink(QString url)
 {
+#ifdef __linux
+    system(QString("LD_LIBRARY_PATH='' xdg-open '%1'").arg(url).toUtf8());
+#else
     QDesktopServices::openUrl(QUrl(url));
+#endif
 }
 
 void QAscMainPanel::onPortalOpen(QString url)

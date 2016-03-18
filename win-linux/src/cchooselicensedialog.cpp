@@ -115,7 +115,11 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     _labelLicense->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
     connect(_labelLicense, &QLabel::linkActivated, [=](){
         if (m_eulaPath.size()) {
+#ifdef __linux
+            system(QString("LD_LIBRARY_PATH='' xdg-open '%1'").arg(m_eulaPath).toUtf8());
+#else
             QDesktopServices::openUrl(QUrl::fromLocalFile(m_eulaPath));
+#endif
         }
     });
 
