@@ -757,7 +757,13 @@ void CAscTabWidget::setFullScreen(bool apply)
             });
 
             QPoint pt = mapToGlobal(pos());
+#ifdef _WIN32
             fsWidget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+#else
+
+            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
+            fsWidget->setGeometry(QRect(QPoint(0,0), _scr_rect.size()));
+#endif
         }
     }
 }
