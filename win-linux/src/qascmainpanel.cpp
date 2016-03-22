@@ -57,9 +57,8 @@
 #ifdef _WIN32
 #include "cprintdialog.h"
 #include "shlobj.h"
-#include <QSplashScreen>
+#include "csplash.h"
 
-extern QSplashScreen * g_splash;
 extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
@@ -1397,12 +1396,7 @@ void QAscMainPanel::selfActivation()
 void QAscMainPanel::onStartPageReady()
 {
 #ifdef _WIN32
-    if (g_splash) {
-//        g_splash->setParent((QWidget *)parent());
-        g_splash->close();
-
-        delete g_splash, g_splash = NULL;
-    }
+    CSplash::hideSplash();
 #endif
 
     if (!m_waitLicense) {
