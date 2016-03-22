@@ -43,9 +43,7 @@
 #ifdef _WIN32
 #include "win/mainwindow.h"
 #include "shlobj.h"
-
-#include <QSplashScreen>
-QSplashScreen * g_splash = NULL;
+#include "csplash.h"
 #else
 #include "linux/cmainwindow.h"
 #endif
@@ -198,16 +196,7 @@ int main( int argc, char *argv[] )
     }
 
 #ifdef _WIN32
-  #ifdef _IVOLGA_PRO
-    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
-            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png"), Qt::WindowStaysOnTopHint);
-  #else
-    g_splash = new QSplashScreen(g_dpi_ratio > 1 ?
-            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"),
-                                 Qt::WindowStaysOnTopHint);
-  #endif
-
-    g_splash->show();
+    CSplash::showSplash();
     app.processEvents();
 #endif
 
@@ -266,7 +255,6 @@ int main( int argc, char *argv[] )
     CMainWindow window(pApplicationManager, windowBackground);
     window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
 
-//    splash.finish(window.m_pWinPanel);
 #elif defined(Q_OS_LINUX)
     // Create window
     CMainWindow window(pApplicationManager);

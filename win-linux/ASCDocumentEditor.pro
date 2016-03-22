@@ -40,7 +40,8 @@ HEADERS += \
     src/casctabdata.h \
     src/cmessage.h \
     src/utils.h \
-    src/cstyletweaks.h
+    src/cstyletweaks.h \
+    src/csplash.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -64,7 +65,8 @@ SOURCES += \
     src/casctabdata.cpp \
     src/cmessage.cpp \
     src/utils.cpp \
-    src/cstyletweaks.cpp
+    src/cstyletweaks.cpp \
+    src/csplash.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
