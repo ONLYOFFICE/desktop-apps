@@ -93,8 +93,6 @@ CMessage::CMessage(QWidget * parent) : QObject(parent)
     connect(btn_yes, &QPushButton::clicked, this, &CMessage::onYesClicked);
 //    connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
 //    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-
-    m_pDlg.setStyleSheet("QPushButton:focus{border-color:#3a83db;}");
 }
 
 void CMessage::error(const QString& title, const QString& text)

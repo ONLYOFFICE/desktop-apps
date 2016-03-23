@@ -78,7 +78,6 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     QToolButton * _btn2 = new QToolButton;
     _btn1->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     _btn1->setIconSize(QSize(128,128));
-    _btn1->setIcon(QIcon(":/res/home.png"));
     _btn1->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     _btn1->setText(tr("HOME"));
     _btn1->setCursor(QCursor(Qt::PointingHandCursor));
@@ -86,13 +85,17 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     _btn2->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     _btn2->setIconSize(QSize(128,128));
     _btn2->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    _btn2->setIcon(QIcon(":/res/busines.png"));
     _btn2->setText(tr("COMMERCIAL"));
     _btn2->setCursor(QCursor(Qt::PointingHandCursor));
 
     g_dpi_ratio > 1 ?
+#ifdef _IVOLGA_PRO
+        _btn1->setIcon(QIcon(":/ivolga/home@2x.png")), _btn2->setIcon(QIcon(":/ivolga/busines@2x.png")) :
+                _btn1->setIcon(QIcon(":/ivolga/home.png")), _btn2->setIcon(QIcon(":/ivolga/busines.png"));
+#else
         _btn1->setIcon(QIcon(":/license/home@2x.png")), _btn2->setIcon(QIcon(":/license/busines@2x.png")) :
                 _btn1->setIcon(QIcon(":/license/home.png")), _btn2->setIcon(QIcon(":/license/busines.png"));
+#endif
 
     connect(_btn1, &QToolButton::clicked, [=](){
         done((m_license = LICENSE_TYPE_FREE));

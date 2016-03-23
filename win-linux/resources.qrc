@@ -70,6 +70,10 @@
         <file alias="app.ico">res/icons/ivolga/desktopeditors.ico</file>
         <file alias="splash.png">res/icons/ivolga/splash.png</file>
         <file alias="splash@2x.png">res/icons/ivolga/splash_2x.png</file>
+        <file alias="busines.png">res/icons/ivolga/lic_busines.png</file>
+        <file alias="busines@2x.png">res/icons/ivolga/lic_busines_2x.png</file>
+        <file alias="home.png">res/icons/ivolga/lic_home.png</file>
+        <file alias="home@2x.png">res/icons/ivolga/lic_home_2x.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
