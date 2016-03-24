@@ -32,7 +32,7 @@ cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
 rm -rf "$RPM_BUILD_ROOT"
 
 %files
-%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
+%attr(777, root, root) /opt/onlyoffice/desktopeditors/*
 %attr(777, root, root) /usr/bin/desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/onlyoffice/*
@@ -66,7 +66,7 @@ fi
 mkdir -p /var/lib/onlyoffice
 chmod -R 777 /var/lib/onlyoffice
 
-ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
+ln -sf /usr/lib64/libcurl.so.4 /opt/ivolgapro/desktopeditors/libcurl-gnutls.so.4
 
 %preun
 
