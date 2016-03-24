@@ -38,9 +38,11 @@
 #include <QApplication>
 #include <QFileInfo>
 #include "../utils.h"
+#include <QTimer>
 
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , CX11Decoration(this)
 {
     resize(1200, 700);
 }
@@ -79,6 +81,11 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     }
 
     parseInputArgs(qApp->arguments());
+
+//    QTimer::singleShot(1, this, [=]{
+//        CX11Decoration::setTitleWidget(m_pMainPanel);
+//        CX11Decoration::turnOff();
+//    });
 }
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)
@@ -125,6 +132,11 @@ bool CMainWindow::event(QEvent * event)
     }
 
     return QMainWindow::event(event);
+}
+
+void CMainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+//    CX11Decoration::dispatchMouseMove(e);
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
