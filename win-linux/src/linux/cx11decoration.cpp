@@ -209,7 +209,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent * e)
 
 void CX11Decoration::turnOn()
 {
-    switchDecoration(true);
+//    switchDecoration(true);
 
 //    Display * _xdisplay = QX11Info::display();
 //    Atom _atom = XInternAtom(_xdisplay, "_MOTIF_WM_HINTS", true);
@@ -221,7 +221,10 @@ void CX11Decoration::turnOn()
 
 void CX11Decoration::turnOff()
 {
-    switchDecoration(false);
+//    switchDecoration(false);
+
+    m_window->setWindowFlags(Qt::FramelessWindowHint);
+    m_decoration = false;
 }
 
 void CX11Decoration::switchDecoration(bool on)
@@ -246,7 +249,7 @@ void CX11Decoration::switchDecoration(bool on)
     }
 }
 
-bool CX11Decoration::decorationOn()
+bool CX11Decoration::isDecorated()
 {
     return m_decoration;
 }

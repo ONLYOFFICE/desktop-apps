@@ -67,11 +67,18 @@ public:
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
 
+#ifdef __linux
+    QWidget * getTitleWidget();
+    void setMouseTracking(bool);
+#endif
+
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
+//    bool eventFilter(QObject *obj, QEvent *event);
+
     void toggleButtonMain(bool);
     void loadStartPage();
     void doLogout(const QString&);

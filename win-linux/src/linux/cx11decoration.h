@@ -50,7 +50,7 @@ public:
 
     void turnOn();
     void turnOff();
-    bool decorationOn();
+    bool isDecorated();
 
 private:
     QWidget * m_window;

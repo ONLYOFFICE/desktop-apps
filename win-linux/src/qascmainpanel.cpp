@@ -60,9 +60,11 @@
 #include "csplash.h"
 
 extern HWND gTopWinId;
+#define CUSTOM_BORDER_WIDTH 0
 #else
 #define VK_F4 0x73
 #define gTopWinId this
+#define CUSTOM_BORDER_WIDTH 3
 #endif
 
 using namespace NSEditorApi;
@@ -119,31 +121,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
-    if (isCustomWindow) {
-        // Minimize
-        m_pButtonMinimize = new QPushButton(centralWidget);
-        m_pButtonMinimize->setObjectName( "toolButtonMinimize" );
-        m_pButtonMinimize->setProperty("class", "normal");
-        m_pButtonMinimize->setProperty("act", "tool");
-        m_pButtonMinimize->setFixedSize(small_btn_size);
-        QObject::connect( m_pButtonMinimize, SIGNAL( clicked() ), this, SLOT( pushButtonMinimizeClicked() ) );
-
-        // Maximize
-        m_pButtonMaximize = new QPushButton(centralWidget);
-        m_pButtonMaximize->setObjectName( "toolButtonMaximize" );
-        m_pButtonMaximize->setProperty("class", "normal");
-        m_pButtonMaximize->setProperty("act", "tool");
-        m_pButtonMaximize->setFixedSize(small_btn_size);
-        QObject::connect( m_pButtonMaximize, SIGNAL( clicked() ), this, SLOT( pushButtonMaximizeClicked() ) );
-
-        // Close
-        m_pButtonClose = new QPushButton(centralWidget);
-        m_pButtonClose->setObjectName( "toolButtonClose" );
-        m_pButtonClose->setProperty("class", "normal");
-        m_pButtonClose->setProperty("act", "tool");
-        m_pButtonClose->setFixedSize(small_btn_size);
-        QObject::connect( m_pButtonClose, SIGNAL( clicked() ), this, SLOT( pushButtonCloseClicked() ) );
-    }
 
     // profile
     m_pButtonProfile->setObjectName( "toolButtonProfile" );
@@ -162,7 +139,8 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     QLabel * label = new QLabel(APP_TITLE);
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-    layoutBtns->setMargin(0);
+
+    layoutBtns->setContentsMargins(0,0,4*g_dpi_ratio,0);
     layoutBtns->setSpacing(1*g_dpi_ratio);
     layoutBtns->addWidget(label);
     layoutBtns->addWidget(m_pButtonDownload);
@@ -172,7 +150,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
@@ -180,9 +157,34 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         _tabs_stylesheet_file += "tabbar.qss";
         palette.setColor(QPalette::Background, QColor("#313437"));
 
+        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
+            QPushButton * btn = new QPushButton(parent);
+            btn->setObjectName(name);
+            btn->setProperty("class", "normal");
+            btn->setProperty("act", "tool");
+            btn->setFixedSize(small_btn_size);
+
+            return btn;
+        };
+
+        // Minimize
+        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", centralWidget);
+        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, this, &QAscMainPanel::pushButtonMinimizeClicked);
+
+        // Maximize
+        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", centralWidget);
+        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, this, &QAscMainPanel::pushButtonMaximizeClicked);
+
+        // Close
+        m_pButtonClose = _creatToolButton("toolButtonClose", centralWidget);
+        QObject::connect(m_pButtonClose, &QPushButton::clicked, this, &QAscMainPanel::pushButtonCloseClicked);
+
         layoutBtns->addWidget(m_pButtonMinimize);
         layoutBtns->addWidget(m_pButtonMaximize);
         layoutBtns->addWidget(m_pButtonClose);
+
+        m_pButtonMain->setGeometry(CUSTOM_BORDER_WIDTH * g_dpi_ratio, CUSTOM_BORDER_WIDTH * g_dpi_ratio,
+                                        BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
 
         m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
@@ -190,6 +192,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         _tabs_stylesheet_file += "tabbar.nix.qss";
 #endif
         m_pButtonMain->setProperty("theme", "light");
+        m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -287,19 +290,47 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
 void QAscMainPanel::RecalculatePlaces()
 {
-    int nWindowW = width();
-    int nWindowH = height();
-    int nCaptionH = TITLE_HEIGHT * g_dpi_ratio;
-    int btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
+#ifdef __linux
+    int cbw = m_isCustomWindow ? CUSTOM_BORDER_WIDTH * g_dpi_ratio : 0;
+#else
+    int cbw = 0;
+#endif
+    int windowW = width() - 2 * cbw,
+        windowH = height() - 2 * cbw,
+        captionH = TITLE_HEIGHT * g_dpi_ratio,
+        btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
 
-    m_pTabs->setGeometry(0, 0, nWindowW, nWindowH);
+    m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
-    int docCaptionW = nWindowW - m_pTabs->tabBar()->width() - btnMainWidth - (24*g_dpi_ratio);
+    int docCaptionW = windowW - m_pTabs->tabBar()->width() - btnMainWidth;
     m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * g_dpi_ratio);
-    m_boxTitleBtns->move(nWindowW - m_boxTitleBtns->width() - (4*g_dpi_ratio), 0 * g_dpi_ratio);
-    m_pMainWidget->setGeometry(0, nCaptionH, nWindowW, nWindowH - nCaptionH);
+    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
+    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, windowH - captionH);
 }
+
+#ifdef __linux
+QWidget * QAscMainPanel::getTitleWidget()
+{
+    return m_boxTitleBtns;
+}
+
+void QAscMainPanel::setMouseTracking(bool enable)
+{
+    QWidget::setMouseTracking(enable);
+    findChild<QWidget *>("centralWidget")->setMouseTracking(enable);
+    findChild<QLabel *>("labelAppTitle")->setMouseTracking(enable);
+
+    m_boxTitleBtns->setMouseTracking(enable);
+    m_pTabs->setMouseTracking(enable);
+    m_pTabs->tabBar()->setMouseTracking(enable);
+    m_pButtonMain->setMouseTracking(enable);
+    m_pButtonClose->setMouseTracking(enable);
+    m_pButtonMinimize->setMouseTracking(enable);
+    m_pButtonMaximize->setMouseTracking(enable);
+    m_pMainWidget->setMouseTracking(enable);
+}
+#endif
 
 void QAscMainPanel::pushButtonMinimizeClicked()
 {
