@@ -25,3 +25,4 @@ fi
 
 mkdir -p /var/lib/onlyoffice
 chmod -R 777 /var/lib/onlyoffice
+chmod -R 777 /opt/onlyoffice/desktopeditors/*

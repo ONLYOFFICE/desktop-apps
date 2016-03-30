@@ -95,6 +95,7 @@ linux-g++ {
         PLATFORM_BUILD = linux32
     }
 
+    QT += x11extras
     COMMON_LIB_PATH = ../common/converter/linux
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
@@ -105,8 +106,10 @@ linux-g++ {
     LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
     LIBS += -L$$PWD/$$COMMON_LIB_PATH -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
 
-    HEADERS += src/linux/cmainwindow.h
-    SOURCES += src/linux/cmainwindow.cpp
+    HEADERS += src/linux/cmainwindow.h \
+                src/linux/cx11decoration.h
+    SOURCES += src/linux/cmainwindow.cpp \
+                src/linux/cx11decoration.cpp
 
     DEFINES += LINUX _LINUX _LINUX_QT
     CONFIG += link_pkgconfig

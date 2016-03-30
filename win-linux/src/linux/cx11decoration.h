@@ -30,40 +30,41 @@
  *
 */
 
-#ifndef CMAINWINDOW_H
-#define CMAINWINDOW_H
+#ifndef CX11DECORATION_H
+#define CX11DECORATION_H
 
-#include "cx11decoration.h"
+#include "qtextstream.h"
 
-#include <QMainWindow>
-#include "applicationmanager.h"
+#include <QWidget>
+#include <QMouseEvent>
 
 
-
-class CMainWindow : public QMainWindow, public CX11Decoration
+class CX11Decoration
 {
-    Q_OBJECT
-
 public:
-    explicit CMainWindow(QWidget *parent = 0);
-    explicit CMainWindow(CAscApplicationManager *);
+    CX11Decoration(QWidget *);
+    ~CX11Decoration();
 
-    void parseInputArgs(const QStringList&);
+    void setTitleWidget(QWidget *);
+    void dispatchMouseMove(QMouseEvent *);
 
-protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    bool event(QEvent *event);
-    void mouseMoveEvent(QMouseEvent *);
+    void turnOn();
+    void turnOff();
+    bool isDecorated();
 
 private:
-    QWidget *   m_pMainPanel;
+    QWidget * m_window;
+    QWidget * m_title;
+    ulong m_currentCursor;
+    bool m_decoration;
 
-signals:
-public slots:
-private slots:
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_windowClose();
+    std::map<int, ulong> m_cursors;
+
+    void createCursors();
+    void freeCursors();
+    int  hitTest(int x, int y) const;
+    void checkCursor(QPoint & p);
+    void switchDecoration(bool);
 };
 
-#endif // CMAINWINDOW_H
+#endif // CX11DECORATION_H

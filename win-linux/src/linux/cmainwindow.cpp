@@ -38,9 +38,11 @@
 #include <QApplication>
 #include <QFileInfo>
 #include "../utils.h"
+#include <QTimer>
 
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , CX11Decoration(this)
 {
     resize(1200, 700);
 }
@@ -48,19 +50,32 @@ CMainWindow::CMainWindow(QWidget *parent)
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     : CMainWindow((QWidget *)0) /* doesn't compile via gcc 4.8 without parameter */
 {
+    parseInputArgs(qApp->arguments());
+
 #ifdef _IVOLGA_PRO
     setWindowIcon(QIcon(":/ivolga/app.ico"));
 #else
     setWindowIcon(QIcon(":/app.ico"));
 #endif
 
-    m_pMainPanel = new QAscMainPanel(this, pAppManager, false);
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+    if (reg_user.value("titlebar") == "custom" ||
+            reg_system.value("titlebar") == "custom" )
+        CX11Decoration::turnOff();
+
+    m_pMainPanel = new QAscMainPanel(this, pAppManager, !CX11Decoration::isDecorated());
 //    m_pMainPanel = new QAscMainPanel(this, pAppManager, true);
     setCentralWidget(m_pMainPanel);
 
+    if ( !CX11Decoration::isDecorated() ) {
+        CX11Decoration::setTitleWidget(((QAscMainPanel *)m_pMainPanel)->getTitleWidget());
+        ((QAscMainPanel *)m_pMainPanel)->setMouseTracking(true);
+        setMouseTracking(true);
+    }
+
     ((CAscApplicationManagerWrapper *)pAppManager)->setMainPanel((QAscMainPanel *)m_pMainPanel);
 
-    GET_REGISTRY_USER(reg_user)
     restoreGeometry(reg_user.value("position").toByteArray());
     restoreState(reg_user.value("windowstate").toByteArray());
 
@@ -77,20 +92,25 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
         pMainPanel->selfActivation();
         Utils::markFirstStart();
     }
-
-    parseInputArgs(qApp->arguments());
 }
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)
 {
+    GET_REGISTRY_USER(reg_user)
+
     QString _arg;
     QStringListIterator i(inlist); i.next();
     while (i.hasNext()) {
         _arg = i.next();
 
         if (_arg.contains(QRegExp(reCmdKeepLang))) {
-            GET_REGISTRY_USER(reg_user)
             reg_user.setValue("locale", _arg.right(2));
+        } else
+        if (_arg.contains("--system-title-bar")) {
+            reg_user.setValue("titlebar", "system");
+        } else
+        if (_arg.contains("--custom-title-bar")) {
+            reg_user.setValue("titlebar", "custom");
         }
     }
 }
@@ -125,6 +145,11 @@ bool CMainWindow::event(QEvent * event)
     }
 
     return QMainWindow::event(event);
+}
+
+void CMainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+    CX11Decoration::dispatchMouseMove(e);
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
