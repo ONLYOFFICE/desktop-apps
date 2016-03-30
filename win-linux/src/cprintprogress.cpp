@@ -34,7 +34,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QKeyEvent>
-#include "../common/libs/common/Types.h"
+#include "common/Types.h"
 
 #ifdef _WIN32
 //#define WINVER 0x0500

@@ -22,10 +22,12 @@ ArchitecturesInstallIn64BitMode=x64
 Source: data\vcredist\vcredist_x64.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x64.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
-Source: ..\..\common\converter\windows\win64\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
+Source: ..\..\common\libs\converter\win_64\*;                    DestDir: {app}\converter; Excludes: HtmlFileInternal.exe; Flags: recursesubdirs;
+Source: ..\..\common\libs\converter\win_64\HtmlFileInternal.exe; DestDir: {app}\; Flags: recursesubdirs;
+;Source: ..\..\common\converter\windows\win64\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
 
-Source: ..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win64\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\common\libs\ChromiumBasedEditors2\app\cefbuilds\win64\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\common\libs\core\win_64\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\common\libs\cef\win_64\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 #ifdef _IVOLGA_PRO
 Source: data\projicons_nct.exe;                             DestDir: {app}\; DestName: {#iconsExe};
 #else

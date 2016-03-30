@@ -41,7 +41,7 @@
 #include <QActionEvent>
 #include <QApplication>
 #include "qcefview.h"
-#include "../common/libs/common/Types.h"
+#include "common/Types.h"
 
 #include <QDebug>
 

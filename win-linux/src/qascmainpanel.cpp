@@ -49,7 +49,7 @@
 #include "cprintprogress.h"
 #include "cfiledialog.h"
 #include "qascprinter.h"
-#include "../common/libs/common/Types.h"
+#include "common/Types.h"
 #include "cmessage.h"
 #include "utils.h"
 #include "version.h"
@@ -1033,7 +1033,7 @@ void QAscMainPanel::loadStartPage()
 #else
   #ifdef _WIN32
 //    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-    std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/common/loginpage/src/index.html").toStdWString();
+    std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/desktop-apps/common/loginpage/src/index.html").toStdWString();
 //    std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/common/loginpage/deploy/index.html").toStdWString();
     start_path.append(additional.toStdWString());
   #elif __linux__

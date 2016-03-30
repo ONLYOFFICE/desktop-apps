@@ -320,12 +320,10 @@ Source: ..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
 Source: ..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\common\editors\apps\*;                DestDir: {app}\editors\apps;   Flags: recursesubdirs;
-Source: ..\..\common\editors\vendor\*;              DestDir: {app}\editors\vendor; Flags: recursesubdirs;
-Source: ..\..\common\converter\empty\*;             DestDir: {app}\converter\empty; Flags: recursesubdirs;
+Source: ..\..\common\editors\*;                     DestDir: {app}\editors\web-apps;   Flags: recursesubdirs;
+Source: ..\..\common\libs\jsbuilds\*;               DestDir: {app}\editors\sdkjs; Flags: recursesubdirs;
 Source: ..\..\common\converter\DoctRenderer.config; DestDir: {app}\converter;
-Source: ..\..\common\converter\windows\icudt.dll;   DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\common\libs\ChromiumBasedEditors2\app\jsbuilds\*; DestDir: {app}\editors\sdk; Flags: recursesubdirs;
+;Source: ..\..\common\converter\windows\icudt.dll;   DestDir: {app}\converter; Flags: ignoreversion;
 
 Source: ..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
 Source: ..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;

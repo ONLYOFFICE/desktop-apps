@@ -13,14 +13,15 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/es.ts \
                 ./langs/fr.ts
 
-CHROMIUM_LIB_PATH = ../common/libs/ChromiumBasedEditors2
-COMMON_LIB_PATH = ../common/converter/linux
+CORE_SRC_PATH = ../../core/DesktopEditor
+CORE_LIB_PATH = ../common/libs
 
-INCLUDEPATH += $$CHROMIUM_LIB_PATH/lib/include \
-                $$CHROMIUM_LIB_PATH/lib/qcefview
+INCLUDEPATH += $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/include \
+                $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview \
+                $$CORE_SRC_PATH
 
 HEADERS += \
-    $$CHROMIUM_LIB_PATH/lib/qcefview/qcefview.h \
+    $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview/qcefview.h \
     ./src/asctabwidget.h \
     src/cascuser.h \
     src/version.h \
@@ -50,7 +51,7 @@ HEADERS += \
 SOURCES += \
     ./src/main.cpp \
     ./src/asctabwidget.cpp\
-    $$CHROMIUM_LIB_PATH/lib/qcefview/qcefview.cpp \
+    $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview/qcefview.cpp \
     src/cascuser.cpp \
     src/csavefilemessage.cpp \
     src/cuserprofilewidget.cpp \
@@ -93,6 +94,8 @@ linux-g++ {
     } else {
         PLATFORM_BUILD = linux32
     }
+
+    COMMON_LIB_PATH = ../common/converter/linux
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
@@ -170,17 +173,17 @@ win32 {
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        PLATFORM_BUILD = win64
+        PLATFORM_BUILD = win_64
     } else {
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        PLATFORM_BUILD = win32
+        PLATFORM_BUILD = win_32
     }
 
-    LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/cefbuilds/$$PLATFORM_BUILD -llibcef
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -llibcef
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD/debug -lascdocumentscore
     } else {
-        LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD -lascdocumentscore
     }
 
     message($$PLATFORM_BUILD)

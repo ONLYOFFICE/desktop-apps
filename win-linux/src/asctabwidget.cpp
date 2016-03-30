@@ -44,7 +44,7 @@
 #include "ctabbar.h"
 #include "ctabstyle.h"
 #include "casctabdata.h"
-#include "../common/libs/common/Types.h"
+#include "common/Types.h"
 #include "defines.h"
 
 #include "private/qtabbar_p.h"
