@@ -223,7 +223,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Zoom {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "The font you are going to save is not available on the current device.<br>The text style will be displayed using one of the device fonts, the saved font will be used when it is available.<br>Do you want to continue?",
   "SSE.Controllers.Toolbar.textCancel": "Cancelar",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "O valor inserido está incorreto.<br>Insira um valor numérico entre 1 e 100",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "O valor inserido está incorreto.<br>Insira um valor numérico entre 1 e 409",
   "SSE.Controllers.Toolbar.textWarning": "Aviso",
   "SSE.Controllers.Toolbar.warnMergeLostData": "Apenas os dados da célula superior esquerda permanecerá na célula mesclada.<br>Você tem certeza de que deseja continuar? ",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Personalizar filtro",

@@ -226,7 +226,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Zoom {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "La police que vous allez enregistrer n'est pas disponible sur l'appareil actuel.<br>Le style du texte sera affiché à l'aide de l'une des polices de système, la police sauvée sera utilisée lorsqu'il est disponible.<br>Voulez-vous continuer?",
   "SSE.Controllers.Toolbar.textCancel": "Annuler",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "La valeur entrée est incorrecte.<br>Entrez une valeur numérique entre 1 et 100",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "La valeur entrée est incorrecte.<br>Entrez une valeur numérique entre 1 et 409",
   "SSE.Controllers.Toolbar.textWarning": "Avertissement",
   "SSE.Controllers.Toolbar.warnMergeLostData": "Seulement les données de la cellule supérieure gauche seront conservées dans la cellule fusionnée.<br>Êtes-vous sûr de vouloir continuer ?",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Personnalisé",

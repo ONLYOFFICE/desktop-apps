@@ -223,7 +223,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Povečava {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "The font you are going to save is not available on the current device.<br>The text style will be displayed using one of the device fonts, the saved font will be used when it is available.<br>Do you want to continue?",
   "SSE.Controllers.Toolbar.textCancel": "Prekliči",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "Vnesena vrednost je nepravilna.<br>Prosim vnesite numerično vrednost med 1 in 100",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "Vnesena vrednost je nepravilna.<br>Prosim vnesite numerično vrednost med 1 in 409",
   "SSE.Controllers.Toolbar.textWarning": "Opozorilo",
   "SSE.Controllers.Toolbar.warnMergeLostData": "Le podatki z zgornje leve celice bodo ostali v združeni celici. <br>Ste prepričani, da želite nadaljevati?",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Filter po meri",

@@ -226,7 +226,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Zoom {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "El tipo de letra que usted va a guardar no está disponible en este dispositivo. <br>El estilo de letra se mostrará usando uno de los tipos de letra del sistema, el tipo de letra guardado va a usarse cuando esté disponible.<br>¿Desea continuar?",
   "SSE.Controllers.Toolbar.textCancel": "Cancelar",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "El valor introducido es incorrecto.<br>Por favor, introduzca un valor numérico entre 1 y 100",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "El valor introducido es incorrecto.<br>Por favor, introduzca un valor numérico entre 1 y 409",
   "SSE.Controllers.Toolbar.textWarning": "Aviso",
   "SSE.Controllers.Toolbar.warnMergeLostData": "En la celda unida permanecerán sólo los datos de la celda de la esquina superior izquierda.<br>Está seguro de que quiere continuar?",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Personalizado",

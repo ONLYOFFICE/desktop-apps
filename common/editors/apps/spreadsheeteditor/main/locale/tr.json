@@ -223,7 +223,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Zum {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "The font you are going to save is not available on the current device.<br>The text style will be displayed using one of the device fonts, the saved font will be used when it is available.<br>Do you want to continue?",
   "SSE.Controllers.Toolbar.textCancel": "İptal Et",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "Girilen değer yanlış. <br> Lütfen 1 ile 100 arasında sayısal değer giriniz.",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "Girilen değer yanlış. <br> Lütfen 1 ile 409 arasında sayısal değer giriniz.",
   "SSE.Controllers.Toolbar.textWarning": "Dikkat",
   "SSE.Controllers.Toolbar.warnMergeLostData": "Sadece üst sol hücredeki veri birleştirilmiş hücrede kalacaktır. <br>Devam etmek istediğinizden emin misiniz?",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Özel Filtre",
