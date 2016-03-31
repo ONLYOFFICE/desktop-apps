@@ -60,7 +60,7 @@ int main(int argc, const char * argv[]) {
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
     
     // setup Editors directory
-    appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/apps/api/documents/index.html"] stdwstring];
+    appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/web-apps/apps/api/documents/index.html"] stdwstring];
     
     // setup Dictionary directory
     appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"dictionaries"] stdwstring];

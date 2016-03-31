@@ -75,6 +75,9 @@ static NSString * kRegBuyUrl    = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 #endif
 
+// Analitics
+static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
+
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";

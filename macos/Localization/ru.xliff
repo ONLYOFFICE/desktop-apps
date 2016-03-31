@@ -1189,7 +1189,7 @@ You cannot create and edit documents.</source>
         <source>Unregistered application version.
 You cannot create and edit local files.</source>
         <target>Незарегистрированная версия приложения.
-Вы не сможете создавать и редакторировать локальные файлы.</target>
+Вы не сможете создавать и редактировать локальные файлы.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">
