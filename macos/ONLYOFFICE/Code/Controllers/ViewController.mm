@@ -534,7 +534,13 @@
                 }
             }
             
-            [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+            if (params[@"external"]) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.9 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+                });
+            } else {
+                [self.tabsControl addTab:tab selected:[params[@"active"] boolValue]];
+            }
         }
     }
 }

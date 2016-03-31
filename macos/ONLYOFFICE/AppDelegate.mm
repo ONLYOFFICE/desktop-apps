@@ -102,11 +102,12 @@
                                                           userInfo:@{
                                                                      @"action"  : @(ASCTabActionOpenLocalFile),
                                                                      @"path"    : filePath,
-                                                                     @"active"  : @(YES)
+                                                                     @"active"  : @(YES),
+                                                                     @"external": @(YES)
                                                                      }];
     }
 }
-    
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 
