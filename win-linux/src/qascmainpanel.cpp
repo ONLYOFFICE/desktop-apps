@@ -1071,7 +1071,7 @@ void QAscMainPanel::loadStartPage()
     #ifdef _IVOLGA_PRO
     std::wstring start_path = QString("file:///" + qgetenv("HOME") + "/QTProject/Desktop/common/loginpage/deploy/index.ivolga.html").toStdWString();
     #else
-    std::wstring start_path = QString("file:///" + qgetenv("HOME") + "/QTProject/Desktop/common/loginpage/deploy/index.html").toStdWString();
+    std::wstring start_path = QString("file:///" + qgetenv("HOME") + "/QTProject/Desktop/desktop-apps/common/loginpage/deploy/index.html").toStdWString();
     #endif
 
     start_path.append(additional.toStdWString());
