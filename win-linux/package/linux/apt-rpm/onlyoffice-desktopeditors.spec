@@ -32,7 +32,7 @@ cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
 rm -rf "$RPM_BUILD_ROOT"
 
 %files
-%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
+%attr(777, root, root) /opt/onlyoffice/desktopeditors/*
 %attr(777, root, root) /usr/bin/desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/onlyoffice/*
