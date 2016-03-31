@@ -47,6 +47,7 @@
 #import "NSCefView.h"
 #import "ASCHelper.h"
 #import "ASCLicenseManager.h"
+#import "AnalyticsHelper.h"
 
 #ifndef MAS
     #import "PFMoveApplication.h"
@@ -68,6 +69,15 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledDictationMenuItem"];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledCharacterPaletteMenuItem"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    // Google Analytics
+    
+#ifdef _PRODUCT_ONLYOFFICE
+//    [[AnalyticsHelper sharedInstance] beginPeriodicReportingWithAccount:@"UA-XXXXXXXXX-1"
+//                                                                   name:@"ONLYOFFICE"
+//                                                                version:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+#endif
     
     
 //    // Hotkey conflict resolve
@@ -99,6 +109,11 @@
     
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+
+#ifdef _PRODUCT_ONLYOFFICE
+    [[AnalyticsHelper sharedInstance] handleApplicationWillClose];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+#endif
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {

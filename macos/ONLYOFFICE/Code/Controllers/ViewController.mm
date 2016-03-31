@@ -61,6 +61,7 @@
 #import "ASCSharedSettings.h"
 #import "ASCReplacePresentationAnimator.h"
 #import "ASCLicenseManager.h"
+#import "AnalyticsHelper.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -574,6 +575,11 @@
         if (tab) {
             [tab.params addEntriesFromDictionary:params];
             [self saveLocalFileWithTab:tab];
+            
+            [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                     action:@"Save local file"
+                                                                      label:nil
+                                                                      value:nil];
         }
     }
 }
@@ -983,6 +989,11 @@
                 if ([self canOpenFile:filePath tab:tab]) {
                     int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
                     [cefView openFileWithName:filePath type:fileFormatType];
+                    
+                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                             action:@"Open local file"
+                                                                              label:nil
+                                                                              value:nil];
                 }
                 
                 break;
@@ -990,6 +1001,11 @@
             case ASCTabActionOpenLocalRecoverFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];               
                 [cefView openRecoverFileWithId:docId];
+                
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                         action:@"Open local recover file"
+                                                                          label:nil
+                                                                          value:nil];
                 
                 break;
             }
@@ -999,6 +1015,11 @@
                 
                 if ([self canOpenFile:filePath tab:tab]) {
                     [cefView openRecentFileWithId:docId];
+                    
+                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                             action:@"Open local file"
+                                                                              label:nil
+                                                                              value:nil];
                 }
                 
                 break;
@@ -1101,6 +1122,11 @@
         
         if (portal) {
             appManager->Logout([portal stdwstring]);
+            
+            [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                     action:@"Portal Logout"
+                                                                      label:nil
+                                                                      value:nil];
         }
     }
 }
