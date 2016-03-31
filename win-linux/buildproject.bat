@@ -5,7 +5,6 @@ set release_path=build\Release
 set root_path=%~dp0
 set parent_path="\\VBOXSVR\AscDocumentEditor\install"
 set shared_path="\\MEDIASERVER\Exchange\Makc"
-set libs_svn_path="svn://fileserver/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor"
 
 set /p is_update_libs=do you want to update libraries? (y, no):
 set /p is_compile_app=do you want to compile the application? (y, no):

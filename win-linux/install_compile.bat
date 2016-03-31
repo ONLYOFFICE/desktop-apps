@@ -4,13 +4,11 @@ reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" 
 if %OS%==32BIT (
     set iss_compiler="C:\Program Files\Inno Setup 5\ISCC.exe"
     set proj_name=install/install_x86.iss
-    set pathdll=%~dp0\..\common\libs\ChromiumBasedEditors\app\corebuilds\win32
     set pkg_name_ono=DesktopEditors_x86.exe
     set pkg_name_ivo=Ivolgapro_x86.exe
 ) else (
     set iss_compiler="C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
     set proj_name=install/install_x64.iss
-    set pathdll=%~dp0\..\common\libs\ChromiumBasedEditors\app\corebuilds\win64
     set pkg_name_ono=DesktopEditors_x64.exe
     set pkg_name_ivo=Ivolgapro_x64.exe
 )
