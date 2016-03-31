@@ -9,11 +9,11 @@ set SIGN_TOOL=\\%devserver%\Tools\DigitalSign\DigitalSignClient.exe
 
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
 if %OS%==32BIT (
-    set PATH_DLLs=..\..\common\converter\windows\win32
-    set PATH_CORELIBs=..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win32\
+    set PATH_DLLs=..\..\common\libs\converter\win_32
+    set PATH_CORELIBs=..\..\common\libs\core\win_32\
 ) else (
-    set PATH_DLLs=..\..\common\converter\windows\win64
-    set PATH_CORELIBs=..\..\common\libs\ChromiumBasedEditors2\app\corebuilds\win64\
+    set PATH_DLLs=..\..\common\libs\converter\win_64
+    set PATH_CORELIBs=..\..\common\libs\core\win_64\
 )
 
 :: OMT, ASC, NCT
@@ -24,7 +24,7 @@ call:funcSingleSing %PATH_CORELIBs%\ascdocumentscore.dll
 del /q %Exchange%\*.*
 
 pushd %PATH_DLLs%
-xcopy /y *.* %Exchange% /exclude:..\exclude.txt
+xcopy /y *.* %Exchange% /exclude:..\..\exclude.txt
 popd
 for /f %%f in ('dir /b %Exchange%') do (
 	@echo.
