@@ -92,21 +92,20 @@ DEFINES += \
 
 linux-g++ {
     contains(QMAKE_HOST.arch, x86_64):{
-        PLATFORM_BUILD = linux64
+        PLATFORM_BUILD = linux_64
     } else {
         PLATFORM_BUILD = linux32
     }
 
     QT += x11extras
-    COMMON_LIB_PATH = ../common/converter/linux
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/cefbuilds/$$PLATFORM_BUILD -lcef
-    LIBS += -L$$PWD/$$CHROMIUM_LIB_PATH/app/corebuilds/$$PLATFORM_BUILD -lascdocumentscore
-    LIBS += -L$$PWD/$$COMMON_LIB_PATH -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD -lascdocumentscore
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/converter/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
 
     HEADERS += src/linux/cmainwindow.h \
                 src/linux/cx11decoration.h
