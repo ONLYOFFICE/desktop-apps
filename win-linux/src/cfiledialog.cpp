@@ -35,7 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 
-#include "../common/libs/OfficeFileFormats.h"
+#include "../Common/OfficeFileFormats.h"
 
 #include <QDebug>
 

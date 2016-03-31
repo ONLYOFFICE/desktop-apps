@@ -316,7 +316,20 @@
             
             return true;
         };
-        
+
+        (function() {
+            var result = /[\?\&]placement=(\w+)&?/.exec(window.location.search);
+            if (!!result && result.length) {
+                if (result[1] == 'desktop') {
+                    _config.editorConfig.targetApp = result[1];
+                    _config.editorConfig.canBackToFolder = false;
+                    _config.editorConfig.canUseHistory = false;
+                    if (!_config.editorConfig.customization) _config.editorConfig.customization = {};
+                    _config.editorConfig.customization.about = false;
+                }
+            }
+        })();
+
         var target = document.getElementById(placeholderId),
             iframe;
 
@@ -484,19 +497,6 @@
             });
         };
 
-        (function() {
-            var result = /[\?\&]placement=(\w+)&?/.exec(window.location.search);
-            if (!!result && result.length) {
-                if (result[1] == 'desktop') {
-                    _config.editorConfig.targetApp = result[1];
-                    _config.editorConfig.canBackToFolder = false;
-                    _config.editorConfig.canUseHistory = false;
-                    if (!_config.editorConfig.customization) _config.editorConfig.customization = {};
-                    _config.editorConfig.customization.about = false;
-                }
-            }
-        })();
-
         return {
             showError           : _showError,
             showMessage         : _showMessage,
@@ -531,7 +531,7 @@
     };
 
     DocsAPI.DocEditor.version = function() {
-        return '3.0b.759';
+        return '3.0b.761';
     };
 
     MessageDispatcher = function(fn, scope) {
@@ -627,6 +627,13 @@
         if (config.editorConfig && config.editorConfig.lang)
             params += "&lang=" + config.editorConfig.lang;
 
+        if (config.editorConfig && config.editorConfig.targetApp!=='desktop') {
+            if ( (typeof(config.editorConfig.customization) == 'object') && config.editorConfig.customization.loaderName) {
+                if (config.editorConfig.customization.loaderName !== 'none') params += "&customer=" + config.editorConfig.customization.loaderName;
+            } else
+                params += "&customer=ONLYOFFICE";
+        }
+        
         return params;
     }
 

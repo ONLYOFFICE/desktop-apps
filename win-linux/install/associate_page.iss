@@ -105,7 +105,7 @@ procedure initExensions;
 var
   prefix: string;
 begin
-  SetArrayLength(AudioExts, 17);
+  SetArrayLength(AudioExts, 16);
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
   AudioExts[0]  := 'DOC';
@@ -120,11 +120,11 @@ begin
   AudioExts[9]  := 'ODS';
   AudioExts[10] := 'ODP';
   AudioExts[11] := 'RTF';
-  AudioExts[12] := 'TXT';
-  AudioExts[13] := 'CSV';
-  AudioExts[14] := 'PDF';
-  AudioExts[15] := 'DJVU';
-  AudioExts[16] := 'XPS';
+//  AudioExts[12] := 'TXT';
+  AudioExts[12] := 'CSV';
+  AudioExts[13] := 'PDF';
+  AudioExts[14] := 'DJVU';
+  AudioExts[15] := 'XPS';
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
   
@@ -141,11 +141,11 @@ begin
   ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '13';
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
   ExtensionRegistryInfo[11] := prefix + 'Rtf:'                                                      + ':' + '9';
-  ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '10';
-  ExtensionRegistryInfo[13] := prefix + 'Csv:'                                                      + ':' + '14';
-  ExtensionRegistryInfo[14] := prefix + 'Pdf:'                                                      + ':' + '5';
-  ExtensionRegistryInfo[15] := prefix + 'DjVu:'                                                     + ':' + '4';
-  ExtensionRegistryInfo[16] := prefix + 'Xps:'                                                      + ':' + '6';
+  //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '10';
+  ExtensionRegistryInfo[12] := prefix + 'Csv:'                                                      + ':' + '14';
+  ExtensionRegistryInfo[13] := prefix + 'Pdf:'                                                      + ':' + '5';
+  ExtensionRegistryInfo[14] := prefix + 'DjVu:'                                                     + ':' + '4';
+  ExtensionRegistryInfo[15] := prefix + 'Xps:'                                                      + ':' + '6';
 end;
 
 procedure ChlbAudioClickCheck(Sender: TObject);
@@ -323,6 +323,10 @@ begin
       RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', str);
       if CompareText(str, argsArray[0]) = 0 then
         RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '');
+
+      RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', str);
+      if CompareText(str, argsArray[0]) = 0 then
+        RegDeleteValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '');
 
       RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', str);
       if CompareText(str, argsArray[0]) = 0 then

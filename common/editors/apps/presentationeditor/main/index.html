@@ -28,7 +28,6 @@
             width: 100%;
             height: 170px;
             bottom: 42%;
-            margin-bottom: 20px;
             position: absolute;
             text-align: center;
         }
@@ -50,6 +49,11 @@
 
         .loader-page-text-loading {
             font-size: 14px;
+        }
+
+        .loader-page-text-customer {
+            font-size: 16px;
+            margin-bottom: 5px;
         }
 
         .romb {
@@ -195,6 +199,8 @@
 
         var params = getUrlParams(),
             lang = (params["lang"] || 'en').split("-")[0],
+            customer = params["customer"] ? ('<div class="loader-page-text-customer">' + encodeUrlParam(params["customer"]) + '</div>') : '',
+            margin = (customer !== '') ? 50 : 20,
             loading = 'Loading...';
 
         if ( lang == 'de')      loading = 'Ladevorgang...';
@@ -208,13 +214,13 @@
 
         document.write(
             '<div id="loading-mask" class="loadmask">' +
-                '<div class="loader-page">' +
+                '<div class="loader-page" style="margin-bottom: ' + margin + 'px;">' +
                 '<div class="loader-page-romb">' +
                     '<div class="romb" id="blue"></div>' +
                     '<div class="romb" id="green"></div>' +
                     '<div class="romb" id="red"></div>' +
                     '</div></div>' +
-                    '<div class="loader-page-text">' +
+                    '<div class="loader-page-text">' +  customer +
                     '<div class="loader-page-text-loading">' + loading + '</div>' +
                 '</div>' +
             '</div>');

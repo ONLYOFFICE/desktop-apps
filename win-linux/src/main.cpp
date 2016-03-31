@@ -100,7 +100,7 @@ int main( int argc, char *argv[] )
 
         manager->m_oSettings.spell_dictionaries_path = (app_path + "/dictionaries").toStdWString();
         manager->m_oSettings.file_converter_path = (app_path + "/converter").toStdWString();
-        manager->m_oSettings.local_editors_path = (app_path + "/editors/apps/api/documents/index.html").toStdWString();
+        manager->m_oSettings.local_editors_path = (app_path + "/editors/web-apps/apps/api/documents/index.html").toStdWString();
         manager->m_oSettings.additional_fonts_folder.push_back((app_path + "/fonts").toStdWString());
     };
 

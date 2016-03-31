@@ -1,36 +1,38 @@
 @echo off
 set fileserver=192.168.3.15
-set LibsPath=svn://%fileserver%/activex/AVS/Sources/TeamlabOffice/trunk/ServerComponents/DesktopEditor
-
-if exist ".svn" (
-    svn update --accept tf
-) else (
-    svn checkout %LibsPath% ./. --depth empty
-    svn update --set-depth infinity ChromiumBasedEditors2
-    svn update --set-depth infinity common
-    svn update --set-depth infinity Word_Api
-)
 
 reg Query "HKLM\Hardware\Description\System\CentralProcessor\0" | find /i "x86" > NUL && set OS=32BIT || set OS=64BIT
-if %OS%==32BIT (set OSNAME=win32) else (set OSNAME=win64)
 
-set trunk_path=svn://%fileserver%/activex/AVS/Sources/TeamlabOffice/trunk
-set export_path=..\converter\windows
+set trunk_path=svn://%fileserver%/onlyoffice/build
+set export_path=.
 if %OS%==32BIT (
-    md %export_path%\%OSNAME%
-
-    svn export --force %trunk_path%/AsyncServerComponents/Bin/Windows/x2t32.exe %export_path%\%OSNAME%
-    svn export --force %trunk_path%/ServerComponents/SDK/lib/win_32 %export_path%\%OSNAME%
+    set OSNAME=win_32
 ) else (
-    md %export_path%\%OSNAME%
-
-    svn export --force %trunk_path%/AsyncServerComponents/Bin/Windows/x2t.exe %export_path%\%OSNAME%
-    svn export --force %trunk_path%/ServerComponents/SDK/lib/win_64/ %export_path%\%OSNAME%
+    set OSNAME=win_64
 )
 
-svn export --force %trunk_path%/ServerComponents/SDK/bin/windows/icudt.dll %export_path%
-svn export --force %trunk_path%/ServerComponents/UnicodeConverter/icubuilds/%OSNAME%/bin/icudt55.dll %export_path%\%OSNAME%
-svn export --force %trunk_path%/ServerComponents/UnicodeConverter/icubuilds/%OSNAME%/bin/icuuc55.dll %export_path%\%OSNAME%
+md %export_path%\core\%OSNAME%\debug
+md %export_path%\converter\%OSNAME%
+md %export_path%\cef\%OSNAME%
 
-rd /s /q %export_path%\%OSNAME%\debug
-del %export_path%\%OSNAME%\*.lib %export_path%\%OSNAME%\html*.exe
+if %OS%==32BIT (
+    svn export --force %trunk_path%/bin/windows/x2t32.exe %export_path%\converter\%OSNAME%
+) else (
+    svn export --force %trunk_path%/bin/windows/x2t.exe %export_path%\converter\%OSNAME%
+)
+
+svn export --force %trunk_path%/lib/%OSNAME%/ %export_path%\converter\%OSNAME%
+svn export --force %trunk_path%/bin/icu/%OSNAME%/ %export_path%\converter\%OSNAME%
+
+pushd %export_path%\converter\%OSNAME%
+move /y .\ascdocumentscore.* ..\..\core\%OSNAME%
+move /y .\debug\ascdocumentscore.* ..\..\core\%OSNAME%\debug
+rd /s /q .\debug
+del .\*.lib .\ascdocumentscore.*
+popd
+
+svn export --force %trunk_path%/cef/%OSNAME%/ %export_path%/cef/%OSNAME%
+
+svn export --force %trunk_path%/jsbuilds %export_path%/jsbuilds
+svn export --force %trunk_path%/bin/windows/icudt.dll %export_path%/converter/%OSNAME%
+svn export --force %trunk_path%/empty %export_path%/converter/%OSNAME%/empty

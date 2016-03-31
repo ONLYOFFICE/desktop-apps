@@ -223,7 +223,7 @@
   "SSE.Controllers.Statusbar.zoomText": "Zoom {0}%",
   "SSE.Controllers.Toolbar.confirmAddFontName": "Die Schriftart, die Sie verwenden wollen, auf diesem Gerät ist nicht verfügbar.<br>Der Textstil wird mit einer der Systemschriften angezeigt, die gespeicherte Schriftart wird verwendet, wenn sie verfügbar ist.<br>Wollen Sie fortsetzen?",
   "SSE.Controllers.Toolbar.textCancel": "Abbrechen",
-  "SSE.Controllers.Toolbar.textFontSizeErr": "Der eingegebene Wert ist falsch.<br>Geben Sie bitte einen numerischen Wert zwischen 1 und 100 ein.",
+  "SSE.Controllers.Toolbar.textFontSizeErr": "Der eingegebene Wert ist falsch.<br>Geben Sie bitte einen numerischen Wert zwischen 1 und 409 ein.",
   "SSE.Controllers.Toolbar.textWarning": "Warnung",
   "SSE.Controllers.Toolbar.warnMergeLostData": "Nur die Daten aus der oberen linken Zelle bleiben nach der Vereinigung.<br>Möchten Sie wirklich fortsetzen?",
   "SSE.Views.AutoFilterDialog.btnCustomFilter": "Benutzerdefiniert",
