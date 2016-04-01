@@ -93,15 +93,18 @@ clean:
 
 desktopeditor:
 	mkdir -p $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/linux/*.so* $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/linux/*.S $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/linux/x2t $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/linux/HtmlFileInternal $(PROGRAM_PATH)
-	cp -rf ../../../common/converter/empty $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/bin/linux/*.S $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/x2t $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/*.so* $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/HtmlFileInternal $(PROGRAM_PATH)
+	cp -rf ../../../../core/build/empty $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
 
-	cp -rf ../../../common/package/dictionaries $(PROGRAM_PATH)/
+	cp -rf ../../../../dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
+	mkdir -p $(PROGRAM_PATH)/editors/sdk
+	cp -rf ../../../../core/build/jsbuilds/ $(PROGRAM_PATH)/editors/sdk
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
