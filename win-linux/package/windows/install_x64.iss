@@ -1,5 +1,5 @@
 ﻿#include "common.iss"
-
+#define os_arch 'win_64'
 
 [Setup]
 AppName                 ={#sAppName}
@@ -22,12 +22,14 @@ ArchitecturesInstallIn64BitMode=x64
 Source: data\vcredist\vcredist_x64.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x64.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
-Source: ..\..\common\libs\converter\win_64\*;                    DestDir: {app}\converter; Excludes: HtmlFileInternal.exe; Flags: recursesubdirs;
-Source: ..\..\common\libs\converter\win_64\HtmlFileInternal.exe; DestDir: {app}\; Flags: recursesubdirs;
-;Source: ..\..\common\converter\windows\win64\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
+Source: ..\..\..\..\core\build\bin\windows\x2t.exe;               DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\windows\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;              DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter; Excludes: *.lib HtmlFileInternal.exe ascdocumentscore.dll; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 
-Source: ..\..\common\libs\core\win_64\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\common\libs\cef\win_64\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 #ifdef _IVOLGA_PRO
 Source: data\projicons_nct.exe;                             DestDir: {app}\; DestName: {#iconsExe};
 #else

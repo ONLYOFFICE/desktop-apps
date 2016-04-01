@@ -1,4 +1,5 @@
 ﻿#include "common.iss"
+#define os_arch 'win_32'
 
 
 [Setup]
@@ -17,12 +18,14 @@ MinVersion              =0,5.0.2195
 Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x86.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
-;Source: ..\..\common\converter\windows\win32\*;           DestDir: {app}\converter; Flags: recursesubdirs ignoreversion;
-Source: ..\..\common\libs\converter\win_32\*;                    DestDir: {app}\converter; Excludes: HtmlFileInternal.exe; Flags: recursesubdirs;
-Source: ..\..\common\libs\converter\win_32\HtmlFileInternal.exe; DestDir: {app}\; Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\bin\windows\x2t32.exe;             DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\windows\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;              DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter; Excludes: *.lib HtmlFileInternal.exe ascdocumentscore.dll; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 
-Source: ..\..\common\libs\core\win_32\ascdocumentscore.dll;  DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\common\libs\cef\win_32\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 #ifdef _IVOLGA_PRO
 Source: data\projicons_nct_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 #else

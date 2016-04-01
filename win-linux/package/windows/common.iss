@@ -65,11 +65,11 @@ SetupMutex              =ASC
 
 [Languages]
 #ifdef _IVOLGA_PRO
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_ivolgapro.rtf;
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_ivolgapro.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
 #else
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\common\package\license\eula_onlyoffice.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_onlyoffice.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_onlyoffice.rtf;
 #endif
 ;Name: de; MessagesFile: compiler:Languages\German.isl;
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
@@ -303,45 +303,45 @@ Name: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 [Files]
 Source: .\launch.bat;           DestDir: {app}\;
 
-Source: ..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
+Source: ..\..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
 #ifdef _IVOLGA_PRO
-Source: ..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
+Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\common\package\license\eula_ivolgapro.htm; DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\..\common\package\license\eula_ivolgapro.htm; DestDir: {app}; DestName: LICENSE.htm;
 #else
-Source: ..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
+Source: ..\..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
 #endif
-Source: ..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
+Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
-Source: ..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
+Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\common\editors\*;                     DestDir: {app}\editors\web-apps;   Flags: recursesubdirs;
-Source: ..\..\common\libs\jsbuilds\*;               DestDir: {app}\editors\sdkjs; Flags: recursesubdirs;
-Source: ..\..\common\converter\DoctRenderer.config; DestDir: {app}\converter;
-;Source: ..\..\common\converter\windows\icudt.dll;   DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\common\editors\*;                      DestDir: {app}\editors\web-apps;   Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsbuilds\*;              DestDir: {app}\editors\sdkjs; Flags: recursesubdirs;
+Source: ..\..\..\common\converter\DoctRenderer.config;  DestDir: {app}\converter;
+Source: ..\..\..\..\core\build\empty\*;                 DestDir: {app}\converter;
 
-Source: ..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
-Source: ..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
+Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
 ;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;           DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-BoldItalic.ttf;                DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-Italic.ttf;                    DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-LightItalic.ttf;               DestDir: {fonts}; FontInstall: Open Sans Light Italic;     Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-SemiboldItalic.ttf;            DestDir: {fonts}; FontInstall: Open Sans Semibold Italic;  Flags: onlyifdoesntexist uninsneveruninstall;
 
-Source: ..\..\common\package\fonts\Asana-Math.ttf;          DestDir: {app}\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\Carlito-Bold.ttf;        DestDir: {app}\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\Asana-Math.ttf;          DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\Carlito-Bold.ttf;        DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 
 
 [Tasks]
