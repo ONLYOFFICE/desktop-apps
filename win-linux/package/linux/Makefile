@@ -107,7 +107,7 @@ desktopeditor:
 	cp -rf ../../../../dictionaries $(PROGRAM_PATH)/
 	cp -rf ../../../common/editors $(PROGRAM_PATH)/
 	mkdir -p $(PROGRAM_PATH)/editors/sdk
-	cp -rf ../../../../core/build/jsbuilds/ $(PROGRAM_PATH)/editors/sdk
+	cp -rf ../../../../core/build/jsbuilds/* $(PROGRAM_PATH)/editors/sdk
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
