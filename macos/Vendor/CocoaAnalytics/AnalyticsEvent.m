@@ -28,12 +28,26 @@ static NSString *const kEventValue = @"eventValue";
 
 - (NSDictionary*)dictionaryRepresenation {
     // We expect all of the values to be filled in here. If not, BOOM.
-    return @{
-             kEventCategory:self.category,
-             kEventActionKey:self.action,
-             kEventLabelKey:self.label,
-             kEventValue:self.value
-             };
+    
+    NSMutableDictionary * dictionary = [NSMutableDictionary dictionary];
+    
+    if (self.category) {
+        [dictionary setObject:self.category forKey:kEventCategory];
+    }
+    
+    if (self.action) {
+        [dictionary setObject:self.action forKey:kEventActionKey];
+    }
+    
+    if (self.label) {
+        [dictionary setObject:self.label forKey:kEventLabelKey];
+    }
+    
+    if (self.value) {
+        [dictionary setObject:self.value forKey:kEventValue];
+    }
+    
+    return dictionary;
 }
 
 @end

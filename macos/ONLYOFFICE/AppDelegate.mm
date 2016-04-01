@@ -74,9 +74,9 @@
     // Google Analytics
     
 #ifdef _PRODUCT_ONLYOFFICE
-//    [[AnalyticsHelper sharedInstance] beginPeriodicReportingWithAccount:@"UA-XXXXXXXXX-1"
-//                                                                   name:@"ONLYOFFICE"
-//                                                                version:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    [[AnalyticsHelper sharedInstance] beginPeriodicReportingWithAccount:@"UA-12442749-27"
+                                                                   name:@"ONLYOFFICE"
+                                                                version:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
 #endif
     
     
@@ -110,11 +110,6 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
-
-#ifdef _PRODUCT_ONLYOFFICE
-    [[AnalyticsHelper sharedInstance] handleApplicationWillClose];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-#endif
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
@@ -127,9 +122,16 @@
     if (mainWindow) {
         ViewController * controller = (ViewController *)mainWindow.contentViewController;
         
-        return [controller shouldTerminateApplication] ? NSTerminateNow : NSTerminateCancel;
+        if (![controller shouldTerminateApplication]) {
+            return NSTerminateCancel;
+        }
     }
 
+#ifdef _PRODUCT_ONLYOFFICE
+    [[AnalyticsHelper sharedInstance] handleApplicationWillClose];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+#endif
+    
     return NSTerminateNow;
 }
 

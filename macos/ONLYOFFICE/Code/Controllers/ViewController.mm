@@ -986,6 +986,12 @@
                 }
                 
                 [cefView createFileWithName:docName type:docType];
+                
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                                                                         action:[NSString stringWithFormat:@"Create new %@", docType == 0 ? @"document" : (docType == 1 ? @"presentation" : @"spreadsheet")]
+                                                                          label:nil
+                                                                          value:nil];
+                
                 break;
             }
                 
@@ -1009,7 +1015,7 @@
                 [cefView openRecoverFileWithId:docId];
                 
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
-                                                                         action:@"Open local recover file"
+                                                                         action:@"Open recover file"
                                                                           label:nil
                                                                           value:nil];
                 
@@ -1023,7 +1029,7 @@
                     [cefView openRecentFileWithId:docId];
                     
                     [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
-                                                                             action:@"Open local file"
+                                                                             action:@"Open recent file"
                                                                               label:nil
                                                                               value:nil];
                 }

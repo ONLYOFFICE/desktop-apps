@@ -403,14 +403,24 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
      &ea=play        // Event Action. Required.
      */
     
-    NSString *payloadString = [NSString stringWithFormat:@"v=1&tid=%@&cid=%@&an=%@&t=event&ec=%@&ea=%@&el=%@&ev=%@",
+    NSString * format = @"v=1&tid=%@&cid=%@&an=%@&t=event&ec=%@&ea=%@";
+    
+    if (analyticsEvent.label) {
+        [format stringByAppendingString:@"&el=%@"];
+    }
+    
+    if (analyticsEvent.value) {
+        [format stringByAppendingString:@"&ev=%@"];
+    }
+    
+    NSString *payloadString = [NSString stringWithFormat:format,
                                accountIdentifier, // account id
                                machineIdentifier, // client id
                                appName, // app name
                                analyticsEvent.category,
                                analyticsEvent.action,
                                analyticsEvent.label,
-                               analyticsEvent.value
+                               analyticsEvent.value 
                                ];
     
     payloadString = [payloadString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
