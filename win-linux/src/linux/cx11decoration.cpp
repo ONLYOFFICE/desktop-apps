@@ -203,8 +203,6 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent * e)
         QPoint p(e->pos().x(), e->pos().y());
         checkCursor(p);
     }
-
-    qDebug() << "mouse move: " << e->pos();
 }
 
 void CX11Decoration::turnOn()

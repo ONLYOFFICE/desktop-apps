@@ -56,6 +56,7 @@
 #include <QRegularExpression>
 #include "cstyletweaks.h"
 #include "utils.h"
+#include "chelp.h"
 
 BYTE g_dpi_ratio = 1;
 BYTE g_lic_type = LICENSE_TYPE_BUSINESS;
@@ -159,6 +160,15 @@ int main( int argc, char *argv[] )
      * cmd argument --keeplang:en also keep the language for next sessions
     */
     int _arg_i;
+    if (!(_arg_i = app.arguments().indexOf("--help") < 0)) {
+        CHelp::out();
+
+        pApplicationManager->CloseApplication();
+
+        delete application_cef;
+        delete pApplicationManager;
+        return 0;
+    } else
     if (!(_arg_i = app.arguments().indexOf(QRegExp(reCmdLang)) < 0)) {
         g_lang = app.arguments().at(_arg_i).right(2);
     }
