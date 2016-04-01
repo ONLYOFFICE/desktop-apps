@@ -14,7 +14,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
-CORE_LIB_PATH = ../common/libs
+CORE_LIB_PATH = ../../core/Build
 
 INCLUDEPATH += $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/include \
                 $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview \
@@ -94,7 +94,7 @@ linux-g++ {
     contains(QMAKE_HOST.arch, x86_64):{
         PLATFORM_BUILD = linux_64
     } else {
-        PLATFORM_BUILD = linux32
+        PLATFORM_BUILD = linux_32
     }
 
     QT += x11extras
@@ -104,8 +104,8 @@ linux-g++ {
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD -lascdocumentscore
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/converter/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter
 
     HEADERS += src/linux/cmainwindow.h \
                 src/linux/cx11decoration.h
@@ -185,9 +185,9 @@ win32 {
 
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -llibcef
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lascdocumentscore
     } else {
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/core/$$PLATFORM_BUILD -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
     }
 
     message($$PLATFORM_BUILD)
