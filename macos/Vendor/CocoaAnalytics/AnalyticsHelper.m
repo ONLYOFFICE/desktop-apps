@@ -127,6 +127,7 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
 }
 
 - (void)handleApplicationWillClose {
+#ifdef _ALLOW_ANALYSE
     // We are about to close, stop any future reports
     self.allowReporting = NO;
     
@@ -139,10 +140,13 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
     // This must be called last
     [self saveCachedScreensToDisk];
     [self saveCachedEventsToDisk];
+#endif
 }
 
 - (void)recordScreenWithName:(NSString*)screenName {
+#ifdef _ALLOW_ANALYSE
     [self.cachedScreens addObject:screenName];
+#endif
 }
 
 - (void)recordCachedEventWithCategory:(NSString*)eventCategory
@@ -150,6 +154,7 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
                                 label:(NSString*)eventLabel
                                 value:(NSNumber*)eventValue
 {
+#ifdef _ALLOW_ANALYSE
     AnalyticsEvent *analyticsEvent = [[AnalyticsEvent alloc] init];
     analyticsEvent.category = eventCategory;
     analyticsEvent.action = eventAction;
@@ -157,10 +162,12 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
     analyticsEvent.value = eventValue;
     
     [self.cachedEvents addObject:analyticsEvent];
+#endif
 }
 
 - (void)saveCachedScreensToDisk {
     // Get the previously recorded screen names
+#ifdef _ALLOW_ANALYSE
     NSMutableArray *recordedScreens = [NSMutableArray new];
     NSArray *previouslyRecordedScreens = [self recordedEventDictionaries];
     if (previouslyRecordedScreens) {
@@ -174,9 +181,11 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
     
     [NSUserDefaults.standardUserDefaults setObject:recordedScreens forKey:kRecordedScreensKey];
     [self.cachedScreens removeAllObjects];
+#endif
 }
 
 - (void)saveCachedEventsToDisk {
+#ifdef _ALLOW_ANALYSE
     // Get the previously recorded events
     NSMutableArray *recordedEvents = [NSMutableArray new];
     NSArray *previouslyRecordedEvents = [self recordedEventDictionaries];
@@ -192,6 +201,7 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
 
     [NSUserDefaults.standardUserDefaults setObject:recordedEvents forKey:kRecordedEventsKey];
     [self.cachedEvents removeAllObjects];
+#endif
 }
 
 - (void)clearRecordedScreens {
@@ -313,21 +323,24 @@ static const float kDefaultSendInterval = 60 * 5; // 5 minutes
 - (void)beginPeriodicReportingWithAccount:(NSString *)googleAccountIdentifier
                                      name:(NSString *)appName
                                   version:(NSString *)appVersion {
-    
+#ifdef _ALLOW_ANALYSE
     self.googleAccountIdentifier = googleAccountIdentifier;
     self.appName = appName;
     self.appVersion = appVersion;
     self.allowReporting = YES;
     [self resetTimer];
     [self createAndSendReport:nil];
+#endif
 }
 
 - (void)createAndSendReport:(id)sender {
+#ifdef _ALLOW_ANALYSE
     if (self.allowReporting) {
         [self saveCachedScreensToDisk];
         [self saveCachedEventsToDisk];
         [self sendReport];
     }
+#endif
 }
 
 - (void)resetTimer {
