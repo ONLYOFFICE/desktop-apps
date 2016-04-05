@@ -99,11 +99,11 @@ desktopeditor:
 	cp -rf ../../../../core/build/bin/linux/*.S $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/x2t $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/*.so* $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/bin/icu/linux_64/*.so* $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/empty $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
 	
-	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(PROGRAM_PATH)	
 	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/HtmlFileInternal $(PROGRAM_PATH)	
 	cp -rf ../../../../core/build/cef/linux_64/* $(PROGRAM_PATH)
 
