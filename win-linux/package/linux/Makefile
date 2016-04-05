@@ -46,6 +46,9 @@ PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
 CONVERTER_PATH := $(PROGRAM_PATH)/converter
 FONTS_PATH := common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 LOCAL_PATH := common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
+WEB_APPS_PATH := $(PROGRAM_PATH)/editors/web-apps
+SDKJS_PATH := $(PROGRAM_PATH)/editors/sdkjs
+
 
 ifeq ($(COMPANY_NAME), onlyoffice)
 INDEX_HTML := index.html
@@ -105,9 +108,12 @@ desktopeditor:
 	cp -rf ../../../../core/build/cef/linux_64/* $(PROGRAM_PATH)
 
 	cp -rf ../../../../dictionaries $(PROGRAM_PATH)/
-	cp -rf ../../../common/editors $(PROGRAM_PATH)/
-	mkdir -p $(PROGRAM_PATH)/editors/sdk
-	cp -rf ../../../../core/build/jsbuilds/* $(PROGRAM_PATH)/editors/sdk
+
+	mkdir -p $(WEB_APPS_PATH)
+	cp -rf ../../../common/editors/* $(WEB_APPS_PATH)
+	
+	mkdir -p $(SDKJS_PATH)
+	cp -rf ../../../../core/build/jsbuilds/* $(SDKJS_PATH)
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
