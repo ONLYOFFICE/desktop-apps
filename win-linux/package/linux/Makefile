@@ -117,6 +117,7 @@ desktopeditor:
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
+	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 
 	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
 	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
@@ -125,6 +126,7 @@ desktopeditor:
 	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) $(LOCAL_PATH)/index.html
 
 	mkdir -p $(LOCAL_PATH)/fonts
+	cp  ../../../common/package/fonts/LICENSE.txt $(LOCAL_PATH)/fonts
 	cp  ../../../common/package/fonts/OpenSans-*.ttf $(LOCAL_PATH)/fonts
 
 	mkdir -p $(FONTS_PATH)
