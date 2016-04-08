@@ -7,6 +7,8 @@ AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
 #ifdef _IVOLGA_PRO
 OutputBaseFileName      =Ivolgapro_x86
+#elif defined(_AVS)
+OutputBaseFileName      =AVSDocumentEditor_x86
 #else
 OutputBaseFileName      =DesktopEditors_x86
 #endif
@@ -21,13 +23,15 @@ Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafte
 Source: ..\..\..\..\core\build\bin\windows\x2t32.exe;             DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\bin\windows\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;              DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
-Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter; Excludes: *.lib HtmlFileInternal.exe ascdocumentscore.dll; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter; Excludes: *.lib,HtmlFileInternal.exe,ascdocumentscore.dll; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 
 Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 #ifdef _IVOLGA_PRO
 Source: data\projicons_nct_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+#elif defined(_AVS)
+Source: data\projicons_omt.exe;                           DestDir: {app}\; DestName: {#iconsExe};
 #else
 Source: data\projicons_asc_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
 #endif
