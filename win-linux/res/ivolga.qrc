@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/ivolga">
+        <file alias="app.ico">icons/ivolga/desktopeditors.ico</file>
+        <file alias="splash.png">icons/ivolga/splash.png</file>
+        <file alias="splash@2x.png">icons/ivolga/splash_2x.png</file>
+        <file alias="busines.png">icons/ivolga/lic_busines.png</file>
+        <file alias="busines@2x.png">icons/ivolga/lic_busines_2x.png</file>
+        <file alias="home.png">icons/ivolga/lic_home.png</file>
+        <file alias="home@2x.png">icons/ivolga/lic_home_2x.png</file>
+    </qresource>
+</RCC>

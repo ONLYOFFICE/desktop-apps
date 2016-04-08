@@ -39,6 +39,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include "defines.h"
+#include "utils.h"
 
 extern uchar g_dpi_ratio;
 extern QString g_lang;
@@ -54,11 +55,11 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     QString _str_welcome = tr("Welcome to %1!");
 #ifdef _IVOLGA_PRO
     _labelWelcome->setText(_str_welcome.arg(APP_TITLE));
-    setWindowIcon(QIcon(":/ivolga/app.ico"));
 #else
     _labelWelcome->setText(_str_welcome.arg("OnlyOffice"));
-    setWindowIcon(QIcon(":/res/icons/desktopeditors.ico"));
 #endif
+
+    setWindowIcon(Utils::appIcon());
 
     _labelWelcome->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _labelChoose->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);

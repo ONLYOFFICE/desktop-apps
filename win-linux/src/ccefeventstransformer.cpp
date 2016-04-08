@@ -197,12 +197,20 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         }
         break;
     }
-    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL:
+    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL: {
         CAscLicenceActual * pData = (CAscLicenceActual *)pEvent->m_pData;
 
         ADDREFINTERFACE(pData);
         QMetaObject::invokeMethod(pObjParent, "onActivated", Qt::QueuedConnection, Q_ARG(void *, pData));
         break;
+    }
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_SAVE_WATERMARK: {
+        /* is sended for local files in the unregistred version of app */
+        QMetaObject::invokeMethod(pObjParent, "onUnregisteredFileSave", Qt::QueuedConnection,
+                                Q_ARG(int, (static_cast<CAscTypeId *>(pEvent->m_pData))->get_Id()));
+        break;
+    }
+
     }
 
     RELEASEINTERFACE(pEvent);

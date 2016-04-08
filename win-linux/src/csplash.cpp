@@ -65,11 +65,13 @@ void CSplash::show()
 void CSplash::showSplash()
 {
     if ( !_splash ) {
-        QPixmap _pixmap =
+        QPixmap _pixmap = g_dpi_ratio > 1 ?
 #ifdef _IVOLGA_PRO
-            g_dpi_ratio > 1 ? QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png");
+            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png");
+#elif defined(_AVS)
+            QPixmap(":/avs/splash@2x.png") : QPixmap(":/avs/splash.png");
 #else
-            g_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
+            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
 #endif
 
         (_splash = new CSplash(_pixmap, Qt::WindowStaysOnTopHint))

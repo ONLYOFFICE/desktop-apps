@@ -35,6 +35,12 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
+#include <QRegularExpression>
+#include <QIcon>
+#include <QSysInfo>
+
+#include "applicationmanager.h"
+#include "applicationmanager_events.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -217,4 +223,67 @@ bool Utils::makepath(const QString& p)
     (_mask & S_IRWXO) && umask(_mask & ~S_IRWXO);
 #endif
     return QDir().mkpath(p);
+}
+
+QString Utils::getUserPath()
+{
+#ifdef _AVS
+    QSettings sett(QSettings::IniFormat, QSettings::UserScope, "orgname", "appname");
+    QRegularExpression re("(.+)(?=\\/orgname)");
+    QRegularExpressionMatch match = re.match(sett.fileName());
+
+    return match.hasMatch() ? match.captured(1): "";
+#else
+    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+#endif
+}
+
+bool Utils::hasLicense(void * m)
+{
+    CAscApplicationManager * _manager = static_cast<CAscApplicationManager *>(m);
+
+    NSEditorApi::CAscLicenceActual * pData = new NSEditorApi::CAscLicenceActual;
+    pData->AddRef();
+    pData->put_Path(Utils::licenseDirW());
+    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
+
+    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = pData;
+    _manager->Apply(pEvent);
+
+    bool _out = pData->get_Licence() && pData->get_DaysLeft() > 0;
+//    delete pData, pData = NULL;
+//    delete pEvent, pEvent = NULL;
+    return _out;
+}
+
+//#define ARRSIZE(arr) (sizeof(arr)/sizeof(*(arr)))
+QString Utils::systemLocationCode()
+{
+#define LOCATION_MAX_LEN 2
+#ifdef _WIN32
+    WCHAR _country_code[LOCATION_MAX_LEN]{0};
+    if ( QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA )    {
+        if(!GetLocaleInfoEx(LOCALE_NAME_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
+            return "unknown";
+    } else {
+        if(!GetLocaleInfo(LOCALE_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
+            return "unknown";
+    }
+
+    return QString::fromWCharArray(_country_code);
+#else
+#endif
+}
+
+QIcon Utils::appIcon()
+{
+    return
+#ifdef _IVOLGA_PRO
+    QIcon(":/ivolga/app.ico");
+#elif defined(_AVS)
+    QIcon(":/avs/app.ico");
+#else
+    QIcon(":/res/icons/desktopeditors.ico");
+#endif
 }

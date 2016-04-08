@@ -46,6 +46,7 @@
 #include "casctabdata.h"
 #include "common/Types.h"
 #include "defines.h"
+#include "utils.h"
 
 #include "private/qtabbar_p.h"
 
@@ -730,11 +731,7 @@ void CAscTabWidget::setFullScreen(bool apply)
 
             removeTab(currentIndex());
 #ifdef _WIN32
-  #ifdef _IVOLGA_PRO
-            fsWidget->setWindowIcon(QIcon(":/ivolga/app.ico"));
-  #else
-            fsWidget->setWindowIcon(QIcon(":/res/icons/desktopeditors.ico"));
-  #endif
+            fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
 #else
             QWidget * grandpa = qobject_cast<QWidget *>(parent()->parent());

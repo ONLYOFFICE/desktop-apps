@@ -44,14 +44,19 @@ public:
     static bool firstStart(bool restore = false);
     static bool markFirstStart();
     static QString getLocalUsedPath(int type);
+    static QString getUserPath();
 
     static void createTempLicense();
     static bool isTempLicense();
     static void removeTempLicense();
     static QString licenseDir();
     static wstring licenseDirW();
+    static bool hasLicense(void *);
 
     static bool makepath(const QString&);
+
+    static QString systemLocationCode();
+    static QIcon appIcon();
 };
 
 #endif // UTILS_H

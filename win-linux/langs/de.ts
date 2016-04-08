@@ -22,17 +22,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="51"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="50"/>
         <source>HOME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="58"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="56"/>
         <source>COMMERCIAL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="82"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="85"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
@@ -189,7 +189,7 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="46"/>
+        <location filename="../src/cmessage.cpp" line="47"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -225,17 +225,17 @@
         <translation>Wollen Sie die geänderten Daten speichern?</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="60"/>
+        <location filename="../src/csavefilemessage.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="61"/>
+        <location filename="../src/csavefilemessage.cpp" line="62"/>
         <source>&amp;No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="62"/>
+        <location filename="../src/csavefilemessage.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -256,145 +256,168 @@
 <context>
     <name>QAscMainPanel</name>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="141"/>
+        <location filename="../src/qascmainpanel.cpp" line="119"/>
         <source>FILE</source>
         <translation>DATEI</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="196"/>
+        <location filename="../src/qascmainpanel.cpp" line="199"/>
         <source>Logout</source>
         <translation>Ausloggen</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="619"/>
-        <location filename="../src/qascmainpanel.cpp" line="654"/>
+        <location filename="../src/qascmainpanel.cpp" line="478"/>
+        <source>Do you want to save modified files?&lt;br&gt;Non-activated version, watermark will be added.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="656"/>
+        <location filename="../src/qascmainpanel.cpp" line="691"/>
         <source>File format not supported.</source>
         <translation>Dateiformat wird nicht unterstützt.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="638"/>
+        <location filename="../src/qascmainpanel.cpp" line="675"/>
         <source>File doesn&apos;t exists</source>
         <translation>Datei existiert nicht</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="681"/>
+        <location filename="../src/qascmainpanel.cpp" line="721"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="682"/>
+        <location filename="../src/qascmainpanel.cpp" line="722"/>
         <source>Book%1.xlsx</source>
         <translation>Buch%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="683"/>
+        <location filename="../src/qascmainpanel.cpp" line="723"/>
         <source>Presentation%1.pptx</source>
         <translation>Präsentation%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="837"/>
+        <location filename="../src/qascmainpanel.cpp" line="842"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="842"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="844"/>
+        <source>Attention! Watermark will be added to document. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="903"/>
         <source>Internal activation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="902"/>
+        <location filename="../src/qascmainpanel.cpp" line="969"/>
+        <location filename="../src/qascmainpanel.cpp" line="988"/>
         <source>The application isn&apos;t activated!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="933"/>
+        <location filename="../src/qascmainpanel.cpp" line="997"/>
+        <source>Congrats! %1 %2 was succefully activated!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="1006"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="936"/>
+        <location filename="../src/qascmainpanel.cpp" line="1009"/>
         <source>Business</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1386"/>
+        <location filename="../src/qascmainpanel.cpp" line="1459"/>
         <source>Non-activated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1390"/>
+        <location filename="../src/qascmainpanel.cpp" line="1463"/>
         <source>Trial.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="915"/>
+        <location filename="../src/qascmainpanel.cpp" line="980"/>
         <source>Buy Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="916"/>
+        <location filename="../src/qascmainpanel.cpp" line="981"/>
         <source>The program is unregistered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="948"/>
+        <location filename="../src/qascmainpanel.cpp" line="1022"/>
         <source>The trial period is over.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="953"/>
+        <location filename="../src/qascmainpanel.cpp" line="1027"/>
         <source>Trial period expired for %1 days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="962"/>
+        <location filename="../src/qascmainpanel.cpp" line="1036"/>
         <source>The program is non-activated!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="970"/>
+        <location filename="../src/qascmainpanel.cpp" line="1044"/>
         <source>%1 days left before the license end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="886"/>
-        <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="946"/>
-        <location filename="../src/qascmainpanel.cpp" line="961"/>
+        <location filename="../src/qascmainpanel.cpp" line="952"/>
+        <location filename="../src/qascmainpanel.cpp" line="968"/>
+        <location filename="../src/qascmainpanel.cpp" line="987"/>
+        <location filename="../src/qascmainpanel.cpp" line="1020"/>
+        <location filename="../src/qascmainpanel.cpp" line="1035"/>
         <source>Activate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="883"/>
+        <location filename="../src/qascmainpanel.cpp" line="949"/>
         <source>Activation failed! Check internet connection and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="886"/>
-        <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="946"/>
-        <location filename="../src/qascmainpanel.cpp" line="961"/>
-        <location filename="../src/qascmainpanel.cpp" line="973"/>
+        <location filename="../src/qascmainpanel.cpp" line="952"/>
+        <location filename="../src/qascmainpanel.cpp" line="968"/>
+        <location filename="../src/qascmainpanel.cpp" line="987"/>
+        <location filename="../src/qascmainpanel.cpp" line="1020"/>
+        <location filename="../src/qascmainpanel.cpp" line="1035"/>
+        <location filename="../src/qascmainpanel.cpp" line="1047"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="911"/>
+        <location filename="../src/qascmainpanel.cpp" line="978"/>
         <source>Activation failed! Check entered data and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="925"/>
-        <source>Congrats! %1 (%2) was succefully activated!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qascmainpanel.cpp" line="1393"/>
+        <location filename="../src/qascmainpanel.cpp" line="1466"/>
         <source>Home Edition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1393"/>
+        <location filename="../src/qascmainpanel.cpp" line="1466"/>
         <source>Business Edition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1094"/>
+        <location filename="../src/qascmainpanel.cpp" line="1168"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>

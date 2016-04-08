@@ -59,13 +59,14 @@ public:
 
     void goStart();
     void focus();
-    int  checkModified(const QString&);
+//    int  checkModified(const QString&);
     void checkActivation();
     void selfActivation();
     int  getLicenseType();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
+    void setInputFiles(QStringList *);
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -135,6 +136,7 @@ public slots:
     void onPortalLogout(QString);
     void onActivate(QString);
     void onActivated(void *);
+    void onUnregisteredFileSave(int);
 
     void onStartPageReady();
 
@@ -165,6 +167,7 @@ private:
     Qt::WindowState m_mainWindowState;
 
     QString m_lastOpenPath;
+    QStringList * m_inFiles;
 
     QString m_savePortal;
     int m_saveAction;

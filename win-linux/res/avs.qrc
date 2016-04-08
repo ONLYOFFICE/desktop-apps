@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/avs">
+        <file alias="app.ico">icons/avs/desktopeditors.ico</file>
+        <file alias="splash.png">icons/avs/splash.png</file>
+        <file alias="splash@2x.png">icons/avs/splash@2x.png</file>
+    </qresource>
+</RCC>

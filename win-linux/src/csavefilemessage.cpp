@@ -84,6 +84,7 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
     icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
     QLabel * question = new QLabel(tr("Do you want to save modified files?"));
+    question->setObjectName("label-question");
     question->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
     m_fLayout->addWidget(question);
     h_layout2->addWidget(icon, 0, Qt::AlignTop);
@@ -106,8 +107,8 @@ CSaveFileMessage::CSaveFileMessage(QWidget * parent)
     m_pDlg.setWindowTitle(APP_TITLE);
 
     connect(btn_yes, &QPushButton::clicked, this, &CSaveFileMessage::onYesClicked);
-    connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
-    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
+    connect(btn_no, &QPushButton::clicked, [=]{m_result = MODAL_RESULT_NO; m_pDlg.reject();});
+    connect(btn_cancel, &QPushButton::clicked, [=]{m_result = MODAL_RESULT_CANCEL;m_pDlg.reject();});
 
     setStyleSheet("QPushButton:focus{border-color:#3a83db;}");
 }
@@ -163,6 +164,12 @@ void CSaveFileMessage::setFiles(const QString& file)
     m_fLayout->addWidget(new QLabel(file));
 }
 
+void CSaveFileMessage::setText(const QString& text)
+{
+    QLabel * question = m_pDlg.findChild<QLabel *>("label-question");
+    if (question) question->setText(text);
+}
+
 void CSaveFileMessage::onYesClicked()
 {
     if (m_mapFiles && m_mapFiles->size() > 1) {
@@ -179,16 +186,4 @@ void CSaveFileMessage::onYesClicked()
 
     m_result = MODAL_RESULT_YES;
     m_pDlg.accept();
-}
-
-void CSaveFileMessage::onNoClicked()
-{
-    m_result = MODAL_RESULT_NO;
-    m_pDlg.reject();
-}
-
-void CSaveFileMessage::onCancelClicked()
-{
-    m_result = MODAL_RESULT_CANCEL;
-    m_pDlg.reject();
 }
