@@ -38,20 +38,21 @@
 //  Copyright © 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCSavePanelWithFormat.h"
+#import "ASCSavePanelWithFormatController.h"
 
-@interface ASCSavePanelWithFormat()
+@interface ASCSavePanelWithFormatController()
 @property (nonatomic) NSPopUpButton * popupFormats;
 @end
 
-@implementation ASCSavePanelWithFormat
+@implementation ASCSavePanelWithFormatController
 
-+ (ASCSavePanelWithFormat *)savePanel {
-    ASCSavePanelWithFormat * panel = (ASCSavePanelWithFormat *)[super savePanel];
+- (NSSavePanel *)savePanel {
+    if (nil == _savePanel) {
+        _savePanel = [NSSavePanel savePanel];
+        [self initAccessoryView];
+    }
     
-    [panel initAccessoryView];
-    
-    return panel;
+    return _savePanel;
 }
 
 - (void)initAccessoryView {
@@ -65,13 +66,14 @@
     [label setDrawsBackground:NO];
     [label setAlignment:NSRightTextAlignment];
     
-    self.popupFormats = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(125.0, 22, 255, 22.0) pullsDown:NO];
-    [self.popupFormats setAction:@selector(selectFormat:)];
+    _popupFormats = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(125.0, 22, 255, 22.0) pullsDown:NO];
+    [_popupFormats setTarget:self];
+    [_popupFormats setAction:@selector(selectFormat:)];
     
     [accessoryView addSubview:label];
-    [accessoryView addSubview:self.popupFormats];
+    [accessoryView addSubview:_popupFormats];
     
-    [self setAccessoryView:accessoryView];
+    [_savePanel setAccessoryView:accessoryView];
 }
 
 - (void)selectFormat:(id)sender {
@@ -85,8 +87,12 @@
     _filters = filters;
     
     for (NSDictionary * filter in filters) {
-        [self.popupFormats addItemWithTitle:[NSString stringWithFormat:@"%@ (.%@)", filter[@"description"], filter[@"extension"]]];
+        [_popupFormats addItemWithTitle:[NSString stringWithFormat:@"%@ (.%@)", filter[@"description"], filter[@"extension"]]];
     }
+//    
+//    for (NSMenuItem * item in _popupFormats.itemArray) {
+//        [item setAction:@selector(selectFormat:)];
+//    }
 }
 
 - (void)setFilterType:(NSInteger)filterType {
@@ -95,7 +101,7 @@
     NSInteger index = 0;
     for (NSDictionary * filter in _filters) {
         if (_filterType == [filter[@"type"] intValue]) {
-            [self.popupFormats selectItemAtIndex:index];
+            [_popupFormats selectItemAtIndex:index];
             break;
         }
         index++;

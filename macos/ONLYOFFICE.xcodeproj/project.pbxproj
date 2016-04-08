@@ -177,7 +177,7 @@
 		FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
 		FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
 		FC7FD3BA1C315DD6008F6641 /* ASCRegistrationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1B21C2EA7D100063A42 /* ASCRegistrationWindowController.m */; };
-		FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
+		FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */; };
 		FC7FD3BC1C315DD6008F6641 /* ASCTrialWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1E9DC41C2EBE600043100E /* ASCTrialWindowController.m */; };
 		FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
 		FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
@@ -241,8 +241,8 @@
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FCF8071B1C43D07E00475CFD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCF8071D1C43D07E00475CFD /* EULA.html */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
-		FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
-		FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */; };
+		FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */; };
+		FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */; };
 		FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E31CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E41CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
@@ -475,8 +475,8 @@
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFD46241C1ADAB300FDDCEE /* OfficeFileFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfficeFileFormats.h; path = ../../core/Common/OfficeFileFormats.h; sourceTree = SOURCE_ROOT; };
-		FCFD46251C1AE07600FDDCEE /* ASCSavePanelWithFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCSavePanelWithFormat.h; path = Code/Controls/ASCSavePanelWithFormat.h; sourceTree = "<group>"; };
-		FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCSavePanelWithFormat.m; path = Code/Controls/ASCSavePanelWithFormat.m; sourceTree = "<group>"; };
+		FCFD46251C1AE07600FDDCEE /* ASCSavePanelWithFormatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCSavePanelWithFormatController.h; path = Code/Controls/ASCSavePanelWithFormatController.h; sourceTree = "<group>"; };
+		FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCSavePanelWithFormatController.m; path = Code/Controls/ASCSavePanelWithFormatController.m; sourceTree = "<group>"; };
 		FCFE61DE1CAD02D4000D2418 /* AnalyticsEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsEvent.h; sourceTree = "<group>"; };
 		FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsEvent.m; sourceTree = "<group>"; };
 		FCFE61E01CAD02D4000D2418 /* AnalyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsHelper.h; sourceTree = "<group>"; };
@@ -1040,8 +1040,8 @@
 				FCC8F6FA1BA1C78C005A733F /* ASCButtonCell.m */,
 				FCCDBB6C1C22F019001788BA /* ASCMenuButtonCell.h */,
 				FCCDBB6D1C22F019001788BA /* ASCMenuButtonCell.m */,
-				FCFD46251C1AE07600FDDCEE /* ASCSavePanelWithFormat.h */,
-				FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormat.m */,
+				FCFD46251C1AE07600FDDCEE /* ASCSavePanelWithFormatController.h */,
+				FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -1412,7 +1412,7 @@
 				FC67180D1BD913C00028600F /* NSTimer+Block.m in Sources */,
 				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC67180E1BD913C00028600F /* ASCTabViewCell.m in Sources */,
-				FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */,
+				FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */,
 				FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */,
 				FC6718101BD913C00028600F /* NSCefView.mm in Sources */,
 				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
@@ -1484,7 +1484,7 @@
 				FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */,
 				FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */,
 				FC7FD3BA1C315DD6008F6641 /* ASCRegistrationWindowController.m in Sources */,
-				FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormat.m in Sources */,
+				FC7FD3BB1C315DD6008F6641 /* ASCSavePanelWithFormatController.m in Sources */,
 				FC7FD3BC1C315DD6008F6641 /* ASCTrialWindowController.m in Sources */,
 				FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */,
 				FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */,
@@ -1539,7 +1539,7 @@
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FC25A1B31C2EA7D100063A42 /* ASCRegistrationWindowController.m in Sources */,
-				FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormat.m in Sources */,
+				FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */,
 				FC1E9DC51C2EBE600043100E /* ASCTrialWindowController.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,

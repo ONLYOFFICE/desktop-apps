@@ -40,9 +40,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ASCSavePanelWithFormat : NSSavePanel
+@interface ASCSavePanelWithFormatController : NSObject
+@property (nonatomic) NSSavePanel *savePanel;
 @property (nonatomic) NSArray * filters;
 @property (nonatomic) NSInteger filterType;
-
-+ (ASCSavePanelWithFormat *)savePanel;
 @end

@@ -57,7 +57,7 @@
 #import "NSString+OnlyOffice.h"
 #import "ASCDownloadController.h"
 #import "NSTimer+Block.h"
-#import "ASCSavePanelWithFormat.h"
+#import "ASCSavePanelWithFormatController.h"
 #import "ASCSharedSettings.h"
 #import "ASCReplacePresentationAnimator.h"
 #import "ASCLicenseManager.h"
@@ -432,10 +432,12 @@
         
         __block NSInteger fileType = [params[@"fileType"] intValue];
         
-        ASCSavePanelWithFormat * savePanel = [ASCSavePanelWithFormat savePanel];
+        __block ASCSavePanelWithFormatController * saveController = [ASCSavePanelWithFormatController new];
         
-        savePanel.filters = formats;
-        savePanel.filterType = fileType;
+        NSSavePanel * savePanel = [saveController savePanel];
+        
+        saveController.filters = formats;
+        saveController.filterType = fileType;
         
         if (!directiry || directiry.length < 1) {
             directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -452,12 +454,12 @@
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
             if (result == NSFileHandlingPanelOKButton) {
-                NSString * extension = [ASCConstants ascFormatsInfo][@([savePanel filterType])][@"extension"];
+                NSString * extension = [ASCConstants ascFormatsInfo][@([saveController filterType])][@"extension"];
                 NSString * path = [NSString stringWithFormat:@"%@.%@", [[savePanel URL] path], extension];
                 
                 saveData->put_Path([path stdwstring]);
                 saveData->put_Id([viewId intValue]);
-                saveData->put_FileType((int)[savePanel filterType]);
+                saveData->put_FileType((int)[saveController filterType]);
             } else {
                 saveData->put_Id([viewId intValue]);
                 saveData->put_Path(L"");
