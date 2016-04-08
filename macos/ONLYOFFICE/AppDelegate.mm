@@ -49,7 +49,7 @@
 #import "ASCLicenseManager.h"
 #import "AnalyticsHelper.h"
 
-#ifndef MAS
+#ifndef _MAS
     #import "PFMoveApplication.h"
 #endif
 
@@ -61,7 +61,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-#ifndef MAS
+#ifndef _MAS
     PFMoveToApplicationsFolderIfNecessary();
 #endif
     

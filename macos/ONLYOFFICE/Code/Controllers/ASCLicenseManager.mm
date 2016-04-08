@@ -91,7 +91,31 @@
     return sharedInstance;
 }
 
-- (void)readLicense {
+- (void)masLicense {
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    
+    NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
+    licenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE_MAS);
+    
+    ADDREFINTERFACE(licenceData);
+    
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
+    pEvent->m_pData = licenceData;
+    appManager->Apply(pEvent);
+    
+    self.licence.path           = @"";
+    self.licence.productId      = PRODUCT_ID_ONLYOFFICE_MAS;
+    self.licence.daysLeft       = 365;
+    self.licence.daysBetween    = 0;
+    self.licence.exist          = YES;
+    self.licence.demo           = NO;
+    self.licence.serverError    = NO;
+    self.licence.free           = NO;
+    self.licence.ending         = NO;
+    self.licence.business       = YES;
+}
+
+- (void)cefLicense {
     NSString * licenseDirectory = [ASCHelper licensePath];
     
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
@@ -128,6 +152,14 @@
         self.licence.ending         = self.licence.daysLeft < 31;
         self.licence.business       = self.licence.exist && !self.licence.free && !self.licence.demo;
     }
+}
+
+- (void)readLicense {
+#ifdef _MAS
+    [self masLicense];
+#else
+    [self cefLicense];
+#endif
 }
 
 - (void)createLicense:(int)type {

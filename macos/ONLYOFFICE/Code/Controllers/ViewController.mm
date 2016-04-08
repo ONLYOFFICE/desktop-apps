@@ -236,8 +236,11 @@
 }
 
 - (void)startupActions {
+#ifdef _MAS
+    [self checkLicense];
+#else
     ASCVersionType versionType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
-    
+
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunchedOnce"] || (ASCASCVersionTypeUnknown == versionType)) {
         [NSTimer scheduledTimerWithTimeInterval:1.0
                                         repeats:NO
@@ -255,9 +258,10 @@
     } else {
         [self checkLicense];
     }
+#endif
 }
 
-- (void)checkLicense {    
+- (void)checkLicense {
     [[ASCLicenseManager sharedInstance] readLicense];
     
     ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
