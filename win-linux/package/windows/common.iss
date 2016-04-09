@@ -486,9 +486,9 @@ var
   ErrorCode : Integer;
   Counter   : Cardinal;
 begin
-  if NeedUninstall(HKLM, 'SOFTWARE\AVS4YOU\Registration') then
+  if NeedUninstall(HKLM32, 'SOFTWARE\AVS4YOU\Registration') then
     begin
-      Path := UninstallerPath(HKLM, 'SOFTWARE\AVS4YOU\Registration');
+      Path := UninstallerPath(HKLM32, 'SOFTWARE\AVS4YOU\Registration');
       if (Length(Path) > 1) then
         Exec(Path, '/VERYSILENT /SUPPRESSMSGBOXES', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
     end;

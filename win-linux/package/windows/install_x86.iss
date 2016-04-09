@@ -29,11 +29,11 @@ Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {
 
 Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 #ifdef _IVOLGA_PRO
-Source: data\projicons_nct_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+Source: data\projicons_nct.exe;                           DestDir: {app}\; DestName: {#iconsExe};
 #elif defined(_AVS)
 Source: data\projicons_omt.exe;                           DestDir: {app}\; DestName: {#iconsExe};
 #else
-Source: data\projicons_asc_x86.exe;                       DestDir: {app}\; DestName: {#iconsExe};
+Source: data\projicons_asc.exe;                           DestDir: {app}\; DestName: {#iconsExe};
 #endif
 Source: data\libs\qt\win32\*;                             DestDir: {app}\; Flags: ignoreversion recursesubdirs;
 Source: data\libs\chromium\win_xp\dbghelp.dll;            DestDir: {app}\; Flags: onlyifdoesntexist; OnlyBelowVersion: 6.0;
