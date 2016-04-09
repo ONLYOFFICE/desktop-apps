@@ -72,7 +72,7 @@ CMessage::CMessage(QWidget * parent) : QObject(parent)
 //    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     m_fLayout->addWidget(m_message);
     m_fLayout->setSpacing(0);
-//    m_fLayout->setContentsMargins(10*g_dpi_ratio,0,5*g_dpi_ratio,0);
+    m_fLayout->setContentsMargins(10*g_dpi_ratio,0,5*g_dpi_ratio,0);
     h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
     h_layout2->addLayout(m_fLayout, 1);
 
@@ -172,7 +172,7 @@ void CMessage::useApplyForAll(const QString& str, bool checked)
     QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_pDlg.layout());
     QCheckBox * chbox = new QCheckBox(str);
     chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(8 + m_typeIcon->width() * g_dpi_ratio));
+    chbox->setStyleSheet(QString("margin-left: %1px").arg(8 + m_typeIcon->width() * g_dpi_ratio + 10 * g_dpi_ratio));
     chbox->setChecked(checked);
     layout->insertWidget(1, chbox, 0);
 }

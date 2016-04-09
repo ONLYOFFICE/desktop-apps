@@ -158,6 +158,7 @@ private:
     CAscTabWidget * m_pTabs;
     bool            m_isMaximized;
     bool            m_isCustomWindow;
+    bool            m_silentSave = false;
 
     CUserProfileWidget *    m_pWidgetProfile;
     CDownloadWidget *       m_pWidgetDownload;

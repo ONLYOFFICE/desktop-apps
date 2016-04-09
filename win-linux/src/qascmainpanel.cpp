@@ -867,24 +867,25 @@ void QAscMainPanel::onDocumentDownload(void * info)
 void QAscMainPanel::onUnregisteredFileSave(int id)
 {
 #ifdef _AVS
-    static bool silent_save = false;
-
-    if (!silent_save) {
+    if (!m_silentSave) {
         CMessage mess(gTopWinId);
         mess.useApplyForAll("doesn't show again", false);
         mess.setButtons(tr("Yes"), tr("No"));
 
-        if (MODAL_RESULT_BTN1 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
-            CCefView * pView = m_pManager->GetViewById(id);
-            if (NULL != pView) {
-                CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
-                pView->Apply(pEvent);
-
-    //            delete pEvent, pEvent = NULL;
-                silent_save = mess.applyForAll();
-             }
+        if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
+            return;
         }
+
+        m_silentSave = mess.applyForAll();
     }
+
+    CCefView * pView = m_pManager->GetViewById(id);
+    if (NULL != pView) {
+        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
+        pView->Apply(pEvent);
+
+//        delete pEvent, pEvent = NULL;
+     }
 #endif
 }
 
@@ -1018,7 +1019,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
         syncLicenseToJS(false);
 #else
         mess.setButtons(tr("Activate"), tr("Continue"));
-        int _modal_res = mess.showModal(tr("The application isn't activated!"), QMessageBox::Information);
+        int _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
 
         syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
 #endif
@@ -1323,6 +1324,23 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 
 void QAscMainPanel::onLocalFileSaveAs(void * d)
 {
+    bool _lic_cancel = false;
+#ifdef _AVS
+    if (!Utils::hasLicense(m_pManager)) {
+        if (!m_silentSave) {
+            CMessage mess(gTopWinId);
+            mess.useApplyForAll("doesn't show again", false);
+            mess.setButtons(tr("Yes"), tr("No"));
+
+            if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
+                _lic_cancel = true;
+            }
+
+            m_silentSave = mess.applyForAll();
+        }
+    }
+#endif
+
     QString _lastSavePath = Utils::getLocalUsedPath(LOCAL_PATH_SAVE);
 
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
@@ -1350,7 +1368,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Id(pData->get_Id());
         pSaveData->put_Path(L"");
 
-        if (dlg.modalSaveAs(fullPath)) {
+        if (!_lic_cancel && dlg.modalSaveAs(fullPath)) {
             GET_REGISTRY_USER(_reg_user)
             _reg_user.setValue("savePath", QFileInfo(fullPath).absoluteDir().absolutePath());
 
