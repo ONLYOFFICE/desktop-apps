@@ -49,7 +49,7 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/cfiledialog.cpp" line="16"/>
-        <location filename="../src/cfiledialog.cpp" line="108"/>
+        <location filename="../src/cfiledialog.cpp" line="117"/>
         <source>All files (*.*)</source>
         <translation type="unfinished">Tous les fichiers (*.*)</translation>
     </message>
@@ -149,39 +149,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="76"/>
-        <location filename="../src/cfiledialog.cpp" line="78"/>
+        <location filename="../src/cfiledialog.cpp" line="85"/>
+        <location filename="../src/cfiledialog.cpp" line="87"/>
         <source>Save As</source>
         <translation type="unfinished">Enregistrer sous</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="93"/>
+        <location filename="../src/cfiledialog.cpp" line="102"/>
         <source>Word Document</source>
         <translation type="unfinished">Document Word</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="96"/>
+        <location filename="../src/cfiledialog.cpp" line="105"/>
         <source>Excel Workbook</source>
         <translation type="unfinished">Workbook Excel</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="99"/>
+        <location filename="../src/cfiledialog.cpp" line="108"/>
         <source>PowerPoint Presentation</source>
         <translation type="unfinished">Diaporama PowerPoint</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="102"/>
+        <location filename="../src/cfiledialog.cpp" line="111"/>
         <source>%1 File (*.%2)</source>
         <translation type="unfinished">%1 Fichier (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="112"/>
-        <location filename="../src/cfiledialog.cpp" line="114"/>
+        <location filename="../src/cfiledialog.cpp" line="121"/>
+        <location filename="../src/cfiledialog.cpp" line="123"/>
         <source>Open Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="121"/>
+        <location filename="../src/cfiledialog.cpp" line="130"/>
         <source>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -357,6 +357,12 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="982"/>
         <source>Buy Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="840"/>
+        <location filename="../src/qascmainpanel.cpp" line="1300"/>
+        <source>don&apos;t show again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

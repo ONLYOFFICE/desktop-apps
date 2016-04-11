@@ -50,7 +50,7 @@
     <name>CFileDialogWrapper</name>
     <message>
         <location filename="../src/cfiledialog.cpp" line="16"/>
-        <location filename="../src/cfiledialog.cpp" line="108"/>
+        <location filename="../src/cfiledialog.cpp" line="117"/>
         <source>All files (*.*)</source>
         <translation>Все файлы (*.*)</translation>
     </message>
@@ -150,39 +150,39 @@
         <translation>Файл XPS (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="76"/>
-        <location filename="../src/cfiledialog.cpp" line="78"/>
+        <location filename="../src/cfiledialog.cpp" line="85"/>
+        <location filename="../src/cfiledialog.cpp" line="87"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="93"/>
+        <location filename="../src/cfiledialog.cpp" line="102"/>
         <source>Word Document</source>
         <translation>Документ Word</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="96"/>
+        <location filename="../src/cfiledialog.cpp" line="105"/>
         <source>Excel Workbook</source>
         <translation>Книга Excel</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="99"/>
+        <location filename="../src/cfiledialog.cpp" line="108"/>
         <source>PowerPoint Presentation</source>
         <translation>Презентация PowerPoint</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="102"/>
+        <location filename="../src/cfiledialog.cpp" line="111"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Файл (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="112"/>
-        <location filename="../src/cfiledialog.cpp" line="114"/>
+        <location filename="../src/cfiledialog.cpp" line="121"/>
+        <location filename="../src/cfiledialog.cpp" line="123"/>
         <source>Open Document</source>
         <translation>Открыть документ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="121"/>
+        <location filename="../src/cfiledialog.cpp" line="130"/>
         <source>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
         <translatorcomment>фильтр для картинок</translatorcomment>
         <translation>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
@@ -300,6 +300,10 @@
         <translation>Презентация%1.pptx</translation>
     </message>
     <message>
+        <source>doesn&apos;t show again</source>
+        <translation type="obsolete">не показывать при следующем сохранении</translation>
+    </message>
+    <message>
         <location filename="../src/qascmainpanel.cpp" line="841"/>
         <location filename="../src/qascmainpanel.cpp" line="1301"/>
         <source>Yes</source>
@@ -330,7 +334,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="990"/>
         <source>The application isn&apos;t activated! A watermark will be added to document.</source>
-        <translation type="unfinished">Требуется активация приложения.&lt;br&gt;Текстовый логотип будет добавлен в документ при сохранении.</translation>
+        <translation>&lt;b&gt;Требуется активация приложения!&lt;/b&gt;&lt;br&gt;Текстовый логотип будет добавлен в документ при сохранении.</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="999"/>
@@ -361,6 +365,12 @@
         <location filename="../src/qascmainpanel.cpp" line="982"/>
         <source>Buy Now</source>
         <translation>Купить</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="840"/>
+        <location filename="../src/qascmainpanel.cpp" line="1300"/>
+        <source>don&apos;t show again</source>
+        <translation>не показывать при следующем сохранении</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="983"/>
