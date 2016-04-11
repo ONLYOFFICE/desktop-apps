@@ -73,9 +73,22 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
+#DEFINES += _IVOLGA_PRO
+#CONFIG += ivolga_theme
+#DEFINES += _AVS
+#CONFIG += avs_theme
+
 RESOURCES += resources.qrc
 RC_FILE = version.rc
 #RES_FILE = version.res
+
+ivolga_theme {
+    RESOURCES += res/ivolga.qrc
+}
+
+avs_theme {
+    RESOURCES += res/avs.qrc
+}
 
 DEFINES += \
     _QT \
@@ -87,8 +100,6 @@ DEFINES += \
     MNG_ACCESS_CHUNKS \
     MNG_STORE_CHUNKS\
     MNG_ERROR_TELLTALE
-
-#DEFINES += _IVOLGA_PRO
 
 linux-g++ {
     contains(QMAKE_HOST.arch, x86_64):{

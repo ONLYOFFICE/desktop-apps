@@ -153,9 +153,9 @@ window.Templates = (function() { 'use strict';
                       '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
                       '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
                       '<div class="lr-flex">'+
-                        '<a class="text-sub link" target="popup" href="' + utils.defines.links.buynow + '">' + utils.Lang.licGetLicense + '</a>'+
+                        `<a class="text-sub link" target="popup" href="${utils.defines.links.buynow}">` + utils.Lang.licGetLicense + '</a>'+
                         '<span />'+ 
-                        '<button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button>' +
+                        '<div><img class="img-loader"><button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button></div>' +
                       '</div>' +
                     '</section>'+
                     '</div>';
@@ -164,18 +164,6 @@ window.Templates = (function() { 'use strict';
     };
 
     function getAboutPanel(holder, opts) {
-        var _html = '<div class="box-ver">' +
-                      '<div class="img-el ver-logo %brand"></div><p></p>'+                      
-                      '<div class="ver-version">%appname version %ver</div>%edition<p></p>'+
-                      '<div class="ver-copyright">%cpr</div>'+
-                      '<a class="ver-site link" target="popup" href="%link">%txtlink</a>'
-                    '</div>';
-
-        !!opts.active && (opts.edition = !!opts.edition?opts.edition+'. '+opts.active:opts.active);
-        _html = _html
-                .replace(/\%edition/,!!opts.edition?'<div class="ver-edition">%edition</div>':'')
-                .replace(/\%edition/, opts.edition);
-
         let _img_cls, _cpr, _link, _site, _app;
         if (opts.brand=='ivo') {
             _img_cls = 'ivolga';
@@ -183,6 +171,13 @@ window.Templates = (function() { 'use strict';
             _link = 'http://ivolgapro.ru';
             _site = 'www.ivolgapro.ru';
             _app = utils.inParams.lang=='ru'?'Иволга ПРО':'IvolgaPRO';
+        } else
+        if (opts.brand=='avs') {
+            _img_cls = 'avs';
+            _cpr = '© 2016 Online Media Technologies Ltd.';
+            _link = 'http://avs4you.com';
+            _site = 'www.avs4you.com';
+            _app = 'AVS Document Editor'
         } else {
             _img_cls = 'only';
             _cpr = '© 2016 Ascensio System SIA';
@@ -190,13 +185,21 @@ window.Templates = (function() { 'use strict';
             _site = 'www.onlyoffice.com';
             _app = 'ONLYOFFICE Desktop Editors'
         }
-        
-        _html = _html.replace(/\%brand/, _img_cls)
-            .replace(/\%cpr/, _cpr)
-            .replace(/\%ver/, opts.version)
-            .replace(/\%link/, _link)
-            .replace(/\%txtlink/, _site)
-            .replace(/\%appname/, _app);
+
+        !!opts.active && (opts.edition = !!opts.edition ? opts.edition + '. ' + opts.active : opts.active);
+        opts.edition = !!opts.edition ? `<div class="ver-edition">${opts.edition}</div>` : '';
+
+        var _html = '<div class="flexbox">'+
+                      '<div class="box-ver">' +
+                        `<div class="img-el ver-logo ${_img_cls}"></div><p></p>`+                      
+                        `<div class="ver-version">${_app} version ${opts.version}</div>${opts.edition}<p></p>`+
+                        `<div class="ver-copyright">${_cpr}</div>`+
+                        `<a class="ver-site link" target="popup" href="${_link}">${_site}</a>`+
+                      '</div>'+
+                      // '<div class="box-license flex-fill">'+
+                      //   '<iframe id="framelicense" src="license.htm"></iframe>'+
+                      // '</div>'+
+                    '</div>';
 
         return $(holder).append(_html);
     };

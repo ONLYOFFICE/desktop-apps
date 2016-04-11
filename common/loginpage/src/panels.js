@@ -511,9 +511,21 @@ function clickMenuPortals(menu, action, data) {
     }
 };
 
+function disableLicenseCtrls(disable){
+    disable = disable?'disable':'';
+    $('.doactivate').prop('disabled', disable);
+    $('#txt-key-activate').prop('disabled', disable);
+    $('.activate .img-loader').hide();
+}
+
 function onActivateClick(e) {
-    var key = $('#txt-key-activate').val();
-    !!key && window.AscDesktopEditor.execCommand("app:activate", key);
+    var $tb = $('#txt-key-activate'),
+        key = $tb.val();
+    if (!!key) {
+        $('.activate .img-loader').show();
+        disableLicenseCtrls(true);
+        window.AscDesktopEditor.execCommand("app:activate", key);
+    }
 };
 
 function onConnectClick() {
@@ -559,6 +571,8 @@ window.on_native_message = function(cmd, param) {
             is_selected && selectAction('recent');
         }
 
+        disableLicenseCtrls(false);
+
         // var new_doc_items = $('.tool-quick-menu .menu-item');
         // new_doc_items[is_active_license?'removeClass':'addClass']('inactive');
     } else 
@@ -590,7 +604,7 @@ window.on_native_message = function(cmd, param) {
 function fillVersion(version) {
     var _v = utils.fn.extend(utils.fn.parseVersion(version), {brand:window.brand});
 
-    Templates.createAboutPanel($('.action-panel.about'), _v);
+    Templates.createAboutPanel($('.action-panel.about').empty(), _v);
     $('a[action=about]').parent().removeClass('extra');
 };
 

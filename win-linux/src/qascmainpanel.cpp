@@ -93,6 +93,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
       , m_printData(new CPrintData)
       , m_mainWindowState(Qt::WindowNoState)
       , m_waitLicense(false)
+      , m_inFiles(NULL)
 {
     m_pManager = manager;
 
@@ -281,9 +282,10 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 //    m_savePortal;
     m_saveAction = 0; // undefined
 
-    QString fn, ln;
-    fillUserName(fn, ln);
-    QString params = "lang="+g_lang+"&userfname="+fn+"&userlname="+ln;
+    QString firs_name, last_name;
+    fillUserName(firs_name, last_name);
+    QString params = QString("lang=%1&userfname=%2&userlname=%3&location=%4")
+                        .arg(g_lang, firs_name, last_name, Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
     m_pManager->InitAdditionalEditorParams(wparams);
 }
@@ -504,6 +506,12 @@ int QAscMainPanel::trySaveDocument(int index)
         m_pTabs->setCurrentIndex(index);
         saveDlg.setFiles(m_pTabs->titleByIndex(index));
 
+#ifdef _AVS
+        if (!Utils::hasLicense(m_pManager)) {
+            saveDlg.setText(tr("Do you want to save modified files?<br>Non-activated version, watermark will be added."));
+        }
+#endif
+
         modal_res = saveDlg.showModal();
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
@@ -723,6 +731,7 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     static short xlsx_count = 0;
     static short pptx_count = 0;
 
+#if !defined(_AVS)
     /* check the active license */
     CAscLicenceActual * pData = new CAscLicenceActual;
     pData->AddRef();
@@ -737,7 +746,9 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
     pData->put_DaysBetween(1);
     if (!pData->get_Licence() || !pData->get_DaysLeft()) {
         doLicenseWarning(pData);
-    } else {
+    } else
+#endif
+    {
         QString new_name;
         switch (fformat) {
         case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
@@ -763,7 +774,9 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
         }
     }
 
+#ifndef _AVS
     RELEASEINTERFACE(pData)
+#endif
 }
 
 void QAscMainPanel::onLocalFilesOpen(void * data)
@@ -849,6 +862,31 @@ void QAscMainPanel::onDocumentDownload(void * info)
 
     NSEditorApi::CAscDownloadFileInfo * pData = reinterpret_cast<NSEditorApi::CAscDownloadFileInfo *>(info);
     RELEASEINTERFACE(pData);
+}
+
+void QAscMainPanel::onUnregisteredFileSave(int id)
+{
+#ifdef _AVS
+    if (!m_silentSave) {
+        CMessage mess(gTopWinId);
+        mess.useApplyForAll("doesn't show again", false);
+        mess.setButtons(tr("Yes"), tr("No"));
+
+        if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
+            return;
+        }
+
+        m_silentSave = mess.applyForAll();
+    }
+
+    CCefView * pView = m_pManager->GetViewById(id);
+    if (NULL != pView) {
+        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
+        pView->Apply(pEvent);
+
+//        delete pEvent, pEvent = NULL;
+     }
+#endif
 }
 
 void QAscMainPanel::onLogin(QString params)
@@ -959,6 +997,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
         }
     } else
     if (!pData->get_Licence()) {
+#if !defined(_AVS)
         if ( Utils::isTempLicense() ) {
             mess.setButtons(tr("Activate"), tr("Continue"));
             if (MODAL_RESULT_BTN1 == mess.showModal(tr("The application isn't activated!"), QMessageBox::Information)) {
@@ -972,33 +1011,40 @@ void QAscMainPanel::doLicenseWarning(void * data)
             m_waitLicense = false;
             mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
         } else {
-            syncLicenseToJS(false);
-
             mess.setButtons(tr("Buy Now"), "");
             if (MODAL_RESULT_BTN1 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
                 onLink(URL_BUYNOW);
             }
         }
+        syncLicenseToJS(false);
+#else
+        mess.setButtons(tr("Activate"), tr("Continue"));
+        int _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+
+        syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
+#endif
     } else {
         Utils::removeTempLicense();
 
         if (m_waitLicense) {
             m_waitLicense = false;
-            QString descr = tr("Congrats! %1 (%2) was succefully activated!")
-#ifdef _IVOLGA_PRO
+            QString descr = tr("Congrats! %1 %2 was succefully activated!")
+#if defined(_IVOLGA_PRO) || defined(_AVS)
             .arg(APP_TITLE);
 #else
             .arg("ONLYOFFICE Desktop Editors");
 #endif
             QString _edition;
+#if !defined(_AVS)
             if (pData->get_IsFree()) {
-                _edition = tr("Home");
+                _edition = "(" + tr("Home") + ")";
             } else
             if (!pData->get_IsDemo()) {
-                _edition = tr("Business");
+                _edition = "(" + tr("Business") + ")";
             }
-
+#endif
             beginProgram(false);
+            syncLicenseToJS(true);
             mess.showModal(descr.arg(_edition), QMessageBox::Information);
         } else
         if (pData->get_IsDemo()) {
@@ -1059,6 +1105,7 @@ void QAscMainPanel::loadStartPage()
         additional.append(arg_portal);
     }
 
+
 #ifndef QT_DEBUG
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
 #else
@@ -1086,42 +1133,42 @@ void QAscMainPanel::goStart()
     toggleButtonMain(true);
 }
 
-int QAscMainPanel::checkModified(const QString& portalname)
-{
-    QMap<int, QString> mapModified = m_pTabs->modified(portalname);
+//int QAscMainPanel::checkModified(const QString& portalname)
+//{
+//    QMap<int, QString> mapModified = m_pTabs->modified(portalname);
 
-    int out_res = MODAL_RESULT_YES;
-    if (mapModified.size()) {
-#ifdef _WIN32
-        CSaveFileMessage saveDlg(gTopWinId);
-#else
-        CSaveFileMessage saveDlg(this);
-#endif
-        saveDlg.setFiles(&mapModified);
+//    int out_res = MODAL_RESULT_YES;
+//    if (mapModified.size()) {
+//#ifdef _WIN32
+//        CSaveFileMessage saveDlg(gTopWinId);
+//#else
+//        CSaveFileMessage saveDlg(this);
+//#endif
+//        saveDlg.setFiles(&mapModified);
 
-        out_res = saveDlg.showModal();
-        switch (out_res) {
-        case MODAL_RESULT_NO: break;
-        case MODAL_RESULT_CANCEL: break;
-        case MODAL_RESULT_YES:
-        default:{
-            if (mapModified.size()) {
-                CCefView * pView;
-                QMapIterator<int,QString> i(mapModified);
-                while (i.hasNext()) {
-                    i.next();
+//        out_res = saveDlg.showModal();
+//        switch (out_res) {
+//        case MODAL_RESULT_NO: break;
+//        case MODAL_RESULT_CANCEL: break;
+//        case MODAL_RESULT_YES:
+//        default:{
+//            if (mapModified.size()) {
+//                CCefView * pView;
+//                QMapIterator<int,QString> i(mapModified);
+//                while (i.hasNext()) {
+//                    i.next();
 
-                    pView = m_pManager->GetViewById(i.key());
-                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
-                }
-            }
+//                    pView = m_pManager->GetViewById(i.key());
+//                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
+//                }
+//            }
 
-            break;}
-        }
-    }
+//            break;}
+//        }
+//    }
 
-    return out_res;
-}
+//    return out_res;
+//}
 
 void QAscMainPanel::onDocumentPrint(void * opts)
 {
@@ -1277,6 +1324,23 @@ void QAscMainPanel::onDialogSave(std::wstring sName, uint id)
 
 void QAscMainPanel::onLocalFileSaveAs(void * d)
 {
+    bool _lic_cancel = false;
+#ifdef _AVS
+    if (!Utils::hasLicense(m_pManager)) {
+        if (!m_silentSave) {
+            CMessage mess(gTopWinId);
+            mess.useApplyForAll("doesn't show again", false);
+            mess.setButtons(tr("Yes"), tr("No"));
+
+            if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
+                _lic_cancel = true;
+            }
+
+            m_silentSave = mess.applyForAll();
+        }
+    }
+#endif
+
     QString _lastSavePath = Utils::getLocalUsedPath(LOCAL_PATH_SAVE);
 
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
@@ -1304,7 +1368,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Id(pData->get_Id());
         pSaveData->put_Path(L"");
 
-        if (dlg.modalSaveAs(fullPath)) {
+        if (!_lic_cancel && dlg.modalSaveAs(fullPath)) {
             GET_REGISTRY_USER(_reg_user)
             _reg_user.setValue("savePath", QFileInfo(fullPath).absoluteDir().absolutePath());
 
@@ -1443,15 +1507,16 @@ void QAscMainPanel::beginProgram(bool checklic, bool veredition)
         QString _str_active, _str_edition;
         if (veredition) {
             int _lic_type = getLicenseType();
-            if ( _lic_type == LICENSE_TYPE_NONE && Utils::isTempLicense() ) {
+            if ( _lic_type == LICENSE_TYPE_NONE ) {
                 _str_active = tr("Non-activated.");
-                _lic_type = LICENSE_TYPE_FREE;
+                Utils::isTempLicense() && (_lic_type = LICENSE_TYPE_FREE);
             } else
             if ( _lic_type == LICENSE_TYPE_TRIAL ) {
                 _str_active = tr("Trial.");
             }
-
+#ifndef _AVS
             _str_edition = _lic_type == LICENSE_TYPE_FREE ? tr("Home Edition") : tr("Business Edition");
+#endif
         }
 
         cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition, _str_active));
@@ -1459,13 +1524,17 @@ void QAscMainPanel::beginProgram(bool checklic, bool veredition)
 
         if (checklic) checkActivation();
 
-        QStringList * in_files = Utils::getInputFiles(qApp->arguments());
-
-        if (in_files->size())
-            doOpenLocalFiles(*in_files);
-
-        delete in_files;
+        if (m_inFiles && m_inFiles->size()){
+            doOpenLocalFiles(*m_inFiles);
+            RELEASEOBJECT(m_inFiles)
+        }
     });
+}
+
+void QAscMainPanel::setInputFiles(QStringList * list)
+{
+    RELEASEOBJECT(m_inFiles)
+    m_inFiles = list;
 }
 
 void QAscMainPanel::cmdMainPage(const QString& cmd, const QString& args) const

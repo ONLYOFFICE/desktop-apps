@@ -60,6 +60,7 @@ public:
     int  showModal();
     void setFiles(QMap<int, QString> *);
     void setFiles(const QString &);
+    void setText(const QString&);
 
 private:
     QDialog m_pDlg;
@@ -69,8 +70,6 @@ private:
 
 public slots:
     void onYesClicked();
-    void onNoClicked();
-    void onCancelClicked();
 };
 
 #endif // CSAVEFILEMESSAGE_H

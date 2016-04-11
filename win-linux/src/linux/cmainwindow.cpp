@@ -52,11 +52,7 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
 {
     parseInputArgs(qApp->arguments());
 
-#ifdef _IVOLGA_PRO
-    setWindowIcon(QIcon(":/ivolga/app.ico"));
-#else
-    setWindowIcon(QIcon(":/app.ico"));
-#endif
+    setWindowIcon(Utils::appIcon());
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)

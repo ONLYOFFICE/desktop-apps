@@ -46,6 +46,7 @@
             editorConfig: {
                 mode: 'view or edit',
                 lang: <language code>,
+                location: <location>,
                 canCoAuthoring: <can coauthoring documents>,
                 canAutosave: <can autosave documents>,
                 canBackToFolder: <can return to folder> - deprecated. use "customization.goback" parameter,
@@ -531,7 +532,7 @@
     };
 
     DocsAPI.DocEditor.version = function() {
-        return '3.0b.761';
+        return '3.0b.764';
     };
 
     MessageDispatcher = function(fn, scope) {

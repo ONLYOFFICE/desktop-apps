@@ -23,6 +23,10 @@
                     "dest": "../deploy/index.ivolgapro.html"
                 },
                 {
+                    "src": "../src/index.html.avs.deploy",
+                    "dest": "../deploy/index.avs.html"
+                },
+                {
                     "src": "../vendor/jquery/jquery.min.js",
                     "dest": "../deploy/jquery.min.js"
                 },
@@ -74,6 +78,18 @@
                     ,"../src/menu.js"
                 ],
                 "dest": "../deploy/build.ivolgapro.js"
+            }
+            ,"files:avs": {
+                "src": [
+                    "../src/utils.js"
+                    ,"../src/locale.js"
+                    ,"../src/l10n.avs.js"
+                    ,"../src/templates.js"
+                    ,"../src/panels.js"
+                    ,"../src/model.js"
+                    ,"../src/menu.js"
+                ],
+                "dest": "../deploy/build.avs.js"
             }
         }
     },

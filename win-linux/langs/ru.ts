@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="425"/>
+        <location filename="../src/asctabwidget.cpp" line="426"/>
         <source>Document</source>
         <translatorcomment>надпись на табе при открытии файла с портала. потом приходит имя файла</translatorcomment>
         <translation>Открытие...</translation>
@@ -13,12 +13,12 @@
 <context>
     <name>CChooseLicenseDialog</name>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="19"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="20"/>
         <source>Choose type of the license</source>
         <translation>Выберите как Вы будете использовать приложение</translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="22"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="23"/>
         <source>Welcome to %1!</source>
         <translation>Добро пожаловать в %1!</translation>
     </message>
@@ -28,12 +28,12 @@
         <translation>Для дома</translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="58"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="57"/>
         <source>COMMERCIAL</source>
         <translation>Для бизнеса</translation>
     </message>
     <message>
-        <location filename="../src/cchooselicensedialog.cpp" line="82"/>
+        <location filename="../src/cchooselicensedialog.cpp" line="86"/>
         <source>License</source>
         <translation>Лицензионное соглашение</translation>
     </message>
@@ -191,7 +191,7 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="46"/>
+        <location filename="../src/cmessage.cpp" line="47"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -227,17 +227,17 @@
         <translation>Вы хотите сохранить измененные файлы?</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="60"/>
+        <location filename="../src/csavefilemessage.cpp" line="61"/>
         <source>&amp;Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="61"/>
+        <location filename="../src/csavefilemessage.cpp" line="62"/>
         <source>&amp;No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="62"/>
+        <location filename="../src/csavefilemessage.cpp" line="63"/>
         <source>&amp;Cancel</source>
         <translation>Отмена</translation>
     </message>
@@ -258,146 +258,176 @@
 <context>
     <name>QAscMainPanel</name>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="141"/>
+        <location filename="../src/qascmainpanel.cpp" line="119"/>
         <source>FILE</source>
         <translation>ФАЙЛ</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="196"/>
+        <location filename="../src/qascmainpanel.cpp" line="199"/>
         <source>Logout</source>
         <translation>Выйти</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="619"/>
-        <location filename="../src/qascmainpanel.cpp" line="654"/>
+        <location filename="../src/qascmainpanel.cpp" line="479"/>
+        <source>Do you want to save modified files?&lt;br&gt;Non-activated version, watermark will be added.</source>
+        <translation>Вы хотите сохранить измененные файлы?&lt;br&gt;Это неактивированная версия, в файл будет добавлен текстовый логотип.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="657"/>
+        <location filename="../src/qascmainpanel.cpp" line="692"/>
         <source>File format not supported.</source>
         <translation>Формат файла не поддерживается.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="638"/>
+        <location filename="../src/qascmainpanel.cpp" line="676"/>
         <source>File doesn&apos;t exists</source>
         <translation>Файл не существует</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="681"/>
+        <location filename="../src/qascmainpanel.cpp" line="722"/>
         <source>Document%1.docx</source>
         <translatorcomment>дефолтное название документа при создании. %1 заменяется числом</translatorcomment>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="682"/>
+        <location filename="../src/qascmainpanel.cpp" line="723"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="683"/>
+        <location filename="../src/qascmainpanel.cpp" line="724"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="837"/>
+        <location filename="../src/qascmainpanel.cpp" line="841"/>
+        <location filename="../src/qascmainpanel.cpp" line="1301"/>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="841"/>
+        <location filename="../src/qascmainpanel.cpp" line="1301"/>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="843"/>
+        <location filename="../src/qascmainpanel.cpp" line="1303"/>
+        <source>Attention! Watermark will be added to document. Continue?</source>
+        <translation>&lt;b&gt;Внимание!&lt;/b&gt; Вы используете неактивированную версию.&lt;br&gt;В файл будет добавлен текстовый логотип. Продолжить?</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="905"/>
         <source>Internal activation error</source>
         <translation>Внутренняя ошибка активации</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="902"/>
+        <location filename="../src/qascmainpanel.cpp" line="971"/>
         <source>The application isn&apos;t activated!</source>
         <translation>Требуется активация приложения.&lt;br&gt;Вы не можете создавать и редактировать локальные документы&lt;br&gt;до активации приложения.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="931"/>
+        <location filename="../src/qascmainpanel.cpp" line="990"/>
+        <source>The application isn&apos;t activated! A watermark will be added to document.</source>
+        <translation type="unfinished">Требуется активация приложения.&lt;br&gt;Текстовый логотип будет добавлен в документ при сохранении.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="999"/>
+        <source>Congrats! %1 %2 was succefully activated!</source>
+        <translation>Спасибо!&lt;br&gt;Ваша версия %1 %2&lt;br&gt;успешно активирована.</translation>
+    </message>
+    <message>
+        <location filename="../src/qascmainpanel.cpp" line="1008"/>
         <source>Home</source>
         <translation>для домашнего использования</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="934"/>
+        <location filename="../src/qascmainpanel.cpp" line="1011"/>
         <source>Business</source>
         <translation>для бизнеса</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1384"/>
+        <location filename="../src/qascmainpanel.cpp" line="1479"/>
         <source>Non-activated.</source>
-        <translation type="unfinished">Требуется активация.</translation>
+        <translation>Требуется активация.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1388"/>
+        <location filename="../src/qascmainpanel.cpp" line="1483"/>
         <source>Trial.</source>
         <translation>Пробная версия.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="914"/>
+        <location filename="../src/qascmainpanel.cpp" line="982"/>
         <source>Buy Now</source>
         <translation>Купить</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="915"/>
+        <location filename="../src/qascmainpanel.cpp" line="983"/>
         <source>The program is unregistered</source>
         <translation>Незарегистрированная версия приложения.&lt;br&gt;Вы не можете создавать и редактировать локальные файлы.&lt;br&gt;Нажмите &quot;Купить&quot;, чтобы приобрести лицензию.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="946"/>
+        <location filename="../src/qascmainpanel.cpp" line="1024"/>
         <source>The trial period is over.</source>
         <translation>Пробный период офиса завершён.&lt;br&gt;Вы не можете создавать и редактировать документы.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="951"/>
+        <location filename="../src/qascmainpanel.cpp" line="1029"/>
         <source>Trial period expired for %1 days.</source>
         <translation>Вы используете пробную версию приложения.&lt;br&gt;Пробный период закончится через %1 дней, после &lt;br&gt;этого Вы не сможете создавать и редактировать документы.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="960"/>
+        <location filename="../src/qascmainpanel.cpp" line="1038"/>
         <source>The program is non-activated!</source>
         <translation>Срок действия лицензии закончился.&lt;br&gt;Вы не сможете создавать и редактировать&lt;br&gt;локальные файлы. Нажмите &quot;Активировать&quot; для ввода лицензии.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="968"/>
+        <location filename="../src/qascmainpanel.cpp" line="1046"/>
         <source>%1 days left before the license end</source>
         <translation>До окончания лицензии осталось %1 дней.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="886"/>
-        <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="944"/>
-        <location filename="../src/qascmainpanel.cpp" line="959"/>
+        <location filename="../src/qascmainpanel.cpp" line="954"/>
+        <location filename="../src/qascmainpanel.cpp" line="970"/>
+        <location filename="../src/qascmainpanel.cpp" line="989"/>
+        <location filename="../src/qascmainpanel.cpp" line="1022"/>
+        <location filename="../src/qascmainpanel.cpp" line="1037"/>
         <source>Activate</source>
         <translation>Активировать</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="883"/>
+        <location filename="../src/qascmainpanel.cpp" line="951"/>
         <source>Activation failed! Check internet connection and try again.</source>
         <translation>Неудалось активировать программу.&lt;br&gt;Проверьте подключение к интернету и попробуйте активировать программу еще раз.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="886"/>
-        <location filename="../src/qascmainpanel.cpp" line="901"/>
-        <location filename="../src/qascmainpanel.cpp" line="944"/>
-        <location filename="../src/qascmainpanel.cpp" line="959"/>
-        <location filename="../src/qascmainpanel.cpp" line="971"/>
+        <location filename="../src/qascmainpanel.cpp" line="954"/>
+        <location filename="../src/qascmainpanel.cpp" line="970"/>
+        <location filename="../src/qascmainpanel.cpp" line="989"/>
+        <location filename="../src/qascmainpanel.cpp" line="1022"/>
+        <location filename="../src/qascmainpanel.cpp" line="1037"/>
+        <location filename="../src/qascmainpanel.cpp" line="1049"/>
         <source>Continue</source>
         <translation>Продолжить</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="910"/>
+        <location filename="../src/qascmainpanel.cpp" line="980"/>
         <source>Activation failed! Check entered data and try again.</source>
         <translation>Не удалось активировать программу.&lt;br&gt;Проверьте введенные данные и попробуйте активировать программу еще раз.</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="923"/>
-        <source>Congrats! %1 (%2) was succefully activated!</source>
-        <translation>Спасибо!&lt;br&gt;Ваша версия %1 %2&lt;br&gt;успешно активирована.</translation>
-    </message>
-    <message>
-        <location filename="../src/qascmainpanel.cpp" line="1391"/>
+        <location filename="../src/qascmainpanel.cpp" line="1486"/>
         <source>Home Edition</source>
         <translation>Для домашнего использования</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1391"/>
+        <location filename="../src/qascmainpanel.cpp" line="1486"/>
         <source>Business Edition</source>
         <translation>Для бизнеса</translation>
     </message>
     <message>
-        <location filename="../src/qascmainpanel.cpp" line="1092"/>
+        <location filename="../src/qascmainpanel.cpp" line="1171"/>
         <source>Print Document</source>
         <translation>Печать документа</translation>
     </message>

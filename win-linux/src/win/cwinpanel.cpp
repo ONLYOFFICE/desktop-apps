@@ -73,11 +73,12 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    setObjectName("mainPanel");
 
-    m_pMainPanel = new QAscMainPanel(this, pManager, true);
+    QAscMainPanel * panel = new QAscMainPanel(this, pManager, true);
+    m_pMainPanel = panel;
     show();
 
-    connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
-    connect((QAscMainPanel *)m_pMainPanel, &QAscMainPanel::mainWindowClose, this, &CWinPanel::slot_windowClose);
+    connect(panel, &QAscMainPanel::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
+    connect(panel, &QAscMainPanel::mainWindowClose, this, &CWinPanel::slot_windowClose);
 
     /*
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
@@ -93,11 +94,14 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    m_pManager->SetEventListener(this);
 
+#ifndef _AVS
     if (Utils::firstStart(true)) {
         m_pMainPanel->selfActivation();
         Utils::markFirstStart();
     }
+#endif
 
+    panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
     parseInputArgs(qApp->arguments());
 }
 

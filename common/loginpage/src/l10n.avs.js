@@ -31,60 +31,23 @@
 */
 
 
-#include "csplash.h"
-#include "defines.h"
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QSettings>
-
-CSplash * _splash;
-extern uchar g_dpi_ratio;
-
-CSplash::CSplash(const QPixmap &p, Qt::WindowFlags f)
-    : QSplashScreen(p, f)
-{
-    _splash = NULL;
-}
-
-void CSplash::show()
-{
-    if (QApplication::desktop()->screenCount() > 1) {
-        GET_REGISTRY_USER(reg_user)
-
-        if (reg_user.contains("position")) {
-            int _scr_num = QApplication::desktop()->screenNumber(
-                                reg_user.value("position").toRect().topLeft() );
-
-            move(QApplication::desktop()->screenGeometry(_scr_num).center() - rect().center());
++function() {
+    var _app_name = 'AVS Document Editor';
+    var _extra = {
+        en: {
+            welWelcome: `Welcome to ${_app_name}!`,
+            welDescr: 'Edit and create text documents, spreadsheets and presentation. ' + 
+                'Enjoy high quality of document processing & formating fidelity.' +
+                '<br><br><b>100% compatible with MS Office formats.</b>'
+        },
+        ru: {
+            welWelcome: `Добро пожаловать в ${_app_name}!`,
+            welDescr: 'Создавайте и редактируйте документы, электронные таблицы и презентации. ' + 
+                'Оцените высокое качество обработки документов и точность форматирования.' + 
+                '<br><br><b>100% совместимость с форматами MS Office.</b>'
         }
-    }
+    };
 
-    QSplashScreen::show();
-}
-
-void CSplash::showSplash()
-{
-    if ( !_splash ) {
-        QPixmap _pixmap = g_dpi_ratio > 1 ?
-#ifdef _IVOLGA_PRO
-            QPixmap(":/ivolga/splash@2x.png") : QPixmap(":/ivolga/splash.png");
-#elif defined(_AVS)
-            QPixmap(":/avs/splash@2x.png") : QPixmap(":/avs/splash.png");
-#else
-            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
-#endif
-
-        (_splash = new CSplash(_pixmap, Qt::WindowStaysOnTopHint))
-        ->show();
-    }
-}
-
-void CSplash::hideSplash()
-{
-    if (_splash) {
-//        g_splash->setParent((QWidget *)parent());
-        _splash->close();
-
-        delete _splash, _splash = NULL;
-    }
-}
+    !!_extra[utils.inParams.lang] &&
+        utils.fn.extend(utils.Lang, _extra[utils.inParams.lang]);
+}();

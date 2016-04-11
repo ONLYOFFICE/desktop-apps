@@ -87,8 +87,21 @@ Menu.prototype.show = function(pos, data) {
     $('.menu-container').removeClass('open');
     let $el = $('#'+this.id);
 
+    let $dd = $el.find('.dropdown-menu');
+    let _right = $dd.width() + pos.left,
+        _rlimit = $(document).width();
+    if (!!_right && _right > _rlimit) {
+        pos.left -= (_right - _rlimit + 4);
+    }
+
+    let _top = $dd.height() + pos.top,
+        _blimit = $(document).height();
+    if (!!_top && _top > _blimit) {
+        pos.top -= (_top - _blimit + 4);
+    }
+
     $el.css(pos);
-    $el.find('ul').dropdown('toggle');
+    $dd.dropdown('toggle');
     this.contextdata = data;
     Menu.opened = true;
 };

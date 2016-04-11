@@ -8,7 +8,7 @@ set shared_path="\\MEDIASERVER\Exchange\Makc"
 
 set /p is_update_libs=do you want to update libraries? (y, no):
 set /p is_compile_app=do you want to compile the application? (y, no):
-set /p brand=what brand do you prefer? (ivolga, onlyoffice):
+set /p brand=what brand do you prefer? (ivolga, avs, onlyoffice):
 
 rem publish action is: 1 - copy from virtual box, 
 rem 2 - publish particular installation, 3 - publish all installation
@@ -46,9 +46,11 @@ if %is_update_libs%==y (
 
 :: compile application
 if %brand%==ivolga (
-    set def="DEFINES+=_IVOLGA_PRO"
+    set def="DEFINES+=_IVOLGA_PRO" "DEFINES-=_AVS"
+) else if %brand%==avs (
+    set def="DEFINES-=_IVOLGA_PRO" "DEFINES+=_AVS" "CONFIG+=avs_theme"
 ) else (
-    set def="DEFINES-=_IVOLGA_PRO"
+    set def="DEFINES-=_IVOLGA_PRO _AVS"
 )
 
 if %is_compile_app%==y (

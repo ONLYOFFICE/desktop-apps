@@ -63,6 +63,8 @@ public:
     void error(const QString& title, const QString& text);
     int showModal(const QString&, QMessageBox::Icon);
     void setButtons(const QString&, const QString&);
+    void useApplyForAll(const QString&, bool checked);
+    bool applyForAll();
 
 private:
     QDialog m_pDlg;

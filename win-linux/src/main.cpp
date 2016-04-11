@@ -64,7 +64,7 @@ QString g_lang;
 
 int main( int argc, char *argv[] )
 {
-    QString user_data_path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + APP_DATA_PATH;
+    QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
 
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
         std::wstring sAppData(L"");
@@ -103,10 +103,16 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.file_converter_path = (app_path + "/converter").toStdWString();
         manager->m_oSettings.local_editors_path = (app_path + "/editors/web-apps/apps/api/documents/index.html").toStdWString();
         manager->m_oSettings.additional_fonts_folder.push_back((app_path + "/fonts").toStdWString());
+        manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
 #ifdef _WIN32
+  #ifdef _AVS
+    LPCTSTR mutex_name = (LPCTSTR)QString("AVSMEDIA").data();
+  #else
     LPCTSTR mutex_name = (LPCTSTR)QString("TEAMLAB").data();
+  #endif
+
     HANDLE hMutex = CreateMutex(NULL, FALSE, mutex_name);
 
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
@@ -199,11 +205,13 @@ int main( int argc, char *argv[] )
     /* applying languages finished */
 
 
+#ifndef _AVS
     if (Utils::firstStart()) {
         CChooseLicenseDialog dlg;
         dlg.setEULAPath(QString("%1/LICENSE.htm").arg(QCoreApplication::applicationDirPath()));
         g_lic_type = dlg.exec();
     }
+#endif
 
 #ifdef _WIN32
     CSplash::showSplash();

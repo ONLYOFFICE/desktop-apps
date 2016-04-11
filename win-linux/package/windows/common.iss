@@ -1,10 +1,10 @@
 ﻿
 ;#define _IVOLGA_PRO
+#define _AVS
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
 #define ASC_PATH            'ONLYOFFICE\DesktopEditors'
 #define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
-#define REG_SC_PATH         'Software\Classes\OnlyOffice'
 #define NAME_EXE_OUT        'DesktopEditors.exe'
 
 #ifdef _IVOLGA_PRO
@@ -12,7 +12,11 @@
   #define NAME_EXE_OUT      'IvolgaPRO.exe'
   #define ASC_PATH          'IvolgaPRO\DesktopEditors'
   #define ASC_REG_PATH      'Software\IvolgaPRO\DesktopEditors'
-  #define REG_SC_PATH       'Software\Classes\IvolgaPRO'
+#elif defined(_AVS)
+  #define sAppName          'AVS Document Editor'
+  #define NAME_EXE_OUT      'AVSDocumentEditor.exe'
+  #define ASC_PATH          'AVS4YOU\DocumentEditor'
+  #define ASC_REG_PATH      'Software\AVS4YOU\DocumentEditor'
 #endif
 
 
@@ -38,6 +42,15 @@ VersionInfoVersion      ={#sAppVersion}
 
   ShowLanguageDialog      =no
   LanguageDetectionMethod =none
+#elif defined(_AVS)
+  AppPublisher            = Online Media Technologies Ltd.
+  AppPublisherURL         = http://www.avs4you.com
+  AppSupportURL           = http://www.avs4you.com/support.aspx
+  AppCopyright            = Online Media Technologies Ltd., 2016
+
+  DefaultGroupName        =AVS4YOU
+  WizardImageFile         = data\avs\dialogpicture.bmp
+  WizardSmallImageFile    = data\avs\dialogicon.bmp
 #else
   AppPublisher            =Ascensio System SIA.
   AppPublisherURL         =http://www.onlyoffice.com/
@@ -59,7 +72,11 @@ UninstallDisplayIcon    = {app}\{#NAME_EXE_OUT}
 OutputDir               =.\
 Compression             =lzma
 PrivilegesRequired      =admin
-AppMutex                =TEAMLAB
+#ifdef _AVS
+  AppMutex              = AVSMEDIA
+#else
+  AppMutex              = TEAMLAB
+#endif
 ChangesEnvironment      =yes
 SetupMutex              =ASC
 
@@ -67,6 +84,9 @@ SetupMutex              =ASC
 #ifdef _IVOLGA_PRO
   Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
   Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
+#elif defined(_AVS)
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_avs.rtf;
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_avs.rtf;
 #else
   Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_onlyoffice.rtf;
   Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_onlyoffice.rtf;
@@ -132,6 +152,9 @@ procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSyste
 
 procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
+#ifdef _AVS
+procedure DoInstall(); forward;
+#endif
 
 function InitializeSetup(): Boolean;
 var
@@ -145,6 +168,8 @@ begin
     begin
 #ifdef _IVOLGA_PRO
       if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\IvolgaPRO\DesktopEditors') then
+#elif defined(_AVS)
+      if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\AVS4YOU\DocumentEditor') then
 #else
       if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\DesktopEditors') then
 #endif
@@ -155,6 +180,8 @@ begin
     end else
 #ifdef _IVOLGA_PRO
     if RegKeyExists(GetHKLM(), 'SOFTWARE\IvolgaPRO\DesktopEditors') then
+#elif defined(_AVS)
+    if RegKeyExists(GetHKLM(), 'SOFTWARE\AVS4YOU\DocumentEditor') then
 #else
     if RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\DesktopEditors') then
 #endif
@@ -297,6 +324,25 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssPostInstall then 
+  begin
+    DoPostInstall();
+#ifdef _AVS
+  end
+  else if CurStep = ssInstall then
+  begin
+    DoInstall();
+//  end
+//  else if ( CurStep = ssDone ) then
+//  begin
+//    DoInstallDone();
+#endif
+  end;
+end;
+
+
 [Dirs]
 Name: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 
@@ -305,10 +351,14 @@ Source: .\launch.bat;           DestDir: {app}\;
 
 Source: ..\..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
 #ifdef _IVOLGA_PRO
-Source: ..\..\res\icons\ivolga\desktopeditors.ico;       DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html; DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\res\icons\ivolga\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
+Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\..\common\package\license\eula_ivolgapro.htm; DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\..\common\package\license\eula_ivolgapro.htm;     DestDir: {app}; DestName: LICENSE.htm;
+#elif defined(_AVS)
+Source: ..\..\res\icons\avs\desktopeditors.ico;           DestDir: {app}\; DestName: app.ico; 
+Source: ..\..\..\common\loginpage\deploy\index.avs.html;  DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\package\license\eula_avs.htm;     DestDir: {app}; DestName: LICENSE.htm;
 #else
 Source: ..\..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: ..\..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
@@ -320,10 +370,10 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\..\common\editors\*;                      DestDir: {app}\editors\web-apps;   Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsbuilds\*;              DestDir: {app}\editors\sdkjs; Flags: recursesubdirs;
+Source: ..\..\..\common\editors\*;                      DestDir: {app}\editors\web-apps;  Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsbuilds\*;              DestDir: {app}\editors\sdkjs;     Flags: recursesubdirs;
 Source: ..\..\..\common\converter\DoctRenderer.config;  DestDir: {app}\converter;
-Source: ..\..\..\..\core\build\empty\*;                 DestDir: {app}\converter;
+Source: ..\..\..\..\core\build\empty\*;                 DestDir: {app}\converter\empty;
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
 Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
@@ -351,8 +401,12 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
 Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico;
+#ifdef _AVS
+Name: {group}\Documents\{#sAppName}; Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\app.ico;
+#else
 Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; IconFilename: {app}\app.ico;
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
+#endif
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
@@ -370,3 +424,74 @@ Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#ASC_PATH}\*;  AfterInstall: RefreshEnvironment;
+
+#ifdef _AVS
+[Files]
+Source: data\avs\serviceprograms\Registration.exe;          DestDir: "{app}"; Flags: deleteafterinstall;
+
+[Run]
+Filename: {app}\Registration.exe; Parameters: "/VERYSILENT /SUPPRESSMSGBOXES /GROUP=""{groupname}"" {code:SetupParam}";
+
+[Registry]
+Root: HKLM32; Subkey: SOFTWARE\AVS4YOU\Uninstall; ValueType: string; ValueName: AVS Document Editor; ValueData: {uninstallexe}; Flags: uninsdeletevalue;
+
+[Code]
+var
+  AlreadyInstalled:  Boolean;
+
+function SetupParam(Param: String): String;
+begin
+  if (AlreadyInstalled) then
+    Result := '/NOINC'
+  else
+    Result := '';
+end;
+
+function UninstallerPath(const RootKey: Integer; const SubKeyName: String): String;
+var
+  Path: String;
+begin
+  if (RegQueryStringValue(RootKey, SubKeyName, 'Uninstall', Path)) then
+  begin
+    if (FileExists(Path)) then
+      Result := Path
+    else
+      Result := '';
+  end;
+end;
+
+procedure DoInstall();
+begin
+  AlreadyInstalled := RegValueExists(GetHKLM(), 'SOFTWARE\AVS4YOU\DocumentEditor', 'AppPath');
+end;
+
+function NeedUninstall(const RootKey: Integer; const SubKeyName: String): Boolean;
+var
+  Counter: Cardinal;  // 32-bit unsigned integer
+begin
+  Counter := 1;
+
+  if (RegQueryDWordValue(RootKey, SubKeyName, 'SharedCounter', Counter)) then
+  begin
+      Counter := Counter - 1;
+      RegWriteDWordValue(RootKey, SubKeyName, 'SharedCounter', Counter);
+  end;
+
+  Result := (Counter <= 0);
+end;
+
+procedure DeinitializeUninstall();
+var
+  Path      : String;
+  ErrorCode : Integer;
+  Counter   : Cardinal;
+begin
+  if NeedUninstall(HKLM32, 'SOFTWARE\AVS4YOU\Registration') then
+    begin
+      Path := UninstallerPath(HKLM32, 'SOFTWARE\AVS4YOU\Registration');
+      if (Length(Path) > 1) then
+        Exec(Path, '/VERYSILENT /SUPPRESSMSGBOXES', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
+    end;
+end;
+
+#endif

@@ -62,6 +62,28 @@
   #endif
 
   #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
+  #define REG_APP_NAME "DesktopEditors"
+#elif defined(_AVS)
+  #define PROD_ID_DESKTOP_EDITORS 98
+
+  #define APP_NAME "DocumentEditor"
+  #define APP_TITLE "AVS Document Editor"
+
+  #ifdef __linux
+    #define APP_DATA_PATH "/ivolgapro/desktopeditors"
+    #define APP_LICENSE_PATH "/ivolgapro/license"
+    #define REG_GROUP_KEY "ivolgapro"
+//    #define LIC_KEY_FILENAME ".doceditors.avs"
+  #else
+    #define APP_DATA_PATH "/AVS4YOU/DocumentEditor"
+    #define APP_LICENSE_PATH "/AVS4YOU/Licence"
+    #define REG_GROUP_KEY "AVS4YOU"
+    #define LIC_KEY_FILENAME "doceditors.avs"
+  #endif
+
+  #define WINDOW_NAME "AVS Document Editor"
+  #define URL_BUYNOW "http://www.avs4you.com/Register.aspx?utm_source=300&utm_medium=Register&utm_content=Register"
+  #define REG_APP_NAME "DocumentEditor"
 #else
   #define PROD_ID_DESKTOP_EDITORS 302
 
@@ -82,10 +104,10 @@
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
+  #define REG_APP_NAME "DesktopEditors"
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400
-#define REG_APP_NAME "DesktopEditors"
 
 #define GET_REGISTRY_USER(variable) \
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
