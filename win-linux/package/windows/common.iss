@@ -1,6 +1,6 @@
 ﻿
 ;#define _IVOLGA_PRO
-#define _AVS
+;#define _AVS
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
 #define ASC_PATH            'ONLYOFFICE\DesktopEditors'
@@ -15,12 +15,12 @@
 #elif defined(_AVS)
   #define sAppName          'AVS Document Editor'
   #define NAME_EXE_OUT      'AVSDocumentEditor.exe'
-  #define ASC_PATH          'AVS4YOU\DocumentEditor'
+  #define ASC_PATH          'AVS4YOU\AVSDocumentEditor'
   #define ASC_REG_PATH      'Software\AVS4YOU\DocumentEditor'
 #endif
 
 
-#define PATH_EXE            '..\Build\Release\release\DesktopEditors.exe'
+#define PATH_EXE            '..\..\Build\Release\release\DesktopEditors.exe'
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
 #define sAppVerShort        Copy(GetFileVersion(AddBackslash(SourcePath) + PATH_EXE), 0, 3)
 
@@ -47,10 +47,13 @@ VersionInfoVersion      ={#sAppVersion}
   AppPublisherURL         = http://www.avs4you.com
   AppSupportURL           = http://www.avs4you.com/support.aspx
   AppCopyright            = Online Media Technologies Ltd., 2016
+  AppUpdatesURL           = http://www.avs4you.com/AVS-Document-Editor.aspx
 
   DefaultGroupName        =AVS4YOU
   WizardImageFile         = data\avs\dialogpicture.bmp
   WizardSmallImageFile    = data\avs\dialogicon.bmp
+  ShowLanguageDialog      =no
+
 #else
   AppPublisher            =Ascensio System SIA.
   AppPublisherURL         =http://www.onlyoffice.com/

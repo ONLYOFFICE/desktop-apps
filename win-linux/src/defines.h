@@ -75,7 +75,7 @@
     #define REG_GROUP_KEY "ivolgapro"
 //    #define LIC_KEY_FILENAME ".doceditors.avs"
   #else
-    #define APP_DATA_PATH "/AVS4YOU/DocumentEditor"
+    #define APP_DATA_PATH "/AVS4YOU/AVSDocumentEditor"
     #define APP_LICENSE_PATH "/AVS4YOU/Licence"
     #define REG_GROUP_KEY "AVS4YOU"
     #define LIC_KEY_FILENAME "doceditors.avs"
