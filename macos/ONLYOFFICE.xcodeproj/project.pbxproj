@@ -205,6 +205,7 @@
 		FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
+		FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
 		FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
 		FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
@@ -488,6 +489,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */,
 				FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1133,6 +1135,9 @@
 					FC6717FE1BD913C00028600F = {
 						DevelopmentTeam = 2WH24U26GJ;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -1338,7 +1343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${PRODUCT_NAME}\\ Helper.app \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${PRODUCT_NAME} Helper.app/\"";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"\nmkdir -p \"${dst}\"\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${PRODUCT_NAME}\\ Helper.app \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\necho \"Remove some helpers\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_report_sender.app/\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_inspector\"\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/${PRODUCT_NAME} Helper.app/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${contents}\"/Resources/converter/x2t";
 			showEnvVarsInLog = 0;
 		};
 		FC7FD3951C315DD6008F6641 /* Copy Library */ = {
@@ -1669,7 +1674,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Alexander Yuzhin (K97E25SHXE)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1684,7 +1689,7 @@
 					_PRODUCT_ONLYOFFICE,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
@@ -1694,7 +1699,7 @@
 					"$(inherited)",
 					"-headerpad_max_install_names",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.mas.ONLYOFFICE;
 				PRODUCT_NAME = ONLYOFFICE;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1705,8 +1710,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Ascensio System SIA (2WH24U26GJ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1720,7 +1725,7 @@
 					_PRODUCT_ONLYOFFICE,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
@@ -1730,7 +1735,7 @@
 					"$(inherited)",
 					"-headerpad_max_install_names",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.mas.ONLYOFFICE;
 				PRODUCT_NAME = ONLYOFFICE;
 				PROVISIONING_PROFILE = "";
 			};

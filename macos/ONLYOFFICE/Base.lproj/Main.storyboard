@@ -695,9 +695,14 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
-                <customObject id="mg6-13-ksd" customClass="SUUpdater"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
+                    <connections>
+                        <outlet property="eulaMenuItem" destination="4et-TX-a4m" id="R41-98-8ev"/>
+                        <outlet property="updateMenuItem" destination="ud7-wC-A79" id="7yq-Z1-9H2"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="mg6-13-ksd" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="-153" y="-84"/>
         </scene>
