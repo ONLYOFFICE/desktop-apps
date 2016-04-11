@@ -54,7 +54,8 @@
 #endif
 
 @interface AppDelegate ()
-
+@property (weak) IBOutlet NSMenuItem *updateMenuItem;
+@property (weak) IBOutlet NSMenuItem *eulaMenuItem;
 @end
 
 @implementation AppDelegate
@@ -134,6 +135,11 @@
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item {
+#ifdef _MAS
+    [self.updateMenuItem setHidden:YES];
+    [self.eulaMenuItem setHidden:YES];
+#endif
+    
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     ASCLicenseInfo * license = [[ASCLicenseManager sharedInstance] licence];
     NSString * productName = [ASCHelper appName];

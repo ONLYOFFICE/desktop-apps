@@ -73,7 +73,7 @@
     [accessoryView addSubview:label];
     [accessoryView addSubview:_popupFormats];
     
-    [_savePanel setAccessoryView:accessoryView];
+    [[self savePanel] setAccessoryView:accessoryView];
 }
 
 - (void)selectFormat:(id)sender {
@@ -81,6 +81,7 @@
     NSInteger selectedItemIndex = [button indexOfSelectedItem];
     
     _filterType = [self.filters[selectedItemIndex][@"type"] intValue];
+    [[self savePanel] setAllowedFileTypes:@[self.filters[selectedItemIndex][@"extension"]]];
 }
 
 - (void)setFilters:(NSArray *)filters {
@@ -89,10 +90,10 @@
     for (NSDictionary * filter in filters) {
         [_popupFormats addItemWithTitle:[NSString stringWithFormat:@"%@ (.%@)", filter[@"description"], filter[@"extension"]]];
     }
-//    
-//    for (NSMenuItem * item in _popupFormats.itemArray) {
-//        [item setAction:@selector(selectFormat:)];
-//    }
+    
+    if (_filters && [_filters count] > 0) {
+        [[self savePanel] setAllowedFileTypes:@[[_filters firstObject][@"extension"]]];
+    }
 }
 
 - (void)setFilterType:(NSInteger)filterType {
@@ -102,6 +103,7 @@
     for (NSDictionary * filter in _filters) {
         if (_filterType == [filter[@"type"] intValue]) {
             [_popupFormats selectItemAtIndex:index];
+            [[self savePanel] setAllowedFileTypes:@[filter[@"extension"]]];
             break;
         }
         index++;

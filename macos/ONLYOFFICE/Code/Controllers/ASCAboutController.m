@@ -71,6 +71,7 @@
     [self.licenseButton setAttributedTitle:attrTitle];
 
     // Product name
+#ifndef _MAS
     ASCVersionType versionType = (ASCVersionType)[[NSUserDefaults standardUserDefaults] integerForKey:@"hasVersionMode"];
     
     if (ASCVersionTypeForBusiness == versionType) {
@@ -78,6 +79,9 @@
     } else if (ASCVersionTypeForHome == versionType) {
         locProductName = [NSString stringWithFormat:@"%@ %@", locProductName, NSLocalizedString(@"for Home", nil)];
     }
+#else
+    [self.licenseButton setHidden:YES];
+#endif
     
     [self.appNameText setStringValue:locProductName];
 

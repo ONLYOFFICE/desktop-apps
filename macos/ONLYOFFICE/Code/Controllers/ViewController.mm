@@ -454,9 +454,8 @@
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
             if (result == NSFileHandlingPanelOKButton) {
-                NSString * extension = [ASCConstants ascFormatsInfo][@([saveController filterType])][@"extension"];
-                NSString * path = [NSString stringWithFormat:@"%@.%@", [[savePanel URL] path], extension];
-                
+                NSString * path = [NSString stringWithFormat:@"%@", [[savePanel URL] path]];
+                                
                 saveData->put_Path([path stdwstring]);
                 saveData->put_Id([viewId intValue]);
                 saveData->put_FileType((int)[saveController filterType]);
