@@ -138,7 +138,7 @@ int main( int argc, char *argv[] )
 
 #ifdef _WIN32
     if (hMutex == NULL) {
-        HWND hwnd = FindWindow(L"WindowClass", NULL);
+        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
         if (hwnd != NULL) {
             WCHAR * cm_line = GetCommandLine();
 
@@ -147,10 +147,10 @@ int main( int argc, char *argv[] )
             MyCDS.lpData = cm_line;
 
             SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
-        }
 
-        pApplicationManager->CloseApplication();
-        return 0;
+            pApplicationManager->CloseApplication();
+            return 0;
+        }
     }
 
     g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
@@ -193,8 +193,8 @@ int main( int argc, char *argv[] )
     }
 #else
     // read setup language and set application locale
-    if (!g_lang.size())
-        g_lang = reg_system.value("locale").value<QString>();
+    !g_lang.size() &&
+        !((g_lang = reg_system.value("locale").value<QString>()).size()) && (g_lang = "en").size();
 #endif
 
     QTranslator tr;
