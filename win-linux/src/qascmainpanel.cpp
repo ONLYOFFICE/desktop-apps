@@ -869,7 +869,7 @@ void QAscMainPanel::onUnregisteredFileSave(int id)
 #ifdef _AVS
     if (!m_silentSave) {
         CMessage mess(gTopWinId);
-        mess.useApplyForAll("doesn't show again", false);
+        mess.useApplyForAll(tr("don't show again"), false);
         mess.setButtons(tr("Yes"), tr("No"));
 
         if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){
@@ -1329,7 +1329,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
     if (!Utils::hasLicense(m_pManager)) {
         if (!m_silentSave) {
             CMessage mess(gTopWinId);
-            mess.useApplyForAll("doesn't show again", false);
+            mess.useApplyForAll(tr("don't show again"), false);
             mess.setButtons(tr("Yes"), tr("No"));
 
             if (MODAL_RESULT_BTN2 == mess.showModal(tr("Attention! Watermark will be added to document. Continue?"), QMessageBox::Information)){

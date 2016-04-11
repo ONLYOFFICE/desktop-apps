@@ -82,10 +82,8 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 //    QString filter = tr("All files (*.*)"), ext_in;
     QString _filters, _sel_filter, ext_in;
 
-    QRegExp re(reFileExtension);
-    if (!(re.indexIn(fileName) < 0)) {
-        ext_in = re.cap(1);
-    }
+    QFileInfo info(fileName);
+    ext_in = info.suffix();
 
     if (m_filters.length() > 0) {
         _filters = m_filters;
@@ -93,6 +91,8 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         QRegExp reFilter("([\\w\\s]+\\(\\*\\."+ext_in+"+\\))", Qt::CaseInsensitive);
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
             _sel_filter = reFilter.cap(1);
+        } else {
+            fileName = info.absolutePath() + "\\" + info.baseName();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN], ext_in;
