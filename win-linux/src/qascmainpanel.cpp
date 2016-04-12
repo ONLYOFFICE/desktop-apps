@@ -277,8 +277,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     GET_REGISTRY_USER(_reg_user);
 
-    m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
-
 //    m_savePortal;
     m_saveAction = 0; // undefined
 
@@ -624,18 +622,16 @@ void QAscMainPanel::onLocalGetImage(void * d)
     CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
 
-    m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
-
-    QString file_path = dlg.modalOpenImage(m_lastOpenPath);
+    QString file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
     if (!file_path.isEmpty()) {
-        m_lastOpenPath = QFileInfo(file_path).absoluteDir().absolutePath();
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(file_path).absolutePath());
     }
 
     /* data consits id of cefview */
     CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
+    pData->put_Path(file_path.toStdWString());
 
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
-    pData->put_Path(file_path.toStdWString());
     pEvent->m_pData = pData;
     m_pManager->Apply(pEvent);
 
@@ -643,7 +639,7 @@ void QAscMainPanel::onLocalGetImage(void * d)
 //    RELEASEINTERFACE(pData);
 }
 
-void QAscMainPanel::onLocalFileOpen(QString path)
+void QAscMainPanel::onLocalFileOpen(const QString& inpath)
 {
 #ifdef _WIN32
     CFileDialogWrapper dlg((HWND)parentWidget()->winId());
@@ -651,21 +647,14 @@ void QAscMainPanel::onLocalFileOpen(QString path)
     CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
 
-    if (path.length() > 0 && QDir(path).exists()) {
-        GET_REGISTRY_USER(_reg_user);
+    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
+                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
 
-        m_lastOpenPath = QString(path);
-        _reg_user.setValue("openPath", m_lastOpenPath);
-    } else {
-        m_lastOpenPath = Utils::getLocalUsedPath(LOCAL_PATH_OPEN);
-    }
+    if (!(_path = dlg.modalOpen(_path)).isEmpty()) {
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
 
-    QString file_path = dlg.modalOpen(m_lastOpenPath);
-    if (!file_path.isEmpty()) {
-        m_lastOpenPath = QFileInfo(file_path).absoluteDir().absolutePath();
-
-        COpenOptions opts = {"", etLocalFile, file_path};
-        opts.wurl = file_path.toStdWString();
+        COpenOptions opts = {"", etLocalFile, _path};
+        opts.wurl = _path.toStdWString();
         doOpenLocalFile(opts);
     }
 }
@@ -793,11 +782,13 @@ void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
 
-    for (vector<wstring>::const_iterator i = vec->begin(); i != vec->end(); i++) {
-        COpenOptions opts = {(*i), etLocalFile};
-        m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
+    for (wstring wstr : (*vec)) {
+        COpenOptions opts = {wstr, etLocalFile};
         doOpenLocalFile(opts);
     }
+
+    Utils::keepLastPath(LOCAL_PATH_OPEN,
+                QFileInfo(QString::fromStdWString(vec->back())).absolutePath());
 }
 
 void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
@@ -807,9 +798,12 @@ void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
     QStringListIterator i(list);
     while (i.hasNext()) {
         COpenOptions opts = {i.next().toStdWString(), etLocalFile};
-
-        m_lastOpenPath = QFileInfo(opts.url).absoluteDir().absolutePath();
         doOpenLocalFile(opts);
+    }
+
+    i.toBack();
+    if (i.hasPrevious()) {
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(i.peekPrevious()).absolutePath());
     }
 }
 
@@ -1341,7 +1335,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
     }
 #endif
 
-    QString _lastSavePath = Utils::getLocalUsedPath(LOCAL_PATH_SAVE);
+    QString _lastSavePath = Utils::lastPath(LOCAL_PATH_SAVE);
 
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
@@ -1369,8 +1363,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Path(L"");
 
         if (!_lic_cancel && dlg.modalSaveAs(fullPath)) {
-            GET_REGISTRY_USER(_reg_user)
-            _reg_user.setValue("savePath", QFileInfo(fullPath).absoluteDir().absolutePath());
+            Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
 
             pSaveData->put_Path(fullPath.toStdWString());
             int format = dlg.getFormat() > 0 ? dlg.getFormat() :

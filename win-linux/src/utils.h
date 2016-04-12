@@ -43,7 +43,8 @@ public:
     static QStringList * getInputFiles(const QStringList& inlist);
     static bool firstStart(bool restore = false);
     static bool markFirstStart();
-    static QString getLocalUsedPath(int type);
+    static QString lastPath(int type);
+    static void keepLastPath(int type, const QString&);
     static QString getUserPath();
 
     static void createTempLicense();
