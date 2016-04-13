@@ -7,6 +7,7 @@
 #define APP_PATH            'ONLYOFFICE\DesktopEditors'
 #define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
 #define NAME_EXE_OUT        'DesktopEditors.exe'
+#define iconsExe            'projicons.exe'
 
 #ifdef _IVOLGA_PRO
   #define sAppName          'Иволга ПРО'
@@ -33,7 +34,6 @@
   #define sAppVerShort      Copy(sAppVersion, 0, 3)
 #endif
 
-#define iconsExe            'projicons.exe'
 #include "associate_page.iss"
 
 
@@ -150,17 +150,6 @@ ru.WarningWrongArchitecture =Вы устанавливаете %1-битную �
 
 
 [Code]
-procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
-function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
-  external 'SendMessageTimeoutA@user32.dll stdcall';  
-
-//procedure checkArchitectureVersion; forward;
-//function GetHKLM: Integer; forward;
-#ifdef _AVS
-//procedure DoInstall(); forward;
-//procedure DoInstallDone(); forward;
-#endif
-
 const
   SMTO_ABORTIFHUNG = 2;
   WM_WININICHANGE = $001A;
@@ -171,6 +160,17 @@ type
   LPARAM = INT_PTR;
   LRESULT = INT_PTR;
 
+
+procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
+function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
+  external 'SendMessageTimeoutA@user32.dll stdcall';
+
+//procedure checkArchitectureVersion; forward;
+//function GetHKLM: Integer; forward;
+#ifdef _AVS
+//procedure DoInstall(); forward;
+//procedure DoInstallDone(); forward;
+#endif
 
 procedure InitializeWizard();
 begin
