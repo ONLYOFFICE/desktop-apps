@@ -6,11 +6,15 @@
 AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
 #ifdef _IVOLGA_PRO
-OutputBaseFileName      =Ivolgapro_x86
+  OutputBaseFileName    =Ivolgapro_x86
 #elif defined(_AVS)
-OutputBaseFileName      =AVSDocumentEditor_x86
+  #ifdef _AVS_LIGHT_VERSION
+    OutputBaseFilename  ={#sShortAppName}_x86_light
+  #else
+    OutputBaseFilename  ={#sShortAppName}_x86
+  #endif
 #else
-OutputBaseFileName      =DesktopEditors_x86
+  OutputBaseFileName    =DesktopEditors_x86
 #endif
 MinVersion              =0,5.0.2195
 ;ArchitecturesAllowed    =x86

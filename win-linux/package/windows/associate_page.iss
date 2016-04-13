@@ -2,6 +2,7 @@
 [Setup]
 ChangesAssociations=true
 
+
 [CustomMessages]
 
 #ifdef _IVOLGA_PRO
@@ -72,6 +73,7 @@ ru.extODS =Электронная таблица OpenDocument
 en.extODP =OpenDocument Presentation
 ru.extODP =Презентация OpenDocument
 
+
 [Code]
 
 var
@@ -101,7 +103,7 @@ begin
   until Length(Text)=0;
 end;
 
-procedure initExensions;
+procedure initExtensions;
 var
   prefix: string;
 begin
@@ -186,13 +188,13 @@ begin
   end;
 end;
 
-procedure InitializeWizard();
+procedure InitializeAssociatePage;
 var
   associatePage: TWizardPage;
   lblAudio: TLabel;
   i: Integer;
 begin
-  initExensions();
+  initExtensions();
 
   associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
@@ -290,13 +292,6 @@ begin
 end;
 
 {
-procedure CurStepChanged(CurStep: TSetupStep);
-begin
-  if CurStep = ssPostInstall then DoPostInstall();
-end;
-}
-
-{
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo, MemoComponentsInfo, MemoGroupInfo, MemoTasksInfo: String): String;
 begin
     MsgBox(MemoDirInfo, mbInformation, MB_OK);
@@ -304,35 +299,32 @@ begin
 end;
 }
 
-procedure CurUninstallStepChanged(CurStep: TUninstallStep);
+procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
   ext, str: string;
 begin
-  if CurStep = usUninstall then
-  begin
-    initExensions();
+  initExtensions();
 
-    for  i := 0 to GetArrayLength(AudioExts) - 1 do
-    begin     
-      Explode(argsArray, ExtensionRegistryInfo[i],':');
-      RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]);
+  for  i := 0 to GetArrayLength(AudioExts) - 1 do
+  begin     
+    Explode(argsArray, ExtensionRegistryInfo[i],':');
+    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]);
 
-      ext := LowerCase(AudioExts[i]);
-      RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]);
+    ext := LowerCase(AudioExts[i]);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]);
 
-      RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', str);
-      if CompareText(str, argsArray[0]) = 0 then
-        RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '');
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '');
 
-      RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', str);
-      if CompareText(str, argsArray[0]) = 0 then
-        RegDeleteValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '');
+    RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '');
 
-      RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', str);
-      if CompareText(str, argsArray[0]) = 0 then
-        RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
-    end;
+    RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
   end;
 end;

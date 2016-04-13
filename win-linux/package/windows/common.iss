@@ -1,35 +1,47 @@
 ﻿
 ;#define _IVOLGA_PRO
 ;#define _AVS
+;#define _AVS_LIGHT_VERSION
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
-#define ASC_PATH            'ONLYOFFICE\DesktopEditors'
-#define ASC_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
+#define APP_PATH            'ONLYOFFICE\DesktopEditors'
+#define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
 #define NAME_EXE_OUT        'DesktopEditors.exe'
 
 #ifdef _IVOLGA_PRO
   #define sAppName          'Иволга ПРО'
   #define NAME_EXE_OUT      'IvolgaPRO.exe'
-  #define ASC_PATH          'IvolgaPRO\DesktopEditors'
-  #define ASC_REG_PATH      'Software\IvolgaPRO\DesktopEditors'
+  #define APP_PATH          'IvolgaPRO\DesktopEditors'
+  #define APP_REG_PATH      'Software\IvolgaPRO\DesktopEditors'
 #elif defined(_AVS)
   #define sAppName          'AVS Document Editor'
-  #define NAME_EXE_OUT      'AVSDocumentEditor.exe'
-  #define ASC_PATH          'AVS4YOU\AVSDocumentEditor'
-  #define ASC_REG_PATH      'Software\AVS4YOU\DocumentEditor'
+  #define sShortAppName     'AVSDocumentEditor'
+  #define AppInternalId     98
+  #define NAME_EXE_OUT      sShortAppName + '.exe'
+  #define APP_PATH          'AVS4YOU\' + sShortAppName
+  #define APP_REG_PATH      'Software\AVS4YOU\DocumentEditor'
 #endif
 
 
 #define PATH_EXE            '..\..\Build\Release\release\DesktopEditors.exe'
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
-#define sAppVerShort        Copy(GetFileVersion(AddBackslash(SourcePath) + PATH_EXE), 0, 3)
+#ifdef _AVS
+  #define sAppVerShort      Copy(sAppVersion, 0, 5)
+#else
+  #define sAppVerShort      Copy(sAppVersion, 0, 3)
+#endif
 
 #define iconsExe            'projicons.exe'
 #include "associate_page.iss"
 
+
 [Setup]
-AppVerName              ={#sAppName} {#sAppVerShort}
-VersionInfoVersion      ={#sAppVersion}
+AppVerName                ={#sAppName} {#sAppVerShort}
+AppVersion                ={#sAppVersion}
+VersionInfoVersion        ={#sAppVersion}
+#ifdef _AVS
+AppId                     ={#sAppName}
+#endif
 
 #ifdef _IVOLGA_PRO
   AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
@@ -65,23 +77,32 @@ VersionInfoVersion      ={#sAppVersion}
   WizardSmallImageFile    = data\dialogicon.bmp
 #endif
 
-UsePreviousAppDir       =no
-DirExistsWarning        =no
-DefaultDirName          ={pf}\{#ASC_PATH}
-DisableProgramGroupPage = yes
-DisableWelcomePage      = no
-AllowNoIcons            = yes
-UninstallDisplayIcon    = {app}\{#NAME_EXE_OUT}
-OutputDir               =.\
-Compression             =lzma
-PrivilegesRequired      =admin
+UsePreviousAppDir         =no
+DirExistsWarning          =no
+DefaultDirName            ={pf}\{#APP_PATH}
+DisableProgramGroupPage   = yes
+DisableWelcomePage        = no
+AllowNoIcons              = yes
+UninstallDisplayIcon      = {app}\{#NAME_EXE_OUT}
 #ifdef _AVS
-  AppMutex              = AVSMEDIA
-#else
-  AppMutex              = TEAMLAB
+  ;MinVersion              = 0, 5.0.2195
+  #ifdef _AVS_LIGHT_VERSION
+    OutputBaseFilename    = {#sShortAppName}_light
+  #else
+    OutputBaseFilename    = {#sShortAppName}
+  #endif
 #endif
-ChangesEnvironment      =yes
-SetupMutex              =ASC
+OutputDir                 =.\
+Compression               =lzma
+PrivilegesRequired        =admin
+#ifdef _AVS
+  AppMutex                = AVSMEDIA
+#else
+  AppMutex                = TEAMLAB
+#endif
+ChangesEnvironment        =yes
+SetupMutex                =ASC
+
 
 [Languages]
 #ifdef _IVOLGA_PRO
@@ -98,6 +119,34 @@ SetupMutex              =ASC
 ;Name: fr; MessagesFile: compiler:Languages\French.isl;
 ;Name: es; MessagesFile: compiler:Languages\Spanish.isl;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
+
+
+[Messages]
+#ifdef _AVS
+;================================== New strings for overloading of Inno Setup .isl files ==============
+
+en.BeveledLabel = English
+ru.BeveledLabel = Russian
+
+;======================================================================================================
+
+en.SetupAppRunningError=Setup has detected that one or more of AVS programs are currently running.%n%nPlease close all instances of AVS running programs now, then click OK to continue, or Cancel to exit.
+en.UninstallAppRunningError=Uninstall has detected that one or more of AVS programs are currently running.%n%nPlease close all instances of AVS running programs now, then click OK to continue, or Cancel to exit.
+
+ru.SetupAppRunningError=Обнаружен запущенный экземпляр программы AVS.%n%nПожалуйста, закройте все экземпляры приложения, затем нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
+ru.UninstallAppRunningError=Деинсталлятор обнаружил запущенный экземпляр программы AVS.%n%nПожалуйста, закройте все экземпляры приложения, затем нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
+
+;======================================================================================================
+
+#if !Defined(_AVS_LIGHT_VERSION)
+en.FinishedLabelNoIcons=Setup has finished installing [name] on your computer.%n%nYou can read our software uninstallation guidelines clicking the 'User Guides' link.
+en.FinishedLabel=Setup has finished installing [name] on your computer. The application may be launched by selecting the installed icons.%n%nYou can read our software uninstallation guidelines clicking the 'User Guides' link.
+
+ru.FinishedLabelNoIcons=Программа [name] установлена на ваш компьютер.%n%nРуководства по удалению программ вы можете найти, нажав на ссылку Руководства пользователя.
+ru.FinishedLabel=Программа [name] установлена на ваш компьютер. Приложение можно запустить с помощью соответствующего значка.%n%nРуководства по удалению программ вы можете найти, нажав на ссылку Руководства пользователя.
+#endif
+#endif
+
 
 [CustomMessages]
 ;======================================================================================================
@@ -119,7 +168,7 @@ ru.CreateDesktopIcon =Создать иконку %1 на &рабочем сто
 ;it.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
-ru.InstallAdditionalComponents =Установка дополнительных системных компонент. Пожалуйста, подождите...
+ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
 ;de.InstallAdditionalComponents =Installation zusдtzlicher Systemkomponenten. Bitte warten...
 ;fr.InstallAdditionalComponents =L'installation des composants supplйmentaires du systиme. Attendez...
 ;es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
@@ -150,14 +199,31 @@ ru.WarningWrongArchitecture =Вы устанавливаете %1-битную �
 ;en.AssociateDescription =Associate office document file types with %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
+#ifdef _AVS
+;================================== Guides ============================================================
+en.Guides =User Guides
+ru.Guides =Руководства пользователя
+#endif
+
+
 [Code]
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 
-procedure checkArchitectureVersion; forward;
+//procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
 #ifdef _AVS
 procedure DoInstall(); forward;
+procedure DoInstallDone(); forward;
 #endif
+
+procedure InitializeWizard();
+begin
+#if defined(_AVS) && !defined(_AVS_LIGHT_VERSION)
+  InitializeGuidesLink();
+#endif
+
+  InitializeAssociatePage
+end;
 
 function InitializeSetup(): Boolean;
 var
@@ -197,17 +263,21 @@ begin
   Result := OutResult;
 end;
 
-{procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 begin
+#ifdef _AVS
+  FinishedUninstall := (CurUninstallStep = usDone);
+#endif
+
   if CurUninstallStep = usUninstall then
   begin
 //    if MsgBox('Do you want to clear application cashed data?.', mbConfirmation, MB_YESNO) == IDYES then
 //    begin
 //      DelTree('', True, True, True)
 //    end
+    UnassociateExtensions();
   end;
 end;
-}
 
 procedure installVCRedist(FileName, LabelCaption: String);
 var
@@ -245,10 +315,10 @@ begin
   Result := isExists;
 end;
 
+{
 procedure checkArchitectureVersion;
-var
-  isExists: Boolean;
-
+//var
+  //isExists: Boolean;
 begin
   if IsWin64 then
   begin 
@@ -262,28 +332,27 @@ begin
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
     end
   end;
-
-  //Result := True;
 end;
+}
 
 function getPosixTime: string;
 var 
   fileTime: TFileTime;
   fileTimeNano100: Int64;  
 begin
-    //GetSystemTime(systemTime);
+  //GetSystemTime(systemTime);
 
-    // the current file time
-    //SystemTimeToFileTime(systemTime, fileTime);
-    GetSystemTimeAsFileTime(fileTime);
+  // the current file time
+  //SystemTimeToFileTime(systemTime, fileTime);
+  GetSystemTimeAsFileTime(fileTime);
 
-    // filetime in 100 nanosecond resolution
-    fileTimeNano100 := Int64(fileTime.dwHighDateTime) shl 32 + fileTime.dwLowDateTime;
+  // filetime in 100 nanosecond resolution
+  fileTimeNano100 := Int64(fileTime.dwHighDateTime) shl 32 + fileTime.dwLowDateTime;
 
-    //Log('The Value is: ' + IntToStr(fileTimeNano100/10000 - 11644473600000));
+  //Log('The Value is: ' + IntToStr(fileTimeNano100/10000 - 11644473600000));
 
-    //to milliseconds and unix windows epoche offset removed
-    Result := IntToStr(fileTimeNano100/10000 - 11644473600000);
+  //to milliseconds and unix windows epoche offset removed
+  Result := IntToStr(fileTimeNano100/10000 - 11644473600000);
 end;
 
 function libExists(const dllname: String) : boolean;
@@ -337,17 +406,18 @@ begin
   else if CurStep = ssInstall then
   begin
     DoInstall();
-//  end
-//  else if ( CurStep = ssDone ) then
-//  begin
-//    DoInstallDone();
+  end
+  else if CurStep = ssDone then
+  begin
+    DoInstallDone();
 #endif
   end;
 end;
 
 
 [Dirs]
-Name: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
+Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
+
 
 [Files]
 Source: .\launch.bat;           DestDir: {app}\;
@@ -355,22 +425,22 @@ Source: .\launch.bat;           DestDir: {app}\;
 Source: ..\..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
 #ifdef _IVOLGA_PRO
 Source: ..\..\res\icons\ivolga\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\eula_ivolgapro.htm;     DestDir: {app}; DestName: LICENSE.htm;
 #elif defined(_AVS)
 Source: ..\..\res\icons\avs\desktopeditors.ico;           DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.avs.html;  DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\loginpage\deploy\index.avs.html;  DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 Source: ..\..\..\common\package\license\eula_avs.htm;     DestDir: {app}; DestName: LICENSE.htm;
 #else
 Source: ..\..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#ASC_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
 #endif
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
-;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#ASC_PATH}\webdata\cloud; Flags: recursesubdirs;
-;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local;
+;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
+;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\..\common\editors\*;                      DestDir: {app}\editors\web-apps;  Flags: recursesubdirs;
@@ -378,12 +448,12 @@ Source: ..\..\..\..\core\build\jsbuilds\*;              DestDir: {app}\editors\s
 Source: ..\..\..\common\converter\DoctRenderer.config;  DestDir: {app}\converter;
 Source: ..\..\..\..\core\build\empty\*;                 DestDir: {app}\converter\empty;
 
-Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts;
-Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#ASC_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts;
+Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
 ;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;           DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-BoldItalic.ttf;                DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-Italic.ttf;                    DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
@@ -401,6 +471,7 @@ Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fo
 Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescription: {cm:AdditionalIcons};
 ;Name: fileassoc; Description: {cm:AssociateCaption};   GroupDescription: {cm:AssociateDescription};
 
+
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
 Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico;
@@ -411,36 +482,99 @@ Name: {group}\{#sAppName};         Filename: {app}\{#NAME_EXE_OUT}; WorkingDir: 
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 #endif
 
+
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 Filename: {app}\launch.bat; Parameters: {#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
+
 [Ini]
 ;Filename: {app}\opts; Section: app; Key: lang; String: {language};
 
+
 [Registry]
-;Root: HKLM; Subkey: {#ASC_REG_PATH};  Flags: uninsdeletekey;
-Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
-Root: HKLM; Subkey: {#ASC_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
+;Root: HKLM; Subkey: {#APP_REG_PATH};  Flags: uninsdeletekey;
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
 
+
 [UninstallDelete]
-Type: filesandordirs; Name: {commonappdata}\{#ASC_PATH}\*;  AfterInstall: RefreshEnvironment;
+Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
+
 
 #ifdef _AVS
+
+[Dirs]
+Name: "{commonappdata}\AVS4YOU\"; Permissions: everyone-modify
+
+
 [Files]
+#ifndef _AVS_LIGHT_VERSION
 Source: data\avs\serviceprograms\Registration.exe;          DestDir: "{app}"; Flags: deleteafterinstall;
+#endif
+
 
 [Run]
-Filename: {app}\Registration.exe; Parameters: "/VERYSILENT /SUPPRESSMSGBOXES /GROUP=""{groupname}"" {code:SetupParam}";
+#ifndef _AVS_LIGHT_VERSION
+Filename: {app}\Registration.exe; Parameters: "/VERYSILENT /SUPPRESSMSGBOXES /GROUP=""{groupname}"" /LANG={code:LanguageName} {code:SetupParam}";
+#endif
+
 
 [Registry]
-Root: HKLM32; Subkey: SOFTWARE\AVS4YOU\Uninstall; ValueType: string; ValueName: AVS Document Editor; ValueData: {uninstallexe}; Flags: uninsdeletevalue;
+Root: HKLM32; Subkey: SOFTWARE\AVS4YOU\Uninstall; ValueType: string; ValueName: {#sAppName}; ValueData: {uninstallexe}; Flags: uninsdeletevalue;
+
+Root: HKLM32; Subkey: SOFTWARE\AVS4YOU\Navigator; ValueType: string; ValueName: {#sAppName}; ValueData: "http://www.avs4you.com/downloads/{#sShortAppName}_x86.exe";
+
+Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "IDownload"; ValueData: "http://www.avs4you.com/downloads/{#sShortAppName}_x86.exe";
+
+Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "AppPath";   ValueData: "{app}";                 Flags: uninsdeletevalue;
+Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "PathToExe"; ValueData: "{app}\{#NAME_EXE_OUT}"; Flags: uninsdeletevalue;
+
+
+[UninstallDelete]
+#ifdef _AVS_LIGHT_VERSION
+Type: dirifempty;     Name: "{app}";
+#endif
+
 
 [Code]
+#include "avs_utils.iss"
+
 var
   AlreadyInstalled:  Boolean;
+  FinishedUninstall: Boolean;
+#ifndef _AVS_LIGHT_VERSION
+  GuidesLinkLabel:   TLabel;
+
+procedure GuidesLinkClick(Sender: TObject);
+var
+  ErrorCode: Integer;
+begin
+  ShellExec('', InternationalizeURL3('http://www.avs4you.com/guides/index.aspx'), '', '',
+            SW_SHOW, ewNoWait, ErrorCode);
+end;
+
+procedure InitializeGuidesLink;
+begin
+  GuidesLinkLabel := TLabel.Create(WizardForm);
+  GuidesLinkLabel.Parent := WizardForm;
+  GuidesLinkLabel.Left := 12;
+  GuidesLinkLabel.Top := WizardForm.ClientHeight - 
+    GuidesLinkLabel.ClientHeight - 16;
+  GuidesLinkLabel.Cursor := crHand;
+  GuidesLinkLabel.Font.Color := clBlue;
+  GuidesLinkLabel.Font.Style := [fsUnderline];
+  GuidesLinkLabel.Caption := ExpandConstant('{cm:Guides}');
+  GuidesLinkLabel.OnClick := @GuidesLinkClick;
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+    GuidesLinkLabel.Visible := CurPageID = wpFinished;
+end;
+#endif
 
 function SetupParam(Param: String): String;
 begin
@@ -450,17 +584,11 @@ begin
     Result := '';
 end;
 
-function UninstallerPath(const RootKey: Integer; const SubKeyName: String): String;
-var
-  Path: String;
+function LanguageName(Param: String): String;
 begin
-  if (RegQueryStringValue(RootKey, SubKeyName, 'Uninstall', Path)) then
-  begin
-    if (FileExists(Path)) then
-      Result := Path
-    else
-      Result := '';
-  end;
+  Result := ActiveLanguage;
+  if ( Result = 'es' ) then    //service programs expect spanish language as 'sp'
+    Result := 'sp';
 end;
 
 procedure DoInstall();
@@ -468,19 +596,192 @@ begin
   AlreadyInstalled := RegValueExists(GetHKLM(), 'SOFTWARE\AVS4YOU\DocumentEditor', 'AppPath');
 end;
 
-function NeedUninstall(const RootKey: Integer; const SubKeyName: String): Boolean;
+procedure DoInstallDone();
 var
-  Counter: Cardinal;  // 32-bit unsigned integer
+  DVDOpenMode : Integer;
+  RegnowURL, Publisher, BuyURL, PostInstallURL, FeedbackURL : String;
+  BuyURLAbout : String;
+  ProlongURL, TestString : String;
+  HomePageURL, SupportURL, SupportMail, RegistrationRegKey : String;
+  ErrorCode : Integer;
+  bExist, bEmpty : Boolean;
 begin
-  Counter := 1;
+  DVDOpenMode     := 1; // not used
+  Publisher       := '';
+  PostInstallURL  := '';
+  FeedbackURL     := '';
 
-  if (RegQueryDWordValue(RootKey, SubKeyName, 'SharedCounter', Counter)) then
+  RegnowURL := GetRegnowBuyURL('14438-2');
+
+  ReadInstallInfo(DVDOpenMode, Publisher, BuyURL,
+                  PostInstallURL, FeedbackURL, ProlongURL,
+                  HomePageURL, SupportURL, SupportMail);
+
+  if ( Length(RegnowURL) > 0 ) then
+    BuyURL := RegnowURL;
+
+  // Publisher
+  bExist := RegValueExists(HKLM32, 'SOFTWARE\AVS4YOU', 'Publisher');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM32, 'SOFTWARE\AVS4YOU', 'Publisher', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+      begin
+        bEmpty := False;
+        Publisher := TestString;
+      end
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) then
+    RegWriteStringValue(HKLM32, 'SOFTWARE\AVS4YOU', 'Publisher', Publisher)
+
+  // PostInstallURL
+  if ( Length(PostInstallURL) = 0 ) then
+    PostInstallURL := ParametrizeURL( InternationalizeURL2('http://www.avs4you.com/Register.aspx'), '{#AppInternalId}', 'Install', 'Register', Publisher );
+
+  // BuyURL
+  if ( Length(BuyURL) = 0 ) then
+    BuyURL := GoogleParametrizeURL( InternationalizeURL2('http://www.avs4you.com/Register.aspx'), '{#AppInternalId}', 'Register', 'Register', Publisher )
+  else
+    BuyURLAbout := BuyURL;
+
+  // ProlongURL
+  if ( Length(ProlongURL) = 0 ) then
+    ProlongURL := ParametrizeURL( InternationalizeURL('http://reg.avs4you.com/prolongation/prolongation.aspx'), '{#AppInternalId}', 'App', 'Prolong', Publisher );
+
+  // HomePageURL
+  if ( Length(HomePageURL) = 0 ) then
+    HomePageURL := 'http://www.avs4you.com/index.aspx';
+
+  // SupportURL
+  if ( Length(SupportURL) = 0 ) then
+    SupportURL := 'http://www.avs4you.com/support.aspx';
+
+  // SupportMail
+  if ( Length(SupportMail) = 0 ) then
+    SupportMail := 'support@avs4you.com';
+
+  if (Length(BuyURLAbout) = 0) then
+    BuyURLAbout := 'https://store.avs4you.com/order/checkout.php?PRODS=604132&QTY=1&CURRENCY=USD&DCURRENCY=USD&LANGUAGES=en,de,fr,es,it,ja,nl,da,ko,pl,ru,pt&CART=1&CARD=1&CLEAN_CART=ALL&SHORT_FORM=1&AUTO_PREFILL=1&SRC=InProductAbout';
+
+  // IBuyAbout
+  bExist := RegValueExists(HKLM, '{#APP_REG_PATH}', 'IBuyAbout');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM, '{#APP_REG_PATH}', 'IBuyAbout', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM, '{#APP_REG_PATH}', 'IBuyAbout',   BuyURLAbout );
+
+  // IBuy
+  bExist := RegValueExists(HKLM, '{#APP_REG_PATH}', 'IBuy');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM, '{#APP_REG_PATH}', 'IBuy', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM, '{#APP_REG_PATH}', 'IBuy',        BuyURL );
+
+  // IBuy for service program Registration
+  RegistrationRegKey := 'SOFTWARE\AVS4YOU\Registration';
+  bExist := RegValueExists(HKLM32, RegistrationRegKey, 'IBuy');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM32, RegistrationRegKey, 'IBuy', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or
+     (not RegValueExists(HKLM32, RegistrationRegKey, 'Uninstall')) then
+    RegWriteStringValue( HKLM32, RegistrationRegKey, 'IBuy', BuyURL )
+  else if (bExist and not bEmpty) then
   begin
-      Counter := Counter - 1;
-      RegWriteDWordValue(RootKey, SubKeyName, 'SharedCounter', Counter);
+    if ((Pos('http://www.avs4you.com', TestString) > 0) and
+        (Pos('http://www.avs4you.com', BuyURL) = 0)) then
+      RegWriteStringValue( HKLM32, RegistrationRegKey, 'IBuy', BuyURL )
   end;
 
-  Result := (Counter <= 0);
+  // IProlong
+  bExist := RegValueExists(HKLM, '{#APP_REG_PATH}', 'IProlong');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM, '{#APP_REG_PATH}', 'IProlong', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM, '{#APP_REG_PATH}', 'IProlong',    ProlongURL );
+
+  // IHome
+  bExist := RegValueExists(HKLM, '{#APP_REG_PATH}', 'IHome');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM, '{#APP_REG_PATH}', 'IHome', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM, '{#APP_REG_PATH}', 'IHome',       HomePageURL );
+
+  // ISupport
+  bExist := RegValueExists(HKLM, '{#APP_REG_PATH}', 'ISupport');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM, '{#APP_REG_PATH}', 'ISupport', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM, '{#APP_REG_PATH}', 'ISupport',    SupportURL );
+
+  // ESupport
+  bExist := RegValueExists(HKLM32, 'SOFTWARE\AVS4YOU', 'ESupport');
+  if (bExist) then
+    if (RegQueryStringValue(HKLM32, 'SOFTWARE\AVS4YOU', 'ESupport', TestString)) then
+      if (Length(TestString) = 0) then
+        bEmpty := True
+      else
+        bEmpty := False
+    else
+      bEmpty := True
+  else
+    bEmpty := True;
+  if (not bExist or (bExist and bEmpty)) or (not AlreadyInstalled) then
+    RegWriteStringValue( HKLM32, 'SOFTWARE\AVS4YOU', 'ESupport',    SupportMail );
+
+  if ( Length(FeedbackURL) > 0 ) then
+    RegWriteStringValue(HKLM32, 'Software\AVS4YOU\Common\', 'FeedbackURL', FeedbackURL);
 end;
 
 procedure DeinitializeUninstall();
@@ -489,12 +790,12 @@ var
   ErrorCode : Integer;
   Counter   : Cardinal;
 begin
-  if NeedUninstall(HKLM32, 'SOFTWARE\AVS4YOU\Registration') then
-    begin
-      Path := UninstallerPath(HKLM32, 'SOFTWARE\AVS4YOU\Registration');
-      if (Length(Path) > 1) then
-        Exec(Path, '/VERYSILENT /SUPPRESSMSGBOXES', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
-    end;
+  if (FinishedUninstall and NeedUninstall(HKLM32, 'SOFTWARE\AVS4YOU\Registration')) then
+  begin
+    Path := UninstallerPath(HKLM32, 'SOFTWARE\AVS4YOU\Registration');
+    if (Length(Path) > 1) then
+      Exec(Path, '/VERYSILENT /SUPPRESSMSGBOXES', '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
+  end;
 end;
 
 #endif

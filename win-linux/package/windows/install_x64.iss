@@ -1,15 +1,16 @@
 ﻿#include "common.iss"
 #define os_arch 'win_64'
 
+
 [Setup]
 AppName                 ={#sAppName}
 AppVersion              ={#sAppVersion}
 #ifdef _IVOLGA_PRO
-OutputBaseFileName      =Ivolgapro_x64
+  OutputBaseFileName    =Ivolgapro_x64
 #elif defined(_AVS)
-OutputBaseFileName      =AVSDocumentEditor_x64
+  OutputBaseFileName    ={#sShortAppName}_x64
 #else
-OutputBaseFileName      =DesktopEditors_x64
+  OutputBaseFileName    =DesktopEditors_x64
 #endif
 ;MinVersion              =0,5.0.2195
 MinVersion              =6.0
@@ -18,7 +19,6 @@ ArchitecturesInstallIn64BitMode=x64
 ;ShowUndisplayableLanguages = true
 ;UsePreviousLanguage=no
 
-[Code]
 
 [Files]
 Source: data\vcredist\vcredist_x64.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
