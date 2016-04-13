@@ -3,8 +3,6 @@
 
 
 [Setup]
-AppName                 ={#sAppName}
-AppVersion              ={#sAppVersion}
 #ifdef _IVOLGA_PRO
   OutputBaseFileName    =Ivolgapro_x64
 #elif defined(_AVS)

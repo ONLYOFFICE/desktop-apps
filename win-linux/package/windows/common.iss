@@ -36,6 +36,7 @@
 
 
 [Setup]
+AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
 VersionInfoVersion        ={#sAppVersion}
@@ -84,14 +85,6 @@ DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
 AllowNoIcons              = yes
 UninstallDisplayIcon      = {app}\{#NAME_EXE_OUT}
-#ifdef _AVS
-  ;MinVersion              = 0, 5.0.2195
-  #ifdef _AVS_LIGHT_VERSION
-    OutputBaseFilename    = {#sShortAppName}_light
-  #else
-    OutputBaseFilename    = {#sShortAppName}
-  #endif
-#endif
 OutputDir                 =.\
 Compression               =lzma
 PrivilegesRequired        =admin
