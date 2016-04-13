@@ -787,8 +787,9 @@ void QAscMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
         doOpenLocalFile(opts);
     }
 
-    Utils::keepLastPath(LOCAL_PATH_OPEN,
-                QFileInfo(QString::fromStdWString(vec->back())).absolutePath());
+    if (vec->size())
+        Utils::keepLastPath(LOCAL_PATH_OPEN,
+                    QFileInfo(QString::fromStdWString(vec->back())).absolutePath());
 }
 
 void QAscMainPanel::doOpenLocalFiles(const QStringList& list)
@@ -1012,7 +1013,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
         }
         syncLicenseToJS(false);
 #else
-        mess.setButtons(tr("Activate"), tr("Continue"));
+        mess.setButtons(tr("Activate"), tr("Continue")+":focus");
         int _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
 
         syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
@@ -1171,58 +1172,55 @@ void QAscMainPanel::onDocumentPrint(void * opts)
         printInProcess = true; else
         return;
 
-    NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)opts;
+    CAscPrintEnd * pData = (CAscPrintEnd *)opts;
+    CCefView * pView = m_pManager->GetViewById(pData->get_Id());
 
-    int id = pData->get_Id(),
-    pagesCount = pData->get_PagesCount(),
-    currentPage = pData->get_CurrentPage();
+    int pagesCount = pData->get_PagesCount(),
+        currentPage = pData->get_CurrentPage();
 
-    if (pagesCount < 1) return;
-
+    if (pView && !(pagesCount < 1)) {
 //#ifdef _WIN32
-    QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
-                new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);
+        NSEditorApi::CAscMenuEvent * pEvent;
+        QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
+                    new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);
 
-    QPrinter * printer = pContext->getPrinter();
-    printer->setOutputFileName("");
-    printer->setFromTo(1, pagesCount);
+        QPrinter * printer = pContext->getPrinter();
+        printer->setOutputFileName("");
+        printer->setFromTo(1, pagesCount);
 
 #ifdef _WIN32
-    CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
-    QPrintDialog * dialog = wrapper.q_dialog();
+        CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
+        QPrintDialog * dialog = wrapper.q_dialog();
 #else
-    QPrintDialog * dialog =  new QPrintDialog(printer, this);
+        QPrintDialog * dialog =  new QPrintDialog(printer, this);
 #endif // _WIN32
 
-    dialog->setWindowTitle(tr("Print Document"));
-    dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage);
-    if (!(currentPage < 0))
-        currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
-    dialog->setPrintRange(m_printData->_print_range);
+        dialog->setWindowTitle(tr("Print Document"));
+        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage);
+        if (!(currentPage < 0))
+            currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+        dialog->setPrintRange(m_printData->_print_range);
 
-    int start = -1, finish = -1;
-    int res = dialog->exec();
-    if (res == QDialog::Accepted) {
-        m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
-        m_printData->_print_range = dialog->printRange();
+        int start = -1, finish = -1;
+        int res = dialog->exec();
+        if (res == QDialog::Accepted) {
+            m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
+            m_printData->_print_range = dialog->printRange();
 
-        switch(dialog->printRange()) {
-        case QPrintDialog::AllPages: start = 1, finish = pagesCount; break;
-        case QPrintDialog::PageRange:
-            start = dialog->fromPage(), finish = dialog->toPage(); break;
-        case QPrintDialog::Selection: break;
-        case QPrintDialog::CurrentPage: start = currentPage, finish = currentPage; break;
-        }
+            switch(dialog->printRange()) {
+            case QPrintDialog::AllPages: start = 1, finish = pagesCount; break;
+            case QPrintDialog::PageRange:
+                start = dialog->fromPage(), finish = dialog->toPage(); break;
+            case QPrintDialog::Selection: break;
+            case QPrintDialog::CurrentPage: start = currentPage, finish = currentPage; break;
+            }
 
-        if (!(start < 0) || !(finish < 0)) {
-            start < 1 && (start = 1);
-            finish < 1 && (finish = 1);
-            finish < start && (finish = start);
+            if (!(start < 0) || !(finish < 0)) {
+                start < 1 && (start = 1);
+                finish < 1 && (finish = 1);
+                finish < start && (finish = start);
 
-            CCefView * pView = m_pManager->GetViewById(id);
-            if ( pView ) {
-                NSEditorApi::CAscPrintPage * pData;
-                NSEditorApi::CAscMenuEvent * pEvent;
+                CAscPrintPage * pData;
 
 #if defined(_WIN32)
 //                EnableWindow(parentWindow(), FALSE);
@@ -1235,48 +1233,49 @@ void QAscMainPanel::onDocumentPrint(void * opts)
                 progressDlg.startProgress();
 
                 uint count = finish - start;
-                pContext->BeginPaint();
-                for (; !(start > finish); ++start) {
-                    pContext->AddRef();
+                if (pContext->BeginPaint()) {
+                    for (; !(start > finish); ++start) {
+                        pContext->AddRef();
 
-                    progressDlg.setProgress(count - (finish - start) + 1, count + 1);
-                    qApp->processEvents();
+                        progressDlg.setProgress(count - (finish - start) + 1, count + 1);
+                        qApp->processEvents();
 
-                    pData = new NSEditorApi::CAscPrintPage();
-                    pData->put_Context(pContext);
-                    pData->put_Page(start - 1);
+                        pData = new NSEditorApi::CAscPrintPage();
+                        pData->put_Context(pContext);
+                        pData->put_Page(start - 1);
 
-                    pEvent = new NSEditorApi::CAscMenuEvent();
-                    pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE;
-                    pEvent->m_pData = pData;
+                        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE);
+                        pEvent->m_pData = pData;
 
-                    pView->Apply(pEvent);
+                        pView->Apply(pEvent);
+//                        RELEASEOBJECT(pData)
+//                        RELEASEOBJECT(pEvent)
 
-                    if (progressDlg.isRejected())
-                        break;
+                        if (progressDlg.isRejected())
+                            break;
 
-                    if (start < finish) {
-                        printer->newPage();
+                        start < finish && printer->newPage();
                     }
+                    pContext->EndPaint();
                 }
-                pContext->EndPaint();
 
-                pEvent = new NSEditorApi::CAscMenuEvent();
-                pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_PRINT_END;
-
-                pView->Apply(pEvent);
 #if defined(_WIN32)
 //                EnableWindow(parentWindow(), TRUE);
                 EnableWindow((HWND)parentWidget()->winId(), TRUE);
 #endif
+            } else {
+                // TODO: show error message
             }
-        } else {
-            // TODO: show error message
         }
+
+        pContext->Release();
+
+        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_END);
+        pView->Apply(pEvent);
+//        RELEASEOBJECT(pEvent)
     }
 
     printInProcess = false;
-    pContext->Release();
     RELEASEINTERFACE(pData)
 
 #ifndef _WIN32

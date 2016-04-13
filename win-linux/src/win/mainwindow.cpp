@@ -341,6 +341,10 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_SIZE:
         if (window->m_pWinPanel) {
+            if (wParam == SIZE_MINIMIZED) {
+                window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
+            } else {
+
             RECT lpWindowRect, clientRect;
             GetWindowRect(hWnd, &lpWindowRect);
             GetClientRect(hWnd, &clientRect);
@@ -384,6 +388,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
             SetWindowRgn(hWnd, hRgn, TRUE);
             DeleteObject(hRgn);
+
+            }
         }
         break;
 

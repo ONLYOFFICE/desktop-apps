@@ -158,12 +158,19 @@ void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
     });
 
     if (cbtn2.size()) {
-        _btn = new QPushButton(cbtn2);
+        QRegExp reFocus("([^:]+)\\:?(focus)?$");
+                reFocus.indexIn(cbtn2);
+
+        _btn = new QPushButton(reFocus.cap(1));
         m_boxButtons->layout()->addWidget(_btn);
         connect(_btn, &QPushButton::clicked, [=](){
             m_result = MODAL_RESULT_BTN2;
             m_pDlg.accept();
         });
+
+        if (reFocus.captureCount() > 1) {
+            _btn->setFocus();
+        }
     }
 }
 

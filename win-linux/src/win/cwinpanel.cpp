@@ -52,8 +52,6 @@
 #include <QDesktopServices>
 #include <QFileInfo>
 
-#include "qascprinter.h"
-#include "cprintdialog.h"
 #include "../defines.h"
 #include "../utils.h"
 
