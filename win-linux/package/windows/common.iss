@@ -38,6 +38,7 @@
 
 
 [Setup]
+AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 VersionInfoVersion        ={#sAppVersion}
 
