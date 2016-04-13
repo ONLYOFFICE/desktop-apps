@@ -56,7 +56,7 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
 #ifdef _IVOLGA_PRO
     _labelWelcome->setText(_str_welcome.arg(APP_TITLE));
 #else
-    _labelWelcome->setText(_str_welcome.arg("OnlyOffice"));
+    _labelWelcome->setText(_str_welcome.arg("ONLYOFFICE"));
 #endif
 
     setWindowIcon(Utils::appIcon());

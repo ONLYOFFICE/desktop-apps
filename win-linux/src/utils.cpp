@@ -268,16 +268,17 @@ bool Utils::hasLicense(void * m)
 //#define ARRSIZE(arr) (sizeof(arr)/sizeof(*(arr)))
 QString Utils::systemLocationCode()
 {
-#define LOCATION_MAX_LEN 2
+#define LOCATION_MAX_LEN 9
 #ifdef _WIN32
     WCHAR _country_code[LOCATION_MAX_LEN]{0};
-    if ( QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA )    {
-        if(!GetLocaleInfoEx(LOCALE_NAME_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
+    // "no entry point for GetLocaleInfoEx" error on win_xp
+//    if ( QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA ) {
+//        if (!GetLocaleInfoEx(LOCALE_NAME_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
+//            return "unknown";
+//    } else {
+        if (!GetLocaleInfo(LOCALE_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
             return "unknown";
-    } else {
-        if(!GetLocaleInfo(LOCALE_SYSTEM_DEFAULT, LOCALE_SISO3166CTRYNAME, _country_code, LOCATION_MAX_LEN))
-            return "unknown";
-    }
+//    }
 
     return QString::fromWCharArray(_country_code);
 #else
