@@ -1,6 +1,8 @@
-﻿#include "common.iss"
+﻿
 #define os_arch 'win_64'
+#define _WIN64
 
+#include "common.iss"
 
 [Setup]
 AppName                 ={#sAppName}
@@ -8,12 +10,11 @@ AppVersion              ={#sAppVersion}
 #ifdef _IVOLGA_PRO
   OutputBaseFileName    =Ivolgapro_x64
 #elif defined(_AVS)
-  OutputBaseFileName    ={#sShortAppName}_x64
 #else
   OutputBaseFileName    =DesktopEditors_x64
 #endif
-;MinVersion              =0,5.0.2195
-MinVersion              =6.0
+MinVersion              =0,5.0.2195
+;MinVersion              =6.0
 ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowUndisplayableLanguages = true
@@ -40,7 +41,7 @@ Source: data\projicons_omt.exe;                             DestDir: {app}\; Des
 Source: data\projicons_asc.exe;                             DestDir: {app}\; DestName: {#iconsExe};
 #endif
 Source: data\libs\qt\win64\*;                               DestDir: {app}\; Flags: ignoreversion recursesubdirs;
-Source: data\libs\chromium\win64\dbghelp.dll;               DestDir: {app}\; Flags: onlyifdoesntexist; Check: libExists('dbghelp.dll');
+;Source: data\libs\chromium\win64\dbghelp.dll;               DestDir: {app}\; Flags: onlyifdoesntexist; Check: libExists('dbghelp.dll');
 
 ;
 ; some files placed in common.iss
