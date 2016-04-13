@@ -125,7 +125,7 @@ bool Utils::markFirstStart()
     return true;
 }
 
-QString Utils::getLocalUsedPath(int t)
+QString Utils::lastPath(int t)
 {
     GET_REGISTRY_USER(_reg_user)
 
@@ -136,6 +136,14 @@ QString Utils::getLocalUsedPath(int t)
 
     return _path.length() > 0 && QDir(_path).exists() ?
         _path : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+}
+
+void Utils::keepLastPath(int t, const QString& p)
+{
+    GET_REGISTRY_USER(_reg_user)
+    if (t == LOCAL_PATH_OPEN)
+        _reg_user.setValue("openPath", p); else
+        _reg_user.setValue("savePath", p);
 }
 
 void Utils::createTempLicense()

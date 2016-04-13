@@ -126,7 +126,7 @@ public slots:
 
     void onNeedCheckKeyboard();
 
-    void onLocalFileOpen(QString);
+    void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
     void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
@@ -167,7 +167,6 @@ private:
     CPrintData *    m_printData;
     Qt::WindowState m_mainWindowState;
 
-    QString m_lastOpenPath;
     QStringList * m_inFiles;
 
     QString m_savePortal;

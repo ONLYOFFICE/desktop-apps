@@ -33,11 +33,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             1,1,4,208
-#define VER_FILEVERSION_STR         "1.1.4.208\0"
+#define VER_FILEVERSION             3,8,4,208
+#define VER_FILEVERSION_STR         "3.8.4.208\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "1.1\0"
+#define VER_PRODUCTVERSION_STR      "3.8\0"
 
 #ifdef _IVOLGA_PRO
   #define VER_COMPANYNAME_STR         "Novie kommunikacionnie tehnologii CJSC\0"
