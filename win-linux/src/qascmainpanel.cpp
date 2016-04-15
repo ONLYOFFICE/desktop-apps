@@ -53,10 +53,12 @@
 #include "cmessage.h"
 #include "utils.h"
 #include "version.h"
+#include "regex"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
 #include "shlobj.h"
+#include "lmcons.h"
 #include "csplash.h"
 
 extern HWND gTopWinId;
@@ -280,11 +282,16 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 //    m_savePortal;
     m_saveAction = 0; // undefined
 
-    QString firs_name, last_name;
-    fillUserName(firs_name, last_name);
-    QString params = QString("lang=%1&userfname=%2&userlname=%3&location=%4")
-                        .arg(g_lang, firs_name, last_name, Utils::systemLocationCode());
+    wstring first_name, last_name;
+    readSystemUserName(first_name, last_name);
+
+    QString params = QString("lang=%1&userfname=%3&userlname=%4&location=%2")
+                        .arg(g_lang, Utils::systemLocationCode());
+
     wstring wparams = params.toStdWString();
+    wparams.replace(wparams.find(L"%3"), 2, first_name);
+    if (last_name.size())
+        wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 }
 
@@ -1434,21 +1441,31 @@ void QAscMainPanel::onPortalOpen(QString url)
     }
 }
 
-void QAscMainPanel::fillUserName(QString& firstname, QString& lastname)
+void QAscMainPanel::readSystemUserName(wstring& first, wstring& last)
 {
-    QString _full_name = qgetenv("USER");
-    if (_full_name.isEmpty())
-        _full_name = qgetenv("USERNAME");
+#ifdef Q_OS_WIN
+    WCHAR _env_name[UNLEN + 1]{L"Unknown.User"};
+    DWORD _size = UNLEN + 1;
 
-    if (_full_name.isEmpty())
-        _full_name = "Unknown.User";
+    if (!GetUserName(_env_name, &_size)) {
+    }
 
-    QRegularExpression re(reUserName);
-    QRegularExpressionMatch match = re.match(_full_name);
+    wstring _full_name = wstring(_env_name);
+#else
+    QString _env_name = qgetenv("USER");
+    if (_env_name.isEmpty())
+        _env_name = qgetenv("USERNAME");
 
-    if (match.hasMatch()) {
-        firstname = match.captured(1);
-        lastname = match.captured(2);
+    if (_env_name.isEmpty())
+        _env_name = "Unknown.User";
+
+    wstring _full_name = _env_name.toStdWString();
+#endif
+    std::wregex _rexp(QString(reUserName).toStdWString());
+    std::wsmatch _res;
+    if (std::regex_search(_full_name, _res, _rexp)) {
+        first = _res.str(1),
+        last = _res.str(2);
     }
 }
 
@@ -1490,6 +1507,20 @@ void QAscMainPanel::onStartPageReady()
         Utils::isTempLicense() ?
             checkActivation() : beginProgram();
     }
+}
+
+void QAscMainPanel::onBuyNow()
+{
+#ifdef _AVS
+//    GET_REGISTRY_SYSTEM(_reg_system)
+//    _reg_system.value("IBuy").toString();
+//    _reg_system.value("IBuyAbout").toString();
+
+    onLink("https://store.avs4you.com/order/checkout.php?PRODS=604132&QTY=1&CURRENCY=USD&DCURRENCY=USD\
+&LANGUAGES=en,de,fr,es,it,ja,nl,da,ko,pl,ru,pt&CART=1&CARD=1&CLEAN_CART=ALL&SHORT_FORM=1&AUTO_PREFILL=1&SRC=InProductAbout");
+#else
+    onLink(URL_BUYNOW);
+#endif
 }
 
 void QAscMainPanel::beginProgram(bool checklic, bool veredition)

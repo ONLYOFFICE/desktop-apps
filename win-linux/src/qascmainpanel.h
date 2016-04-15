@@ -90,7 +90,7 @@ private:
     void cmdMainPage(const QString&, const QString&) const;
     void beginProgram(bool checklic = true, bool veredition = true);
 
-    void fillUserName(QString& fn, QString& ln);
+    void readSystemUserName(wstring& first, wstring& last);
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
@@ -139,6 +139,7 @@ public slots:
     void onUnregisteredFileSave(int);
 
     void onStartPageReady();
+    void onBuyNow();
 
 private:
     std::wstring    m_sDownloadName;
