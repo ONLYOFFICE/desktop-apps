@@ -324,6 +324,10 @@ $(document).ready(function() {
         }
     });
 
+    $('.buynow').click((e)=>{
+        window.AscDesktopEditor.execCommand('app:buynow', '');
+    });
+
     setTimeout(()=>{
         if (window.AscDesktopEditor) {
             window.AscDesktopEditor.LocalFileRecovers();

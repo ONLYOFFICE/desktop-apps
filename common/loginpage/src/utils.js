@@ -154,17 +154,12 @@ utils.defines.FileFormat = {
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
 utils.defines.links = window.brand == 'ivo' ? {
-    buynow: "http://www.ivolgapro.ru/buynow",
     regnew: 'http://www.ivolgapro.ru/registration',
     restorepass: 'http://www.ivolgapro.ru/signin'
 } : window.brand == 'avs' ? {
-    buynow: 'https://store.avs4you.com/order/checkout.php?PRODS=604132&QTY=1&CURRENCY=USD&DCURRENCY=USD'+
-                '&LANGUAGES=en,de,fr,es,it,ja,nl,da,ko,pl,ru,pt&CART=1&CARD=1&CLEAN_CART=ALL&SHORT_FORM=1'+
-                '&AUTO_PREFILL=1&SRC=InProductAbout',
-    regnew: 'https://www.onlyoffice.com/registration.aspx',
-    restorepass: 'https://www.onlyoffice.com/signin.aspx'
+    regnew: '',
+    restorepass: ''
 } : {
-    buynow: 'http://www.onlyoffice.com/',
     regnew: 'https://www.onlyoffice.com/registration.aspx',
     restorepass: 'https://www.onlyoffice.com/signin.aspx'
 };
