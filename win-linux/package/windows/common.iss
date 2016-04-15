@@ -1,6 +1,6 @@
 ﻿
 ;#define _IVOLGA_PRO
-#define _AVS
+;#define _AVS
 ;#define _AVS_LIGHT_VERSION
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
@@ -167,10 +167,8 @@ function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: P
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
 //procedure checkArchitectureVersion; forward;
-//function GetHKLM: Integer; forward;
-#ifdef _AVS
-//procedure DoInstall(); forward;
-//procedure DoInstallDone(); forward;
+#ifndef _AVS
+function GetHKLM: Integer; forward;
 #endif
 
 procedure InitializeWizard();

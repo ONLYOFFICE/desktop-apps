@@ -290,8 +290,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     wstring wparams = params.toStdWString();
     wparams.replace(wparams.find(L"%3"), 2, first_name);
-    if (last_name.size())
-        wparams.replace(wparams.find(L"%4"), 2, last_name);
+    wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 }
 
