@@ -36,8 +36,8 @@
     var _extra = {
         en: {
             welWelcome: `Welcome to ${_app_name}!`,
-            welDescr: 'Edit and create text documents, spreadsheets and presentation. ' + 
-                'Enjoy high quality of document processing & formating fidelity.' +
+            welDescr: 'Edit and create text documents, spreadsheets and presentations. ' +
+                'Enjoy high quality of document processing & formatting fidelity.' +
                 '<br><br><b>100% compatible with MS Office formats.</b>'
         },
         ru: {
