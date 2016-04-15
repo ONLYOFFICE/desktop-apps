@@ -27,6 +27,7 @@ if %OS%==32BIT (
 ) else (
     set qmake="C:\Qt\Qt5.5.1\5.5\msvc2013_64\bin\qmake.exe" 
     set vcvars="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86_amd64
+    set mt="C:\Program Files (x86)\Windows Kits\8.1\bin\x64\mt.exe"
     set iscc="C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
     set iss_project=install_x64.iss
     set inst_name=DesktopEditors_x64.exe
@@ -46,11 +47,11 @@ if %is_update_libs%==y (
 
 :: compile application
 if %brand%==ivolga (
-    set def="DEFINES+=_IVOLGA_PRO" "DEFINES-=_AVS"
+    set def="DEFINES+=_IVOLGA_PRO" "DEFINES-=_AVS" "CONFIG+=ivolga_theme" "CONFIG-=avs_theme"
 ) else if %brand%==avs (
-    set def="DEFINES-=_IVOLGA_PRO" "DEFINES+=_AVS" "CONFIG+=avs_theme"
+    set def="DEFINES-=_IVOLGA_PRO" "DEFINES+=_AVS" "CONFIG+=avs_theme" "CONFIG-=ivolga_theme" 
 ) else (
-    set def="DEFINES-=_IVOLGA_PRO _AVS"
+    set def="DEFINES-=_IVOLGA_PRO _AVS" "CONFIG-=ivolga_theme avs_theme"
 )
 
 if %is_compile_app%==y (
@@ -73,6 +74,7 @@ if %is_compile_app%==y (
         goto :exit
     )
 
+    rem %mt% -manifest ..\res\manifest\DesktopEditors.manifest -updateresource:.\release\DesktopEditors.exe
     popd
 )
 

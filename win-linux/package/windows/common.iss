@@ -1,6 +1,6 @@
 ﻿
 ;#define _IVOLGA_PRO
-;#define _AVS
+#define _AVS
 ;#define _AVS_LIGHT_VERSION
 
 #define sAppName            'ONLYOFFICE Desktop Editors'
@@ -40,6 +40,7 @@
 [Setup]
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
+AppVersion                ={#sAppVersion}
 VersionInfoVersion        ={#sAppVersion}
 
 #ifdef _IVOLGA_PRO
