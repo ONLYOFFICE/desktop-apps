@@ -78,6 +78,8 @@ USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 QT_PATH := $(shell qmake -query QT_INSTALL_BINS)
 
+PLATFORM := linux_64_static_stdlib
+
 .PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm
@@ -97,14 +99,14 @@ clean:
 desktopeditor:
 	mkdir -p $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/bin/linux/*.S $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/x2t $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/*.so* $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/$(PLATFORM)/x2t $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/lib/$(PLATFORM)/*.so* $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/bin/icu/linux_64/*.so* $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/empty $(CONVERTER_PATH)
 	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
 	
-	cp -rf ../../../../core/build/lib/linux_64_static_stdlib/HtmlFileInternal $(PROGRAM_PATH)	
+	cp -rf ../../../../core/build/lib/$(PLATFORM)/HtmlFileInternal $(PROGRAM_PATH)	
 	cp -rf ../../../../core/build/cef/linux_64/* $(PROGRAM_PATH)
 
 	cp -rf ../../../../dictionaries $(PROGRAM_PATH)/
