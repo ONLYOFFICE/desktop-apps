@@ -4,6 +4,7 @@ QT  += core gui widgets gui-private widgets-private core-private printsupport
 TEMPLATE = app
 CONFIG += app_bundle
 CONFIG += c++11
+CONFIG += console
 
 TARGET = DesktopEditors
 
