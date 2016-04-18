@@ -368,17 +368,19 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 Source: .\launch.bat;           DestDir: {app}\;
 
 Source: ..\..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
-#ifdef _IVOLGA_PRO
+#if   defined(_IVOLGA_PRO)
 Source: ..\..\res\icons\ivolga\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\eula_ivolgapro.htm;     DestDir: {app}; DestName: LICENSE.htm;
+Source: data\projicons_nct.exe;                                 DestDir: {app}; DestName: {#iconsExe};
 #elif defined(_AVS)
 #else
-Source: ..\..\res\icons\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.html;     DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
+Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\..\common\package\license\eula_onlyoffice.htm; DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\..\common\package\license\eula_onlyoffice.htm;    DestDir: {app}; DestName: LICENSE.htm;
+Source: data\projicons_asc.exe;                                 DestDir: {app}; DestName: {#iconsExe};
 #endif
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;

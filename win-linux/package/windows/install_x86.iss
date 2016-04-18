@@ -25,12 +25,6 @@ Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 
 Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
-#ifdef _IVOLGA_PRO
-Source: data\projicons_nct.exe;                           DestDir: {app}\; DestName: {#iconsExe};
-#elif defined(_AVS)
-#else
-Source: data\projicons_asc.exe;                           DestDir: {app}\; DestName: {#iconsExe};
-#endif
 Source: data\libs\qt\win32\*;                             DestDir: {app}\; Flags: ignoreversion recursesubdirs;
 ;Source: data\libs\chromium\win_xp\dbghelp.dll;            DestDir: {app}\; Flags: onlyifdoesntexist; OnlyBelowVersion: 6.0;
 ;Source: data\libs\chromium\win32\dbghelp.dll;             DestDir: {app}\; Flags: onlyifdoesntexist; MinVersion: 6.0; Check: libExists('dbghelp.dll');
