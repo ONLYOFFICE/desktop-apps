@@ -8,6 +8,9 @@ ChangesAssociations=true
 #ifdef _IVOLGA_PRO
 en.AssociateDescription =Associate office document file types with Ivolga PRO
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с Иволга ПРО
+#elif defined(_AVS)
+en.AssociateDescription =Associate office document file types with AVS Document Editor
+ru.AssociateDescription =Ассоциировать типы файлов офисных документов с AVS Document Editor
 #else
 en.AssociateDescription =Associate office document file types with ONLYOFFICE
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с ONLYOFFICE
