@@ -183,6 +183,8 @@ end;
 function InitializeSetup(): Boolean;
 var
   OutResult: Boolean;
+  path, mess: string;
+  regkey: integer;
 begin
   OutResult := True;
 
@@ -190,28 +192,29 @@ begin
   begin 
     if Is64BitInstallMode then
     begin
-#ifdef _IVOLGA_PRO
-      if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\IvolgaPRO\DesktopEditors') then
-#elif defined(_AVS)
-      if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\AVS4YOU\DocumentEditor') then
-#else
-      if RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\DesktopEditors') then
-#endif
-      begin      
-        MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,64,32}'), mbInformation, MB_OK)
+      regkey := HKLM32;
+      mess := ExpandConstant('{cm:WarningWrongArchitecture,64,32}')
+    end else
+    begin
+      regkey := HKLM64;
+      mess := ExpandConstant('{cm:WarningWrongArchitecture,32,64}')
+    end;
+
+    if RegQueryStringValue(regkey,
+  #if   defined (_IVOLGA_PRO)
+        'SOFTWARE\IvolgaPRO\DesktopEditors',
+  #elif defined (_AVS)
+        'SOFTWARE\AVS4YOU\DocumentEditor',
+  #else
+        'SOFTWARE\ONLYOFFICE\DesktopEditors',
+  #endif
+        'AppPath', path) then
+    begin
+      if FileExists(path + '\{#NAME_EXE_OUT}') then
+      begin
+        MsgBox(mess, mbInformation, MB_OK)
         OutResult := False
       end
-    end else
-#ifdef _IVOLGA_PRO
-    if RegKeyExists(GetHKLM(), 'SOFTWARE\IvolgaPRO\DesktopEditors') then
-#elif defined(_AVS)
-    if RegKeyExists(GetHKLM(), 'SOFTWARE\AVS4YOU\DocumentEditor') then
-#else
-    if RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\DesktopEditors') then
-#endif
-    begin
-      MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
-      OutResult := False
     end
   end;
 
