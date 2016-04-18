@@ -88,6 +88,7 @@ private:
     bool borderless;
     bool aeroShadow;
     bool borderlessResizeable;
+    UINT idActivationMessage = 0;
 
     struct sizeType
     {

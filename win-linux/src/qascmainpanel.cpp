@@ -1511,12 +1511,24 @@ void QAscMainPanel::onStartPageReady()
 void QAscMainPanel::onBuyNow()
 {
 #ifdef _AVS
-//    GET_REGISTRY_SYSTEM(_reg_system)
-//    _reg_system.value("IBuy").toString();
-//    _reg_system.value("IBuyAbout").toString();
+    GET_REGISTRY_SYSTEM(_reg_system)
+    onLink(_reg_system.value("IBuyAbout").toString());
 
-    onLink("https://store.avs4you.com/order/checkout.php?PRODS=604132&QTY=1&CURRENCY=USD&DCURRENCY=USD\
-&LANGUAGES=en,de,fr,es,it,ja,nl,da,ko,pl,ru,pt&CART=1&CARD=1&CLEAN_CART=ALL&SHORT_FORM=1&AUTO_PREFILL=1&SRC=InProductAbout");
+    /*
+    SYSTEM_INFO info{0};
+    GetNativeSystemInfo(&info);
+
+    QSettings _sett(info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64 ?
+                            "HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\AVS4YOU\\Registration" :
+                            "HKEY_LOCAL_MACHINE\\Software\\AVS4YOU\\Registration", QSettings::NativeFormat);
+
+    QString _reg_path = _sett.value("PathToExe").toString();
+    if ( !_reg_path.isEmpty() && QFileInfo(_reg_path).exists() ) {
+        QStringList args{"\"-reg:Software\\AVS4YOU\\DocumentEditor\""};
+        QProcess::startDetached(_reg_path, args);
+    }
+    */
+
 #else
     onLink(URL_BUYNOW);
 #endif

@@ -133,6 +133,9 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     m_nTimerLanguageId = 5000;
 
     SetTimer(hWnd, m_nTimerLanguageId, 100, NULL);
+
+    WCHAR * MSG_Registration_String{L"AVS4YOUREGISTRATIONMSG"};
+    idActivationMessage = RegisterWindowMessage( MSG_Registration_String );
 }
 
 CMainWindow::~CMainWindow()
@@ -459,6 +462,12 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             LocalFree(szArglist);
         }
         break;}
+    default: {
+        if (message == window->idActivationMessage ) {
+            qDebug() << "activation from avs";
+        }
+        break;
+    }
 #if 0
     case WM_INPUTLANGCHANGE:
     case WM_INPUTLANGCHANGEREQUEST:
