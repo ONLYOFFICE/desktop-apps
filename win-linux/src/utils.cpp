@@ -282,6 +282,7 @@ QString Utils::systemLocationCode()
 
     return QString::fromWCharArray(_country_code);
 #else
+    return QLocale().name().split('_').at(1);
 #endif
 }
 

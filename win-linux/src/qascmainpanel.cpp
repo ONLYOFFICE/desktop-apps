@@ -1279,14 +1279,14 @@ void QAscMainPanel::onDocumentPrint(void * opts)
         pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_END);
         pView->Apply(pEvent);
 //        RELEASEOBJECT(pEvent)
+
+#ifndef _WIN32
+        RELEASEOBJECT(dialog)
+#endif
     }
 
     printInProcess = false;
     RELEASEINTERFACE(pData)
-
-#ifndef _WIN32
-    RELEASEOBJECT(dialog)
-#endif
 }
 
 void QAscMainPanel::onDialogSave(std::wstring sName, uint id)

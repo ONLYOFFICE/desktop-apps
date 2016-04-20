@@ -15,7 +15,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
-CORE_LIB_PATH = ../../core/build
+CORE_LIB_PATH = ../../core/Build
 
 INCLUDEPATH += $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/include \
                 $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview \
