@@ -1087,7 +1087,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
                 syncLicenseToJS(true);
             }
         } else {
-            syncLicenseToJS(true);
+            syncLicenseToJS(!pData->get_IsFree(), false);
         }
     }
 }
