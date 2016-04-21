@@ -367,6 +367,9 @@ void QAscMainPanel::pushButtonCloseClicked()
                 QTimer::singleShot(10, this, [=]{emit mainWindowClose();});
                 break;
             } else {
+                if (m_mainWindowState == Qt::WindowMinimized)
+                    emit mainWindowChangeState(Qt::WindowNoState);
+
                 // attempt to save the modified document
                 _answ_ = trySaveDocument(_index_);
 
