@@ -95,6 +95,7 @@ signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
     void mainWindowClose();
+    void mainPageReady();
 
 public slots:
     void pushButtonMinimizeClicked();

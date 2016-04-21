@@ -177,7 +177,8 @@ begin
   InitializeGuidesLink();
 #endif
 
-  InitializeAssociatePage
+  if not WizardSilent then
+    InitializeAssociatePage();
 end;
 
 function InitializeSetup(): Boolean;

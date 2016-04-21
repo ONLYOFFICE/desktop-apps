@@ -63,6 +63,8 @@
 
   #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
   #define REG_APP_NAME "DesktopEditors"
+  #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/ivolgapro/appcast.xml"
+
 #elif defined(_AVS)
   #define PROD_ID_DESKTOP_EDITORS 98
 
@@ -84,7 +86,10 @@
   #define WINDOW_NAME "AVS Document Editor"
   #define URL_BUYNOW "http://www.avs4you.com/Register.aspx?utm_source=300&utm_medium=Register&utm_content=Register"
   #define REG_APP_NAME "DocumentEditor"
-#else
+  #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/avs/appcast.xml"
+
+#else // end _AVS
+
   #define PROD_ID_DESKTOP_EDITORS 302
 
   #define APP_NAME "DesktopEditors"
@@ -105,6 +110,8 @@
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
   #define REG_APP_NAME "DesktopEditors"
+  #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcast.xml"
+
 #endif
 
 #define WINDOW_TITLE_MIN_WIDTH 400

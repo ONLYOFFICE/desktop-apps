@@ -59,7 +59,6 @@
 #include "cprintdialog.h"
 #include "shlobj.h"
 #include "lmcons.h"
-#include "csplash.h"
 
 extern HWND gTopWinId;
 #define CUSTOM_BORDER_WIDTH 0
@@ -1501,9 +1500,7 @@ void QAscMainPanel::selfActivation()
 
 void QAscMainPanel::onStartPageReady()
 {
-#ifdef _WIN32
-    CSplash::hideSplash();
-#endif
+    emit mainPageReady();
 
     if (!m_waitLicense) {
         Utils::isTempLicense() ?

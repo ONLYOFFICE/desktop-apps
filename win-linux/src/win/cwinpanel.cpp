@@ -54,11 +54,17 @@
 
 #include "../defines.h"
 #include "../utils.h"
+#include "../csplash.h"
 
 //#include <QScreen>
 #include <QSettings>
-
 #include <QPrinterInfo>
+
+#ifdef _UPDMODULE
+  #include "3dparty/WinSparkle/include/winsparkle.h"
+  #include "../version.h"
+#endif
+
 
 extern byte g_dpi_ratio;
 extern QString g_lang;
@@ -77,6 +83,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
     connect(panel, &QAscMainPanel::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
     connect(panel, &QAscMainPanel::mainWindowClose, this, &CWinPanel::slot_windowClose);
+    connect(panel, &QAscMainPanel::mainPageReady, this, &CWinPanel::slot_mainPageReady);
 
     /*
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
@@ -220,4 +227,32 @@ void CWinPanel::slot_windowChangeState(Qt::WindowState s)
     }
 
     ShowWindow(parentWindow(), cmdShow);
+}
+
+void CWinPanel::slot_mainPageReady()
+{
+    CSplash::hideSplash();
+
+#ifdef _UPDMODULE
+  #ifdef _IVOLGA_PRO
+    QString _prod_name = APP_TITLE;
+  #elif defined(_AVS)
+    QString _prod_name = APP_TITLE;
+  #else
+    QString _prod_name = VER_PRODUCTNAME_STR;
+  #endif
+
+    GET_REGISTRY_USER(_user)
+    if (!_user.contains("CheckForUpdates")) {
+        _user.setValue("CheckForUpdates", "1");
+    }
+
+    win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
+                                    _prod_name.toStdWString().c_str(),
+                                    QString(VER_FILEVERSION_STR).toStdWString().c_str());
+    win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+    win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
+    win_sparkle_set_lang(g_lang.toLatin1());
+    win_sparkle_init();
+#endif
 }

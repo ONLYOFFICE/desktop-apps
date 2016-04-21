@@ -66,6 +66,7 @@ private:
 private slots:
     void slot_windowClose();
     void slot_windowChangeState(Qt::WindowState);
+    void slot_mainPageReady();
 };
 
 #endif // QMAINPANEL_H
