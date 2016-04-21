@@ -83,7 +83,6 @@ RC_FILE = version.rc
 
 ivolga_theme {
     DEFINES += _IVOLGA_PRO
-    CONFIG += updmodule
     RESOURCES += res/ivolga.qrc
 }
 
@@ -196,6 +195,7 @@ win32 {
         PLATFORM_BUILD = win_32
     }
 
+    CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle

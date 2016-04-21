@@ -135,8 +135,8 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     SetTimer(hWnd, m_nTimerLanguageId, 100, NULL);
 
 #ifdef _AVS
-    WCHAR * MSG_Registration_String{L"AVS4YOUREGISTRATIONMSG"};
-    idActivationMessage = RegisterWindowMessage( MSG_Registration_String );
+    WCHAR MSG_Registration_String[]{L"AVS4YOUREGISTRATIONMSG"};
+    idActivationMessage = RegisterWindowMessage(MSG_Registration_String);
 #endif
 }
 
