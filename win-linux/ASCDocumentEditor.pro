@@ -74,9 +74,7 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
-#DEFINES += _IVOLGA_PRO
-#CONFIG += ivolga_theme
-#DEFINES += _AVS
+CONFIG += ivolga_theme
 #CONFIG += avs_theme
 
 RESOURCES += resources.qrc
@@ -84,10 +82,13 @@ RC_FILE = version.rc
 #RES_FILE = version.res
 
 ivolga_theme {
+    DEFINES += _IVOLGA_PRO
+    CONFIG += updmodule
     RESOURCES += res/ivolga.qrc
 }
 
 avs_theme {
+    DEFINES += _AVS
     RESOURCES += res/avs.qrc
 }
 
@@ -193,6 +194,11 @@ win32 {
     } else {
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
         PLATFORM_BUILD = win_32
+    }
+
+    updmodule {
+        DEFINES += _UPDMODULE
+        LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
     }
 
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -llibcef

@@ -134,8 +134,10 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
 
     SetTimer(hWnd, m_nTimerLanguageId, 100, NULL);
 
+#ifdef _AVS
     WCHAR * MSG_Registration_String{L"AVS4YOUREGISTRATIONMSG"};
     idActivationMessage = RegisterWindowMessage( MSG_Registration_String );
+#endif
 }
 
 CMainWindow::~CMainWindow()
@@ -463,9 +465,11 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         }
         break;}
     default: {
+#ifdef _AVS
         if (message == window->idActivationMessage ) {
             qDebug() << "activation from avs";
         }
+#endif
         break;
     }
 #if 0

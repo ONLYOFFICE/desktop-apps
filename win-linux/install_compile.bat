@@ -16,6 +16,7 @@ if %OS%==32BIT (
 )
 
 set /p APP_TYPE=what app type create (ivolga, avs, onlyoffice):
+set /p SIGN_LIBS=do you want to sign libs (y, n):
 if %APP_TYPE%==ivolga (
     set CERT_NAME="NCT"
     set ISS_DEF=/d_IVOLGA_PRO
@@ -35,12 +36,14 @@ set devserver=192.168.3.118
 set SignTool=\\%devserver%\Tools\DigitalSign\DigitalSignClient.exe
 set Exchange=\\%devserver%\Exchange\Files\Office\Desktop
 
-@echo.
-@echo sign application and libraries
-@echo.
-pushd .\package\windows
-call sign.bat %CERT_NAME%
-popd
+if "%SIGN_LIBS%"=="y" (
+    @echo.
+    @echo sign application and libraries
+    @echo.
+    pushd .\package\windows
+    call sign.bat %CERT_NAME%
+    popd
+)
 
 @echo compile project installation
 %iss_compiler% %ISS_DEF% %proj_name%

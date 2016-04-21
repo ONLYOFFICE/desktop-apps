@@ -47,11 +47,11 @@ if %is_update_libs%==y (
 
 :: compile application
 if %brand%==ivolga (
-    set def="DEFINES+=_IVOLGA_PRO" "DEFINES-=_AVS" "CONFIG+=ivolga_theme" "CONFIG-=avs_theme"
+    set def="CONFIG+=ivolga_theme" "CONFIG-=avs_theme"
 ) else if %brand%==avs (
-    set def="DEFINES-=_IVOLGA_PRO" "DEFINES+=_AVS" "CONFIG+=avs_theme" "CONFIG-=ivolga_theme" 
+    set def="CONFIG-=ivolga_theme" "CONFIG+=avs_theme"
 ) else (
-    set def="DEFINES-=_IVOLGA_PRO _AVS" "CONFIG-=ivolga_theme avs_theme"
+    set def="CONFIG-=ivolga_theme avs_theme"
 )
 
 if %is_compile_app%==y (

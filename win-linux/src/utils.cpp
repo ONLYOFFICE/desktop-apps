@@ -266,6 +266,21 @@ bool Utils::hasLicense(void * m)
 }
 
 //#define ARRSIZE(arr) (sizeof(arr)/sizeof(*(arr)))
+/*
+// Dynamic loading of symbols that may be unavailable on earlier versions of Windows
+
+template<typename T>
+inline T* LoadDynamicFunc(const char *func, const char *dll)
+{
+    return reinterpret_cast<T*>(GetProcAddress(GetModuleHandleA(dll), func));
+}
+
+#define LOAD_DYNAMIC_FUNC(func, dll) \
+    LoadDynamicFunc<decltype(func)>(#func, #dll)
+
+auto f_GetThreadUILanguage = LOAD_DYNAMIC_FUNC(GetThreadUILanguage, kernel32);
+if (f_GetThreadUILanguage) lang = f_GetThreadUILanguage();
+*/
 QString Utils::systemLocationCode()
 {
 #define LOCATION_MAX_LEN 9
