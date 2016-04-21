@@ -74,7 +74,7 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
-CONFIG += ivolga_theme
+#CONFIG += ivolga_theme
 #CONFIG += avs_theme
 
 RESOURCES += resources.qrc
