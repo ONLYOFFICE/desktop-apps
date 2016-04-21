@@ -36,14 +36,16 @@ set devserver=192.168.3.118
 set SignTool=\\%devserver%\Tools\DigitalSign\DigitalSignClient.exe
 set Exchange=\\%devserver%\Exchange\Files\Office\Desktop
 
+@echo.
+@echo sign application and libraries
+@echo.
+pushd .\package\windows
 if "%SIGN_LIBS%"=="y" (
-    @echo.
-    @echo sign application and libraries
-    @echo.
-    pushd .\package\windows
+    call sign.bat %CERT_NAME% --sign-libs
+) else (
     call sign.bat %CERT_NAME%
-    popd
 )
+popd
 
 @echo compile project installation
 %iss_compiler% %ISS_DEF% %proj_name%
