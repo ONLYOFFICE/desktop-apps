@@ -368,7 +368,7 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 [Files]
 Source: .\launch.bat;           DestDir: {app}\;
 
-Source: ..\..\build\Release\release\DesktopEditors.exe;  DestDir: {app}\; DestName: {#NAME_EXE_OUT}; 
+Source: ..\..\build\Release\release\{#NAME_EXE_OUT};            DestDir: {app};
 #if   defined(_IVOLGA_PRO)
 Source: ..\..\res\icons\ivolga\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
 Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;

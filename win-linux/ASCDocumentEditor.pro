@@ -206,6 +206,14 @@ win32 {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lascdocumentscore
     } else {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
+
+        ivolga_theme {
+            TARGET = IvolgaPRO
+        }
+
+        avs_theme {
+            TARGET = AVSDocumentEditor
+        }
     }
 
     message($$PLATFORM_BUILD)
