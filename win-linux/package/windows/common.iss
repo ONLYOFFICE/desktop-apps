@@ -438,6 +438,7 @@ Filename: {app}\launch.bat; Parameters: {#NAME_EXE_OUT}; Description: {cm:Launch
 
 [Registry]
 ;Root: HKLM; Subkey: {#APP_REG_PATH};  Flags: uninsdeletekey;
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;   ValueData: {app};                Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;

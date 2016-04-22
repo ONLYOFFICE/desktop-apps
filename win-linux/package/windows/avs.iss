@@ -90,7 +90,6 @@ Root: HKLM32; Subkey: SOFTWARE\AVS4YOU\Navigator; ValueType: string; ValueName: 
 Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "IDownload"; ValueData: "http://www.avs4you.com/downloads/{#sShortAppName}_x86.exe"; Check: not IsWin64 or not Is64BitInstallMode;
 Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "IDownload"; ValueData: "http://www.avs4you.com/downloads/{#sShortAppName}_x64.exe"; Check: IsWin64 and Is64BitInstallMode;
 
-Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "AppPath";   ValueData: "{app}";                 Flags: uninsdeletevalue;
 Root: HKLM; Subkey: "{#APP_REG_PATH}";            ValueType: string; ValueName: "PathToExe"; ValueData: "{app}\{#NAME_EXE_OUT}"; Flags: uninsdeletevalue;
 
 
