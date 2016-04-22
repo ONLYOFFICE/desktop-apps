@@ -38,6 +38,8 @@
 #include <QRegularExpression>
 #include <QIcon>
 #include <QSysInfo>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -244,6 +246,12 @@ QString Utils::getUserPath()
 #else
     return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
 #endif
+}
+
+QRect Utils::getScreenGeometry(const QPoint& leftTop)
+{
+    int _scr_num = QApplication::desktop()->screenNumber(leftTop);
+    return QApplication::desktop()->screenGeometry(_scr_num);
 }
 
 bool Utils::hasLicense(void * m)

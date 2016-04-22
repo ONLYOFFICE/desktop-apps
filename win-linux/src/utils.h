@@ -46,6 +46,7 @@ public:
     static QString lastPath(int type);
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
+    static QRect getScreenGeometry(const QPoint&);
 
     static void createTempLicense();
     static bool isTempLicense();

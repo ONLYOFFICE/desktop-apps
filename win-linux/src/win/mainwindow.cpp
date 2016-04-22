@@ -72,12 +72,12 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
 
     // adjust window size
     QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
-    QRect _screen_size = qApp->primaryScreen()->availableGeometry();
+    QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if (_screen_size.width() < _window_rect.width())
-        _window_rect.setWidth(_screen_size.width()), _window_rect.setLeft(0);
+        _window_rect.setLeft(_screen_size.left()), _window_rect.setWidth(_screen_size.width());
 
     if (_screen_size.height() < _window_rect.height())
-        _window_rect.setHeight(_screen_size.width()), _window_rect.setTop(0);
+        _window_rect.setTop(_screen_size.top()), _window_rect.setHeight(_screen_size.height());
 
     m_pManager = pManager;
     m_pManager->StartSpellChecker();
@@ -125,7 +125,8 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     if (_is_maximized) {
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(hWnd, &wp)) {
-            wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.left()};
+            wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.bottom()};
+
             SetWindowPlacement(hWnd, &wp);            
         }
     }
