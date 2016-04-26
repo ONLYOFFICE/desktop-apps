@@ -62,7 +62,6 @@ public:
 //    int  checkModified(const QString&);
     void checkActivation();
     void selfActivation();
-    int  getLicenseType();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);

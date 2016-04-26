@@ -44,7 +44,8 @@ HEADERS += \
     src/utils.h \
     src/cstyletweaks.h \
     src/csplash.h \
-    src/chelp.h
+    src/chelp.h \
+    src/clicensekeeper.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -70,7 +71,8 @@ SOURCES += \
     src/utils.cpp \
     src/cstyletweaks.cpp \
     src/csplash.cpp \
-    src/chelp.cpp
+    src/chelp.cpp \
+    src/clicensekeeper.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

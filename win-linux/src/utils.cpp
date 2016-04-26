@@ -148,84 +148,6 @@ void Utils::keepLastPath(int t, const QString& p)
         _reg_user.setValue("savePath", p);
 }
 
-void Utils::createTempLicense()
-{
-    QString _file_name = licenseDir();
-#ifdef _WIN32
-    _file_name.append("/home.lic");
-#else
-    _file_name.append("/.home.lic");
-#endif
-
-    QFile _file(_file_name);
-    if (_file.open(QFile::WriteOnly)) {
-        _file.write("Ȓ»оЇ", 7);
-        _file.close();
-
-#ifdef _WIN32
-        SetFileAttributes(_file_name.toStdWString().c_str(), FILE_ATTRIBUTE_HIDDEN);
-#endif
-    }
-}
-
-bool Utils::isTempLicense()
-{
-    QString _file_name = licenseDir();
-#ifdef _WIN32
-    _file_name.append("/home.lic");
-#else
-    _file_name.append("/.home.lic");
-#endif
-
-    return QFileInfo(_file_name).exists();
-}
-
-void Utils::removeTempLicense()
-{
-    QString _file_name = licenseDir();
-#ifdef _WIN32
-    _file_name.append("/home.lic");
-#else
-    _file_name.append("/.home.lic");
-#endif
-
-    QFile::remove(_file_name);
-}
-
-QString Utils::licenseDir()
-{
-    return QString::fromStdWString(licenseDirW());
-}
-
-wstring Utils::licenseDirW()
-{
-    std::wstring sAppData(L"");
-#ifdef _WIN32
-    WCHAR szPath[MAX_PATH];
-    if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
-        sAppData = std::wstring(szPath);
-        std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-        sAppData.append(QString(APP_LICENSE_PATH).toStdWString());
-    }
-
-    if (sAppData.size()) {
-        QDir().mkpath(QString::fromStdWString(sAppData));
-    }
-
-#else
-    sAppData = QString("/var/lib").append(APP_LICENSE_PATH).toStdWString();
-    QFileInfo fi(QString::fromStdWString(sAppData));
-    if (!Utils::makepath(fi.absoluteFilePath())) {
-        if (!fi.isWritable()) {
-            // TODO: check directory permissions and warn the user
-            qDebug() << "directory permission error";
-        }
-    }
-#endif
-
-    return sAppData;
-}
-
 bool Utils::makepath(const QString& p)
 {
 #ifdef __linux
@@ -252,25 +174,6 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
 {
     int _scr_num = QApplication::desktop()->screenNumber(leftTop);
     return QApplication::desktop()->screenGeometry(_scr_num);
-}
-
-bool Utils::hasLicense(void * m)
-{
-    CAscApplicationManager * _manager = static_cast<CAscApplicationManager *>(m);
-
-    NSEditorApi::CAscLicenceActual * pData = new NSEditorApi::CAscLicenceActual;
-    pData->AddRef();
-    pData->put_Path(Utils::licenseDirW());
-    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
-    pEvent->m_pData = pData;
-    _manager->Apply(pEvent);
-
-    bool _out = pData->get_Licence() && pData->get_DaysLeft() > 0;
-//    delete pData, pData = NULL;
-//    delete pEvent, pEvent = NULL;
-    return _out;
 }
 
 //#define ARRSIZE(arr) (sizeof(arr)/sizeof(*(arr)))
