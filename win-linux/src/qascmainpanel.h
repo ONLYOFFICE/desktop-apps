@@ -117,7 +117,6 @@ public slots:
     void onDocumentDownload(void * info);
 
     void onLogin(QString);
-    void onLogout();
     void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);

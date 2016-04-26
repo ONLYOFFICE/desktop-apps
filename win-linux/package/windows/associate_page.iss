@@ -132,8 +132,15 @@ begin
   AudioExts[15] := 'XPS';
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
-  
+
+#if defined(_AVS)
+  prefix := 'AVS.';
+#elif defined(_IVOLGA_PRO)
+  prefix := 'IVP.';
+#else
   prefix := 'ASC.';
+#endif
+
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
   ExtensionRegistryInfo[1]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
   ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '12';

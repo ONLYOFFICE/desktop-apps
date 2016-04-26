@@ -895,12 +895,6 @@ void QAscMainPanel::onLogin(QString params)
     _reg_user.setValue("portal", m_pWidgetProfile->info()->portal());
 }
 
-void QAscMainPanel::onLogout()
-{
-//    m_pTabs->closeAllEditors();
-//    loadStartPage();
-}
-
 void QAscMainPanel::onActivate(QString key)
 {
     doActivate(key);
@@ -954,6 +948,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
         } else {
             mess.showModal(descr, QMessageBox::Information);
             beginProgram(false, false);
+            syncLicenseToJS(false, false);
         }
     } else
     if (!pData->get_Licence()) {
@@ -978,13 +973,20 @@ void QAscMainPanel::doLicenseWarning(void * data)
         }
         syncLicenseToJS(false);
 #else
-        mess.setButtons(tr("Activate"), tr("Continue")+":focus");
-        int _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+        int _modal_res = 0;
+        if ( m_waitLicense ) {
+            m_waitLicense = false;
+            mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
+        } else {
+            mess.setButtons(tr("Activate"), tr("Continue")+":focus");
+            _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+
+        }
 
         syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
 #endif
     } else {
-        Utils::removeTempLicense();
+        CLicensekeeper::removeTempLicense();
 
         if (m_waitLicense) {
             m_waitLicense = false;
