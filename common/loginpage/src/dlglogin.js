@@ -62,6 +62,7 @@ window.LoginDlg = function() {
                 '</div>';
 
     var protocol = 'https://',
+        protarr = ['https://', 'http://'],
         startmodule = '/products/files/?desktop=true';
     var portal = undefined,
         email = undefined;
@@ -176,12 +177,10 @@ window.LoginDlg = function() {
             return;
         }
 
-        var url         = protocol + portal + "/api/2.0/authentication.json";
-        var check_url   = protocol + portal + "/api/2.0/people/@self.json";        
+        var url         = `${portal}/api/2.0/authentication.json`;
+        var check_url   = `${portal}/api/2.0/people/@self.json`;
 
-        disableDialog(true);
-        // setLoaderVisible(true);
-        checkResourceExists(check_url, function(r){
+        let chkcallback = (r)=> {
             if (r == 0) {
                 showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
                 // setLoaderVisible(false);
@@ -199,8 +198,16 @@ window.LoginDlg = function() {
 
                 document.body.appendChild(iframe);
 
-                sendData(url, {userName: email, password: pass}, iframe);
+                sendData(protocol+url, {userName: email, password: pass}, iframe);
             }
+        };
+
+        disableDialog(true);
+        // setLoaderVisible(true);
+        checkResourceExists((protocol = protarr[0]) + check_url, (r)=>{
+            r == 0 ?
+                checkResourceExists((protocol = protarr[1])+check_url, chkcallback) :
+                chkcallback(r);
         });
     };
 
