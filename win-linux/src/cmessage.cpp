@@ -131,6 +131,8 @@ int CMessage::showModal(const QString& mess, QMessageBox::Icon icon)
     int y = (rc.bottom - rc.top - m_pDlg.height())/2;
 
     m_pDlg.move(x, y);
+#else
+    m_pDlg.layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
 
     m_pDlg.exec();
