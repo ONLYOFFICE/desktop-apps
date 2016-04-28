@@ -115,7 +115,7 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     _hbox->setSpacing(0);
     _layout->addLayout(_hbox);
 
-    _labelLicense->setText("<a href=\"#\">"+tr("License")+"</a>");
+    _labelLicense->setText("<a href=\"#\" style=\"color:#3a83db;\">"+tr("License")+"</a>");
     _labelLicense->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
     connect(_labelLicense, &QLabel::linkActivated, [=](){
         if (m_eulaPath.size()) {
