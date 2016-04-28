@@ -54,6 +54,7 @@
 #include "utils.h"
 #include "version.h"
 #include "regex"
+#include "clicensekeeper.h"
 
 #ifdef _WIN32
 #include "cprintdialog.h"
@@ -513,7 +514,7 @@ int QAscMainPanel::trySaveDocument(int index)
         saveDlg.setFiles(m_pTabs->titleByIndex(index));
 
 #ifdef _AVS
-        if (!Utils::hasLicense(m_pManager)) {
+        if (!CLicensekeeper::hasActiveLicense()) {
             saveDlg.setText(tr("Do you want to save modified files?<br>Non-activated version, watermark will be added."));
         }
 #endif
@@ -730,14 +731,7 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
 
 #if !defined(_AVS)
     /* check the active license */
-    CAscLicenceActual * pData = new CAscLicenceActual;
-    pData->AddRef();
-    pData->put_Path(Utils::licenseDirW());
-    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
-    pEvent->m_pData = pData;
-    m_pManager->Apply(pEvent);
+    CAscLicenceActual * pData = CLicensekeeper::localLicense();
     /* ************************* */
 
     pData->put_DaysBetween(1);
@@ -901,12 +895,6 @@ void QAscMainPanel::onLogin(QString params)
     _reg_user.setValue("portal", m_pWidgetProfile->info()->portal());
 }
 
-void QAscMainPanel::onLogout()
-{
-//    m_pTabs->closeAllEditors();
-//    loadStartPage();
-}
-
 void QAscMainPanel::onActivate(QString key)
 {
     doActivate(key);
@@ -922,19 +910,10 @@ void QAscMainPanel::onActivated(void * data)
 
 void QAscMainPanel::doActivate(const QString& key)
 {
-    wstring sAppData = Utils::licenseDirW();
+    wstring sAppData = CLicensekeeper::licensePath();
     if (sAppData.size()) {
         m_waitLicense = true;
-
-        CAscLicenceKey * pData = new CAscLicenceKey;
-        pData->AddRef();
-        pData->put_Key(key.toStdString());
-        pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-        pData->put_Path(sAppData);
-
-        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_SEND_KEY);
-        pEvent->m_pData = pData;
-        m_pManager->Apply(pEvent);
+        CLicensekeeper::activateLicense(key);
     } else {
         CMessage mess(gTopWinId);
         mess.showModal(tr("Internal activation error"), QMessageBox::Critical);
@@ -943,38 +922,10 @@ void QAscMainPanel::doActivate(const QString& key)
 
 void QAscMainPanel::checkActivation()
 {
-    CAscLicenceActual * pData = new CAscLicenceActual;
-    pData->AddRef();
-    pData->put_Path(Utils::licenseDirW());
-    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
-    pEvent->m_pData = pData;
-    m_pManager->Apply(pEvent);
+    CAscLicenceActual * pData = CLicensekeeper::localLicense();
 
     doLicenseWarning(pData);
     RELEASEINTERFACE(pData)
-}
-
-int QAscMainPanel::getLicenseType()
-{
-    CAscLicenceActual * pData = new CAscLicenceActual;
-    pData->AddRef();
-    pData->put_Path(Utils::licenseDirW());
-    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_ACTUAL);
-    pEvent->m_pData = pData;
-    m_pManager->Apply(pEvent);
-
-    BYTE _ret_type = LICENSE_TYPE_NONE;
-    if (pData->get_IsFree())    _ret_type = LICENSE_TYPE_FREE; else
-    if (pData->get_IsDemo())    _ret_type = LICENSE_TYPE_TRIAL; else
-    if (pData->get_Licence())   _ret_type = LICENSE_TYPE_BUSINESS;
-
-    RELEASEINTERFACE(pData)
-
-    return _ret_type;
 }
 
 void QAscMainPanel::doLicenseWarning(void * data)
@@ -992,16 +943,17 @@ void QAscMainPanel::doLicenseWarning(void * data)
                 selfActivation();
             } else {
                 beginProgram(false);
-                Utils::createTempLicense();
+                CLicensekeeper::makeTempLicense();
             }
         } else {
             mess.showModal(descr, QMessageBox::Information);
             beginProgram(false, false);
+            syncLicenseToJS(false, false);
         }
     } else
     if (!pData->get_Licence()) {
 #if !defined(_AVS)
-        if ( Utils::isTempLicense() ) {
+        if ( CLicensekeeper::isTempLicense() ) {
             mess.setButtons(tr("Activate"), tr("Continue"));
             if (MODAL_RESULT_BTN1 == mess.showModal(tr("The application isn't activated!"), QMessageBox::Information)) {
                 g_lic_type = LICENSE_TYPE_FREE;
@@ -1021,13 +973,20 @@ void QAscMainPanel::doLicenseWarning(void * data)
         }
         syncLicenseToJS(false);
 #else
-        mess.setButtons(tr("Activate"), tr("Continue")+":focus");
-        int _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+        int _modal_res = 0;
+        if ( m_waitLicense ) {
+            m_waitLicense = false;
+            mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
+        } else {
+            mess.setButtons(tr("Activate"), tr("Continue")+":focus");
+            _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+
+        }
 
         syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
 #endif
     } else {
-        Utils::removeTempLicense();
+        CLicensekeeper::removeTempLicense();
 
         if (m_waitLicense) {
             m_waitLicense = false;
@@ -1327,7 +1286,7 @@ void QAscMainPanel::onLocalFileSaveAs(void * d)
 {
     bool _lic_cancel = false;
 #ifdef _AVS
-    if (!Utils::hasLicense(m_pManager)) {
+    if (!CLicensekeeper::hasActiveLicense()) {
         if (!m_silentSave) {
             CMessage mess(gTopWinId);
             mess.useApplyForAll(tr("don't show again"), false);
@@ -1481,21 +1440,9 @@ void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 
 void QAscMainPanel::selfActivation()
 {
-    CAscLicenceActual * pData = new CAscLicenceActual;
-    pData->put_Path(Utils::licenseDirW());
-    pData->put_ProductId(PROD_ID_DESKTOP_EDITORS);
-
-    CAscMenuEvent * pEvent;
-    if (g_lic_type == LICENSE_TYPE_FREE) {
-        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_FREE);
-        m_waitLicense = true;
-    } else {
-        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_LICENCE_GENERATE_DEMO);
-    }
-
-    pEvent->m_pData = pData;
-
-    m_pManager->Apply(pEvent);
+    g_lic_type == LICENSE_TYPE_FREE ?
+        CLicensekeeper::activateLicense("free"), m_waitLicense = true :
+        CLicensekeeper::activateLicense("demo");
 }
 
 void QAscMainPanel::onStartPageReady()
@@ -1503,7 +1450,7 @@ void QAscMainPanel::onStartPageReady()
     emit mainPageReady();
 
     if (!m_waitLicense) {
-        Utils::isTempLicense() ?
+        CLicensekeeper::isTempLicense() ?
             checkActivation() : beginProgram();
     }
 }
@@ -1540,10 +1487,11 @@ void QAscMainPanel::beginProgram(bool checklic, bool veredition)
         QString _tpl_ver = "num:%1;edition:%2;active:%3;";
         QString _str_active, _str_edition;
         if (veredition) {
-            int _lic_type = getLicenseType();
+            int _lic_type = CLicensekeeper::localLicenseType();
+
             if ( _lic_type == LICENSE_TYPE_NONE ) {
                 _str_active = tr("Non-activated.");
-                Utils::isTempLicense() && (_lic_type = LICENSE_TYPE_FREE);
+                CLicensekeeper::isTempLicense() && (_lic_type = LICENSE_TYPE_FREE);
             } else
             if ( _lic_type == LICENSE_TYPE_TRIAL ) {
                 _str_active = tr("Trial.");

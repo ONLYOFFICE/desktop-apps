@@ -132,8 +132,15 @@ begin
   AudioExts[15] := 'XPS';
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
-  
+
+#if defined(_AVS)
+  prefix := 'AVS.';
+#elif defined(_IVOLGA_PRO)
+  prefix := 'IVP.';
+#else
   prefix := 'ASC.';
+#endif
+
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
   ExtensionRegistryInfo[1]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
   ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '12';
@@ -268,8 +275,6 @@ begin
       end;
 
       ext := LowerCase(AudioExts[i]);
-      if not RegValueExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]) then
-        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0], '');
 
       if isAssociateExtension(i) then
       begin
@@ -277,6 +282,9 @@ begin
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', argsArray[0])
         end else
           RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', progId1);
+
+        if not RegValueExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]) then
+          RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0], '');
         
         if RegValueExists(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '') then 
           RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', progId2);
@@ -288,7 +296,10 @@ begin
           RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', argsArray[0])
           //RegWriteStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', argsArray[0]);
         end;
-
+      end else
+      begin
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT}\shell\open\command'), '', ExpandConstant('"{app}\{#NAME_EXE_OUT}" "%1"'));
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'), '', '');
       end;
     end;
   end;
@@ -329,5 +340,8 @@ begin
     RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', str);
     if CompareText(str, argsArray[0]) = 0 then
       RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
+  
+    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT})'));
+    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'));
   end;
 end;

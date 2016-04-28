@@ -62,7 +62,6 @@ public:
 //    int  checkModified(const QString&);
     void checkActivation();
     void selfActivation();
-    int  getLicenseType();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
@@ -118,7 +117,6 @@ public slots:
     void onDocumentDownload(void * info);
 
     void onLogin(QString);
-    void onLogout();
     void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);

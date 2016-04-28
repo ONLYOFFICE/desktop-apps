@@ -39,6 +39,7 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "cchooselicensedialog.h"
+#include "clicensekeeper.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -217,6 +218,8 @@ int main( int argc, char *argv[] )
     CSplash::showSplash();
     app.processEvents();
 #endif
+
+    CLicensekeeper::init(pApplicationManager);
 
     /* prevent drawing of focus rectangle on a button */
     app.setStyle(new CStyleTweaks);

@@ -30,29 +30,33 @@
  *
 */
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef CLICENSEKEEPER_H
+#define CLICENSEKEEPER_H
 
-#include <QStringList>
-#include <QFileInfo>
+#include "applicationmanager.h"
+#include <QString>
 
-using namespace std;
-
-class Utils {
+class CLicensekeeper
+{
 public:
-    static QStringList * getInputFiles(const QStringList& inlist);
-    static bool firstStart(bool restore = false);
-    static bool markFirstStart();
-    static QString lastPath(int type);
-    static void keepLastPath(int type, const QString&);
-    static QString getUserPath();
-    static QRect getScreenGeometry(const QPoint&);
+    static void init(CAscApplicationManager *);
+    static CLicensekeeper& getInstance();
+    static NSEditorApi::CAscLicenceActual * localLicense();
+    static int localLicenseType();
+    static void activateLicense(const QString&);
+    static void makeTempLicense();
+    static bool isTempLicense();
+    static void removeTempLicense();
+    static std::wstring licensePath();
+    static bool hasActiveLicense();
 
-    static bool makepath(const QString&);
+private:
+    CLicensekeeper();
+    CLicensekeeper(CLicensekeeper const&);
+    void operator=(CLicensekeeper const&);
 
-    static QString systemLocationCode();
-    static QIcon appIcon();
+    CAscApplicationManager * m_pManager = 0;
+    std::wstring m_pathLicense;
 };
 
-#endif // UTILS_H
-
+#endif // CLICENSEKEEPER_H
