@@ -98,15 +98,19 @@
 
 - (void)setFilterType:(NSInteger)filterType {
     _filterType = filterType;
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.type == %@", @(filterType)];
     
-    NSInteger index = 0;
-    for (NSDictionary * filter in _filters) {
-        if (_filterType == [filter[@"type"] intValue]) {
-            [_popupFormats selectItemAtIndex:index];
-            [[self savePanel] setAllowedFileTypes:@[filter[@"extension"]]];
-            break;
-        }
-        index++;
+    NSUInteger index = [_filters indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [predicate evaluateWithObject:obj];
+    }];
+    
+    if (NSNotFound == index) {
+        NSInteger selectIndex = MAX([_popupFormats indexOfSelectedItem], 0);
+        _filterType = [_filters[selectIndex][@"type"] intValue];
+    } else {
+        [_popupFormats selectItemAtIndex:index];
+        [[self savePanel] setAllowedFileTypes:@[_filters[index][@"extension"]]];
     }
 }
 
