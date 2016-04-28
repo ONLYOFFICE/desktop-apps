@@ -33,7 +33,7 @@
 #include "ccefeventstransformer.h"
 #include "./applicationmanager_events.h"
 #include "../../../common/Types.h"
-#include "regex"
+//#include "regex"
 
 #include <QDebug>
 using namespace NSEditorApi;
@@ -188,23 +188,23 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
             QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else {
-            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::wregex::icase);
-            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
-            if (_iter_cmd != std::wsregex_iterator()) {
-                std::wsmatch _cmd_match = *_iter_cmd;
+//            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
+//            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
+//            if (_iter_cmd != std::wsregex_iterator()) {
+//                std::wsmatch _cmd_match = *_iter_cmd;
 
-                cmd = _cmd_match.str(1);
-                if (cmd.find(L"activate") != std::wstring::npos) {
+//                cmd = _cmd_match.str(1);
+                if (cmd.find(L"app:activate") != std::wstring::npos) {
                     QMetaObject::invokeMethod( pObjParent, "onActivate", Qt::QueuedConnection,
                             Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
                 } else
-                if (cmd.find(L"onready") != std::wstring::npos) {
+                if (cmd.find(L"app:onready") != std::wstring::npos) {
                     QMetaObject::invokeMethod( pObjParent, "onStartPageReady", Qt::QueuedConnection );
                 } else
-                if (cmd.find(L"buynow") != std::wstring::npos) {
+                if (cmd.find(L"app:buynow") != std::wstring::npos) {
                     QMetaObject::invokeMethod( pObjParent, "onBuyNow", Qt::QueuedConnection );
                 }
-            }
+//            }
         }
 
         break;
