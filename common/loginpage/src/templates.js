@@ -33,27 +33,6 @@
 
 window.Templates = (function() { 'use strict';
 
-    var addConnectPanel = function(parentnode) {
-        var _html = '<div id="box-empty-portals" class="empty flex-center">' +
-                      '<section class="center-box">'+
-                        '<h3 style="margin-top:0;">'+ utils.Lang.portalEmptyTitle +'</h3>'+
-                        '<h4 class="text-description">'+ utils.Lang.portalEmptyDescr +'</h4>'+
-                        '<img class="img-welcome">'+
-                        '<div class="tools-connect">'+
-                          '<button class="btn primary newportal">'+ utils.Lang.btnCreatePortal +'</button>'+
-                          '<section class="link-connect">'+
-                            '<label>' + utils.Lang.textHavePortal + '</label><a class="login link" href="#">'+ utils.Lang.btnConnect +'</a>'+
-                          '</section>'+
-                        '</div>'+
-                      '</section>'+
-                    '</div>'+
-                    '<div id="box-portals">' +
-                    '</div>';
-
-        $(parentnode).append(_html);
-        addPortalsTable('#box-portals', utils.Lang.portalListTitle);
-    };
-
     function makeFilesItem(info) {
         var _tpl = !!info.uid ? '<tr id=' + info.uid + '>' : '<tr>';
         _tpl += '<td class="row-cell cicon"><span class="icon img-before-el %type" /></td>' +
@@ -64,22 +43,6 @@ window.Templates = (function() { 'use strict';
         return _tpl.replace(/\%name/, info.name)
                 .replace(/\%type/, info.type)
                 .replace(/\%descr/, info.descr);
-    };
-
-    function makePortalItem(info) {
-        var _tpl = '<tr id="%id"><td class="row-cell cportal primary">%portal</td>' +
-                        '<td class="row-cell cuser minor"><span>%user</span></td>' +
-                        '<td class="row-cell cemail minor"><span>%email</span></td>' +
-                        '<td class="cell-tools">'+
-                          '<div class="hlayout">'+
-                            '<button class="btn-quick logout img-el"></button>'+
-                          '</span>'+
-                        '</td>';
-
-        return _tpl.replace(/\%portal/, utils.skipUrlProtocol(info.portal))
-                .replace(/\%user/, info.user)
-                .replace(/\%email/, info.email)
-                .replace(/\%id/, info.elid);
     };
 
     function addRecentFiles(opts) {
@@ -106,26 +69,6 @@ window.Templates = (function() { 'use strict';
                     '</div>';
 
         $(opts.holder).append(_html.replace(/\%caption/, opts.caption).replace(/\%id/, opts.id));
-    };
-
-    function addPortalsTable(holder, caption) {
-        let _html = '<div class="flexbox"><table class="table-files header">' +
-                        '<caption>%caption</caption>';
-
-        _html += '<tr class="column-title hidden" height="12">' +
-                    '<th class="cell-portal"></th>' +
-                    '<th class="cell-user"></th>' +
-                    '<th class="cell-email" colspan="2"></th>' +
-                  '</tr>';
-
-        _html += '</table>'+
-                    '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
-                    '<div class="lst-tools">'+
-                      '<button id="btn-addportal" class="btn login">' + utils.Lang.btnAddPortal + '</button>'+
-                    '</div>'+
-                '</div>';
-
-        $(holder).append(_html.replace(/\%caption/, caption));
     };
 
     function addWelcomePanel(holder) {
@@ -206,11 +149,9 @@ window.Templates = (function() { 'use strict';
 
     return {
         createActivationPanel: addActivatePanel,
-        addConnectPanel: addConnectPanel,
         createWelcomePanel: addWelcomePanel,
         createAboutPanel: getAboutPanel,
         insertFilesTable: addRecentFiles,
-        produceFilesItem: makeFilesItem,
-        producePortalItem: makePortalItem
+        produceFilesItem: makeFilesItem
     };
 })();
