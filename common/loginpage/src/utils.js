@@ -209,15 +209,17 @@ utils.fn.extend = function(dest, src) {
 };
 
 utils.fn.parseVersion = function(str) {
-    var _re_edition = /edition\:([^\;?]+)/.exec(str),
-        _re_version = /num\:([\d\.]+)/.exec(str),
-        _re_active = /active\:([^\;?]+)/.exec(str);
+    var re = /(?:num\:([\d\.]+))|(?:edition\:([^\;]+))|(?:active\:([^\;]+)?)|(?:appname\:([^\;]+))|(?:rights\:([^\;]+))|(?:link\:([^\;]+))|(?:site\:([^\;]+)?)/g;
+    var res = re.exec(str);
+    var version = !!res && res[1],
+        edition = !!(res=re.exec(str)) && res[2],
+        active = !!(res=re.exec(str)) && res[3],
+        appname = !!(res=re.exec(str)) && res[4],
+        rights = !!(res=re.exec(str)) && res[5],
+        link = !!(res=re.exec(str)) && res[6],
+        site = !!(res=re.exec(str)) ? res[7] : utils.skipUrlProtocol(link);
 
-    return {
-        edition: !!_re_edition ? _re_edition[1] : undefined,
-        version: !!_re_version ? _re_version[1] : undefined,
-        active: !!_re_active ? _re_active[1] : undefined
-    }
+    return { edition, version, active, appname, rights, site, link }
 };
 
 utils.fn.parseRecent = function(arr, out = 'files') {

@@ -132,9 +132,6 @@
               <li class="menu-item">
                 <a action="open">Open local file</a>
               </li>
-              <li class="menu-item extra">
-                <a action="activate">Activate</a>
-              </li>
               <li class="menu-item bottom extra">
                 <a action="about">About</a>
               </li>
@@ -147,8 +144,6 @@
                   <div id="box-recent" class="flex-item flex-fill"></div>
                 </div>
               </div>
-              <div class="action-panel activate"></div>
-              <div class="action-panel about"></div>
             </div>
         </div>
     </div>

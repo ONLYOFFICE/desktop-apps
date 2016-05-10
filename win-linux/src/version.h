@@ -49,6 +49,7 @@
   #define VER_ORIGINALFILENAME_STR    "ivolgapro.exe\0"
   #define VER_PRODUCTNAME_STR         "Ivolga PRO\0"
   #define VER_COMPANYDOMAIN_STR       "www.ivolgapro.ru\0"
+  #define ABOUT_COPYRIGHT_STR         "1999-2016 ЗАО 'НКТ'\0"
 #elif defined(_AVS)
   #define VER_COMPANYNAME_STR         "Online Media Technologies Ltd.\0"
   #define VER_FILEDESCRIPTION_STR     "AVS Document Editor\0"
@@ -59,6 +60,7 @@
   #define VER_ORIGINALFILENAME_STR    "avsdocumenteditor.exe\0"
   #define VER_PRODUCTNAME_STR         "AVS Document Editor\0"
   #define VER_COMPANYDOMAIN_STR       "www.avs4you.com\0"
+  #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 #else
   #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
   #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"
@@ -69,6 +71,7 @@
   #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
   #define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
   #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
+  #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 
 #endif
 

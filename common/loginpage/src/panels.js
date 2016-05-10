@@ -37,13 +37,13 @@ $(document).ready(function() {
 
     Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption: utils.Lang.listRecoveryTitle, coltitle:false});
     Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
-    Templates.createActivationPanel('');
     
 
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
     window.app.controller.folders = (new ControllerFolders({})).init();
+    window.app.controller.about = (new ControllerAbout).init();
     if (!!window.ControllerPortals)
         window.app.controller.portals = (new ControllerPortals({})).init();
 
@@ -78,8 +78,6 @@ $(document).ready(function() {
     $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"]').text(utils.Lang.newPptx);
     $('a[action=recent]').text(utils.Lang.actRecentFiles);
-    $('a[action=activate]').text(utils.Lang.actActivate);
-    $('a[action=about]').text(utils.Lang.actAbout);
 
     var $boxRecovery = $('.action-panel.recent #box-recovery');
     var $listRecovery = $boxRecovery.find('.table-files.list');
@@ -252,17 +250,6 @@ $(document).ready(function() {
     // window.onupdaterecovers(arr);
     /* **************** */
 
-    $('.doactivate').click(onActivateClick);
-    $('#txt-key-activate').on('keypress', function(e) {
-        if (e.which == 13) {
-            onActivateClick();
-        }
-    });
-
-    $('.buynow').click((e)=>{
-        window.AscDesktopEditor.execCommand('app:buynow', '');
-    });
-
     setTimeout(()=>{
         if (window.AscDesktopEditor) {
             window.AscDesktopEditor.LocalFileRecovers();
@@ -371,23 +358,6 @@ function clickMenuFiles(menu, action, data) {
     }
 };
 
-function disableLicenseCtrls(disable){
-    disable = disable?'disable':'';
-    $('.doactivate').prop('disabled', disable);
-    $('#txt-key-activate').prop('disabled', disable);
-    $('.activate .img-loader').hide();
-}
-
-function onActivateClick(e) {
-    var $tb = $('#txt-key-activate'),
-        key = $tb.val();
-    if (!!key) {
-        $('.activate .img-loader').show();
-        disableLicenseCtrls(true);
-        window.AscDesktopEditor.execCommand("app:activate", key);
-    }
-};
-
 window.sdk.on('on_native_message', function(cmd, param) {
     if (cmd == 'portal:logout') {
         // var short_name = utils.skipUrlProtocol(param);
@@ -396,23 +366,23 @@ window.sdk.on('on_native_message', function(cmd, param) {
     } else 
     if (cmd == 'lic:active') {
         let is_active_license = param == '1';
-        let $menuitem = $('a[action=activate]').parent();
-        let is_selected = $menuitem.hasClass('selected');
-        $menuitem[is_active_license?'hide':'show']();        
-        
+
         if (is_active_license) {
-            $('.action-panel.activate').hide();
+            let is_selected = $('.tool-menu > li.menu-item.selected > a[action=activate]').length > 0;
             is_selected && selectAction('recent');
+        } else {
+            !app.controller.activate &&
+                (app.controller.activate = (new ControllerActivate({})).init());
         }
 
-        disableLicenseCtrls(false);
-
-        // var new_doc_items = $('.tool-quick-menu .menu-item');
-        // new_doc_items[is_active_license?'removeClass':'addClass']('inactive');
+        if ( app.controller.activate ) {
+            app.controller.activate.setPanelHidden(is_active_license);
+            app.controller.activate.disableCtrls(false);
+        }
     } else 
     if (cmd == 'lic:selectpanel') {
         selectAction('activate');
-        $('#txt-key-activate').focus();
+        app.controller.activate.setPanelHidden(false);
     } else 
     if (cmd == 'lic:sendkey') {
         // $('a[action=activate]').parent()['show']();
@@ -425,22 +395,12 @@ window.sdk.on('on_native_message', function(cmd, param) {
             hideAction(panel, hide);
         }
     } else
-    if (/app\:version/.test(cmd)) {
-        fillVersion(param);
-    } else 
     if (/app\:ready/) {
         setLoaderVisible(false);
     }
     
     console.log(cmd, param);
 });
-
-function fillVersion(version) {
-    var _v = utils.fn.extend(utils.fn.parseVersion(version), {brand:window.brand});
-
-    Templates.createAboutPanel($('.action-panel.about').empty(), _v);
-    $('a[action=about]').parent().removeClass('extra');
-};
 
 function openFile(type, params) {
     if (window["AscDesktopEditor"]) {

@@ -1074,7 +1074,7 @@ void QAscMainPanel::loadStartPage()
   #ifdef _WIN32
 //    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/desktop-apps/common/loginpage/src/index.html").toStdWString();
-//    std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/common/loginpage/deploy/index.html").toStdWString();
+//    std::wstring start_path = QString("file:///E:/Work/Projects/DocumentEditor/desktop-apps/common/loginpage/deploy/index.html").toStdWString();
     start_path.append(additional.toStdWString());
   #elif __linux__
     #ifdef _IVOLGA_PRO
@@ -1501,7 +1501,10 @@ void QAscMainPanel::beginProgram(bool checklic, bool veredition)
 #endif
         }
 
-        cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition, _str_active));
+        _tpl_ver.append("appname:%4;rights:%5;link:%6;");
+
+        cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition,
+                                        _str_active, WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
         cmdMainPage("app:ready", "");
 
         if (checklic) checkActivation();

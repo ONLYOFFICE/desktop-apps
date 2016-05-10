@@ -109,6 +109,7 @@
 
   #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
   #define URL_BUYNOW "http://www.onlyoffice.com/desktopeditors.aspx"
+  #define URL_SITE "http://www.onlyoffice.com"
   #define REG_APP_NAME "DesktopEditors"
   #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcast.xml"
 

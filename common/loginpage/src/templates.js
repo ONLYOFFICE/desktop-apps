@@ -89,68 +89,8 @@ window.Templates = (function() { 'use strict';
         $(holder).append(_html);
     };
 
-    function addActivatePanel(holder) {
-        var _html = '<div class="flexbox">' +
-                    '<section>'+
-                      '<h3 class="text-welcome">' + utils.Lang.licPanelTitle + '</h3>' +
-                      '<h4 class="text-description">' + utils.Lang.licPanelDescr + '</h4>' +
-                      '<input id="txt-key-activate" class="tbox" type="text" placeholder="'+ utils.Lang.licKeyHolder +'">' +
-                      '<div class="lr-flex">'+
-                        '<a class="text-sub link buynow" href="#">' + utils.Lang.licGetLicense + '</a>'+
-                        '<span />'+ 
-                        '<div><img class="img-loader"><button class="btn primary doactivate">' + utils.Lang.btnActivate + '</button></div>' +
-                      '</div>' +
-                    '</section>'+
-                    '</div>';
-
-        return $('.action-panel.activate').append(_html);
-    };
-
-    function getAboutPanel(holder, opts) {
-        let _img_cls, _cpr, _link, _site, _app;
-        if (opts.brand=='ivo') {
-            _img_cls = 'ivolga';
-            _cpr = '© 2015-2016 ЗАО "НКТ"';
-            _link = 'http://ivolgapro.ru';
-            _site = 'www.ivolgapro.ru';
-            _app = utils.inParams.lang=='ru'?'Иволга ПРО':'IvolgaPRO';
-        } else
-        if (opts.brand=='avs') {
-            _img_cls = 'avs';
-            _cpr = '© 2016 Online Media Technologies Ltd.';
-            _link = 'http://avs4you.com';
-            _site = 'www.avs4you.com';
-            _app = 'AVS Document Editor'
-        } else {
-            _img_cls = 'only';
-            _cpr = '© 2016 Ascensio System SIA';
-            _link = 'http://onlyoffice.com';
-            _site = 'www.onlyoffice.com';
-            _app = 'ONLYOFFICE Desktop Editors'
-        }
-
-        !!opts.active && (opts.edition = !!opts.edition ? opts.edition + '. ' + opts.active : opts.active);
-        opts.edition = !!opts.edition ? `<div class="ver-edition">${opts.edition}</div>` : '';
-
-        var _html = '<div class="flexbox">'+
-                      '<div class="box-ver">' +
-                        `<div class="img-el ver-logo ${_img_cls}"></div><p></p>`+                      
-                        `<div class="ver-version">${_app} version ${opts.version}</div>${opts.edition}<p></p>`+
-                        `<div class="ver-copyright">${_cpr}</div>`+
-                        `<a class="ver-site link" target="popup" href="${_link}">${_site}</a>`+
-                      '</div>'+
-                      // '<div class="box-license flex-fill">'+
-                      //   '<iframe id="framelicense" src="license.htm"></iframe>'+
-                      // '</div>'+
-                    '</div>';
-
-        return $(holder).append(_html);
-    };
-
     return {
-        createActivationPanel: addActivatePanel,
         createWelcomePanel: addWelcomePanel,
-        createAboutPanel: getAboutPanel,
         insertFilesTable: addRecentFiles,
         produceFilesItem: makeFilesItem
     };
