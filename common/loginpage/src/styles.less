@@ -553,6 +553,15 @@ li.menu-item {
     }
 }
 
+.table-caption {
+    margin: 0 0 12px 0;
+    text-align: left;
+
+    &~.table-box {
+        border-top: 1px solid @color-gray-3;
+    }
+}
+
 .table-box {
     /*height: 100%;*/
     /*overflow-y: scroll;*/
@@ -582,7 +591,7 @@ li.menu-item {
     flex-direction:row;
 }
 
-#box-recent-folders {
+#box-recent-folders, #box-portals {
     height: 100%;
 
     .table-box {

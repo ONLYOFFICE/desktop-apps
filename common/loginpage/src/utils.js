@@ -220,6 +220,50 @@ utils.fn.parseVersion = function(str) {
     }
 };
 
+utils.fn.parseRecent = function(arr, out = 'files') {
+    var _files_arr = [], _dirs_arr = [];
+
+    var _re_name = /([^\\/]+\.[a-zA-Z0-9]{3,})$/;
+    for (let _f_ of arr) {
+        let fn = _f_.path;
+        if ( _re_name.test(fn) ) {
+            let name = _re_name.exec(_f_.path)[1],
+            path = _f_.path.slice(0, fn.length - name.length - 1);
+
+            _files_arr.push({
+                id: _f_.id,
+                type: utils.parseFileFormat(_f_.type),
+                name: name,
+                descr: path,
+                date: _f_.modifyed
+            });
+
+            _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
+        }
+    }
+
+    if (out == 'files') return _files_arr;
+
+    var out_dirs_arr = [];
+    for (let _d_ of _dirs_arr) {
+        let name = /([^\\/]+)$/.exec(_d_)[1], parent;
+        if (!name) {
+            name = _d_;
+            parent = 'My Computer' /*utils.Lang.textMyComputer*/;
+        } else
+            parent = _d_.slice(0, _d_.length - name.length - 1);
+
+        out_dirs_arr.push({
+                type: 'folder',
+                full: _d_,
+                name: name,
+                descr: parent
+        });
+    }
+
+    return out_dirs_arr;
+}
+
 function getUrlParams() {
     var e,
     a = /\+/g,  
