@@ -35,189 +35,36 @@ $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
-    Templates.insertFilesTable({holder:'#box-recovery', id: 'tbl-filesrcv', caption: utils.Lang.listRecoveryTitle, coltitle:false});
-    Templates.insertFilesTable({holder:'#box-recent', caption: utils.Lang.listRecentFileTitle, coltitle:false});
-    
 
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
     window.app.controller.folders = (new ControllerFolders({})).init();
+    window.app.controller.recent = (new ControllerRecent).init();
     window.app.controller.about = (new ControllerAbout).init();
     if (!!window.ControllerPortals)
         window.app.controller.portals = (new ControllerPortals({})).init();
-
-    /* popup menu */
-    var menuFiles = new Menu({
-        id: 'pp-menu-files',
-        items: [{
-            caption: utils.Lang.menuFileOpen,
-            action: 'files:open'
-        },{
-            caption: utils.Lang.menuRemoveModel,
-            action: 'files:forget'
-        },{
-            caption: utils.Lang.menuClear,
-            action: 'files:clear'
-        }]
-    });
-
-    menuFiles.init('#placeholder');
-    menuFiles.events.itemclick.attach(clickMenuFiles);
-    /**/    
-   
-    { 
-        let $el = $('.action-panel.open');
-        $el.find('#btn-openlocal').click(function() {
-            openFile(OPEN_FILE_FOLDER, '');
-        }).text(utils.Lang.btnBrowse);
-    }
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
     $('a[action="new:docx"]').text(utils.Lang.newDoc);
     $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"]').text(utils.Lang.newPptx);
-    $('a[action=recent]').text(utils.Lang.actRecentFiles);
-
-    var $boxRecovery = $('.action-panel.recent #box-recovery');
-    var $listRecovery = $boxRecovery.find('.table-files.list');
-    var $headerRecovery = $boxRecovery.find('.header');
-    var $scrboxRecovery = $boxRecovery.find('.flex-fill');
-
-    var $boxRecent = $('.action-panel.recent #box-recent');
-    // var $listRecent = $boxRecent.find('.table-files.list');
-    var $scrboxRecent = $boxRecent.find('.flex-fill');
-    var separatorHeight = $('<div id="recovery-sep"></div>').insertAfter($('#box-recovery')).height();
-
-    // $('button#btn-add').click(function(e) {
-    //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/portal'};
-    //     recentCollection.add( new FileModel(info) );
-    // });
-
-    // $('button#btn-add2').click(function(e) {
-    //     let info = {type:'pptx', name:'New Document.txt', descr:'e:/from/some/folder'};
-    //     recoveryCollection.add( new FileModel(info) );
-
-    //     $boxRecovery[recoveryCollection.size() > 0 ? 'show' : 'hide']();
-    //     $('#recovery-sep')[recoveryCollection.size() > 0 ? 'show' : 'hide']();
-    //     sizeRecoveryList();
-    // });
-
-    // 
 
         // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
-        $('.tool-menu > .menu-item > a[action=recent]').on('click.once', function(e){
-            $(e.target).off('.once');
-            sizeRecoveryList();
+        $('.tool-menu > .menu-item > a[action=recent]').one('click', (e)=>{
+            app.controller.recent.view.updatelistsize();
         });
-
-    function sizeRecoveryList() {
-        // set fixed height for scrollbar appearing. 
-        var _available_height = $boxRecent.parents('.action-panel').height();
-        var _box_recent_height = _available_height;
-
-        if ($boxRecovery.is(':hidden')) {
-            // $boxRecent.height($boxRecent.parent().height());
-        } else {
-            _available_height -= separatorHeight
-            _box_recent_height *= 0.5; 
-
-            $boxRecovery.height(_available_height * 0.5);
-
-            var $table_box = $boxRecovery.find('.table-box');
-            if ( !$table_box.hasScrollBar() ) {
-                let _new_recovery_height = $table_box.find('.table-files.list').height() + $headerRecovery.height();
-                $boxRecovery.height(_new_recovery_height);
-                _box_recent_height = _available_height - _new_recovery_height;
-            }
-        }
-
-        /*$boxRecent.height() != _box_recent_height &&*/ $boxRecent.height(_box_recent_height);
-    };
-
-    window.sdk.on('onupdaterecents', params=>{
-        recentCollection.empty();
-
-        var files = utils.fn.parseRecent(params);
-        for (let item of files) {
-            recentCollection.add( new FileModel(item) );
-        }
-
-        /* set offset when the scroll bar appear */
-        // $listRecent.find('tr > td:last-child').css('padding-left', $scrboxRecent.hasScrollBar() ? Scroll_offset : '');
-        // $listRecentDirs.find('tr > td:last-child').css('padding-left', $scrboxRecentDirs.hasScrollBar() ? Scroll_offset : '');
-    });
-
-    window.onupdaterecovers = function(params) {
-        recoveryCollection.empty();
-
-        var files = utils.fn.parseRecent(params);
-        for (let item of files) {
-            recoveryCollection.add( new FileModel(item) );
-        }
-
-        $boxRecovery[recoveryCollection.size() > 0 ? 'show' : 'hide']();
-        $('#recovery-sep')[recoveryCollection.size() > 0 ? 'show' : 'hide']();
-        sizeRecoveryList();
-    };
 
     $(window).resize(function(){
         Menu.closeAll();
-        sizeRecoveryList();
     });
-
-    /** recent collection **/
-    recentCollection = new Collection({
-        view: $('.action-panel.recent #box-recent')
-        ,list: '.table-files.list'
-    });
-    recentCollection.events.erased.attach(function(collection){
-        collection.view.find(collection.list).parent().addClass('empty');
-    });
-    recentCollection.events.inserted.attach(function(collection, model){
-        let $list = collection.view.find('.table-files.list');
-        
-        let $item = $(Templates.produceFilesItem(model));
-        $list.append($item);
-        $list.parent().removeClass('empty');
-    });
-    recentCollection.events.click.attach(function(collection, model){
-        openFile(OPEN_FILE_RECENT, model.fileid);
-    });
-    recentCollection.events.contextmenu.attach(function(collection, model, e){
-        menuFiles.actionlist = 'recent';
-        menuFiles.show({left: e.clientX, top: e.clientY}, model);
-    });
-    recentCollection.empty();    
-    /**/
-
-    /** recent collection **/
-    recoveryCollection = new Collection({
-        view: $('.action-panel.recent #box-recovery')
-        ,list: '.table-files.list'
-    });
-    recoveryCollection.events.inserted.attach(function(collection, model){
-        let $list = collection.view.find('.table-files.list');
-        
-        let $item = $(Templates.produceFilesItem(model));
-        $list.append($item);    
-    });
-    recoveryCollection.events.click.attach(function(collection, model){
-        openFile(OPEN_FILE_RECOVERY, model.fileid);
-    });
-    recoveryCollection.events.contextmenu.attach(function(collection, model, e){
-        menuFiles.actionlist = 'recovery';
-        menuFiles.show({left: e.clientX, top: e.clientY}, model);
-    });
-    /**/
-
     /* test information */
     // var info = {portal:"https://testinfo.teamlab.info",user:"Maxim Kadushkin",email:"Maxim.Kadushkin@avsmedia.net"};
     // PortalsStore.keep(info);
     /* **************** */
 
     if (!localStorage.welcome) {
-        Templates.createWelcomePanel('.action-panel.welcome');
+        app.controller.welcome = (new ControllerWelcome).init();
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
@@ -260,15 +107,14 @@ $(document).ready(function() {
     }, 50);
 });
 
-var recentCollection;
-var recoveryCollection;
-
 function onActionClick(e) {
     var $el = $(this);
     var action = $el.attr('action');
 
     if (action == 'open' && 
-            !recentCollection.size() && !recoveryCollection.size()) {
+            !app.controller.recent.getRecents().size() && 
+                !app.controller.recent.getRecovers().size()) 
+    {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
         $('.tool-menu > .menu-item').removeClass('selected');
@@ -302,21 +148,6 @@ var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
-function onRecentClick(e) {
-    openFile(e.data.rcv === true ? 
-        OPEN_FILE_RECOVERY : OPEN_FILE_RECENT, e.data.id);
-
-    e.preventDefault();
-    return false;
-}
-
-function onRecentFolderClick(e) {
-    openFile(OPEN_FILE_FOLDER, e.data.path);
-
-    e.preventDefault();
-    return false;
-}
-
 function onNewFileClick(e) {
     if ($(e.currentTarget).parent().hasClass('disabled'))
         return;
@@ -339,24 +170,6 @@ function onNewFileClick(e) {
         me.click_lock = false;
     }, utils.defines.DBLCLICK_LOCK_TIMEOUT);
 }
-
-function clickMenuFiles(menu, action, data) {
-    if (/\:open/.test(action)) {
-        menu.actionlist == 'recent' ?
-            openFile(OPEN_FILE_RECENT, data.fileid) :
-            openFile(OPEN_FILE_RECOVERY, data.fileid);
-    } else
-    if (/\:clear/.test(action)) {
-        menu.actionlist == 'recent' ?
-            AscDesktopEditor.LocalFileRemoveAllRecents() :
-            AscDesktopEditor.LocalFileRemoveAllRecovers();
-    } else
-    if (/\:forget/.test(action)) {
-        menu.actionlist == 'recent' ?
-            AscDesktopEditor.LocalFileRemoveRecent(parseInt(data.fileid)) :
-            AscDesktopEditor.LocalFileRemoveRecover(parseInt(data.fileid));
-    }
-};
 
 window.sdk.on('on_native_message', function(cmd, param) {
     if (cmd == 'portal:logout') {
@@ -405,24 +218,14 @@ window.sdk.on('on_native_message', function(cmd, param) {
 function openFile(type, params) {
     if (window["AscDesktopEditor"]) {
         if (type == OPEN_FILE_FOLDER) {
-            if (window.AscDesktopEditor.LocalFileOpen) {
-                window.AscDesktopEditor.LocalFileOpen(params);
-            } else {
-                alert("desktop!!! (open)");
-            }
+            window.AscDesktopEditor.LocalFileOpen(params);
         } else {
             var _method = type == OPEN_FILE_RECOVERY ? 
                             'LocalFileOpenRecover' : 'LocalFileOpenRecent';
 
-            if (window.AscDesktopEditor[_method]) {
-                window.AscDesktopEditor[_method](parseInt(params));
-            } else {
-                // alert("desktop!!! (" + _method + ": " + params + ")");
-            }
+            window.AscDesktopEditor[_method](parseInt(params));
         }
-    } else {
-        // alert("desktop!!! AscDesktopEditor object haven't found");
-    }
+    } 
 }
 
 function createFile(type) {

@@ -68,10 +68,7 @@
                 let _index = this.opts.itemindex;
 
                 let $menu = $(this.menuContainer);
-                if (_index === 0) {
-                    this.$menuitem = $(this.tplItem).prependTo($menu);
-                } else 
-                if (_index > 0) {
+                if (_index >= 0) {
                     let $items = $menu.children();
                     this.$menuitem = $items.size() > _index ?
                         $items.eq(_index).after(this.tplItem) : $(this.tplItem).appendTo($menu);

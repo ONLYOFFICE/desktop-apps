@@ -126,24 +126,8 @@
                   <a class="img-before-el" action="new:pptx">PRESENTATION</a>
                 </li>
               </div>
-              <li class="menu-item">
-                <a action="recent">Recent files</a>
-              </li>
-              <li class="menu-item">
-                <a action="open">Open local file</a>
-              </li>
-              <li class="menu-item bottom extra">
-                <a action="about">About</a>
-              </li>
             </div>
             <div class="main-column col-center after-left">
-              <div class="action-panel welcome"></div>
-              <div class="action-panel recent">
-                <div class="flexbox">
-                  <div id="box-recovery" class="flex-item"></div>
-                  <div id="box-recent" class="flex-item flex-fill"></div>
-                </div>
-              </div>
             </div>
         </div>
     </div>

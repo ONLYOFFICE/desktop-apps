@@ -252,13 +252,6 @@
               </li>
             </div>
             <div class="main-column col-center after-left">
-              <div class="action-panel welcome"></div>
-              <div class="action-panel recent">
-                <div class="flexbox">
-                  <div id="box-recovery" class="flex-item"></div>
-                  <div id="box-recent" class="flex-item flex-fill"></div>
-                </div>
-              </div>
             </div>
         </div>
     </div>
