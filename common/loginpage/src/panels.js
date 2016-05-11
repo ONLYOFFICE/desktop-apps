@@ -39,8 +39,8 @@ $(document).ready(function() {
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
-    window.app.controller.folders = (new ControllerFolders({})).init();
     window.app.controller.recent = (new ControllerRecent).init();
+    window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
     if (!!window.ControllerPortals)
         window.app.controller.portals = (new ControllerPortals({})).init();
@@ -55,9 +55,6 @@ $(document).ready(function() {
             app.controller.recent.view.updatelistsize();
         });
 
-    $(window).resize(function(){
-        Menu.closeAll();
-    });
     /* test information */
     // var info = {portal:"https://testinfo.teamlab.info",user:"Maxim Kadushkin",email:"Maxim.Kadushkin@avsmedia.net"};
     // PortalsStore.keep(info);

@@ -36,7 +36,7 @@
 */
 
 +function(){ 'use strict'
-    var ControllerFolders = function(args) {
+    var ControllerFolders = function(args={}) {
         args.caption = 'Recent folders';
         args.action =
         this.action = "open";
@@ -90,9 +90,14 @@
             $listRecentDirs.empty();
             for (let dir of _dirs) {
                 if (!utils.getUrlProtocol(dir.full)) {
-                    $item = $(Templates.produceFilesItem( dir ));
+                    $item = $(app.controller.recent.view.listitemtemplate(dir));
 
-                    $item.click({path: dir.full}, onRecentFolderClick);
+                    $item.click({path: dir.full}, e=>{
+                        openFile(OPEN_FILE_FOLDER, e.data.path);
+
+                        e.preventDefault();
+                        return false;
+                    });
                     $listRecentDirs.append($item);
                 }
             }
@@ -105,7 +110,7 @@
                 this.view.render();
 
                 this.view.$panel.find('#btn-openlocal').click(()=>{
-                    // openFile(OPEN_FILE_FOLDER, '');
+                    openFile(OPEN_FILE_FOLDER, '');
                 });
 
                 window.sdk.on('onupdaterecents', _on_update.bind(this));

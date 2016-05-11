@@ -130,3 +130,7 @@ $(document).on('keydown', function(e) {
         Menu.closeAll();
     }
 });
+
+$(window).resize(function(){
+    Menu.closeAll();
+});
