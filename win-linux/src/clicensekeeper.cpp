@@ -32,6 +32,7 @@
 
 #include "clicensekeeper.h"
 #include "defines.h"
+#include "utils.h"
 #include "../../core/DesktopEditor/common/Types.h"
 #include <QDir>
 

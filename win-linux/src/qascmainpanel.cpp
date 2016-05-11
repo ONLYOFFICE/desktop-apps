@@ -1441,7 +1441,7 @@ void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
 void QAscMainPanel::selfActivation()
 {
     g_lic_type == LICENSE_TYPE_FREE ?
-        CLicensekeeper::activateLicense("free"), m_waitLicense = true :
+        m_waitLicense = true, CLicensekeeper::activateLicense("free") :
         CLicensekeeper::activateLicense("demo");
 }
 
