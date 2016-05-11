@@ -95,11 +95,11 @@ $(document).ready(function() {
     /* **************** */
 
     setTimeout(()=>{
-        if (window.AscDesktopEditor) {
-            window.AscDesktopEditor.LocalFileRecovers();
-            window.AscDesktopEditor.LocalFileRecents();
+        if (window.sdk) {
+            window.sdk.LocalFileRecovers();
+            window.sdk.LocalFileRecents();
 
-            window.AscDesktopEditor.execCommand('app:onready', '');
+            window.sdk.execCommand('app:onready', '');
         } 
     }, 50);
 });
@@ -213,28 +213,26 @@ window.sdk.on('on_native_message', function(cmd, param) {
 });
 
 function openFile(type, params) {
-    if (window["AscDesktopEditor"]) {
+    if (window.sdk) {
         if (type == OPEN_FILE_FOLDER) {
-            window.AscDesktopEditor.LocalFileOpen(params);
+            window.sdk.LocalFileOpen(params);
         } else {
             var _method = type == OPEN_FILE_RECOVERY ? 
                             'LocalFileOpenRecover' : 'LocalFileOpenRecent';
 
-            window.AscDesktopEditor[_method](parseInt(params));
+            window.sdk[_method](parseInt(params));
         }
     } 
 }
 
 function createFile(type) {
-    if (window["AscDesktopEditor"] && window["AscDesktopEditor"]["LocalFileCreate"]) {
-        window["AscDesktopEditor"]["LocalFileCreate"](type);
-    } else {
-        alert("desktop!!! (open)");
-    }
+    if (window.sdk) {
+        window.sdk["LocalFileCreate"](type);
+    } 
 }
 
 document.getElementById('wrap').ondrop = function(e) {
-    window["AscDesktopEditor"]["DropOfficeFiles"]();
+    window.sdk["DropOfficeFiles"]();
 
     e.preventDefault();
     return false;

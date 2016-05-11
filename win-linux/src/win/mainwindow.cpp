@@ -350,51 +350,49 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
             } else {
+                RECT lpWindowRect, clientRect;
+                GetWindowRect(hWnd, &lpWindowRect);
+                GetClientRect(hWnd, &clientRect);
 
-            RECT lpWindowRect, clientRect;
-            GetWindowRect(hWnd, &lpWindowRect);
-            GetClientRect(hWnd, &clientRect);
+                int border_size = 0;
 
-            int border_size = 0;
+                int nMaxOffsetX = 0;
+                int nMaxOffsetY = 0;
+                int nMaxOffsetR = 0;
+                int nMaxOffsetB = 0;
 
-            int nMaxOffsetX = 0;
-            int nMaxOffsetY = 0;
-            int nMaxOffsetR = 0;
-            int nMaxOffsetB = 0;
+                if ( wParam == SIZE_MAXIMIZED ) {
+                    LONG lTestW = 640;
+                    LONG lTestH = 480;
+                    RECT wrect{0,0,lTestW,lTestH};
+                    AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
 
-            if ( wParam == SIZE_MAXIMIZED ) {
-                LONG lTestW = 640;
-                LONG lTestH = 480;
-                RECT wrect{0,0,lTestW,lTestH};
-                AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+                    if (0 > wrect.left) nMaxOffsetX = -wrect.left;
+                    if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
 
-                if (0 > wrect.left) nMaxOffsetX = -wrect.left;
-                if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
+                    if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
+                    if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
 
-                if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
-                if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
+                    // TODO: вот тут бордер!!!
+                    window->m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
+                                                        clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
+                                                        clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
+                    window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);
+                } else {
+                    border_size = 3 * g_dpi_ratio;
 
-                // TODO: вот тут бордер!!!
-                window->m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
-                                                    clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
-                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
-                window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);
-            } else {
-                border_size = 3 * g_dpi_ratio;
-
-                // TODO: вот тут бордер!!!
-                window->m_pWinPanel->setGeometry(border_size, border_size,
+                    // TODO: вот тут бордер!!!
+                    window->m_pWinPanel->setGeometry(border_size, border_size,
                                 clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
-                window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
-            }
+                    window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
+                }
 
-            HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
-                                lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
-                                lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
+                HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
+                                    lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
+                                    lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
 
-            SetWindowRgn(hWnd, hRgn, TRUE);
-            DeleteObject(hRgn);
-
+                SetWindowRgn(hWnd, hRgn, TRUE);
+                DeleteObject(hRgn);
             }
         }
         break;
