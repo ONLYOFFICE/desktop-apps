@@ -209,7 +209,7 @@ utils.fn.extend = function(dest, src) {
 };
 
 utils.fn.parseVersion = function(str) {
-    var re = /(?:num\:([\d\.]+))|(?:edition\:([^\;]+))|(?:active\:([^\;]+)?)|(?:appname\:([^\;]+))|(?:rights\:([^\;]+))|(?:link\:([^\;]+))|(?:site\:([^\;]+)?)/g;
+    var re = /(?:num\:([\d\.]+))|(?:edition\:([^\;]+)?)|(?:active\:([^\;]+)?)|(?:appname\:([^\;]+))|(?:rights\:([^\;]+))|(?:link\:([^\;]+))|(?:site\:([^\;]+)?)/g;
     var res = re.exec(str);
     var version = !!res && res[1],
         edition = !!(res=re.exec(str)) && res[2],
