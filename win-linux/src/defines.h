@@ -85,6 +85,7 @@
 
   #define WINDOW_NAME "AVS Document Editor"
   #define URL_BUYNOW "http://www.avs4you.com/Register.aspx?utm_source=300&utm_medium=Register&utm_content=Register"
+  #define URL_SITE "http://www.avs4you.com"
   #define REG_APP_NAME "DocumentEditor"
   #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/avs/appcast.xml"
 

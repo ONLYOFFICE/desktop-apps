@@ -1043,7 +1043,7 @@ void QAscMainPanel::doLicenseWarning(void * data)
                 mess.setButtons(tr("Continue"), "");
                 mess.showModal(text, QMessageBox::Information);
             } else {
-                syncLicenseToJS(true);
+                syncLicenseToJS(!pData->get_IsFree(), false);
             }
         } else {
             syncLicenseToJS(!pData->get_IsFree(), false);
