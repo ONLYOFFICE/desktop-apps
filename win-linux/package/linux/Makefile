@@ -115,7 +115,7 @@ desktopeditor:
 	cp -rf ../../../common/editors/* $(WEB_APPS_PATH)
 	
 	mkdir -p $(SDKJS_PATH)
-	cp -rf ../../../../core/build/jsbuilds/* $(SDKJS_PATH)
+	cp -rf ../../../../core/build/jsdesktop/* $(SDKJS_PATH)
 
 	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
