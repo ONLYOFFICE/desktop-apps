@@ -139,18 +139,18 @@ desktopeditor:
 
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
-		$(QT_PATH)/plugins/bearer \
-		$(QT_PATH)/plugins/imageformats \
-		$(QT_PATH)/plugins/platforms \
-		$(QT_PATH)/plugins/platformthemes \
-		$(QT_PATH)/plugins/printsupport \
-		$(QT_PATH)/lib/libQt5Core.so.5 \
-		$(QT_PATH)/lib/libQt5DBus.so.5 \
-		$(QT_PATH)/lib/libQt5Gui.so.5 \
-		$(QT_PATH)/lib/libQt5PrintSupport.so.5 \
-		$(QT_PATH)/lib/libQt5Widgets.so.5 \
-		$(QT_PATH)/lib/libQt5X11Extras.so.5 \
-		$(QT_PATH)/lib/libQt5XcbQpa.so.5
+		$(QT_PATH)/../plugins/bearer \
+		$(QT_PATH)/../plugins/imageformats \
+		$(QT_PATH)/../plugins/platforms \
+		$(QT_PATH)/../plugins/platformthemes \
+		$(QT_PATH)/../plugins/printsupport \
+		$(QT_PATH)/../lib/libQt5Core.so.5 \
+		$(QT_PATH)/../lib/libQt5DBus.so.5 \
+		$(QT_PATH)/../lib/libQt5Gui.so.5 \
+		$(QT_PATH)/../lib/libQt5PrintSupport.so.5 \
+		$(QT_PATH)/../lib/libQt5Widgets.so.5 \
+		$(QT_PATH)/../lib/libQt5X11Extras.so.5 \
+		$(QT_PATH)/../lib/libQt5XcbQpa.so.5
 		# $(USR_LIB_X64)/libicudata.so.52 \
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
