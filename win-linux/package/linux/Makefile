@@ -99,7 +99,7 @@ clean:
 desktopeditor:
 	mkdir -p $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/bin/linux/*.S $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/lib/$(PLATFORM)/x2t $(CONVERTER_PATH)
+	cp -rf ../../../../core/build/bin/linux/x2t $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/lib/$(PLATFORM)/*.so* $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(CONVERTER_PATH)
 	cp -rf ../../../../core/build/bin/icu/linux_64/*.so* $(CONVERTER_PATH)
