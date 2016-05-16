@@ -76,7 +76,8 @@ DEB_DEPENDENCY += $(DEB)
 LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-QT_PATH := $(shell qmake -query QT_INSTALL_BINS)
+QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
+QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
 PLATFORM := linux_64_static_stdlib
 
@@ -139,18 +140,18 @@ desktopeditor:
 
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
-		$(QT_PATH)/../plugins/bearer \
-		$(QT_PATH)/../plugins/imageformats \
-		$(QT_PATH)/../plugins/platforms \
-		$(QT_PATH)/../plugins/platformthemes \
-		$(QT_PATH)/../plugins/printsupport \
-		$(QT_PATH)/../lib/libQt5Core.so.5 \
-		$(QT_PATH)/../lib/libQt5DBus.so.5 \
-		$(QT_PATH)/../lib/libQt5Gui.so.5 \
-		$(QT_PATH)/../lib/libQt5PrintSupport.so.5 \
-		$(QT_PATH)/../lib/libQt5Widgets.so.5 \
-		$(QT_PATH)/../lib/libQt5X11Extras.so.5 \
-		$(QT_PATH)/../lib/libQt5XcbQpa.so.5
+		$(QT_PLUGINS)/bearer \
+		$(QT_PLUGINS)/imageformats \
+		$(QT_PLUGINS)/platforms \
+		$(QT_PLUGINS)/platformthemes \
+		$(QT_PLUGINS)/printsupport \
+		$(QT_LIBS)/libQt5Core.so.5 \
+		$(QT_LIBS)/libQt5DBus.so.5 \
+		$(QT_LIBS)/libQt5Gui.so.5 \
+		$(QT_LIBS)/libQt5PrintSupport.so.5 \
+		$(QT_LIBS)/libQt5Widgets.so.5 \
+		$(QT_LIBS)/libQt5X11Extras.so.5 \
+		$(QT_LIBS)/libQt5XcbQpa.so.5
 		# $(USR_LIB_X64)/libicudata.so.52 \
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
