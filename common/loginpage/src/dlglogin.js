@@ -294,18 +294,23 @@ window.LoginDlg = function() {
                         // );
 
                         // localStorage.setItem('ascportal', portal);
-                        document.cookie = "asc_auth_key=" + token + ";domain=" + protocol + portal + ";path=/;HttpOnly";
+                        // document.cookie = "asc_auth_key=" + token + ";domain=" + protocol + portal + ";path=/;HttpOnly";
                         // window.location.replace(protocol + portal + startmodule);
 
-                        if (!!events.success) {
-                            let auth_info = {
-                                portal: protocol + portal,
-                                user: obj.response.displayName,
-                                email: obj.response.email
-                            };
-                            events.success(auth_info);
-                        }
-                        doClose(1);
+                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", token);
+                        window.on_set_cookie = ()=>{
+                            if (!!events.success) {
+                                let auth_info = {
+                                    portal: protocol + portal,
+                                    user: obj.response.displayName,
+                                    email: obj.response.email
+                                };
+                                events.success(auth_info);
+                            }
+
+                            window.on_set_cookie = undefined;
+                            doClose(1);
+                        };
                     } else {
                         console.log('authentication error: ' + obj.statusCode);
                         showLoginError(utils.Lang.errLoginAuth);

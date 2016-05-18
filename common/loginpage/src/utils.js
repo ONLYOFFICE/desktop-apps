@@ -95,7 +95,8 @@ window.PortalsStore = (function() {
     };
 
     function portals() {
-        return !!localStorage.portals ? JSON.parse(localStorage.portals) : '';
+        let _out_arr = !!localStorage.portals ? JSON.parse(localStorage.portals) : [];
+        return _out_arr.length ? _out_arr.reverse() : _out_arr;
     };
 
     return {
