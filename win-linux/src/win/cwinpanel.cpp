@@ -55,6 +55,7 @@
 #include "../defines.h"
 #include "../utils.h"
 #include "../csplash.h"
+#include "../clicensekeeper.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -68,6 +69,7 @@
 
 extern byte g_dpi_ratio;
 extern QString g_lang;
+extern BYTE g_lic_type;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
@@ -79,6 +81,10 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
     QAscMainPanel * panel = new QAscMainPanel(this, pManager, true);
     m_pMainPanel = panel;
+
+    if (CLicensekeeper::tempLicenseExist())
+            CLicensekeeper::selfActivation(LICENSE_TYPE_FREE);
+
     show();
 
     connect(panel, &QAscMainPanel::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
@@ -98,13 +104,6 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     */
 
 //    m_pManager->SetEventListener(this);
-
-#ifndef _AVS
-    if (Utils::firstStart(true)) {
-        m_pMainPanel->selfActivation();
-        Utils::markFirstStart();
-    }
-#endif
 
     panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
     parseInputArgs(qApp->arguments());

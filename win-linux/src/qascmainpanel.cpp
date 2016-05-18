@@ -40,7 +40,6 @@
 #include <QTimer>
 #include <QStandardPaths>
 #include <QApplication>
-#include <QDesktopServices>
 #include <QRegularExpression>
 #include <QMessageBox>
 
@@ -731,12 +730,9 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
 
 #if !defined(_AVS)
     /* check the active license */
-    CAscLicenceActual * pData = CLicensekeeper::localLicense();
-    /* ************************* */
 
-    pData->put_DaysBetween(1);
-    if (!pData->get_Licence() || !pData->get_DaysLeft()) {
-        doLicenseWarning(pData);
+    if ( !CLicensekeeper::hasActiveLicense() ) {
+        CLicensekeeper::warnNoLicense();
     } else
 #endif
     {
@@ -764,10 +760,6 @@ void QAscMainPanel::onLocalFileCreate(int fformat)
             });
         }
     }
-
-#ifndef _AVS
-    RELEASEINTERFACE(pData)
-#endif
 }
 
 void QAscMainPanel::onLocalFilesOpen(void * data)
@@ -902,7 +894,8 @@ void QAscMainPanel::onActivate(QString key)
 
 void QAscMainPanel::onActivated(void * data)
 {
-    doLicenseWarning(data);
+    CLicensekeeper::serverActivationDone(data);
+    refreshAboutVersion();
 
     CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
     RELEASEINTERFACE(pData)
@@ -917,137 +910,6 @@ void QAscMainPanel::doActivate(const QString& key)
     } else {
         CMessage mess(gTopWinId);
         mess.showModal(tr("Internal activation error"), QMessageBox::Critical);
-    }
-}
-
-void QAscMainPanel::checkActivation()
-{
-    CAscLicenceActual * pData = CLicensekeeper::localLicense();
-
-    doLicenseWarning(pData);
-    RELEASEINTERFACE(pData)
-}
-
-void QAscMainPanel::doLicenseWarning(void * data)
-{
-    CAscLicenceActual * pData = static_cast<CAscLicenceActual *>(data);
-
-    CMessage mess(gTopWinId);
-    if (pData->get_IsServerUnavailable()) {
-        QString descr = tr("Activation failed! Check internet connection and try again.");
-
-        if (g_lic_type == LICENSE_TYPE_FREE) {
-            mess.setButtons(tr("Activate"), tr("Continue"));
-
-            if (MODAL_RESULT_BTN1 == mess.showModal(descr, QMessageBox::Information)) {
-                selfActivation();
-            } else {
-                beginProgram(false);
-                CLicensekeeper::makeTempLicense();
-            }
-        } else {
-            mess.showModal(descr, QMessageBox::Information);
-            beginProgram(false, false);
-            syncLicenseToJS(false, false);
-        }
-    } else
-    if (!pData->get_Licence()) {
-#if !defined(_AVS)
-        if ( CLicensekeeper::isTempLicense() ) {
-            mess.setButtons(tr("Activate"), tr("Continue"));
-            if (MODAL_RESULT_BTN1 == mess.showModal(tr("The application isn't activated!"), QMessageBox::Information)) {
-                g_lic_type = LICENSE_TYPE_FREE;
-                selfActivation();
-            } else {
-                beginProgram(false);
-            }
-        } else
-        if ( m_waitLicense ) {
-            m_waitLicense = false;
-            mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
-        } else {
-            mess.setButtons(tr("Buy Now"), "");
-            if (MODAL_RESULT_BTN1 == mess.showModal(tr("The program is unregistered"), QMessageBox::Information)) {
-                onLink(URL_BUYNOW);
-            }
-        }
-        syncLicenseToJS(false);
-#else
-        int _modal_res = 0;
-        if ( m_waitLicense ) {
-            m_waitLicense = false;
-            mess.showModal(tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
-        } else {
-            mess.setButtons(tr("Activate"), tr("Continue")+":focus");
-            _modal_res = mess.showModal(tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
-
-        }
-
-        syncLicenseToJS(false, _modal_res == MODAL_RESULT_BTN1);
-#endif
-    } else {
-        CLicensekeeper::removeTempLicense();
-
-        if (m_waitLicense) {
-            m_waitLicense = false;
-            QString descr = tr("Congrats! %1 %2 was succefully activated!")
-#if defined(_IVOLGA_PRO) || defined(_AVS)
-            .arg(APP_TITLE);
-#else
-            .arg("ONLYOFFICE Desktop Editors");
-#endif
-            QString _edition;
-#if !defined(_AVS)
-            if (pData->get_IsFree()) {
-                _edition = "(" + tr("Home") + ")";
-            } else
-            if (!pData->get_IsDemo()) {
-                _edition = "(" + tr("Business") + ")";
-            }
-#endif
-            beginProgram(false);
-            syncLicenseToJS(true);
-            mess.showModal(descr.arg(_edition), QMessageBox::Information);
-        } else
-        if (pData->get_IsDemo()) {
-            syncLicenseToJS(false, false);
-
-            if (pData->get_DaysLeft() == 0) {
-                mess.setButtons(tr("Activate"), tr("Continue"));
-
-                if (MODAL_RESULT_BTN1 == mess.showModal(tr("The trial period is over."), QMessageBox::Information)) {
-                    syncLicenseToJS(false, true);
-                    pushButtonMainClicked();
-                }
-            } else {
-                mess.showModal(tr("Trial period expired for %1 days.").arg(pData->get_DaysLeft()), QMessageBox::Information);
-            }
-        } else
-        if (pData->get_DaysBetween() > 0) {
-            // the license checked more then 1 day before
-            if (pData->get_DaysLeft() == 0) {
-                syncLicenseToJS(false, false);
-
-                mess.setButtons(tr("Activate"), tr("Continue"));
-                if (MODAL_RESULT_BTN1 == mess.showModal(tr("The program is non-activated!"), QMessageBox::Information)) {
-                    syncLicenseToJS(false, true);
-                    pushButtonMainClicked();
-                }
-            } else
-            if (pData->get_DaysLeft() < 15) {
-                syncLicenseToJS(false);
-
-                QString text = tr("%1 days left before the license end").arg(pData->get_DaysLeft());
-
-                CMessage mess(gTopWinId);
-                mess.setButtons(tr("Continue"), "");
-                mess.showModal(text, QMessageBox::Information);
-            } else {
-                syncLicenseToJS(!pData->get_IsFree(), false);
-            }
-        } else {
-            syncLicenseToJS(!pData->get_IsFree(), false);
-        }
     }
 }
 
@@ -1382,11 +1244,7 @@ void QAscMainPanel::onKeyDown(void * eventData)
 
 void QAscMainPanel::onLink(QString url)
 {
-#ifdef __linux
-    system(QString("LD_LIBRARY_PATH='' xdg-open '%1'").arg(url).toUtf8());
-#else
-    QDesktopServices::openUrl(QUrl(url));
-#endif
+    Utils::openUrl(url);
 }
 
 void QAscMainPanel::onPortalOpen(QString url)
@@ -1438,28 +1296,40 @@ void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
     }
 }
 
-void QAscMainPanel::selfActivation()
-{
-    g_lic_type == LICENSE_TYPE_FREE ?
-        m_waitLicense = true, CLicensekeeper::activateLicense("free") :
-        CLicensekeeper::activateLicense("demo");
-}
-
 void QAscMainPanel::onStartPageReady()
 {
-    emit mainPageReady();
+    auto _proc_lic = [&](const int& answ){
+        if (answ == LICENSE_ACTION_WAIT_LICENSE) {
+        } else {
+            cmdMainPage("app:ready", "");
 
-    if (!m_waitLicense) {
-        CLicensekeeper::isTempLicense() ?
-            checkActivation() : beginProgram();
-    }
+            if (answ == LICENSE_ACTION_GO_ACTIVATE) {
+                pushButtonMainClicked();
+            }
+
+//            refreshAboutVersion();
+
+            if (m_inFiles && m_inFiles->size()){
+                doOpenLocalFiles(*m_inFiles);
+                RELEASEOBJECT(m_inFiles)
+            }
+        }
+    };
+
+    int _interval = CLicensekeeper::tempLicenseExist() ? 1000 : 20;
+    QTimer::singleShot(_interval, this, [=]{
+        refreshAboutVersion();
+        emit mainPageReady();
+
+        CLicensekeeper::checkLocalLicense(_proc_lic);
+    });
 }
 
 void QAscMainPanel::onBuyNow()
 {
 #ifdef _AVS
     GET_REGISTRY_SYSTEM(_reg_system)
-    onLink(_reg_system.value("IBuyAbout").toString());
+    Utils::openUrl(_reg_system.value("IBuyAbout").toString());
 
     /*
     SYSTEM_INFO info{0};
@@ -1481,39 +1351,31 @@ void QAscMainPanel::onBuyNow()
 #endif
 }
 
-void QAscMainPanel::beginProgram(bool checklic, bool veredition)
+void QAscMainPanel::refreshAboutVersion()
 {
-    QTimer::singleShot(20, this, [=]{
-        QString _tpl_ver = "num:%1;edition:%2;active:%3;";
-        QString _str_active, _str_edition;
-        if (veredition) {
-            int _lic_type = CLicensekeeper::localLicenseType();
+    QString _tpl_ver = "num:%1;edition:%2;active:%3;";
+    QString _str_active, _str_edition;
 
-            if ( _lic_type == LICENSE_TYPE_NONE ) {
-                _str_active = tr("Non-activated.");
-                CLicensekeeper::isTempLicense() && (_lic_type = LICENSE_TYPE_FREE);
-            } else
-            if ( _lic_type == LICENSE_TYPE_TRIAL ) {
-                _str_active = tr("Trial.");
-            }
+    int _lic_type = CLicensekeeper::localLicenseType();
+
+    if ( _lic_type == LICENSE_TYPE_NONE ) {
+        _str_active = tr("Non-activated.");
+
+        if ( CLicensekeeper::tempLicenseExist() )
+            _lic_type = LICENSE_TYPE_FREE;
+    } else
+    if ( _lic_type == LICENSE_TYPE_TRIAL ) {
+        _str_active = tr("Trial.");
+    }
+
 #ifndef _AVS
-            _str_edition = _lic_type == LICENSE_TYPE_FREE ? tr("Home Edition") : tr("Business Edition");
+    _str_edition = _lic_type == LICENSE_TYPE_FREE ? tr("Home Edition") : tr("Business Edition");
 #endif
-        }
 
-        _tpl_ver.append("appname:%4;rights:%5;link:%6;");
+    _tpl_ver.append("appname:%4;rights:%5;link:%6;");
 
-        cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition,
-                                        _str_active, WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
-        cmdMainPage("app:ready", "");
-
-        if (checklic) checkActivation();
-
-        if (m_inFiles && m_inFiles->size()){
-            doOpenLocalFiles(*m_inFiles);
-            RELEASEOBJECT(m_inFiles)
-        }
-    });
+    cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, _str_edition,
+                                    _str_active, WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
 }
 
 void QAscMainPanel::setInputFiles(QStringList * list)

@@ -40,6 +40,8 @@
 #include <QSysInfo>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -221,5 +223,14 @@ QIcon Utils::appIcon()
     QIcon(":/avs/app.ico");
 #else
     QIcon(":/res/icons/desktopeditors.ico");
+#endif
+}
+
+void Utils::openUrl(const QString& url)
+{
+#ifdef __linux
+    system(QString("LD_LIBRARY_PATH='' xdg-open '%1'").arg(url).toUtf8());
+#else
+    QDesktopServices::openUrl(QUrl(url));
 #endif
 }

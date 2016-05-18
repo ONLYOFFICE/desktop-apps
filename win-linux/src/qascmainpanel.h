@@ -60,8 +60,6 @@ public:
     void goStart();
     void focus();
 //    int  checkModified(const QString&);
-    void checkActivation();
-    void selfActivation();
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
@@ -84,10 +82,10 @@ private:
     void doLogout(const QString&);
     int  trySaveDocument(int);
     void doActivate(const QString&);
-    void doLicenseWarning(void *);
     void syncLicenseToJS(bool, bool proceed = true);
     void cmdMainPage(const QString&, const QString&) const;
-    void beginProgram(bool checklic = true, bool veredition = true);
+
+    void refreshAboutVersion();
 
     void readSystemUserName(wstring& first, wstring& last);
 signals:

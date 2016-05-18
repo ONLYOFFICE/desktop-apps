@@ -33,6 +33,7 @@
 #include "clicensekeeper.h"
 #include "defines.h"
 #include "utils.h"
+#include "cmessage.h"
 #include "../../core/DesktopEditor/common/Types.h"
 #include <QDir>
 
@@ -40,9 +41,13 @@
 #include "shlobj.h"
 #endif
 
+extern HWND gTopWinId;
+
 #include <QDebug>
 
 CLicensekeeper::CLicensekeeper()
+    : m_waitServerLicense(false)
+    , m_procLicenseType(LICENSE_TYPE_BUSINESS)
 {
 }
 
@@ -168,7 +173,7 @@ void CLicensekeeper::makeTempLicense()
     }
 }
 
-bool CLicensekeeper::isTempLicense()
+bool CLicensekeeper::tempLicenseExist()
 {
     QString _file_name = QString::fromStdWString(getInstance().m_pathLicense);
 #ifdef _WIN32
@@ -207,4 +212,243 @@ bool CLicensekeeper::hasActiveLicense()
 //    delete pData, pData = NULL;
 //    delete pEvent, pEvent = NULL;
     return _out;
+}
+
+void CLicensekeeper::selfActivation(int type)
+{
+    if ( !getInstance().lickeyCount() ) {
+        getInstance().m_procLicenseType = type;
+
+        if (type == LICENSE_TYPE_FREE) {
+            getInstance().m_waitServerLicense = true;
+            activateLicense("free");
+        } else {
+            activateLicense("demo");
+        }
+    }
+}
+
+void CLicensekeeper::serverActivationDone(void * d)
+{
+    getInstance().m_waitServerLicense = false;
+
+    if ( getInstance().m_appReady ) {
+        getInstance().processServerLicense(d);
+        getInstance().removeTempLicense();
+
+        if ( getInstance().server_lic_callback ) {
+            getInstance().server_lic_callback(LICENSE_ACTION_NO_ACTION);
+            getInstance().server_lic_callback = nullptr;
+        }
+    }
+}
+
+void CLicensekeeper::checkLocalLicense(std::function<void(int)> callback)
+{
+    int _lic_res = checkLocalLicense();
+
+    if (_lic_res == LICENSE_ACTION_WAIT_LICENSE)
+        getInstance().server_lic_callback = callback;
+    else
+    if (callback) callback(_lic_res);
+}
+
+int CLicensekeeper::checkLocalLicense()
+{
+    NSEditorApi::CAscLicenceActual * pData = localLicense();
+
+    int _out = LICENSE_ACTION_NO_ACTION;
+
+    if (getInstance().m_waitServerLicense)
+        _out = LICENSE_ACTION_WAIT_LICENSE;
+    else
+    if ( tempLicenseExist() ) {
+        removeTempLicense();
+        getInstance().processServerLicense(pData);
+    } else
+        _out = processLicense(pData);
+
+    getInstance().m_appReady = true;
+    RELEASEINTERFACE(pData)
+
+    return _out;
+}
+
+int CLicensekeeper::processLicense(void * data)
+{
+    NSEditorApi::CAscLicenceActual * pData = static_cast<NSEditorApi::CAscLicenceActual *>(data);
+
+    if ( !pData->get_Licence() ) {
+        getInstance().showActivationPage(true);
+        warnNoLicense();
+    } else {
+        removeTempLicense();
+
+        if (pData->get_IsDemo()) {
+            return getInstance().warnDemoLicense(pData);
+        } else {
+            return getInstance().dailyLicense(pData);
+        }
+    }
+
+    return LICENSE_ACTION_NO_ACTION;
+}
+
+void CLicensekeeper::warnNoLicense()
+{
+    CMessage mess(gTopWinId);
+
+#if !defined(_AVS)
+    mess.setButtons(QObject::tr("Buy Now"), "");
+    if (MODAL_RESULT_BTN1 == mess.showModal(
+                QObject::tr("The program is unregistered"), QMessageBox::Information)) {
+        Utils::openUrl(URL_BUYNOW);
+    }
+
+    getInstance().selectActivationPage();
+#else
+    mess.setButtons(QObject::tr("Activate"), QObject::tr("Continue")+":focus");
+    int _modal_res = mess.showModal(QObject::tr("The application isn't activated! A watermark will be added to document."), QMessageBox::Information);
+
+    if (_modal_res == MODAL_RESULT_BTN1)
+        getInstance().selectActivationPage();
+#endif
+}
+
+int CLicensekeeper::warnDemoLicense(void * d)
+{
+    NSEditorApi::CAscLicenceActual * pData = static_cast<NSEditorApi::CAscLicenceActual *>(d);
+
+    showActivationPage(true);
+
+    CMessage mess(gTopWinId);
+    if (pData->get_DaysLeft() == 0) {
+        mess.setButtons(QObject::tr("Activate"), QObject::tr("Continue"));
+
+        if (MODAL_RESULT_BTN1 == mess.showModal(QObject::tr("The trial period is over."), QMessageBox::Information)) {
+
+            selectActivationPage();
+            return LICENSE_ACTION_GO_ACTIVATE;
+        }
+    } else {
+        mess.showModal(QObject::tr("Trial period expired for %1 days.")
+                            .arg(pData->get_DaysLeft()), QMessageBox::Information);
+    }
+
+    return LICENSE_ACTION_NO_ACTION;
+}
+
+int CLicensekeeper::dailyLicense(void * d)
+{
+    NSEditorApi::CAscLicenceActual * pData = static_cast<NSEditorApi::CAscLicenceActual *>(d);
+
+    if (pData->get_DaysBetween() > 0) {
+        // the license checked more then 1 day before
+        if (pData->get_DaysLeft() < 15) {
+            showActivationPage(true);
+
+            CMessage mess(gTopWinId);
+            mess.setButtons(QObject::tr("Continue"), "");
+            mess.showModal(QObject::tr("%1 days left before the license end")
+                                .arg(pData->get_DaysLeft()), QMessageBox::Information);
+        }
+    }
+
+    showActivationPage(localLicenseType()!=LICENSE_TYPE_BUSINESS);
+    return LICENSE_ACTION_NO_ACTION;
+}
+
+void CLicensekeeper::processServerLicense(void * d)
+{
+    m_waitServerLicense = false;
+//    removeTempLicense();
+
+    NSEditorApi::CAscLicenceActual * pData =
+            static_cast<NSEditorApi::CAscLicenceActual *>(d);
+
+    CMessage mess(gTopWinId);
+    if ( pData->get_Licence() ) {
+        QString descr = QObject::tr("Congrats! %1 %2 was succefully activated!")
+#if defined(_IVOLGA_PRO) || defined(_AVS)
+        .arg(APP_TITLE);
+#else
+        .arg("ONLYOFFICE Desktop Editors");
+#endif
+
+        QString _edition;
+#if !defined(_AVS)
+        if (pData->get_IsFree()) {
+            _edition = "(" + QObject::tr("Home") + ")";
+        } else
+        if (!pData->get_IsDemo()) {
+            _edition = "(" + QObject::tr("Business") + ")";
+        }
+#endif
+        showActivationPage(localLicenseType()!=LICENSE_TYPE_BUSINESS);
+
+        mess.showModal(descr.arg(_edition), QMessageBox::Information);
+    } else {
+        showActivationPage(true);
+
+        if (pData->get_IsServerUnavailable()) {
+            processNoConnection();
+        } else {
+            mess.showModal(QObject::tr("Activation failed! Check entered data and try again."), QMessageBox::Information);
+        }
+    }
+}
+
+void CLicensekeeper::processNoConnection()
+{
+    QString descr = QObject::tr("Activation failed! Check internet connection and try again.");
+
+    CMessage mess(gTopWinId);
+    if (m_procLicenseType == LICENSE_TYPE_FREE) {
+        mess.setButtons(QObject::tr("Activate"), QObject::tr("Continue"));
+
+        if (MODAL_RESULT_BTN1 == mess.showModal(descr, QMessageBox::Warning)) {
+            m_waitServerLicense = true;
+            activateLicense("free");
+        } else {
+            makeTempLicense();
+        }
+    } else {
+        mess.showModal(descr, QMessageBox::Information);
+    }
+}
+
+int CLicensekeeper::lickeyCount()
+{
+    return QDir(QString::fromStdWString(licensePath()))
+                    .entryInfoList(QStringList("*.lickey"), QDir::Files).size();
+}
+
+void CLicensekeeper::showActivationPage(bool show)
+{
+    cmdMainPage("lic:active", QString::number(!show));
+}
+
+void CLicensekeeper::selectActivationPage()
+{
+    cmdMainPage("lic:selectpanel", "");
+}
+
+void CLicensekeeper::cmdMainPage(const QString& cmd, const QString& args) const
+{
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(cmd.toStdWString());
+    if (args.size())
+        pCommand->put_Param(args.toStdWString());
+
+    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    int id = 1; // TODO: get id of "start" page
+    CCefView * mainPanel = getInstance().m_pManager->GetViewById(id);
+    if (mainPanel) {
+        mainPanel->Apply(pEvent);
+    }
+
+//    RELEASEOBJECT(pEvent)
+//    RELEASEOBJECT(pCommand)
 }

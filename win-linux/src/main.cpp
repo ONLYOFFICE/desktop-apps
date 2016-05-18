@@ -205,21 +205,26 @@ int main( int argc, char *argv[] )
     }
     /* applying languages finished */
 
+    CLicensekeeper::init(pApplicationManager);
 
 #ifndef _AVS
     if (Utils::firstStart()) {
         CChooseLicenseDialog dlg;
         dlg.setEULAPath(QString("%1/LICENSE.htm").arg(QCoreApplication::applicationDirPath()));
         g_lic_type = dlg.exec();
+
+        Utils::markFirstStart();
+        g_lic_type == LICENSE_TYPE_FREE ?
+            CLicensekeeper::makeTempLicense() :
+            CLicensekeeper::selfActivation(LICENSE_TYPE_TRIAL);
     }
+
 #endif
 
 #ifdef _WIN32
     CSplash::showSplash();
     app.processEvents();
 #endif
-
-    CLicensekeeper::init(pApplicationManager);
 
     /* prevent drawing of focus rectangle on a button */
     app.setStyle(new CStyleTweaks);

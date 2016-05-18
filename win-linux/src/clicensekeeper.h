@@ -35,6 +35,7 @@
 
 #include "applicationmanager.h"
 #include <QString>
+#include <functional>
 
 class CLicensekeeper
 {
@@ -45,18 +46,41 @@ public:
     static int localLicenseType();
     static void activateLicense(const QString&);
     static void makeTempLicense();
-    static bool isTempLicense();
+    static bool tempLicenseExist();
     static void removeTempLicense();
     static std::wstring licensePath();
     static bool hasActiveLicense();
+
+    static void selfActivation(int);
+    static void serverActivationDone(void *);
+    static int checkLocalLicense();
+    static void checkLocalLicense(std::function<void(int)>);
+    static void warnNoLicense();
+
+    static int processLicense(void *);
+
 
 private:
     CLicensekeeper();
     CLicensekeeper(CLicensekeeper const&);
     void operator=(CLicensekeeper const&);
 
+    int warnDemoLicense(void *);
+    int dailyLicense(void *);
+    int lickeyCount();
+    void processServerLicense(void *);
+    void processNoConnection();
+    void showActivationPage(bool);
+    void selectActivationPage();
+    void cmdMainPage(const QString&, const QString&) const;
+
     CAscApplicationManager * m_pManager = 0;
     std::wstring m_pathLicense;
+    bool m_waitServerLicense;
+    bool m_appReady = false;
+    int m_procLicenseType;
+
+    std::function<void(int)> server_lic_callback = nullptr;
 };
 
 #endif // CLICENSEKEEPER_H

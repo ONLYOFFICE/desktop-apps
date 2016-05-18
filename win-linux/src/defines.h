@@ -140,6 +140,10 @@
 #define LICENSE_TYPE_TRIAL      253
 #define LICENSE_TYPE_NONE       0
 
+#define LICENSE_ACTION_GO_ACTIVATE   200
+#define LICENSE_ACTION_WAIT_LICENSE  199
+#define LICENSE_ACTION_NO_ACTION     0
+
 #ifdef __linux
 typedef unsigned char BYTE;
 #endif
