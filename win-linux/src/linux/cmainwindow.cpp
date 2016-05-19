@@ -38,6 +38,7 @@
 #include <QApplication>
 #include <QFileInfo>
 #include "../utils.h"
+#include "../clicensekeeper.h"
 #include <QTimer>
 
 CMainWindow::CMainWindow(QWidget *parent)
@@ -53,6 +54,7 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     parseInputArgs(qApp->arguments());
 
     setWindowIcon(Utils::appIcon());
+    setObjectName("MainWindow");
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
@@ -63,6 +65,9 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     m_pMainPanel = new QAscMainPanel(this, pAppManager, !CX11Decoration::isDecorated());
 //    m_pMainPanel = new QAscMainPanel(this, pAppManager, true);
     setCentralWidget(m_pMainPanel);
+
+    if (CLicensekeeper::tempLicenseExist())
+            CLicensekeeper::selfActivation(LICENSE_TYPE_FREE);
 
     if ( !CX11Decoration::isDecorated() ) {
         CX11Decoration::setTitleWidget(((QAscMainPanel *)m_pMainPanel)->getTitleWidget());
@@ -83,11 +88,6 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     QAscMainPanel * pMainPanel = qobject_cast<QAscMainPanel *>(m_pMainPanel);
     connect(pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
     connect(pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
-
-    if (Utils::firstStart(true)) {
-        pMainPanel->selfActivation();
-        Utils::markFirstStart();
-    }
 }
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)

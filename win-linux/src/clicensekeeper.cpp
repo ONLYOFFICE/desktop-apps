@@ -39,9 +39,11 @@
 
 #ifdef _WIN32
 #include "shlobj.h"
-#endif
-
 extern HWND gTopWinId;
+#else
+#include <QApplication>
+QWidget * gTopWinId = nullptr;
+#endif
 
 #include <QDebug>
 
@@ -255,6 +257,19 @@ void CLicensekeeper::checkLocalLicense(std::function<void(int)> callback)
 
 int CLicensekeeper::checkLocalLicense()
 {
+#if __linux
+    if ( !gTopWinId ) {
+        QWidgetList widgets = qApp->topLevelWidgets();
+
+        for (auto w : widgets) {
+            if (w->objectName() == "MainWindow") {
+                gTopWinId = w;
+                break;
+            }
+        }
+    }
+#endif
+
     NSEditorApi::CAscLicenceActual * pData = localLicense();
 
     int _out = LICENSE_ACTION_NO_ACTION;
