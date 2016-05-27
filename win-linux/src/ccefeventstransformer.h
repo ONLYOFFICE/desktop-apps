@@ -34,7 +34,7 @@
 #define CCEFEVENTTRANSFORMER_H
 
 #include <QObject>
-#include "../../../Word_Api/Editor_Api.h"
+#include "Word_Api/Editor_Api.h"
 
 
 class CCefEventsTransformer : public NSEditorApi::CAscMenuEventListener

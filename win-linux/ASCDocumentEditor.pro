@@ -15,14 +15,15 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
+BASEEDITORS_PATH = ../../core-ext/ChromiumBasedEditors
 CORE_LIB_PATH = ../../core/build
 
-INCLUDEPATH += $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/include \
-                $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview \
+INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
+                $$BASEEDITORS_PATH/lib/qcefview \
                 $$CORE_SRC_PATH
 
 HEADERS += \
-    $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview/qcefview.h \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
     ./src/asctabwidget.h \
     src/cascuser.h \
     src/version.h \
@@ -54,7 +55,7 @@ HEADERS += \
 SOURCES += \
     ./src/main.cpp \
     ./src/asctabwidget.cpp\
-    $$CORE_SRC_PATH/ChromiumBasedEditors2/lib/qcefview/qcefview.cpp \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
     src/cascuser.cpp \
     src/csavefilemessage.cpp \
     src/cuserprofilewidget.cpp \

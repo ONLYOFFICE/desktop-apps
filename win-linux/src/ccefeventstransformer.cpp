@@ -32,7 +32,7 @@
 
 #include "ccefeventstransformer.h"
 #include "./applicationmanager_events.h"
-#include "../../../common/Types.h"
+#include "common/Types.h"
 //#include "regex"
 
 #include <QDebug>
