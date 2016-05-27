@@ -78,6 +78,7 @@ private:
     std::wstring m_pathLicense;
     bool m_waitServerLicense;
     bool m_appReady = false;
+    bool m_waitNoConnection = false;
     int m_procLicenseType;
 
     std::function<void(int)> server_lic_callback = nullptr;

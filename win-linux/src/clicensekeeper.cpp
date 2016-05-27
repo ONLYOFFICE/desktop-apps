@@ -235,13 +235,16 @@ void CLicensekeeper::serverActivationDone(void * d)
     getInstance().m_waitServerLicense = false;
 
     if ( getInstance().m_appReady ) {
-        getInstance().processServerLicense(d);
         getInstance().removeTempLicense();
+        getInstance().processServerLicense(d);
 
         if ( getInstance().server_lic_callback ) {
             getInstance().server_lic_callback(LICENSE_ACTION_NO_ACTION);
             getInstance().server_lic_callback = nullptr;
         }
+    } else {
+        getInstance().m_waitNoConnection =
+                static_cast<NSEditorApi::CAscLicenceActual *>(d)->get_IsServerUnavailable();
     }
 }
 
@@ -279,6 +282,11 @@ int CLicensekeeper::checkLocalLicense()
     else
     if ( tempLicenseExist() ) {
         removeTempLicense();
+        if (getInstance().m_waitNoConnection) {
+            pData->put_IsServerUnavailable(true);
+            getInstance().m_waitNoConnection = false;
+        }
+
         getInstance().processServerLicense(pData);
     } else
         _out = processLicense(pData);
