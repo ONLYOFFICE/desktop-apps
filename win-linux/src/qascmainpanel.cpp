@@ -1262,13 +1262,11 @@ void QAscMainPanel::onPortalOpen(QString url)
 void QAscMainPanel::readSystemUserName(wstring& first, wstring& last)
 {
 #ifdef Q_OS_WIN
-    WCHAR _env_name[UNLEN + 1]{L"Unknown.User"};
+    WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
-    if (!GetUserName(_env_name, &_size)) {
-    }
-
-    wstring _full_name = wstring(_env_name);
+    wstring _full_name = GetUserName(_env_name, &_size) ?
+                            wstring(_env_name) : L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
     if (_env_name.isEmpty())
@@ -1279,12 +1277,16 @@ void QAscMainPanel::readSystemUserName(wstring& first, wstring& last)
 
     wstring _full_name = _env_name.toStdWString();
 #endif
-    std::wregex _rexp(QString(reUserName).toStdWString());
-    std::wsmatch _res;
-    if (std::regex_search(_full_name, _res, _rexp)) {
-        first = _res.str(1),
-        last = _res.str(2);
-    }
+//    std::wregex _rexp(QString(reUserName).toStdWString());
+//    std::wsmatch _res;
+//    if (std::regex_search(_full_name, _res, _rexp)) {
+//        first = _res.str(1),
+//        last = _res.str(2);
+//    }
+
+    auto i = _full_name.find('.');
+    i == wstring::npos ? first.assign(_full_name) :
+                first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i));
 }
 
 void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)
