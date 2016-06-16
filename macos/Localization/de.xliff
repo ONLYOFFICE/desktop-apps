@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -28,6 +28,10 @@
       <trans-unit id="2II-dg-tXK.title">
         <source>For Business</source>
         <note>Class = "NSTextFieldCell"; title = "For Business"; ObjectID = "2II-dg-tXK";</note>
+      </trans-unit>
+      <trans-unit id="2PX-8n-yHS.title">
+        <source>%@</source>
+        <note>Class = "NSTextFieldCell"; title = "%@"; ObjectID = "2PX-8n-yHS";</note>
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title">
         <source>Raise</source>
@@ -71,6 +75,10 @@
         <source>Quit ONLYOFFICE</source>
         <target>ONLYOFFICE verlassen</target>
         <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
+      <trans-unit id="5F3-kJ-3DQ.title">
+        <source>License Activation</source>
+        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "5F3-kJ-3DQ";</note>
       </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title">
         <source>Edit</source>
@@ -415,6 +423,10 @@
         <target>Kapitalisieren</target>
         <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
       </trans-unit>
+      <trans-unit id="VE7-ZO-TkB.title">
+        <source>Try Again</source>
+        <note>Class = "NSButtonCell"; title = "Try Again"; ObjectID = "VE7-ZO-TkB";</note>
+      </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title">
         <source>Center</source>
         <target>Zum Zentrum</target>
@@ -563,6 +575,10 @@
         <target>Rückgängig Machen</target>
         <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
       </trans-unit>
+      <trans-unit id="dyY-64-Zpf.title">
+        <source>Cancel</source>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "dyY-64-Zpf";</note>
+      </trans-unit>
       <trans-unit id="eWZ-KX-JtO.title">
         <source>Your subscription is about to expire
 (%@ days left).</source>
@@ -575,6 +591,10 @@
       <trans-unit id="ecv-ob-kOc.title">
         <source>Buy Now...</source>
         <note>Class = "NSMenuItem"; title = "Buy Now..."; ObjectID = "ecv-ob-kOc";</note>
+      </trans-unit>
+      <trans-unit id="eln-Or-2bq.title">
+        <source>Activation Error</source>
+        <note>Class = "NSTextFieldCell"; title = "Activation Error"; ObjectID = "eln-Or-2bq";</note>
       </trans-unit>
       <trans-unit id="fff-K1-E5b.title">
         <source>Activation...</source>
@@ -701,6 +721,10 @@
         <source>Save</source>
         <target>Speichern…</target>
         <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
+      <trans-unit id="q7E-DX-1xX.title">
+        <source>Unknown Error. Otherwise, contact our support center.</source>
+        <note>Class = "NSTextFieldCell"; title = "Unknown Error. Otherwise, contact our support center."; ObjectID = "q7E-DX-1xX";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title">
         <source>Find Next</source>
@@ -863,14 +887,14 @@
   </file>
   <file original="ONLYOFFICE/Resources/IvolgaPRO/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>1.1</source>
+        <source>3.8.6</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2016 Novye Kommunikacionnye Tehnologii, ZAO. All rights reserved.</source>
@@ -879,11 +903,11 @@
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
+        <source>ONLYOFFICE</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
         <source>1.0</source>
@@ -895,14 +919,14 @@
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>1.0.5</source>
+        <source>3.8.7</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
@@ -911,7 +935,7 @@
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
@@ -1119,6 +1143,10 @@
         <source>Thank you for using %@!</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The Internet connection appears to be offline.">
+        <source>The Internet connection appears to be offline.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The license expired.\nYou cannot create and edit local files.">
         <source>The license expired.
 You cannot create and edit local files.</source>
@@ -1165,6 +1193,10 @@ You cannot create and edit local files.</source>
       <trans-unit id="Word 2007 Document">
         <source>Word 2007 Document</source>
         <target>Word 2007 Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center.">
+        <source>Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification">

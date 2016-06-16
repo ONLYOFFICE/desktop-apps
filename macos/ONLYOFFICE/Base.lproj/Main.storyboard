@@ -1821,10 +1821,10 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-Ep-g4E">
-                                <rect key="frame" x="178" y="81" width="444" height="39"/>
+                                <rect key="frame" x="178" y="61" width="444" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="440" id="Y5J-tZ-0RN"/>
-                                    <constraint firstAttribute="height" constant="39" id="nql-Ga-PAZ"/>
+                                    <constraint firstAttribute="height" constant="59" id="nql-Ga-PAZ"/>
                                 </constraints>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Unknown Error. Otherwise, contact our support center." id="q7E-DX-1xX">
                                     <font key="font" metaFont="system"/>
@@ -1898,7 +1898,7 @@ Gw
                             <constraint firstItem="Tli-Kq-jAs" firstAttribute="leading" secondItem="Lg5-zX-fTK" secondAttribute="trailing" constant="35" id="2kv-z3-9pF"/>
                             <constraint firstItem="KIY-Bg-SH5" firstAttribute="leading" secondItem="Tli-Kq-jAs" secondAttribute="trailing" constant="10" id="47K-5x-1ey"/>
                             <constraint firstItem="a6S-Ep-g4E" firstAttribute="leading" secondItem="Lg5-zX-fTK" secondAttribute="trailing" constant="35" id="6mC-R7-1aX"/>
-                            <constraint firstItem="RcL-Dc-auJ" firstAttribute="top" secondItem="a6S-Ep-g4E" secondAttribute="bottom" constant="40" id="7gG-Gy-fqY"/>
+                            <constraint firstItem="RcL-Dc-auJ" firstAttribute="top" secondItem="a6S-Ep-g4E" secondAttribute="bottom" constant="20" id="7gG-Gy-fqY"/>
                             <constraint firstItem="RcL-Dc-auJ" firstAttribute="leading" secondItem="rwv-k9-TSz" secondAttribute="trailing" constant="17" id="L0F-zD-HgF"/>
                             <constraint firstAttribute="trailing" secondItem="RcL-Dc-auJ" secondAttribute="trailing" constant="20" id="O6X-hM-kyn"/>
                             <constraint firstItem="a6S-Ep-g4E" firstAttribute="top" secondItem="KIY-Bg-SH5" secondAttribute="bottom" constant="20" id="RIT-EW-dZB"/>
@@ -1911,7 +1911,7 @@ Gw
                             <constraint firstAttribute="bottom" secondItem="0m7-0k-H5k" secondAttribute="bottom" constant="20" id="lF1-IX-lcG"/>
                             <constraint firstItem="0m7-0k-H5k" firstAttribute="leading" secondItem="Ixh-sQ-koX" secondAttribute="leading" constant="20" id="oFE-Jc-LYC"/>
                             <constraint firstItem="KIY-Bg-SH5" firstAttribute="top" secondItem="Ixh-sQ-koX" secondAttribute="top" constant="20" id="v4z-Gz-poP"/>
-                            <constraint firstItem="rwv-k9-TSz" firstAttribute="top" secondItem="a6S-Ep-g4E" secondAttribute="bottom" constant="40" id="yPI-aE-aHm"/>
+                            <constraint firstItem="rwv-k9-TSz" firstAttribute="top" secondItem="a6S-Ep-g4E" secondAttribute="bottom" constant="20" id="yPI-aE-aHm"/>
                         </constraints>
                     </view>
                     <connections>

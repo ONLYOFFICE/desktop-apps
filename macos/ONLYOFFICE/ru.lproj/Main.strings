@@ -40,6 +40,9 @@
 /* Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "Завершить ONLYOFFICE";
 
+/* Class = "NSViewController"; title = "License Activation"; ObjectID = "5F3-kJ-3DQ"; */
+"5F3-kJ-3DQ.title" = "Активация лицензии";
+
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Редактировать";
 
@@ -250,6 +253,9 @@
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "Capitalize";
 
+/* Class = "NSButtonCell"; title = "Try Again"; ObjectID = "VE7-ZO-TkB"; */
+"VE7-ZO-TkB.title" = "Еще раз";
+
 /* Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb"; */
 "VIY-Ag-zcb.title" = "Center";
 
@@ -340,6 +346,9 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Отменить";
 
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "dyY-64-Zpf"; */
+"dyY-64-Zpf.title" = "Отмена";
+
 /* Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left)."; ObjectID = "eWZ-KX-JtO"; */
 "eWZ-KX-JtO.title" = "Ваша подписка заканчивается
 (осталось %@ дней).
@@ -351,6 +360,9 @@
 
 /* Class = "NSMenuItem"; title = "Buy Now..."; ObjectID = "ecv-ob-kOc"; */
 "ecv-ob-kOc.title" = "Купить...";
+
+/* Class = "NSTextFieldCell"; title = "Activation Error"; ObjectID = "eln-Or-2bq"; */
+"eln-Or-2bq.title" = "Ошибка активации";
 
 /* Class = "NSMenuItem"; title = "Activation..."; ObjectID = "fff-K1-E5b"; */
 "fff-K1-E5b.title" = "Активировать...";
@@ -432,6 +444,9 @@
 
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV"; */
 "pxx-59-PXV.title" = "Сохранить";
+
+/* Class = "NSTextFieldCell"; title = "Unknown Error. Otherwise, contact our support center."; ObjectID = "q7E-DX-1xX"; */
+"q7E-DX-1xX.title" = "Неизвестная ошибка. Обратитесь в нашу службу техподдержки.";
 
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye"; */
 "q09-fT-Sye.title" = "Find Next";

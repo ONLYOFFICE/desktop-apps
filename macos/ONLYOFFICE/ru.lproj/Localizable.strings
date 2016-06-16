@@ -125,6 +125,9 @@
 "Thank you for using %@!" = "Спасибо за использование %@!";
 
 /* No comment provided by engineer. */
+"The Internet connection appears to be offline." = "Соединение с Интернетом, по-видимому, прервано.";
+
+/* No comment provided by engineer. */
 "The license expired.
 You cannot create and edit local files." = "Срок действия лицензии закончился.
 Вы не сможете создавать и редактировать локальные файлы.";
@@ -159,6 +162,9 @@ You cannot create and edit local files." = "Незарегистрированн
 
 /* No comment provided by engineer. */
 "Word 2007 Document" = "Документ Word 2007";
+
+/* No comment provided by engineer. */
+"Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center." = "Введен неверный Ключ Активации. Пожалуйста, введите правильный ключ активации из Вашего письма-подтверждения или обратитесь в нашу службу техподдержки.";
 
 /* No comment provided by engineer. */
 "XML Paper Specification" = "XPS Документ";
