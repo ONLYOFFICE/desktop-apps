@@ -54,6 +54,10 @@
 @property (weak) IBOutlet NSTextField *infoField;
 @property (weak) IBOutlet NSTextField *infoSuccessField;
 @property (weak) IBOutlet NSProgressIndicator *activityIndicator;
+
+@property (weak) IBOutlet NSTextField *productNameField;
+@property (weak) IBOutlet NSTextField *errorDescriptionField;
+
 @end
 
 @implementation ASCRegistrationController
@@ -87,6 +91,14 @@
     
     [self.activityIndicator startAnimation:self];
     [self.activityIndicator setHidden:YES];
+    
+    if (self.productNameField) {
+        [self.productNameField setStringValue:productName];
+    }
+    
+    if (self.errorDescriptionField && self.errorDescription) {
+        [self.errorDescriptionField setStringValue:self.errorDescription];
+    }
 }
 
 - (void)dealloc {
@@ -118,7 +130,16 @@
             NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
             [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
         } else {
-            [self shakeWindow];
+//            [self shakeWindow];
+            ASCRegistrationController * activationErrorController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationErrorControllerId"];
+            
+            activationErrorController.errorDescription = NSLocalizedString(@"Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center.", nil);
+            
+            if (license.serverError) {
+                activationErrorController.errorDescription = NSLocalizedString(@"The Internet connection appears to be offline.", nil);
+            }
+            
+            [self.view.window setContentViewController:activationErrorController];
         }
     }
 }
@@ -194,6 +215,16 @@
     [self.activityIndicator setHidden:NO];
     
     [[ASCLicenseManager sharedInstance] sendKey:[self.keyField stringValue]];
+}
+
+- (IBAction)onCancelClick:(NSButton *)sender {
+    [self.view.window close];
+}
+
+- (IBAction)onTryAgainClick:(NSButton *)sender {
+    NSViewController * activationController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationControllerId"];
+    
+    [self.view.window setContentViewController:activationController];
 }
 
 @end

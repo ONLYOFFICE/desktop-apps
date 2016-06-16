@@ -41,5 +41,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ASCRegistrationController : NSViewController
-
+@property (nonatomic) NSString * errorDescription;
 @end
