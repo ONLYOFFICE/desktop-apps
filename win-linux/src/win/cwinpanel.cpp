@@ -204,7 +204,9 @@ void CWinPanel::slot_windowClose()
 
 void CWinPanel::doClose()
 {
-    m_pMainPanel->pushButtonCloseClicked();
+    QTimer::singleShot(500, this, [=]{
+        m_pMainPanel->pushButtonCloseClicked();
+    });
 }
 
 void CWinPanel::slot_windowChangeState(Qt::WindowState s)
