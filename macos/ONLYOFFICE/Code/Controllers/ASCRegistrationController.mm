@@ -128,7 +128,7 @@
             [[ASCLicenseManager sharedInstance] setLicence:license];
             
             NSViewController * activationSuccessController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationSuccessControllerId"];
-            [self presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
+            [self.view.window.contentViewController presentViewController:activationSuccessController animator:[ASCReplacePresentationAnimator new]];
         } else {
 //            [self shakeWindow];
             ASCRegistrationController * activationErrorController = [self.storyboard instantiateControllerWithIdentifier:@"ASCActivationErrorControllerId"];
