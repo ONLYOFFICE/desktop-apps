@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/qascmainpanel.cpp" line="961"/>
         <source>Congrats! %1 %2 was succefully activated!</source>
-        <translation>Congratulations!&lt;br&gt;%1 %2 has been succefully activated!</translation>
+        <translation>Congratulations!&lt;br&gt;%1 %2 has been successfully activated!</translation>
     </message>
     <message>
         <location filename="../src/qascmainpanel.cpp" line="970"/>
