@@ -79,7 +79,7 @@ private:
 
     void toggleButtonMain(bool);
     void loadStartPage();
-    void doLogout(const QString&);
+    void doLogout(const QString&, bool);
     int  trySaveDocument(int);
     void doActivate(const QString&);
     void syncLicenseToJS(bool, bool proceed = true);

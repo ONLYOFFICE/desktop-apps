@@ -121,13 +121,11 @@
                         doLogin(model.path, model.email);
             } else
             if (/\:logout/.test(action)) {
-                onLogoutClick({data:model.name});
+                _do_logout.call(this, model.name);
             } else
             if (/\:forget/.test(action)) {
-                if (PortalsStore.forget(model.name)) {
-                    _do_logout.call(this, {data:model.name});
-                    _update_portals.call(this);
-                }
+                model.removed = true;
+                _do_logout.call(this, model.name);
             }
         };
 
@@ -252,10 +250,19 @@
 
                 window.sdk.on('on_check_auth', _apply_auth.bind(this));
                 window.sdk.on('on_native_message', (cmd, param)=>{
-                    if (cmd == 'portal:logout') {
+                    let res = /portal:logout(\:cancel)?/.exec(cmd);
+                    if (!!res && !!res[0]) {
                         var short_name = utils.skipUrlProtocol(param);
                         var model = collection.find('name', short_name);
-                        !!model && model.set('logged', false);
+
+                        if (!!model) {
+                            if (!res[1]) {
+                                model.set('logged', false);
+                                model.removed &&
+                                    PortalsStore.forget(param) && _update_portals.call(this);
+                            } else
+                                delete model.removed;
+                        }
                     }
                 });
 

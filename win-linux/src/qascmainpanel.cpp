@@ -558,16 +558,21 @@ void QAscMainPanel::onMenuLogout()
 //    }
 }
 
-void QAscMainPanel::doLogout(const QString& portal)
+void QAscMainPanel::doLogout(const QString& portal, bool allow)
 {
-    m_pTabs->closePortal(portal, true);
-    RecalculatePlaces();
-
     wstring wp = portal.toStdWString();
-    m_pManager->Logout(wp);
+    wstring wcmd = L"portal:logout";
+
+    if (allow) {
+        m_pTabs->closePortal(portal, true);
+        RecalculatePlaces();
+
+        m_pManager->Logout(wp);
+    } else
+        wcmd.append(L":cancel");
 
     CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(L"portal:logout");
+    pCommand->put_Command(wcmd);
     pCommand->put_Param(wp);
 
     CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
@@ -582,10 +587,10 @@ void QAscMainPanel::onPortalLogout(QString portal)
     if (m_saveAction > 1) return;
 
     int _index_, _answ_;
+    bool _allow = true;
     while (true) {
         _index_ = m_pTabs->findModified(portal);
         if ( _index_ < 0 ) {
-            doLogout(portal);
             break;
         } else {
             _answ_ = trySaveDocument(_index_);
@@ -597,13 +602,16 @@ void QAscMainPanel::onPortalLogout(QString portal)
             if ( _answ_ == MODAL_RESULT_YES ) {
                 m_saveAction = 1; // close portal
                 m_savePortal = portal;
-                break;
+                return;
             } else
             if ( _answ_ == MODAL_RESULT_CANCEL ) {
+                _allow = false;
                 break;
             }
         }
     }
+
+    doLogout(portal, _allow);
 }
 
 void QAscMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
