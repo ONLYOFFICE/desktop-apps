@@ -62,14 +62,14 @@ typedef NS_ENUM(int, ASCVersionType) {
 };
 
 static int PRODUCT_ID_AVS            = 300;
-static int PRODUCT_ID_IVOLGAPRO      = 301;
+static int PRODUCT_ID_ONLYOFFICE_RU  = 301;
 static int PRODUCT_ID_ONLYOFFICE     = 302;
 static int PRODUCT_ID_ONLYOFFICE_MAS = 303;
 
-#ifdef _PRODUCT_IVOLGA
-static NSString * kRegHelpUrl   = @"http://www.ivolgapro.ru/help";
-static NSString * kRegBuyUrl    = @"http://www.ivolgapro.ru/buynow";
-static NSString * kHelpUrl      = @"http://www.ivolgapro.ru/help";
+#ifdef _PRODUCT_ONLYOFFICE_RU
+static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
+static NSString * kRegBuyUrl    = @"http://onlyoffice.ru/buynow";
+static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
 #else
 static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kRegBuyUrl    = @"https://onlyoffice.com/desktopeditors.aspx";

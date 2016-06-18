@@ -1,9 +1,0 @@
-{
-  "title": "Иволга ПРО",
-  "background": "background.png",
-  "icon-size": 128,
-  "contents": [
-    { "x": 193, "y": 200, "type": "file", "path": "../Production/IvolgaPRO.app" },
-    { "x": 445, "y": 203, "type": "link", "path": "/Applications" }
-  ]
-}

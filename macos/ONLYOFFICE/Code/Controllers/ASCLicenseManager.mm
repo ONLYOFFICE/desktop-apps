@@ -125,8 +125,8 @@
     // Checking license
     NSEditorApi::CAscLicenceActual * licenceData = new NSEditorApi::CAscLicenceActual();
     licenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-    licenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#ifdef _PRODUCT_ONLYOFFICE_RU
+    licenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE_RU);
 #else
     licenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
 #endif
@@ -168,8 +168,8 @@
     NSEditorApi::CAscLicenceActual * generateLicenceData = new NSEditorApi::CAscLicenceActual();
     
     generateLicenceData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-    generateLicenceData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#ifdef _PRODUCT_ONLYOFFICE_RU
+    generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE_RU);
 #else
     generateLicenceData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
 #endif
@@ -187,8 +187,8 @@
     
     NSEditorApi::CAscLicenceKey * keyData = new NSEditorApi::CAscLicenceKey();
     keyData->put_Path([licenseDirectory stdwstring]);
-#ifdef _PRODUCT_IVOLGA
-    keyData->put_ProductId(PRODUCT_ID_IVOLGAPRO);
+#ifdef _PRODUCT_ONLYOFFICE_RU
+    keyData->put_ProductId(PRODUCT_ID_ONLYOFFICE_RU);
 #else
     keyData->put_ProductId(PRODUCT_ID_ONLYOFFICE);
 #endif

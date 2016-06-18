@@ -34,8 +34,6 @@
 /* Begin PBXBuildFile section */
 		FC081E9C1C3257F600F9881C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9B1C3257F600F9881C /* Info.plist */; };
 		FC081E9E1C3257FF00F9881C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9D1C3257FF00F9881C /* Info.plist */; };
-		FC081EA01C32580900F9881C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9F1C32580900F9881C /* Info.plist */; };
-		FC081EA71C32589800F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EA91C32589800F9881C /* InfoPlist.strings */; };
 		FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB01C3258A800F9881C /* InfoPlist.strings */; };
 		FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB71C3258B100F9881C /* InfoPlist.strings */; };
 		FC081ECB1C325E8400F9881C /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBD1C325E8400F9881C /* file-csv.icns */; };
@@ -112,6 +110,10 @@
 		FC42733E1C7351A800116793 /* ASCVersionSelectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */; };
 		FC42733F1C7351A800116793 /* ASCVersionSelectController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC42733C1C7351A800116793 /* ASCVersionSelectController.mm */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
+		FC6516021D1542C2009DBDCD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F51D1542C2009DBDCD /* EULA.html */; };
+		FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F71D1542C2009DBDCD /* InfoPlist.strings */; };
+		FC6516041D1542C2009DBDCD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC6515FF1D1542C2009DBDCD /* Info.plist */; };
+		FC6516051D154545009DBDCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC659BFB1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
@@ -205,7 +207,6 @@
 		FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FC7FD3EA1C315E9B008F6641 /* IvolgaPRO-Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */; };
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
@@ -251,7 +252,6 @@
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
-		FCF8071B1C43D07E00475CFD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCF8071D1C43D07E00475CFD /* EULA.html */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
 		FCFD46271C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */; };
 		FCFD46281C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFD46261C1AE07600FDDCEE /* ASCSavePanelWithFormatController.m */; };
@@ -293,12 +293,6 @@
 		FC081E951C3256ED00F9881C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Vendor/Sparkle/bin/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		FC081E9B1C3257F600F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081E9D1C3257FF00F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC081E9F1C32580900F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = IvolgaPRO/Info.plist; sourceTree = "<group>"; };
-		FC081EA81C32589800F9881C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC081EAA1C32589A00F9881C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC081EAB1C32589B00F9881C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC081EAC1C32589B00F9881C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC081EAD1C32589C00F9881C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC081EAF1C3258A800F9881C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC081EB11C3258AA00F9881C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC081EB21C3258AB00F9881C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -395,6 +389,17 @@
 		FC5C71EA1C64F6FD00FBBF70 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
 		FC5C71EB1C64F6FF00FBBF70 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
 		FC5C71EC1C64F70200FBBF70 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6515F61D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6515F81D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FC6515F91D1542C2009DBDCD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6515FA1D1542C2009DBDCD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FC6515FB1D1542C2009DBDCD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6515FC1D1542C2009DBDCD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FC6515FD1D1542C2009DBDCD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6515FE1D1542C2009DBDCD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FC6515FF1D1542C2009DBDCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC6516001D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/EULA.html; sourceTree = "<group>"; };
+		FC6516011D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC659BF71C75EE8B00C99776 /* ASCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCAboutController.h; path = Code/Controllers/ASCAboutController.h; sourceTree = "<group>"; };
 		FC659BF81C75EE8B00C99776 /* ASCAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCAboutController.m; path = Code/Controllers/ASCAboutController.m; sourceTree = "<group>"; };
 		FC67182D1BD913C00028600F /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,8 +409,7 @@
 		FC6718481BD91B410028600F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718491BD91B420028600F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC67184A1BD91B430028600F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MoveApplication.strings; sourceTree = "<group>"; };
-		FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IvolgaPRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "IvolgaPRO-Images.xcassets"; sourceTree = "<group>"; };
+		FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCReplacePresentationAnimator.h; path = Code/Utils/ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
 		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCReplacePresentationAnimator.m; path = Code/Utils/ASCReplacePresentationAnimator.m; sourceTree = "<group>"; };
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
@@ -479,11 +483,6 @@
 		FCD2B91C1BC64F1900F54560 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B9241BC68FBD00F54560 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCD65B931BDFAFCB008361F1 /* nsascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsascprinter.h; sourceTree = "<group>"; };
-		FCF8071C1C43D07E00475CFD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/EULA.html; sourceTree = "<group>"; };
-		FCF8071E1C43D08100475CFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EULA.html; sourceTree = "<group>"; };
-		FCF8071F1C43D08200475CFD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
-		FCF807201C43D08300475CFD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
-		FCF807211C43D08400475CFD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFD46241C1ADAB300FDDCEE /* OfficeFileFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfficeFileFormats.h; path = ../../core/Common/OfficeFileFormats.h; sourceTree = SOURCE_ROOT; };
@@ -538,16 +537,6 @@
 				FC081EB01C3258A800F9881C /* InfoPlist.strings */,
 			);
 			path = ONLYOFFICE;
-			sourceTree = "<group>";
-		};
-		FC081E991C32576700F9881C /* IvolgaPRO */ = {
-			isa = PBXGroup;
-			children = (
-				FCF8071D1C43D07E00475CFD /* EULA.html */,
-				FC081E9F1C32580900F9881C /* Info.plist */,
-				FC081EA91C32589800F9881C /* InfoPlist.strings */,
-			);
-			name = IvolgaPRO;
 			sourceTree = "<group>";
 		};
 		FC081E9A1C3257A800F9881C /* ONLYOFFICE-MAS */ = {
@@ -777,6 +766,16 @@
 			path = ../../core/DesktopEditor/Word_Api;
 			sourceTree = SOURCE_ROOT;
 		};
+		FC6515F41D1542C2009DBDCD /* ONLYOFFICE-RU */ = {
+			isa = PBXGroup;
+			children = (
+				FC6515F51D1542C2009DBDCD /* EULA.html */,
+				FC6515F71D1542C2009DBDCD /* InfoPlist.strings */,
+				FC6515FF1D1542C2009DBDCD /* Info.plist */,
+			);
+			path = "ONLYOFFICE-RU";
+			sourceTree = "<group>";
+		};
 		FC659BF51C75EE5C00C99776 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,8 +834,8 @@
 		FC98BAD71BAC4C6300747944 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FC081E991C32576700F9881C /* IvolgaPRO */,
 				FC081E981C32575800F9881C /* ONLYOFFICE */,
+				FC6515F41D1542C2009DBDCD /* ONLYOFFICE-RU */,
 				FC081E9A1C3257A800F9881C /* ONLYOFFICE-MAS */,
 				FC9424791CB7C92000C78A27 /* dsa_pub.pem */,
 				FC081EBC1C325E8400F9881C /* file-formats */,
@@ -1005,7 +1004,7 @@
 			children = (
 				FCBC42681B9D650400405301 /* ONLYOFFICE.app */,
 				FC67182D1BD913C00028600F /* ONLYOFFICE.app */,
-				FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */,
+				FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1022,7 +1021,6 @@
 				FCBC426D1B9D650400405301 /* AppDelegate.h */,
 				FCBC426E1B9D650400405301 /* AppDelegate.mm */,
 				FCBC42751B9D650500405301 /* Images.xcassets */,
-				FC7FD3E91C315E9B008F6641 /* IvolgaPRO-Images.xcassets */,
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC98BAD71BAC4C6300747944 /* Resources */,
 				FC6718321BD918D90028600F /* Frameworks */,
@@ -1093,9 +1091,9 @@
 			productReference = FC67182D1BD913C00028600F /* ONLYOFFICE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FC7FD3941C315DD6008F6641 /* IvolgaPRO */ = {
+		FC7FD3941C315DD6008F6641 /* ONLYOFFICE-RU */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "IvolgaPRO" */;
+			buildConfigurationList = FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-RU" */;
 			buildPhases = (
 				FC7FD3951C315DD6008F6641 /* Copy Library */,
 				FC7FD3961C315DD6008F6641 /* Sources */,
@@ -1108,9 +1106,9 @@
 			);
 			dependencies = (
 			);
-			name = IvolgaPRO;
+			name = "ONLYOFFICE-RU";
 			productName = ONLYOFFICE;
-			productReference = FC7FD3E51C315DD6008F6641 /* IvolgaPRO.app */;
+			productReference = FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FCBC42671B9D650400405301 /* ONLYOFFICE */ = {
@@ -1193,7 +1191,7 @@
 			targets = (
 				FCBC42671B9D650400405301 /* ONLYOFFICE */,
 				FC6717FE1BD913C00028600F /* ONLYOFFICE-MAS */,
-				FC7FD3941C315DD6008F6641 /* IvolgaPRO */,
+				FC7FD3941C315DD6008F6641 /* ONLYOFFICE-RU */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
 				FC5C4EEA1CF8618F008F5C11 /* Prepare */,
 			);
@@ -1240,28 +1238,28 @@
 				FC081EFB1C325EE900F9881C /* dictionaries in Resources */,
 				FC7FD3D71C315DD6008F6641 /* login in Resources */,
 				FC7FD3D81C315DD6008F6641 /* converter in Resources */,
-				FC7FD3EA1C315E9B008F6641 /* IvolgaPRO-Images.xcassets in Resources */,
 				FC081EE71C325E8400F9881C /* file-ppt.icns in Resources */,
 				FC081ECC1C325E8400F9881C /* file-csv.icns in Resources */,
 				FC081ED21C325E8400F9881C /* file-doc.icns in Resources */,
+				FC6516041D1542C2009DBDCD /* Info.plist in Resources */,
 				FC081EDE1C325E8400F9881C /* file-odt.icns in Resources */,
+				FC6516051D154545009DBDCD /* Images.xcassets in Resources */,
 				FC081EE11C325E8400F9881C /* file-pdf.icns in Resources */,
 				FC081EED1C325E8400F9881C /* file-txt.icns in Resources */,
 				FC081EDB1C325E8400F9881C /* file-ods.icns in Resources */,
 				FC081EEA1C325E8400F9881C /* file-rtf.icns in Resources */,
+				FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */,
 				FC081ED51C325E8400F9881C /* file-html.icns in Resources */,
 				FC081EF01C325E8400F9881C /* file-xls.icns in Resources */,
 				FC081EE41C325E8400F9881C /* file-pps.icns in Resources */,
 				FC081EF31C325E8400F9881C /* file-xps.icns in Resources */,
 				FC081ECF1C325E8400F9881C /* file-djvu.icns in Resources */,
 				FC081ED81C325E8400F9881C /* file-odp.icns in Resources */,
+				FC6516021D1542C2009DBDCD /* EULA.html in Resources */,
 				FC94247B1CB7C92100C78A27 /* dsa_pub.pem in Resources */,
 				FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */,
 				FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */,
 				FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */,
-				FCF8071B1C43D07E00475CFD /* EULA.html in Resources */,
-				FC081EA01C32580900F9881C /* Info.plist in Resources */,
-				FC081EA71C32589800F9881C /* InfoPlist.strings in Resources */,
 				FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1386,7 +1384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nexit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCWEBFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTWEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nSRCCOMMONLICENCE_DIR=\"$BASEDIR\"/ONLYOFFICE/Resources\nDSTCOMMONLICENCE_DIR=\"$DSTLOGINPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTWEBFONTS_DIR\"\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.ivolgapro.html \"$DSTLOGINPAGE_DIR\"/index.html\ncp -R \"$SRCWEBFONTS_DIR\"/LICENSE.txt \"$DSTWEBFONTS_DIR\"/LICENSE.txt\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Light.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -R \"$SRCCOMMONLICENCE_DIR\"/acknowledgments.html \"$DSTCOMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCEDITORPAGE_DIR=\"$BASEDIR\"/../common/editors/\nDSTEDITORPAGE_DIR=\"$DST_DIR\"/editors\nSRCEDITORFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTEDITORFONTS_DIR=\"$DSTEDITORPAGE_DIR\"/fonts\nWEBAPPS_DIR=\"$DSTEDITORPAGE_DIR\"/web-apps\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop/\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTEDITORFONTS_DIR\"\nCreateDir \"$WEBAPPS_DIR\"\n\ncp -R \"$SRCEDITORFONTS_DIR\"/ariblk.ttf \"$DSTEDITORFONTS_DIR\"/ariblk.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Asana-Math.ttf \"$DSTEDITORFONTS_DIR\"/Asana-Math.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bold.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bolditalic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bolditalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-italic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-regular.ttf \"$DSTEDITORFONTS_DIR\"/caladea-regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Bold.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Italic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Regular.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/LICENSE.txt \"$DSTEDITORFONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$JS_SDK_SVN\" \"$DSTEDITORPAGE_DIR\"/sdkjs\ncp -vR \"$SRCEDITORPAGE_DIR\" \"$WEBAPPS_DIR\"\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCCONVERTER_DIR=\"$BASEDIR\"/../common/converter\nDSTCONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$SRCCONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/x2t\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/icudtl_dat.S\" \"$DSTCONVERTER_DIR\"\n\nchmod -v +x \"$DSTCONVERTER_DIR\"/x2t\n";
+			shellScript = "#!/bin/sh\n\nexit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCWEBFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTWEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nSRCCOMMONLICENCE_DIR=\"$BASEDIR\"/ONLYOFFICE/Resources\nDSTCOMMONLICENCE_DIR=\"$DSTLOGINPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTWEBFONTS_DIR\"\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.html \"$DSTLOGINPAGE_DIR\"/index.html\ncp -R \"$SRCWEBFONTS_DIR\"/LICENSE.txt \"$DSTWEBFONTS_DIR\"/LICENSE.txt\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Light.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -R \"$SRCCOMMONLICENCE_DIR\"/acknowledgments.html \"$DSTCOMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCEDITORPAGE_DIR=\"$BASEDIR\"/../common/editors/\nDSTEDITORPAGE_DIR=\"$DST_DIR\"/editors\nSRCEDITORFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTEDITORFONTS_DIR=\"$DSTEDITORPAGE_DIR\"/fonts\nWEBAPPS_DIR=\"$DSTEDITORPAGE_DIR\"/web-apps\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop/\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTEDITORFONTS_DIR\"\nCreateDir \"$WEBAPPS_DIR\"\n\ncp -R \"$SRCEDITORFONTS_DIR\"/ariblk.ttf \"$DSTEDITORFONTS_DIR\"/ariblk.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Asana-Math.ttf \"$DSTEDITORFONTS_DIR\"/Asana-Math.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bold.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bolditalic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bolditalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-italic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-regular.ttf \"$DSTEDITORFONTS_DIR\"/caladea-regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Bold.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Italic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Regular.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/LICENSE.txt \"$DSTEDITORFONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$JS_SDK_SVN\" \"$DSTEDITORPAGE_DIR\"/sdkjs\ncp -vR \"$SRCEDITORPAGE_DIR\" \"$WEBAPPS_DIR\"\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCCONVERTER_DIR=\"$BASEDIR\"/../common/converter\nDSTCONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$SRCCONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/x2t\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/icudtl_dat.S\" \"$DSTCONVERTER_DIR\"\n\nchmod -v +x \"$DSTCONVERTER_DIR\"/x2t\n";
 		};
 		FC7FD3DF1C315DD6008F6641 /* Rename symbols */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1400,7 +1398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\n    mkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\n    mkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${PRODUCT_NAME}\\ Helper.app \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${PRODUCT_NAME} Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
@@ -1584,19 +1582,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FC081EA91C32589800F9881C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC081EA81C32589800F9881C /* Base */,
-				FC081EAA1C32589A00F9881C /* ru */,
-				FC081EAB1C32589B00F9881C /* de */,
-				FC081EAC1C32589B00F9881C /* es */,
-				FC081EAD1C32589C00F9881C /* fr */,
-			);
-			name = InfoPlist.strings;
-			path = IvolgaPRO;
-			sourceTree = "<group>";
-		};
 		FC081EB01C3258A800F9881C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1633,6 +1618,30 @@
 			name = EULA.html;
 			sourceTree = "<group>";
 		};
+		FC6515F51D1542C2009DBDCD /* EULA.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC6515F61D1542C2009DBDCD /* Base */,
+				FC6515F91D1542C2009DBDCD /* de */,
+				FC6515FB1D1542C2009DBDCD /* es */,
+				FC6515FD1D1542C2009DBDCD /* fr */,
+				FC6516001D1542C2009DBDCD /* ru */,
+			);
+			name = EULA.html;
+			sourceTree = "<group>";
+		};
+		FC6515F71D1542C2009DBDCD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FC6515F81D1542C2009DBDCD /* Base */,
+				FC6515FA1D1542C2009DBDCD /* de */,
+				FC6515FC1D1542C2009DBDCD /* es */,
+				FC6515FE1D1542C2009DBDCD /* fr */,
+				FC6516011D1542C2009DBDCD /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		FC6718441BD91B3A0028600F /* MoveApplication.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1667,19 +1676,6 @@
 				FCD2B91C1BC64F1900F54560 /* fr */,
 			);
 			name = Localizable.stringsdict;
-			sourceTree = "<group>";
-		};
-		FCF8071D1C43D07E00475CFD /* EULA.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FCF8071C1C43D07E00475CFD /* ru */,
-				FCF8071E1C43D08100475CFD /* Base */,
-				FCF8071F1C43D08200475CFD /* de */,
-				FCF807201C43D08300475CFD /* es */,
-				FCF807211C43D08400475CFD /* fr */,
-			);
-			name = EULA.html;
-			path = IvolgaPRO;
 			sourceTree = "<group>";
 		};
 		FCFC000B1BC54ACC00939341 /* Localizable.strings */ = {
@@ -1800,9 +1796,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					_MAC,
-					_PRODUCT_IVOLGA,
+					_PRODUCT_ONLYOFFICE_RU,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/IvolgaPRO/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-RU/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1813,8 +1809,8 @@
 					"$(inherited)",
 					"-headerpad_max_install_names",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.ONLYOFFICE;
+				PRODUCT_NAME = ONLYOFFICE;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1836,9 +1832,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					_MAC,
-					_PRODUCT_IVOLGA,
+					_PRODUCT_ONLYOFFICE_RU,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/IvolgaPRO/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-RU/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1849,8 +1845,8 @@
 					"$(inherited)",
 					"-headerpad_max_install_names",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.ONLYOFFICE;
+				PRODUCT_NAME = ONLYOFFICE;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -2042,7 +2038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "IvolgaPRO" */ = {
+		FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-RU" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC7FD3E31C315DD6008F6641 /* Debug */,
