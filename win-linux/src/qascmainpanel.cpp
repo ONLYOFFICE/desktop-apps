@@ -1294,7 +1294,7 @@ void QAscMainPanel::readSystemUserName(wstring& first, wstring& last)
 
     auto i = _full_name.find('.');
     i == wstring::npos ? first.assign(_full_name) :
-                first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i));
+                (first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i)));
 }
 
 void QAscMainPanel::syncLicenseToJS(bool active, bool proceed)

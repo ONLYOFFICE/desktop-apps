@@ -174,8 +174,32 @@ QString Utils::getUserPath()
 
 QRect Utils::getScreenGeometry(const QPoint& leftTop)
 {
-    int _scr_num = QApplication::desktop()->screenNumber(leftTop);
-    return QApplication::desktop()->screenGeometry(_scr_num);
+//    int _scr_num = QApplication::desktop()->screenNumber(leftTop); - return the wrong number
+//    return QApplication::desktop()->screenGeometry(_scr_num);
+
+    auto pointToRect = [](const QPoint &p, const QRect &r) -> int {
+        int dx = 0, dy = 0;
+        if (p.x() < r.left()) dx = r.left() - p.x(); else
+        if (p.x() > r.right()) dx = p.x() - r.right();
+
+        if (p.y() < r.top()) dy = r.top() - p.y(); else
+        if (p.y() > r.bottom()) dy = p.y() - r.bottom();
+
+        return dx + dy;
+    };
+
+    int closestScreen = 0;
+    int shortestDistance = pointToRect(leftTop, QApplication::desktop()->screenGeometry(0));
+
+    for (int i = 0; ++i < QApplication::desktop()->screenCount(); ) {
+        int thisDistance = pointToRect(leftTop, QApplication::desktop()->screenGeometry(i));
+        if (thisDistance < shortestDistance) {
+            shortestDistance = thisDistance;
+            closestScreen = i;
+        }
+    }
+
+    return QApplication::desktop()->screenGeometry(closestScreen);
 }
 
 //#define ARRSIZE(arr) (sizeof(arr)/sizeof(*(arr)))
