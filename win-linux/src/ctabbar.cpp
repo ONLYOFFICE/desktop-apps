@@ -41,6 +41,18 @@ inline static bool verticalTabs(QTabBar::Shape shape)
            || shape == QTabBar::TriangularWest || shape == QTabBar::TriangularEast;
 }
 
+QMovableTabWidget::QMovableTabWidget(QWidget *parent)
+    : QWidget(parent)
+{
+}
+
+void QMovableTabWidget::paintEvent(QPaintEvent *e)
+{
+    Q_UNUSED(e);
+    QPainter p(this);
+    p.drawPixmap(0, 0, m_pixmap);
+}
+
 /*
  *  TabBarPrivate class description
  *
@@ -147,7 +159,7 @@ void QTabBarPrivate::setupMovableTab()
     Q_Q(QTabBar);
 
     if (!movingTab)
-        movingTab = new QWidget(q);
+        movingTab = new QMovableTabWidget((QWidget *)q);
 
     int taboverlap = q->style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0 ,q);
     QRect grabRect = q->tabRect(pressedIndex);
