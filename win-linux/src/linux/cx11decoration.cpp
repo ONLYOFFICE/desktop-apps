@@ -31,11 +31,12 @@
 */
 
 #include "cx11decoration.h"
-#include "X11/Xlib.h"
 #include <QX11Info>
-#include "X11/cursorfont.h"
 
 #include <QDebug>
+
+#include "X11/Xlib.h"
+#include "X11/cursorfont.h"
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
@@ -61,8 +62,13 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_title(NULL)
     , m_currentCursor(0)
     , m_decoration(true)
+    , m_nBorderSize(0)
 {
     createCursors();
+
+#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
+    m_nBorderSize = CUSTOM_BORDER_WIDTH;
+#endif
 }
 
 CX11Decoration::~CX11Decoration()
@@ -101,7 +107,7 @@ void CX11Decoration::freeCursors()
 int CX11Decoration::hitTest(int x, int y) const
 {
     QRect rect = m_window->rect();
-    int bw = 5, bbw = 5;
+    int bw = CUSTOM_BORDER_WIDTH, bbw = CUSTOM_BORDER_WIDTH;
     int w = rect.width(), h = rect.height();
 
     QRect rc_top_left       = rect.adjusted(0, 0, -(w-bbw), -(h-bbw));
@@ -168,13 +174,16 @@ void CX11Decoration::checkCursor(QPoint & p)
     }
 }
 
-void CX11Decoration::dispatchMouseMove(QMouseEvent * e)
+void CX11Decoration::dispatchMouseMove(QMouseEvent * e, bool bIsPressed)
 {
     if (e->buttons().testFlag(Qt::LeftButton)) {
         int _direction = -1;
 
-        _direction = m_title->geometry().contains(e->pos()) ?
+        _direction = m_title->geometry().adjusted(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1).contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
+
+        if (bIsPressed && k_NET_WM_MOVERESIZE_MOVE == _direction)
+            return;
 
         if (!(_direction < 0)) {
             Display * xdisplay_ = QX11Info::display();

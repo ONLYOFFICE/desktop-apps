@@ -125,7 +125,8 @@ linux-g++ {
     HEADERS += src/linux/cmainwindow.h \
                 src/linux/cx11decoration.h
     SOURCES += src/linux/cmainwindow.cpp \
-                src/linux/cx11decoration.cpp
+                src/linux/cx11decoration.cpp \
+                src/linux/cx11caption.cpp
 
     DEFINES += LINUX _LINUX _LINUX_QT
     CONFIG += link_pkgconfig

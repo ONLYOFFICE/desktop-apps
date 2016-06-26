@@ -145,7 +145,11 @@ bool CMainWindow::event(QEvent * event)
 
 void CMainWindow::mouseMoveEvent(QMouseEvent *e)
 {
-    CX11Decoration::dispatchMouseMove(e);
+    CX11Decoration::dispatchMouseMove(e, false);
+}
+void CMainWindow::mousePressEvent(QMouseEvent *e)
+{
+    CX11Decoration::dispatchMouseMove(e, true);
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)

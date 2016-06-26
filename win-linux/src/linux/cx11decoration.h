@@ -38,6 +38,8 @@
 #include <QWidget>
 #include <QMouseEvent>
 
+#define FORCE_LINUX_CUSTOMWINDOW_MARGINS
+#define CUSTOM_BORDER_WIDTH 3
 
 class CX11Decoration
 {
@@ -46,7 +48,7 @@ public:
     ~CX11Decoration();
 
     void setTitleWidget(QWidget *);
-    void dispatchMouseMove(QMouseEvent *);
+    void dispatchMouseMove(QMouseEvent *, bool bIsPressed);
 
     void turnOn();
     void turnOff();
@@ -57,6 +59,7 @@ private:
     QWidget * m_title;
     ulong m_currentCursor;
     bool m_decoration;
+    int m_nBorderSize;
 
     std::map<int, ulong> m_cursors;
 
@@ -65,6 +68,22 @@ private:
     int  hitTest(int x, int y) const;
     void checkCursor(QPoint & p);
     void switchDecoration(bool);
+};
+
+class CX11Caption : public QWidget
+{
+public:
+    Q_OBJECT
+
+signals:
+    void mouseDoubleClicked();
+
+public:
+    explicit CX11Caption(QWidget* parent);
+    virtual ~CX11Caption();
+
+    virtual void paintEvent(QPaintEvent *event);
+    virtual void mouseDoubleClickEvent(QMouseEvent *event);
 };
 
 #endif // CX11DECORATION_H
