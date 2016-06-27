@@ -63,6 +63,7 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_currentCursor(0)
     , m_decoration(true)
     , m_nBorderSize(0)
+    , m_bIsMaximized(false)
 {
     createCursors();
 
@@ -106,6 +107,9 @@ void CX11Decoration::freeCursors()
 
 int CX11Decoration::hitTest(int x, int y) const
 {
+    if (m_bIsMaximized)
+        return -1;
+
     QRect rect = m_window->rect();
     int bw = CUSTOM_BORDER_WIDTH, bbw = CUSTOM_BORDER_WIDTH;
     int w = rect.width(), h = rect.height();
@@ -179,7 +183,14 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent * e, bool bIsPressed)
     if (e->buttons().testFlag(Qt::LeftButton)) {
         int _direction = -1;
 
-        _direction = m_title->geometry().adjusted(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1).contains(e->pos()) ?
+        QRect oTitleRect = m_title->geometry();
+
+#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
+        if (!m_bIsMaximized)
+            oTitleRect.adjust(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1);
+#endif
+
+        _direction = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
 
         if (bIsPressed && k_NET_WM_MOVERESIZE_MOVE == _direction)
@@ -259,4 +270,9 @@ void CX11Decoration::switchDecoration(bool on)
 bool CX11Decoration::isDecorated()
 {
     return m_decoration;
+}
+
+void CX11Decoration::setMaximized(bool bVal)
+{
+    m_bIsMaximized = bVal;
 }

@@ -429,6 +429,11 @@ void QAscMainPanel::applyMainWindowState(Qt::WindowState s)
     m_mainWindowState = s;
 
     if ( m_isCustomWindow ) {
+
+#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
+        this->layout()->setMargin(s == Qt::WindowMaximized ? 0 : CUSTOM_BORDER_WIDTH);
+#endif
+
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
         m_pButtonMaximize->style()->polish(m_pButtonMaximize);
     }

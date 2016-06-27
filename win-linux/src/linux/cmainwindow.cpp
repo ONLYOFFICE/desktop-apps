@@ -129,6 +129,8 @@ bool CMainWindow::event(QEvent * event)
     if (event->type() == QEvent::WindowStateChange) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
+        CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
+
 //        if( _e_statechange->oldState() & Qt::WindowMinimized ) {
 //            qDebug() << "Window restored (to normal or maximized state)!";
 //        } else

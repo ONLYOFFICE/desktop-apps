@@ -53,6 +53,7 @@ public:
     void turnOn();
     void turnOff();
     bool isDecorated();
+    void setMaximized(bool);
 
 private:
     QWidget * m_window;
@@ -60,6 +61,7 @@ private:
     ulong m_currentCursor;
     bool m_decoration;
     int m_nBorderSize;
+    bool m_bIsMaximized;
 
     std::map<int, ulong> m_cursors;
 
