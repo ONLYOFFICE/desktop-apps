@@ -70,8 +70,8 @@ DEB_DEPENDENCY += $(DEB)
 LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
-QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
+#QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
+#QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
 PLATFORM := linux_64_static_stdlib
 
