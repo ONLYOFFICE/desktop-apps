@@ -92,7 +92,7 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	cp -rf ../../../../core/linux_desktop/desktop/* $(PROGRAM_PATH)	
+	cp -rf ../../../../core/build/linux_desktop/desktop/* $(PROGRAM_PATH)	
 
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
