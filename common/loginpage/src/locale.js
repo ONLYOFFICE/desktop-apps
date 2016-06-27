@@ -39,8 +39,7 @@ var en = {
     btnAddPortal: 'Add Portal',
     btnLogin: 'Login',
     btnBrowse: 'Browse',
-    portalEmptyTitle: 'Take all advantages of ONLYOFFICE',
-    portalEmptyDescr: 'Use collaborative editing and commenting to work on a document simultaneously with your teammates.',
+    portalEmptyTitle: 'Get even more opportunities for work using ONLYOFFICE',
     portalListTitle: 'Connected portals',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
@@ -76,6 +75,9 @@ var en = {
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
+    ,adsText1: 'Real-time co-editing and document commenting'
+    ,adsText2: 'Use of revisions and versions to track the smallest document changes'
+    ,adsText3: 'Access to the documents any time anywhere using any device'
 }
 
 var ru = {
@@ -87,8 +89,7 @@ var ru = {
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
-    portalEmptyTitle: 'Ощутите все преимущества ONLYOFFICE',
-    portalEmptyDescr: 'Совместное редактирование и комментирование в режиме реального времени',
+    portalEmptyTitle: 'Получайте еще больше возможностей для работы используя ONLYOFFICE',
     portalListTitle: 'Подключенные порталы',
     textNoFiles: 'Нет файлов для просмотра',
     listRecoveryTitle:'Файлы для восстановления',
@@ -124,6 +125,9 @@ var ru = {
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.'
+    ,adsText1: 'Совместное редактирование и комментирование документов в режиме реального времени'
+    ,adsText2: 'Отслеживание минимальных изменений в документе при помощи ревизий и версий'
+    ,adsText3: 'Доступ к документам в любое время, из любой точки мира, с любого устройства'
 }
 
 var de = {

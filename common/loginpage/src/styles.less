@@ -50,7 +50,7 @@ button {
     height: 100%;
     /*padding: 25px;*/
     font-family: 'Open Sans',sans-serif;
-    min-width: 900px;
+    min-width: 1088px;
     min-height: 620px;
     display: flex;
 
@@ -672,8 +672,17 @@ li.menu-item {
 
 #box-empty-portals {
     h3 {
-        max-width: 680px;
+        /*max-width: 680px;*/
     }
+
+    .center-box {
+        width: 720px;
+    }
+
+    .ads-list {
+        margin: 60px auto 46px;
+    }
+
 }
 
 .activate {
@@ -736,4 +745,49 @@ li.menu-item {
     width: 100%;
     height: 100%;
     margin-top: 20px;
+}
+
+.ads-list {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    width: 680px;
+    margin: 0 auto;
+
+    li {
+        display: inline;
+
+        &:nth-child(2) {
+            .ads-list-item {
+                margin: 0 40px;
+                &::before {
+                    background-position-x:-200px;
+                }
+            }
+        }
+
+        &:nth-child(3) {
+            .ads-list-item::before {
+                background-position-x:-400px;
+            }
+        }
+    }
+}
+
+.ads-list-item {
+    display: block;
+    float: left;
+    width: 200px;
+    font-size: 14px;
+
+    &::before {
+        content: '';
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin: 0 0 40px 0;
+
+        background: -webkit-image-set(data-uri('ads.png') 1x, data-uri('ads@2x.png') 2x) no-repeat;
+    }
+
 }

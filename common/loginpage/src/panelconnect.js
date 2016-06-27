@@ -56,8 +56,11 @@
                       '<div id="box-empty-portals" class="empty flex-center">' +
                         '<section class="center-box">'+
                           `<h3 style="margin-top:0;">${_lang.portalEmptyTitle}</h3>`+
-                          `<h4 class="text-description">${_lang.portalEmptyDescr}</h4>`+
-                          '<img class="img-welcome">'+
+                          '<ul class="ads-list">'+
+                            `<li><span class="ads-list-item">${_lang.adsText1}</span></li>`+
+                            `<li><span class="ads-list-item">${_lang.adsText2}</span></li>`+
+                            `<li><span class="ads-list-item">${_lang.adsText3}</span></li>`+
+                          '</ul>'+
                           '<div class="tools-connect">'+
                             `<button class="btn primary newportal">${_lang.btnCreatePortal}</button>`+
                             '<section class="link-connect">'+
