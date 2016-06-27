@@ -959,8 +959,12 @@ void QAscMainPanel::doActivate(const QString& key)
 
 void QAscMainPanel::loadStartPage()
 {
+#ifdef _WIN32
     QString data_path = QString().fromStdWString(m_pManager->m_oSettings.app_data_path) + "/webdata/local/index.html";
 //    data_path = "ascdesktop://login.html";    
+#elif __linux__
+    QString data_path = qApp->applicationDirPath() + "/index.html";
+#endif
 
     QString additional = "?waitingloader=yes";
     if (!g_lang.isEmpty())
