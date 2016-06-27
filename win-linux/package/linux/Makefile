@@ -40,15 +40,9 @@ RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
-DOCUMENTSERVER = common/documentserver
-
 PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
-CONVERTER_PATH := $(PROGRAM_PATH)/converter
 FONTS_PATH := common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
 LOCAL_PATH := common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-WEB_APPS_PATH := $(PROGRAM_PATH)/editors/web-apps
-SDKJS_PATH := $(PROGRAM_PATH)/editors/sdkjs
-
 
 ifeq ($(COMPANY_NAME), onlyoffice)
 INDEX_HTML := index.html
@@ -98,32 +92,10 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	mkdir -p $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/bin/linux/*.S $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/bin/linux/x2t $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/lib/$(PLATFORM)/*.so* $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/lib/linux_64/libascdocumentscore.so $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/bin/icu/linux_64/*.so* $(CONVERTER_PATH)
-	cp -rf ../../../../core/build/empty $(CONVERTER_PATH)
-	cp -rf ../../../common/converter/DoctRenderer.config $(CONVERTER_PATH)
-	
-	cp -rf ../../../../core/build/lib/$(PLATFORM)/HtmlFileInternal $(PROGRAM_PATH)	
-	cp -rf ../../../../core/build/cef/linux_64/* $(PROGRAM_PATH)
+	cp -rf ../../../../core/core/linux_desktop/desktop/* $(PROGRAM_PATH)	
 
-	cp -rf ../../../../dictionaries $(PROGRAM_PATH)/
-
-	mkdir -p $(WEB_APPS_PATH)
-	cp -rf ../../../common/editors/* $(WEB_APPS_PATH)
-	
-	mkdir -p $(SDKJS_PATH)
-	cp -rf ../../../../core/build/jsdesktop/* $(SDKJS_PATH)
-
-	cp -rf ../../build/Release/DesktopEditors $(PROGRAM_PATH)/
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
-
-	#rm -f ../../../win-linux/install/data/libs/qt/linux64/libascdocumentscore.so 
-	#cp -rf ../../../win-linux/install/data/libs/qt/linux64/* $(PROGRAM_PATH)/
 
 	mkdir -p $(LOCAL_PATH)
 	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) $(LOCAL_PATH)/index.html
