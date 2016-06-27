@@ -327,6 +327,11 @@ void QAscMainPanel::RecalculatePlaces()
         captionH = TITLE_HEIGHT * g_dpi_ratio,
         btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
 
+#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
+    windowW = findChild<QWidget *>("centralWidget")->width();
+    windowH = findChild<QWidget *>("centralWidget")->height();
+#endif
+
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
