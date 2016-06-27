@@ -35,7 +35,6 @@ rm -rf "$RPM_BUILD_ROOT"
 %attr(777, root, root) /opt/onlyoffice/desktopeditors/*
 %attr(777, root, root) /usr/bin/desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
-%attr(-, root, root) /usr/share/fonts/truetype/onlyoffice/*
 %attr(-, root, root) /var/lib/onlyoffice/desktopeditors/*
 %pre
 
@@ -65,8 +64,6 @@ fi
 
 mkdir -p /var/lib/onlyoffice
 chmod -R 777 /var/lib/onlyoffice
-
-ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
 
 %preun
 
