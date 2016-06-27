@@ -33,22 +33,24 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             3,8,5,236
-#define VER_FILEVERSION_STR         "3.8.5.236\0"
+#define VER_FILEVERSION             3,8,5,238
+#define VER_FILEVERSION_STR         "3.8.5.238\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
 #define VER_PRODUCTVERSION_STR      "3.8\0"
 
 #ifdef _IVOLGA_PRO
+  #error IVOLGAPRO depricated.
+
   #define VER_COMPANYNAME_STR         "Novie kommunikacionnie tehnologii CJSC\0"
-  #define VER_FILEDESCRIPTION_STR     "Ivolga PRO\0"
+  #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE\0"
   #define VER_INTERNALNAME_STR        "Desktop Editors\0"
   #define VER_LEGALCOPYRIGHT_STR      "Novie kommunikacionnie tehnologii CJSC, 2016\0"
   #define VER_LEGALTRADEMARKS1_STR    "All rights reserved\0"
   #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
-  #define VER_ORIGINALFILENAME_STR    "ivolgapro.exe\0"
-  #define VER_PRODUCTNAME_STR         "Ivolga PRO\0"
-  #define VER_COMPANYDOMAIN_STR       "www.ivolgapro.ru\0"
+  #define VER_ORIGINALFILENAME_STR    "onlyoffice.exe\0"
+  #define VER_PRODUCTNAME_STR         "ONLYOFFICE\0"
+  #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.ru\0"
   #define ABOUT_COPYRIGHT_STR         "1999-2016 ЗАО 'НКТ'\0"
 #elif defined(_AVS)
   #define VER_COMPANYNAME_STR         "Online Media Technologies Ltd.\0"
@@ -62,16 +64,24 @@
   #define VER_COMPANYDOMAIN_STR       "www.avs4you.com\0"
   #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 #else
+  #ifdef _ONLY_RU
+  #define VER_COMPANYNAME_STR         "Novie kommunikacionnie tehnologii CJSC\0"
+  #define VER_LEGALCOPYRIGHT_STR      "Novie kommunikacionnie tehnologii CJSC, 2016\0"
+  #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.ru\0"
+  #define ABOUT_COPYRIGHT_STR         "1999-2016 ЗАО 'НКТ'\0"
+  #else
   #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
+  #define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2016\0"
+  #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
+  #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
+  #endif
+
   #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"
   #define VER_INTERNALNAME_STR        "Desktop Editors\0"
-  #define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2016\0"
   #define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved\0"
   #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
   #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
   #define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
-  #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
-  #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 
 #endif
 

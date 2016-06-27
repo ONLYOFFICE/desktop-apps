@@ -53,11 +53,7 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     QLabel * _labelLicense = new QLabel;
 
     QString _str_welcome = tr("Welcome to %1!");
-#ifdef _IVOLGA_PRO
-    _labelWelcome->setText(_str_welcome.arg(APP_TITLE));
-#else
     _labelWelcome->setText(_str_welcome.arg("ONLYOFFICE"));
-#endif
 
     setWindowIcon(Utils::appIcon());
 
@@ -90,13 +86,8 @@ CChooseLicenseDialog::CChooseLicenseDialog(QWidget *parent) : QDialog(parent)
     _btn2->setCursor(QCursor(Qt::PointingHandCursor));
 
     g_dpi_ratio > 1 ?
-#ifdef _IVOLGA_PRO
-        _btn1->setIcon(QIcon(":/ivolga/home@2x.png")), _btn2->setIcon(QIcon(":/ivolga/busines@2x.png")) :
-                _btn1->setIcon(QIcon(":/ivolga/home.png")), _btn2->setIcon(QIcon(":/ivolga/busines.png"));
-#else
         _btn1->setIcon(QIcon(":/license/home@2x.png")), _btn2->setIcon(QIcon(":/license/busines@2x.png")) :
                 _btn1->setIcon(QIcon(":/license/home.png")), _btn2->setIcon(QIcon(":/license/busines.png"));
-#endif
 
     connect(_btn1, &QToolButton::clicked, [=](){
         done((m_license = LICENSE_TYPE_FREE));

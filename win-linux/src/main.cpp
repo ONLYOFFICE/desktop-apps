@@ -185,7 +185,7 @@ int main( int argc, char *argv[] )
 
 #ifdef __linux
     if (!g_lang.size()) {
-  #ifdef _IVOLGA_PRO
+  #ifdef _ONLY_RU
         g_lang = "ru";
   #else
         g_lang = QLocale::system().name().left(2);

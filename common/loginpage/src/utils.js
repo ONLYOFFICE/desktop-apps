@@ -154,9 +154,9 @@ utils.defines.FileFormat = {
 };
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
-utils.defines.links = window.brand == 'ivo' ? {
-    regnew: 'http://www.ivolgapro.ru/registration',
-    restorepass: 'http://www.ivolgapro.ru/signin'
+utils.defines.links = window.brand == 'onlyru' ? {
+    regnew: 'http://www.onlyoffice.ru/registration',
+    restorepass: 'http://www.onlyoffice.ru/signin'
 } : window.brand == 'avs' ? {
     regnew: '',
     restorepass: ''

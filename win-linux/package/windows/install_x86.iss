@@ -3,8 +3,8 @@
 
 
 [Setup]
-#ifdef _IVOLGA_PRO
-  OutputBaseFileName    =Ivolgapro_x86
+#ifdef _ONLY_RU
+  OutputBaseFileName    =DesktopEditors_onru_x86
 #elif defined(_AVS)
 #else
   OutputBaseFileName    =DesktopEditors_x86

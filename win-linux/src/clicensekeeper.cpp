@@ -392,7 +392,7 @@ void CLicensekeeper::processServerLicense(void * d)
     CMessage mess(gTopWinId);
     if ( pData->get_Licence() ) {
         QString descr = QObject::tr("Congrats! %1 %2 was succefully activated!")
-#if defined(_IVOLGA_PRO) || defined(_AVS)
+#if defined(_AVS)
         .arg(APP_TITLE);
 #else
         .arg("ONLYOFFICE Desktop Editors");

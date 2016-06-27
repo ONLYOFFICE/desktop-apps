@@ -1,5 +1,5 @@
 ﻿
-;#define _IVOLGA_PRO
+;#define _ONLY_RU
 ;#define _AVS
 ;#define _AVS_LIGHT_VERSION
 
@@ -9,12 +9,7 @@
 #define NAME_EXE_OUT        'DesktopEditors.exe'
 #define iconsExe            'projicons.exe'
 
-#ifdef _IVOLGA_PRO
-  #define sAppName          'Иволга ПРО'
-  #define NAME_EXE_OUT      'IvolgaPRO.exe'
-  #define APP_PATH          'IvolgaPRO\DesktopEditors'
-  #define APP_REG_PATH      'Software\IvolgaPRO\DesktopEditors'
-#elif defined(_AVS)
+#if defined(_AVS)
   #define sAppName          'AVS Document Editor'
   #define sShortAppName     'AVSDocumentEditor'
   #define AppInternalId     98
@@ -23,11 +18,12 @@
   #define APP_REG_PATH      'Software\AVS4YOU\DocumentEditor'
 
   #include "avs.iss"
+#elif defined(_ONLY_RU)
+  #define NAME_EXE_OUT        'DesktopEditors_onru.exe'
 #endif
 
 
-#define PATH_EXE            '..\..\Build\Release\release\DesktopEditors.exe'
-#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + PATH_EXE)
+#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_OUT)
 #ifdef _AVS
   #define sAppVerShort      Copy(sAppVersion, 0, 5)
 #else
@@ -43,14 +39,14 @@ AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
 VersionInfoVersion        ={#sAppVersion}
 
-#ifdef _IVOLGA_PRO
+#ifdef _ONLY_RU
   AppPublisher            =Novie kommunikacionnie tehnologii, CJSC
-  AppPublisherURL         =http://www.ivolgapro.ru/
-  AppSupportURL           =http://www.ivolgapro.ru/support.aspx
+  AppPublisherURL         =http://www.onlyoffice.ru/
+  AppSupportURL           =http://www.onlyoffice.ru/support.aspx
   AppCopyright            =Copyright (C) 2016 Novie kommunikacionnie tehnologii, CJSC.
   DefaultGroupName        ={#sAppName}
-  WizardImageFile         = data\ivolga\dialogpicture.bmp
-  WizardSmallImageFile    = data\ivolga\dialogicon.bmp
+  WizardImageFile         = data\dialogpicture.bmp
+  WizardSmallImageFile    = data\dialogicon.bmp
 
   ShowLanguageDialog      =no
   LanguageDetectionMethod =none
@@ -84,9 +80,9 @@ SetupMutex                =ASC
 
 
 [Languages]
-#ifdef _IVOLGA_PRO
-  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
-  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_ivolgapro.rtf;
+#ifdef _ONLY_RU
+  Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: ..\..\..\common\package\license\eula_onlyoffice_ru.rtf;
+  Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_onlyoffice_ru.rtf;
 #elif defined(_AVS)
 #else
   Name: en; MessagesFile: compiler:Default.isl;           LicenseFile: ..\..\..\common\package\license\eula_onlyoffice.rtf;
@@ -99,9 +95,6 @@ SetupMutex                =ASC
 
 
 [CustomMessages]
-;======================================================================================================
-;en.AppName=Ivolga PRO
-;ru.AppName=Иволга ПРО
 ;======================================================================================================
 en.Launch =Launch %1
 ru.Launch =Запустить %1
@@ -202,9 +195,7 @@ begin
     end;
 
     if RegQueryStringValue(regkey,
-  #if   defined (_IVOLGA_PRO)
-        'SOFTWARE\IvolgaPRO\DesktopEditors',
-  #elif defined (_AVS)
+  #if defined (_AVS)
         'SOFTWARE\AVS4YOU\DocumentEditor',
   #else
         'SOFTWARE\ONLYOFFICE\DesktopEditors',
@@ -369,12 +360,10 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
 Source: .\launch.bat;           DestDir: {app}\;
 
 Source: ..\..\build\Release\release\{#NAME_EXE_OUT};            DestDir: {app};
-#if   defined(_IVOLGA_PRO)
-Source: ..\..\res\icons\ivolga\desktopeditors.ico;              DestDir: {app}\; DestName: app.ico; 
-Source: ..\..\..\common\loginpage\deploy\index.ivolgapro.html;  DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
-;Source: ..\..\common\package\license\eula_ivolga.rtf; DestDir: {app}; DestName: LICENSE.rtf;
-Source: ..\..\..\common\package\license\eula_ivolgapro.htm;     DestDir: {app}; DestName: LICENSE.htm;
-Source: data\projicons_nct.exe;                                 DestDir: {app}; DestName: {#iconsExe};
+#if defined(_ONLY_RU)
+Source: ..\..\..\common\loginpage\deploy\index.onlyru.html;     DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\package\license\eula_onlyoffice_ru.htm; DestDir: {app}; DestName: LICENSE.htm;
+;Source: data\projicons_nct.exe;                                 DestDir: {app}; DestName: {#iconsExe};
 #elif defined(_AVS)
 #else
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;

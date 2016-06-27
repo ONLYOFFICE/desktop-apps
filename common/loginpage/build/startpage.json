@@ -19,8 +19,8 @@
                     "dest": "../deploy/index.html"
                 },
                 {
-                    "src": "../src/index.html.ivolga.deploy",
-                    "dest": "../deploy/index.ivolgapro.html"
+                    "src": "../src/index.html.onlyru.deploy",
+                    "dest": "../deploy/index.onlyru.html"
                 },
                 {
                     "src": "../src/index.html.avs.deploy",
@@ -74,11 +74,10 @@
                 ],
                 "dest": "../deploy/build.js"
             }
-            ,"files:ivolga": {
+            ,"files:onlyru": {
                 "src": [
                     "../src/utils.js"
                     ,"../src/locale.js"
-                    ,"../src/l10n.ivolga.js"
                     ,"../src/events.js"
                     ,"../src/sdk.js"
                     ,"../src/model.js"
@@ -86,14 +85,13 @@
                     ,"../src/base.js"
                     ,"../src/panelrecent.js"
                     ,"../src/panelfolders.js"
-                    ,"../src/panelconnect.js"
                     ,"../src/panelactivate.js"
                     ,"../src/panelabout.js"
                     ,"../src/panelwelcome.js"
                     ,"../src/dlglogin.min.js"
                     ,"../src/panels.js"
                 ],
-                "dest": "../deploy/build.ivolgapro.js"
+                "dest": "../deploy/build.onlyru.js"
             }
             ,"files:avs": {
                 "src": [

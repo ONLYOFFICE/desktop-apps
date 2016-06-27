@@ -235,9 +235,7 @@ void CWinPanel::slot_mainPageReady()
     CSplash::hideSplash();
 
 #ifdef _UPDMODULE
-  #ifdef _IVOLGA_PRO
-    QString _prod_name = APP_TITLE;
-  #elif defined(_AVS)
+  #if defined(_AVS)
     QString _prod_name = APP_TITLE;
   #else
     QString _prod_name = VER_PRODUCTNAME_STR;

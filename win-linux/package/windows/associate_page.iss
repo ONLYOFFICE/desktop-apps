@@ -5,10 +5,7 @@ ChangesAssociations=true
 
 [CustomMessages]
 
-#ifdef _IVOLGA_PRO
-en.AssociateDescription =Associate office document file types with Ivolga PRO
-ru.AssociateDescription =Ассоциировать типы файлов офисных документов с Иволга ПРО
-#elif defined(_AVS)
+#if defined(_AVS)
 en.AssociateDescription =Associate office document file types with AVS Document Editor
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с AVS Document Editor
 #else
@@ -135,8 +132,6 @@ begin
 
 #if defined(_AVS)
   prefix := 'AVS.';
-#elif defined(_IVOLGA_PRO)
-  prefix := 'IVP.';
 #else
   prefix := 'ASC.';
 #endif

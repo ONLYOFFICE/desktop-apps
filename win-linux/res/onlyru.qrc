@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/avs">
+        <file alias="splash.png">icons/onlyru/splash.png</file>
+        <file alias="splash@2x.png">icons/onlyru/splash@2x.png</file>
+    </qresource>
+</RCC>

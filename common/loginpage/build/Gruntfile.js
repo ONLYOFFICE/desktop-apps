@@ -254,7 +254,7 @@ module.exports = function(grunt) {
                 dist: {
                     files: {
                         "<%= pkg.desktop.concat.files.dest %>" : [packageFile.desktop.concat.files.src],
-                        "<%= pkg.desktop.concat['files:ivolga'].dest %>" : [packageFile.desktop.concat["files:ivolga"].src]
+                        "<%= pkg.desktop.concat['files:onlyru'].dest %>" : [packageFile.desktop.concat["files:onlyru"].src]
                         ,"<%= pkg.desktop.concat['files:avs'].dest %>" : [packageFile.desktop.concat["files:avs"].src]
                     }
                 }
@@ -285,7 +285,7 @@ module.exports = function(grunt) {
                 my_target: {
                     files: {
                         '../deploy/build.min.js' : ['../deploy/build.js'],
-                        '../deploy/build.ivolgapro.min.js' : ['../deploy/build.ivolgapro.js']
+                        '../deploy/build.onlyru.min.js' : ['../deploy/build.onlyru.js']
                         ,'../deploy/build.avs.min.js' : ['../deploy/build.avs.js']
                     }
                 }
@@ -300,7 +300,7 @@ module.exports = function(grunt) {
                     },
                     files: {
                         '../deploy/index.html': '../deploy/index.html',
-                        '../deploy/index.ivolgapro.html': '../deploy/index.ivolgapro.html'
+                        '../deploy/index.onlyru.html': '../deploy/index.onlyru.html'
                         ,'../deploy/index.avs.html': '../deploy/index.avs.html'
                     }
                 }
@@ -318,7 +318,7 @@ module.exports = function(grunt) {
     grunt.registerTask('compile-html', function(){
         if (!grunt.option('external-image')) {
             grunt.config('replace.insert-css', {
-                    src: ['../deploy/index.html','../deploy/index.ivolgapro.html','../deploy/index.avs.html'],
+                    src: ['../deploy/index.html','../deploy/index.onlyru.html','../deploy/index.avs.html'],
                     overwrite: true,
                     replacements: [{
                         from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,

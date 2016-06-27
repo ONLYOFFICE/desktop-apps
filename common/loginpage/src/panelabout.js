@@ -96,8 +96,6 @@
                         args.opts = utils.fn.extend(utils.fn.parseVersion(param), {brand:window.brand});
                         if (/avs/.test(args.opts.link))
                             args.opts.logocls = 'avs'; else
-                        if (/ivolga/.test(args.opts.link))
-                            args.opts.logocls = 'ivolga'; else
                             args.opts.logocls = 'only';
 
                         if (!this.view) {

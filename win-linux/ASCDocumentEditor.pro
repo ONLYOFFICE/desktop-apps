@@ -77,16 +77,16 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
-#CONFIG += ivolga_theme
+#CONFIG += onlyru_theme
 #CONFIG += avs_theme
 
 RESOURCES += resources.qrc
 RC_FILE = version.rc
 #RES_FILE = version.res
 
-ivolga_theme {
-    DEFINES += _IVOLGA_PRO
-    RESOURCES += res/ivolga.qrc
+onlyru_theme {
+    DEFINES += _ONLY_RU
+    RESOURCES += res/onlyru.qrc
 }
 
 avs_theme {
@@ -211,8 +211,8 @@ win32 {
     } else {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
 
-        ivolga_theme {
-            TARGET = IvolgaPRO
+        onlyru_theme {
+            TARGET = DesktopEditors_onru
         }
 
         avs_theme {

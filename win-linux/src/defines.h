@@ -43,27 +43,29 @@
 #define FILE_DOWNLOAD_START     3
 #define FILE_DOWNLOAD_END       4
 
-#ifdef _IVOLGA_PRO
+#ifdef _ONLY_RU
   #define PROD_ID_DESKTOP_EDITORS 301
 
-  #define APP_TITLE g_lang.compare("ru") == 0 ? "Иволга ПРО" : "Ivolga PRO"
-  #define WINDOW_NAME APP_TITLE
+  #define APP_NAME "DesktopEditors"
+  #define APP_TITLE "ONLYOFFICE"
 
   #ifdef __linux
-    #define APP_DATA_PATH "/ivolgapro/desktopeditors"
-    #define APP_LICENSE_PATH "/ivolgapro/license"
-    #define REG_GROUP_KEY "ivolgapro"
-    #define LIC_KEY_FILENAME ".doceditors.ivo.asc"
+    #define APP_DATA_PATH "/onlyoffice/desktopeditors"
+    #define APP_LICENSE_PATH "/onlyoffice/license"
+    #define REG_GROUP_KEY "onlyoffice"
+    #define LIC_KEY_FILENAME ".doceditors.asc"
   #else
-    #define APP_DATA_PATH "/IvolgaPRO/DesktopEditors"
-    #define APP_LICENSE_PATH "/IvolgaPRO/License"
-    #define REG_GROUP_KEY "IvolgaPRO"
-    #define LIC_KEY_FILENAME "doceditors.ivo.asc"
+    #define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
+    #define APP_LICENSE_PATH "/ONLYOFFICE/License"
+    #define REG_GROUP_KEY "ONLYOFFICE"
+    #define LIC_KEY_FILENAME "doceditors.asc"
   #endif
 
-  #define URL_BUYNOW "http://www.ivolgapro.ru/buynow"
+  #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+  #define URL_SITE "http://www.onlyoffice.ru"
+  #define URL_BUYNOW "http://www.onlyoffice.ru/buynow"
   #define REG_APP_NAME "DesktopEditors"
-  #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/ivolgapro/appcast.xml"
+  #define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/onlyru/appcast.xml"
 
 #elif defined(_AVS)
   #define PROD_ID_DESKTOP_EDITORS 98
@@ -72,10 +74,6 @@
   #define APP_TITLE "AVS Document Editor"
 
   #ifdef __linux
-    #define APP_DATA_PATH "/ivolgapro/desktopeditors"
-    #define APP_LICENSE_PATH "/ivolgapro/license"
-    #define REG_GROUP_KEY "ivolgapro"
-//    #define LIC_KEY_FILENAME ".doceditors.avs"
   #else
     #define APP_DATA_PATH "/AVS4YOU/AVSDocumentEditor"
     #define APP_LICENSE_PATH "/AVS4YOU/Licence"

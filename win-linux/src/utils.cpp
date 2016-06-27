@@ -241,9 +241,7 @@ QString Utils::systemLocationCode()
 QIcon Utils::appIcon()
 {
     return
-#ifdef _IVOLGA_PRO
-    QIcon(":/ivolga/app.ico");
-#elif defined(_AVS)
+#if defined(_AVS)
     QIcon(":/avs/app.ico");
 #else
     QIcon(":/res/icons/desktopeditors.ico");
