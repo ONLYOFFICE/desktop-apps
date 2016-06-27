@@ -340,9 +340,16 @@ void QAscMainPanel::RecalculatePlaces()
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
     int docCaptionW = windowW - m_pTabs->tabBar()->width() - btnMainWidth;
+    int contentH = windowH - captionH;
+
+    if (docCaptionW < 1)
+        docCaptionW = 1;
+    if (contentH < 1)
+        contentH = 1;
+
     m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * g_dpi_ratio);
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, windowH - captionH);
+    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
 
 #ifdef __linux

@@ -55,6 +55,8 @@ public:
     bool isDecorated();
     void setMaximized(bool);
 
+    static int devicePixelRatio();
+
 private:
     QWidget * m_window;
     QWidget * m_title;

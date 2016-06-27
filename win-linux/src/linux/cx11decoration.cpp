@@ -37,6 +37,7 @@
 
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
+#include <gdk/gdkscreen.h>
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
@@ -275,4 +276,40 @@ bool CX11Decoration::isDecorated()
 void CX11Decoration::setMaximized(bool bVal)
 {
     m_bIsMaximized = bVal;
+}
+
+int CX11Decoration::devicePixelRatio()
+{
+    GdkScreen* screen = gdk_screen_get_default();
+
+    if (screen)
+    {
+        double dScale = gdk_screen_get_resolution(screen);
+
+        int wPx = gdk_screen_get_width(screen);
+        int hPx = gdk_screen_get_height(screen);
+        int wMm = gdk_screen_get_width_mm(screen);
+        int hMm = gdk_screen_get_height_mm(screen);
+
+        if (wMm < 1)
+            wMm = 1;
+        if (hMm < 1)
+            hMm = 1;
+
+        int nDpiX = (int)(0.5 + wPx * 25.4 / wMm);
+        int nDpiY = (int)(0.5 + hPx * 25.4 / hMm);
+        int nDpi = (nDpiX + nDpiY) >> 1;
+
+        if (nDpi < 10)
+            return 0;
+
+        dScale /= nDpi;
+        if (dScale < 1)
+            return 0;
+        else if (dScale > 2)
+            return 2;
+        else
+            return (int)(dScale + 0.49);
+    }
+    return 1;
 }
