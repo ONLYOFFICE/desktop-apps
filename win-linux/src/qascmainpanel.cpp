@@ -205,7 +205,8 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 #ifndef FORCE_LINUX_CUSTOMWINDOW_MARGINS
         CUSTOM_BORDER_WIDTH_CORRECT = CUSTOM_BORDER_WIDTH * g_dpi_ratio;
 #else
-        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
+        if (isCustomWindow)
+            connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
         m_pButtonMain->setGeometry(CUSTOM_BORDER_WIDTH_CORRECT, CUSTOM_BORDER_WIDTH_CORRECT,
                                         BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
