@@ -103,7 +103,10 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
 #ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-    mainGridLayout->setMargin( CUSTOM_BORDER_WIDTH );
+    if (isCustomWindow)
+        mainGridLayout->setMargin( CUSTOM_BORDER_WIDTH );
+    else
+        mainGridLayout->setMargin( 0 );
 #else
     mainGridLayout->setMargin( 0 );
 #endif
