@@ -97,17 +97,6 @@ desktopeditor:
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 
-	mkdir -p $(LOCAL_PATH)
-	cp -f ../../../common/loginpage/deploy/$(INDEX_HTML) $(LOCAL_PATH)/index.html
-
-	mkdir -p $(LOCAL_PATH)/fonts
-	cp  ../../../common/package/fonts/LICENSE.txt $(LOCAL_PATH)/fonts
-	cp  ../../../common/package/fonts/OpenSans-*.ttf $(LOCAL_PATH)/fonts
-
-	mkdir -p $(FONTS_PATH)
-	cp  ../../../common/package/fonts/Carlito-*.ttf $(FONTS_PATH)
-	cp  ../../../common/package/fonts/Asana-Math.ttf $(FONTS_PATH)
-
 	chmod 777 $(START_SCRIPT)
 
 qt-redist:
