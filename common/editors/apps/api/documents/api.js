@@ -588,7 +588,7 @@
     };
 
     DocsAPI.DocEditor.version = function() {
-        return '3.0b.772';
+        return '3.0b.771';
     };
 
     MessageDispatcher = function(fn, scope) {
