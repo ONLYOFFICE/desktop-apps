@@ -1,6 +1,7 @@
 
 #labelAppTitle {
     margin-top: -4px;
+    font-size: 22px;
 }
 
 QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,

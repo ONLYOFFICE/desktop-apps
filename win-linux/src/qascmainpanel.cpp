@@ -152,7 +152,11 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pButtonDownload->setAnimatedIcon(
                 g_dpi_ratio > 1 ? ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
 
+#ifdef _WIN32
+    m_boxTitleBtns = new QWidget(centralWidget);
+#else
     m_boxTitleBtns = new CX11Caption(centralWidget);
+#endif
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     QLabel * label = new QLabel(APP_TITLE);
     label->setObjectName("labelAppTitle");

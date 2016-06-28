@@ -124,6 +124,7 @@ int main( int argc, char *argv[] )
 
     QApplication app(argc, argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
+    app.setAttribute(Qt::AA_DisableHighDpiScaling);
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
@@ -156,7 +157,7 @@ int main( int argc, char *argv[] )
 
     g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
 #else
-    g_dpi_ratio = app.devicePixelRatio();
+    g_dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
