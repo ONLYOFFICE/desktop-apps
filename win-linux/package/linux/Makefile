@@ -58,6 +58,12 @@ DEB_DEPENDENCY += $(DEB)
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
+ifeq ($(PACKAGE_EDITION), cool)
+BILD_PATH := ../../../../core/build/linux_desktop/desktop/*
+else
+BILD_PATH := ../../../../core/build/linux_desktop/desktop_full/*
+endif
+
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
@@ -80,7 +86,7 @@ clean:
 		$(REPO)
 
 desktopeditor:
-	cp -rf ../../../../core/build/linux_desktop/desktop_full/* $(PROGRAM_PATH)	
+	cp -rf $(BILD_PATH) $(PROGRAM_PATH)
 
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
