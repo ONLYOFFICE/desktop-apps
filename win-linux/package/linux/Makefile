@@ -51,33 +51,15 @@ APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
-FONTS_PATH := common/$(COMPANY_NAME)/usr/share/fonts/truetype/$(COMPANY_NAME)/$(PRODUCT_NAME)
-LOCAL_PATH := common/$(COMPANY_NAME)/var/lib/$(COMPANY_NAME)/$(PRODUCT_NAME)/webdata/local
-
-ifeq ($(COMPANY_NAME), onlyoffice)
-INDEX_HTML := index.html
-START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/desktopeditors
-else
-INDEX_HTML := index.$(COMPANY_NAME).html
-START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/$(COMPANY_NAME)
-endif
 
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
-ifeq ($(RPM_REPO_OS_VER), 6)
-RPM_DEPENDENCY += libstdc++-addon
-RPM_DEPENDENCY += libc-addon
-endif
 RPM_DEPENDENCY += $(RPM)
 
 DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
-ifeq ($(DEB_REPO_OS_VER), precise)
-DEB_DEPENDENCY += libstdc++-addon
-endif
 DEB_DEPENDENCY += $(DEB)
 
-LIB_X64 := /lib/x86_64-linux-gnu
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
@@ -127,33 +109,10 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-libstdc++-addon:
-	#cp -t $(PROGRAM_PATH)/ \
-		#$(USR_LIB_X64)/libffi.so.6 \
-		#$(USR_LIB_X64)/libgio-2.0.so.0 \
-		#$(LIB_X64)/libglib-2.0.so.0 \
-		#$(USR_LIB_X64)/libgmodule-2.0.so.0 \
-		#$(USR_LIB_X64)/libgobject-2.0.so.0 \
-		#$(LIB_X64)/libpcre.so.3 \
-		#$(USR_LIB_X64)/libstdc++.so.6
-
-	sed 's/libstdc++6 (>=4.8),//'  -i deb/$(PACKAGE_NAME)/DEBIAN/control  
-	sed 's/libstdc++ >= 4.8.0,//'  -i rpm/$(PACKAGE_NAME).spec
-	sed 's/libstdc++ >= 4.8.0,//'  -i apt-rpm/$(PACKAGE_NAME).spec
-
-libc-addon:
-	#cp -t $(PROGRAM_PATH)/ \
-		#$(LIB_X64)/ld-linux-x86-64.so.2 \
-		#$(LIB_X64)/libc.so.6
-
 rpm-version:
 	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i rpm/$(PACKAGE_NAME).spec
 	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
-
-ifeq ($(RPM_REPO_OS_VER), 6)
-	rm -rf $(PROGRAM_PATH)/platformthemes/
-endif
 
 deb-version:
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
