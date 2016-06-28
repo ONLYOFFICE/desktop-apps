@@ -24,12 +24,22 @@ APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 REPO_NAME := repo
 REPO = $(PWD)/$(REPO_NAME)
 
-RPM_REPO_OS_NAME = centos
-RPM_REPO_OS_VER = 7
+RPM_REPO_OS_NAME := centos
+
+ifeq ($(PACKAGE_EDITION), cool)
+RPM_REPO_OS_VER := 7
+else
+RPM_REPO_OS_VER := 6
+endif
 RPM_REPO_DIR = $(RPM_REPO_OS_NAME)/$(RPM_REPO_OS_VER)
 
-DEB_REPO_OS_NAME = ubuntu
-DEB_REPO_OS_VER = trusty
+DEB_REPO_OS_NAME := ubuntu
+
+ifeq ($(PACKAGE_EDITION), cool)
+DEB_REPO_OS_VER := trusty
+else
+DEB_REPO_OS_VER := precise
+endif
 DEB_REPO_DIR = $(DEB_REPO_OS_NAME)/$(DEB_REPO_OS_VER)
 
 ALT_REPO_OS_NAME = altlinux
