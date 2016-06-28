@@ -86,6 +86,7 @@ clean:
 		$(REPO)
 
 desktopeditor:
+	mkdir -p $(PROGRAM_PATH)
 	cp -rf $(BILD_PATH) $(PROGRAM_PATH)
 
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
