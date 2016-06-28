@@ -92,8 +92,6 @@ desktopeditor:
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 
-	chmod 777 $(START_SCRIPT)
-
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
 		$(QT_PLUGINS)/bearer \
