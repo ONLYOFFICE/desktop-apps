@@ -48,7 +48,9 @@ public:
     ~CX11Decoration();
 
     void setTitleWidget(QWidget *);
-    void dispatchMouseMove(QMouseEvent *, bool bIsPressed);
+    void dispatchMouseDown(QMouseEvent *);
+    void dispatchMouseMove(QMouseEvent *);
+    void dispatchMouseUp(QMouseEvent *);
 
     void turnOn();
     void turnOff();
@@ -56,6 +58,8 @@ public:
     void setMaximized(bool);
 
     static int devicePixelRatio();
+
+    int m_nDirection;
 
 private:
     QWidget * m_window;

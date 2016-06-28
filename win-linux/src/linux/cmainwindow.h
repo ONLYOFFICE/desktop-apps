@@ -56,6 +56,7 @@ protected:
     bool event(QEvent *event);
     void mouseMoveEvent(QMouseEvent *);
     void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
 
 private:
     QWidget *   m_pMainPanel;

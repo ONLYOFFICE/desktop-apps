@@ -32,6 +32,7 @@
 
 #include "cx11decoration.h"
 #include <QX11Info>
+#include <QApplication>
 
 #include <QDebug>
 
@@ -71,6 +72,8 @@ CX11Decoration::CX11Decoration(QWidget * w)
 #ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
     m_nBorderSize = CUSTOM_BORDER_WIDTH;
 #endif
+
+    m_nDirection = -1;
 }
 
 CX11Decoration::~CX11Decoration()
@@ -179,11 +182,11 @@ void CX11Decoration::checkCursor(QPoint & p)
     }
 }
 
-void CX11Decoration::dispatchMouseMove(QMouseEvent * e, bool bIsPressed)
+void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
 {
-    if (e->buttons().testFlag(Qt::LeftButton)) {
-        int _direction = -1;
-
+    //qDebug() << "down";
+    if (e->buttons() == Qt::LeftButton)
+    {
         QRect oTitleRect = m_title->geometry();
 
 #ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
@@ -191,39 +194,50 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent * e, bool bIsPressed)
             oTitleRect.adjust(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1);
 #endif
 
-        _direction = oTitleRect.contains(e->pos()) ?
+        m_nDirection = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
+    }
+}
 
-        if (bIsPressed && k_NET_WM_MOVERESIZE_MOVE == _direction)
-            return;
+void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
+{
+    //qDebug() << "move: " << (e->buttons() == Qt::LeftButton);
+    if (m_nDirection >= 0 && e->buttons() == Qt::LeftButton)
+    {
+        Display * xdisplay_ = QX11Info::display();
+        Window x_root_window_ = DefaultRootWindow(xdisplay_);
 
-        if (!(_direction < 0)) {
-            Display * xdisplay_ = QX11Info::display();
-            Window x_root_window_ = DefaultRootWindow(xdisplay_);
+        XUngrabPointer(xdisplay_, CurrentTime);
 
-            XUngrabPointer(xdisplay_, CurrentTime);
+        XEvent event;
+        memset(&event, 0, sizeof(event));
+        event.xclient.type = ClientMessage;
+        event.xclient.display = xdisplay_;
+        event.xclient.window = m_window->winId();
+        event.xclient.message_type = XInternAtom(xdisplay_, "_NET_WM_MOVERESIZE", false);
+        event.xclient.format = 32;
+        event.xclient.data.l[0] = e->globalPos().x();
+        event.xclient.data.l[1] = e->globalPos().y();
+        event.xclient.data.l[2] = m_nDirection;
+        event.xclient.data.l[3] = 0;
+        event.xclient.data.l[4] = 0;
 
-            XEvent event;
-            memset(&event, 0, sizeof(event));
-            event.xclient.type = ClientMessage;
-            event.xclient.display = xdisplay_;
-            event.xclient.window = m_window->winId();
-            event.xclient.message_type = XInternAtom(xdisplay_, "_NET_WM_MOVERESIZE", false);
-            event.xclient.format = 32;
-            event.xclient.data.l[0] = e->globalPos().x();
-            event.xclient.data.l[1] = e->globalPos().y();
-            event.xclient.data.l[2] = _direction;
-            event.xclient.data.l[3] = 0;
-            event.xclient.data.l[4] = 0;
+        XSendEvent(xdisplay_, x_root_window_, False, SubstructureRedirectMask | SubstructureNotifyMask, &event);
+        XFlush(xdisplay_);
 
-            XSendEvent(xdisplay_, x_root_window_, False, SubstructureRedirectMask | SubstructureNotifyMask, &event);
-            XFlush(xdisplay_);
-//            XSync(xdisplay_, false);
-        }
-    } else {
+        m_nDirection = -1;
+    }
+    else
+    {
         QPoint p(e->pos().x(), e->pos().y());
         checkCursor(p);
     }
+}
+
+void CX11Decoration::dispatchMouseUp(QMouseEvent *e)
+{
+    //qDebug() << "up";
+    m_nDirection = -1;
 }
 
 void CX11Decoration::turnOn()

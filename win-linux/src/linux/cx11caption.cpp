@@ -54,5 +54,6 @@ void CX11Caption::paintEvent(QPaintEvent *event)
 
 void CX11Caption::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    emit mouseDoubleClicked();
+    if (event->buttons() == Qt::LeftButton)
+        emit mouseDoubleClicked();
 }
