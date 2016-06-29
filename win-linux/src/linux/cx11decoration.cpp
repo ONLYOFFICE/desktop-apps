@@ -299,6 +299,8 @@ int CX11Decoration::devicePixelRatio()
     if (screen)
     {
         double dScale = gdk_screen_get_resolution(screen);
+        if (dScale < 1)
+            return 1;
 
         int wPx = gdk_screen_get_width(screen);
         int hPx = gdk_screen_get_height(screen);
@@ -315,11 +317,11 @@ int CX11Decoration::devicePixelRatio()
         int nDpi = (nDpiX + nDpiY) >> 1;
 
         if (nDpi < 10)
-            return 0;
+            return 1;
 
         dScale /= nDpi;
         if (dScale < 1)
-            return 0;
+            return 1;
         else if (dScale > 2)
             return 2;
         else

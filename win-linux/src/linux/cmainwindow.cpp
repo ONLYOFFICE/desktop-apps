@@ -109,6 +109,9 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
             reg_user.setValue("titlebar", "custom");
         }
     }
+
+    if (!reg_user.contains("titlebar"))
+        reg_user.setValue("titlebar", "custom");
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)
