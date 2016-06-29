@@ -48,6 +48,12 @@ DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
 
+ifeq ($(COMPANY_NAME), onlyoffice)
+START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/desktopeditors
+else
+START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/$(COMPANY_NAME)
+endif
+
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
 RPM_DEPENDENCY += $(RPM)
@@ -91,6 +97,8 @@ desktopeditor:
 
 	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
+	
+	chmod 777 $(START_SCRIPT)
 
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
