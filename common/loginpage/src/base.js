@@ -70,8 +70,8 @@
                 let $menu = $(this.menuContainer);
                 if (_index >= 0) {
                     let $items = $menu.children();
-                    this.$menuitem = $items.size() > _index ?
-                        $items.eq(_index).after(this.tplItem) : $(this.tplItem).appendTo($menu);
+                    this.$menuitem = $items.size() > _index + 1 ?
+                        $(this.tplItem).insertAfter($items.eq(_index)) : $(this.tplItem).appendTo($menu);
                 } else {
                     this.$menuitem = $(this.tplItem).appendTo($menu);
                 }

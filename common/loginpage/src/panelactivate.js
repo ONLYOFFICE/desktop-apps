@@ -112,9 +112,13 @@
                 this.view.$panel.find('.img-loader').hide();
             }
             ,setPanelHidden: function(hidden) {
-                this.view.$menuitem[hidden?'hide':'show']();
-                hidden ? this.view.$panel['show']() :
+                if (hidden) {
+                    this.view.$menuitem['hide']();
+//                    this.view.$panel['hide']();
+                } else {
+                    this.view.$menuitem['show']();
                     this.view.$panel.find('#txt-key-activate').focus();
+                }
             }
     });
 }();
