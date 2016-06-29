@@ -89,6 +89,7 @@ clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
+		$(APT_RPM_BUILD_DIR)\
 		$(REPO)
 
 desktopeditor:
