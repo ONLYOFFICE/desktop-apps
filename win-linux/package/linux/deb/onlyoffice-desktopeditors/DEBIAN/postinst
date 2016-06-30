@@ -26,3 +26,5 @@ fi
 mkdir -p /var/lib/onlyoffice
 chmod -R 777 /var/lib/onlyoffice
 chmod -R 777 /opt/onlyoffice/desktopeditors/*
+
+/opt/onlyoffice/desktopeditors/post_install.sh

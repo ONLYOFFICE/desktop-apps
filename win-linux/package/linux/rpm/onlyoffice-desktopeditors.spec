@@ -64,6 +64,8 @@ fi
 mkdir -p /var/lib/onlyoffice
 chmod -R 777 /var/lib/onlyoffice
 
+/opt/onlyoffice/desktopeditors/post_install.sh
+
 %preun
 
 set -e
