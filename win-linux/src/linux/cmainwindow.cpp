@@ -40,12 +40,14 @@
 #include "../utils.h"
 #include "../clicensekeeper.h"
 #include <QTimer>
+#include <QMimeData>
 
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , CX11Decoration(this)
 {
     resize(1200, 700);
+    setAcceptDrops(true);
 }
 
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
@@ -159,6 +161,57 @@ void CMainWindow::mousePressEvent(QMouseEvent *e)
 void CMainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     CX11Decoration::dispatchMouseUp(e);
+}
+
+void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.length() != 1)
+        return;
+
+    QMap<QString, bool> oMap;
+    oMap.insert(tr("docx"), true);
+    oMap.insert(tr("doc"), true);
+    oMap.insert(tr("odt"), true);
+    oMap.insert(tr("rtf"), true);
+    oMap.insert(tr("txt"), true);
+    oMap.insert(tr("html"), true);
+    oMap.insert(tr("mht"), true);
+    oMap.insert(tr("epub"), true);
+
+    oMap.insert(tr("pptx"), true);
+    oMap.insert(tr("ppt"), true);
+    oMap.insert(tr("odp"), true);
+    oMap.insert(tr("ppsx"), true);
+
+    oMap.insert(tr("xlsx"), true);
+    oMap.insert(tr("xls"), true);
+    oMap.insert(tr("ods"), true);
+    oMap.insert(tr("csv"), true);
+
+    oMap.insert(tr("pdf"), true);
+    oMap.insert(tr("djvu"), true);
+    oMap.insert(tr("xps"), true);
+
+    QFileInfo oInfo(urls[0].toString());
+
+    if (oMap.contains(oInfo.suffix()))
+        event->acceptProposedAction();
+}
+
+void CMainWindow::dropEvent(QDropEvent *event)
+{
+    QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.length() != 1)
+        return;
+
+    QString _path = urls[0].path();
+
+    Utils::keepLastPath(LOCAL_PATH_OPEN, _path);
+    COpenOptions opts = {"", etLocalFile, _path};
+    opts.wurl = _path.toStdWString();
+    ((QAscMainPanel *)m_pMainPanel)->doOpenLocalFile(opts);
+    event->acceptProposedAction();
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)

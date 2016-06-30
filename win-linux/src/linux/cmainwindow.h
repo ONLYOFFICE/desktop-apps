@@ -58,6 +58,9 @@ protected:
     void mousePressEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);
 
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
+
 private:
     QWidget *   m_pMainPanel;
 
