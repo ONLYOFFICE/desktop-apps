@@ -1080,7 +1080,7 @@ void QAscMainPanel::onDocumentPrint(void * opts)
 #endif // _WIN32
 
         dialog->setWindowTitle(tr("Print Document"));
-        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage);
+        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
         if (!(currentPage < 0))
             currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
         dialog->setPrintRange(m_printData->_print_range);
