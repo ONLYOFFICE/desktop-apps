@@ -155,7 +155,7 @@ int main( int argc, char *argv[] )
         }
     }
 
-    g_dpi_ratio = app.primaryScreen()->logicalDotsPerInch() / 96;
+    g_dpi_ratio = !(app.primaryScreen()->logicalDotsPerInch() / 96.f < 1.5) ? 2 : 1;
 #else
     g_dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
