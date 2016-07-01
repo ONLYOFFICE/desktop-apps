@@ -39,7 +39,6 @@
 #include <QMouseEvent>
 
 #define FORCE_LINUX_CUSTOMWINDOW_MARGINS
-#define CUSTOM_BORDER_WIDTH 3
 
 class CX11Decoration
 {
@@ -58,6 +57,7 @@ public:
     void setMaximized(bool);
 
     static int devicePixelRatio();
+    static int customWindowBorderWith();
 
     int m_nDirection;
 

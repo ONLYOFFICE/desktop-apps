@@ -40,6 +40,8 @@
 #include "X11/cursorfont.h"
 #include <gdk/gdkscreen.h>
 
+#define CUSTOM_BORDER_WIDTH 3
+
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
 const int k_NET_WM_MOVERESIZE_SIZE_TOPRIGHT =    2;
@@ -64,15 +66,10 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_title(NULL)
     , m_currentCursor(0)
     , m_decoration(true)
-    , m_nBorderSize(0)
+    , m_nBorderSize(CUSTOM_BORDER_WIDTH)
     , m_bIsMaximized(false)
 {
     createCursors();
-
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-    m_nBorderSize = CUSTOM_BORDER_WIDTH;
-#endif
-
     m_nDirection = -1;
 }
 
@@ -184,15 +181,13 @@ void CX11Decoration::checkCursor(QPoint & p)
 
 void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
 {
-    //qDebug() << "down";
-    if (e->buttons() == Qt::LeftButton)
-    {
+    if (m_decoration) return;
+
+    if (e->buttons() == Qt::LeftButton) {
         QRect oTitleRect = m_title->geometry();
 
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
         if (!m_bIsMaximized)
             oTitleRect.adjust(m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1, m_nBorderSize + 1);
-#endif
 
         m_nDirection = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
@@ -201,7 +196,8 @@ void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
 
 void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
 {
-    //qDebug() << "move: " << (e->buttons() == Qt::LeftButton);
+    if (m_decoration) return;
+
     if (m_nDirection >= 0 && e->buttons() == Qt::LeftButton)
     {
         Display * xdisplay_ = QX11Info::display();
@@ -234,9 +230,8 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
     }
 }
 
-void CX11Decoration::dispatchMouseUp(QMouseEvent *e)
+void CX11Decoration::dispatchMouseUp(QMouseEvent *)
 {
-    //qDebug() << "up";
     m_nDirection = -1;
 }
 
@@ -328,4 +323,9 @@ int CX11Decoration::devicePixelRatio()
             return (int)(dScale + 0.49);
     }
     return 1;
+}
+
+int CX11Decoration::customWindowBorderWith()
+{
+    return CUSTOM_BORDER_WIDTH;
 }

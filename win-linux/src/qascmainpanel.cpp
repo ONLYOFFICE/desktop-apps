@@ -61,7 +61,6 @@
 #include "lmcons.h"
 
 extern HWND gTopWinId;
-#define CUSTOM_BORDER_WIDTH 0
 #else
 #define VK_F4 0x73
 #define gTopWinId this
@@ -102,28 +101,12 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-    if (isCustomWindow)
-        mainGridLayout->setMargin( CUSTOM_BORDER_WIDTH );
-    else
-        mainGridLayout->setMargin( 0 );
-#else
     mainGridLayout->setMargin( 0 );
-#endif
     setLayout( mainGridLayout );
 
     // Central widget
     QWidget *centralWidget = new QWidget( this );
     centralWidget->setObjectName("centralWidget");
-    if (isCustomWindow)
-    {
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-        QPalette oPalette(parent->palette());
-        oPalette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-        parent->setAutoFillBackground(true);
-        parent->setPalette(oPalette);
-#endif
-    }
     centralWidget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QPalette palette;
@@ -152,10 +135,10 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pButtonDownload->setAnimatedIcon(
                 g_dpi_ratio > 1 ? ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
 
-#ifdef _WIN32
-    m_boxTitleBtns = new QWidget(centralWidget);
-#else
+#ifdef __linux__
     m_boxTitleBtns = new CX11Caption(centralWidget);
+#else
+    m_boxTitleBtns = new QWidget(centralWidget);
 #endif
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     QLabel * label = new QLabel(APP_TITLE);
@@ -172,6 +155,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
@@ -205,15 +189,16 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         layoutBtns->addWidget(m_pButtonMaximize);
         layoutBtns->addWidget(m_pButtonClose);
 
-        int CUSTOM_BORDER_WIDTH_CORRECT = 0;
-#ifndef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-        CUSTOM_BORDER_WIDTH_CORRECT = CUSTOM_BORDER_WIDTH * g_dpi_ratio;
-#else
-        if (isCustomWindow)
-            connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
+#ifdef __linux__
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+
+        QPalette _palette(parent->palette());
+        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
+        parent->setAutoFillBackground(true);
+        parent->setPalette(_palette);
+
+        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
-        m_pButtonMain->setGeometry(CUSTOM_BORDER_WIDTH_CORRECT, CUSTOM_BORDER_WIDTH_CORRECT,
-                                        BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
 
         m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
@@ -221,7 +206,6 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         _tabs_stylesheet_file += "tabbar.nix.qss";
 #endif
         m_pButtonMain->setProperty("theme", "light");
-        m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -321,24 +305,18 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
 
 void QAscMainPanel::RecalculatePlaces()
 {
+    int cbw = 0;
+
 #ifdef __linux
-#ifndef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-    int cbw = m_isCustomWindow ? CUSTOM_BORDER_WIDTH * g_dpi_ratio : 0;
+    QWidget * cw = findChild<QWidget *>("centralWidget");
+    int windowW = cw->width(),
+        windowH = cw->height(),
 #else
-    int cbw = 0;
+    int windowW = width(),
+        windowH = height(),
 #endif
-#else
-    int cbw = 0;
-#endif
-    int windowW = width() - 2 * cbw,
-        windowH = height() - 2 * cbw,
         captionH = TITLE_HEIGHT * g_dpi_ratio,
         btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
-
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-    windowW = findChild<QWidget *>("centralWidget")->width();
-    windowH = findChild<QWidget *>("centralWidget")->height();
-#endif
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 //    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
@@ -444,9 +422,8 @@ void QAscMainPanel::applyMainWindowState(Qt::WindowState s)
     m_mainWindowState = s;
 
     if ( m_isCustomWindow ) {
-
-#ifdef FORCE_LINUX_CUSTOMWINDOW_MARGINS
-        this->layout()->setMargin(s == Qt::WindowMaximized ? 0 : CUSTOM_BORDER_WIDTH);
+#ifdef __linux__
+        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith());
 #endif
 
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
