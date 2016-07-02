@@ -106,6 +106,8 @@ DEFINES += \
     MNG_ERROR_TELLTALE
 
 linux-g++ {
+    QT  += network
+
     contains(QMAKE_HOST.arch, x86_64):{
         PLATFORM_BUILD = linux_64
     } else {
@@ -123,10 +125,12 @@ linux-g++ {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer
 
     HEADERS += src/linux/cmainwindow.h \
-                src/linux/cx11decoration.h
+                src/linux/cx11decoration.h \
+                src/linux/singleapplication.h
     SOURCES += src/linux/cmainwindow.cpp \
                 src/linux/cx11decoration.cpp \
-                src/linux/cx11caption.cpp
+                src/linux/cx11caption.cpp \
+                src/linux/singleapplication.cpp
 
     DEFINES += LINUX _LINUX _LINUX_QT
     CONFIG += link_pkgconfig

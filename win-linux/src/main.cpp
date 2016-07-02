@@ -47,6 +47,7 @@
 #include "csplash.h"
 #else
 #include "linux/cmainwindow.h"
+#include "linux/singleapplication.h"
 #endif
 
 #include <QDebug>
@@ -124,7 +125,11 @@ int main( int argc, char *argv[] )
 
     if (!CApplicationCEF::IsMainProcess()) { return 0; }
 
+#ifdef __linux__
+    SingleApplication app(argc, argv);
+#else
     QApplication app(argc, argv);
+#endif
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
 
