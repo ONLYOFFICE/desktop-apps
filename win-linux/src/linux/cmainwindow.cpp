@@ -41,6 +41,7 @@
 #include "../clicensekeeper.h"
 #include <QTimer>
 #include <QMimeData>
+#include "singleapplication.h"
 
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -90,6 +91,17 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     QAscMainPanel * pMainPanel = qobject_cast<QAscMainPanel *>(m_pMainPanel);
     connect(pMainPanel, &QAscMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
     connect(pMainPanel, &QAscMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
+
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    pMainPanel->setInputFiles(Utils::getInputFiles(app->arguments()));
+
+    connect(app, &SingleApplication::showUp, [=](const QString& args){
+        QStringList * _list = Utils::getInputFiles(args.split(";"));
+        if (_list->count())
+            pMainPanel->doOpenLocalFiles(*_list);
+
+        delete _list, _list = NULL;
+    });
 }
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)

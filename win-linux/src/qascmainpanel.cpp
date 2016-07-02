@@ -1343,8 +1343,10 @@ void QAscMainPanel::onStartPageReady()
 
 //            refreshAboutVersion();
 
-            if (m_inFiles && m_inFiles->size()){
-                doOpenLocalFiles(*m_inFiles);
+            if (m_inFiles){
+                if (m_inFiles->size())
+                    doOpenLocalFiles(*m_inFiles);
+
                 RELEASEOBJECT(m_inFiles)
             }
         }
