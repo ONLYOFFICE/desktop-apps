@@ -122,6 +122,8 @@ int main( int argc, char *argv[] )
 #else
 #endif
 
+    if (!CApplicationCEF::IsMainProcess()) { return 0; }
+
     QApplication app(argc, argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
@@ -130,12 +132,7 @@ int main( int argc, char *argv[] )
     CApplicationCEF* application_cef = new CApplicationCEF();
     CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
     setup_paths(pApplicationManager);
-    int code = application_cef->Init_CEF(pApplicationManager, argc, argv);
-    if (application_cef->IsChromiumSubprocess()) {
-        delete application_cef;
-        delete pApplicationManager;
-        return code;
-    }
+    application_cef->Init_CEF(pApplicationManager, argc, argv);
     /* ********************** */
 
 #ifdef _WIN32
