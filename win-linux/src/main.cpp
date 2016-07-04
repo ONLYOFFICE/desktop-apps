@@ -123,7 +123,19 @@ int main( int argc, char *argv[] )
 #else
 #endif
 
-    if (!CApplicationCEF::IsMainProcess()) { return 0; }
+    if (!CApplicationCEF::IsMainProcess(argc, argv))
+    {
+        CApplicationCEF* application_cef = new CApplicationCEF();
+        CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
+
+        QApplication app(argc, argv); // need for QCoreApplication::applicationDirPath();
+        setup_paths(pApplicationManager);
+        int nReturnCode = application_cef->Init_CEF(pApplicationManager, argc, argv);
+
+        delete application_cef;
+        delete pApplicationManager;
+        return nReturnCode;
+    }
 
 #ifdef __linux__
     SingleApplication app(argc, argv);

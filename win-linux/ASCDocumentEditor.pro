@@ -94,17 +94,6 @@ avs_theme {
     RESOURCES += res/avs.qrc
 }
 
-DEFINES += \
-    _QT \
-    FT2_BUILD_LIBRARY \
-    EXCLUDE_JPG_SUPPORT \
-    MNG_SUPPORT_DISPLAY \
-    MNG_SUPPORT_READ \
-    MNG_SUPPORT_WRITE \
-    MNG_ACCESS_CHUNKS \
-    MNG_STORE_CHUNKS\
-    MNG_ERROR_TELLTALE
-
 linux-g++ {
     QT  += network
 
