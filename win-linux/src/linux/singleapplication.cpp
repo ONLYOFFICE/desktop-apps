@@ -84,7 +84,7 @@ public:
             std::string _out_args;
             QStringList _args = q_ptr->arguments();
             if (_args.count() > 1) {
-                for (int i = 1; i < _args.count(); i++) {
+                for (int i = 0; i < _args.count(); i++) {
                     QString arg = _args[i];
 
                     // Exclude config keys from input arguments
@@ -149,7 +149,7 @@ public:
         if( server != NULL ) {
             server->close();
             inst->primary = false;
-        } else {
+        } else if (inst) {
             if( inst->secondary > 0 )
                 inst->secondary -= 1;
         }
@@ -221,9 +221,6 @@ SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondary
         d->startPrimary( true );
         return;
     } else {
-        d->crashHandler();
-        d->cleanUp();
-
         // Attempt to attach to the memory segment
         if( d->memory->attach() ) {
             d->memory->lock();
@@ -249,6 +246,9 @@ SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondary
 
     d->notifyPrimary();
     delete d;
+
+    qWarning() << "DesktopEditors had been run already";
+
     ::exit(EXIT_SUCCESS);
 }
 

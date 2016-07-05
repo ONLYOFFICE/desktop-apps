@@ -95,7 +95,7 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     pMainPanel->setInputFiles(Utils::getInputFiles(app->arguments()));
 
-    connect(app, &SingleApplication::showUp, [=](const QString& args){
+    connect(app, &SingleApplication::showUp, [=](QString args){
         QStringList * _list = Utils::getInputFiles(args.split(";"));
         if (_list->count())
             pMainPanel->doOpenLocalFiles(*_list);

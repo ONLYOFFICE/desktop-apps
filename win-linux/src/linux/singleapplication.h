@@ -30,7 +30,7 @@ public:
     bool isSecondary();
 
 Q_SIGNALS:
-    void showUp(const QString&);
+    void showUp(QString);
 
 private Q_SLOTS:
     void slotConnectionEstablished();
