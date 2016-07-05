@@ -59,6 +59,7 @@
 #include "cstyletweaks.h"
 #include "utils.h"
 #include "chelp.h"
+#include "common/File.h"
 
 BYTE g_dpi_ratio = 1;
 BYTE g_lic_type = LICENSE_TYPE_BUSINESS;
@@ -87,7 +88,7 @@ int main( int argc, char *argv[] )
         }
 #endif
 
-        QString app_path = QCoreApplication::applicationDirPath();
+        wstring app_path = NSFile::GetProcessDirectory();
 
         if (sAppData.size() > 0) {
             manager->m_oSettings.SetUserDataPath(sAppData);
@@ -101,10 +102,10 @@ int main( int argc, char *argv[] )
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
         }
 
-        manager->m_oSettings.spell_dictionaries_path = (app_path + "/dictionaries").toStdWString();
-        manager->m_oSettings.file_converter_path = (app_path + "/converter").toStdWString();
-        manager->m_oSettings.local_editors_path = (app_path + "/editors/web-apps/apps/api/documents/index.html").toStdWString();
-        manager->m_oSettings.additional_fonts_folder.push_back((app_path + "/fonts").toStdWString());
+        manager->m_oSettings.spell_dictionaries_path = app_path + L"/dictionaries";
+        manager->m_oSettings.file_converter_path = app_path + L"/converter";
+        manager->m_oSettings.local_editors_path = app_path + L"/editors/web-apps/apps/api/documents/index.html";
+        manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
@@ -128,7 +129,6 @@ int main( int argc, char *argv[] )
         CApplicationCEF* application_cef = new CApplicationCEF();
         CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
 
-        QApplication app(argc, argv); // need for QCoreApplication::applicationDirPath();
         setup_paths(pApplicationManager);
         int nReturnCode = application_cef->Init_CEF(pApplicationManager, argc, argv);
 
