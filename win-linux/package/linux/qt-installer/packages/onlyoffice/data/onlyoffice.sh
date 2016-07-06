@@ -11,7 +11,7 @@
 cd __INSTALL_PATH__
 
 if [ -z "$1" ]; then
-    ./"ONLYOFFICE.sh"
+    ./"DesktopEditors.sh"
 else
-    ./"ONLYOFFICE.sh" "$1"
+    ./"DesktopEditors.sh" "$1"
 fi
