@@ -433,6 +433,10 @@ QPrintDialog QComboBox{
     font-size: 11px;
     height: 22px;
     border-radius:2px;
+    background-color: #fff;
+
+    /*selection-background-color: red;*/
+    show-decoration-selected: 1;
 }
 
 QPrintDialog QComboBox::down-arrow{
@@ -450,13 +454,7 @@ QPrintDialog QComboBox:!editable:on {
     background:#cbced1;
 }
 
-QComboBox {
-    selection-background-color: red;
-    show-decoration-selected: 0;
-    background-color: #fff;
-}
-
-QComboBox QAbstractItemView {
+QPrintDialog QComboBox QAbstractItemView {
     border: 1px solid #cbcbcb;
     border-radius:2px;
     background-color: #fff;

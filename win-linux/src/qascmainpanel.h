@@ -46,7 +46,7 @@
 #include "ccefeventstransformer.h"
 
 
-struct CPrintData;
+struct printdata;
 
 class QAscMainPanel : public QWidget, public CCefEventsTransformer
 {
@@ -162,7 +162,7 @@ private:
     CDownloadWidget *       m_pWidgetDownload;
     CAscApplicationManager * m_pManager;
 
-    CPrintData *    m_printData;
+    printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
 
     QStringList * m_inFiles;

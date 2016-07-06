@@ -77,9 +77,9 @@ extern BYTE     g_dpi_ratio;
 extern BYTE     g_lic_type;
 extern QString  g_lang;
 
-struct CPrintData {
+struct printdata {
 public:
-    CPrintData() : _print_range(QPrintDialog::PrintRange::AllPages) {}
+    printdata() : _print_range(QPrintDialog::PrintRange::AllPages) {}
     QPrinterInfo _printer_info;
     QPrintDialog::PrintRange _print_range;
 };
@@ -90,7 +90,7 @@ QAscMainPanel::QAscMainPanel(QWidget *parent, CAscApplicationManager *manager, b
         m_pButtonProfile(new QPushButton), m_pButtonDownload(new CPushButton),
         m_isMaximized(false), m_isCustomWindow(isCustomWindow),
         m_pWidgetProfile(new CUserProfileWidget), m_pWidgetDownload(new CDownloadWidget)
-      , m_printData(new CPrintData)
+      , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
       , m_waitLicense(false)
       , m_inFiles(NULL)
