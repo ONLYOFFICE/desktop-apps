@@ -33,11 +33,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             3,8,5,240
-#define VER_FILEVERSION_STR         "3.8.5.240\0"
+#define VER_FILEVERSION             4,0,5,242
+#define VER_FILEVERSION_STR         "4.0.5.242\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "3.8\0"
+#define VER_PRODUCTVERSION_STR      "4.0\0"
 
 #ifdef _IVOLGA_PRO
   #error IVOLGAPRO depricated.

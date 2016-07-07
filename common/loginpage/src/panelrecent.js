@@ -115,7 +115,7 @@
             var _available_height = this.$panel.height();
             var _box_recent_height = _available_height;
 
-            if (this.$boxRecovery.is(':hidden')) {
+            if (!this.$boxRecovery.find('tr').size()) {
                 // $boxRecent.height($boxRecent.parent().height());
             } else {
                 _available_height -= /*separatorHeight*/40;

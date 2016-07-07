@@ -50,11 +50,6 @@ $(document).ready(function() {
     $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"]').text(utils.Lang.newPptx);
 
-        // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
-        $('.tool-menu > .menu-item > a[action=recent]').one('click', (e)=>{
-            app.controller.recent.view.updatelistsize();
-        });
-
     /* test information */
     // var info = {portal:"https://testinfo.teamlab.info",user:"Maxim Kadushkin",email:"Maxim.Kadushkin@avsmedia.net"};
     // PortalsStore.keep(info);
@@ -117,7 +112,12 @@ function onActionClick(e) {
         $('.tool-menu > .menu-item').removeClass('selected');
         $el.parent().addClass('selected');
         $('.action-panel').hide();
-        $('.action-panel.' + action).show();
+        $('.action-panel.' + action).show(0,()=>{
+            // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
+            if (action == 'recent') {
+                app.controller.recent.view.updatelistsize();
+            }
+        });
     }
 };
 
