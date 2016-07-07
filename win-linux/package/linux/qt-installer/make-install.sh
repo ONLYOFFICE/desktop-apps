@@ -22,8 +22,8 @@ mkdir -p $BUILD_DIR
 mkdir -p $BUILD_DIR/packages/onlyoffice/data
 
 # Build and copy linux application
-echo "Build and copy linux application"
-(cd $LINUX_DESKTOP_BINARIES_DIR && ./deploy.sh)
+#echo "Build and copy linux application"
+#(cd $LINUX_DESKTOP_BINARIES_DIR && ./deploy.sh)
 
 # Copy application to the installer directory
 echo "Copy application to the installer directory"
