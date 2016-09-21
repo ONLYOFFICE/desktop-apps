@@ -101,7 +101,7 @@ desktopeditor:
 	mkdir -p $(PROGRAM_PATH)
 	cp -rf $(BILD_PATH) $(PROGRAM_PATH)
 
-	cp -rf ../../../common/package/license/eula_$(COMPANY_NAME).htm $(PROGRAM_PATH)/LICENSE.htm
+	cp -rf ../../../common/package/license/agpl-3.0.htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 	
 	chmod 777 $(START_SCRIPT)
