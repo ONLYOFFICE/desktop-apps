@@ -1,0 +1,200 @@
+/* No comment provided by engineer. */
+"%@ Help" = "Справка %@";
+
+/* No comment provided by engineer. */
+"%d days are left until the license expiration." = "До окончания лицензии осталось %d дней.";
+
+/* No comment provided by engineer. */
+"About %@" = "О программе %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Лицензии";
+
+/* No comment provided by engineer. */
+"Application activation failed" = "Не удалось активировать программу";
+
+/* No comment provided by engineer. */
+"Cancel" = "Отменить";
+
+/* No comment provided by engineer. */
+"Check your Internet connection settings and retry activation the application." = "Проверьте параметры подключения к интернету и попробуйте активировать программу еще раз.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Значения, разделённые запятыми";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Отменить изменения";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Файл";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Вы хотите сохранить изменения сделанные в документе \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Документ %ld.docx";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Книга Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Книга Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Файл \"%@\" не может быть открыт или не существует.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Формат:";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Файл не может быть открыт.";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Скрыть %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Если Вы не просмотрите эти документы, все внесенные изменения будут потеряны.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Если вы уже приобрели %@, вы должны найти свой ключ активации в электронном письме с подтверждением.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Пользовательское соглашение";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"No" = "Нет";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Документ";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Презентация OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Книга OpenOffice";
+
+/* No comment provided by engineer. */
+"Opening" = "Открытие";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Файл";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Простой текст";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Проезентация PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Презентация PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Слиде-шоу PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Подготовка...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Презентация %ld.pptx";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Выйти %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Просмотреть изменения...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Расширенный текстовый формат";
+
+/* No comment provided by engineer. */
+"Select how you will use %@" = "Выберите каким образом вы будете использовать %@";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Книга %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Спасибо за то, что выбрали %@!";
+
+/* No comment provided by engineer. */
+"Thank you for using %@!" = "Спасибо за использование %@!";
+
+/* No comment provided by engineer. */
+"The Internet connection appears to be offline." = "Соединение с Интернетом, по-видимому, прервано.";
+
+/* No comment provided by engineer. */
+"The license expired.
+You cannot create and edit local files." = "Срок действия лицензии закончился.
+Вы не сможете создавать и редактировать локальные файлы.";
+
+/* No comment provided by engineer. */
+"The trial period is over.
+You cannot create and edit documents." = "Пробный период завершён.
+Вы не можете создавать и редактировать документы.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Неподтвержденный";
+
+/* No comment provided by engineer. */
+"Unregistered application version.
+You cannot create and edit local files." = "Незарегистрированная версия приложения.
+Вы не сможете создавать и редактировать локальные файлы.";
+
+/* No comment provided by engineer. */
+"Untitled" = "Без названия";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Версия %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Веб страница";
+
+/* No comment provided by engineer. */
+"Welcome to %@" = "Добро пожаловать в %@";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Документ Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Документ Word 2007";
+
+/* No comment provided by engineer. */
+"Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center." = "Введен неверный Ключ Активации. Пожалуйста, введите правильный ключ активации из Вашего письма-подтверждения или обратитесь в нашу службу техподдержки.";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XPS Документ";
+
+/* No comment provided by engineer. */
+"Yes" = "Да";
+
+/* No comment provided by engineer. */
+"You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents." = "Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У Вас %ld %@ Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Вы успешно активировали %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
+/* No comment provided by engineer. */
+"Your version of %@ for home use successfully activated." = "Ваша версия %@ для домашнего использования успешно активирована.";
+
+/* No comment provided by engineer. */
+"Your version of %@ for use in business successfully activated." = "Ваша версия %@ для бизнеса успешно активирована.";
+
+/* No comment provided by engineer. */
+"for Business" = "для Бизнеса";
+
+/* No comment provided by engineer. */
+"for Home" = "для Дома";
+

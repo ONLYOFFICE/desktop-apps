@@ -1,0 +1,70 @@
+{
+    "name": "desktop-editor-start-page",
+    "version": "0.1.2",
+    "homepage": "http://www.onlyoffice.com",
+    "private": true,
+    "dependencies": {
+        "grunt": "~0.4.2",
+        "grunt-exec": "~0.4.5",
+        "grunt-html-minify": "~0.3.1"
+    },
+    "desktop": {
+        "clean": [
+            "../deploy/*.png"
+        ],
+        "copy": {
+            "files": [
+                {
+                    "src": "../src/index.html.deploy",
+                    "dest": "../deploy/index.html"
+                },
+                {
+                    "src": "../vendor/jquery/jquery.min.js",
+                    "dest": "../deploy/jquery.min.js"
+                },
+                {
+                    "expand": true,
+                    "cwd": "../vendor/bootstrap",
+                    "src": ["*.js"],
+                    "dest": "../deploy/"
+                },
+                {
+                    "expand": true,
+                    "cwd": "../src/",
+                    "src": [
+                        "*.png",
+                        "*.js"
+                    ],
+                    "dest": "../deploy/"
+                }
+            ]
+        },
+        "less": {
+            "files": {
+                "src": "../src/styles.less",
+                "dest": "../deploy/styles.css"
+            }
+        },
+        "concat": {
+            "files": {
+                "src": [
+                    "../src/utils.js"
+                    ,"../src/locale.js"
+                    ,"../src/events.js"
+                    ,"../src/sdk.js"
+                    ,"../src/model.js"
+                    ,"../src/menu.js"
+                    ,"../src/base.js"
+                    ,"../src/panelrecent.js"
+                    ,"../src/panelfolders.js"
+                    ,"../src/panelconnect.js"
+                    ,"../src/panelabout.js"
+                    ,"../src/panelwelcome.js"
+                    ,"../src/dlglogin.min.js"
+                    ,"../src/panels.js"
+                ],
+                "dest": "../deploy/build.js"
+            }
+        }
+    }
+}

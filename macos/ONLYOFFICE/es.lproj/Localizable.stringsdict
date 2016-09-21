@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%#@documents@</string>
+            <key>documents</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>ld</string>
+                <key>one</key>
+                <string>Usted %ld un documento %@ con los cambios no confirmados. ¿Ver los documentos antes de la finalización?</string>
+                <key>other</key>
+                <string>Tiene %ld documentos %@ con los cambios no confirmados. ¿Ver los documentos antes de la finalización?</string>
+            </dict>
+        </dict>
+    </dict>
+</plist>

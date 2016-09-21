@@ -1,0 +1,14 @@
+
+QTabWidget::pane { background-color: #313437; border:none; }
+QTabWidget::tab-bar {width: auto; height: 58px; left: 140px; }
+
+QTabBar::tab { width:270px; background-color: #CFCFCF; border: 0 none; min-width: 82px; max-width: 270px;
+height: 54px; margin: 0 2px 0 0;}
+
+QTabBar::tab {border-bottom:2px solid #afb0b1; border-top:2px solid #cfcfcf;}
+
+QTabBar::tab:hover {background-color: #DDD; border-top-color:#ddd;}
+QTabBar::tab:selected {background-color: #F1F1F1; border-color: #F1F1F1; }
+
+QTabWidget[active=false] QTabBar::tab:selected { background-color: #CFCFCF; border-color: #CFCFCF;border-bottom-color:#afb0b1;}
+QTabWidget[active=false] QTabBar::tab:selected:hover {background-color:#ddd;}
