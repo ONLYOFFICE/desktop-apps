@@ -5,7 +5,7 @@
     <Version>4.0</Version>
     <ReleaseDate>2016-07-05</ReleaseDate>
     <Licenses>
-        <License name="ONLYOFFICE End User License Agreement" file="../../../../../common/package/license/agpl-3.0.htm" />
+        <License name="ONLYOFFICE End User License Agreement" file="license.txt" />
     </Licenses>
     <Default>true</Default>
     <Script>installscript.qs</Script>
