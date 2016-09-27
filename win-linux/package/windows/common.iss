@@ -309,10 +309,7 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;        Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\cell\*;                DestDir: {app}\editors\sdkjs\cell;      Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\common\*;              DestDir: {app}\editors\sdkjs\common;    Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\slide\*;               DestDir: {app}\editors\sdkjs\slide;     Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\word\*;                DestDir: {app}\editors\sdkjs\word;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
