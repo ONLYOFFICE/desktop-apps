@@ -47,14 +47,13 @@
 #include <regex>
 
 #include "defines.h"
-#include "csavefilemessage.h"
 #include "cprintprogress.h"
 #include "cfiledialog.h"
 #include "qascprinter.h"
 #include "common/Types.h"
-#include "cmessage.h"
 #include "utils.h"
 #include "version.h"
+#include "ctestmessage3.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -266,6 +265,8 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wparams.replace(wparams.find(L"%3"), 2, first_name);
     wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
+
+    m_saveDocMessage = tr("%1 is modified.\nDo you want to keep changes?");
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -493,22 +494,20 @@ int CMainPanel::trySaveDocument(int index)
     int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CSaveFileMessage saveDlg(gTopWinId);
+        CTestMessage3 mess(gTopWinId);
 #else
         CSaveFileMessage saveDlg(this);
 #endif
         m_pTabs->setCurrentIndex(index);
-        saveDlg.setFiles(m_pTabs->titleByIndex(index));
 
-        if ( !m_saveDocMessage.isEmpty() ) {
-            saveDlg.setText( m_saveDocMessage );
-        }
+        mess.setButtons({"Yes:default", "No", "Cancel"});
+        modal_res = mess.question(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
 
-        modal_res = saveDlg.showModal();
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
-        case MODAL_RESULT_NO: break;
-        case MODAL_RESULT_YES:
+        case MODAL_RESULT_CUSTOM + 1: modal_res = MODAL_RESULT_NO; break;
+        case MODAL_RESULT_CUSTOM + 2: modal_res = MODAL_RESULT_CANCEL; break;
+        case MODAL_RESULT_CUSTOM + 0:
         default:{
             m_pTabs->editorCloseRequest(index);
 
@@ -662,8 +661,7 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         });
     } else
     if (result == -255) {
-        CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
+        CTestMessage3::error(gTopWinId, tr("File format not supported."));
     }
 }
 
@@ -681,8 +679,7 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     if (!match.hasMatch()) {
         if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
-            CMessage mess(gTopWinId);
-            mess.showModal(tr("File doesn't exists"), QMessageBox::Critical);
+            CTestMessage3::error(gTopWinId, tr("File doesn't exists"));
             return;
         }
     }
@@ -697,8 +694,7 @@ void CMainPanel::onLocalFileRecent(void * d)
         });
     } else
     if (result == -255) {
-        CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
+        CTestMessage3::error(gTopWinId, tr("File format not supported."));
     }
 }
 

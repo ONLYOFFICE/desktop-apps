@@ -23,7 +23,6 @@ HEADERS += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
     $$PWD/src/asctabwidget.h \
     $$PWD/src/version.h \
-    $$PWD/src/csavefilemessage.h \
     $$PWD/src/defines.h \
     $$PWD/src/cdownloadwidget.h \
     $$PWD/src/cpushbutton.h \
@@ -33,12 +32,13 @@ HEADERS += \
     $$PWD/src/cascapplicationmanagerwrapper.h \
     $$PWD/src/ctabbar.h \
     $$PWD/src/casctabdata.h \
-    $$PWD/src/cmessage.h \
+#    $$PWD/src/cmessage.h \
     $$PWD/src/utils.h \
     $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
     $$PWD/src/cmainpanel.h \
-    $$PWD/src/csplash.h
+    $$PWD/src/csplash.h \
+    $$PWD/src/ctestmessage3.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -48,7 +48,6 @@ SOURCES += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
-    $$PWD/src/csavefilemessage.cpp \
     $$PWD/src/cdownloadwidget.cpp \
     $$PWD/src/cpushbutton.cpp \
     $$PWD/src/cfiledialog.cpp \
@@ -56,10 +55,11 @@ SOURCES += \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
-    $$PWD/src/cmessage.cpp \
+#    $$PWD/src/cmessage.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
-    $$PWD/src/cmainpanel.cpp
+    $$PWD/src/cmainpanel.cpp \
+    $$PWD/src/ctestmessage3.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -107,12 +107,14 @@ win32 {
                 $$PWD/src/win/qwinwidget.h \
                 $$PWD/src/win/qwinhost.h \
                 $$PWD/src/win/cwinpanel.h \
+                $$PWD/src/win/cwinwindow.h \
                 $$PWD/src/win/cprintdialog.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
                 $$PWD/src/win/qwinwidget.cpp \
                 $$PWD/src/win/qwinhost.cpp \
                 $$PWD/src/win/cwinpanel.cpp \
+                $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \
