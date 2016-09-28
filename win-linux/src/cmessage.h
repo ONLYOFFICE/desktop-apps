@@ -30,8 +30,8 @@
  *
 */
 
-#ifndef CTESTMESSAGE3_H
-#define CTESTMESSAGE3_H
+#ifndef CMESSAGE_H
+#define CMESSAGE_H
 
 #include "win/cwinwindow.h"
 #include <QLabel>
@@ -39,10 +39,10 @@
 
 //#if defined(_WIN32)
 
-class CTestMessage3 : public CWinWindow
+class CMessage : public CWinWindow
 {
 public:
-    CTestMessage3(HWND);
+    CMessage(HWND);
 
     void setButtons(std::initializer_list<QString>);
 
@@ -64,4 +64,4 @@ private:
     void modal();
 };
 
-#endif // CTESTMESSAGE3_H
+#endif // CMESSAGE_H

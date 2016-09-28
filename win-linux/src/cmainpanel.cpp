@@ -53,7 +53,7 @@
 #include "common/Types.h"
 #include "utils.h"
 #include "version.h"
-#include "ctestmessage3.h"
+#include "cmessage.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -494,7 +494,7 @@ int CMainPanel::trySaveDocument(int index)
     int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CTestMessage3 mess(gTopWinId);
+        CMessage mess(gTopWinId);
 #else
         CSaveFileMessage saveDlg(this);
 #endif
@@ -661,7 +661,7 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         });
     } else
     if (result == -255) {
-        CTestMessage3::error(gTopWinId, tr("File format not supported."));
+        CMessage::error(gTopWinId, tr("File format not supported."));
     }
 }
 
@@ -679,7 +679,7 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     if (!match.hasMatch()) {
         if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
-            CTestMessage3::error(gTopWinId, tr("File doesn't exists"));
+            CMessage::error(gTopWinId, tr("File doesn't exists"));
             return;
         }
     }
@@ -694,7 +694,7 @@ void CMainPanel::onLocalFileRecent(void * d)
         });
     } else
     if (result == -255) {
-        CTestMessage3::error(gTopWinId, tr("File format not supported."));
+        CMessage::error(gTopWinId, tr("File format not supported."));
     }
 }
 

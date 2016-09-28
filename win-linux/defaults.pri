@@ -32,13 +32,12 @@ HEADERS += \
     $$PWD/src/cascapplicationmanagerwrapper.h \
     $$PWD/src/ctabbar.h \
     $$PWD/src/casctabdata.h \
-#    $$PWD/src/cmessage.h \
     $$PWD/src/utils.h \
     $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
     $$PWD/src/cmainpanel.h \
     $$PWD/src/csplash.h \
-    $$PWD/src/ctestmessage3.h
+    $$PWD/src/cmessage.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -55,11 +54,10 @@ SOURCES += \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
-#    $$PWD/src/cmessage.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cmainpanel.cpp \
-    $$PWD/src/ctestmessage3.cpp
+    $$PWD/src/cmessage.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

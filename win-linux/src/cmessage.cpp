@@ -30,7 +30,7 @@
  *
 */
 
-#include "ctestmessage3.h"
+#include "cmessage.h"
 #include <QPushButton>
 #include <QFormLayout>
 #include <QLabel>
@@ -49,7 +49,7 @@
 extern BYTE g_dpi_ratio;
 //extern QString g_lang;
 
-CTestMessage3::CTestMessage3(HWND p)
+CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
     , m_modalresult(MODAL_RESULT_CANCEL)
     , m_typeIcon(new QLabel)
@@ -105,7 +105,7 @@ CTestMessage3::CTestMessage3(HWND p)
     m_centralWidget->move(0, 0);
 }
 
-void CTestMessage3::setButtons(std::initializer_list<QString> btns)
+void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
         w->disconnect();
@@ -139,7 +139,7 @@ void CTestMessage3::setButtons(std::initializer_list<QString> btns)
         m_centralWidget->setMinimumWidth(400*g_dpi_ratio);
 }
 
-int CTestMessage3::info(const QString& mess)
+int CMessage::info(const QString& mess)
 {
     m_message->setText(mess);
     m_typeIcon->setProperty("type","msg-info");
@@ -149,7 +149,7 @@ int CTestMessage3::info(const QString& mess)
     return m_modalresult;
 }
 
-int CTestMessage3::question(const QString& mess)
+int CMessage::question(const QString& mess)
 {
     m_message->setText(mess);
     m_typeIcon->setProperty("type","msg-question");
@@ -159,7 +159,7 @@ int CTestMessage3::question(const QString& mess)
     return m_modalresult;
 }
 
-int CTestMessage3::error(const QString& mess)
+int CMessage::error(const QString& mess)
 {
     m_message->setText(mess);
     m_typeIcon->setProperty("type","msg-error");
@@ -169,25 +169,25 @@ int CTestMessage3::error(const QString& mess)
     return m_modalresult;
 }
 
-int CTestMessage3::info(HWND p, const QString& m)
+int CMessage::info(HWND p, const QString& m)
 {
-    CTestMessage3 mess(p);
+    CMessage mess(p);
     return mess.info(m);
 }
 
-int CTestMessage3::question(HWND p, const QString& m)
+int CMessage::question(HWND p, const QString& m)
 {
-    CTestMessage3 mess(p);
+    CMessage mess(p);
     return mess.question(m);
 }
 
-int CTestMessage3::error(HWND p, const QString& m)
+int CMessage::error(HWND p, const QString& m)
 {
-    CTestMessage3 mess(p);
+    CMessage mess(p);
     return mess.error(m);
 }
 
-void CTestMessage3::modal()
+void CMessage::modal()
 {
     m_centralWidget->adjustSize();
 
