@@ -72,6 +72,7 @@
 #define MODAL_RESULT_YES        1
 #define MODAL_RESULT_NO         0
 #define MODAL_RESULT_CANCEL     -1
+#define MODAL_RESULT_CUSTOM     100
 #define MODAL_RESULT_BTN1       201
 #define MODAL_RESULT_BTN2       202
 
