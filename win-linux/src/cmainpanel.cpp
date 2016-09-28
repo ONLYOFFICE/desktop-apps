@@ -93,6 +93,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
       , m_inFiles(NULL)
+      , m_saveAction(0)
 {
     m_pManager = manager;
 
@@ -241,11 +242,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pMainWidget = (QWidget *)pMainWidget;
     m_pTabs->m_pMainButton = m_pButtonMain;
 
-//    m_pSeparator = new QWidget(centralWidget);
-//    m_pSeparator->setObjectName("separator");
-//    m_pSeparator->setStyleSheet("background-color:#dadada");
-//    m_pSeparator->setGeometry(0, 0, width(), 1);
-
 //    m_pMainWidget->setVisible(false);
 
     mainGridLayout->addWidget( centralWidget );
@@ -259,9 +255,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 //    m_pTabs->updateIcons();
 
     m_pButtonDownload->setVisible(false, false);
-
-//    m_savePortal;
-    m_saveAction = 0; // undefined
 
     wstring first_name, last_name;
     readSystemUserName(first_name, last_name);
@@ -291,7 +284,6 @@ void CMainPanel::RecalculatePlaces()
         btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
-//    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
     int docCaptionW = windowW - m_pTabs->tabBar()->width() - btnMainWidth;
     int contentH = windowH - captionH;
@@ -894,43 +886,6 @@ void CMainPanel::goStart()
 //    loadStartPage();
     toggleButtonMain(true);
 }
-
-//int CMainPanel::checkModified(const QString& portalname)
-//{
-//    QMap<int, QString> mapModified = m_pTabs->modified(portalname);
-
-//    int out_res = MODAL_RESULT_YES;
-//    if (mapModified.size()) {
-//#ifdef _WIN32
-//        CSaveFileMessage saveDlg(gTopWinId);
-//#else
-//        CSaveFileMessage saveDlg(this);
-//#endif
-//        saveDlg.setFiles(&mapModified);
-
-//        out_res = saveDlg.showModal();
-//        switch (out_res) {
-//        case MODAL_RESULT_NO: break;
-//        case MODAL_RESULT_CANCEL: break;
-//        case MODAL_RESULT_YES:
-//        default:{
-//            if (mapModified.size()) {
-//                CCefView * pView;
-//                QMapIterator<int,QString> i(mapModified);
-//                while (i.hasNext()) {
-//                    i.next();
-
-//                    pView = m_pManager->GetViewById(i.key());
-//                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
-//                }
-//            }
-
-//            break;}
-//        }
-//    }
-
-//    return out_res;
-//}
 
 void CMainPanel::onDocumentPrint(void * opts)
 {
