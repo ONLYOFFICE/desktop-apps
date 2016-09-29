@@ -36,6 +36,7 @@
 #include <QLabel>
 #include <QVariant>
 #include <QDebug>
+#include <QTimer>
 
 #include "defines.h"
 
@@ -123,7 +124,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
         _btn = new QPushButton(reFocus.cap(1));
         if ( !reFocus.cap(2).isEmpty() ) {
-            _btn->setDefault(true);
+            _btn->setAutoDefault(true);
         }
 
         m_boxButtons->layout()->addWidget(_btn);
@@ -209,6 +210,17 @@ void CMessage::modal()
 
 #if defined(_WIN32)
     m_centralWidget->show();
+
+    QList<QPushButton *> l = m_boxButtons->findChildren<QPushButton *>();
+    foreach (QPushButton * b, l) {
+        if (l.size() == 1 || b->autoDefault() || b->isDefault()) {
+            QTimer::singleShot(200, m_centralWidget, [b]{
+                b->setFocus();
+            });
+
+            break;
+        }
+    }
 
     CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
     CWinWindow::center();
