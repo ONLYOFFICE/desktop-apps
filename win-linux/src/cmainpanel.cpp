@@ -500,8 +500,8 @@ int CMainPanel::trySaveDocument(int index)
 #endif
         m_pTabs->setCurrentIndex(index);
 
-        mess.setButtons({"Yes:default", "No", "Cancel"});
-        modal_res = mess.question(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
+        mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+        modal_res = mess.warning(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;

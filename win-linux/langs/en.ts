@@ -22,6 +22,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="48"/>
         <location filename="../src/cfiledialog.cpp" line="140"/>
+        <location filename="../src/cfiledialog.cpp" line="141"/>
         <source>All files (*.*)</source>
         <translation></translation>
     </message>
@@ -147,14 +148,13 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="144"/>
-        <location filename="../src/cfiledialog.cpp" line="146"/>
+        <location filename="../src/cfiledialog.cpp" line="150"/>
         <source>Open Document</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="153"/>
-        <source>Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
+        <location filename="../src/cfiledialog.cpp" line="156"/>
+        <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
         <translation></translation>
     </message>
 </context>
@@ -166,48 +166,61 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="674"/>
-        <location filename="../src/cmainpanel.cpp" line="709"/>
+        <location filename="../src/cmainpanel.cpp" line="269"/>
+        <source>%1 is modified.
+Do you want to keep changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="503"/>
+        <source>Yes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="503"/>
+        <source>No</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="503"/>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="664"/>
+        <location filename="../src/cmainpanel.cpp" line="697"/>
         <source>File format not supported.</source>
         <translation>File format is not supported</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="693"/>
+        <location filename="../src/cmainpanel.cpp" line="682"/>
         <source>File doesn&apos;t exists</source>
         <translation>File does not exist</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="722"/>
+        <location filename="../src/cmainpanel.cpp" line="710"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="723"/>
+        <location filename="../src/cmainpanel.cpp" line="711"/>
         <source>Book%1.xlsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="724"/>
+        <location filename="../src/cmainpanel.cpp" line="712"/>
         <source>Presentation%1.pptx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1231"/>
+        <location filename="../src/cmainpanel.cpp" line="1174"/>
         <source>Open Source Edition</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="973"/>
+        <location filename="../src/cmainpanel.cpp" line="916"/>
         <source>Print Document</source>
         <translation>Print document</translation>
-    </message>
-</context>
-<context>
-    <name>CMessage</name>
-    <message>
-        <location filename="../src/cmessage.cpp" line="79"/>
-        <source>&amp;OK</source>
-        <translation></translation>
     </message>
 </context>
 <context>
@@ -234,25 +247,10 @@
     </message>
 </context>
 <context>
-    <name>CSaveFileMessage</name>
+    <name>QObject</name>
     <message>
-        <location filename="../src/csavefilemessage.cpp" line="86"/>
-        <source>Do you want to save modified files?</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/csavefilemessage.cpp" line="95"/>
-        <source>&amp;Yes</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/csavefilemessage.cpp" line="96"/>
-        <source>&amp;No</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/csavefilemessage.cpp" line="97"/>
-        <source>&amp;Cancel</source>
+        <location filename="../src/cmessage.cpp" line="84"/>
+        <source>&amp;OK</source>
         <translation></translation>
     </message>
 </context>
