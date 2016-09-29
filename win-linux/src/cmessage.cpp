@@ -50,14 +50,28 @@
 extern BYTE g_dpi_ratio;
 //extern QString g_lang;
 
+#if defined(_WIN32)
 CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
-    , m_modalresult(MODAL_RESULT_CANCEL)
-    , m_typeIcon(new QLabel)
+#else
+CMessage::CMessage(QWidget * p)
+    : QDialog(p)
+#endif
     , m_message(new QLabel)
+    , m_typeIcon(new QLabel)
+    , m_modalresult(MODAL_RESULT_CANCEL)
 {
+#if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
     m_centralWidget = new QWinWidget(_hwnd);
+#else
+    setWindowTitle(APP_TITLE);
+    setLayout(new QVBoxLayout);
+
+    m_centralWidget = new QWidget;
+    layout()->addWidget(m_centralWidget);
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
+#endif
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -109,11 +123,17 @@ CMessage::CMessage(HWND p)
 void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
+        qDebug() << "delete button";
         w->disconnect();
         delete w;
     }
 
+#if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
+#else
+    QWidget * w = this;
+#endif
+
     QRegExp reFocus("([^:]+)\\:?(default)?$");
 
     QPushButton * _btn;
@@ -128,10 +148,17 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         }
 
         m_boxButtons->layout()->addWidget(_btn);
+#if defined(_WIN32)
         QObject::connect(_btn, &QPushButton::clicked, [_hwnd, _btn_num, _result](){
             *_result = MODAL_RESULT_CUSTOM + _btn_num;
             DestroyWindow(_hwnd);
         });
+#else
+        QObject::connect(_btn, &QPushButton::clicked, [w, _btn_num, _result](){
+            *_result = MODAL_RESULT_CUSTOM + _btn_num;
+            w->close();
+        });
+#endif
 
         _btn_num++;
     }
@@ -180,25 +207,41 @@ int CMessage::confirm(const QString& mess)
     return m_modalresult;
 }
 
+#if defined(_WIN32)
 int CMessage::confirm(HWND p, const QString& m)
+#else
+int CMessage::confirm(QWidget * p, const QString& m)
+#endif
 {
     CMessage mess(p);
     return mess.confirm(m);
 }
 
+#if defined(_WIN32)
 int CMessage::info(HWND p, const QString& m)
+#else
+int CMessage::info(QWidget * p, const QString& m)
+#endif
 {
     CMessage mess(p);
     return mess.info(m);
 }
 
+#if defined(_WIN32)
 int CMessage::warning(HWND p, const QString& m)
+#else
+int CMessage::warning(QWidget * p, const QString& m)
+#endif
 {
     CMessage mess(p);
     return mess.warning(m);
 }
 
+#if defined(_WIN32)
 int CMessage::error(HWND p, const QString& m)
+#else
+int CMessage::error(QWidget * p, const QString& m)
+#endif
 {
     CMessage mess(p);
     return mess.error(m);
@@ -206,9 +249,8 @@ int CMessage::error(HWND p, const QString& m)
 
 void CMessage::modal()
 {
-    m_centralWidget->adjustSize();
-
 #if defined(_WIN32)
+    m_centralWidget->adjustSize();
     m_centralWidget->show();
 
     QList<QPushButton *> l = m_boxButtons->findChildren<QPushButton *>();
@@ -226,6 +268,6 @@ void CMessage::modal()
     CWinWindow::center();
     CWinWindow::modal();
 #else
-    layout()->setSizeConstraint(QLayout::SetFixedSize);
+    exec();
 #endif
 }

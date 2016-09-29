@@ -496,7 +496,7 @@ int CMainPanel::trySaveDocument(int index)
 #if defined(_WIN32)
         CMessage mess(gTopWinId);
 #else
-        CSaveFileMessage saveDlg(this);
+        CMessage mess(this);
 #endif
         m_pTabs->setCurrentIndex(index);
 

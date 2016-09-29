@@ -33,16 +33,26 @@
 #ifndef CMESSAGE_H
 #define CMESSAGE_H
 
+#if defined(_WIN32)
 #include "win/cwinwindow.h"
+#else
+#include <QMessageBox>
+#endif
+
 #include <QLabel>
 #include <initializer_list>
 
-//#if defined(_WIN32)
-
+#if defined(_WIN32)
 class CMessage : public CWinWindow
 {
 public:
     CMessage(HWND);
+#else
+class CMessage : public QDialog
+{
+public:
+    explicit CMessage(QWidget *);
+#endif
 
     void setButtons(std::initializer_list<QString>);
 
@@ -51,10 +61,17 @@ public:
     int error(const QString& m);
     int confirm(const QString& m);
 
+#if defined(_WIN32)
     static int info(HWND, const QString& m);
     static int warning(HWND, const QString& m);
     static int error(HWND, const QString& m);
     static int confirm(HWND, const QString& m);
+#else
+    static int info(QWidget *, const QString& m);
+    static int warning(QWidget *, const QString& m);
+    static int error(QWidget *, const QString& m);
+    static int confirm(QWidget *, const QString& m);
+#endif
 
 private:
     QWidget * m_boxButtons;
