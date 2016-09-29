@@ -359,7 +359,7 @@ QLabel[class=msg-icon] {
     background-image: url(":/res/icons/message_icons.png");
 }
 
-QLabel[class=msg-icon][type=msg-question] {
+QLabel[class=msg-icon][type=msg-warn] {
     background-position: bottom right;
 }
 QLabel[class=msg-icon][type=msg-error] {
@@ -367,6 +367,9 @@ QLabel[class=msg-icon][type=msg-error] {
 }
 QLabel[class=msg-icon][type=msg-info] {
     background-position: bottom left;
+}
+QLabel[class=msg-icon][type=msg-confirm] {
+    background-position: top right;
 }
 /**/
 QPrintDialog, QPrintPropertiesDialog {

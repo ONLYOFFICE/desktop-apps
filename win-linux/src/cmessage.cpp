@@ -149,10 +149,10 @@ int CMessage::info(const QString& mess)
     return m_modalresult;
 }
 
-int CMessage::question(const QString& mess)
+int CMessage::warning(const QString& mess)
 {
     m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-question");
+    m_typeIcon->setProperty("type","msg-warn");
 
     modal();
 
@@ -169,16 +169,32 @@ int CMessage::error(const QString& mess)
     return m_modalresult;
 }
 
+int CMessage::confirm(const QString& mess)
+{
+    m_message->setText(mess);
+    m_typeIcon->setProperty("type","msg-confirm");
+
+    modal();
+
+    return m_modalresult;
+}
+
+int CMessage::confirm(HWND p, const QString& m)
+{
+    CMessage mess(p);
+    return mess.confirm(m);
+}
+
 int CMessage::info(HWND p, const QString& m)
 {
     CMessage mess(p);
     return mess.info(m);
 }
 
-int CMessage::question(HWND p, const QString& m)
+int CMessage::warning(HWND p, const QString& m)
 {
     CMessage mess(p);
-    return mess.question(m);
+    return mess.warning(m);
 }
 
 int CMessage::error(HWND p, const QString& m)

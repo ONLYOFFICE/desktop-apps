@@ -47,12 +47,14 @@ public:
     void setButtons(std::initializer_list<QString>);
 
     int info(const QString& m);
-    int question(const QString& m);
+    int warning(const QString& m);
     int error(const QString& m);
+    int confirm(const QString& m);
 
     static int info(HWND, const QString& m);
-    static int question(HWND, const QString& m);
+    static int warning(HWND, const QString& m);
     static int error(HWND, const QString& m);
+    static int confirm(HWND, const QString& m);
 
 private:
     QWidget * m_boxButtons;
