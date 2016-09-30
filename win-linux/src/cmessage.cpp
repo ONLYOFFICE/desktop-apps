@@ -31,163 +31,243 @@
 */
 
 #include "cmessage.h"
+#include <QPushButton>
+#include <QFormLayout>
+#include <QLabel>
+#include <QVariant>
+#include <QDebug>
+#include <QTimer>
+
 #include "defines.h"
 
-#include <QDialogButtonBox>
-#include <QPushButton>
+#if defined(_WIN32)
+# include "win/qwinwidget.h"
+#endif
 
-#include <QLabel>
-#include <QCheckBox>
-#include "qcefview.h"
+#define MSG_ICON_WIDTH  35
+#define MSG_ICON_HEIGHT 35
 
 extern BYTE g_dpi_ratio;
-extern QString g_lang;
-
-#ifdef _WIN32
-CMessage::CMessage(HWND hParentWnd) : QWinWidget(hParentWnd)
-  , m_pDlg(this)
-#else
-CMessage::CMessage(QWidget * parent) : QObject(parent)
-  , m_pDlg(parent)
-#endif
-    , m_result(MODAL_RESULT_CANCEL)
-    , m_fLayout(new QFormLayout)
-{
-    m_pDlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
-                          | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
-
-    QVBoxLayout * layout = new QVBoxLayout;
-    QHBoxLayout * h_layout2 = new QHBoxLayout;
-    QHBoxLayout * h_layout1 = new QHBoxLayout;
-    layout->addLayout(h_layout2, 1);
-    layout->addLayout(h_layout1, 0);
-
-    m_typeIcon = new QLabel;
-    m_typeIcon->setProperty("class","msg-icon");
-    m_typeIcon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
-
-    m_message = new QLabel;
-//    m_message->setWordWrap(true);
-    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
-//    question->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
-    m_fLayout->addWidget(m_message);
-    m_fLayout->setSpacing(0);
-    m_fLayout->setContentsMargins(10*g_dpi_ratio,0,5*g_dpi_ratio,0);
-    h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
-    h_layout2->addLayout(m_fLayout, 1);
-
-    QPushButton * btn_yes       = new QPushButton(tr("&OK"));
-//    QPushButton * btn_no        = new QPushButton("&No");
-//    QPushButton * btn_cancel    = new QPushButton("&Cancel");
-    m_boxButtons = new QWidget;
-    m_boxButtons->setLayout(new QHBoxLayout);
-    m_boxButtons->layout()->addWidget(btn_yes);
-//    box->layout()->addWidget(btn_no);
-//    box->layout()->addWidget(btn_cancel);
-    m_boxButtons->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
-    h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
-
-    m_pDlg.setLayout(layout);
-    m_pDlg.setMinimumWidth(350*g_dpi_ratio);
-    m_pDlg.setWindowTitle(APP_TITLE);
-
-    connect(btn_yes, &QPushButton::clicked, this, &CMessage::onYesClicked);
-//    connect(btn_no, SIGNAL(clicked()), this, SLOT(onNoClicked()));
-//    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-
-    m_pDlg.setStyleSheet("QPushButton:focus{border-color:#3a83db;}");
-}
-
-void CMessage::error(const QString& title, const QString& text)
-{
-    QMessageBox msgBox((QWidget *)this);
-    msgBox.setWindowTitle( title );
-    msgBox.setText( text );
-    msgBox.setWindowModality(Qt::ApplicationModal);
-    msgBox.setIcon(QMessageBox::Critical);
-
-    msgBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
-                          | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
-    msgBox.exec();
-}
-
-int CMessage::showModal(const QString& mess, QMessageBox::Icon icon)
-{
-    m_message->setText(mess);
-    if (icon == QMessageBox::Critical) {
-        m_typeIcon->setProperty("type","msg-error");
-    } else
-    if (icon == QMessageBox::Information) {
-        m_typeIcon->setProperty("type","msg-info");
-    }
-
-    m_pDlg.adjustSize();
+//extern QString g_lang;
 
 #if defined(_WIN32)
-    RECT rc;
-    ::GetWindowRect(parentWindow(), &rc);
-
-    int x = rc.left + (rc.right - rc.left - m_pDlg.width())/2;
-    int y = (rc.bottom - rc.top - m_pDlg.height())/2;
-
-    m_pDlg.move(x, y);
+CMessage::CMessage(HWND p)
+    : CWinWindow(p, QString(APP_TITLE))
 #else
-    m_pDlg.layout()->setSizeConstraint(QLayout::SetFixedSize);
+CMessage::CMessage(QWidget * p)
+    : QDialog(p)
+#endif
+    , m_message(new QLabel)
+    , m_typeIcon(new QLabel)
+    , m_modalresult(MODAL_RESULT_CANCEL)
+{
+#if defined(_WIN32)
+    HWND _hwnd = CWinWindow::m_hSelf;
+    m_centralWidget = new QWinWidget(_hwnd);
+#else
+    setWindowTitle(APP_TITLE);
+    setLayout(new QVBoxLayout);
+
+    m_centralWidget = new QWidget;
+    layout()->addWidget(m_centralWidget);
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
 
-    m_pDlg.exec();
+    QVBoxLayout * _c_layout  = new QVBoxLayout;
+    QHBoxLayout * _h_layout2 = new QHBoxLayout;
+    QHBoxLayout * _h_layout1 = new QHBoxLayout;
+    _c_layout->addLayout(_h_layout2, 1);
+    _c_layout->addLayout(_h_layout1, 0);
 
-    return m_result;
+    m_typeIcon->setProperty("class", "msg-icon");
+    m_typeIcon->setFixedSize(MSG_ICON_WIDTH*g_dpi_ratio, MSG_ICON_HEIGHT*g_dpi_ratio);
+    _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
+
+//    m_message->setWordWrap(true);
+    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
+
+    QFormLayout * _f_layout = new QFormLayout;
+    _f_layout->addWidget(m_message);
+    _f_layout->setSpacing(0);
+    _f_layout->setContentsMargins(10*g_dpi_ratio,0,5*g_dpi_ratio,0);
+    _h_layout2->addLayout(_f_layout, 1);
+
+    _h_layout2->setContentsMargins(15,10,15,10);
+    _f_layout->setContentsMargins(10,0,0,0);
+
+    QPushButton * btn_ok = new QPushButton(QObject::tr("&OK"));
+    m_boxButtons = new QWidget;
+    m_boxButtons->setLayout(new QHBoxLayout);
+    m_boxButtons->layout()->addWidget(btn_ok);
+    m_boxButtons->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
+    _h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
+
+    QObject::connect(btn_ok, &QPushButton::clicked,
+        [=] {
+            m_modalresult = MODAL_RESULT_YES;
+#if defined(_WIN32)
+            DestroyWindow(_hwnd);
+#else
+            close();
+#endif
+        }
+    );
+
+    m_centralWidget->setLayout(_c_layout);
+    m_centralWidget->setMinimumWidth(350*g_dpi_ratio);
+//    m_centralWidget->setWindowTitle(APP_TITLE);
+    m_centralWidget->setStyleSheet("QPushButton{min-width:40px;}");
+    m_centralWidget->move(0, 0);
 }
 
-void CMessage::onYesClicked()
-{
-    m_result = MODAL_RESULT_YES;
-    m_pDlg.accept();
-}
-
-void CMessage::setButtons(const QString& cbtn1, const QString& cbtn2)
+void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
+        qDebug() << "delete button";
+        w->disconnect();
         delete w;
     }
 
-    QPushButton * _btn = new QPushButton(cbtn1);
-    m_boxButtons->layout()->addWidget(_btn);
-    connect(_btn, &QPushButton::clicked, [=](){
-        m_result = MODAL_RESULT_BTN1;
-        m_pDlg.accept();
-    });
+#if defined(_WIN32)
+    HWND _hwnd = CWinWindow::m_hSelf;
+#else
+    QWidget * w = this;
+#endif
 
-    if (cbtn2.size()) {
-        QRegExp reFocus("([^:]+)\\:?(focus)?$");
-                reFocus.indexIn(cbtn2);
+    QRegExp reFocus("([^:]+)\\:?(default)?$");
+
+    QPushButton * _btn;
+    int _btn_num(0);
+    int * _result = &m_modalresult;
+    for (auto btn: btns) {
+        reFocus.indexIn(btn);
 
         _btn = new QPushButton(reFocus.cap(1));
-        m_boxButtons->layout()->addWidget(_btn);
-        connect(_btn, &QPushButton::clicked, [=](){
-            m_result = MODAL_RESULT_BTN2;
-            m_pDlg.accept();
-        });
+        if ( !reFocus.cap(2).isEmpty() ) {
+            _btn->setAutoDefault(true);
+        }
 
-        if (reFocus.captureCount() > 1) {
-            _btn->setFocus();
+        m_boxButtons->layout()->addWidget(_btn);
+#if defined(_WIN32)
+        QObject::connect(_btn, &QPushButton::clicked, [_hwnd, _btn_num, _result](){
+            *_result = MODAL_RESULT_CUSTOM + _btn_num;
+            DestroyWindow(_hwnd);
+        });
+#else
+        QObject::connect(_btn, &QPushButton::clicked, [w, _btn_num, _result](){
+            *_result = MODAL_RESULT_CUSTOM + _btn_num;
+            w->close();
+        });
+#endif
+
+        _btn_num++;
+    }
+
+    if (_btn_num > 2)
+        m_centralWidget->setMinimumWidth(400*g_dpi_ratio);
+}
+
+int CMessage::info(const QString& mess)
+{
+    m_message->setText(mess);
+    m_typeIcon->setProperty("type","msg-info");
+
+    modal();
+
+    return m_modalresult;
+}
+
+int CMessage::warning(const QString& mess)
+{
+    m_message->setText(mess);
+    m_typeIcon->setProperty("type","msg-warn");
+
+    modal();
+
+    return m_modalresult;
+}
+
+int CMessage::error(const QString& mess)
+{
+    m_message->setText(mess);
+    m_typeIcon->setProperty("type","msg-error");
+
+    modal();
+
+    return m_modalresult;
+}
+
+int CMessage::confirm(const QString& mess)
+{
+    m_message->setText(mess);
+    m_typeIcon->setProperty("type","msg-confirm");
+
+    modal();
+
+    return m_modalresult;
+}
+
+#if defined(_WIN32)
+int CMessage::confirm(HWND p, const QString& m)
+#else
+int CMessage::confirm(QWidget * p, const QString& m)
+#endif
+{
+    CMessage mess(p);
+    return mess.confirm(m);
+}
+
+#if defined(_WIN32)
+int CMessage::info(HWND p, const QString& m)
+#else
+int CMessage::info(QWidget * p, const QString& m)
+#endif
+{
+    CMessage mess(p);
+    return mess.info(m);
+}
+
+#if defined(_WIN32)
+int CMessage::warning(HWND p, const QString& m)
+#else
+int CMessage::warning(QWidget * p, const QString& m)
+#endif
+{
+    CMessage mess(p);
+    return mess.warning(m);
+}
+
+#if defined(_WIN32)
+int CMessage::error(HWND p, const QString& m)
+#else
+int CMessage::error(QWidget * p, const QString& m)
+#endif
+{
+    CMessage mess(p);
+    return mess.error(m);
+}
+
+void CMessage::modal()
+{
+#if defined(_WIN32)
+    m_centralWidget->adjustSize();
+    m_centralWidget->show();
+
+    QList<QPushButton *> l = m_boxButtons->findChildren<QPushButton *>();
+    foreach (QPushButton * b, l) {
+        if (l.size() == 1 || b->autoDefault() || b->isDefault()) {
+            QTimer::singleShot(200, m_centralWidget, [b]{
+                b->setFocus();
+            });
+
+            break;
         }
     }
-}
 
-void CMessage::useApplyForAll(const QString& str, bool checked)
-{
-    QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_pDlg.layout());
-    QCheckBox * chbox = new QCheckBox(str);
-    chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(8 + m_typeIcon->width() * g_dpi_ratio + 10 * g_dpi_ratio));
-    chbox->setChecked(checked);
-    layout->insertWidget(1, chbox, 0);
-}
-
-bool CMessage::applyForAll()
-{
-    QCheckBox * chbox = m_pDlg.findChild<QCheckBox *>("check-apply-for-all");
-    return chbox && chbox->checkState() == Qt::Checked;
+    CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
+    CWinWindow::center();
+    CWinWindow::modal();
+#else
+    exec();
+#endif
 }

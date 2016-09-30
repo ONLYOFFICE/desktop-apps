@@ -34,50 +34,53 @@
 #define CMESSAGE_H
 
 #if defined(_WIN32)
-#include "win\qwinwidget.h"
-#endif
-
-#include <QMessageBox>
-#include <QFormLayout>
-#include <QDialog>
-#include <QLabel>
-
-#ifdef _WIN32
-class CMessage : public QWinWidget
-{
-    Q_OBJECT
-
-public:
-    explicit CMessage(HWND hParentWnd);
-
+#include "win/cwinwindow.h"
 #else
-class CMessage : public QObject
-{
-    Q_OBJECT
-
-public:
-    explicit CMessage(QWidget * p = 0);
-
+#include <QMessageBox>
 #endif
 
-    void error(const QString& title, const QString& text);
-    int showModal(const QString&, QMessageBox::Icon);
-    void setButtons(const QString&, const QString&);
-    void useApplyForAll(const QString&, bool checked);
-    bool applyForAll();
+#include <QLabel>
+#include <initializer_list>
+
+#if defined(_WIN32)
+class CMessage : public CWinWindow
+{
+public:
+    CMessage(HWND);
+#else
+class CMessage : public QDialog
+{
+public:
+    explicit CMessage(QWidget *);
+#endif
+
+    void setButtons(std::initializer_list<QString>);
+
+    int info(const QString& m);
+    int warning(const QString& m);
+    int error(const QString& m);
+    int confirm(const QString& m);
+
+#if defined(_WIN32)
+    static int info(HWND, const QString& m);
+    static int warning(HWND, const QString& m);
+    static int error(HWND, const QString& m);
+    static int confirm(HWND, const QString& m);
+#else
+    static int info(QWidget *, const QString& m);
+    static int warning(QWidget *, const QString& m);
+    static int error(QWidget *, const QString& m);
+    static int confirm(QWidget *, const QString& m);
+#endif
 
 private:
-    QDialog m_pDlg;
-    int m_result;
-    QFormLayout * m_fLayout;
-    QLabel * m_message;
-    QLabel * m_typeIcon;
     QWidget * m_boxButtons;
+    QWidget * m_centralWidget;
+    QLabel * m_message,
+           * m_typeIcon;
+    int m_modalresult;
 
-signals:
-
-public slots:
-    void onYesClicked();
+    void modal();
 };
 
 #endif // CMESSAGE_H
