@@ -77,6 +77,11 @@
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
+#define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
+
+#define HTML_QUOTED_JSON_PAIR(n, v) "&quot;"##n"&quot;:&quot;"##v"&quot;"
+#define HTML_QUOTE                  "\\u005c&quot;" // \" symbols
+
 #ifdef __linux
 typedef unsigned char BYTE;
 #endif

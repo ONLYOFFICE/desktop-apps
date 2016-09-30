@@ -1169,10 +1169,19 @@ void CMainPanel::onMainPageReady()
 
 void CMainPanel::refreshAboutVersion()
 {
-    QString _tpl_ver = "{'version':'%1','edition':'%2','appname':'%3','rights':'%4','link':'%5'}";
+    QString _tpl_ver = "{"
+            HTML_QUOTED_JSON_PAIR("version","%1")","
+            HTML_QUOTED_JSON_PAIR("edition","%2")","
+            HTML_QUOTED_JSON_PAIR("appname","%3")","
+            HTML_QUOTED_JSON_PAIR("rights","%4")","
+            HTML_QUOTED_JSON_PAIR("link","%5")
+            "}";
 
-    cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, tr("Open Source Edition"),
-                                    WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
+    QString _license = "Licensed under &lt;a onclick="HTML_QUOTE"window.open('"URL_AGPL"')"HTML_QUOTE
+                            " href="HTML_QUOTE"#"HTML_QUOTE"&gt;GNU AGPL v3&lt;/a&gt;";
+
+    cmdMainPage("app:version",
+        _tpl_ver.arg(VER_FILEVERSION_STR, _license, WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
