@@ -171,9 +171,8 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="269"/>
-        <source>%1 is modified.
-Do you want to keep changes?</source>
-        <translation type="unfinished"></translation>
+        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="503"/>
@@ -215,11 +214,6 @@ Do you want to keep changes?</source>
         <location filename="../src/cmainpanel.cpp" line="712"/>
         <source>Presentation%1.pptx</source>
         <translation>Präsentation%1.pptx</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="1174"/>
-        <source>Open Source Edition</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="916"/>
