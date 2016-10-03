@@ -8,7 +8,7 @@ CONFIG += c++11
 TRANSLATIONS = ./langs/en.ts \
                 ./langs/ru.ts \
                 ./langs/de.ts \
-                ./langs/sp.ts \
+                ./langs/es.ts \
                 ./langs/fr.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
