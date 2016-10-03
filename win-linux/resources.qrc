@@ -59,7 +59,7 @@
     <qresource prefix="/i18n">
         <file>langs/en.qm</file>
         <file>langs/ru.qm</file>
-        <file>langs/sp.qm</file>
+        <file>langs/es.qm</file>
         <file>langs/fr.qm</file>
         <file>langs/de.qm</file>
     </qresource>

@@ -94,7 +94,7 @@
                 window.sdk.on('on_native_message', (cmd, param) => {
                     if (/app\:version/.test(cmd)) {
                         try {
-                            args.opts = JSON.parse(param.replace(/\'/g, '\"'));
+                            args.opts = JSON.parse( $('<div>').html(param).text() );
                         } catch (e) {
                             delete args.opts;
                         }

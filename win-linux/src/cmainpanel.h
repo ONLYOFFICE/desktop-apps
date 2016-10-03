@@ -59,7 +59,6 @@ public:
 
     void goStart();
     void focus();
-//    int  checkModified(const QString&);
     void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
@@ -141,7 +140,6 @@ private:
 
     QPushButton*    m_pButtonMain;
     QWidget*        m_pMainWidget;
-    QWidget *       m_pSeparator;
 
     QPushButton*    m_pButtonMinimize;
     QPushButton*    m_pButtonMaximize;

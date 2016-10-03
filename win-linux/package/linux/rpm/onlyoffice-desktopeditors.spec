@@ -2,7 +2,7 @@ Summary: Desktop editors for text, spreadsheet and presentation files
 Name: {{PACKAGE_NAME}}
 Version: {{PRODUCT_VERSION}}
 Release: {{BUILD_NUMBER}}
-License: Commercial
+License: AGPLv3
 Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA

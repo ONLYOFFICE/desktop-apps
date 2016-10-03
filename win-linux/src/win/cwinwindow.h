@@ -30,46 +30,24 @@
  *
 */
 
-#ifndef CSAVEFILEMESSAGE_H
-#define CSAVEFILEMESSAGE_H
+#ifndef CWINWINDOW_H
+#define CWINWINDOW_H
 
-#if defined(_WIN32)
-#include "win/qwinwidget.h"
-#endif
+#include "windows.h"
+#include "QString"
 
-#include <QDialog>
-#include <QFormLayout>
-
-class CSaveFileMessage
-#ifdef _WIN32
-    : public QWinWidget
+class CWinWindow
 {
-    Q_OBJECT
 public:
-    CSaveFileMessage(HWND hParentWnd);
-#else
-    : public QWidget
-{
-    Q_OBJECT
+    CWinWindow(HWND, QString&);
 
-public:
-    CSaveFileMessage(QWidget * parent = 0);
-#endif
-    ~CSaveFileMessage();
+    void modal();
+    void setSize(int w, int h);
+    void center();
 
-    int  showModal();
-    void setFiles(QMap<int, QString> *);
-    void setFiles(const QString &);
-    void setText(const QString&);
-
-private:
-    QDialog m_pDlg;
-    int m_result;
-    QFormLayout * m_fLayout;
-    QMap<int, QString> * m_mapFiles;
-
-public slots:
-    void onYesClicked();
+protected:
+    HWND    m_hSelf,
+            m_hParent;
 };
 
-#endif // CSAVEFILEMESSAGE_H
+#endif // CWINWINDOW_H

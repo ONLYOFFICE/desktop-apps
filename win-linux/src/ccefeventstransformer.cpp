@@ -31,7 +31,6 @@
 */
 
 #include "ccefeventstransformer.h"
-#include "../../../core-ext/desktop-sdk-wrapper/additional/applicationmanager_events.h"
 #include "common/Types.h"
 //#include "regex"
 #include "ccefeventsimpl.cpp"

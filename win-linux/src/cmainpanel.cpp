@@ -47,14 +47,13 @@
 #include <regex>
 
 #include "defines.h"
-#include "csavefilemessage.h"
 #include "cprintprogress.h"
 #include "cfiledialog.h"
 #include "qascprinter.h"
 #include "common/Types.h"
-#include "cmessage.h"
 #include "utils.h"
 #include "version.h"
+#include "cmessage.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -93,6 +92,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
       , m_inFiles(NULL)
+      , m_saveAction(0)
 {
     m_pManager = manager;
 
@@ -241,11 +241,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pMainWidget = (QWidget *)pMainWidget;
     m_pTabs->m_pMainButton = m_pButtonMain;
 
-//    m_pSeparator = new QWidget(centralWidget);
-//    m_pSeparator->setObjectName("separator");
-//    m_pSeparator->setStyleSheet("background-color:#dadada");
-//    m_pSeparator->setGeometry(0, 0, width(), 1);
-
 //    m_pMainWidget->setVisible(false);
 
     mainGridLayout->addWidget( centralWidget );
@@ -260,9 +255,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     m_pButtonDownload->setVisible(false, false);
 
-//    m_savePortal;
-    m_saveAction = 0; // undefined
-
     wstring first_name, last_name;
     readSystemUserName(first_name, last_name);
 
@@ -273,6 +265,8 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wparams.replace(wparams.find(L"%3"), 2, first_name);
     wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
+
+    m_saveDocMessage = tr("%1 is modified.\nDo you want to keep changes?");
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -291,7 +285,6 @@ void CMainPanel::RecalculatePlaces()
         btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
-//    m_pSeparator->setGeometry(0, 0, nWindowW, 1*g_dpi_ratio);
 
     int docCaptionW = windowW - m_pTabs->tabBar()->width() - btnMainWidth;
     int contentH = windowH - captionH;
@@ -501,22 +494,20 @@ int CMainPanel::trySaveDocument(int index)
     int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CSaveFileMessage saveDlg(gTopWinId);
+        CMessage mess(gTopWinId);
 #else
-        CSaveFileMessage saveDlg(this);
+        CMessage mess(this);
 #endif
         m_pTabs->setCurrentIndex(index);
-        saveDlg.setFiles(m_pTabs->titleByIndex(index));
 
-        if ( !m_saveDocMessage.isEmpty() ) {
-            saveDlg.setText( m_saveDocMessage );
-        }
+        mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+        modal_res = mess.warning(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
 
-        modal_res = saveDlg.showModal();
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
-        case MODAL_RESULT_NO: break;
-        case MODAL_RESULT_YES:
+        case MODAL_RESULT_CUSTOM + 1: modal_res = MODAL_RESULT_NO; break;
+        case MODAL_RESULT_CUSTOM + 2: modal_res = MODAL_RESULT_CANCEL; break;
+        case MODAL_RESULT_CUSTOM + 0:
         default:{
             m_pTabs->editorCloseRequest(index);
 
@@ -670,8 +661,7 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         });
     } else
     if (result == -255) {
-        CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
+        CMessage::error(gTopWinId, tr("File format not supported."));
     }
 }
 
@@ -689,8 +679,7 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     if (!match.hasMatch()) {
         if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
-            CMessage mess(gTopWinId);
-            mess.showModal(tr("File doesn't exists"), QMessageBox::Critical);
+            CMessage::error(gTopWinId, tr("File doesn't exists"));
             return;
         }
     }
@@ -705,8 +694,7 @@ void CMainPanel::onLocalFileRecent(void * d)
         });
     } else
     if (result == -255) {
-        CMessage mess(gTopWinId);
-        mess.showModal(tr("File format not supported."), QMessageBox::Critical);
+        CMessage::error(gTopWinId, tr("File format not supported."));
     }
 }
 
@@ -894,43 +882,6 @@ void CMainPanel::goStart()
 //    loadStartPage();
     toggleButtonMain(true);
 }
-
-//int CMainPanel::checkModified(const QString& portalname)
-//{
-//    QMap<int, QString> mapModified = m_pTabs->modified(portalname);
-
-//    int out_res = MODAL_RESULT_YES;
-//    if (mapModified.size()) {
-//#ifdef _WIN32
-//        CSaveFileMessage saveDlg(gTopWinId);
-//#else
-//        CSaveFileMessage saveDlg(this);
-//#endif
-//        saveDlg.setFiles(&mapModified);
-
-//        out_res = saveDlg.showModal();
-//        switch (out_res) {
-//        case MODAL_RESULT_NO: break;
-//        case MODAL_RESULT_CANCEL: break;
-//        case MODAL_RESULT_YES:
-//        default:{
-//            if (mapModified.size()) {
-//                CCefView * pView;
-//                QMapIterator<int,QString> i(mapModified);
-//                while (i.hasNext()) {
-//                    i.next();
-
-//                    pView = m_pManager->GetViewById(i.key());
-//                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
-//                }
-//            }
-
-//            break;}
-//        }
-//    }
-
-//    return out_res;
-//}
 
 void CMainPanel::onDocumentPrint(void * opts)
 {
@@ -1218,10 +1169,19 @@ void CMainPanel::onMainPageReady()
 
 void CMainPanel::refreshAboutVersion()
 {
-    QString _tpl_ver = "{'version':'%1','edition':'%2','appname':'%3','rights':'%4','link':'%5'}";
+    QString _tpl_ver = "{"
+            HTML_QUOTED_JSON_PAIR("version", "%1")","
+            HTML_QUOTED_JSON_PAIR("edition","%2")","
+            HTML_QUOTED_JSON_PAIR("appname","%3")","
+            HTML_QUOTED_JSON_PAIR("rights","%4")","
+            HTML_QUOTED_JSON_PAIR("link","%5")
+            "}";
 
-    cmdMainPage("app:version", _tpl_ver.arg(VER_FILEVERSION_STR, tr("Open Source Edition"),
-                                    WINDOW_NAME, "© "ABOUT_COPYRIGHT_STR, URL_SITE));
+    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
+                            " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
+
+    cmdMainPage("app:version",
+        _tpl_ver.arg(VER_FILEVERSION_STR, _license, WINDOW_NAME, "© " ABOUT_COPYRIGHT_STR, URL_SITE));
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

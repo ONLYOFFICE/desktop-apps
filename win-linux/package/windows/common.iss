@@ -51,7 +51,7 @@ Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\
 Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: sp; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
 
 
@@ -61,42 +61,42 @@ en.Launch =Launch %1
 ru.Launch =Запустить %1
 de.Launch =%1 starten
 fr.Launch =Lancer %1
-sp.Launch =Ejecutar %1
+es.Launch =Ejecutar %1
 ;it.Launch =Eseguire %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
 de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
 fr.CreateDesktopIcon =Crйer l'icфne du bureau pour %1
-sp.CreateDesktopIcon =Crear %1 &icono en el escritorio
+es.CreateDesktopIcon =Crear %1 &icono en el escritorio
 ;it.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
 de.InstallAdditionalComponents =Installation zusдtzlicher Systemkomponenten. Bitte warten...
 fr.InstallAdditionalComponents =L'installation des composants supplйmentaires du systиme. Attendez...
-sp.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
+es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
 ;it.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 ru.AdditionalTasks =Задачи:
 de.AdditionalTasks =Aufgaben:
 fr.AdditionalTasks =Tвches:
-sp.AdditionalTasks =Tareas:
+es.AdditionalTasks =Tareas:
 ;it.AdditionalTasks =Compiti:
 ;======================================================================================================
 en.Uninstall =Uninstall
 ru.Uninstall =Удаление
 de.Uninstall =Deinstallieren
 fr.Uninstall =Desinstaller
-sp.Uninstall =Desinstalar
+es.Uninstall =Desinstalar
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
 de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
 fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
-sp.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
+es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
 
@@ -309,10 +309,7 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;        Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\cell\*;                DestDir: {app}\editors\sdkjs\cell;      Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\common\*;              DestDir: {app}\editors\sdkjs\common;    Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\slide\*;               DestDir: {app}\editors\sdkjs\slide;     Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\word\*;                DestDir: {app}\editors\sdkjs\word;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 

@@ -214,10 +214,11 @@ window.LoginDlg = function() {
 
         disableDialog(true);
         // setLoaderVisible(true);
-        checkResourceExists((protocol = protarr[0]) + check_url, (r)=>{
-            r == 0 ?
-                checkResourceExists((protocol = protarr[1])+check_url, chkcallback) :
-                chkcallback(r);
+        checkResourceExists(protocol + check_url, (r)=>{
+            if (r == 0) {
+                protocol = protocol == "https://" ? "http://" : "https://";
+                checkResourceExists(protocol+check_url, chkcallback);
+            } else chkcallback(r);
         });
     };
 

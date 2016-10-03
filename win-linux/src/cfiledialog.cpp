@@ -138,19 +138,22 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
 QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter)
 {
     QString _filter_ = filter.length() ? filter : tr("All files (*.*)");
+    QString _sel_filter = tr("All files (*.*)");
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
+    return QFileDialog::getOpenFileName(
 #ifdef _WIN32
-    return QFileDialog::getOpenFileName(this, tr("Open Document"), path, _filter_);
+                this,
 #else
-    return QFileDialog::getOpenFileName((QWidget *)parent(), tr("Open Document"), path, _filter_);
+                (QWidget *)parent(),
 #endif
+                tr("Open Document"), path, _filter_, &_sel_filter);
 }
 
 QString CFileDialogWrapper::modalOpenImage(const QString& path)
 {
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+    filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
 
     return modalOpen(path, filter);
 }

@@ -267,7 +267,6 @@
 
 /* Begin PBXFileReference section */
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
-		FC081E951C3256ED00F9881C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Vendor/Sparkle/bin/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		FC081E9B1C3257F600F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081E9D1C3257FF00F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081EAF1C3258A800F9881C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -936,7 +935,6 @@
 		FCBC426B1B9D650400405301 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FC081E951C3256ED00F9881C /* dsa_pub.pem */,
 				FCFC000B1BC54ACC00939341 /* Localizable.strings */,
 				FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */,
 				FC6718441BD91B3A0028600F /* MoveApplication.strings */,

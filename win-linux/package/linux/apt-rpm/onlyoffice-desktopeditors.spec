@@ -2,13 +2,13 @@ Summary: Desktop editors for text, spreadsheet and presentation files
 Name: {{PACKAGE_NAME}}
 Version: {{PRODUCT_VERSION}}
 Release: {{BUILD_NUMBER}}
-License: Commercial
+License: AGPLv3
 Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-#FullRequires: libX11, fonts-ttf-dejavu, fonts-ttf-liberation, fonts-ttf-crosextra-carlito
-Requires: libX11, libXScrnSaver, libcurl, libgtkglext, libcairo, fonts-ttf-dejavu, fonts-ttf-liberation, fonts-ttf-crosextra-carlito
+#FullRequires: libX11, fonts-ttf-dejavu, fonts-ttf-liberation, fonts-ttf-google-crosextra-carlito
+Requires: libX11, libXScrnSaver, libcurl, libgtkglext, libcairo, fonts-ttf-dejavu, fonts-ttf-liberation, fonts-ttf-google-crosextra-carlito
 #Suggests: fonts-ttf-ms
 BuildArch: x86_64
 AutoReq: no

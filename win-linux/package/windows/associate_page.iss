@@ -11,85 +11,85 @@ en.AssociateDescription =Associate office document file types with {#ASSC_APP_NA
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
 de.AssociateDescription =Video- und Audiodateitypen mit AVS Media Player {#ASSC_APP_NAME}
 fr.AssociateDescription =Associer des types de fichiers vidйo et audio а {#ASSC_APP_NAME}
-sp.AssociateDescription =Asociar tipos de archivos de vнdeo y audio con {#ASSC_APP_NAME}
+es.AssociateDescription =Asociar tipos de archivos de vнdeo y audio con {#ASSC_APP_NAME}
 ;it.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 ru.AssociateCaption =Ассоциации файлов
 de.AssociateCaption =Dateiassoziationen
 fr.AssociateCaption =Associations de fichiers
-sp.AssociateCaption =Asociaciones de archivos
+es.AssociateCaption =Asociaciones de archivos
 ;it.AssociateCaption =Associazioni dei file
 
 en.AssociateDont =Do not associate
 ru.AssociateDont =Не ассоциировать
 de.AssociateDont =Nicht assoziieren
 fr.AssociateDont =Ne pas associer
-sp.AssociateDont =No asociar
+es.AssociateDont =No asociar
 ;it.AssociateDont =Non associare
 
 en.AssociateAll =Associate all
 ru.AssociateAll =Ассоциировать все
 de.AssociateAll =Alle assoziieren
 fr.AssociateAll =Associer tous
-sp.AssociateAll =Asociar todo
+es.AssociateAll =Asociar todo
 ;it.AssociateAll =Associare tutto
 
 en.AssociateSel =Associate selected
 ru.AssociateSel =Ассоциировать выбранные
 de.AssociateSel =Ausgewдhlte assoziieren
 fr.AssociateSel =Associer sйlectionnйs
-sp.AssociateSel =Asociar seleccionado
+es.AssociateSel =Asociar seleccionado
 ;it.AssociateSel =Associare selezione
 
 en.AssociateAudio =File types
 ru.AssociateAudio =Типы файлов
 de.AssociateAudio =Audiodateitypen
 fr.AssociateAudio =Types de fichiers audio
-sp.AssociateAudio =Tipos de archivos de audio
+es.AssociateAudio =Tipos de archivos de audio
 ;it.AssociateAudio =Tipi di file audio
 
 en.extMSWord =Microsoft Word Document
 ru.extMSWord =Документ Microsoft Word
 de.extMSWord =Microsoft Word Dokument
 fr.extMSWord =Document Microsoft Word
-sp.extMSWord =Documento de Microsoft Word
+es.extMSWord =Documento de Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
 ru.extMSExcel =Книга Microsoft Excel
 de.extMSExcel =Microsoft Excel Arbeitsmappe
 fr.extMSExcel =Classeur Microsoft Excel
-sp.extMSExcel =Libro de Microsoft Excel
+es.extMSExcel =Libro de Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 ru.extMSPresentation =Презентация Microsoft PowerPoint
 de.extMSPresentation =Microsoft PowerPoint Präsentation
 fr.extMSPresentation =Présentation Microsoft PowerPoint
-sp.extMSPresentation =Presentación de PowerPoint Microsoft
+es.extMSPresentation =Presentación de PowerPoint Microsoft
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 ru.extMSSlideshow =Слайдшоу Microsoft PowerPoint
 de.extMSSlideshow =Microsoft PowerPoint Slideshow
 fr.extMSSlideshow =Diaporama Microsoft PowerPoint
-sp.extMSSlideshow =Presentación de Microsoft PowerPoint
+es.extMSSlideshow =Presentación de Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
 ru.extODT =Текстовый документ OpenDocument
 de.extODT =OpenDocument Textdokument
 fr.extODT =Document OpenDocument Texte
-sp.extODT =Documento de texto de OpenDocument
+es.extODT =Documento de texto de OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 ru.extODS =Электронная таблица OpenDocument
 de.extODS =OpenDocument Tabelle
 fr.extODS =Classeur OpenDocument
-sp.extODS =Hoja de cálculo de OpenDocument
+es.extODS =Hoja de cálculo de OpenDocument
 
 en.extODP =OpenDocument Presentation
 ru.extODP =Презентация OpenDocument
 de.extODP =OpenDocument  Präsentation
 fr.extODP =Présentation OpenDocument
-sp.extODP =Presentación de OpenDocument
+es.extODP =Presentación de OpenDocument
 
 
 [Code]
