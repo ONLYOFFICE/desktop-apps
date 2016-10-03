@@ -266,7 +266,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 
-    m_saveDocMessage = tr("%1 is modified.\nDo you want to keep changes?");
+    m_saveDocMessage = tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
 void CMainPanel::RecalculatePlaces()

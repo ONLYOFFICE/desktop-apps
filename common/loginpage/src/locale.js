@@ -175,7 +175,7 @@ var de = {
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,adsText1: 'Bearbeitung in Echtzeit und Dokumentkontrolle (Kommentarfunktion)'
+    ,adsText1: 'Bearbeitung in Echtzeit und Dokumentkontrolle (Kommentarfunktion)'
     ,adsText2: 'Nutzung von Überarbeitungen und Versionen, um geringere Veränderungen im Dokument zu verfolgen'
     ,adsText3: 'Zugriff auf die Dokumente jederzeit und überall auf jedem beliebigen Gerät'
 };

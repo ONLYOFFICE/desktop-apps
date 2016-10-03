@@ -99,6 +99,7 @@ void CWinWindow::modal()
     }
 
     EnableWindow(m_hParent, TRUE);
+    SetActiveWindow(m_hParent);
 }
 
 void CWinWindow::setSize(int w, int h)

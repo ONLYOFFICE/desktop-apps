@@ -171,8 +171,7 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="269"/>
-        <source>%1 is modified.
-Do you want to keep changes?</source>
+        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
     <message>
