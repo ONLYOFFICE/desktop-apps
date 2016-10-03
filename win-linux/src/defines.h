@@ -79,7 +79,7 @@
 
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
 
-#define HTML_QUOTED_JSON_PAIR(n, v) "&quot;"##n"&quot;:&quot;"##v"&quot;"
+#define HTML_QUOTED_JSON_PAIR(n, v) "&quot;" n "&quot;:&quot;" v "&quot;"
 #define HTML_QUOTE                  "\\u005c&quot;" // \" symbols
 
 #ifdef __linux
