@@ -55,6 +55,8 @@ public:
 #endif
 
     void setButtons(std::initializer_list<QString>);
+    void setIcon(int);
+    void setText(const QString&);
 
     int info(const QString& m);
     int warning(const QString& m);

@@ -123,7 +123,6 @@ CMessage::CMessage(QWidget * p)
 void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
-        qDebug() << "delete button";
         w->disconnect();
         delete w;
     }
@@ -270,4 +269,21 @@ void CMessage::modal()
 #else
     exec();
 #endif
+}
+
+void CMessage::setIcon(int it)
+{
+    switch (it) {
+    case MESSAGE_TYPE_WARN:     m_typeIcon->setProperty("type","msg-warn"); break;
+    case MESSAGE_TYPE_INFO:     m_typeIcon->setProperty("type","msg-info"); break;
+    case MESSAGE_TYPE_CONFIRM:  m_typeIcon->setProperty("type","msg-conf"); break;
+    case MESSAGE_TYPE_ERROR:    m_typeIcon->setProperty("type","msg-error"); break;
+    default:
+        break;
+    }
+}
+
+void CMessage::setText( const QString& t)
+{
+    m_message->setText(t);
 }
