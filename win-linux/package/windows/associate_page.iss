@@ -44,10 +44,10 @@ es.AssociateSel =Asociar seleccionado
 
 en.AssociateAudio =File types
 ru.AssociateAudio =Типы файлов
-de.AssociateAudio =Audiodateitypen
-fr.AssociateAudio =Types de fichiers audio
-es.AssociateAudio =Tipos de archivos de audio
-;it.AssociateAudio =Tipi di file audio
+de.AssociateAudio =Dateitypen
+fr.AssociateAudio =Types de fichiers
+es.AssociateAudio =Tipos de archivos
+;it.AssociateAudio =Tipi di file
 
 en.extMSWord =Microsoft Word Document
 ru.extMSWord =Документ Microsoft Word
