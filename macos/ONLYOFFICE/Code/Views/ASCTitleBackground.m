@@ -45,7 +45,7 @@
 @implementation ASCTitleBackground
 
 - (void)drawRect:(NSRect)dirtyRect {
-    [kColorRGB(49, 52, 55) setFill];
+    [kColorRGB(64, 68, 71) setFill];
     NSRectFill(dirtyRect);
     
     [super drawRect:dirtyRect];
