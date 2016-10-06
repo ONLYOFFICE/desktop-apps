@@ -7,7 +7,7 @@ Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-#FullRequires: libX11, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts, google-crosextra-carlito-fonts
+#FullRequires: libX11, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-sans-fonts, liberation-serif-fonts
 Requires: libX11, libXScrnSaver, libcurl, gtkglext-libs, libstdc++ >= 4.8.0, boost-filesystem, xcb-util-renderutil, xcb-util-image, xcb-util-wm, libxcb, xcb-util-keysyms, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts, google-crosextra-carlito-fonts
 BuildArch: x86_64
 AutoReq: no
