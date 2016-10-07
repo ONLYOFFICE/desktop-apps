@@ -219,6 +219,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 name: name,
                 descr: path,
                 date: _f_.modifyed
+                , path: fn
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
@@ -245,6 +246,10 @@ utils.fn.parseRecent = function(arr, out = 'files') {
     }
 
     return out_dirs_arr;
+}
+
+utils.fn.decodeHtml = function(str) {
+    return $('<div>').html(str).text();
 }
 
 function getUrlParams() {

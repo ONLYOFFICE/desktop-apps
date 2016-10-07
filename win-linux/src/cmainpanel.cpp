@@ -73,6 +73,8 @@ using namespace NSEditorApi;
 #define TITLE_HEIGHT        29
 #define TOOLBTN_HEIGHT      29
 
+#define HTML_QUOTE "\\u005c&quot;" // \" symbols
+
 extern BYTE     g_dpi_ratio;
 extern QString  g_lang;
 
@@ -1169,19 +1171,17 @@ void CMainPanel::onMainPageReady()
 
 void CMainPanel::refreshAboutVersion()
 {
-    QString _tpl_ver = "{"
-            HTML_QUOTED_JSON_PAIR("version", "%1")","
-            HTML_QUOTED_JSON_PAIR("edition","%2")","
-            HTML_QUOTED_JSON_PAIR("appname","%3")","
-            HTML_QUOTED_JSON_PAIR("rights","%4")","
-            HTML_QUOTED_JSON_PAIR("link","%5")
-            "}";
-
     QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
                             " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
 
-    cmdMainPage("app:version",
-        _tpl_ver.arg(VER_FILEVERSION_STR, _license, WINDOW_NAME, "© " ABOUT_COPYRIGHT_STR, URL_SITE));
+    QJsonObject _json_obj;
+    _json_obj["version"]    = VER_FILEVERSION_STR;
+    _json_obj["edition"]    = "%1";
+    _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
+    _json_obj["link"]       = URL_SITE;
+
+    cmdMainPage("app:version", Utils::encodeJson(_json_obj).arg(_license));
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

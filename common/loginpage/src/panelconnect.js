@@ -115,6 +115,7 @@
     utils.fn.extend(ControllerPortals.prototype, (function() {
         let collection,
             ppmenu;
+        let dlgLogin;
 
         function _on_context_menu(menu, action, data) {
             var model = data;
@@ -133,17 +134,22 @@
         };
 
         function _do_login(portal, user) {
-            var dlg = new LoginDlg();
-            dlg.onsuccess(info => {
-                console.log('redirect to portal');
-                window.sdk.execCommand("portal:open", info.portal);
+            if ( !dlgLogin ) {
+                dlgLogin = new LoginDlg();
+                dlgLogin.onsuccess(info => {
+                    window.sdk.execCommand("portal:open", info.portal);
 
-                PortalsStore.keep(info);
-                _update_portals.call(this);
+                    dlgLogin.onclose();
+                    PortalsStore.keep(info);
+                    _update_portals.call(this);
 
-                window.selectAction('connect');
-            });
-            dlg.show(portal, user);
+                    window.selectAction('connect');
+                });
+                dlgLogin.onclose(code=>{
+                    dlgLogin = undefined;
+                });
+                dlgLogin.show(portal, user);
+            }
         };
 
         function _do_logout(info) {

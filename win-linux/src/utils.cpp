@@ -42,6 +42,7 @@
 #include <QDesktopWidget>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QJsonDocument>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -156,4 +157,20 @@ void Utils::openUrl(const QString& url)
 #else
     QDesktopServices::openUrl(QUrl(url));
 #endif
+}
+
+QString Utils::getPortalName(const QString& url)
+{
+    if ( !url.isEmpty() ) {
+        QRegularExpressionMatch match = QRegularExpression(rePortalName).match(url);
+        if (match.hasMatch()) return match.captured(1);
+    }
+
+    return url;
+}
+
+QString Utils::encodeJson(const QJsonObject& obj)
+{
+    QJsonDocument doc(obj);
+    return doc.toJson(QJsonDocument::Compact).replace("\"", "&quot;");
 }
