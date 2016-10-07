@@ -54,10 +54,12 @@
 #endif
 
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
-#define URL_SITE "http://www.onlyoffice.com"
 #define REG_APP_NAME "DesktopEditors"
-#define URL_APPCAST_UPDATES ""
 #define APP_MUTEX_NAME "TEAMLAB"
+
+#define URL_SITE                "http://www.onlyoffice.com"
+#define URL_APPCAST_UPDATES     ""
+#define URL_SIGNUP              "http://192.168.4.111/registration.aspx?desktop=true"
 
 #define WINDOW_TITLE_MIN_WIDTH 400
 

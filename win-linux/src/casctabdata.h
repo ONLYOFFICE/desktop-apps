@@ -44,6 +44,7 @@ struct CAscTabData
 {
 public:
     CAscTabData(const QString &, CefType wt = cvwtEditor);
+    CAscTabData(const QString &, AscEditorType ct);
     ~CAscTabData() {}
 
     void    setTitle(const QString&);
@@ -61,6 +62,9 @@ public:
     CefType viewType() const;
     wstring url() const;
     bool    isViewType(CefType) const;
+
+    AscEditorType   contentType();
+    void            setContentType(AscEditorType);
 private:
     QString _title;
     bool    _is_changed;
@@ -69,6 +73,8 @@ private:
     int     _panel_id;
     CefType _vtype;
     wstring _url;
+
+    AscEditorType _typeContent;
 };
 
 #endif // CASCTABDATA_H

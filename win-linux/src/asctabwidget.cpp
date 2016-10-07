@@ -241,7 +241,7 @@ void CAscTabWidget::closeAllEditors()
 //    }
 }
 
-int CAscTabWidget::addPortal(QString url)
+int CAscTabWidget::addPortal(QString url, QString name)
 {
     Q_UNUSED(url);
 
@@ -257,11 +257,9 @@ int CAscTabWidget::addPortal(QString url)
     pView->GetCefView()->load((url + "/products/files/?desktop=true").toStdWString());
     int id_view = pView->GetCefView()->GetId();
 
-    QRegularExpression re(rePortalName);
-    QRegularExpressionMatch match = re.match(url);
-    QString portal = match.hasMatch() ? match.captured(1) : url;
+    QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
-    CAscTabData * data = new CAscTabData(portal, cvwtSimple);
+    CAscTabData * data = new CAscTabData(portal, etPortal);
     data->setViewId(id_view);
 
     /* find out the index of the last portal's tab */
@@ -447,6 +445,32 @@ int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
     return -1;
 }
 
+int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
+{
+    CAscTabData * doc;
+    for (int i(count()); i-- > 0; ) {
+        doc = VPtr<CAscTabData>::asPtr(tabBar()->tabData(i));
+
+        if (doc && doc->contentType() == et && doc->title() == t)
+            return i;
+    }
+
+    return -1;
+}
+
+int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
+{
+    CAscTabData * doc;
+    for (int i(count()); i-- > 0; ) {
+        doc = VPtr<CAscTabData>::asPtr(tabBar()->tabData(i));
+
+        if (doc && doc->contentType() == et)
+            return i;
+    }
+
+    return -1;
+}
+
 void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
 {
     int tabIndex;
@@ -491,13 +515,28 @@ int CAscTabWidget::openPortal(const QString& url)
 {
     int out_val = 1;
 
-    QRegularExpression re(rePortalName);
-    QRegularExpressionMatch match = re.match(url);
-    QString portal_name = match.hasMatch() ? match.captured(1) : url;
+    QString portal_name = Utils::getPortalName(url);
 
-    int tabIndex = tabIndexByTitle(portal_name, cvwtSimple);
+    int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url), out_val = 2;
+        tabIndex = addPortal(url, ""), out_val = 2;
+    }
+
+    setCurrentIndex(tabIndex);
+    return out_val;
+}
+
+int CAscTabWidget::newPortal(const QString& url, const QString& name)
+{
+    int out_val = 1;
+
+    int tabIndex = tabIndexByEditorType(etNewPortal);
+    if ( tabIndex < 0 ) {
+        if ( !((tabIndex = addPortal(url, name)) < 0) ) {
+            VPtr<CAscTabData>::asPtr(tabBar()->tabData(tabIndex))
+                ->setContentType(etNewPortal);
+            out_val = 2;
+        }
     }
 
     setCurrentIndex(tabIndex);
@@ -506,7 +545,7 @@ int CAscTabWidget::openPortal(const QString& url)
 
 void CAscTabWidget::closePortal(const QString& name, bool editors)
 {
-    closeEditorByIndex(tabIndexByTitle(name, cvwtSimple));
+    closeEditorByIndex(tabIndexByTitle(name, etPortal));
 
     if (editors) {
         wstring wname = name.toStdWString();
@@ -571,6 +610,12 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     CCefView * pView = m_pManager->GetViewById(id);
     if (NULL != pView && pView->GetType() == cvwtEditor) {
         ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(type));
+    }
+
+    int tabIndex = tabIndexByView(id);
+    if (!(tabIndex < 0)) {
+        VPtr<CAscTabData>::asPtr( tabBar()->tabData(tabIndex) )
+            ->setContentType(AscEditorType(type));
     }
 
     updateTabIcon(tabIndexByView(id));

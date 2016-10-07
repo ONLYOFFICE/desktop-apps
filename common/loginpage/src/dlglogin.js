@@ -56,7 +56,7 @@ window.LoginDlg = function() {
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.btnCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">' + utils.Lang.btnCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
@@ -371,10 +371,6 @@ window.LoginDlg = function() {
         window.open(utils.defines.links.restorepass);
     };
 
-    function onCreatePortal() {
-        window.open(utils.defines.links.regnew);
-    };
-
     return {
         show: function(portal, email) {
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
@@ -399,7 +395,6 @@ window.LoginDlg = function() {
             $el.find('.tool.close').bind('click', onCloseClick);
             $el.find('#btn-login').click(onLoginClick);
             $el.find('#link-restore').click(onRestorePass);
-            $el.find('#link-create').click(onCreatePortal);
 
             bindEvents();
             $mask.show();
@@ -407,6 +402,9 @@ window.LoginDlg = function() {
             $p.val().length > 0 ? 
                 $e.val().length > 0 ? 
                     $k.focus() : $e.focus() : $p.focus();
+        },
+        close: function(){
+            doClose(0);
         },
         onclose: function(callback) {
             if (!!callback)

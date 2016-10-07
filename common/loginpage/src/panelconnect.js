@@ -251,6 +251,11 @@
             };
         };
 
+        var _on_create_portal = function() {
+            dlgLogin && dlgLogin.close();
+            window.sdk.execCommand('portal:create', '');
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -272,6 +277,20 @@
                             } else
                                 delete model.removed;
                         }
+                    } else
+                    if (/portal:new/.test(cmd)) {
+                        let obj = JSON.parse(utils.fn.decodeHtml(param));
+                        let info = {
+                            portal: obj.domain,
+                            user: obj.displayName,
+                            email: obj.email
+                        };
+
+                        info.portal.endsWith('/') &&
+                            (info.portal = info.portal.slice(0,-1));
+
+                        PortalsStore.keep(info);
+                        _update_portals.call(this);
                     }
                 });
 
@@ -283,7 +302,8 @@
                     _do_login.call(this);
                 });
 
-                
+                window.CommonEvents.on('portal:create', _on_create_portal);
+
                 return this;
             }
         };

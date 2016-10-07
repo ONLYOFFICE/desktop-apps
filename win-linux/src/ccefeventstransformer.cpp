@@ -188,6 +188,13 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
             QMetaObject::invokeMethod( pObjParent, "onPortalOpen", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
+        if ( !(cmd.find(L"portal:new") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalNew", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"portal:create") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalCreate", Qt::QueuedConnection);
+        } else
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );

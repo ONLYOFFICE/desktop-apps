@@ -133,6 +133,8 @@ public slots:
     void onLocalGetImage(void *);
     void onPortalOpen(QString);
     void onPortalLogout(QString);
+    void onPortalNew(QString);
+    void onPortalCreate();
 
     void onMainPageReady();
 

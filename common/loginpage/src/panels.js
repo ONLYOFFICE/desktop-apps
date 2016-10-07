@@ -59,8 +59,8 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
-    $('.newportal').click(function(){
-        window.open(utils.defines.links.regnew);
+    $('#placeholder').on('click', '.newportal', function(){
+        CommonEvents.fire("portal:create");
     });
 
     if (!window.LoginDlg) {
