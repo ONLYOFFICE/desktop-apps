@@ -191,6 +191,10 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onLocalFilesCheck", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);

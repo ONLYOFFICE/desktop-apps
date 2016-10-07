@@ -129,6 +129,7 @@ public slots:
     void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
     void onLocalFileSaveAs(void *);
+    void onLocalFilesCheck(QString);
     void onLocalGetImage(void *);
     void onPortalOpen(QString);
     void onPortalLogout(QString);

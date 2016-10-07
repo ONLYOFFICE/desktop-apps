@@ -45,6 +45,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <regex>
+#include <QStorageInfo>
 
 #include "defines.h"
 #include "cprintprogress.h"
@@ -741,6 +742,41 @@ void CMainPanel::onLocalFilesOpen(void * data)
     doOpenLocalFiles(&vctFiles);
 
     RELEASEINTERFACE(pData);
+}
+
+void CMainPanel::onLocalFilesCheck(QString json)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if(jerror.error == QJsonParseError::NoError) {
+        QJsonObject objRoot = jdoc.object();
+
+        if ( objRoot.size() ) {
+            QTimer::singleShot(10, this, [=]{
+                QJsonObject _json_obj;
+                QString _file_name;
+                foreach (QString s, objRoot.keys() ) {
+                    _file_name = objRoot[s].toString();
+
+                    QStorageInfo storage(_file_name);
+                    // check file is local
+#ifdef Q_OS_WIN
+                    if (storage.device().startsWith("\\\\?\\")) {
+#else
+                    if (storage.device().startsWith("/dev/")) {
+#endif
+                        QFileInfo info(_file_name);
+                        if (!info.exists()) _json_obj[s] = "false";
+                    }
+                }
+
+                if ( _json_obj.size() ) {
+                    cmdMainPage("files:checked", Utils::encodeJson(_json_obj));
+                }
+            });
+        }
+    }
 }
 
 void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)

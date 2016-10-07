@@ -145,9 +145,16 @@
         var _on_recents = function(params) {
             collectionRecents.empty();
 
+            let _check_list = {};
             var files = utils.fn.parseRecent(params);
             for (let item of files) {
                 collectionRecents.add( new FileModel(item) );
+
+                _check_list[item.id] = item.path;
+            }
+
+            if ( Object.keys(_check_list).length ) {
+                sdk.execCommand('files:check', JSON.stringify(_check_list));
             }
         };
 
@@ -191,6 +198,11 @@
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
+            });
+
+            collectionRecents.events.changed.attach(function(collection, model){
+                let $el = collection.list.find('#' + model.uid);
+                if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
             });
 
             collectionRecents.empty();
@@ -261,6 +273,20 @@
 
                 window.sdk.on('onupdaterecents', _on_recents.bind(this));
                 window.sdk.on('onupdaterecovers', _on_recovers.bind(this));
+                window.sdk.on('on_native_message', (cmd, param)=>{
+                    if (/files:checked/.test(cmd)) {
+                        let fobjs = JSON.parse(utils.fn.decodeHtml(param));
+                        if ( fobjs ) {
+                            for (let obj in fobjs) {
+                                let value = JSON.parse(fobjs[obj]);
+                                let model = collectionRecents.find('fileid', parseInt(obj));
+                                if ( model ) {
+                                    model.get('exist') != value && model.set('exist', value);
+                                }
+                            }
+                        }
+                    }
+                });
 
                 $(window).resize(()=>{
                     this.view.updatelistsize();
