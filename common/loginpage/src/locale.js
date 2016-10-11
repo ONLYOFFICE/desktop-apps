@@ -34,8 +34,8 @@ var en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
     btnConnect: 'Connect',
-    textHavePortal: 'Do you have a portal?',
-    btnCreatePortal: 'Create Portal',
+    textHavePortal: 'Already use ONLYOFFICE?',
+    btnCreatePortal: 'Try it now for free',
     btnAddPortal: 'Add Portal',
     btnLogin: 'Login',
     btnBrowse: 'Browse',
@@ -84,8 +84,8 @@ var ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
     btnConnect: 'Подключить',
-    textHavePortal: 'У Вас уже есть портал?',
-    btnCreatePortal: 'Создать портал',
+    textHavePortal: 'Уже используете ONLYOFFICE?',
+    btnCreatePortal: 'Попробуйте прямо сейчас бесплатно',
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
@@ -134,8 +134,8 @@ var de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
     welDescr: 'Eine neue schnelle Lösung für die Arbeit mit Dokumenten mithilfe Ihrer ONLYOFFICE.',
     btnConnect: 'Zusammenarbeit',
-    textHavePortal: 'Haben Sie ein Portal?',
-    btnCreatePortal: 'Portal erstellen',
+    textHavePortal: 'Haben Sie ONLYOFFICE schon benutzt?',
+    btnCreatePortal: 'Probieren Sie es jetzt kostenlos aus',
     btnAddPortal: 'Portal hinzufügen',
     btnLogin: 'Anmelden',
     btnBrowse: 'Browsen',
@@ -175,7 +175,7 @@ var de = {
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,adsText1: 'Bearbeitung in Echtzeit und Dokumentkontrolle (Kommentarfunktion)'
+    ,adsText1: 'Bearbeitung in Echtzeit und Dokumentkontrolle (Kommentarfunktion)'
     ,adsText2: 'Nutzung von Überarbeitungen und Versionen, um geringere Veränderungen im Dokument zu verfolgen'
     ,adsText3: 'Zugriff auf die Dokumente jederzeit und überall auf jedem beliebigen Gerät'
 };
@@ -184,8 +184,8 @@ var fr = {
     welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors!',
     welDescr: 'Une nouvelle solution rapide pour travailler sur des documents en utilisant votre ONLYOFFICE.',
     btnConnect: 'Se connecter',
-    textHavePortal: 'Avez-vous un portail ?',
-    btnCreatePortal: 'Créer portail',
+    textHavePortal: 'Utilisez-vous déjà ONLYOFFICE ?',
+    btnCreatePortal: 'Essayez maintenant gratuitement',
     btnAddPortal: 'Ajouter portail',
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
@@ -230,12 +230,12 @@ var fr = {
     ,adsText3: 'Accédez aux documents n\'importe oů et n\'importe quand via tout type d\'appareil'
 };
 
-var es = {
+var sp = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
     btnConnect: 'Colaboración',
-    textHavePortal: '¿Tiene portal?',
-    btnCreatePortal: 'Crear Portal',
+    textHavePortal: '¿Está usando ONLYOFFICE ya?',
+    btnCreatePortal: 'Pruébelo gratis',
     btnAddPortal: 'Añadir Portal',
     btnLogin: 'Iniciar Sesión',
     btnBrowse: 'Navegar',
