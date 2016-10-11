@@ -37,17 +37,19 @@
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
-    case WM_CLOSE:
-        DestroyWindow(hWnd);
+    case WM_CLOSE: {
+        HWND pwnd = GetWindow(hWnd, GW_OWNER);
+        if (pwnd) EnableWindow(pwnd, TRUE);
         break;
+    }
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
     default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
+        break;
     }
 
-    return 0;
+    return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
 CWinWindow::CWinWindow(HWND parent, QString& title)
@@ -98,8 +100,13 @@ void CWinWindow::modal()
         DispatchMessage(&msg);
     }
 
-    EnableWindow(m_hParent, TRUE);
-    SetActiveWindow(m_hParent);
+//    EnableWindow(m_hParent, TRUE);
+//    SetActiveWindow(m_hParent);
+}
+
+void CWinWindow::close()
+{
+    PostMessage(m_hSelf, WM_CLOSE, 0, 0);
 }
 
 void CWinWindow::setSize(int w, int h)

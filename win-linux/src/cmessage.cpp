@@ -106,7 +106,7 @@ CMessage::CMessage(QWidget * p)
         [=] {
             m_modalresult = MODAL_RESULT_YES;
 #if defined(_WIN32)
-            DestroyWindow(_hwnd);
+            close();
 #else
             close();
 #endif
@@ -138,6 +138,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
     QPushButton * _btn;
     int _btn_num(0);
     int * _result = &m_modalresult;
+
     for (auto btn: btns) {
         reFocus.indexIn(btn);
 
@@ -150,7 +151,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 #if defined(_WIN32)
         QObject::connect(_btn, &QPushButton::clicked, [_hwnd, _btn_num, _result](){
             *_result = MODAL_RESULT_CUSTOM + _btn_num;
-            DestroyWindow(_hwnd);
+            PostMessage(_hwnd, WM_CLOSE, 0, 0);
         });
 #else
         QObject::connect(_btn, &QPushButton::clicked, [w, _btn_num, _result](){

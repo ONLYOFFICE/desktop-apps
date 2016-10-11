@@ -42,6 +42,7 @@ public:
     CWinWindow(HWND, QString&);
 
     void modal();
+    void close();
     void setSize(int w, int h);
     void center();
 
