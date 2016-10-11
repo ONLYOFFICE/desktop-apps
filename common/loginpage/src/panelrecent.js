@@ -285,6 +285,9 @@
                                 }
                             }
                         }
+                    } else
+                    if (/file\:skip/.test(cmd)) {
+                        sdk.LocalFileRemoveRecent(parseInt(param));
                     }
                 });
 
