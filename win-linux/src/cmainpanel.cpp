@@ -686,8 +686,21 @@ void CMainPanel::onLocalFileRecent(void * d)
     QRegularExpressionMatch match = re.match(opts.url);
 
     if (!match.hasMatch()) {
-        if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
-            CMessage::error(gTopWinId, tr("File doesn't exists"));
+        QFileInfo _info(opts.url);
+        if ( opts.type != etRecoveryFile && !_info.exists() ) {
+#if defined(_WIN32)
+            CMessage mess(gTopWinId);
+#else
+            CMessage mess(this);
+#endif
+            mess.setButtons({tr("Yes")+":default", tr("No")});
+            int modal_res = mess.warning(
+                        tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
+
+            if (modal_res == MODAL_RESULT_CUSTOM) {
+                cmdMainPage("file:skip", QString::number(opts.id));
+            }
+
             return;
         }
     }
