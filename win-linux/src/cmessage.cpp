@@ -156,14 +156,10 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         delete w;
     }
 
-#if defined(_WIN32)
     auto _fn_click = [=](int num) {
         m_modalresult = MODAL_RESULT_CUSTOM + num;
         close();
     };
-#else
-    QWidget * w = this;
-#endif
 
     QRegExp reFocus("([^:]+)\\:?(default)?$");
 
@@ -178,16 +174,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         }
 
         m_boxButtons->layout()->addWidget(_btn);
-#if defined(_WIN32)
-        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num));
-#else
-        QObject::connect(_btn, &QPushButton::clicked, [w, _btn_num, _result](){
-            *_result = MODAL_RESULT_CUSTOM + _btn_num;
-            w->close();
-        });
-#endif
-
-        _btn_num++;
+        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num++));
     }
 
     if (_btn_num > 2)
