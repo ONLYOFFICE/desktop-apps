@@ -62,6 +62,8 @@ static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 #endif
 
+static NSString * kRegistrationPortalUrl = @"https://teamlab.info/registration.aspx?desktop=true";
+
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
 
@@ -90,7 +92,10 @@ static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialo
 static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog";
 static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
 static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
+static NSString * const CEFEventNamePortalLogin             = @"CEF_portalLogin";
 static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout";
+static NSString * const CEFEventNamePortalCreate            = @"CEF_portalCreate";
+static NSString * const CEFEventNamePortalNew               = @"CEF_portalNew";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;

@@ -147,8 +147,23 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalLogin:)
+                                                 name:CEFEventNamePortalLogin
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFPortalLogout:)
                                                  name:CEFEventNamePortalLogout
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalCreate:)
+                                                 name:CEFEventNamePortalCreate
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalNew:)
+                                                 name:CEFEventNamePortalNew
                                                object:nil];
 }
 
@@ -741,6 +756,23 @@
     }
 }
 
+- (void)onCEFPortalLogin:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:notification.userInfo options:0 error:&err];
+        NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"portal:login");
+        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+        
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        
+        [self.cefStartPageView apply:pEvent];
+    }
+}
+    
 - (void)onCEFPortalLogout:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSString * url = notification.userInfo[@"url"];
@@ -820,8 +852,39 @@
         }
     }
 }
+    
+- (void)onCEFPortalCreate:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                        object:nil
+                                                      userInfo:@{
+                                                                 @"action"  : @(ASCTabActionOpenPortal),
+                                                                 @"url"     : kRegistrationPortalUrl,
+                                                                 @"title"   : NSLocalizedString(@"Create portal", nil),
+                                                                 @"active"  : @(YES)
+                                                                 }];
+}
 
-
+    
+- (void)onCEFPortalNew:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        NSString * domainName = json[@"domain"];
+        
+        if (domainName && domainName.length > 0) {
+            domainName = [[NSURL URLWithString:domainName] host];
+        }
+        
+        ASCTabView * existTab = [self tabWithParam:@"url" value:kRegistrationPortalUrl];
+        
+        if (existTab) {
+            existTab.params[@"url"] = domainName;
+            existTab.params[@"title"] = domainName;
+            existTab.title = domainName;
+            [self.tabsControl selectTab:existTab];
+        }
+    }
+}
+    
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
 
@@ -860,6 +923,11 @@
             }
             case ASCTabActionOpenUrl: {
                 [cefView loadWithUrl:tab.params[@"url"]];
+                
+                if (tab.params[@"title"] && [tab.params[@"title"] length] > 0) {
+                    tab.title = tab.params[@"title"];
+                }
+                
                 break;
             }
                 

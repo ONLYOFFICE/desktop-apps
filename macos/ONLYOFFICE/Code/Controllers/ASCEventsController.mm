@@ -334,13 +334,34 @@ public:
                                                                                          @"url"     : [urlPage string],
                                                                                          @"active"  : @(YES)
                                                                                          }];
+                        } else if (cmd.compare(L"portal:login") == 0) {
+                            NSString *jsonString = [NSString stringWithstdwstring:pData->get_Param()];
+                            NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogin
+                                                                                object:nil
+                                                                              userInfo:json];
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
                                                                               userInfo:@{
                                                                                          @"url"     : [NSString stringWithstdwstring:pData->get_Param()],
                                                                                          }];
+                        } else if (cmd.compare(L"portal:create") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
+                                                                                object:nil
+                                                                              userInfo:nil];
+                        } else if (cmd.compare(L"portal:new") == 0) {
+                            NSString *jsonString = [NSString stringWithstdwstring:pData->get_Param()];
+                            NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
+                                                                                object:nil
+                                                                              userInfo:json];
                         }
+                        
                         break;
                     }
 
