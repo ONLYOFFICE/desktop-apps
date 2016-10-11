@@ -278,19 +278,26 @@
                                 delete model.removed;
                         }
                     } else
-                    if (/portal:new/.test(cmd)) {
+                    if (/portal:login/.test(cmd)) {
                         let obj = JSON.parse(utils.fn.decodeHtml(param));
-                        let info = {
-                            portal: obj.domain,
-                            user: obj.displayName,
-                            email: obj.email
-                        };
+                        if ( obj ) {
+                            var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
+                            if ( model ) {
+                                !model.get('logged') && model.set('logged', true);
+                            } else {
+                                let info = {
+                                    portal: obj.domain,
+                                    user: obj.displayName,
+                                    email: obj.email
+                                };
 
-                        info.portal.endsWith('/') &&
-                            (info.portal = info.portal.slice(0,-1));
+                                info.portal.endsWith('/') &&
+                                    (info.portal = info.portal.slice(0,-1));
 
-                        PortalsStore.keep(info);
-                        _update_portals.call(this);
+                                PortalsStore.keep(info);
+                                _update_portals.call(this);
+                            }
+                        }
                     }
                 });
 

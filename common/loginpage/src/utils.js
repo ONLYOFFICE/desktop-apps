@@ -107,7 +107,7 @@ window.PortalsStore = (function() {
 })();
 
 utils.skipUrlProtocol = function(url) {
-    return /^(https?:\/{2})?([^\<\>]+)/i.exec(url)[2];
+    return /^(https?:\/{2})?([^\<\>\/]+)/i.exec(url)[2];
 };
 utils.getUrlProtocol = function(url) {
     return /^(https?:\/{2})?([^\<\>]+)/i.exec(url)[1];
