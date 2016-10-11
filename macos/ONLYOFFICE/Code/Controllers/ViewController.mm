@@ -764,13 +764,12 @@
         
         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
         pCommand->put_Command(L"portal:login");
-        pCommand->put_Param([jsonString stdwstring]);
+        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
         
         NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
         pEvent->m_pData = pCommand;
         
         [self.cefStartPageView apply:pEvent];
-
     }
 }
     
@@ -858,7 +857,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                         object:nil
                                                       userInfo:@{
-                                                                 @"action"  : @(ASCTabActionOpenUrl),
+                                                                 @"action"  : @(ASCTabActionOpenPortal),
                                                                  @"url"     : kRegistrationPortalUrl,
                                                                  @"title"   : NSLocalizedString(@"Create portal", nil),
                                                                  @"active"  : @(YES)
