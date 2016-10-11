@@ -37,6 +37,13 @@
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
+    case WM_CHAR:
+        if (wParam == VK_ESCAPE) {
+            PostMessage(hWnd, WM_CLOSE, 0, 0);
+            return 0;
+        }
+
+        break;
     case WM_CLOSE: {
         HWND pwnd = GetWindow(hWnd, GW_OWNER);
         if (pwnd) EnableWindow(pwnd, TRUE);
