@@ -163,7 +163,10 @@ QString Utils::getPortalName(const QString& url)
 {
     if ( !url.isEmpty() ) {
         QRegularExpressionMatch match = QRegularExpression(rePortalName).match(url);
-        if (match.hasMatch()) return match.captured(1);
+        if (match.hasMatch()) {
+            QString out = match.captured(1);
+            return out.endsWith('\/') ? out.remove(-1, 1) : out;
+        }
     }
 
     return url;
@@ -173,4 +176,9 @@ QString Utils::encodeJson(const QJsonObject& obj)
 {
     QJsonDocument doc(obj);
     return doc.toJson(QJsonDocument::Compact).replace("\"", "&quot;");
+}
+
+QString Utils::encodeJson(const QString& s)
+{
+    return QString(s).replace("\"", "&quot;");
 }

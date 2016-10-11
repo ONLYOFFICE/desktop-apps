@@ -588,6 +588,11 @@ void CMainPanel::onPortalLogout(QString portal)
     doLogout(portal, _allow);
 }
 
+void CMainPanel::onPortalLogin(QString info)
+{
+    cmdMainPage("portal:login", Utils::encodeJson(info));
+}
+
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
     COpenOptions opts = {url};
@@ -868,21 +873,6 @@ void CMainPanel::onDocumentDownload(void * info)
 
     NSEditorApi::CAscDownloadFileInfo * pData = reinterpret_cast<NSEditorApi::CAscDownloadFileInfo *>(info);
     RELEASEINTERFACE(pData);
-}
-
-void CMainPanel::onLogin(QString params)
-{
-    QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(params.toUtf8(), &jerror);
-
-    QString _portal;
-    if(jerror.error == QJsonParseError::NoError) {
-        QJsonObject objRoot = jdoc.object();
-        _portal = objRoot["portal"].toString();
-    }
-
-    GET_REGISTRY_USER(_reg_user)
-    _reg_user.setValue("portal", _portal);
 }
 
 void CMainPanel::loadStartPage()
@@ -1172,38 +1162,17 @@ void CMainPanel::onPortalNew(QString in)
     if(jerror.error == QJsonParseError::NoError) {
         QJsonObject objRoot = jdoc.object();
 
-        QString _f_name = objRoot["firstName"].toString(),
-                _l_name = objRoot["lastName"].toString(),
-                _lang = objRoot["language"].toString(),
-                _full_name;
+        QString _domain = objRoot["domain"].toString();
+        QString _name = Utils::getPortalName(_domain);
 
-        if ( _f_name.isEmpty() )
-            _full_name = _l_name; else
-        if ( _l_name.isEmpty() )
-            _full_name = _f_name; else
-        {
-            _full_name = _lang.contains("ru", Qt::CaseInsensitive) ?
-                                _l_name + ' ' + _f_name : _f_name + ' ' + _l_name;
-        }
-
-        QString _domain = Utils::getPortalName(objRoot["domain"].toString());
         int _tab_index = m_pTabs->tabIndexByEditorType(etNewPortal);
         if ( !(_tab_index < 0)) {
             int _uid = m_pTabs->viewByIndex(_tab_index);
-            m_pTabs->applyDocumentChanging(_uid, _domain, _domain);
+            m_pTabs->applyDocumentChanging(_uid, _name, _domain);
             m_pTabs->applyDocumentChanging(_uid, etPortal);
 
             onTabChanged(m_pTabs->currentIndex());
         }
-
-        QJsonObject _json_obj;
-        _json_obj["displayName"]    = _full_name;
-        _json_obj["email"]          = objRoot.value("email").toString();
-        _json_obj["domain"]         = _domain;
-
-        QTimer::singleShot(20, this, [=]{
-            cmdMainPage("portal:new", Utils::encodeJson(_json_obj));
-        });
     }
 }
 

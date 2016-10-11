@@ -54,6 +54,7 @@ public:
     static QIcon appIcon();
 
     static QString encodeJson(const QJsonObject&);
+    static QString encodeJson(const QString&);
 };
 
 #endif // UTILS_H

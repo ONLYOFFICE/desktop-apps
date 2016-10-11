@@ -115,7 +115,6 @@ public slots:
     void onDocumentSave(int id, bool cancel);
     void onDocumentDownload(void * info);
 
-    void onLogin(QString);
     void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);
@@ -132,6 +131,7 @@ public slots:
     void onLocalFilesCheck(QString);
     void onLocalGetImage(void *);
     void onPortalOpen(QString);
+    void onPortalLogin(QString);
     void onPortalLogout(QString);
     void onPortalNew(QString);
     void onPortalCreate();
