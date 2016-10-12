@@ -22,6 +22,16 @@ createAppEntryPoint()
 # Also it allows us to launch apps from terminal like onlyoffice
 createAppEntryPoint onlyoffice
 
+createAppEntryPointAliase()
+{
+    rm -f "/usr/bin/$2"
+    ln -s "${INSTALL_PATH}/$1.sh" "/usr/bin/$2"
+}
+
+# Also it allows us to launch apps from terminal like desktopeditors and onlyoffice-desktopeditors
+createAppEntryPointAliase onlyoffice onlyoffice-desktopeditors
+createAppEntryPointAliase onlyoffice desktopeditors
+
 # Workaround for bug in xdg. See https://bugs.archlinux.org/task/33316 for details
 mkdir -p /usr/share/desktop-directories/
 
