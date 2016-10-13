@@ -42,7 +42,7 @@ cp -vR packages $BUILD_DIR
 
 # Create installation
 echo "Create installation"
-(cd $BUILD_DIR && binarycreator -v -f -c config/config.xml -p packages ../onlyoffice-installer-x64)
+(cd $BUILD_DIR && binarycreator -v -f -c config/config.xml -p packages ../onlyoffice-dektopeditors-installer-x64)
 
 # Cleanup
 echo "Cleanup"
