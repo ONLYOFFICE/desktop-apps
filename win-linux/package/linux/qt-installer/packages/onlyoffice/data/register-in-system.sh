@@ -161,8 +161,4 @@ if [[ "$IFW_LINUX_DISTRIBUTION" == "astra" ]]; then
     backupFontConfig "29-fly-rendering.conf" # Used in version 1.5
 fi
 
-# Prepare license directory
-mkdir -p /var/lib/onlyoffice
-chmod -R 777 /var/lib/onlyoffice
-
 ${INSTALL_PATH}/post_install.sh
