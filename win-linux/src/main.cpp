@@ -87,14 +87,6 @@ int main( int argc, char *argv[] )
             Utils::makepath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
         } else
 #else
-        /*
-        sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
-        QFileInfo fi(QString::fromStdWString(sAppData));
-        if (fi.isDir() && !fi.isWritable()) {
-            // TODO: check directory permissions and warn the user
-            qDebug() << "directory permission error";
-        }
-        */
 #endif
         {
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
