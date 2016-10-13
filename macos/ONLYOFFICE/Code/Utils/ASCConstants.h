@@ -62,7 +62,7 @@ static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
 static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
 #endif
 
-static NSString * kRegistrationPortalUrl = @"https://teamlab.info/registration.aspx?desktop=true";
+static NSString * kRegistrationPortalUrl = @"https://onlyoffice.com/registration.aspx?desktop=true";
 
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
