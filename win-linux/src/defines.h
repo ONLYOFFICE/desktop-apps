@@ -59,7 +59,7 @@
 
 #define URL_SITE                "http://www.onlyoffice.com"
 #define URL_APPCAST_UPDATES     ""
-#define URL_SIGNUP              "https://teamlab.info/registration.aspx?desktop=true"
+#define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"
 
 #define WINDOW_TITLE_MIN_WIDTH 400
 
