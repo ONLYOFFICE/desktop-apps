@@ -87,12 +87,14 @@ int main( int argc, char *argv[] )
             Utils::makepath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
         } else
 #else
+        /*
         sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
         QFileInfo fi(QString::fromStdWString(sAppData));
         if (fi.isDir() && !fi.isWritable()) {
             // TODO: check directory permissions and warn the user
             qDebug() << "directory permission error";
         }
+        */
 #endif
         {
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
@@ -101,6 +103,7 @@ int main( int argc, char *argv[] )
         wstring app_path = NSFile::GetProcessDirectory();
         manager->m_oSettings.spell_dictionaries_path    = app_path + L"/dictionaries";
         manager->m_oSettings.file_converter_path        = app_path + L"/converter";
+        manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
