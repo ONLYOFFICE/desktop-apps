@@ -36,7 +36,6 @@ rm -rf "$RPM_BUILD_ROOT"
 %attr(777, root, root) /usr/bin/ivolgapro
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/ivolgapro/*
-%attr(-, root, root) /var/lib/ivolgapro/desktopeditors/*
 
 %pre
 
@@ -63,9 +62,6 @@ fi
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
-
-mkdir -p /var/lib/ivolgapro
-chmod -R 777 /var/lib/ivolgapro
 
 ln -sf /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
 
@@ -106,4 +102,3 @@ fi
 
 set -e 		# fail on any error
 
-rm -rf /var/lib/ivolgapro/desktopeditors
