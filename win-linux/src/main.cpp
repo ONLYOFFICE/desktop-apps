@@ -76,16 +76,6 @@ int main( int argc, char *argv[] )
             std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
             sAppData.append(QString(APP_DATA_PATH).toStdWString());
         }
-#else
-        sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
-        QFileInfo fi(QString::fromStdWString(sAppData));
-        if (fi.isDir() && !fi.isWritable()) {
-            // TODO: check directory permissions and warn the user
-            qDebug() << "directory permission error";
-        }
-#endif
-
-        wstring app_path = NSFile::GetProcessDirectory();
 
         if (sAppData.size() > 0) {
             manager->m_oSettings.SetUserDataPath(sAppData);
@@ -95,13 +85,23 @@ int main( int argc, char *argv[] )
             manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/fonts").toStdWString();
 
             Utils::makepath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
-        } else {
+        } else
+#else
+        sAppData = QString("/var/lib").append(APP_DATA_PATH).toStdWString();
+        QFileInfo fi(QString::fromStdWString(sAppData));
+        if (fi.isDir() && !fi.isWritable()) {
+            // TODO: check directory permissions and warn the user
+            qDebug() << "directory permission error";
+        }
+#endif
+        {
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
         }
 
-        manager->m_oSettings.spell_dictionaries_path = app_path + L"/dictionaries";
-        manager->m_oSettings.file_converter_path = app_path + L"/converter";
-        manager->m_oSettings.local_editors_path = app_path + L"/editors/web-apps/apps/api/documents/index.html";
+        wstring app_path = NSFile::GetProcessDirectory();
+        manager->m_oSettings.spell_dictionaries_path    = app_path + L"/dictionaries";
+        manager->m_oSettings.file_converter_path        = app_path + L"/converter";
+        manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
