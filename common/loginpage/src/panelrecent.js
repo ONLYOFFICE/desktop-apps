@@ -275,7 +275,7 @@
                 window.sdk.on('onupdaterecovers', _on_recovers.bind(this));
                 window.sdk.on('on_native_message', (cmd, param)=>{
                     if (/files:checked/.test(cmd)) {
-                        let fobjs = JSON.parse(utils.fn.decodeHtml(param));
+                        let fobjs = JSON.parse(param);
                         if ( fobjs ) {
                             for (let obj in fobjs) {
                                 let value = JSON.parse(fobjs[obj]);
