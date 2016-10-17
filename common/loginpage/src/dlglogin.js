@@ -46,8 +46,8 @@ window.LoginDlg = function() {
                       '<p id="auth-error" class="msg-error">' + utils.Lang.errLogin + '</p>' +
                     '</section>'+
                     '<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="'+utils.Lang.pshPortal+'" value="">' +
-                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" value="">' +
-                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" value="">' +
+                    '<input id="auth-email" type="text" name="" spellcheck="false" class="tbox auth-control" placeholder="'+utils.Lang.pshEmail+'" maxlenght="255" value="">' +
+                    '<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="'+utils.Lang.pshPass+'" maxlenght="64" value="">' +
                     '<div id="box-btn-login" class="lr-flex">'+
                       '<a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">' + utils.Lang.linkForgotPass + '</a>'+
                       '<span />'+ 
