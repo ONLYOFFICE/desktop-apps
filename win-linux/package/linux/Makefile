@@ -175,7 +175,7 @@ $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(TAR):
-	tar -czf $@ --owner=root --group=root $(PROGRAM_PATH)
+	tar -czf $@ --owner=root --group=root  -C $(PROGRAM_PATH)/.. desktopeditors
 
 deploy-rpm: $(RPM)
 	rm -rfv $(REPO)
