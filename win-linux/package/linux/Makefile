@@ -102,7 +102,8 @@ clean:
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
-		$(REPO)
+		$(REPO)\
+		*.tar.gz
 
 desktopeditor:
 	mkdir -p $(PROGRAM_PATH)
@@ -174,7 +175,7 @@ $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(TAR):
-	tar -czf $@ $(PROGRAM_PATH)
+	tar -czf $@ --owner=root --group=root $(PROGRAM_PATH)
 
 deploy-rpm: $(RPM)
 	rm -rfv $(REPO)
