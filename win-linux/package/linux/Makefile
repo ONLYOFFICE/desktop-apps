@@ -67,6 +67,9 @@ DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
 DEB_DEPENDENCY += $(DEB)
 
+TAR_DEPENDENCY += desktopeditor
+TAR_DEPENDENCY += $(TAR)
+
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 ifeq ($(PACKAGE_EDITION), cool)
@@ -75,18 +78,22 @@ else
 BILD_PATH := ../../../../core/build/linux_desktop/desktop_full/*
 endif
 
+TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
+
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm
+all: rpm deb apt-rpm tar
 
 rpm: $(RPM_DEPENDENCY)
 
 deb: $(DEB_DEPENDENCY)
+
+tar: $(TAR_DEPENDENCY)
 
 apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
 
@@ -165,6 +172,9 @@ $(DEB):
 
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+
+$(TAR):
+	tar -czf $@ $(PROGRAM_PATH)
 
 deploy-rpm: $(RPM)
 	rm -rfv $(REPO)
