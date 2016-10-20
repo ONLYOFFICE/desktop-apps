@@ -61,6 +61,9 @@ public:
 
     int m_nDirection;
 
+protected:
+    void raiseWindow();
+
 private:
     QWidget * m_window;
     QWidget * m_title;

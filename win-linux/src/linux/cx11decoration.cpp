@@ -329,3 +329,8 @@ int CX11Decoration::customWindowBorderWith()
 {
     return CUSTOM_BORDER_WIDTH;
 }
+
+void CX11Decoration::raiseWindow()
+{
+    XRaiseWindow(QX11Info::display(), m_window->winId());
+}
