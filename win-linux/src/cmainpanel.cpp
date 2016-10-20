@@ -817,8 +817,19 @@ void CMainPanel::doOpenLocalFiles(const QStringList& list)
 
     QStringListIterator i(list);
     while (i.hasNext()) {
-        COpenOptions opts = {i.next().toStdWString(), etLocalFile};
-        doOpenLocalFile(opts);
+        QString n = i.next();
+        if ( n.startsWith("--new:") ) {
+            QRegularExpression re("^--new:(doc|sheet|slide)");
+            QRegularExpressionMatch match = re.match(n);
+            if ( match.hasMatch() ) {
+                if ( match.captured(1) == "doc" ) onLocalFileCreate(etDocument); else
+                if ( match.captured(1) == "cell" ) onLocalFileCreate(etSpreadsheet); else
+                if ( match.captured(1) == "slide" ) onLocalFileCreate(etPresentation);
+            }
+        } else {
+            COpenOptions opts = {n.toStdWString(), etLocalFile};
+            doOpenLocalFile(opts);
+        }
     }
 
     i.toBack();

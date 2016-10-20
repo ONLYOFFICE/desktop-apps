@@ -110,6 +110,9 @@ public:
                     QString arg = _args[i];
 
                     // Exclude config keys from input arguments
+                    if ( arg.startsWith("--new:") ) {
+                        _out_args.append(arg.toStdString()).append(";");
+                    } else
                     if ( arg.mid(0,2) != "--" ) {
                         _out_args.append(arg.toStdString() + ";");
                     }

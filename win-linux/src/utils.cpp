@@ -61,9 +61,15 @@ QStringList * Utils::getInputFiles(const QStringList& inlist)
 
     QStringListIterator i(inlist); i.next();
     while (i.hasNext()) {
-        QFileInfo info(i.next());
-        if (info.isFile()) {
-            _ret_files_list->append(info.absoluteFilePath());
+        QString arg = i.next();
+
+        if ( arg.startsWith("--new:") )
+            _ret_files_list->append( arg );
+        else {
+            QFileInfo info( arg );
+            if ( info.isFile() ) {
+                _ret_files_list->append(info.absoluteFilePath());
+            }
         }
     }
 
