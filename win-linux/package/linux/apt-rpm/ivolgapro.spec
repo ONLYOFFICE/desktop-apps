@@ -32,8 +32,7 @@ cp -r ../../../common/ivolgapro/* "$RPM_BUILD_ROOT/"
 rm -rf "$RPM_BUILD_ROOT"
 
 %files
-%attr(777, root, root) /opt/ivolgapro/desktopeditors/*
-%attr(777, root, root) /usr/bin/ivolgapro
+%attr(755, root, root) /usr/bin/ivolgapro
 %attr(-, root, root) /usr/share/applications/*.desktop
 %attr(-, root, root) /usr/share/fonts/truetype/ivolgapro/*
 
