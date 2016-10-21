@@ -67,17 +67,20 @@ DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
 DEB_DEPENDENCY += $(DEB)
 
-TAR_DEPENDENCY += desktopeditor
+TAR_DEPENDENCY += tar-desktopeditor
 TAR_DEPENDENCY += $(TAR)
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 ifeq ($(PACKAGE_EDITION), cool)
 BILD_PATH := ../../../../core/build/linux_desktop/desktop/*
+PORTABLE_BILD_PATH := ../../../../core/build/linux_desktop/desktop_full_modern/*
 else
 BILD_PATH := ../../../../core/build/linux_desktop/desktop_full/*
+PORTABLE_BILD_PATH := $(BILD_PATH)
 endif
 
+TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
 
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
@@ -85,7 +88,7 @@ TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm tar
 
@@ -103,6 +106,7 @@ clean:
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
 		$(REPO)\
+		$(TAR_PROGRAM_PATH)\
 		*.tar.gz
 
 desktopeditor:
@@ -113,6 +117,13 @@ desktopeditor:
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 	
 	chmod 755 $(START_SCRIPT)
+	
+tar-desktopeditor:
+	mkdir -p $(TAR_PROGRAM_PATH)
+	cp -rf $(PORTABLE_BILD_PATH) $(TAR_PROGRAM_PATH)
+
+	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
+	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
 
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
