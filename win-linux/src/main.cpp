@@ -175,7 +175,7 @@ int main( int argc, char *argv[] )
         delete pApplicationManager;
         return 0;
     } else
-    if (!(_arg_i = app.arguments().indexOf(QRegExp(reCmdLang)) < 0)) {
+    if (!((_arg_i = app.arguments().indexOf(QRegularExpression(reCmdLang), 1)) < 0)) {
         g_lang = app.arguments().at(_arg_i).right(2);
     }
 
