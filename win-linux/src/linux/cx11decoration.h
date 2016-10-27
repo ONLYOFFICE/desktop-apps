@@ -55,14 +55,12 @@ public:
     void turnOff();
     bool isDecorated();
     void setMaximized(bool);
+    void raiseWindow();
 
     static int devicePixelRatio();
     static int customWindowBorderWith();
 
     int m_nDirection;
-
-protected:
-    void raiseWindow();
 
 private:
     QWidget * m_window;
