@@ -158,7 +158,12 @@ QString Utils::systemLocationCode()
 
 void Utils::openUrl(const QString& url)
 {
+#ifdef __linux
+    system(QString("LD_LIBRARY_PATH='' xdg-open %1")
+                    .arg(QString(QUrl(url).toEncoded())).toUtf8());
+#else
     QDesktopServices::openUrl(QUrl(url));
+#endif
 }
 
 QString Utils::getPortalName(const QString& url)
