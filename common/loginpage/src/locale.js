@@ -189,7 +189,7 @@ var fr = {
     btnAddPortal: 'Ajouter portail',
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
-    portalEmptyTitle: 'Accédez ŕ encore plus de possibilités de travail ŕ l\'aide de ONLYOFFICE',
+    portalEmptyTitle: 'Obtenez encore plus de possibilités pour le travail en utilisant ONLYOFFICE',
     portalListTitle: 'Portails connectés',
     textNoFiles: 'Il n\'y a pas de fichiers',
     listRecoveryTitle:'Restaurer fichiers',
@@ -200,16 +200,16 @@ var fr = {
     menuClear: 'Effacer',
     menuLogout: 'Déconnexion',
     textMyComputer: 'Mon poste de travail',
-    linkForgotPass: 'Vous avez oublié le mot de passe ?',
-    loginTitle: 'Se coconnecter au portail',
-    errLogin: 'Erreur sur le nom de portail, l\'email ou le mot de passe',
+    linkForgotPass: 'Mot de passe oublié ?',
+    loginTitle: 'Se connecter au portail',
+    errLogin: 'le nom de portail, l\'e-mail ou le mot de passe erroné',
     errLoginPortal: 'Vérifier le nom de portail',
-    errLoginEmail: 'Vérifier l\'adresse email',
+    errLoginEmail: 'Vérifier l\'adresse e-mail',
     errLoginServer: 'Réponse du serveur incorrect lors de la connexion',
-    errLoginAuth: 'Erreur sur la requęte d\'informations de l\'utilisateur',
+    errLoginAuth: 'Erreur lors de la requête d\'informations sur l\'utilisateur',
     errLoginPass: 'Vérifier le mot de passe',
     pshPortal: 'portail',
-    pshEmail: 'email',
+    pshEmail: 'e-mail',
     pshPass: 'mot de passe',
     newDoc: 'DOCUMENT',
     newXlsx: 'TABLEUR',
@@ -223,11 +223,11 @@ var fr = {
     licKeyHolder: 'Entrez la clé d\'activation',
     btnActivate: 'Activer',
     licGetLicense: 'Obtenir la licence maintenant',
-    licPanelTitle: 'Entrez la clé de produit',
-    licPanelDescr: 'Votre clé de produit a été envoyée ŕ l\'adresse email spécifiée lors de l\'achat.'
-    ,adsText1: 'Coéditez en temps réel et ajoutez vos commentaires sur les documents'
-    ,adsText2: 'Utilisez les révisions et versions pour suivre les plus petites modifications dans les documents'
-    ,adsText3: 'Accédez aux documents n\'importe oů et n\'importe quand via tout type d\'appareil'
+    licPanelTitle: 'Entrer la clé de produit',
+    licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.'
+    , adsText1: 'Modification simultanée des documents et ajout des commentaires aux documents en temps réel'
+    ,adsText2: 'Utilisation des révisions et des versions des documents pour suivre de plus petites modifications dans les documents'
+    ,adsText3: 'Accès aux documents partout, à tout moment depuis tout type d\'appareil'
 };
 
 var sp = {

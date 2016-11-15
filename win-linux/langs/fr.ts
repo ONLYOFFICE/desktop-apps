@@ -165,7 +165,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="182"/>
         <source>Open Document</source>
-        <translation>Document ouvert</translation>
+        <translation>Ouvrir le document</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="188"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="698"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 n&apos;est pas disponible. Il doit être supprimé ou transféré.&lt;br&gt;Voulez-vous supprimer le fichier de la liste?</translation>
+        <translation>%1 n&apos;est pas disponible. Il peut être supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1194"/>
@@ -226,7 +226,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="732"/>
         <source>Book%1.xlsx</source>
-        <translation>Workbook%1.xlsx</translation>
+        <translation>Livre%1.xlsx</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="733"/>
@@ -244,17 +244,17 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="97"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation>Le document est en cours d&apos;impression: page %1 sur %2</translation>
+        <translation>Impression du document: page %1 sur %2</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="99"/>
         <source>Document is preparing</source>
-        <translation>Le document est en cours de préparation</translation>
+        <translation>Préparation du document</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="105"/>
         <source>&amp;Cancel</source>
-        <translation>Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="115"/>
