@@ -166,6 +166,28 @@ void Utils::openUrl(const QString& url)
 #endif
 }
 
+#include <QProcess>
+void Utils::openFileLocation(const QString& path)
+{
+#if defined(Q_OS_WIN)
+    QStringList args{"/select,", QDir::toNativeSeparators(path)};
+    QProcess::startDetached("explorer", args);
+#else
+    // we cannot select a file here, because no file browser really supports it...
+//    const QFileInfo fileInfo(pathIn);
+//    const QString folder = fileInfo.absoluteFilePath();
+//    const QString app = Utils::UnixUtils::fileBrowser(Core::ICore::instance()->settings());
+//    QProcess browserProc;
+//    const QString browserArgs = Utils::UnixUtils::substituteFileBrowserParameters(app, folder);
+//    qDebug() <<  browserArgs;
+//    bool success = browserProc.startDetached(browserArgs);
+//    const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
+//    success = success && error.isEmpty();
+//    if (!success)
+//        showGraphicalShellError(parent, app, error);
+#endif
+}
+
 QString Utils::getPortalName(const QString& url)
 {
     if ( !url.isEmpty() ) {

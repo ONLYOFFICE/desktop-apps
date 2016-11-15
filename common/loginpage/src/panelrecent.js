@@ -197,6 +197,7 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
+                ppmenu.hideItem('files:explore', false);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
@@ -221,6 +222,7 @@
             });
             collectionRecovers.events.contextmenu.attach((collection, model, e)=>{
                 ppmenu.actionlist = 'recovery';
+                ppmenu.hideItem('files:explore', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
         };
@@ -231,6 +233,9 @@
                 items: [{
                     caption: utils.Lang.menuFileOpen,
                     action: 'files:open'
+                },{
+                    caption: 'Show in folder',
+                    action: 'files:explore'
                 },{
                     caption: utils.Lang.menuRemoveModel,
                     action: 'files:forget'
@@ -259,6 +264,11 @@
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
                     window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
+            } else
+            if (/\:explore/.test(action)) {
+                if (menu.actionlist == 'recent') {
+                    sdk.execCommand('files:explore', data.path);
+                }
             }
         };
 

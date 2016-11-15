@@ -797,6 +797,11 @@ void CMainPanel::onLocalFilesCheck(QString json)
     }
 }
 
+void CMainPanel::onLocalFileLocation(QString path)
+{
+    Utils::openFileLocation(path);
+}
+
 void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;

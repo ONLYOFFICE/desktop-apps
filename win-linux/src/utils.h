@@ -46,6 +46,7 @@ public:
     static QString getUserPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
+    static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
 
     static bool makepath(const QString&);
