@@ -43,6 +43,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QJsonDocument>
+#include <QProcess>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -54,6 +55,8 @@
 #endif
 
 #include <QDebug>
+
+bool is_file_browser_supported = true;
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
@@ -172,25 +175,62 @@ void Utils::openUrl(const QString& url)
 #endif
 }
 
-#include <QProcess>
 void Utils::openFileLocation(const QString& path)
 {
 #if defined(Q_OS_WIN)
     QStringList args{"/select,", QDir::toNativeSeparators(path)};
     QProcess::startDetached("explorer", args);
 #else
-    // we cannot select a file here, because no file browser really supports it...
-//    const QFileInfo fileInfo(pathIn);
-//    const QString folder = fileInfo.absoluteFilePath();
-//    const QString app = Utils::UnixUtils::fileBrowser(Core::ICore::instance()->settings());
-//    QProcess browserProc;
-//    const QString browserArgs = Utils::UnixUtils::substituteFileBrowserParameters(app, folder);
-//    qDebug() <<  browserArgs;
-//    bool success = browserProc.startDetached(browserArgs);
-//    const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
-//    success = success && error.isEmpty();
-//    if (!success)
-//        showGraphicalShellError(parent, app, error);
+    static QString is_browser_checked;
+    if ( is_browser_checked.isEmpty() ) {
+        is_browser_checked = "checked";
+
+        auto _get_cmd_output = [](const QString& cmd, const QStringList& args, QString& error) {
+            QProcess process;
+            process.start(cmd, args);
+            process.waitForFinished(-1);
+
+            error = process.readAllStandardError();
+            return process.readAllStandardOutput();
+        };
+
+        QString _error;
+        QString _file_browser = _get_cmd_output("xdg-mime", QStringList{"query", "default", "inode/directory"}, _error);
+
+        //    if ( _error.isEmpty() )
+        {
+            bool is_file_browser_nautilus =
+                        _file_browser.contains(QRegularExpression("nautilus\\.desktop", QRegularExpression::CaseInsensitiveOption)) ||
+                            _file_browser.contains(QRegularExpression("nautilus-folder-handler\\.desktop", QRegularExpression::CaseInsensitiveOption));
+
+            if ( is_file_browser_nautilus ) {
+                QString _version = _get_cmd_output("nautilus", QStringList{"--version"}, _error);
+
+        //        if ( _error.isEmpty() )
+                {
+                    QRegularExpression _regex("nautilus\\s(\\d{1,3})\\.(\\d{1,3})(?:\\.(\\d{1,5}))?");
+                    QRegularExpressionMatch match = _regex.match(_version);
+                    if ( match.hasMatch() ) {
+                        bool is_verion_supported = match.captured(1).toInt() > 3;
+                        if ( !is_verion_supported && match.captured(1).toInt() == 3 ) {
+                            is_verion_supported = match.captured(2).toInt() > 0;
+
+                            if ( !is_verion_supported && !match.captured(3).isEmpty() )
+                                is_verion_supported = !(match.captured(3).toInt() < 2);
+                        }
+
+                        is_file_browser_supported = is_verion_supported;
+                    }
+                }
+            }
+        }
+    }
+
+
+    QFileInfo fileInfo(path);
+    is_file_browser_supported ?
+        system(QString("nautilus \"" + fileInfo.absoluteFilePath() + "\"").toUtf8()) :
+        system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
 }
 
