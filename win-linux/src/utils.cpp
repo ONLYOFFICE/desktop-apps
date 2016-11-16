@@ -159,8 +159,14 @@ QString Utils::systemLocationCode()
 void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
-    system(QString("LD_LIBRARY_PATH='' xdg-open %1")
-                    .arg(QString(QUrl(url).toEncoded())).toUtf8());
+    QUrl _url(url);
+    if ( _url.scheme() == "mailto" ) {
+        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
+                            .arg(QString( _url.toEncoded() )).toUtf8());
+    } else {
+        system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
+                            .arg(QString( _url.toEncoded() )).toUtf8());
+    }
 #else
     QDesktopServices::openUrl(QUrl(url));
 #endif
