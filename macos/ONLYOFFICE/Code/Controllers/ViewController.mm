@@ -165,6 +165,11 @@
                                              selector:@selector(onCEFPortalNew:)
                                                  name:CEFEventNamePortalNew
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFFileInFinder:)
+                                                 name:CEFEventNameFileInFinder
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -882,6 +887,13 @@
             existTab.title = domainName;
             [self.tabsControl selectTab:existTab];
         }
+    }
+}
+
+- (void)onCEFFileInFinder:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSURL * fileUrl = [NSURL fileURLWithPath:notification.userInfo[@"path"]];
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
     }
 }
     

@@ -360,6 +360,12 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
                                                                                 object:nil
                                                                               userInfo:json];
+                        } else if (cmd.compare(L"files:explore") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"path": [NSString stringWithstdwstring:pData->get_Param()]
+                                                                                         }];
                         }
                         
                         break;
