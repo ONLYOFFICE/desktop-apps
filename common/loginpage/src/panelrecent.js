@@ -234,7 +234,7 @@
                     caption: utils.Lang.menuFileOpen,
                     action: 'files:open'
                 },{
-                    caption: 'Show in folder',
+                    caption: utils.Lang.menuFileExplore,
                     action: 'files:explore'
                 },{
                     caption: utils.Lang.menuRemoveModel,
