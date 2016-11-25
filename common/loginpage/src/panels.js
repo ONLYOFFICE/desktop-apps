@@ -203,7 +203,7 @@ window.sdk.on('on_native_message', function(cmd, param) {
             hideAction(panel, hide);
         }
     } else
-    if (/app\:ready/) {
+    if (/app\:ready/.test(cmd)) {
         setLoaderVisible(false);
     }
     
