@@ -377,7 +377,7 @@
 - (void)saveLocalFileWithTab:(ASCTabView *)tab {
     if (tab) {
         NSDictionary * params   = tab.params;
-        NSString * directiry    = params[@"path"];
+        NSString * path         = params[@"path"];
         NSString * viewId       = params[@"viewId"];
         NSArray * formats       = params[@"suppertFormats"];
         
@@ -392,13 +392,24 @@
         saveController.filters = formats;
         saveController.filterType = fileType;
         
-        if (!directiry || directiry.length < 1) {
-            directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        if (!path || path.length < 1) {
+            path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
         
-        savePanel.directoryURL = [NSURL URLWithString:directiry];
+        BOOL isDir;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
+            NSString * savedPath = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserLastSavePath];
+            
+            if (savedPath && savedPath.length > 0) {
+                path = [savedPath stringByAppendingPathComponent:path];
+            } else {
+                path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:path];
+            }
+        }
+        
+        savePanel.directoryURL = [NSURL fileURLWithPath:[path stringByDeletingLastPathComponent]];
         savePanel.canCreateDirectories = YES;
-        savePanel.nameFieldStringValue = [[directiry lastPathComponent] stringByDeletingPathExtension];
+        savePanel.nameFieldStringValue = [[path lastPathComponent] stringByDeletingPathExtension];
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
@@ -407,6 +418,9 @@
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
             if (result == NSFileHandlingPanelOKButton) {
+                [[NSUserDefaults standardUserDefaults] setObject:[[savePanel directoryURL] path] forKey:ASCUserLastSavePath];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+
                 NSString * path = [NSString stringWithFormat:@"%@", [[savePanel URL] path]];
                                 
                 saveData->put_Path([path stdwstring]);
