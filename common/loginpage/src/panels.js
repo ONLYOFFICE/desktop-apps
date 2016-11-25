@@ -99,6 +99,8 @@ function onActionClick(e) {
     var $el = $(this);
     var action = $el.attr('action');
 
+    if (/^custom/.test(action)) return;
+
     if (action == 'open' && 
             !app.controller.recent.getRecents().size() && 
                 !app.controller.recent.getRecovers().size()) 

@@ -39,7 +39,8 @@ var en = {
     btnAddPortal: 'Add Portal',
     btnLogin: 'Login',
     btnBrowse: 'Browse',
-    portalEmptyTitle: 'Get even more opportunities for work using ONLYOFFICE',
+    portalEmptyTitle: 'Co-edit documents in real time',
+    portalEmptyDescr: 'Work on the same document simultaneously with your teammates. Choose between Fast or Strict real-time co-editing, chat in your document or add comments to it.',
     portalListTitle: 'Connected portals',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
@@ -68,7 +69,7 @@ var en = {
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
-    actConnectTo: 'Connect to server',
+    actConnectTo: 'Share & collaborate',
     actActivate: 'Activate',
     actAbout: 'About',
     licKeyHolder: 'input activation key',
@@ -76,9 +77,12 @@ var en = {
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
-    ,adsText1: 'Real-time co-editing and document commenting'
-    ,adsText2: 'Use of revisions and versions to track the smallest document changes'
-    ,adsText3: 'Access to the documents any time anywhere using any device'
+    ,adsToolItem1: 'Version history'
+    ,adsTitle1: 'View or restore previous versions of your document '
+    ,adsDescr1: 'Go back in time: view previous versions of your document, track the smallest changes and their authors. Restore an older version of your file if you need to.'
+    ,adsToolItem2: 'Collaborative review'
+    ,adsTitle2: 'Let your teammates review documents in the cloud'
+    ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
 }
 
 var ru = {
@@ -90,7 +94,8 @@ var ru = {
     btnAddPortal: 'Добавить портал',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
-    portalEmptyTitle: 'Получайте еще больше возможностей для работы используя ONLYOFFICE',
+    portalEmptyTitle: 'Совместное редактирование в режиме реального времени',
+    portalEmptyDescr: 'Работайте над одним и тем же документом одновременно с другими участниками команды. Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или добавляйте комментарии к документу.',
     portalListTitle: 'Подключенные порталы',
     textNoFiles: 'Нет файлов для просмотра',
     listRecoveryTitle:'Файлы для восстановления',
@@ -119,7 +124,7 @@ var ru = {
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
-    actConnectTo: 'Войти на портал',
+    actConnectTo: 'Предоставляйте доступ к файлам и работайте над ними совместно',
     actActivate: 'Активировать',
     actAbout: 'О программе',
     licKeyHolder: 'введите ключ активации',
@@ -127,9 +132,12 @@ var ru = {
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.'
-    ,adsText1: 'Совместное редактирование и комментирование документов в режиме реального времени'
-    ,adsText2: 'Отслеживание минимальных изменений в документе при помощи ревизий и версий'
-    ,adsText3: 'Доступ к документам в любое время, из любой точки мира, с любого устройства'
+    ,adsToolItem1: 'История версий'
+    ,adsTitle1: 'Просматривайте или восстанавливайте предыдущие версии документа '
+    ,adsDescr1: 'Загляните в прошлое: просматривайте предыдущие версии документа, отслеживайте минимальные изменения, внесенные каждым из авторов. В случае необходимости восстанавливайте более раннюю версию файла.'
+    ,adsToolItem2: 'Совместное рецензирование'
+    ,adsTitle2: 'Предоставьте коллегам возможность рецензировать документы в облаке'
+    ,adsDescr2: 'Забудьте об отправке файлов на рецензирование по электронной почте. Предоставляйте быстрый доступ к документу, не выходя из десктопного редактора. Разрешите остальным предлагать свои поправки. Принимайте или отклоняйте изменения.'
 }
 
 var de = {
@@ -141,7 +149,8 @@ var de = {
     btnAddPortal: 'Portal hinzufügen',
     btnLogin: 'Anmelden',
     btnBrowse: 'Browsen',
-    portalEmptyTitle: 'Genießen Sie alle Vorteile der ONLYOFFICE',
+    portalEmptyTitle: 'Gemeinsame Bearbeiten von Dokumenten in Echtzeit',
+    portalEmptyDescr: 'Arbeiten Sie am selben Dokument gleichzeitig mit Ihren Teamkollegen. Wählen Sie zwischen 2 Modi der gemeinsamen Bearbeitung: Formal und Halbformal, chatten Sie in Ihrem Dokument oder fügen Sie Kommentare hinzu.',
     portalListTitle: 'Angeschlosse Portale',
     textNoFiles: 'Keine Dateien',
     listRecoveryTitle:'Dateien wiederherstellen',
@@ -170,7 +179,7 @@ var de = {
     actCreateNew: 'Neu erstllen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
-    actConnectTo: 'Mit Server verbinden',
+    actConnectTo: 'Teilen und Zusammenarbeiten',
     actActivate: 'Aktivieren',
     actAbout: 'Über',
     licKeyHolder: 'Geben Sie den Aktivierungsschlüssel ein',
@@ -178,9 +187,12 @@ var de = {
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,adsText1: 'Bearbeitung in Echtzeit und Dokumentkontrolle (Kommentarfunktion)'
-    ,adsText2: 'Nutzung von Überarbeitungen und Versionen, um geringere Veränderungen im Dokument zu verfolgen'
-    ,adsText3: 'Zugriff auf die Dokumente jederzeit und überall auf jedem beliebigen Gerät'
+    ,adsToolItem1: 'Versionshistorie'
+    ,adsTitle1: 'Anschau und Wiederherstellen von vorherigen Versionen '
+    ,adsDescr1: 'Gehen Sie ein wenig in der Zeit zurück: schauen Sie vorherige Version Ihres Dokumentes an,  verfolgen Sie kleinste Veränderungen. Wiederherstellen Sie bei Bedarf eine Vorgängerversion Ihrer Datei, wenn Sie das benötigen.'
+    ,adsToolItem2: 'Gemeinsamer Review'
+    ,adsTitle2: 'Lassen Sie Ihre Teamkollegen Dokumente in der Cloud überprüfen'
+    ,adsDescr2: 'Vergessen Sie nicht, Dateien per E-Mail zur Überprüfung zu versenden. Gewähren Sie einen schnellen Zugriff auf das Dokument, ohne Ihr Desktop Editor zu verlassen. Regen Sie die anderen dazu an, Korrekturvorschläge anzubieten. Nehmen Sie Änderungen entweder an oder lehnen Sie diese ab.'
 };
 
 var fr = {
@@ -192,7 +204,8 @@ var fr = {
     btnAddPortal: 'Ajouter portail',
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
-    portalEmptyTitle: 'Obtenez encore plus de possibilités pour le travail en utilisant ONLYOFFICE',
+    portalEmptyTitle: 'Co-éditez des documents en temps réel',
+    portalEmptyDescr: 'Collaborez sur un document simultanément avec vos collègues. Choisissez entre une co-édition en temps réel Rapide et Précise, chattez dans votre document ou ajoutez des commentaires.',
     portalListTitle: 'Portails connectés',
     textNoFiles: 'Il n\'y a pas de fichiers',
     listRecoveryTitle:'Restaurer fichiers',
@@ -221,7 +234,7 @@ var fr = {
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',
-    actConnectTo: 'Se connecter au serveur',
+    actConnectTo: 'Partagez et collaborez',
     actActivate: 'Activer',
     actAbout: 'A propos',
     licKeyHolder: 'Entrez la clé d\'activation',
@@ -229,9 +242,12 @@ var fr = {
     licGetLicense: 'Obtenir la licence maintenant',
     licPanelTitle: 'Entrer la clé de produit',
     licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.'
-    , adsText1: 'Modification simultanée des documents et ajout des commentaires aux documents en temps réel'
-    ,adsText2: 'Utilisation des révisions et des versions des documents pour suivre de plus petites modifications dans les documents'
-    ,adsText3: 'Accès aux documents partout, à tout moment depuis tout type d\'appareil'
+    ,adsToolItem1: 'L\'historique des versions'
+    ,adsTitle1: 'Affichez ou restaurez les versions précédentes de votre document '
+    ,adsDescr1: 'Remontez dans le temps: affichez les versions précédentes de votre document, suivez les changements et leurs auteurs. Restaurez une ancienne version de votre fichier si vous le souhaitez.'
+    ,adsToolItem2: 'La révision collaborative'
+    ,adsTitle2: 'Permettez vos collègues d\'examiner des documents dans le nuage'
+    ,adsDescr2: 'Oubliez l’envoi de fichiers à examiner par e-mail. Accordez un accès rapide au document sans quitter votre éditeur de bureau. Permettez les autres de proposer les corrections. Acceptez ou refusez les modifications.'
 };
 
 var sp = {
@@ -243,7 +259,8 @@ var sp = {
     btnAddPortal: 'Añadir Portal',
     btnLogin: 'Iniciar Sesión',
     btnBrowse: 'Navegar',
-    portalEmptyTitle: 'Sacar provecho de ONLYOFFICE',
+    portalEmptyTitle: 'Coeditar documentos en tiempo real',
+    portalEmptyDescr: 'Trabaje en el mismo documento simultáneamente con sus compañeros. Elija entre co-ediciónen rápida o estricta en tiempo real, chatee en su documento o añada comentarios.',
     portalListTitle: 'Portales conectados',
     textNoFiles: 'No hay archivos',
     listRecoveryTitle:'Recuperar archivos',
@@ -272,7 +289,7 @@ var sp = {
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
-    actConnectTo: 'Conectar al servidor',
+    actConnectTo: 'Comparta y colabore',
     actActivate: 'Activar',
     actAbout: 'Acerca de',
     licKeyHolder: 'entrar la clave de activación',
@@ -280,9 +297,12 @@ var sp = {
     licGetLicense: 'Conseguir licencia ahora',
     licPanelTitle: 'Introduzca la clave del producto',
     licPanelDescr: 'La clave de producto ha sido enviado a la dirección de correo electrónico especificada durante la compra.'
-    ,adsText1: 'Co-edición y comentarios de documentos en tiempo real'
-    ,adsText2: 'El uso de revisiones y versiones para seguir a los cambios en los documentos más pequeños'
-    ,adsText3: 'El acceso a los documentos en cualquier momento en cualquier lugar utilizando cualquier dispositivo'
+    ,adsToolItem1: 'Historia de versiones'
+    ,adsTitle1: 'Vea o restaure versiones anteriores de su documento '
+    ,adsDescr1: 'Retroceda en el tiempo: vea versiones anteriores de su documento,monitorice los cambios más pequeños y sus autores. Restaure  versión anterior de su archivo si es necesario.'
+    ,adsToolItem2: 'Revisión colaborativa'
+    ,adsTitle2: 'Deje que sus compañeros repasen documentos en la nube'
+    ,adsDescr2: 'Olvídese del envío de archivos para ser revisados por correo electrónico. Conceda un acceso rápido al documento sin salir de su editor de escritorio. Permita que otros sugieran correcciones. Acepte o rechace cambios.'
 };
 
 +function applyLocale(lang) {
