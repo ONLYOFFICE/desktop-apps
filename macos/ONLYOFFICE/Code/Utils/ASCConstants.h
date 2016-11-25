@@ -70,6 +70,7 @@ static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
+static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
@@ -96,6 +97,7 @@ static NSString * const CEFEventNamePortalLogin             = @"CEF_portalLogin"
 static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout";
 static NSString * const CEFEventNamePortalCreate            = @"CEF_portalCreate";
 static NSString * const CEFEventNamePortalNew               = @"CEF_portalNew";
+static NSString * const CEFEventNameFileInFinder            = @"CEF_fileOpenInFinder";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;
