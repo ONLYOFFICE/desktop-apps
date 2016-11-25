@@ -520,6 +520,7 @@ int CMainPanel::trySaveDocument(int index)
             pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
             pView->GetCefView()->Apply(pEvent);
 
+            modal_res = MODAL_RESULT_YES;
             break;}
         }
     }
