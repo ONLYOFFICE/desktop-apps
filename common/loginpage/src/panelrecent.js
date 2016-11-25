@@ -145,16 +145,15 @@
         var _on_recents = function(params) {
             collectionRecents.empty();
 
-            let _check_list = {};
             var files = utils.fn.parseRecent(params);
             for (let item of files) {
                 collectionRecents.add( new FileModel(item) );
 
-                _check_list[item.id] = item.path;
+                this.check_list[item.id] = item.path;
             }
 
-            if ( Object.keys(_check_list).length ) {
-                sdk.execCommand('files:check', JSON.stringify(_check_list));
+            if ( this.appready && Object.keys(this.check_list).length ) {
+                sdk.execCommand('files:check', JSON.stringify(this.check_list));
             }
         };
 
@@ -277,6 +276,7 @@
                 baseController.prototype.init.apply(this, arguments);
 
                 this.view.render();
+                this.check_list = {};
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
@@ -298,6 +298,15 @@
                     } else
                     if (/file\:skip/.test(cmd)) {
                         sdk.LocalFileRemoveRecent(parseInt(param));
+                    } else
+                    if (/app\:ready/.test(cmd)) {
+                        if ( Object.keys(this.check_list).length ) {
+                            setTimeout(()=>{
+                                sdk.execCommand('files:check', JSON.stringify(this.check_list));
+                            }, 100);
+                        }
+
+                        this.appready = true;
                     }
                 });
 

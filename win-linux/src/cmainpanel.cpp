@@ -765,7 +765,7 @@ void CMainPanel::onLocalFilesOpen(void * data)
 void CMainPanel::onLocalFilesCheck(QString json)
 {
     QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
 
     if(jerror.error == QJsonParseError::NoError) {
         QJsonObject objRoot = jdoc.object();
@@ -777,8 +777,8 @@ void CMainPanel::onLocalFilesCheck(QString json)
                 foreach (QString s, objRoot.keys() ) {
                     _file_name = objRoot[s].toString();
 
-                    QStorageInfo storage(_file_name);
                     // check file is local
+                    QStorageInfo storage(QFileInfo(_file_name).absoluteDir());
 #ifdef Q_OS_WIN
                     if (storage.device().startsWith("\\\\?\\")) {
 #else
