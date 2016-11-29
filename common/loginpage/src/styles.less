@@ -441,7 +441,12 @@ li.menu-item {
     }
 
     tr.unavail {
-        opacity: 0.7;
+        opacity: 0.5;
+        -webkit-filter: grayscale(100%);
+
+        .minor {
+            opacity: 1;
+        }
     }
 
     .cicon {
@@ -532,7 +537,7 @@ li.menu-item {
 
     .minor {
         font-size: 11px;
-        color: @color-gray-light;
+        opacity: 0.7;
     }
 }
 
