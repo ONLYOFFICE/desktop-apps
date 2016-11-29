@@ -98,6 +98,8 @@ static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout
 static NSString * const CEFEventNamePortalCreate            = @"CEF_portalCreate";
 static NSString * const CEFEventNamePortalNew               = @"CEF_portalNew";
 static NSString * const CEFEventNameFileInFinder            = @"CEF_fileOpenInFinder";
+static NSString * const CEFEventNameFilesCheck              = @"CEF_filesCheck";
+static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageReady";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;

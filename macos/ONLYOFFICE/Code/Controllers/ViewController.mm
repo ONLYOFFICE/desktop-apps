@@ -170,6 +170,16 @@
                                              selector:@selector(onCEFFileInFinder:)
                                                  name:CEFEventNameFileInFinder
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFFilesCheck:)
+                                                 name:CEFEventNameFilesCheck
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFStartPageReady:)
+                                                 name:CEFEventNameStartPageReady
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -467,6 +477,17 @@
     }
     
     return canOpen;
+}
+
+- (NSDictionary *)checkFiles:(NSDictionary *)fileList {
+    NSMutableDictionary * checkedList = @{}.mutableCopy;
+    
+    for (NSString * key in fileList) {
+        id value = [fileList objectForKey:key];
+        checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:value] ? @"true" : @"false";
+    }
+    
+    return checkedList;
 }
 
 #pragma mark -
@@ -910,7 +931,44 @@
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
     }
 }
+
+- (void)onCEFFilesCheck:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id paths = notification.userInfo;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSDictionary * checkedList = [self checkFiles:paths];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError * err;
+                NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:checkedList options:0 error:&err];
+                NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+                NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                pCommand->put_Command(L"files:checked");
+                pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stdwstring]); // ¯\_(ツ)_/¯
+                
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                pEvent->m_pData = pCommand;
+                
+                [self.cefStartPageView apply:pEvent];
+
+            });
+        });
+    }
+}
+
+- (void)onCEFStartPageReady:(NSNotification *)notification {
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"app:ready");
     
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+    
+    [self.cefStartPageView apply:pEvent];
+}
+
+
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
 
