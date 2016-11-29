@@ -56,7 +56,7 @@ window.LoginDlg = function() {
                     '</div>'+
                     '<div class="separator"></div>'+
                     '<div style="text-align:left;">'+
-                      '<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">' + utils.Lang.btnCreatePortal + '</a>'+
+                      '<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">' + utils.Lang.linkCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
                 '</div>';
