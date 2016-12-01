@@ -55,6 +55,7 @@
 #include "utils.h"
 #include "version.h"
 #include "cmessage.h"
+#include "cfilechecker.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -765,37 +766,16 @@ void CMainPanel::onLocalFilesOpen(void * data)
 
 void CMainPanel::onLocalFilesCheck(QString json)
 {
-    QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
+    return;
 
-    if(jerror.error == QJsonParseError::NoError) {
-        QJsonObject objRoot = jdoc.object();
+    CFileChecker * checker = new CFileChecker(json);
+    checker->start(QThread::LowPriority);
+//    checker->requestInterruption();
 
-        if ( objRoot.size() ) {
-            QTimer::singleShot(10, this, [=]{
-                QJsonObject _json_obj;
-                QString _file_name;
-                foreach (QString s, objRoot.keys() ) {
-                    _file_name = objRoot[s].toString();
-
-                    // check file is local
-                    QStorageInfo storage(QFileInfo(_file_name).absoluteDir());
-#ifdef Q_OS_WIN
-                    if (storage.device().startsWith("\\\\?\\")) {
-#else
-                    if (storage.device().startsWith("/dev/")) {
-#endif
-                        QFileInfo info(_file_name);
-                        if (!info.exists()) _json_obj[s] = "false";
-                    }
-                }
-
-                if ( _json_obj.size() ) {
-                    cmdMainPage("files:checked", Utils::encodeJson(_json_obj));
-                }
-            });
-        }
-    }
+    connect(checker, &CFileChecker::resultReady, [=](const QString& json){
+        cmdMainPage("files:checked", Utils::encodeJson(json));
+    });
+    connect(checker, &CFileChecker::finished, checker, &QObject::deleteLater);
 }
 
 void CMainPanel::onLocalFileLocation(QString path)

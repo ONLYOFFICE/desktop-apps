@@ -37,7 +37,8 @@ HEADERS += \
     $$PWD/src/chelp.h \
     $$PWD/src/cmainpanel.h \
     $$PWD/src/csplash.h \
-    $$PWD/src/cmessage.h
+    $$PWD/src/cmessage.h \
+    $$PWD/src/cfilechecker.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -57,7 +58,8 @@ SOURCES += \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cmainpanel.cpp \
-    $$PWD/src/cmessage.cpp
+    $$PWD/src/cmessage.cpp \
+    $$PWD/src/cfilechecker.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
