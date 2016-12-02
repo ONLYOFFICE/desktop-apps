@@ -1188,7 +1188,7 @@ void CMainPanel::onPortalNew(QString in)
 
 void CMainPanel::onPortalCreate()
 {
-    int res = m_pTabs->newPortal(URL_SIGNUP, tr("Sign Up"));
+    int res = m_pTabs->newPortal(URL_SIGNUP + QString("&lang=" + g_lang), tr("Sign Up"));
     if (res == 2) { RecalculatePlaces(); }
 
     QTimer::singleShot(200, this, [=]{
