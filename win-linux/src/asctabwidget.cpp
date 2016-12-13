@@ -250,14 +250,15 @@ int CAscTabWidget::addPortal(QString url, QString name)
 
     setProperty("empty", false);
 
+    QString args;
     if ( !url.contains(QRegularExpression("desktop=true")) )
-        url.append("/products/files/?desktop=true");
+        args.append("/products/files/?desktop=true");
 
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->Create(m_pManager, cvwtSimple);
-    pView->GetCefView()->load(url.toStdWString());
+    pView->GetCefView()->load((url + args).toStdWString());
     int id_view = pView->GetCefView()->GetId();
 
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
