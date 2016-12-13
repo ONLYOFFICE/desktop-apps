@@ -127,7 +127,7 @@
                     if (/^connect/.test(action)) {
                         $title.html(utils.Lang.portalEmptyTitle)
                         $descr.html(utils.Lang.portalEmptyDescr);
-                        $img.removeClass('verhistory').addClass('docreview');
+                        $img.removeClass('verhistory').removeClass('docreview');
                     }
                 };
 
