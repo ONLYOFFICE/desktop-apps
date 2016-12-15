@@ -9,9 +9,9 @@ ChangesAssociations=true
 
 en.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
-de.AssociateDescription =Video- und Audiodateitypen mit AVS Media Player {#ASSC_APP_NAME}
-fr.AssociateDescription =Associer des types de fichiers vidйo et audio а {#ASSC_APP_NAME}
-es.AssociateDescription =Asociar tipos de archivos de vнdeo y audio con {#ASSC_APP_NAME}
+de.AssociateDescription =Verknüpfung von Office-Dokumenten mit {#ASSC_APP_NAME}
+fr.AssociateDescription =Associer les fichiers office avec {#ASSC_APP_NAME}
+es.AssociateDescription =Asociar tipos de archivos de documentos de oficina con {#ASSC_APP_NAME}
 ;it.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
@@ -37,17 +37,17 @@ es.AssociateAll =Asociar todo
 
 en.AssociateSel =Associate selected
 ru.AssociateSel =Ассоциировать выбранные
-de.AssociateSel =Ausgewдhlte assoziieren
-fr.AssociateSel =Associer sйlectionnйs
+de.AssociateSel =Ausgewählte assoziieren
+fr.AssociateSel =Associer sélectionnés
 es.AssociateSel =Asociar seleccionado
 ;it.AssociateSel =Associare selezione
 
 en.AssociateAudio =File types
 ru.AssociateAudio =Типы файлов
-de.AssociateAudio =Audiodateitypen
-fr.AssociateAudio =Types de fichiers audio
-es.AssociateAudio =Tipos de archivos de audio
-;it.AssociateAudio =Tipi di file audio
+de.AssociateAudio =Dateitypen
+fr.AssociateAudio =Types de fichiers
+es.AssociateAudio =Tipos de archivos
+;it.AssociateAudio =Tipi di file
 
 en.extMSWord =Microsoft Word Document
 ru.extMSWord =Документ Microsoft Word

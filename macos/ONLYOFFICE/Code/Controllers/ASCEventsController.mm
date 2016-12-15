@@ -50,6 +50,12 @@
 #pragma mark ========================================================
 #pragma mark -
 
+id stringToJson(NSString *jsonString) {
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    return json;
+}
+
 class ASCEventListener: public NSEditorApi::CAscMenuEventListener {
     dispatch_queue_t eventListenerQueue;
 public:
@@ -148,13 +154,9 @@ public:
                         NSRange range = [[NSString stringWithstdwstring:pData->get_Name()] rangeOfString:@"login"];
                         
                         if (range.location == 0) {
-                            NSString *jsonString = [NSString stringWithstdwstring:pData->get_Value()];
-                            NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogin
                                                                                 object:nil
-                                                                              userInfo:json];
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Value()])];
                         }
                         break;
                     }
@@ -334,13 +336,40 @@ public:
                                                                                          @"url"     : [urlPage string],
                                                                                          @"active"  : @(YES)
                                                                                          }];
+                        } else if (cmd.compare(L"portal:login") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogin
+                                                                                object:nil
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
                                                                               userInfo:@{
-                                                                                         @"url"     : [NSString stringWithstdwstring:pData->get_Param()],
+                                                                                         @"url": [NSString stringWithstdwstring:pData->get_Param()],
                                                                                          }];
+                        } else if (cmd.compare(L"portal:create") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
+                                                                                object:nil
+                                                                              userInfo:nil];
+                        } else if (cmd.compare(L"portal:new") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
+                                                                                object:nil
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                        } else if (cmd.compare(L"files:explore") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"path": [NSString stringWithstdwstring:pData->get_Param()]
+                                                                                         }];
+                        } else if (cmd.compare(L"files:check") == 0) {                            
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck
+                                                                                object:nil
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                        } else if (cmd.find(L"app:onready") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady
+                                                                                object:nil
+                                                                              userInfo:nil];
                         }
+                        
                         break;
                     }
 

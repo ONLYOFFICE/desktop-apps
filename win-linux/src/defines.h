@@ -54,10 +54,12 @@
 #endif
 
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
-#define URL_SITE "http://www.onlyoffice.com"
 #define REG_APP_NAME "DesktopEditors"
-#define URL_APPCAST_UPDATES ""
 #define APP_MUTEX_NAME "TEAMLAB"
+
+#define URL_SITE                "http://www.onlyoffice.com"
+//#define URL_APPCAST_UPDATES     ""
+#define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"
 
 #define WINDOW_TITLE_MIN_WIDTH 400
 
@@ -74,13 +76,15 @@
 #define MODAL_RESULT_CANCEL     -1
 #define MODAL_RESULT_CUSTOM     100
 
+#define MESSAGE_TYPE_INFO       1
+#define MESSAGE_TYPE_WARN       2
+#define MESSAGE_TYPE_CONFIRM    3
+#define MESSAGE_TYPE_ERROR      4
+
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
-
-#define HTML_QUOTED_JSON_PAIR(n, v) "&quot;" n "&quot;:&quot;" v "&quot;"
-#define HTML_QUOTE                  "\\u005c&quot;" // \" symbols
 
 #ifdef __linux
 typedef unsigned char BYTE;

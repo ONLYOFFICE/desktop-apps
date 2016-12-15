@@ -107,7 +107,7 @@ window.PortalsStore = (function() {
 })();
 
 utils.skipUrlProtocol = function(url) {
-    return /^(https?:\/{2})?([^\<\>]+)/i.exec(url)[2];
+    return /^(https?:\/{2})?([^\<\>\/]+)/i.exec(url)[2];
 };
 utils.getUrlProtocol = function(url) {
     return /^(https?:\/{2})?([^\<\>]+)/i.exec(url)[1];
@@ -219,6 +219,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 name: name,
                 descr: path,
                 date: _f_.modifyed
+                , path: fn
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
@@ -245,6 +246,10 @@ utils.fn.parseRecent = function(arr, out = 'files') {
     }
 
     return out_dirs_arr;
+}
+
+utils.fn.decodeHtml = function(str) {
+    return $('<div>').html(str).text();
 }
 
 function getUrlParams() {

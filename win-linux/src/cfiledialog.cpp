@@ -42,6 +42,8 @@
 #if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
+#include "cmessage.h"
+
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
 {
@@ -80,34 +82,64 @@ CFileDialogWrapper::~CFileDialogWrapper()
 bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 {
 //    QString filter = tr("All files (*.*)"), ext_in;
-    QString _filters, _sel_filter, ext_in;
+    QString _filters, _sel_filter, _ext;
 
     QFileInfo info(fileName);
-    ext_in = info.suffix();
+    _ext = info.suffix();
 
+    QRegExp reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", Qt::CaseInsensitive);
     if (m_filters.length() > 0) {
         _filters = m_filters;
 
-        QRegExp reFilter("([\\w\\s]+\\(\\*\\."+ext_in+"+\\))", Qt::CaseInsensitive);
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
             _sel_filter = reFilter.cap(1);
         } else {
             fileName = info.absolutePath() + "\\" + info.baseName();
         }
     } else {
-        _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN], ext_in;
+        _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 
-        _sel_filter = getFilter(ext_in);
+        _sel_filter = getFilter(_ext);
         _filters.append(";;" + _sel_filter);
     }
-
-//    QWidget * p = qobject_cast<QWidget *>(parent());
-//    fileName = QFileDialog::getSaveFileName(p, tr("Save As"), fileName, filter);
 
 #ifdef _WIN32
     fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
 #else
-    fileName = QFileDialog::getSaveFileName((QWidget *)parent(), tr("Save As"), fileName, _filters, &_sel_filter);
+    QString _croped_name = fileName.section(".",0,0);
+    reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
+
+    auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
+        return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, QFileDialog::DontConfirmOverwrite);
+    };
+
+    QWidget * _parent = (QWidget *)parent();
+    CMessage mess(_parent);
+    mess.setButtons({tr("Yes"), tr("No")});
+    mess.setIcon(MESSAGE_TYPE_WARN);
+
+    while (true) {
+        fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
+
+        if ( !fileName.isEmpty() ) {
+            if ( !(reFilter.indexIn(_sel_filter) < 0) ) {
+                _ext = reFilter.cap(1);
+
+                if (!fileName.endsWith(_ext))
+                    fileName.append(_ext);
+            }
+
+            QFileInfo info(fileName);
+            if ( info.exists() &&
+                    MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
+                                                            .arg(info.fileName())) )
+                continue;
+        }
+
+        break;
+    }
+
+
 #endif
 
     m_format = 0;

@@ -28,6 +28,7 @@ win32 {
 #    CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
+        DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
     }
 

@@ -59,8 +59,8 @@ $(document).ready(function() {
     } else 
         selectAction('recent');
 
-    $('.newportal').click(function(){
-        window.open(utils.defines.links.regnew);
+    $('#placeholder').on('click', '.newportal', function(){
+        CommonEvents.fire("portal:create");
     });
 
     if (!window.LoginDlg) {
@@ -98,6 +98,8 @@ $(document).ready(function() {
 function onActionClick(e) {
     var $el = $(this);
     var action = $el.attr('action');
+
+    if (/^custom/.test(action)) return;
 
     if (action == 'open' && 
             !app.controller.recent.getRecents().size() && 
@@ -201,7 +203,7 @@ window.sdk.on('on_native_message', function(cmd, param) {
             hideAction(panel, hide);
         }
     } else
-    if (/app\:ready/) {
+    if (/app\:ready/.test(cmd)) {
         setLoaderVisible(false);
     }
     

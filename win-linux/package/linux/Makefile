@@ -47,6 +47,16 @@ ALT_REPO_OS_VER = p7
 endif
 ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
 
+OTHER_REPO_OS_NAME = other-linux
+
+ifeq ($(PACKAGE_EDITION), cool)
+OTHER_REPO_OS_VER = moderm
+else
+OTHER_REPO_OS_VER = old
+endif
+
+OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
+
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
@@ -67,35 +77,51 @@ DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
 DEB_DEPENDENCY += $(DEB)
 
+TAR_DEPENDENCY += tar-desktopeditor
+TAR_DEPENDENCY += $(TAR)
+
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 ifeq ($(PACKAGE_EDITION), cool)
 BILD_PATH := ../../../../core/build/linux_desktop/desktop/*
+PORTABLE_BILD_PATH := ../../../../core/build/linux_desktop/desktop_full_modern/*
 else
 BILD_PATH := ../../../../core/build/linux_desktop/desktop_full/*
+PORTABLE_BILD_PATH := $(BILD_PATH)
 endif
 
+TAR_PROGRAM_PATH := desktopeditors
+TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
+
+INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-x64
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm
+all: rpm deb apt-rpm tar installer
 
 rpm: $(RPM_DEPENDENCY)
 
 deb: $(DEB_DEPENDENCY)
 
+tar: $(TAR_DEPENDENCY)
+
 apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+
+installer: desktopeditor $(INSTALLER)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
-		$(REPO)
+		$(REPO)\
+		$(TAR_PROGRAM_PATH)\
+		$(INSTALLER)\
+		*.tar.gz
 
 desktopeditor:
 	mkdir -p $(PROGRAM_PATH)
@@ -104,7 +130,14 @@ desktopeditor:
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
 	
-	chmod 777 $(START_SCRIPT)
+	chmod 755 $(START_SCRIPT)
+	
+tar-desktopeditor:
+	mkdir -p $(TAR_PROGRAM_PATH)
+	cp -rf $(PORTABLE_BILD_PATH) $(TAR_PROGRAM_PATH)
+
+	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
+	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
 
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
@@ -166,6 +199,12 @@ $(DEB):
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
+$(TAR):
+	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
+
+$(INSTALLER):
+	cd qt-installer && ./make-install.sh
+
 deploy-rpm: $(RPM)
 	rm -rfv $(REPO)
 	mkdir -p $(REPO)
@@ -201,4 +240,10 @@ deploy-apt-rpm: $(APT_RPM)
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm
+deploy-tar: $(TAR)
+	aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
+
+deploy-installer: $(INSTALLER)
+	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
+
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar deploy-installer

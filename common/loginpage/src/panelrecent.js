@@ -148,6 +148,12 @@
             var files = utils.fn.parseRecent(params);
             for (let item of files) {
                 collectionRecents.add( new FileModel(item) );
+
+                this.check_list[item.id] = item.path;
+            }
+
+            if ( this.appready && Object.keys(this.check_list).length ) {
+                sdk.execCommand('files:check', JSON.stringify(this.check_list));
             }
         };
 
@@ -190,7 +196,13 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
+                ppmenu.hideItem('files:explore', false);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
+            });
+
+            collectionRecents.events.changed.attach(function(collection, model){
+                let $el = collection.list.find('#' + model.uid);
+                if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
             });
 
             collectionRecents.empty();
@@ -209,6 +221,7 @@
             });
             collectionRecovers.events.contextmenu.attach((collection, model, e)=>{
                 ppmenu.actionlist = 'recovery';
+                ppmenu.hideItem('files:explore', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
         };
@@ -219,6 +232,9 @@
                 items: [{
                     caption: utils.Lang.menuFileOpen,
                     action: 'files:open'
+                },{
+                    caption: utils.Lang.menuFileExplore,
+                    action: 'files:explore'
                 },{
                     caption: utils.Lang.menuRemoveModel,
                     action: 'files:forget'
@@ -247,6 +263,11 @@
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
                     window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
+            } else
+            if (/\:explore/.test(action)) {
+                if (menu.actionlist == 'recent') {
+                    sdk.execCommand('files:explore', data.path);
+                }
             }
         };
 
@@ -255,12 +276,39 @@
                 baseController.prototype.init.apply(this, arguments);
 
                 this.view.render();
+                this.check_list = {};
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
                 window.sdk.on('onupdaterecents', _on_recents.bind(this));
                 window.sdk.on('onupdaterecovers', _on_recovers.bind(this));
+                window.sdk.on('on_native_message', (cmd, param)=>{
+                    if (/files:checked/.test(cmd)) {
+                        let fobjs = JSON.parse(param);
+                        if ( fobjs ) {
+                            for (let obj in fobjs) {
+                                let value = JSON.parse(fobjs[obj]);
+                                let model = collectionRecents.find('fileid', parseInt(obj));
+                                if ( model ) {
+                                    model.get('exist') != value && model.set('exist', value);
+                                }
+                            }
+                        }
+                    } else
+                    if (/file\:skip/.test(cmd)) {
+                        sdk.LocalFileRemoveRecent(parseInt(param));
+                    } else
+                    if (/app\:ready/.test(cmd)) {
+                        if ( Object.keys(this.check_list).length ) {
+                            setTimeout(()=>{
+                                sdk.execCommand('files:check', JSON.stringify(this.check_list));
+                            }, 100);
+                        }
+
+                        this.appready = true;
+                    }
+                });
 
                 $(window).resize(()=>{
                     this.view.updatelistsize();

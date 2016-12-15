@@ -8,9 +8,9 @@ PACKAGE_EDITION=${PACKAGE_EDITION:-cool}
 BASE_DIR="$(cd "$(dirname -- "$0")" && pwd)"
 BUILD_DIR=build-installer
 LINUX_DESKTOP_BINARIES_DIR=../../../../../core/build/linux_desktop
-LINUX_DESKTOP_FULL_DIR=../../../../../core/build/linux_desktop/desktop
+LINUX_DESKTOP_FULL_DIR=${LINUX_DESKTOP_BINARIES_DIR}/desktop_full_modern
 if [ ${PACKAGE_EDITION} != "cool" ]; then
-  LINUX_DESKTOP_FULL_DIR=${LINUX_DESKTOP_FULL_DIR}_${PACKAGE_EDITION}
+  LINUX_DESKTOP_FULL_DIR=${LINUX_DESKTOP_BINARIES_DIR}/desktop_full
 fi
 PACKAGE_DATA_DIR=$BUILD_DIR/packages/onlyoffice/data
 
@@ -42,7 +42,7 @@ cp -vR packages $BUILD_DIR
 
 # Create installation
 echo "Create installation"
-(cd $BUILD_DIR && binarycreator -v -f -c config/config.xml -p packages ../onlyoffice-installer-x64)
+(cd $BUILD_DIR && binarycreator -v -f -c config/config.xml -p packages ../onlyoffice-desktopeditors-installer-x64)
 
 # Cleanup
 echo "Cleanup"

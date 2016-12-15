@@ -115,6 +115,15 @@ Menu.prototype.disableItem = function(action, disable) {
     }
 };
 
+Menu.prototype.hideItem = function(action, hide) {
+    for (let item of this.items) {
+        if (item.action == action) {
+            $('#' + item.id).parent()
+                [hide?'hide':'show']();
+        }
+    }
+};
+
 Menu.opened = false;
 
 Menu.closeAll = function() {

@@ -47,6 +47,8 @@
 #define etRecoveryFile  AscEditorType(253)
 #define etRecentFile    AscEditorType(252)
 #define etNewFile       AscEditorType(251)
+#define etPortal        AscEditorType(250)
+#define etNewPortal     AscEditorType(249)
 
 using namespace std;
 typedef CefViewWrapperType CefType;
@@ -131,7 +133,7 @@ public:
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
-    int  addPortal(QString url);
+    int  addPortal(QString url, QString name);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
@@ -145,6 +147,8 @@ public:
     int         viewByIndex(int);
     int         tabIndexByView(QString);
     int         tabIndexByTitle(QString t, CefType vt);
+    int         tabIndexByTitle(QString t, AscEditorType vt);
+    int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     bool        modifiedByIndex(int);
     int         modifiedCount();
@@ -173,6 +177,7 @@ public:
     void applyDocumentSave(int, bool);
 
     int  openPortal(const QString& url);
+    int  newPortal(const QString& url, const QString& name);
 
 public slots:
 //    void onDocumentNameChanged(int, QString);

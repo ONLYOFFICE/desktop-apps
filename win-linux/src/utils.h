@@ -46,11 +46,16 @@ public:
     static QString getUserPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
+    static void openFileLocation(const QString&);
+    static QString getPortalName(const QString&);
 
     static bool makepath(const QString&);
 
     static QString systemLocationCode();
     static QIcon appIcon();
+
+    static QString encodeJson(const QJsonObject&);
+    static QString encodeJson(const QString&);
 };
 
 #endif // UTILS_H

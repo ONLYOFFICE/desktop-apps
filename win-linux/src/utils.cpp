@@ -42,6 +42,8 @@
 #include <QDesktopWidget>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QJsonDocument>
+#include <QProcess>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -54,15 +56,23 @@
 
 #include <QDebug>
 
+bool is_file_browser_supported = true;
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = new QStringList;
 
     QStringListIterator i(inlist); i.next();
     while (i.hasNext()) {
-        QFileInfo info(i.next());
-        if (info.isFile()) {
-            _ret_files_list->append(info.absoluteFilePath());
+        QString arg = i.next();
+
+        if ( arg.startsWith("--new:") )
+            _ret_files_list->append( arg );
+        else {
+            QFileInfo info( arg );
+            if ( info.isFile() ) {
+                _ret_files_list->append(info.absoluteFilePath());
+            }
         }
     }
 
@@ -152,8 +162,98 @@ QString Utils::systemLocationCode()
 void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
-    system(QString("LD_LIBRARY_PATH='' xdg-open '%1'").arg(url).toUtf8());
+    QUrl _url(url);
+    if ( _url.scheme() == "mailto" ) {
+        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
+                            .arg(QString( _url.toEncoded() )).toUtf8());
+    } else {
+        system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
+                            .arg(QString( _url.toEncoded() )).toUtf8());
+    }
 #else
     QDesktopServices::openUrl(QUrl(url));
 #endif
+}
+
+void Utils::openFileLocation(const QString& path)
+{
+#if defined(Q_OS_WIN)
+    QStringList args{"/select,", QDir::toNativeSeparators(path)};
+    QProcess::startDetached("explorer", args);
+#else
+    static QString is_browser_checked;
+    if ( is_browser_checked.isEmpty() ) {
+        is_browser_checked = "checked";
+
+        auto _get_cmd_output = [](const QString& cmd, const QStringList& args, QString& error) {
+            QProcess process;
+            process.start(cmd, args);
+            process.waitForFinished(-1);
+
+            error = process.readAllStandardError();
+            return process.readAllStandardOutput();
+        };
+
+        QString _error;
+        QString _file_browser = _get_cmd_output("xdg-mime", QStringList{"query", "default", "inode/directory"}, _error);
+
+        //    if ( _error.isEmpty() )
+        {
+            bool is_file_browser_nautilus =
+                        _file_browser.contains(QRegularExpression("nautilus\\.desktop", QRegularExpression::CaseInsensitiveOption)) ||
+                            _file_browser.contains(QRegularExpression("nautilus-folder-handler\\.desktop", QRegularExpression::CaseInsensitiveOption));
+
+            if ( is_file_browser_nautilus ) {
+                QString _version = _get_cmd_output("nautilus", QStringList{"--version"}, _error);
+
+        //        if ( _error.isEmpty() )
+                {
+                    QRegularExpression _regex("nautilus\\s(\\d{1,3})\\.(\\d{1,3})(?:\\.(\\d{1,5}))?");
+                    QRegularExpressionMatch match = _regex.match(_version);
+                    if ( match.hasMatch() ) {
+                        bool is_verion_supported = match.captured(1).toInt() > 3;
+                        if ( !is_verion_supported && match.captured(1).toInt() == 3 ) {
+                            is_verion_supported = match.captured(2).toInt() > 0;
+
+                            if ( !is_verion_supported && !match.captured(3).isEmpty() )
+                                is_verion_supported = !(match.captured(3).toInt() < 2);
+                        }
+
+                        is_file_browser_supported = is_verion_supported;
+                    }
+                }
+            }
+        }
+    }
+
+
+    QFileInfo fileInfo(path);
+    is_file_browser_supported ?
+        system(QString("nautilus \"" + fileInfo.absoluteFilePath() + "\"").toUtf8()) :
+        system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
+#endif
+}
+
+QString Utils::getPortalName(const QString& url)
+{
+    if ( !url.isEmpty() ) {
+        QRegularExpressionMatch match = QRegularExpression(rePortalName).match(url);
+        if (match.hasMatch()) {
+            QString out = match.captured(1);
+            return out.endsWith('/') ? out.remove(-1, 1) : out;
+        }
+    }
+
+    return url;
+}
+
+QString Utils::encodeJson(const QJsonObject& obj)
+{
+    return Utils::encodeJson(
+                QJsonDocument(obj).toJson(QJsonDocument::Compact) );
+}
+
+QString Utils::encodeJson(const QString& s)
+{
+    return QString(s).replace("\"", "\\\"");
 }

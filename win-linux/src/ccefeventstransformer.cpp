@@ -188,8 +188,27 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
             QMetaObject::invokeMethod( pObjParent, "onPortalOpen", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
+        if ( !(cmd.find(L"portal:new") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalNew", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"portal:create") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalCreate", Qt::QueuedConnection);
+        } else
+        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onPortalLogin", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( pObjParent, "onPortalLogout", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( pObjParent, "onLocalFilesCheck", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"files:explore") == std::wstring::npos) ) {
+                QMetaObject::invokeMethod( pObjParent, "onLocalFileLocation", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);

@@ -37,6 +37,9 @@
 #include <QVariant>
 #include <QDebug>
 #include <QTimer>
+#include <functional>
+#include <QEvent>
+#include <QKeyEvent>
 
 #include "defines.h"
 
@@ -49,6 +52,30 @@
 
 extern BYTE g_dpi_ratio;
 //extern QString g_lang;
+
+class CMessageEventsFilter : public QObject {
+public:
+    CMessageEventsFilter(CMessage * p, QObject * o)
+        : QObject(o), m_mess(p)
+    {}
+
+protected:
+    bool eventFilter(QObject * obj, QEvent * event)
+    {
+        if (event->type()==QEvent::KeyPress) {
+            QKeyEvent * key = static_cast<QKeyEvent*>(event);
+            if ( key->key()==Qt::Key_Escape ) {
+                m_mess->close();
+                return true;
+            }
+        }
+
+        return QObject::eventFilter(obj, event);
+    }
+
+private:
+    CMessage * m_mess;
+};
 
 #if defined(_WIN32)
 CMessage::CMessage(HWND p)
@@ -64,6 +91,8 @@ CMessage::CMessage(QWidget * p)
 #if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
     m_centralWidget = new QWinWidget(_hwnd);
+    m_centralWidget->installEventFilter(
+                new CMessageEventsFilter(this, m_centralWidget) );
 #else
     setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
@@ -106,7 +135,7 @@ CMessage::CMessage(QWidget * p)
         [=] {
             m_modalresult = MODAL_RESULT_YES;
 #if defined(_WIN32)
-            DestroyWindow(_hwnd);
+            close();
 #else
             close();
 #endif
@@ -123,22 +152,19 @@ CMessage::CMessage(QWidget * p)
 void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
-        qDebug() << "delete button";
         w->disconnect();
         delete w;
     }
 
-#if defined(_WIN32)
-    HWND _hwnd = CWinWindow::m_hSelf;
-#else
-    QWidget * w = this;
-#endif
+    auto _fn_click = [=](int num) {
+        m_modalresult = MODAL_RESULT_CUSTOM + num;
+        close();
+    };
 
     QRegExp reFocus("([^:]+)\\:?(default)?$");
 
     QPushButton * _btn;
     int _btn_num(0);
-    int * _result = &m_modalresult;
     for (auto btn: btns) {
         reFocus.indexIn(btn);
 
@@ -148,19 +174,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         }
 
         m_boxButtons->layout()->addWidget(_btn);
-#if defined(_WIN32)
-        QObject::connect(_btn, &QPushButton::clicked, [_hwnd, _btn_num, _result](){
-            *_result = MODAL_RESULT_CUSTOM + _btn_num;
-            DestroyWindow(_hwnd);
-        });
-#else
-        QObject::connect(_btn, &QPushButton::clicked, [w, _btn_num, _result](){
-            *_result = MODAL_RESULT_CUSTOM + _btn_num;
-            w->close();
-        });
-#endif
-
-        _btn_num++;
+        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num++));
     }
 
     if (_btn_num > 2)
@@ -270,4 +284,21 @@ void CMessage::modal()
 #else
     exec();
 #endif
+}
+
+void CMessage::setIcon(int it)
+{
+    switch (it) {
+    case MESSAGE_TYPE_WARN:     m_typeIcon->setProperty("type","msg-warn"); break;
+    case MESSAGE_TYPE_INFO:     m_typeIcon->setProperty("type","msg-info"); break;
+    case MESSAGE_TYPE_CONFIRM:  m_typeIcon->setProperty("type","msg-conf"); break;
+    case MESSAGE_TYPE_ERROR:    m_typeIcon->setProperty("type","msg-error"); break;
+    default:
+        break;
+    }
+}
+
+void CMessage::setText( const QString& t)
+{
+    m_message->setText(t);
 }

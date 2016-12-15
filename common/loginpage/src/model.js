@@ -160,9 +160,11 @@ function FileModel(attributes) {
 
     this.name   = attributes.name || '';
     this.descr  = attributes.descr || '';
+    this.path   = attributes.path;
     this.date   = attributes.date;
     this.type   = attributes.type;
     this.fileid = attributes.id;
+    this.exist  = true;
 };
 
 FileModel.prototype = new Model();

@@ -65,16 +65,7 @@
             this.rendered = true;
 
             let _index = this.opts.itemindex;
-            if (this.tplItem != 'nomenuitem') {
-                let $menu = $(this.menuContainer);
-                if (_index >= 0) {
-                    let $items = $menu.children('.menu-item');
-                    this.$menuitem = $items.size() > _index ?
-                        $(this.tplItem).insertBefore($items.eq(_index)) : $(this.tplItem).appendTo($menu);
-                } else {
-                    this.$menuitem = $(this.tplItem).appendTo($menu);
-                }
-            }
+            this.$menuitem = this.renderMenuItem.call(this, this.tplItem, _index);
 
             if (this.tplPage != 'empty') {
                 let $parentview = $(this.panelContainer);
@@ -90,6 +81,22 @@
                 }
             }
         }
+    };
+
+    view.prototype.renderMenuItem = function(node, index) {
+        let $itemout;
+        if (node != 'nomenuitem') {
+            let $menu = $(this.menuContainer);
+            if (index >= 0) {
+                let $items = $menu.children('.menu-item');
+                $itemout = $items.size() > index ?
+                        $(node).insertBefore($items.eq(index)) : $(node).appendTo($menu);
+            } else {
+                $itemout = $(node).appendTo($menu);
+            }
+        }
+
+        return $itemout;
     };
 
     window.baseView = view;

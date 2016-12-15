@@ -7,8 +7,8 @@ Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-#FullRequires: libX11, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts, google-crosextra-carlito-fonts
-Requires: libX11, libXScrnSaver, libcurl, gtkglext-libs, libstdc++ >= 4.8.0, boost-filesystem, xcb-util-renderutil, xcb-util-image, xcb-util-wm, libxcb, xcb-util-keysyms, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts, google-crosextra-carlito-fonts
+#FullRequires: libX11, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-sans-fonts, liberation-serif-fonts
+Requires: libX11, libXScrnSaver, libcurl, gtkglext-libs, libstdc++ >= 4.8.0, boost-filesystem, xcb-util-renderutil, xcb-util-image, xcb-util-wm, libxcb, xcb-util-keysyms, dejavu-lgc-sans-fonts, dejavu-lgc-sans-mono-fonts, dejavu-lgc-serif-fonts, dejavu-sans-fonts, dejavu-sans-mono-fonts, dejavu-serif-fonts, libreoffice-opensymbol-fonts, liberation-mono-fonts, liberation-narrow-fonts, liberation-sans-fonts, liberation-serif-fonts
 BuildArch: x86_64
 AutoReq: no
 AutoProv: no
@@ -32,8 +32,8 @@ cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
 rm -rf "$RPM_BUILD_ROOT"
 
 %files
-%attr(777, root, root) /opt/onlyoffice/desktopeditors/*
-%attr(777, root, root) /usr/bin/*desktopeditors
+%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
+%attr(755, root, root) /usr/bin/*desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %pre
 
@@ -60,9 +60,6 @@ fi
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
-
-mkdir -p /var/lib/onlyoffice
-chmod -R 777 /var/lib/onlyoffice
 
 /opt/onlyoffice/desktopeditors/post_install.sh
 
@@ -103,4 +100,3 @@ fi
 
 set -e 		# fail on any error
 
-rm -rf /var/lib/onlyoffice/desktopeditors

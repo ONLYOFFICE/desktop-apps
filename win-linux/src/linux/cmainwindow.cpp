@@ -97,6 +97,8 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
             pMainPanel->doOpenLocalFiles(*_list);
 
         delete _list, _list = NULL;
+
+        CX11Decoration::raiseWindow();
     });
 }
 

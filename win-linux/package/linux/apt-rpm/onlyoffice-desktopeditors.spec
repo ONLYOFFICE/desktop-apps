@@ -33,8 +33,8 @@ cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
 rm -rf "$RPM_BUILD_ROOT"
 
 %files
-%attr(777, root, root) /opt/onlyoffice/desktopeditors/*
-%attr(777, root, root) /usr/bin/*desktopeditors
+%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
+%attr(755, root, root) /usr/bin/*desktopeditors
 %attr(-, root, root) /usr/share/applications/*.desktop
 %pre
 
@@ -61,9 +61,6 @@ fi
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
-
-mkdir -p /var/lib/onlyoffice
-chmod -R 777 /var/lib/onlyoffice
 
 /opt/onlyoffice/desktopeditors/post_install.sh
 
@@ -104,4 +101,3 @@ fi
 
 set -e 		# fail on any error
 
-rm -rf /var/lib/onlyoffice/desktopeditors

@@ -3,5 +3,5 @@
 LD_LIBRARY_PATH=./
 export LD_LIBRARY_PATH
 cd /opt/onlyoffice/desktopeditors/
-exec ./DesktopEditors $@
+exec ./DesktopEditors "$@"
 

@@ -37,7 +37,8 @@ HEADERS += \
     $$PWD/src/chelp.h \
     $$PWD/src/cmainpanel.h \
     $$PWD/src/csplash.h \
-    $$PWD/src/cmessage.h
+    $$PWD/src/cmessage.h \
+    $$PWD/src/cfilechecker.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -57,7 +58,8 @@ SOURCES += \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cmainpanel.cpp \
-    $$PWD/src/cmessage.cpp
+    $$PWD/src/cmessage.cpp \
+    $$PWD/src/cfilechecker.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -77,7 +79,7 @@ linux-g++ {
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
 
     HEADERS += src/linux/cmainwindow.h \
                 src/linux/cx11decoration.h \
@@ -94,6 +96,9 @@ linux-g++ {
     build_for_centos6 {
         QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
     }
+
+    LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicuuc.so.55
+    LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicudata.so.55
 }
 
 

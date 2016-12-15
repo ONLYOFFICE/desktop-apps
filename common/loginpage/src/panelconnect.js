@@ -55,12 +55,9 @@
         var _html = `<div ${args.id} class="action-panel ${args.action}">` +
                       '<div id="box-empty-portals" class="empty flex-center">' +
                         '<section class="center-box">'+
-                          `<h3 style="margin-top:0;">${_lang.portalEmptyTitle}</h3>`+
-                          '<ul class="ads-list">'+
-                            `<li><span class="ads-list-item">${_lang.adsText1}</span></li>`+
-                            `<li><span class="ads-list-item">${_lang.adsText2}</span></li>`+
-                            `<li><span class="ads-list-item">${_lang.adsText3}</span></li>`+
-                          '</ul>'+
+                          `<h3 class="empty-title" style="margin:0 0 42px;">${_lang.portalEmptyTitle}</h3>`+
+                          '<img class="img-connect">' +
+                          `<h4 class="text-description" style="margin:38px 0 6px;color:#666666;">${_lang.portalEmptyDescr}</h4>` +
                           '<div class="tools-connect">'+
                             `<button class="btn primary newportal">${_lang.btnCreatePortal}</button>`+
                             '<section class="link-connect">'+
@@ -98,6 +95,50 @@
 
             this.$panelNoPortals = this.$panel.find('#box-empty-portals');
             this.$panelPortalList = this.$panel.find('#box-portals');
+
+            if ( !localStorage['commercial'] ) {
+                var onadsclick = (e) => {
+                    let $el = $(e.target);
+                    let action = $el.attr('action');
+
+                    let $title = this.$panel.find('h3.empty-title'),
+                        $descr = this.$panel.find('h4.text-description'),
+                        $img = this.$panel.find('img.img-connect');
+
+                    if (/^custom/.test(action)) {
+                        $('.action-panel').hide();
+                        this.$panel.show();
+                        $('.tool-menu > .menu-item').removeClass('selected');
+
+                        if (/verhistory$/.test(action)) {
+                            $title.html(utils.Lang.adsTitle1);
+                            $descr.html(utils.Lang.adsDescr1);
+                            $img.removeClass('docreview').addClass('verhistory');
+                            this.$adsItemHistory.addClass('selected');
+                        } else {
+                            $title.html(utils.Lang.adsTitle2);
+                            $descr.html(utils.Lang.adsDescr2);
+                            $img.removeClass('verhistory').addClass('docreview');
+                            this.$adsItemReview.addClass('selected');
+                        }
+                    } else
+                    if (/^connect/.test(action)) {
+                        $title.html(utils.Lang.portalEmptyTitle)
+                        $descr.html(utils.Lang.portalEmptyDescr);
+                        $img.removeClass('verhistory').removeClass('docreview');
+                    }
+                };
+
+                let action = 'custom ads-verhistory';
+                this.$adsItemHistory = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem1}</a></li>`);
+                this.$adsItemHistory.on('click', onadsclick);
+
+                action = 'custom ads-docreview';
+                this.$adsItemReview = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem2}</a></li>`);
+                this.$adsItemReview.on('click', onadsclick);
+
+                $(this.menuContainer).find('[action=connect]').parent().on('click', onadsclick);
+            }
         },
         portaltemplate: function(info) {
             return `<tr id=${info.elid}><td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>` +
@@ -115,6 +156,7 @@
     utils.fn.extend(ControllerPortals.prototype, (function() {
         let collection,
             ppmenu;
+        let dlgLogin;
 
         function _on_context_menu(menu, action, data) {
             var model = data;
@@ -133,17 +175,22 @@
         };
 
         function _do_login(portal, user) {
-            var dlg = new LoginDlg();
-            dlg.onsuccess(info => {
-                console.log('redirect to portal');
-                window.sdk.execCommand("portal:open", info.portal);
+            if ( !dlgLogin ) {
+                dlgLogin = new LoginDlg();
+                dlgLogin.onsuccess(info => {
+                    window.sdk.execCommand("portal:open", info.portal);
 
-                PortalsStore.keep(info);
-                _update_portals.call(this);
+                    dlgLogin.onclose();
+                    PortalsStore.keep(info);
+                    _update_portals.call(this);
 
-                window.selectAction('connect');
-            });
-            dlg.show(portal, user);
+                    window.selectAction('connect');
+                });
+                dlgLogin.onclose(code=>{
+                    dlgLogin = undefined;
+                });
+                dlgLogin.show(portal, user);
+            }
         };
 
         function _do_logout(info) {
@@ -158,7 +205,11 @@
 
             /* fill portals list */
             var portals = PortalsStore.portals();
+
             if (portals.length) {
+                !localStorage['commercial'] &&
+                    localStorage.setItem('commercial', 'showed');
+
                 let auth_arr = {};
                 for (let rec of portals) {
                     var pm = new PortalModel(rec);
@@ -171,6 +222,11 @@
 
                 this.view.$panelNoPortals.hide();
                 this.view.$panelPortalList.show();
+
+                if ( !!this.view.$adsItemReview ) {
+                    this.view.$adsItemReview.hide();
+                    this.view.$adsItemHistory.hide();
+                }
             } else {
                 this.view.$panelNoPortals.show();
                 this.view.$panelPortalList.hide();
@@ -245,6 +301,11 @@
             };
         };
 
+        var _on_create_portal = function() {
+            dlgLogin && dlgLogin.close();
+            window.sdk.execCommand('portal:create', '');
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -266,6 +327,27 @@
                             } else
                                 delete model.removed;
                         }
+                    } else
+                    if (/portal:login/.test(cmd)) {
+                        let obj = JSON.parse(utils.fn.decodeHtml(param));
+                        if ( obj ) {
+                            var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
+                            if ( model ) {
+                                !model.get('logged') && model.set('logged', true);
+                            } else {
+                                let info = {
+                                    portal: obj.domain,
+                                    user: obj.displayName,
+                                    email: obj.email
+                                };
+
+                                info.portal.endsWith('/') &&
+                                    (info.portal = info.portal.slice(0,-1));
+
+                                PortalsStore.keep(info);
+                                _update_portals.call(this);
+                            }
+                        }
                     }
                 });
 
@@ -277,7 +359,8 @@
                     _do_login.call(this);
                 });
 
-                
+                window.CommonEvents.on('portal:create', _on_create_portal);
+
                 return this;
             }
         };

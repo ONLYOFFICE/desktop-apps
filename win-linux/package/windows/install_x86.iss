@@ -12,8 +12,8 @@ MinVersion              =0,5.0.2195
 Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x86.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
-Source: ..\..\..\..\core\build\bin\windows\x2t32.exe;             DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\bin\windows\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\win_32\x2t.exe;               DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\win_32\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;              DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter; Excludes: *.lib,HtmlFileInternal.exe,ascdocumentscore.dll; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;

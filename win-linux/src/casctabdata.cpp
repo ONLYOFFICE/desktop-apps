@@ -38,7 +38,26 @@ CAscTabData::CAscTabData(const QString& t, CefType wt)
     , _panel_id(-1)
     , _vtype(wt)
     , _url()
+    , _typeContent(etUndefined)
 {}
+
+CAscTabData::CAscTabData(const QString& t, AscEditorType ct)
+    : _title(t), _is_changed(false), _is_closed(false)
+    , _panel_id(-1)
+    , _url()
+    , _typeContent(ct)
+{
+    switch (ct) {
+    case etDocument:
+    case etSpreadsheet:
+    case etPresentation:
+        _vtype = cvwtEditor;
+        break;
+    default:
+        _vtype = cvwtSimple;
+        break;
+    }
+}
 
 void CAscTabData::setTitle(const QString& t)
 {
@@ -102,4 +121,14 @@ wstring CAscTabData::url() const
 bool CAscTabData::isViewType(CefType vt) const
 {
     return vt == _vtype;
+}
+
+AscEditorType CAscTabData::contentType()
+{
+    return _typeContent;
+}
+
+void CAscTabData::setContentType(AscEditorType t)
+{
+    _typeContent = t;
 }

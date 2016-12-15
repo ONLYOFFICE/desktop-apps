@@ -147,8 +147,38 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalLogin:)
+                                                 name:CEFEventNamePortalLogin
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFPortalLogout:)
                                                  name:CEFEventNamePortalLogout
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalCreate:)
+                                                 name:CEFEventNamePortalCreate
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalNew:)
+                                                 name:CEFEventNamePortalNew
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFFileInFinder:)
+                                                 name:CEFEventNameFileInFinder
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFFilesCheck:)
+                                                 name:CEFEventNameFilesCheck
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFStartPageReady:)
+                                                 name:CEFEventNameStartPageReady
                                                object:nil];
 }
 
@@ -357,7 +387,7 @@
 - (void)saveLocalFileWithTab:(ASCTabView *)tab {
     if (tab) {
         NSDictionary * params   = tab.params;
-        NSString * directiry    = params[@"path"];
+        NSString * path         = params[@"path"];
         NSString * viewId       = params[@"viewId"];
         NSArray * formats       = params[@"suppertFormats"];
         
@@ -372,13 +402,24 @@
         saveController.filters = formats;
         saveController.filterType = fileType;
         
-        if (!directiry || directiry.length < 1) {
-            directiry = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        if (!path || path.length < 1) {
+            path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
         
-        savePanel.directoryURL = [NSURL URLWithString:directiry];
+        BOOL isDir;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
+            NSString * savedPath = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserLastSavePath];
+            
+            if (savedPath && savedPath.length > 0) {
+                path = [savedPath stringByAppendingPathComponent:path];
+            } else {
+                path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:path];
+            }
+        }
+        
+        savePanel.directoryURL = [NSURL fileURLWithPath:[path stringByDeletingLastPathComponent]];
         savePanel.canCreateDirectories = YES;
-        savePanel.nameFieldStringValue = [[directiry lastPathComponent] stringByDeletingPathExtension];
+        savePanel.nameFieldStringValue = [[path lastPathComponent] stringByDeletingPathExtension];
         
         [savePanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [savePanel orderOut:self];
@@ -387,6 +428,9 @@
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
             
             if (result == NSFileHandlingPanelOKButton) {
+                [[NSUserDefaults standardUserDefaults] setObject:[[savePanel directoryURL] path] forKey:ASCUserLastSavePath];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+
                 NSString * path = [NSString stringWithFormat:@"%@", [[savePanel URL] path]];
                                 
                 saveData->put_Path([path stdwstring]);
@@ -433,6 +477,17 @@
     }
     
     return canOpen;
+}
+
+- (NSDictionary *)checkFiles:(NSDictionary *)fileList {
+    NSMutableDictionary * checkedList = @{}.mutableCopy;
+    
+    for (NSString * key in fileList) {
+        id value = [fileList objectForKey:key];
+        checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:value] ? @"true" : @"false";
+    }
+    
+    return checkedList;
 }
 
 #pragma mark -
@@ -741,6 +796,23 @@
     }
 }
 
+- (void)onCEFPortalLogin:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:notification.userInfo options:0 error:&err];
+        NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"portal:login");
+        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+        
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        
+        [self.cefStartPageView apply:pEvent];
+    }
+}
+    
 - (void)onCEFPortalLogout:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSString * url = notification.userInfo[@"url"];
@@ -820,6 +892,81 @@
         }
     }
 }
+    
+- (void)onCEFPortalCreate:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                        object:nil
+                                                      userInfo:@{
+                                                                 @"action"  : @(ASCTabActionOpenPortal),
+                                                                 @"url"     : kRegistrationPortalUrl,
+                                                                 @"title"   : NSLocalizedString(@"Create portal", nil),
+                                                                 @"active"  : @(YES)
+                                                                 }];
+}
+
+    
+- (void)onCEFPortalNew:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        NSString * domainName = json[@"domain"];
+        
+        if (domainName && domainName.length > 0) {
+            domainName = [[NSURL URLWithString:domainName] host];
+        }
+        
+        ASCTabView * existTab = [self tabWithParam:@"url" value:kRegistrationPortalUrl];
+        
+        if (existTab) {
+            existTab.params[@"url"] = domainName;
+            existTab.params[@"title"] = domainName;
+            existTab.title = domainName;
+            [self.tabsControl selectTab:existTab];
+        }
+    }
+}
+
+- (void)onCEFFileInFinder:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSURL * fileUrl = [NSURL fileURLWithPath:notification.userInfo[@"path"]];
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[fileUrl]];
+    }
+}
+
+- (void)onCEFFilesCheck:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id paths = notification.userInfo;
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSDictionary * checkedList = [self checkFiles:paths];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError * err;
+                NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:checkedList options:0 error:&err];
+                NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                
+                NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                pCommand->put_Command(L"files:checked");
+                pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""] stdwstring]); // ¯\_(ツ)_/¯
+                
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                pEvent->m_pData = pCommand;
+                
+                [self.cefStartPageView apply:pEvent];
+
+            });
+        });
+    }
+}
+
+- (void)onCEFStartPageReady:(NSNotification *)notification {
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"app:ready");
+    
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+    
+    [self.cefStartPageView apply:pEvent];
+}
 
 
 #pragma mark -
@@ -860,6 +1007,11 @@
             }
             case ASCTabActionOpenUrl: {
                 [cefView loadWithUrl:tab.params[@"url"]];
+                
+                if (tab.params[@"title"] && [tab.params[@"title"] length] > 0) {
+                    tab.title = tab.params[@"title"];
+                }
+                
                 break;
             }
                 

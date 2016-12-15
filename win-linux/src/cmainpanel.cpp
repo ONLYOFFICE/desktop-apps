@@ -45,6 +45,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <regex>
+#include <QStorageInfo>
 
 #include "defines.h"
 #include "cprintprogress.h"
@@ -54,6 +55,7 @@
 #include "utils.h"
 #include "version.h"
 #include "cmessage.h"
+#include "cfilechecker.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -72,6 +74,8 @@ using namespace NSEditorApi;
 #define BUTTON_MAIN_WIDTH   68
 #define TITLE_HEIGHT        29
 #define TOOLBTN_HEIGHT      29
+
+#define HTML_QUOTE "\\u005c&quot;" // \" symbols
 
 extern BYTE     g_dpi_ratio;
 extern QString  g_lang;
@@ -266,7 +270,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 
-    m_saveDocMessage = tr("%1 is modified.\nDo you want to keep changes?");
+    m_saveDocMessage = tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -517,6 +521,7 @@ int CMainPanel::trySaveDocument(int index)
             pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
             pView->GetCefView()->Apply(pEvent);
 
+            modal_res = MODAL_RESULT_YES;
             break;}
         }
     }
@@ -583,6 +588,11 @@ void CMainPanel::onPortalLogout(QString portal)
     }
 
     doLogout(portal, _allow);
+}
+
+void CMainPanel::onPortalLogin(QString info)
+{
+    cmdMainPage("portal:login", Utils::encodeJson(info));
 }
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
@@ -678,8 +688,21 @@ void CMainPanel::onLocalFileRecent(void * d)
     QRegularExpressionMatch match = re.match(opts.url);
 
     if (!match.hasMatch()) {
-        if ( opts.type != etRecoveryFile && !QFileInfo(opts.url).exists() ) {
-            CMessage::error(gTopWinId, tr("File doesn't exists"));
+        QFileInfo _info(opts.url);
+        if ( opts.type != etRecoveryFile && !_info.exists() ) {
+#if defined(_WIN32)
+            CMessage mess(gTopWinId);
+#else
+            CMessage mess(this);
+#endif
+            mess.setButtons({tr("Yes")+":default", tr("No")});
+            int modal_res = mess.warning(
+                        tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
+
+            if (modal_res == MODAL_RESULT_CUSTOM) {
+                cmdMainPage("file:skip", QString::number(opts.id));
+            }
+
             return;
         }
     }
@@ -741,6 +764,25 @@ void CMainPanel::onLocalFilesOpen(void * data)
     RELEASEINTERFACE(pData);
 }
 
+void CMainPanel::onLocalFilesCheck(QString json)
+{
+    return;
+
+    CFileChecker * checker = new CFileChecker(json);
+    checker->start(QThread::LowPriority);
+//    checker->requestInterruption();
+
+    connect(checker, &CFileChecker::resultReady, [=](const QString& json){
+        cmdMainPage("files:checked", Utils::encodeJson(json));
+    });
+    connect(checker, &CFileChecker::finished, checker, &QObject::deleteLater);
+}
+
+void CMainPanel::onLocalFileLocation(QString path)
+{
+    Utils::openFileLocation(path);
+}
+
 void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
@@ -761,8 +803,19 @@ void CMainPanel::doOpenLocalFiles(const QStringList& list)
 
     QStringListIterator i(list);
     while (i.hasNext()) {
-        COpenOptions opts = {i.next().toStdWString(), etLocalFile};
-        doOpenLocalFile(opts);
+        QString n = i.next();
+        if ( n.startsWith("--new:") ) {
+            QRegularExpression re("^--new:(doc|sheet|slide)");
+            QRegularExpressionMatch match = re.match(n);
+            if ( match.hasMatch() ) {
+                if ( match.captured(1) == "doc" ) onLocalFileCreate(etDocument); else
+                if ( match.captured(1) == "cell" ) onLocalFileCreate(etSpreadsheet); else
+                if ( match.captured(1) == "slide" ) onLocalFileCreate(etPresentation);
+            }
+        } else {
+            COpenOptions opts = {n.toStdWString(), etLocalFile};
+            doOpenLocalFile(opts);
+        }
     }
 
     i.toBack();
@@ -830,21 +883,6 @@ void CMainPanel::onDocumentDownload(void * info)
 
     NSEditorApi::CAscDownloadFileInfo * pData = reinterpret_cast<NSEditorApi::CAscDownloadFileInfo *>(info);
     RELEASEINTERFACE(pData);
-}
-
-void CMainPanel::onLogin(QString params)
-{
-    QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(params.toUtf8(), &jerror);
-
-    QString _portal;
-    if(jerror.error == QJsonParseError::NoError) {
-        QJsonObject objRoot = jdoc.object();
-        _portal = objRoot["portal"].toString();
-    }
-
-    GET_REGISTRY_USER(_reg_user)
-    _reg_user.setValue("portal", _portal);
 }
 
 void CMainPanel::loadStartPage()
@@ -1126,6 +1164,38 @@ void CMainPanel::onPortalOpen(QString url)
     }
 }
 
+void CMainPanel::onPortalNew(QString in)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(in.toLatin1(), &jerror);
+
+    if(jerror.error == QJsonParseError::NoError) {
+        QJsonObject objRoot = jdoc.object();
+
+        QString _domain = objRoot["domain"].toString();
+        QString _name = Utils::getPortalName(_domain);
+
+        int _tab_index = m_pTabs->tabIndexByEditorType(etNewPortal);
+        if ( !(_tab_index < 0)) {
+            int _uid = m_pTabs->viewByIndex(_tab_index);
+            m_pTabs->applyDocumentChanging(_uid, _name, _domain);
+            m_pTabs->applyDocumentChanging(_uid, etPortal);
+
+            onTabChanged(m_pTabs->currentIndex());
+        }
+    }
+}
+
+void CMainPanel::onPortalCreate()
+{
+    int res = m_pTabs->newPortal(URL_SIGNUP, tr("Sign Up"));
+    if (res == 2) { RecalculatePlaces(); }
+
+    QTimer::singleShot(200, this, [=]{
+        toggleButtonMain(false);
+    });
+}
+
 void CMainPanel::readSystemUserName(wstring& first, wstring& last)
 {
 #ifdef Q_OS_WIN
@@ -1169,19 +1239,17 @@ void CMainPanel::onMainPageReady()
 
 void CMainPanel::refreshAboutVersion()
 {
-    QString _tpl_ver = "{"
-            HTML_QUOTED_JSON_PAIR("version", "%1")","
-            HTML_QUOTED_JSON_PAIR("edition","%2")","
-            HTML_QUOTED_JSON_PAIR("appname","%3")","
-            HTML_QUOTED_JSON_PAIR("rights","%4")","
-            HTML_QUOTED_JSON_PAIR("link","%5")
-            "}";
-
     QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
                             " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
 
-    cmdMainPage("app:version",
-        _tpl_ver.arg(VER_FILEVERSION_STR, _license, WINDOW_NAME, "© " ABOUT_COPYRIGHT_STR, URL_SITE));
+    QJsonObject _json_obj;
+    _json_obj["version"]    = VER_FILEVERSION_STR;
+    _json_obj["edition"]    = "%1";
+    _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
+    _json_obj["link"]       = URL_SITE;
+
+    cmdMainPage("app:version", Utils::encodeJson(_json_obj).arg(_license));
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

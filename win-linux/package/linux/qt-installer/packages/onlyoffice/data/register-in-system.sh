@@ -22,6 +22,16 @@ createAppEntryPoint()
 # Also it allows us to launch apps from terminal like onlyoffice
 createAppEntryPoint onlyoffice
 
+createAppEntryPointAliase()
+{
+    rm -f "/usr/bin/$2"
+    ln -s "${INSTALL_PATH}/$1.sh" "/usr/bin/$2"
+}
+
+# Also it allows us to launch apps from terminal like desktopeditors and onlyoffice-desktopeditors
+createAppEntryPointAliase onlyoffice onlyoffice-desktopeditors
+createAppEntryPointAliase onlyoffice desktopeditors
+
 # Workaround for bug in xdg. See https://bugs.archlinux.org/task/33316 for details
 mkdir -p /usr/share/desktop-directories/
 
@@ -151,6 +161,4 @@ if [[ "$IFW_LINUX_DISTRIBUTION" == "astra" ]]; then
     backupFontConfig "29-fly-rendering.conf" # Used in version 1.5
 fi
 
-# Prepare license directory
-mkdir -p /var/lib/onlyoffice
-chmod -R 777 /var/lib/onlyoffice
+${INSTALL_PATH}/post_install.sh
