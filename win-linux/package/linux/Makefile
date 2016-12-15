@@ -93,6 +93,7 @@ endif
 TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
 
+INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-x64
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
@@ -100,7 +101,7 @@ PLATFORM := linux_64_static_stdlib
 
 .PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm tar
+all: rpm deb apt-rpm tar installer
 
 rpm: $(RPM_DEPENDENCY)
 
@@ -109,6 +110,8 @@ deb: $(DEB_DEPENDENCY)
 tar: $(TAR_DEPENDENCY)
 
 apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+
+installer: desktopeditor $(INSTALLER)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
@@ -198,6 +201,9 @@ $(APT_RPM):
 $(TAR):
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
 
+$(INSTALLER):
+	cd qt-installer && ./make-install.sh
+
 deploy-rpm: $(RPM)
 	rm -rfv $(REPO)
 	mkdir -p $(REPO)
@@ -234,6 +240,9 @@ deploy-apt-rpm: $(APT_RPM)
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-tar: $(TAR)
-       aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
+	aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
+
+deploy-installer: $(INSTALLER)
+	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar
