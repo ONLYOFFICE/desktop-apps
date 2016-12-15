@@ -97,8 +97,6 @@
             this.$panelPortalList = this.$panel.find('#box-portals');
 
             if ( !localStorage['commercial'] ) {
-                localStorage.setItem('commercial', 'showed');
-
                 var onadsclick = (e) => {
                     let $el = $(e.target);
                     let action = $el.attr('action');
@@ -209,6 +207,9 @@
             var portals = PortalsStore.portals();
 
             if (portals.length) {
+                !localStorage['commercial'] &&
+                    localStorage.setItem('commercial', 'showed');
+
                 let auth_arr = {};
                 for (let rec of portals) {
                     var pm = new PortalModel(rec);
