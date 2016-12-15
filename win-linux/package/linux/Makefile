@@ -245,4 +245,4 @@ deploy-tar: $(TAR)
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar deploy-installer
