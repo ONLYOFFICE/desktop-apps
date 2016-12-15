@@ -50,7 +50,7 @@ ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
 OTHER_REPO_OS_NAME = other-linux
 
 ifeq ($(PACKAGE_EDITION), cool)
-OTHER_REPO_OS_VER = moderm
+OTHER_REPO_OS_VER = modern
 else
 OTHER_REPO_OS_VER = old
 endif
