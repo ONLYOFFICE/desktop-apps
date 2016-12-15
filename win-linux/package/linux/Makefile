@@ -120,7 +120,8 @@ clean:
 		$(APT_RPM_BUILD_DIR)\
 		$(REPO)\
 		$(TAR_PROGRAM_PATH)\
-		$(INSTALLER)
+		$(INSTALLER)\
+		*.tar.gz
 
 desktopeditor:
 	mkdir -p $(PROGRAM_PATH)
