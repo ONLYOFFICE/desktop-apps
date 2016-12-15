@@ -47,6 +47,16 @@ ALT_REPO_OS_VER = p7
 endif
 ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
 
+OTHER_REPO_OS_NAME = other-linux
+
+ifeq ($(PACKAGE_EDITION), cool)
+OTHER_REPO_OS_VER = old
+else
+OTHER_REPO_OS_VER = moderm
+endif
+
+OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
+
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
@@ -88,7 +98,7 @@ TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm tar
 
@@ -223,4 +233,7 @@ deploy-apt-rpm: $(APT_RPM)
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm
+deploy-tar: $(TAR)
+       aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
+
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar
