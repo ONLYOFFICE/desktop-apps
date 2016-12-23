@@ -57,6 +57,8 @@ public:
     void setButtons(std::initializer_list<QString>);
     void setIcon(int);
     void setText(const QString&);
+    void applyForAll(const QString&, bool);
+    bool isForAll();
 
     int info(const QString& m);
     int warning(const QString& m);

@@ -40,6 +40,7 @@
 #include <functional>
 #include <QEvent>
 #include <QKeyEvent>
+#include <QCheckBox>
 
 #include "defines.h"
 
@@ -301,4 +302,20 @@ void CMessage::setIcon(int it)
 void CMessage::setText( const QString& t)
 {
     m_message->setText(t);
+}
+
+void CMessage::applyForAll(const QString& str, bool checked)
+{
+    QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
+    QCheckBox * chbox = new QCheckBox(str);
+    chbox->setObjectName("check-apply-for-all");
+    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + m_typeIcon->width() * g_dpi_ratio + 15 * g_dpi_ratio));
+    chbox->setChecked(checked);
+    layout->insertWidget(1, chbox, 0);
+}
+
+bool CMessage::isForAll()
+{
+    QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
+    return chbox && chbox->checkState() == Qt::Checked;
 }

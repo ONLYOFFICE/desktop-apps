@@ -76,6 +76,7 @@ protected:
     void cmdAppManager(int, void *);
 
     QString m_saveDocMessage;
+    CAscApplicationManager * m_pManager;
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
@@ -158,7 +159,6 @@ private:
     bool            m_isCustomWindow;
 
     CDownloadWidget *       m_pWidgetDownload;
-    CAscApplicationManager * m_pManager;
 
     printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
