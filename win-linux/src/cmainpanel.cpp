@@ -259,17 +259,13 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     m_pButtonDownload->setVisible(false, false);
 
-    wstring first_name, last_name;
-    readSystemUserName(first_name, last_name);
-
-    QString params = QString("lang=%1&userfname=%3&userlname=%4&location=%2")
+    QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(g_lang, Utils::systemLocationCode());
-
     wstring wparams = params.toStdWString();
-    wparams.replace(wparams.find(L"%3"), 2, first_name);
-    wparams.replace(wparams.find(L"%4"), 2, last_name);
-    m_pManager->InitAdditionalEditorParams(wparams);
+    wstring user_name = readSystemUserName();
 
+    wparams.replace(wparams.find(L"%3"), 2, user_name);
+    m_pManager->InitAdditionalEditorParams(wparams);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -1195,34 +1191,25 @@ void CMainPanel::onPortalCreate()
     });
 }
 
-void CMainPanel::readSystemUserName(wstring& first, wstring& last)
+wstring CMainPanel::readSystemUserName()
 {
 #ifdef Q_OS_WIN
     WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
-    wstring _full_name = GetUserName(_env_name, &_size) ?
+    return GetUserName(_env_name, &_size) ?
                             wstring(_env_name) : L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
-    if (_env_name.isEmpty())
+    if ( _env_name.isEmpty() ) {
         _env_name = qgetenv("USERNAME");
 
-    if (_env_name.isEmpty())
-        _env_name = "Unknown.User";
+        if (_env_name.isEmpty())
+            _env_name = "Unknown.User";
+    }
 
-    wstring _full_name = _env_name.toStdWString();
+    return _env_name.toStdWString();
 #endif
-//    std::wregex _rexp(QString(reUserName).toStdWString());
-//    std::wsmatch _res;
-//    if (std::regex_search(_full_name, _res, _rexp)) {
-//        first = _res.str(1),
-//        last = _res.str(2);
-//    }
-
-    auto i = _full_name.find('.');
-    i == wstring::npos ? first.assign(_full_name) :
-                (first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i)));
 }
 
 void CMainPanel::onMainPageReady()

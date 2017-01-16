@@ -90,7 +90,7 @@ private:
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
 
-    void readSystemUserName(wstring& first, wstring& last);
+    wstring readSystemUserName();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
