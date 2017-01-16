@@ -74,8 +74,8 @@ protected:
     void refreshAboutVersion();
     void cmdMainPage(const QString&, const QString&) const;
     void cmdAppManager(int, void *);
+    virtual QString getSaveMessage();
 
-    QString m_saveDocMessage;
     CAscApplicationManager * m_pManager;
 
 private:

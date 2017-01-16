@@ -270,7 +270,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wparams.replace(wparams.find(L"%4"), 2, last_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 
-    m_saveDocMessage = tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -505,7 +504,7 @@ int CMainPanel::trySaveDocument(int index)
         m_pTabs->setCurrentIndex(index);
 
         mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
-        modal_res = mess.warning(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
+        modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
@@ -1279,4 +1278,9 @@ void CMainPanel::cmdAppManager(int cmd, void * data)
     CAscMenuEvent * pEvent = new CAscMenuEvent(cmd);
     pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
     m_pManager->Apply(pEvent);
+}
+
+QString CMainPanel::getSaveMessage()
+{
+    return tr("%1 is modified.<br>Do you want to keep changes?");
 }
