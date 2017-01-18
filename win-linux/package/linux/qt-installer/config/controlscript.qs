@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Ascensio System SIA, 2016
+ * Copyright (c) Ascensio System SIA, 2017
  *
  */
 

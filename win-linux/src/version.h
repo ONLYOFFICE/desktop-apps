@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -40,7 +40,7 @@
 #define VER_PRODUCTVERSION_STR      "4.2\0"
 
 #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
-#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2016\0"
+#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2017\0"
 #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
 #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"
