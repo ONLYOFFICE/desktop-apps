@@ -138,6 +138,19 @@
 
     window.ControllerRecent = ControllerRecent;
 
+    String.prototype.hashCode = function() {
+        var hash = 0, i, chr;
+        if (this.length === 0) return hash;
+
+        for (i = this.length; !(--i < 0);) {
+            chr   = this.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash  = hash & hash; // Convert to 32bit integer
+        }
+
+        return hash;
+    };
+
     utils.fn.extend(ControllerRecent.prototype, (function() {
         let collectionRecents, collectionRecovers;
         let ppmenu;
@@ -147,9 +160,12 @@
 
             var files = utils.fn.parseRecent(params);
             for (let item of files) {
-                collectionRecents.add( new FileModel(item) );
+                var model = new FileModel(item);
+                model.set('hash', item.path.hashCode());
 
-                this.check_list[item.id] = item.path;
+                collectionRecents.add(model);
+
+                this.check_list[model.get('hash')] = item.path;
             }
 
             if ( this.appready && Object.keys(this.check_list).length ) {
@@ -289,7 +305,7 @@
                         if ( fobjs ) {
                             for (let obj in fobjs) {
                                 let value = JSON.parse(fobjs[obj]);
-                                let model = collectionRecents.find('fileid', parseInt(obj));
+                                let model = collectionRecents.find('hash', parseInt(obj));
                                 if ( model ) {
                                     model.get('exist') != value && model.set('exist', value);
                                 }

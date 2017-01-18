@@ -130,12 +130,14 @@ function Model(attributes) {
     this.changed = new Event(this);
 };
 
-Model.prototype.set = function(key, value) {
+Model.prototype.set = function(key, value, opts) {
     this[key] = value;
 
     let args = {};
     args[key] = value;
-    this.changed.notify(args);
+
+    if ( !opts || opts.silent !== true )
+        this.changed.notify(args);
 };
 
 Model.prototype.get = function(key) {

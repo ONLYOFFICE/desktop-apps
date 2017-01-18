@@ -266,6 +266,8 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     m_pManager->InitAdditionalEditorParams(wparams);
+
+    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -761,16 +763,19 @@ void CMainPanel::onLocalFilesOpen(void * data)
 
 void CMainPanel::onLocalFilesCheck(QString json)
 {
-    return;
+    CExistanceController::check(json);
+}
 
-    CFileChecker * checker = new CFileChecker(json);
-    checker->start(QThread::LowPriority);
-//    checker->requestInterruption();
+void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
 
-    connect(checker, &CFileChecker::resultReady, [=](const QString& json){
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
         cmdMainPage("files:checked", Utils::encodeJson(json));
-    });
-    connect(checker, &CFileChecker::finished, checker, &QObject::deleteLater);
+    }
 }
 
 void CMainPanel::onLocalFileLocation(QString path)

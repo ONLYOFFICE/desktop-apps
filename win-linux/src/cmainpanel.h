@@ -139,6 +139,7 @@ public slots:
     void onPortalCreate();
 
     void onMainPageReady();
+    void onFileChecked(const QString&, int, bool);
 
 private:
     std::wstring    m_sDownloadName;
@@ -167,6 +168,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+
 public:
     WId GetHwndForKeyboard()
     {
