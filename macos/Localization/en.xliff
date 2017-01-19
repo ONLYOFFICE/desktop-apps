@@ -756,7 +756,7 @@
         <source>3.8.6</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2016 Novye Kommunikacionnye Tehnologii, ZAO. All rights reserved.</source>
+        <source>Copyright © 2017 Novye Kommunikacionnye Tehnologii, ZAO. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>
@@ -772,7 +772,7 @@
         <source>1.0</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>
@@ -788,7 +788,7 @@
         <source>3.8.7</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2016 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>

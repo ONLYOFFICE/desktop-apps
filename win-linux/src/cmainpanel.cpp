@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -259,18 +259,15 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     m_pButtonDownload->setVisible(false, false);
 
-    wstring first_name, last_name;
-    readSystemUserName(first_name, last_name);
-
-    QString params = QString("lang=%1&userfname=%3&userlname=%4&location=%2")
+    QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(g_lang, Utils::systemLocationCode());
-
     wstring wparams = params.toStdWString();
-    wparams.replace(wparams.find(L"%3"), 2, first_name);
-    wparams.replace(wparams.find(L"%4"), 2, last_name);
+    wstring user_name = readSystemUserName();
+
+    wparams.replace(wparams.find(L"%3"), 2, user_name);
     m_pManager->InitAdditionalEditorParams(wparams);
 
-    m_saveDocMessage = tr("%1 is modified.<br>Do you want to keep changes?");
+    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -505,7 +502,7 @@ int CMainPanel::trySaveDocument(int index)
         m_pTabs->setCurrentIndex(index);
 
         mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
-        modal_res = mess.warning(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
+        modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
@@ -766,16 +763,19 @@ void CMainPanel::onLocalFilesOpen(void * data)
 
 void CMainPanel::onLocalFilesCheck(QString json)
 {
-    return;
+    CExistanceController::check(json);
+}
 
-    CFileChecker * checker = new CFileChecker(json);
-    checker->start(QThread::LowPriority);
-//    checker->requestInterruption();
+void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
 
-    connect(checker, &CFileChecker::resultReady, [=](const QString& json){
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
         cmdMainPage("files:checked", Utils::encodeJson(json));
-    });
-    connect(checker, &CFileChecker::finished, checker, &QObject::deleteLater);
+    }
 }
 
 void CMainPanel::onLocalFileLocation(QString path)
@@ -1196,34 +1196,25 @@ void CMainPanel::onPortalCreate()
     });
 }
 
-void CMainPanel::readSystemUserName(wstring& first, wstring& last)
+wstring CMainPanel::readSystemUserName()
 {
 #ifdef Q_OS_WIN
     WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
-    wstring _full_name = GetUserName(_env_name, &_size) ?
+    return GetUserName(_env_name, &_size) ?
                             wstring(_env_name) : L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
-    if (_env_name.isEmpty())
+    if ( _env_name.isEmpty() ) {
         _env_name = qgetenv("USERNAME");
 
-    if (_env_name.isEmpty())
-        _env_name = "Unknown.User";
+        if (_env_name.isEmpty())
+            _env_name = "Unknown.User";
+    }
 
-    wstring _full_name = _env_name.toStdWString();
+    return _env_name.toStdWString();
 #endif
-//    std::wregex _rexp(QString(reUserName).toStdWString());
-//    std::wsmatch _res;
-//    if (std::regex_search(_full_name, _res, _rexp)) {
-//        first = _res.str(1),
-//        last = _res.str(2);
-//    }
-
-    auto i = _full_name.find('.');
-    i == wstring::npos ? first.assign(_full_name) :
-                (first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i)));
 }
 
 void CMainPanel::onMainPageReady()
@@ -1279,4 +1270,9 @@ void CMainPanel::cmdAppManager(int cmd, void * data)
     CAscMenuEvent * pEvent = new CAscMenuEvent(cmd);
     pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
     m_pManager->Apply(pEvent);
+}
+
+QString CMainPanel::getSaveMessage()
+{
+    return tr("%1 is modified.<br>Do you want to keep changes?");
 }

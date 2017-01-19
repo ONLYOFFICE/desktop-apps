@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -74,8 +74,8 @@ protected:
     void refreshAboutVersion();
     void cmdMainPage(const QString&, const QString&) const;
     void cmdAppManager(int, void *);
+    virtual QString getSaveMessage();
 
-    QString m_saveDocMessage;
     CAscApplicationManager * m_pManager;
 
 private:
@@ -90,7 +90,7 @@ private:
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
 
-    void readSystemUserName(wstring& first, wstring& last);
+    wstring readSystemUserName();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
@@ -139,6 +139,7 @@ public slots:
     void onPortalCreate();
 
     void onMainPageReady();
+    void onFileChecked(const QString&, int, bool);
 
 private:
     std::wstring    m_sDownloadName;
@@ -167,6 +168,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+
 public:
     WId GetHwndForKeyboard()
     {

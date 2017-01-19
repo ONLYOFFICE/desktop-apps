@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -130,12 +130,14 @@ function Model(attributes) {
     this.changed = new Event(this);
 };
 
-Model.prototype.set = function(key, value) {
+Model.prototype.set = function(key, value, opts) {
     this[key] = value;
 
     let args = {};
     args[key] = value;
-    this.changed.notify(args);
+
+    if ( !opts || opts.silent !== true )
+        this.changed.notify(args);
 };
 
 Model.prototype.get = function(key) {

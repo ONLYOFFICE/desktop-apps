@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -71,7 +71,7 @@ extern QString g_lang;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
-{        
+{
     windowHandle = hWnd;
     m_pManager = pManager;
 
@@ -230,11 +230,8 @@ void CWinPanel::slot_mainPageReady()
     CSplash::hideSplash();
 
 #ifdef _UPDMODULE
-  #if defined(_AVS)
-    QString _prod_name = APP_TITLE;
-  #else
-    QString _prod_name = VER_PRODUCTNAME_STR;
-  #endif
+    QString _prod_name = WINDOW_NAME;
+    qDebug() << "update's window title: " << _prod_name;
 
     GET_REGISTRY_USER(_user)
     if (!_user.contains("CheckForUpdates")) {
