@@ -310,6 +310,62 @@ var sp = {
     ,adsDescr2: 'Olvídese del envío de archivos para ser revisados por correo electrónico. Conceda un acceso rápido al documento sin salir de su editor de escritorio. Permita que otros sugieran correcciones. Acepte o rechace cambios.'
 };
 
+var pt_BR = {
+    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
+    welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
+    btnConnect: 'Connect',
+    textHavePortal: 'Already use ONLYOFFICE?',
+    btnCreatePortal: 'Try it now for free',
+    btnAddPortal: 'Add Portal',
+    btnLogin: 'Login',
+    btnBrowse: 'Browse',
+    portalEmptyTitle: 'Co-edit documents in real time',
+    portalEmptyDescr: 'Work on the same document simultaneously with your teammates. Choose between Fast or Strict real-time co-editing, chat in your document or add comments to it.',
+    portalListTitle: 'Connected portals',
+    textNoFiles: 'There are no files',
+    listRecoveryTitle:'Recover files',
+    listRecentFileTitle:'Recent files',
+    listRecentDirTitle:'Recent folders',
+    menuFileOpen: 'Open',
+    menuFileExplore: 'Show in folder',
+    menuRemoveModel: 'Remove from list',
+    menuClear: 'Clear',
+    menuLogout: 'Logout',
+    textMyComputer: 'My Computer',
+    linkForgotPass: 'Forgot password?',
+    linkCreatePortal: 'Create Portal',
+    loginTitle: 'Connect to portal',
+    errLogin: 'Wrong portal name, email or password',
+    errLoginPortal: 'Check the portal name',
+    errLoginEmail: 'Check the email address',
+    errLoginServer: 'Incorrect server response during login',
+    errLoginAuth: 'Error on user information query',
+    errLoginPass: 'Check the password',
+    pshPortal: 'portal',
+    pshEmail: 'email',
+    pshPass: 'password',
+    newDoc: 'DOCUMENT',
+    newXlsx: 'SPREADSHEET',
+    newPptx: 'PRESENTATION',
+    actCreateNew: 'Create new',
+    actRecentFiles: 'Recent files',
+    actOpenLocal: 'Open local file',
+    actConnectTo: 'Share & collaborate',
+    actActivate: 'Activate',
+    actAbout: 'About',
+    licKeyHolder: 'input activation key',
+    btnActivate: 'Activate',
+    licGetLicense: 'Get license now',
+    licPanelTitle: 'Enter product key',
+    licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
+    ,adsToolItem1: 'Version history'
+    ,adsTitle1: 'View or restore previous versions of your document '
+    ,adsDescr1: 'Go back in time: view previous versions of your document, track the smallest changes and their authors. Restore an older version of your file if you need to.'
+    ,adsToolItem2: 'Collaborative review'
+    ,adsTitle2: 'Let your teammates review documents in the cloud'
+    ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
+}
+
 +function applyLocale(lang) {
     (!lang || !window[lang]) && (lang = 'en');
     utils.Lang = window[lang];
