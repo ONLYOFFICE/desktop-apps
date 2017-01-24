@@ -101,6 +101,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pManager = manager;
 
     setObjectName("mainPanel");
+    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -266,8 +267,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     m_pManager->InitAdditionalEditorParams(wparams);
-
-    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -1135,6 +1134,7 @@ void CMainPanel::onKeyDown(void * eventData)
 
     int key = pData->get_KeyCode();
     bool _is_ctrl = pData->get_IsCtrl();
+    bool _is_shift = pData->get_IsShift();
 
     RELEASEINTERFACE(pData)
 
@@ -1144,7 +1144,32 @@ void CMainPanel::onKeyDown(void * eventData)
             m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
         }
         break;
+    case VK_TAB:
+        if (m_pTabs->count()) {
+            if ( _is_ctrl ) {
+                int _new_index = 0;
+
+                if ( _is_shift ) {
+                    if ( m_pTabs->isActive() )
+                        _new_index = m_pTabs->currentIndex() - 1; else
+                        _new_index = m_pTabs->count() - 1;
+                } else {
+                    if ( m_pTabs->isActive() )
+                        _new_index =  m_pTabs->currentIndex() + 1;
+                }
+
+                if ( _new_index < 0 || !(_new_index < m_pTabs->count()) )
+                    toggleButtonMain(true);
+                else {
+                    toggleButtonMain(false);
+                    m_pTabs->setCurrentIndex( _new_index );
+                }
+            }
+        }
+        break;
     }
+
+    qDebug() << "key down: " << key;
 }
 
 void CMainPanel::onLink(QString url)
