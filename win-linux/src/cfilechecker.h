@@ -3,6 +3,7 @@
 
 #include <set>
 #include <QThread>
+#include <QMutex>
 
 class CFileInspector : public QThread
 {
