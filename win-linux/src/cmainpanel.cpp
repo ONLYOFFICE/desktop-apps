@@ -56,6 +56,7 @@
 #include "version.h"
 #include "cmessage.h"
 #include "cfilechecker.h"
+#include "clangater.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -262,7 +263,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pButtonDownload->setVisible(false, false);
 
     QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(g_lang, Utils::systemLocationCode());
+                        .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
     wstring user_name = readSystemUserName();
 
@@ -900,9 +901,7 @@ void CMainPanel::loadStartPage()
 # endif
 #endif
 
-    QString additional = "?waitingloader=yes";
-    if (!g_lang.isEmpty())
-        additional.append("&lang=" + g_lang);
+    QString additional = "?waitingloader=yes&lang=" + CLangater::getLanguageName();
 
     QString _portal = _reg_user.value("portal").value<QString>();
     if (!_portal.isEmpty()) {

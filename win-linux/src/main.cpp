@@ -59,8 +59,9 @@
 #include "chelp.h"
 #include "common/File.h"
 
+#include <clangater.h>
+
 BYTE g_dpi_ratio = 1;
-QString g_lang;
 
 int main( int argc, char *argv[] )
 {
@@ -174,30 +175,10 @@ int main( int argc, char *argv[] )
         delete application_cef;
         delete pApplicationManager;
         return 0;
-    } else
-    if (!((_arg_i = app.arguments().indexOf(QRegularExpression(reCmdLang), 1)) < 0)) {
-        g_lang = app.arguments().at(_arg_i).right(2);
     }
 
-    if (!g_lang.size())
-        g_lang = reg_user.value("locale").value<QString>();
+    CLangater::init();
 
-#ifdef __linux
-    if (!g_lang.size()) {
-        g_lang = QLocale::system().name().left(2);
-        if (!QFile(":/i18n/langs/" + g_lang + ".qm").exists()) g_lang = "en";
-    }
-#else
-    // read setup language and set application locale
-    !g_lang.size() &&
-        !((g_lang = reg_system.value("locale").value<QString>()).size()) && (g_lang = "en").size();
-#endif
-
-    QTranslator tr;
-    if (g_lang.length()) {
-        tr.load(g_lang, ":/i18n/langs");
-        app.installTranslator(&tr);
-    }
     /* applying languages finished */
 
 #ifdef _WIN32

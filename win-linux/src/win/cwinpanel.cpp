@@ -101,16 +101,11 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 //    m_pManager->SetEventListener(this);
 
     panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
-    parseInputArgs(qApp->arguments());
+//    parseInputArgs(qApp->arguments());
 }
 
 void CWinPanel::parseInputArgs(const QStringList& args)
 {
-    int _arg_i;
-    if (!(_arg_i = args.indexOf(QRegExp(reCmdKeepLang)) < 0)) {
-        GET_REGISTRY_USER(_reg_user);
-        _reg_user.setValue("locale", args.at(_arg_i).right(2));
-    }
 }
 
 bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)
