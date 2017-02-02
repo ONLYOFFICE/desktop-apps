@@ -53,7 +53,6 @@
 HWND gWinId = 0;
 HWND gTopWinId;
 extern byte g_dpi_ratio;
-extern QString g_lang;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 

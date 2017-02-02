@@ -80,7 +80,6 @@ using namespace NSEditorApi;
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
 
 extern BYTE     g_dpi_ratio;
-extern QString  g_lang;
 
 struct printdata {
 public:

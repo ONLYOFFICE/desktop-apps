@@ -55,6 +55,7 @@
 #include "../defines.h"
 #include "../utils.h"
 #include "../csplash.h"
+#include "../clangater.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -67,7 +68,6 @@
 
 
 extern byte g_dpi_ratio;
-extern QString g_lang;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
@@ -238,7 +238,7 @@ void CWinPanel::slot_mainPageReady()
                                     QString(VER_FILEVERSION_STR).toStdWString().c_str());
     win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
     win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
-    win_sparkle_set_lang(g_lang.toLatin1());
+    win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
     win_sparkle_init();
 #endif
 }

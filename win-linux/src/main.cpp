@@ -38,6 +38,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "clangater.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -58,8 +59,6 @@
 #include "utils.h"
 #include "chelp.h"
 #include "common/File.h"
-
-#include <clangater.h>
 
 BYTE g_dpi_ratio = 1;
 

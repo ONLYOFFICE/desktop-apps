@@ -52,7 +52,6 @@
 #define MSG_ICON_HEIGHT 35
 
 extern BYTE g_dpi_ratio;
-//extern QString g_lang;
 
 class CMessageEventsFilter : public QObject {
 public:
