@@ -1168,8 +1168,6 @@ void CMainPanel::onKeyDown(void * eventData)
         }
         break;
     }
-
-    qDebug() << "key down: " << key;
 }
 
 void CMainPanel::onLink(QString url)

@@ -229,6 +229,9 @@ SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondary
 //    serverName.replace( QRegExp("[^\\w\\-. ]"), "" );
     QString serverName = "asc:desktop:editors";
 
+//    QSystemSemaphore _semaphore("asc:desktop:editors", 1);
+//    _semaphore.acquire();
+
     // Guarantee thread safe behaviour with a shared memory block. Also by
     // attaching to it and deleting it we make sure that the memory i deleted
     // even if the process had crashed
@@ -268,6 +271,8 @@ SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondary
             d->memory->unlock();
         }
     }
+
+//    _semaphore.release();
 
     d->notifyPrimary();
     delete d;

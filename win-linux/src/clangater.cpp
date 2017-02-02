@@ -54,6 +54,7 @@ CLangater * CLangater::getInstance()
 void CLangater::init()
 {
     GET_REGISTRY_USER(reg_user)
+    GET_REGISTRY_SYSTEM(reg_system)
 
     QString _lang,
             _lang_path = ":/i18n/langs/",
@@ -88,8 +89,8 @@ void CLangater::init()
     }
 #else
     // read setup language and set application locale
-    !g_lang.size() &&
-        !((g_lang = reg_system.value("locale").value<QString>()).size()) && (g_lang = "en").size();
+    _lang.isEmpty() &&
+        !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = "en").size();
 #endif
 
     if ( !QFile(_lang_path + _lang + ".qm").exists() ) {
