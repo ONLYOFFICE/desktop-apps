@@ -73,55 +73,46 @@ window.LoginDlg = function() {
     var STATUS_NO_CONNECTION = -255;
     var PROD_ID = 4;
 
-    function checkResourceExists(url, callback) {
-        var reader = new XMLHttpRequest();
-        reader.cnt = 50;
-        // reader.timout = 15000;
-        // reader.onreadystatechange = function() {
-        reader.onload = function() {
-            var out_res = undefined;
+    function checkExistance(url) {
+        return new Promise((resolve, reject) => {
+            let _xhttp = new XMLHttpRequest();
+            _xhttp.cnt = 50;
 
-            if (reader.readyState != 4) { return; }
+            _xhttp.onload = () => {
+                clearTimeout(_abort_timer);
 
-            clearTimeout(tId);
-            switch (reader.status) {
-            case 0: case 401:
-            case 200: out_res = STATUS_EXIST; break;
-            case 404: out_res = STATUS_NOT_EXIST; break;
-            default: out_res = STATUS_UNKNOWN; break;
-            }
+                switch (_xhttp.status) {
+                case 0: case 401:
+                case 200: resolve(STATUS_EXIST); break;
+                case 404: resolve(STATUS_NOT_EXIST); break;
+                default: reject(STATUS_UNKNOWN, _xhttp.statusText); break;
+                }
+            };
 
-            reader = undefined;
-            callback && callback(out_res);
-        };
+            // Handle network errors
+            _xhttp.onerror = () => {
+                // reject(Error("Network Error"));
+                if ( --_xhttp.cnt ) setTimeout(_dorequest, 50);
+                else {
+                    clearTimeout(_abort_timer);
+                    _abort();
+                }
+            };
 
-        // reader.ontimeout = function() {
-        //     callback && callback(STATUS_NO_CONNECTION);
-        // };
+            let _abort = (reason) => {
+                _xhttp.abort();
+                _xhttp = undefined;
 
-        let _abort = () => {
-            reader.abort();
-            reader = undefined;
-            callback && callback(STATUS_NOT_EXIST);
-        };
+                resolve(reason || STATUS_NOT_EXIST);
+            };
 
-        var tId = setTimeout(_abort, 20000);
-        
-        reader.onerror = function(e) {
-            if (--reader.cnt)
-                setTimeout(_doload, 50);
-            else {
-                clearTimeout(tId);
-                _abort();
-            }
-        };
+            let _dorequest = () => {
+                _xhttp && (_xhttp.open('GET', url, true), _xhttp.send(null));
+            };
 
-        function _doload() {
-            reader &&
-                (reader.open('get', url, true), reader.send(null));
-        };
-
-        _doload();
+            let _abort_timer = setTimeout(_abort, 15000);
+            _dorequest();
+        });
     }
 
     function sendData(url, data, target) {
@@ -213,13 +204,16 @@ window.LoginDlg = function() {
         };
 
         disableDialog(true);
-        // setLoaderVisible(true);
-        checkResourceExists(protocol + check_url, (r)=>{
-            if (r == 0) {
-                protocol = protocol == "https://" ? "http://" : "https://";
-                checkResourceExists(protocol+check_url, chkcallback);
-            } else chkcallback(r);
-        });
+        checkExistance(protocol + check_url)
+            .then(result => {
+                if ( result == 0) {
+                    protocol = protocol == "https://" ? "http://" : "https://";
+                    return checkExistance(protocol + check_url);
+                }
+
+                return result * 1;
+            }, chkcallback)
+            .then(chkcallback, chkcallback);
     };
 
     function showLoginError(error, el) {
@@ -262,8 +256,28 @@ window.LoginDlg = function() {
                         showLoginError('Two-factor authentication isn\'t supported yet.');
                     } else
                     if (!obj.response.sms) {
-                        clientCheckin(obj.response.token);
-                        getUserInfo(obj.response.token);
+                        Promise.all(
+                            [ clientCheckin(protocol + portal, obj.response.token),
+                                getUserInfo(protocol + portal, obj.response.token) ])
+                            .then( results => {
+                                        let info = results[1];
+                                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", obj.response.token);
+                                        window.on_set_cookie = ()=>{
+                                            if ( !!events.success ) {
+                                                let auth_info = {
+                                                    portal: protocol + portal,
+                                                    user: info.displayName,
+                                                    email: info.email
+                                                };
+                                                events.success(auth_info);
+                                            }
+
+                                            window.on_set_cookie = undefined;
+                                            doClose(1);
+                                        }
+                                },
+                                error => showLoginError(utils.Lang.errLoginAuth);
+                            );
                     }
                 } else {
                     console.log('server error: wrong json');
@@ -280,63 +294,54 @@ window.LoginDlg = function() {
         }
     };
 
-    function getUserInfo(token) {
-        var _url_ = protocol + portal + "/api/2.0/people/@self.json";
+    function getUserInfo(url, token) {
+        return new Promise ((resolve, reject)=>{
+            var _url = url + "/api/2.0/people/@self.json";
 
-        var opts = {
-            url: _url_,
-            crossOrigin: true,
-            crossDomain: true,
-            headers: {'Authorization': token},
-            beforeSend: function (xhr) {
-                // xhr.setRequestHeader ("Access-Control-Allow-Origin", "*");
-            },
-            complete: function(e, status) {
-                if (status == 'success') {
-                    var obj = JSON.parse(e.responseText);
-                    if (obj.statusCode == 200) {
-                        // localStorage.setItem('ascportal', portal);
-
-                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", token);
-                        window.on_set_cookie = ()=>{
-                            if (!!events.success) {
-                                let auth_info = {
-                                    portal: protocol + portal,
-                                    user: obj.response.displayName,
-                                    email: obj.response.email
-                                };
-                                events.success(auth_info);
-                            }
-
-                            window.on_set_cookie = undefined;
-                            doClose(1);
-                        };
+            var opts = {
+                url: _url,
+                crossOrigin: true,
+                crossDomain: true,
+                headers: {'Authorization': token},
+                beforeSend: function (xhr) {
+                    // xhr.setRequestHeader ("Access-Control-Allow-Origin", "*");
+                },
+                complete: function(e, status) {
+                    if (status == 'success') {
+                        var obj = JSON.parse(e.responseText);
+                        if (obj.statusCode == 200) {
+                            resolve(obj.response);
+                        } else {
+                            console.log('authentication error: ' + obj.statusCode);
+                            reject(obj.statusCode);
+                        }
                     } else {
-                        console.log('authentication error: ' + obj.statusCode);
-                        showLoginError(utils.Lang.errLoginAuth);
+                        console.log('authentication error: ' + status);
+                        reject(status);
                     }
-                } else {
-                    console.log('authentication error: ' + status);
-                    showLoginError(utils.Lang.errLoginAuth);
-                    // setLoaderVisible(false);
+                },
+                error: function(e, status, error) {
+                    console.log('server error: ' + status + ', ' + error);
+                    rejected(status);
                 }
-            },
-            error: function(e, status, error) {
-                console.log('server error: ' + status + ', ' + error);
-                showLoginError(utils.Lang.errLoginAuth);
-                // setLoaderVisible(false);
-            }
-        };
+            };
 
-        $.ajax(opts);
+            $.ajax(opts);
+        });
     };
 
-    function clientCheckin(token) {
-        $.ajax({
-            url: protocol + portal + "/api/2.0/portal/mobile/registration", 
-            method: 'post',
-            headers: {'Authorization': token},
-            data: {type: PROD_ID}
+    function clientCheckin(url, token) {
+        return new Promise ((resolve, reject) => {
+            $.ajax({
+                url: url + "/api/2.0/portal/mobile/registration",
+                method: 'post',
+                headers: {'Authorization': token},
+                data: {type: PROD_ID}
+                ,complete: function(e, status) {}
+                ,error: function(e, status, error) {}
+            });
+
+            resolve();
         });
     };
 
