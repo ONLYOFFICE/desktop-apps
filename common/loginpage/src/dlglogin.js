@@ -276,7 +276,7 @@ window.LoginDlg = function() {
                                             doClose(1);
                                         }
                                 },
-                                error => showLoginError(utils.Lang.errLoginAuth);
+                                error => showLoginError(utils.Lang.errLoginAuth)
                             );
                     }
                 } else {
