@@ -68,18 +68,13 @@ int main( int argc, char *argv[] )
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
 
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
-        std::wstring sAppData(L"");
 
 #ifdef _WIN32
-        WCHAR szPath[MAX_PATH];
-        if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
-            sAppData = std::wstring(szPath);
-            std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-            sAppData.append(QString(APP_DATA_PATH).toStdWString());
-        }
+        QString common_data_path = Utils::getAppCommonPath();
 
-        if (sAppData.size() > 0) {
-            manager->m_oSettings.SetUserDataPath(sAppData);
+        if ( !common_data_path.isEmpty() ) {
+            manager->m_oSettings.SetUserDataPath(common_data_path.toStdWString());
+
             Utils::makepath(user_data_path.append("/data"));
             manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
             manager->m_oSettings.recover_path = (user_data_path + "/recover").toStdWString();
@@ -203,7 +198,7 @@ int main( int argc, char *argv[] )
 
         if (clean) {
             reg_user.setValue("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
-            QDir(user_data_path + "/data/fonts").removeRecursively();
+            QDir(user_data_path + "/fonts").removeRecursively();
         }
     }
 

@@ -38,6 +38,11 @@ QString Utils::getUserPath()
     return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
 }
 
+QString Utils::getAppCommonPath()
+{
+    return getUserPath() + APP_DATA_PATH;
+}
+
 QIcon Utils::appIcon()
 {
     return QIcon(":/app.ico");

@@ -44,6 +44,7 @@ public:
     static QString lastPath(int type);
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
+    static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
     static void openFileLocation(const QString&);
