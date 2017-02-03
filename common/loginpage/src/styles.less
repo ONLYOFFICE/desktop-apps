@@ -265,6 +265,8 @@ li.menu-item {
     position: relative;
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
+        background-color: #fff;
+        transition: background-color 300ms ease-out;
 
         &:hover {
             background-color: @color-gray-2;
@@ -435,11 +437,10 @@ li.menu-item {
     &.list tr {
         cursor: pointer;
         background-color: #fff;
-        transition: background-color 300ms;
+        transition: background-color 300ms ease-out;
 
         &:hover {
             background-color: @color-gray-2;
-            /*background-color: #f00;*/
         }
     }
 
