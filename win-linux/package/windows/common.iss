@@ -300,7 +300,7 @@ Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
 Source: ..\..\build\Release\release\{#NAME_EXE_OUT};            DestDir: {app};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
-Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {localappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; DestName: LICENSE.htm;
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
@@ -313,12 +313,12 @@ Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\e
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts;
-Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts;
+Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {localappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
 ;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;           DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-BoldItalic.ttf;                DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-Italic.ttf;                    DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
