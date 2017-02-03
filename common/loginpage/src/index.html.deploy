@@ -229,7 +229,6 @@
                 <div class="loader-page-text">Loading...</div>
             </div>
         </div>
-        <div class="modal-mask"></div>
         <div id="placeholder">
             <div class="main-column col-left tool-menu">
               <div class="tool-quick-menu">

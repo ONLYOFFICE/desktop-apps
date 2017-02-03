@@ -34,8 +34,8 @@
 window.LoginDlg = function() {
     "use strict";
 
-    var $el, $mask;
-    var _tpl = '<div class="dlg dlg-login">' +
+    var $el;
+    var _tpl = '<dialog class="dlg dlg-login">' +
                   '<div class="title">'+
                     '<label class="caption">'+utils.Lang.loginTitle+'</label>'+
                     '<span class="tool close img-el"></span>'+
@@ -59,7 +59,7 @@ window.LoginDlg = function() {
                       '<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">' + utils.Lang.linkCreatePortal + '</a>'+
                     '</div>'+
                   '</div>'+
-                '</div>';
+                '</dialog>';
 
     var protocol = 'https://',
         protarr = ['https://', 'http://'],
@@ -138,7 +138,7 @@ window.LoginDlg = function() {
     };
 
     function doClose(code) {
-        $mask.hide();
+        $el.get(0).close();
         $el.remove();
 
         if (events.close) {
@@ -379,7 +379,6 @@ window.LoginDlg = function() {
     return {
         show: function(portal, email) {
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
-            $mask = $('.modal-mask');
 
             let $p = $el.find('#auth-portal'),
                 $e = $el.find('#auth-email'),
@@ -402,7 +401,8 @@ window.LoginDlg = function() {
             $el.find('#link-restore').click(onRestorePass);
 
             bindEvents();
-            $mask.show();
+            $el.get(0).showModal();
+            $el.addClass('scaled');
 
             $p.val().length > 0 ? 
                 $e.val().length > 0 ? 
