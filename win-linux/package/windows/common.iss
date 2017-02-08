@@ -280,11 +280,59 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
+procedure DirectoryCopy(SourcePath, DestPath: string);
+var
+  FindRec: TFindRec;
+  SourceFilePath: string;
+  DestFilePath: string;
+begin
+  if FindFirst(SourcePath + '\*', FindRec) then
+  begin
+    try
+      repeat
+        if (FindRec.Name <> '.') and (FindRec.Name <> '..') then
+        begin
+          SourceFilePath := SourcePath + '\' + FindRec.Name;
+          DestFilePath := DestPath + '\' + FindRec.Name;
+          if FindRec.Attributes and FILE_ATTRIBUTE_DIRECTORY = 0 then
+          begin
+            if not FileCopy(SourceFilePath, DestFilePath, False) then
+              Log(Format('Failed to copy %s to %s', [SourceFilePath, DestFilePath]));
+          end else
+          begin
+            if DirExists(DestFilePath) or CreateDir(DestFilePath) then
+            begin
+              DirectoryCopy(SourceFilePath, DestFilePath);
+            end else
+              Log(Format('Failed to create %s', [DestFilePath]));
+          end;
+        end;
+      until not FindNext(FindRec);
+    finally
+      FindClose(FindRec);
+    end;
+  end else
+  begin
+    Log(Format('Failed to list %s', [SourcePath]));
+  end;
+end;
+
 procedure CurStepChanged(CurStep: TSetupStep);
+var
+  commonCachePath, userCachePath: string;
 begin
   if CurStep = ssPostInstall then 
   begin
     DoPostInstall();
+
+    // migrate from prev version when user's data saved to system common path
+    commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
+    userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
+    if DirExists(commonCachePath) then
+    begin
+      ForceDirectories(userCachePath);
+      DirectoryCopy(commonCachePath, userCachePath);
+    end
   end;
 end;
 
