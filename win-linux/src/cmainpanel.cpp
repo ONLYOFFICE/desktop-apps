@@ -892,12 +892,7 @@ void CMainPanel::loadStartPage()
 #if defined(QT_DEBUG)
     QString data_path = _reg_user.value("startpage").value<QString>();
 #else
-# ifdef _WIN32
-    QString data_path = QString().fromStdWString(m_pManager->m_oSettings.app_data_path) + "/webdata/local/index.html";
-//    data_path = "ascdesktop://login.html";
-# elif __linux__
     QString data_path = qApp->applicationDirPath() + "/index.html";
-# endif
 #endif
 
     QString additional = "?waitingloader=yes&lang=" + CLangater::getLanguageName();
