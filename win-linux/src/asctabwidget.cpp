@@ -475,6 +475,20 @@ int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
     return -1;
 }
 
+int CAscTabWidget::tabIndexByUrl(QString url)
+{
+    CAscTabData * doc;
+    wstring _ws_url(url.toStdWString());
+    for (int i(count()); !(--i < 0);) {
+        doc = VPtr<CAscTabData>::asPtr(tabBar()->tabData(i));
+
+        if (doc && doc->url() == _ws_url)
+            return i;
+    }
+
+    return -1;
+}
+
 void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
 {
     int tabIndex;
@@ -497,7 +511,7 @@ void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
 int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
 {
     QString name = QFileInfo(opts.url).fileName();
-    int tabIndex = tabIndexByTitle(name, cvwtEditor);
+    int tabIndex = tabIndexByUrl(opts.url);
 
     if (tabIndex < 0){
         opts.name = name;

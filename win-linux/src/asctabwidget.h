@@ -148,6 +148,7 @@ public:
     int         tabIndexByView(QString);
     int         tabIndexByTitle(QString t, CefType vt);
     int         tabIndexByTitle(QString t, AscEditorType vt);
+    int         tabIndexByUrl(QString);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     bool        modifiedByIndex(int);
