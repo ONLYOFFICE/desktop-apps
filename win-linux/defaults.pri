@@ -106,6 +106,8 @@ linux-g++ {
 
 win32 {
     DEFINES += JAS_WIN_MSVC_BUILD WIN32
+    DEFINES += WIN32
+
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/win/mainwindow.h \

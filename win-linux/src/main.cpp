@@ -64,6 +64,10 @@ BYTE g_dpi_ratio = 1;
 
 int main( int argc, char *argv[] )
 {
+#ifdef _WIN32
+    Core_SetProcessDpiAwareness();
+#endif
+
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
 
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
