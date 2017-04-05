@@ -9,6 +9,8 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array/>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-docx</string>
 			<key>CFBundleTypeName</key>
 			<string>Office Open XML Document</string>
 			<key>CFBundleTypeRole</key>
@@ -55,6 +57,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xlsx</string>
 			<key>CFBundleTypeName</key>
 			<string>Office Open XML Spreadsheet</string>
 			<key>CFBundleTypeRole</key>
@@ -65,6 +69,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-pptx</string>
 			<key>CFBundleTypeName</key>
 			<string>Office Open XML Presentation</string>
 			<key>CFBundleTypeRole</key>
@@ -203,6 +209,18 @@
 			<string>file-ppt</string>
 			<key>CFBundleTypeName</key>
 			<string>PowerPoint 97-2003 Presentation</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ppsx</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-ppsx</string>
+			<key>CFBundleTypeName</key>
+			<string>PowerPoint Slide Show</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
