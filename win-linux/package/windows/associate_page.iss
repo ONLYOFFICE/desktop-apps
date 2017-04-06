@@ -150,20 +150,20 @@ begin
 
   prefix := 'ASC.';
 
-  ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
+  ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '11';
   ExtensionRegistryInfo[1]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
-  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '12';
-  ExtensionRegistryInfo[3]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '12';
+  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '16';
+  ExtensionRegistryInfo[3]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '10';
   ExtensionRegistryInfo[4]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '1';
-  ExtensionRegistryInfo[5]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '1';
+  ExtensionRegistryInfo[5]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '9';
   ExtensionRegistryInfo[6]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '2';
-  ExtensionRegistryInfo[7]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '2';
-  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '8';
-  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '13';
+  ExtensionRegistryInfo[7]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '8';
+  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '12';
+  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '17';
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
-  ExtensionRegistryInfo[11] := prefix + 'Rtf:'                                                      + ':' + '9';
-  //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '10';
-  ExtensionRegistryInfo[12] := prefix + 'Csv:'                                                      + ':' + '14';
+  ExtensionRegistryInfo[11] := prefix + 'Rtf:'                                                      + ':' + '13';
+  //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '14';
+  ExtensionRegistryInfo[12] := prefix + 'Csv:'                                                      + ':' + '18';
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'                                                      + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'                                                     + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'                                                      + ':' + '6';
