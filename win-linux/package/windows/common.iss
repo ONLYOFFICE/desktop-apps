@@ -120,6 +120,11 @@ procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSyste
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
+function GetCommandlineParam(inParamName: String):String; forward;
+function StartsWith(SubStr, S: String) : Boolean; forward;
+function StringReplace(S, oldSubString, newSubString: String) : String; forward;
+
+
 //procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
 
@@ -320,6 +325,7 @@ end;
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
+  paramStore: string;
 begin
   if CurStep = ssPostInstall then 
   begin
@@ -334,6 +340,44 @@ begin
       DirectoryCopy(commonCachePath, userCachePath);
     end
   end;
+
+  paramStore := GetCommandlineParam('/store');
+  if Length(paramStore) > 0 then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'Store', paramStore);
+  end;
+end;
+
+function StartsWith(SubStr, S: String) : Boolean;
+begin
+   Result := Pos(SubStr, S) = 1;
+end;
+
+function StringReplace(S, oldSubString, newSubString: String) : String;
+var
+  stringCopy : String;
+begin
+  stringCopy := S; //Prevent modification to the original string
+  StringChange(stringCopy, oldSubString, newSubString);
+  Result := stringCopy;
+end;
+
+function GetCommandlineParam(inParamName: String) : String;
+var
+   paramNameAndValue: String;
+   i: Integer;
+begin
+   Result := '';
+
+   for i:= 1 to ParamCount do
+   begin
+     paramNameAndValue := Lowercase(ParamStr(i));
+     if StartsWith(inParamName, paramNameAndValue) then
+     begin
+       Result := StringReplace(paramNameAndValue, inParamName + ':', '');
+       break;
+     end;
+   end;
 end;
 
 

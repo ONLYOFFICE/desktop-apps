@@ -1205,7 +1205,13 @@ void CMainPanel::onPortalNew(QString in)
 
 void CMainPanel::onPortalCreate()
 {
-    int res = m_pTabs->newPortal(URL_SIGNUP, tr("Sign Up"));
+    QString _url = URL_SIGNUP;
+
+    GET_REGISTRY_SYSTEM(reg_system)
+    if ( reg_system.contains("Store") )
+            _url += "&store=" + reg_system.value("Store").toString();
+
+    int res = m_pTabs->newPortal(_url, tr("Sign Up"));
     if (res == 2) { RecalculatePlaces(); }
 
     QTimer::singleShot(200, this, [=]{
