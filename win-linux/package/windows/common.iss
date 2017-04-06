@@ -129,9 +129,14 @@ function StringReplace(S, oldSubString, newSubString: String) : String; forward;
 function GetHKLM: Integer; forward;
 
 procedure InitializeWizard();
+var
+  paramSkip: string;
 begin
-  if not WizardSilent then
-    InitializeAssociatePage();
+  if not WizardSilent then begin
+    paramSkip := GetCommandlineParam('/skip');
+    if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then
+      InitializeAssociatePage();
+  end;
 end;
 
 function InitializeSetup(): Boolean;
@@ -170,6 +175,8 @@ begin
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  regValue: string;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -178,6 +185,15 @@ begin
 //      DelTree('', True, True, True)
 //    end
     UnassociateExtensions();
+  end else
+  if CurUninstallStep = usPostUninstall then begin
+    RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
+
+    if regValue = 'full' then begin
+      DelTree(ExpandConstant('{localappdata}\ONLYOFFICE'), True, True, True);
+      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
+    end;
   end;
 end;
 
@@ -346,6 +362,12 @@ begin
   begin
     RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'Store', paramStore);
   end;
+
+  paramStore := GetCommandlineParam('/uninst');
+  if (Length(paramStore) > 0) and (paramStore = 'full') then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
+  end;
 end;
 
 function StartsWith(SubStr, S: String) : Boolean;
@@ -452,7 +474,6 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
-
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
