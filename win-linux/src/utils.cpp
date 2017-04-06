@@ -44,6 +44,7 @@
 #include <QUrl>
 #include <QJsonDocument>
 #include <QProcess>
+#include <QScreen>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -256,4 +257,38 @@ QString Utils::encodeJson(const QJsonObject& obj)
 QString Utils::encodeJson(const QString& s)
 {
     return QString(s).replace("\"", "\\\"");
+}
+
+unsigned Utils::getScreenDpiRatio(int scrnum)
+{
+    UINT _dpi_x = 0,
+         _dpi_y = 0;
+    double _k;
+
+    if ( Core_GetMonitorRawDpiByIndex(scrnum, &_dpi_x, &_dpi_y) == S_OK ) {
+        _k = _dpi_x / 96.f;
+    } else {
+        _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
+    }
+
+    return !(_k < 1.5) ? 2 : 1;
+}
+
+unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
+{
+#ifdef __linux
+    return 1;
+#else
+    UINT _dpi_x = 0,
+         _dpi_y = 0;
+    double _k;
+
+    if ( Core_GetMonitorRawDpi((HWND)hwnd, &_dpi_x, &_dpi_y) == S_OK ) {
+        _k = _dpi_x;
+    } else {
+        _k = QApplication::primaryScreen()->logicalDotsPerInch();
+    }
+
+    return _k / 96.f < 1.5 ? 1 : 2;
+#endif
 }

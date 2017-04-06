@@ -49,6 +49,8 @@ public:
     static void openUrl(const QString&);
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
+    static unsigned getScreenDpiRatio(int);
+    static unsigned getScreenDpiRatioByHWND(int);
 
     static bool makepath(const QString&);
 

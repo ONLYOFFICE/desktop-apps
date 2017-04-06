@@ -341,6 +341,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_SIZE:
         if (window->m_pWinPanel) {
+            g_dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
             } else {

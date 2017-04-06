@@ -35,6 +35,7 @@
 #include <QTranslator>
 #include <QStandardPaths>
 #include <QLibraryInfo>
+#include <QDesktopWidget>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
@@ -135,6 +136,9 @@ int main( int argc, char *argv[] )
     application_cef->Init_CEF(pApplicationManager, argc, argv);
     /* ********************** */
 
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+
 #ifdef _WIN32
     if (hMutex == NULL) {
         HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
@@ -152,12 +156,17 @@ int main( int argc, char *argv[] )
         }
     }
 
-    g_dpi_ratio = !(app.primaryScreen()->logicalDotsPerInch() / 96.f < 1.5) ? 2 : 1;
+    int _scr_num = QApplication::desktop()->primaryScreen();
+    if (reg_user.contains("position")) {
+        _scr_num = QApplication::desktop()->screenNumber(
+                            reg_user.value("position").toRect().topLeft() );
+    }
+
+    g_dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
 #else
     g_dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
-    GET_REGISTRY_SYSTEM(reg_system)
-    GET_REGISTRY_USER(reg_user)
+
     reg_user.setFallbacksEnabled(false);
 
     /* read lang fom different places
