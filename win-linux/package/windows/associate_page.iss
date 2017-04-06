@@ -151,13 +151,13 @@ begin
   prefix := 'ASC.';
 
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '11';
-  ExtensionRegistryInfo[1]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
+  ExtensionRegistryInfo[1]  := prefix + 'Document.12:'  + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
   ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '16';
-  ExtensionRegistryInfo[3]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '10';
+  ExtensionRegistryInfo[3]  := prefix + 'Sheet.12:'     + ExpandConstant('{cm:extMSExcel}')         + ':' + '10';
   ExtensionRegistryInfo[4]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '1';
-  ExtensionRegistryInfo[5]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '9';
+  ExtensionRegistryInfo[5]  := prefix + 'Show.12:'      + ExpandConstant('{cm:extMSPresentation}')  + ':' + '9';
   ExtensionRegistryInfo[6]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '2';
-  ExtensionRegistryInfo[7]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '8';
+  ExtensionRegistryInfo[7]  := prefix + 'SlideShow.12:' + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '8';
   ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '12';
   ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '17';
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
