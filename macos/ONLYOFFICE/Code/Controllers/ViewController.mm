@@ -742,7 +742,7 @@
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
         openPanel.allowedFileTypes = filter;
-        openPanel.directoryURL = [NSURL URLWithString:directory];
+        openPanel.directoryURL = [NSURL fileURLWithPath:directory];
 
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
@@ -775,7 +775,7 @@
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
         openPanel.allowedFileTypes = [ASCConstants images];
-        openPanel.directoryURL = [NSURL URLWithString:directory];
+        openPanel.directoryURL = [NSURL fileURLWithPath:directory];
         
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
