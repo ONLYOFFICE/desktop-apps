@@ -341,7 +341,17 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_SIZE:
         if (window->m_pWinPanel) {
-            g_dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            unsigned dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            if ( dpi_ratio != g_dpi_ratio ) {
+                QByteArray css(Utils::getAppStylesheets(dpi_ratio));
+
+                if ( !css.isEmpty() ) {
+                    g_dpi_ratio = dpi_ratio;
+
+                    qApp->setStyleSheet(css);
+                    window->m_pWinPanel->updatePanelStylesheets();
+                }
+            }
 
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);

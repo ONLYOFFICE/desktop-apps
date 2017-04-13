@@ -58,6 +58,7 @@ public:
     void applyWindowState(Qt::WindowState);
     void doClose();
     void parseInputArgs(const QStringList& in);
+    void updatePanelStylesheets();
 private:
     HWND windowHandle;
 

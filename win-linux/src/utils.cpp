@@ -292,3 +292,29 @@ unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
     return _k / 96.f < 1.5 ? 1 : 2;
 #endif
 }
+
+QByteArray Utils::getAppStylesheets(int scale)
+{
+    auto read_styles = [](QString& dir) {
+        QByteArray _css;
+        QFile file;
+        QFileInfoList files = QDir(dir).entryInfoList(QStringList("*.qss"), QDir::Files);
+        foreach(const QFileInfo &info, files) {
+            file.setFileName(info.absoluteFilePath());
+            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+                _css.append(file.readAll());
+                file.close();
+            }
+        }
+
+        return _css;
+    };
+
+    QByteArray _out( read_styles(QString(":styles/res/styles")) );
+
+    if ( scale > 1 ) {
+        _out.append( read_styles(QString(":styles@2x")) );
+    }
+
+    return _out;
+}

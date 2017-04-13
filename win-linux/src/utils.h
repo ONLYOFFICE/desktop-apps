@@ -59,6 +59,8 @@ public:
 
     static QString encodeJson(const QJsonObject&);
     static QString encodeJson(const QString&);
+
+    static QByteArray getAppStylesheets(int);
 };
 
 #endif // UTILS_H

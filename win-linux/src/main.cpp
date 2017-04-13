@@ -214,26 +214,8 @@ int main( int argc, char *argv[] )
         }
     }
 
-    QByteArray css;
-    QFile file;
-    foreach(const QFileInfo &info, QDir(":styles/res/styles").entryInfoList(QStringList("*.qss"), QDir::Files)) {
-        file.setFileName(info.absoluteFilePath());
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            css.append(file.readAll());
-            file.close();
-        }
-    }
-
-    if (g_dpi_ratio > 1) {
-        file.setFileName(":styles@2x/styles.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            css.append(file.readAll());
-            file.close();
-        }
-    }
-
-
-    if (css.size()) app.setStyleSheet(css);
+    QByteArray css(Utils::getAppStylesheets(g_dpi_ratio));
+    if ( !css.isEmpty() ) app.setStyleSheet(css);
 
     // Font
     QFont mainFont = app.font();

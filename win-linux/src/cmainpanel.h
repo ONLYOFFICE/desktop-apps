@@ -64,6 +64,7 @@ public:
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
+    void updateStylesheets();
 
 #ifdef __linux
     QWidget * getTitleWidget();

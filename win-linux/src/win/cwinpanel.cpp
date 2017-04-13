@@ -242,3 +242,8 @@ void CWinPanel::slot_mainPageReady()
     win_sparkle_init();
 #endif
 }
+
+void CWinPanel::updatePanelStylesheets()
+{
+    m_pMainPanel->updateStylesheets();
+}
