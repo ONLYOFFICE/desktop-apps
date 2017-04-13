@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -35,7 +35,7 @@
 //  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 18.02.16.
-//  Copyright © 2016 Ascensio System SIA. All rights reserved.
+//  Copyright © 2017 Ascensio System SIA. All rights reserved.
 //
 
 #import "ASCAboutController.h"

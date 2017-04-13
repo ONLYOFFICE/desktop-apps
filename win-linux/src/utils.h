@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -44,10 +44,13 @@ public:
     static QString lastPath(int type);
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
+    static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
+    static unsigned getScreenDpiRatio(int);
+    static unsigned getScreenDpiRatioByHWND(int);
 
     static bool makepath(const QString&);
 
@@ -56,6 +59,8 @@ public:
 
     static QString encodeJson(const QJsonObject&);
     static QString encodeJson(const QString&);
+
+    static QByteArray getAppStylesheets(int);
 };
 
 #endif // UTILS_H

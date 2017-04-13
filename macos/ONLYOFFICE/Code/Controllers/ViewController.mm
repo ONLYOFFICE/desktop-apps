@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -742,7 +742,7 @@
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
         openPanel.allowedFileTypes = filter;
-        openPanel.directoryURL = [NSURL URLWithString:directory];
+        openPanel.directoryURL = [NSURL fileURLWithPath:directory];
 
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
@@ -775,7 +775,7 @@
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
         openPanel.allowedFileTypes = [ASCConstants images];
-        openPanel.directoryURL = [NSURL URLWithString:directory];
+        openPanel.directoryURL = [NSURL fileURLWithPath:directory];
         
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];

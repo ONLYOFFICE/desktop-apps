@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        body {
+            background:white;
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-family: "Helvetica";
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 14px;
+        }
+        .releasedate {
+            color: #888;
+            font-size: medium;
+        }
+        .version {
+            border-bottom: 1px solid #cfcfcf;
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 4.3<span class="releasedate"> - April 13, 2017</span></h1>
+        <h2>New Features</h2>
+        <h4>All Editors</h4>
+        <ul>
+            <li>Full support of high-dpi monitors</li>
+            <li>Ability to set alternative text for shapes</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Undo in Fast co-edit</li>
+            <li>Do not hide <code>All changes saved</code> in bottom toolbar</li>
+            <li>Adding and editing Footnotes</li>
+            <li>New languages for spellchecker (43 in total)</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Support <code>AVERAGEIFS</code>, <code>COUNTIFS</code>, <code>SUMIFS</code> formulas</li>
+            <li>Formulas refactoring and improvements</li>
+            <li>Totally new Cell Format window with more options</li>
+            <li>Sort options window while sorting ranges</li>
+            <li>Added direction of sort on filter buttons</li>
+            <li>Added filter condition at statistical information</li>
+            <li>Added special paste feature</li>
+            <li>Added support of surface chart</li>
+            <li>New cell borders styles (11 in total)</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Undo in Fast co-edit</li>
+        </ul>
+        <h4>Conversion</h4>
+        <ul>
+            <li>Optimization and speed-up</li>
+            <li>Better support of all formats, including (but not limited to):
+                <h5>DOC Format</h5>
+                <ul>
+                    <li>Background page</li>
+                </ul>
+                <h5>XLS Format</h5>
+                <ul>
+                    <li>Data validation</li>
+                    <li>Decryptor</li>
+                </ul>
+                <h5>ODF Format</h5>
+                <ul>
+                    <li>Global settings for documents</li>
+                    <li>SVG refactor</li>
+                    <li>Background page (image, pattern, gradient)</li>
+                    <li>Convert smart art</li>
+                    <li>Sheet/Workbook views</li>
+                    <li>Support convert OLE objects (and other embedded)</li>
+                </ul>
+                <h5>RTF Format</h5>
+                <ul>
+                    <li>Generate replacement text hyperlink if absent</li>
+                    <li>Office digital signatures</li>
+                    <li>Extended drawings</li>
+                    <li>Custom shapes</li>
+                    <li>Text in drawing shapes</li>
+                </ul>
+            </li>
+        </ul>
+        <h4>Plugins</h4>
+        <ul>
+            <li>A lot new plugins feature</li>
+        </ul>
+        <h2>Fixes</h2>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Fixed an issue with drag-n-drop a table inside a footnote (bug #33548)</li>
+            <li>Fixed an issue with crop of shape group (bug #33110)</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fixed an issue with absolute reference when inserting a new row (<a
+                    href="https://github.com/ONLYOFFICE/DocumentServer/issues/41" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DocumentServer/issues/41" data-id="168649167"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DocumentServer#41</a>)
+            </li>
+            <li>Fixed an issue with onDocumentStateChange event (<a
+                    href="https://github.com/ONLYOFFICE/DocumentServer/issues/88" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DocumentServer/issues/88" data-id="214926332"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DocumentServer#88</a>)
+            </li>
+            <li>Fixed an issue with formulas translation (<a
+                    href="https://github.com/ONLYOFFICE/DesktopEditors/issues/23" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/23" data-id="202357730"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#23</a>)
+            </li>
+            <li>Fixed an issue with password-protected xlsx (<a
+                    href="https://github.com/ONLYOFFICE/DesktopEditors/issues/24" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/24" data-id="202360008"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#24</a>)
+            </li>
+            <li>Fixed an issue with non-breaking space (<a href="https://github.com/ONLYOFFICE/DesktopEditors/issues/26"
+                                                           class="issue-link js-issue-link"
+                                                           data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/26"
+                                                           data-id="202409693"
+                                                           data-error-text="Failed to load issue title"
+                                                           data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#26</a>)
+            </li>
+            <li>Fixed an issue with AVERAGEA formula with text format</li>
+            <li>Fixed an issue with broken workbook after list copy (bug #33588)</li>
+            <li>Fixed an issue with formula recalculation by F4 hotkey (bug #32901)</li>
+            <li>Fixed an issue with SUMIFS formula (bug #33602)</li>
+            <li>Fixed an issue with inserting image size (bug #33604)</li>
+            <li>Fixed an issue with zero values sparklines (bug #33612)</li>
+            <li>Fixed an issue with changing number format while changing regional format (bug #31395)</li>
+            <li>Fixed an issue with replacing formula delimiters (bug #33608)</li>
+            <li>Fixed an issue with cell size while drag'n'drop (bug #33607)</li>
+            <li>Fixed an issue with cursor size in @2x (bug #33606)</li>
+            <li>A whole lot more minor and big bugfixes</li>
+        </ul>
+    </div>
+</body>
+</html>

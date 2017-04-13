@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -64,6 +64,7 @@ public:
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
+    void updateStylesheets();
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -74,8 +75,9 @@ protected:
     void refreshAboutVersion();
     void cmdMainPage(const QString&, const QString&) const;
     void cmdAppManager(int, void *);
+    virtual QString getSaveMessage();
 
-    QString m_saveDocMessage;
+    CAscApplicationManager * m_pManager;
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
@@ -89,7 +91,7 @@ private:
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
 
-    void readSystemUserName(wstring& first, wstring& last);
+    wstring readSystemUserName();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
@@ -138,6 +140,7 @@ public slots:
     void onPortalCreate();
 
     void onMainPageReady();
+    void onFileChecked(const QString&, int, bool);
 
 private:
     std::wstring    m_sDownloadName;
@@ -158,7 +161,6 @@ private:
     bool            m_isCustomWindow;
 
     CDownloadWidget *       m_pWidgetDownload;
-    CAscApplicationManager * m_pManager;
 
     printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
@@ -167,6 +169,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+
 public:
     WId GetHwndForKeyboard()
     {

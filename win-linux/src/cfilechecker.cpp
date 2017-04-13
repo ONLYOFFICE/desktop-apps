@@ -4,51 +4,148 @@
 #include <QStorageInfo>
 
 #include <QDebug>
-#include <QElapsedTimer>
 
-CFileChecker::CFileChecker(const QString& json)
-    : QThread()
-    , m_inJson(json)
+#define FILE_UNKNOWN    0
+#define FILE_EXISTS     1
+#define FILE_ABSENT     2
+#define FILE_REMOTE     3
+
+#define ERASE_VALUE(iterator) \
+    if ( iterator.second ) { \
+        CFileInspector * p = iterator.second;  \
+        delete p, p = nullptr;                  \
+    }
+
+
+CFileInspector::CFileInspector(QObject *parent, const QString& name, int uid)
+    : QThread(parent)
+    , m_file(name)
+    , m_uid(uid)
 {
 }
 
-void CFileChecker::run()
+void CFileInspector::run()
+{
+    int result = FILE_UNKNOWN;
+    QStorageInfo storage(QFileInfo(m_file).dir());
+#ifdef Q_OS_WIN
+    if (storage.device().startsWith("\\\\?\\")) {
+#else
+    if (storage.device().startsWith("/dev/")) {
+#endif
+        if ( !isInterruptionRequested() ) {
+            result = QFileInfo(m_file).exists() ? FILE_EXISTS : FILE_ABSENT;
+        }
+    } else {
+        result = FILE_REMOTE;
+    }
+
+    if ( !isInterruptionRequested() )
+        emit examined(m_file, m_uid, result);
+}
+
+/**/
+
+CExistanceController::CExistanceController()
+{
+}
+
+CExistanceController::~CExistanceController()
+{
+    for (auto &iter: m_mapStaff) {
+        if ( iter.second ) {
+            CFileInspector * worker = iter.second;
+            if ( worker->isRunning() ) {
+                worker->disconnect();
+
+                worker->requestInterruption();
+                worker->quit();
+//                worker->terminate();
+            }
+        }
+    }
+
+    for (auto &iter: m_mapStaff) {
+        if ( iter.second ) {
+            CFileInspector * worker = iter.second;
+            if ( worker->isRunning() ) {
+                worker->wait();
+            }
+
+            ERASE_VALUE(iter)
+        }
+    }
+}
+
+CExistanceController * CExistanceController::getInstance()
+{
+    static CExistanceController _instance;
+    return &_instance;
+}
+
+void CExistanceController::check(const QString& json)
+{
+    getInstance()->parseJson(json);
+    getInstance()->processMap();
+}
+
+void CExistanceController::parseJson(const QString &json)
 {
     QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(m_inJson.toUtf8(), &jerror);
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
 
     if(jerror.error == QJsonParseError::NoError) {
+        QMutexLocker locker(&m_mutex);
         QJsonObject objRoot = jdoc.object();
 
         if ( objRoot.size() ) {
-                QJsonObject _json_obj;
-                QString _file_name;
+            QString _file_name;
+            int _uid;
 
-                QElapsedTimer timer;
-                timer.start();
+            foreach (QString k, objRoot.keys()) {
+                _file_name = objRoot[k].toString();
+                _uid = k.toInt();
 
-                foreach (QString s, objRoot.keys()) {
-                    if ( isInterruptionRequested() ) return;
-
-                    _file_name = objRoot[s].toString();
-
-                    // check file is local
-                    QStorageInfo storage(QFileInfo(_file_name).dir());
-#ifdef Q_OS_WIN
-                    if (storage.device().startsWith("\\\\?\\")) {
-#else
-                    if (storage.device().startsWith("/dev/")) {
-#endif
-                        QFileInfo info(_file_name);
-                        if (!info.exists()) _json_obj[s] = "false";
-                    }
+                if ( !m_setUncheck.count(_uid) ) {
+                    m_mapStaff.insert(
+                        std::pair<int, CFileInspector *>(_uid, new CFileInspector(this, _file_name, _uid)));
                 }
-
-                qDebug() << "check file passed: " << currentThreadId() << ", " << timer.elapsed() << "ms";
-
-                if ( _json_obj.size() && !isInterruptionRequested() ) {
-                    emit resultReady(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact));
-                }
+            }
         }
+    }
+}
+
+void CExistanceController::processMap()
+{
+    for (auto &iter: m_mapStaff) {
+        CFileInspector * worker = iter.second;
+        if ( worker && !worker->isFinished() && !worker->isRunning() ) {
+            connect(worker, &CFileInspector::examined, this, &CExistanceController::handleResults);
+            connect(worker, &CFileInspector::finished, worker, &CFileInspector::deleteLater);
+
+            worker->start();
+        }
+    }
+}
+
+void CExistanceController::handleResults(const QString& name, int uid, int result)
+{
+    QMutexLocker locker(&m_mutex);
+    auto iter = m_mapStaff.find(uid);
+
+    if ( iter != m_mapStaff.end() ) {
+        CFileInspector * worker = iter->second;
+        if ( worker ) worker->disconnect(this);
+
+//        ERASE_VALUE((*iter));
+        m_mapStaff.erase(iter);
+    }
+
+    if ( result == FILE_REMOTE ) {
+        m_setUncheck.insert(uid);
+    } else
+    if ( result == FILE_ABSENT ) {
+        locker.unlock();
+        emit checked(name, uid, false);
     }
 }

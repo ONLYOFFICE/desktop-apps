@@ -10,7 +10,7 @@ HEADERS += \
     src/prop/defines_p.h
 
 SOURCES += \
-    src/csplash.cpp \
+    src/prop/csplash.cpp \
     src/prop/ccefeventsimpl.cpp \
     src/prop/cmainpanelimpl.cpp \
     src/prop/utils.cpp

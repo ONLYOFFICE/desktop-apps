@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -55,6 +55,7 @@
 #include "../defines.h"
 #include "../utils.h"
 #include "../csplash.h"
+#include "../clangater.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -67,11 +68,10 @@
 
 
 extern byte g_dpi_ratio;
-extern QString g_lang;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
-{        
+{
     windowHandle = hWnd;
     m_pManager = pManager;
 
@@ -101,16 +101,11 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 //    m_pManager->SetEventListener(this);
 
     panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
-    parseInputArgs(qApp->arguments());
+//    parseInputArgs(qApp->arguments());
 }
 
 void CWinPanel::parseInputArgs(const QStringList& args)
 {
-    int _arg_i;
-    if (!(_arg_i = args.indexOf(QRegExp(reCmdKeepLang)) < 0)) {
-        GET_REGISTRY_USER(_reg_user);
-        _reg_user.setValue("locale", args.at(_arg_i).right(2));
-    }
 }
 
 bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)
@@ -230,11 +225,8 @@ void CWinPanel::slot_mainPageReady()
     CSplash::hideSplash();
 
 #ifdef _UPDMODULE
-  #if defined(_AVS)
-    QString _prod_name = APP_TITLE;
-  #else
-    QString _prod_name = VER_PRODUCTNAME_STR;
-  #endif
+    QString _prod_name = WINDOW_NAME;
+    qDebug() << "update's window title: " << _prod_name;
 
     GET_REGISTRY_USER(_user)
     if (!_user.contains("CheckForUpdates")) {
@@ -246,7 +238,12 @@ void CWinPanel::slot_mainPageReady()
                                     QString(VER_FILEVERSION_STR).toStdWString().c_str());
     win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
     win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
-    win_sparkle_set_lang(g_lang.toLatin1());
+    win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
     win_sparkle_init();
 #endif
+}
+
+void CWinPanel::updatePanelStylesheets()
+{
+    m_pMainPanel->updateStylesheets();
 }

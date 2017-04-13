@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -148,6 +148,7 @@ public:
     int         tabIndexByView(QString);
     int         tabIndexByTitle(QString t, CefType vt);
     int         tabIndexByTitle(QString t, AscEditorType vt);
+    int         tabIndexByUrl(QString);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     bool        modifiedByIndex(int);

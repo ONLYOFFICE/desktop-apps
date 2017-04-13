@@ -265,6 +265,8 @@ li.menu-item {
     position: relative;
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
+        background-color: #fff;
+        transition: background-color 300ms ease-out;
 
         &:hover {
             background-color: @color-gray-2;
@@ -434,9 +436,11 @@ li.menu-item {
 
     &.list tr {
         cursor: pointer;
+        background-color: #fff;
+        transition: background-color 300ms ease-out;
 
         &:hover {
-            background: @color-gray-2;
+            background-color: @color-gray-2;
         }
     }
 
@@ -630,14 +634,14 @@ li.menu-item {
 }
 
 .img-connect {
-    content: -webkit-image-set(data-uri('ads_share.png') 1x, data-uri('ads_share.png') 2x);
+    content: -webkit-image-set(data-uri('ads_share.png') 1x, data-uri('ads_share@2x.png') 2x);
 
     &.verhistory {
-        content: -webkit-image-set(data-uri('ads_history.png') 1x, data-uri('ads_history.png') 2x);
+        content: -webkit-image-set(data-uri('ads_history.png') 1x, data-uri('ads_history@2x.png') 2x);
     }
 
     &.docreview {
-        content: -webkit-image-set(data-uri('ads_reviews.png') 1x, data-uri('ads_reviews.png') 2x);
+        content: -webkit-image-set(data-uri('ads_reviews.png') 1x, data-uri('ads_reviews@2x.png') 2x);
     }
 
     width:720px;

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -242,3 +242,11 @@ document.getElementById('wrap').ondragover = function (e) {
     e.preventDefault();
     return false;
 };
+
+$(document).on('keydown', function(e){
+    if ( e.ctrlKey && e.which == 79 ) {
+        if ($('.action-panel').filter('.recent, .open, .welcome').is(':visible')) {
+            openFile(OPEN_FILE_FOLDER, '');
+        }
+    }
+});

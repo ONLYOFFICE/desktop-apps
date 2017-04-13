@@ -38,7 +38,8 @@ HEADERS += \
     $$PWD/src/cmainpanel.h \
     $$PWD/src/csplash.h \
     $$PWD/src/cmessage.h \
-    $$PWD/src/cfilechecker.h
+    $$PWD/src/cfilechecker.h \
+    $$PWD/src/clangater.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -59,7 +60,8 @@ SOURCES += \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cmainpanel.cpp \
     $$PWD/src/cmessage.cpp \
-    $$PWD/src/cfilechecker.cpp
+    $$PWD/src/cfilechecker.cpp \
+    $$PWD/src/clangater.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -104,6 +106,8 @@ linux-g++ {
 
 win32 {
     DEFINES += JAS_WIN_MSVC_BUILD WIN32
+    DEFINES += WIN32
+
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/win/mainwindow.h \

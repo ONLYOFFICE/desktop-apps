@@ -187,7 +187,7 @@ bool QWinHost::event(QEvent *e)
     case QEvent::Polish:
         if (!hwnd)
         {
-            hwnd = createWindow((HWND)winId(), qWinAppInst());
+            hwnd = createWindow((HWND)winId(), GetModuleHandle(0));
             fixParent();
             own_hwnd = hwnd != 0;
         }

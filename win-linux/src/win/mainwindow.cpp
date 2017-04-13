@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -53,7 +53,6 @@
 HWND gWinId = 0;
 HWND gTopWinId;
 extern byte g_dpi_ratio;
-extern QString g_lang;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -342,6 +341,18 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_SIZE:
         if (window->m_pWinPanel) {
+            unsigned dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            if ( dpi_ratio != g_dpi_ratio ) {
+                QByteArray css(Utils::getAppStylesheets(dpi_ratio));
+
+                if ( !css.isEmpty() ) {
+                    g_dpi_ratio = dpi_ratio;
+
+                    qApp->setStyleSheet(css);
+                    window->m_pWinPanel->updatePanelStylesheets();
+                }
+            }
+
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
             } else {

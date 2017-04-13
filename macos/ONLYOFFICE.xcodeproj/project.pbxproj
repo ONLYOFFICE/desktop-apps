@@ -34,48 +34,6 @@
 /* Begin PBXBuildFile section */
 		FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB01C3258A800F9881C /* InfoPlist.strings */; };
 		FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB71C3258B100F9881C /* InfoPlist.strings */; };
-		FC081ECB1C325E8400F9881C /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBD1C325E8400F9881C /* file-csv.icns */; };
-		FC081ECC1C325E8400F9881C /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBD1C325E8400F9881C /* file-csv.icns */; };
-		FC081ECD1C325E8400F9881C /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBD1C325E8400F9881C /* file-csv.icns */; };
-		FC081ECE1C325E8400F9881C /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBE1C325E8400F9881C /* file-djvu.icns */; };
-		FC081ECF1C325E8400F9881C /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBE1C325E8400F9881C /* file-djvu.icns */; };
-		FC081ED01C325E8400F9881C /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBE1C325E8400F9881C /* file-djvu.icns */; };
-		FC081ED11C325E8400F9881C /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBF1C325E8400F9881C /* file-doc.icns */; };
-		FC081ED21C325E8400F9881C /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBF1C325E8400F9881C /* file-doc.icns */; };
-		FC081ED31C325E8400F9881C /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EBF1C325E8400F9881C /* file-doc.icns */; };
-		FC081ED41C325E8400F9881C /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC01C325E8400F9881C /* file-html.icns */; };
-		FC081ED51C325E8400F9881C /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC01C325E8400F9881C /* file-html.icns */; };
-		FC081ED61C325E8400F9881C /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC01C325E8400F9881C /* file-html.icns */; };
-		FC081ED71C325E8400F9881C /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC11C325E8400F9881C /* file-odp.icns */; };
-		FC081ED81C325E8400F9881C /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC11C325E8400F9881C /* file-odp.icns */; };
-		FC081ED91C325E8400F9881C /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC11C325E8400F9881C /* file-odp.icns */; };
-		FC081EDA1C325E8400F9881C /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC21C325E8400F9881C /* file-ods.icns */; };
-		FC081EDB1C325E8400F9881C /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC21C325E8400F9881C /* file-ods.icns */; };
-		FC081EDC1C325E8400F9881C /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC21C325E8400F9881C /* file-ods.icns */; };
-		FC081EDD1C325E8400F9881C /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC31C325E8400F9881C /* file-odt.icns */; };
-		FC081EDE1C325E8400F9881C /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC31C325E8400F9881C /* file-odt.icns */; };
-		FC081EDF1C325E8400F9881C /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC31C325E8400F9881C /* file-odt.icns */; };
-		FC081EE01C325E8400F9881C /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC41C325E8400F9881C /* file-pdf.icns */; };
-		FC081EE11C325E8400F9881C /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC41C325E8400F9881C /* file-pdf.icns */; };
-		FC081EE21C325E8400F9881C /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC41C325E8400F9881C /* file-pdf.icns */; };
-		FC081EE31C325E8400F9881C /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC51C325E8400F9881C /* file-pps.icns */; };
-		FC081EE41C325E8400F9881C /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC51C325E8400F9881C /* file-pps.icns */; };
-		FC081EE51C325E8400F9881C /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC51C325E8400F9881C /* file-pps.icns */; };
-		FC081EE61C325E8400F9881C /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC61C325E8400F9881C /* file-ppt.icns */; };
-		FC081EE71C325E8400F9881C /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC61C325E8400F9881C /* file-ppt.icns */; };
-		FC081EE81C325E8400F9881C /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC61C325E8400F9881C /* file-ppt.icns */; };
-		FC081EE91C325E8400F9881C /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC71C325E8400F9881C /* file-rtf.icns */; };
-		FC081EEA1C325E8400F9881C /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC71C325E8400F9881C /* file-rtf.icns */; };
-		FC081EEB1C325E8400F9881C /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC71C325E8400F9881C /* file-rtf.icns */; };
-		FC081EEC1C325E8400F9881C /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC81C325E8400F9881C /* file-txt.icns */; };
-		FC081EED1C325E8400F9881C /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC81C325E8400F9881C /* file-txt.icns */; };
-		FC081EEE1C325E8400F9881C /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC81C325E8400F9881C /* file-txt.icns */; };
-		FC081EEF1C325E8400F9881C /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC91C325E8400F9881C /* file-xls.icns */; };
-		FC081EF01C325E8400F9881C /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC91C325E8400F9881C /* file-xls.icns */; };
-		FC081EF11C325E8400F9881C /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081EC91C325E8400F9881C /* file-xls.icns */; };
-		FC081EF21C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
-		FC081EF31C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
-		FC081EF41C325E8400F9881C /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC081ECA1C325E8400F9881C /* file-xps.icns */; };
 		FC081EFA1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC081EFB1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC081EFC1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
@@ -195,6 +153,60 @@
 		FC94247B1CB7C92100C78A27 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC9424791CB7C92000C78A27 /* dsa_pub.pem */; };
 		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
+		FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
+		FC98AF0F1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
+		FC98AF101E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
+		FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
+		FC98AF121E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
+		FC98AF131E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
+		FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
+		FC98AF151E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
+		FC98AF161E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
+		FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
+		FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
+		FC98AF191E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
+		FC98AF1A1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
+		FC98AF1B1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
+		FC98AF1C1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
+		FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
+		FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
+		FC98AF1F1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
+		FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
+		FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
+		FC98AF221E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
+		FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
+		FC98AF241E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
+		FC98AF251E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
+		FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
+		FC98AF271E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
+		FC98AF281E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
+		FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
+		FC98AF2A1E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
+		FC98AF2B1E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
+		FC98AF2C1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
+		FC98AF2D1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
+		FC98AF2E1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
+		FC98AF2F1E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
+		FC98AF301E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
+		FC98AF311E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
+		FC98AF321E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
+		FC98AF331E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
+		FC98AF341E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
+		FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
+		FC98AF361E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
+		FC98AF371E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
+		FC98AF381E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
+		FC98AF391E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
+		FC98AF3A1E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
+		FC98AF3B1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
+		FC98AF3C1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
+		FC98AF3D1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
+		FC98AF3E1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
+		FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
+		FC98AF401E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
+		FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
+		FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
+		FC98AF431E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
@@ -279,20 +291,6 @@
 		FC081EB91C3258B300F9881C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC081EBA1C3258B300F9881C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC081EBB1C3258B400F9881C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC081EBD1C325E8400F9881C /* file-csv.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-csv.icns"; sourceTree = "<group>"; };
-		FC081EBE1C325E8400F9881C /* file-djvu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-djvu.icns"; sourceTree = "<group>"; };
-		FC081EBF1C325E8400F9881C /* file-doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-doc.icns"; sourceTree = "<group>"; };
-		FC081EC01C325E8400F9881C /* file-html.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-html.icns"; sourceTree = "<group>"; };
-		FC081EC11C325E8400F9881C /* file-odp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-odp.icns"; sourceTree = "<group>"; };
-		FC081EC21C325E8400F9881C /* file-ods.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-ods.icns"; sourceTree = "<group>"; };
-		FC081EC31C325E8400F9881C /* file-odt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-odt.icns"; sourceTree = "<group>"; };
-		FC081EC41C325E8400F9881C /* file-pdf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-pdf.icns"; sourceTree = "<group>"; };
-		FC081EC51C325E8400F9881C /* file-pps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-pps.icns"; sourceTree = "<group>"; };
-		FC081EC61C325E8400F9881C /* file-ppt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-ppt.icns"; sourceTree = "<group>"; };
-		FC081EC71C325E8400F9881C /* file-rtf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-rtf.icns"; sourceTree = "<group>"; };
-		FC081EC81C325E8400F9881C /* file-txt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-txt.icns"; sourceTree = "<group>"; };
-		FC081EC91C325E8400F9881C /* file-xls.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xls.icns"; sourceTree = "<group>"; };
-		FC081ECA1C325E8400F9881C /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
 		FC081EF91C325EE900F9881C /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../core/dictionaries; sourceTree = SOURCE_ROOT; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
@@ -377,6 +375,24 @@
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		FC9424791CB7C92000C78A27 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ONLYOFFICE/update/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		FC981B3B1C744D39006F669C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FC98AEFC1E94E16A00718A12 /* file-csv.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-csv.icns"; sourceTree = "<group>"; };
+		FC98AEFD1E94E16A00718A12 /* file-djvu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-djvu.icns"; sourceTree = "<group>"; };
+		FC98AEFE1E94E16A00718A12 /* file-doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-doc.icns"; sourceTree = "<group>"; };
+		FC98AEFF1E94E16A00718A12 /* file-docx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docx.icns"; sourceTree = "<group>"; };
+		FC98AF001E94E16A00718A12 /* file-html.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-html.icns"; sourceTree = "<group>"; };
+		FC98AF011E94E16A00718A12 /* file-odp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-odp.icns"; sourceTree = "<group>"; };
+		FC98AF021E94E16A00718A12 /* file-ods.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-ods.icns"; sourceTree = "<group>"; };
+		FC98AF031E94E16A00718A12 /* file-odt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-odt.icns"; sourceTree = "<group>"; };
+		FC98AF041E94E16A00718A12 /* file-pdf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-pdf.icns"; sourceTree = "<group>"; };
+		FC98AF051E94E16A00718A12 /* file-pps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-pps.icns"; sourceTree = "<group>"; };
+		FC98AF061E94E16A00718A12 /* file-ppsx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-ppsx.icns"; sourceTree = "<group>"; };
+		FC98AF071E94E16A00718A12 /* file-ppt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-ppt.icns"; sourceTree = "<group>"; };
+		FC98AF081E94E16A00718A12 /* file-pptx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-pptx.icns"; sourceTree = "<group>"; };
+		FC98AF091E94E16A00718A12 /* file-rtf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-rtf.icns"; sourceTree = "<group>"; };
+		FC98AF0A1E94E16A00718A12 /* file-txt.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-txt.icns"; sourceTree = "<group>"; };
+		FC98AF0B1E94E16A00718A12 /* file-xls.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xls.icns"; sourceTree = "<group>"; };
+		FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsx.icns"; sourceTree = "<group>"; };
+		FC98AF0D1E94E16A00718A12 /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
 		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSCefView.h; path = Code/Views/NSCefView.h; sourceTree = "<group>"; };
 		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSCefView.mm; path = Code/Views/NSCefView.mm; sourceTree = "<group>"; };
@@ -511,20 +527,24 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
-				FC081EBD1C325E8400F9881C /* file-csv.icns */,
-				FC081EBE1C325E8400F9881C /* file-djvu.icns */,
-				FC081EBF1C325E8400F9881C /* file-doc.icns */,
-				FC081EC01C325E8400F9881C /* file-html.icns */,
-				FC081EC11C325E8400F9881C /* file-odp.icns */,
-				FC081EC21C325E8400F9881C /* file-ods.icns */,
-				FC081EC31C325E8400F9881C /* file-odt.icns */,
-				FC081EC41C325E8400F9881C /* file-pdf.icns */,
-				FC081EC51C325E8400F9881C /* file-pps.icns */,
-				FC081EC61C325E8400F9881C /* file-ppt.icns */,
-				FC081EC71C325E8400F9881C /* file-rtf.icns */,
-				FC081EC81C325E8400F9881C /* file-txt.icns */,
-				FC081EC91C325E8400F9881C /* file-xls.icns */,
-				FC081ECA1C325E8400F9881C /* file-xps.icns */,
+				FC98AEFC1E94E16A00718A12 /* file-csv.icns */,
+				FC98AEFD1E94E16A00718A12 /* file-djvu.icns */,
+				FC98AEFE1E94E16A00718A12 /* file-doc.icns */,
+				FC98AEFF1E94E16A00718A12 /* file-docx.icns */,
+				FC98AF001E94E16A00718A12 /* file-html.icns */,
+				FC98AF011E94E16A00718A12 /* file-odp.icns */,
+				FC98AF021E94E16A00718A12 /* file-ods.icns */,
+				FC98AF031E94E16A00718A12 /* file-odt.icns */,
+				FC98AF041E94E16A00718A12 /* file-pdf.icns */,
+				FC98AF051E94E16A00718A12 /* file-pps.icns */,
+				FC98AF061E94E16A00718A12 /* file-ppsx.icns */,
+				FC98AF071E94E16A00718A12 /* file-ppt.icns */,
+				FC98AF081E94E16A00718A12 /* file-pptx.icns */,
+				FC98AF091E94E16A00718A12 /* file-rtf.icns */,
+				FC98AF0A1E94E16A00718A12 /* file-txt.icns */,
+				FC98AF0B1E94E16A00718A12 /* file-xls.icns */,
+				FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */,
+				FC98AF0D1E94E16A00718A12 /* file-xps.icns */,
 			);
 			path = "file-formats";
 			sourceTree = "<group>";
@@ -1105,29 +1125,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */,
+				FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */,
 				FC09073F1C1855A400D9E881 /* editors in Resources */,
+				FC98AF1B1E94E16A00718A12 /* file-html.icns in Resources */,
+				FC98AF121E94E16A00718A12 /* file-djvu.icns in Resources */,
+				FC98AF0F1E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC081EFC1C325EE900F9881C /* dictionaries in Resources */,
+				FC98AF331E94E16A00718A12 /* file-pptx.icns in Resources */,
+				FC98AF241E94E16A00718A12 /* file-odt.icns in Resources */,
 				FC0907421C186A7A00D9E881 /* converter in Resources */,
+				FC98AF301E94E16A00718A12 /* file-ppt.icns in Resources */,
+				FC98AF3C1E94E16A00718A12 /* file-xls.icns in Resources */,
 				FC6718261BD913C00028600F /* login in Resources */,
 				FC6718251BD913C00028600F /* Images.xcassets in Resources */,
-				FC081EF41C325E8400F9881C /* file-xps.icns in Resources */,
-				FC081ED01C325E8400F9881C /* file-djvu.icns in Resources */,
-				FC081ECD1C325E8400F9881C /* file-csv.icns in Resources */,
-				FC081ED91C325E8400F9881C /* file-odp.icns in Resources */,
-				FC081EF11C325E8400F9881C /* file-xls.icns in Resources */,
-				FC081ED31C325E8400F9881C /* file-doc.icns in Resources */,
-				FC081EEB1C325E8400F9881C /* file-rtf.icns in Resources */,
-				FC081EE81C325E8400F9881C /* file-ppt.icns in Resources */,
-				FC081EE21C325E8400F9881C /* file-pdf.icns in Resources */,
-				FC081EDF1C325E8400F9881C /* file-odt.icns in Resources */,
-				FC081EDC1C325E8400F9881C /* file-ods.icns in Resources */,
-				FC081ED61C325E8400F9881C /* file-html.icns in Resources */,
-				FC081EEE1C325E8400F9881C /* file-txt.icns in Resources */,
-				FC081EE51C325E8400F9881C /* file-pps.icns in Resources */,
 				FC6718231BD913C00028600F /* Localizable.strings in Resources */,
+				FC98AF361E94E16A00718A12 /* file-rtf.icns in Resources */,
+				FC98AF2A1E94E16A00718A12 /* file-pps.icns in Resources */,
+				FC98AF271E94E16A00718A12 /* file-pdf.icns in Resources */,
+				FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */,
 				FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */,
+				FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */,
+				FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */,
 				FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */,
+				FC98AF2D1E94E16A00718A12 /* file-ppsx.icns in Resources */,
+				FC98AF391E94E16A00718A12 /* file-txt.icns in Resources */,
 				FC6718271BD913C00028600F /* Main.storyboard in Resources */,
+				FC98AF151E94E16A00718A12 /* file-doc.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,30 +1159,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC98AF251E94E16A00718A12 /* file-odt.icns in Resources */,
+				FC98AF371E94E16A00718A12 /* file-rtf.icns in Resources */,
+				FC98AF1F1E94E16A00718A12 /* file-odp.icns in Resources */,
+				FC98AF281E94E16A00718A12 /* file-pdf.icns in Resources */,
+				FC98AF401E94E16A00718A12 /* file-xlsx.icns in Resources */,
+				FC98AF2E1E94E16A00718A12 /* file-ppsx.icns in Resources */,
 				FC7FD3CA1C315DD6008F6641 /* editors in Resources */,
+				FC98AF131E94E16A00718A12 /* file-djvu.icns in Resources */,
+				FC98AF101E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC081EFB1C325EE900F9881C /* dictionaries in Resources */,
+				FC98AF431E94E16A00718A12 /* file-xps.icns in Resources */,
+				FC98AF191E94E16A00718A12 /* file-docx.icns in Resources */,
 				FC7FD3D71C315DD6008F6641 /* login in Resources */,
+				FC98AF161E94E16A00718A12 /* file-doc.icns in Resources */,
+				FC98AF2B1E94E16A00718A12 /* file-pps.icns in Resources */,
 				FC7FD3D81C315DD6008F6641 /* converter in Resources */,
-				FC081EE71C325E8400F9881C /* file-ppt.icns in Resources */,
-				FC081ECC1C325E8400F9881C /* file-csv.icns in Resources */,
-				FC081ED21C325E8400F9881C /* file-doc.icns in Resources */,
-				FC081EDE1C325E8400F9881C /* file-odt.icns in Resources */,
+				FC98AF221E94E16A00718A12 /* file-ods.icns in Resources */,
 				FC6516051D154545009DBDCD /* Images.xcassets in Resources */,
-				FC081EE11C325E8400F9881C /* file-pdf.icns in Resources */,
-				FC081EED1C325E8400F9881C /* file-txt.icns in Resources */,
-				FC081EDB1C325E8400F9881C /* file-ods.icns in Resources */,
-				FC081EEA1C325E8400F9881C /* file-rtf.icns in Resources */,
 				FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */,
-				FC081ED51C325E8400F9881C /* file-html.icns in Resources */,
-				FC081EF01C325E8400F9881C /* file-xls.icns in Resources */,
-				FC081EE41C325E8400F9881C /* file-pps.icns in Resources */,
-				FC081EF31C325E8400F9881C /* file-xps.icns in Resources */,
-				FC081ECF1C325E8400F9881C /* file-djvu.icns in Resources */,
-				FC081ED81C325E8400F9881C /* file-odp.icns in Resources */,
 				FC6516021D1542C2009DBDCD /* EULA.html in Resources */,
+				FC98AF311E94E16A00718A12 /* file-ppt.icns in Resources */,
 				FC94247B1CB7C92100C78A27 /* dsa_pub.pem in Resources */,
+				FC98AF3D1E94E16A00718A12 /* file-xls.icns in Resources */,
+				FC98AF1C1E94E16A00718A12 /* file-html.icns in Resources */,
 				FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */,
 				FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */,
+				FC98AF341E94E16A00718A12 /* file-pptx.icns in Resources */,
+				FC98AF3A1E94E16A00718A12 /* file-txt.icns in Resources */,
 				FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */,
 				FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */,
 			);
@@ -1168,30 +1196,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */,
+				FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */,
+				FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */,
+				FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */,
+				FC98AF3E1E94E16A00718A12 /* file-xlsx.icns in Resources */,
+				FC98AF2C1E94E16A00718A12 /* file-ppsx.icns in Resources */,
 				FC09073E1C1855A400D9E881 /* editors in Resources */,
+				FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */,
+				FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC081EFA1C325EE900F9881C /* dictionaries in Resources */,
+				FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */,
+				FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */,
 				FC3B777B1BB28CE900DB9705 /* login in Resources */,
+				FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */,
+				FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */,
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
+				FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
-				FC081EE61C325E8400F9881C /* file-ppt.icns in Resources */,
-				FC081ECB1C325E8400F9881C /* file-csv.icns in Resources */,
-				FC081ED11C325E8400F9881C /* file-doc.icns in Resources */,
-				FC081EDD1C325E8400F9881C /* file-odt.icns in Resources */,
-				FC081EE01C325E8400F9881C /* file-pdf.icns in Resources */,
-				FC081EEC1C325E8400F9881C /* file-txt.icns in Resources */,
-				FC081EDA1C325E8400F9881C /* file-ods.icns in Resources */,
-				FC081EE91C325E8400F9881C /* file-rtf.icns in Resources */,
-				FC081ED41C325E8400F9881C /* file-html.icns in Resources */,
-				FC081EE31C325E8400F9881C /* file-pps.icns in Resources */,
-				FC081ECE1C325E8400F9881C /* file-djvu.icns in Resources */,
-				FC081ED71C325E8400F9881C /* file-odp.icns in Resources */,
-				FC081EEF1C325E8400F9881C /* file-xls.icns in Resources */,
-				FC081EF21C325E8400F9881C /* file-xps.icns in Resources */,
 				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
 				FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */,
+				FC98AF2F1E94E16A00718A12 /* file-ppt.icns in Resources */,
 				FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */,
+				FC98AF3B1E94E16A00718A12 /* file-xls.icns in Resources */,
+				FC98AF1A1E94E16A00718A12 /* file-html.icns in Resources */,
 				FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */,
 				FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */,
+				FC98AF321E94E16A00718A12 /* file-pptx.icns in Resources */,
+				FC98AF381E94E16A00718A12 /* file-txt.icns in Resources */,
 				FC94247A1CB7C92100C78A27 /* dsa_pub.pem in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
 			);
@@ -1212,7 +1244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.55.dylib \\\n@rpath/libicuuc.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.55.1.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\nlibicudata.55.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.55.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${TARGET_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.55.dylib \\\n@rpath/libicuuc.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.55.1.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\nlibicudata.55.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.55.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {

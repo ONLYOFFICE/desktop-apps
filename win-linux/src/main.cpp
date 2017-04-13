@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -35,9 +35,11 @@
 #include <QTranslator>
 #include <QStandardPaths>
 #include <QLibraryInfo>
+#include <QDesktopWidget>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "clangater.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -60,25 +62,23 @@
 #include "common/File.h"
 
 BYTE g_dpi_ratio = 1;
-QString g_lang;
 
 int main( int argc, char *argv[] )
 {
+#ifdef _WIN32
+    Core_SetProcessDpiAwareness();
+#endif
+
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
 
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
-        std::wstring sAppData(L"");
 
 #ifdef _WIN32
-        WCHAR szPath[MAX_PATH];
-        if ( SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)) ) {
-            sAppData = std::wstring(szPath);
-            std::replace(sAppData.begin(), sAppData.end(), '\\', '/');
-            sAppData.append(QString(APP_DATA_PATH).toStdWString());
-        }
+        QString common_data_path = Utils::getAppCommonPath();
 
-        if (sAppData.size() > 0) {
-            manager->m_oSettings.SetUserDataPath(sAppData);
+        if ( !common_data_path.isEmpty() ) {
+            manager->m_oSettings.SetUserDataPath(common_data_path.toStdWString());
+
             Utils::makepath(user_data_path.append("/data"));
             manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
             manager->m_oSettings.recover_path = (user_data_path + "/recover").toStdWString();
@@ -136,6 +136,9 @@ int main( int argc, char *argv[] )
     application_cef->Init_CEF(pApplicationManager, argc, argv);
     /* ********************** */
 
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+
 #ifdef _WIN32
     if (hMutex == NULL) {
         HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
@@ -153,12 +156,17 @@ int main( int argc, char *argv[] )
         }
     }
 
-    g_dpi_ratio = !(app.primaryScreen()->logicalDotsPerInch() / 96.f < 1.5) ? 2 : 1;
+    int _scr_num = QApplication::desktop()->primaryScreen();
+    if (reg_user.contains("position")) {
+        _scr_num = QApplication::desktop()->screenNumber(
+                            reg_user.value("position").toRect().topLeft() );
+    }
+
+    g_dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
 #else
     g_dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
-    GET_REGISTRY_SYSTEM(reg_system)
-    GET_REGISTRY_USER(reg_user)
+
     reg_user.setFallbacksEnabled(false);
 
     /* read lang fom different places
@@ -174,30 +182,10 @@ int main( int argc, char *argv[] )
         delete application_cef;
         delete pApplicationManager;
         return 0;
-    } else
-    if (!((_arg_i = app.arguments().indexOf(QRegularExpression(reCmdLang), 1)) < 0)) {
-        g_lang = app.arguments().at(_arg_i).right(2);
     }
 
-    if (!g_lang.size())
-        g_lang = reg_user.value("locale").value<QString>();
+    CLangater::init();
 
-#ifdef __linux
-    if (!g_lang.size()) {
-        g_lang = QLocale::system().name().left(2);
-        if (!QFile(":/i18n/langs/" + g_lang + ".qm").exists()) g_lang = "en";
-    }
-#else
-    // read setup language and set application locale
-    !g_lang.size() &&
-        !((g_lang = reg_system.value("locale").value<QString>()).size()) && (g_lang = "en").size();
-#endif
-
-    QTranslator tr;
-    if (g_lang.length()) {
-        tr.load(g_lang, ":/i18n/langs");
-        app.installTranslator(&tr);
-    }
     /* applying languages finished */
 
 #ifdef _WIN32
@@ -222,30 +210,12 @@ int main( int argc, char *argv[] )
 
         if (clean) {
             reg_user.setValue("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
-            QDir(user_data_path + "/data/fonts").removeRecursively();
+            QDir(user_data_path + "/fonts").removeRecursively();
         }
     }
 
-    QByteArray css;
-    QFile file;
-    foreach(const QFileInfo &info, QDir(":styles/res/styles").entryInfoList(QStringList("*.qss"), QDir::Files)) {
-        file.setFileName(info.absoluteFilePath());
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            css.append(file.readAll());
-            file.close();
-        }
-    }
-
-    if (g_dpi_ratio > 1) {
-        file.setFileName(":styles@2x/styles.qss");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            css.append(file.readAll());
-            file.close();
-        }
-    }
-
-
-    if (css.size()) app.setStyleSheet(css);
+    QByteArray css(Utils::getAppStylesheets(g_dpi_ratio));
+    if ( !css.isEmpty() ) app.setStyleSheet(css);
 
     // Font
     QFont mainFont = app.font();

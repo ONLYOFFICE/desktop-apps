@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -44,6 +44,7 @@
 #include <QUrl>
 #include <QJsonDocument>
 #include <QProcess>
+#include <QScreen>
 
 #include "applicationmanager.h"
 #include "applicationmanager_events.h"
@@ -256,4 +257,64 @@ QString Utils::encodeJson(const QJsonObject& obj)
 QString Utils::encodeJson(const QString& s)
 {
     return QString(s).replace("\"", "\\\"");
+}
+
+unsigned Utils::getScreenDpiRatio(int scrnum)
+{
+    UINT _dpi_x = 0,
+         _dpi_y = 0;
+    double _k;
+
+    if ( Core_GetMonitorRawDpiByIndex(scrnum, &_dpi_x, &_dpi_y) == S_OK ) {
+        _k = _dpi_x / 96.f;
+    } else {
+        _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
+    }
+
+    return !(_k < 1.5) ? 2 : 1;
+}
+
+unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
+{
+#ifdef __linux
+    return 1;
+#else
+    UINT _dpi_x = 0,
+         _dpi_y = 0;
+    double _k;
+
+    if ( Core_GetMonitorRawDpi((HWND)hwnd, &_dpi_x, &_dpi_y) == S_OK ) {
+        _k = _dpi_x;
+    } else {
+        _k = QApplication::primaryScreen()->logicalDotsPerInch();
+    }
+
+    return _k / 96.f < 1.5 ? 1 : 2;
+#endif
+}
+
+QByteArray Utils::getAppStylesheets(int scale)
+{
+    auto read_styles = [](QString& dir) {
+        QByteArray _css;
+        QFile file;
+        QFileInfoList files = QDir(dir).entryInfoList(QStringList("*.qss"), QDir::Files);
+        foreach(const QFileInfo &info, files) {
+            file.setFileName(info.absoluteFilePath());
+            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+                _css.append(file.readAll());
+                file.close();
+            }
+        }
+
+        return _css;
+    };
+
+    QByteArray _out( read_styles(QString(":styles/res/styles")) );
+
+    if ( scale > 1 ) {
+        _out.append( read_styles(QString(":styles@2x")) );
+    }
+
+    return _out;
 }

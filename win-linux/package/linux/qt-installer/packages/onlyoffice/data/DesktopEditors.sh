@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) Ascensio System SIA, 2016
+# Copyright (c) Ascensio System SIA, 2017
 #
 
 # This script is used to set up environment for actual app launching

@@ -21,7 +21,7 @@ VersionInfoVersion        ={#sAppVersion}
 AppPublisher              =Ascensio System SIA.
 AppPublisherURL           =http://www.onlyoffice.com/
 AppSupportURL             =http://www.onlyoffice.com/support.aspx
-AppCopyright              =Copyright (C) 2016 Ascensio System SIA.
+AppCopyright              =Copyright (C) 2017 Ascensio System SIA.
 
 DefaultGroupName          =ONLYOFFICE
 WizardImageFile           = data\dialogpicture.bmp
@@ -120,13 +120,23 @@ procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSyste
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
+function GetCommandlineParam(inParamName: String):String; forward;
+function StartsWith(SubStr, S: String) : Boolean; forward;
+function StringReplace(S, oldSubString, newSubString: String) : String; forward;
+
+
 //procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
 
 procedure InitializeWizard();
+var
+  paramSkip: string;
 begin
-  if not WizardSilent then
-    InitializeAssociatePage();
+  if not WizardSilent then begin
+    paramSkip := GetCommandlineParam('/skip');
+    if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then
+      InitializeAssociatePage();
+  end;
 end;
 
 function InitializeSetup(): Boolean;
@@ -165,6 +175,8 @@ begin
 end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  regValue: string;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -173,6 +185,15 @@ begin
 //      DelTree('', True, True, True)
 //    end
     UnassociateExtensions();
+  end else
+  if CurUninstallStep = usPostUninstall then begin
+    RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
+
+    if regValue = 'full' then begin
+      DelTree(ExpandConstant('{localappdata}\ONLYOFFICE'), True, True, True);
+      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
+    end;
   end;
 end;
 
@@ -280,12 +301,105 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
+procedure DirectoryCopy(SourcePath, DestPath: string);
+var
+  FindRec: TFindRec;
+  SourceFilePath: string;
+  DestFilePath: string;
+begin
+  if FindFirst(SourcePath + '\*', FindRec) then
+  begin
+    try
+      repeat
+        if (FindRec.Name <> '.') and (FindRec.Name <> '..') then
+        begin
+          SourceFilePath := SourcePath + '\' + FindRec.Name;
+          DestFilePath := DestPath + '\' + FindRec.Name;
+          if FindRec.Attributes and FILE_ATTRIBUTE_DIRECTORY = 0 then
+          begin
+            if not FileCopy(SourceFilePath, DestFilePath, False) then
+              Log(Format('Failed to copy %s to %s', [SourceFilePath, DestFilePath]));
+          end else
+          begin
+            if DirExists(DestFilePath) or CreateDir(DestFilePath) then
+            begin
+              DirectoryCopy(SourceFilePath, DestFilePath);
+            end else
+              Log(Format('Failed to create %s', [DestFilePath]));
+          end;
+        end;
+      until not FindNext(FindRec);
+    finally
+      FindClose(FindRec);
+    end;
+  end else
+  begin
+    Log(Format('Failed to list %s', [SourcePath]));
+  end;
+end;
+
 procedure CurStepChanged(CurStep: TSetupStep);
+var
+  commonCachePath, userCachePath: string;
+  paramStore: string;
 begin
   if CurStep = ssPostInstall then 
   begin
     DoPostInstall();
+
+    // migrate from prev version when user's data saved to system common path
+    commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
+    userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
+    if DirExists(commonCachePath) then
+    begin
+      ForceDirectories(userCachePath);
+      DirectoryCopy(commonCachePath, userCachePath);
+    end
   end;
+
+  paramStore := GetCommandlineParam('/store');
+  if Length(paramStore) > 0 then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'Store', paramStore);
+  end;
+
+  paramStore := GetCommandlineParam('/uninst');
+  if (Length(paramStore) > 0) and (paramStore = 'full') then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
+  end;
+end;
+
+function StartsWith(SubStr, S: String) : Boolean;
+begin
+   Result := Pos(SubStr, S) = 1;
+end;
+
+function StringReplace(S, oldSubString, newSubString: String) : String;
+var
+  stringCopy : String;
+begin
+  stringCopy := S; //Prevent modification to the original string
+  StringChange(stringCopy, oldSubString, newSubString);
+  Result := stringCopy;
+end;
+
+function GetCommandlineParam(inParamName: String) : String;
+var
+   paramNameAndValue: String;
+   i: Integer;
+begin
+   Result := '';
+
+   for i:= 1 to ParamCount do
+   begin
+     paramNameAndValue := Lowercase(ParamStr(i));
+     if StartsWith(inParamName, paramNameAndValue) then
+     begin
+       Result := StringReplace(paramNameAndValue, inParamName + ':', '');
+       break;
+     end;
+   end;
 end;
 
 
@@ -300,7 +414,7 @@ Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
 Source: ..\..\build\Release\release\{#NAME_EXE_OUT};            DestDir: {app};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
-Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {commonappdata}\{#APP_PATH}\webdata\local; DestName: index.html;
+Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
 ;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; DestName: LICENSE.htm;
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
@@ -313,12 +427,12 @@ Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\e
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts;
-Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
-Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {commonappdata}\{#APP_PATH}\webdata\local\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
+Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Regular.ttf;           DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-ExtraBold.ttf;         DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Light.ttf;             DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+Source: ..\..\..\common\package\fonts\OpenSans-Semibold.ttf;          DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 ;Source: data\fonts\OpenSans-ExtraBoldItalic.ttf;           DestDir: {fonts}; FontInstall: Open Sans Extrabold Italic; Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-BoldItalic.ttf;                DestDir: {fonts}; FontInstall: Open Sans Bold Italic;      Flags: onlyifdoesntexist uninsneveruninstall;
 ;Source: data\fonts\OpenSans-Italic.ttf;                    DestDir: {fonts}; FontInstall: Open Sans Italic;           Flags: onlyifdoesntexist uninsneveruninstall;
@@ -360,7 +474,6 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;  ValueData: {language};             Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: expandsz; ValueName: Path; ValueData: "{olddata};{app}\converter"; Check: NeedsAddPath(ExpandConstant('{app}\converter')); AfterInstall: RefreshEnvironment;
-
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;

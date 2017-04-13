@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2016
+ * (c) Copyright Ascensio System SIA 2010-2017
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -56,6 +56,7 @@
 #include "version.h"
 #include "cmessage.h"
 #include "cfilechecker.h"
+#include "clangater.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -65,6 +66,7 @@
 extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
+#define VK_TAB 0x09
 #define gTopWinId this
 #include "linux/cx11decoration.h"
 #endif
@@ -78,7 +80,6 @@ using namespace NSEditorApi;
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
 
 extern BYTE     g_dpi_ratio;
-extern QString  g_lang;
 
 struct printdata {
 public:
@@ -101,6 +102,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pManager = manager;
 
     setObjectName("mainPanel");
+    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -259,18 +261,13 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
 
     m_pButtonDownload->setVisible(false, false);
 
-    wstring first_name, last_name;
-    readSystemUserName(first_name, last_name);
-
-    QString params = QString("lang=%1&userfname=%3&userlname=%4&location=%2")
-                        .arg(g_lang, Utils::systemLocationCode());
-
+    QString params = QString("lang=%1&username=%3&location=%2")
+                        .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
-    wparams.replace(wparams.find(L"%3"), 2, first_name);
-    wparams.replace(wparams.find(L"%4"), 2, last_name);
-    m_pManager->InitAdditionalEditorParams(wparams);
+    wstring user_name = readSystemUserName();
 
-    m_saveDocMessage = tr("%1 is modified.<br>Do you want to keep changes?");
+    wparams.replace(wparams.find(L"%3"), 2, user_name);
+    m_pManager->InitAdditionalEditorParams(wparams);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -505,7 +502,7 @@ int CMainPanel::trySaveDocument(int index)
         m_pTabs->setCurrentIndex(index);
 
         mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
-        modal_res = mess.warning(m_saveDocMessage.arg(m_pTabs->titleByIndex(index)));
+        modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
@@ -766,16 +763,19 @@ void CMainPanel::onLocalFilesOpen(void * data)
 
 void CMainPanel::onLocalFilesCheck(QString json)
 {
-    return;
+    CExistanceController::check(json);
+}
 
-    CFileChecker * checker = new CFileChecker(json);
-    checker->start(QThread::LowPriority);
-//    checker->requestInterruption();
+void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
 
-    connect(checker, &CFileChecker::resultReady, [=](const QString& json){
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
         cmdMainPage("files:checked", Utils::encodeJson(json));
-    });
-    connect(checker, &CFileChecker::finished, checker, &QObject::deleteLater);
+    }
 }
 
 void CMainPanel::onLocalFileLocation(QString path)
@@ -892,17 +892,10 @@ void CMainPanel::loadStartPage()
 #if defined(QT_DEBUG)
     QString data_path = _reg_user.value("startpage").value<QString>();
 #else
-# ifdef _WIN32
-    QString data_path = QString().fromStdWString(m_pManager->m_oSettings.app_data_path) + "/webdata/local/index.html";
-//    data_path = "ascdesktop://login.html";
-# elif __linux__
     QString data_path = qApp->applicationDirPath() + "/index.html";
-# endif
 #endif
 
-    QString additional = "?waitingloader=yes";
-    if (!g_lang.isEmpty())
-        additional.append("&lang=" + g_lang);
+    QString additional = "?waitingloader=yes&lang=" + CLangater::getLanguageName();
 
     QString _portal = _reg_user.value("portal").value<QString>();
     if (!_portal.isEmpty()) {
@@ -1135,6 +1128,7 @@ void CMainPanel::onKeyDown(void * eventData)
 
     int key = pData->get_KeyCode();
     bool _is_ctrl = pData->get_IsCtrl();
+    bool _is_shift = pData->get_IsShift();
 
     RELEASEINTERFACE(pData)
 
@@ -1142,6 +1136,29 @@ void CMainPanel::onKeyDown(void * eventData)
     case VK_F4:
         if (_is_ctrl && m_pTabs->isActive()) {
             m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
+        }
+        break;
+    case VK_TAB:
+        if (m_pTabs->count()) {
+            if ( _is_ctrl ) {
+                int _new_index = 0;
+
+                if ( _is_shift ) {
+                    if ( m_pTabs->isActive() )
+                        _new_index = m_pTabs->currentIndex() - 1; else
+                        _new_index = m_pTabs->count() - 1;
+                } else {
+                    if ( m_pTabs->isActive() )
+                        _new_index =  m_pTabs->currentIndex() + 1;
+                }
+
+                if ( _new_index < 0 || !(_new_index < m_pTabs->count()) )
+                    toggleButtonMain(true);
+                else {
+                    toggleButtonMain(false);
+                    m_pTabs->setCurrentIndex( _new_index );
+                }
+            }
         }
         break;
     }
@@ -1188,7 +1205,13 @@ void CMainPanel::onPortalNew(QString in)
 
 void CMainPanel::onPortalCreate()
 {
-    int res = m_pTabs->newPortal(URL_SIGNUP, tr("Sign Up"));
+    QString _url = URL_SIGNUP;
+
+    GET_REGISTRY_SYSTEM(reg_system)
+    if ( reg_system.contains("Store") )
+            _url += "&store=" + reg_system.value("Store").toString();
+
+    int res = m_pTabs->newPortal(_url, tr("Sign Up"));
     if (res == 2) { RecalculatePlaces(); }
 
     QTimer::singleShot(200, this, [=]{
@@ -1196,34 +1219,25 @@ void CMainPanel::onPortalCreate()
     });
 }
 
-void CMainPanel::readSystemUserName(wstring& first, wstring& last)
+wstring CMainPanel::readSystemUserName()
 {
 #ifdef Q_OS_WIN
     WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
-    wstring _full_name = GetUserName(_env_name, &_size) ?
+    return GetUserName(_env_name, &_size) ?
                             wstring(_env_name) : L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
-    if (_env_name.isEmpty())
+    if ( _env_name.isEmpty() ) {
         _env_name = qgetenv("USERNAME");
 
-    if (_env_name.isEmpty())
-        _env_name = "Unknown.User";
+        if (_env_name.isEmpty())
+            _env_name = "Unknown.User";
+    }
 
-    wstring _full_name = _env_name.toStdWString();
+    return _env_name.toStdWString();
 #endif
-//    std::wregex _rexp(QString(reUserName).toStdWString());
-//    std::wsmatch _res;
-//    if (std::regex_search(_full_name, _res, _rexp)) {
-//        first = _res.str(1),
-//        last = _res.str(2);
-//    }
-
-    auto i = _full_name.find('.');
-    i == wstring::npos ? first.assign(_full_name) :
-                (first.assign(_full_name.substr(0, i)), last.assign(_full_name.substr(++i)));
 }
 
 void CMainPanel::onMainPageReady()
@@ -1279,4 +1293,44 @@ void CMainPanel::cmdAppManager(int cmd, void * data)
     CAscMenuEvent * pEvent = new CAscMenuEvent(cmd);
     pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
     m_pManager->Apply(pEvent);
+}
+
+QString CMainPanel::getSaveMessage()
+{
+    return tr("%1 is modified.<br>Do you want to keep changes?");
+}
+
+void CMainPanel::updateStylesheets()
+{
+    QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
+    if ( m_isCustomWindow ) {
+        _tabs_stylesheet_file += "tabbar.qss";
+
+        QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+
+        m_pButtonMinimize->setFixedSize(small_btn_size);
+        m_pButtonMaximize->setFixedSize(small_btn_size);
+        m_pButtonClose->setFixedSize(small_btn_size);
+
+        m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+    } else {
+#ifdef __linux__
+        _tabs_stylesheet_file += "tabbar.nix.qss";
+#endif
+
+        m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
+    }
+
+    QFile styleFile(_tabs_stylesheet_file);
+    styleFile.open( QFile::ReadOnly );
+    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
+
+    QLayout * layoutBtns = m_boxTitleBtns->layout();
+    layoutBtns->setContentsMargins(0,0,4*g_dpi_ratio,0);
+    layoutBtns->setSpacing(1*g_dpi_ratio);
+
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
+    m_pButtonDownload->setFixedSize(QSize(33*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio));
+    m_pButtonDownload->setAnimatedIcon(g_dpi_ratio > 1 ?
+                            ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
 }

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        body {
+            background:white;
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-family: "Helvetica";
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 18px;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 14px;
+        }
+        .releasedate {
+            color: #888;
+            font-size: medium;
+        }
+        .version {
+            border-bottom: 1px solid #cfcfcf;
+        }
+    </style>
+</head>
+<body>
+<div class="version">
+        <h1>ONLYOFFICE 4.3<span class="releasedate"> - 13 апреля 2017</span></h1>
+        <h2>Добавлено</h2>
+        <h4>Все редакторы</h4>
+        <ul>
+            <li>Полная поддержка мониторов с высоким разрешением</li>
+            <li>Возможность установки альтернативного текста для фигур</li>
+        </ul>
+        <h4>Редактор документов</h4>
+        <ul>
+            <li>Функция Отменить в режиме быстрого совместного редактирования</li>
+            <li>Отображение <code>Все изменения сохранены</code> в нижней панели инструментов</li>
+            <li>Добавление и редактирование сносок</li>
+            <li>Новые языки для проверки орфографии (всего 43)</li>
+        </ul>
+        <h4>Редактор таблиц</h4>
+        <ul>
+            <li>Поддержка формул <code>AVERAGEIFS</code>, <code>COUNTIFS</code>, <code>SUMIFS</code></li>
+            <li>Улучшения работы формул</li>
+            <li>Полностью новое окно <code>Формат ячеек</code> с дополнительными параметрами</li>
+            <li>Окно параметров сортировки при сортировке диапазонов</li>
+            <li>Добавлено направление сортировки на кнопках фильтра</li>
+            <li>Добавлено условие фильтра при статистической информации</li>
+            <li>Добавлена специальная функция вставки</li>
+            <li>Добавлена поддержка диаграммы поверхности</li>
+            <li>Новые стили границ ячеек (всего 11)</li>
+        </ul>
+        <h4>Редактор презентаций</h4>
+        <ul>
+            <li>Функция Отменить в режиме быстрого совместного редактирования</li>
+        </ul>
+        <h4>Конвертация</h4>
+        <ul>
+            <li>Оптимизация и ускорение</li>
+            <li>Улучшенная поддержка всех форматов, включая (но не ограничиваясь ими):
+                <h5>DOC формат</h5>
+                <ul>
+                    <li>Фоновая страница</li>
+                </ul>
+                <h5>XLS формат</h5>
+                <ul>
+                    <li>Валидация данных</li>
+                    <li>Расшифровщик</li>
+                </ul>
+                <h5>ODF формат</h5>
+                <ul>
+                    <li>Глобальные настройки для документов</li>
+                    <li>Рефакторинг SVG</li>
+                    <li>Фоновая страница (изображение, рисунок, градиент)</li>
+                    <li>Преобразование Smart Art</li>
+                    <li>Виды листа/рабочей книги</li>
+                    <li>Поддержка преобразования OLE-объектов (и других встроенных объектов)</li>
+                </ul>
+                <h5>RTF формат</h5>
+                <ul>
+                    <li>Генерация сменной текстовой гиперссылки, если она отсутствует</li>
+                    <li>Цифровые подписи</li>
+                    <li>Дополнительные объекты рисования</li>
+                    <li>Пользовательские фигуры</li>
+                    <li>Текст в фигурах</li>
+                </ul>
+            </li>
+        </ul>
+        <h4>Плагины</h4>
+        <ul>
+            <li>Много новых функций плагинов</li>
+        </ul>
+        <h2>Исправлено</h2>
+        <h4>Редактор документов</h4>
+        <ul>
+            <li>Исправлена проблема с drag-n-drop таблицы в сноске (bug #33548)</li>
+            <li>Исправлена проблема с обрезкой группы фигур (bug #33110)</li>
+        </ul>
+        <h4>Редактор таблиц</h4>
+        <ul>
+            <li>Исправлена ошибка с ссылкой при вставке новой строки (<a
+                    href="https://github.com/ONLYOFFICE/DocumentServer/issues/41" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DocumentServer/issues/41" data-id="168649167"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DocumentServer#41</a>)
+            </li>
+            <li>Исправлена проблема с событием onDocumentStateChange (<a
+                    href="https://github.com/ONLYOFFICE/DocumentServer/issues/88" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DocumentServer/issues/88" data-id="214926332"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DocumentServer#88</a>)
+            </li>
+            <li>Исправлена проблема с переводом формул (<a
+                    href="https://github.com/ONLYOFFICE/DesktopEditors/issues/23" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/23" data-id="202357730"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#23</a>)
+            </li>
+            <li>Исправлена проблема с защитой паролем xlsx (<a
+                    href="https://github.com/ONLYOFFICE/DesktopEditors/issues/24" class="issue-link js-issue-link"
+                    data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/24" data-id="202360008"
+                    data-error-text="Failed to load issue title" data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#24</a>)
+            </li>
+            <li>Исправлена проблема с неразрывным пространством (<a href="https://github.com/ONLYOFFICE/DesktopEditors/issues/26"
+                                                           class="issue-link js-issue-link"
+                                                           data-url="https://github.com/ONLYOFFICE/DesktopEditors/issues/26"
+                                                           data-id="202409693"
+                                                           data-error-text="Failed to load issue title"
+                                                           data-permission-text="Issue title is private">ONLYOFFICE/DesktopEditors#26</a>)
+            </li>
+            <li>Исправлена ошибка с формулой AVERAGEA в текстовым форматом</li>
+            <li>Исправлена проблема копировании списка (bug #33588)</li>
+            <li>Исправлена проблема с пересчетом формулы с помощью горячей клавиши F4 (bug #32901)</li>
+            <li>Исправлена ошибка с формулой SUMIFS (bug #33602)</li>
+            <li>Исправлена проблема со вставкой размера изображения (bug #33604)</li>
+            <li>Исправлена проблема с нулевыми значениями sparklines (bug #33612)</li>
+            <li>Исправлена ошибка с изменением формата числа при изменении регионального формата (bug #31395)</li>
+            <li>Исправлена проблема с заменой разделителей формул (bug #33608)</li>
+            <li>Исправлена проблема с размером ячеек при drag-n-drop (bug #33607)</li>
+            <li>Исправлена ошибка с размером курсора в @2x (bug #33606)</li>
+            <li>Множество мелких и крупных исправлений</li>
+        </ul>
+    </div>
+</body>
+</html>
