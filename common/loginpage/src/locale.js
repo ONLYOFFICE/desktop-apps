@@ -179,7 +179,7 @@ var de = {
     newDoc: 'DOKUMENT',
     newXlsx: 'ARBEITSMAPPE',
     newPptx: 'PRÄSENTATION',
-    actCreateNew: 'Neu erstllen',
+    actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
     actConnectTo: 'Teilen und Zusammenarbeiten',
