@@ -157,9 +157,9 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
-    QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
+    QString _tabs_stylesheets = g_dpi_ratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if (isCustomWindow) {
-        _tabs_stylesheet_file += "tabbar.qss";
+        _tabs_stylesheets += ".qss";
         palette.setColor(QPalette::Background, QColor("#313437"));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
@@ -202,7 +202,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
         m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
 #ifdef __linux__
-        _tabs_stylesheet_file += "tabbar.nix.qss";
+        _tabs_stylesheets += ".nix.qss";
 #endif
         m_pButtonMain->setProperty("theme", "light");
 
@@ -216,7 +216,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
         m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
     }
 
-    QFile styleFile(_tabs_stylesheet_file);
+    QFile styleFile(_tabs_stylesheets);
     styleFile.open( QFile::ReadOnly );
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
     m_pTabs->setAutoFillBackground(true);
@@ -1302,9 +1302,9 @@ QString CMainPanel::getSaveMessage()
 
 void CMainPanel::updateStylesheets()
 {
-    QString _tabs_stylesheet_file = g_dpi_ratio > 1 ? ":/styles@2x/" : ":/sep-styles/";
+    QString _tabs_stylesheets = g_dpi_ratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
-        _tabs_stylesheet_file += "tabbar.qss";
+        _tabs_stylesheets += ".qss";
 
         QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
@@ -1315,13 +1315,13 @@ void CMainPanel::updateStylesheets()
         m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     } else {
 #ifdef __linux__
-        _tabs_stylesheet_file += "tabbar.nix.qss";
+        _tabs_stylesheets += ".nix.qss";
 #endif
 
         m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
     }
 
-    QFile styleFile(_tabs_stylesheet_file);
+    QFile styleFile(_tabs_stylesheets);
     styleFile.open( QFile::ReadOnly );
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
 
