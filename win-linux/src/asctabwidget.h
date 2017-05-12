@@ -101,7 +101,7 @@ class CAscTabWidget : public QTabWidget
         int tools_width;
         int custom_offset;
 
-        void apply_dpi(int dpi) {
+        void apply_scale(int dpi) {
             tab.max     *= dpi;
             tab.min     *= dpi;
             tabs_span   *= dpi;

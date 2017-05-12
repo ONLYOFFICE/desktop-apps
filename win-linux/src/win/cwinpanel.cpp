@@ -67,8 +67,6 @@
 #endif
 
 
-extern byte g_dpi_ratio;
-
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
 {
