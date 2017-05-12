@@ -275,13 +275,14 @@ begin
     begin     
       Explode(argsArray, ExtensionRegistryInfo[i],':');
 
-      if not RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]) then begin
+      // checking existance is temporary locked to rewrite new icons indexes
+      //if not RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]) then begin
         if Length(argsArray[1]) <> 0 then
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], '', argsArray[1]);
 
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#NAME_EXE_OUT}" "%1"'));
-      end;
+      //end;
 
       ext := LowerCase(AudioExts[i]);
 
