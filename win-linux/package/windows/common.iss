@@ -402,6 +402,11 @@ begin
    end;
 end;
 
+procedure cleanDir(path: string);
+begin
+  if DirExists(path) then
+    DelTree(path, true, true, true);
+end;
 
 [Dirs]
 Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
@@ -422,8 +427,8 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;        Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;        Flags: recursesubdirs; BeforeInstall: cleanDir(ExpandConstant('{app}\editors\web-apps'));
+Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;      Flags: recursesubdirs; BeforeInstall: cleanDir(ExpandConstant('{app}\editors\sdkjs'));
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
