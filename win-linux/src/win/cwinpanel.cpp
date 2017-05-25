@@ -56,6 +56,7 @@
 #include "../utils.h"
 #include "../csplash.h"
 #include "../clangater.h"
+#include "../clogger.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -245,6 +246,8 @@ void CWinPanel::slot_mainPageReady()
     win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
     win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
     win_sparkle_init();
+    m_pMainPanel->cmdMainPage("updates", "on");
+    CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
 #endif
 }
 
