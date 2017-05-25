@@ -84,6 +84,12 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     connect(panel, &CMainPanelImpl::mainWindowClose, this, &CWinPanel::slot_windowClose);
     connect(panel, &CMainPanelImpl::mainPageReady, this, &CWinPanel::slot_mainPageReady);
 
+#ifdef _UPDMODULE
+    connect(panel, &CMainPanelImpl::checkUpdates, this, []{
+        win_sparkle_check_update_with_ui();
+    });
+#endif
+
     /*
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
     vector<std::wstring>& vctFiles = pData->get_Files();

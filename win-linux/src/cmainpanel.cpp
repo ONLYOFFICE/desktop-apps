@@ -1334,3 +1334,7 @@ void CMainPanel::updateStylesheets()
     m_pButtonDownload->setAnimatedIcon(g_dpi_ratio > 1 ?
                             ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
 }
+void CMainPanel::onCheckUpdates()
+{
+    emit checkUpdates();
+}

@@ -65,6 +65,7 @@ public:
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
     void updateStylesheets();
+    void cmdMainPage(const QString&, const QString&) const;
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -73,7 +74,6 @@ public:
 
 protected:
     void refreshAboutVersion();
-    void cmdMainPage(const QString&, const QString&) const;
     void cmdAppManager(int, void *);
     virtual QString getSaveMessage();
 
@@ -97,6 +97,7 @@ signals:
     void mainWindowChangeState(Qt::WindowState);
     void mainWindowClose();
     void mainPageReady();
+    void checkUpdates();
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -141,6 +142,7 @@ public slots:
 
     void onMainPageReady();
     void onFileChecked(const QString&, int, bool);
+    void onCheckUpdates();
 
 private:
     std::wstring    m_sDownloadName;

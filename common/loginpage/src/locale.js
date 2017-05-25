@@ -84,6 +84,7 @@ var en = {
     ,adsToolItem2: 'Collaborative review'
     ,adsTitle2: 'Let your teammates review documents in the cloud'
     ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
+    ,checkUpdates: 'Check for updates'
 }
 
 var ru = {
@@ -140,6 +141,7 @@ var ru = {
     ,adsToolItem2: 'Рецензирование онлайн'
     ,adsTitle2: 'Предоставьте коллегам возможность рецензировать документы в облаке'
     ,adsDescr2: 'Забудьте об отправке файлов на рецензирование по электронной почте. Предоставляйте быстрый доступ к документу, не выходя из десктопного редактора. Разрешите остальным предлагать свои поправки. Принимайте или отклоняйте изменения.'
+    ,checkUpdates: 'Проверить обновления'
 }
 
 var de = {
@@ -196,6 +198,7 @@ var de = {
     ,adsToolItem2: 'Gemeinsamer Review'
     ,adsTitle2: 'Lassen Sie Ihre Teamkollegen Dokumente in der Cloud überprüfen'
     ,adsDescr2: 'Vergessen Sie nicht, Dateien per E-Mail zur Überprüfung zu versenden. Gewähren Sie einen schnellen Zugriff auf das Dokument, ohne Ihr Desktop Editor zu verlassen. Regen Sie die anderen dazu an, Korrekturvorschläge anzubieten. Nehmen Sie Änderungen entweder an oder lehnen Sie diese ab.'
+    ,checkUpdates: 'Prüfen Sie Updates'
 };
 
 var fr = {
@@ -252,6 +255,7 @@ var fr = {
     ,adsToolItem2: 'La révision collaborative'
     ,adsTitle2: 'Permettez vos collègues d\'examiner des documents dans le nuage'
     ,adsDescr2: 'Oubliez l’envoi de fichiers à examiner par e-mail. Accordez un accès rapide au document sans quitter votre éditeur de bureau. Permettez les autres de proposer les corrections. Acceptez ou refusez les modifications.'
+    ,checkUpdates: 'Chercher les mises à jour'
 };
 
 var sp = {
@@ -308,6 +312,7 @@ var sp = {
     ,adsToolItem2: 'Revisión colaborativa'
     ,adsTitle2: 'Deje que sus compañeros repasen documentos en la nube'
     ,adsDescr2: 'Olvídese del envío de archivos para ser revisados por correo electrónico. Conceda un acceso rápido al documento sin salir de su editor de escritorio. Permita que otros sugieran correcciones. Acepte o rechace cambios.'
+    ,checkUpdates: 'Comprobar si hay actualizaciones'
 };
 
 var pt_BR = {
@@ -364,6 +369,7 @@ var pt_BR = {
     ,adsToolItem2: 'Collaborative review'
     ,adsTitle2: 'Let your teammates review documents in the cloud'
     ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
+    ,checkUpdates: 'Check for updates'
 }
 
 +function applyLocale(lang) {
