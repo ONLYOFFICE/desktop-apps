@@ -30,6 +30,9 @@ win32 {
         DEFINES += _UPDMODULE
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
+
+        message(updates is turned on)
+        message(url: $$join(LINK,,\\\",\\\"))
     }
 
     CONFIG(debug, debug|release) {

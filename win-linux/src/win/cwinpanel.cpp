@@ -66,6 +66,7 @@
   #include "../version.h"
 #endif
 
+extern QStringList g_cmdArgs;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
@@ -104,7 +105,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    m_pManager->SetEventListener(this);
 
-    panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
+    panel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
 //    parseInputArgs(qApp->arguments());
 }
 

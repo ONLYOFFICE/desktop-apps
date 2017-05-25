@@ -62,6 +62,7 @@
 #include "common/File.h"
 
 BYTE g_dpi_ratio = 1;
+QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
 {
@@ -168,13 +169,14 @@ int main( int argc, char *argv[] )
 #endif
 
     reg_user.setFallbacksEnabled(false);
+    g_cmdArgs = QCoreApplication::arguments();
 
     /* read lang fom different places
      * cmd argument --lang:en apply the language one time
      * cmd argument --keeplang:en also keep the language for next sessions
     */
     int _arg_i;
-    if (!(_arg_i = app.arguments().indexOf("--help") < 0)) {
+    if (!(_arg_i = g_cmdArgs.indexOf("--help") < 0)) {
         CHelp::out();
 
         pApplicationManager->CloseApplication();
