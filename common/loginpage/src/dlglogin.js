@@ -115,22 +115,61 @@ window.LoginDlg = function() {
         });
     }
 
-    function sendData(url, data, target) {
-        var form = document.createElement("form");
+    function recognizeUser(server, data) {
+        var opts = {
+            url: server,
+            crossOrigin: true,
+            crossDomain: true,
+            type: 'post',
+            data: data,
+            complete: function(e, status) {
+                var obj = JSON.parse(e.responseText);
+                if (obj.statusCode == 402) {
+                    showLoginError(obj.error.message);
+                } else
+                if (obj.statusCode == 500) {
+                    showLoginError(utils.Lang.errLogin);
+                } else
+                if (obj.statusCode != 201) {
+                    console.log('server error: ' + obj.statusCode);
+                    showLoginError(utils.Lang.errLoginServer);
+                } else {
+                    if (obj.response.sms) {
+                        showLoginError('Two-factor authentication isn\'t supported yet.');
+                    } else
+                    if (!obj.response.sms) {
+                        Promise.all(
+                            [ clientCheckin(protocol + portal, obj.response.token),
+                                getUserInfo(protocol + portal, obj.response.token) ])
+                            .then( results => {
+                                        let info = results[1];
+                                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", obj.response.token);
+                                        window.on_set_cookie = ()=>{
+                                            if ( !!events.success ) {
+                                                let auth_info = {
+                                                    portal: protocol + portal,
+                                                    user: info.displayName,
+                                                    email: info.email
+                                                };
+                                                events.success(auth_info);
+                                            }
 
-        form.setAttribute("method", 'post');
-        form.action = url;
-        form.target = target.name;
-        form.style.display = "none";
+                                            window.on_set_cookie = undefined;
+                                            doClose(1);
+                                        }
+                                },
+                                error => showLoginError(utils.Lang.errLoginAuth)
+                            );
+                }
+                }
+            },
+            error: function(e, status, error) {
+                console.log('server error: ' + status + ', ' + error);
+                showLoginError(utils.Lang.errLoginServer);
+            }
+        };
 
-        for(var name in data) {
-            var node = document.createElement("input");
-            node.name  = name;
-            node.value = data[name].toString();
-            form.appendChild(node);
-        }
-
-        form.submit();
+        $.ajax(opts);
     };
 
     function onCloseClick(e) {
@@ -189,17 +228,7 @@ window.LoginDlg = function() {
             if (r == STATUS_NO_CONNECTION) {
                 showLoginError(utils.Lang.errConnection);
             } else {
-                var iframe = document.createElement("iframe");
-                iframe.name = "frameLogin";
-                iframe.style.display = "none";
-
-                iframe.addEventListener("load", function () {
-                    window.AscDesktopEditor.GetFrameContent("frameLogin");
-                });
-
-                document.body.appendChild(iframe);
-
-                sendData(protocol+url, {userName: email, password: pass}, iframe);
+                recognizeUser(protocol+url, {userName: email, password: pass});
             }
         };
 
@@ -229,69 +258,6 @@ window.LoginDlg = function() {
     function hideLoginError() {
         $el.find('#auth-error').fadeOut(100);
         $el.find('.error').removeClass('error');
-    };
-
-    window.onchildframemessage = function(message, framename) {
-        if (framename == 'frameLogin') {
-            if (message.length) {
-                var obj;
-                try {
-                    obj = JSON.parse(message);
-                } catch (e) {
-                    disableDialog(false);
-                }
-
-                if (obj) {
-                    if (obj.statusCode == 402) {
-                        showLoginError(obj.error.message);
-                    } else
-                    if (obj.statusCode == 500) {
-                        showLoginError(utils.Lang.errLogin);
-                    } else
-                    if (obj.statusCode != 201) {
-                        console.log('server error: ' + obj.statusCode);
-                        showLoginError(utils.Lang.errLoginServer);
-                    } else
-                    if (obj.response.sms) {
-                        showLoginError('Two-factor authentication isn\'t supported yet.');
-                    } else
-                    if (!obj.response.sms) {
-                        Promise.all(
-                            [ clientCheckin(protocol + portal, obj.response.token),
-                                getUserInfo(protocol + portal, obj.response.token) ])
-                            .then( results => {
-                                        let info = results[1];
-                                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", obj.response.token);
-                                        window.on_set_cookie = ()=>{
-                                            if ( !!events.success ) {
-                                                let auth_info = {
-                                                    portal: protocol + portal,
-                                                    user: info.displayName,
-                                                    email: info.email
-                                                };
-                                                events.success(auth_info);
-                                            }
-
-                                            window.on_set_cookie = undefined;
-                                            doClose(1);
-                                        }
-                                },
-                                error => showLoginError(utils.Lang.errLoginAuth)
-                            );
-                    }
-                } else {
-                    console.log('server error: wrong json');
-                    showLoginError(utils.Lang.errLoginServer);
-                }
-
-                // setLoaderVisible(false);
-
-                setTimeout(function(){
-                    var frame = document.getElementsByName('frameLogin');
-                    frame && frame.length > 0 && frame[0].remove();
-                },10);
-            }
-        }
     };
 
     function getUserInfo(url, token) {
