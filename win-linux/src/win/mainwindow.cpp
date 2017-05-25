@@ -50,6 +50,8 @@
 #include <QSettings>
 #include <QDebug>
 
+#define UM_INSTALL_UPDATE   WM_USER+254
+
 HWND gWinId = 0;
 HWND gTopWinId;
 extern byte g_dpi_ratio;
@@ -469,6 +471,9 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             LocalFree(szArglist);
         }
         break;}
+    case UM_INSTALL_UPDATE:
+        window->m_pWinPanel->doClose();
+        break;
     default: {
         break;
     }

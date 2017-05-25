@@ -5,6 +5,7 @@
 #define NAME_EXE_OUT        'DesktopEditors.exe'
 #define iconsExe            'projicons.exe'
 #define licfile             'agpl-3.0'
+#define APPWND_CLASS_NAME   'DocEditorsWindowClass'
 
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_OUT)
 #define sAppVerShort      Copy(sAppVersion, 0, 3)
@@ -41,10 +42,9 @@ UninstallDisplayIcon      = {app}\{#NAME_EXE_OUT}
 OutputDir                 =.\
 Compression               =lzma
 PrivilegesRequired        =admin
-AppMutex                  =TEAMLAB
+AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
-
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
@@ -100,6 +100,12 @@ es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la 
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
 
+en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
+de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
+fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
+es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
+
 ;en.AssociateDescription =Associate office document file types with %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
@@ -109,18 +115,22 @@ const
   SMTO_ABORTIFHUNG = 2;
   WM_WININICHANGE = $001A;
   WM_SETTINGCHANGE = WM_WININICHANGE;
+  WM_USER = $400;
 
 type
   WPARAM = UINT_PTR;
   LPARAM = INT_PTR;
   LRESULT = INT_PTR;
 
+var
+  gHWND: Longint;
 
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
 function GetCommandlineParam(inParamName: String):String; forward;
+function CheckCommandlineParam(inpn: String) : Boolean; forward;
 function StartsWith(SubStr, S: String) : Boolean; forward;
 function StringReplace(S, oldSubString, newSubString: String) : String; forward;
 
@@ -144,7 +154,11 @@ var
   OutResult: Boolean;
   path, mess: string;
   regkey: integer;
+
+  hWnd: Longint;
+  msg: string;
 begin
+  gHWND := 0;
   OutResult := True;
 
   if IsWin64 then
@@ -171,6 +185,32 @@ begin
     end
   end;
 
+  if OutResult then begin
+    if CheckCommandlineParam('/update') then
+    begin
+      gHWND := FindWindowByClassName('{#APPWND_CLASS_NAME}');
+      if gHWND <> 0 then begin
+        OutResult := (IDOK = MsgBox(ExpandConstant('{cm:UpdateAppRunning,{#sAppName}}'), mbInformation, MB_OKCANCEL));
+        if OutResult then begin
+          PostMessage(gHWND, WM_USER+254, 0, 0);
+          Sleep(1000);
+
+          while true do begin
+            hWnd := FindWindowByClassName('{#APPWND_CLASS_NAME}');
+            if hWnd <> 0 then begin
+              msg := FmtMessage(SetupMessage(msgSetupAppRunningError), ['{#sAppName}']);
+              if IDCANCEL = MsgBox(msg, mbError, MB_OKCANCEL) then begin
+                OutResult := false;
+                break;
+              end;
+            end else
+              break;
+          end;
+        end;
+      end;
+    end;
+  end;
+
   Result := OutResult;
 end;
 
@@ -195,6 +235,50 @@ begin
       RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
     end;
   end;
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  commonCachePath, userCachePath: string;
+  paramStore: string;
+  ErrorCode: Integer;
+begin
+  if CurStep = ssPostInstall then begin
+    DoPostInstall();
+
+    // migrate from the prev version when user's data saved to system common path
+    commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
+    userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
+    if DirExists(commonCachePath) then begin
+      ForceDirectories(userCachePath);
+      DirectoryCopy(commonCachePath, userCachePath);
+    end;
+
+    paramStore := GetCommandlineParam('/store');
+    if Length(paramStore) > 0 then begin
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'Store', paramStore);
+    end;
+
+    paramStore := GetCommandlineParam('/uninst');
+    if (Length(paramStore) > 0) and (paramStore = 'full') then begin
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
+    end;
+  end else
+  if CurStep = ssDone then begin
+    if not (gHWND = 0) then begin
+      ShellExec('', ExpandConstant('{app}\{#NAME_EXE_OUT}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+    end
+  end;
+end;
+
+function getAppMutex(P: String): String;
+var
+  hWnd: Longint;
+begin
+  if not CheckCommandlineParam('/update') then
+    Result := 'TEAMLAB'
+  else
+    Result := 'UPDATE';
 end;
 
 procedure installVCRedist(FileName, LabelCaption: String);
@@ -338,38 +422,6 @@ begin
   end;
 end;
 
-procedure CurStepChanged(CurStep: TSetupStep);
-var
-  commonCachePath, userCachePath: string;
-  paramStore: string;
-begin
-  if CurStep = ssPostInstall then 
-  begin
-    DoPostInstall();
-
-    // migrate from prev version when user's data saved to system common path
-    commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
-    userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
-    if DirExists(commonCachePath) then
-    begin
-      ForceDirectories(userCachePath);
-      DirectoryCopy(commonCachePath, userCachePath);
-    end
-  end;
-
-  paramStore := GetCommandlineParam('/store');
-  if Length(paramStore) > 0 then
-  begin
-    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'Store', paramStore);
-  end;
-
-  paramStore := GetCommandlineParam('/uninst');
-  if (Length(paramStore) > 0) and (paramStore = 'full') then
-  begin
-    RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
-  end;
-end;
-
 function StartsWith(SubStr, S: String) : Boolean;
 begin
    Result := Pos(SubStr, S) = 1;
@@ -402,10 +454,25 @@ begin
    end;
 end;
 
-procedure cleanDir(path: string);
+function CheckCommandlineParam(inpn: String) : Boolean;
+var
+   i: Integer;
 begin
-  if DirExists(path) then
-    DelTree(path, true, true, true);
+   Result := false;
+
+   for i:= 1 to ParamCount do begin
+     if inpn = Lowercase(ParamStr(i)) then begin
+       Result := true;
+       break;
+     end;
+   end;
+end;
+
+procedure CleanDir(path: string);
+begin
+  if DirExists(path) then begin
+    DelTree(path, true, true, true)
+  end;
 end;
 
 [Dirs]
