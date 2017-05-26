@@ -134,6 +134,8 @@ function CheckCommandlineParam(inpn: String) : Boolean; forward;
 function StartsWith(SubStr, S: String) : Boolean; forward;
 function StringReplace(S, oldSubString, newSubString: String) : String; forward;
 
+procedure CleanDir(path: string); forward;
+procedure DirectoryCopy(SourcePath, DestPath: string); forward;
 
 //procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
@@ -269,6 +271,12 @@ begin
       ShellExec('', ExpandConstant('{app}\{#NAME_EXE_OUT}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end;
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  CleanDir(ExpandConstant('{app}\editors\web-apps'));
+  CleanDir(ExpandConstant('{app}\editors\sdkjs'));
 end;
 
 function getAppMutex(P: String): String;
@@ -476,7 +484,7 @@ begin
 end;
 
 [Dirs]
-Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall
+Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
@@ -494,8 +502,8 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;        Flags: recursesubdirs; BeforeInstall: cleanDir(ExpandConstant('{app}\editors\web-apps'));
-Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;      Flags: recursesubdirs; BeforeInstall: cleanDir(ExpandConstant('{app}\editors\sdkjs'));
+Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
