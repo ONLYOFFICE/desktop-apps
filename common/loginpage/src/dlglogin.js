@@ -177,7 +177,7 @@ window.LoginDlg = function() {
     };
 
     function doClose(code) {
-        $el.get(0).close();
+        $el[0].hasAttribute('open') && $el[0].close();
         $el.remove();
 
         if (events.close) {
@@ -369,6 +369,7 @@ window.LoginDlg = function() {
             bindEvents();
             $el.get(0).showModal();
             $el.addClass('scaled');
+            $el.on('close', doClose);
 
             $p.val().length > 0 ? 
                 $e.val().length > 0 ? 
