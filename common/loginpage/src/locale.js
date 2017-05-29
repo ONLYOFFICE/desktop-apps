@@ -258,7 +258,7 @@ var fr = {
     ,checkUpdates: 'Chercher les mises à jour'
 };
 
-var sp = {
+var es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
     btnConnect: 'Colaboración',
