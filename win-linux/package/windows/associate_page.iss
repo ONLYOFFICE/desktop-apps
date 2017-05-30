@@ -91,6 +91,11 @@ de.extODP =OpenDocument  Präsentation
 fr.extODP =Présentation OpenDocument
 es.extODP =Presentación de OpenDocument
 
+en.defprogAppDescription=Free desktop office suite for document editing and collaboration
+ru.defprogAppDescription=Бесплатный десктопный офисный пакет для редактирования документов и совместной работы
+de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
+fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration
+es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 
 [Code]
 
@@ -263,6 +268,23 @@ end;
 
 //----------
 
+procedure AddToDefaultPrograms;
+var
+  i: integer;
+  argsArray: TArrayOfString;
+begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities', 'ApplicationDescription', ExpandConstant('{cm:defprogAppDescription}'));
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities', 'ApplicationIcon', ExpandConstant('"{app}\{#NAME_EXE_OUT},0"'));
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities', 'ApplicationName', '{#sAppName}');
+
+    for i := 0 to GetArrayLength(AudioExts) - 1 do begin
+      Explode(argsArray, ExtensionRegistryInfo[i],':');
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities\FileAssociations', '.' + LowerCase(AudioExts[i]), argsArray[0]);
+    end;
+
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', 'DesktopEditors', '{#APP_REG_PATH}\Capabilities');
+end;
+
 procedure DoPostInstall();
 var
   i: Integer;
@@ -313,6 +335,8 @@ begin
       end;
     end;
   end;
+
+  AddToDefaultPrograms;
 end;
 
 {
@@ -354,4 +378,6 @@ begin
     RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT})'));
     RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'));
   end;
+
+  RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', 'DesktopEditors');
 end;
