@@ -193,6 +193,23 @@
             }
         };
 
+        function _authorize(portal, user, data) {
+            if ( !dlgLogin ) {
+                dlgLogin = new LoginDlg();
+                dlgLogin.onsuccess(info => {
+                    dlgLogin.onclose();
+                    PortalsStore.keep(info);
+                    _update_portals.call(this);
+
+                    CommonEvents.fire('portal:authorized', [data]);
+                });
+                dlgLogin.onclose(code=>{
+                    dlgLogin = undefined;
+                });
+                dlgLogin.show(portal, user);
+            }
+        };
+
         function _do_logout(info) {
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
@@ -362,6 +379,19 @@
                 window.CommonEvents.on('portal:create', _on_create_portal);
 
                 return this;
+            },
+            isConnected: function(portal) {
+                var model = collection.find('name', utils.skipUrlProtocol(portal));
+                return model && model.logged;
+            },
+            authorizeOn: function(portal, data) {
+                var model = collection.find('name', utils.skipUrlProtocol(portal));
+                if ( !model ) {
+                    _authorize.call(this, portal, undefined, data);
+                } else
+                if ( !model.logged ) {
+                    _authorize.call(this, portal, model.email, data);
+                }
             }
         };
     })());
