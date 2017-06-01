@@ -1133,6 +1133,7 @@ void CMainPanel::onKeyDown(void * eventData)
     RELEASEINTERFACE(pData)
 
     switch (key) {
+    case 'W':
     case VK_F4:
         if (_is_ctrl && m_pTabs->isActive()) {
             m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
