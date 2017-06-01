@@ -74,11 +74,15 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     // adjust window size
     QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-    if (_screen_size.width() < _window_rect.width())
-        _window_rect.setLeft(_screen_size.left()), _window_rect.setWidth(_screen_size.width());
+    if ( _screen_size.width() < _window_rect.width() + 120 ||
+            _screen_size.height() < _window_rect.height() + 120 )
+    {
+        _window_rect.setLeft(_screen_size.left()),
+        _window_rect.setTop(_screen_size.top());
 
-    if (_screen_size.height() < _window_rect.height())
-        _window_rect.setTop(_screen_size.top()), _window_rect.setHeight(_screen_size.height());
+        if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
+        if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+    }
 
     m_pManager = pManager;
     m_pManager->StartSpellChecker();
