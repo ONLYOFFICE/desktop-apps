@@ -311,6 +311,25 @@ window.LoginDlg = function() {
         });
     };
 
+    function remindPass(portal, email) {
+        let _url_   = `${portal}/api/2.0/people/password.json`;
+        var opts = {
+            url:  _url_,
+            type: 'post',
+            crossOrigin: true,
+            crossDomain: true,
+            data: {email: email},
+            complete: function(e, status) {
+                console.log('complete: ' + e + ', ' + status);
+            },
+            error: function(e, status, error) {
+                console.log('server error: ' + status + ', ' + error);
+            }
+        };
+
+        $.ajax(opts);
+    };
+
     function bindEvents() {
         $el.find('.body').on('keypress', '.auth-control', 
             function(e) {
