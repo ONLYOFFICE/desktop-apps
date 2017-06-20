@@ -33,8 +33,8 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             4,3,3,328
-#define VER_FILEVERSION_STR         "4.3.3.328\0"
+#define VER_FILEVERSION             4,3,3,332
+#define VER_FILEVERSION_STR         "4.3.3.332\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
 #define VER_PRODUCTVERSION_STR      "4.3\0"
