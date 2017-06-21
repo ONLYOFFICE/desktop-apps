@@ -17,7 +17,7 @@ SOURCES += \
 
 RC_FILE = $$PWD/version.rc
 
-linux-g++ {
+linux-* {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
     DEFINES += LINUX _LINUX _LINUX_QT _GLIBCXX_USE_CXX11_ABI=0
 

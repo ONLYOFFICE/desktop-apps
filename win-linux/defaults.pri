@@ -67,7 +67,7 @@ SOURCES += \
 
 RESOURCES += $$PWD/resources.qrc
 
-linux-g++ {
+linux-* {
     contains(QMAKE_HOST.arch, x86_64):{
         PLATFORM_BUILD = linux_64
     } else {
