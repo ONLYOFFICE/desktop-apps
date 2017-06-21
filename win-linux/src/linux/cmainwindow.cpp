@@ -42,6 +42,8 @@
 #include <QMimeData>
 #include "singleapplication.h"
 
+extern QStringList g_cmdArgs;
+
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , CX11Decoration(this)
@@ -53,7 +55,7 @@ CMainWindow::CMainWindow(QWidget *parent)
 CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     : CMainWindow((QWidget *)0) /* doesn't compile via gcc 4.8 without parameter */
 {
-    parseInputArgs(qApp->arguments());
+    parseInputArgs(g_cmdArgs);
 
     setWindowIcon(Utils::appIcon());
     setObjectName("MainWindow");
@@ -89,7 +91,7 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     connect(pMainPanel, &CMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-    pMainPanel->setInputFiles(Utils::getInputFiles(app->arguments()));
+    pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
 
     connect(app, &SingleApplication::showUp, [=](QString args){
         QStringList * _list = Utils::getInputFiles(args.split(";"));

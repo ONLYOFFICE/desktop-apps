@@ -133,7 +133,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
 
-    m_widthParams.apply_dpi(g_dpi_ratio);
+    m_widthParams.apply_scale(g_dpi_ratio);
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)

@@ -210,6 +210,10 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
         if ( !(cmd.find(L"files:explore") == std::wstring::npos) ) {
                 QMetaObject::invokeMethod( pObjParent, "onLocalFileLocation", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( !(cmd.find(L"update") == std::wstring::npos) ) {
+            if ( QString::fromStdWString(pData->get_Param()) == "check" )
+                QMetaObject::invokeMethod( pObjParent, "onCheckUpdates", Qt::QueuedConnection);
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);

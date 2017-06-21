@@ -79,10 +79,6 @@ QTabBar::tab {
     padding-left: 14px;
 }
 
-QTabBar::tab {
-    padding-left: 14px;
-}
-
 QTabBar::close-button {
     image: url(:/res/icons/tab_close_normal_2x.png);
     /*border-image: none;*/

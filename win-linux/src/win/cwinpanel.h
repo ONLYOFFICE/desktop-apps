@@ -65,6 +65,13 @@ private:
     CAscApplicationManager  * m_pManager;
     CMainPanelImpl          * m_pMainPanel;
 
+private:
+#ifdef _UPDMODULE
+    static void updateFound();
+    static void updateNotFound();
+    static void updateError();
+#endif
+
 private slots:
     void slot_windowClose();
     void slot_windowChangeState(Qt::WindowState);

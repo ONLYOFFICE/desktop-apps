@@ -56,6 +56,7 @@
 #include "../utils.h"
 #include "../csplash.h"
 #include "../clangater.h"
+#include "../clogger.h"
 
 //#include <QScreen>
 #include <QSettings>
@@ -66,8 +67,7 @@
   #include "../version.h"
 #endif
 
-
-extern byte g_dpi_ratio;
+extern QStringList g_cmdArgs;
 
 CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     : QWinWidget( hWnd )
@@ -86,6 +86,12 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     connect(panel, &CMainPanelImpl::mainWindowClose, this, &CWinPanel::slot_windowClose);
     connect(panel, &CMainPanelImpl::mainPageReady, this, &CWinPanel::slot_mainPageReady);
 
+#ifdef _UPDMODULE
+    connect(panel, &CMainPanelImpl::checkUpdates, this, []{
+        win_sparkle_check_update_with_ui();
+    });
+#endif
+
     /*
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
     vector<std::wstring>& vctFiles = pData->get_Files();
@@ -100,7 +106,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    m_pManager->SetEventListener(this);
 
-    panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
+    panel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
 //    parseInputArgs(qApp->arguments());
 }
 
@@ -175,9 +181,21 @@ void CWinPanel::goStartPage()
     m_pMainPanel->goStart();
 }
 
+void CWinPanel::doClose()
+{
+    QTimer::singleShot(500, this, [=]{
+        m_pMainPanel->pushButtonCloseClicked();
+    });
+}
+
 void CWinPanel::focus()
 {
     m_pMainPanel->focus();
+}
+
+void CWinPanel::updatePanelStylesheets()
+{
+    m_pMainPanel->updateStylesheets();
 }
 
 void CWinPanel::applyWindowState(Qt::WindowState state)
@@ -190,13 +208,6 @@ void CWinPanel::slot_windowClose()
     m_pManager->DestroyCefView(-1);
 //    m_pManager->GetApplication()->ExitMessageLoop();
 //    PostQuitMessage(0);
-}
-
-void CWinPanel::doClose()
-{
-    QTimer::singleShot(500, this, [=]{
-        m_pMainPanel->pushButtonCloseClicked();
-    });
 }
 
 void CWinPanel::slot_windowChangeState(Qt::WindowState s)
@@ -226,7 +237,6 @@ void CWinPanel::slot_mainPageReady()
 
 #ifdef _UPDMODULE
     QString _prod_name = WINDOW_NAME;
-    qDebug() << "update's window title: " << _prod_name;
 
     GET_REGISTRY_USER(_user)
     if (!_user.contains("CheckForUpdates")) {
@@ -239,11 +249,46 @@ void CWinPanel::slot_mainPageReady()
     win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
     win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
     win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
+
+    win_sparkle_set_did_find_update_callback(&CWinPanel::updateFound);
+    win_sparkle_set_did_not_find_update_callback(&CWinPanel::updateNotFound);
+    win_sparkle_set_error_callback(&CWinPanel::updateError);
+
     win_sparkle_init();
+
+    m_pMainPanel->cmdMainPage("updates", "on");
+    CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
 #endif
 }
 
-void CWinPanel::updatePanelStylesheets()
+#if defined(_UPDMODULE)
+#include "mainwindow.h"
+
+extern HWND gTopWinId;
+
+CWinPanel * getInstance()
 {
-    m_pMainPanel->updateStylesheets();
+    if ( gTopWinId ) {
+        CMainWindow * window = reinterpret_cast<CMainWindow *>( GetWindowLongPtr( gTopWinId, GWLP_USERDATA ) );
+        if ( window )
+            return window->m_pWinPanel;
+    }
+
+    return NULL;
 }
+
+void CWinPanel::updateFound()
+{
+    CLogger::log("found updates");
+}
+
+void CWinPanel::updateNotFound()
+{
+    CLogger::log("updates isn't found");
+}
+
+void CWinPanel::updateError()
+{
+    CLogger::log("updates error");
+}
+#endif

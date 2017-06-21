@@ -7,9 +7,11 @@ INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src
 
 HEADERS += \
+    src/clogger.h \
     src/prop/defines_p.h
 
 SOURCES += \
+    src/clogger.cpp \
     src/prop/csplash.cpp \
     src/prop/ccefeventsimpl.cpp \
     src/prop/cmainpanelimpl.cpp \
@@ -30,6 +32,9 @@ win32 {
         DEFINES += _UPDMODULE
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
+
+        message(updates is turned on)
+        message(url: $$join(LINK,,\\\",\\\"))
     }
 
     CONFIG(debug, debug|release) {

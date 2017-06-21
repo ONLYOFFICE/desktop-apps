@@ -107,6 +107,7 @@ linux-g++ {
 win32 {
     DEFINES += JAS_WIN_MSVC_BUILD WIN32
     DEFINES += WIN32
+    DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 

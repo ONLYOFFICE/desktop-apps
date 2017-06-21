@@ -11,6 +11,8 @@
 
 #include <QDebug>
 
+extern QStringList g_cmdArgs;
+
 class CLangater::CLangaterIntf
 {
 public:
@@ -58,7 +60,7 @@ void CLangater::init()
 
     QString _lang,
             _lang_path = ":/i18n/langs/",
-            _cmd_args = QCoreApplication::arguments().join(',');
+            _cmd_args = g_cmdArgs.join(',');
 
     QRegularExpression _re(reCmdLang);
     QRegularExpressionMatch _re_match = _re.match(_cmd_args);
