@@ -124,6 +124,7 @@ type
 
 var
   gHWND: Longint;
+  isInstalled: Boolean;
 
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
@@ -143,12 +144,18 @@ function GetHKLM: Integer; forward;
 procedure InitializeWizard();
 var
   paramSkip: string;
+  path: string;
 begin
   if not WizardSilent then begin
     paramSkip := GetCommandlineParam('/skip');
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then
       InitializeAssociatePage();
   end;
+
+  if RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'AppPath', path) and
+        FileExists(path + '\{#NAME_EXE_OUT}') then
+    isInstalled := false
+  else isInstalled := true;
 end;
 
 function InitializeSetup(): Boolean;
@@ -270,7 +277,8 @@ begin
     if not (gHWND = 0) then begin
       ShellExec('', ExpandConstant('{app}\{#NAME_EXE_OUT}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
-  end;
+  end else
+    WizardForm.CancelButton.Enabled := isInstalled;
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
