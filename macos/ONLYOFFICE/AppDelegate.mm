@@ -96,16 +96,18 @@
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames {
-    for (NSString * filePath in filenames) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                            object:nil
-                                                          userInfo:@{
-                                                                     @"action"  : @(ASCTabActionOpenLocalFile),
-                                                                     @"path"    : filePath,
-                                                                     @"active"  : @(YES),
-                                                                     @"external": @(YES)
-                                                                     }];
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        for (NSString * filePath in filenames) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionOpenLocalFile),
+                                                                         @"path"    : filePath,
+                                                                         @"active"  : @(YES),
+                                                                         @"external": @(YES)
+                                                                         }];
+        }
+    });
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
