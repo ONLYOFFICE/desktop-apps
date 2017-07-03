@@ -262,7 +262,7 @@ QString Utils::encodeJson(const QString& s)
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
 #ifdef __linux
-    double  _k = _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
+    double _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
 #else
     UINT _dpi_x = 0,
          _dpi_y = 0;
