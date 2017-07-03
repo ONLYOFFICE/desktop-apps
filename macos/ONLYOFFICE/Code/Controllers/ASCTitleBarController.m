@@ -113,7 +113,7 @@ static float kASCWindowMinTitleWidth = 320;
     
     [self.titleLabel setStringValue:productName];
     
-    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2; // OSX 10.11 magic
+    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2.0; // OSX 10.11 magic
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowDidResize:)
@@ -183,8 +183,8 @@ static float kASCWindowMinTitleWidth = 320;
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *buttons, BOOL hidden) {
         [buttons enumerateObjectsUsingBlock:^(NSButton *button, NSUInteger idx, BOOL *stop) {
             NSRect frame = button.frame;
-            frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6);
-            frame.origin.y = (NSHeight(button.superview.frame) - NSHeight(button.frame)) / 2;
+            frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
+            frame.origin.y = (int)((NSHeight(button.superview.frame) - NSHeight(button.frame)) / 2.0);
             
             [button setFrame:frame];
             [button setHidden:hidden];

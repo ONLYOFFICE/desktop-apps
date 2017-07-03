@@ -261,6 +261,9 @@ QString Utils::encodeJson(const QString& s)
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
+#ifdef __linux
+    double  _k = _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
+#else
     UINT _dpi_x = 0,
          _dpi_y = 0;
     double _k;
@@ -270,6 +273,7 @@ unsigned Utils::getScreenDpiRatio(int scrnum)
     } else {
         _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
     }
+#endif
 
     return !(_k < 1.5) ? 2 : 1;
 }
@@ -295,7 +299,7 @@ unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 
 QByteArray Utils::getAppStylesheets(int scale)
 {
-    auto read_styles = [](QString& dir) {
+    auto read_styles = [](const QString& dir) {
         QByteArray _css;
         QFile file;
         QFileInfoList files = QDir(dir).entryInfoList(QStringList("*.qss"), QDir::Files);
