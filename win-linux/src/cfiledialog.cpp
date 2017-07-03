@@ -37,6 +37,7 @@
 
 #include "../Common/OfficeFileFormats.h"
 
+#include <QList>
 #include <QDebug>
 
 #if defined(_WIN32)
@@ -71,7 +72,6 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
-
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -169,8 +169,12 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
 
 QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter)
 {
-    QString _filter_ = filter.length() ? filter : tr("All files (*.*)");
-    QString _sel_filter = tr("All files (*.*)");
+    QString _filter_ = filter;
+    if ( _filter_.isEmpty() ) {
+        _filter_ = joinFilters();
+    }
+
+    QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     return QFileDialog::getOpenFileName(
@@ -215,4 +219,34 @@ int CFileDialogWrapper::getKey(const QString &value)
 int CFileDialogWrapper::getFormat()
 {
     return m_format;
+}
+
+QString CFileDialogWrapper::joinFilters() const
+{
+    auto _get_all_exts = [] (const QList<QString>& l) {
+        QRegExp re("[\\w\\s]+\\((\\*\\.\\w+)\\)");
+        QString extns;
+        for ( auto f : l ) {
+            if ( !(re.indexIn(f) < 0) ) {
+                if ( !extns.isEmpty() )
+                    extns.append(" ");
+
+                extns.append( re.cap(1) );
+            }
+        }
+
+        return extns;
+    };
+
+    QString _out;
+    QList<QString> _vl(m_mapFilters.values());
+//    _vl.insert(1, tr("All supported documents") + " (" + _get_all_exts(_vl) + ")");
+    for ( auto f : _vl ) {
+        if ( !_out.isEmpty() )
+            _out.append(";;");
+
+        _out.append(f);
+    }
+
+    return _out;
 }
