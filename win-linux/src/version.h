@@ -33,11 +33,11 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             4,3,3,334
-#define VER_FILEVERSION_STR         "4.3.3.334\0"
+#define VER_FILEVERSION             4,4,1,338
+#define VER_FILEVERSION_STR         "4.4.1.338\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "4.3\0"
+#define VER_PRODUCTVERSION_STR      "4.4\0"
 
 #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
 #define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2017\0"
