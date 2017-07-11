@@ -240,8 +240,13 @@
 }
 
 - (void)openLocalPage:(NSString *)path title:(NSString *)title {
+    [self openLocalPage:path query:nil title:title];
+}
+
+- (void)openLocalPage:(NSString *)path query:(NSString *)query title:(NSString *)title {
     NSURLComponents *urlPage = [NSURLComponents componentsWithString:path];
     urlPage.scheme = NSURLFileScheme;
+    urlPage.query = query;
     
     ASCTabView * existTab = [self tabWithParam:@"url" value:[urlPage string]];
     
@@ -258,7 +263,18 @@
 }
 
 - (void)openAcknowledgments {
-    [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] title:NSLocalizedString(@"Acknowledgments", nil)];
+    NSString *language = [[NSLocale preferredLanguages] firstObject];
+    
+    if (language) {
+        if ([language length] > 1) {
+            language = [language substringToIndex:2];
+        }
+        
+        NSString *query = [NSString stringWithFormat:@"lang=%@", language.lowercaseString];
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] query:query title:NSLocalizedString(@"Acknowledgments", nil)];
+    } else {
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] title:NSLocalizedString(@"Acknowledgments", nil)];
+    }
 }
 
 - (void)openEULA {
