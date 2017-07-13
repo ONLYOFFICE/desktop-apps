@@ -7,11 +7,9 @@ INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src
 
 HEADERS += \
-    src/clogger.h \
     src/prop/defines_p.h
 
 SOURCES += \
-    src/clogger.cpp \
     src/prop/csplash.cpp \
     src/prop/ccefeventsimpl.cpp \
     src/prop/cmainpanelimpl.cpp \

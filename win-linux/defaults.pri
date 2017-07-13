@@ -39,6 +39,7 @@ HEADERS += \
     $$PWD/src/csplash.h \
     $$PWD/src/cmessage.h \
     $$PWD/src/cfilechecker.h \
+    $$PWD/src/clogger.h \
     $$PWD/src/clangater.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
@@ -61,6 +62,7 @@ SOURCES += \
     $$PWD/src/cmainpanel.cpp \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
+    $$PWD/src/clogger.cpp \
     $$PWD/src/clangater.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp

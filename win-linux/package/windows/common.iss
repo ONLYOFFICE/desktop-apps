@@ -135,7 +135,6 @@ function CheckCommandlineParam(inpn: String) : Boolean; forward;
 function StartsWith(SubStr, S: String) : Boolean; forward;
 function StringReplace(S, oldSubString, newSubString: String) : String; forward;
 
-procedure CleanDir(path: string); forward;
 procedure DirectoryCopy(SourcePath, DestPath: string); forward;
 
 //procedure checkArchitectureVersion; forward;
@@ -282,9 +281,14 @@ begin
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
+var
+  path: string;
 begin
-  CleanDir(ExpandConstant('{app}\editors\web-apps'));
-  CleanDir(ExpandConstant('{app}\editors\sdkjs'));
+  path := ExpandConstant('{app}\editors\web-apps');
+  if DirExists(path) then DelTree(path, true, true, true)
+
+  path := ExpandConstant('{app}\editors\sdkjs');
+  if DirExists(path) then DelTree(path, true, true, true)
 end;
 
 function getAppMutex(P: String): String;
@@ -496,13 +500,6 @@ begin
        break;
      end;
    end;
-end;
-
-procedure CleanDir(path: string);
-begin
-  if DirExists(path) then begin
-    DelTree(path, true, true, true)
-  end;
 end;
 
 [Dirs]
