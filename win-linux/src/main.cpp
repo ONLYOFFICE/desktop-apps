@@ -230,7 +230,7 @@ int main( int argc, char *argv[] )
 
     // Create window
     CMainWindow window(pApplicationManager, windowBackground);
-    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
+    window.setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
 
 #elif defined(Q_OS_LINUX)
     // Create window

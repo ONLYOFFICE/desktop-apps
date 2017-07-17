@@ -356,6 +356,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
                     qApp->setStyleSheet(css);
                     window->m_pWinPanel->updatePanelStylesheets();
+                    window->setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
                 }
             }
 

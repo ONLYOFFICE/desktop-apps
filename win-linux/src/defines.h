@@ -61,6 +61,8 @@
 #define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"
 
 #define WINDOW_TITLE_MIN_WIDTH 400
+#define MAIN_WINDOW_MIN_WIDTH  800
+#define MAIN_WINDOW_MIN_HEIGHT 600
 
 #define GET_REGISTRY_USER(variable) \
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
