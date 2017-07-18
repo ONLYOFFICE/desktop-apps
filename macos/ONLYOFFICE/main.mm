@@ -84,23 +84,7 @@ int main(int argc, const char * argv[]) {
     NSString * fullName = NSFullUserName();
     
     if (fullName) {
-        NSRange range = [fullName rangeOfString:@" "];
-        
-        NSString *firstName = fullName;
-        NSString *lastName = @"";
-        
-        if (range.location != NSNotFound) {
-            firstName = [fullName substringToIndex:range.location];
-            lastName = [fullName substringFromIndex:range.location + 1];
-        }
-        
-        if (firstName) {
-            [params addObject:[NSString stringWithFormat:@"userfname=%@", firstName]];
-        }
-        
-        if (lastName) {
-            [params addObject:[NSString stringWithFormat:@"userlname=%@", lastName]];
-        }
+        [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];
     }
     
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
