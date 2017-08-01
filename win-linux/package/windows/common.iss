@@ -11,6 +11,7 @@
 #define sAppVerShort      Copy(sAppVersion, 0, 3)
 
 #include "associate_page.iss"
+#include "utils.iss"
 
 
 [Setup]
@@ -129,13 +130,6 @@ var
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
-
-function GetCommandlineParam(inParamName: String):String; forward;
-function CheckCommandlineParam(inpn: String) : Boolean; forward;
-function StartsWith(SubStr, S: String) : Boolean; forward;
-function StringReplace(S, oldSubString, newSubString: String) : String; forward;
-
-procedure DirectoryCopy(SourcePath, DestPath: string); forward;
 
 //procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
@@ -419,89 +413,6 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
-procedure DirectoryCopy(SourcePath, DestPath: string);
-var
-  FindRec: TFindRec;
-  SourceFilePath: string;
-  DestFilePath: string;
-begin
-  if FindFirst(SourcePath + '\*', FindRec) then
-  begin
-    try
-      repeat
-        if (FindRec.Name <> '.') and (FindRec.Name <> '..') then
-        begin
-          SourceFilePath := SourcePath + '\' + FindRec.Name;
-          DestFilePath := DestPath + '\' + FindRec.Name;
-          if FindRec.Attributes and FILE_ATTRIBUTE_DIRECTORY = 0 then
-          begin
-            if not FileCopy(SourceFilePath, DestFilePath, False) then
-              Log(Format('Failed to copy %s to %s', [SourceFilePath, DestFilePath]));
-          end else
-          begin
-            if DirExists(DestFilePath) or CreateDir(DestFilePath) then
-            begin
-              DirectoryCopy(SourceFilePath, DestFilePath);
-            end else
-              Log(Format('Failed to create %s', [DestFilePath]));
-          end;
-        end;
-      until not FindNext(FindRec);
-    finally
-      FindClose(FindRec);
-    end;
-  end else
-  begin
-    Log(Format('Failed to list %s', [SourcePath]));
-  end;
-end;
-
-function StartsWith(SubStr, S: String) : Boolean;
-begin
-   Result := Pos(SubStr, S) = 1;
-end;
-
-function StringReplace(S, oldSubString, newSubString: String) : String;
-var
-  stringCopy : String;
-begin
-  stringCopy := S; //Prevent modification to the original string
-  StringChange(stringCopy, oldSubString, newSubString);
-  Result := stringCopy;
-end;
-
-function GetCommandlineParam(inParamName: String) : String;
-var
-   paramNameAndValue: String;
-   i: Integer;
-begin
-   Result := '';
-
-   for i:= 1 to ParamCount do
-   begin
-     paramNameAndValue := Lowercase(ParamStr(i));
-     if StartsWith(inParamName, paramNameAndValue) then
-     begin
-       Result := StringReplace(paramNameAndValue, inParamName + ':', '');
-       break;
-     end;
-   end;
-end;
-
-function CheckCommandlineParam(inpn: String) : Boolean;
-var
-   i: Integer;
-begin
-   Result := false;
-
-   for i:= 1 to ParamCount do begin
-     if inpn = Lowercase(ParamStr(i)) then begin
-       Result := true;
-       break;
-     end;
-   end;
-end;
-
 [Dirs]
 Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
@@ -525,6 +436,12 @@ Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\e
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
+
+Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter;
+    Excludes: *.lib,HtmlFileInternal.exe,ascdocumentscore.dll,ooxmlsignature.dll; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
 Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {app}\fonts; Flags: onlyifdoesntexist;
