@@ -359,28 +359,8 @@ void CAscTabWidget::applyCustomTheme(bool iscustom)
 
 void CAscTabWidget::updateIcons()
 {
-    QString icon_name;
-    int current = isActive() ? tabBar()->currentIndex() : -1;
     for (int i(count()); i-- > 0;) {
-        CCefViewEditor * pEditor = (CCefViewEditor *)((QCefView*)(widget(i)))->GetCefView();
-
-        if (pEditor) {
-            if (pEditor->GetType() == cvwtSimple) {
-                icon_name = ":/portal.png";
-            } else {
-                switch (pEditor->GetEditorType()) {
-                case etPresentation: icon_name = i == current ? ":/pe_active.png" : ":/pe_normal.png"; break;
-                case etSpreadsheet:  icon_name = i == current ? ":/se_active.png" : ":/se_normal.png"; break;
-                case etDocument:     icon_name = i == current ? ":/de_active.png" : ":/de_normal.png"; break;
-                default:             icon_name = ":/newdocument.png"; break;
-                }
-            }
-
-            if (g_dpi_ratio > 1)
-                icon_name.replace(".png", "@2x.png");
-
-            tabBar()->setTabIcon(i, QIcon(icon_name));
-        }
+        updateTabIcon(i);
     }
 }
 
@@ -391,18 +371,22 @@ void CAscTabWidget::updateTabIcon(int index)
 
         if (pEditor) {
             QString icon_name;
-            if (pEditor->GetType() == cvwtSimple) {
-                icon_name = ":/portal.png";
-            } else {
-                bool is_active = isActive() && index == currentIndex();
+            bool is_active = isActive() && index == currentIndex();
+            int tab_type = etUndefined;
 
-                switch (pEditor->GetEditorType()) {
-                case etPresentation: icon_name = is_active ? ":/pe_active.png" : ":/pe_normal.png"; break;
-                case etSpreadsheet:  icon_name = is_active ? ":/se_active.png" : ":/se_normal.png"; break;
-                case etDocument:     icon_name = is_active ? ":/de_active.png" : ":/de_normal.png"; break;
-                default:             icon_name = ":/newdocument.png"; break;
+            if (pEditor->GetType() == cvwtSimple) {
+                tab_type = etPortal;
+            } else {
+                tab_type = pEditor->GetEditorType();
+                switch ( tab_type ) {
+                case etPresentation:
+                case etSpreadsheet:
+                case etDocument:     break;
+                default: tab_type = etUndefined; break;
                 }
             }
+
+            icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
 
             if (g_dpi_ratio > 1)
                 icon_name.replace(".png", "@2x.png");
@@ -410,6 +394,11 @@ void CAscTabWidget::updateTabIcon(int index)
             tabBar()->setTabIcon(index, QIcon(icon_name));
         }
     }
+}
+
+void CAscTabWidget::setTabIcons(CTabIconSet& icons)
+{
+    m_mapTabIcons = icons;
 }
 
 /*

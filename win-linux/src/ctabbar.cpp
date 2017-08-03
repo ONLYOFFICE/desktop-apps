@@ -382,8 +382,8 @@ void CTabBar::paintEvent(QPaintEvent * event)
         if (i == selected)
             continue;
 
-        QString text = tab.text;
-        tab.text = "";
+        QString text(tab.text);
+        tab.text.clear();
         p.drawControl(QStyle::CE_TabBarTab, tab);
         drawTabCaption(&p, text, tab);
     }
@@ -397,8 +397,8 @@ void CTabBar::paintEvent(QPaintEvent * event)
             tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
         }
         if (!d->dragInProgress) {
-            QString text = tab.text;
-            tab.text = "";
+            QString text(tab.text);
+            tab.text.clear();
             p.drawControl(QStyle::CE_TabBarTab, tab);
             drawTabCaption(&p, text, tab);
         } else {

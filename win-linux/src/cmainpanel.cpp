@@ -223,6 +223,15 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
 
+    std::map<int, std::pair<QString, QString> > icons{
+        {etUndefined, std::make_pair(":/newdocument.png", ":/newdocument.png")},
+        {etDocument, std::make_pair(":/de_normal.png", ":/de_active.png")},
+        {etPresentation, std::make_pair(":/pe_normal.png", ":/pe_active.png")},
+        {etSpreadsheet, std::make_pair(":/se_normal.png", ":/se_active.png")},
+        {etPortal, std::make_pair(":/portal.png", ":/portal.png")}
+    };
+    m_pTabs->setTabIcons(icons);
+
     styleFile.close();
 
     // download menu

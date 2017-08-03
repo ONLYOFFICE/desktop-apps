@@ -112,6 +112,8 @@ class CAscTabWidget : public QTabWidget
         }
     };
 
+    typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
+
 public:
     QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
@@ -122,6 +124,8 @@ private:
     CFullScreenData * m_dataFullScreen;
     size_params m_widthParams;
     bool m_isCustomStyle;
+    CTabIconSet m_mapTabIcons;
+
 
 signals:
 //    void sendAddEditor();
@@ -163,6 +167,7 @@ public:
     void activate(bool);
     bool isActive();
 
+    void setTabIcons(CTabIconSet&);
     void updateIcons();
     void updateTabIcon(int);
     void setFocusedView(int index = -1);

@@ -144,6 +144,9 @@ public slots:
     void onFileChecked(const QString&, int, bool);
     void onCheckUpdates();
 
+protected:
+    CAscTabWidget * m_pTabs;
+
 private:
     std::wstring    m_sDownloadName;
 
@@ -158,7 +161,6 @@ private:
 
     QHBoxLayout *   m_layoutBtns;
     QWidget *       m_boxTitleBtns;
-    CAscTabWidget * m_pTabs;
     bool            m_isMaximized;
     bool            m_isCustomWindow;
 
