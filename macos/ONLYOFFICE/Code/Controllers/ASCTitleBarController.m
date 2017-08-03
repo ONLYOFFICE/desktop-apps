@@ -80,6 +80,9 @@ static float kASCWindowMinTitleWidth = 320;
 - (void)initialize {
     NSArray * windows = [[NSApplication sharedApplication] windows];
     NSString * productName = [ASCHelper appName];
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    productName = [productName uppercaseString];
+#endif
     NSWindow * mainWindow = nil;
     
     for (NSWindow * window in windows) {
@@ -346,6 +349,9 @@ static float kASCWindowMinTitleWidth = 320;
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
     NSString * productName = [ASCHelper appName];
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    productName = [productName uppercaseString];
+#endif
     
     if (tab) {
         NSButton * btn = (NSButton *)tab;

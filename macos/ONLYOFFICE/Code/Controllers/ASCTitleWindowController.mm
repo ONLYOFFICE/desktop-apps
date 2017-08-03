@@ -52,6 +52,9 @@
 
 - (void)windowDidLoad {
     NSString * productName = [ASCHelper appName];
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    productName = [productName uppercaseString];
+#endif
     self.window.title = productName;
     
     [super windowDidLoad];

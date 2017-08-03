@@ -124,6 +124,9 @@ static NSMutableDictionary * localSettings;
 }
 
 + (NSString *)appName {
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    return NSLocalizedString(@"ONLYOFFICE Free", nil);
+#else
     CFBundleRef localInfoBundle = CFBundleGetMainBundle();
     NSDictionary * localInfoDict = (NSDictionary *)CFBundleGetLocalInfoDictionary(localInfoBundle);
     
@@ -136,6 +139,7 @@ static NSMutableDictionary * localSettings;
     }
     
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+#endif
 }
 
 @end

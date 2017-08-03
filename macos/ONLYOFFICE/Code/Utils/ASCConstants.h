@@ -57,8 +57,7 @@ typedef NS_ENUM(int, ASCTabActionType) {
 #ifdef _PRODUCT_ONLYOFFICE_RU_FREE
 static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
 static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
-#else
-#ifdef _PRODUCT_ONLYOFFICE_RU_PRO
+#elif _PRODUCT_ONLYOFFICE_RU_PRO
 static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
 static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
 #else

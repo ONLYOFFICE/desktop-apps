@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>ONLYOFFICE Changelog</title>
+        <link>http://download.onlyoffice.com/install/desktop/editors/mac/onlyoffice-ru-free.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 4.4</title>
+            <pubDate>Tue, 11 Jul 2017 13:32:54 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/4.4/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/4.4/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice-ru-free/ONLYOFFICE-4.4.zip" sparkle:shortVersionString="4.4" sparkle:version="169" length="187856254" type="application/octet-stream" sparkle:dsaSignature="MCwCFFV0pUt+tm3W6yw+lafoCWms/nX0AhQWtn9MarXgJpVqS/ijdEAyTjvytg=="/>
+        </item>
+    </channel>
+</rss>
