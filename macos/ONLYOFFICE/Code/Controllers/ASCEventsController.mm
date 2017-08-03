@@ -299,21 +299,21 @@ public:
                             }
                         }
                         
-//                        // Begin hotfix ODP presentation
-//                        
-//                        NSArray* pptxExtension = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"pptx"]];
-//                        NSArray* odpExtension  = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"odp"]];
-//                        
-//                        if ([pptxExtension count] > 0 && [odpExtension count] < 1) {
-//                            NSDictionary * info = [ASCConstants ascFormatsInfo][@(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP)];
-//                            [supportFormats addObject:@{
-//                                                        @"type"         : @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP),
-//                                                        @"description"  : info[@"description"],
-//                                                        @"extension"    : info[@"extension"]
-//                                                        }];
-//                        }
-//                        
-//                        // End hotfix ODP presentation
+                        // Begin hotfix ODP presentation
+                        
+                        NSArray* pptxExtension = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"pptx"]];
+                        NSArray* odpExtension  = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"odp"]];
+                        
+                        if ([pptxExtension count] > 0 && [odpExtension count] < 1) {
+                            NSDictionary * info = [ASCConstants ascFormatsInfo][@(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP)];
+                            [supportFormats addObject:@{
+                                                        @"type"         : @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP),
+                                                        @"description"  : info[@"description"],
+                                                        @"extension"    : info[@"extension"]
+                                                        }];
+                        }
+                        
+                        // End hotfix ODP presentation
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
                                                                             object:nil
