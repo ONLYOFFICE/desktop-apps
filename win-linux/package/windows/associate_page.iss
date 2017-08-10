@@ -1,5 +1,7 @@
 ﻿
-#define ASSC_APP_NAME 'ONLYOFFICE'
+#if !defined(ASSC_APP_NAME)
+# define ASSC_APP_NAME 'ONLYOFFICE'
+#endif
 
 [Setup]
 ChangesAssociations=true
