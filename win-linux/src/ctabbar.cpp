@@ -320,10 +320,10 @@ void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionT
     QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 6, t.rect.top()),
                     QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
 
-    QFont f = font();
-    f.setPointSize(8);
+//    QFont f = font();
+//    f.setPointSize(8);
 
-    p->setFont(f);
+//    p->setFont(f);
 
     QString es = fontMetrics().elidedText(s, Qt::ElideRight, trect.width(), Qt::TextShowMnemonic);
     p->drawText(trect, Qt::AlignVCenter, es);

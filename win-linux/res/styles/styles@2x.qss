@@ -75,6 +75,10 @@ QPushButton#toolButtonDownload::menu-indicator {
     left: -8px;
 }
 
+QTabBar {
+    font-size: 20px;
+}
+
 QTabBar::tab {
     padding-left: 14px;
 }
@@ -190,6 +194,10 @@ QPushButton {
     padding:0 40px;
     height: 44px;
     border-radius:4px;
+    font-size: 22px;
+}
+
+QLabel[class=msg-report] {
     font-size: 22px;
 }
 

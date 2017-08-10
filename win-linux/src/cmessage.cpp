@@ -113,6 +113,7 @@ CMessage::CMessage(QWidget * p)
     _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
 
 //    m_message->setWordWrap(true);
+    m_message->setProperty("class", "msg-report");
     m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
 
     QFormLayout * _f_layout = new QFormLayout;
