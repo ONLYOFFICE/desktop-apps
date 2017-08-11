@@ -39,7 +39,7 @@
 using namespace NSEditorApi;
 
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
-    : CAscMenuEventListener()
+    : CAscCefMenuEventListener()
     , m_propCls()
 {
     pObjParent = parent;
@@ -47,7 +47,7 @@ CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
     qRegisterMetaType<std::wstring>("std::wstring");
 }
 
-void CCefEventsTransformer::OnEvent(NSEditorApi::CAscMenuEvent *pEvent)
+void CCefEventsTransformer::OnEvent(NSEditorApi::CAscCefMenuEvent *pEvent)
 {
     if (NULL == pEvent || NULL == pObjParent)
         return;
