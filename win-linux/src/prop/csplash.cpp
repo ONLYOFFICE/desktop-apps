@@ -36,9 +36,9 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QSettings>
+#include "utils.h"
 
 CSplash * _splash;
-extern uchar g_dpi_ratio;
 
 CSplash::CSplash(const QPixmap &p, Qt::WindowFlags f)
     : QSplashScreen(p, f)
@@ -46,16 +46,13 @@ CSplash::CSplash(const QPixmap &p, Qt::WindowFlags f)
     _splash = NULL;
 }
 
-void CSplash::show()
+void CSplash::show(int scrnum)
 {
     if (QApplication::desktop()->screenCount() > 1) {
         GET_REGISTRY_USER(reg_user)
 
         if (reg_user.contains("position")) {
-            int _scr_num = QApplication::desktop()->screenNumber(
-                                reg_user.value("position").toRect().topLeft() );
-
-            move(QApplication::desktop()->screenGeometry(_scr_num).center() - rect().center());
+            move(QApplication::desktop()->screenGeometry(scrnum).center() - rect().center());
         }
     }
 
@@ -65,11 +62,16 @@ void CSplash::show()
 void CSplash::showSplash()
 {
     if ( !_splash ) {
-        QPixmap _pixmap = g_dpi_ratio > 1 ?
+        GET_REGISTRY_USER(reg_user)
+
+        int _scr_num = QApplication::desktop()->screenNumber( reg_user.value("position").toRect().topLeft() );
+        uchar _dpi_ratio = Utils::getScreenDpiRatio( _scr_num );
+
+        QPixmap _pixmap = _dpi_ratio > 1 ?
             QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
 
         (_splash = new CSplash(_pixmap, Qt::WindowStaysOnTopHint))
-        ->show();
+        ->show(_scr_num);
     }
 }
 

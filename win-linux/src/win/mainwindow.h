@@ -53,7 +53,7 @@ public:
     HINSTANCE               hInstance;
     CAscApplicationManager* m_pManager;
 
-    CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground);
+    CMainWindow(CAscApplicationManager* pManager);
     ~CMainWindow();
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
@@ -100,6 +100,4 @@ private:
 
     sizeType minimumSize;
     sizeType maximumSize;
-
-    UINT_PTR m_nTimerLanguageId;
 };

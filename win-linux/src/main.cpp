@@ -36,6 +36,7 @@
 #include <QStandardPaths>
 #include <QLibraryInfo>
 #include <QDesktopWidget>
+#include <memory>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
@@ -61,7 +62,6 @@
 #include "chelp.h"
 #include "common/File.h"
 
-BYTE g_dpi_ratio = 1;
 QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
@@ -105,13 +105,12 @@ int main( int argc, char *argv[] )
     if (!CApplicationCEF::IsMainProcess(argc, argv))
     {
         CApplicationCEF* application_cef = new CApplicationCEF();
-        CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
+        std::unique_ptr<CAscApplicationManager> appmananger(new CAscApplicationManagerWrapper);
 
-        setup_paths(pApplicationManager);
-        int nReturnCode = application_cef->Init_CEF(pApplicationManager, argc, argv);
+        setup_paths(appmananger.get());
+        int nReturnCode = application_cef->Init_CEF(appmananger.get(), argc, argv);
 
         delete application_cef;
-        delete pApplicationManager;
         return nReturnCode;
     }
 
@@ -156,16 +155,6 @@ int main( int argc, char *argv[] )
             return 0;
         }
     }
-
-    int _scr_num = QApplication::desktop()->primaryScreen();
-    if (reg_user.contains("position")) {
-        _scr_num = QApplication::desktop()->screenNumber(
-                            reg_user.value("position").toRect().topLeft() );
-    }
-
-    g_dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
-#else
-    g_dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
 
     reg_user.setFallbacksEnabled(false);
@@ -216,7 +205,19 @@ int main( int argc, char *argv[] )
         }
     }
 
-    QByteArray css(Utils::getAppStylesheets(g_dpi_ratio));
+#ifdef _WIN32
+    int _scr_num = QApplication::desktop()->primaryScreen();
+    if (reg_user.contains("position")) {
+        _scr_num = QApplication::desktop()->screenNumber(
+                            reg_user.value("position").toRect().topLeft() );
+    }
+
+    byte dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
+#else
+    byte dpi_ratio = CX11Decoration::devicePixelRatio();
+#endif
+
+    QByteArray css(Utils::getAppStylesheets(dpi_ratio));
     if ( !css.isEmpty() ) app.setStyleSheet(css);
 
     // Font
@@ -225,12 +226,8 @@ int main( int argc, char *argv[] )
     app.setFont( mainFont );
 
 #ifdef _WIN32
-    // Background color
-    HBRUSH windowBackground = CreateSolidBrush( RGB(49, 52, 55) );
-
     // Create window
-    CMainWindow window(pApplicationManager, windowBackground);
-    window.setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
+    CMainWindow window(pApplicationManager);
 
 #elif defined(Q_OS_LINUX)
     // Create window

@@ -42,6 +42,7 @@
 #include <QPixmap>
 #include <QDialog>
 #include <QScreen>
+#include <QDesktopWidget>
 
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
@@ -54,12 +55,12 @@
 
 HWND gWinId = 0;
 HWND gTopWinId;
-extern byte g_dpi_ratio;
+BYTE g_dpi_ratio = 1;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
-CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground) :
+CMainWindow::CMainWindow(CAscApplicationManager* pManager) :
     hWnd(0),
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
@@ -72,7 +73,12 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     GET_REGISTRY_USER(reg_user)
 
     // adjust window size
-    QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
+    QRect _window_rect = reg_user.value("position").toRect();
+    g_dpi_ratio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+
+    if ( _window_rect.isEmpty() )
+        _window_rect = QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio);
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
             _screen_size.height() < _window_rect.height() + 120 )
@@ -96,7 +102,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"DocEditorsWindowClass";
-    wcx.hbrBackground = windowBackground;
+    wcx.hbrBackground = CreateSolidBrush( RGB(49, 52, 55) );
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -136,15 +142,11 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
         }
     }
 
-    m_nTimerLanguageId = 5000;
-
-    SetTimer(hWnd, m_nTimerLanguageId, 100, NULL);
+    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
 }
 
 CMainWindow::~CMainWindow()
 {
-    ::KillTimer(hWnd, m_nTimerLanguageId);
-
     WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
     if (GetWindowPlacement(hWnd, &wp)) {
         GET_REGISTRY_USER(reg_user)
