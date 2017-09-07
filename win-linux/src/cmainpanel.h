@@ -52,7 +52,7 @@ class CMainPanel : public QWidget
     Q_OBJECT
 
 public:
-    explicit CMainPanel(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow);
+    explicit CMainPanel(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow, uchar scale);
 
     CAscApplicationManager * getAscApplicationManager();
     void applyMainWindowState(Qt::WindowState);
@@ -66,6 +66,7 @@ public:
     void setInputFiles(QStringList *);
     void updateStylesheets();
     void cmdMainPage(const QString&, const QString&) const;
+    void setScreenScalingFactor(uchar);
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -173,6 +174,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+    uchar m_dpiRatio;
 
 public:
     WId GetHwndForKeyboard()

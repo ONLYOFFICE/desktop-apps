@@ -43,6 +43,7 @@
 #include <QCheckBox>
 
 #include "defines.h"
+#include "utils.h"
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"
@@ -50,8 +51,6 @@
 
 #define MSG_ICON_WIDTH  35
 #define MSG_ICON_HEIGHT 35
-
-extern BYTE g_dpi_ratio;
 
 class CMessageEventsFilter : public QObject {
 public:
@@ -80,9 +79,11 @@ private:
 #if defined(_WIN32)
 CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
+    , m_dpiRatio(Utils::getScreenDpiRatioByHWND(int(p)))
 #else
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
+    , m_dpiRatio(CX11Decoration::devicePixelRatio())
 #endif
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
@@ -109,17 +110,17 @@ CMessage::CMessage(QWidget * p)
     _c_layout->addLayout(_h_layout1, 0);
 
     m_typeIcon->setProperty("class", "msg-icon");
-    m_typeIcon->setFixedSize(MSG_ICON_WIDTH*g_dpi_ratio, MSG_ICON_HEIGHT*g_dpi_ratio);
+    m_typeIcon->setFixedSize(MSG_ICON_WIDTH*m_dpiRatio, MSG_ICON_HEIGHT*m_dpiRatio);
     _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
 
 //    m_message->setWordWrap(true);
     m_message->setProperty("class", "msg-report");
-    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
+    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*m_dpiRatio));
 
     QFormLayout * _f_layout = new QFormLayout;
     _f_layout->addWidget(m_message);
     _f_layout->setSpacing(0);
-    _f_layout->setContentsMargins(10*g_dpi_ratio,0,5*g_dpi_ratio,0);
+    _f_layout->setContentsMargins(10*m_dpiRatio,0,5*m_dpiRatio,0);
     _h_layout2->addLayout(_f_layout, 1);
 
     _h_layout2->setContentsMargins(15,10,15,10);
@@ -129,7 +130,7 @@ CMessage::CMessage(QWidget * p)
     m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
     m_boxButtons->layout()->addWidget(btn_ok);
-    m_boxButtons->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
+    m_boxButtons->layout()->setContentsMargins(0,8*m_dpiRatio,0,0);
     _h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
 
     QObject::connect(btn_ok, &QPushButton::clicked,
@@ -144,7 +145,7 @@ CMessage::CMessage(QWidget * p)
     );
 
     m_centralWidget->setLayout(_c_layout);
-    m_centralWidget->setMinimumWidth(350*g_dpi_ratio);
+    m_centralWidget->setMinimumWidth(350*m_dpiRatio);
 //    m_centralWidget->setWindowTitle(APP_TITLE);
     m_centralWidget->setStyleSheet("QPushButton{min-width:40px;}");
     m_centralWidget->move(0, 0);
@@ -179,7 +180,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
     }
 
     if (_btn_num > 2)
-        m_centralWidget->setMinimumWidth(400*g_dpi_ratio);
+        m_centralWidget->setMinimumWidth(400*m_dpiRatio);
 }
 
 int CMessage::info(const QString& mess)
@@ -309,7 +310,7 @@ void CMessage::applyForAll(const QString& str, bool checked)
     QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
     QCheckBox * chbox = new QCheckBox(str);
     chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + m_typeIcon->width() * g_dpi_ratio + 15 * g_dpi_ratio));
+    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + m_typeIcon->width() * m_dpiRatio + 15 * m_dpiRatio));
     chbox->setChecked(checked);
     layout->insertWidget(1, chbox, 0);
 }
@@ -318,4 +319,14 @@ bool CMessage::isForAll()
 {
     QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
     return chbox && chbox->checkState() == Qt::Checked;
+}
+
+void CMessage::onScreenScaling()
+{
+#if defined(_WIN32)
+    uchar f = Utils::getScreenDpiRatioByHWND( int(CWinWindow::handle()) );
+    if ( m_dpiRatio != f ) {
+        /* change scaling factor for elements */
+    }
+#endif
 }

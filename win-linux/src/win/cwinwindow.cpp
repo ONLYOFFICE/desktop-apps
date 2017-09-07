@@ -44,6 +44,14 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
 
         break;
+    case WM_SIZE:
+        {
+            CWinWindow * window = reinterpret_cast<CWinWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+            if ( window ) {
+                window->onScreenScaling();
+            }
+        }
+        break;
     case WM_CLOSE: {
         HWND pwnd = GetWindow(hWnd, GW_OWNER);
         if (pwnd) EnableWindow(pwnd, TRUE);
@@ -89,6 +97,7 @@ CWinWindow::CWinWindow(HWND parent, QString& title)
         parent, NULL, hInstance, NULL);
 
     SetWindowLong(m_hSelf, GWL_EXSTYLE, GetWindowLong(m_hSelf, GWL_EXSTYLE) | WS_EX_DLGMODALFRAME);
+    SetWindowLongPtr(m_hSelf, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
     if ( !m_hSelf )
         throw std::runtime_error("Couldn't register window class");
@@ -134,4 +143,14 @@ void CWinWindow::center()
     int y = (rc1.bottom - rc1.top - (rc2.bottom - rc2.top))/2;
 
     SetWindowPos(m_hSelf, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+}
+
+void CWinWindow::onScreenScaling()
+{
+
+}
+
+HWND CWinWindow::handle()
+{
+    return m_hSelf;
 }

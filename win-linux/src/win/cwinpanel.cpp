@@ -69,7 +69,7 @@
 
 extern QStringList g_cmdArgs;
 
-CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
+CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager, uchar scaling )
     : QWinWidget( hWnd )
 {
     windowHandle = hWnd;
@@ -77,7 +77,7 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
 
 //    setObjectName("mainPanel");
 
-    CMainPanelImpl * panel = new CMainPanelImpl(this, pManager, true);
+    CMainPanelImpl * panel = new CMainPanelImpl(this, pManager, true, scaling);
     m_pMainPanel = panel;
 
     show();
@@ -193,14 +193,14 @@ void CWinPanel::focus()
     m_pMainPanel->focus();
 }
 
-void CWinPanel::updatePanelStylesheets()
-{
-    m_pMainPanel->updateStylesheets();
-}
-
 void CWinPanel::applyWindowState(Qt::WindowState state)
 {
     m_pMainPanel->applyMainWindowState(state);
+}
+
+void CWinPanel::setScreenScalingFactor(uchar f)
+{
+    m_pMainPanel->setScreenScalingFactor(f);
 }
 
 void CWinPanel::slot_windowClose()

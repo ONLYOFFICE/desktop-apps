@@ -50,7 +50,7 @@
 
 #include "private/qtabbar_p.h"
 
-extern BYTE g_dpi_ratio;
+BYTE _dpi_ratio = 1;
 
 /*
  *
@@ -114,6 +114,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
+    , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
 {
     CTabBar * tabs = new CTabBar;
@@ -127,13 +128,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     tabBar()->setMovable(true);
     setTabsClosable(true);
 
-    setIconSize(QSize(18*g_dpi_ratio, 10*g_dpi_ratio));
+    setIconSize(QSize(18, 10));
     setProperty("active", false);
     setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
-
-    m_widthParams.apply_scale(g_dpi_ratio);
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
@@ -335,7 +334,7 @@ void CAscTabWidget::adjustTabsSize()
         if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
         if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(10 * g_dpi_ratio/*?*/)) * nCountTabs;
+        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(10 * _dpi_ratio/*?*/)) * nCountTabs;
         if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
     }
 
@@ -353,8 +352,8 @@ void CAscTabWidget::adjustTabsSize()
 void CAscTabWidget::applyCustomTheme(bool iscustom)
 {
     m_isCustomStyle = iscustom;
-    m_widthParams.tools_width = (iscustom ? 50 : 0) * g_dpi_ratio;
-    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * g_dpi_ratio;
+    m_widthParams.tools_width = (iscustom ? 50 : 0) * _dpi_ratio;
+    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * _dpi_ratio;
 }
 
 void CAscTabWidget::updateIcons()
@@ -388,7 +387,7 @@ void CAscTabWidget::updateTabIcon(int index)
 
             icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
 
-            if (g_dpi_ratio > 1)
+            if ( _dpi_ratio > 1 )
                 icon_name.replace(".png", "@2x.png");
 
             tabBar()->setTabIcon(index, QIcon(icon_name));
@@ -815,4 +814,21 @@ void CAscTabWidget::setFullScreen(bool apply)
 #endif
         }
     }
+}
+
+void CAscTabWidget::setScaling(uchar s)
+{
+    _dpi_ratio = s;
+
+    setIconSize(QSize(18*_dpi_ratio, 10*_dpi_ratio));
+    updateIcons();
+
+    (m_widthParams = size_params(m_defWidthParams)).apply_scale(_dpi_ratio);
+    if ( m_isCustomStyle )
+        m_widthParams.tools_width = 50 * _dpi_ratio,
+        m_widthParams.title_width = WINDOW_TITLE_MIN_WIDTH * _dpi_ratio;
+    else
+        m_widthParams.tools_width = m_widthParams.title_width = 0;
+
+    adjustTabsSize();
 }

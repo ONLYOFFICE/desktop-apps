@@ -79,7 +79,6 @@ using namespace NSEditorApi;
 
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
 
-extern BYTE     g_dpi_ratio;
 
 struct printdata {
 public:
@@ -88,16 +87,17 @@ public:
     QPrintDialog::PrintRange _print_range;
 };
 
-CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool isCustomWindow)
+CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
         m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
-        m_pButtonDownload(new CPushButton),
+        m_pButtonDownload(new CPushButton(dpi_ratio)),
         m_isMaximized(false), m_isCustomWindow(isCustomWindow),
         m_pWidgetDownload(new CDownloadWidget)
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
       , m_inFiles(NULL)
       , m_saveAction(0)
+      , m_dpiRatio(dpi_ratio)
 {
     m_pManager = manager;
 
@@ -125,15 +125,13 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &CMainPanel::onAppCloseRequest);
 
-    QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+    QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
     // download
     m_pButtonDownload->setObjectName("toolButtonDownload");
-//    m_pButtonDownload->setFixedSize(wide_btn_size);
-    m_pButtonDownload->setFixedSize(QSize(33*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio));
-    m_pButtonDownload->setAnimatedIcon(
-                g_dpi_ratio > 1 ? ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
+    m_pButtonDownload->setFixedSize(QSize(33, TOOLBTN_HEIGHT));
+    m_pButtonDownload->setAnimatedIcon(QPair<QString,QString>(":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"));
 
 #ifdef __linux__
     m_boxTitleBtns = new CX11Caption(centralWidget);
@@ -145,8 +143,8 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-    layoutBtns->setContentsMargins(0,0,4*g_dpi_ratio,0);
-    layoutBtns->setSpacing(1*g_dpi_ratio);
+    layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
+    layoutBtns->setSpacing(1*m_dpiRatio);
     layoutBtns->addWidget(label);
     layoutBtns->addWidget(m_pButtonDownload);
 
@@ -154,10 +152,10 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
-    QString _tabs_stylesheets = g_dpi_ratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if (isCustomWindow) {
         _tabs_stylesheets += ".qss";
         palette.setColor(QPalette::Background, QColor("#313437"));
@@ -199,7 +197,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
 
-        m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
     } else {
 #ifdef __linux__
         _tabs_stylesheets += ".nix.qss";
@@ -213,7 +211,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
         palette.setBrush(QPalette::Background, QBrush(gradient));
 
         label->setFixedHeight(0);
-        m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
+        m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
     QFile styleFile(_tabs_stylesheets);
@@ -221,6 +219,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
+    m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->applyCustomTheme(isCustomWindow);
 
     std::map<int, std::pair<QString, QString> > icons{
@@ -291,8 +290,8 @@ void CMainPanel::RecalculatePlaces()
     int windowW = width(),
         windowH = height(),
 #endif
-        captionH = TITLE_HEIGHT * g_dpi_ratio,
-        btnMainWidth = BUTTON_MAIN_WIDTH * g_dpi_ratio;
+        captionH = TITLE_HEIGHT * m_dpiRatio,
+        btnMainWidth = BUTTON_MAIN_WIDTH * m_dpiRatio;
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 
@@ -304,7 +303,7 @@ void CMainPanel::RecalculatePlaces()
     if (contentH < 1)
         contentH = 1;
 
-    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * g_dpi_ratio);
+    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * m_dpiRatio);
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
     m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
@@ -1312,39 +1311,45 @@ QString CMainPanel::getSaveMessage()
 
 void CMainPanel::updateStylesheets()
 {
-    QString _tabs_stylesheets = g_dpi_ratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
         _tabs_stylesheets += ".qss";
 
-        QSize small_btn_size(28*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+        QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
 
-        m_boxTitleBtns->setFixedSize(282*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
+        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
     } else {
 #ifdef __linux__
         _tabs_stylesheets += ".nix.qss";
 #endif
 
-        m_boxTitleBtns->setFixedSize(342*g_dpi_ratio, 16*g_dpi_ratio);
+        m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
     QFile styleFile(_tabs_stylesheets);
     styleFile.open( QFile::ReadOnly );
+
+    m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
 
     QLayout * layoutBtns = m_boxTitleBtns->layout();
-    layoutBtns->setContentsMargins(0,0,4*g_dpi_ratio,0);
-    layoutBtns->setSpacing(1*g_dpi_ratio);
+    layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
+    layoutBtns->setSpacing(1*m_dpiRatio);
 
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * g_dpi_ratio, TITLE_HEIGHT * g_dpi_ratio);
-    m_pButtonDownload->setFixedSize(QSize(33*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio));
-    m_pButtonDownload->setAnimatedIcon(g_dpi_ratio > 1 ?
-                            ":/res/icons/downloading_2x.gif" : ":/res/icons/downloading.gif" );
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
+    m_pButtonDownload->setScaling(m_dpiRatio);
 }
 void CMainPanel::onCheckUpdates()
 {
     emit checkUpdates();
+}
+
+void CMainPanel::setScreenScalingFactor(uchar s)
+{
+    m_dpiRatio = s;
+    updateStylesheets();
 }

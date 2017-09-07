@@ -83,8 +83,11 @@ private:
     QLabel * m_message,
            * m_typeIcon;
     int m_modalresult;
+    BYTE m_dpiRatio;
+
 
     void modal();
+    void onScreenScaling();
 };
 
 #endif // CMESSAGE_H

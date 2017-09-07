@@ -46,6 +46,9 @@ public:
     void setSize(int w, int h);
     void center();
 
+    HWND handle();
+    virtual void onScreenScaling();
+
 protected:
     HWND    m_hSelf,
             m_hParent;

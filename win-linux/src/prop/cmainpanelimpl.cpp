@@ -32,8 +32,8 @@
 
 #include "cmainpanelimpl.h"
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow)
-    : CMainPanel(parent, pManager, isCustomWindow)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow, uchar scale)
+    : CMainPanel(parent, pManager, isCustomWindow, scale)
     , CCefEventsTransformer(this)
 {
     pManager->SetEventListener(this);

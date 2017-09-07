@@ -41,14 +41,17 @@ class CPushButton : public QPushButton
     Q_OBJECT
 
 public:
-    explicit CPushButton(QWidget *parent = 0);
+    explicit CPushButton(QWidget *parent, uchar scaling);
+    CPushButton(uchar scaling);
     ~CPushButton();
 
-    void setAnimatedIcon(const QString&);
+    void setAnimatedIcon(QPair<QString, QString>&);
     void startIconAnimation(bool);
 
     void setEnabled(bool);
     void setVisible(bool visible, bool animation);
+    void setScaling(uchar);
+    void setFixedSize(const QSize&);
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -56,6 +59,11 @@ protected:
 private:
     QMovie * _movie;
     QPropertyAnimation * _animation;
+    QPair<QString, QString> _icon;
+    QSize _fixed_size;
+    uchar _dpi_ratio;
+
+    void applyAnimatedIcon(const QString&);
 
 signals:
 

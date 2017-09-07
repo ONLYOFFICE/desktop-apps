@@ -122,7 +122,8 @@ public:
 private:
     std::map<int, QCefView*> m_mapDownloads;
     CFullScreenData * m_dataFullScreen;
-    size_params m_widthParams;
+    size_params m_widthParams,
+                m_defWidthParams;
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
 
@@ -141,6 +142,7 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
+    void setScaling(uchar);
 
 protected:
     void resizeEvent(QResizeEvent* e);

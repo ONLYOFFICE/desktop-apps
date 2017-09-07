@@ -35,6 +35,7 @@
 #include <QPushButton>
 #include <QKeyEvent>
 #include "common/Types.h"
+#include "utils.h"
 
 #ifdef _WIN32
 //#define WINVER 0x0500
@@ -42,8 +43,6 @@
 #endif // Q_WS_WIN32
 
 #include <QDebug>
-
-extern uchar g_dpi_ratio;
 
 class CDialogEventFilter : public QObject
 {
@@ -94,11 +93,18 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 //    icon->setProperty("type","msg-question");
 //    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
+    auto _dpi_ratio =
+#if defined(_WIN32)
+            Utils::getScreenDpiRatioByHWND(int(hParentWnd));
+#else
+            CX11Decoration::devicePixelRatio();
+#endif
+
     m_progressText = tr("Document is printing: page %1 of %2");
     m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     m_progressLabel.setText(tr("Document is preparing"));
 
-    m_progressLabel.setStyleSheet(QString("margin-bottom: %1px;").arg(8*g_dpi_ratio));
+    m_progressLabel.setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
 //    m_progressLabel.setStyleSheet("background: red;");
     layout->addWidget(&m_progressLabel);
 
@@ -106,12 +112,12 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     QWidget * box = new QWidget;
     box->setLayout(new QHBoxLayout);
     box->layout()->addWidget(btn_cancel);
-    box->layout()->setContentsMargins(0,8*g_dpi_ratio,0,0);
+    box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
 //    h_layout1->addWidget(box, 0, Qt::AlignCenter);
     layout->addWidget(box, 0, Qt::AlignCenter);
 
     m_Dlg.setLayout(layout);
-    m_Dlg.setMinimumWidth(400*g_dpi_ratio);
+    m_Dlg.setMinimumWidth(400*_dpi_ratio);
     m_Dlg.setWindowTitle(tr("Printing..."));
 
     m_Dlg.installEventFilter(m_eventFilter);

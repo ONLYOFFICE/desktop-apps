@@ -45,7 +45,7 @@ class CWinPanel : public QWinWidget
     Q_OBJECT
 
 public:
-    CWinPanel( HWND hWnd, CAscApplicationManager* pManager );
+    CWinPanel( HWND hWnd, CAscApplicationManager* pManager, uchar scaling );
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
@@ -58,7 +58,8 @@ public:
     void applyWindowState(Qt::WindowState);
     void doClose();
     void parseInputArgs(const QStringList& in);
-    void updatePanelStylesheets();
+    void setScreenScalingFactor(uchar);
+
 private:
     HWND windowHandle;
 
