@@ -119,7 +119,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager) :
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd, m_pManager);
+    m_pWinPanel = new CWinPanel(hWnd, m_pManager, g_dpi_ratio);
     ((CAscApplicationManagerWrapper *)pManager)->setMainPanel(m_pWinPanel->getMainPanel());
 
     gWinId = ( HWND )m_pWinPanel->winId();
@@ -349,68 +349,48 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_SIZE:
         if (window->m_pWinPanel) {
-            unsigned dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-            if ( dpi_ratio != g_dpi_ratio ) {
-                QByteArray css(Utils::getAppStylesheets(dpi_ratio));
-
-                if ( !css.isEmpty() ) {
-                    g_dpi_ratio = dpi_ratio;
-
-                    qApp->setStyleSheet(css);
-                    window->m_pWinPanel->updatePanelStylesheets();
-                    window->setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
-                }
-            }
-
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
             } else {
-                RECT lpWindowRect, clientRect;
-                GetWindowRect(hWnd, &lpWindowRect);
-                GetClientRect(hWnd, &clientRect);
-
-                int border_size = 0;
-
-                int nMaxOffsetX = 0;
-                int nMaxOffsetY = 0;
-                int nMaxOffsetR = 0;
-                int nMaxOffsetB = 0;
-
-                if ( wParam == SIZE_MAXIMIZED ) {
-                    LONG lTestW = 640;
-                    LONG lTestH = 480;
-                    RECT wrect{0,0,lTestW,lTestH};
-                    AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
-
-                    if (0 > wrect.left) nMaxOffsetX = -wrect.left;
-                    if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
-
-                    if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
-                    if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
-
-                    // TODO: вот тут бордер!!!
-                    window->m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
-                                                        clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
-                                                        clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
-                    window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);
-                } else {
-                    border_size = 3 * g_dpi_ratio;
-
-                    // TODO: вот тут бордер!!!
-                    window->m_pWinPanel->setGeometry(border_size, border_size,
-                                clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
+                if ( wParam == SIZE_MAXIMIZED )
+                    window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);  else
                     window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
-                }
 
-                HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
-                                    lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
-                                    lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
-
-                SetWindowRgn(hWnd, hRgn, TRUE);
-                DeleteObject(hRgn);
+                window->adjustGeometry();
             }
         }
         break;
+
+    case WM_EXITSIZEMOVE: {
+        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+        if ( dpi_ratio != g_dpi_ratio ) {
+            QByteArray css(Utils::getAppStylesheets(dpi_ratio));
+
+            if ( !css.isEmpty() ) {
+                bool increase = dpi_ratio > g_dpi_ratio;
+                g_dpi_ratio = dpi_ratio;
+
+                qApp->setStyleSheet(css);
+                window->m_pWinPanel->setScreenScalingFactor(g_dpi_ratio);
+                window->setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
+
+                RECT lpWindowRect;
+                GetWindowRect(hWnd, &lpWindowRect);
+
+                unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
+                        _new_height = lpWindowRect.bottom - lpWindowRect.top;
+
+                if ( increase )
+                    _new_width *= 2, _new_height *= 2;  else
+                    _new_width /= 2, _new_height /= 2;
+
+                SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+            }
+        }
+
+        break;
+    }
 
     case WM_NCACTIVATE: {
         return TRUE;
@@ -612,3 +592,49 @@ int CMainWindow::getMaximumHeight()
     return maximumSize.height;
 }
 
+void CMainWindow::adjustGeometry()
+{
+    RECT lpWindowRect, clientRect;
+    GetWindowRect(hWnd, &lpWindowRect);
+    GetClientRect(hWnd, &clientRect);
+
+    qDebug() << "adjust geometry: " << (lpWindowRect.bottom - lpWindowRect.top);
+
+    int border_size = 0,
+        nMaxOffsetX = 0,
+        nMaxOffsetY = 0,
+        nMaxOffsetR = 0,
+        nMaxOffsetB = 0;
+
+    if ( IsZoomed(hWnd) != 0 ) {      // is window maximized
+        LONG lTestW = 640,
+             lTestH = 480;
+
+        RECT wrect{0,0,lTestW,lTestH};
+        AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+
+        if (0 > wrect.left) nMaxOffsetX = -wrect.left;
+        if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
+
+        if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
+        if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
+
+        // TODO: вот тут бордер!!!
+        m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
+                                                    clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
+                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
+    } else {
+        border_size = 3 * g_dpi_ratio;
+
+        // TODO: вот тут бордер!!!
+        m_pWinPanel->setGeometry(border_size, border_size,
+                            clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
+    }
+
+    HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
+                                lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
+                                lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
+
+    SetWindowRgn(hWnd, hRgn, TRUE);
+    DeleteObject(hRgn);
+}

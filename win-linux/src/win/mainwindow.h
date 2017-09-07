@@ -76,6 +76,7 @@ public:
     int getMaximumHeight();
     int getMaximumWidth();
     void removeMaximumSize();
+    void adjustGeometry();
 
 public:
     CWinPanel * m_pWinPanel;
