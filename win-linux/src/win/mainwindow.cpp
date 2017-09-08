@@ -598,8 +598,6 @@ void CMainWindow::adjustGeometry()
     GetWindowRect(hWnd, &lpWindowRect);
     GetClientRect(hWnd, &clientRect);
 
-    qDebug() << "adjust geometry: " << (lpWindowRect.bottom - lpWindowRect.top);
-
     int border_size = 0,
         nMaxOffsetX = 0,
         nMaxOffsetY = 0,

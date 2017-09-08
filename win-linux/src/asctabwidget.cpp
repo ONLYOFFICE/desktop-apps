@@ -723,7 +723,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
 
         if (doc->isViewType(cvwtEditor) &&
                 doc->changed() && !doc->closed() &&
-                (portal.length() == 0 || doc->url().find(portal) != wstring::npos))
+                (portal.empty() || doc->url().find(portal) != wstring::npos))
         {
             mapModified.insert(viewByIndex(i), titleByIndex(i, true));
         }
@@ -741,7 +741,7 @@ int CAscTabWidget::findModified(const QString& portalname)
 
         if ( doc->isViewType(cvwtEditor) &&
                 doc->changed() && !doc->closed() &&
-                (portal.length() == 0 || doc->url().find(portal) != wstring::npos))
+                (portal.empty() || doc->url().find(portal) != wstring::npos))
         {
             return i;
         }

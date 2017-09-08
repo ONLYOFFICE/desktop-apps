@@ -104,14 +104,11 @@ int main( int argc, char *argv[] )
 
     if (!CApplicationCEF::IsMainProcess(argc, argv))
     {
-        CApplicationCEF* application_cef = new CApplicationCEF();
+        unique_ptr<CApplicationCEF> application_cef(new CApplicationCEF);
         std::unique_ptr<CAscApplicationManager> appmananger(new CAscApplicationManagerWrapper);
 
-        setup_paths(appmananger.get());
-        int nReturnCode = application_cef->Init_CEF(appmananger.get(), argc, argv);
-
-        delete application_cef;
-        return nReturnCode;
+        setup_paths(appmanager.get());
+        return application_cef->Init_CEF(appmanager.get(), argc, argv);
     }
 
 #ifdef _WIN32
