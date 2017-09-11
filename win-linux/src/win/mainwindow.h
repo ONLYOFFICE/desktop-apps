@@ -75,6 +75,9 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
 
+private:
+    void setScreenScalingFactor(uchar);
+
 public:
     CWinPanel * m_pWinPanel;
 
@@ -98,4 +101,6 @@ private:
 
     sizeType minimumSize;
     sizeType maximumSize;
+
+    uchar m_dpiRatio;
 };

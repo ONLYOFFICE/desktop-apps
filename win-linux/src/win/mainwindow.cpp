@@ -55,7 +55,6 @@
 
 HWND gWinId = 0;
 HWND gTopWinId;
-BYTE g_dpi_ratio = 1;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -74,10 +73,10 @@ CMainWindow::CMainWindow() :
 
     // adjust window size
     QRect _window_rect = reg_user.value("position").toRect();
-    g_dpi_ratio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
 
     if ( _window_rect.isEmpty() )
-        _window_rect = QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio);
+        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
@@ -115,7 +114,7 @@ CMainWindow::CMainWindow() :
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd, g_dpi_ratio);
+    m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
     ((CAscApplicationManagerWrapper &)CAscApplicationManagerWrapper::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
 
     gWinId = ( HWND )m_pWinPanel->winId();
@@ -138,7 +137,7 @@ CMainWindow::CMainWindow() :
         }
     }
 
-    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
+    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 }
 
 CMainWindow::~CMainWindow()
@@ -359,30 +358,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     case WM_EXITSIZEMOVE: {
         uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
-        if ( dpi_ratio != g_dpi_ratio ) {
-            QByteArray css(Utils::getAppStylesheets(dpi_ratio));
-
-            if ( !css.isEmpty() ) {
-                bool increase = dpi_ratio > g_dpi_ratio;
-                g_dpi_ratio = dpi_ratio;
-
-                qApp->setStyleSheet(css);
-                window->m_pWinPanel->setScreenScalingFactor(g_dpi_ratio);
-                window->setMinimumSize( MAIN_WINDOW_MIN_WIDTH*g_dpi_ratio, MAIN_WINDOW_MIN_HEIGHT*g_dpi_ratio );
-
-                RECT lpWindowRect;
-                GetWindowRect(hWnd, &lpWindowRect);
-
-                unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
-                        _new_height = lpWindowRect.bottom - lpWindowRect.top;
-
-                if ( increase )
-                    _new_width *= 2, _new_height *= 2;  else
-                    _new_width /= 2, _new_height /= 2;
-
-                SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
-            }
-        }
+        if ( dpi_ratio != window->m_dpiRatio )
+            window->setScreenScalingFactor(dpi_ratio);
 
         break;
     }
@@ -616,7 +593,7 @@ void CMainWindow::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = 3 * g_dpi_ratio;
+        border_size = 3 * m_dpiRatio;
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,
@@ -629,4 +606,30 @@ void CMainWindow::adjustGeometry()
 
     SetWindowRgn(hWnd, hRgn, TRUE);
     DeleteObject(hRgn);
+}
+
+void CMainWindow::setScreenScalingFactor(uchar factor)
+{
+    QByteArray css(Utils::getAppStylesheets(factor));
+
+    if ( !css.isEmpty() ) {
+        bool increase = factor > m_dpiRatio;
+        m_dpiRatio = factor;
+
+        qApp->setStyleSheet(css);
+        m_pWinPanel->setScreenScalingFactor(factor);
+        setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
+
+        RECT lpWindowRect;
+        GetWindowRect(hWnd, &lpWindowRect);
+
+        unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
+                _new_height = lpWindowRect.bottom - lpWindowRect.top;
+
+        if ( increase )
+            _new_width *= 2, _new_height *= 2;  else
+            _new_width /= 2, _new_height /= 2;
+
+        SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+    }
 }
