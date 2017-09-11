@@ -58,6 +58,8 @@
 #include "../clangater.h"
 #include "../clogger.h"
 
+#include "cascapplicationmanagerwrapper.h"
+
 //#include <QScreen>
 #include <QSettings>
 #include <QPrinterInfo>
@@ -69,15 +71,14 @@
 
 extern QStringList g_cmdArgs;
 
-CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager, uchar scaling )
+CWinPanel::CWinPanel( HWND hWnd, uchar scaling )
     : QWinWidget( hWnd )
 {
     windowHandle = hWnd;
-    m_pManager = pManager;
 
 //    setObjectName("mainPanel");
 
-    CMainPanelImpl * panel = new CMainPanelImpl(this, pManager, true, scaling);
+    CMainPanelImpl * panel = new CMainPanelImpl(this, true, scaling);
     m_pMainPanel = panel;
 
     show();
@@ -205,7 +206,7 @@ void CWinPanel::setScreenScalingFactor(uchar f)
 
 void CWinPanel::slot_windowClose()
 {
-    m_pManager->DestroyCefView(-1);
+    AscAppManager::getInstance().DestroyCefView(-1);
 //    m_pManager->GetApplication()->ExitMessageLoop();
 //    PostQuitMessage(0);
 }

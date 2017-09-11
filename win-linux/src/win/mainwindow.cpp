@@ -60,7 +60,7 @@ BYTE g_dpi_ratio = 1;
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
-CMainWindow::CMainWindow(CAscApplicationManager* pManager) :
+CMainWindow::CMainWindow() :
     hWnd(0),
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
@@ -90,10 +90,6 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager) :
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
-    m_pManager = pManager;
-    m_pManager->StartSpellChecker();
-    m_pManager->StartKeyboardChecker();
-
     WNDCLASSEXW wcx = { 0 };
     wcx.cbSize = sizeof( WNDCLASSEX );
     wcx.style = CS_HREDRAW | CS_VREDRAW;
@@ -119,8 +115,8 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager) :
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd, m_pManager, g_dpi_ratio);
-    ((CAscApplicationManagerWrapper *)pManager)->setMainPanel(m_pWinPanel->getMainPanel());
+    m_pWinPanel = new CWinPanel(hWnd, g_dpi_ratio);
+    ((CAscApplicationManagerWrapper &)CAscApplicationManagerWrapper::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
 
     gWinId = ( HWND )m_pWinPanel->winId();
     gTopWinId = hWnd;
@@ -277,8 +273,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_TIMER:
     {
-        if (NULL != window->m_pManager)
-            window->m_pManager->CheckKeyboard();
+        CAscApplicationManagerWrapper::getInstance().CheckKeyboard();
         break;
     }
 
@@ -426,8 +421,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         return 1;
     }
     case WM_ENDSESSION:
-//        window->m_pManager->DestroyCefView(-1);
-        window->m_pManager->CloseApplication();
+        CAscApplicationManagerWrapper::getInstance().CloseApplication();
 
         break;
 
@@ -555,12 +549,12 @@ void CMainWindow::removeMinimumSize()
     this->minimumSize.height = 0;
 }
 
-int CMainWindow::getMinimumWidth()
+int CMainWindow::getMinimumWidth() const
 {
     return minimumSize.width;
 }
 
-int CMainWindow::getMinimumHeight()
+int CMainWindow::getMinimumHeight() const
 {
     return minimumSize.height;
 }

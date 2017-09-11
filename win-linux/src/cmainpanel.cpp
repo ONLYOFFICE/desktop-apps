@@ -57,6 +57,7 @@
 #include "cmessage.h"
 #include "cfilechecker.h"
 #include "clangater.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -87,7 +88,7 @@ public:
     QPrintDialog::PrintRange _print_range;
 };
 
-CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool isCustomWindow, uchar dpi_ratio)
+CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
         m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
         m_pButtonDownload(new CPushButton(dpi_ratio)),
@@ -99,8 +100,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
       , m_saveAction(0)
       , m_dpiRatio(dpi_ratio)
 {
-    m_pManager = manager;
-
     setObjectName("mainPanel");
     connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
@@ -117,7 +116,6 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     QPalette palette;
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
-    m_pTabs->m_pManager = m_pManager;
     m_pTabs->activate(false);
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
@@ -241,14 +239,14 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     menuDownload->addAction(waction);
 
     m_pButtonDownload->setMenu(menuDownload);
-    m_pWidgetDownload->setManagedElements(m_pManager, m_pButtonDownload);
+    m_pWidgetDownload->setManagedElements(m_pButtonDownload);
 
     CProfileMenuFilter * eventFilter = new CProfileMenuFilter(this);
     eventFilter->setMenuButton(m_pButtonDownload);
     menuDownload->installEventFilter(eventFilter);
 
     QCefView * pMainWidget = new QCefView(centralWidget);
-    pMainWidget->Create(m_pManager, cvwtSimple);
+    pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
     pMainWidget->setObjectName( "mainPanel" );
     pMainWidget->setHidden(false);
 
@@ -275,7 +273,7 @@ CMainPanel::CMainPanel(QWidget *parent, CAscApplicationManager *manager, bool is
     wstring user_name = readSystemUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
-    m_pManager->InitAdditionalEditorParams(wparams);
+    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -470,11 +468,6 @@ void CMainPanel::onTabClosed(int index, int curcount)
     RecalculatePlaces();
 }
 
-CAscApplicationManager * CMainPanel::getAscApplicationManager()
-{
-    return m_pManager;
-}
-
 void CMainPanel::onTabChanged(int index)
 {
     QLabel * title = (QLabel *)m_boxTitleBtns->layout()->itemAt(0)->widget();
@@ -536,7 +529,7 @@ int CMainPanel::trySaveDocument(int index)
 
 void CMainPanel::onNeedCheckKeyboard()
 {
-    if (m_pManager) m_pManager->CheckKeyboard();
+    AscAppManager::getInstance().CheckKeyboard();
 }
 
 void CMainPanel::doLogout(const QString& portal, bool allow)
@@ -548,7 +541,7 @@ void CMainPanel::doLogout(const QString& portal, bool allow)
         m_pTabs->closePortal(portal, true);
         RecalculatePlaces();
 
-        m_pManager->Logout(wp);
+        AscAppManager::getInstance().Logout(wp);
     } else
         wcmd.append(L":cancel");
 
@@ -635,7 +628,8 @@ void CMainPanel::onLocalGetImage(void * d)
 
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
     pEvent->m_pData = pData;
-    m_pManager->Apply(pEvent);
+
+    AscAppManager::getInstance().Apply(pEvent);
 
     /* release would be made in the method Apply */
 //    RELEASEINTERFACE(pData);
@@ -930,7 +924,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         return;
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;
-    CCefView * pView = m_pManager->GetViewById(pData->get_Id());
+    CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());
 
     int pagesCount = pData->get_PagesCount(),
         currentPage = pData->get_CurrentPage();
@@ -1065,7 +1059,7 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
                 _reg_user.setValue("savePath", savePath);
             }
 
-            m_pManager->EndSaveDialog(fullPath.toStdWString(), id);
+            AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
         }
 
         saveInProcess = false;
@@ -1101,14 +1095,15 @@ void CMainPanel::onLocalFileSaveAs(void * d)
 
             pSaveData->put_Path(fullPath.toStdWString());
             int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                    CAscApplicationManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+                    AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
 
             pSaveData->put_FileType(format > -1 ? format : 0);
         }
 
         CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
         pEvent->m_pData = pSaveData;
-        m_pManager->Apply(pEvent);
+
+        AscAppManager::getInstance().Apply(pEvent);
 
 //        RELEASEINTERFACE(pData)
 //        RELEASEINTERFACE(pEvent)
@@ -1301,7 +1296,8 @@ void CMainPanel::cmdAppManager(int cmd, void * data)
 {
     CAscMenuEvent * pEvent = new CAscMenuEvent(cmd);
     pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
-    m_pManager->Apply(pEvent);
+
+    AscAppManager::getInstance().Apply(pEvent);
 }
 
 QString CMainPanel::getSaveMessage()

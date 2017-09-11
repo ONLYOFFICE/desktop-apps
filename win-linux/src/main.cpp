@@ -105,7 +105,7 @@ int main( int argc, char *argv[] )
     if (!CApplicationCEF::IsMainProcess(argc, argv))
     {
         unique_ptr<CApplicationCEF> application_cef(new CApplicationCEF);
-        std::unique_ptr<CAscApplicationManager> appmananger(new CAscApplicationManagerWrapper);
+        unique_ptr<CAscApplicationManager> appmanager(AscAppManager::createInstance());
 
         setup_paths(appmanager.get());
         return application_cef->Init_CEF(appmanager.get(), argc, argv);
@@ -128,9 +128,9 @@ int main( int argc, char *argv[] )
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
-    CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
-    setup_paths(pApplicationManager);
-    application_cef->Init_CEF(pApplicationManager, argc, argv);
+
+    setup_paths(&AscAppManager::getInstance());
+    application_cef->Init_CEF(&AscAppManager::getInstance(), argc, argv);
     /* ********************** */
 
     GET_REGISTRY_SYSTEM(reg_system)
@@ -148,7 +148,7 @@ int main( int argc, char *argv[] )
 
             SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
 
-            pApplicationManager->CloseApplication();
+            AscAppManager::getInstance().CloseApplication();
             return 0;
         }
     }
@@ -165,10 +165,9 @@ int main( int argc, char *argv[] )
     if (!(_arg_i = g_cmdArgs.indexOf("--help") < 0)) {
         CHelp::out();
 
-        pApplicationManager->CloseApplication();
+        AscAppManager::getInstance().CloseApplication();
 
         delete application_cef;
-        delete pApplicationManager;
         return 0;
     }
 
@@ -224,7 +223,7 @@ int main( int argc, char *argv[] )
 
 #ifdef _WIN32
     // Create window
-    CMainWindow window(pApplicationManager);
+    std::unique_ptr<CMainWindow> window(new CMainWindow);
 
 #elif defined(Q_OS_LINUX)
     // Create window
@@ -233,7 +232,9 @@ int main( int argc, char *argv[] )
     window.show();
     window.setWindowTitle(WINDOW_NAME);
 #endif
-    pApplicationManager->CheckFonts();
+    AscAppManager::getInstance().StartSpellChecker();
+    AscAppManager::getInstance().StartKeyboardChecker();
+    AscAppManager::getInstance().CheckFonts();
 
     bool bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
@@ -243,10 +244,9 @@ int main( int argc, char *argv[] )
     }
 
     // release all subprocesses
-    pApplicationManager->CloseApplication();
+    AscAppManager::getInstance().CloseApplication();
 
     delete application_cef;
-    delete pApplicationManager;
 
 #ifdef _WIN32
     if (hMutex != NULL) {

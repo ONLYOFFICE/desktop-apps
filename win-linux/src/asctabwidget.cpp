@@ -48,6 +48,8 @@
 #include "defines.h"
 #include "utils.h"
 
+#include "cascapplicationmanagerwrapper.h"
+
 #include "private/qtabbar_p.h"
 
 BYTE _dpi_ratio = 1;
@@ -137,8 +139,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
 {
-    if (!m_pManager ||
-            (!(opts.url.length() > 0) && opts.type != etNewFile))
+    if ( opts.url.isEmpty() && opts.type != etNewFile )
         return -1;
 
     setProperty("empty", false);
@@ -154,7 +155,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
-    pView->Create(m_pManager, cvwtEditor);
+    pView->Create(&AscAppManager::getInstance(), cvwtEditor);
 
     int tab_index = -1;
     bool res_open = true;
@@ -204,7 +205,7 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
     if (!(i < 0) && i < count()) {
         CAscTabData * doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
         if (doc && (!m || !doc->changed())) {
-            m_pManager->DestroyCefView(doc->viewId());
+            AscAppManager::getInstance().DestroyCefView(doc->viewId());
 
             QCefView * view = (QCefView *)widget(i);
 
@@ -242,10 +243,7 @@ void CAscTabWidget::closeAllEditors()
 
 int CAscTabWidget::addPortal(QString url, QString name)
 {
-    Q_UNUSED(url);
-
-    if (!m_pManager || !url.length())
-        return -1;
+    if ( url.isEmpty() ) return -1;
 
     setProperty("empty", false);
 
@@ -256,7 +254,7 @@ int CAscTabWidget::addPortal(QString url, QString name)
     QCefView* pView = new QCefView(this);
     pView->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
-    pView->Create(m_pManager, cvwtSimple);
+    pView->Create(&AscAppManager::getInstance(), cvwtSimple);
     pView->GetCefView()->load((url + args).toStdWString());
     int id_view = pView->GetCefView()->GetId();
 
@@ -613,7 +611,7 @@ void CAscTabWidget::applyDocumentSave(int id, bool cancel)
 
 void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
-    CCefView * pView = m_pManager->GetViewById(id);
+    CCefView * pView = AscAppManager::getInstance().GetViewById(id);
     if (NULL != pView && pView->GetType() == cvwtEditor) {
         ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(type));
     }

@@ -93,7 +93,6 @@ private:
 CDownloadWidget::CDownloadWidget(QWidget *parent)
     : QWidget(parent)
     , m_parentButton(NULL)
-    , m_pManager(NULL)
 {
     setLayout(new QVBoxLayout);
     connect(this, &CDownloadWidget::downloadCanceled, this, &CDownloadWidget::slot_downloadCanceled, Qt::QueuedConnection);
@@ -106,11 +105,9 @@ CDownloadWidget::~CDownloadWidget()
 
 }
 
-void CDownloadWidget::setManagedElements(CAscApplicationManager * m, QPushButton * b)
+void CDownloadWidget::setManagedElements(QPushButton * b)
 {
-    m_pManager = m;
     m_parentButton = b;
-
     m_parentButton->hide();
 }
 
@@ -149,7 +146,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
 
 void CDownloadWidget::downloadProcess(void * info)
 {
-    if (NULL == m_pManager || info == NULL )
+    if ( info == NULL )
         return;
 
     CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);

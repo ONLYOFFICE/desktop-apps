@@ -32,8 +32,6 @@
 
 #include <windows.h>
 
-#include "applicationmanager.h"
-
 #include "cwinpanel.h"
 #include "qwinwidget.h"
 
@@ -51,9 +49,8 @@ class CMainWindow
 public:
     HWND                    hWnd;
     HINSTANCE               hInstance;
-    CAscApplicationManager* m_pManager;
 
-    CMainWindow(CAscApplicationManager* pManager);
+    explicit CMainWindow();
     ~CMainWindow();
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
@@ -68,8 +65,8 @@ public:
     void setMinimumSize( const int width, const int height );
     bool isSetMinimumSize();
     void removeMinimumSize();
-    int getMinimumHeight();
-    int getMinimumWidth();
+    int getMinimumHeight() const;
+    int getMinimumWidth() const;
 
     void setMaximumSize( const int width, const int height );
     bool isSetMaximumSize();

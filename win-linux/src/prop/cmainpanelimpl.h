@@ -38,7 +38,7 @@
 class CMainPanelImpl : public CMainPanel, public CCefEventsTransformer
 {
 public:
-    CMainPanelImpl(QWidget *, CAscApplicationManager *, bool, uchar);
+    CMainPanelImpl(QWidget *, bool, uchar);
 };
 
 #endif // CMAINPANELIMPL_H

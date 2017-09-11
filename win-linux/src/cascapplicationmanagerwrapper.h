@@ -35,16 +35,26 @@
 
 #include "applicationmanager.h"
 
+class CAscApplicationManagerWrapper;
+typedef CAscApplicationManagerWrapper AscAppManager;
+
 class CAscApplicationManagerWrapper : public CAscApplicationManager
 {
 private:
     QObject * m_pPanel;
 
-public:
+private:
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
+    void operator =(CAscApplicationManagerWrapper const&);
+
     CAscApplicationManagerWrapper()
     {
         m_pPanel = NULL;
     }
+
+public:
+//    CAscApplicationManagerWrapper() = delete;
+//    void operator =(CAscApplicationManagerWrapper const&) = delete;
 
 public:
     void StartSaveDialog(const std::wstring& sName, unsigned int nId)
@@ -75,6 +85,17 @@ public:
     void setMainPanel(QObject * p)
     {
         m_pPanel = p;
+    }
+
+    static CAscApplicationManager & getInstance()
+    {
+        static CAscApplicationManagerWrapper _manager;
+        return _manager;
+    }
+
+    static CAscApplicationManager * createInstance()
+    {
+        return new CAscApplicationManagerWrapper;
     }
 };
 

@@ -41,7 +41,6 @@
 #include "asctabwidget.h"
 #include "cdownloadwidget.h"
 #include "cpushbutton.h"
-#include "applicationmanager.h"
 #include "ccefeventstransformer.h"
 
 
@@ -52,9 +51,8 @@ class CMainPanel : public QWidget
     Q_OBJECT
 
 public:
-    explicit CMainPanel(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow, uchar scale);
+    explicit CMainPanel(QWidget *parent, bool isCustomWindow, uchar scale);
 
-    CAscApplicationManager * getAscApplicationManager();
     void applyMainWindowState(Qt::WindowState);
 
     void goStart();
@@ -77,8 +75,6 @@ protected:
     void refreshAboutVersion();
     void cmdAppManager(int, void *);
     virtual QString getSaveMessage();
-
-    CAscApplicationManager * m_pManager;
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);

@@ -38,14 +38,13 @@
 #include "qwinwidget.h"
 #include "../prop/cmainpanelimpl.h"
 
-#include "applicationmanager.h"
 
 class CWinPanel : public QWinWidget
 {
     Q_OBJECT
 
 public:
-    CWinPanel( HWND hWnd, CAscApplicationManager* pManager, uchar scaling );
+    CWinPanel( HWND hWnd, uchar scaling );
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
@@ -63,7 +62,6 @@ public:
 private:
     HWND windowHandle;
 
-    CAscApplicationManager  * m_pManager;
     CMainPanelImpl          * m_pMainPanel;
 
 private:

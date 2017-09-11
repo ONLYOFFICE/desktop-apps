@@ -31,10 +31,11 @@
 */
 
 #include "cmainpanelimpl.h"
+#include "cascapplicationmanagerwrapper.h"
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow, uchar scale)
-    : CMainPanel(parent, pManager, isCustomWindow, scale)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+    : CMainPanel(parent, isCustomWindow, scale)
     , CCefEventsTransformer(this)
 {
-    pManager->SetEventListener(this);
+    AscAppManager::getInstance().SetEventListener(this);
 }

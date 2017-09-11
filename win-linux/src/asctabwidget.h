@@ -38,7 +38,6 @@
 #include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
 
-#include "applicationmanager.h"
 #include "qcefview.h"
 
 #include <QDebug>
@@ -117,7 +116,6 @@ class CAscTabWidget : public QTabWidget
 public:
     QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
-    CAscApplicationManager* m_pManager;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;

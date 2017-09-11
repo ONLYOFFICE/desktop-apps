@@ -35,7 +35,6 @@
 
 #include <QWidget>
 #include <QPushButton>
-#include "applicationmanager.h"
 
 //class CProfileMenuFilter;
 class CProfileMenuFilter : public QObject {
@@ -59,7 +58,7 @@ public:
     explicit CDownloadWidget(QWidget *parent = 0);
     ~CDownloadWidget();
 
-    void setManagedElements(CAscApplicationManager *, QPushButton *);
+    void setManagedElements(QPushButton *);
     void downloadProcess(void *);
 //    void updateProgress();
 //    void cancelAll();
@@ -76,7 +75,6 @@ protected:
 
 private:
     QPushButton * m_parentButton;
-    CAscApplicationManager * m_pManager;
     std::map<int, CDownloadItem *> m_mapDownloads;
 
 signals:
