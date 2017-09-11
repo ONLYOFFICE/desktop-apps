@@ -114,7 +114,17 @@ int main( int argc, char *argv[] )
 #ifdef _WIN32
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        hMutex = NULL;
+        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
+        if (hwnd != NULL) {
+            WCHAR * cm_line = GetCommandLine();
+
+            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
+            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
+            MyCDS.lpData = cm_line;
+
+            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
+            return 0;
+        }
     }
 #endif
 
@@ -135,24 +145,6 @@ int main( int argc, char *argv[] )
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-
-#ifdef _WIN32
-    if (hMutex == NULL) {
-        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
-        if (hwnd != NULL) {
-            WCHAR * cm_line = GetCommandLine();
-
-            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
-            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
-            MyCDS.lpData = cm_line;
-
-            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
-
-            AscAppManager::getInstance().CloseApplication();
-            return 0;
-        }
-    }
-#endif
 
     reg_user.setFallbacksEnabled(false);
     g_cmdArgs = QCoreApplication::arguments();
