@@ -127,6 +127,16 @@ int main( int argc, char *argv[] )
         }
     }
 #endif
+    const int ac = argc;
+    char ** const av = argv;
+    for (int a(1); a < ac; ++a) {
+        g_cmdArgs << QString::fromLocal8Bit(av[a]);
+    }
+
+    if ( !(g_cmdArgs.indexOf("--help") < 0) ) {
+        CHelp::out();
+        return 0;
+    }
 
 #ifdef __linux__
     SingleApplication app(argc, argv);
@@ -147,24 +157,12 @@ int main( int argc, char *argv[] )
     GET_REGISTRY_USER(reg_user)
 
     reg_user.setFallbacksEnabled(false);
-    g_cmdArgs = QCoreApplication::arguments();
 
     /* read lang fom different places
      * cmd argument --lang:en apply the language one time
      * cmd argument --keeplang:en also keep the language for next sessions
     */
-    int _arg_i;
-    if (!(_arg_i = g_cmdArgs.indexOf("--help") < 0)) {
-        CHelp::out();
-
-        AscAppManager::getInstance().CloseApplication();
-
-        delete application_cef;
-        return 0;
-    }
-
     CLangater::init();
-
     /* applying languages finished */
 
 #ifdef _WIN32
