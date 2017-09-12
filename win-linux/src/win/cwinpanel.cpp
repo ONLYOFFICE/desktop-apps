@@ -75,6 +75,7 @@ CWinPanel::CWinPanel( HWND hWnd, uchar scaling )
     : QWinWidget( hWnd )
 {
     windowHandle = hWnd;
+    setProperty("handleTopWindow", int(hWnd));
 
 //    setObjectName("mainPanel");
 

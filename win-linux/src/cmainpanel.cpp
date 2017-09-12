@@ -64,7 +64,6 @@
 #include "shlobj.h"
 #include "lmcons.h"
 
-extern HWND gTopWinId;
 #else
 #define VK_F4 0x73
 #define VK_TAB 0x09
@@ -79,6 +78,7 @@ using namespace NSEditorApi;
 #define TOOLBTN_HEIGHT      29
 
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
+#define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
 
 
 struct printdata {
@@ -496,7 +496,7 @@ int CMainPanel::trySaveDocument(int index)
     int modal_res = MODAL_RESULT_NO;
     if (m_pTabs->modifiedByIndex(index)) {
 #if defined(_WIN32)
-        CMessage mess(gTopWinId);
+        CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
 #else
         CMessage mess(this);
 #endif
@@ -670,7 +670,7 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         });
     } else
     if (result == -255) {
-        CMessage::error(gTopWinId, tr("File format not supported."));
+        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
     }
 }
 
@@ -690,7 +690,7 @@ void CMainPanel::onLocalFileRecent(void * d)
         QFileInfo _info(opts.url);
         if ( opts.type != etRecoveryFile && !_info.exists() ) {
 #if defined(_WIN32)
-            CMessage mess(gTopWinId);
+            CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
 #else
             CMessage mess(this);
 #endif
@@ -716,7 +716,7 @@ void CMainPanel::onLocalFileRecent(void * d)
         });
     } else
     if (result == -255) {
-        CMessage::error(gTopWinId, tr("File format not supported."));
+        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
     }
 }
 
@@ -1049,7 +1049,7 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
         if (sName.size()) {
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
 #ifdef _WIN32
-            CFileDialogWrapper dlg(gTopWinId);
+            CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
 #else
             CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
@@ -1080,7 +1080,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
         QString fullPath = _lastSavePath + "/" + info.fileName();
 
 #ifdef _WIN32
-        CFileDialogWrapper dlg(gTopWinId);
+        CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
 #else
         CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif

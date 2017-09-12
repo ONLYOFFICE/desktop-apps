@@ -53,8 +53,6 @@
 
 #define UM_INSTALL_UPDATE   WM_USER+254
 
-HWND gTopWinId;
-
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
@@ -115,8 +113,6 @@ CMainWindow::CMainWindow() :
 
     m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
     ((CAscApplicationManagerWrapper &)CAscApplicationManagerWrapper::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
-
-    gTopWinId = hWnd;
 
     bool _is_maximized = reg_user.value("maximized", false).toBool();
     show(_is_maximized);
