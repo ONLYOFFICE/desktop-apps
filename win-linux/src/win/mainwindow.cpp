@@ -53,7 +53,6 @@
 
 #define UM_INSTALL_UPDATE   WM_USER+254
 
-HWND gWinId = 0;
 HWND gTopWinId;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
@@ -117,10 +116,7 @@ CMainWindow::CMainWindow() :
     m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
     ((CAscApplicationManagerWrapper &)CAscApplicationManagerWrapper::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
 
-    gWinId = ( HWND )m_pWinPanel->winId();
     gTopWinId = hWnd;
-
-    SetWindowPos(gWinId, NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
 
     bool _is_maximized = reg_user.value("maximized", false).toBool();
     show(_is_maximized);
@@ -128,6 +124,7 @@ CMainWindow::CMainWindow() :
     toggleBorderless(_is_maximized);
     m_pWinPanel->goStartPage();
 
+    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
     if (_is_maximized) {
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(hWnd, &wp)) {
@@ -158,9 +155,6 @@ CMainWindow::~CMainWindow()
 
     hide();
     DestroyWindow( hWnd );
-
-    //m_pManager->StopSpellChecker();
-    //RELEASEOBJECT(m_pManager);
 }
 
 LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
@@ -208,7 +202,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         if ( wParam != VK_TAB )
             return DefWindowProc( hWnd, message, wParam, lParam );
 
-        SetFocus( gWinId );
+        SetFocus( HWND(window->m_pWinPanel->winId()) );
         break;
     }
 
