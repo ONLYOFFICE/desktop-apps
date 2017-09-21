@@ -47,16 +47,16 @@
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
 #include "../utils.h"
+#include "cwindowmanager.h"
 
 #include <QSettings>
 #include <QDebug>
 
-#define UM_INSTALL_UPDATE   WM_USER+254
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
-CMainWindow::CMainWindow() :
+CMainWindow::CMainWindow(QRect& rect) :
     hWnd(0),
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
@@ -66,10 +66,8 @@ CMainWindow::CMainWindow() :
     visible( false ),
     m_pWinPanel(NULL)
 {
-    GET_REGISTRY_USER(reg_user)
-
     // adjust window size
-    QRect _window_rect = reg_user.value("position").toRect();
+    QRect _window_rect = rect;
     m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
 
     if ( _window_rect.isEmpty() )
@@ -104,37 +102,25 @@ CMainWindow::CMainWindow() :
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindowW( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(Style::windowed),
-                          _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
+    hWnd = CreateWindow( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(Style::windowed),
+                            _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
     m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
-    ((CAscApplicationManagerWrapper &)CAscApplicationManagerWrapper::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
-
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
-    show(_is_maximized);
-//    visible = true;
-    toggleBorderless(_is_maximized);
     m_pWinPanel->goStartPage();
+    ((AscAppManager &)AscAppManager::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
 
     SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
-    if (_is_maximized) {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if (GetWindowPlacement(hWnd, &wp)) {
-            wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.bottom()};
-
-            SetWindowPlacement(hWnd, &wp);            
-        }
-    }
-
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 }
 
 CMainWindow::~CMainWindow()
 {
+    closed = true;
+
     WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
     if (GetWindowPlacement(hWnd, &wp)) {
         GET_REGISTRY_USER(reg_user)
@@ -332,7 +318,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     }
 
     case WM_SIZE:
-        if (window->m_pWinPanel) {
+        if ( !window->closed && window->m_pWinPanel ) {
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
             } else {
@@ -421,6 +407,9 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;}
     case UM_INSTALL_UPDATE:
         window->m_pWinPanel->doClose();
+        break;
+    case UM_CLOSE_MAINWINDOW:
+        CWindowManager::closeMainWindow( size_t(window) );
         break;
     default: {
         break;

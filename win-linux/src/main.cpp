@@ -41,9 +41,9 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "clangater.h"
+#include "cwindowmanager.h"
 
 #ifdef _WIN32
-#include "win/mainwindow.h"
 #include "shlobj.h"
 #include "csplash.h"
 #else
@@ -213,7 +213,8 @@ int main( int argc, char *argv[] )
 
 #ifdef _WIN32
     // Create window
-    std::unique_ptr<CMainWindow> window(new CMainWindow);
+    CWindowManager::startApp();
+
 
 #elif defined(Q_OS_LINUX)
     // Create window

@@ -30,6 +30,9 @@
  *
 */
 
+#ifndef CMAINWINDOW_H
+#define CMAINWINDOW_H
+
 #include <windows.h>
 
 #include "cwinpanel.h"
@@ -50,7 +53,7 @@ public:
     HWND                    hWnd;
     HINSTANCE               hInstance;
 
-    explicit CMainWindow();
+    explicit CMainWindow(QRect&);
     ~CMainWindow();
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
@@ -104,3 +107,5 @@ private:
 
     uchar m_dpiRatio;
 };
+
+#endif

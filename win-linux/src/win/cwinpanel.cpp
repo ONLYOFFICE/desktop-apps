@@ -207,10 +207,9 @@ void CWinPanel::setScreenScalingFactor(uchar f)
 
 void CWinPanel::slot_windowClose()
 {
-    AscAppManager::getInstance().DestroyCefView(-1);
-//    m_pManager->GetApplication()->ExitMessageLoop();
-//    PostQuitMessage(0);
+    SendMessage(windowHandle, UM_CLOSE_MAINWINDOW, 0, 0);
 }
+
 
 void CWinPanel::slot_windowChangeState(Qt::WindowState s)
 {

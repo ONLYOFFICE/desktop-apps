@@ -89,6 +89,9 @@
 
 #ifdef __linux
 typedef unsigned char BYTE;
+#else
+# define UM_INSTALL_UPDATE      WM_USER+254
+# define UM_CLOSE_MAINWINDOW    WM_USER+253
 #endif
 
 #include "defines_p.h"
