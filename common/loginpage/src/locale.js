@@ -142,6 +142,8 @@ var cs = {
     ,adsToolItem2: 'Souhrnná recenze'
     ,adsTitle2: 'Nechte své kolegy pracovat na dokumentech v cloudu'
     ,adsDescr2: 'Zapomeňte na odesílání souborů, které chcete zkontrolovat e-mailem. Umožňuje rychlý přístup k dokumentu bez opuštění editoru plochy. Nechte ostatní navrhnout opravy. Přijmout nebo odmítnout změny.'
+    ,checkUpdates: 'Check for updates'
+    ,strVersion: 'version'
 }
 
 var sk = {
@@ -198,6 +200,8 @@ var sk = {
     ,adsToolItem2: 'Prehľad spolupráce'
     ,adsTitle2: 'Nechajte svojich kolegov pracovať s dokumentami v cloude'
     ,adsDescr2: 'Zabudnite na odosielanie súborov ktoré chcete dať skontrolovať e-mailom. Umožnite rýchly prístup k dokumentu bez toho, aby ste museli opustiť editor plochy. Nechajte ostatných navrhnúť opravy. Prijmite alebo odmietnite zmeny.'
+    ,checkUpdates: 'Check for updates'
+    ,strVersion: 'version'
 }
 
 var ru = {
