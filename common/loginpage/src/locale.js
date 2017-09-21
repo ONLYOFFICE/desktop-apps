@@ -88,6 +88,118 @@ var en = {
     ,strVersion: 'version'
 }
 
+var cs = {
+    welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
+    welDescr: 'Nové rychlé řešení pro práci s dokumenty pomocí Vašeho ONLYOFFICE.',
+    btnConnect: 'Připojit',
+    textHavePortal: 'Už používáte ONLYOFFICE?',
+    btnCreatePortal: 'Vyzkoušejte zdarma',
+    btnAddPortal: 'Přidat portál',
+    btnLogin: 'Login',
+    btnBrowse: 'Procházet',
+    portalEmptyTitle: 'Editace a vytváření dokumentů v reálném čase',
+    portalEmptyDescr: 'Práce na stejném dokumentu současně s kolegy. Vyberte si mezi rychlou nebo přesnou úpravou v reálném čase, chatováním v dokumentu nebo přidáním poznámek k němu.',
+    portalListTitle: 'Připojit portály',
+    textNoFiles: 'Neexistují žádné soubory',
+    listRecoveryTitle:'Obnovit soubory',
+    listRecentFileTitle:'Poslední soubory',
+    listRecentDirTitle:'Poslední složky',
+    menuFileOpen: 'Otevřít',
+    menuFileExplore: 'Ukázat ve složce',
+    menuRemoveModel: 'Odstranit ze seznamu',
+    menuClear: 'Vymazat',
+    menuLogout: 'Logout',
+    textMyComputer: 'Můj počítač',
+    linkForgotPass: 'Zapomenuté heslo?',
+    linkCreatePortal: 'Vytvořit portál',
+    loginTitle: 'Připojit se k portálu',
+    errLogin: 'Špatné jméno portálu, email nebo heslo',
+    errLoginPortal: 'Zkontrolujte jméno portálu',
+    errLoginEmail: 'Zkontrolujte emailovou adresu',
+    errLoginServer: 'Nesprávná odpověď serveru během přihlášení',
+    errLoginAuth: 'Chyba při dotazu na informace o uživateli',
+    errLoginPass: 'Zkontrolujte heslo',
+    pshPortal: 'portál',
+    pshEmail: 'email',
+    pshPass: 'heslo',
+    newDoc: 'DOKUMENT',
+    newXlsx: 'SEŠIT',
+    newPptx: 'PREZENTACE',
+    actCreateNew: 'Vytvořit nový',
+    actRecentFiles: 'Poslední soubory',
+    actOpenLocal: 'Otevřít soubor',
+    actConnectTo: 'Share & collaborate',
+    actActivate: 'Aktivovat',
+    actAbout: 'O ONLYOFFICE',
+    licKeyHolder: 'vstupní aktivační klíč',
+    btnActivate: 'Aktivovat',
+    licGetLicense: 'Získat licenci',
+    licPanelTitle: 'Vložit produkt klíč',
+    licPanelDescr: 'Produktový klíč byl odeslán na e-mailovou adresu zadanou při nákupu.'
+    ,adsToolItem1: 'Historie verzí'
+    ,adsTitle1: 'Zobrazení nebo obnovení předchozích verzí dokumentu '
+    ,adsDescr1: 'Vrátit se zpět v čase: zobrazit předchozí verze dokumentu, sledovat nejmenší změny a jejich autory. Pokud potřebujete, obnovte starší verzi souboru.'
+    ,adsToolItem2: 'Souhrnná recenze'
+    ,adsTitle2: 'Nechte své kolegy pracovat na dokumentech v cloudu'
+    ,adsDescr2: 'Zapomeňte na odesílání souborů, které chcete zkontrolovat e-mailem. Umožňuje rychlý přístup k dokumentu bez opuštění editoru plochy. Nechte ostatní navrhnout opravy. Přijmout nebo odmítnout změny.'
+}
+
+var sk = {
+    welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
+    welDescr: 'Nové rýchle riešenie pre prácu s dokumentmi pomocou Vášho ONLYOFFICE.',
+    btnConnect: 'Pripojiť',
+    textHavePortal: 'Už používate ONLYOFFICE?',
+    btnCreatePortal: 'Vyskúšajte zadarmo',
+    btnAddPortal: 'Pridať portál',
+    btnLogin: 'Prihlásiť sa',
+    btnBrowse: 'Prechádzať',
+    portalEmptyTitle: 'Spolueditovanie dokumentov v reálnom čase',
+    portalEmptyDescr: 'Pracujte na tom istom dokumente súčasne s vašimi kolegami. Vyberte si medzi rýchlym alebo striktným editovaním v reálnom čase, chatovaním v dokumente alebo pridaním komentárov k nemu.',
+    portalListTitle: 'Pripojené portály',
+    textNoFiles: 'Neexistujú žiadne súbory',
+    listRecoveryTitle:'Obnoviť súbory',
+    listRecentFileTitle:'Posledné súbory',
+    listRecentDirTitle:'Posledné zložky',
+    menuFileOpen: 'Otvoriť',
+    menuFileExplore: 'Zobraziť v priečinku',
+    menuRemoveModel: 'Vymazať zo zoznamu',
+    menuClear: 'Vymazať',
+    menuLogout: 'Odhlásiť sa',
+    textMyComputer: 'Môj počítač',
+    linkForgotPass: 'Zabudnuté heslo?',
+    linkCreatePortal: 'Vytvoriť portál',
+    loginTitle: 'Pripojiť sa k portálu',
+    errLogin: 'Nesprávny názov portálu, e-mail alebo heslo',
+    errLoginPortal: 'Skontrolovať názov portálu',
+    errLoginEmail: 'Skontrolovať e-mailovú adresu',
+    errLoginServer: 'Nesprávna odpoveď servera počas prihlasovania',
+    errLoginAuth: 'Chyba v informačnom dopyte používateľa',
+    errLoginPass: 'Skontrolovať heslo',
+    pshPortal: 'portál',
+    pshEmail: 'e-mail',
+    pshPass: 'heslo',
+    newDoc: 'DOKUMENT',
+    newXlsx: 'ZOŠIT',
+    newPptx: 'PREZENTÁCIA',
+    actCreateNew: 'Vytvoriť nový',
+    actRecentFiles: 'Posledné súbory',
+    actOpenLocal: 'Otvoriť lokálny súbor',
+    actConnectTo: 'Zdieľať a spolupracovať',
+    actActivate: 'Aktivovať',
+    actAbout: 'O OnlyOffice',
+    licKeyHolder: 'vstupný aktivačný kľúč',
+    btnActivate: 'Aktivovať',
+    licGetLicense: 'Získať licenciu',
+    licPanelTitle: 'Zadať licenčný kľúč',
+    licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.'
+    ,adsToolItem1: 'História verzií'
+    ,adsTitle1: 'Zobrazte alebo obnovte predchádzajúce verzie dokumentu'
+    ,adsDescr1: 'Vráťte sa späť v čase: zobrazte predchádzajúce verzie dokumentu, sledujte najmenšie zmeny a ich autorov. Ak potrebujete, obnovte staršiu verziu súboru.'
+    ,adsToolItem2: 'Prehľad spolupráce'
+    ,adsTitle2: 'Nechajte svojich kolegov pracovať s dokumentami v cloude'
+    ,adsDescr2: 'Zabudnite na odosielanie súborov ktoré chcete dať skontrolovať e-mailom. Umožnite rýchly prístup k dokumentu bez toho, aby ste museli opustiť editor plochy. Nechajte ostatných navrhnúť opravy. Prijmite alebo odmietnite zmeny.'
+}
+
 var ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
