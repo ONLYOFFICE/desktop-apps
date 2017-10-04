@@ -53,6 +53,7 @@ using namespace std;
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
 
+
 struct COpenOptions {
     COpenOptions();
     COpenOptions(wstring _url_);
@@ -70,21 +71,20 @@ struct COpenOptions {
     std::wstring wurl;
 };
 
+class CTabPanel;
 class CAscTabWidget : public QTabWidget
 {
     Q_OBJECT
 
     struct CFullScreenData {
     public:
-        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _data(d), _index(i) {}
-        CFullScreenData() : CFullScreenData(-1, 0, 0) {}
+        CFullScreenData(int i, QWidget * w) : _widget(w), _index(i) {}
+        CFullScreenData() : CFullScreenData(-1, nullptr) {}
 
         QWidget * widget() { return _widget; }
         int tabindex() { return _index; }
-        void * data() { return _data; }
     private:
         QWidget * _widget;
-        void * _data;
         int _index;
     };
 
