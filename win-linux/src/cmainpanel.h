@@ -65,6 +65,12 @@ public:
     void updateStylesheets();
     void cmdMainPage(const QString&, const QString&) const;
     void setScreenScalingFactor(uchar);
+    bool holdUid(int) const;
+    bool holdUrl(const QString&, AscEditorType) const;
+    bool isTabDragged() const;
+    bool isPointInTabs(const QPoint&) const;
+    void adoptEditor(QWidget *);
+    QWidget * releaseEditor(int index = -1);
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -81,6 +87,8 @@ private:
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
     void toggleButtonMain(bool);
@@ -96,6 +104,9 @@ signals:
     void mainPageReady();
     void checkUpdates();
 
+    void undockTab(QWidget *);
+    void abandoned();
+
 public slots:
     void pushButtonMinimizeClicked();
     void pushButtonMaximizeClicked();
@@ -106,6 +117,7 @@ public slots:
     void onTabChanged(int);
     void onTabClosed(int, int);
     void onTabCloseRequest(int);
+    void onTabUndockRequest(int);
     void onAppCloseRequest();
 
     void onCloudDocumentOpen(std::wstring, int, bool);
@@ -171,6 +183,7 @@ private:
     QString m_savePortal;
     int m_saveAction;
     uchar m_dpiRatio;
+    int m_dockTab = -1;
 
 public:
     WId GetHwndForKeyboard()

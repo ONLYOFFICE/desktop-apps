@@ -40,6 +40,7 @@
 #include <QStylePainter>
 #include <QDesktopWidget>
 #include <QFileInfo>
+#include <QTimer>
 
 #include "ctabbar.h"
 #include "ctabstyle.h"
@@ -160,6 +161,9 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
+    QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
+        QTimer::singleShot(0, this, [=]{ emit tabUndockRequest(index);});
+    });
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
@@ -296,6 +300,18 @@ int CAscTabWidget::addPortal(QString url, QString name)
 
     resizeEvent(NULL);
     return tab_index;
+}
+
+int CAscTabWidget::pickupTab(QWidget * panel)
+{
+    CAscTabData * tabdata = ((CTabPanel *)panel)->data();
+
+    int tabindex = insertTab(count(), panel, tabdata->title());
+    tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+
+    resizeEvent(nullptr);
+
+    return tabindex;
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)

@@ -39,6 +39,8 @@
 
 class CTabBar : public QTabBar
 {
+    Q_OBJECT
+
 public:
     explicit CTabBar(QWidget * parent = 0);
     virtual ~CTabBar();
@@ -46,11 +48,16 @@ public:
     void setTabTextColor(const QColor&);
 
 protected:
+    void mousePressEvent (QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void paintEvent(QPaintEvent *);
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
+
 private:
     QColor m_capColor;
+
+signals:
+    void tabUndock(int);
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)

@@ -122,6 +122,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     connect(m_pTabs, SIGNAL(tabClosed(int, int)), this, SLOT(onTabClosed(int, int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &CMainPanel::onAppCloseRequest);
+    connect(m_pTabs, &CAscTabWidget::tabUndockRequest, this, &CMainPanel::onTabUndockRequest);
 
     QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
@@ -447,6 +448,19 @@ void CMainPanel::resizeEvent(QResizeEvent * event)
     RecalculatePlaces();
 }
 
+void CMainPanel::mousePressEvent(QMouseEvent *event)
+{
+    event->ignore();
+
+    m_dockTab = m_pTabs->tabBar()->geometry().contains(m_pTabs->mapFromParent(event->pos())) ? m_pTabs->currentIndex() : -1;
+}
+
+void CMainPanel::mouseReleaseEvent(QMouseEvent *event)
+{
+    event->ignore();
+    m_dockTab = -1;
+}
+
 void CMainPanel::onTabClicked(int index)
 {
     Q_UNUSED(index)
@@ -485,8 +499,18 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if (trySaveDocument(index) == MODAL_RESULT_NO)
+    if (trySaveDocument(index) == MODAL_RESULT_NO) {
         m_pTabs->closeEditorByIndex(index, false);
+
+        if ( !m_pTabs->count() ) {
+            emit abandoned();
+        }
+    }
+}
+
+void CMainPanel::onTabUndockRequest(int index)
+{
+    emit undockTab( releaseEditor(index) );
 }
 
 int CMainPanel::trySaveDocument(int index)
@@ -1348,4 +1372,64 @@ void CMainPanel::setScreenScalingFactor(uchar s)
 {
     m_dpiRatio = s;
     updateStylesheets();
+}
+
+bool CMainPanel::holdUid(int uid) const
+{
+    CCefView * _view = (qobject_cast<QCefView *>(m_pMainWidget))->GetCefView();
+
+    return _view->GetId() == uid ?
+        true : !(m_pTabs->tabIndexByView(uid) < 0);
+}
+
+bool CMainPanel::holdUrl(const QString& url, AscEditorType type) const
+{
+    if ( type == etPortal ) {
+        return !(m_pTabs->tabIndexByTitle(Utils::getPortalName(url), etPortal) < 0);
+    } else
+    if ( type == etLocalFile ) {
+        return !(m_pTabs->tabIndexByUrl(url) < 0);
+    } else {
+
+    }
+
+    return false;
+}
+
+bool CMainPanel::isTabDragged() const
+{
+    return !(m_dockTab < 0);
+}
+
+bool CMainPanel::isPointInTabs(const QPoint& p) const
+{
+    QRect _rect_title = m_pTabs->geometry();
+    _rect_title.setHeight(TITLE_HEIGHT * m_dpiRatio);
+
+    return _rect_title.contains(p);
+}
+
+QWidget * CMainPanel::releaseEditor(int index)
+{
+    if ( index < 0 )
+        index = m_pTabs->currentIndex();
+
+    m_dockTab == index && (m_dockTab = -1);
+
+    QWidget * panel = m_pTabs->widget(index);
+    m_pTabs->removeTab(index);
+
+    RecalculatePlaces();
+    return panel;
+}
+
+void CMainPanel::adoptEditor(QWidget * widget)
+{
+    int _index = m_pTabs->pickupTab(widget);
+    if ( !(_index < 0) ) {
+        toggleButtonMain(false);
+        m_pTabs->setCurrentIndex(_index);
+
+        RecalculatePlaces();
+    }
 }

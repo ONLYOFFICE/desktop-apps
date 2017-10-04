@@ -260,6 +260,8 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
         int offset = (event->pos() - d->dragStartPosition).manhattanLength();
         if (event->buttons() == Qt::LeftButton
                 && offset > QApplication::startDragDistance() && d->validIndex(d->pressedIndex)) {
+            if ( abs(event->pos().y() - d->dragStartPosition.y()) > 30 ) emit tabUndock(d->pressedIndex);
+
             int dragDistance = (event->pos().x() - d->dragStartPosition.x());
 
             if ((d->pressedIndex == 0 && dragDistance < 0) ||
@@ -310,6 +312,12 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
     QStyleOptionTabBarBaseV2 optTabBase;
     optTabBase.init(this);
     optTabBase.documentMode = d->documentMode;
+}
+
+void CTabBar::mousePressEvent(QMouseEvent * e)
+{
+    if ( count() == 1 ) e->ignore();
+    else QTabBar::mousePressEvent(e);
 }
 
 void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)

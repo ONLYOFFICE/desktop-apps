@@ -78,18 +78,23 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
 
+    bool holdView(int id);
+    int joinTab(QWidget *);
+
     CMainPanel * mainPanel() const;
 
 private:
     void setScreenScalingFactor(uchar);
 
+    void slot_undockWindow(QWidget *);
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
+    void slot_finalTabClosed();
+
 public:
     CWinPanel * m_pWinPanel;
 
 private:
-
     bool closed;
     bool visible;
 

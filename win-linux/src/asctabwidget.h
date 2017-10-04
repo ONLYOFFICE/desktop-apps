@@ -130,6 +130,7 @@ signals:
 //    void sendAddEditor();
     void tabClosed(int, int);
     void closeAppRequest();
+    void tabUndockRequest(int);
 
 public:
     CAscTabWidget(QWidget *parent = 0);
@@ -137,6 +138,7 @@ public:
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
     int  addPortal(QString url, QString name);
+    int  pickupTab(QWidget * panel);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);

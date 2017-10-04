@@ -36,6 +36,7 @@
 #include <windowsx.h>
 #include <windows.h>
 #include <stdexcept>
+#include <functional>
 
 #include <QtWidgets/QPushButton>
 #include <QFile>
@@ -47,11 +48,12 @@
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
 #include "../utils.h"
-#include "cwindowmanager.h"
 
+#include <QTimer>
 #include <QSettings>
 #include <QDebug>
 
+using namespace std::placeholders;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -111,14 +113,15 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
     m_pWinPanel->goStartPage();
-    ((AscAppManager &)AscAppManager::getInstance()).setMainPanel(m_pWinPanel->getMainPanel());
 
     SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
     CMainPanel * mainpanel = m_pWinPanel->getMainPanel();
+    QObject::connect(mainpanel, &CMainPanel::undockTab, bind(&CMainWindow::slot_undockWindow, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::abandoned, bind(&CMainWindow::slot_finalTabClosed, this));
 }
 
 CMainWindow::~CMainWindow()
@@ -335,6 +338,18 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         }
         break;
 
+    case WM_MOVING: {
+        if ( window->mainPanel()->isTabDragged() ) {
+            POINT pt{0};
+
+            if ( GetCursorPos(&pt) ) {
+                AscAppManager::processMainWindowMoving(size_t(window), QPoint(pt.x, pt.y));
+            }
+        }
+
+        break;
+    }
+
     case WM_EXITSIZEMOVE: {
         uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
@@ -411,9 +426,6 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;}
     case UM_INSTALL_UPDATE:
         window->m_pWinPanel->doClose();
-        break;
-    case UM_CLOSE_MAINWINDOW:
-        CWindowManager::closeMainWindow( size_t(window) );
         break;
     default: {
         break;
@@ -617,6 +629,18 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
+int CMainWindow::joinTab(QWidget * panel)
+{
+    m_pWinPanel->getMainPanel()->adoptEditor(panel);
+
+    return 0;
+}
+
+bool CMainWindow::holdView(int id)
+{
+    return m_pWinPanel->getMainPanel()->holdUid(id);
+}
+
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 {
     int cmdShow = SW_RESTORE;
@@ -634,6 +658,51 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 void CMainWindow::slot_windowClose()
 {
     AscAppManager::closeMainWindow( size_t(this) );
+}
+
+void CMainWindow::slot_finalTabClosed()
+{
+    if ( AscAppManager::countMainWindow() > 1 ) {
+        AscAppManager::closeMainWindow( size_t(this) );
+    }
+}
+
+void CMainWindow::slot_undockWindow(QWidget * editorpanel)
+{
+    QRect _win_rect;
+    QPoint _top_left;
+    bool _is_maximized = false;
+
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if (GetWindowPlacement(hWnd, &wp)) {
+        _is_maximized = wp.showCmd == SW_MAXIMIZE;
+
+        _top_left = QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top);
+        _win_rect = QRect( _top_left, QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+        _win_rect.adjust(30,30,-1+30,-1+30);
+    }
+
+    CMainWindow * window = AscAppManager::createMainWindow(_win_rect);
+
+    window->show(_is_maximized);
+    window->toggleBorderless(_is_maximized);
+    window->joinTab(editorpanel);
+
+    if ( !_is_maximized ) {
+        QTimer::singleShot(0, [=]{
+            QPoint cursor = QCursor::pos() + QPoint(-120, -12);
+            QPoint pos;
+
+            SetWindowPos(HWND(window->hWnd), NULL, cursor.x(), cursor.y(), 0, 0, SWP_FRAMECHANGED | SWP_NOSIZE);
+
+            QObject * _receiver = window->m_pWinPanel;
+            QMouseEvent * event = new QMouseEvent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton,  Qt::NoModifier);
+            QApplication::postEvent(_receiver, event);
+        });
+    } else {
+        wp.rcNormalPosition = {_win_rect.x(), _win_rect.y(), _win_rect.right(), _win_rect.bottom()};
+        SetWindowPlacement(window->hWnd, &wp);
+    }
 }
 
 CMainPanel * CMainWindow::mainPanel() const
