@@ -35,7 +35,7 @@
 
 #include "cmainpanel.h"
 
-class CMainPanelImpl : public CMainPanel, public CCefEventsTransformer
+class CMainPanelImpl : public CMainPanel
 {
 public:
     CMainPanelImpl(QWidget *, bool, uchar);

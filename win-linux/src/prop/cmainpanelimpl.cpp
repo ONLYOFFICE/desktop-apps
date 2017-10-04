@@ -35,7 +35,5 @@
 
 CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
     : CMainPanel(parent, isCustomWindow, scale)
-    , CCefEventsTransformer(this)
 {
-    AscAppManager::getInstance().SetEventListener(this);
 }

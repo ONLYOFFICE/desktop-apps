@@ -34,69 +34,59 @@
 #define CASCAPPLICATIONMANAGERWRAPPER
 
 #include "applicationmanager.h"
+#include <QObject>
+#include <vector>
+
+#ifdef _WIN32
+#include "win/mainwindow.h"
+#else
+#include "linux/cmainwindow.h"
+#include "linux/singleapplication.h"
+#endif
+
+using namespace std;
 
 class CAscApplicationManagerWrapper;
 typedef CAscApplicationManagerWrapper AscAppManager;
 
-class CAscApplicationManagerWrapper : public CAscApplicationManager
+class CAscApplicationManagerWrapper : public QObject, public CAscApplicationManager, CCefEventsTransformer
 {
-private:
-    QObject * m_pPanel;
+    Q_OBJECT
 
 private:
-    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
+    vector<size_t> m_vecWidows;
+    QMutex         m_oMutex;
+
+private:
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&){}
     void operator =(CAscApplicationManagerWrapper const&);
 
-    CAscApplicationManagerWrapper()
-    {
-        m_pPanel = NULL;
-    }
+    CAscApplicationManagerWrapper();
+    ~CAscApplicationManagerWrapper();
+
+    void StartSaveDialog(const std::wstring& sName, unsigned int nId);
+    void OnNeedCheckKeyboard();
+    int  GetPlatformKeyboardLayout();
+    void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+
+    CMainWindow * mainWindowFromViewId(int uid) const;
+
+signals:
+    void coreEvent(void *);
+
+public slots:
+    void onCoreEvent(void *);
+
 
 public:
-//    CAscApplicationManagerWrapper() = delete;
-//    void operator =(CAscApplicationManagerWrapper const&) = delete;
+    static CAscApplicationManager & getInstance();
+    static CAscApplicationManager * createInstance();
 
-public:
-    void StartSaveDialog(const std::wstring& sName, unsigned int nId)
-    {
-        // сделал через QMainPanel - чтобы использовать сигналы-слоты.
-        // если сделать QAscApplicationManager : public QObject, то он будет прокидывать
-        // слоты родителю. Т.е. классу CAscApplicationManager.
-        // А в либе я не буду затачиваться на QT
-
-//        m_pPanel->openDialogSave(sName);
-        QMetaObject::invokeMethod(m_pPanel, "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName), Q_ARG(uint, nId));
-    }
-
-    void OnNeedCheckKeyboard()
-    {
-//        m_pPanel->checkKeyboard();
-        QMetaObject::invokeMethod(m_pPanel, "onNeedCheckKeyboard", Qt::QueuedConnection);
-    }
-
-    int GetPlatformKeyboardLayout()
-    {
-        if (this->IsPlatformKeyboardSupport())
-            return CAscApplicationManager::GetPlatformKeyboardLayout();
-
-        return -1;
-    }
-
-    void setMainPanel(QObject * p)
-    {
-        m_pPanel = p;
-    }
-
-    static CAscApplicationManager & getInstance()
-    {
-        static CAscApplicationManagerWrapper _manager;
-        return _manager;
-    }
-
-    static CAscApplicationManager * createInstance()
-    {
-        return new CAscApplicationManagerWrapper;
-    }
+    static void             startApp();
+    static CMainWindow *    createMainWindow(QRect&);
+    static void             closeMainWindow(const size_t);
+    static void             processMainWindowMoving(const size_t, const QPoint&);
+    static int              countMainWindow();
 };
 
 #endif // QASCAPPLICATIONMANAGER
