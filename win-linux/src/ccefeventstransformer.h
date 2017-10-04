@@ -44,11 +44,12 @@ public:
     explicit CCefEventsTransformer(QObject *parent = 0);
 
 protected:
-    void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    virtual void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    virtual void OnEvent(QObject *, NSEditorApi::CAscCefMenuEvent *);
 
 signals:
 private:
-    QObject * pObjParent;
+    QObject * pObjTarget;
 
     class CPropImpl;
     CPropImpl * m_propCls;
