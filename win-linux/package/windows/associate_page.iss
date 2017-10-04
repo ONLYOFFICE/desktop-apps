@@ -10,6 +10,8 @@ ChangesAssociations=true
 [CustomMessages]
 
 en.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
+cs.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
+sk.AssociateDescription =Priradiť typy súborov kancelárskych dokumentov {#ASSC_APP_NAME}
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
 de.AssociateDescription =Verknüpfung von Office-Dokumenten mit {#ASSC_APP_NAME}
 fr.AssociateDescription =Associer les fichiers office avec {#ASSC_APP_NAME}
@@ -17,6 +19,8 @@ es.AssociateDescription =Asociar tipos de archivos de documentos de oficina con 
 ;it.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
+cs.AssociateCaption =Asociace souboru
+sk.AssociateCaption =Asociácia súboru
 ru.AssociateCaption =Ассоциации файлов
 de.AssociateCaption =Dateiassoziationen
 fr.AssociateCaption =Associations de fichiers
@@ -24,6 +28,8 @@ es.AssociateCaption =Asociaciones de archivos
 ;it.AssociateCaption =Associazioni dei file
 
 en.AssociateDont =Do not associate
+cs.AssociateDont =Neasociováno
+sk.AssociateDont =Neasociované
 ru.AssociateDont =Не ассоциировать
 de.AssociateDont =Nicht assoziieren
 fr.AssociateDont =Ne pas associer
@@ -31,6 +37,8 @@ es.AssociateDont =No asociar
 ;it.AssociateDont =Non associare
 
 en.AssociateAll =Associate all
+cs.AssociateAll =Asociovat vše
+sk.AssociateAll =Asociovať všetko
 ru.AssociateAll =Ассоциировать все
 de.AssociateAll =Alle assoziieren
 fr.AssociateAll =Associer tous
@@ -38,6 +46,8 @@ es.AssociateAll =Asociar todo
 ;it.AssociateAll =Associare tutto
 
 en.AssociateSel =Associate selected
+cs.AssociateSel =Vybraná asociace
+sk.AssociateSel =Vybraná asociácia
 ru.AssociateSel =Ассоциировать выбранные
 de.AssociateSel =Ausgewählte assoziieren
 fr.AssociateSel =Associer sélectionnés
@@ -45,6 +55,8 @@ es.AssociateSel =Asociar seleccionado
 ;it.AssociateSel =Associare selezione
 
 en.AssociateAudio =File types
+cs.AssociateAudio =Typy souborů
+sk.AssociateAudio =Typy súborov
 ru.AssociateAudio =Типы файлов
 de.AssociateAudio =Dateitypen
 fr.AssociateAudio =Types de fichiers
@@ -52,42 +64,56 @@ es.AssociateAudio =Tipos de archivos
 ;it.AssociateAudio =Tipi di file
 
 en.extMSWord =Microsoft Word Document
+cs.extMSWord =Microsoft Word Dokument
+sk.extMSWord =Microsoft Word Dokument
 ru.extMSWord =Документ Microsoft Word
 de.extMSWord =Microsoft Word Dokument
 fr.extMSWord =Document Microsoft Word
 es.extMSWord =Documento de Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
+cs.extMSExcel =Microsoft Excel Sešit
+sk.extMSExcel =Microsoft Excel Zošit
 ru.extMSExcel =Книга Microsoft Excel
 de.extMSExcel =Microsoft Excel Arbeitsmappe
 fr.extMSExcel =Classeur Microsoft Excel
 es.extMSExcel =Libro de Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
+cs.extMSPresentation =Microsoft PowerPoint Prezentace
+sk.extMSPresentation =Microsoft PowerPoint Prezentácia
 ru.extMSPresentation =Презентация Microsoft PowerPoint
 de.extMSPresentation =Microsoft PowerPoint Präsentation
 fr.extMSPresentation =Présentation Microsoft PowerPoint
 es.extMSPresentation =Presentación de PowerPoint Microsoft
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
+cs.extMSSlideshow =Microsoft PowerPoint Slideshow
+sk.extMSSlideshow =Microsoft PowerPoint Slideshow
 ru.extMSSlideshow =Слайдшоу Microsoft PowerPoint
 de.extMSSlideshow =Microsoft PowerPoint Slideshow
 fr.extMSSlideshow =Diaporama Microsoft PowerPoint
 es.extMSSlideshow =Presentación de Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
+cs.extODT =Dokumenty OpenDocument
+sk.extODT =Dokumenty OpenDocument
 ru.extODT =Текстовый документ OpenDocument
 de.extODT =OpenDocument Textdokument
 fr.extODT =Document OpenDocument Texte
 es.extODT =Documento de texto de OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
+cs.extODS =Sešit OpenDocument
+sk.extODS =Zošit OpenDocument
 ru.extODS =Электронная таблица OpenDocument
 de.extODS =OpenDocument Tabelle
 fr.extODS =Classeur OpenDocument
 es.extODS =Hoja de cálculo de OpenDocument
 
 en.extODP =OpenDocument Presentation
+cs.extODP =Prezentace OpenDocument
+sk.extODP =Prezentácia OpenDocument
 ru.extODP =Презентация OpenDocument
 de.extODP =OpenDocument  Präsentation
 fr.extODP =Présentation OpenDocument

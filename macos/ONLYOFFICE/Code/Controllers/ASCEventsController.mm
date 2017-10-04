@@ -57,14 +57,14 @@ id stringToJson(NSString *jsonString) {
     return json;
 }
 
-class ASCEventListener: public NSEditorApi::CAscMenuEventListener {
+class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
 public:
-    ASCEventListener() : NSEditorApi::CAscMenuEventListener () {
+    ASCEventListener() : NSEditorApi::CAscCefMenuEventListener () {
         eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
     }
     
-    virtual void OnEvent(NSEditorApi::CAscMenuEvent* pRawEvent)
+    virtual void OnEvent(NSEditorApi::CAscCefMenuEvent* pRawEvent)
     {
         if (NULL == pRawEvent)
             return;
