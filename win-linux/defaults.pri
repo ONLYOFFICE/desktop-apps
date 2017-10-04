@@ -40,7 +40,6 @@ HEADERS += \
     $$PWD/src/cmessage.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
-    $$PWD/src/cwindowmanager.h \
     $$PWD/src/clangater.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
@@ -56,6 +55,7 @@ SOURCES += \
     $$PWD/src/cfiledialog.cpp \
     $$PWD/src/cprintprogress.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
+    $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
     $$PWD/src/cstyletweaks.cpp \
@@ -64,7 +64,6 @@ SOURCES += \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
-    $$PWD/src/cwindowmanager.cpp \
     $$PWD/src/clangater.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
