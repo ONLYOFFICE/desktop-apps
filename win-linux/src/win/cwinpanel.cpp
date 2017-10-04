@@ -84,8 +84,6 @@ CWinPanel::CWinPanel( HWND hWnd, uchar scaling )
 
     show();
 
-    connect(panel, &CMainPanelImpl::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
-    connect(panel, &CMainPanelImpl::mainWindowClose, this, &CWinPanel::slot_windowClose);
     connect(panel, &CMainPanelImpl::mainPageReady, this, &CWinPanel::slot_mainPageReady);
 
 #ifdef _UPDMODULE
@@ -142,29 +140,20 @@ bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)
 
 void CWinPanel::mousePressEvent( QMouseEvent *event )
 {
-    if ( event->button() == Qt::LeftButton )
-    {
+    if ( event->type() == QEvent::MouseButtonDblClick ) {
+        if (event -> button() == Qt::LeftButton) {
+            WINDOWPLACEMENT wp;
+            wp.length = sizeof( WINDOWPLACEMENT );
+
+            GetWindowPlacement( parentWindow(), &wp );
+            ShowWindow( parentWindow(), wp.showCmd == SW_MAXIMIZE ? SW_RESTORE : SW_MAXIMIZE );
+        }
+    } else
+    if ( event->button() == Qt::LeftButton ) {
         ReleaseCapture();
         SendMessage( windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
     }
 
-    if ( event->type() == QEvent::MouseButtonDblClick )
-    {
-        if (event -> button() == Qt::LeftButton)
-        {
-            WINDOWPLACEMENT wp;
-            wp.length = sizeof( WINDOWPLACEMENT );
-            GetWindowPlacement( parentWindow(), &wp );
-            if ( wp.showCmd == SW_MAXIMIZE )
-            {
-                ShowWindow( parentWindow(), SW_RESTORE );
-            }
-            else
-            {
-                ShowWindow( parentWindow(), SW_MAXIMIZE );
-            }
-        }
-    }
 }
 
 void CWinPanel::resizeEvent(QResizeEvent* event)
@@ -203,33 +192,6 @@ void CWinPanel::applyWindowState(Qt::WindowState state)
 void CWinPanel::setScreenScalingFactor(uchar f)
 {
     m_pMainPanel->setScreenScalingFactor(f);
-}
-
-void CWinPanel::slot_windowClose()
-{
-    SendMessage(windowHandle, UM_CLOSE_MAINWINDOW, 0, 0);
-}
-
-
-void CWinPanel::slot_windowChangeState(Qt::WindowState s)
-{
-    int cmdShow = SW_RESTORE;
-    switch (s) {
-    case Qt::WindowMaximized:
-        cmdShow = SW_MAXIMIZE;
-        break;
-    case Qt::WindowMinimized:
-        cmdShow = SW_MINIMIZE;
-        break;
-    case Qt::WindowFullScreen:
-        cmdShow = SW_HIDE;
-        break;
-    default:
-    case Qt::WindowNoState:
-        break;
-    }
-
-    ShowWindow(parentWindow(), cmdShow);
 }
 
 void CWinPanel::slot_mainPageReady()

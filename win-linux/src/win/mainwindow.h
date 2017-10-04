@@ -78,9 +78,13 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
 
+    CMainPanel * mainPanel() const;
+
 private:
     void setScreenScalingFactor(uchar);
 
+    void slot_windowChangeState(Qt::WindowState);
+    void slot_windowClose();
 public:
     CWinPanel * m_pWinPanel;
 

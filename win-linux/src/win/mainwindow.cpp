@@ -115,6 +115,10 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
+
+    CMainPanel * mainpanel = m_pWinPanel->getMainPanel();
+    QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
 }
 
 CMainWindow::~CMainWindow()
@@ -395,7 +399,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
                     QStringList * _file_list = Utils::getInputFiles(_in_args);
 
                     if (_file_list->size())
-                        window->m_pWinPanel->getMainPanel()->doOpenLocalFiles(*_file_list);
+                        window->mainPanel()->doOpenLocalFiles(*_file_list);
 
                     delete _file_list;
                 }
@@ -611,4 +615,28 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
     }
+}
+
+void CMainWindow::slot_windowChangeState(Qt::WindowState s)
+{
+    int cmdShow = SW_RESTORE;
+    switch (s) {
+    case Qt::WindowMaximized:   cmdShow = SW_MAXIMIZE; break;
+    case Qt::WindowMinimized:   cmdShow = SW_MINIMIZE; break;
+    case Qt::WindowFullScreen:  cmdShow = SW_HIDE; break;
+    default:
+    case Qt::WindowNoState: break;
+    }
+
+    ShowWindow(hWnd, cmdShow);
+}
+
+void CMainWindow::slot_windowClose()
+{
+    AscAppManager::closeMainWindow( size_t(this) );
+}
+
+CMainPanel * CMainWindow::mainPanel() const
+{
+    return m_pWinPanel->getMainPanel();
 }

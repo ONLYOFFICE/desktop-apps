@@ -72,8 +72,6 @@ private:
 #endif
 
 private slots:
-    void slot_windowClose();
-    void slot_windowChangeState(Qt::WindowState);
     void slot_mainPageReady();
 };
 
