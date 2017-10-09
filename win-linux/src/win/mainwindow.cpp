@@ -48,12 +48,21 @@
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
 #include "../utils.h"
+#include "../csplash.h"
+#include "../clogger.h"
+#include "../clangater.h"
 
 #include <QTimer>
 #include <QSettings>
 #include <QDebug>
 
+#ifdef _UPDMODULE
+  #include "3dparty/WinSparkle/include/winsparkle.h"
+  #include "../version.h"
+#endif
+
 using namespace std::placeholders;
+extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -111,17 +120,29 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd, m_dpiRatio);
-    m_pWinPanel->goStartPage();
+    m_pWinPanel = new CWinPanel(hWnd);
+
+    m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
+    m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
+    m_pMainPanel->goStart();
 
     SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
-    CMainPanel * mainpanel = m_pWinPanel->getMainPanel();
+    CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::undockTab, bind(&CMainWindow::slot_undockWindow, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
     QObject::connect(mainpanel, &CMainPanel::abandoned, bind(&CMainWindow::slot_finalTabClosed, this));
+
+    m_pWinPanel->show();
+
+#ifdef _UPDMODULE
+    QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
+        win_sparkle_check_update_with_ui();
+    });
+#endif
 }
 
 CMainWindow::~CMainWindow()
@@ -224,7 +245,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //        str += "\n";
 //        OutputDebugStringA( str.toLocal8Bit().data() );
 
-        window->m_pWinPanel->focus();
+        window->m_pMainPanel->focus();
         break;
     }
 
@@ -244,7 +265,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
-        window->m_pWinPanel->doClose();
+        window->doClose();
         return 0;
 
     case WM_DESTROY:
@@ -327,11 +348,11 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     case WM_SIZE:
         if ( !window->closed && window->m_pWinPanel ) {
             if (wParam == SIZE_MINIMIZED) {
-                window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
+                window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
                 if ( wParam == SIZE_MAXIMIZED )
-                    window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);  else
-                    window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
+                    window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
+                    window->m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
 
                 window->adjustGeometry();
             }
@@ -425,7 +446,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         }
         break;}
     case UM_INSTALL_UPDATE:
-        window->m_pWinPanel->doClose();
+        window->doClose();
         break;
     default: {
         break;
@@ -612,7 +633,7 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
         m_dpiRatio = factor;
 
         qApp->setStyleSheet(css);
-        m_pWinPanel->setScreenScalingFactor(factor);
+        m_pMainPanel->setScreenScalingFactor(factor);
         setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 
         RECT lpWindowRect;
@@ -631,14 +652,14 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
 int CMainWindow::joinTab(QWidget * panel)
 {
-    m_pWinPanel->getMainPanel()->adoptEditor(panel);
+    m_pMainPanel->adoptEditor(panel);
 
     return 0;
 }
 
 bool CMainWindow::holdView(int id)
 {
-    return m_pWinPanel->getMainPanel()->holdUid(id);
+    return m_pMainPanel->holdUid(id);
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
@@ -705,7 +726,61 @@ void CMainWindow::slot_undockWindow(QWidget * editorpanel)
     }
 }
 
+void CMainWindow::slot_mainPageReady()
+{
+    CSplash::hideSplash();
+
+#ifdef _UPDMODULE
+    QString _prod_name = WINDOW_NAME;
+
+    GET_REGISTRY_USER(_user)
+    if (!_user.contains("CheckForUpdates")) {
+        _user.setValue("CheckForUpdates", "1");
+    }
+
+    win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
+                                    _prod_name.toStdWString().c_str(),
+                                    QString(VER_FILEVERSION_STR).toStdWString().c_str());
+    win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+    win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
+    win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
+
+    win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
+    win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
+    win_sparkle_set_error_callback(&CMainWindow::updateError);
+
+    win_sparkle_init();
+
+    mainPanel()->cmdMainPage("updates", "on");
+    CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+#endif
+}
+
+#if defined(_UPDMODULE)
+void CMainWindow::updateFound()
+{
+    CLogger::log("found updates");
+}
+
+void CMainWindow::updateNotFound()
+{
+    CLogger::log("updates isn't found");
+}
+
+void CMainWindow::updateError()
+{
+    CLogger::log("updates error");
+}
+#endif
+
+void CMainWindow::doClose()
+{
+    QTimer::singleShot(500, m_pMainPanel, [=]{
+        m_pMainPanel->pushButtonCloseClicked();
+    });
+}
+
 CMainPanel * CMainWindow::mainPanel() const
 {
-    return m_pWinPanel->getMainPanel();
+    return m_pMainPanel;
 }

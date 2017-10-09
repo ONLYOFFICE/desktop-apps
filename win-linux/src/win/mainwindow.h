@@ -36,6 +36,7 @@
 #include <windows.h>
 
 #include "cwinpanel.h"
+#include "cmainpanelimpl.h"
 #include "qwinwidget.h"
 
 #include <QtWidgets/QApplication>
@@ -85,11 +86,19 @@ public:
 
 private:
     void setScreenScalingFactor(uchar);
+    void doClose();
 
     void slot_undockWindow(QWidget *);
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
+    void slot_mainPageReady();
     void slot_finalTabClosed();
+
+#ifdef _UPDMODULE
+    static void updateFound();
+    static void updateNotFound();
+    static void updateError();
+#endif
 
 public:
     CWinPanel * m_pWinPanel;
@@ -101,6 +110,8 @@ private:
     bool borderless;
     bool aeroShadow;
     bool borderlessResizeable;
+
+    CMainPanelImpl * m_pMainPanel;
 
     struct sizeType
     {

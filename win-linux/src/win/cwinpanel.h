@@ -36,7 +36,6 @@
 #include <QMouseEvent>
 #include <QResizeEvent>
 #include "qwinwidget.h"
-#include "../prop/cmainpanelimpl.h"
 
 
 class CWinPanel : public QWinWidget
@@ -44,35 +43,15 @@ class CWinPanel : public QWinWidget
     Q_OBJECT
 
 public:
-    CWinPanel( HWND hWnd, uchar scaling );
+    CWinPanel( HWND hWnd );
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
     void resizeEvent(QResizeEvent* event);
 
-    CMainPanelImpl * getMainPanel();
-
-    void goStartPage();
-    void focus();
-    void applyWindowState(Qt::WindowState);
-    void doClose();
-    void parseInputArgs(const QStringList& in);
-    void setScreenScalingFactor(uchar);
-
 private:
     HWND windowHandle;
-
-    CMainPanelImpl          * m_pMainPanel;
-
-private:
-#ifdef _UPDMODULE
-    static void updateFound();
-    static void updateNotFound();
-    static void updateError();
-#endif
-
-private slots:
-    void slot_mainPageReady();
+    QWidget * m_pPanel;
 };
 
 #endif // QMAINPANEL_H
