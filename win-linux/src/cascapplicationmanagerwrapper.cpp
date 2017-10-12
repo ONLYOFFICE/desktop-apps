@@ -233,6 +233,7 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 }
 
 int CAscApplicationManagerWrapper::countMainWindow()
+uint CAscApplicationManagerWrapper::countMainWindow()
 {
     APP_CAST(_app)
 
@@ -271,7 +272,7 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
                         QPoint pos = QCursor::pos();
                         PostMessage(_source->hWnd, WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(pos.x(), pos.y()));
 
-                        QWidget * panel = _source->m_pWinPanel->getMainPanel()->releaseEditor();
+                        QWidget * panel = _source->mainPanel()->releaseEditor();
                         _window->joinTab(panel);
 
                         closeMainWindow(s);

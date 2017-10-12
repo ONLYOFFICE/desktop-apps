@@ -86,7 +86,7 @@ public:
     static CMainWindow *    createMainWindow(QRect&);
     static void             closeMainWindow(const size_t);
     static void             processMainWindowMoving(const size_t, const QPoint&);
-    static int              countMainWindow();
+    static uint             countMainWindow();
 };
 
 #endif // QASCAPPLICATIONMANAGER

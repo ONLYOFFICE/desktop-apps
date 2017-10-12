@@ -72,7 +72,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
     borderlessResizeable( true ),
-    aeroShadow( true ),
     closed( false ),
     visible( false ),
     m_pWinPanel(NULL)
@@ -113,7 +112,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindow( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(Style::windowed),
+    hWnd = CreateWindow( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );
@@ -126,7 +125,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
     m_pMainPanel->goStart();
 
-    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
+//    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
     CMainPanel * mainpanel = m_pMainPanel;
@@ -469,14 +468,11 @@ void CMainWindow::toggleBorderless(bool showmax)
     {
         // чтобы не было мерцания. перерисовку при "неактивном окне" - перекроем
         LONG newStyle = borderless ?
-                    long(Style::aero_borderless) : long(Style::windowed)/* & ~WS_CAPTION*/;
+                    long(WindowBase::Style::aero_borderless) : long(WindowBase::Style::windowed)/* & ~WS_CAPTION*/;
 
         SetWindowLongPtr( hWnd, GWL_STYLE, newStyle );
 
         borderless = !borderless;
-        if ( !borderless ) {
-            toggleShadow();
-        }
 
         //redraw frame
         SetWindowPos( hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE /*| SWP_NOZORDER | SWP_NOOWNERZORDER */);
@@ -484,25 +480,9 @@ void CMainWindow::toggleBorderless(bool showmax)
     }
 }
 
-void CMainWindow::toggleShadow()
-{
-    if ( borderless )
-    {
-        aeroShadow = !aeroShadow;
-//        const MARGINS shadow_on = { 1, 1, 1, 1 };
-//        const MARGINS shadow_off = { 0, 0, 0, 0 };
-//        DwmExtendFrameIntoClientArea( hWnd, ( aeroShadow ) ? ( &shadow_on ) : ( &shadow_off ) );
-    }
-}
-
 void CMainWindow::toggleResizeable()
 {
     borderlessResizeable = borderlessResizeable ? false : true;
-}
-
-bool CMainWindow::isResizeable()
-{
-    return borderlessResizeable ? true : false;
 }
 
 void CMainWindow::show(bool maximized)

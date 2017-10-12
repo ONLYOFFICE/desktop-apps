@@ -38,17 +38,12 @@
 #include "cwinpanel.h"
 #include "cmainpanelimpl.h"
 #include "qwinwidget.h"
+#include "cwindowbase.h"
 
 #include <QtWidgets/QApplication>
 
 class CMainWindow
 {
-    enum class Style : DWORD
-    {
-//        windowed        = ( WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN ),
-        windowed        = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
-        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )        
-    };
 
 public:
     HWND                    hWnd;
@@ -62,9 +57,7 @@ public:
     bool isVisible();
 
     void toggleBorderless(bool);
-    void toggleShadow();
     void toggleResizeable();
-    bool isResizeable();
 
     void setMinimumSize( const int width, const int height );
     bool isSetMinimumSize();
@@ -108,22 +101,12 @@ private:
     bool visible;
 
     bool borderless;
-    bool aeroShadow;
     bool borderlessResizeable;
 
     CMainPanelImpl * m_pMainPanel;
 
-    struct sizeType
-    {
-        sizeType() : required( false ), width( 0 ), height( 0 ) {}
-
-        bool required;
-        int width;
-        int height;
-    };
-
-    sizeType minimumSize;
-    sizeType maximumSize;
+    WindowBase::CWindowGeometry minimumSize;
+    WindowBase::CWindowGeometry maximumSize;
 
     uchar m_dpiRatio;
 };
