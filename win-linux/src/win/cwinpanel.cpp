@@ -33,12 +33,12 @@
 #include <windows.h>
 #include "cwinpanel.h"
 
-
 CWinPanel::CWinPanel( HWND hWnd )
     : QWinWidget( hWnd )
     , m_pPanel(nullptr)
 {
     windowHandle = hWnd;
+    setProperty("handleTopWindow", (int)hWnd);
 
 //    setObjectName("mainPanel");
 

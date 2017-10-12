@@ -8,6 +8,7 @@
 #include "defines.h"
 #include "cfiledialog.h"
 #include "utils.h"
+#include "common/Types.h"
 
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = dynamic_cast<CAscApplicationManagerWrapper &>(getInstance());
@@ -27,6 +28,16 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
+    CSingleWindow * _sw = nullptr;
+    for (auto const& w : m_vecEditors) {
+        _sw = reinterpret_cast<CSingleWindow *>(w);
+
+        if ( _sw ) {
+            delete _sw, _sw = NULL;
+        }
+    }
+
+
     CMainWindow * _window = nullptr;
     for (auto const& w : m_vecWidows) {
         _window = reinterpret_cast<CMainWindow *>(w);
@@ -38,6 +49,7 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
     }
 
     m_vecWidows.clear();
+    m_vecEditors.clear();
 }
 
 int CAscApplicationManagerWrapper::GetPlatformKeyboardLayout()
@@ -156,8 +168,9 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
                 ::SetForegroundWindow(_window->hWnd);
 
         CCefEventsTransformer::OnEvent(_window->mainPanel(), _event);
+    } else {
+        RELEASEINTERFACE(_event);
     }
-
 }
 
 CAscApplicationManager & CAscApplicationManagerWrapper::getInstance()
@@ -232,7 +245,27 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
     }
 }
 
-int CAscApplicationManagerWrapper::countMainWindow()
+void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
+{
+    APP_CAST(_app)
+
+//    QMutexLocker locker( &_app.m_oMutex );
+
+    vector<size_t>::iterator it = _app.m_vecEditors.begin();
+    while ( it != _app.m_vecEditors.end() ) {
+        if ( *it == p && _app.m_vecEditors.size() ) {
+            CSingleWindow * _w = reinterpret_cast<CSingleWindow *>(*it);
+
+            delete _w, _w = nullptr;
+
+            _app.m_vecEditors.erase(it);
+            break;
+        }
+
+        ++it;
+    }
+}
+
 uint CAscApplicationManagerWrapper::countMainWindow()
 {
     APP_CAST(_app)
@@ -246,6 +279,20 @@ CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
 
     for (auto const& w : m_vecWidows) {
         _window = reinterpret_cast<CMainWindow *>(w);
+
+        if ( _window->holdView(uid) )
+            return _window;
+    }
+
+    return 0;
+}
+
+CSingleWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) const
+{
+    CSingleWindow * _window = nullptr;
+
+    for (auto const& w : m_vecEditors) {
+        _window = reinterpret_cast<CSingleWindow *>(w);
 
         if ( _window->holdView(uid) )
             return _window;

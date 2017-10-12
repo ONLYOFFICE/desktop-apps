@@ -42,7 +42,9 @@ HEADERS += \
     $$PWD/src/cmessage.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
-    $$PWD/src/clangater.h
+    $$PWD/src/clangater.h \
+    $$PWD/src/win/csinglewindow.h \
+    $$PWD/src/win/cwindowbase.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -66,7 +68,8 @@ SOURCES += \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
-    $$PWD/src/clangater.cpp
+    $$PWD/src/clangater.cpp \
+    $$PWD/src/win/csinglewindow.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

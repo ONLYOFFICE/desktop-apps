@@ -39,6 +39,7 @@
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
+#include "win/csinglewindow.h"
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
@@ -55,6 +56,7 @@ class CAscApplicationManagerWrapper : public QObject, public CAscApplicationMana
 
 private:
     vector<size_t> m_vecWidows;
+    vector<size_t> m_vecEditors;
     QMutex         m_oMutex;
 
 private:
@@ -70,6 +72,7 @@ private:
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
+    CSingleWindow * editorWindowFromViewId(int uid) const;
 
 signals:
     void coreEvent(void *);
@@ -85,6 +88,7 @@ public:
     static void             startApp();
     static CMainWindow *    createMainWindow(QRect&);
     static void             closeMainWindow(const size_t);
+    static void             closeEditorWindow(const size_t);
     static void             processMainWindowMoving(const size_t, const QPoint&);
     static uint             countMainWindow();
 };
