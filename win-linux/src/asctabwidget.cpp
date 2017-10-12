@@ -841,6 +841,11 @@ void CAscTabWidget::setFullScreen(bool apply)
     }
 }
 
+QWidget * CAscTabWidget::fullScreenWidget()
+{
+    return m_dataFullScreen ? m_dataFullScreen->widget() : nullptr;
+}
+
 void CAscTabWidget::setScaling(uchar s)
 {
     _dpi_ratio = s;

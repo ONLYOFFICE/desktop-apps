@@ -174,6 +174,7 @@ public:
     void updateTabIcon(int);
     void setFocusedView(int index = -1);
     void setFullScreen(bool);
+    QWidget * fullScreenWidget();
 
     void openCloudDocument(COpenOptions&, bool);
     int  openLocalDocument(COpenOptions&, bool);

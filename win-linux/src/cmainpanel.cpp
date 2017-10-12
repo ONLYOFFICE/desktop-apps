@@ -1377,8 +1377,17 @@ void CMainPanel::setScreenScalingFactor(uchar s)
 bool CMainPanel::holdUid(int uid) const
 {
     CCefView * _view = (qobject_cast<QCefView *>(m_pMainWidget))->GetCefView();
+    bool _res_out = _view->GetId() == uid;
 
-    return _view->GetId() == uid ?
+    if ( !_res_out ) {
+        QWidget * _widget = m_pTabs->fullScreenWidget();
+
+        if ( _widget ) {
+            _res_out = qobject_cast<QCefView *>(_widget)->GetCefView()->GetId();
+        }
+    }
+
+    return _res_out ?
         true : !(m_pTabs->tabIndexByView(uid) < 0);
 }
 
