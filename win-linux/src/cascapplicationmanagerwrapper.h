@@ -85,6 +85,8 @@ public:
     static CAscApplicationManager & getInstance();
     static CAscApplicationManager * createInstance();
 
+    CSingleWindow * createReporterWindow(void *);
+
     static void             startApp();
     static CMainWindow *    createMainWindow(QRect&);
     static void             closeMainWindow(const size_t);

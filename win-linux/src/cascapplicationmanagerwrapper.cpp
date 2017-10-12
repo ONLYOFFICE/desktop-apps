@@ -130,6 +130,39 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     }
 #endif
 
+    switch ( _event->m_nType ) {
+    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
+        CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData);
+
+        pEditorWindow->show(false);
+        pEditorWindow->toggleBorderless(false);
+
+        RELEASEINTERFACE(_event);
+        return; }
+
+    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
+        // close editor window
+        CAscTypeId * pData = (CAscTypeId *)_event->m_pData;
+
+        CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
+        if ( pWindow ) closeEditorWindow(size_t(pWindow));
+
+        RELEASEINTERFACE(_event);
+        return; }
+
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
+        CAscReporterMessage * pData = (CAscReporterMessage *)_event->m_pData;
+        CCefView * pView = GetViewById(pData->get_ReceiverId());
+        if ( pView ) {
+            pView->Apply(_event);
+        }
+        return; }
+
+    default: break;
+    }
+
+
     for (auto const& w : m_vecWidows) {
         _window = reinterpret_cast<CMainWindow *>(w);
 
@@ -218,9 +251,34 @@ CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
     return _window;
 }
 
+CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data)
+{
+//    QMutexLocker locker( &m_oMutex );
+
+    CAscReporterCreate * pData = (CAscReporterCreate *)data;
+    CAscReporterData * pCreateData = reinterpret_cast<CAscReporterData *>(pData->get_Data());
+    pData->put_Data(NULL);
+
+    QCefView * pView = new QCefView(NULL);
+#if 0
+    pView->Create(this, cvwtSimple);
+    pView->GetCefView()->load(QString("https://onlyoffice.com").toStdWString());
+#else
+    pView->CreateReporter(this, pCreateData);
+#endif
+
+    CSingleWindow * _window = new CSingleWindow(QRect(), "ONLYOFFICE Reporter Window", pView);
+
+    m_vecEditors.push_back( size_t(_window) );
+
+    return _window;
+}
+
 void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 {
     APP_CAST(_app)
+
+qDebug() << "app close";
 
     QMutexLocker locker( &_app.m_oMutex );
     size_t _size = _app.m_vecWidows.size();
