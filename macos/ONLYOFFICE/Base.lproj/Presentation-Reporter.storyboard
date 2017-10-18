@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="tVf-om-1ec">
+            <objects>
+                <windowController storyboardIdentifier="PresentationWindowController" id="cxQ-zw-D5w" sceneMemberID="viewController">
+                    <window key="window" title="ONLYOFFICE Reporter Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ygx-5K-Hn8">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="200" y="200" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <value key="minSize" type="size" width="800" height="600"/>
+                        <value key="minFullScreenContentSize" type="size" width="800" height="600"/>
+                        <connections>
+                            <outlet property="delegate" destination="cxQ-zw-D5w" id="gi9-BA-rxO"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Wxf-H3-hKt" kind="relationship" relationship="window.shadowedContentViewController" id="fpL-2T-8NM"/>
+                    </connections>
+                </windowController>
+                <customObject id="cW6-zl-hTU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-96" y="75"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dh4-dZ-qnX">
+            <objects>
+                <viewController id="Wxf-H3-hKt" sceneMemberID="viewController">
+                    <view key="view" id="DEf-JV-aG6">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="UCe-vH-oy5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-96" y="512"/>
+        </scene>
+    </scenes>
+</document>

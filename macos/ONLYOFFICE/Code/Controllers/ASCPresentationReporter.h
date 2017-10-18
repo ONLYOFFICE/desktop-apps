@@ -28,34 +28,21 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
-
+ */
 //
-//  NSCefView.h
-//  CefViewTest
+//  ASCPresentationReporter.h
+//  ONLYOFFICE
 //
-//  Created by Oleg Korshul on 14.09.15.
-//  Copyright (c) 2015 Ascensio System. All rights reserved.
+//  Created by Alexander Yuzhin on 10/16/17.
+//  Copyright © 2017 Ascensio System SIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
-#import "applicationmanager.h"
 
+@interface ASCPresentationReporter : NSObject
++ (instancetype)sharedInstance;
 
-@interface NSCefView : NSView
-@property (nonatomic, readonly) NSInteger uuid;
-
-- (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
-- (void)apply:(NSEditorApi::CAscMenuEvent *)event;
-- (void)setParentCef:(int)idx;
-- (void)internalClean;
-- (void)focus;
-
-- (void)loadWithUrl:(NSString *)url;
-- (void)createFileWithName:(NSString *)name type:(NSInteger)type;
-- (void)openFileWithName:(NSString *)name type:(NSInteger)type;
-- (void)openRecentFileWithId:(NSInteger)index;
-- (void)openRecoverFileWithId:(NSInteger)index;
-
-- (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData;
+- (void)create:(void *)data;
+- (void)destroy;
+- (void)apply:(void *)event;
 @end

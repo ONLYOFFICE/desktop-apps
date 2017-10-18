@@ -43,6 +43,7 @@
 #import "ASCConstants.h"
 #import "NSString+OnlyOffice.h"
 #import "OfficeFileFormats.h"
+#import "ASCPresentationReporter.h"
 
 
 #pragma mark -
@@ -336,6 +337,19 @@ public:
                                                                                      }];
                         break;
                     }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
+                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
+                        [[ASCPresentationReporter sharedInstance] destroy];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
+                    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
+                        [[ASCPresentationReporter sharedInstance] apply:pEvent];
+                        break;
+                    }
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
@@ -394,8 +408,9 @@ public:
                         break;
                 }
                 
-                if (NULL != pEvent)
-                    delete pEvent;
+                if (NULL != pEvent) {
+                    pEvent->Release();
+                }
             });
         });
     }
