@@ -61,18 +61,22 @@ bool is_file_browser_supported = true;
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
-    QStringList * _ret_files_list = new QStringList;
+    QStringList * _ret_files_list = nullptr;
 
-    QStringListIterator i(inlist); i.next();
-    while (i.hasNext()) {
-        QString arg = i.next();
+    if ( !inlist.isEmpty() ) {
+        _ret_files_list = new QStringList;
 
-        if ( arg.startsWith("--new:") )
-            _ret_files_list->append( arg );
-        else {
-            QFileInfo info( arg );
-            if ( info.isFile() ) {
-                _ret_files_list->append(info.absoluteFilePath());
+        QStringListIterator i(inlist); i.next();
+        while (i.hasNext()) {
+            QString arg = i.next();
+
+            if ( arg.startsWith("--new:") )
+                _ret_files_list->append( arg );
+            else {
+                QFileInfo info( arg );
+                if ( info.isFile() ) {
+                    _ret_files_list->append(info.absoluteFilePath());
+                }
             }
         }
     }
