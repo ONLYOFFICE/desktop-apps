@@ -62,7 +62,6 @@ public:
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
-    void updateStylesheets();
     void cmdMainPage(const QString&, const QString&) const;
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
@@ -71,6 +70,8 @@ public:
     bool isPointInTabs(const QPoint&) const;
     void adoptEditor(QWidget *);
     QWidget * releaseEditor(int index = -1);
+
+    virtual void updateScaling();
 
 #ifdef __linux
     QWidget * getTitleWidget();

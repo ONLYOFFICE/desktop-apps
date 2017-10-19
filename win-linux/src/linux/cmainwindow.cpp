@@ -106,23 +106,25 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)
 {
-    GET_REGISTRY_USER(reg_user)
+    if ( !inlist.isEmpty() ) {
+        GET_REGISTRY_USER(reg_user)
 
-    QString _arg;
-    QStringListIterator i(inlist); i.next();
-    while (i.hasNext()) {
-        _arg = i.next();
+        QString _arg;
+        QStringListIterator i(inlist); i.next();
+        while (i.hasNext()) {
+            _arg = i.next();
 
-        if (_arg.contains("--system-title-bar")) {
-            reg_user.setValue("titlebar", "system");
-        } else
-        if (_arg.contains("--custom-title-bar")) {
-            reg_user.setValue("titlebar", "custom");
+            if (_arg.contains("--system-title-bar")) {
+                reg_user.setValue("titlebar", "system");
+            } else
+            if (_arg.contains("--custom-title-bar")) {
+                reg_user.setValue("titlebar", "custom");
+            }
         }
-    }
 
-    if (!reg_user.contains("titlebar"))
-        reg_user.setValue("titlebar", "custom");
+        if (!reg_user.contains("titlebar"))
+            reg_user.setValue("titlebar", "custom");
+    }
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)

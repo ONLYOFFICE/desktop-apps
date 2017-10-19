@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <QDebug>
+#include <QMessageBox>
 
 extern QStringList g_cmdArgs;
 
@@ -43,12 +44,12 @@ void CLogger::write(const QString &value)
 
 void CLogger::log(const QString& str)
 {
-    static char _enabled = 0;
-    if ( _enabled == 0 ) {
+    static int _enabled = 0;
+    if ( _enabled == 0 && !g_cmdArgs.isEmpty() ) {
         _enabled = g_cmdArgs.indexOf("--log");
     }
 
-    if ( _enabled > 0 ) {
+    if ( !(_enabled < 0) ) {
         QString _file_name = Utils::getAppCommonPath() + "/app.log";
         std::unique_ptr<CLogger> _logger(new CLogger(0, _file_name));
 

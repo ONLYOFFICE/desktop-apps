@@ -1329,7 +1329,7 @@ QString CMainPanel::getSaveMessage()
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
-void CMainPanel::updateStylesheets()
+void CMainPanel::updateScaling()
 {
     QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
@@ -1371,7 +1371,7 @@ void CMainPanel::onCheckUpdates()
 void CMainPanel::setScreenScalingFactor(uchar s)
 {
     m_dpiRatio = s;
-    updateStylesheets();
+    updateScaling();
 }
 
 bool CMainPanel::holdUid(int uid) const
