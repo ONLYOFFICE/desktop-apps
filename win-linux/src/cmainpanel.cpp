@@ -486,9 +486,9 @@ void CMainPanel::onTabCloseRequest(int index)
     if (trySaveDocument(index) == MODAL_RESULT_NO) {
         m_pTabs->closeEditorByIndex(index, false);
 
-        if ( !m_pTabs->count() ) {
-            emit abandoned();
-        }
+//        if ( !m_pTabs->count() ) {
+//            emit abandoned();
+//        }
     }
 }
 

@@ -162,9 +162,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("empty", true);
 
     QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
+#if defined(APP_MULTI_WINDOW)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
         QTimer::singleShot(0, this, [=]{ emit tabUndockRequest(index);});
     });
+#endif
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
