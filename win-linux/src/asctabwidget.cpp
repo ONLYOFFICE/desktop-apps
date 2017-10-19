@@ -374,8 +374,7 @@ void CAscTabWidget::adjustTabsSize()
         .replace(QRegExp("QTabBar::tab\\s?\\{\\s?width\\:\\s?\\d+px", Qt::CaseInsensitive),
                     QString("QTabBar::tab { width: %1px").arg(nTabWidth));
 
-//    qDebug() << "styles: " << cssStyle;
-    setStyleSheet(cssStyle);
+    QTabWidget::setStyleSheet(cssStyle);
 }
 
 void CAscTabWidget::applyCustomTheme(bool iscustom)
@@ -865,4 +864,37 @@ void CAscTabWidget::setScaling(uchar s)
         m_widthParams.tools_width = m_widthParams.title_width = 0;
 
     adjustTabsSize();
+}
+
+void CAscTabWidget::setStyleSheet(const QString& stylesheet)
+{
+    QTabWidget::setStyleSheet(stylesheet);
+
+    auto _string_to_color = [](const QString& str) -> QColor {
+        int r = -1, g = -1, b = -1;
+        QRegExp re("^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$", Qt::CaseInsensitive);
+        if ( re.indexIn(str) < 0 ) {
+            re.setPattern("^#([a-f0-9])([a-f0-9])([a-f0-9])$");
+
+            if ( !(re.indexIn(str) < 0) ) {
+                r = (re.cap(1)+re.cap(1)).toInt(nullptr, 16),
+                g = (re.cap(2)+re.cap(2)).toInt(nullptr, 16),
+                b = (re.cap(3)+re.cap(3)).toInt(nullptr, 16);
+            }
+        } else {
+            r = re.cap(1).toInt(nullptr, 16),
+            g = re.cap(2).toInt(nullptr, 16),
+            b = re.cap(3).toInt(nullptr, 16);
+        }
+
+        if ( r < 0 || g < 0 || b < 0 )
+            return QColor();
+        else return {r,g,b};
+    };
+
+    QRegExp r("QTabBar::tab-label\\s?\\{\\s?active:\\s?([^;]{4,7});normal:\\s?([^;]{4,7})");
+    if (!(r.indexIn(stylesheet) < 0)) {
+        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Active, _string_to_color(r.cap(1)) );
+        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Inactive, _string_to_color(r.cap(2)) );
+    }
 }

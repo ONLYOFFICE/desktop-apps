@@ -143,6 +143,7 @@ public:
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
     void setScaling(uchar);
+    void setStyleSheet(const QString&);
 
 protected:
     void resizeEvent(QResizeEvent* e);
