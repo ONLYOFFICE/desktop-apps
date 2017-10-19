@@ -45,7 +45,8 @@ public:
     explicit CTabBar(QWidget * parent = 0);
     virtual ~CTabBar();
 
-    void setTabTextColor(const QColor&);
+    void setTabTextColor(QPalette::ColorGroup, const QColor&);
+    QPalette& customColors();
 
 protected:
     void mousePressEvent (QMouseEvent *);
@@ -54,7 +55,8 @@ protected:
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
 
 private:
-    QColor m_capColor;
+    QPalette m_palette;
+    bool m_usePalette = false;
 
 signals:
     void tabUndock(int);

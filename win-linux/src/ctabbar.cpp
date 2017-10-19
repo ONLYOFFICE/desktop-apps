@@ -225,7 +225,6 @@ void QTabBarPrivate::Tab::TabBarAnimation::updateState(QAbstractAnimation::State
 
 CTabBar::CTabBar(QWidget * parent)
     : QTabBar(parent)
-    , m_capColor("nocolor")
 {
     setDrawBase(false);
 }
@@ -322,8 +321,12 @@ void CTabBar::mousePressEvent(QMouseEvent * e)
 
 void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)
 {
-    if (m_capColor.name() != "nocolor")
-        p->setPen(QPen(m_capColor));
+    if ( m_usePalette ) {
+        if ( m_palette.currentColorGroup() != QPalette::Disabled &&
+                t.state & QStyle::State_Selected /*|| t.state & QStyle::State_MouseOver*/ )
+            p->setPen( QPen(m_palette.color(QPalette::Active, QPalette::ButtonText)));
+        else p->setPen( QPen(m_palette.color(QPalette::Inactive, QPalette::ButtonText)));
+    }
 
     QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 6, t.rect.top()),
                     QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
@@ -423,8 +426,13 @@ void CTabBar::paintEvent(QPaintEvent * event)
     }
 }
 
-void CTabBar::setTabTextColor(const QColor& c)
+void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)
 {
-    m_capColor.setNamedColor("");
-    m_capColor = c;
+    m_usePalette = true;
+    m_palette.setColor(group, QPalette::ButtonText, color);
+}
+
+QPalette& CTabBar::customColors()
+{
+    return m_palette;
 }

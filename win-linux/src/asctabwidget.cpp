@@ -147,7 +147,8 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
-    tabs->setTabTextColor(QColor(51, 51, 51));
+    tabs->setTabTextColor(QPalette::Active, QColor(51, 51, 51));
+    tabs->setTabTextColor(QPalette::Inactive, QColor(51, 51, 51));
     setTabBar(tabs);
 
 //    tabBar()->setStyle(new CTabStyle);
@@ -679,6 +680,9 @@ void CAscTabWidget::activate(bool a)
     }
 
     updateTabIcon(currentIndex());
+
+    ((CTabBar*)tabBar())->customColors().setCurrentColorGroup(
+                            a ? QPalette::Normal : QPalette::Disabled );
 }
 
 bool CAscTabWidget::isActive()
