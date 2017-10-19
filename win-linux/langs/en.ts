@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="500"/>
+        <location filename="../src/asctabwidget.cpp" line="517"/>
         <source>Document</source>
         <translation>Opening...</translation>
     </message>
@@ -12,7 +12,7 @@
 <context>
     <name>CDownloadWidget</name>
     <message>
-        <location filename="../src/cdownloadwidget.cpp" line="125"/>
+        <location filename="../src/cdownloadwidget.cpp" line="122"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
@@ -174,65 +174,65 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1301"/>
+        <location filename="../src/cmainpanel.cpp" line="1329"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
-        <location filename="../src/cmainpanel.cpp" line="695"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
         <source>Yes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="154"/>
+        <location filename="../src/cmainpanel.cpp" line="151"/>
         <source>FILE</source>
         <translation>START</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
-        <location filename="../src/cmainpanel.cpp" line="695"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
         <source>No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="671"/>
-        <location filename="../src/cmainpanel.cpp" line="717"/>
+        <location filename="../src/cmainpanel.cpp" line="697"/>
+        <location filename="../src/cmainpanel.cpp" line="743"/>
         <source>File format not supported.</source>
         <translation>File format is not supported</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="697"/>
+        <location filename="../src/cmainpanel.cpp" line="723"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 is not available. It might be moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1215"/>
+        <location filename="../src/cmainpanel.cpp" line="1242"/>
         <source>Sign Up</source>
         <translation>Create portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="730"/>
+        <location filename="../src/cmainpanel.cpp" line="756"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="731"/>
+        <location filename="../src/cmainpanel.cpp" line="757"/>
         <source>Book%1.xlsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="732"/>
+        <location filename="../src/cmainpanel.cpp" line="758"/>
         <source>Presentation%1.pptx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="947"/>
+        <location filename="../src/cmainpanel.cpp" line="973"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
@@ -240,22 +240,22 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="97"/>
+        <location filename="../src/cprintprogress.cpp" line="103"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Printing document: page %1 of %2</translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="99"/>
+        <location filename="../src/cprintprogress.cpp" line="105"/>
         <source>Document is preparing</source>
         <translation>Preparing document</translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="105"/>
+        <location filename="../src/cprintprogress.cpp" line="111"/>
         <source>&amp;Cancel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="115"/>
+        <location filename="../src/cprintprogress.cpp" line="121"/>
         <source>Printing...</source>
         <translation></translation>
     </message>
@@ -263,7 +263,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="127"/>
+        <location filename="../src/cmessage.cpp" line="129"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>

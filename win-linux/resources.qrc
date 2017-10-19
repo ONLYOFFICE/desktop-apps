@@ -60,6 +60,8 @@
         <file>langs/es.qm</file>
         <file>langs/fr.qm</file>
         <file>langs/de.qm</file>
+        <file>langs/cs.qm</file>
+        <file>langs/sk.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>

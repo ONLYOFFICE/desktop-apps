@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="500"/>
+        <location filename="../src/asctabwidget.cpp" line="517"/>
         <source>Document</source>
         <translatorcomment>надпись на табе при открытии файла с портала. потом приходит имя файла</translatorcomment>
         <translation>Открытие...</translation>
@@ -13,7 +13,7 @@
 <context>
     <name>CDownloadWidget</name>
     <message>
-        <location filename="../src/cdownloadwidget.cpp" line="125"/>
+        <location filename="../src/cdownloadwidget.cpp" line="122"/>
         <source>Cancel</source>
         <translation>Стоп</translation>
     </message>
@@ -175,66 +175,66 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="154"/>
+        <location filename="../src/cmainpanel.cpp" line="151"/>
         <source>FILE</source>
         <translation>СТАРТ</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1301"/>
+        <location filename="../src/cmainpanel.cpp" line="1329"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
-        <location filename="../src/cmainpanel.cpp" line="695"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
-        <location filename="../src/cmainpanel.cpp" line="695"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="504"/>
+        <location filename="../src/cmainpanel.cpp" line="529"/>
         <source>Cancel</source>
         <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="671"/>
-        <location filename="../src/cmainpanel.cpp" line="717"/>
+        <location filename="../src/cmainpanel.cpp" line="697"/>
+        <location filename="../src/cmainpanel.cpp" line="743"/>
         <source>File format not supported.</source>
         <translation>Формат файла не поддерживается.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="697"/>
+        <location filename="../src/cmainpanel.cpp" line="723"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недоступен. Возможно, он был перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1215"/>
+        <location filename="../src/cmainpanel.cpp" line="1242"/>
         <source>Sign Up</source>
         <translation>Создать портал</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="730"/>
+        <location filename="../src/cmainpanel.cpp" line="756"/>
         <source>Document%1.docx</source>
         <translatorcomment>дефолтное название документа при создании. %1 заменяется числом</translatorcomment>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="731"/>
+        <location filename="../src/cmainpanel.cpp" line="757"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="732"/>
+        <location filename="../src/cmainpanel.cpp" line="758"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="947"/>
+        <location filename="../src/cmainpanel.cpp" line="973"/>
         <source>Print Document</source>
         <translation>Печать документа</translation>
     </message>
@@ -242,22 +242,22 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="97"/>
+        <location filename="../src/cprintprogress.cpp" line="103"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Печать документа: страница %1 из %2</translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="99"/>
+        <location filename="../src/cprintprogress.cpp" line="105"/>
         <source>Document is preparing</source>
         <translation>Подготовка документа</translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="105"/>
+        <location filename="../src/cprintprogress.cpp" line="111"/>
         <source>&amp;Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../src/cprintprogress.cpp" line="115"/>
+        <location filename="../src/cprintprogress.cpp" line="121"/>
         <source>Printing...</source>
         <translation>Печать...</translation>
     </message>
@@ -265,7 +265,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="127"/>
+        <location filename="../src/cmessage.cpp" line="129"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
