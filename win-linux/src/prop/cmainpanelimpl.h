@@ -39,6 +39,9 @@ class CMainPanelImpl : public CMainPanel
 {
 public:
     CMainPanelImpl(QWidget *, bool, uchar);
+
+private:
+    void updateScaling();
 };
 
 #endif // CMAINPANELIMPL_H

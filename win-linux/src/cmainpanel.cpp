@@ -154,9 +154,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
-    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if (isCustomWindow) {
-        _tabs_stylesheets += ".qss";
         palette.setColor(QPalette::Background, QColor("#313437"));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
@@ -213,24 +211,10 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
-    QFile styleFile(_tabs_stylesheets);
-    styleFile.open( QFile::ReadOnly );
-    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
     m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->applyCustomTheme(isCustomWindow);
-
-    std::map<int, std::pair<QString, QString> > icons{
-        {etUndefined, std::make_pair(":/newdocument.png", ":/newdocument.png")},
-        {etDocument, std::make_pair(":/de_normal.png", ":/de_active.png")},
-        {etPresentation, std::make_pair(":/pe_normal.png", ":/pe_active.png")},
-        {etSpreadsheet, std::make_pair(":/se_normal.png", ":/se_active.png")},
-        {etPortal, std::make_pair(":/portal.png", ":/portal.png")}
-    };
-    m_pTabs->setTabIcons(icons);
-
-    styleFile.close();
 
     // download menu
     QMenu * menuDownload = new QMenu();
@@ -1331,10 +1315,7 @@ QString CMainPanel::getSaveMessage()
 
 void CMainPanel::updateScaling()
 {
-    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
-        _tabs_stylesheets += ".qss";
-
         QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
         m_pButtonMinimize->setFixedSize(small_btn_size);
@@ -1349,12 +1330,6 @@ void CMainPanel::updateScaling()
 
         m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
-
-    QFile styleFile(_tabs_stylesheets);
-    styleFile.open( QFile::ReadOnly );
-
-    m_pTabs->setScaling(m_dpiRatio);
-    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
 
     QLayout * layoutBtns = m_boxTitleBtns->layout();
     layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);

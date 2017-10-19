@@ -122,6 +122,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pWinPanel = new CWinPanel(hWnd);
 
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
+    m_pMainPanel->setScreenScalingFactor(m_dpiRatio);
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
     m_pMainPanel->goStart();
 

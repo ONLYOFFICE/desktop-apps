@@ -156,6 +156,8 @@ public slots:
 
 protected:
     CAscTabWidget * m_pTabs;
+    uchar           m_dpiRatio;
+    bool            m_isCustomWindow;
 
 private:
     std::wstring    m_sDownloadName;
@@ -172,7 +174,6 @@ private:
     QHBoxLayout *   m_layoutBtns;
     QWidget *       m_boxTitleBtns;
     bool            m_isMaximized;
-    bool            m_isCustomWindow;
 
     CDownloadWidget *       m_pWidgetDownload;
 
@@ -183,7 +184,6 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
-    uchar m_dpiRatio;
     int m_dockTab = -1;
 
 public:

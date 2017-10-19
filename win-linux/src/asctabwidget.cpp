@@ -397,7 +397,6 @@ void CAscTabWidget::updateTabIcon(int index)
         CCefViewEditor * pEditor = (CCefViewEditor *)((QCefView*)(widget(index)))->GetCefView();
 
         if (pEditor) {
-            QString icon_name;
             bool is_active = isActive() && index == currentIndex();
             int tab_type = etUndefined;
 
@@ -413,11 +412,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 }
             }
 
-            icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
-
-            if ( _dpi_ratio > 1 )
-                icon_name.replace(".png", "@2x.png");
-
+            QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             tabBar()->setTabIcon(index, QIcon(icon_name));
         }
     }
