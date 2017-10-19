@@ -50,8 +50,8 @@ SetupMutex                =ASC
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: cs; MessagesFile: compiler:Languages\Czech.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: cs; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
@@ -116,6 +116,8 @@ es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la 
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
@@ -295,7 +297,7 @@ var
   path: string;
 begin
   path := ExpandConstant('{app}\editors\web-apps');
-  if DirExists(path) then DelTree(path, true, true, true)
+  if DirExists(path) then DelTree(path, true, true, true);
 
   path := ExpandConstant('{app}\editors\sdkjs');
   if DirExists(path) then DelTree(path, true, true, true)
@@ -453,9 +455,11 @@ Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\e
 Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                      DestDir: {app}\converter;
-    Excludes: *.lib,HtmlFileInternal.exe,ascdocumentscore.dll,ooxmlsignature.dll; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\*;       DestDir: {app}\converter; \
+    Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
+
+Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\hunspell.dll;           DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
 
