@@ -139,7 +139,13 @@
 
 // MARK: - NSWindow Delegate
 - (BOOL)windowShouldClose:(NSWindow *)sender {
-    // TODO: Stop Slideshow
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    NSCefView * cefView = [self cefView];
+    
+    if (appManager && cefView) {
+        appManager->DestroyCefView((int)[cefView uuid]);
+    }
+    
     return true;
 }
 
