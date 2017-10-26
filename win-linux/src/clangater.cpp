@@ -121,3 +121,11 @@ QString CLangater::getLanguageName()
 {
     return getInstance()->m_lang;
 }
+
+void CLangater::addTranslation(const QString& dir, const QString& lang)
+{
+    QTranslator * tr = getInstance()->m_intf->createTranslator();
+    if ( tr->load(lang, dir) ) {
+        QCoreApplication::installTranslator(tr);
+    }
+}

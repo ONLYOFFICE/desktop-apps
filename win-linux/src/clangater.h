@@ -11,6 +11,7 @@ public:
     static CLangater * getInstance();
     static void init();
     static QString getLanguageName();
+    static void addTranslation(const QString&, const QString&);
 
 private:
     CLangater();
