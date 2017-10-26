@@ -44,7 +44,6 @@
 
 #ifdef _WIN32
 #include "shlobj.h"
-#include "csplash.h"
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
@@ -56,7 +55,6 @@
 #include <QScreen>
 #include <QApplication>
 #include <QRegularExpression>
-#include "cstyletweaks.h"
 #include "utils.h"
 #include "chelp.h"
 #include "common/File.h"
@@ -154,7 +152,6 @@ int main( int argc, char *argv[] )
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-
     reg_user.setFallbacksEnabled(false);
 
     /* read lang fom different places
@@ -164,51 +161,7 @@ int main( int argc, char *argv[] )
     CLangater::init();
     /* applying languages finished */
 
-#ifdef _WIN32
-    CSplash::showSplash();
-    app.processEvents();
-#endif
-
-    /* prevent drawing of focus rectangle on a button */
-    app.setStyle(new CStyleTweaks);
-
-    // read installation time and clean cash folders if expired
-    if (reg_system.contains("timestamp")) {
-        QDateTime time_istall, time_clear;
-        time_istall.setMSecsSinceEpoch(reg_system.value("timestamp", 0).toULongLong());
-
-        bool clean = true;
-        if (reg_user.contains("timestamp")) {
-            time_clear.setMSecsSinceEpoch(reg_user.value("timestamp", 0).toULongLong());
-
-            clean = time_istall > time_clear;
-        }
-
-        if (clean) {
-            reg_user.setValue("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
-            QDir(user_data_path + "/fonts").removeRecursively();
-        }
-    }
-
-#ifdef _WIN32
-    int _scr_num = QApplication::desktop()->primaryScreen();
-    if (reg_user.contains("position")) {
-        _scr_num = QApplication::desktop()->screenNumber(
-                            reg_user.value("position").toRect().topLeft() );
-    }
-
-    byte dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
-#else
-    byte dpi_ratio = CX11Decoration::devicePixelRatio();
-#endif
-
-    QByteArray css(Utils::getAppStylesheets(dpi_ratio));
-    if ( !css.isEmpty() ) app.setStyleSheet(css);
-
-    // Font
-    QFont mainFont = app.font();
-    mainFont.setStyleStrategy( QFont::PreferAntialias );
-    app.setFont( mainFont );
+    AscAppManager::initializeApp();
 
 #ifdef _WIN32
     // Create window

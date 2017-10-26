@@ -36,6 +36,7 @@
 #include "applicationmanager.h"
 #include <QObject>
 #include <vector>
+#include <memory>
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -60,7 +61,7 @@ private:
     QMutex         m_oMutex;
 
 private:
-    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&){}
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
     void operator =(CAscApplicationManagerWrapper const&);
 
     CAscApplicationManagerWrapper();
@@ -88,11 +89,17 @@ public:
     CSingleWindow * createReporterWindow(void *);
 
     static void             startApp();
+    static void             initializeApp();
     static CMainWindow *    createMainWindow(QRect&);
     static void             closeMainWindow(const size_t);
     static void             closeEditorWindow(const size_t);
     static void             processMainWindowMoving(const size_t, const QPoint&);
     static uint             countMainWindow();
+    static CMainWindow *    topWindow();
+
+private:
+    class CAscApplicationManagerWrapper_Private;
+    std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 };
 
 #endif // QASCAPPLICATIONMANAGER

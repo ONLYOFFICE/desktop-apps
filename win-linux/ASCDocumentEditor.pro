@@ -13,6 +13,7 @@ SOURCES += \
     src/prop/csplash.cpp \
     src/prop/ccefeventsimpl.cpp \
     src/prop/cmainpanelimpl.cpp \
+    src/prop/cascapplicationmanagerwrapper_private.h \
     src/prop/utils.cpp
 
 RC_FILE = $$PWD/version.rc

@@ -30,25 +30,18 @@
  *
 */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
+#define CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
 
-#define VER_FILEVERSION             4,5,3,364
-#define VER_FILEVERSION_STR         "4.5.3.364\0"
+#include "cascapplicationmanagerwrapper.h"
 
-#define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "4.4\0"
+class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
+{
+public:
+    CAscApplicationManagerWrapper_Private() {}
+    ~CAscApplicationManagerWrapper_Private() {}
 
-#define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
-#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2017\0"
-#define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
-#define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
-#define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"
-#define VER_INTERNALNAME_STR        "Desktop Editors\0"
-#define VER_LEGALTRADEMARKS1_STR    "All Rights Reserved\0"
-#define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
-#define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
-#define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
+    void initializeApp() {}
+};
 
-#endif
-
+#endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

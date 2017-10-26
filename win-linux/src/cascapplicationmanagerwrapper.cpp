@@ -1,24 +1,40 @@
 
 #include "cascapplicationmanagerwrapper.h"
+#include "cascapplicationmanagerwrapper_private.h"
 
 #include <QMutexLocker>
 #include <QTimer>
 #include <QDir>
+#include <QDateTime>
+#include <QDesktopWidget>
 
+#include "cstyletweaks.h"
 #include "defines.h"
 #include "cfiledialog.h"
 #include "utils.h"
 #include "common/Types.h"
+
+#ifdef _WIN32
+#include "csplash.h"
+#else
+#endif
+
 
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = dynamic_cast<CAscApplicationManagerWrapper &>(getInstance());
 
 using namespace NSEditorApi;
 
+CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
+{
+
+}
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     : CAscApplicationManager()
     , CCefEventsTransformer(nullptr)
     , QObject(nullptr)
+    , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private)
 {
     CAscApplicationManager::SetEventListener(this);
 
@@ -239,6 +255,65 @@ void CAscApplicationManagerWrapper::startApp()
     }
 }
 
+void CAscApplicationManagerWrapper::initializeApp()
+{
+    APP_CAST(_app);
+    _app.m_private->initializeApp();
+
+#ifdef _WIN32
+    CSplash::showSplash();
+    QApplication::processEvents();
+#endif
+
+    /* prevent drawing of focus rectangle on a button */
+    QApplication::setStyle(new CStyleTweaks);
+
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+    reg_user.setFallbacksEnabled(false);
+
+    // read installation time and clean cash folders if expired
+    if ( reg_system.contains("timestamp") ) {
+        QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
+
+        QDateTime time_install, time_clear;
+        time_install.setMSecsSinceEpoch(reg_system.value("timestamp", 0).toULongLong());
+
+        bool clean = true;
+        if ( reg_user.contains("timestamp") ) {
+            time_clear.setMSecsSinceEpoch(reg_user.value("timestamp", 0).toULongLong());
+
+            clean = time_install > time_clear;
+        }
+
+        if ( clean ) {
+            reg_user.setValue("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
+            QDir(user_data_path + "/fonts").removeRecursively();
+        }
+    }
+
+#ifdef _WIN32
+    int _scr_num = QApplication::desktop()->primaryScreen();
+    if ( reg_user.contains("position") ) {
+        _scr_num = QApplication::desktop()->screenNumber(
+                            reg_user.value("position").toRect().topLeft() );
+    }
+
+    byte dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
+#else
+    byte dpi_ratio = CX11Decoration::devicePixelRatio();
+#endif
+
+    QByteArray css(Utils::getAppStylesheets(dpi_ratio));
+    if ( !css.isEmpty() ) qApp->setStyleSheet(css);
+
+    // Font
+    QFont mainFont = QApplication::font();
+    mainFont.setStyleStrategy( QFont::PreferAntialias );
+    QApplication::setFont( mainFont );
+
+}
+
 CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
 {
     APP_CAST(_app)
@@ -388,4 +463,13 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
             }
         }
     }
+}
+
+CMainWindow * CAscApplicationManagerWrapper::topWindow()
+{
+    APP_CAST(_app);
+
+    if ( _app.m_vecWidows.size() > 0 )
+        return reinterpret_cast<CMainWindow *>(_app.m_vecWidows.at(0));
+    else return nullptr;
 }

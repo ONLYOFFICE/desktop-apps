@@ -47,6 +47,7 @@
 
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
+#include "defines_p.h"
 #include "../utils.h"
 #include "../csplash.h"
 #include "../clogger.h"
