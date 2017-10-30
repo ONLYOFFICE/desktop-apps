@@ -178,13 +178,18 @@
             if ( !dlgLogin ) {
                 dlgLogin = new LoginDlg();
                 dlgLogin.onsuccess(info => {
-                    window.sdk.execCommand("portal:open", info.portal);
+                    if ( info.status == 'sso' ) {
+                        window.sdk.execCommand("portal:open", info.provider);
+                    } else
+                    if ( info.status == 'user' ) {
+                        window.sdk.execCommand("portal:open", info.data.portal);
 
-                    dlgLogin.onclose();
-                    PortalsStore.keep(info);
-                    _update_portals.call(this);
+                        dlgLogin.onclose();
+                        PortalsStore.keep(info);
+                        _update_portals.call(this);
 
-                    window.selectAction('connect');
+                        window.selectAction('connect');
+                    }
                 });
                 dlgLogin.onclose(code=>{
                     dlgLogin = undefined;
