@@ -129,3 +129,8 @@ void CLangater::addTranslation(const QString& dir, const QString& lang)
         QCoreApplication::installTranslator(tr);
     }
 }
+
+void CLangater::addTranslation(const QString& dir)
+{
+    addTranslation(dir, getInstance()->m_lang);
+}
