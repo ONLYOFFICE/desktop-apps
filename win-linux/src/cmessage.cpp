@@ -44,6 +44,7 @@
 
 #include "defines.h"
 #include "utils.h"
+#include "linux/cx11decoration.h"
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"

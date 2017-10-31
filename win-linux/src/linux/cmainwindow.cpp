@@ -37,6 +37,7 @@
 #include <QProxyStyle>
 #include <QApplication>
 #include <QFileInfo>
+#include <QDesktopWidget>
 #include "../utils.h"
 #include <QTimer>
 #include <QMimeData>
@@ -48,26 +49,50 @@ CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , CX11Decoration(this)
 {
-    resize(1200, 700);
+//    resize(1200, 700);
     setAcceptDrops(true);
 }
 
-CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
-    : CMainWindow((QWidget *)0) /* doesn't compile via gcc 4.8 without parameter */
+CMainWindow::CMainWindow(const QRect& geometry)
+    : CMainWindow(nullptr)
 {
     parseInputArgs(g_cmdArgs);
 
     setWindowIcon(Utils::appIcon());
     setObjectName("MainWindow");
 
-    GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-    if (reg_user.value("titlebar") == "custom" ||
-            reg_system.value("titlebar") == "custom" )
+
+    QString _title_style = reg_user.value("titlebar").toString();
+    if ( _title_style.isEmpty() ) {
+        GET_REGISTRY_SYSTEM(reg_system);
+        _title_style = reg_system.value("titlebar").toString();
+    }
+
+    if ( _title_style == "custom" )
         CX11Decoration::turnOff();
 
-    m_pMainPanel = new CMainPanelImpl(this, pAppManager, !CX11Decoration::isDecorated());
-//    m_pMainPanel = new CMainPanel(this, pAppManager, true);
+    // adjust window size
+    QRect _window_rect = geometry;
+    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+
+    if ( _window_rect.isEmpty() )
+        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
+
+    QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
+    if ( _screen_size.width() < _window_rect.width() + 120 ||
+            _screen_size.height() < _window_rect.height() + 120 )
+    {
+        _window_rect.setLeft(_screen_size.left()),
+        _window_rect.setTop(_screen_size.top());
+
+        if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
+        if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+    }
+
+    resize(_window_rect.width(), _window_rect.height());
+
+    m_pMainPanel = new CMainPanelImpl(this, !CX11Decoration::isDecorated(), m_dpiRatio);
     setCentralWidget(m_pMainPanel);
 
     if ( !CX11Decoration::isDecorated() ) {
@@ -76,27 +101,23 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
         setMouseTracking(true);
     }
 
-    ((CAscApplicationManagerWrapper *)pAppManager)->setMainPanel((CMainPanel *)m_pMainPanel);
-
     restoreGeometry(reg_user.value("position").toByteArray());
     restoreState(reg_user.value("windowstate").toByteArray());
 
     QMetaObject::connectSlotsByName(this);
 
-    pAppManager->StartSpellChecker();
-    pAppManager->StartKeyboardChecker();
-
-    CMainPanel * pMainPanel = qobject_cast<CMainPanel *>(m_pMainPanel);
-    connect(pMainPanel, &CMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
-    connect(pMainPanel, &CMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
+    connect(m_pMainPanel, &CMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
+    connect(m_pMainPanel, &CMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-    pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
+    m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
+    m_pMainPanel->setScreenScalingFactor(m_dpiRatio);
+    m_pMainPanel->goStart();
 
     connect(app, &SingleApplication::showUp, [=](QString args){
         QStringList * _list = Utils::getInputFiles(args.split(";"));
         if (_list->count())
-            pMainPanel->doOpenLocalFiles(*_list);
+            m_pMainPanel->doOpenLocalFiles(*_list);
 
         delete _list, _list = NULL;
 
@@ -104,11 +125,12 @@ CMainWindow::CMainWindow(CAscApplicationManager * pAppManager)
     });
 }
 
+
 void CMainWindow::parseInputArgs(const QStringList& inlist)
 {
-    if ( !inlist.isEmpty() ) {
-        GET_REGISTRY_USER(reg_user)
+    GET_REGISTRY_USER(reg_user)
 
+    if ( !inlist.isEmpty() ) {
         QString _arg;
         QStringListIterator i(inlist); i.next();
         while (i.hasNext()) {
@@ -121,10 +143,10 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
                 reg_user.setValue("titlebar", "custom");
             }
         }
-
-        if (!reg_user.contains("titlebar"))
-            reg_user.setValue("titlebar", "custom");
     }
+
+    if ( !reg_user.contains("titlebar") )
+        reg_user.setValue("titlebar", "custom");
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)
@@ -216,7 +238,8 @@ void CMainWindow::dropEvent(QDropEvent *event)
         NSEditorApi::CAscAddPlugin* pData = new NSEditorApi::CAscAddPlugin();
         pData->put_Path(opts.wurl);
         pEvent->m_pData = pData;
-        ((CMainPanel *)m_pMainPanel)->getAscApplicationManager()->Apply(pEvent);
+
+        AscAppManager::getInstance().Apply(pEvent);
     }
     else
     {
@@ -256,7 +279,15 @@ void CMainWindow::slot_windowClose()
         reg_user.setValue("windowstate", saveState());
     }
 
-    ((CMainPanel *)m_pMainPanel)->getAscApplicationManager()->DestroyCefView(-1);
+    AscAppManager::closeMainWindow( (size_t)this );
+}
 
-//    close();
+CMainPanel * CMainWindow::mainPanel() const
+{
+    return m_pMainPanel;
+}
+
+bool CMainWindow::holdView(uint id) const
+{
+    return m_pMainPanel->holdUid(id);
 }

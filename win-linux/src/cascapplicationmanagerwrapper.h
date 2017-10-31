@@ -35,8 +35,10 @@
 
 #include "applicationmanager.h"
 #include <QObject>
+#include <QMutex>
 #include <vector>
 #include <memory>
+#include "ccefeventstransformer.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -44,6 +46,7 @@
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
+#include "linux/csinglewindow.h"
 #endif
 
 using namespace std;

@@ -30,48 +30,40 @@
  *
 */
 
-#ifndef CMAINWINDOW_H
-#define CMAINWINDOW_H
-
-#include "cx11decoration.h"
+#ifndef CSINGLEWINDOW_H
+#define CSINGLEWINDOW_H
 
 #include <QMainWindow>
-#include "applicationmanager.h"
-#include "cmainpanelimpl.h"
+#include "cmainpanel.h"
+#include "cx11decoration.h"
 
-
-class CMainWindow : public QMainWindow, public CX11Decoration
+class CSingleWindow : public QMainWindow, public CX11Decoration
 {
     Q_OBJECT
-
 public:
-    explicit CMainWindow(QWidget *parent = 0);
-    explicit CMainWindow(const QRect&);
+    explicit CSingleWindow(const QRect& rect, const QString& title, QWidget * view);
 
-    void parseInputArgs(const QStringList&);
-    CMainPanel * mainPanel() const;
-    bool holdView(uint) const;
-
-protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    bool event(QEvent *event);
-    void mouseMoveEvent(QMouseEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
+    bool holdView(int id) const;
+    QWidget * createMainPanel(bool, const QString&, QWidget *);
 
 private:
-    CMainPanelImpl *   m_pMainPanel;
-    uchar m_dpiRatio = 1;
+    void recalculatePlaces();
+
+private:
+    QWidget * m_pMainView;
+    QWidget * m_boxTitleBtns;
+    QPushButton * m_pButtonMinimize,
+                * m_pButtonMaximize,
+                * m_pButtonClose;
+
+    uchar m_dpiRatio;
 
 signals:
+
 public slots:
-private slots:
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_windowClose();
+    void pushButtonCloseClicked();
+    void pushButtonMinimizeClicked();
+    void pushButtonMaximizeClicked();
 };
 
-#endif // CMAINWINDOW_H
+#endif // CSINGLEWINDOW_H

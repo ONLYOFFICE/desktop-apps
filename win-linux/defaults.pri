@@ -43,8 +43,7 @@ HEADERS += \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
-    $$PWD/src/win/csinglewindow.h \
-    $$PWD/src/win/cwindowbase.h
+    $$PWD/src/cwindowbase.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -68,8 +67,7 @@ SOURCES += \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
-    $$PWD/src/clangater.cpp \
-    $$PWD/src/win/csinglewindow.cpp
+    $$PWD/src/clangater.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -91,13 +89,15 @@ linux-g++ {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
 
-    HEADERS += src/linux/cmainwindow.h \
-                src/linux/cx11decoration.h \
-                src/linux/singleapplication.h
-    SOURCES += src/linux/cmainwindow.cpp \
-                src/linux/cx11decoration.cpp \
-                src/linux/cx11caption.cpp \
-                src/linux/singleapplication.cpp
+    HEADERS += $$PWD/src/linux/cmainwindow.h \
+                $$PWD/src/linux/cx11decoration.h \
+                $$PWD/src/linux/csinglewindow.h \
+                $$PWD/src/linux/singleapplication.h
+    SOURCES += $$PWD/src/linux/cmainwindow.cpp \
+                $$PWD/src/linux/cx11decoration.cpp \
+                $$PWD/src/linux/cx11caption.cpp \
+                $$PWD/src/linux/csinglewindow.cpp \
+                $$PWD/src/linux/singleapplication.cpp
 
     DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
@@ -124,6 +124,7 @@ win32 {
                 $$PWD/src/win/qwinhost.h \
                 $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
+                $$PWD/src/win/csinglewindow.h \
                 $$PWD/src/win/cprintdialog.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
@@ -131,6 +132,7 @@ win32 {
                 $$PWD/src/win/qwinhost.cpp \
                 $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
+                $$PWD/src/win/csinglewindow.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \

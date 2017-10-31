@@ -122,7 +122,7 @@ void CPushButton::startIconAnimation(bool start)
         } else {
             if (_movie->state() == QMovie::Running)
                 _movie->jumpToFrame(0);
-                _movie->stop();
+            _movie->stop();
         }
     }
 }

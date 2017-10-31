@@ -30,48 +30,34 @@
  *
 */
 
-#ifndef CMAINWINDOW_H
-#define CMAINWINDOW_H
+#ifndef CWINDOWBASE_H
+#define CWINDOWBASE_H
 
-#include "cx11decoration.h"
+#define WINDOW_MIN_WIDTH    500
+#define WINDOW_MIN_HEIGHT   300
 
-#include <QMainWindow>
-#include "applicationmanager.h"
-#include "cmainpanelimpl.h"
+#define TOOLBTN_HEIGHT      29
+#define TITLE_HEIGHT        29
 
-
-class CMainWindow : public QMainWindow, public CX11Decoration
+namespace WindowBase
 {
-    Q_OBJECT
+#ifdef _WIN32
+    enum class Style : DWORD
+    {
+//        windowed        = ( WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN ),
+        windowed        = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
+        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )
+    };
 
-public:
-    explicit CMainWindow(QWidget *parent = 0);
-    explicit CMainWindow(const QRect&);
+    struct CWindowGeometry
+    {
+        CWindowGeometry() {}
 
-    void parseInputArgs(const QStringList&);
-    CMainPanel * mainPanel() const;
-    bool holdView(uint) const;
+        bool required = false;
+        int width = 0;
+        int height = 0;
+    };
+#endif
+}
 
-protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    bool event(QEvent *event);
-    void mouseMoveEvent(QMouseEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-
-private:
-    CMainPanelImpl *   m_pMainPanel;
-    uchar m_dpiRatio = 1;
-
-signals:
-public slots:
-private slots:
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_windowClose();
-};
-
-#endif // CMAINWINDOW_H
+#endif // CWINDOWBASE_H

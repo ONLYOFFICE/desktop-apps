@@ -149,9 +149,12 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     switch ( _event->m_nType ) {
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
         CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData);
-
+#ifdef __linux
+        pEditorWindow->show();
+#else
         pEditorWindow->show(false);
         pEditorWindow->toggleBorderless(false);
+#endif
 
         RELEASEINTERFACE(_event);
         return; }
@@ -213,8 +216,13 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         _window = _dest;
 
     if ( _window ) {
-        if ( countMainWindow() > 1 )
-                ::SetForegroundWindow(_window->hWnd);
+        if ( countMainWindow() > 1 ) {
+#ifdef __linux
+            QApplication::setActiveWindow(_window);
+#else
+            ::SetForegroundWindow(_window->hWnd);
+#endif
+        }
 
         CCefEventsTransformer::OnEvent(_window->mainPanel(), _event);
     } else {
@@ -242,6 +250,9 @@ void CAscApplicationManagerWrapper::startApp()
 
     CMainWindow * _window = createMainWindow(_start_rect);
 
+#ifdef __linux
+    _window->show();
+#else
     _window->show(_is_maximized);
     _window->toggleBorderless(_is_maximized);
 
@@ -253,6 +264,7 @@ void CAscApplicationManagerWrapper::startApp()
             SetWindowPlacement(_window->hWnd, &wp);
         }
     }
+#endif
 }
 
 void CAscApplicationManagerWrapper::initializeApp()
@@ -301,7 +313,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     byte dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
 #else
-    byte dpi_ratio = CX11Decoration::devicePixelRatio();
+    uchar dpi_ratio = CX11Decoration::devicePixelRatio();
 #endif
 
     QByteArray css(Utils::getAppStylesheets(dpi_ratio));
@@ -450,12 +462,14 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
                 if ( _window->mainPanel()->isPointInTabs(_local_pos) ) {
                     QTimer::singleShot(0, [=] {
                         QPoint pos = QCursor::pos();
+#ifdef _WIN32
                         PostMessage(_source->hWnd, WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(pos.x(), pos.y()));
 
                         QWidget * panel = _source->mainPanel()->releaseEditor();
                         _window->joinTab(panel);
 
                         closeMainWindow(s);
+#endif
                     });
 
                     break;

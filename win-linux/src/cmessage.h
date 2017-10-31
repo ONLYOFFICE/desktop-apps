@@ -78,12 +78,12 @@ public:
 #endif
 
 private:
+    uchar m_dpiRatio;
     QWidget * m_boxButtons;
     QWidget * m_centralWidget;
     QLabel * m_message,
            * m_typeIcon;
     int m_modalresult;
-    BYTE m_dpiRatio;
 
 
     void modal();

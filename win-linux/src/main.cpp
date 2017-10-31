@@ -162,19 +162,8 @@ int main( int argc, char *argv[] )
     /* applying languages finished */
 
     AscAppManager::initializeApp();
-
-#ifdef _WIN32
-    // Create window
     AscAppManager::startApp();
 
-
-#elif defined(Q_OS_LINUX)
-    // Create window
-    CMainWindow window(pApplicationManager);
-
-    window.show();
-    window.setWindowTitle(WINDOW_NAME);
-#endif
     AscAppManager::getInstance().StartSpellChecker();
     AscAppManager::getInstance().StartKeyboardChecker();
     AscAppManager::getInstance().CheckFonts();

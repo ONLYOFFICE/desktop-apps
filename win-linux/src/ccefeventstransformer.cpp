@@ -40,8 +40,8 @@ using namespace NSEditorApi;
 
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
     : CAscCefMenuEventListener()
-    , m_propCls()
     , pObjTarget(parent)
+    , m_propCls()
 {
     qRegisterMetaType<std::wstring>("std::wstring");
 }

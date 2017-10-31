@@ -78,7 +78,12 @@ using namespace NSEditorApi;
 #define TOOLBTN_HEIGHT      29
 
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
+#ifdef _WIN32
 #define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
+#else
+#define TOP_NATIVE_WINDOW_HANDLE this
+//#define TOP_NATIVE_WINDOW_HANDLE qobject_cast<QWidget *>(parent())
+#endif
 
 
 struct printdata {
@@ -130,7 +135,8 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     // download
     m_pButtonDownload->setObjectName("toolButtonDownload");
     m_pButtonDownload->setFixedSize(QSize(33, TOOLBTN_HEIGHT));
-    m_pButtonDownload->setAnimatedIcon(QPair<QString,QString>(":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"));
+    QPair<QString,QString> _icon_download{":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"};
+    m_pButtonDownload->setAnimatedIcon( _icon_download );
 
 #ifdef __linux__
     m_boxTitleBtns = new CX11Caption(centralWidget);
@@ -196,9 +202,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
         m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
     } else {
-#ifdef __linux__
-        _tabs_stylesheets += ".nix.qss";
-#endif
         m_pButtonMain->setProperty("theme", "light");
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
@@ -502,14 +505,10 @@ int CMainPanel::trySaveDocument(int index)
     if (m_pTabs->closedByIndex(index)) return MODAL_RESULT_YES;
 
     int modal_res = MODAL_RESULT_NO;
-    if (m_pTabs->modifiedByIndex(index)) {
-#if defined(_WIN32)
-        CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-#else
-        CMessage mess(this);
-#endif
+    if ( m_pTabs->modifiedByIndex(index) ) {
         m_pTabs->setCurrentIndex(index);
 
+        CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
         mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
         modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
@@ -697,12 +696,9 @@ void CMainPanel::onLocalFileRecent(void * d)
     if (!match.hasMatch()) {
         QFileInfo _info(opts.url);
         if ( opts.type != etRecoveryFile && !_info.exists() ) {
-#if defined(_WIN32)
             CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-#else
-            CMessage mess(this);
-#endif
             mess.setButtons({tr("Yes")+":default", tr("No")});
+
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
@@ -900,7 +896,8 @@ void CMainPanel::loadStartPage()
     GET_REGISTRY_USER(_reg_user);
 
 #if defined(QT_DEBUG)
-    QString data_path = _reg_user.value("startpage").value<QString>();
+    QString data_path = "/home/makc/DesktopEditors/desktop-apps/common/loginpage/deploy/index.html";
+//    QString data_path = _reg_user.value("startpage").value<QString>();
 #else
     QString data_path = qApp->applicationDirPath() + "/index.html";
 #endif
@@ -1056,11 +1053,7 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
 
         if (sName.size()) {
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
-#ifdef _WIN32
             CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-#else
-            CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-#endif
 
             if (dlg.modalSaveAs(fullPath)) {
                 savePath = QFileInfo(fullPath).absolutePath();
@@ -1087,11 +1080,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
 
         QString fullPath = _lastSavePath + "/" + info.fileName();
 
-#ifdef _WIN32
         CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-#else
-        CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-#endif
         dlg.setFormats(pData->get_SupportFormats());
 
         CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
@@ -1324,10 +1313,6 @@ void CMainPanel::updateScaling()
 
         m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
     } else {
-#ifdef __linux__
-        _tabs_stylesheets += ".nix.qss";
-#endif
-
         m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 

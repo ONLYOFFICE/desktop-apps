@@ -34,6 +34,7 @@
 #include "cwindowbase.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../utils.h"
+#include "cwindowbase.h"
 
 #include <windowsx.h>
 #include <functional>
@@ -42,12 +43,6 @@
 #include <QIcon>
 #include <QLabel>
 #include <QTimer>
-
-#define WINDOW_MIN_WIDTH    500
-#define WINDOW_MIN_HEIGHT   300
-
-#define TOOLBTN_HEIGHT      29
-#define TITLE_HEIGHT        29
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 using namespace std::placeholders;
