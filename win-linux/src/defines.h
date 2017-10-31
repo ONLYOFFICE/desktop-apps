@@ -55,6 +55,7 @@
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
 #define REG_APP_NAME "DesktopEditors"
 #define APP_MUTEX_NAME "TEAMLAB"
+#define APP_DEFAULT_LOCALE "en"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""

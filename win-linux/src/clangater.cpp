@@ -1,5 +1,6 @@
 #include "clangater.h"
 #include "defines.h"
+#include "defines_p.h"
 
 #include <QApplication>
 #include <QFile>
@@ -106,7 +107,7 @@ void CLangater::init()
             _lang = _lang.left(2);
             _lang_path = "./langs";
         } else
-            _lang = "en";
+            _lang = APP_DEFAULT_LOCALE;
     }
 
     QTranslator * tr = getInstance()->m_intf->createTranslator();
