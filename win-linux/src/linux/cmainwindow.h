@@ -47,6 +47,7 @@ class CMainWindow : public QMainWindow, public CX11Decoration
 public:
     explicit CMainWindow(QWidget *parent = 0);
     explicit CMainWindow(const QRect&);
+    ~CMainWindow();
 
     void parseInputArgs(const QStringList&);
     CMainPanel * mainPanel() const;
@@ -69,7 +70,6 @@ private:
 
 signals:
 public slots:
-private slots:
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
 };

@@ -252,6 +252,8 @@ void CAscApplicationManagerWrapper::startApp()
 
 #ifdef __linux
     _window->show();
+    if ( _is_maximized )
+        _window->slot_windowChangeState(Qt::WindowMaximized);
 #else
     _window->show(_is_maximized);
     _window->toggleBorderless(_is_maximized);
