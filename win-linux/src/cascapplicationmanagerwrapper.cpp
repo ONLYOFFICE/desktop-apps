@@ -365,8 +365,6 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 {
     APP_CAST(_app)
 
-qDebug() << "app close";
-
     QMutexLocker locker( &_app.m_oMutex );
     size_t _size = _app.m_vecWidows.size();
 
