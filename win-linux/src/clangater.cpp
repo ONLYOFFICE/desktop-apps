@@ -81,7 +81,7 @@ void CLangater::init()
 //        _lang = QLocale::system().name();
 //    }
 
-    if ( _lang.isEmpty() ) {
+    if ( APP_DEFAULT_SYSTEM_LOCALE && _lang.isEmpty() ) {
         QString _env_name = qgetenv("LANG");
         _re.setPattern("^(\\w{2,5})\\.?");
         _re_match = _re.match(_env_name);

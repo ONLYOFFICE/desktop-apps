@@ -56,6 +56,7 @@
 #define REG_APP_NAME "DesktopEditors"
 #define APP_MUTEX_NAME "TEAMLAB"
 #define APP_DEFAULT_LOCALE "en"
+#define APP_DEFAULT_SYSTEM_LOCALE 1
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""
