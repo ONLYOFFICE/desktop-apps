@@ -240,17 +240,17 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
         if (doc && (!m || !doc->changed())) {
             AscAppManager::getInstance().DestroyCefView(doc->viewId());
 
-            RELEASEOBJECT(view)
+//            RELEASEOBJECT(view)
 
-            adjustTabsSize();
+//            adjustTabsSize();
 
-            if (r) emit tabClosed(i, tabBar()->count());
+//            if (r) emit tabClosed(i, tabBar()->count());
         }
 
-        if (r) {
-            setProperty("empty", tabBar()->count()==0);
-            style()->polish(this);
-        }
+//        if (r) {
+//            setProperty("empty", tabBar()->count()==0);
+//            style()->polish(this);
+//        }
     }
 }
 
@@ -264,11 +264,6 @@ void CAscTabWidget::closeAllEditors()
     for (int i = tabBar()->count(); i-- > 0; ) {
         closeEditor(i, false, false);
     }
-
-//    if (!tabBar()->count()) {
-//        setProperty("empty", true);
-//        style()->polish(this);
-//    }
 }
 
 int CAscTabWidget::addPortal(QString url, QString name)

@@ -59,10 +59,10 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         _window = reinterpret_cast<CMainWindow *>(w);
 
         if ( _window ) {
-            delete _window,
-            _window = NULL;
         }
     }
+//            delete _window,
+//            _window = NULL;
 
     m_vecWidows.clear();
     m_vecEditors.clear();
@@ -175,6 +175,12 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         CCefView * pView = GetViewById(pData->get_ReceiverId());
         if ( pView ) {
             pView->Apply(_event);
+        }
+        return; }
+    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
+        _window = mainWindowFromViewId(_uid);
+        if ( _window ) {
+            _window->mainPanel()->onEditorClosed(_uid);
         }
         return; }
 

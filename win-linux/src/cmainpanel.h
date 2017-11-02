@@ -150,6 +150,8 @@ public slots:
     void onPortalNew(QString);
     void onPortalCreate();
 
+    void onEditorClosed(int);
+
     void onMainPageReady();
     void onFileChecked(const QString&, int, bool);
     void onCheckUpdates();

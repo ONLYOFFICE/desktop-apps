@@ -469,6 +469,23 @@ void CMainPanel::onTabClosed(int index, int curcount)
     RecalculatePlaces();
 }
 
+void CMainPanel::onEditorClosed(int uid)
+{
+    int _index = m_pTabs->tabIndexByView(uid);
+    CTabPanel * _view = (CTabPanel *)m_pTabs->widget(_index);
+
+    if  ( _view ) {
+        delete _view;
+        _view = nullptr;
+    }
+
+//    m_pTabs->adjustTabsSize();
+//    if ( !m_pTabs->count() ) {
+//        m_pTabs->setProperty("empty", true);
+//        m_pTabs->style()->polish(m_pTabs);
+//    }
+}
+
 void CMainPanel::onTabChanged(int index)
 {
     QLabel * title = (QLabel *)m_boxTitleBtns->layout()->itemAt(0)->widget();
