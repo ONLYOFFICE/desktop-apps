@@ -59,10 +59,10 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         _window = reinterpret_cast<CMainWindow *>(w);
 
         if ( _window ) {
-        }
-    }
 //            delete _window,
 //            _window = NULL;
+        }
+    }
 
     m_vecWidows.clear();
     m_vecEditors.clear();

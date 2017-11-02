@@ -75,7 +75,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onDocumentType", Qt::QueuedConnection, Q_ARG(int, pData->get_Id()), Q_ARG(int, pData->get_Type()));
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_DOCUMENT_NAME: {
         CAscDocumentName * pData = (CAscDocumentName *)event->m_pData;
 
@@ -110,6 +109,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 //        }
 //        break; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 

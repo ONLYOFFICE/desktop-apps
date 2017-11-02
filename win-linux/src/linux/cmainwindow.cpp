@@ -96,8 +96,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
     setCentralWidget(m_pMainPanel);
 
     if ( !CX11Decoration::isDecorated() ) {
-        CX11Decoration::setTitleWidget(((CMainPanel *)m_pMainPanel)->getTitleWidget());
-        ((CMainPanel *)m_pMainPanel)->setMouseTracking(true);
+        CX11Decoration::setTitleWidget((m_pMainPanel)->getTitleWidget());
+        (m_pMainPanel)->setMouseTracking(true);
         setMouseTracking(true);
     }
 
