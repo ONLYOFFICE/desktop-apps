@@ -927,8 +927,7 @@ void CMainPanel::loadStartPage()
     GET_REGISTRY_USER(_reg_user);
 
 #if defined(QT_DEBUG)
-    QString data_path = "/home/makc/DesktopEditors/desktop-apps/common/loginpage/deploy/index.html";
-//    QString data_path = _reg_user.value("startpage").value<QString>();
+    QString data_path = _reg_user.value("startpage").value<QString>();
 #else
     QString data_path = qApp->applicationDirPath() + "/index.html";
 #endif
