@@ -49,7 +49,7 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         _sw = reinterpret_cast<CSingleWindow *>(w);
 
         if ( _sw ) {
-            delete _sw, _sw = NULL;
+//            delete _sw, _sw = NULL;
         }
     }
 

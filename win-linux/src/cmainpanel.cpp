@@ -343,7 +343,7 @@ void CMainPanel::pushButtonCloseClicked()
             if ( _index_ < 0 ) {
                 // no modified documents
                 m_pTabs->closeAllEditors();
-                QTimer::singleShot(10, this, [=]{emit mainWindowClose();});
+                AscAppManager::getInstance().DestroyCefView( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() );
                 break;
             } else {
                 if (m_mainWindowState == Qt::WindowMinimized)
@@ -471,19 +471,33 @@ void CMainPanel::onTabClosed(int index, int curcount)
 
 void CMainPanel::onEditorClosed(int uid)
 {
-    int _index = m_pTabs->tabIndexByView(uid);
-    CTabPanel * _view = (CTabPanel *)m_pTabs->widget(_index);
+    if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
+        if ( m_pTabs->count() ) {
+            m_pMainWidget->setProperty("removed", true);
+        }
+    } else {
+        int _index = m_pTabs->tabIndexByView(uid);
+        if ( !(_index < 0) ) {
+            QWidget * _view = m_pTabs->widget(_index);
+            _view->deleteLater();
 
-    if  ( _view ) {
-        delete _view;
-        _view = nullptr;
+            m_pTabs->removeTab(_index);
+            m_pTabs->adjustTabsSize();
+            if ( !m_pTabs->count() ) {
+                m_pTabs->setProperty("empty", true);
+                m_pTabs->style()->polish(m_pTabs);
+
+                toggleButtonMain(true);
+            }
+
+            onTabChanged(m_pTabs->currentIndex());
+            RecalculatePlaces();
+        }
     }
 
-//    m_pTabs->adjustTabsSize();
-//    if ( !m_pTabs->count() ) {
-//        m_pTabs->setProperty("empty", true);
-//        m_pTabs->style()->polish(m_pTabs);
-//    }
+    if ( !m_pTabs->count() && m_pMainWidget->property("removed") == true ) {
+        QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
+    }
 }
 
 void CMainPanel::onTabChanged(int index)

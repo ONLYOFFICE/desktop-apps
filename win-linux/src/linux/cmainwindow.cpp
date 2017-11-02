@@ -125,6 +125,9 @@ CMainWindow::CMainWindow(const QRect& geometry)
     });
 }
 
+CMainWindow::~CMainWindow()
+{
+}
 
 void CMainWindow::parseInputArgs(const QStringList& inlist)
 {
