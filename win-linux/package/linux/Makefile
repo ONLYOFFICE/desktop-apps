@@ -111,9 +111,9 @@ INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-x64
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm tar installer
+all: rpm deb apt-rpm urpmi-rpm tar installer
 
 rpm: $(RPM_DEPENDENCY)
 
