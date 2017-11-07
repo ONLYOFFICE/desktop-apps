@@ -12,10 +12,12 @@ DEB_ARCH = amd64
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 DEB_BUILD_DIR = $(PWD)/
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
+URPMI_RPM_BUILD_DIR = $(PWD)/urpmi-rpm/builddir
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
+URPMI_RPM_PACKAGE_DIR = $(URPMI_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 
 REPO_NAME := repo
 REPO = $(PWD)/$(REPO_NAME)
@@ -46,6 +48,15 @@ else
 ALT_REPO_OS_VER = p7
 endif
 ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
+
+ROSA_REPO_OS_NAME = rosa
+
+ifeq ($(PACKAGE_EDITION), cool)
+ROSA_REPO_OS_VER = r8
+else
+ROSA_REPO_OS_VER = r9
+endif
+ROSA_REPO_DIR = $(ROSA_REPO_OS_NAME)/$(ROSA_REPO_OS_VER)
 
 OTHER_REPO_OS_NAME = other-linux
 
@@ -111,6 +122,8 @@ tar: $(TAR_DEPENDENCY)
 
 apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
 
+urpmi-rpm: desktopeditor urpmi-rpm-version $(URPMI_RPM)
+
 installer: desktopeditor $(INSTALLER)
 
 clean:
@@ -118,6 +131,7 @@ clean:
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
+		$(URPMI_RPM_BUILD_DIR)\
 		$(REPO)\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
@@ -190,6 +204,16 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Requires.*\)/\1/'  -i apt-rpm/$(PACKAGE_NAME).spec
 endif
 
+urpmi-rpm-version:
+	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+
+ifeq ($(PACKAGE_EDITION), full)
+	sed '/^Requires.*/d'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/^#Full\(Requires.*\)/\1/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+endif
+
 $(RPM):
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
@@ -198,6 +222,9 @@ $(DEB):
 
 $(APT_RPM):
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+
+$(URPMI_RPM):
+	cd urpmi-rpm && rpmbuild -bb --define "_topdir $(URPMI_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
 $(TAR):
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
@@ -240,10 +267,25 @@ deploy-apt-rpm: $(APT_RPM)
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
+deploy-urpmi-rpm: $(URPMI_RPM)
+	rm -rfv $(REPO)
+	mkdir -p $(REPO)
+
+	for i in i586 i686 x86_64 noarch; do \
+		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	done
+
+	cp -rv $(URPMI_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+
+	genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+
+	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(URPMI_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(URPMI_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+
 deploy-tar: $(TAR)
 	aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
 
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar deploy-installer
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi-rpm deploy-tar deploy-installer
