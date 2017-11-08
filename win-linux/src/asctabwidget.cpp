@@ -287,6 +287,7 @@ int CAscTabWidget::addPortal(QString url, QString name)
 
     CAscTabData * data = new CAscTabData(portal, etPortal);
     data->setViewId(id_view);
+    data->setUrl(url);
     pView->setData(data);
 
     int tab_index = -1;
@@ -566,12 +567,12 @@ int CAscTabWidget::newPortal(const QString& url, const QString& name)
     return out_val;
 }
 
-void CAscTabWidget::closePortal(const QString& name, bool editors)
+void CAscTabWidget::closePortal(const QString& url, bool editors)
 {
-    closeEditorByIndex(tabIndexByTitle(name, etPortal));
+    closeEditorByIndex(tabIndexByUrl(url));
 
     if (editors) {
-        wstring wname = name.toStdWString();
+        wstring wname = url.toStdWString();
         CAscTabData * doc;
         for (int i = tabBar()->count(); i-- > 0; ) {
             doc = ((CTabPanel *)widget(i))->data();
