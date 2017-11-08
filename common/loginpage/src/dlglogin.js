@@ -333,8 +333,7 @@ window.LoginDlg = function() {
                 if ( obj.status == 'ok' ) {
                     disableDialog(false);
 
-                    let _re = new RegExp(`${utils.Lang.pshPortal}[^\\s,.]*`, 'ui');
-                    $el.find('.title .caption').text(`${utils.Lang.loginTitle.replace(_re, portal)}`);
+                    $el.find('.title .caption').text(`${utils.Lang.loginTitle2.replace(/\$1/, portal)}`);
 
                     var _height = 270;
                     if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
