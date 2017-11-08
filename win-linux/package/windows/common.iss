@@ -452,7 +452,12 @@ Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionarie
 
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\empty\*;                         DestDir: {app}\converter\empty;
+Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk;
+Source: ..\..\..\..\core\build\empty\ru-RU\*.*;                 DestDir: {app}\converter\empty;       Languages: ru;
+Source: ..\..\..\..\core\build\empty\fr-FR\*.*;                 DestDir: {app}\converter\empty;       Languages: fr;
+Source: ..\..\..\..\core\build\empty\es-ES\*.*;                 DestDir: {app}\converter\empty;       Languages: es;
+Source: ..\..\..\..\core\build\empty\de-DE\*.*;                 DestDir: {app}\converter\empty;       Languages: de;
+Source: ..\..\..\..\core\build\empty\cs-CZ\*.*;                 DestDir: {app}\converter\empty;       Languages: cs;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
 Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\*;       DestDir: {app}\converter; \
