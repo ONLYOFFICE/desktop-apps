@@ -351,7 +351,10 @@ window.LoginDlg = function() {
                     $el.height(_height);
 
                     setTimeout(() => {
-                        $el.find('#auth-email').focus();
+                        let $email = $el.find('#auth-email');
+                        if ( !!$email.val() )
+                            $el.find('#auth-pass').focus(); else
+                            $email.focus();
                     }, 50);
                 } else {
                     if ( obj.status == 'error' ) {
