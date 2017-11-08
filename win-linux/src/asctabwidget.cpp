@@ -301,6 +301,39 @@ int CAscTabWidget::addPortal(QString url, QString name)
     return tab_index;
 }
 
+int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, const QString& service)
+{
+    if ( service.isEmpty() ) return -1;
+
+    setProperty("empty", false);
+
+    QString _prefix;
+    if ( type == "sso" )
+        _prefix = "sso:";
+
+    CTabPanel * pView = new CTabPanel(this);
+    pView->SetBackgroundCefColor(244, 244, 244);
+    pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
+    pView->Create(&AscAppManager::getInstance(), cvwtSimple);
+    pView->GetCefView()->load((_prefix + service).toStdWString());
+    int id_view = pView->GetCefView()->GetId();
+
+    QString _portal = portal.isEmpty() ? Utils::getPortalName(service) : Utils::getPortalName(portal);
+
+    CAscTabData * data = new CAscTabData(_portal, etPortal);
+    data->setViewId(id_view);
+    data->setUrl(portal);
+    pView->setData(data);
+
+    int tab_index = -1;
+
+    tab_index = insertTab(tab_index, pView, _portal);
+    tabBar()->setTabToolTip(tab_index, portal);
+
+    resizeEvent(NULL);
+    return tab_index;
+}
+
 int CAscTabWidget::pickupTab(QWidget * panel)
 {
     CAscTabData * tabdata = ((CTabPanel *)panel)->data();

@@ -1250,6 +1250,27 @@ void CMainPanel::onPortalCreate()
     });
 }
 
+void CMainPanel::onOutsideAuth(QString json)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QJsonObject objRoot = jdoc.object();
+
+        QString _domain = objRoot["portal"].toString();
+        QString _sso_service = objRoot["provider"].toString();
+
+        int res = m_pTabs->addOAuthPortal(_domain, objRoot["status"].toString(), _sso_service);
+        if (!(res < 0)) {
+            RecalculatePlaces();
+            QTimer::singleShot(200, this, [=]{
+                toggleButtonMain(false);
+            });
+        }
+    }
+}
+
 wstring CMainPanel::readSystemUserName()
 {
 #ifdef Q_OS_WIN

@@ -211,6 +211,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"portal:create") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onPortalCreate", Qt::QueuedConnection);
         } else
+        if ( !(cmd.find(L"auth:sso") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( target, "onOutsideAuth", Qt::QueuedConnection,
+                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
         if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );

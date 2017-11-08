@@ -138,6 +138,7 @@ public:
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
     int  addPortal(QString url, QString name);
+    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  pickupTab(QWidget * panel);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();

@@ -149,6 +149,7 @@ public slots:
     void onPortalLogout(QString);
     void onPortalNew(QString);
     void onPortalCreate();
+    void onOutsideAuth(QString);
 
     void onEditorAllowedClose(int);
 
