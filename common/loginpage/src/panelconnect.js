@@ -166,11 +166,11 @@
                         doLogin(model.path, model.email);
             } else
             if (/\:logout/.test(action)) {
-                _do_logout.call(this, model.name);
+                _do_logout.call(this, model.path);
             } else
             if (/\:forget/.test(action)) {
                 model.removed = true;
-                _do_logout.call(this, model.name);
+                _do_logout.call(this, model.path);
             }
         };
 
@@ -179,13 +179,13 @@
                 dlgLogin = new LoginDlg();
                 dlgLogin.onsuccess(info => {
                     if ( info.status == 'sso' ) {
-                        window.sdk.execCommand("portal:open", info.provider);
+                        window.sdk.execCommand("auth:sso", JSON.stringify(info));
                     } else
                     if ( info.status == 'user' ) {
                         window.sdk.execCommand("portal:open", info.data.portal);
 
                         dlgLogin.onclose();
-                        PortalsStore.keep(info);
+                        PortalsStore.keep(info.data);
                         _update_portals.call(this);
 
                         window.selectAction('connect');
@@ -274,7 +274,7 @@
                         elid: model.uid
                     }));
                     
-                    $item.find('.logout').click(model.name, e => {
+                    $item.find('.logout').click(model.path, e => {
                         _do_logout(e.data);
 
                         e.stopPropagation && e.stopPropagation();
@@ -344,8 +344,10 @@
                         if (!!model) {
                             if (!res[1]) {
                                 model.set('logged', false);
-                                model.removed &&
-                                    PortalsStore.forget(param) && _update_portals.call(this);
+                                if ( model.removed ) {
+                                    PortalsStore.forget(param);
+                                    _update_portals.call(this);
+                                }
                             } else
                                 delete model.removed;
                         }

@@ -78,7 +78,7 @@ window.PortalsStore = (function() {
         var portals = !!localStorage.portals ? JSON.parse(localStorage.portals) : [];
         var index = -1;        
         for (let i = portals.length; i-- > 0; ) {
-            if (utils.skipUrlProtocol(portals[i].portal) == name) {
+            if (portals[i].portal == name) {
                 index = i; 
                 break;
             }
