@@ -111,6 +111,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 
     case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE: break;
+    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW:
+        QMetaObject::invokeMethod(target, "onEditorAllowedClose", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()));
+        break;
+
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 
 //    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START: deprecated

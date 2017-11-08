@@ -52,6 +52,7 @@ public:
     void    setViewId(int);
 //    void    setLocal(bool);
     void    setUrl(const wstring&);
+    void    setUrl(const QString&);
     void    close();
     void    reuse();
     QString title(bool orig = false) const;

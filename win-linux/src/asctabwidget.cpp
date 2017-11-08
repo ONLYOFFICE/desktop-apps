@@ -740,7 +740,6 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
     wstring portal = portalname.toStdWString();
     CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; i++) {
-        doc = VPtr<CAscTabData>::asPtr( tabBar()->tabData(i) );
         doc = ((CTabPanel *)widget(i))->data();
 
         if (doc->isViewType(cvwtEditor) &&

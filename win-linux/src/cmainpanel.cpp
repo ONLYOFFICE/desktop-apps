@@ -469,7 +469,7 @@ void CMainPanel::onTabClosed(int index, int curcount)
     RecalculatePlaces();
 }
 
-void CMainPanel::onEditorClosed(int uid)
+void CMainPanel::onEditorAllowedClose(int uid)
 {
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
         if ( m_pTabs->count() ) {

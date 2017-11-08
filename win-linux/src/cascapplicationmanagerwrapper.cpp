@@ -177,12 +177,6 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
             pView->Apply(_event);
         }
         return; }
-    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
-        _window = mainWindowFromViewId(_uid);
-        if ( _window ) {
-            _window->mainPanel()->onEditorClosed(_uid);
-        }
-        return; }
 
     default: break;
     }
