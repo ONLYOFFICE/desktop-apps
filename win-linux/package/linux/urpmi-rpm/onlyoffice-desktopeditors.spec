@@ -7,7 +7,7 @@ Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-#FullRequires: lib64X11, fonts-ttf-dejavu, fonts-ttf-liberation
+#FullRequires: lib64x11, fonts-ttf-dejavu, fonts-ttf-liberation
 Requires: lib64x11, lib64xscrnsaver, lib64curl, lib64gtkglext, lib64cairo, fonts-ttf-dejavu, fonts-ttf-liberation
 #Suggests: webcore-fonts
 BuildArch: x86_64
