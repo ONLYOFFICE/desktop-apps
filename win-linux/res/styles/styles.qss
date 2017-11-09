@@ -443,9 +443,9 @@ QPrintDialog QComboBox{
 }
 
 QPrintDialog QComboBox::down-arrow{
-    border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat;
-    width: 5px;
-    height: 3px;
+    /* border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat; */
+    /* width: 5px; */
+    /* height: 3px; */
 }
 
 QPrintDialog QComboBox::drop-down{
@@ -503,31 +503,31 @@ QSpinBox, QDoubleSpinBox, QTimeEdit {
     background-color:#fff;
 }
 
-*::up-arrow, *::down-arrow {
+*::up-arrow1, *::down-arrow1 {
     width: 5px;
     height: 3px;
 }
 
-*::up-arrow {
+*::up-arrow1 {
     border-image: url(:/res/icons/arrow_down.png) 3 0 0 0 repeat repeat;
     margin-bottom:1px;
 }
 
-*::up-arrow:disabled, *::up-arrow:off {
+*::up-arrow1:disabled, *::up-arrow1:off {
     border-image: url(:/res/icons/arrow_down.png) 3 0 0 5 repeat repeat;
 }
 
 /*QSpinBox::down-arrow, QDoubleSpinBox::down-arrow, QTimeEdit::down-arrow {*/
-*::down-arrow {
+*::down-arrow1 {
     border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat;
     margin-top:1px;
 }
 
-*::down-arrow:disabled, QSpinBox::down-arrow:off {
+*::down-arrow1:disabled, QSpinBox::down-arrow1:off {
     border-image: url(:/res/icons/arrow_down.png) 0 0 0 5 repeat repeat;
 }
 
-*::up-button, *::down-button {
+*::up-button1, *::down-button1 {
     border: 0 none;
 }
 

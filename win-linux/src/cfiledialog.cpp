@@ -43,6 +43,11 @@
 #if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
+// because bug in cef - 'open/save dialog' doesn't open for second time
+#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
+//#define FILEDIALOG_DONT_USE_MODAL
+//
+
 #include "cmessage.h"
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
@@ -121,9 +126,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
         return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf,
                                             QFileDialog::DontConfirmOverwrite
-                                    #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
                                             | QFileDialog::DontUseNativeDialog
-                                    #endif
+#endif
                                             );
     };
 
@@ -199,16 +204,16 @@ QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter
 #ifdef _WIN32
                 this,
 #else
-    #ifdef FILEDIALOG_DONT_USE_MODAL
+# ifdef FILEDIALOG_DONT_USE_MODAL
                 NULL,
-    #else
+# else
                 (QWidget *)parent(),
-    #endif
+# endif
 #endif
                 tr("Open Document"), path, _filter_, &_sel_filter
-            #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
                 , QFileDialog::DontUseNativeDialog
-            #endif
+#endif
                 );
 }
 
