@@ -119,10 +119,19 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
-        return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, QFileDialog::DontConfirmOverwrite);
+        return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf,
+                                            QFileDialog::DontConfirmOverwrite
+                                    #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+                                            | QFileDialog::DontUseNativeDialog
+                                    #endif
+                                            );
     };
 
+#ifdef FILEDIALOG_DONT_USE_MODAL
+    QWidget * _parent = NULL;
+#else
     QWidget * _parent = (QWidget *)parent();
+#endif
     CMessage mess(_parent);
     mess.setButtons({tr("Yes"), tr("No")});
     mess.setIcon(MESSAGE_TYPE_WARN);
@@ -190,9 +199,17 @@ QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter
 #ifdef _WIN32
                 this,
 #else
+    #ifdef FILEDIALOG_DONT_USE_MODAL
+                NULL,
+    #else
                 (QWidget *)parent(),
+    #endif
 #endif
-                tr("Open Document"), path, _filter_, &_sel_filter);
+                tr("Open Document"), path, _filter_, &_sel_filter
+            #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+                , QFileDialog::DontUseNativeDialog
+            #endif
+                );
 }
 
 QString CFileDialogWrapper::modalOpenImage(const QString& path)
