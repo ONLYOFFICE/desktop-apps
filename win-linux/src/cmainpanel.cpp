@@ -911,6 +911,21 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
     }
 }
 
+void CMainPanel::onDocumentSaveInnerRequest(int id)
+{
+    CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+    mess.setButtons({tr("Yes")+":default", tr("No")});
+    int modal_res = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
+
+    CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
+    pData->put_Value((modal_res == MODAL_RESULT_CUSTOM + 0) ? true : false);
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
+    pEvent->m_pData = pData;
+
+    AscAppManager::getInstance().GetViewById(id)->Apply(pEvent);
+}
+
 void CMainPanel::onDocumentDownload(void * info)
 {
     m_pWidgetDownload->downloadProcess(info);

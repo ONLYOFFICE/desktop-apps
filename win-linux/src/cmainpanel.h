@@ -124,6 +124,7 @@ public slots:
     void onDocumentName(void *);
     void onDocumentChanged(int id, bool changed);
     void onDocumentSave(int id, bool cancel);
+    void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
 
     void onDocumentPrint(void *);

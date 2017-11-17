@@ -91,6 +91,11 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                                   Q_ARG(int, pData->get_Id()), Q_ARG(bool, pData->get_IsCancel()));
         break;}
 
+    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO: {
+        CAscEditorSaveQuestion * pData = (CAscEditorSaveQuestion *)event->m_pData;
+        QMetaObject::invokeMethod(target, "onDocumentSaveInnerRequest", Qt::QueuedConnection, Q_ARG(int, pData->get_Id()));
+        break;}
+
     case ASC_MENU_EVENT_TYPE_CEF_ONLOGOUT: {
         /* will be used synchronous action after logout immediately */
 //        QMetaObject::invokeMethod(target, "onLogout", Qt::QueuedConnection);
