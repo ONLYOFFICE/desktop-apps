@@ -38,10 +38,11 @@
 class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
 {
 public:
-    CAscApplicationManagerWrapper_Private() {}
+    CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper *) {}
     ~CAscApplicationManagerWrapper_Private() {}
 
     void initializeApp() {}
+    bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
 };
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

@@ -34,7 +34,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     : CAscApplicationManager()
     , CCefEventsTransformer(nullptr)
     , QObject(nullptr)
-    , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private)
+    , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private(this))
 {
     CAscApplicationManager::SetEventListener(this);
 
@@ -112,8 +112,10 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     QMutexLocker locker( &m_oMutex );
 
     CAscCefMenuEvent * _event = static_cast<CAscCefMenuEvent *>(e);
-    CMainWindow * _window, * _target = nullptr, * _dest = nullptr;
 
+    if ( m_private->processEvent(_event) ) return;
+
+    CMainWindow * _window, * _target = nullptr, * _dest = nullptr;
     int _uid = _event->get_SenderId();
 
 #if 0

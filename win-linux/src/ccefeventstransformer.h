@@ -51,9 +51,6 @@ signals:
 private:
     QObject * pObjTarget;
 
-    class CPropImpl;
-    CPropImpl * m_propCls;
-
 public slots:
 };
 

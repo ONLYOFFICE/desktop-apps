@@ -31,9 +31,9 @@
 */
 
 #include "ccefeventstransformer.h"
+#include "applicationmanager_events.h"
 #include "common/Types.h"
 //#include "regex"
-#include "ccefeventsimpl.cpp"
 
 #include <QDebug>
 using namespace NSEditorApi;
@@ -41,7 +41,6 @@ using namespace NSEditorApi;
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
     : CAscCefMenuEventListener()
     , pObjTarget(parent)
-    , m_propCls()
 {
     qRegisterMetaType<std::wstring>("std::wstring");
 }
@@ -54,10 +53,6 @@ void CCefEventsTransformer::OnEvent(NSEditorApi::CAscCefMenuEvent *pEvent)
 void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEvent * event)
 {
     if (NULL == event || nullptr == target)
-        return;
-
-    CCefEventsTransformer::CPropImpl _evtPrivate;
-    if ( _evtPrivate.onEvent( target, event) )
         return;
 
     switch (event->m_nType) {
