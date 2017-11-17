@@ -128,8 +128,8 @@ function selectAction(action) {
 
 function hideAction(action, hide) {
     var mitem = $('.tool-menu a[action='+action+']').parent();
-    mitem.removeClass('extra')[hide===true?'show':'hide']();
-    $('.action-panel.' + action)[hide===true?'show':'hide']();
+    mitem.removeClass('extra')[hide===true?'hide':'show']();
+    $('.action-panel.' + action)[hide===true?'hide':'show']();
 };
 
 function setLoaderVisible(isvisible, timeout) {
@@ -171,33 +171,10 @@ window.sdk.on('on_native_message', function(cmd, param) {
         // var short_name = utils.skipUrlProtocol(param);
         // var model = portalCollection.find('name', short_name);
         // !!model && model.set('logged', false);
-    } else 
-    if (cmd == 'lic:active') {
-        let is_active_license = param == '1';
-
-        if (is_active_license) {
-            let is_selected = $('.tool-menu > li.menu-item.selected > a[action=activate]').length > 0;
-            is_selected && selectAction('recent');
-        } else {
-            !app.controller.activate &&
-                (app.controller.activate = (new ControllerActivate({})).init());
-        }
-
-        if ( app.controller.activate ) {
-            app.controller.activate.setPanelHidden(is_active_license);
-            app.controller.activate.disableCtrls(false);
-        }
-    } else 
-    if (cmd == 'lic:selectpanel') {
-        selectAction('activate');
-        app.controller.activate.setPanelHidden(false);
-    } else 
-    if (cmd == 'lic:sendkey') {
-        // $('a[action=activate]').parent()['show']();
     } else
-    if (/^panel\:hide/.test(cmd)) {
-        let hide = param == '1';
-        let panel = /\:hide\:(\w+)$/.exec(cmd)[1];
+    if ( /^panel\:(?:hide|show)/.test(cmd) ) {
+        let hide = !/\:show/.test(cmd);
+        let panel = param;
 
         if (panel.length) {
             hideAction(panel, hide);
