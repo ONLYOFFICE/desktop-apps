@@ -154,9 +154,14 @@ CMessage::CMessage(QWidget * p)
 
 void CMessage::setButtons(std::initializer_list<QString> btns)
 {
-    foreach (QWidget * w, m_boxButtons->findChildren<QWidget*>()) {
-        w->disconnect();
-        delete w;
+    QLayoutItem * item;
+    QWidget * widget;
+    while ( item = m_boxButtons->layout()->takeAt(0) ) {
+        if ( (widget = item->widget()) ) {
+            delete widget;
+        }
+
+        delete item;
     }
 
     auto _fn_click = [=](int num) {

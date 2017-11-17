@@ -54,8 +54,6 @@ void CMainPanelImpl::updateScaling()
 
     QFile styleFile(_tabs_stylesheets);
     styleFile.open( QFile::ReadOnly );
-
-    m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
 
     std::map<int, std::pair<QString, QString> > icons;
@@ -78,4 +76,5 @@ void CMainPanelImpl::updateScaling()
     }
 
     m_pTabs->setTabIcons(icons);
+    m_pTabs->setScaling(m_dpiRatio);
 }
