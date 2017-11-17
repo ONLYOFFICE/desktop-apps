@@ -156,6 +156,21 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         RELEASEINTERFACE(_event);
         return; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
+        CAscExecCommand * pData = static_cast<CAscExecCommand *>(_event->m_pData);
+        std::wstring cmd = pData->get_Command();
+
+        if ( cmd.compare(L"portal:logout") == 0 ) {
+            broadcastEvent(_event);
+            return;
+        }
+
+        break; }
+
+    case ASC_MENU_EVENT_TYPE_SSO_TOKEN: {
+//        CAscSSOToken * pData = (CAscSSOToken *)_event->m_pData;
+        return; }
+
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
         CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData);
 #ifdef __linux
@@ -237,6 +252,19 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     } else {
         RELEASEINTERFACE(_event);
     }
+}
+
+void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent * event)
+{
+    CMainWindow * _window;
+    for ( auto const& w : m_vecWidows ) {
+        _window = reinterpret_cast<CMainWindow *>(w);
+
+        ADDREFINTERFACE(event);
+        CCefEventsTransformer::OnEvent(_window->mainPanel(), event);
+    }
+
+    RELEASEINTERFACE(event);
 }
 
 CAscApplicationManager & CAscApplicationManagerWrapper::getInstance()

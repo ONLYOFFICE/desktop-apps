@@ -74,6 +74,7 @@ private:
     void OnNeedCheckKeyboard();
     int  GetPlatformKeyboardLayout();
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CSingleWindow * editorWindowFromViewId(int uid) const;
