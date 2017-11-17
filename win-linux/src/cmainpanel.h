@@ -62,7 +62,6 @@ public:
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
-    void cmdMainPage(const QString&, const QString&) const;
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
@@ -80,7 +79,6 @@ public:
 
 protected:
     void refreshAboutVersion();
-    void cmdAppManager(int, void *);
     virtual QString getSaveMessage();
 
 private:
@@ -132,7 +130,6 @@ public slots:
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);
     void onKeyDown(void *);
-    void onLink(QString);
 
     void onNeedCheckKeyboard();
 

@@ -132,10 +132,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
-        NSEditorApi::CAscOnOpenExternalLink * pData = (NSEditorApi::CAscOnOpenExternalLink *)event->m_pData;
-        QMetaObject::invokeMethod(target, "onLink", Qt::QueuedConnection, Q_ARG(QString, QString().fromStdWString(pData->get_Url())));
-        break;}
+    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: break;
 
     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
         NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)event->m_pData;

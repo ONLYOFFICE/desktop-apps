@@ -73,11 +73,8 @@
 
 using namespace NSEditorApi;
 
-#define BUTTON_MAIN_WIDTH   68
-#define TITLE_HEIGHT        29
-#define TOOLBTN_HEIGHT      29
-
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
+#define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 #ifdef _WIN32
 #define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
 #else
@@ -628,7 +625,7 @@ void CMainPanel::onPortalLogout(QString portal)
 
 void CMainPanel::onPortalLogin(QString info)
 {
-    cmdMainPage("portal:login", Utils::encodeJson(info));
+    AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "portal:login", Utils::encodeJson(info));
 }
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
@@ -734,7 +731,7 @@ void CMainPanel::onLocalFileRecent(void * d)
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
             if (modal_res == MODAL_RESULT_CUSTOM) {
-                cmdMainPage("file:skip", QString::number(opts.id));
+                AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "file:skip", QString::number(opts.id));
             }
 
             return;
@@ -811,7 +808,7 @@ void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
         QJsonObject _json_obj{{QString::number(uid), exists}};
         QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
-        cmdMainPage("files:checked", Utils::encodeJson(json));
+        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", Utils::encodeJson(json));
     }
 }
 
@@ -1195,11 +1192,6 @@ void CMainPanel::onKeyDown(void * eventData)
     }
 }
 
-void CMainPanel::onLink(QString url)
-{
-    Utils::openUrl(url);
-}
-
 void CMainPanel::onPortalOpen(QString url)
 {
     int res = m_pTabs->openPortal(url);
@@ -1298,7 +1290,7 @@ void CMainPanel::onMainPageReady()
         refreshAboutVersion();
         emit mainPageReady();
 
-        cmdMainPage("app:ready", "");
+        AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
         doOpenLocalFiles();
     });
 }
@@ -1315,37 +1307,13 @@ void CMainPanel::refreshAboutVersion()
     _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
 
-    cmdMainPage("app:version", Utils::encodeJson(_json_obj).arg(_license));
+    AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:version", Utils::encodeJson(_json_obj).arg(_license) );
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
 {
     RELEASEOBJECT(m_inFiles)
     m_inFiles = list;
-}
-
-void CMainPanel::cmdMainPage(const QString& cmd, const QString& args) const
-{
-    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(cmd.toStdWString());
-    if (args.size())
-        pCommand->put_Param(args.toStdWString());
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-    pEvent->m_pData = pCommand;
-
-    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
-
-//    RELEASEOBJECT(pEvent)
-//    RELEASEOBJECT(pCommand)
-}
-
-void CMainPanel::cmdAppManager(int cmd, void * data)
-{
-    CAscMenuEvent * pEvent = new CAscMenuEvent(cmd);
-    pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
-
-    AscAppManager::getInstance().Apply(pEvent);
 }
 
 QString CMainPanel::getSaveMessage()

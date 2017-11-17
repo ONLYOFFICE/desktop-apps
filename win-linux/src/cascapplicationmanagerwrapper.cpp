@@ -147,6 +147,13 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 #endif
 
     switch ( _event->m_nType ) {
+    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
+        CAscOnOpenExternalLink * pData = (CAscOnOpenExternalLink *)_event->m_pData;
+        Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
+
+        RELEASEINTERFACE(_event);
+        return; }
+
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
         CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData);
 #ifdef __linux
@@ -486,4 +493,32 @@ CMainWindow * CAscApplicationManagerWrapper::topWindow()
     if ( _app.m_vecWidows.size() > 0 )
         return reinterpret_cast<CMainWindow *>(_app.m_vecWidows.at(0));
     else return nullptr;
+}
+
+void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const QString& cmd, const QString& args)
+{
+    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+    pCommand->put_Command(cmd.toStdWString());
+    if ( !args.isEmpty() )
+        pCommand->put_Param(args.toStdWString());
+
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    if ( target )
+        target->GetCefView()->Apply(pEvent); else
+        AscAppManager::getInstance().SetEventToAllMainWindows(pEvent);
+
+//    delete pCommand;
+//    delete pEvent;
+}
+
+void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
+{
+    CAscMenuEvent * pEvent = new CAscMenuEvent(type);
+    pEvent->m_pData = static_cast<IMenuEventDataBase *>(data);
+
+    AscAppManager::getInstance().Apply(pEvent);
+
+//    delete pEvent;
 }

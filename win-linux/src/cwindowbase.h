@@ -38,6 +38,7 @@
 
 #define TOOLBTN_HEIGHT      29
 #define TITLE_HEIGHT        29
+#define BUTTON_MAIN_WIDTH   68
 
 namespace WindowBase
 {
