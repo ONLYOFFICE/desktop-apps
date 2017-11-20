@@ -236,7 +236,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="918"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hay que guardar el documento para continuar.&lt;br&gt;¿Guardar el documento?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="996"/>
