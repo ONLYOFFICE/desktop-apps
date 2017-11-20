@@ -49,6 +49,8 @@
 #include "linux/csinglewindow.h"
 #endif
 
+#define SEND_TO_ALL_START_PAGE nullptr
+
 using namespace std;
 
 class CAscApplicationManagerWrapper;
