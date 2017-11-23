@@ -38,7 +38,11 @@
 class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
 {
 public:
-    CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper *) {}
+    CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
+    {
+        manager->m_oSettings.sign_support = false;
+    }
+
     ~CAscApplicationManagerWrapper_Private() {}
 
     void initializeApp() {}
