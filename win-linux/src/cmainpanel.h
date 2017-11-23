@@ -127,7 +127,7 @@ public slots:
     void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
 
-    void onDocumentPrint(void *);
+    virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);
     void onKeyDown(void *);
@@ -136,9 +136,9 @@ public slots:
 
     void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
-    void onLocalFileCreate(int);
+    virtual void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
-    void onLocalFileSaveAs(void *);
+    virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
     void onLocalGetImage(void *);
@@ -151,7 +151,7 @@ public slots:
 
     void onEditorAllowedClose(int);
 
-    void onMainPageReady();
+    virtual void onMainPageReady();
     void onFileChecked(const QString&, int, bool);
     void onCheckUpdates();
 

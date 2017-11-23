@@ -173,6 +173,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     CMainWindow *window = reinterpret_cast<CMainWindow*>( GetWindowLongPtr( hWnd, GWLP_USERDATA ) );
     if ( !window )
         return DefWindowProc( hWnd, message, wParam, lParam );
+//static uint count=0;
+//qDebug() << "main window message: " << ++count << QString(" 0x%1").arg(QString::number(message,16));
 
     switch ( message )
     {
@@ -266,6 +268,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
+qDebug() << "WM_CLOSE";
         window->doClose();
         return 0;
 
@@ -373,7 +376,26 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     }
 
     case WM_EXITSIZEMOVE: {
+//#define DEBUG_SCALING
+#ifdef DEBUG_SCALING
+        QRect windowRect;
+
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(hWnd, &wp)) {
+            GET_REGISTRY_USER(reg_user)
+            wp.showCmd == SW_MAXIMIZE ?
+                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+
+            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+            windowRect.adjust(0,0,-1,-1);
+        }
+
+        int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
+        uchar dpi_ratio = _scr_num;
+#else
         uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+#endif
 
         if ( dpi_ratio != window->m_dpiRatio )
             window->setScreenScalingFactor(dpi_ratio);
@@ -455,7 +477,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 #if 0
     case WM_INPUTLANGCHANGE:
     case WM_INPUTLANGCHANGEREQUEST:
-    {        
+    {
         int _lang = LOWORD(lParam);
         m_oLanguage.Check(_lang);
     }
@@ -665,6 +687,7 @@ void CMainWindow::slot_windowClose()
 
 void CMainWindow::slot_finalTabClosed()
 {
+    qDebug() << "final tab close";
     if ( AscAppManager::countMainWindow() > 1 ) {
         AscAppManager::closeMainWindow( size_t(this) );
     }
@@ -733,7 +756,7 @@ void CMainWindow::slot_mainPageReady()
 
     win_sparkle_init();
 
-    mainPanel()->cmdMainPage("updates", "on");
+    AscAppManager::sendCommandTo(0, "updates", "on");
     CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
 #endif
 }
@@ -757,6 +780,8 @@ void CMainWindow::updateError()
 
 void CMainWindow::doClose()
 {
+    qDebug() << "doClose";
+
     QTimer::singleShot(500, m_pMainPanel, [=]{
         m_pMainPanel->pushButtonCloseClicked();
     });
