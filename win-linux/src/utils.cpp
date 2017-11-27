@@ -118,7 +118,7 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
 {
 //    int _scr_num = QApplication::desktop()->screenNumber(leftTop); - return the wrong number
 //    return QApplication::desktop()->screenGeometry(_scr_num);
-
+#ifdef __linux
     auto pointToRect = [](const QPoint &p, const QRect &r) -> int {
         int dx = 0, dy = 0;
         if (p.x() < r.left()) dx = r.left() - p.x(); else
@@ -142,6 +142,13 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
     }
 
     return QApplication::desktop()->screenGeometry(closestScreen);
+#else
+    POINT lt{leftTop.x(), leftTop.y()};
+    MONITORINFO mi{sizeof(MONITORINFO)};
+    ::GetMonitorInfo(::MonitorFromPoint(lt, MONITOR_DEFAULTTONEAREST), &mi);
+
+    return QRect(QPoint(mi.rcWork.left, mi.rcWork.top), QPoint(mi.rcWork.right, mi.rcWork.bottom));
+#endif
 }
 
 QString Utils::systemLocationCode()
