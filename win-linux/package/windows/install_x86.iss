@@ -1,5 +1,6 @@
-﻿#include "common.iss"
-#define os_arch 'win_32'
+﻿#define os_arch 'win_32'
+#define PATH_PREFIX 'win_32\build'
+#include "common.iss"
 
 
 [Setup]
