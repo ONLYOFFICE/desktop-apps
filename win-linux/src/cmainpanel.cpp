@@ -154,7 +154,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
@@ -165,7 +164,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
             btn->setObjectName(name);
             btn->setProperty("class", "normal");
             btn->setProperty("act", "tool");
-            btn->setFixedSize(small_btn_size);
 
             return btn;
         };

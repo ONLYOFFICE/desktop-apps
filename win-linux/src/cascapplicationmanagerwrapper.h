@@ -63,6 +63,8 @@ class CAscApplicationManagerWrapper : public QObject, public CAscApplicationMana
 private:
     vector<size_t> m_vecWidows;
     vector<size_t> m_vecEditors;
+    vector<QString> m_vecStyles;
+    vector<QString> m_vecStyles2x;
     QMutex         m_oMutex;
 
 private:
@@ -104,6 +106,7 @@ public:
     static CMainWindow *    topWindow();
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendEvent(int type, void * data);
+    static QString          getWindowStylesheets(uint);
 
 private:
     class CAscApplicationManagerWrapper_Private;

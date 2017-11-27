@@ -433,13 +433,13 @@ void CSingleWindow::adjustGeometry()
 
 void CSingleWindow::setScreenScalingFactor(uchar factor)
 {
-    QByteArray css(Utils::getAppStylesheets(factor));
+    QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
         bool increase = factor > m_dpiRatio;
         m_dpiRatio = factor;
 
-        qApp->setStyleSheet(css);
+        m_pMainPanel->setStyleSheet(css);
         /**/
 //            if ( m_isCustomWindow ) {
                 QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
@@ -482,6 +482,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
     mainGridLayout->setSpacing(0);
     mainGridLayout->setMargin(0);
     mainPanel->setLayout(mainGridLayout);
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     // Central widget
     QWidget * centralWidget = new QWidget(mainPanel);

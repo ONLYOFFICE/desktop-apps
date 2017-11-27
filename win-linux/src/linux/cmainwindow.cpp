@@ -111,7 +111,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
-    m_pMainPanel->setScreenScalingFactor(m_dpiRatio);
+    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    m_pMainPanel->updateScaling();
     m_pMainPanel->goStart();
 
     connect(app, &SingleApplication::showUp, [=](QString args){

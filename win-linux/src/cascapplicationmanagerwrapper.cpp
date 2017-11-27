@@ -343,20 +343,9 @@ void CAscApplicationManagerWrapper::initializeApp()
         }
     }
 
-#ifdef _WIN32
-    int _scr_num = QApplication::desktop()->primaryScreen();
-    if ( reg_user.contains("position") ) {
-        _scr_num = QApplication::desktop()->screenNumber(
-                            reg_user.value("position").toRect().topLeft() );
-    }
-
-    byte dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
-#else
-    uchar dpi_ratio = CX11Decoration::devicePixelRatio();
-#endif
-
-    QByteArray css(Utils::getAppStylesheets(dpi_ratio));
-    if ( !css.isEmpty() ) qApp->setStyleSheet(css);
+    _app.m_vecStyles.push_back(":styles/res/styles/styles.qss");
+    _app.m_vecStyles2x.push_back(":styles@2x/styles.qss");
+    _app.m_private->applyStylesheets();
 
     // Font
     QFont mainFont = QApplication::font();
@@ -551,4 +540,10 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
     AscAppManager::getInstance().Apply(pEvent);
 
 //    delete pEvent;
+}
+
+QString CAscApplicationManagerWrapper::getWindowStylesheets(uint dpifactor)
+{
+    APP_CAST(_app);
+    return Utils::readStylesheets(&_app.m_vecStyles, &_app.m_vecStyles2x, dpifactor);
 }

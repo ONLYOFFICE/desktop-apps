@@ -123,8 +123,9 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pWinPanel = new CWinPanel(hWnd);
 
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
-    m_pMainPanel->setScreenScalingFactor(m_dpiRatio);
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
+    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    m_pMainPanel->updateScaling();
     m_pMainPanel->goStart();
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
@@ -630,13 +631,13 @@ void CMainWindow::adjustGeometry()
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
-    QByteArray css(Utils::getAppStylesheets(factor));
+    QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
         bool increase = factor > m_dpiRatio;
         m_dpiRatio = factor;
 
-        qApp->setStyleSheet(css);
+        m_pMainPanel->setStyleSheet(css);
         m_pMainPanel->setScreenScalingFactor(factor);
         setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 

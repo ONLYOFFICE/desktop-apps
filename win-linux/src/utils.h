@@ -60,7 +60,8 @@ public:
     static QString encodeJson(const QJsonObject&);
     static QString encodeJson(const QString&);
 
-    static QByteArray getAppStylesheets(int);
+//    static QByteArray getAppStylesheets(int);
+    static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
 };
 
 #endif // UTILS_H

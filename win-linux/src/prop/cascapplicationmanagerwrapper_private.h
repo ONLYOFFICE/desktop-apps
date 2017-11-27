@@ -47,6 +47,7 @@ public:
 
     void initializeApp() {}
     bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
+    void applyStylesheets() {}
 };
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

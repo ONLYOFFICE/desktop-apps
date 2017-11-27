@@ -301,6 +301,7 @@ unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 #endif
 }
 
+/*
 QByteArray Utils::getAppStylesheets(int scale)
 {
     auto read_styles = [](const QString& dir) {
@@ -322,6 +323,32 @@ QByteArray Utils::getAppStylesheets(int scale)
 
     if ( scale > 1 ) {
         _out.append( read_styles(QString(":styles@2x")) );
+    }
+
+    return _out;
+}
+*/
+
+QByteArray Utils::readStylesheets(std::vector<QString> * list, std::vector<QString> * list2x, int scale)
+{
+    auto read_styles = [](const std::vector<QString> * inl) {
+        QByteArray _css;
+        QFile file;
+        for ( auto &path : *inl ) {
+            file.setFileName(path);
+            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+                _css.append(file.readAll());
+                file.close();
+            }
+        }
+
+        return std::move(_css);
+    };
+
+    QByteArray _out = read_styles(list);
+
+    if ( scale > 1 ) {
+        _out.append( read_styles(list2x) );
     }
 
     return _out;
