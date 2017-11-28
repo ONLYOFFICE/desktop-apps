@@ -91,7 +91,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
     mainGridLayout->setSpacing(0);
     mainGridLayout->setMargin(0);
     mainPanel->setLayout(mainGridLayout);
-    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     // Central widget
     QWidget * centralWidget = new QWidget(mainPanel);
