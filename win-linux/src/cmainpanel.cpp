@@ -337,7 +337,7 @@ void CMainPanel::pushButtonCloseClicked()
             if ( _index_ < 0 ) {
                 // no modified documents
                 m_pTabs->closeAllEditors();
-                AscAppManager::getInstance().DestroyCefView( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() );
+                QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
                 break;
             } else {
                 if (m_mainWindowState == Qt::WindowMinimized)
