@@ -174,72 +174,72 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="154"/>
+        <location filename="../src/cmainpanel.cpp" line="153"/>
         <source>FILE</source>
         <translation>SÚBOR</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1336"/>
+        <location filename="../src/cmainpanel.cpp" line="1334"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 bol upravený.&lt;br&gt;Chcete zmeny zachovať?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="540"/>
-        <location filename="../src/cmainpanel.cpp" line="728"/>
-        <location filename="../src/cmainpanel.cpp" line="917"/>
+        <location filename="../src/cmainpanel.cpp" line="538"/>
+        <location filename="../src/cmainpanel.cpp" line="726"/>
+        <location filename="../src/cmainpanel.cpp" line="915"/>
         <source>Yes</source>
         <translation>Áno</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="540"/>
-        <location filename="../src/cmainpanel.cpp" line="728"/>
-        <location filename="../src/cmainpanel.cpp" line="917"/>
+        <location filename="../src/cmainpanel.cpp" line="538"/>
+        <location filename="../src/cmainpanel.cpp" line="726"/>
+        <location filename="../src/cmainpanel.cpp" line="915"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="540"/>
+        <location filename="../src/cmainpanel.cpp" line="538"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="708"/>
-        <location filename="../src/cmainpanel.cpp" line="751"/>
+        <location filename="../src/cmainpanel.cpp" line="706"/>
+        <location filename="../src/cmainpanel.cpp" line="749"/>
         <source>File format not supported.</source>
         <translation>Formát súboru nie je podporovaný.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="731"/>
+        <location filename="../src/cmainpanel.cpp" line="729"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 neexistuje.&lt;br&gt;Odstrániť súbor zo zoznamu?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1252"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>Sign Up</source>
         <translation>Zaregistrovať</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="764"/>
+        <location filename="../src/cmainpanel.cpp" line="762"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="765"/>
+        <location filename="../src/cmainpanel.cpp" line="763"/>
         <source>Book%1.xlsx</source>
         <translation>Zošit%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="766"/>
+        <location filename="../src/cmainpanel.cpp" line="764"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentácia%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="918"/>
+        <location filename="../src/cmainpanel.cpp" line="916"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="996"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>Print Document</source>
         <translation>Vytlačiť dokument</translation>
     </message>
