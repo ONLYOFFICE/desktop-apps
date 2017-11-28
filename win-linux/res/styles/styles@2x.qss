@@ -185,19 +185,11 @@ CDownloadWidget QLabel#labelName {
     font-family: 'Open Sans',sans-serif,Arial;     
 }
 
-QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons_2x.png");
-}
-
 QPushButton {
     border: 2px solid #cbcbcb;
     padding:0 40px;
     height: 44px;
     border-radius:4px;
-    font-size: 22px;
-}
-
-QLabel[class=msg-report] {
     font-size: 22px;
 }
 

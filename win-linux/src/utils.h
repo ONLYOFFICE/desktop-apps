@@ -62,6 +62,8 @@ public:
 
 //    static QByteArray getAppStylesheets(int);
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
+    static QByteArray readStylesheets(std::vector<QString> *);
+    static QByteArray readStylesheets(const QString&);
 };
 
 #endif // UTILS_H

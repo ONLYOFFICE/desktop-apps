@@ -148,8 +148,16 @@ CMessage::CMessage(QWidget * p)
     m_centralWidget->setLayout(_c_layout);
     m_centralWidget->setMinimumWidth(350*m_dpiRatio);
 //    m_centralWidget->setWindowTitle(APP_TITLE);
-    m_centralWidget->setStyleSheet("QPushButton{min-width:40px;}");
     m_centralWidget->move(0, 0);
+
+    QString _styles(Utils::readStylesheets(":/styles/message.qss"));
+    _styles.append(QString("QPushButton{min-width:%1px;}").arg(40*m_dpiRatio));
+    m_centralWidget->setStyleSheet( _styles );
+
+    m_centralWidget->setObjectName("messageBody");
+    if ( m_dpiRatio > 1 ) {
+        m_centralWidget->setProperty("hdpi", true);
+    }
 }
 
 void CMessage::setButtons(std::initializer_list<QString> btns)

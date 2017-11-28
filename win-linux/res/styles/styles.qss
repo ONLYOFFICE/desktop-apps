@@ -355,22 +355,6 @@ CDownloadWidget QLabel#labelName {
     font-family: 'Open Sans',sans-serif,Arial;     
 }
 
-QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons.png");
-}
-
-QLabel[class=msg-icon][type=msg-warn] {
-    background-position: bottom right;
-}
-QLabel[class=msg-icon][type=msg-error] {
-    background-position: top left;
-}
-QLabel[class=msg-icon][type=msg-info] {
-    background-position: bottom left;
-}
-QLabel[class=msg-icon][type=msg-confirm] {
-    background-position: top right;
-}
 /**/
 QPrintDialog, QPrintPropertiesDialog {
     background-color:#fff;

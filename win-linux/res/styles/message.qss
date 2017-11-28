@@ -1,0 +1,28 @@
+QLabel[class=msg-icon] {
+    background-image: url(":/res/icons/message_icons.png");
+}
+QLabel[class=msg-icon][type=msg-warn] {
+    background-position: bottom right;
+}
+QLabel[class=msg-icon][type=msg-error] {
+    background-position: top left;
+}
+QLabel[class=msg-icon][type=msg-info] {
+    background-position: bottom left;
+}
+QLabel[class=msg-icon][type=msg-confirm] {
+    background-position: top right;
+}
+#messageBody[hdpi] QLabel[class=msg-icon] {
+    background-image: url(":/res/icons/message_icons_2x.png");
+}
+#messageBody[hdpi] QLabel[class=msg-report] {
+    font-size: 22px;
+}
+#messageBody[hdpi] QPushButton {
+    /* border: 2px solid #cbcbcb; */
+    /* border-radius:4px; */
+    padding:0 40px;
+    height: 44px;
+    font-size: 22px;
+}
