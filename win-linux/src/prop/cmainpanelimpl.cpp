@@ -32,10 +32,34 @@
 
 #include "cmainpanelimpl.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "defines.h"
+#include "utils.h"
+#include "version.h"
+#include "version_p.h"
+
+#include <QJsonObject>
+
+#define HTML_QUOTE "\\u005c&quot;" // \" symbols
+#define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
 CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
+}
+
+void CMainPanelImpl::refreshAboutVersion()
+{
+    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
+                            " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
+
+    QJsonObject _json_obj;
+    _json_obj["version"]    = VER_FILEVERSION_STR;
+    _json_obj["edition"]    = "%1";
+    _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
+    _json_obj["link"]       = URL_SITE;
+
+    AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
 }
 
 void CMainPanelImpl::updateScaling()

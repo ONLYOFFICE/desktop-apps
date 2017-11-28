@@ -78,7 +78,7 @@ public:
 #endif
 
 protected:
-    void refreshAboutVersion();
+    virtual void refreshAboutVersion() = 0;
     virtual QString getSaveMessage();
 
 private:

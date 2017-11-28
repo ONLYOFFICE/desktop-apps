@@ -73,7 +73,6 @@
 
 using namespace NSEditorApi;
 
-#define HTML_QUOTE "\\u005c&quot;" // \" symbols
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 #ifdef _WIN32
 #define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
@@ -1306,21 +1305,6 @@ void CMainPanel::onMainPageReady()
         AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
         doOpenLocalFiles();
     });
-}
-
-void CMainPanel::refreshAboutVersion()
-{
-    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
-                            " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
-
-    QJsonObject _json_obj;
-    _json_obj["version"]    = VER_FILEVERSION_STR;
-    _json_obj["edition"]    = "%1";
-    _json_obj["appname"]    = WINDOW_NAME;
-    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
-    _json_obj["link"]       = URL_SITE;
-
-    AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:version", Utils::encodeJson(_json_obj).arg(_license) );
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

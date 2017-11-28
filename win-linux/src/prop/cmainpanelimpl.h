@@ -42,6 +42,7 @@ public:
 
     void updateScaling();
 private:
+    void refreshAboutVersion();
 };
 
 #endif // CMAINPANELIMPL_H
