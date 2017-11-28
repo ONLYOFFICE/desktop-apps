@@ -49,7 +49,11 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         _sw = reinterpret_cast<CSingleWindow *>(w);
 
         if ( _sw ) {
-//            delete _sw, _sw = NULL;
+#ifdef _WIN32
+            delete _sw, _sw = NULL;
+#else
+            _sw->deleteLater();
+#endif
         }
     }
 
@@ -59,8 +63,11 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         _window = reinterpret_cast<CMainWindow *>(w);
 
         if ( _window ) {
-//            delete _window,
-//            _window = NULL;
+#ifdef _WIN32
+            delete _window, _window = NULL;
+#else
+            _window->deleteLater();
+#endif
         }
     }
 
@@ -346,6 +353,9 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_vecStyles.push_back(":styles/res/styles/styles.qss");
     _app.m_vecStyles2x.push_back(":styles@2x/styles.qss");
     _app.m_private->applyStylesheets();
+
+    // TODO: merge stylesheets and apply for the whole app
+//    qApp->setStyleSheet( Utils::readStylesheets(":styles/res/styles/styles.qss") );
 
     // Font
     QFont mainFont = QApplication::font();
