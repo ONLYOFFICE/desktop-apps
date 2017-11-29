@@ -343,7 +343,7 @@ window.LoginDlg = function() {
                         if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
                             $el.find('#btn-login-sso').html(obj.response.ssoLabel);
 
-                        _height += 85;
+                        _height += 96;
                     }
 
                     $el.find('#panel-portal').hide();
