@@ -357,20 +357,25 @@
                         if ( obj ) {
                             var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                             if ( model ) {
-                                !model.get('logged') && model.set('logged', true);
-                            } else {
-                                let info = {
-                                    portal: obj.domain,
-                                    user: obj.displayName,
-                                    email: obj.email
-                                };
+                                if ( model.email == obj.email ) {
+                                    !model.get('logged') && model.set('logged', true);
+                                    return;
+                                } else {
+                                    PortalsStore.forget(obj.domain);
+                                }
+                            }
 
-                                info.portal.endsWith('/') &&
+                            let info = {
+                                portal: obj.domain,
+                                user: obj.displayName,
+                                email: obj.email
+                            };
+
+                            info.portal.endsWith('/') &&
                                     (info.portal = info.portal.slice(0,-1));
 
-                                PortalsStore.keep(info);
-                                _update_portals.call(this);
-                            }
+                            PortalsStore.keep(info);
+                            _update_portals.call(this);
                         }
                     }
                 });
