@@ -306,7 +306,7 @@ window.LoginDlg = function() {
 
     function onNextClick() {
         hideLoginError();
-        portal = $el.find('#auth-portal').val().trim();
+        portal = $el.find('#auth-portal').val().trim().toLowerCase();
 
         var re_wrong_symb = /[\s\\]/;
         if (!portal.length || re_wrong_symb.test(portal)) {
