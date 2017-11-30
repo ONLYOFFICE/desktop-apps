@@ -197,8 +197,8 @@ void CDownloadWidget::downloadProcess(void * info)
             if (!path.isEmpty()) {
                 item->set_is_temporary(false);
 
-                if ( !m_parentButton->isVisible()) {
-                    m_parentButton->setVisible(true);
+                if ( !m_pToolButton->isVisible() ) {
+                    m_pToolButton->setVisible(true);
                 }
             }
         }
