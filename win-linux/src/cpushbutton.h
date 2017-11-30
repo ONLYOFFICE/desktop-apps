@@ -42,10 +42,10 @@ class CPushButton : public QPushButton
 
 public:
     explicit CPushButton(QWidget *parent, uchar scaling);
-    CPushButton(uchar scaling);
+    CPushButton(uchar scaling = 1);
     ~CPushButton();
 
-    void setAnimatedIcon(QPair<QString, QString>&);
+    void setAnimatedIcon(QPair<QString, QString>&, bool autostart = false);
     void startIconAnimation(bool);
 
     void setEnabled(bool);

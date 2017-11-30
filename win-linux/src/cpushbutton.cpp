@@ -79,10 +79,14 @@ CPushButton::~CPushButton()
     }
 }
 
-void CPushButton::setAnimatedIcon(QPair<QString, QString>& icon)
+void CPushButton::setAnimatedIcon(QPair<QString, QString>& icon, bool autostart)
 {
     _icon = QPair<QString,QString>(icon);
     applyAnimatedIcon(_dpi_ratio > 1 ? _icon.first : _icon.second);
+
+    if ( autostart && _movie->frameCount() > 0 ) {
+        _movie->start();
+    }
 }
 
 void CPushButton::applyAnimatedIcon(const QString& f)
@@ -101,8 +105,6 @@ void CPushButton::applyAnimatedIcon(const QString& f)
         if (_movie->loopCount() != -1) {
             connect(_movie, SIGNAL(finished()), _movie, SLOT(start()));
         }
-
-        _movie->start();
     }
 }
 
@@ -172,8 +174,8 @@ void CPushButton::paintEvent(QPaintEvent * e)
     option.icon = QIcon();
     p.drawControl(QStyle::CE_PushButton, option);
 
-    QRect r = QRect(QPoint(0, 5*_dpi_ratio), option.iconSize);
-    p.drawItemPixmap(r, Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap());
+    p.drawItemPixmap( QRect(QPoint(0, 5*_dpi_ratio), option.iconSize),
+                        Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap() );
 }
 
 void CPushButton::onAnimationFinished()
@@ -188,10 +190,14 @@ void CPushButton::setScaling(uchar s)
     _dpi_ratio = s;
 
     setIconSize(QSize(16, 16) * _dpi_ratio);
-    applyAnimatedIcon(_dpi_ratio > 1 ? _icon.first : _icon.second);
+    bool autostart = _movie->state() == QMovie::Running;
+    applyAnimatedIcon(_dpi_ratio > 1 ? _icon.second : _icon.first);
 
     if ( !_fixed_size.isEmpty() )
-        setFixedSize( _fixed_size * _dpi_ratio );
+        QPushButton::setFixedSize( _fixed_size * _dpi_ratio );
+
+    if ( autostart )
+        _movie->start();
 }
 
 void CPushButton::setFixedSize(const QSize& s)
