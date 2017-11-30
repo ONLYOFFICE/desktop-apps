@@ -61,7 +61,7 @@ bool CProfileMenuFilter::eventFilter(QObject * obj, QEvent *event)
         return false;
 
     QMenu * menu = dynamic_cast<QMenu*>(obj);
-    if (menu && event->type() == QEvent::Show && obj == _parentButton->menu()) {
+    if ( event->type() == QEvent::Show && obj == _parentButton->menu() ) {
         QPoint pos = ((QWidget*)_parentButton->parent())->mapToGlobal(_parentButton->pos());
         pos += QPoint(_parentButton->width() - menu->width(), _parentButton->height() + 6);
         _parentButton->menu()->move(pos);
@@ -230,7 +230,7 @@ void CDownloadWidget::removeFile(int id)
 void CDownloadWidget::removeFile(MapItem iter)
 {
     if (iter != m_mapDownloads.end()) {
-        CDownloadItem * di = reinterpret_cast<CDownloadItem *>((*iter).second);
+        CDownloadItem * di = static_cast<CDownloadItem *>((*iter).second);
 
 //        CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(di->info());
 //        RELEASEINTERFACE(pData)
@@ -258,7 +258,7 @@ void CDownloadWidget::updateProgress(MapItem iter, void * data)
     CDownloadItem * d_item;
     CAscDownloadFileInfo * pData;
 
-    d_item = reinterpret_cast<CDownloadItem *>((*iter).second);
+    d_item = static_cast<CDownloadItem *>((*iter).second);
     if (d_item) {
 //        pData = reinterpret_cast<CAscDownloadFileInfo *>(d_item->info());
         pData = reinterpret_cast<CAscDownloadFileInfo *>(data);

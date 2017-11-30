@@ -4,8 +4,8 @@
     font-size: 22px;
 }
 
-QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
-    QPushButton#toolButtonProfile, QPushButton#toolButtonDownload {
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose, QPushButton#toolButtonDownload {
         padding: 12px;
 }
 
@@ -31,19 +31,6 @@ QPushButton#toolButtonMain[class=normal],
     QPushButton#toolButtonMain[class=normal]:hover
 {
     border-bottom-width: 2px;
-}
-
-QPushButton#toolButtonProfile {
-    background-image:url(:/res/icons/profile_normal_2x.png);
-    background-repeat: no-repeat;
-}
-
-QPushButton#toolButtonProfile:disabled {
-    background-image:url(:/res/icons/profile_disabled_2x.png);
-}
-
-QPushButton#toolButtonProfile:hover {
-    background-image:url(:/res/icons/profile_hover_2x.png);
 }
 
 QPushButton::menu-indicator {
@@ -127,35 +114,6 @@ QTabBar QToolButton::right-arrow:disabled {
 
 QTabBar::scroller {
     width:32px;
-}
-
-QMenu#menuButtonProfile,
-    QMenu#menuButtonDownload {
-    border: 2px solid #d1d1d1;
-}
-
-QMenu#menuButtonProfile::item,
-    QMenu#menuButtonDownload::item {
-    padding: 10px 40px;
-    font-size: 24px;
-    height: 68px;
-}
-
-QMenu#menuButtonProfile::separator, 
-    QMenu#menuButtonDownload::separator {
-    height: 2px;
-    margin-top: 20px;
-}
-
-CUserProfileWidget QLabel {
-    font-size: 24px;
-    margin: 0 18px;
-}
-
-CUserProfileWidget QLabel#labelName {
-    font-size: 32px;
-    margin-top: 28px;
-    margin-bottom: 16px;
 }
 
 CUserProfileWidget QLabel#labelPortal,
