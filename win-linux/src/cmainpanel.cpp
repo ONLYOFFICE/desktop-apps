@@ -92,9 +92,8 @@ public:
 CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
         m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
-        m_pButtonDownload(new CPushButton(dpi_ratio)),
-        m_isMaximized(false), m_isCustomWindow(isCustomWindow),
-        m_pWidgetDownload(new CDownloadWidget)
+        m_isMaximized(false)
+      , m_isCustomWindow(isCustomWindow)
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
       , m_inFiles(NULL)
@@ -128,12 +127,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
-    // download
-    m_pButtonDownload->setObjectName("toolButtonDownload");
-    m_pButtonDownload->setFixedSize(QSize(33, TOOLBTN_HEIGHT));
-    QPair<QString,QString> _icon_download{":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"};
-    m_pButtonDownload->setAnimatedIcon( _icon_download );
-
 #ifdef __linux__
     m_boxTitleBtns = new CX11Caption(centralWidget);
 #else
@@ -147,7 +140,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
     layoutBtns->setSpacing(1*m_dpiRatio);
     layoutBtns->addWidget(label);
-    layoutBtns->addWidget(m_pButtonDownload);
 
     // Main
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
@@ -193,7 +185,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
-
         m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
     } else {
         m_pButtonMain->setProperty("theme", "light");
@@ -212,20 +203,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->setPalette(palette);
     m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->applyCustomTheme(isCustomWindow);
-
-    // download menu
-    QMenu * menuDownload = new QMenu();
-    QWidgetAction * waction = new QWidgetAction(menuDownload);
-    waction->setDefaultWidget(m_pWidgetDownload);
-    menuDownload->setObjectName("menuButtonDownload");
-    menuDownload->addAction(waction);
-
-    m_pButtonDownload->setMenu(menuDownload);
-    m_pWidgetDownload->setManagedElements(m_pButtonDownload);
-
-    CProfileMenuFilter * eventFilter = new CProfileMenuFilter(this);
-    eventFilter->setMenuButton(m_pButtonDownload);
-    menuDownload->installEventFilter(eventFilter);
 
     QCefView * pMainWidget = new QCefView(centralWidget);
     pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
@@ -246,8 +223,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 //    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
 //    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
 //    m_pTabs->updateIcons();
-
-    m_pButtonDownload->setVisible(false, false);
 
     QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
@@ -925,9 +900,17 @@ void CMainPanel::onDocumentSaveInnerRequest(int id)
 
 void CMainPanel::onDocumentDownload(void * info)
 {
+    if ( !m_pWidgetDownload ) {
+        m_pWidgetDownload = new CDownloadWidget;
+        m_pWidgetDownload->setScaling(m_dpiRatio);
+
+        QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
+        layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+    }
+
     m_pWidgetDownload->downloadProcess(info);
 
-    NSEditorApi::CAscDownloadFileInfo * pData = reinterpret_cast<NSEditorApi::CAscDownloadFileInfo *>(info);
+    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
     RELEASEINTERFACE(pData);
 }
 
@@ -1337,7 +1320,7 @@ void CMainPanel::updateScaling()
     layoutBtns->setSpacing(1*m_dpiRatio);
 
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
-    m_pButtonDownload->setScaling(m_dpiRatio);
+    if ( m_pWidgetDownload ) m_pWidgetDownload->setScaling(m_dpiRatio);
 }
 void CMainPanel::onCheckUpdates()
 {

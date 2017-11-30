@@ -34,7 +34,7 @@
 #define CDOWNLOADWIDGET_H
 
 #include <QWidget>
-#include <QPushButton>
+#include "cpushbutton.h"
 
 //class CProfileMenuFilter;
 class CProfileMenuFilter : public QObject {
@@ -58,8 +58,9 @@ public:
     explicit CDownloadWidget(QWidget *parent = 0);
     ~CDownloadWidget();
 
-    void setManagedElements(QPushButton *);
+    void setScaling(uchar);
     void downloadProcess(void *);
+    QPushButton * toolButton();
 //    void updateProgress();
 //    void cancelAll();
 
@@ -74,8 +75,10 @@ protected:
     void resizeEvent(QResizeEvent *);
 
 private:
-    QPushButton * m_parentButton;
+    CPushButton * m_pToolButton;
     std::map<int, CDownloadItem *> m_mapDownloads;
+    QMargins m_defMargins;
+    int m_defSpacing;
 
 signals:
     void downloadCanceled(int);

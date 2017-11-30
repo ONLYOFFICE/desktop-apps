@@ -170,13 +170,12 @@ private:
     QPushButton*    m_pButtonMaximize;
     QPushButton*    m_pButtonClose;
     QPushButton*    m_pButtonProfile;
-    CPushButton*    m_pButtonDownload;
 
     QHBoxLayout *   m_layoutBtns;
     QWidget *       m_boxTitleBtns;
     bool            m_isMaximized;
 
-    CDownloadWidget *       m_pWidgetDownload;
+    CDownloadWidget *   m_pWidgetDownload = Q_NULLPTR;
 
     printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
