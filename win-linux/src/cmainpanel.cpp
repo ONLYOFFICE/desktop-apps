@@ -1248,6 +1248,7 @@ void CMainPanel::onOutsideAuth(QString json)
 
         int res = m_pTabs->addOAuthPortal(_domain, objRoot["status"].toString(), _sso_service);
         if (!(res < 0)) {
+            m_pTabs->setCurrentIndex(res);
             RecalculatePlaces();
             QTimer::singleShot(200, this, [=]{
                 toggleButtonMain(false);
