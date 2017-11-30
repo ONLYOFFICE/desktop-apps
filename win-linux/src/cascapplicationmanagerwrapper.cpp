@@ -355,7 +355,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-//    qApp->setStyleSheet( Utils::readStylesheets(":styles/res/styles/styles.qss") );
+    qApp->setStyleSheet( Utils::readStylesheets(":styles/res/styles/styles.qss") );
 
     // Font
     QFont mainFont = QApplication::font();
