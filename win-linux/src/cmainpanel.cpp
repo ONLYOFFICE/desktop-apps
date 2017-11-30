@@ -58,6 +58,7 @@
 #include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "cwindowbase.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
