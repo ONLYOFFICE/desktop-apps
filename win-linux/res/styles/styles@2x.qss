@@ -116,31 +116,29 @@ QTabBar::scroller {
     width:32px;
 }
 
-CUserProfileWidget QLabel#labelPortal,
-    CUserProfileWidget QLabel#labelEmail {
-    font-family: 'Open Sans',sans-serif,Arial; 
-    margin-left: 6px;
+/* download widget */
+QMenu[hdpi]#menuButtonDownload {
+    border-width: 2px;
 }
 
-CDownloadWidget QProgressBar {
+CDownloadWidget[hdpi] QProgressBar {
     border-radius: 4px;
     max-height: 10px;
     margin-right: 20px;
     margin-top: 2px;
+    min-width: 400px;
 }
 
-CDownloadWidget QProgressBar::chunk {
+CDownloadWidget[hdpi] QProgressBar::chunk {
     border-radius: 4px;
 }
 
-CDownloadWidget QPushButton#buttonCancel {
-    font-family: 'Open Sans',sans-serif,Arial;
+CDownloadWidget[hdpi] QPushButton#buttonCancel {
     font-size: 24px;
 }
 
-CDownloadWidget QLabel#labelName {
+CDownloadWidget[hdpi] QLabel#labelName {
     font-size: 32px;
-    font-family: 'Open Sans',sans-serif,Arial;     
 }
 
 QPushButton {

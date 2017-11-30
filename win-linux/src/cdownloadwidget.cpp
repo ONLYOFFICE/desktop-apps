@@ -306,7 +306,40 @@ void CDownloadWidget::resizeEvent(QResizeEvent * e)
 
 void CDownloadWidget::setScaling(uchar factor)
 {
+    if ( factor > 1 ) {
+        setProperty("hdpi", true);
+        m_pToolButton->menu()->setProperty("hdpi", true);
+    } else {
+        setProperty("hdpi", QVariant(QVariant::Invalid));
+        m_pToolButton->menu()->setProperty("hdpi", QVariant(QVariant::Invalid));
+    }
+
+    layout()->setContentsMargins(m_defMargins * factor);
+    layout()->setSpacing(m_defSpacing * factor);
+
     m_pToolButton->setScaling(factor);
+    setMaximumWidth(DOWNLOAD_WIDGET_MAX_WIDTH * factor);
+
+    for (int i(0); i < layout()->count(); ++i) {
+        QWidget * _d_item = layout()->itemAt(i)->widget();
+
+        int j = _d_item->layout()->count();
+        while ( !(--j < 0) ) {
+            QWidget * _qw = _d_item->layout()->itemAt(j)->widget();
+
+            _qw->style()->unpolish(_qw);
+            _qw->style()->polish(_qw);
+        }
+    }
+
+//    qApp->setStyleSheet(qApp->styleSheet());
+//    style()->unpolish(this);
+//    style()->polish(this);
+//    update();
+
+    m_pToolButton->menu()->style()->unpolish(m_pToolButton->menu());
+    m_pToolButton->menu()->style()->polish(m_pToolButton->menu());
+    QPixmap::grabWidget(m_pToolButton->menu());
 }
 
 //void CDownloadWidget::updateProgress()
