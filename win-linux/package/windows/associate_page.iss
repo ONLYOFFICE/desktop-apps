@@ -331,7 +331,7 @@ begin
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0], '', argsArray[1]);
 
         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\DefaultIcon', '', ExpandConstant('{app}\{#iconsExe},' + argsArray[2]));
-        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#NAME_EXE_OUT}" "%1"'));
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0] + '\shell\open\command', '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
       //end;
 
       ext := LowerCase(AudioExts[i]);
@@ -358,7 +358,7 @@ begin
         end;
       end else
       begin
-        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT}\shell\open\command'), '', ExpandConstant('"{app}\{#NAME_EXE_OUT}" "%1"'));
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT}\shell\open\command'), '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
         RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'), '', '');
       end;
     end;
