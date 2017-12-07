@@ -66,7 +66,7 @@ QStringList * Utils::getInputFiles(const QStringList& inlist)
     if ( !inlist.isEmpty() ) {
         _ret_files_list = new QStringList;
 
-        QStringListIterator i(inlist); i.next();
+        QStringListIterator i(inlist);
         while (i.hasNext()) {
             QString arg = i.next();
 
