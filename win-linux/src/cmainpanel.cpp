@@ -1134,11 +1134,15 @@ void CMainPanel::onFullScreen(bool apply)
 {
     if (apply) {
         m_isMaximized = m_mainWindowState == Qt::WindowMaximized;
+        m_mainWindowState = Qt::WindowFullScreen;
 
         m_pTabs->setFullScreen(apply);
         emit mainWindowChangeState(Qt::WindowFullScreen);
-    } else {
-        emit mainWindowChangeState(m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState);
+    } else
+    if ( m_mainWindowState == Qt::WindowFullScreen ) {
+        m_mainWindowState = m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState;
+
+        emit mainWindowChangeState(m_mainWindowState);
         m_pTabs->setFullScreen(apply);
     }
 }
