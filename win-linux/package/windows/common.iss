@@ -2,13 +2,14 @@
 #define sAppName            'ONLYOFFICE Desktop Editors'
 #define APP_PATH            'ONLYOFFICE\DesktopEditors'
 #define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
-#define NAME_EXE_OUT        'DesktopEditors.exe'
-#define iconsExe            'editors.exe'
+#define NAME_EXE_IN         'DesktopEditors.exe'
+#define NAME_EXE_OUT        'editors.exe'
+#define iconsExe            'DesktopEditors.exe'
 #define licfile             'agpl-3.0'
 #define APPWND_CLASS_NAME   'DocEditorsWindowClass'
 
-#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_OUT)
-#define sAppVerShort      Copy(sAppVersion, 0, 3)
+#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_IN)
+#define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #include "associate_page.iss"
 #include "utils.iss"
@@ -286,7 +287,7 @@ begin
   end else
   if CurStep = ssDone then begin
     if not (gHWND = 0) then begin
-      ShellExec('', ExpandConstant('{app}\{#NAME_EXE_OUT}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+      ShellExec('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
     WizardForm.CancelButton.Enabled := isInstalled;
@@ -436,10 +437,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: .\launch.bat;           DestDir: {app};
 Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
 
-Source: ..\..\build\Release\release\{#NAME_EXE_OUT};            DestDir: {app};
+Source: ..\..\build\Release\release\{#NAME_EXE_IN};             DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
@@ -501,7 +501,7 @@ Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\launch.bat; Parameters: {#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runhidden;
+Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 
