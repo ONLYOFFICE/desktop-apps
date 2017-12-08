@@ -190,14 +190,14 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
     }
 }
 
-QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter)
+QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected)
 {
     QString _filter_ = filter;
     if ( _filter_.isEmpty() ) {
         _filter_ = joinFilters();
     }
 
-    QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     return QFileDialog::getOpenFileName(
@@ -223,6 +223,15 @@ QString CFileDialogWrapper::modalOpenImage(const QString& path)
     filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
 
     return modalOpen(path, filter);
+}
+
+QString CFileDialogWrapper::modalOpenPlugins(const QString& path)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    _filter.append(";;" + _plugins_filter);
+
+    return modalOpen(path, _filter, &_plugins_filter);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)

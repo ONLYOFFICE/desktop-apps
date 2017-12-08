@@ -615,7 +615,7 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
         });
 }
 
-void CMainPanel::onLocalGetImage(void * d)
+void CMainPanel::onLocalGetFile(void * d)
 {
 #ifdef _WIN32
     CFileDialogWrapper dlg((HWND)parentWidget()->winId());
@@ -623,16 +623,24 @@ void CMainPanel::onLocalGetImage(void * d)
     CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
 
-    QString file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
-    if (!file_path.isEmpty()) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(file_path).absolutePath());
+    CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
+    QString _filter = QString::fromStdWString(pData->get_Filter()),
+            _file_path;
+    if ( _filter == "plugin" ) {
+        _file_path = dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN));
+    } else
+    if ( _filter == "image" ) {
+        _file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
+    }
+
+    if (!_file_path.isEmpty()) {
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_file_path).absolutePath());
     }
 
     /* data consits id of cefview */
-    CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-    pData->put_Path(file_path.toStdWString());
+    pData->put_Path(_file_path.toStdWString());
 
-    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
+    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
     pEvent->m_pData = pData;
 
     AscAppManager::getInstance().Apply(pEvent);

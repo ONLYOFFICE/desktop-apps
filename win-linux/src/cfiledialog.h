@@ -56,8 +56,9 @@ public:
     ~CFileDialogWrapper();
 
     bool    modalSaveAs(QString&);
-    QString modalOpen(const QString&, const QString& filter = QString(""));
+    QString modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR);
     QString modalOpenImage(const QString&);
+    QString modalOpenPlugins(const QString&);
 
     void    setFormats(std::vector<int>&);
     int     getFormat();
