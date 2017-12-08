@@ -451,7 +451,7 @@ qDebug() << "WM_CLOSE";
 
             if (szArglist != NULL) {
                 QStringList _in_args;
-                for(int i(0); i < nArgs; i++) {
+                for(int i(1); i < nArgs; i++) {
                     _in_args.append(QString::fromStdWString(szArglist[i]));
                 }
 
