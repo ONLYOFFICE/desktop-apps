@@ -60,6 +60,10 @@
     return @[@"ppt", @"pptx", @"ppsx", @"odp"];
 }
 
++ (NSArray *)plugins {
+    return @[@"plugin"];
+}
+
 + (NSDictionary *)ascFormatsInfo {
     return @{
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX): @{

@@ -145,6 +145,11 @@
                                              selector:@selector(onCEFOpenLocalImage:)
                                                  name:CEFEventNameOpenImage
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOpenFileDialog:)
+                                                 name:CEFEventNameOpenFileDialog
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFPortalLogin:)
@@ -164,6 +169,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFPortalNew:)
                                                  name:CEFEventNamePortalNew
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFPortalSSO:)
+                                                 name:CEFEventNamePortalSSO
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -812,6 +822,52 @@
     }
 }
 
+- (void)onCEFOpenFileDialog:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSString * directory = notification.userInfo[@"path"];
+        NSString * fileTypes = notification.userInfo[@"filter"];
+        NSInteger fileId = [notification.userInfo[@"fileId"] intValue];
+
+        if (!directory || directory.length < 1) {
+            directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+        }
+
+        NSArray * allowedFileTypes = [NSArray new];
+
+        if (fileTypes == CEFOpenFileFilterImage) {
+            allowedFileTypes = [ASCConstants images];
+        } else if (fileTypes == CEFOpenFileFilterPlugin) {
+            allowedFileTypes = [ASCConstants plugins];
+        }
+
+        NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+
+        openPanel.canChooseDirectories = NO;
+        openPanel.allowsMultipleSelection = NO;
+        openPanel.canChooseFiles = YES;
+        openPanel.allowedFileTypes = allowedFileTypes;
+        openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+
+        [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+            [openPanel orderOut:self];
+
+            if (result == NSFileHandlingPanelOKButton) {
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+                NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
+                imageInfo->put_Id((int)fileId);
+                imageInfo->put_Filter([fileTypes stdwstring]);
+                imageInfo->put_Path([[[openPanel URL] path] stdwstring]);
+
+                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
+                pEvent->m_pData = imageInfo;
+
+                appManager->Apply(pEvent);
+            }
+        }];
+    }
+}
+
 - (void)onCEFPortalLogin:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSError * err;
@@ -937,6 +993,23 @@
             existTab.params[@"title"] = domainName;
             existTab.title = domainName;
             [self.tabsControl selectTab:existTab];
+        }
+    }
+}
+
+- (void)onCEFPortalSSO:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        NSString * portalUrl = json[@"portal"];
+        NSString * providerUrl = json[@"provider"];
+
+        if (portalUrl && portalUrl) {
+            ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+            tab.title       = portalUrl;
+            tab.type        = ASCTabViewPortal;
+            tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl]} mutableCopy];
+
+            [self.tabsControl addTab:tab selected:YES];
         }
     }
 }
