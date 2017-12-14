@@ -435,21 +435,38 @@ void CAscTabWidget::updateTabIcon(int index)
         if (pEditor) {
             bool is_active = isActive() && index == currentIndex();
             int tab_type = etUndefined;
+#ifdef __USE_COLORED_TAB
+            QString _color = "none";
+#endif
 
             if (pEditor->GetType() == cvwtSimple) {
                 tab_type = etPortal;
             } else {
                 tab_type = pEditor->GetEditorType();
                 switch ( tab_type ) {
+#ifdef __USE_COLORED_TAB
+                case etPresentation: _color = TAB_COLOR_PRESENTATION; break;
+                case etSpreadsheet: _color = TAB_COLOR_SPREADSHEET; break;
+                case etDocument: _color = TAB_COLOR_DOCUMENT; break;
+#else
                 case etPresentation:
                 case etSpreadsheet:
-                case etDocument:     break;
+                case etDocument: break;
+#endif
                 default: tab_type = etUndefined; break;
                 }
             }
 
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             tabBar()->setTabIcon(index, QIcon(icon_name));
+
+#ifdef __USE_COLORED_TAB
+            if ( !isActive() )
+                _color = "none";
+
+            if ( index == currentIndex() )
+                ((CTabBar *)tabBar())->setActiveTabColor(_color);
+#endif
         }
     }
 }

@@ -61,6 +61,16 @@ private:
 signals:
     void tabUndock(int);
 
+#ifdef __USE_COLORED_TAB
+public:
+    void setActiveTabColor(const QString& color)
+    {
+        m_activeColor = color;
+    }
+private:
+    QString m_activeColor = "none";
+#endif
+
 private:
     Q_DECLARE_PRIVATE(QTabBar)
 };

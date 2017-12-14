@@ -411,6 +411,17 @@ void CTabBar::paintEvent(QPaintEvent * event)
             QString text(tab.text);
             tab.text.clear();
             p.drawControl(QStyle::CE_TabBarTab, tab);
+
+#ifdef __USE_COLORED_TAB
+            if ( m_activeColor != "none" ) {
+                QRect tabRect(tab.rect);
+//                tabRect.adjust(0, 0, 1, 0);
+                p.fillRect( tabRect, QBrush(QColor(m_activeColor)) );
+
+                QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
+                p.drawPixmap(tab.rect.topLeft() + QPoint(7,9), _pixmap);
+            }
+#endif
             drawTabCaption(&p, text, tab);
         } else {
             int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
