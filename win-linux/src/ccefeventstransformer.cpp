@@ -185,7 +185,8 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         CAscLocalOpenFileDialog * pData = (CAscLocalOpenFileDialog *)event->m_pData;
 
         ADDREFINTERFACE(pData);
-        QMetaObject::invokeMethod(target, "onLocalGetFile", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onLocalGetFile", Qt::QueuedConnection,
+                                    Q_ARG(int, event->m_nType), Q_ARG(void *, pData));
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN: {

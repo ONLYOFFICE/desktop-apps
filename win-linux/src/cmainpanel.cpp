@@ -615,7 +615,7 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
         });
 }
 
-void CMainPanel::onLocalGetFile(void * d)
+void CMainPanel::onLocalGetFile(int eventtype, void * d)
 {
 #ifdef _WIN32
     CFileDialogWrapper dlg((HWND)parentWidget()->winId());
@@ -640,7 +640,7 @@ void CMainPanel::onLocalGetFile(void * d)
     /* data consits id of cefview */
     pData->put_Path(_file_path.toStdWString());
 
-    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
+    CAscMenuEvent * pEvent = new CAscMenuEvent(eventtype);
     pEvent->m_pData = pData;
 
     AscAppManager::getInstance().Apply(pEvent);
