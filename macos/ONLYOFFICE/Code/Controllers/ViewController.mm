@@ -832,11 +832,11 @@
             directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
 
-        NSArray * allowedFileTypes = [NSArray new];
+        NSArray * allowedFileTypes = @[@"*"];
 
-        if (fileTypes == CEFOpenFileFilterImage) {
+        if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
-        } else if (fileTypes == CEFOpenFileFilterPlugin) {
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterPlugin]) {
             allowedFileTypes = [ASCConstants plugins];
         }
 
