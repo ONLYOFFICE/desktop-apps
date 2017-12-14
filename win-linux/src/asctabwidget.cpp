@@ -113,7 +113,7 @@ COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_) :
 {}
 
 COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_, int _id_) :
-    type(_type_), url(QString::fromStdWString(_url_)), id(_id_), wurl(_url_)
+    COpenOptions(QString(), _type_, QString::fromStdWString(_url_), _id_)
 {}
 
 COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_) :
@@ -121,11 +121,15 @@ COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_) 
 {}
 
 COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_) :
-    name(_name_), type(_type_), url(_url_), id(_id_)
+    name(_name_)
+  , type(_type_)
+  , url(_url_.replace(QRegularExpression("\\\\"), "/"))
+  , id(_id_)
+  , wurl(url.toStdWString())
 {}
 
 COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, std::wstring _url_, int _id_) :
-    name(_name_), type(_type_), url(QString::fromStdWString(_url_)), id(_id_), wurl(_url_)
+    COpenOptions(_name_, _type_, QString::fromStdWString(_url_), _id_)
 {}
 
 COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
