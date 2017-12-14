@@ -62,6 +62,8 @@ int main(int argc, const char * argv[]) {
     // setup Editors directory
     appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/web-apps/apps/api/documents/index.html"] stdwstring];
     
+    appManager->m_oSettings.system_plugins_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/sdkjs-plugins"] stdwstring];
+    
     // setup Dictionary directory
     appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"dictionaries"] stdwstring];
     

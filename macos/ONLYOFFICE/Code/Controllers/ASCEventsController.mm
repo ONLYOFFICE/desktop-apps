@@ -337,6 +337,18 @@ public:
                                                                                      }];
                         break;
                     }
+                    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
+                        NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
+
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenFileDialog
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"filter"  : [NSString stringWithstdwstring:pData->get_Filter()],
+                                                                                     @"fileId"  : @(pData->get_Id())
+                                                                                     }];
+                        break;
+                    }
                     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
                         [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
                         break;
@@ -383,6 +395,10 @@ public:
                                                                               userInfo:nil];
                         } else if (cmd.compare(L"portal:new") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
+                                                                                object:nil
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                        } else if (cmd.compare(L"auth:sso") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalSSO
                                                                                 object:nil
                                                                               userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
                         } else if (cmd.compare(L"files:explore") == 0) {
