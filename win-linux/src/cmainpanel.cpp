@@ -133,8 +133,14 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 #else
     m_boxTitleBtns = new QWidget(centralWidget);
 #endif
+
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+
+#ifdef __DONT_WRITE_IN_APP_TITLE
+    QLabel * label = new QLabel;
+#else
     QLabel * label = new QLabel(APP_TITLE);
+#endif
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
@@ -470,6 +476,7 @@ void CMainPanel::onEditorAllowedClose(int uid)
 
 void CMainPanel::onTabChanged(int index)
 {
+#ifndef __DONT_WRITE_IN_APP_TITLE
     QLabel * title = (QLabel *)m_boxTitleBtns->layout()->itemAt(0)->widget();
 
     if (m_pTabs->isActive() && !(index < 0) && index < m_pTabs->count()) {
@@ -481,6 +488,7 @@ void CMainPanel::onTabChanged(int index)
     } else {
         title->setText(APP_TITLE);
     }
+#endif
 }
 
 void CMainPanel::onTabCloseRequest(int index)
