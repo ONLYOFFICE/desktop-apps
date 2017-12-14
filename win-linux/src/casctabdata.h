@@ -50,7 +50,7 @@ public:
     void    setTitle(const QString&);
     void    setChanged(bool);
     void    setViewId(int);
-//    void    setLocal(bool);
+    void    setLocal(bool);
     void    setUrl(const wstring&);
     void    setUrl(const QString&);
     void    close();
@@ -59,7 +59,7 @@ public:
     bool    changed() const;
     int     viewId() const;
     bool    closed() const;
-//    bool    local() const;
+    bool    local() const;
     CefType viewType() const;
     wstring url() const;
     bool    isViewType(CefType) const;
@@ -70,7 +70,7 @@ private:
     QString _title;
     bool    _is_changed;
     bool    _is_closed;
-//    bool    _is_local;
+    bool    _is_local;
     int     _panel_id;
     CefType _vtype;
     wstring _url;

@@ -198,19 +198,19 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     CCefView * cview = pView->GetCefView();    
     if (opts.type == etLocalFile) {
         ((CCefViewEditor*)cview)->OpenLocalFile(opts.wurl, file_format);
-        opts.type = etUndefined;
+//        opts.type = etUndefined;
     } else
     if (opts.type == etRecoveryFile) {
         res_open = ((CCefViewEditor*)cview)->OpenRecoverFile(opts.id);
-        opts.type = etUndefined;
+//        opts.type = etUndefined;
     } else
     if (opts.type == etRecentFile) {
         res_open = ((CCefViewEditor*)cview)->OpenRecentFile(opts.id);
-        opts.type = etUndefined;
+//        opts.type = etUndefined;
     } else
     if (opts.type == etNewFile) {
         ((CCefViewEditor*)cview)->CreateLocalFile(opts.format, opts.name.toStdWString());
-        opts.type = AscEditorType(opts.format);
+//        opts.type = AscEditorType(opts.format);
     } else {
         cview->load(opts.wurl);
     }
@@ -221,12 +221,14 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         CAscTabData * data = new CAscTabData(opts.name);
         data->setViewId(id_view);
         data->setUrl(opts.wurl);
+        data->setLocal(opts.type);
 
         pView->setData(data);
         tab_index = addTab(pView, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
 
-        applyDocumentChanging(id_view, opts.type);
+        //TODO: test for safe remove
+//        applyDocumentChanging(id_view, opts.type);
         resizeEvent(NULL);
     } else {
         RELEASEOBJECT(pView)
@@ -648,6 +650,8 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     if (!(tabIndex < 0)) {
         CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
         doc->setTitle(name);
+        if ( doc->local() )
+            doc->setUrl( Utils::replaceBackslash(QString(info)) );
 
         tabBar()->setTabText(tabIndex, doc->title());
         tabBar()->setTabToolTip(tabIndex, info);
