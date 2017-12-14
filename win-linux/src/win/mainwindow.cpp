@@ -62,6 +62,8 @@
   #include "../version.h"
 #endif
 
+#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
+
 using namespace std::placeholders;
 extern QStringList g_cmdArgs;
 
@@ -103,7 +105,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"DocEditorsWindowClass";
-    wcx.hbrBackground = CreateSolidBrush( RGB(49, 52, 55) );
+    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -416,7 +418,7 @@ qDebug() << "WM_CLOSE";
         RECT rect;
         GetClientRect(hWnd, &rect);
 
-        HBRUSH hBrush = CreateSolidBrush(RGB(49, 52, 55));
+        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
         FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
         DeleteObject(hBrush);
         return TRUE; }
