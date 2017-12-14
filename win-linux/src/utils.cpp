@@ -377,3 +377,8 @@ QByteArray Utils::readStylesheets(const QString& path)
 
     return _css;
 }
+
+QString Utils::replaceBackslash(QString& path)
+{
+    return path.replace(QRegularExpression("\\\\"), "/");
+}

@@ -51,6 +51,7 @@ public:
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
     static unsigned getScreenDpiRatioByHWND(int);
+    static QString replaceBackslash(QString&);
 
     static bool makepath(const QString&);
 

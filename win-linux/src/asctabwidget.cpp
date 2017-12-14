@@ -123,7 +123,7 @@ COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_) 
 COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_) :
     name(_name_)
   , type(_type_)
-  , url(_url_.replace(QRegularExpression("\\\\"), "/"))
+  , url(Utils::replaceBackslash(_url_))
   , id(_id_)
   , wurl(url.toStdWString())
 {}
@@ -641,7 +641,7 @@ void CAscTabWidget::closePortal(const QString& url, bool editors)
     }
 }
 
-void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& descr)
+void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& info)
 {
     int tabIndex = tabIndexByView(viewId);
 
@@ -650,7 +650,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
         doc->setTitle(name);
 
         tabBar()->setTabText(tabIndex, doc->title());
-        tabBar()->setTabToolTip(tabIndex, descr);
+        tabBar()->setTabToolTip(tabIndex, info);
     }
 }
 

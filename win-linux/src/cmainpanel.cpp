@@ -857,10 +857,10 @@ void CMainPanel::onDocumentName(void * data)
     CAscDocumentName * pData = static_cast<CAscDocumentName *>(data);
 
     QString name = QString::fromStdWString(pData->get_Name());
-    QString descr = pData->get_Url().size() > 0 ? name : QString::fromStdWString(pData->get_Path());
+    QString info = pData->get_Url().size() > 0 ? name : QString::fromStdWString(pData->get_Path());
 
-    if (!descr.length()) descr = name;
-    m_pTabs->applyDocumentChanging(pData->get_Id(), name, descr);
+    if ( !info.length() ) info = name;
+    m_pTabs->applyDocumentChanging(pData->get_Id(), name, info);
     onTabChanged(m_pTabs->currentIndex());
 
     RELEASEINTERFACE(pData);

@@ -40,6 +40,8 @@
 #define TITLE_HEIGHT        29
 #define BUTTON_MAIN_WIDTH   68
 
+#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
+
 namespace WindowBase
 {
 #ifdef _WIN32

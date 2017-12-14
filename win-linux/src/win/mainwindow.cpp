@@ -62,8 +62,6 @@
   #include "../version.h"
 #endif
 
-#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
-
 using namespace std::placeholders;
 extern QStringList g_cmdArgs;
 
