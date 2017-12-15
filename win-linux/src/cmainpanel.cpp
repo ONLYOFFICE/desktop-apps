@@ -155,7 +155,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
-        palette.setColor(QPalette::Background, QColor("#313437"));
+        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);

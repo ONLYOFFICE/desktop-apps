@@ -40,7 +40,12 @@
 #define TITLE_HEIGHT        29
 #define BUTTON_MAIN_WIDTH   68
 
+#ifdef _WIN32
 #define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
+#define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
+#else
+#define TABBAR_BACKGROUND_COLOR "#313437"
+#endif
 
 namespace WindowBase
 {
