@@ -650,8 +650,10 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     if (!(tabIndex < 0)) {
         CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
         doc->setTitle(name);
-        if ( doc->local() )
-            doc->setUrl( Utils::replaceBackslash(QString(info)) );
+        if ( doc->local() ) {
+            QString _path(info);
+            doc->setUrl( Utils::replaceBackslash(_path) );
+        }
 
         tabBar()->setTabText(tabIndex, doc->title());
         tabBar()->setTabToolTip(tabIndex, info);
