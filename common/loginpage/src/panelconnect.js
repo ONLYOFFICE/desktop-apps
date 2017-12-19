@@ -203,7 +203,7 @@
                 dlgLogin = new LoginDlg();
                 dlgLogin.onsuccess(info => {
                     dlgLogin.onclose();
-                    PortalsStore.keep(info);
+                    PortalsStore.keep(info.data);
                     _update_portals.call(this);
 
                     CommonEvents.fire('portal:authorized', [data]);
