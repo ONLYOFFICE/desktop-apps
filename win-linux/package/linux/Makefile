@@ -20,7 +20,11 @@ APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 URPMI_RPM_PACKAGE_DIR = $(URPMI_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 
 REPO_NAME := repo
-REPO = $(PWD)/$(REPO_NAME)
+
+DEB_REPO := $(PWD)/deb-$(REPO_NAME)
+RPM_REPO := $(PWD)/rpm-$(REPO_NAME)
+APT_RPM_REPO := $(PWD)/apt-rpm-$(REPO_NAME)
+URPMI_RPM_REPO := $(PWD)/urpmi-rpm-$(REPO_NAME)
 
 RPM_REPO_OS_NAME := centos
 
@@ -234,61 +238,61 @@ $(INSTALLER):
 	cd qt-installer && ./make-install.sh
 
 deploy-rpm: $(RPM)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(RPM_REPO)
+	mkdir -p $(RPM_REPO)
 
-	cp -rv $(RPM) $(REPO);
-	createrepo -v $(REPO);
+	cp -rv $(RPM) $(RPM_REPO);
+	createrepo -v $(RPM_REPO);
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-deb: $(DEB)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(DEB_REPO)
+	mkdir -p $(DEB_REPO)
 
-	cp -rv $(DEB) $(REPO);
-	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(REPO)/Packages.gz
+	cp -rv $(DEB) $(DEB_REPO);
+	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(DEB_REPO)/Packages.gz
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(REPO_NAME) --acl public-read --delete
-	aws s3 sync $(REPO) s3://$(REPO_NAME)-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(REPO_NAME) --acl public-read --delete
 
 deploy-apt-rpm: $(APT_RPM)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(APT_RPM_REPO)
+	mkdir -p $(APT_RPM_REPO)
 	
-	cp -rv $(APT_RPM) $(REPO);
-	createrepo -v $(REPO);
+	cp -rv $(APT_RPM) $(APT_RPM_REPO);
+	#createrepo -v $(APT_RPM_REPO);
 	
 	#for i in i586 i686 x86_64 noarch; do \
-	#	mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#	mkdir -p "$(URPMI_RPM_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
 	#done
 
-	#cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+	#cp -rv $(APT_RPM) $(URPMI_RPM_REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
 
-	#genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+	#genbasedir --topdir=$(URPMI_RPM_REPO) $(RPM_ARCH) $(REPO_NAME)
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+	aws s3 sync $(APT_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(APT_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-urpmi-rpm: $(URPMI_RPM)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(URPMI_RPM_REPO)
+	mkdir -p $(URPMI_RPM_REPO)
 
 	
-	cp -rv $(URPMI_RPM) $(REPO);
-	createrepo -v $(REPO);
+	cp -rv $(URPMI_RPM) $(URPMI_RPM_REPO);
+	#createrepo -v $(URPMI_RPM_REPO);
 
 	#for i in i586 i686 x86_64 noarch; do \
-	#	mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#	mkdir -p "$(URPMI_RPM_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
 	#done
 
-	#cp -rv $(URPMI_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+	#cp -rv $(URPMI_RPM) $(URPMI_RPM_REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
 
-	#genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+	#genbasedir --topdir=$(URPMI_RPM_REPO) $(RPM_ARCH) $(REPO_NAME)
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+	aws s3 sync $(URPMI_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(URPMI_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-tar: $(TAR)
 	aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
