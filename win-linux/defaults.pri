@@ -105,6 +105,7 @@ linux-g++ {
 
     build_for_centos6 {
         QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        message("build for centos6")
     }
 
     LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicuuc.so.55
