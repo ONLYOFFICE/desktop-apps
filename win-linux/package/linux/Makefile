@@ -87,14 +87,19 @@ endif
 
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
-RPM_DEPENDENCY += $(RPM)
 
 DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
-DEB_DEPENDENCY += $(DEB)
+
+APT_RPM_DEPENDENCY += desktopeditor
+APT_RPM_DEPENDENCY += apt-rpm-version
+
+URPMI_RPM_DEPENDENCY += desktopeditor
+URPMI_RPM_DEPENDENCY += urpmi-rpm-version
 
 TAR_DEPENDENCY += tar-desktopeditor
-TAR_DEPENDENCY += $(TAR)
+
+INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
@@ -120,17 +125,17 @@ PLATFORM := linux_64_static_stdlib
 all: rpm deb apt-rpm urpmi-rpm tar 
 #installer
 
-rpm: $(RPM_DEPENDENCY)
+rpm: $(RPM)
 
-deb: $(DEB_DEPENDENCY)
+deb: $(DEB)
 
-tar: $(TAR_DEPENDENCY)
+tar: $(TAR)
 
-apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+apt-rpm: $(APT_RPM)
 
-urpmi-rpm: desktopeditor urpmi-rpm-version $(URPMI_RPM)
+urpmi-rpm: $(URPMI_RPM)
 
-installer: desktopeditor $(INSTALLER)
+installer: $(INSTALLER)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
@@ -138,7 +143,10 @@ clean:
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
 		$(URPMI_RPM_BUILD_DIR)\
-		$(REPO)\
+		$(DEB_REPO)\
+		$(RPM_REPO)\
+		$(APT_RPM_REPO)\
+		$(URPMI_RPM_REPO)\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz
@@ -220,22 +228,22 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Requires.*\)/\1/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
 endif
 
-$(RPM):
+$(RPM): $(RPM_DEPENDENCY)
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
-$(DEB):
+$(DEB): $(DEB_DEPENDENCY)
 	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
-$(APT_RPM):
+$(APT_RPM): $(APT_RPM_DEPENDENCY)
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
-$(URPMI_RPM):
+$(URPMI_RPM): $(URPMI_RPM_DEPENDENCY)
 	cd urpmi-rpm && rpmbuild -bb --define "_topdir $(URPMI_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
-$(TAR):
+$(TAR): $(TAR_DEPENDENCY)
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
 
-$(INSTALLER):
+$(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
 
 deploy-rpm: $(RPM)
