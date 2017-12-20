@@ -138,7 +138,10 @@ clean:
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
 		$(URPMI_RPM_BUILD_DIR)\
-		$(REPO)\
+		$(DEB_REPO)\
+		$(RPM_REPO)\
+		$(APT_RPM_REPO)\
+		$(URPMI_RPM_REPO)\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz
