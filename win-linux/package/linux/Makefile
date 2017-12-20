@@ -117,7 +117,8 @@ PLATFORM := linux_64_static_stdlib
 
 .PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm urpmi-rpm tar installer
+all: rpm deb apt-rpm urpmi-rpm tar 
+#installer
 
 rpm: $(RPM_DEPENDENCY)
 
@@ -300,4 +301,5 @@ deploy-tar: $(TAR)
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi-rpm deploy-tar deploy-installer
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi-rpm deploy-tar 
+#deploy-installer
