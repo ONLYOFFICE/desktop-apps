@@ -256,14 +256,17 @@ deploy-deb: $(DEB)
 deploy-apt-rpm: $(APT_RPM)
 	rm -rfv $(REPO)
 	mkdir -p $(REPO)
+	
+	cp -rv $(APT_RPM) $(REPO);
+	createrepo -v $(REPO);
+	
+	#for i in i586 i686 x86_64 noarch; do \
+	#	mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#done
 
-	for i in i586 i686 x86_64 noarch; do \
-		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
-	done
+	#cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
 
-	cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
-
-	genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+	#genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
 
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
@@ -272,13 +275,17 @@ deploy-urpmi-rpm: $(URPMI_RPM)
 	rm -rfv $(REPO)
 	mkdir -p $(REPO)
 
-	for i in i586 i686 x86_64 noarch; do \
-		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
-	done
+	
+	cp -rv $(URPMI_RPM) $(REPO);
+	createrepo -v $(REPO);
 
-	cp -rv $(URPMI_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+	#for i in i586 i686 x86_64 noarch; do \
+	#	mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#done
 
-	genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+	#cp -rv $(URPMI_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+
+	#genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
 
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
 	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
