@@ -465,7 +465,8 @@ qDebug() << "WM_CLOSE";
                 }
             }
 
-            SetForegroundWindow(hWnd);
+            ::SetForegroundWindow(hWnd);
+            ::SetFocus(hWnd);
             LocalFree(szArglist);
         }
         break;}

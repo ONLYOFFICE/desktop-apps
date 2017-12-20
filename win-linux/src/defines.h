@@ -96,6 +96,13 @@ typedef unsigned char BYTE;
 # define UM_CLOSE_MAINWINDOW    WM_USER+253
 #endif
 
+#ifdef _WIN32
+#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
+#define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
+#else
+#define TABBAR_BACKGROUND_COLOR "#313437"
+#endif
+
 #include "defines_p.h"
 
 #endif // DEFINES_H
