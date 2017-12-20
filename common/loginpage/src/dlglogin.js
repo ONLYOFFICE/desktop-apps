@@ -54,12 +54,12 @@ window.LoginDlg = function() {
                         `<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">` +
                         '<div style="height:10px;"></div>'+
                         '<div id="box-btn-next" class="lr-flex">'+
-                          `<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>`+
-                          '<span />'+
-                          '<div>' +
-                            '<img class="img-loader">' +
-                            '<button id="btn-next" class="btn primary">' + 'Next' + '</button>'+
-                          '</div>'+
+                          `<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
+                           <span />
+                           <div>
+                             <img class="img-loader">
+                             <button id="btn-next" class="btn primary">${utils.Lang.btnNext}</button>
+                          </div>`+
                         '</div>'+
                       '</div>' +
                       '<div id="panel-login" class="sl-panel next">' +
