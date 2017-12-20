@@ -465,6 +465,11 @@ CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
             return _window;
     }
 
+    // TODO: remove for multi-windowed mode
+    if ( !m_vecWidows.empty() ) {
+        return reinterpret_cast<CMainWindow *>(m_vecWidows.at(0));
+    }
+
     return 0;
 }
 
