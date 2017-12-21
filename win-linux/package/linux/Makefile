@@ -88,7 +88,6 @@ endif
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
 
-DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
 
 APT_RPM_DEPENDENCY += desktopeditor
@@ -195,7 +194,7 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Requires.*\)/\1/'  -i rpm/$(PACKAGE_NAME).spec
 endif
 
-deb-version:
+deb-version: desktopeditor
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
 
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
