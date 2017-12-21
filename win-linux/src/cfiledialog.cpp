@@ -96,15 +96,6 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     if ( !m_filters.isEmpty() ) {
         _filters = m_filters;
 
-        /*
-         * for presentatuions, 'odp' filter will have been got from the core dll.
-         * before that, the filter is added manually.
-        */
-        if ( !(QRegExp("^ppt.+").indexIn(_filters.toLower()) < 0) ) {
-            _filters.append( ";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP] );
-        }
-        /* ************************** */
-
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
             _sel_filter = reFilter.cap(1);
         } else {
