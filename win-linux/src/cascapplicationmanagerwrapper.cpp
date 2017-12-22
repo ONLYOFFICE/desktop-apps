@@ -155,6 +155,8 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 
     switch ( _event->m_nType ) {
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
+        locker.unlock();
+
         CAscOnOpenExternalLink * pData = (CAscOnOpenExternalLink *)_event->m_pData;
         Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
 
