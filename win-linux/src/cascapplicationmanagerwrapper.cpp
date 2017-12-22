@@ -101,8 +101,6 @@ void CAscApplicationManagerWrapper::OnNeedCheckKeyboard()
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
-    QMutexLocker locker( &m_oMutex );
-
     if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND ) {
         CAscExecCommand * pData = reinterpret_cast<CAscExecCommand *>(event->m_pData);
 
