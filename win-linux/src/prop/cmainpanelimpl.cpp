@@ -31,10 +31,74 @@
 */
 
 #include "cmainpanelimpl.h"
+#include "cascapplicationmanagerwrapper.h"
+#include "defines.h"
+#include "utils.h"
+#include "version.h"
+#include "version_p.h"
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow)
-    : CMainPanel(parent, pManager, isCustomWindow)
-    , CCefEventsTransformer(this)
+#include <QJsonObject>
+
+#define HTML_QUOTE "\\u005c&quot;" // \" symbols
+#define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
+
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+    : CMainPanel(parent, isCustomWindow, scale)
 {
-    pManager->SetEventListener(this);
+}
+
+void CMainPanelImpl::refreshAboutVersion()
+{
+    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
+                            " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
+
+    QJsonObject _json_obj;
+    _json_obj["version"]    = VER_FILEVERSION_STR;
+    _json_obj["edition"]    = "%1";
+    _json_obj["appname"]    = WINDOW_NAME;
+    _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
+    _json_obj["link"]       = URL_SITE;
+
+    AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
+}
+
+void CMainPanelImpl::updateScaling()
+{
+    CMainPanel::updateScaling();
+
+    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    if ( m_isCustomWindow ) {
+        _tabs_stylesheets += ".qss";
+
+    } else {
+#ifdef __linux__
+        _tabs_stylesheets += ".nix.qss";
+#endif
+    }
+
+    QFile styleFile(_tabs_stylesheets);
+    styleFile.open( QFile::ReadOnly );
+    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
+
+    std::map<int, std::pair<QString, QString> > icons;
+    if ( m_dpiRatio > 1 ) {
+        icons.insert({
+            {etUndefined, std::make_pair(":/newdocument@2x.png", ":/newdocument@2x.png")},
+            {etDocument, std::make_pair(":/de_normal@2x.png", ":/de_active@2x.png")},
+            {etPresentation, std::make_pair(":/pe_normal@2x.png", ":/pe_active@2x.png")},
+            {etSpreadsheet, std::make_pair(":/se_normal@2x.png", ":/se_active@2x.png")},
+            {etPortal, std::make_pair(":/portal.png", ":/portal@2x.png")}
+        });
+    } else {
+        icons.insert({
+            {etUndefined, std::make_pair(":/newdocument.png", ":/newdocument.png")},
+            {etDocument, std::make_pair(":/de_normal.png", ":/de_active.png")},
+            {etPresentation, std::make_pair(":/pe_normal.png", ":/pe_active.png")},
+            {etSpreadsheet, std::make_pair(":/se_normal.png", ":/se_active.png")},
+            {etPortal, std::make_pair(":/portal.png", ":/portal.png")}
+        });
+    }
+
+    m_pTabs->setTabIcons(icons);
+    m_pTabs->setScaling(m_dpiRatio);
 }

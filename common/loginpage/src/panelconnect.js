@@ -166,11 +166,11 @@
                         doLogin(model.path, model.email);
             } else
             if (/\:logout/.test(action)) {
-                _do_logout.call(this, model.name);
+                _do_logout.call(this, model.path);
             } else
             if (/\:forget/.test(action)) {
                 model.removed = true;
-                _do_logout.call(this, model.name);
+                _do_logout.call(this, model.path);
             }
         };
 
@@ -178,13 +178,35 @@
             if ( !dlgLogin ) {
                 dlgLogin = new LoginDlg();
                 dlgLogin.onsuccess(info => {
-                    window.sdk.execCommand("portal:open", info.portal);
+                    if ( info.status == 'sso' ) {
+                        window.sdk.execCommand("auth:sso", JSON.stringify(info));
+                    } else
+                    if ( info.status == 'user' ) {
+                        window.sdk.execCommand("portal:open", info.data.portal);
 
+                        dlgLogin.onclose();
+                        PortalsStore.keep(info.data);
+                        _update_portals.call(this);
+
+                        window.selectAction('connect');
+                    }
+                });
+                dlgLogin.onclose(code=>{
+                    dlgLogin = undefined;
+                });
+                dlgLogin.show(portal, user);
+            }
+        };
+
+        function _authorize(portal, user, data) {
+            if ( !dlgLogin ) {
+                dlgLogin = new LoginDlg();
+                dlgLogin.onsuccess(info => {
                     dlgLogin.onclose();
-                    PortalsStore.keep(info);
+                    PortalsStore.keep(info.data);
                     _update_portals.call(this);
 
-                    window.selectAction('connect');
+                    CommonEvents.fire('portal:authorized', [data]);
                 });
                 dlgLogin.onclose(code=>{
                     dlgLogin = undefined;
@@ -252,7 +274,7 @@
                         elid: model.uid
                     }));
                     
-                    $item.find('.logout').click(model.name, e => {
+                    $item.find('.logout').click(model.path, e => {
                         _do_logout(e.data);
 
                         e.stopPropagation && e.stopPropagation();
@@ -322,8 +344,10 @@
                         if (!!model) {
                             if (!res[1]) {
                                 model.set('logged', false);
-                                model.removed &&
-                                    PortalsStore.forget(param) && _update_portals.call(this);
+                                if ( model.removed ) {
+                                    PortalsStore.forget(param);
+                                    _update_portals.call(this);
+                                }
                             } else
                                 delete model.removed;
                         }
@@ -333,20 +357,25 @@
                         if ( obj ) {
                             var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                             if ( model ) {
-                                !model.get('logged') && model.set('logged', true);
-                            } else {
-                                let info = {
-                                    portal: obj.domain,
-                                    user: obj.displayName,
-                                    email: obj.email
-                                };
+                                if ( model.email == obj.email ) {
+                                    !model.get('logged') && model.set('logged', true);
+                                    return;
+                                } else {
+                                    PortalsStore.forget(obj.domain);
+                                }
+                            }
 
-                                info.portal.endsWith('/') &&
+                            let info = {
+                                portal: obj.domain,
+                                user: obj.displayName,
+                                email: obj.email
+                            };
+
+                            info.portal.endsWith('/') &&
                                     (info.portal = info.portal.slice(0,-1));
 
-                                PortalsStore.keep(info);
-                                _update_portals.call(this);
-                            }
+                            PortalsStore.keep(info);
+                            _update_portals.call(this);
                         }
                     }
                 });
@@ -362,6 +391,19 @@
                 window.CommonEvents.on('portal:create', _on_create_portal);
 
                 return this;
+            },
+            isConnected: function(portal) {
+                var model = collection.find('name', utils.skipUrlProtocol(portal));
+                return model && model.logged;
+            },
+            authorizeOn: function(portal, data) {
+                var model = collection.find('name', utils.skipUrlProtocol(portal));
+                if ( !model ) {
+                    _authorize.call(this, portal, undefined, data);
+                } else
+                if ( !model.logged ) {
+                    _authorize.call(this, portal, model.email, data);
+                }
             }
         };
     })());

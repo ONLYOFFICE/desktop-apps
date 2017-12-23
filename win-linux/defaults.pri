@@ -9,6 +9,8 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/ru.ts \
                 ./langs/de.ts \
                 ./langs/es.ts \
+                ./langs/cs.ts \
+                ./langs/sk.ts \
                 ./langs/fr.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
@@ -39,7 +41,9 @@ HEADERS += \
     $$PWD/src/csplash.h \
     $$PWD/src/cmessage.h \
     $$PWD/src/cfilechecker.h \
-    $$PWD/src/clangater.h
+    $$PWD/src/clogger.h \
+    $$PWD/src/clangater.h \
+    $$PWD/src/cwindowbase.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -54,6 +58,7 @@ SOURCES += \
     $$PWD/src/cfiledialog.cpp \
     $$PWD/src/cprintprogress.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
+    $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
     $$PWD/src/cstyletweaks.cpp \
@@ -61,6 +66,7 @@ SOURCES += \
     $$PWD/src/cmainpanel.cpp \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
+    $$PWD/src/clogger.cpp \
     $$PWD/src/clangater.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
@@ -83,13 +89,15 @@ linux-g++ {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
 
-    HEADERS += src/linux/cmainwindow.h \
-                src/linux/cx11decoration.h \
-                src/linux/singleapplication.h
-    SOURCES += src/linux/cmainwindow.cpp \
-                src/linux/cx11decoration.cpp \
-                src/linux/cx11caption.cpp \
-                src/linux/singleapplication.cpp
+    HEADERS += $$PWD/src/linux/cmainwindow.h \
+                $$PWD/src/linux/cx11decoration.h \
+                $$PWD/src/linux/csinglewindow.h \
+                $$PWD/src/linux/singleapplication.h
+    SOURCES += $$PWD/src/linux/cmainwindow.cpp \
+                $$PWD/src/linux/cx11decoration.cpp \
+                $$PWD/src/linux/cx11caption.cpp \
+                $$PWD/src/linux/csinglewindow.cpp \
+                $$PWD/src/linux/singleapplication.cpp
 
     DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
@@ -97,6 +105,7 @@ linux-g++ {
 
     build_for_centos6 {
         QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        message("build for centos6")
     }
 
     LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicuuc.so.55
@@ -107,6 +116,7 @@ linux-g++ {
 win32 {
     DEFINES += JAS_WIN_MSVC_BUILD WIN32
     DEFINES += WIN32
+    DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
@@ -115,6 +125,7 @@ win32 {
                 $$PWD/src/win/qwinhost.h \
                 $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
+                $$PWD/src/win/csinglewindow.h \
                 $$PWD/src/win/cprintdialog.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
@@ -122,6 +133,7 @@ win32 {
                 $$PWD/src/win/qwinhost.cpp \
                 $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
+                $$PWD/src/win/csinglewindow.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \

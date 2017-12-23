@@ -62,6 +62,12 @@
     NSString * locCopyright     = localizedInfoDictionary[@"NSHumanReadableCopyright"];
 
     locProductName  = locProductName ? locProductName : infoDictionary[@"CFBundleName"];
+    
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    locProductName  = NSLocalizedString(@"ONLYOFFICE Free", nil);
+    locProductName = [locProductName uppercaseString];
+#endif
+    
     locCopyright    = locCopyright ? locCopyright : infoDictionary[@"NSHumanReadableCopyright"];
     
     // EULA View

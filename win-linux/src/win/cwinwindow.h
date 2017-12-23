@@ -40,11 +40,15 @@ class CWinWindow
 {
 public:
     CWinWindow(HWND, QString&);
+    virtual ~CWinWindow(){}
 
-    void modal();
-    void close();
+    virtual void modal();
+    virtual void close();
     void setSize(int w, int h);
     void center();
+
+    HWND handle();
+    virtual void onScreenScaling();
 
 protected:
     HWND    m_hSelf,

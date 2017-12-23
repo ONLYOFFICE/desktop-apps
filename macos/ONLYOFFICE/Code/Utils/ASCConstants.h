@@ -54,7 +54,10 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
-#ifdef _PRODUCT_ONLYOFFICE_RU
+#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
+static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
+#elif _PRODUCT_ONLYOFFICE_RU_PRO
 static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
 static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
 #else
@@ -76,6 +79,10 @@ static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
 
+// CEF types
+static NSString * const CEFOpenFileFilterImage              = @"image";
+static NSString * const CEFOpenFileFilterPlugin             = @"plugin";
+
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
 static NSString * const CEFEventNameTabEditorType           = @"CEF_tabEditorType";
@@ -93,10 +100,12 @@ static NSString * const CEFEventNameEndSaveDialog           = @"CEF_endSaveDialo
 static NSString * const CEFEventNamePrintDialog             = @"CEF_printDialog";
 static NSString * const CEFEventNameOpenLocalFile           = @"CEF_openLocalFile";
 static NSString * const CEFEventNameOpenImage               = @"CEF_openImage";
+static NSString * const CEFEventNameOpenFileDialog          = @"CEF_openFileDialog";
 static NSString * const CEFEventNamePortalLogin             = @"CEF_portalLogin";
 static NSString * const CEFEventNamePortalLogout            = @"CEF_portalLogout";
 static NSString * const CEFEventNamePortalCreate            = @"CEF_portalCreate";
 static NSString * const CEFEventNamePortalNew               = @"CEF_portalNew";
+static NSString * const CEFEventNamePortalSSO               = @"CEF_portalSSO";
 static NSString * const CEFEventNameFileInFinder            = @"CEF_fileOpenInFinder";
 static NSString * const CEFEventNameFilesCheck              = @"CEF_filesCheck";
 static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageReady";
@@ -106,6 +115,7 @@ static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageRea
 + (NSArray *)documents;
 + (NSArray *)spreadsheets;
 + (NSArray *)presentations;
++ (NSArray *)plugins;
 
 + (NSDictionary *)ascFormatsInfo;
 @end

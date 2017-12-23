@@ -37,11 +37,17 @@
 
 #include "../Common/OfficeFileFormats.h"
 
+#include <QList>
 #include <QDebug>
 
 #if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
+// because bug in cef - 'open/save dialog' doesn't open for second time
+#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
+//#define FILEDIALOG_DONT_USE_MODAL
+//
+
 #include "cmessage.h"
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
@@ -71,7 +77,6 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
-
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -88,7 +93,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     _ext = info.suffix();
 
     QRegExp reFilter("([\\w\\s]+\\(\\*\\."+_ext+"+\\))", Qt::CaseInsensitive);
-    if (m_filters.length() > 0) {
+    if ( !m_filters.isEmpty() ) {
         _filters = m_filters;
 
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
@@ -110,10 +115,19 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
-        return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, QFileDialog::DontConfirmOverwrite);
+        return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf,
+                                            QFileDialog::DontConfirmOverwrite
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+                                            | QFileDialog::DontUseNativeDialog
+#endif
+                                            );
     };
 
+#ifdef FILEDIALOG_DONT_USE_MODAL
+    QWidget * _parent = NULL;
+#else
     QWidget * _parent = (QWidget *)parent();
+#endif
     CMessage mess(_parent);
     mess.setButtons({tr("Yes"), tr("No")});
     mess.setIcon(MESSAGE_TYPE_WARN);
@@ -167,19 +181,31 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
     }
 }
 
-QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter)
+QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected)
 {
-    QString _filter_ = filter.length() ? filter : tr("All files (*.*)");
-    QString _sel_filter = tr("All files (*.*)");
+    QString _filter_ = filter;
+    if ( _filter_.isEmpty() ) {
+        _filter_ = joinFilters();
+    }
+
+    QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     return QFileDialog::getOpenFileName(
 #ifdef _WIN32
                 this,
 #else
+# ifdef FILEDIALOG_DONT_USE_MODAL
+                NULL,
+# else
                 (QWidget *)parent(),
+# endif
 #endif
-                tr("Open Document"), path, _filter_, &_sel_filter);
+                tr("Open Document"), path, _filter_, &_sel_filter
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+                , QFileDialog::DontUseNativeDialog
+#endif
+                );
 }
 
 QString CFileDialogWrapper::modalOpenImage(const QString& path)
@@ -188,6 +214,15 @@ QString CFileDialogWrapper::modalOpenImage(const QString& path)
     filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
 
     return modalOpen(path, filter);
+}
+
+QString CFileDialogWrapper::modalOpenPlugins(const QString& path)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    _filter.append(";;" + _plugins_filter);
+
+    return modalOpen(path, _filter, &_plugins_filter);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)
@@ -215,4 +250,34 @@ int CFileDialogWrapper::getKey(const QString &value)
 int CFileDialogWrapper::getFormat()
 {
     return m_format;
+}
+
+QString CFileDialogWrapper::joinFilters() const
+{
+    auto _get_all_exts = [] (const QList<QString>& l) {
+        QRegExp re("[\\w\\s]+\\((\\*\\.\\w+)\\)");
+        QString extns;
+        for ( auto f : l ) {
+            if ( !(re.indexIn(f) < 0) ) {
+                if ( !extns.isEmpty() )
+                    extns.append(" ");
+
+                extns.append( re.cap(1) );
+            }
+        }
+
+        return extns;
+    };
+
+    QString _out;
+    QList<QString> _vl(m_mapFilters.values());
+//    _vl.insert(1, tr("All supported documents") + " (" + _get_all_exts(_vl) + ")");
+    for ( auto f : _vl ) {
+        if ( !_out.isEmpty() )
+            _out.append(";;");
+
+        _out.append(f);
+    }
+
+    return _out;
 }

@@ -39,18 +39,37 @@
 
 class CTabBar : public QTabBar
 {
+    Q_OBJECT
+
 public:
     explicit CTabBar(QWidget * parent = 0);
     virtual ~CTabBar();
 
-    void setTabTextColor(const QColor&);
+    void setTabTextColor(QPalette::ColorGroup, const QColor&);
+    QPalette& customColors();
 
 protected:
+    void mousePressEvent (QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void paintEvent(QPaintEvent *);
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
+
 private:
-    QColor m_capColor;
+    QPalette m_palette;
+    bool m_usePalette = false;
+
+signals:
+    void tabUndock(int);
+
+#ifdef __USE_COLORED_TAB
+public:
+    void setActiveTabColor(const QString& color)
+    {
+        m_activeColor = color;
+    }
+private:
+    QString m_activeColor = "none";
+#endif
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)

@@ -39,12 +39,16 @@
 
 #include <QDebug>
 
-extern uchar g_dpi_ratio;
+CPushButton::CPushButton(uchar scaling)
+    : CPushButton(Q_NULLPTR, scaling)
+{}
 
-CPushButton::CPushButton(QWidget *parent)
-    : QPushButton(parent), _movie(NULL)
+CPushButton::CPushButton(QWidget *parent, uchar scaling)
+    : QPushButton(parent)
+    , _movie(Q_NULLPTR)
+    , _dpi_ratio(scaling)
 {
-    setIconSize(QSize(16*g_dpi_ratio,16*g_dpi_ratio));
+    setIconSize(QSize(16,16) * _dpi_ratio);
 
     int START_OPACITY = 0;
 
@@ -75,23 +79,33 @@ CPushButton::~CPushButton()
     }
 }
 
-void CPushButton::setAnimatedIcon(const QString& f)
+void CPushButton::setAnimatedIcon(QPair<QString, QString>& icon, bool autostart)
 {
-    if (NULL == _movie) {
-        _movie = new QMovie(f);
-        connect(_movie, SIGNAL(frameChanged(int)), this, SLOT(setButtonIcon(int)));
-    } else {
-        disconnect(_movie, SIGNAL(finished()), _movie, SLOT(start()));
+    _icon = QPair<QString,QString>(icon);
+    applyAnimatedIcon(_dpi_ratio > 1 ? _icon.first : _icon.second);
 
-        _movie->stop();
-        _movie->setFileName(f);
+    if ( autostart && _movie->frameCount() > 0 ) {
+        _movie->start();
     }
+}
 
-    if (_movie->loopCount() != -1) {
-        connect(_movie, SIGNAL(finished()), _movie, SLOT(start()));
+void CPushButton::applyAnimatedIcon(const QString& f)
+{
+    if ( !f.isEmpty() ) {
+        if (Q_NULLPTR == _movie) {
+            _movie = new QMovie(f);
+            connect(_movie, SIGNAL(frameChanged(int)), this, SLOT(setButtonIcon(int)));
+        } else {
+            disconnect(_movie, SIGNAL(finished()), _movie, SLOT(start()));
+
+            _movie->stop();
+            _movie->setFileName(f);
+        }
+
+        if (_movie->loopCount() != -1) {
+            connect(_movie, SIGNAL(finished()), _movie, SLOT(start()));
+        }
     }
-
-    _movie->start();
 }
 
 void CPushButton::setButtonIcon(int frame)
@@ -110,7 +124,7 @@ void CPushButton::startIconAnimation(bool start)
         } else {
             if (_movie->state() == QMovie::Running)
                 _movie->jumpToFrame(0);
-                _movie->stop();
+            _movie->stop();
         }
     }
 }
@@ -160,13 +174,36 @@ void CPushButton::paintEvent(QPaintEvent * e)
     option.icon = QIcon();
     p.drawControl(QStyle::CE_PushButton, option);
 
-    QRect r = QRect(QPoint(0, 5*g_dpi_ratio), option.iconSize);
-    p.drawItemPixmap(r, Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap());
+    p.drawItemPixmap( QRect(QPoint(0, 5*_dpi_ratio), option.iconSize),
+                        Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap() );
 }
 
 void CPushButton::onAnimationFinished()
 {
     if (_animation->direction() == QAbstractAnimation::Backward) {
         QPushButton::setVisible(false);
+    }
+}
+
+void CPushButton::setScaling(uchar s)
+{
+    _dpi_ratio = s;
+
+    setIconSize(QSize(16, 16) * _dpi_ratio);
+    bool autostart = _movie->state() == QMovie::Running;
+    applyAnimatedIcon(_dpi_ratio > 1 ? _icon.second : _icon.first);
+
+    if ( !_fixed_size.isEmpty() )
+        QPushButton::setFixedSize( _fixed_size * _dpi_ratio );
+
+    if ( autostart )
+        _movie->start();
+}
+
+void CPushButton::setFixedSize(const QSize& s)
+{
+    if ( !s.isEmpty() ) {
+        _fixed_size = QSize(s);
+        QPushButton::setFixedSize( _fixed_size * _dpi_ratio );
     }
 }

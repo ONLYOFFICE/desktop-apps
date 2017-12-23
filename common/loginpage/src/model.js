@@ -167,6 +167,7 @@ function FileModel(attributes) {
     this.type   = attributes.type;
     this.fileid = attributes.id;
     this.exist  = true;
+    this.islocal = !/^https?:\/\//.test(this.path)
 };
 
 FileModel.prototype = new Model();

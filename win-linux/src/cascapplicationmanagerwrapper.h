@@ -34,48 +34,83 @@
 #define CASCAPPLICATIONMANAGERWRAPPER
 
 #include "applicationmanager.h"
+#include <QObject>
+#include <QMutex>
+#include <vector>
+#include <memory>
+#include "ccefeventstransformer.h"
 
-class CAscApplicationManagerWrapper : public CAscApplicationManager
+#ifdef _WIN32
+#include "win/mainwindow.h"
+#include "win/csinglewindow.h"
+#else
+#include "linux/cmainwindow.h"
+#include "linux/singleapplication.h"
+#include "linux/csinglewindow.h"
+#endif
+
+#define SEND_TO_ALL_START_PAGE nullptr
+
+using namespace std;
+
+class CAscApplicationManagerWrapper;
+typedef CAscApplicationManagerWrapper AscAppManager;
+
+class CAscApplicationManagerWrapper : public QObject, public CAscApplicationManager, CCefEventsTransformer
 {
+    Q_OBJECT
+
 private:
-    QObject * m_pPanel;
+    vector<size_t> m_vecWidows;
+    vector<size_t> m_vecEditors;
+    vector<QString> m_vecStyles;
+    vector<QString> m_vecStyles2x;
+    QMutex         m_oMutex;
+
+private:
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
+    void operator =(CAscApplicationManagerWrapper const&);
+
+    CAscApplicationManagerWrapper();
+    ~CAscApplicationManagerWrapper();
+
+    void StartSaveDialog(const std::wstring& sName, unsigned int nId);
+    void OnNeedCheckKeyboard();
+    int  GetPlatformKeyboardLayout();
+    void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
+
+    CMainWindow * mainWindowFromViewId(int uid) const;
+    CSingleWindow * editorWindowFromViewId(int uid) const;
+
+signals:
+    void coreEvent(void *);
+
+public slots:
+    void onCoreEvent(void *);
+
 
 public:
-    CAscApplicationManagerWrapper()
-    {
-        m_pPanel = NULL;
-    }
+    static CAscApplicationManager & getInstance();
+    static CAscApplicationManager * createInstance();
 
-public:
-    void StartSaveDialog(const std::wstring& sName, unsigned int nId)
-    {
-        // сделал через QMainPanel - чтобы использовать сигналы-слоты.
-        // если сделать QAscApplicationManager : public QObject, то он будет прокидывать
-        // слоты родителю. Т.е. классу CAscApplicationManager.
-        // А в либе я не буду затачиваться на QT
+    CSingleWindow * createReporterWindow(void *);
 
-//        m_pPanel->openDialogSave(sName);
-        QMetaObject::invokeMethod(m_pPanel, "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName), Q_ARG(uint, nId));
-    }
+    static void             startApp();
+    static void             initializeApp();
+    static CMainWindow *    createMainWindow(QRect&);
+    static void             closeMainWindow(const size_t);
+    static void             closeEditorWindow(const size_t);
+    static void             processMainWindowMoving(const size_t, const QPoint&);
+    static uint             countMainWindow();
+    static CMainWindow *    topWindow();
+    static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
+    static void             sendEvent(int type, void * data);
+    static QString          getWindowStylesheets(uint);
 
-    void OnNeedCheckKeyboard()
-    {
-//        m_pPanel->checkKeyboard();
-        QMetaObject::invokeMethod(m_pPanel, "onNeedCheckKeyboard", Qt::QueuedConnection);
-    }
-
-    int GetPlatformKeyboardLayout()
-    {
-        if (this->IsPlatformKeyboardSupport())
-            return CAscApplicationManager::GetPlatformKeyboardLayout();
-
-        return -1;
-    }
-
-    void setMainPanel(QObject * p)
-    {
-        m_pPanel = p;
-    }
+private:
+    class CAscApplicationManagerWrapper_Private;
+    std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 };
 
 #endif // QASCAPPLICATIONMANAGER

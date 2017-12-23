@@ -60,7 +60,6 @@ CExistanceController::~CExistanceController()
 
                 worker->requestInterruption();
                 worker->quit();
-//                worker->terminate();
             }
         }
     }
@@ -69,7 +68,8 @@ CExistanceController::~CExistanceController()
         if ( iter.second ) {
             CFileInspector * worker = iter.second;
             if ( worker->isRunning() ) {
-                worker->wait();
+//                worker->wait();
+                worker->terminate();
             }
 
             ERASE_VALUE(iter)

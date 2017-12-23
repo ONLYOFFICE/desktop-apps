@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="10117"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -787,14 +790,11 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="wrb-Yp-5M3">
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wrb-Yp-5M3">
                                 <rect key="frame" x="0.0" y="45" width="284" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="WRN-30-PHb"/>
                                 </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <font key="titleFont" metaFont="system"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IFv-Rl-0R4">
                                 <rect key="frame" x="20" y="0.0" width="244" height="47"/>
@@ -856,13 +856,13 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" floatsGroupRows="NO" id="jbW-uy-rCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="270" minWidth="270" maxWidth="270" id="weX-vE-oQG">
+                                                <tableColumn identifier="" editable="NO" width="270" minWidth="270" maxWidth="270" id="weX-vE-oQG">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -935,7 +935,6 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="MTH-Mo-zJI">
                                     <rect key="frame" x="-100" y="-100" width="268" height="16"/>
@@ -972,6 +971,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="370" height="340"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="UqY-SG-axH" id="ldS-3e-M6c"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="kIG-b2-o2F" kind="relationship" relationship="window.shadowedContentViewController" id="X4G-5a-Xaz"/>
@@ -1172,6 +1174,7 @@ DQ
                                 <subviews>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-yR-16f">
                                         <rect key="frame" x="9" y="6" width="30" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="icon-login_normal" imagePosition="overlaps" alignment="center" alternateImage="icon-login_hover" state="on" imageScaling="proportionallyDown" inset="2" id="Y6C-rv-Euq">
                                             <behavior key="behavior" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1191,10 +1194,12 @@ DQ
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" animates="YES" image="progress_download_icon" id="yAE-gi-Nvm"/>
                                     </imageView>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDk-dQ-HGi">
                                         <rect key="frame" x="0.0" y="6" width="30" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="jy9-fh-Ni3">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1214,6 +1219,7 @@ DQ
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-DK-gsq">
                                         <rect key="frame" x="135" y="0.0" width="663" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="ONLYOFFICE " drawsBackground="YES" usesSingleLineMode="YES" id="rG1-93-HjS">
                                             <font key="font" metaFont="cellTitle"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1222,6 +1228,7 @@ DQ
                                     </textField>
                                     <customView horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGv-DD-716" customClass="ASCTabsControl">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -1234,7 +1241,7 @@ DQ
                                     <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
                                     <constraint firstAttribute="width" constant="70" id="rYS-3g-y3E"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" title="FILE" bezelStyle="smallSquare" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
+                                <buttonCell key="cell" type="smallSquare" title="START" bezelStyle="smallSquare" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="systemBold" size="10"/>
                                 </buttonCell>

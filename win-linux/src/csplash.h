@@ -39,7 +39,7 @@ class CSplash : public QSplashScreen
 {
 public:
     CSplash(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags f = 0);
-    void show();
+    void show(int scrnum);
 
     static void showSplash();
     static void hideSplash();

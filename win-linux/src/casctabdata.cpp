@@ -34,7 +34,7 @@
 
 CAscTabData::CAscTabData(const QString& t, CefType wt)
     : _title(t), _is_changed(false), _is_closed(false)
-//    , _is_local(false)
+    , _is_local(false)
     , _panel_id(-1)
     , _vtype(wt)
     , _url()
@@ -113,6 +113,11 @@ void CAscTabData::setUrl(const wstring& u)
     _url = u;
 }
 
+void CAscTabData::setUrl(const QString& u)
+{
+    _url = u.toStdWString();
+}
+
 wstring CAscTabData::url() const
 {
     return _url;
@@ -131,4 +136,14 @@ AscEditorType CAscTabData::contentType()
 void CAscTabData::setContentType(AscEditorType t)
 {
     _typeContent = t;
+}
+
+void CAscTabData::setLocal(bool l)
+{
+    _is_local = l;
+}
+
+bool CAscTabData::local() const
+{
+    return _is_local;
 }

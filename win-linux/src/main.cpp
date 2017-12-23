@@ -36,15 +36,14 @@
 #include <QStandardPaths>
 #include <QLibraryInfo>
 #include <QDesktopWidget>
+#include <memory>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "clangater.h"
 
 #ifdef _WIN32
-#include "win/mainwindow.h"
 #include "shlobj.h"
-#include "csplash.h"
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
@@ -56,12 +55,11 @@
 #include <QScreen>
 #include <QApplication>
 #include <QRegularExpression>
-#include "cstyletweaks.h"
 #include "utils.h"
 #include "chelp.h"
 #include "common/File.h"
 
-BYTE g_dpi_ratio = 1;
+QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
 {
@@ -96,6 +94,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.spell_dictionaries_path    = app_path + L"/dictionaries";
         manager->m_oSettings.file_converter_path        = app_path + L"/converter";
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
+        manager->m_oSettings.user_plugins_path          = (user_data_path + "/sdkjs-plugins").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
@@ -103,23 +102,39 @@ int main( int argc, char *argv[] )
 
     if (!CApplicationCEF::IsMainProcess(argc, argv))
     {
-        CApplicationCEF* application_cef = new CApplicationCEF();
-        CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
+        unique_ptr<CApplicationCEF> application_cef(new CApplicationCEF);
+        unique_ptr<CAscApplicationManager> appmanager(AscAppManager::createInstance());
 
-        setup_paths(pApplicationManager);
-        int nReturnCode = application_cef->Init_CEF(pApplicationManager, argc, argv);
-
-        delete application_cef;
-        delete pApplicationManager;
-        return nReturnCode;
+        setup_paths(appmanager.get());
+        return application_cef->Init_CEF(appmanager.get(), argc, argv);
     }
 
 #ifdef _WIN32
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        hMutex = NULL;
+        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
+        if (hwnd != NULL) {
+            WCHAR * cm_line = GetCommandLine();
+
+            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
+            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
+            MyCDS.lpData = cm_line;
+
+            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
+            return 0;
+        }
     }
 #endif
+    const int ac = argc;
+    char ** const av = argv;
+    for (int a(1); a < ac; ++a) {
+        g_cmdArgs << QString::fromLocal8Bit(av[a]);
+    }
+
+    if ( !(g_cmdArgs.indexOf("--help") < 0) ) {
+        CHelp::out();
+        return 0;
+    }
 
 #ifdef __linux__
     SingleApplication app(argc, argv);
@@ -131,113 +146,28 @@ int main( int argc, char *argv[] )
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
-    CAscApplicationManager * pApplicationManager = new CAscApplicationManagerWrapper();
-    setup_paths(pApplicationManager);
-    application_cef->Init_CEF(pApplicationManager, argc, argv);
+
+    setup_paths(&AscAppManager::getInstance());
+    application_cef->Init_CEF(&AscAppManager::getInstance(), argc, argv);
     /* ********************** */
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
-
-#ifdef _WIN32
-    if (hMutex == NULL) {
-        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
-        if (hwnd != NULL) {
-            WCHAR * cm_line = GetCommandLine();
-
-            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
-            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
-            MyCDS.lpData = cm_line;
-
-            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
-
-            pApplicationManager->CloseApplication();
-            return 0;
-        }
-    }
-
-    int _scr_num = QApplication::desktop()->primaryScreen();
-    if (reg_user.contains("position")) {
-        _scr_num = QApplication::desktop()->screenNumber(
-                            reg_user.value("position").toRect().topLeft() );
-    }
-
-    g_dpi_ratio = Utils::getScreenDpiRatio(_scr_num);
-#else
-    g_dpi_ratio = CX11Decoration::devicePixelRatio();
-#endif
-
     reg_user.setFallbacksEnabled(false);
 
     /* read lang fom different places
      * cmd argument --lang:en apply the language one time
      * cmd argument --keeplang:en also keep the language for next sessions
     */
-    int _arg_i;
-    if (!(_arg_i = app.arguments().indexOf("--help") < 0)) {
-        CHelp::out();
-
-        pApplicationManager->CloseApplication();
-
-        delete application_cef;
-        delete pApplicationManager;
-        return 0;
-    }
-
     CLangater::init();
-
     /* applying languages finished */
 
-#ifdef _WIN32
-    CSplash::showSplash();
-    app.processEvents();
-#endif
+    AscAppManager::initializeApp();
+    AscAppManager::startApp();
 
-    /* prevent drawing of focus rectangle on a button */
-    app.setStyle(new CStyleTweaks);
-
-    // read installation time and clean cash folders if expired
-    if (reg_system.contains("timestamp")) {
-        QDateTime time_istall, time_clear;
-        time_istall.setMSecsSinceEpoch(reg_system.value("timestamp", 0).toULongLong());
-
-        bool clean = true;
-        if (reg_user.contains("timestamp")) {
-            time_clear.setMSecsSinceEpoch(reg_user.value("timestamp", 0).toULongLong());
-
-            clean = time_istall > time_clear;
-        }
-
-        if (clean) {
-            reg_user.setValue("timestamp", QDateTime::currentDateTime().toMSecsSinceEpoch());
-            QDir(user_data_path + "/fonts").removeRecursively();
-        }
-    }
-
-    QByteArray css(Utils::getAppStylesheets(g_dpi_ratio));
-    if ( !css.isEmpty() ) app.setStyleSheet(css);
-
-    // Font
-    QFont mainFont = app.font();
-    mainFont.setStyleStrategy( QFont::PreferAntialias );
-    app.setFont( mainFont );
-
-#ifdef _WIN32
-    // Background color
-    HBRUSH windowBackground = CreateSolidBrush( RGB(49, 52, 55) );
-
-    // Create window
-    CMainWindow window(pApplicationManager, windowBackground);
-    window.setMinimumSize( 800*g_dpi_ratio, 600*g_dpi_ratio );
-
-#elif defined(Q_OS_LINUX)
-    // Create window
-    CMainWindow window(pApplicationManager);
-
-    window.show();
-    window.setWindowTitle(WINDOW_NAME);
-#endif
-    pApplicationManager->CheckFonts();
+    AscAppManager::getInstance().StartSpellChecker();
+    AscAppManager::getInstance().StartKeyboardChecker();
+    AscAppManager::getInstance().CheckFonts();
 
     bool bIsOwnMessageLoop = false;
     application_cef->RunMessageLoop(bIsOwnMessageLoop);
@@ -247,10 +177,9 @@ int main( int argc, char *argv[] )
     }
 
     // release all subprocesses
-    pApplicationManager->CloseApplication();
+    AscAppManager::getInstance().CloseApplication();
 
     delete application_cef;
-    delete pApplicationManager;
 
 #ifdef _WIN32
     if (hMutex != NULL) {

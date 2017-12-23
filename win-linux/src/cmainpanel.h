@@ -41,7 +41,6 @@
 #include "asctabwidget.h"
 #include "cdownloadwidget.h"
 #include "cpushbutton.h"
-#include "applicationmanager.h"
 #include "ccefeventstransformer.h"
 
 
@@ -52,9 +51,8 @@ class CMainPanel : public QWidget
     Q_OBJECT
 
 public:
-    explicit CMainPanel(QWidget *parent, CAscApplicationManager *pManager, bool isCustomWindow);
+    explicit CMainPanel(QWidget *parent, bool isCustomWindow, uchar scale);
 
-    CAscApplicationManager * getAscApplicationManager();
     void applyMainWindowState(Qt::WindowState);
 
     void goStart();
@@ -64,7 +62,15 @@ public:
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void setInputFiles(QStringList *);
-    void updateStylesheets();
+    void setScreenScalingFactor(uchar);
+    bool holdUid(int) const;
+    bool holdUrl(const QString&, AscEditorType) const;
+    bool isTabDragged() const;
+    bool isPointInTabs(const QPoint&) const;
+    void adoptEditor(QWidget *);
+    QWidget * releaseEditor(int index = -1);
+
+    virtual void updateScaling();
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -72,18 +78,16 @@ public:
 #endif
 
 protected:
-    void refreshAboutVersion();
-    void cmdMainPage(const QString&, const QString&) const;
-    void cmdAppManager(int, void *);
+    virtual void refreshAboutVersion() = 0;
     virtual QString getSaveMessage();
-
-    CAscApplicationManager * m_pManager;
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
     void toggleButtonMain(bool);
@@ -97,6 +101,10 @@ signals:
     void mainWindowChangeState(Qt::WindowState);
     void mainWindowClose();
     void mainPageReady();
+    void checkUpdates();
+
+    void undockTab(QWidget *);
+    void abandoned();
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -108,6 +116,7 @@ public slots:
     void onTabChanged(int);
     void onTabClosed(int, int);
     void onTabCloseRequest(int);
+    void onTabUndockRequest(int);
     void onAppCloseRequest();
 
     void onCloudDocumentOpen(std::wstring, int, bool);
@@ -115,32 +124,41 @@ public slots:
     void onDocumentName(void *);
     void onDocumentChanged(int id, bool changed);
     void onDocumentSave(int id, bool cancel);
+    void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
 
-    void onDocumentPrint(void *);
+    virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool);
     void onKeyDown(void *);
-    void onLink(QString);
 
     void onNeedCheckKeyboard();
 
     void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
-    void onLocalFileCreate(int);
+    virtual void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
-    void onLocalFileSaveAs(void *);
+    virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
-    void onLocalGetImage(void *);
+    void onLocalGetFile(int eventtype, void *);
     void onPortalOpen(QString);
     void onPortalLogin(QString);
     void onPortalLogout(QString);
     void onPortalNew(QString);
     void onPortalCreate();
+    void onOutsideAuth(QString);
 
-    void onMainPageReady();
+    void onEditorAllowedClose(int);
+
+    virtual void onMainPageReady();
     void onFileChecked(const QString&, int, bool);
+    void onCheckUpdates();
+
+protected:
+    CAscTabWidget * m_pTabs;
+    uchar           m_dpiRatio;
+    bool            m_isCustomWindow;
 
 private:
     std::wstring    m_sDownloadName;
@@ -152,15 +170,12 @@ private:
     QPushButton*    m_pButtonMaximize;
     QPushButton*    m_pButtonClose;
     QPushButton*    m_pButtonProfile;
-    CPushButton*    m_pButtonDownload;
 
     QHBoxLayout *   m_layoutBtns;
     QWidget *       m_boxTitleBtns;
-    CAscTabWidget * m_pTabs;
     bool            m_isMaximized;
-    bool            m_isCustomWindow;
 
-    CDownloadWidget *       m_pWidgetDownload;
+    CDownloadWidget *   m_pWidgetDownload = Q_NULLPTR;
 
     printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
@@ -169,6 +184,7 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
+    int m_dockTab = -1;
 
 public:
     WId GetHwndForKeyboard()

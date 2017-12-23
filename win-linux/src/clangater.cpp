@@ -1,5 +1,6 @@
 #include "clangater.h"
 #include "defines.h"
+#include "defines_p.h"
 
 #include <QApplication>
 #include <QFile>
@@ -10,6 +11,8 @@
 #include <list>
 
 #include <QDebug>
+
+extern QStringList g_cmdArgs;
 
 class CLangater::CLangaterIntf
 {
@@ -58,7 +61,7 @@ void CLangater::init()
 
     QString _lang,
             _lang_path = ":/i18n/langs/",
-            _cmd_args = QCoreApplication::arguments().join(',');
+            _cmd_args = g_cmdArgs.join(',');
 
     QRegularExpression _re(reCmdLang);
     QRegularExpressionMatch _re_match = _re.match(_cmd_args);
@@ -78,7 +81,7 @@ void CLangater::init()
 //        _lang = QLocale::system().name();
 //    }
 
-    if ( _lang.isEmpty() ) {
+    if ( APP_DEFAULT_SYSTEM_LOCALE && _lang.isEmpty() ) {
         QString _env_name = qgetenv("LANG");
         _re.setPattern("^(\\w{2,5})\\.?");
         _re_match = _re.match(_env_name);
@@ -104,7 +107,7 @@ void CLangater::init()
             _lang = _lang.left(2);
             _lang_path = "./langs";
         } else
-            _lang = "en";
+            _lang = APP_DEFAULT_LOCALE;
     }
 
     QTranslator * tr = getInstance()->m_intf->createTranslator();
@@ -118,4 +121,17 @@ void CLangater::init()
 QString CLangater::getLanguageName()
 {
     return getInstance()->m_lang;
+}
+
+void CLangater::addTranslation(const QString& dir, const QString& lang)
+{
+    QTranslator * tr = getInstance()->m_intf->createTranslator();
+    if ( tr->load(lang, dir) ) {
+        QCoreApplication::installTranslator(tr);
+    }
+}
+
+void CLangater::addTranslation(const QString& dir)
+{
+    addTranslation(dir, getInstance()->m_lang);
 }

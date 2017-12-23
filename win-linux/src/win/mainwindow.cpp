@@ -36,51 +36,64 @@
 #include <windowsx.h>
 #include <windows.h>
 #include <stdexcept>
+#include <functional>
 
 #include <QtWidgets/QPushButton>
 #include <QFile>
 #include <QPixmap>
 #include <QDialog>
 #include <QScreen>
+#include <QDesktopWidget>
 
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
+#include "defines_p.h"
 #include "../utils.h"
+#include "../csplash.h"
+#include "../clogger.h"
+#include "../clangater.h"
 
+#include <QTimer>
 #include <QSettings>
 #include <QDebug>
 
-HWND gWinId = 0;
-HWND gTopWinId;
-extern byte g_dpi_ratio;
+#ifdef _UPDMODULE
+  #include "3dparty/WinSparkle/include/winsparkle.h"
+  #include "../version.h"
+#endif
+
+using namespace std::placeholders;
+extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
-CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground) :
+CMainWindow::CMainWindow(QRect& rect) :
     hWnd(0),
     hInstance( GetModuleHandle(NULL) ),
     borderless( false ),
     borderlessResizeable( true ),
-    aeroShadow( true ),
     closed( false ),
     visible( false ),
     m_pWinPanel(NULL)
 {
-    GET_REGISTRY_USER(reg_user)
-
     // adjust window size
-    QRect _window_rect = reg_user.value("position", QRect(100, 100, 1324 * g_dpi_ratio, 800 * g_dpi_ratio)).toRect();
+    QRect _window_rect = rect;
+    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+
+    if ( _window_rect.isEmpty() )
+        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-    if (_screen_size.width() < _window_rect.width())
-        _window_rect.setLeft(_screen_size.left()), _window_rect.setWidth(_screen_size.width());
+    if ( _screen_size.width() < _window_rect.width() + 120 ||
+            _screen_size.height() < _window_rect.height() + 120 )
+    {
+        _window_rect.setLeft(_screen_size.left()),
+        _window_rect.setTop(_screen_size.top());
 
-    if (_screen_size.height() < _window_rect.height())
-        _window_rect.setTop(_screen_size.top()), _window_rect.setHeight(_screen_size.height());
-
-    m_pManager = pManager;
-    m_pManager->StartSpellChecker();
-    m_pManager->StartKeyboardChecker();
+        if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
+        if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+    }
 
     WNDCLASSEXW wcx = { 0 };
     wcx.cbSize = sizeof( WNDCLASSEX );
@@ -90,7 +103,7 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"DocEditorsWindowClass";
-    wcx.hbrBackground = windowBackground;
+    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -100,44 +113,43 @@ CMainWindow::CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackgrou
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindowW( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(Style::windowed),
-                          _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
+    hWnd = CreateWindow( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+                            _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd, m_pManager);
-    ((CAscApplicationManagerWrapper *)pManager)->setMainPanel(m_pWinPanel->getMainPanel());
+    m_pWinPanel = new CWinPanel(hWnd);
 
-    gWinId = ( HWND )m_pWinPanel->winId();
-    gTopWinId = hWnd;
+    m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
+    m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
+    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    m_pMainPanel->updateScaling();
+    m_pMainPanel->goStart();
 
-    SetWindowPos(gWinId, NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
+//    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
+    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
-    bool _is_maximized = reg_user.value("maximized", false).toBool();
-    show(_is_maximized);
-//    visible = true;
-    toggleBorderless(_is_maximized);
-    m_pWinPanel->goStartPage();
+    CMainPanel * mainpanel = m_pMainPanel;
+    QObject::connect(mainpanel, &CMainPanel::undockTab, bind(&CMainWindow::slot_undockWindow, this, _1));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(mainpanel, &CMainPanel::abandoned, bind(&CMainWindow::slot_finalTabClosed, this));
 
-    if (_is_maximized) {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if (GetWindowPlacement(hWnd, &wp)) {
-            wp.rcNormalPosition = {_window_rect.x(), _window_rect.y(), _window_rect.right(), _window_rect.bottom()};
+    m_pWinPanel->show();
 
-            SetWindowPlacement(hWnd, &wp);            
-        }
-    }
-
-    m_nTimerLanguageId = 5000;
-
-    SetTimer(hWnd, m_nTimerLanguageId, 100, NULL);
+#ifdef _UPDMODULE
+    QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
+        win_sparkle_check_update_with_ui();
+    });
+#endif
 }
 
 CMainWindow::~CMainWindow()
 {
-    ::KillTimer(hWnd, m_nTimerLanguageId);
+    closed = true;
 
     WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
     if (GetWindowPlacement(hWnd, &wp)) {
@@ -155,9 +167,6 @@ CMainWindow::~CMainWindow()
 
     hide();
     DestroyWindow( hWnd );
-
-    //m_pManager->StopSpellChecker();
-    //RELEASEOBJECT(m_pManager);
 }
 
 LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
@@ -165,6 +174,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     CMainWindow *window = reinterpret_cast<CMainWindow*>( GetWindowLongPtr( hWnd, GWLP_USERDATA ) );
     if ( !window )
         return DefWindowProc( hWnd, message, wParam, lParam );
+//static uint count=0;
+//qDebug() << "main window message: " << ++count << QString(" 0x%1").arg(QString::number(message,16));
 
     switch ( message )
     {
@@ -205,7 +216,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         if ( wParam != VK_TAB )
             return DefWindowProc( hWnd, message, wParam, lParam );
 
-        SetFocus( gWinId );
+        SetFocus( HWND(window->m_pWinPanel->winId()) );
         break;
     }
 
@@ -238,7 +249,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //        str += "\n";
 //        OutputDebugStringA( str.toLocal8Bit().data() );
 
-        window->m_pWinPanel->focus();
+        window->m_pMainPanel->focus();
         break;
     }
 
@@ -258,7 +269,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_CLOSE:
-        window->m_pWinPanel->doClose();
+qDebug() << "WM_CLOSE";
+        window->doClose();
         return 0;
 
     case WM_DESTROY:
@@ -269,8 +281,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_TIMER:
     {
-        if (NULL != window->m_pManager)
-            window->m_pManager->CheckKeyboard();
+        CAscApplicationManagerWrapper::getInstance().CheckKeyboard();
         break;
     }
 
@@ -340,68 +351,58 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     }
 
     case WM_SIZE:
-        if (window->m_pWinPanel) {
-            unsigned dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-            if ( dpi_ratio != g_dpi_ratio ) {
-                QByteArray css(Utils::getAppStylesheets(dpi_ratio));
-
-                if ( !css.isEmpty() ) {
-                    g_dpi_ratio = dpi_ratio;
-
-                    qApp->setStyleSheet(css);
-                    window->m_pWinPanel->updatePanelStylesheets();
-                }
-            }
-
+        if ( !window->closed && window->m_pWinPanel ) {
             if (wParam == SIZE_MINIMIZED) {
-                window->m_pWinPanel->applyWindowState(Qt::WindowMinimized);
+                window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
-                RECT lpWindowRect, clientRect;
-                GetWindowRect(hWnd, &lpWindowRect);
-                GetClientRect(hWnd, &clientRect);
+                if ( wParam == SIZE_MAXIMIZED )
+                    window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
+                    window->m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
 
-                int border_size = 0;
-
-                int nMaxOffsetX = 0;
-                int nMaxOffsetY = 0;
-                int nMaxOffsetR = 0;
-                int nMaxOffsetB = 0;
-
-                if ( wParam == SIZE_MAXIMIZED ) {
-                    LONG lTestW = 640;
-                    LONG lTestH = 480;
-                    RECT wrect{0,0,lTestW,lTestH};
-                    AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
-
-                    if (0 > wrect.left) nMaxOffsetX = -wrect.left;
-                    if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
-
-                    if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
-                    if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
-
-                    // TODO: вот тут бордер!!!
-                    window->m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
-                                                        clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
-                                                        clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
-                    window->m_pWinPanel->applyWindowState(Qt::WindowMaximized);
-                } else {
-                    border_size = 3 * g_dpi_ratio;
-
-                    // TODO: вот тут бордер!!!
-                    window->m_pWinPanel->setGeometry(border_size, border_size,
-                                clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
-                    window->m_pWinPanel->applyWindowState(Qt::WindowNoState);
-                }
-
-                HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
-                                    lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
-                                    lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
-
-                SetWindowRgn(hWnd, hRgn, TRUE);
-                DeleteObject(hRgn);
+                window->adjustGeometry();
             }
         }
         break;
+
+    case WM_MOVING: {
+        if ( window->mainPanel()->isTabDragged() ) {
+            POINT pt{0};
+
+            if ( GetCursorPos(&pt) ) {
+                AscAppManager::processMainWindowMoving(size_t(window), QPoint(pt.x, pt.y));
+            }
+        }
+
+        break;
+    }
+
+    case WM_EXITSIZEMOVE: {
+//#define DEBUG_SCALING
+#ifdef DEBUG_SCALING
+        QRect windowRect;
+
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(hWnd, &wp)) {
+            GET_REGISTRY_USER(reg_user)
+            wp.showCmd == SW_MAXIMIZE ?
+                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+
+            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+            windowRect.adjust(0,0,-1,-1);
+        }
+
+        int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
+        uchar dpi_ratio = _scr_num;
+#else
+        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+#endif
+
+        if ( dpi_ratio != window->m_dpiRatio )
+            window->setScreenScalingFactor(dpi_ratio);
+
+        break;
+    }
 
     case WM_NCACTIVATE: {
         return TRUE;
@@ -415,7 +416,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         RECT rect;
         GetClientRect(hWnd, &rect);
 
-        HBRUSH hBrush = CreateSolidBrush(RGB(49, 52, 55));
+        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
         FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
         DeleteObject(hBrush);
         return TRUE; }
@@ -437,8 +438,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         return 1;
     }
     case WM_ENDSESSION:
-//        window->m_pManager->DestroyCefView(-1);
-        window->m_pManager->CloseApplication();
+        CAscApplicationManagerWrapper::getInstance().CloseApplication();
 
         break;
 
@@ -451,7 +451,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
             if (szArglist != NULL) {
                 QStringList _in_args;
-                for(int i(0); i < nArgs; i++) {
+                for(int i(1); i < nArgs; i++) {
                     _in_args.append(QString::fromStdWString(szArglist[i]));
                 }
 
@@ -459,23 +459,27 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
                     QStringList * _file_list = Utils::getInputFiles(_in_args);
 
                     if (_file_list->size())
-                        window->m_pWinPanel->getMainPanel()->doOpenLocalFiles(*_file_list);
+                        window->mainPanel()->doOpenLocalFiles(*_file_list);
 
                     delete _file_list;
                 }
             }
 
-            SetForegroundWindow(hWnd);
+            ::SetForegroundWindow(hWnd);
+            ::SetFocus(hWnd);
             LocalFree(szArglist);
         }
         break;}
+    case UM_INSTALL_UPDATE:
+        window->doClose();
+        break;
     default: {
         break;
     }
 #if 0
     case WM_INPUTLANGCHANGE:
     case WM_INPUTLANGCHANGEREQUEST:
-    {        
+    {
         int _lang = LOWORD(lParam);
         m_oLanguage.Check(_lang);
     }
@@ -490,14 +494,11 @@ void CMainWindow::toggleBorderless(bool showmax)
     {
         // чтобы не было мерцания. перерисовку при "неактивном окне" - перекроем
         LONG newStyle = borderless ?
-                    long(Style::aero_borderless) : long(Style::windowed)/* & ~WS_CAPTION*/;
+                    long(WindowBase::Style::aero_borderless) : long(WindowBase::Style::windowed)/* & ~WS_CAPTION*/;
 
         SetWindowLongPtr( hWnd, GWL_STYLE, newStyle );
 
         borderless = !borderless;
-        if ( !borderless ) {
-            toggleShadow();
-        }
 
         //redraw frame
         SetWindowPos( hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE /*| SWP_NOZORDER | SWP_NOOWNERZORDER */);
@@ -505,25 +506,9 @@ void CMainWindow::toggleBorderless(bool showmax)
     }
 }
 
-void CMainWindow::toggleShadow()
-{
-    if ( borderless )
-    {
-        aeroShadow = !aeroShadow;
-//        const MARGINS shadow_on = { 1, 1, 1, 1 };
-//        const MARGINS shadow_off = { 0, 0, 0, 0 };
-//        DwmExtendFrameIntoClientArea( hWnd, ( aeroShadow ) ? ( &shadow_on ) : ( &shadow_off ) );
-    }
-}
-
 void CMainWindow::toggleResizeable()
 {
     borderlessResizeable = borderlessResizeable ? false : true;
-}
-
-bool CMainWindow::isResizeable()
-{
-    return borderlessResizeable ? true : false;
 }
 
 void CMainWindow::show(bool maximized)
@@ -563,12 +548,12 @@ void CMainWindow::removeMinimumSize()
     this->minimumSize.height = 0;
 }
 
-int CMainWindow::getMinimumWidth()
+int CMainWindow::getMinimumWidth() const
 {
     return minimumSize.width;
 }
 
-int CMainWindow::getMinimumHeight()
+int CMainWindow::getMinimumHeight() const
 {
     return minimumSize.height;
 }
@@ -600,3 +585,211 @@ int CMainWindow::getMaximumHeight()
     return maximumSize.height;
 }
 
+void CMainWindow::adjustGeometry()
+{
+    RECT lpWindowRect, clientRect;
+    GetWindowRect(hWnd, &lpWindowRect);
+    GetClientRect(hWnd, &clientRect);
+
+    int border_size = 0,
+        nMaxOffsetX = 0,
+        nMaxOffsetY = 0,
+        nMaxOffsetR = 0,
+        nMaxOffsetB = 0;
+
+    if ( IsZoomed(hWnd) != 0 ) {      // is window maximized
+        LONG lTestW = 640,
+             lTestH = 480;
+
+        RECT wrect{0,0,lTestW,lTestH};
+        AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+
+        if (0 > wrect.left) nMaxOffsetX = -wrect.left;
+        if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
+
+        if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
+        if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
+
+        // TODO: вот тут бордер!!!
+        m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
+                                                    clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
+                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
+    } else {
+        border_size = 3 * m_dpiRatio;
+
+        // TODO: вот тут бордер!!!
+        m_pWinPanel->setGeometry(border_size, border_size,
+                            clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
+    }
+
+    HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
+                                lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
+                                lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
+
+    SetWindowRgn(hWnd, hRgn, TRUE);
+    DeleteObject(hRgn);
+}
+
+void CMainWindow::setScreenScalingFactor(uchar factor)
+{
+    QString css(AscAppManager::getWindowStylesheets(factor));
+
+    if ( !css.isEmpty() ) {
+        bool increase = factor > m_dpiRatio;
+        m_dpiRatio = factor;
+
+        m_pMainPanel->setStyleSheet(css);
+        m_pMainPanel->setScreenScalingFactor(factor);
+        setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
+
+        RECT lpWindowRect;
+        GetWindowRect(hWnd, &lpWindowRect);
+
+        unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
+                _new_height = lpWindowRect.bottom - lpWindowRect.top;
+
+        if ( increase )
+            _new_width *= 2, _new_height *= 2;  else
+            _new_width /= 2, _new_height /= 2;
+
+        SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+    }
+}
+
+int CMainWindow::joinTab(QWidget * panel)
+{
+    m_pMainPanel->adoptEditor(panel);
+
+    return 0;
+}
+
+bool CMainWindow::holdView(int id)
+{
+    return m_pMainPanel->holdUid(id);
+}
+
+void CMainWindow::slot_windowChangeState(Qt::WindowState s)
+{
+    int cmdShow = SW_RESTORE;
+    switch (s) {
+    case Qt::WindowMaximized:   cmdShow = SW_MAXIMIZE; break;
+    case Qt::WindowMinimized:   cmdShow = SW_MINIMIZE; break;
+    case Qt::WindowFullScreen:  cmdShow = SW_HIDE; break;
+    default:
+    case Qt::WindowNoState: break;
+    }
+
+    ShowWindow(hWnd, cmdShow);
+}
+
+void CMainWindow::slot_windowClose()
+{
+    AscAppManager::closeMainWindow( size_t(this) );
+}
+
+void CMainWindow::slot_finalTabClosed()
+{
+    qDebug() << "final tab close";
+    if ( AscAppManager::countMainWindow() > 1 ) {
+        AscAppManager::closeMainWindow( size_t(this) );
+    }
+}
+
+void CMainWindow::slot_undockWindow(QWidget * editorpanel)
+{
+    QRect _win_rect;
+    QPoint _top_left;
+    bool _is_maximized = false;
+
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if (GetWindowPlacement(hWnd, &wp)) {
+        _is_maximized = wp.showCmd == SW_MAXIMIZE;
+
+        _top_left = QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top);
+        _win_rect = QRect( _top_left, QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+        _win_rect.adjust(30,30,-1+30,-1+30);
+    }
+
+    CMainWindow * window = AscAppManager::createMainWindow(_win_rect);
+
+    window->show(_is_maximized);
+    window->toggleBorderless(_is_maximized);
+    window->joinTab(editorpanel);
+
+    if ( !_is_maximized ) {
+        QTimer::singleShot(0, [=]{
+            QPoint cursor = QCursor::pos() + QPoint(-120, -12);
+            QPoint pos;
+
+            SetWindowPos(HWND(window->hWnd), NULL, cursor.x(), cursor.y(), 0, 0, SWP_FRAMECHANGED | SWP_NOSIZE);
+
+            QObject * _receiver = window->m_pWinPanel;
+            QMouseEvent * event = new QMouseEvent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton,  Qt::NoModifier);
+            QApplication::postEvent(_receiver, event);
+        });
+    } else {
+        wp.rcNormalPosition = {_win_rect.x(), _win_rect.y(), _win_rect.right(), _win_rect.bottom()};
+        SetWindowPlacement(window->hWnd, &wp);
+    }
+}
+
+void CMainWindow::slot_mainPageReady()
+{
+    CSplash::hideSplash();
+
+#ifdef _UPDMODULE
+    QString _prod_name = WINDOW_NAME;
+
+    GET_REGISTRY_USER(_user)
+    if (!_user.contains("CheckForUpdates")) {
+        _user.setValue("CheckForUpdates", "1");
+    }
+
+    win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
+                                    _prod_name.toStdWString().c_str(),
+                                    QString(VER_FILEVERSION_STR).toStdWString().c_str());
+    win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+    win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
+    win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
+
+    win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
+    win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
+    win_sparkle_set_error_callback(&CMainWindow::updateError);
+
+    win_sparkle_init();
+
+    AscAppManager::sendCommandTo(0, "updates", "on");
+    CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+#endif
+}
+
+#if defined(_UPDMODULE)
+void CMainWindow::updateFound()
+{
+    CLogger::log("found updates");
+}
+
+void CMainWindow::updateNotFound()
+{
+    CLogger::log("updates isn't found");
+}
+
+void CMainWindow::updateError()
+{
+    CLogger::log("updates error");
+}
+#endif
+
+void CMainWindow::doClose()
+{
+    qDebug() << "doClose";
+
+    QTimer::singleShot(500, m_pMainPanel, [=]{
+        m_pMainPanel->pushButtonCloseClicked();
+    });
+}
+
+CMainPanel * CMainWindow::mainPanel() const
+{
+    return m_pMainPanel;
+}

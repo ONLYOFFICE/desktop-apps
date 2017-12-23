@@ -55,12 +55,16 @@
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
 #define REG_APP_NAME "DesktopEditors"
 #define APP_MUTEX_NAME "TEAMLAB"
+#define APP_DEFAULT_LOCALE "en"
+#define APP_DEFAULT_SYSTEM_LOCALE 1
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""
 #define URL_SIGNUP              "https://onlyoffice.com/registration.aspx?desktop=true"
 
 #define WINDOW_TITLE_MIN_WIDTH 400
+#define MAIN_WINDOW_MIN_WIDTH  800
+#define MAIN_WINDOW_MIN_HEIGHT 600
 
 #define GET_REGISTRY_USER(variable) \
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
@@ -87,6 +91,16 @@
 
 #ifdef __linux
 typedef unsigned char BYTE;
+#else
+# define UM_INSTALL_UPDATE      WM_USER+254
+# define UM_CLOSE_MAINWINDOW    WM_USER+253
+#endif
+
+#ifdef _WIN32
+#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
+#define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
+#else
+#define TABBAR_BACKGROUND_COLOR "#313437"
 #endif
 
 #include "defines_p.h"

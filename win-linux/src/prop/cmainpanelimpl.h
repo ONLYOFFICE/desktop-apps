@@ -35,10 +35,14 @@
 
 #include "cmainpanel.h"
 
-class CMainPanelImpl : public CMainPanel, public CCefEventsTransformer
+class CMainPanelImpl : public CMainPanel
 {
 public:
-    CMainPanelImpl(QWidget *, CAscApplicationManager *, bool);
+    CMainPanelImpl(QWidget *, bool, uchar);
+
+    void updateScaling();
+private:
+    void refreshAboutVersion();
 };
 
 #endif // CMAINPANELIMPL_H

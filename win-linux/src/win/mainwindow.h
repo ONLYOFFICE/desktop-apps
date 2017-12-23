@@ -30,30 +30,26 @@
  *
 */
 
+#ifndef CMAINWINDOW_H
+#define CMAINWINDOW_H
+
 #include <windows.h>
 
-#include "applicationmanager.h"
-
 #include "cwinpanel.h"
+#include "cmainpanelimpl.h"
 #include "qwinwidget.h"
+#include "cwindowbase.h"
 
 #include <QtWidgets/QApplication>
 
 class CMainWindow
 {
-    enum class Style : DWORD
-    {
-//        windowed        = ( WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN ),
-        windowed        = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
-        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )        
-    };
 
 public:
     HWND                    hWnd;
     HINSTANCE               hInstance;
-    CAscApplicationManager* m_pManager;
 
-    CMainWindow(CAscApplicationManager* pManager, HBRUSH windowBackground);
+    explicit CMainWindow(QRect&);
     ~CMainWindow();
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
@@ -61,45 +57,58 @@ public:
     bool isVisible();
 
     void toggleBorderless(bool);
-    void toggleShadow();
     void toggleResizeable();
-    bool isResizeable();
 
     void setMinimumSize( const int width, const int height );
     bool isSetMinimumSize();
     void removeMinimumSize();
-    int getMinimumHeight();
-    int getMinimumWidth();
+    int getMinimumHeight() const;
+    int getMinimumWidth() const;
 
     void setMaximumSize( const int width, const int height );
     bool isSetMaximumSize();
     int getMaximumHeight();
     int getMaximumWidth();
     void removeMaximumSize();
+    void adjustGeometry();
+
+    bool holdView(int id);
+    int joinTab(QWidget *);
+
+    CMainPanel * mainPanel() const;
+
+private:
+    void setScreenScalingFactor(uchar);
+    void doClose();
+
+    void slot_undockWindow(QWidget *);
+    void slot_windowChangeState(Qt::WindowState);
+    void slot_windowClose();
+    void slot_mainPageReady();
+    void slot_finalTabClosed();
+
+#ifdef _UPDMODULE
+    static void updateFound();
+    static void updateNotFound();
+    static void updateError();
+#endif
 
 public:
     CWinPanel * m_pWinPanel;
 
 private:
-
     bool closed;
     bool visible;
 
     bool borderless;
-    bool aeroShadow;
     bool borderlessResizeable;
 
-    struct sizeType
-    {
-        sizeType() : required( false ), width( 0 ), height( 0 ) {}
+    CMainPanelImpl * m_pMainPanel;
 
-        bool required;
-        int width;
-        int height;
-    };
+    WindowBase::CWindowGeometry minimumSize;
+    WindowBase::CWindowGeometry maximumSize;
 
-    sizeType minimumSize;
-    sizeType maximumSize;
-
-    UINT_PTR m_nTimerLanguageId;
+    uchar m_dpiRatio;
 };
+
+#endif

@@ -31,60 +31,16 @@
 */
 
 #include <windows.h>
-
-#include <QtWidgets/QApplication>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QPushButton>
-#include <QScrollArea>
-#include <QStandardPaths>
-#include <QTimer>
-
 #include "cwinpanel.h"
-#include <QMenu>
 
-#include <QJsonDocument>
-#include <QJsonObject>
-
-#include <QDir>
-#include <QDialog>
-#include <QWindow>
-#include <QWidgetAction>
-#include <QDesktopServices>
-#include <QFileInfo>
-
-#include "../defines.h"
-#include "../utils.h"
-#include "../csplash.h"
-#include "../clangater.h"
-
-//#include <QScreen>
-#include <QSettings>
-#include <QPrinterInfo>
-
-#ifdef _UPDMODULE
-  #include "3dparty/WinSparkle/include/winsparkle.h"
-  #include "../version.h"
-#endif
-
-
-extern byte g_dpi_ratio;
-
-CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
+CWinPanel::CWinPanel( HWND hWnd )
     : QWinWidget( hWnd )
+    , m_pPanel(nullptr)
 {
     windowHandle = hWnd;
-    m_pManager = pManager;
+    setProperty("handleTopWindow", (int)hWnd);
 
 //    setObjectName("mainPanel");
-
-    CMainPanelImpl * panel = new CMainPanelImpl(this, pManager, true);
-    m_pMainPanel = panel;
-
-    show();
-
-    connect(panel, &CMainPanelImpl::mainWindowChangeState, this, &CWinPanel::slot_windowChangeState);
-    connect(panel, &CMainPanelImpl::mainWindowClose, this, &CWinPanel::slot_windowClose);
-    connect(panel, &CMainPanelImpl::mainPageReady, this, &CWinPanel::slot_mainPageReady);
 
     /*
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
@@ -97,15 +53,6 @@ CWinPanel::CWinPanel( HWND hWnd, CAscApplicationManager* pManager )
     }
 
     */
-
-//    m_pManager->SetEventListener(this);
-
-    panel->setInputFiles(Utils::getInputFiles(qApp->arguments()));
-//    parseInputArgs(qApp->arguments());
-}
-
-void CWinPanel::parseInputArgs(const QStringList& args)
-{
 }
 
 bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)
@@ -134,116 +81,29 @@ bool CWinPanel::nativeEvent( const QByteArray &, void * msg, long * result)
 
 void CWinPanel::mousePressEvent( QMouseEvent *event )
 {
-    if ( event->button() == Qt::LeftButton )
-    {
+    if ( event->type() == QEvent::MouseButtonDblClick ) {
+        if (event -> button() == Qt::LeftButton) {
+            WINDOWPLACEMENT wp;
+            wp.length = sizeof( WINDOWPLACEMENT );
+
+            GetWindowPlacement( parentWindow(), &wp );
+            ShowWindow( parentWindow(), wp.showCmd == SW_MAXIMIZE ? SW_RESTORE : SW_MAXIMIZE );
+        }
+    } else
+    if ( event->button() == Qt::LeftButton ) {
         ReleaseCapture();
         SendMessage( windowHandle, WM_NCLBUTTONDOWN, HTCAPTION, 0 );
     }
 
-    if ( event->type() == QEvent::MouseButtonDblClick )
-    {
-        if (event -> button() == Qt::LeftButton)
-        {
-            WINDOWPLACEMENT wp;
-            wp.length = sizeof( WINDOWPLACEMENT );
-            GetWindowPlacement( parentWindow(), &wp );
-            if ( wp.showCmd == SW_MAXIMIZE )
-            {
-                ShowWindow( parentWindow(), SW_RESTORE );
-            }
-            else
-            {
-                ShowWindow( parentWindow(), SW_MAXIMIZE );
-            }
-        }
-    }
 }
 
 void CWinPanel::resizeEvent(QResizeEvent* event)
 {
     QWinWidget::resizeEvent(event);
-    m_pMainPanel->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
-}
 
-CMainPanelImpl * CWinPanel::getMainPanel()
-{
-    return m_pMainPanel;
-}
-
-void CWinPanel::goStartPage()
-{
-    m_pMainPanel->goStart();
-}
-
-void CWinPanel::focus()
-{
-    m_pMainPanel->focus();
-}
-
-void CWinPanel::applyWindowState(Qt::WindowState state)
-{
-    m_pMainPanel->applyMainWindowState(state);
-}
-
-void CWinPanel::slot_windowClose()
-{
-    m_pManager->DestroyCefView(-1);
-//    m_pManager->GetApplication()->ExitMessageLoop();
-//    PostQuitMessage(0);
-}
-
-void CWinPanel::doClose()
-{
-    QTimer::singleShot(500, this, [=]{
-        m_pMainPanel->pushButtonCloseClicked();
-    });
-}
-
-void CWinPanel::slot_windowChangeState(Qt::WindowState s)
-{
-    int cmdShow = SW_RESTORE;
-    switch (s) {
-    case Qt::WindowMaximized:
-        cmdShow = SW_MAXIMIZE;
-        break;
-    case Qt::WindowMinimized:
-        cmdShow = SW_MINIMIZE;
-        break;
-    case Qt::WindowFullScreen:
-        cmdShow = SW_HIDE;
-        break;
-    default:
-    case Qt::WindowNoState:
-        break;
+    if ( !m_pPanel && !children().isEmpty() ) {
+        m_pPanel = findChild<QWidget *>();
     }
 
-    ShowWindow(parentWindow(), cmdShow);
-}
-
-void CWinPanel::slot_mainPageReady()
-{
-    CSplash::hideSplash();
-
-#ifdef _UPDMODULE
-    QString _prod_name = WINDOW_NAME;
-    qDebug() << "update's window title: " << _prod_name;
-
-    GET_REGISTRY_USER(_user)
-    if (!_user.contains("CheckForUpdates")) {
-        _user.setValue("CheckForUpdates", "1");
-    }
-
-    win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
-                                    _prod_name.toStdWString().c_str(),
-                                    QString(VER_FILEVERSION_STR).toStdWString().c_str());
-    win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
-    win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
-    win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
-    win_sparkle_init();
-#endif
-}
-
-void CWinPanel::updatePanelStylesheets()
-{
-    m_pMainPanel->updateStylesheets();
+    if ( m_pPanel ) m_pPanel->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
 }

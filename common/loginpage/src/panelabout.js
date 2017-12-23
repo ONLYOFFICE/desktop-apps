@@ -64,10 +64,12 @@
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + '. ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
+        var _lang = utils.Lang;
         let _html = '<div class="flexbox">'+
                         '<div class="box-ver">' +
-                          `<div class="img-el ver-logo ${_opts.logocls}"></div><p></p>`+                      
-                          `<div class="ver-version">${_opts.appname} version ${_opts.version}</div>${_opts.edition}<p></p>`+
+                          `<div class="img-el ver-logo ${_opts.logocls}"></div><p></p>`+
+                          `<div class="ver-version">${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>${_opts.edition}<p></p>`+
+                          `<a class="ver-checkupdate" href="#">${_lang.checkUpdates}</a><p />`+
                           `<div class="ver-copyright">${_opts.rights}</div>`+
                           `<a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>`+
                         '</div>'+
@@ -104,12 +106,23 @@
                         }
 
                         if (!this.view) {
-                            this.view = new ViewAbout(args); 
+                            this.view = new ViewAbout(args);
                             this.view.render();
                             this.view.$menuitem.removeClass('extra');
                         } 
 
                         this.view.renderpanel(this.view.paneltemplate(args));
+                        this.view.$panel.find('.ver-checkupdate').on('click', (e) => {
+                            window.sdk.execCommand('update', 'check');
+                        });
+                        this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
+                    } else
+                    if (/updates/.test(cmd)) {
+                        this.updates = param == 'on';
+
+                        if ( this.view ) {
+                            this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                        }
                     }
                 });
 

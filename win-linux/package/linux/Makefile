@@ -12,13 +12,19 @@ DEB_ARCH = amd64
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 DEB_BUILD_DIR = $(PWD)/
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
+URPMI_RPM_BUILD_DIR = $(PWD)/urpmi-rpm/builddir
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
+URPMI_RPM_PACKAGE_DIR = $(URPMI_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 
 REPO_NAME := repo
-REPO = $(PWD)/$(REPO_NAME)
+
+DEB_REPO := $(PWD)/$(REPO_NAME)
+RPM_REPO := $(PWD)/rpm-$(REPO_NAME)
+APT_RPM_REPO := $(PWD)/apt-rpm-$(REPO_NAME)
+URPMI_RPM_REPO := $(PWD)/urpmi-rpm-$(REPO_NAME)
 
 RPM_REPO_OS_NAME := centos
 
@@ -47,6 +53,15 @@ ALT_REPO_OS_VER = p7
 endif
 ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
 
+ROSA_REPO_OS_NAME = rosa
+
+ifeq ($(PACKAGE_EDITION), cool)
+ROSA_REPO_OS_VER = r9
+else
+ROSA_REPO_OS_VER = r8
+endif
+ROSA_REPO_DIR = $(ROSA_REPO_OS_NAME)/$(ROSA_REPO_OS_VER)
+
 OTHER_REPO_OS_NAME = other-linux
 
 ifeq ($(PACKAGE_EDITION), cool)
@@ -59,6 +74,7 @@ OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
 
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
+URPMI_RPM = $(URPMI_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
@@ -71,14 +87,18 @@ endif
 
 RPM_DEPENDENCY += desktopeditor
 RPM_DEPENDENCY += rpm-version
-RPM_DEPENDENCY += $(RPM)
 
-DEB_DEPENDENCY += desktopeditor
 DEB_DEPENDENCY += deb-version
-DEB_DEPENDENCY += $(DEB)
+
+APT_RPM_DEPENDENCY += desktopeditor
+APT_RPM_DEPENDENCY += apt-rpm-version
+
+URPMI_RPM_DEPENDENCY += desktopeditor
+URPMI_RPM_DEPENDENCY += urpmi-rpm-version
 
 TAR_DEPENDENCY += tar-desktopeditor
-TAR_DEPENDENCY += $(TAR)
+
+INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
@@ -99,26 +119,33 @@ INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-x64
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-rpm-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm tar installer
+all: rpm deb apt-rpm urpmi-rpm tar 
+#installer
 
-rpm: $(RPM_DEPENDENCY)
+rpm: $(RPM)
 
-deb: $(DEB_DEPENDENCY)
+deb: $(DEB)
 
-tar: $(TAR_DEPENDENCY)
+tar: $(TAR)
 
-apt-rpm: desktopeditor apt-rpm-version $(APT_RPM)
+apt-rpm: $(APT_RPM)
 
-installer: desktopeditor $(INSTALLER)
+urpmi-rpm: $(URPMI_RPM)
+
+installer: $(INSTALLER)
 
 clean:
 	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
 		$(DEB_PACKAGE_DIR)/*.changes\
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
-		$(REPO)\
+		$(URPMI_RPM_BUILD_DIR)\
+		$(DEB_REPO)\
+		$(RPM_REPO)\
+		$(APT_RPM_REPO)\
+		$(URPMI_RPM_REPO)\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz
@@ -167,7 +194,7 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Requires.*\)/\1/'  -i rpm/$(PACKAGE_NAME).spec
 endif
 
-deb-version:
+deb-version: desktopeditor
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
 
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
@@ -190,55 +217,90 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Requires.*\)/\1/'  -i apt-rpm/$(PACKAGE_NAME).spec
 endif
 
-$(RPM):
+urpmi-rpm-version:
+	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+
+ifeq ($(PACKAGE_EDITION), full)
+	sed '/^Requires.*/d'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+	sed 's/^#Full\(Requires.*\)/\1/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
+endif
+
+$(RPM): $(RPM_DEPENDENCY)
 	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
-$(DEB):
+$(DEB): $(DEB_DEPENDENCY)
 	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
-$(APT_RPM):
+$(APT_RPM): $(APT_RPM_DEPENDENCY)
 	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
 
-$(TAR):
+$(URPMI_RPM): $(URPMI_RPM_DEPENDENCY)
+	cd urpmi-rpm && rpmbuild -bb --define "_topdir $(URPMI_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+
+$(TAR): $(TAR_DEPENDENCY)
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
 
-$(INSTALLER):
+$(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
 
 deploy-rpm: $(RPM)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(RPM_REPO)
+	mkdir -p $(RPM_REPO)
 
-	cp -rv $(RPM) $(REPO);
-	createrepo -v $(REPO);
+	cp -rv $(RPM) $(RPM_REPO);
+	createrepo -v $(RPM_REPO);
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-deb: $(DEB)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(DEB_REPO)
+	mkdir -p $(DEB_REPO)
 
-	cp -rv $(DEB) $(REPO);
-	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(REPO)/Packages.gz
+	cp -rv $(DEB) $(DEB_REPO);
+	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(DEB_REPO)/Packages.gz
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(REPO_NAME) --acl public-read --delete
-	aws s3 sync $(REPO) s3://$(REPO_NAME)-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://repo-doc-onlyoffice-com/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(REPO_NAME) --acl public-read --delete
 
 deploy-apt-rpm: $(APT_RPM)
-	rm -rfv $(REPO)
-	mkdir -p $(REPO)
+	rm -rfv $(APT_RPM_REPO)
+	mkdir -p $(APT_RPM_REPO)
+	
+	cp -rv $(APT_RPM) $(APT_RPM_REPO);
+	#createrepo -v $(APT_RPM_REPO);
+	
+	#for i in i586 i686 x86_64 noarch; do \
+	#	mkdir -p "$(URPMI_RPM_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#done
 
-	for i in i586 i686 x86_64 noarch; do \
-		mkdir -p "$(REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
-	done
+	#cp -rv $(APT_RPM) $(URPMI_RPM_REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
 
-	cp -rv $(APT_RPM) $(REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+	#genbasedir --topdir=$(URPMI_RPM_REPO) $(RPM_ARCH) $(REPO_NAME)
 
-	genbasedir --topdir=$(REPO) $(RPM_ARCH) $(REPO_NAME)
+	aws s3 sync $(APT_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(APT_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(REPO) s3://repo-doc-onlyoffice-com/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+deploy-urpmi-rpm: $(URPMI_RPM)
+	rm -rfv $(URPMI_RPM_REPO)
+	mkdir -p $(URPMI_RPM_REPO)
+
+	
+	cp -rv $(URPMI_RPM) $(URPMI_RPM_REPO);
+	#createrepo -v $(URPMI_RPM_REPO);
+
+	#for i in i586 i686 x86_64 noarch; do \
+	#	mkdir -p "$(URPMI_RPM_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
+	#done
+
+	#cp -rv $(URPMI_RPM) $(URPMI_RPM_REPO)/$(RPM_ARCH)/RPMS.$(REPO_NAME);
+
+	#genbasedir --topdir=$(URPMI_RPM_REPO) $(RPM_ARCH) $(REPO_NAME)
+
+	aws s3 sync $(URPMI_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
+	aws s3 sync $(URPMI_RPM_REPO) s3://repo-doc-onlyoffice-com/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
 
 deploy-tar: $(TAR)
 	aws s3 cp $(TAR) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read
@@ -246,4 +308,5 @@ deploy-tar: $(TAR)
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://repo-doc-onlyoffice-com/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read       
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-tar deploy-installer
+deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi-rpm deploy-tar 
+#deploy-installer

@@ -30,15 +30,40 @@
  *
 */
 
-#include "ccefeventstransformer.h"
-#include "./applicationmanager_events.h"
-#include "common/Types.h"
+#ifndef CSINGLEWINDOW_H
+#define CSINGLEWINDOW_H
 
+#include <QMainWindow>
+#include "cmainpanel.h"
+#include "cx11decoration.h"
 
-class CCefEventsTransformer::CPropImpl {
+class CSingleWindow : public QMainWindow, public CX11Decoration
+{
+    Q_OBJECT
 public:
-    explicit CPropImpl() {}
-    bool onEvent(QObject *, NSEditorApi::CAscMenuEvent *){
-        return false;
-    }
+    explicit CSingleWindow(const QRect& rect, const QString& title, QWidget * view);
+
+    bool holdView(int id) const;
+    QWidget * createMainPanel(bool, const QString&, QWidget *);
+
+private:
+    void recalculatePlaces();
+
+private:
+    QWidget * m_pMainView;
+    QWidget * m_boxTitleBtns;
+    QPushButton * m_pButtonMinimize,
+                * m_pButtonMaximize,
+                * m_pButtonClose;
+
+    uchar m_dpiRatio;
+
+signals:
+
+public slots:
+    void pushButtonCloseClicked();
+    void pushButtonMinimizeClicked();
+    void pushButtonMaximizeClicked();
 };
+
+#endif // CSINGLEWINDOW_H

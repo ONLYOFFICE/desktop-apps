@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -24,14 +24,6 @@
         <source>Lower</source>
         <target>Senken</target>
         <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
-      </trans-unit>
-      <trans-unit id="2II-dg-tXK.title">
-        <source>For Business</source>
-        <note>Class = "NSTextFieldCell"; title = "For Business"; ObjectID = "2II-dg-tXK";</note>
-      </trans-unit>
-      <trans-unit id="2PX-8n-yHS.title">
-        <source>%@</source>
-        <note>Class = "NSTextFieldCell"; title = "%@"; ObjectID = "2PX-8n-yHS";</note>
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title">
         <source>Raise</source>
@@ -63,10 +55,6 @@
         <target>Finden</target>
         <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
       </trans-unit>
-      <trans-unit id="4GM-km-e8N.title">
-        <source>License agreement</source>
-        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "4GM-km-e8N";</note>
-      </trans-unit>
       <trans-unit id="4et-TX-a4m.title">
         <source>License Agreement</source>
         <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
@@ -75,10 +63,6 @@
         <source>Quit ONLYOFFICE</source>
         <target>ONLYOFFICE verlassen</target>
         <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
-      </trans-unit>
-      <trans-unit id="5F3-kJ-3DQ.title">
-        <source>License Activation</source>
-        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "5F3-kJ-3DQ";</note>
       </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title">
         <source>Edit</source>
@@ -99,10 +83,6 @@
         <source>Redo</source>
         <target>Überarbeiten</target>
         <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
-      </trans-unit>
-      <trans-unit id="7Fa-DF-A4G.title">
-        <source>License Activation</source>
-        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "7Fa-DF-A4G";</note>
       </trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title">
         <source>License agreement</source>
@@ -141,10 +121,6 @@
         <source>Correct Spelling Automatically</source>
         <target>Spelling automatisch korrigieren</target>
         <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
-      </trans-unit>
-      <trans-unit id="AF1-Nc-smx.title">
-        <source>Buy Online...</source>
-        <note>Class = "NSButtonCell"; title = "Buy Online..."; ObjectID = "AF1-Nc-smx";</note>
       </trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
         <source>Main Menu</source>
@@ -259,10 +235,6 @@
         <target>Unterer Index</target>
         <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
       </trans-unit>
-      <trans-unit id="I8Z-6D-Kvn.title">
-        <source>Select how you will use %@</source>
-        <note>Class = "NSTextFieldCell"; title = "Select how you will use %@"; ObjectID = "I8Z-6D-Kvn";</note>
-      </trans-unit>
       <trans-unit id="IAo-SY-fd9.title">
         <source>Open…</source>
         <target>Öffnen…</target>
@@ -273,10 +245,6 @@
         <target>ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
-      <trans-unit id="Ipn-Y0-ytQ.title">
-        <source>OK</source>
-        <note>Class = "NSButtonCell"; title = "OK"; ObjectID = "Ipn-Y0-ytQ";</note>
-      </trans-unit>
       <trans-unit id="J5U-5w-g23.title">
         <source>Justify</source>
         <target>Rechtfertigen</target>
@@ -286,10 +254,6 @@
         <source>Use None</source>
         <target>Kein Verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
-      </trans-unit>
-      <trans-unit id="K6Z-jH-qTl.title">
-        <source>Continue</source>
-        <note>Class = "NSButtonCell"; title = "Continue"; ObjectID = "K6Z-jH-qTl";</note>
       </trans-unit>
       <trans-unit id="KaW-ft-85H.title">
         <source>Revert to Saved</source>
@@ -315,10 +279,6 @@
         <source>	Left to Right</source>
         <target>	Links nach Rechts</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
-      </trans-unit>
-      <trans-unit id="MDC-GR-pev.title">
-        <source>Activate</source>
-        <note>Class = "NSButtonCell"; title = "Activate"; ObjectID = "MDC-GR-pev";</note>
       </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
         <source>Copy Ruler</source>
@@ -422,10 +382,6 @@
         <source>Capitalize</source>
         <target>Kapitalisieren</target>
         <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
-      </trans-unit>
-      <trans-unit id="VE7-ZO-TkB.title">
-        <source>Try Again</source>
-        <note>Class = "NSButtonCell"; title = "Try Again"; ObjectID = "VE7-ZO-TkB";</note>
       </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title">
         <source>Center</source>
@@ -541,10 +497,6 @@
         <target>Kein Verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
       </trans-unit>
-      <trans-unit id="cmz-jq-Ope.title">
-        <source>Activate</source>
-        <note>Class = "NSButtonCell"; title = "Activate"; ObjectID = "cmz-jq-Ope";</note>
-      </trans-unit>
       <trans-unit id="cqv-fj-IhA.title">
         <source>Selection</source>
         <target>Auswahl</target>
@@ -575,43 +527,10 @@
         <target>Rückgängig Machen</target>
         <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
       </trans-unit>
-      <trans-unit id="dyY-64-Zpf.title">
-        <source>Cancel</source>
-        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "dyY-64-Zpf";</note>
-      </trans-unit>
-      <trans-unit id="eWZ-KX-JtO.title">
-        <source>Your subscription is about to expire
-(%@ days left).</source>
-        <note>Class = "NSTextFieldCell"; title = "Your subscription is about to expire\n(%@ days left)."; ObjectID = "eWZ-KX-JtO";</note>
-      </trans-unit>
-      <trans-unit id="eb1-ke-RIJ.title">
-        <source>License Activation</source>
-        <note>Class = "NSViewController"; title = "License Activation"; ObjectID = "eb1-ke-RIJ";</note>
-      </trans-unit>
-      <trans-unit id="ecv-ob-kOc.title">
-        <source>Buy Now...</source>
-        <note>Class = "NSMenuItem"; title = "Buy Now..."; ObjectID = "ecv-ob-kOc";</note>
-      </trans-unit>
-      <trans-unit id="eln-Or-2bq.title">
-        <source>Activation Error</source>
-        <note>Class = "NSTextFieldCell"; title = "Activation Error"; ObjectID = "eln-Or-2bq";</note>
-      </trans-unit>
-      <trans-unit id="fff-K1-E5b.title">
-        <source>Activation...</source>
-        <note>Class = "NSMenuItem"; title = "Activation..."; ObjectID = "fff-K1-E5b";</note>
-      </trans-unit>
-      <trans-unit id="fug-wa-QH5.title">
-        <source>ONLYOFFICE</source>
-        <note>Class = "NSViewController"; title = "ONLYOFFICE"; ObjectID = "fug-wa-QH5";</note>
-      </trans-unit>
       <trans-unit id="gVA-U4-sdL.title">
         <source>Paste</source>
         <target>Einfügen</target>
         <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
-      </trans-unit>
-      <trans-unit id="gkG-T1-ihv.title">
-        <source>Welcome to %@</source>
-        <note>Class = "NSTextFieldCell"; title = "Welcome to %@"; ObjectID = "gkG-T1-ihv";</note>
       </trans-unit>
       <trans-unit id="gm3-6i-EnL.title">
         <source>File Name</source>
@@ -656,18 +575,10 @@
         <target>Kern</target>
         <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
       </trans-unit>
-      <trans-unit id="jBt-El-yRL.title">
-        <source>You have successfully activated %@.</source>
-        <note>Class = "NSTextFieldCell"; title = "You have successfully activated %@."; ObjectID = "jBt-El-yRL";</note>
-      </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
         <source>	Right to Left</source>
         <target>	Rechts nach Links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
-      </trans-unit>
-      <trans-unit id="jep-MJ-EBv.title">
-        <source>Please enter your Activation Key:</source>
-        <note>Class = "NSTextFieldCell"; title = "Please enter your Activation Key:"; ObjectID = "jep-MJ-EBv";</note>
       </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
         <source>Format</source>
@@ -679,13 +590,9 @@
         <target>ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
-      <trans-unit id="kpa-Sr-jPV.title">
-        <source>Thank You!</source>
-        <note>Class = "NSTextFieldCell"; title = "Thank You!"; ObjectID = "kpa-Sr-jPV";</note>
-      </trans-unit>
       <trans-unit id="llV-Yc-IJ4.title">
-        <source>FILE</source>
-        <note>Class = "NSButtonCell"; title = "FILE"; ObjectID = "llV-Yc-IJ4";</note>
+        <source>START</source>
+        <note>Class = "NSButtonCell"; title = "START"; ObjectID = "llV-Yc-IJ4";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
         <source>Cancel</source>
@@ -722,10 +629,6 @@
         <target>Speichern…</target>
         <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
-      <trans-unit id="q7E-DX-1xX.title">
-        <source>Unknown Error. Otherwise, contact our support center.</source>
-        <note>Class = "NSTextFieldCell"; title = "Unknown Error. Otherwise, contact our support center."; ObjectID = "q7E-DX-1xX";</note>
-      </trans-unit>
       <trans-unit id="q09-fT-Sye.title">
         <source>Find Next</source>
         <target>Nächstes Finden</target>
@@ -735,10 +638,6 @@
         <source>Page Setup…</source>
         <target>Seiteneinrichtung…</target>
         <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
-      </trans-unit>
-      <trans-unit id="qti-2R-I2m.title">
-        <source>Activation</source>
-        <note>Class = "NSWindow"; title = "Activation"; ObjectID = "qti-2R-I2m";</note>
       </trans-unit>
       <trans-unit id="rG1-93-HjS.title">
         <source>ONLYOFFICE </source>
@@ -759,18 +658,10 @@
         <source>Copyright info</source>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sd8-yS-TXT.title">
-        <source>Box</source>
-        <note>Class = "NSBox"; title = "Box"; ObjectID = "sd8-yS-TXT";</note>
-      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Symbolleiste Anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
-      </trans-unit>
-      <trans-unit id="tKn-m1-hll.title">
-        <source>For Home</source>
-        <note>Class = "NSTextFieldCell"; title = "For Home"; ObjectID = "tKn-m1-hll";</note>
       </trans-unit>
       <trans-unit id="tRr-pd-1PS.title">
         <source>Data Detectors</source>
@@ -841,11 +732,6 @@
         <target>Hilfe</target>
         <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
       </trans-unit>
-      <trans-unit id="wrb-Yp-5M3.title">
-        <source>Box</source>
-        <target>Feld</target>
-        <note>Class = "NSBox"; title = "Box"; ObjectID = "wrb-Yp-5M3";</note>
-      </trans-unit>
       <trans-unit id="x3v-GG-iWU.title">
         <source>Copy</source>
         <target>Kopieren</target>
@@ -865,18 +751,10 @@
         <target>Rede</target>
         <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
       </trans-unit>
-      <trans-unit id="yGK-Fg-qtS.title">
-        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <note>Class = "NSTextFieldCell"; title = "If you have already purchased %@, you should find your activation key in an email confirmation."; ObjectID = "yGK-Fg-qtS";</note>
-      </trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
         <source>Show Substitutions</source>
         <target>Auswechslungen Anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
-      </trans-unit>
-      <trans-unit id="zbg-CZ-mv3.title">
-        <source>Thank you for evaluating %@!</source>
-        <note>Class = "NSTextFieldCell"; title = "Thank you for evaluating %@!"; ObjectID = "zbg-CZ-mv3";</note>
       </trans-unit>
       <trans-unit id="zwS-9G-S0N.title">
         <source>Portal:</source>
@@ -885,25 +763,9 @@
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/IvolgaPRO/Info.plist" source-language="en" datatype="plaintext" target-language="de">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-      </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>3.8.6</source>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Novye Kommunikacionnye Tehnologii, ZAO. All rights reserved.</source>
-      </trans-unit>
-    </body>
-  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -917,16 +779,34 @@
       </trans-unit>
     </body>
   </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>4.4</source>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
+        <target>© АО "Novyye Kommunikatsionnyye Tekhnologii" 2017 All rights reserved.</target>
+      </trans-unit>
+    </body>
+  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
       </trans-unit>
       <trans-unit id="CFBundleShortVersionString">
-        <source>3.8.7</source>
+        <source>4.4</source>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
@@ -935,16 +815,12 @@
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.3.1" build-num="7D1014"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
         <source>%@ Help</source>
         <target>%@ Help</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="%d days are left until the license expiration.">
-        <source>%d days are left until the license expiration.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -957,22 +833,18 @@
         <target>Acknowledgments</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Application activation failed">
-        <source>Application activation failed</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
         <target>Cancel</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Check your Internet connection settings and retry activation the application.">
-        <source>Check your Internet connection settings and retry activation the application.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
         <target>Comma-Separated Values</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Delete and Quit">
@@ -1030,11 +902,6 @@
         <target>If you don't review your documents, all your changeses will be lost.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
-        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target>If you have already purchased %@, you should find your activation key in an email confirmation.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="License Agreement">
         <source>License Agreement</source>
         <target>License Agreement</target>
@@ -1053,6 +920,10 @@
       <trans-unit id="OK">
         <source>OK</source>
         <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Free">
+        <source>ONLYOFFICE Free</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document">
@@ -1125,46 +996,14 @@
         <target>Rich Text Document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Select how you will use %@">
-        <source>Select how you will use %@</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
         <source>Spreadsheet %ld.xlsx</source>
         <target>Spreadsheet %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Thank you for evaluating %@!">
-        <source>Thank you for evaluating %@!</source>
-        <target>Thank you for evaluating %@!</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Thank you for using %@!">
-        <source>Thank you for using %@!</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="The Internet connection appears to be offline.">
-        <source>The Internet connection appears to be offline.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="The license expired.\nYou cannot create and edit local files.">
-        <source>The license expired.
-You cannot create and edit local files.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="The trial period is over.\nYou cannot create and edit documents.">
-        <source>The trial period is over.
-You cannot create and edit documents.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Unconfirmed</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Unregistered application version.\nYou cannot create and edit local files.">
-        <source>Unregistered application version.
-You cannot create and edit local files.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">
@@ -1181,10 +1020,6 @@ You cannot create and edit local files.</source>
         <target>Web Page</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Welcome to %@">
-        <source>Welcome to %@</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Word 97-2003 Document">
         <source>Word 97-2003 Document</source>
         <target>Word 97-2003 Document</target>
@@ -1193,10 +1028,6 @@ You cannot create and edit local files.</source>
       <trans-unit id="Word 2007 Document">
         <source>Word 2007 Document</source>
         <target>Word 2007 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center.">
-        <source>Wrong Activation Key. Please enter the Activation Key that was sent to your email. Otherwise, contact our support center.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification">
@@ -1209,40 +1040,14 @@ You cannot create and edit local files.</source>
         <target>Yes</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="You are using a trial version of the application.\nThe trial period will end in %d days, after that you will not be able to create and edit documents.">
-        <source>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="You have successfully activated %@.">
-        <source>You have successfully activated %@.</source>
-        <target>You have successfully activated %@.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Your changes will be lost if you don’t save them.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Your version of %@ for home use successfully activated.">
-        <source>Your version of %@ for home use successfully activated.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Your version of %@ for use in business successfully activated.">
-        <source>Your version of %@ for use in business successfully activated.</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="for Business">
-        <source>for Business</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="for Home">
-        <source>for Home</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

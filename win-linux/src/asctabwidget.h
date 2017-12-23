@@ -38,7 +38,6 @@
 #include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
 
-#include "applicationmanager.h"
 #include "qcefview.h"
 
 #include <QDebug>
@@ -53,6 +52,7 @@
 using namespace std;
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
+
 
 struct COpenOptions {
     COpenOptions();
@@ -71,21 +71,20 @@ struct COpenOptions {
     std::wstring wurl;
 };
 
+class CTabPanel;
 class CAscTabWidget : public QTabWidget
 {
     Q_OBJECT
 
     struct CFullScreenData {
     public:
-        CFullScreenData(int i, QWidget * w, void * d) : _widget(w), _data(d), _index(i) {}
-        CFullScreenData() : CFullScreenData(-1, 0, 0) {}
+        CFullScreenData(int i, QWidget * w) : _widget(w), _index(i) {}
+        CFullScreenData() : CFullScreenData(-1, nullptr) {}
 
         QWidget * widget() { return _widget; }
         int tabindex() { return _index; }
-        void * data() { return _data; }
     private:
         QWidget * _widget;
-        void * _data;
         int _index;
     };
 
@@ -101,7 +100,7 @@ class CAscTabWidget : public QTabWidget
         int tools_width;
         int custom_offset;
 
-        void apply_dpi(int dpi) {
+        void apply_scale(int dpi) {
             tab.max     *= dpi;
             tab.min     *= dpi;
             tabs_span   *= dpi;
@@ -112,21 +111,26 @@ class CAscTabWidget : public QTabWidget
         }
     };
 
+    typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
+
 public:
     QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
-    CAscApplicationManager* m_pManager;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;
     CFullScreenData * m_dataFullScreen;
-    size_params m_widthParams;
+    size_params m_widthParams,
+                m_defWidthParams;
     bool m_isCustomStyle;
+    CTabIconSet m_mapTabIcons;
+
 
 signals:
 //    void sendAddEditor();
     void tabClosed(int, int);
     void closeAppRequest();
+    void tabUndockRequest(int);
 
 public:
     CAscTabWidget(QWidget *parent = 0);
@@ -134,9 +138,13 @@ public:
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
     int  addPortal(QString url, QString name);
+    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
+    int  pickupTab(QWidget * panel);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
+    void setScaling(uchar);
+    void setStyleSheet(const QString&);
 
 protected:
     void resizeEvent(QResizeEvent* e);
@@ -163,10 +171,12 @@ public:
     void activate(bool);
     bool isActive();
 
+    void setTabIcons(CTabIconSet&);
     void updateIcons();
     void updateTabIcon(int);
     void setFocusedView(int index = -1);
     void setFullScreen(bool);
+    QWidget * fullScreenWidget();
 
     void openCloudDocument(COpenOptions&, bool);
     int  openLocalDocument(COpenOptions&, bool);

@@ -37,7 +37,7 @@
 
 #include <QMainWindow>
 #include "applicationmanager.h"
-
+#include "cmainpanelimpl.h"
 
 
 class CMainWindow : public QMainWindow, public CX11Decoration
@@ -46,9 +46,12 @@ class CMainWindow : public QMainWindow, public CX11Decoration
 
 public:
     explicit CMainWindow(QWidget *parent = 0);
-    explicit CMainWindow(CAscApplicationManager *);
+    explicit CMainWindow(const QRect&);
+    ~CMainWindow();
 
     void parseInputArgs(const QStringList&);
+    CMainPanel * mainPanel() const;
+    bool holdView(uint) const;
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -62,11 +65,11 @@ protected:
     void dropEvent(QDropEvent *event);
 
 private:
-    QWidget *   m_pMainPanel;
+    CMainPanelImpl *   m_pMainPanel;
+    uchar m_dpiRatio = 1;
 
 signals:
 public slots:
-private slots:
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
 };

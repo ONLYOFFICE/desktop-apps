@@ -65,7 +65,8 @@ Menu.prototype.init = function(parent) {
                 .replace(/%id/, item.id));
 
             $item.on('click', {'action': item.action}, function(e) {
-                me.events.itemclick.notify(e.data['action'], me.contextdata);
+                if ( !e.target.hasAttribute('disabled') )
+                    me.events.itemclick.notify(e.data['action'], me.contextdata);
             });
         }
 
@@ -109,8 +110,14 @@ Menu.prototype.show = function(pos, data) {
 Menu.prototype.disableItem = function(action, disable) {
     for (let item of this.items) {
         if (item.action == action) {
-            $('#' + item.id).parent()
-                [disable?'addClass':'removeClass']('disabled');
+            let $el = $('#' + item.id);
+            if ( disable ) {
+                $el.attr('disabled', 'disabled');
+                $el.parent()['addClass']('disabled');
+            } else {
+                !!$el.attr('disabled') && $el.removeAttr('disabled');
+                $el.parent()['removeClass']('disabled');
+            }
         }
     }
 };

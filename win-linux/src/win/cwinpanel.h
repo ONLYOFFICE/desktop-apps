@@ -36,39 +36,22 @@
 #include <QMouseEvent>
 #include <QResizeEvent>
 #include "qwinwidget.h"
-#include "../prop/cmainpanelimpl.h"
 
-#include "applicationmanager.h"
 
 class CWinPanel : public QWinWidget
 {
     Q_OBJECT
 
 public:
-    CWinPanel( HWND hWnd, CAscApplicationManager* pManager );
+    CWinPanel( HWND hWnd );
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
     void resizeEvent(QResizeEvent* event);
 
-    CMainPanelImpl * getMainPanel();
-
-    void goStartPage();
-    void focus();
-    void applyWindowState(Qt::WindowState);
-    void doClose();
-    void parseInputArgs(const QStringList& in);
-    void updatePanelStylesheets();
 private:
     HWND windowHandle;
-
-    CAscApplicationManager  * m_pManager;
-    CMainPanelImpl          * m_pMainPanel;
-
-private slots:
-    void slot_windowClose();
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_mainPageReady();
+    QWidget * m_pPanel;
 };
 
 #endif // QMAINPANEL_H

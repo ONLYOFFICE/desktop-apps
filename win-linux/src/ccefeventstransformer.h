@@ -37,21 +37,19 @@
 #include "Word_Api/Editor_Api.h"
 
 
-class CCefEventsTransformer : public NSEditorApi::CAscMenuEventListener
+class CCefEventsTransformer : public NSEditorApi::CAscCefMenuEventListener
 {
 
 public:
     explicit CCefEventsTransformer(QObject *parent = 0);
 
 protected:
-    void OnEvent(NSEditorApi::CAscMenuEvent *);
+    virtual void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    virtual void OnEvent(QObject *, NSEditorApi::CAscCefMenuEvent *);
 
 signals:
 private:
-    QObject * pObjParent;
-
-    class CPropImpl;
-    CPropImpl * m_propCls;
+    QObject * pObjTarget;
 
 public slots:
 };

@@ -40,6 +40,7 @@
 
 #import "NSCefView.h"
 #import "NSString+OnlyOffice.h"
+#import "mac_application.h"
 
 class CCefViewWrapper : public CCefViewWidgetImpl
 {
@@ -206,6 +207,12 @@ public:
         }
         default:
             break;
+    }
+}
+
+- (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData {    
+    if (m_pCefView && manager) {
+        m_pCefView->m_pCefView = manager->CreateCefPresentationReporter(m_pCefView, (CAscReporterData *)pData);
     }
 }
 

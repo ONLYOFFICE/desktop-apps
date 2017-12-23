@@ -51,6 +51,7 @@ public:
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
     static unsigned getScreenDpiRatioByHWND(int);
+    static QString replaceBackslash(QString&);
 
     static bool makepath(const QString&);
 
@@ -60,7 +61,10 @@ public:
     static QString encodeJson(const QJsonObject&);
     static QString encodeJson(const QString&);
 
-    static QByteArray getAppStylesheets(int);
+//    static QByteArray getAppStylesheets(int);
+    static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
+    static QByteArray readStylesheets(std::vector<QString> *);
+    static QByteArray readStylesheets(const QString&);
 };
 
 #endif // UTILS_H

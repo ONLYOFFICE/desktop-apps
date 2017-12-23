@@ -207,12 +207,17 @@
             });
 
             collectionRecents.events.click.attach((collection, model) => {
-                openFile(OPEN_FILE_RECENT, model.fileid);
+                var _portal = model.descr;
+                if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
+                    app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
+                } else {
+                    openFile(OPEN_FILE_RECENT, model.fileid);
+                }
             });
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
-                ppmenu.hideItem('files:explore', false);
+                ppmenu.hideItem('files:explore', !model.islocal);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
@@ -328,6 +333,15 @@
 
                 $(window).resize(()=>{
                     this.view.updatelistsize();
+                });
+
+                CommonEvents.on('portal:authorized', (data)=>{
+                    if ( data.type == 'fileid' ) {
+                        let fileid = data.id;
+                        openFile(OPEN_FILE_RECENT, fileid);
+                    }
+
+                    console.log('portal authorized');
                 });
 
                 return this;

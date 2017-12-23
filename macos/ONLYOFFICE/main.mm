@@ -62,6 +62,8 @@ int main(int argc, const char * argv[]) {
     // setup Editors directory
     appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/web-apps/apps/api/documents/index.html"] stdwstring];
     
+    appManager->m_oSettings.system_plugins_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/sdkjs-plugins"] stdwstring];
+    
     // setup Dictionary directory
     appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"dictionaries"] stdwstring];
     
@@ -84,23 +86,7 @@ int main(int argc, const char * argv[]) {
     NSString * fullName = NSFullUserName();
     
     if (fullName) {
-        NSRange range = [fullName rangeOfString:@" "];
-        
-        NSString *firstName = fullName;
-        NSString *lastName = @"";
-        
-        if (range.location != NSNotFound) {
-            firstName = [fullName substringToIndex:range.location];
-            lastName = [fullName substringFromIndex:range.location + 1];
-        }
-        
-        if (firstName) {
-            [params addObject:[NSString stringWithFormat:@"userfname=%@", firstName]];
-        }
-        
-        if (lastName) {
-            [params addObject:[NSString stringWithFormat:@"userlname=%@", lastName]];
-        }
+        [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];
     }
     
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];

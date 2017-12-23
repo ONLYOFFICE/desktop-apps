@@ -50,11 +50,10 @@
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
+        <file alias="message.qss">res/styles/message.qss</file>
     </qresource>
     <qresource prefix="/styles@2x">
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
-        <file alias="tabbar.qss">res/styles/tabbar@2x.qss</file>
-        <file alias="tabbar.nix.qss">res/styles/tabbar_nix@2x.qss</file>
     </qresource>
     <qresource prefix="/i18n">
         <file>langs/en.qm</file>
@@ -62,9 +61,13 @@
         <file>langs/es.qm</file>
         <file>langs/fr.qm</file>
         <file>langs/de.qm</file>
+        <file>langs/cs.qm</file>
+        <file>langs/sk.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
+        <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
+        <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
     </qresource>
 </RCC>

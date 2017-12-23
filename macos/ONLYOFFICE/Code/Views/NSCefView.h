@@ -39,7 +39,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#include "applicationmanager.h"
+#import "applicationmanager.h"
+
 
 @interface NSCefView : NSView
 @property (nonatomic, readonly) NSInteger uuid;
@@ -56,4 +57,5 @@
 - (void)openRecentFileWithId:(NSInteger)index;
 - (void)openRecoverFileWithId:(NSInteger)index;
 
+- (void)createReporter:(CAscApplicationManager *)manager data:(void *)pData;
 @end

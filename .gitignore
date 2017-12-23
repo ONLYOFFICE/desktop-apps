@@ -1,6 +1,7 @@
 
 win-linux/build/Release/*
 win-linux/build/Debug/*
+win-linux/ASCDocumentEditor.build/*
 
 win-linux/*.user
 

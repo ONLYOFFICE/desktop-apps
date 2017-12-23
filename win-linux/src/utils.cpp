@@ -61,18 +61,22 @@ bool is_file_browser_supported = true;
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
-    QStringList * _ret_files_list = new QStringList;
+    QStringList * _ret_files_list = nullptr;
 
-    QStringListIterator i(inlist); i.next();
-    while (i.hasNext()) {
-        QString arg = i.next();
+    if ( !inlist.isEmpty() ) {
+        _ret_files_list = new QStringList;
 
-        if ( arg.startsWith("--new:") )
-            _ret_files_list->append( arg );
-        else {
-            QFileInfo info( arg );
-            if ( info.isFile() ) {
-                _ret_files_list->append(info.absoluteFilePath());
+        QStringListIterator i(inlist);
+        while (i.hasNext()) {
+            QString arg = i.next();
+
+            if ( arg.startsWith("--new:") )
+                _ret_files_list->append( arg );
+            else {
+                QFileInfo info( arg );
+                if ( info.isFile() ) {
+                    _ret_files_list->append(info.absoluteFilePath());
+                }
             }
         }
     }
@@ -114,7 +118,7 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
 {
 //    int _scr_num = QApplication::desktop()->screenNumber(leftTop); - return the wrong number
 //    return QApplication::desktop()->screenGeometry(_scr_num);
-
+#ifdef __linux
     auto pointToRect = [](const QPoint &p, const QRect &r) -> int {
         int dx = 0, dy = 0;
         if (p.x() < r.left()) dx = r.left() - p.x(); else
@@ -138,6 +142,13 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
     }
 
     return QApplication::desktop()->screenGeometry(closestScreen);
+#else
+    POINT lt{leftTop.x(), leftTop.y()};
+    MONITORINFO mi{sizeof(MONITORINFO)};
+    ::GetMonitorInfo(::MonitorFromPoint(lt, MONITOR_DEFAULTTONEAREST), &mi);
+
+    return QRect(QPoint(mi.rcWork.left, mi.rcWork.top), QPoint(mi.rcWork.right, mi.rcWork.bottom));
+#endif
 }
 
 QString Utils::systemLocationCode()
@@ -261,6 +272,9 @@ QString Utils::encodeJson(const QString& s)
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
+#ifdef __linux
+    double _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
+#else
     UINT _dpi_x = 0,
          _dpi_y = 0;
     double _k;
@@ -270,6 +284,7 @@ unsigned Utils::getScreenDpiRatio(int scrnum)
     } else {
         _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
     }
+#endif
 
     return !(_k < 1.5) ? 2 : 1;
 }
@@ -293,9 +308,10 @@ unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 #endif
 }
 
+/*
 QByteArray Utils::getAppStylesheets(int scale)
 {
-    auto read_styles = [](QString& dir) {
+    auto read_styles = [](const QString& dir) {
         QByteArray _css;
         QFile file;
         QFileInfoList files = QDir(dir).entryInfoList(QStringList("*.qss"), QDir::Files);
@@ -317,4 +333,52 @@ QByteArray Utils::getAppStylesheets(int scale)
     }
 
     return _out;
+}
+*/
+
+QByteArray Utils::readStylesheets(std::vector<QString> * list, std::vector<QString> * list2x, int scale)
+{
+    QByteArray _out = readStylesheets(list);
+
+    if ( scale > 1 ) {
+        _out.append( readStylesheets(list2x) );
+    }
+
+    return _out;
+}
+
+QByteArray Utils::readStylesheets(std::vector<QString> * list)
+{
+    auto read_styles = [](const std::vector<QString> * inl) {
+        QByteArray _css;
+        QFile file;
+        for ( auto &path : *inl ) {
+            file.setFileName(path);
+            if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+                _css.append(file.readAll());
+                file.close();
+            }
+        }
+
+        return std::move(_css);
+    };
+
+    return read_styles(list);
+}
+
+QByteArray Utils::readStylesheets(const QString& path)
+{
+    QByteArray _css;
+    QFile file(path);
+    if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+        _css.append(file.readAll());
+        file.close();
+    }
+
+    return _css;
+}
+
+QString Utils::replaceBackslash(QString& path)
+{
+    return path.replace(QRegularExpression("\\\\"), "/");
 }

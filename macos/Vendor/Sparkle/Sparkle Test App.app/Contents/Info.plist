@@ -3,12 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>16D30a</string>
+	<string>17A330h</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>Sparkle Test App</string>
 	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.sparkle-project.SparkleTestApp</string>
@@ -31,17 +33,17 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>8A218a</string>
+	<string>9M136h</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>16A300</string>
+	<string>17A263z</string>
 	<key>DTSDKName</key>
-	<string>macosx10.12</string>
+	<string>macosx10.13</string>
 	<key>DTXcode</key>
-	<string>0800</string>
+	<string>0900</string>
 	<key>DTXcodeBuild</key>
-	<string>8A218a</string>
+	<string>9M136h</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

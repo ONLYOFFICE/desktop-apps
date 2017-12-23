@@ -42,6 +42,8 @@
 #import "mac_application.h"
 #import "ASCConstants.h"
 #import "NSString+OnlyOffice.h"
+#import "OfficeFileFormats.h"
+#import "ASCPresentationReporter.h"
 
 
 #pragma mark -
@@ -56,14 +58,14 @@ id stringToJson(NSString *jsonString) {
     return json;
 }
 
-class ASCEventListener: public NSEditorApi::CAscMenuEventListener {
+class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
 public:
-    ASCEventListener() : NSEditorApi::CAscMenuEventListener () {
+    ASCEventListener() : NSEditorApi::CAscCefMenuEventListener () {
         eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
     }
     
-    virtual void OnEvent(NSEditorApi::CAscMenuEvent* pRawEvent)
+    virtual void OnEvent(NSEditorApi::CAscCefMenuEvent* pRawEvent)
     {
         if (NULL == pRawEvent)
             return;
@@ -298,6 +300,22 @@ public:
                             }
                         }
                         
+                        // Begin hotfix ODP presentation
+                        
+                        NSArray* pptxExtension = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"pptx"]];
+                        NSArray* odpExtension  = [supportFormats filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF['extension'] == %@", @"odp"]];
+                        
+                        if ([pptxExtension count] > 0 && [odpExtension count] < 1) {
+                            NSDictionary * info = [ASCConstants ascFormatsInfo][@(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP)];
+                            [supportFormats addObject:@{
+                                                        @"type"         : @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP),
+                                                        @"description"  : info[@"description"],
+                                                        @"extension"    : info[@"extension"]
+                                                        }];
+                        }
+                        
+                        // End hotfix ODP presentation
+                        
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
                                                                             object:nil
                                                                           userInfo:@{
@@ -317,6 +335,31 @@ public:
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"fileId"  : @(pData->get_Id())
                                                                                      }];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
+                        NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
+
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenFileDialog
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
+                                                                                     @"filter"  : [NSString stringWithstdwstring:pData->get_Filter()],
+                                                                                     @"fileId"  : @(pData->get_Id())
+                                                                                     }];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
+                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
+                        [[ASCPresentationReporter sharedInstance] destroy];
+                        break;
+                    }
+                    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
+                    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
+                        [[ASCPresentationReporter sharedInstance] apply:pEvent];
                         break;
                     }
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
@@ -354,6 +397,10 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
                                                                                 object:nil
                                                                               userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                        } else if (cmd.compare(L"auth:sso") == 0) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalSSO
+                                                                                object:nil
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
                         } else if (cmd.compare(L"files:explore") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
                                                                                 object:nil
@@ -377,8 +424,9 @@ public:
                         break;
                 }
                 
-                if (NULL != pEvent)
-                    delete pEvent;
+                if (NULL != pEvent) {
+                    pEvent->Release();
+                }
             });
         });
     }
