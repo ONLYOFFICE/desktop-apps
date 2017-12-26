@@ -6,7 +6,7 @@
 #include "common.iss"
 
 [Setup]
-OutputBaseFileName    =DesktopEditors_x86
+OutputBaseFileName    =DesktopEditors_x86_xp
 MinVersion              =0,5.0.2195
 ;ArchitecturesAllowed    =x86
 
