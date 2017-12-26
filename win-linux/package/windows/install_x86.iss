@@ -1,4 +1,5 @@
-﻿#define os_arch 'win_32'
+﻿
+#define os_arch 'win_32'
 #define PATH_PREFIX 'win_32\build'
 #include "common.iss"
 
@@ -13,9 +14,9 @@ MinVersion              =0,5.0.2195
 Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x86.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
-Source: ..\..\..\..\core\build\bin\win_32\x2t.exe;               DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\bin\win_32\icudt.dll;             DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;              DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
+Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\win_32\x2t.exe;     DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\win_32\icudt.dll;                  DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\icu\{#os_arch}\*;                  DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
 
 Source: ..\..\..\..\core\build\cef\{#os_arch}\*;                      DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 Source: data\libs\qt\win32\*;                                         DestDir: {app}\; Flags: ignoreversion recursesubdirs;
