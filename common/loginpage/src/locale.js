@@ -53,10 +53,15 @@ var en = {
     menuClear: 'Clear',
     menuLogout: 'Logout',
     textMyComputer: 'My Computer',
+    textThrough: 'through',
     linkForgotPass: 'Forgot password?',
     linkCreatePortal: 'Create Portal',
-    loginTitle: 'Connect to portal',
-    loginTitle2: 'Login to $1',
+    linkResend: 'Send the code again',
+    linkChangePhone: 'Change phone',
+    loginTitleStart: 'Connect to portal',
+    loginTitleConnectTo: 'Login to $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Wrong email or password',
     errLoginPortal: 'Check the portal name',
     errLoginEmail: 'Check the email address',
@@ -66,6 +71,10 @@ var en = {
     pshPortal: 'portal',
     pshEmail: 'email',
     pshPass: 'password',
+    pshPhone: 'phone',
+    pshCode: 'sms code',
+    loginNoteAssignPhone: 'The two-factor authentication is enabled',
+    loginNoteApplyCode: 'The two-factor authentication is enabled. Code sent on $1 number',
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATION',
@@ -115,8 +124,10 @@ var cs = {
     textMyComputer: 'Můj počítač',
     linkForgotPass: 'Zapomenuté heslo?',
     linkCreatePortal: 'Vytvořit portál',
-    loginTitle: 'Připojit se k portálu',
-    loginTitle2: 'Login to $1',
+    loginTitleStart: 'Připojit se k portálu',
+    loginTitleConnectTo: 'Login to $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Špatné email nebo heslo',
     errLoginPortal: 'Zkontrolujte jméno portálu',
     errLoginEmail: 'Zkontrolujte emailovou adresu',
@@ -175,8 +186,10 @@ var sk = {
     textMyComputer: 'Môj počítač',
     linkForgotPass: 'Zabudnuté heslo?',
     linkCreatePortal: 'Vytvoriť portál',
-    loginTitle: 'Pripojiť sa k portálu',
-    loginTitle2: 'Prihlásiť sa $1',
+    loginTitleStart: 'Pripojiť sa k portálu',
+    loginTitleConnectTo: 'Prihlásiť sa $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Nesprávny e-mail alebo heslo',
     errLoginPortal: 'Skontrolovať názov portálu',
     errLoginEmail: 'Skontrolovať e-mailovú adresu',
@@ -235,8 +248,10 @@ var ru = {
     textMyComputer: 'Мой компьютер',
     linkForgotPass: 'Забыли пароль?',
     linkCreatePortal: 'Создать портал',
-    loginTitle: 'Подключиться к порталу',
-    loginTitle2: 'Войти на $1',
+    loginTitleStart: 'Подключиться к порталу',
+    loginTitleConnectTo: 'Войти на $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Неправильный email или пароль',
     errLoginPortal: 'Проверьте имя портала',
     errLoginEmail: 'Проверьте email',
@@ -295,8 +310,10 @@ var de = {
     textMyComputer: 'Arbeitsplatz',
     linkForgotPass: 'Passwort vergessen?',
     linkCreatePortal: 'Portal erstellen',
-    loginTitle: 'Mit Portal verbinden',
-    loginTitle2: 'Ins $1 anmelden',
+    loginTitleStart: 'Mit Portal verbinden',
+    loginTitleConnectTo: 'Ins $1 anmelden',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Falscher Passwort oder E-Mail',
     errLoginPortal: 'Überprüfen Sie den Portalnamen',
     errLoginEmail: 'Überprüfen Sie die E-Mail',
@@ -355,8 +372,10 @@ var fr = {
     textMyComputer: 'Mon poste de travail',
     linkForgotPass: 'Mot de passe oublié ?',
     linkCreatePortal: 'Créer portail',
-    loginTitle: 'Se connecter au portail',
-    loginTitle2: 'Connecter au $1',
+    loginTitleStart: 'Se connecter au portail',
+    loginTitleConnectTo: 'Connecter au $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'l\'e-mail ou le mot de passe erroné',
     errLoginPortal: 'Vérifier le nom de portail',
     errLoginEmail: 'Vérifier l\'adresse e-mail',
@@ -415,8 +434,10 @@ var es = {
     textMyComputer: 'Mi Ordenador',
     linkForgotPass: '¿Se le olvidó su contraseña?',
     linkCreatePortal: 'Crear Portal',
-    loginTitle: 'Conectar al portal',
-    loginTitle2: 'Acceder al $1',
+    loginTitleStart: 'Conectar al portal',
+    loginTitleConnectTo: 'Acceder al $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'Contraseña o correo electrónico incorrecto',
     errLoginPortal: 'Verificar el nombre de portal',
     errLoginEmail: 'Verificar la dirección del correo electrónico',
@@ -475,8 +496,10 @@ var pt_BR = {
     textMyComputer: 'Meu Computador',
     linkForgotPass: 'Esqueceu a senha?',
     linkCreatePortal: 'Criar Portal',
-    loginTitle: 'Conecte-se ao portal',
-    loginTitle2: 'Entre no seu $1',
+    loginTitleStart: 'Conecte-se ao portal',
+    loginTitleConnectTo: 'Entre no seu $1',
+    loginTitleAssignPhone: 'Enter mobile phone',
+    loginTitleApplyCode: 'Confirm authentication',
     errLogin: 'E-mail ou senha incorreto(a)',
     errLoginPortal: 'Verifique o nome do portal',
     errLoginEmail: 'Verifique o endereço de e-mail',
@@ -510,9 +533,19 @@ var pt_BR = {
     ,strVersion: 'version'
 }
 
-+function applyLocale(lang) {
-    (!lang || !window[lang]) && (lang = 'en');
-    utils.Lang = window[lang];
+function loadLocale(lang) {
+    if ( lang != 'en' ) {
+        for ( let i in window[lang] ) {
+            utils.Lang[i] = window[lang][i];
+        }
+    }
+};
+
++function mixLocale(lang) {
+    utils.Lang = window['en'];
+
+    if ( lang && window[lang] )
+        loadLocale(lang);
 }(window.utils.inParams.lang);
 
 /*

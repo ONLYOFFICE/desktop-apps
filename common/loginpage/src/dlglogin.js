@@ -30,73 +30,144 @@
  *
 */
 
-
 window.LoginDlg = function() {
     "use strict";
 
+    let panels = {
+        panelPortalName: {
+            title: utils.Lang.loginTitleStart,
+            template: () => {
+                return `<section><div id="panel-portal" class="sl-panel">
+                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
+                          <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">
+                          <div style="height:10px;"></div>
+                          <div id="box-btn-next" class="lr-flex">
+                            <a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
+                            <span />
+                            <div>
+                              <img class="img-loader">
+                              <button id="btn-next" class="btn primary">${utils.Lang.btnNext}</button>
+                            </div>
+                          </div>
+                        </div></section>`;
+            }
+        },
+        panelUserName: {
+            title: utils.Lang.loginTitleConnectTo,
+            template: () => {
+                return `<section><div id="panel-login" class="sl-panel">
+                          <section id="box-btn-login-sso" class="next">
+                            <button id="btn-login-sso" class="btn">Single Sign-on</button>
+                            <div class="separator"></div>
+                            <span class="separator-label">or</span>
+                          </section>
+                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
+                          <input id="auth-email" type="text" class="tbox auth-control first" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">
+                          <input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">
+                          <div id="box-btn-login" class="lr-flex">
+                            <a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkForgotPass}</a>
+                            <span />
+                            <div>
+                              <img class="img-loader">
+                              <button id="btn-login" class="btn primary">${utils.Lang.btnLogin}</button>
+                            </div>
+                          </div>
+                        </div></section>`;
+            }
+        },
+        panelAssignPhone: {
+            title: utils.Lang.loginTitleAssignPhone,
+            template: () => {
+                return `<section><div id="panel-assign-phone" class="sl-panel">
+                          <p class="notice text-sub">${utils.Lang.loginNoteAssignPhone}</p>
+                          <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
+                          <div class="lr-flex">
+                            <input id="auth-phone" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshPhone}" maxlenght="255" value="">
+                            <div>
+                              <button id="btn-assign-phone" class="btn primary">${utils.Lang.btnNext}</button>
+                            </div>
+                          </div>
+                       </div></section>`;
+            }
+        },
+        panelApplyAuthCode: {
+            title: utils.Lang.loginTitleApplyCode,
+            template: (code) => {
+                return `<section><div id="panel-apply-code" class="sl-panel">
+                    <p class="notice text-sub">${utils.Lang.loginNoteApplyCode.replace(/\$1/, code)}</p>
+                    <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
+                    <div class="lr-flex">
+                      <input id="auth-code" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshCode}" maxlenght="255" value="">
+                      <div>
+                        <button id="btn-apply-code" class="btn primary">${utils.Lang.btnNext}</button>
+                      </div>
+                    </div>
+                    <div class="lr-flex bt-align">
+                      <div>
+                        <a id="link-repeat" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkResend}</a>
+                        <span id="repeat-timer" class="timer text-sub">0:00</span>
+                      </div>
+                      <a id="link-change-phone" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkChangePhone}</a>
+                    </div>
+                </div></section>`;
+            }
+        }
+    };
+
     var $el;
-    var _tpl = '<dialog class="dlg dlg-login">' +
-                  '<div class="title">'+
-                    `<label class="caption">${utils.Lang.loginTitle}</label>`+
-                    '<span class="tool close img-el"></span>'+
-                  '</div>'+
-                  '<div class="body">'+
-                    '<section id="box-btn-login-sso" class="next">'+
-                        '<button id="btn-login-sso" class="btn">Single Sign-on</button>'+
-                        '<div class="separator"></div>'+
-                        '<span class="separator-label">or</span>' +
-                    '</section>' +
-                    '<section id="box-lbl-error">'+
-                      `<p id="auth-error" class="msg-error">${utils.Lang.errLogin}</p>` +
-                    '</section>'+
-                    '<section id="box-paged-panel" class="">' +
-                      '<div id="panel-portal" class="sl-panel">' +
-                        `<input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">` +
-                        '<div style="height:10px;"></div>'+
-                        '<div id="box-btn-next" class="lr-flex">'+
-                          `<a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
-                           <span />
-                           <div>
-                             <img class="img-loader">
-                             <button id="btn-next" class="btn primary">${utils.Lang.btnNext}</button>
-                          </div>`+
-                        '</div>'+
-                      '</div>' +
-                      '<div id="panel-login" class="sl-panel next">' +
-                        `<input id="auth-email" type="text" class="tbox auth-control first" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">` +
-                        `<input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">` +
-                        '<div id="box-btn-login" class="lr-flex">'+
-                          `<a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkForgotPass}</a>`+
-                          '<span />'+
-                          '<div><img class="img-loader">' +
-                          `<button id="btn-login" class="btn primary">${utils.Lang.btnLogin}</button></div>`+
-                        '</div>'+
-                      '</div>' +
-                    '</section>' +
-                  '</div>'+
-                '</dialog>';
+    var _tpl = `<dialog class="dlg dlg-login">
+                  <div class="title">
+                    <label class="caption">Title</label>
+                    <span class="tool close img-el"></span>
+                  </div>
+                  <div class="body"></div>
+                </dialog>`;
 
     var protocol = 'https://',
         protarr = ['https://', 'http://'],
         startmodule = '/products/files/?desktop=true';
     var portal = undefined,
         ssoservice = undefined,
-        email = undefined;
+        user = undefined;
     var events = {};
     var STATUS_EXIST = 1;
     var STATUS_NOT_EXIST = 0;
     var STATUS_UNKNOWN = -1;
     var STATUS_NO_CONNECTION = -255;
     var PROD_ID = 4;
+    var TIMER_REPEAT_SMS_CODE = 30;
+    var idtimer;
+
+    function bookUser(token) {
+        Promise.all([
+            clientCheckin(protocol + portal, token),
+                getUserInfo(protocol + portal, token) ])
+            .then( results => {
+                let info = results[1];
+                window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", token);
+                window.on_set_cookie =
+                        () => {
+                            if ( !!events.success ) {
+                                let auth_info = {
+                                    portal: protocol + portal,
+                                    user: info.displayName,
+                                    email: info.email
+                                };
+
+                                events.success({status:'user', data:auth_info});
+                            }
+
+                            window.on_set_cookie = undefined;
+                            doClose(1);
+                        }
+                },
+                error => showLoginError(utils.Lang.errLoginAuth)
+            );
+    };
 
     function recognizeUser(server, data) {
-        var opts = {
-            url: server,
-            crossOrigin: true,
-            crossDomain: true,
-            type: 'post',
-            data: data,
-            complete: function(e, status) {
+        let _signal = e => {
+            if ( e && e.responseText ) {
                 var obj = JSON.parse(e.responseText);
                 if (obj.statusCode == 402) {
                     showLoginError(obj.error.message);
@@ -109,41 +180,26 @@ window.LoginDlg = function() {
                     showLoginError(utils.Lang.errLoginServer);
                 } else {
                     if (obj.response.sms) {
-                        showLoginError('Two-factor authentication isn\'t supported yet.');
+                        user = data;
+                        if ( !obj.response.phoneNoise )
+                            performSmsAuth(); else
+                            sendSmsCode( obj.response.phoneNoise );
                     } else
                     if (!obj.response.sms) {
-                        Promise.all(
-                            [ clientCheckin(protocol + portal, obj.response.token),
-                                getUserInfo(protocol + portal, obj.response.token) ])
-                            .then( results => {
-                                        let info = results[1];
-                                        window.sdk.setCookie(protocol + portal, portal, "/", "asc_auth_key", obj.response.token);
-                                        window.on_set_cookie = ()=>{
-                                            if ( !!events.success ) {
-                                                let auth_info = {
-                                                    portal: protocol + portal,
-                                                    user: info.displayName,
-                                                    email: info.email
-                                                };
-                                                events.success({status:'user', data:auth_info});
-                                            }
-
-                                            window.on_set_cookie = undefined;
-                                            doClose(1);
-                                        }
-                                },
-                                error => showLoginError(utils.Lang.errLoginAuth)
-                            );
+                        bookUser(obj.response.token);
+                    }
                 }
-                }
-            },
-            error: function(e, status, error) {
-                console.log('server error: ' + status + ', ' + error);
+            } else {
                 showLoginError(utils.Lang.errLoginServer);
             }
         };
 
-        $.ajax(opts);
+        postRequest(server, data).
+            then( args => { _signal(args.e); },
+                args => {
+                    console.log('server error: ' + args.status + ', ' + args.error);
+                    _signal(args.e);
+                });
     };
 
     function onCloseClick(e) {
@@ -151,6 +207,8 @@ window.LoginDlg = function() {
     };
 
     function doClose(code) {
+        if ( !!idtimer ) clearInterval(idtimer);
+
         $el[0].hasAttribute('open') && $el[0].close();
         $el.remove();
 
@@ -159,15 +217,10 @@ window.LoginDlg = function() {
         }
     };
 
-    function onSSOLoginClick(e) {
-        events.success({status:'sso', portal:protocol+portal, provider:ssoservice});
-        doClose(0);
-    };
-
     function onLoginClick(e) {
         hideLoginError();
 
-        email = $el.find('#auth-email').val().trim();
+        let email = $el.find('#auth-email').val().trim();
 
         var re_wrong_symb = /[\s\\]/;
         if (!email.length || re_wrong_symb.test(email)) {
@@ -188,13 +241,13 @@ window.LoginDlg = function() {
         recognizeUser(protocol+url, {userName: email, password: pass});
     };
 
-    function showLoginError(error, el) {
+    function showLoginError(error, focusel) {
         let $lbl = $el.find('#auth-error');
 
         !!error && $lbl.text(error);
         $lbl.fadeIn(100);
 
-        !!el && $el.find(el).addClass('error').focus();
+        !!focusel && $el.find(focusel).addClass('error').focus();
         disableDialog(false);
     };
 
@@ -332,30 +385,16 @@ window.LoginDlg = function() {
             if ( obj ) {
                 if ( obj.status == 'ok' ) {
                     disableDialog(false);
+                    let params = {portal: portal};
 
-                    $el.find('.title .caption').text(`${utils.Lang.loginTitle2.replace(/\$1/, portal)}`);
-
-                    var _height = 270;
                     if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
-                        ssoservice = obj.response.ssoUrl;
-                        $el.find('#box-btn-login-sso').show();
+                        params.authservice = {url: obj.response.ssoUrl};
 
                         if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
-                            $el.find('#btn-login-sso').html(obj.response.ssoLabel);
-
-                        _height += 96;
+                            params.authservice.label = obj.response.ssoLabel;
                     }
 
-                    $el.find('#panel-portal').hide();
-                    $el.find('#panel-login').show();
-                    $el.height(_height);
-
-                    setTimeout(() => {
-                        let $email = $el.find('#auth-email');
-                        if ( !!$email.val() )
-                            $el.find('#auth-pass').focus(); else
-                            $email.focus();
-                    }, 50);
+                    firstConnect(params);
                 } else {
                     if ( obj.status == 'error' ) {
                         if ( obj.response.status == 404 ) {
@@ -389,6 +428,7 @@ window.LoginDlg = function() {
                 url: _url,
                 crossOrigin: true,
                 crossDomain: true,
+                timeout: 10000,
                 complete: function(e, status) {
                     if (status == 'success') {
                         var obj = JSON.parse(e.responseText);
@@ -408,40 +448,229 @@ window.LoginDlg = function() {
         });
     };
 
+    function startDialog() {
+        let _panel = panels.panelPortalName;
+
+        setTitle( _panel.title );
+        $el.find('.body').html( _panel.template() );
+        $el.find('#btn-next').click(onNextClick);
+
+        let $portal = $el.find('#auth-portal');
+        if ( !!portal ) $portal.val(portal);
+
+        setTimeout(()=>{$portal.focus();}, 50);
+    };
+
+    function firstConnect(params) {
+        let _panel = panels.panelUserName;
+        setTitle( _panel.title.replace(/\$1/, params.portal) );
+        setBody( _panel.template() );
+
+        let $email = $el.find('#auth-email');
+        if ( !!user ) $email.val(user);
+
+        if ( !!params.authservice ) {
+            $el.find('#box-btn-login-sso').show();
+
+            let _sso_btn = $el.find('#btn-login-sso');
+            _sso_btn.click( e => {
+                    events.success({status:'sso', portal:protocol+portal, provider:params.authservice.url});
+                    doClose(0);
+                });
+
+            if ( !!params.authservice.label )
+                _sso_btn.html( params.authservice.label );
+        }
+
+        $el.find('#link-restore').click(onRestorePass);
+        $el.find('#btn-login').click(onLoginClick);
+
+        setTimeout(() => {
+            if ( !!$email.val() )
+                $el.find('#auth-pass').focus(); else
+                $email.focus();
+        }, 50);
+    };
+
+    function performSmsAuth(phone) {
+        disableDialog(false);
+
+        setTitle(panels.panelAssignPhone.title);
+        setBody(panels.panelAssignPhone.template());
+
+        let $phone = $el.find('#auth-phone');
+        if ( !!phone ) {
+            $phone.val(phone);
+        }
+
+        $el.find('#btn-assign-phone').click(e => {
+            let url  = `${protocol+portal}/api/2.0/authentication/setphone.json`;
+            let data = {
+                mobilePhone: $el.find('#auth-phone').val(),
+                userName: user.userName,
+                password: user.password
+            };
+
+            postRequest(url, data).then(
+                args => {
+                    if (args.e.status == 201) {
+                        let jsonObj = JSON.parse(args.e.responseText);
+
+                        if ( !!jsonObj.response.phoneNoise ) {
+                            sendSmsCode( jsonObj.response.phoneNoise );
+                        }
+                    }
+                    console.log('request succeed: ' + args.e.responseText);
+                },
+                args => {
+                    console.log('request error: ' + args.error);
+                });
+        });
+    };
+
+    function sendSmsCode(phone) {
+        setTitle(panels.panelApplyAuthCode.title);
+        setBody(panels.panelApplyAuthCode.template(phone));
+
+        let $timer = $el.find('#repeat-timer');
+        let $repeat = $el.find('#link-repeat');
+        $repeat.click(e => {
+            resubmitSmsCode();
+            lockResubmit();
+        });
+
+        // show button to change phone number if number isn't hidden
+        if ( /\*+/.test(phone) ) {
+            $el.find('#link-change-phone').hide();
+        } else {
+            $el.find('#link-change-phone').click(e => {
+                clearInterval(idtimer);
+                performSmsAuth(phone);
+            });
+        }
+
+        $el.find('#btn-apply-code').click(e => {
+            let code = $el.find('#auth-code').val();
+            let url  = `${protocol+portal}/api/2.0/authentication/${code}.json`;
+            let data = {
+                userName: user.userName,
+                password: user.password
+            };
+
+            postRequest(url, data)
+                .then(
+                    args => {
+                        if (args.e.status == 201) {
+                            let obj = JSON.parse(args.e.responseText);
+                            bookUser(obj.response.token);
+                        }
+                        console.log('request succeed: ' + args.e.responseText);
+                    },
+                    args => {
+                        console.log('request error: ' + args.error);
+                    });
+        });
+
+        function lockResubmit() {
+            if ( $timer.length ) {
+                $timer.show();
+                $repeat.attr('disabled', 'disabled');
+
+                idtimer && clearInterval(idtimer);
+                let count = 0;
+                $timer.text(utils.Lang.textThrough + ' 0:' + TIMER_REPEAT_SMS_CODE);
+                idtimer = setInterval(()=>{
+                    if ( ++count < TIMER_REPEAT_SMS_CODE ) {
+                        let str_elaps = ' 0:' + (TIMER_REPEAT_SMS_CODE - count);
+                        $timer.text(utils.Lang.textThrough + str_elaps.replace(/\:(\d)$/, ':0$1'));
+                    } else {
+                        clearInterval(idtimer);
+                        $timer.hide();
+                        $repeat.removeAttr('disabled');
+                    }
+                }, 1000);
+            }
+        };
+
+        lockResubmit();
+    };
+
+    function resubmitSmsCode() {
+        let url  = `${protocol+portal}/api/2.0/authentication/sendsms.json`;
+        let data = {
+            userName: user.userName,
+            password: user.password
+        };
+
+        postRequest(url, data)
+            .then(
+                args => {
+                    if (args.e.status == 201) {
+                        let obj = JSON.parse(args.e.responseText);
+                    }
+                    console.log('request succeed: ' + args.e.responseText);
+                },
+                args => {
+                    console.log('request error: ' + args.error);
+                });
+    };
+
+    function setTitle(title) {
+        $el.find('.title .caption').text(title);
+    };
+
+    function setBody(html) {
+        $el.height('auto');
+        let before = $el.height();
+        $el.find('.body').html(html);
+        let after = $el.height();
+
+        // for using animation on dialog resize
+        $el.height(before);
+        $el.height(after);
+    };
+
+    function postRequest(url, data) {
+        return new Promise((resolve, reject) => {
+            var opts = {
+                url:  url,
+                type: 'post',
+                crossOrigin: true,
+                crossDomain: true,
+                data: data,
+                complete: (e, status) => { resolve({e:e, status:status}); },
+                error: (e, status, error) => { reject({e:e, status:status, error:error}); }
+            };
+
+            $.ajax(opts);
+        });
+    };
+
     return {
-        show: function(portal, email) {
+        show: (inportal, inemail) => {
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
 
-            let $p = $el.find('#auth-portal'),
-                $e = $el.find('#auth-email'),
-                $k = $el.find('#auth-pass');
+            if ( !!inportal ) {
+                portal = utils.skipUrlProtocol(inportal);
 
-            if (!!portal) {
-                let sp = utils.getUrlProtocol(portal);
+                let sp = utils.getUrlProtocol(inportal);
                 !!sp && (protocol = sp);
-
-                $p.val(utils.skipUrlProtocol(portal));
             }
-            !!email && $e.val(email);
+            !!inemail && (user = inemail);
 
             // $el.width(450).height(470);
             // set height without logo
-            $el.width(450).height(210);
+            // $el.width(450).height(210);
+            $el.width(450);
 
             $el.find('.tool.close').bind('click', onCloseClick);
-            $el.find('#btn-login').click(onLoginClick);
-            $el.find('#btn-login-sso').click(onSSOLoginClick);
-            $el.find('#link-restore').click(onRestorePass);
-            $el.find('#btn-next').click(onNextClick);
 
             bindEvents();
             $el.get(0).showModal();
             $el.addClass('scaled');
             $el.on('close', doClose);
 
-            setTimeout(() => {
-                $p.focus();
-            }, 50);
+            startDialog();
         },
         close: function(){
             doClose(0);
