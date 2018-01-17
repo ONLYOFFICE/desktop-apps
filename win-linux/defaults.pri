@@ -121,7 +121,12 @@ app_linux {
     PKGCONFIG += glib-2.0 gdk-2.0 gtkglext-1.0 atk cairo gtk+-unix-print-2.0
 
     build_for_centos6 {
-        QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        app_linux_64 {
+            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        }
+        app_linux_32 {
+            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux.so.2
+        }
         message("build for centos6")
     }
 
