@@ -74,12 +74,29 @@ SOURCES += \
 RESOURCES += $$PWD/resources.qrc
 
 linux-g++ {
-    contains(QMAKE_HOST.arch, x86_64):{
-        PLATFORM_BUILD = linux_64
-    } else {
-        PLATFORM_BUILD = linux_32
-    }
+    CONFIG += app_linux
+	linux-g++:contains(QMAKE_HOST.arch, x86_64): {
+		CONFIG += app_linux_64
+		PLATFORM_BUILD = linux_64
+	}
+	linux-g++:!contains(QMAKE_HOST.arch, x86_64): {
+		CONFIG += app_linux_32
+		PLATFORM_BUILD = linux_32
+	}
+}
 
+linux-g++-64 {
+    CONFIG += app_linux
+    CONFIG += app_linux_64
+    PLATFORM_BUILD = linux_64
+}
+linux-g++-32 {
+    CONFIG += app_linux
+    CONFIG += app_linux_32
+    PLATFORM_BUILD = linux_32
+}
+
+app_linux {
     QT += network x11extras
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
