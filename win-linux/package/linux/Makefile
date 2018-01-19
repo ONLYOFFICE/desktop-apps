@@ -6,8 +6,17 @@ endif
 
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
-RPM_ARCH = x86_64
-DEB_ARCH = amd64
+UNAME_M := $(shell uname -m)
+ifeq ($(UNAME_M),x86_64)
+	RPM_ARCH = x86_64
+	DEB_ARCH = amd64
+	TAR_ARCH = x64
+endif
+ifneq ($(filter %86,$(UNAME_M)),)
+	RPM_ARCH = i686
+	DEB_ARCH = i386
+	TAR_ARCH = x86
+endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 DEB_BUILD_DIR = $(PWD)/
@@ -85,16 +94,7 @@ else
 START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/$(COMPANY_NAME)
 endif
 
-RPM_DEPENDENCY += desktopeditor
-RPM_DEPENDENCY += rpm-version
-
 DEB_DEPENDENCY += deb-version
-
-APT_RPM_DEPENDENCY += desktopeditor
-APT_RPM_DEPENDENCY += apt-rpm-version
-
-URPMI_RPM_DEPENDENCY += desktopeditor
-URPMI_RPM_DEPENDENCY += urpmi-rpm-version
 
 TAR_DEPENDENCY += tar-desktopeditor
 
@@ -111,9 +111,9 @@ PORTABLE_BILD_PATH := $(BILD_PATH)
 endif
 
 TAR_PROGRAM_PATH := desktopeditors
-TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-x64.tar.gz
+TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
-INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-x64
+INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
 
@@ -184,16 +184,6 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-rpm-version:
-	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i rpm/$(PACKAGE_NAME).spec
-	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i rpm/$(PACKAGE_NAME).spec
-	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i rpm/$(PACKAGE_NAME).spec
-
-ifeq ($(PACKAGE_EDITION), full)
-	sed '/^Requires.*/d'  -i rpm/$(PACKAGE_NAME).spec
-	sed 's/^#Full\(Requires.*\)/\1/'  -i rpm/$(PACKAGE_NAME).spec
-endif
-
 deb-version: desktopeditor
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
 
@@ -207,37 +197,41 @@ ifeq ($(PACKAGE_EDITION), full)
 	sed 's/^#Full\(Depends.*\)/\1/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
 endif
 
-apt-rpm-version:
-	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i apt-rpm/$(PACKAGE_NAME).spec
-	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i apt-rpm/$(PACKAGE_NAME).spec
-	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i apt-rpm/$(PACKAGE_NAME).spec
-
-ifeq ($(PACKAGE_EDITION), full)
-	sed '/^Requires.*/d'  -i apt-rpm/$(PACKAGE_NAME).spec
-	sed 's/^#Full\(Requires.*\)/\1/'  -i apt-rpm/$(PACKAGE_NAME).spec
-endif
-
-urpmi-rpm-version:
-	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
-	sed 's/{{PRODUCT_VERSION}}/'$(PRODUCT_VERSION)'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
-	sed 's/{{BUILD_NUMBER}}/'${BUILD_NUMBER}'/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
-
-ifeq ($(PACKAGE_EDITION), full)
-	sed '/^Requires.*/d'  -i urpmi-rpm/$(PACKAGE_NAME).spec
-	sed 's/^#Full\(Requires.*\)/\1/'  -i urpmi-rpm/$(PACKAGE_NAME).spec
-endif
-
-$(RPM): $(RPM_DEPENDENCY)
-	cd rpm && rpmbuild -bb --define "_topdir $(RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+$(RPM): desktopeditor
+	cd rpm && rpmbuild \
+		-bb \
+		--define "_topdir $(RPM_BUILD_DIR)" \
+		--define "_package_name $(PACKAGE_NAME)" \
+		--define "_product_version $(PRODUCT_VERSION)" \
+		--define "_build_number $(BUILD_NUMBER)" \
+		--define "_package_arch $(RPM_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
+		$(PACKAGE_NAME).spec
 
 $(DEB): $(DEB_DEPENDENCY)
 	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
-$(APT_RPM): $(APT_RPM_DEPENDENCY)
-	cd apt-rpm && rpmbuild -bb --define "_topdir $(APT_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+$(APT_RPM): desktopeditor
+	cd apt-rpm && rpmbuild \
+		-bb \
+		--define "_topdir $(APT_RPM_BUILD_DIR)" \
+		--define "_package_name $(PACKAGE_NAME)" \
+		--define "_product_version $(PRODUCT_VERSION)" \
+		--define "_build_number $(BUILD_NUMBER)" \
+		--define "_package_arch $(RPM_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
+		$(PACKAGE_NAME).spec
 
-$(URPMI_RPM): $(URPMI_RPM_DEPENDENCY)
-	cd urpmi-rpm && rpmbuild -bb --define "_topdir $(URPMI_RPM_BUILD_DIR)" $(PACKAGE_NAME).spec
+$(URPMI_RPM): desktopeditor
+	cd urpmi-rpm && rpmbuild \
+		-bb \
+		--define "_topdir $(URPMI_RPM_BUILD_DIR)" \
+		--define "_package_name $(PACKAGE_NAME)" \
+		--define "_product_version $(PRODUCT_VERSION)" \
+		--define "_build_number $(BUILD_NUMBER)" \
+		--define "_package_arch $(RPM_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
+		$(PACKAGE_NAME).spec
 
 $(TAR): $(TAR_DEPENDENCY)
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
