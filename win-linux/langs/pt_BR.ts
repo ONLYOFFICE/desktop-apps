@@ -172,6 +172,11 @@
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="231"/>
+        <source>Plugin file (*.plugin)</source>
+        <translation>Arquivo do plugin (*.plugin)</translation>
+    </message>
 </context>
 <context>
     <name>CMainPanel</name>
@@ -232,6 +237,11 @@
         <location filename="../src/cmainpanel.cpp" line="733"/>
         <source>Presentation%1.pptx</source>
         <translation>Apresentação%1.pptx</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="897"/>
+        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
+        <translation>O documento deve estar salvo para continuar.&lt;br&gt;Salvar o documento?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="957"/>
