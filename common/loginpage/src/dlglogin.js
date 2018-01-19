@@ -504,9 +504,15 @@ window.LoginDlg = function() {
         }
 
         $el.find('#btn-assign-phone').click(e => {
+            let _phone_num = $el.find('#auth-phone').val();
+            if ( !/^\+?[\d\s]{1,30}$/.test(_phone_num) ) {
+                showLoginError('Enter phone number in format +12345', '#auth-phone');
+                return;
+            }
+
             let url  = `${protocol+portal}/api/2.0/authentication/setphone.json`;
             let data = {
-                mobilePhone: $el.find('#auth-phone').val(),
+                mobilePhone: _phone_num,
                 userName: user.userName,
                 password: user.password
             };
