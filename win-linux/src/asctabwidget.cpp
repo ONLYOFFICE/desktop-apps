@@ -833,7 +833,7 @@ int CAscTabWidget::findModified(const QString& portalname)
     return -1;
 }
 
-void CAscTabWidget::setFullScreen(bool apply)
+void CAscTabWidget::setFullScreen(bool apply, int id)
 {
     QWidget * fsWidget;
     static QMetaObject::Connection cefConnection;
@@ -856,12 +856,18 @@ void CAscTabWidget::setFullScreen(bool apply)
 //            updateGeometry();
         }
     } else {
-        fsWidget = currentWidget();
+        int tabIndex = tabIndexByView(id);
+        if ( !(tabIndex < 0) ) {
+            fsWidget = widget(tabIndex);
+        } else {
+            tabIndex = currentIndex();
+            fsWidget = currentWidget();
+        }
 
         if ( fsWidget ) {
-            m_dataFullScreen = new CFullScreenData(currentIndex(), fsWidget);
+            m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
-            removeTab(currentIndex());
+            removeTab(tabIndex);
 #ifdef _WIN32
             fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
