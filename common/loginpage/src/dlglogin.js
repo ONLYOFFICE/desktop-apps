@@ -503,10 +503,22 @@ window.LoginDlg = function() {
             $phone.val(phone);
         }
 
+        // TODO: process new element 'Enter' press event and focusing in one place
+        $phone.on('keypress', e => {
+            if ( e.which == 13 ) {
+                $el.find('#btn-assign-phone').click();
+            }
+        });
+
         $el.find('#btn-assign-phone').click(e => {
-            let _phone_num = $el.find('#auth-phone').val();
-            if ( !/^\+?[\d\s]{1,30}$/.test(_phone_num) ) {
-                showLoginError('Enter phone number in format +12345', '#auth-phone');
+            let _phone_num = $phone.val();
+            if ( !/^\+[\d\s]{1,30}$/.test(_phone_num) ) {
+                $phone.on('input', e => {
+                    hideLoginError();
+                    $phone.off('input');
+                });
+
+                showLoginError(utils.Lang.errLoginWrongPhone, '#auth-phone');
                 return;
             }
 
@@ -523,6 +535,7 @@ window.LoginDlg = function() {
                         let jsonObj = JSON.parse(args.e.responseText);
 
                         if ( !!jsonObj.response.phoneNoise ) {
+                            $phone.off();
                             sendSmsCode( jsonObj.response.phoneNoise );
                         }
                     }
@@ -532,6 +545,8 @@ window.LoginDlg = function() {
                     console.log('request error: ' + args.error);
                 });
         });
+
+        setTimeout(() => {$phone.focus()}, 50);
     };
 
     function sendSmsCode(phone) {
@@ -545,6 +560,13 @@ window.LoginDlg = function() {
             lockResubmit();
         });
 
+        let $code = $el.find('#auth-code');
+        $code.on('keypress', e => {
+            if ( e.which == 13 ) {
+                $el.find('#btn-apply-code').click();
+            }
+        });
+
         // show button to change phone number if number isn't hidden
         if ( /\*+/.test(phone) ) {
             $el.find('#link-change-phone').hide();
@@ -552,11 +574,12 @@ window.LoginDlg = function() {
             $el.find('#link-change-phone').click(e => {
                 clearInterval(idtimer);
                 performSmsAuth(phone);
+                $code.off();
             });
         }
 
         $el.find('#btn-apply-code').click(e => {
-            let code = $el.find('#auth-code').val();
+            let code = $code.val();
             let url  = `${protocol+portal}/api/2.0/authentication/${code}.json`;
             let data = {
                 userName: user.userName,
@@ -569,6 +592,8 @@ window.LoginDlg = function() {
                         if (args.e.status == 201) {
                             let obj = JSON.parse(args.e.responseText);
                             bookUser(obj.response.token);
+
+                            $code.off();
                         }
                         console.log('request succeed: ' + args.e.responseText);
                     },
@@ -576,6 +601,7 @@ window.LoginDlg = function() {
                         console.log('request error: ' + args.error);
                     });
         });
+        setTimeout(() => {$code.focus()}, 50);
 
         function lockResubmit() {
             if ( $timer.length ) {
