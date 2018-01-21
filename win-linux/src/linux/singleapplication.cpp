@@ -27,6 +27,7 @@
 #include <QtCore/QSharedMemory>
 #include <QtNetwork/QLocalSocket>
 #include <QtNetwork/QLocalServer>
+#include <QDataStream>
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
@@ -321,11 +322,13 @@ void SingleApplication::slotConnectionEstablished()
     if( !socket->waitForReadyRead() )
         return;
 
-    char * message = socket->readAll().data();
+    QByteArray buffer;
+    QDataStream stream(&buffer, QIODevice::ReadOnly);
+    buffer.append(socket->readAll());
 
     socket->close();
     delete socket;
 
     // Send input arguments the window
-    Q_EMIT showUp(QString(message));
+    Q_EMIT showUp(QString(buffer.constData()));
 }
