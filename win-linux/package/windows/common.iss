@@ -56,13 +56,14 @@ Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\
 Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: pt-BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 ;Name: it; MessagesFile: compiler:Languages\Italian.isl;
 
 
 [CustomMessages]
 ;======================================================================================================
 en.Launch =Launch %1
-pt.Launch =Lance o %1
+pt-BR.Launch =Lance o %1
 cs.Launch =Spuštění %1
 sk.Launch =Spustenie %1
 ru.Launch =Запустить %1
@@ -72,7 +73,7 @@ es.Launch =Ejecutar %1
 ;it.Launch =Eseguire %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
-pt.CreateDesktopIcon =Criar ícone de &desktop do %1
+pt-BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
 sk.CreateDesktopIcon =Vytvoriť %1 &ikonu na ploche
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
@@ -82,7 +83,7 @@ es.CreateDesktopIcon =Crear %1 &icono en el escritorio
 ;it.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
-pt.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
+pt-BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
 sk.InstallAdditionalComponents =Inštalácia ďalších systémových súčastí. Prosím čakajte...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
@@ -92,7 +93,7 @@ es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. 
 ;it.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
-pt.AdditionalTasks =Tarefas:
+pt-BR.AdditionalTasks =Tarefas:
 cs.AdditionalTasks =Úkoly:
 sk.AdditionalTasks =Úlohy:
 ru.AdditionalTasks =Задачи:
@@ -102,7 +103,7 @@ es.AdditionalTasks =Tareas:
 ;it.AdditionalTasks =Compiti:
 ;======================================================================================================
 en.Uninstall =Uninstall
-pt.Uninstall =Desinstalar
+pt-BR.Uninstall =Desinstalar
 cs.Uninstall =Odinstalovat
 sk.Uninstall =Odinštalovať
 ru.Uninstall =Удаление
@@ -112,7 +113,7 @@ es.Uninstall =Desinstalar
 ;it.Uninstall =Disinstalla
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
-pt.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
+pt-BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
 sk.WarningWrongArchitecture =Pokúšate sa nainštalovať %1-bitovej verziu na nainštalovanú %2-bitovú verziu. Najskôr odinštalujte predchádzajúcu verziu alebo stiahnite správnu verziu pre inštaláciu.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
@@ -123,7 +124,7 @@ es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la 
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
-pt.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
+pt-BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
@@ -460,7 +461,7 @@ Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionarie
 Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk;
+Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk pt-BR;
 Source: ..\..\..\..\core\build\empty\ru-RU\*.*;                 DestDir: {app}\converter\empty;       Languages: ru;
 Source: ..\..\..\..\core\build\empty\fr-FR\*.*;                 DestDir: {app}\converter\empty;       Languages: fr;
 Source: ..\..\..\..\core\build\empty\es-ES\*.*;                 DestDir: {app}\converter\empty;       Languages: es;

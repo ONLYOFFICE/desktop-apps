@@ -595,8 +595,12 @@ function loadLocale(lang) {
 +function mixLocale(lang) {
     utils.Lang = window['en'];
 
-    if ( lang && window[lang] )
-        loadLocale(lang);
+    if ( lang ) {
+        lang = lang.replace('-', '_');
+
+        if ( window[lang] )
+            loadLocale(lang);
+    }
 }(window.utils.inParams.lang);
 
 /*
