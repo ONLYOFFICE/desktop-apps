@@ -11,11 +11,13 @@ ifeq ($(UNAME_M),x86_64)
 	RPM_ARCH = x86_64
 	DEB_ARCH = amd64
 	TAR_ARCH = x64
+	DESKTOP_SUFFIX = _64
 endif
 ifneq ($(filter %86,$(UNAME_M)),)
 	RPM_ARCH = i686
 	DEB_ARCH = i386
 	TAR_ARCH = x86
+	DESKTOP_SUFFIX = _32
 endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
@@ -103,10 +105,10 @@ INSTALLER_DEPENDENCY += desktopeditor
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 ifeq ($(PACKAGE_EDITION), cool)
-BILD_PATH := ../../../../core/build/linux_desktop/desktop/*
-PORTABLE_BILD_PATH := ../../../../core/build/linux_desktop/desktop_full_modern/*
+BILD_PATH := ../../../../core/build/linux_desktop/desktop$(DESKTOP_SUFFIX)/*
+PORTABLE_BILD_PATH := ../../../../core/build/linux_desktop/desktop_full_modern$(DESKTOP_SUFFIX)/*
 else
-BILD_PATH := ../../../../core/build/linux_desktop/desktop_full/*
+BILD_PATH := ../../../../core/build/linux_desktop/desktop_full$(DESKTOP_SUFFIX)/*
 PORTABLE_BILD_PATH := $(BILD_PATH)
 endif
 
