@@ -1,3 +1,9 @@
+COMPANY_NAME ?= onlyoffice
+PRODUCT_NAME ?= desktopeditors
+PRODUCT_VERSION ?= 0.0.0
+BUILD_NUMBER ?= 0
+PACKAGE_EDITION ?= cool
+
 ifeq ($(COMPANY_NAME), onlyoffice)
 PACKAGE_NAME := $(COMPANY_NAME)-$(PRODUCT_NAME)
 else
@@ -6,7 +12,7 @@ endif
 
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
-UNAME_M := $(shell uname -m)
+UNAME_M ?= $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
 	RPM_ARCH = x86_64
 	DEB_ARCH = amd64
