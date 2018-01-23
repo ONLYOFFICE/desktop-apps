@@ -7,7 +7,7 @@ Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-BuildArch: %{_arch}
+BuildArch: %{_package_arch}
 AutoReq: no
 AutoProv: no
 
