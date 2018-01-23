@@ -206,7 +206,7 @@ ifeq ($(PACKAGE_EDITION), full)
 endif
 
 $(RPM): desktopeditor
-	cd rpm && rpmbuild \
+	cd rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_name $(PACKAGE_NAME)" \
@@ -220,7 +220,7 @@ $(DEB): $(DEB_DEPENDENCY)
 	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
 $(APT_RPM): desktopeditor
-	cd apt-rpm && rpmbuild \
+	cd apt-rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_name $(PACKAGE_NAME)" \
@@ -231,7 +231,7 @@ $(APT_RPM): desktopeditor
 		$(PACKAGE_NAME).spec
 
 $(URPMI_RPM): desktopeditor
-	cd urpmi-rpm && rpmbuild \
+	cd urpmi-rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_RPM_BUILD_DIR)" \
 		--define "_package_name $(PACKAGE_NAME)" \
