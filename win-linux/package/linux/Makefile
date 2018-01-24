@@ -254,8 +254,8 @@ deploy-rpm: $(RPM)
 	cp -rv $(RPM) $(RPM_REPO);
 	createrepo -v $(RPM_REPO);
 
-	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/ --acl public-read --delete
-	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(RPM_ARCH)/ --acl public-read --delete
+	aws s3 sync $(RPM_REPO) s3://repo-doc-onlyoffice-com/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(RPM_ARCH)/ --acl public-read --delete
 
 deploy-deb: $(DEB)
 	rm -rfv $(DEB_REPO)
