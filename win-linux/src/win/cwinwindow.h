@@ -39,7 +39,7 @@
 class CWinWindow
 {
 public:
-    CWinWindow(HWND, QString&);
+    CWinWindow(HWND, const QString&);
     virtual ~CWinWindow(){}
 
     virtual void modal();

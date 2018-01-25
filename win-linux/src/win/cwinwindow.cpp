@@ -67,7 +67,7 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-CWinWindow::CWinWindow(HWND parent, QString& title)
+CWinWindow::CWinWindow(HWND parent, const QString& title)
     : m_hSelf(0)
     , m_hParent(parent)
 {
