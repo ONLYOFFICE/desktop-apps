@@ -59,6 +59,9 @@
 #include "chelp.h"
 #include "common/File.h"
 
+#include <QTextCodec>
+#include <iostream>
+
 QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
@@ -128,12 +131,10 @@ int main( int argc, char *argv[] )
     const int ac = argc;
     char ** const av = argv;
     for (int a(1); a < ac; ++a) {
-        g_cmdArgs << QString::fromLocal8Bit(av[a]);
-    }
-
-    if ( !(g_cmdArgs.indexOf("--help") < 0) ) {
-        CHelp::out();
-        return 0;
+        if ( QString::fromLocal8Bit(av[a]) == "--help" ) {
+            CHelp::out();
+            return 0;
+        }
     }
 
 #ifdef __linux__
@@ -143,6 +144,8 @@ int main( int argc, char *argv[] )
 #endif
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
+
+    g_cmdArgs = QApplication::arguments().mid(1);
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
