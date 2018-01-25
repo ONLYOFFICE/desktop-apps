@@ -33,14 +33,14 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             4,8,7,340
-#define VER_FILEVERSION_STR         "4.8.7.340\0"
+#define VER_FILEVERSION             4,8,7,348
+#define VER_FILEVERSION_STR         "4.8.7.348\0"
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
 #define VER_PRODUCTVERSION_STR      "4.8\0"
 
 #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
-#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2017\0"
+#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2018\0"
 #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
 #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"

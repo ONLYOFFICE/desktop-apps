@@ -107,7 +107,7 @@ void CLangater::init()
             _lang = _lang.left(2);
             _lang_path = "./langs";
         } else
-        // check if lang file has alias
+        // check if lang file has an alias
         if ( QFile(":/i18n/" + _lang + ".qm").exists() ) {
             _lang_path = ":/i18n/";
         } else
