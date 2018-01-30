@@ -168,6 +168,12 @@ button {
 
 .link {
     color: @color-blue-light;
+
+    &[disabled] {
+        opacity: 0.4;
+        cursor: default;
+        pointer-events: none;
+    }
 }
 
 #field-pass-restore {

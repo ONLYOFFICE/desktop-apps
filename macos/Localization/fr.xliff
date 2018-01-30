@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -763,59 +763,33 @@
       </trans-unit>
     </body>
   </file>
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="Ygx-5K-Hn8.title">
+        <source>ONLYOFFICE Reporter Window</source>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
+    </body>
+  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>ONLYOFFICE</source>
       </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>1.0</source>
-      </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Localizable.strings" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-        <target>ONLYOFFICE</target>
-      </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>4.4</source>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
-        <target>© АО "Novyye Kommunikatsionnyye Tekhnologii" 2017 All rights reserved.</target>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-      </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>4.4</source>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="fr">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
@@ -1051,5 +1025,523 @@
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
+        <target>© АО "Novyye Kommunikatsionnyye Tekhnologii" 2017 All rights reserved.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Localizable.strings" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Help</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>About %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <target>Acknowledgments</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <target>Comma-Separated Values</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Delete and Quit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
+        <target>DjVu File</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Do you want to save the changes made to the document "%@"?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Document %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003 Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007 Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>File "%@" can not be open or not exist.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>File Format:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+        <target>File can not be open.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>Hide %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changeses will be lost.</source>
+        <target>If you don't review your documents, all your changeses will be lost.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>License Agreement</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket e-book</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>No</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Free">
+        <source>ONLYOFFICE Free</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <target>OpenOffice Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <target>OpenOffice Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
+        <target>Opening</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <target>PDF File</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <target>Plain Text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003 Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007 Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint Slide Show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing...">
+        <source>Preparing...</source>
+        <target>Preparing...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Presentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>Quit %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Review Changes...">
+        <source>Review Changes...</source>
+        <target>Review Changes...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <target>Rich Text Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Spreadsheet %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unconfirmed">
+        <source>Unconfirmed</source>
+        <target>Unconfirmed</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Untitled</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <target>Web Page</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003 Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <target>Word 2007 Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
+        <target>XML Paper Specification</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Yes</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them.">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target>Your changes will be lost if you don’t save them.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body/>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Help</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>About %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <target>Acknowledgments</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <target>Comma-Separated Values</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Delete and Quit</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
+        <target>DjVu File</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Do you want to save the changes made to the document "%@"?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Document %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003 Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007 Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>File "%@" can not be open or not exist.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>File Format:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+        <target>File can not be open.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>Hide %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changeses will be lost.</source>
+        <target>If you don't review your documents, all your changeses will be lost.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>License Agreement</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket e-book</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>No</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Free">
+        <source>ONLYOFFICE Free</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <target>OpenOffice Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <target>OpenOffice Spreadsheet</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
+        <target>Opening</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <target>PDF File</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <target>Plain Text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003 Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007 Presentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint Slide Show</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing...">
+        <source>Preparing...</source>
+        <target>Preparing...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Presentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>Quit %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Review Changes...">
+        <source>Review Changes...</source>
+        <target>Review Changes...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <target>Rich Text Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Spreadsheet %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unconfirmed">
+        <source>Unconfirmed</source>
+        <target>Unconfirmed</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Untitled</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <target>Web Page</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003 Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <target>Word 2007 Document</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
+        <target>XML Paper Specification</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Yes</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them.">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target>Your changes will be lost if you don’t save them.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="fr">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body/>
   </file>
 </xliff>

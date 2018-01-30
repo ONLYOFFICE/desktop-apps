@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="563"/>
+        <location filename="../src/asctabwidget.cpp" line="572"/>
         <source>Document</source>
         <translation>Dokument</translation>
     </message>
@@ -179,72 +179,72 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="146"/>
+        <location filename="../src/cmainpanel.cpp" line="156"/>
         <source>FILE</source>
         <translation>SOUBOR</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1313"/>
+        <location filename="../src/cmainpanel.cpp" line="1329"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="707"/>
-        <location filename="../src/cmainpanel.cpp" line="896"/>
+        <location filename="../src/cmainpanel.cpp" line="525"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
+        <location filename="../src/cmainpanel.cpp" line="910"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="707"/>
-        <location filename="../src/cmainpanel.cpp" line="896"/>
+        <location filename="../src/cmainpanel.cpp" line="525"/>
+        <location filename="../src/cmainpanel.cpp" line="721"/>
+        <location filename="../src/cmainpanel.cpp" line="910"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
+        <location filename="../src/cmainpanel.cpp" line="525"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="687"/>
-        <location filename="../src/cmainpanel.cpp" line="730"/>
+        <location filename="../src/cmainpanel.cpp" line="701"/>
+        <location filename="../src/cmainpanel.cpp" line="744"/>
         <source>File format not supported.</source>
         <translation>Formát souboru není podporován.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="710"/>
+        <location filename="../src/cmainpanel.cpp" line="724"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 není dostupný. Možná byl přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1243"/>
+        <location filename="../src/cmainpanel.cpp" line="1259"/>
         <source>Sign Up</source>
         <translation>Vytvořit portál</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="743"/>
+        <location filename="../src/cmainpanel.cpp" line="757"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="744"/>
+        <location filename="../src/cmainpanel.cpp" line="758"/>
         <source>Book%1.xlsx</source>
         <translation>Sešit%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="745"/>
+        <location filename="../src/cmainpanel.cpp" line="759"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentace%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="897"/>
+        <location filename="../src/cmainpanel.cpp" line="911"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="983"/>
+        <location filename="../src/cmainpanel.cpp" line="997"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>

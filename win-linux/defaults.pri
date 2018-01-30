@@ -11,7 +11,8 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/es.ts \
                 ./langs/cs.ts \
                 ./langs/sk.ts \
-                ./langs/fr.ts
+                ./langs/fr.ts \
+                ./langs/pt_BR.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
 BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
@@ -74,12 +75,29 @@ SOURCES += \
 RESOURCES += $$PWD/resources.qrc
 
 linux-g++ {
-    contains(QMAKE_HOST.arch, x86_64):{
-        PLATFORM_BUILD = linux_64
-    } else {
-        PLATFORM_BUILD = linux_32
-    }
+    CONFIG += app_linux
+	linux-g++:contains(QMAKE_HOST.arch, x86_64): {
+		CONFIG += app_linux_64
+		PLATFORM_BUILD = linux_64
+	}
+	linux-g++:!contains(QMAKE_HOST.arch, x86_64): {
+		CONFIG += app_linux_32
+		PLATFORM_BUILD = linux_32
+	}
+}
 
+linux-g++-64 {
+    CONFIG += app_linux
+    CONFIG += app_linux_64
+    PLATFORM_BUILD = linux_64
+}
+linux-g++-32 {
+    CONFIG += app_linux
+    CONFIG += app_linux_32
+    PLATFORM_BUILD = linux_32
+}
+
+app_linux {
     QT += network x11extras
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
@@ -104,7 +122,13 @@ linux-g++ {
     PKGCONFIG += glib-2.0 gdk-2.0 gtkglext-1.0 atk cairo gtk+-unix-print-2.0
 
     build_for_centos6 {
-        QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        app_linux_64 {
+            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
+        }
+        app_linux_32 {
+            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux.so.2
+        }
+        message("build for centos6")
     }
 
     LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicuuc.so.55

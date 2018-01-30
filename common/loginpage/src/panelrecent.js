@@ -217,7 +217,7 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
-                ppmenu.hideItem('files:explore', false);
+                ppmenu.hideItem('files:explore', !model.islocal);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 

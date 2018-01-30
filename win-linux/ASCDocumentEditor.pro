@@ -1,7 +1,18 @@
 
 TARGET = DesktopEditors
 
+#CONFIG += build_for_centos6
+#CONFIG += core_build_deploy
+
 include(defaults.pri)
+
+core_build_deploy {
+    build_for_centos6 {
+        DESTDIR=$$PWD/../../core/build/linux_desktop/app/$$PLATFORM_BUILD/CentOS6
+    } else {
+        DESTDIR=$$PWD/../../core/build/linux_desktop/app/$$PLATFORM_BUILD
+    }
+}
 
 INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src

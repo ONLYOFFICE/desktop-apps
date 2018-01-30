@@ -144,7 +144,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE:
         QMetaObject::invokeMethod(target, "onFullScreen", Qt::QueuedConnection,
-                        Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
+                        Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER), Q_ARG(int, event->get_SenderId()));
         break;
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
         CAscLocalFileOpen * pData = (CAscLocalFileOpen*)event->m_pData;

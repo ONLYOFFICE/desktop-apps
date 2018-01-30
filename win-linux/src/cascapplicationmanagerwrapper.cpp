@@ -101,8 +101,6 @@ void CAscApplicationManagerWrapper::OnNeedCheckKeyboard()
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
-    QMutexLocker locker( &m_oMutex );
-
     if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND ) {
         CAscExecCommand * pData = reinterpret_cast<CAscExecCommand *>(event->m_pData);
 
@@ -157,6 +155,8 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 
     switch ( _event->m_nType ) {
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
+        locker.unlock();
+
         CAscOnOpenExternalLink * pData = (CAscOnOpenExternalLink *)_event->m_pData;
         Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
 
@@ -463,6 +463,11 @@ CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
 
         if ( _window->holdView(uid) )
             return _window;
+    }
+
+    // TODO: remove for multi-windowed mode
+    if ( !m_vecWidows.empty() ) {
+        return reinterpret_cast<CMainWindow *>(m_vecWidows.at(0));
     }
 
     return 0;

@@ -46,8 +46,7 @@
 #include <QProcess>
 #include <QScreen>
 
-#include "applicationmanager.h"
-#include "applicationmanager_events.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -272,21 +271,21 @@ QString Utils::encodeJson(const QString& s)
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
-#ifdef __linux
-    double _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
-#else
+#ifdef _WIN32
     UINT _dpi_x = 0,
          _dpi_y = 0;
-    double _k;
 
-    if ( Core_GetMonitorRawDpiByIndex(scrnum, &_dpi_x, &_dpi_y) == S_OK ) {
-        _k = _dpi_x / 96.f;
-    } else {
-        _k = QApplication::primaryScreen()->logicalDotsPerInch() / 96.f;
-    }
+    int _f = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+    if ( _f > 0 )
+        return _f;
 #endif
 
-    return !(_k < 1.5) ? 2 : 1;
+    QScreen * _screen;
+    if ( !(scrnum < 0) && scrnum < QApplication::screens().count() )
+        _screen = QApplication::screens().at(scrnum);
+    else _screen = QApplication::primaryScreen();
+
+    return _screen->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
@@ -296,15 +295,13 @@ unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 #else
     UINT _dpi_x = 0,
          _dpi_y = 0;
-    double _k;
 
-    if ( Core_GetMonitorRawDpi((HWND)hwnd, &_dpi_x, &_dpi_y) == S_OK ) {
-        _k = _dpi_x;
-    } else {
-        _k = QApplication::primaryScreen()->logicalDotsPerInch();
+    int _f = AscAppManager::getInstance().GetMonitorScaleByWindow((HWND)hwnd, _dpi_x, _dpi_y);
+    if ( !(_f > 0) ) {
+        return QApplication::primaryScreen()->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
     }
 
-    return _k / 96.f < 1.5 ? 1 : 2;
+    return _f;
 #endif
 }
 

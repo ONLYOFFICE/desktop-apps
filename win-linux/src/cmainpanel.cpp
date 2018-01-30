@@ -1146,14 +1146,16 @@ void CMainPanel::onLocalFileSaveAs(void * d)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onFullScreen(bool apply)
+void CMainPanel::onFullScreen(bool apply, int id)
 {
-    if (apply) {
-        m_isMaximized = m_mainWindowState == Qt::WindowMaximized;
-        m_mainWindowState = Qt::WindowFullScreen;
+    if ( apply ) {
+        if ( m_mainWindowState != Qt::WindowFullScreen ) {
+            m_isMaximized = m_mainWindowState == Qt::WindowMaximized;
+            m_mainWindowState = Qt::WindowFullScreen;
 
-        m_pTabs->setFullScreen(apply);
-        emit mainWindowChangeState(Qt::WindowFullScreen);
+            m_pTabs->setFullScreen(apply, id);
+            emit mainWindowChangeState(Qt::WindowFullScreen);
+        }
     } else
     if ( m_mainWindowState == Qt::WindowFullScreen ) {
         m_mainWindowState = m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState;
