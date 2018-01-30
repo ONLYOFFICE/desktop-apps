@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include "defines.h"
 #include "utils.h"
+#include "cmessage.h"
 
 #include "../Common/OfficeFileFormats.h"
 
@@ -47,8 +48,6 @@ CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #define FILEDIALOG_DONT_USE_NATIVEDIALOGS
 //#define FILEDIALOG_DONT_USE_MODAL
 //
-
-#include "cmessage.h"
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
@@ -109,11 +108,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     }
 
 #ifdef _WIN32
-    fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
+    QString _croped_name = fileName;
+    CMessage mess(QWinWidget::parentWindow());
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
-
-//    QString _croped_name = fileName.section(".",0,0);
+    CMessage mess(_parent);
+#endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
@@ -128,9 +128,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #ifdef FILEDIALOG_DONT_USE_MODAL
     QWidget * _parent = NULL;
 #else
+# ifdef _WIN32
+    QWidget * _parent = this;
+# else
     QWidget * _parent = (QWidget *)parent();
+# endif
 #endif
-    CMessage mess(_parent);
     mess.setButtons({tr("Yes"), tr("No")});
     mess.setIcon(MESSAGE_TYPE_WARN);
 
@@ -155,8 +158,6 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         break;
     }
 
-
-#endif
 
     m_format = 0;
     if (m_filters.length()) {
