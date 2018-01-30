@@ -111,7 +111,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #ifdef _WIN32
     fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
 #else
-    QString _croped_name = fileName.section(".",0,0);
+    QString _croped_name = fileName.left(fileName.lastIndexOf("."));
+
+//    QString _croped_name = fileName.section(".",0,0);
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
