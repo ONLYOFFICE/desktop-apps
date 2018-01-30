@@ -112,7 +112,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     CMessage mess(QWinWidget::parentWindow());
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
-    CMessage mess(_parent);
+    CMessage mess((QWidget *)parent());
 #endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
