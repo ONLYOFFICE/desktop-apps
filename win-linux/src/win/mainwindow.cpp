@@ -351,13 +351,15 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_SIZE:
-        if ( !window->closed && window->m_pWinPanel ) {
+        if ( !window->closed && window->m_pWinPanel) {
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
-                if ( wParam == SIZE_MAXIMIZED )
-                    window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
-                    window->m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
+                if ( IsWindowVisible(hWnd) ) {
+                    if ( wParam == SIZE_MAXIMIZED )
+                        window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
+                        window->m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
+                }
 
                 window->adjustGeometry();
             }
