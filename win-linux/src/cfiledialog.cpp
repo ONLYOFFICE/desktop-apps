@@ -108,11 +108,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     }
 
 #ifdef _WIN32
-    QString _croped_name = fileName;
-    CMessage mess(QWinWidget::parentWindow());
+    QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
+                                    fileName.left(fileName.lastIndexOf(".")) : fileName;
+    HWND _mess_parent = QWinWidget::parentWindow();
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
-    CMessage mess((QWidget *)parent());
+    QWidget * _mess_parent = parent();
 #endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
@@ -134,8 +135,6 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     QWidget * _parent = (QWidget *)parent();
 # endif
 #endif
-    mess.setButtons({tr("Yes"), tr("No")});
-    mess.setIcon(MESSAGE_TYPE_WARN);
 
     while (true) {
         fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
@@ -149,10 +148,14 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
             }
 
             QFileInfo info(fileName);
-            if ( info.exists() &&
-                    MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
-                                                            .arg(info.fileName())) )
-                continue;
+            if ( info.exists() ) {
+                CMessage mess(_mess_parent);
+                mess.setButtons({tr("Yes"), tr("No")});
+
+                if ( MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
+                                                                                .arg(info.fileName())) )
+                                    continue;
+            }
         }
 
         break;
