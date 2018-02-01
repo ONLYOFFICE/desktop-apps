@@ -22,7 +22,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="56"/>
         <source>All files (*.*)</source>
-        <translation>Tutti i file</translation>
+        <translation>Tutti i file (*.*)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
