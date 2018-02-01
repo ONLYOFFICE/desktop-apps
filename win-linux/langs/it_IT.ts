@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Documento DOCX</translation>
+        <translation>Documento DOCX (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="59"/>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="189"/>
         <source>%1 File (*.%2)</source>
-        <translation></translation>
+        <translation>%1 File (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="213"/>
@@ -168,7 +168,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
