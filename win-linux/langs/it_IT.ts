@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="157"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 � gi� esistente.&lt;br&gt;Vuoi sostituirlo?</translation>
+        <translation>%1 è già esistente.&lt;br&gt;Vuoi sostituirlo?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="180"/>
