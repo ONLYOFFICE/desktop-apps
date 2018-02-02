@@ -411,9 +411,9 @@ var it_IT = {
     loginTitleApplyCode: 'Conferma numero di telefono',
     errLogin: 'email or password errati',
     errLoginPortal: 'Controlla il nome del portale',
-    errLoginEmail: 'Controlla l''indirizzo email',
-    errLoginServer: 'Risposta del server errata durante l''accesso',
-    errLoginAuth: 'Errore nella query delle informazioni dell''utente',
+    errLoginEmail: 'Controlla l\'indirizzo email',
+    errLoginServer: 'Risposta del server errata durante l\'accesso',
+    errLoginAuth: 'Errore nella query delle informazioni dell\'utente',
     errLoginPass: 'Controlla la password',
     errLoginWrongPhone: 'Formato del numero di telefono errato',
     pshPortal: 'portale',
@@ -421,8 +421,8 @@ var it_IT = {
     pshPass: 'password',
     pshPhone: 'numero di telefono',
     pshCode: 'codice dal messaggio di testo',
-    loginNoteAssignPhone: 'L''autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del portale. Inserisci il tuo numero di cellulare per continuare a lavorare sul portale. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
-    loginNoteApplyCode: 'L''autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',    
+    loginNoteAssignPhone: 'L\'autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del portale. Inserisci il tuo numero di cellulare per continuare a lavorare sul portale. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
+    loginNoteApplyCode: 'L\'autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',    
     newDoc: 'DOCUMENTO',
     newXlsx: 'FOGLIO DI CALCOLO',
     newPptx: 'PRESENTAZIONE',
@@ -436,13 +436,13 @@ var it_IT = {
     btnActivate: 'Attiva',
     licGetLicense: 'Get license now',
     licPanelTitle: 'Inserisci product key',
-    licPanelDescr: 'Il codice prodotto è stato inviato all''indirizzo e-mail specificato durante l''acquisto.'
+    licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
     ,adsToolItem1: 'Cronologia delle versioni'
     ,adsTitle1: 'Visualizza o ripristina versioni precedenti del documento'
     ,adsDescr1: 'Torna indietro nel tempo: visualizza le versioni precedenti del documento, tiene traccia delle modifiche più piccole e dei relativi autori. Ripristina una versione precedente del tuo file se necessario.'
     ,adsToolItem2: 'Collaborative review'
     ,adsTitle2: 'Lascia che i tuoi compagni di squadra rivedano i documenti nel cloud'
-    ,adsDescr2: 'Dimentica l''invio di file da rivedere via email. Concedi un accesso rapido al documento senza lasciare l'editor desktop. Lascia che altri suggeriscano correzioni. Accetta o rifiuta le modifiche.'
+    ,adsDescr2: 'Dimentica l\'invio di file da rivedere via email. Concedi un accesso rapido al documento senza lasciare l\'editor desktop. Lascia che altri suggeriscano correzioni. Accetta o rifiuta le modifiche.'
     ,checkUpdates: 'Controlla gli aggiornamenti'
     ,strVersion: 'versione'
 };
