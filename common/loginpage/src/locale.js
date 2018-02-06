@@ -670,6 +670,17 @@ function loadLocale(lang) {
 
         if ( window[lang] )
             loadLocale(lang);
+        else {
+            let _langs = ['en', 'de', 'fr', 'ru', 'es', 'sk', 'cs', 'pt_BR', 'it_IT'];
+            let _code = /^\w{2}/.exec(lang)[0];
+
+            for (let l of _langs) {
+                if ( l.substring(0,2) == _code ) {
+                    loadLocale(l);
+                    break;
+                }
+            }
+        }
     }
 }(window.utils.inParams.lang);
 

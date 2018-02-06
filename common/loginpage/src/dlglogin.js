@@ -284,7 +284,7 @@ window.LoginDlg = function() {
                 },
                 error: function(e, status, error) {
                     console.log('server error: ' + status + ', ' + error);
-                    rejected(status);
+                    reject(status);
                 }
             };
 
@@ -295,7 +295,7 @@ window.LoginDlg = function() {
     function clientCheckin(url, token) {
         return new Promise ((resolve, reject) => {
             $.ajax({
-                url: url + "/api/2.0/portal/mobile/registration",
+                url: url + "/api/2.0/portal/mobile/registration.json",
                 method: 'post',
                 headers: {'Authorization': token},
                 data: {type: PROD_ID}
