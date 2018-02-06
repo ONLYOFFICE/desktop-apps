@@ -1,1547 +1,1547 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
-        <source>Customize Toolbar…</source>
-        <target>Symbolleiste anpassen…</target>
-        <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
-      </trans-unit>
+        <source>Customize Toolbar…</source><seg-source><mrk mtype="seg" mid="1">Customize Toolbar…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="1">Symbolleiste anpassen…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
       <trans-unit id="1Xt-HY-uBw.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
-      </trans-unit>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="2">ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="2">ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
       <trans-unit id="1b7-l0-nxx.title">
-        <source>Find</source>
-        <target>Finden</target>
-        <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
-      </trans-unit>
+        <source>Find</source><seg-source><mrk mtype="seg" mid="3">Find</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="3">Suchen</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
       <trans-unit id="1tx-W0-xDw.title">
-        <source>Lower</source>
-        <target>Senken</target>
-        <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
-      </trans-unit>
+        <source>Lower</source><seg-source><mrk mtype="seg" mid="4">Lower</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="4">Tiefer</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
       <trans-unit id="2h7-ER-AoG.title">
-        <source>Raise</source>
-        <target>Erhöhen</target>
-        <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
-      </trans-unit>
+        <source>Raise</source><seg-source><mrk mtype="seg" mid="5">Raise</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="5">Höher</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title">
-        <source>Transformations</source>
-        <target>Transformationen</target>
-        <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
-      </trans-unit>
+        <source>Transformations</source><seg-source><mrk mtype="seg" mid="6">Transformations</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="6">Änderungen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
       <trans-unit id="3IN-sU-3Bg.title">
-        <source>Spelling</source>
-        <target>Spelling</target>
-        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
-      </trans-unit>
+        <source>Spelling</source><seg-source><mrk mtype="seg" mid="7">Spelling</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="7">Rechtschreibung</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
       <trans-unit id="3Om-Ey-2VK.title">
-        <source>Use Default</source>
-        <target>Den Standard verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
-      </trans-unit>
+        <source>Use Default</source><seg-source><mrk mtype="seg" mid="8">Use Default</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="8">Standardeinstellungen verwenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
       <trans-unit id="3rS-ZA-NoH.title">
-        <source>Speech</source>
-        <target>Rede</target>
-        <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
-      </trans-unit>
+        <source>Speech</source><seg-source><mrk mtype="seg" mid="9">Speech</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="9">Rede</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
       <trans-unit id="4EN-yA-p0u.title">
-        <source>Find</source>
-        <target>Finden</target>
-        <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
-      </trans-unit>
+        <source>Find</source><seg-source><mrk mtype="seg" mid="10">Find</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="10">Suchen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
       <trans-unit id="4et-TX-a4m.title">
-        <source>License Agreement</source>
-        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
-      </trans-unit>
+        <source>License Agreement</source><seg-source><mrk mtype="seg" mid="11">License Agreement</mrk></seg-source><target state="new"><mrk mtype="seg" mid="11">Lizenzvereinbarung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
-        <source>Quit ONLYOFFICE</source>
-        <target>ONLYOFFICE verlassen</target>
-        <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
-      </trans-unit>
+        <source>Quit ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="12">Quit ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="12">ONLYOFFICE verlassen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
       <trans-unit id="5QF-Oa-p0T.title">
-        <source>Edit</source>
-        <target>Bearbeiten</target>
-        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
-      </trans-unit>
+        <source>Edit</source><seg-source><mrk mtype="seg" mid="13">Edit</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="13">Bearbeiten</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
       <trans-unit id="5Vv-lz-BsD.title">
-        <source>Copy Style</source>
-        <target>Stil kopieren</target>
-        <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
-      </trans-unit>
+        <source>Copy Style</source><seg-source><mrk mtype="seg" mid="14">Copy Style</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="14">Format übertragen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
       <trans-unit id="5kV-Vb-QxS.title">
-        <source>About ONLYOFFICE</source>
-        <target>Über ONLYOFFICE</target>
-        <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
-      </trans-unit>
+        <source>About ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="15">About ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="15">Über ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
       <trans-unit id="6dh-zS-Vam.title">
-        <source>Redo</source>
-        <target>Überarbeiten</target>
-        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
-      </trans-unit>
+        <source>Redo</source><seg-source><mrk mtype="seg" mid="16">Redo</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="16">Wiederholen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title">
-        <source>License agreement</source>
-        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
-      </trans-unit>
+        <source>License agreement</source><seg-source><mrk mtype="seg" mid="17">License agreement</mrk></seg-source><target state="new"><mrk mtype="seg" mid="17">Lizenzvereinbarung</mrk></target>
+        
+      <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
-        <source>Writing Direction</source>
-        <target>Schreibrichtung</target>
-        <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
-      </trans-unit>
+        <source>Writing Direction</source><seg-source><mrk mtype="seg" mid="18">Writing Direction</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="18">Schreibrichtung</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
       <trans-unit id="9aQ-wl-gjS.title">
-        <source>New</source>
-        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
-      </trans-unit>
+        <source>New</source><seg-source><mrk mtype="seg" mid="19">New</mrk></seg-source><target state="new"><mrk mtype="seg" mid="19">Neu</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
       <trans-unit id="9i7-kj-42B.title">
-        <source>none</source>
-        <target>kein</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
-      </trans-unit>
+        <source>none</source><seg-source><mrk mtype="seg" mid="20">none</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="20">Keine</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
       <trans-unit id="9ic-FL-obx.title">
-        <source>Substitutions</source>
-        <target>Substitutionen</target>
-        <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
-      </trans-unit>
+        <source>Substitutions</source><seg-source><mrk mtype="seg" mid="21">Substitutions</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="21">Ersetzungen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
       <trans-unit id="9yt-4B-nSM.title">
-        <source>Smart Copy/Paste</source>
-        <target>Smart Copy/Paste</target>
-        <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
-      </trans-unit>
+        <source>Smart Copy/Paste</source><seg-source><mrk mtype="seg" mid="22">Smart Copy/Paste</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="22">Intelligentes Kopieren/Einfügen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
       <trans-unit id="46P-cB-AYj.title">
-        <source>Tighten</source>
-        <target>Spannen</target>
-        <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
-      </trans-unit>
+        <source>Tighten</source><seg-source><mrk mtype="seg" mid="23">Tighten</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="23">Enger stellen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
       <trans-unit id="78Y-hA-62v.title">
-        <source>Correct Spelling Automatically</source>
-        <target>Spelling automatisch korrigieren</target>
-        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
-      </trans-unit>
+        <source>Correct Spelling Automatically</source><seg-source><mrk mtype="seg" mid="24">Correct Spelling Automatically</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="24">Automatische Rechtschreibkorrektur</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
-        <source>Main Menu</source>
-        <target>Hauptmenü</target>
-        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
-      </trans-unit>
+        <source>Main Menu</source><seg-source><mrk mtype="seg" mid="25">Main Menu</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="25">Hauptmenü</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
       <trans-unit id="BOF-NM-1cW.title">
-        <source>Preferences…</source>
-        <target>Voreinstellungen…</target>
-        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
-      </trans-unit>
+        <source>Preferences…</source><seg-source><mrk mtype="seg" mid="26">Preferences…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="26">Voreinstellungen…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
       <trans-unit id="BgM-ve-c93.title">
-        <source>	Left to Right</source>
-        <target>	Links nach Rechts</target>
-        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
-      </trans-unit>
+        <source>	Left to Right</source><seg-source><mrk mtype="seg" mid="27">	Left to Right</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="27">	Links nach Rechts</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
       <trans-unit id="Bw7-FT-i3A.title">
-        <source>Save As…</source>
-        <target>Speichern als…</target>
-        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
-      </trans-unit>
+        <source>Save As…</source><seg-source><mrk mtype="seg" mid="28">Save As…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="28">Speichern als…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
       <trans-unit id="CJU-dx-a9l.title">
-        <source>Acknowledgments</source>
-        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
-      </trans-unit>
+        <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="29">Acknowledgments</mrk></seg-source><target state="new"><mrk mtype="seg" mid="29">Bestätigungen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
       <trans-unit id="DOj-j9-dza.title">
-        <source>Spreadsheet</source>
-        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
-      </trans-unit>
+        <source>Spreadsheet</source><seg-source><mrk mtype="seg" mid="30">Spreadsheet</mrk></seg-source><target state="new"><mrk mtype="seg" mid="30">Tabelle</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
       <trans-unit id="DVo-aG-piG.title">
-        <source>Close</source>
-        <target>Schließen</target>
-        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
-      </trans-unit>
+        <source>Close</source><seg-source><mrk mtype="seg" mid="31">Close</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="31">Schließen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
       <trans-unit id="Dv1-io-Yv7.title">
-        <source>Spelling and Grammar</source>
-        <target>Rechtschreibung und Grammatik</target>
-        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
-      </trans-unit>
+        <source>Spelling and Grammar</source><seg-source><mrk mtype="seg" mid="32">Spelling and Grammar</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="32">Rechtschreibung und Grammatik</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
       <trans-unit id="F2S-fz-NVQ.title">
-        <source>Help</source>
-        <target>Hilfe</target>
-        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
-      </trans-unit>
+        <source>Help</source><seg-source><mrk mtype="seg" mid="33">Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="33">Hilfe</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
-        <source>Product Help</source>
-        <target>ONLYOFFICE Hilfe</target>
-        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
-      </trans-unit>
+        <source>Product Help</source><seg-source><mrk mtype="seg" mid="34">Product Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="34">Hilfe bei Fragen zum Produkt</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
       <trans-unit id="Fal-I4-PZk.title">
-        <source>Text</source>
-        <target>Text</target>
-        <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
-      </trans-unit>
+        <source>Text</source><seg-source><mrk mtype="seg" mid="35">Text</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="35">Text</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
       <trans-unit id="FeM-D8-WVr.title">
-        <source>Substitutions</source>
-        <target>Substitutionen</target>
-        <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
-      </trans-unit>
+        <source>Substitutions</source><seg-source><mrk mtype="seg" mid="36">Substitutions</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="36">Ersetzungen</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
       <trans-unit id="FoF-wl-Dxi.title">
-        <source>User Name</source>
-        <target>Benutzername</target>
-        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
-      </trans-unit>
+        <source>User Name</source><seg-source><mrk mtype="seg" mid="37">User Name</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="37">Benutzername</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
       <trans-unit id="GB9-OM-e27.title">
-        <source>Bold</source>
-        <target>Fett</target>
-        <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
-      </trans-unit>
+        <source>Bold</source><seg-source><mrk mtype="seg" mid="38">Bold</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="38">Fett</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
       <trans-unit id="GEO-Iw-cKr.title">
-        <source>Format</source>
-        <target>Format</target>
-        <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
-      </trans-unit>
+        <source>Format</source><seg-source><mrk mtype="seg" mid="39">Format</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="39">Format</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
       <trans-unit id="GUa-eO-cwY.title">
-        <source>Use Default</source>
-        <target>Standard verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
-      </trans-unit>
+        <source>Use Default</source><seg-source><mrk mtype="seg" mid="40">Use Default</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="40">Standardeinstellungen übernehmen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
       <trans-unit id="Gi5-1S-RQB.title">
-        <source>Font</source>
-        <target>Schriftart</target>
-        <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
-      </trans-unit>
+        <source>Font</source><seg-source><mrk mtype="seg" mid="41">Font</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="41">Schriftart</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
       <trans-unit id="H1b-Si-o9J.title">
-        <source>Writing Direction</source>
-        <target>Schreibrichtung</target>
-        <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note>
-      </trans-unit>
+        <source>Writing Direction</source><seg-source><mrk mtype="seg" mid="42">Writing Direction</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="42">Schreibrichtung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
       <trans-unit id="H8h-7b-M4v.title">
-        <source>View</source>
-        <target>Aussicht</target>
-        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
-      </trans-unit>
+        <source>View</source><seg-source><mrk mtype="seg" mid="43">View</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="43">Anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
       <trans-unit id="HFQ-gK-NFA.title">
-        <source>Text Replacement</source>
-        <target>Textersetzung</target>
-        <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
-      </trans-unit>
+        <source>Text Replacement</source><seg-source><mrk mtype="seg" mid="44">Text Replacement</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="44">Text ersetzen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
       <trans-unit id="HFo-cy-zxI.title">
-        <source>Show Spelling and Grammar</source>
-        <target>Rechtschreibung und Grammatik zeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
-      </trans-unit>
+        <source>Show Spelling and Grammar</source><seg-source><mrk mtype="seg" mid="45">Show Spelling and Grammar</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="45">Rechtschreibung und Grammatik anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
       <trans-unit id="HyV-fh-RgO.title">
-        <source>View</source>
-        <target>Aussicht</target>
-        <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
-      </trans-unit>
+        <source>View</source><seg-source><mrk mtype="seg" mid="46">View</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="46">Anzeigen</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
       <trans-unit id="I0S-gh-46l.title">
-        <source>Subscript</source>
-        <target>Unterer Index</target>
-        <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
-      </trans-unit>
+        <source>Subscript</source><seg-source><mrk mtype="seg" mid="47">Subscript</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="47">Tiefstellen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
       <trans-unit id="IAo-SY-fd9.title">
-        <source>Open…</source>
-        <target>Öffnen…</target>
-        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
-      </trans-unit>
+        <source>Open…</source><seg-source><mrk mtype="seg" mid="48">Open…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="48">Öffnen…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
       <trans-unit id="IQv-IB-iLA.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
-      </trans-unit>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="49">ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="49">ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
       <trans-unit id="J5U-5w-g23.title">
-        <source>Justify</source>
-        <target>Rechtfertigen</target>
-        <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
-      </trans-unit>
+        <source>Justify</source><seg-source><mrk mtype="seg" mid="50">Justify</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="50">Ausrichten</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
       <trans-unit id="J7y-lM-qPV.title">
-        <source>Use None</source>
-        <target>Kein Verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
-      </trans-unit>
+        <source>Use None</source><seg-source><mrk mtype="seg" mid="51">Use None</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="51">Keine Verwenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
       <trans-unit id="KaW-ft-85H.title">
-        <source>Revert to Saved</source>
-        <target>Zurück zu Gespeichert</target>
-        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
-      </trans-unit>
+        <source>Revert to Saved</source><seg-source><mrk mtype="seg" mid="52">Revert to Saved</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="52">Zurück zu Gespeicherte</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
       <trans-unit id="Kd2-mp-pUS.title">
-        <source>Show All</source>
-        <target>Alle Zeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
-      </trans-unit>
+        <source>Show All</source><seg-source><mrk mtype="seg" mid="53">Show All</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="53">Alle anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
       <trans-unit id="LE2-aR-0XJ.title">
-        <source>Bring All to Front</source>
-        <target>Alle nach Vorne Bringen</target>
-        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
-      </trans-unit>
+        <source>Bring All to Front</source><seg-source><mrk mtype="seg" mid="54">Bring All to Front</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="54">Alle nach vorne bringen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
       <trans-unit id="LVM-kO-fVI.title">
-        <source>Paste Ruler</source>
-        <target>Ruler Fügen </target>
-        <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
-      </trans-unit>
+        <source>Paste Ruler</source><seg-source><mrk mtype="seg" mid="55">Paste Ruler</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="55">Lineal einfügen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
       <trans-unit id="Lbh-J2-qVU.title">
-        <source>	Left to Right</source>
-        <target>	Links nach Rechts</target>
-        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
-      </trans-unit>
+        <source>	Left to Right</source><seg-source><mrk mtype="seg" mid="56">	Left to Right</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="56">	Links nach Rechts</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
-        <source>Copy Ruler</source>
-        <target>Ruler Kopieren</target>
-        <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
-      </trans-unit>
+        <source>Copy Ruler</source><seg-source><mrk mtype="seg" mid="57">Copy Ruler</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="57">Lineal kopieren</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
       <trans-unit id="NMo-om-nkz.title">
-        <source>Services</source>
-        <target>Dienste</target>
-        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
-      </trans-unit>
+        <source>Services</source><seg-source><mrk mtype="seg" mid="58">Services</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="58">Dienste</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
       <trans-unit id="Nop-cj-93Q.title">
-        <source>	Default</source>
-        <target>	Standard</target>
-        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
-      </trans-unit>
+        <source>	Default</source><seg-source><mrk mtype="seg" mid="59">	Default</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="59">	Standard</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
       <trans-unit id="OY7-WF-poV.title">
-        <source>Minimize</source>
-        <target>Minimieren</target>
-        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
-      </trans-unit>
+        <source>Minimize</source><seg-source><mrk mtype="seg" mid="60">Minimize</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="60">Minimieren</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
       <trans-unit id="OaQ-X3-Vso.title">
-        <source>Baseline</source>
-        <target>Grundlinie</target>
-        <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
-      </trans-unit>
+        <source>Baseline</source><seg-source><mrk mtype="seg" mid="61">Baseline</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="61">Ausgangswert</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
       <trans-unit id="Olw-nP-bQN.title">
-        <source>Hide ONLYOFFICE</source>
-        <target>ONLYOFFICE Verstecken </target>
-        <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
-      </trans-unit>
+        <source>Hide ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="62">Hide ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="62">ONLYOFFICE verbergen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
       <trans-unit id="OwM-mh-QMV.title">
-        <source>Find Previous</source>
-        <target>Vorheriges Suchen</target>
-        <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
-      </trans-unit>
+        <source>Find Previous</source><seg-source><mrk mtype="seg" mid="63">Find Previous</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="63">Letztes Ergebnis anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
       <trans-unit id="Oyz-dy-DGm.title">
-        <source>Stop Speaking</source>
-        <target>Zu Sprechen Aufhören</target>
-        <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
-      </trans-unit>
+        <source>Stop Speaking</source><seg-source><mrk mtype="seg" mid="64">Stop Speaking</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="64">Sprachfunktion beenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
       <trans-unit id="Ptp-SP-VEL.title">
-        <source>Bigger</source>
-        <target>Größer</target>
-        <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note>
-      </trans-unit>
+        <source>Bigger</source><seg-source><mrk mtype="seg" mid="65">Bigger</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="65">Größer</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
       <trans-unit id="Q5e-8K-NDq.title">
-        <source>Show Fonts</source>
-        <target>Schriften Anzeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
-      </trans-unit>
+        <source>Show Fonts</source><seg-source><mrk mtype="seg" mid="66">Show Fonts</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="66">Schriften anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
       <trans-unit id="R4o-n2-Eq4.title">
-        <source>Zoom</source>
-        <target>Zoomen</target>
-        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
-      </trans-unit>
+        <source>Zoom</source><seg-source><mrk mtype="seg" mid="67">Zoom</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="67">Vergrößern</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
       <trans-unit id="RB4-Sm-HuC.title">
-        <source>	Right to Left</source>
-        <target>	Rechts nach Links</target>
-        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
-      </trans-unit>
+        <source>	Right to Left</source><seg-source><mrk mtype="seg" mid="68">	Right to Left</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="68">	Rechts nach links</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
       <trans-unit id="Riu-oE-8dj.title">
-        <source>Close</source>
-        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
-      </trans-unit>
+        <source>Close</source><seg-source><mrk mtype="seg" mid="69">Close</mrk></seg-source><target state="new"><mrk mtype="seg" mid="69">Schließen</mrk></target>
+        
+      <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title">
-        <source>none</source>
-        <target>kein</target>
-        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
-      </trans-unit>
+        <source>none</source><seg-source><mrk mtype="seg" mid="70">none</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="70">Keine</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
       <trans-unit id="RmO-tv-UKh.title">
-        <source>Logout</source>
-        <target>Abmelden</target>
-        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
-      </trans-unit>
+        <source>Logout</source><seg-source><mrk mtype="seg" mid="71">Logout</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="71">Abmelden</mrk></target>
+        
+      <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
       <trans-unit id="Rqc-34-cIF.title">
-        <source>Superscript</source>
-        <target>Superscript</target>
-        <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
-      </trans-unit>
+        <source>Superscript</source><seg-source><mrk mtype="seg" mid="72">Superscript</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="72">Hochstellen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
       <trans-unit id="Ruw-6m-B2m.title">
-        <source>Select All</source>
-        <target>Alle Auswählen</target>
-        <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
-      </trans-unit>
+        <source>Select All</source><seg-source><mrk mtype="seg" mid="73">Select All</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="73">Alles auswählen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
       <trans-unit id="S0p-oC-mLd.title">
-        <source>Jump to Selection</source>
-        <target>Wechseln zu Auswahl</target>
-        <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
-      </trans-unit>
+        <source>Jump to Selection</source><seg-source><mrk mtype="seg" mid="74">Jump to Selection</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="74">Zu Auswahl wechseln</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
       <trans-unit id="TEm-B8-gsH.title">
-        <source>Document</source>
-        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
-      </trans-unit>
+        <source>Document</source><seg-source><mrk mtype="seg" mid="75">Document</mrk></seg-source><target state="new"><mrk mtype="seg" mid="75">Dokument</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
-        <source>Window</source>
-        <target>Fenster</target>
-        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
-      </trans-unit>
+        <source>Window</source><seg-source><mrk mtype="seg" mid="76">Window</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="76">Fenster</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title">
-        <source>Capitalize</source>
-        <target>Kapitalisieren</target>
-        <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
-      </trans-unit>
+        <source>Capitalize</source><seg-source><mrk mtype="seg" mid="77">Capitalize</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="77">Großschreibung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
       <trans-unit id="VIY-Ag-zcb.title">
-        <source>Center</source>
-        <target>Zum Zentrum</target>
-        <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
-      </trans-unit>
+        <source>Center</source><seg-source><mrk mtype="seg" mid="78">Center</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="78">Zentrieren</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
       <trans-unit id="Vdr-fp-XzO.title">
-        <source>Hide Others</source>
-        <target>Andere Verstecken</target>
-        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
-      </trans-unit>
+        <source>Hide Others</source><seg-source><mrk mtype="seg" mid="79">Hide Others</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="79">Andere ausblenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
       <trans-unit id="Vjx-xi-njq.title">
-        <source>Italic</source>
-        <target>Kursiv</target>
-        <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note>
-      </trans-unit>
+        <source>Italic</source><seg-source><mrk mtype="seg" mid="80">Italic</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="80">Kursiv</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
       <trans-unit id="W48-6f-4Dl.title">
-        <source>Edit</source>
-        <target>Bearbeiten</target>
-        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
-      </trans-unit>
+        <source>Edit</source><seg-source><mrk mtype="seg" mid="81">Edit</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="81">Bearbeiten</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
       <trans-unit id="WRG-CD-K1S.title">
-        <source>Underline</source>
-        <target>Unterstreichen</target>
-        <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
-      </trans-unit>
+        <source>Underline</source><seg-source><mrk mtype="seg" mid="82">Underline</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="82">Unterstrichen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
       <trans-unit id="WeT-3V-zwk.title">
-        <source>Paste and Match Style</source>
-        <target>Einsetzen und Stil Anpassen</target>
-        <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
-      </trans-unit>
+        <source>Paste and Match Style</source><seg-source><mrk mtype="seg" mid="83">Paste and Match Style</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="83">Einfügen und Format übernehmen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
       <trans-unit id="Xz5-n4-O0W.title">
-        <source>Find…</source>
-        <target>Finden…</target>
-        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
-      </trans-unit>
+        <source>Find…</source><seg-source><mrk mtype="seg" mid="84">Find…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="84">Suchen…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
       <trans-unit id="YEy-JH-Tfz.title">
-        <source>Find and Replace…</source>
-        <target>Finden and Ersetzen…</target>
-        <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
-      </trans-unit>
+        <source>Find and Replace…</source><seg-source><mrk mtype="seg" mid="85">Find and Replace…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="85">Suchen und ersetzen...</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
       <trans-unit id="YGs-j5-SAR.title">
-        <source>	Default</source>
-        <target>	Standard</target>
-        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
-      </trans-unit>
+        <source>	Default</source><seg-source><mrk mtype="seg" mid="86">	Default</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="86">	Standard</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title">
-        <source>Start Speaking</source>
-        <target>Zu Sprechen Beginnen</target>
-        <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
-      </trans-unit>
+        <source>Start Speaking</source><seg-source><mrk mtype="seg" mid="87">Start Speaking</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="87">Sprachfunktion starten</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title">
-        <source>Align Left</source>
-        <target>Links Ausrichten</target>
-        <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
-      </trans-unit>
+        <source>Align Left</source><seg-source><mrk mtype="seg" mid="88">Align Left</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="88">Linksbündig </mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
       <trans-unit id="ZbA-hc-8PE.title">
-        <source>Version</source>
-        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
-      </trans-unit>
+        <source>Version</source><seg-source><mrk mtype="seg" mid="89">Version</mrk></seg-source><target state="new"><mrk mtype="seg" mid="89">Version</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
       <trans-unit id="Zsi-3o-ASl.title">
-        <source>Email:</source>
-        <target>Email:</target>
-        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
-      </trans-unit>
+        <source>Email:</source><seg-source><mrk mtype="seg" mid="90">Email:</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="90">E-Mail:</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title">
-        <source>Paragraph</source>
-        <target>Absatz</target>
-        <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note>
-      </trans-unit>
+        <source>Paragraph</source><seg-source><mrk mtype="seg" mid="91">Paragraph</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="91">Absatz</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
       <trans-unit id="aTl-1u-JFS.title">
-        <source>Print…</source>
-        <target>Drucken…</target>
-        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
-      </trans-unit>
+        <source>Print…</source><seg-source><mrk mtype="seg" mid="92">Print…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="92">Drucken…</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
       <trans-unit id="aUF-d1-5bR.title">
-        <source>Window</source>
-        <target>Fenster</target>
-        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
-      </trans-unit>
+        <source>Window</source><seg-source><mrk mtype="seg" mid="93">Window</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="93">Fenster</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
       <trans-unit id="aXa-aM-Jaq.title">
-        <source>Font</source>
-        <target>Schriftart</target>
-        <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
-      </trans-unit>
+        <source>Font</source><seg-source><mrk mtype="seg" mid="94">Font</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="94">Schriftart</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
       <trans-unit id="agt-UL-0e3.title">
-        <source>Use Default</source>
-        <target>Standard Verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
-      </trans-unit>
+        <source>Use Default</source><seg-source><mrk mtype="seg" mid="95">Use Default</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="95">Standardeinstellungen übernehmen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
       <trans-unit id="bgn-CT-cEk.title">
-        <source>Show Colors</source>
-        <target>Farben Anzeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note>
-      </trans-unit>
+        <source>Show Colors</source><seg-source><mrk mtype="seg" mid="96">Show Colors</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="96">Farben Anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
       <trans-unit id="bib-Uj-vzu.title">
-        <source>File</source>
-        <target>Datei</target>
-        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
-      </trans-unit>
+        <source>File</source><seg-source><mrk mtype="seg" mid="97">File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="97">Datei</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
       <trans-unit id="buJ-ug-pKt.title">
-        <source>Use Selection for Find</source>
-        <target>Auswahl Suchen</target>
-        <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note>
-      </trans-unit>
+        <source>Use Selection for Find</source><seg-source><mrk mtype="seg" mid="98">Use Selection for Find</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="98">Auswahl Suchen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
       <trans-unit id="c8a-y6-VQd.title">
-        <source>Transformations</source>
-        <target>Transformationen</target>
-        <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
-      </trans-unit>
+        <source>Transformations</source><seg-source><mrk mtype="seg" mid="99">Transformations</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="99">Änderungen</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
       <trans-unit id="cDB-IK-hbR.title">
-        <source>Use None</source>
-        <target>Kein Verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
-      </trans-unit>
+        <source>Use None</source><seg-source><mrk mtype="seg" mid="100">Use None</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="100">Keine Verwenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
       <trans-unit id="cqv-fj-IhA.title">
-        <source>Selection</source>
-        <target>Auswahl</target>
-        <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note>
-      </trans-unit>
+        <source>Selection</source><seg-source><mrk mtype="seg" mid="101">Selection</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="101">Auswahl</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
       <trans-unit id="cwL-P1-jid.title">
-        <source>Smart Links</source>
-        <target>Smart Links</target>
-        <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note>
-      </trans-unit>
+        <source>Smart Links</source><seg-source><mrk mtype="seg" mid="102">Smart Links</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="102">Smart Links</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
       <trans-unit id="d9M-CD-aMd.title">
-        <source>Make Lower Case</source>
-        <target>Kleinschreibung Machen</target>
-        <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
-      </trans-unit>
+        <source>Make Lower Case</source><seg-source><mrk mtype="seg" mid="103">Make Lower Case</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="103">Kleinschreibung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
       <trans-unit id="d9c-me-L2H.title">
-        <source>Text</source>
-        <target>Text</target>
-        <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
-      </trans-unit>
+        <source>Text</source><seg-source><mrk mtype="seg" mid="104">Text</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="104">Text</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
       <trans-unit id="dMs-cI-mzQ.title">
-        <source>File</source>
-        <target>Datei</target>
-        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
-      </trans-unit>
+        <source>File</source><seg-source><mrk mtype="seg" mid="105">File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="105">Datei</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title">
-        <source>Undo</source>
-        <target>Rückgängig Machen</target>
-        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
-      </trans-unit>
+        <source>Undo</source><seg-source><mrk mtype="seg" mid="106">Undo</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="106">Rückgängig</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
       <trans-unit id="gVA-U4-sdL.title">
-        <source>Paste</source>
-        <target>Einfügen</target>
-        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
-      </trans-unit>
+        <source>Paste</source><seg-source><mrk mtype="seg" mid="107">Paste</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="107">Einfügen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
       <trans-unit id="gm3-6i-EnL.title">
-        <source>File Name</source>
-        <target>Dateiname</target>
-        <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
-      </trans-unit>
+        <source>File Name</source><seg-source><mrk mtype="seg" mid="108">File Name</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="108">Dateiname</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
       <trans-unit id="hD5-Cz-ItX.title">
-        <source>New</source>
-        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
-      </trans-unit>
+        <source>New</source><seg-source><mrk mtype="seg" mid="109">New</mrk></seg-source><target state="new"><mrk mtype="seg" mid="109">Neu</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
       <trans-unit id="hQb-2v-fYv.title">
-        <source>Smart Quotes</source>
-        <target>Smart Quotes</target>
-        <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
-      </trans-unit>
+        <source>Smart Quotes</source><seg-source><mrk mtype="seg" mid="110">Smart Quotes</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="110">Intelligente Anführungszeichen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
       <trans-unit id="hkB-TU-Ps1.title">
-        <source>Presentation</source>
-        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
-      </trans-unit>
+        <source>Presentation</source><seg-source><mrk mtype="seg" mid="111">Presentation</mrk></seg-source><target state="new"><mrk mtype="seg" mid="111">Präsentation</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
       <trans-unit id="hz2-CU-CR7.title">
-        <source>Check Document Now</source>
-        <target>Dokument Jetzt Prüfen</target>
-        <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
-      </trans-unit>
+        <source>Check Document Now</source><seg-source><mrk mtype="seg" mid="112">Check Document Now</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="112">Dokument jetzt überprüfen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
       <trans-unit id="hz9-B4-Xy5.title">
-        <source>Services</source>
-        <target>Dienste</target>
-        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
-      </trans-unit>
+        <source>Services</source><seg-source><mrk mtype="seg" mid="113">Services</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="113">Dienste</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
       <trans-unit id="i1d-Er-qST.title">
-        <source>Smaller</source>
-        <target>Kleiner</target>
-        <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note>
-      </trans-unit>
+        <source>Smaller</source><seg-source><mrk mtype="seg" mid="114">Smaller</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="114">Kleiner</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
       <trans-unit id="ijk-EB-dga.title">
-        <source>Baseline</source>
-        <target>Grundlinie</target>
-        <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
-      </trans-unit>
+        <source>Baseline</source><seg-source><mrk mtype="seg" mid="115">Baseline</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="115">Ausgangswert</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
       <trans-unit id="jBQ-r6-VK2.title">
-        <source>Kern</source>
-        <target>Kern</target>
-        <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
-      </trans-unit>
+        <source>Kern</source><seg-source><mrk mtype="seg" mid="116">Kern</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="116">Überhang</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
-        <source>	Right to Left</source>
-        <target>	Rechts nach Links</target>
-        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
-      </trans-unit>
+        <source>	Right to Left</source><seg-source><mrk mtype="seg" mid="117">	Right to Left</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="117">	Rechts nach links</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
-        <source>Format</source>
-        <target>Format</target>
-        <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note>
-      </trans-unit>
+        <source>Format</source><seg-source><mrk mtype="seg" mid="118">Format</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="118">Format</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
       <trans-unit id="kcg-El-49G.label">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
-      </trans-unit>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="119">ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="119">ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
       <trans-unit id="llV-Yc-IJ4.title">
-        <source>START</source>
-        <note>Class = "NSButtonCell"; title = "START"; ObjectID = "llV-Yc-IJ4";</note>
-      </trans-unit>
+        <source>START</source><seg-source><mrk mtype="seg" mid="120">START</mrk></seg-source><target state="new"><mrk mtype="seg" mid="120">BEGINNEN</mrk></target>
+        
+      <note>Class = "NSButtonCell"; title = "START"; ObjectID = "llV-Yc-IJ4";</note></trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
-        <source>Cancel</source>
-        <target>Abbrechen</target>
-        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
-      </trans-unit>
+        <source>Cancel</source><seg-source><mrk mtype="seg" mid="121">Cancel</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="121">Abbrechen</mrk></target>
+        
+      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
       <trans-unit id="mK6-2p-4JG.title">
-        <source>Check Grammar With Spelling</source>
-        <target>Grammatik und Rechtschreibung Prüfen </target>
-        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
-      </trans-unit>
+        <source>Check Grammar With Spelling</source><seg-source><mrk mtype="seg" mid="122">Check Grammar With Spelling</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="122">Grammatik und Rechtschreibung prüfen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
       <trans-unit id="o6e-r0-MWq.title">
-        <source>Ligatures</source>
-        <target>Ligaturen</target>
-        <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
-      </trans-unit>
+        <source>Ligatures</source><seg-source><mrk mtype="seg" mid="123">Ligatures</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="123">Doppelbuchstaben</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
       <trans-unit id="oas-Oc-fiZ.title">
-        <source>Open Recent</source>
-        <target>Letzte Öffnen</target>
-        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
-      </trans-unit>
+        <source>Open Recent</source><seg-source><mrk mtype="seg" mid="124">Open Recent</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="124">Kürzlich verwendete Dateien öffnen</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
       <trans-unit id="ogc-rX-tC1.title">
-        <source>Loosen</source>
-        <target>Schwächen</target>
-        <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
-      </trans-unit>
+        <source>Loosen</source><seg-source><mrk mtype="seg" mid="125">Loosen</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="125">Lockern</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
       <trans-unit id="pa3-QI-u2k.title">
-        <source>Delete</source>
-        <target>Löschen</target>
-        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
-      </trans-unit>
+        <source>Delete</source><seg-source><mrk mtype="seg" mid="126">Delete</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="126">Löschen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
       <trans-unit id="pxx-59-PXV.title">
-        <source>Save</source>
-        <target>Speichern…</target>
-        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
-      </trans-unit>
+        <source>Save</source><seg-source><mrk mtype="seg" mid="127">Save</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="127">Speichern</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
       <trans-unit id="q09-fT-Sye.title">
-        <source>Find Next</source>
-        <target>Nächstes Finden</target>
-        <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
-      </trans-unit>
+        <source>Find Next</source><seg-source><mrk mtype="seg" mid="128">Find Next</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="128">Weitersuchen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
       <trans-unit id="qIS-W8-SiK.title">
-        <source>Page Setup…</source>
-        <target>Seiteneinrichtung…</target>
-        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
-      </trans-unit>
+        <source>Page Setup…</source><seg-source><mrk mtype="seg" mid="129">Page Setup…</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="129">Seite einrichten...</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
       <trans-unit id="rG1-93-HjS.title">
-        <source>ONLYOFFICE </source>
-        <target>ONLYOFFICE </target>
-        <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE "; ObjectID = "rG1-93-HjS";</note>
-      </trans-unit>
+        <source>ONLYOFFICE </source><seg-source><mrk mtype="seg" mid="130">ONLYOFFICE </mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="130">ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE "; ObjectID = "rG1-93-HjS";</note></trans-unit>
       <trans-unit id="rbD-Rh-wIN.title">
-        <source>Check Spelling While Typing</source>
-        <target>Rechtschreibprüfung während der Eingabe</target>
-        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
-      </trans-unit>
+        <source>Check Spelling While Typing</source><seg-source><mrk mtype="seg" mid="131">Check Spelling While Typing</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="131">Rechtschreibung während der Eingabe überprüfen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
       <trans-unit id="rgM-f4-ycn.title">
-        <source>Smart Dashes</source>
-        <target>Smart  Striche</target>
-        <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
-      </trans-unit>
+        <source>Smart Dashes</source><seg-source><mrk mtype="seg" mid="132">Smart Dashes</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="132">Intelligente Bindestriche</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
       <trans-unit id="sGd-zc-V0B.title">
-        <source>Copyright info</source>
-        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
-      </trans-unit>
+        <source>Copyright info</source><seg-source><mrk mtype="seg" mid="133">Copyright info</mrk></seg-source><target state="new"><mrk mtype="seg" mid="133">Copyright-Informationen</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
-        <source>Show Toolbar</source>
-        <target>Symbolleiste Anzeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
-      </trans-unit>
+        <source>Show Toolbar</source><seg-source><mrk mtype="seg" mid="134">Show Toolbar</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="134">Symbolleiste anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
       <trans-unit id="tRr-pd-1PS.title">
-        <source>Data Detectors</source>
-        <target>Datenerkennung</target>
-        <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note>
-      </trans-unit>
+        <source>Data Detectors</source><seg-source><mrk mtype="seg" mid="135">Data Detectors</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="135">Datenerkennung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
       <trans-unit id="tXI-mr-wws.title">
-        <source>Open Recent</source>
-        <target>Letzte Öffnen</target>
-        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
-      </trans-unit>
+        <source>Open Recent</source><seg-source><mrk mtype="seg" mid="136">Open Recent</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="136">Kürzlich verwendete Dateien öffnen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
       <trans-unit id="tlD-Oa-oAM.title">
-        <source>Kern</source>
-        <target>Kern</target>
-        <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
-      </trans-unit>
+        <source>Kern</source><seg-source><mrk mtype="seg" mid="137">Kern</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="137">Überhang</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
       <trans-unit id="uQy-DD-JDr.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
-      </trans-unit>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="138">ONLYOFFICE</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="138">ONLYOFFICE</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
       <trans-unit id="uRl-iY-unG.title">
-        <source>Cut</source>
-        <target>Schneiden</target>
-        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
-      </trans-unit>
+        <source>Cut</source><seg-source><mrk mtype="seg" mid="139">Cut</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="139">Ausschneiden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
       <trans-unit id="ud7-wC-A79.title">
-        <source>Check for Updates…</source>
-        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
-      </trans-unit>
+        <source>Check for Updates…</source><seg-source><mrk mtype="seg" mid="140">Check for Updates…</mrk></seg-source><target state="new"><mrk mtype="seg" mid="140">Nach Updates suchen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
       <trans-unit id="vKC-jM-MkH.title">
-        <source>Paste Style</source>
-        <target>Stil Enfügen</target>
-        <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
-      </trans-unit>
+        <source>Paste Style</source><seg-source><mrk mtype="seg" mid="141">Paste Style</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="141">Format einfügen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
       <trans-unit id="vLm-3I-IUL.title">
-        <source>Show Ruler</source>
-        <target>Ruler Anzeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
-      </trans-unit>
+        <source>Show Ruler</source><seg-source><mrk mtype="seg" mid="142">Show Ruler</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="142">Lineal anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
       <trans-unit id="vNY-rz-j42.title">
-        <source>Clear Menu</source>
-        <target>Menu Reinigen</target>
-        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
-      </trans-unit>
+        <source>Clear Menu</source><seg-source><mrk mtype="seg" mid="143">Clear Menu</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="143">Menü löschen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
       <trans-unit id="vmV-6d-7jI.title">
-        <source>Make Upper Case</source>
-        <target>Großbuchstaben Machen</target>
-        <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
-      </trans-unit>
+        <source>Make Upper Case</source><seg-source><mrk mtype="seg" mid="144">Make Upper Case</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="144">Großschreibung</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
       <trans-unit id="w0m-vy-SC9.title">
-        <source>Ligatures</source>
-        <target>Ligaturen</target>
-        <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
-      </trans-unit>
+        <source>Ligatures</source><seg-source><mrk mtype="seg" mid="145">Ligatures</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="145">Doppelbuchstaben</mrk></target>
+        
+      <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
       <trans-unit id="wb2-vD-lq4.title">
-        <source>Align Right</source>
-        <target>Rechts Ausrichten</target>
-        <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
-      </trans-unit>
+        <source>Align Right</source><seg-source><mrk mtype="seg" mid="146">Align Right</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="146">Rechtsbündig</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
       <trans-unit id="wpe-8d-5DV.title">
-        <source>Text Cell</source>
-        <target>Text Sektion</target>
-        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
-      </trans-unit>
+        <source>Text Cell</source><seg-source><mrk mtype="seg" mid="147">Text Cell</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="147">Textzelle</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
       <trans-unit id="wpr-3q-Mcd.title">
-        <source>Help</source>
-        <target>Hilfe</target>
-        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
-      </trans-unit>
+        <source>Help</source><seg-source><mrk mtype="seg" mid="148">Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="148">Hilfe</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
       <trans-unit id="x3v-GG-iWU.title">
-        <source>Copy</source>
-        <target>Kopieren</target>
-        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
-      </trans-unit>
+        <source>Copy</source><seg-source><mrk mtype="seg" mid="149">Copy</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="149">Kopieren</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
       <trans-unit id="xCO-ey-2lo.title">
-        <source>Product</source>
-        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
-      </trans-unit>
+        <source>Product</source><seg-source><mrk mtype="seg" mid="150">Product</mrk></seg-source><target state="new"><mrk mtype="seg" mid="150">Produkt</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
       <trans-unit id="xQD-1f-W4t.title">
-        <source>Use All</source>
-        <target>Alle Verwenden</target>
-        <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
-      </trans-unit>
+        <source>Use All</source><seg-source><mrk mtype="seg" mid="151">Use All</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="151">Alle verwenden</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
       <trans-unit id="xrE-MZ-jX0.title">
-        <source>Speech</source>
-        <target>Rede</target>
-        <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
-      </trans-unit>
+        <source>Speech</source><seg-source><mrk mtype="seg" mid="152">Speech</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="152">Sprache</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
-        <source>Show Substitutions</source>
-        <target>Auswechslungen Anzeigen</target>
-        <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
-      </trans-unit>
+        <source>Show Substitutions</source><seg-source><mrk mtype="seg" mid="153">Show Substitutions</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="153">Ersetzungen anzeigen</mrk></target>
+        
+      <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
       <trans-unit id="zwS-9G-S0N.title">
-        <source>Portal:</source>
-        <target>Portal:</target>
-        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
-      </trans-unit>
+        <source>Portal:</source><seg-source><mrk mtype="seg" mid="154">Portal:</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="154">Portal:</mrk></target>
+        
+      <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
-        <source>ONLYOFFICE Reporter Window</source>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
-      </trans-unit>
+        <source>ONLYOFFICE Reporter Window</source><seg-source><mrk mtype="seg" mid="155">ONLYOFFICE Reporter Window</mrk></seg-source><target state="new"><mrk mtype="seg" mid="155">ONLYOFFICE Berichtefenster</mrk></target>
+        
+      <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="CFBundleName">
-        <source>ONLYOFFICE</source>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="156">ONLYOFFICE</mrk></seg-source><target state="new"><mrk mtype="seg" mid="156">ONLYOFFICE</mrk></target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source><seg-source><mrk mtype="seg" mid="157">Copyright © 2017 Ascensio System SIA.</mrk> <mrk mtype="seg" mid="158">All rights reserved.</mrk></seg-source><target state="new"><mrk mtype="seg" mid="157">Copyright © 2017 Ascensio System SIA.</mrk> <mrk mtype="seg" mid="158">Alle Rechte vorbehalten.</mrk></target>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="%@ Help">
-        <source>%@ Help</source>
-        <target>%@ Help</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>%@ Help</source><seg-source><mrk mtype="seg" mid="159">%@ Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="159">%@ Hilfe</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@">
-        <source>About %@</source>
-        <target>About %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>About %@</source><seg-source><mrk mtype="seg" mid="160">About %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="160">Über %@</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Acknowledgments">
-        <source>Acknowledgments</source>
-        <target>Acknowledgments</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="161">Acknowledgments</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="161">Bestätigungen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel">
-        <source>Cancel</source>
-        <target>Cancel</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Cancel</source><seg-source><mrk mtype="seg" mid="162">Cancel</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="162">Abbrechen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values">
-        <source>Comma-Separated Values</source>
-        <target>Comma-Separated Values</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Comma-Separated Values</source><seg-source><mrk mtype="seg" mid="163">Comma-Separated Values</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="163">CSV (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal">
-        <source>Create portal</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Create portal</source><seg-source><mrk mtype="seg" mid="164">Create portal</mrk></seg-source><target state="new"><mrk mtype="seg" mid="164">Portal erstellen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit">
-        <source>Delete and Quit</source>
-        <target>Delete and Quit</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Delete and Quit</source><seg-source><mrk mtype="seg" mid="165">Delete and Quit</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="165">Löschen und beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File">
-        <source>DjVu File</source>
-        <target>DjVu File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>DjVu File</source><seg-source><mrk mtype="seg" mid="166">DjVu File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="166">DjVu-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
-        <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>Do you want to save the changes made to the document "%@"?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Do you want to save the changes made to the document "%@"?</source><seg-source><mrk mtype="seg" mid="167">Do you want to save the changes made to the document "%@"?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="167">Möchten Sie die Änderungen an "%@“ speichern?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document %ld.docx">
-        <source>Document %ld.docx</source>
-        <target>Document %ld.docx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Document %ld.docx</source><seg-source><mrk mtype="seg" mid="168">Document %ld.docx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="168">Dokument %ld.docx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
-        <source>Excel 97-2003 Spreadsheet</source>
-        <target>Excel 97-2003 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 97-2003 Spreadsheet</source><seg-source><mrk mtype="seg" mid="169">Excel 97-2003 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="169">Excel 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet">
-        <source>Excel 2007 Spreadsheet</source>
-        <target>Excel 2007 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 2007 Spreadsheet</source><seg-source><mrk mtype="seg" mid="170">Excel 2007 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="170">Excel 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
-        <source>File "%@" can not be open or not exist.</source>
-        <target>File "%@" can not be open or not exist.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File "%@" can not be open or not exist.</source><seg-source><mrk mtype="seg" mid="171">File "%@" can not be open or not exist.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="171">Datei "%@" kann nicht geöffnet werden oder existiert nicht.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File Format:">
-        <source>File Format:</source>
-        <target>File Format:</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File Format:</source><seg-source><mrk mtype="seg" mid="172">File Format:</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="172">Dateiformat:</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File can not be open.">
-        <source>File can not be open.</source>
-        <target>File can not be open.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File can not be open.</source><seg-source><mrk mtype="seg" mid="173">File can not be open.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="173">Die Datei kann nicht geöffnet werden.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Hide %@">
-        <source>Hide %@</source>
-        <target>Hide %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Hide %@</source><seg-source><mrk mtype="seg" mid="174">Hide %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="174">%@ verbergen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>If you don't review your documents, all your changeses will be lost.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>If you don't review your documents, all your changeses will be lost.</source><seg-source><mrk mtype="seg" mid="175">If you don't review your documents, all your changeses will be lost.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="175">Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="License Agreement">
-        <source>License Agreement</source>
-        <target>License Agreement</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>License Agreement</source><seg-source><mrk mtype="seg" mid="176">License Agreement</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="176">Lizenzvereinbarung</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book">
-        <source>Mobipocket e-book</source>
-        <target>Mobipocket e-book</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Mobipocket e-book</source><seg-source><mrk mtype="seg" mid="177">Mobipocket e-book</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="177">Mobipocket eBook</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No">
-        <source>No</source>
-        <target>No</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>No</source><seg-source><mrk mtype="seg" mid="178">No</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="178">Nein</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OK">
-        <source>OK</source>
-        <target>OK</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OK</source><seg-source><mrk mtype="seg" mid="179">OK</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="179">OK</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>ONLYOFFICE Free</source><seg-source><mrk mtype="seg" mid="180">ONLYOFFICE Free</mrk></seg-source><target state="new"><mrk mtype="seg" mid="180">ONLYOFFICE kostenlos</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document">
-        <source>OpenOffice Document</source>
-        <target>OpenOffice Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Document</source><seg-source><mrk mtype="seg" mid="181">OpenOffice Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="181">Openoffice-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation">
-        <source>OpenOffice Presentation</source>
-        <target>OpenOffice Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Presentation</source><seg-source><mrk mtype="seg" mid="182">OpenOffice Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="182">OpenOffice-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet">
-        <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Spreadsheet</source><seg-source><mrk mtype="seg" mid="183">OpenOffice Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="183">Openoffice-Tabelle</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening">
-        <source>Opening</source>
-        <target>Opening</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Opening</source><seg-source><mrk mtype="seg" mid="184">Opening</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="184">Öffnen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File">
-        <source>PDF File</source>
-        <target>PDF File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PDF File</source><seg-source><mrk mtype="seg" mid="185">PDF File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="185">Pdf-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text">
-        <source>Plain Text</source>
-        <target>Plain Text</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Plain Text</source><seg-source><mrk mtype="seg" mid="186">Plain Text</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="186">Einfacher Text</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
-        <source>PowerPoint 97-2003 Presentation</source>
-        <target>PowerPoint 97-2003 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 97-2003 Presentation</source><seg-source><mrk mtype="seg" mid="187">PowerPoint 97-2003 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="187">PowerPoint 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
-        <source>PowerPoint 2007 Presentation</source>
-        <target>PowerPoint 2007 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 2007 Presentation</source><seg-source><mrk mtype="seg" mid="188">PowerPoint 2007 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="188">PowerPoint 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show">
-        <source>PowerPoint Slide Show</source>
-        <target>PowerPoint Slide Show</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint Slide Show</source><seg-source><mrk mtype="seg" mid="189">PowerPoint Slide Show</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="189">PowerPoint-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing...">
-        <source>Preparing...</source>
-        <target>Preparing...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Preparing...</source><seg-source><mrk mtype="seg" mid="190">Preparing...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="190">Wird vorbereitet...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation %ld.pptx">
-        <source>Presentation %ld.pptx</source>
-        <target>Presentation %ld.pptx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Presentation %ld.pptx</source><seg-source><mrk mtype="seg" mid="191">Presentation %ld.pptx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="191">Präsentation %ld.pptx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@">
-        <source>Quit %@</source>
-        <target>Quit %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Quit %@</source><seg-source><mrk mtype="seg" mid="192">Quit %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="192">%@ beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Review Changes...">
-        <source>Review Changes...</source>
-        <target>Review Changes...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Review Changes...</source><seg-source><mrk mtype="seg" mid="193">Review Changes...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="193">Änderungen überprüfen...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document">
-        <source>Rich Text Document</source>
-        <target>Rich Text Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Rich Text Document</source><seg-source><mrk mtype="seg" mid="194">Rich Text Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="194">Rich-Text-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
-        <source>Spreadsheet %ld.xlsx</source>
-        <target>Spreadsheet %ld.xlsx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Spreadsheet %ld.xlsx</source><seg-source><mrk mtype="seg" mid="195">Spreadsheet %ld.xlsx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="195">Tabelle %ld.xlsx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed">
-        <source>Unconfirmed</source>
-        <target>Unconfirmed</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Unconfirmed</source><seg-source><mrk mtype="seg" mid="196">Unconfirmed</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="196">Nicht bestätigt</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Untitled">
-        <source>Untitled</source>
-        <target>Untitled</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Untitled</source><seg-source><mrk mtype="seg" mid="197">Untitled</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="197">Ohne Namen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)">
-        <source>Version %1$@ (%2$@)</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Version %1$@ (%2$@)</source><seg-source><mrk mtype="seg" mid="198">Version %1$@ (%2$@)</mrk></seg-source><target state="new"><mrk mtype="seg" mid="198">Version %1$@ (%2$@)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page">
-        <source>Web Page</source>
-        <target>Web Page</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Web Page</source><seg-source><mrk mtype="seg" mid="199">Web Page</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="199">Webseite</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document">
-        <source>Word 97-2003 Document</source>
-        <target>Word 97-2003 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 97-2003 Document</source><seg-source><mrk mtype="seg" mid="200">Word 97-2003 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="200">Word 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document">
-        <source>Word 2007 Document</source>
-        <target>Word 2007 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 2007 Document</source><seg-source><mrk mtype="seg" mid="201">Word 2007 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="201">Word 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification">
-        <source>XML Paper Specification</source>
-        <target>XML Paper Specification</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>XML Paper Specification</source><seg-source><mrk mtype="seg" mid="202">XML Paper Specification</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="202">XPS (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes">
-        <source>Yes</source>
-        <target>Yes</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Yes</source><seg-source><mrk mtype="seg" mid="203">Yes</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="203">Ja</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
-        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="204">You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="204">Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
-        <source>Your changes will be lost if you don’t save them.</source>
-        <target>Your changes will be lost if you don’t save them.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Your changes will be lost if you don’t save them.</source><seg-source><mrk mtype="seg" mid="205">Your changes will be lost if you don’t save them.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="205">Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-        <target>ONLYOFFICE</target>
+        <source>$(PRODUCT_NAME)</source><seg-source><mrk mtype="seg" mid="206">$(PRODUCT_NAME)</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="206">$(PRODUCT_NAME)</mrk></target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
-        <target>© АО "Novyye Kommunikatsionnyye Tekhnologii" 2017 All rights reserved.</target>
+        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source><seg-source><mrk mtype="seg" mid="207">Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="207">Copyright © АО Novyye Kommunikatsionnyye Tekhnologii 2017. Alle Rechte vorbehalten.</mrk></target>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="%@ Help">
-        <source>%@ Help</source>
-        <target>%@ Help</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>%@ Help</source><seg-source><mrk mtype="seg" mid="208">%@ Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="208">%@ Hilfe</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@">
-        <source>About %@</source>
-        <target>About %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>About %@</source><seg-source><mrk mtype="seg" mid="209">About %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="209">Über %@</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Acknowledgments">
-        <source>Acknowledgments</source>
-        <target>Acknowledgments</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="210">Acknowledgments</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="210">Bestätigungen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel">
-        <source>Cancel</source>
-        <target>Cancel</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Cancel</source><seg-source><mrk mtype="seg" mid="211">Cancel</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="211">Abbrechen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values">
-        <source>Comma-Separated Values</source>
-        <target>Comma-Separated Values</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Comma-Separated Values</source><seg-source><mrk mtype="seg" mid="212">Comma-Separated Values</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="212">CSV (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal">
-        <source>Create portal</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Create portal</source><seg-source><mrk mtype="seg" mid="213">Create portal</mrk></seg-source><target state="new"><mrk mtype="seg" mid="213">Portal erstellen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit">
-        <source>Delete and Quit</source>
-        <target>Delete and Quit</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Delete and Quit</source><seg-source><mrk mtype="seg" mid="214">Delete and Quit</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="214">Löschen und beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File">
-        <source>DjVu File</source>
-        <target>DjVu File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>DjVu File</source><seg-source><mrk mtype="seg" mid="215">DjVu File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="215">DjVu-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
-        <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>Do you want to save the changes made to the document "%@"?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Do you want to save the changes made to the document "%@"?</source><seg-source><mrk mtype="seg" mid="216">Do you want to save the changes made to the document "%@"?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="216">Möchten Sie die Änderungen an "%@“ speichern?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document %ld.docx">
-        <source>Document %ld.docx</source>
-        <target>Document %ld.docx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Document %ld.docx</source><seg-source><mrk mtype="seg" mid="217">Document %ld.docx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="217">Dokument %ld.docx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
-        <source>Excel 97-2003 Spreadsheet</source>
-        <target>Excel 97-2003 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 97-2003 Spreadsheet</source><seg-source><mrk mtype="seg" mid="218">Excel 97-2003 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="218">Excel 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet">
-        <source>Excel 2007 Spreadsheet</source>
-        <target>Excel 2007 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 2007 Spreadsheet</source><seg-source><mrk mtype="seg" mid="219">Excel 2007 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="219">Excel 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
-        <source>File "%@" can not be open or not exist.</source>
-        <target>File "%@" can not be open or not exist.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File "%@" can not be open or not exist.</source><seg-source><mrk mtype="seg" mid="220">File "%@" can not be open or not exist.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="220">Datei "%@" kann nicht geöffnet werden oder existiert nicht.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File Format:">
-        <source>File Format:</source>
-        <target>File Format:</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File Format:</source><seg-source><mrk mtype="seg" mid="221">File Format:</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="221">Dateiformat:</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File can not be open.">
-        <source>File can not be open.</source>
-        <target>File can not be open.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File can not be open.</source><seg-source><mrk mtype="seg" mid="222">File can not be open.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="222">Die Datei kann nicht geöffnet werden.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Hide %@">
-        <source>Hide %@</source>
-        <target>Hide %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Hide %@</source><seg-source><mrk mtype="seg" mid="223">Hide %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="223">%@ verbergen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>If you don't review your documents, all your changeses will be lost.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>If you don't review your documents, all your changeses will be lost.</source><seg-source><mrk mtype="seg" mid="224">If you don't review your documents, all your changeses will be lost.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="224">Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="License Agreement">
-        <source>License Agreement</source>
-        <target>License Agreement</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>License Agreement</source><seg-source><mrk mtype="seg" mid="225">License Agreement</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="225">Lizenzvereinbarung</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book">
-        <source>Mobipocket e-book</source>
-        <target>Mobipocket e-book</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Mobipocket e-book</source><seg-source><mrk mtype="seg" mid="226">Mobipocket e-book</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="226">Mobipocket eBook</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No">
-        <source>No</source>
-        <target>No</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>No</source><seg-source><mrk mtype="seg" mid="227">No</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="227">Nein</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OK">
-        <source>OK</source>
-        <target>OK</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OK</source><seg-source><mrk mtype="seg" mid="228">OK</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="228">OK</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>ONLYOFFICE Free</source><seg-source><mrk mtype="seg" mid="229">ONLYOFFICE Free</mrk></seg-source><target state="new"><mrk mtype="seg" mid="229">ONLYOFFICE kostenlos</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document">
-        <source>OpenOffice Document</source>
-        <target>OpenOffice Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Document</source><seg-source><mrk mtype="seg" mid="230">OpenOffice Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="230">Openoffice-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation">
-        <source>OpenOffice Presentation</source>
-        <target>OpenOffice Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Presentation</source><seg-source><mrk mtype="seg" mid="231">OpenOffice Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="231">OpenOffice-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet">
-        <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Spreadsheet</source><seg-source><mrk mtype="seg" mid="232">OpenOffice Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="232">Openoffice-Tabelle</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening">
-        <source>Opening</source>
-        <target>Opening</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Opening</source><seg-source><mrk mtype="seg" mid="233">Opening</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="233">Öffnen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File">
-        <source>PDF File</source>
-        <target>PDF File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PDF File</source><seg-source><mrk mtype="seg" mid="234">PDF File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="234">Pdf-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text">
-        <source>Plain Text</source>
-        <target>Plain Text</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Plain Text</source><seg-source><mrk mtype="seg" mid="235">Plain Text</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="235">Einfacher Text</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
-        <source>PowerPoint 97-2003 Presentation</source>
-        <target>PowerPoint 97-2003 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 97-2003 Presentation</source><seg-source><mrk mtype="seg" mid="236">PowerPoint 97-2003 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="236">PowerPoint 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
-        <source>PowerPoint 2007 Presentation</source>
-        <target>PowerPoint 2007 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 2007 Presentation</source><seg-source><mrk mtype="seg" mid="237">PowerPoint 2007 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="237">PowerPoint 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show">
-        <source>PowerPoint Slide Show</source>
-        <target>PowerPoint Slide Show</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint Slide Show</source><seg-source><mrk mtype="seg" mid="238">PowerPoint Slide Show</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="238">PowerPoint-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing...">
-        <source>Preparing...</source>
-        <target>Preparing...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Preparing...</source><seg-source><mrk mtype="seg" mid="239">Preparing...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="239">Wird vorbereitet...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation %ld.pptx">
-        <source>Presentation %ld.pptx</source>
-        <target>Presentation %ld.pptx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Presentation %ld.pptx</source><seg-source><mrk mtype="seg" mid="240">Presentation %ld.pptx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="240">Präsentation %ld.pptx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@">
-        <source>Quit %@</source>
-        <target>Quit %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Quit %@</source><seg-source><mrk mtype="seg" mid="241">Quit %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="241">%@ beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Review Changes...">
-        <source>Review Changes...</source>
-        <target>Review Changes...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Review Changes...</source><seg-source><mrk mtype="seg" mid="242">Review Changes...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="242">Änderungen überprüfen...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document">
-        <source>Rich Text Document</source>
-        <target>Rich Text Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Rich Text Document</source><seg-source><mrk mtype="seg" mid="243">Rich Text Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="243">Rich-Text-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
-        <source>Spreadsheet %ld.xlsx</source>
-        <target>Spreadsheet %ld.xlsx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Spreadsheet %ld.xlsx</source><seg-source><mrk mtype="seg" mid="244">Spreadsheet %ld.xlsx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="244">Tabelle %ld.xlsx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed">
-        <source>Unconfirmed</source>
-        <target>Unconfirmed</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Unconfirmed</source><seg-source><mrk mtype="seg" mid="245">Unconfirmed</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="245">Nicht bestätigt</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Untitled">
-        <source>Untitled</source>
-        <target>Untitled</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Untitled</source><seg-source><mrk mtype="seg" mid="246">Untitled</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="246">Ohne Namen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)">
-        <source>Version %1$@ (%2$@)</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Version %1$@ (%2$@)</source><seg-source><mrk mtype="seg" mid="247">Version %1$@ (%2$@)</mrk></seg-source><target state="new"><mrk mtype="seg" mid="247">Version %1$@ (%2$@)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page">
-        <source>Web Page</source>
-        <target>Web Page</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Web Page</source><seg-source><mrk mtype="seg" mid="248">Web Page</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="248">Webseite</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document">
-        <source>Word 97-2003 Document</source>
-        <target>Word 97-2003 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 97-2003 Document</source><seg-source><mrk mtype="seg" mid="249">Word 97-2003 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="249">Word 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document">
-        <source>Word 2007 Document</source>
-        <target>Word 2007 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 2007 Document</source><seg-source><mrk mtype="seg" mid="250">Word 2007 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="250">Word 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification">
-        <source>XML Paper Specification</source>
-        <target>XML Paper Specification</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>XML Paper Specification</source><seg-source><mrk mtype="seg" mid="251">XML Paper Specification</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="251">XPS (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes">
-        <source>Yes</source>
-        <target>Yes</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Yes</source><seg-source><mrk mtype="seg" mid="252">Yes</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="252">Ja</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
-        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="253">You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="253">Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
-        <source>Your changes will be lost if you don’t save them.</source>
-        <target>Your changes will be lost if you don’t save them.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Your changes will be lost if you don’t save them.</source><seg-source><mrk mtype="seg" mid="254">Your changes will be lost if you don’t save them.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="254">Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
-    <body/>
+    <body />
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
+        <source>$(PRODUCT_NAME)</source><seg-source><mrk mtype="seg" mid="255">$(PRODUCT_NAME)</mrk></seg-source><target state="new"><mrk mtype="seg" mid="255">$(PRODUCT_NAME)</mrk></target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source><seg-source><mrk mtype="seg" mid="256">Copyright © 2017 Ascensio System SIA.</mrk> <mrk mtype="seg" mid="257">All rights reserved.</mrk></seg-source><target state="new"><mrk mtype="seg" mid="256">Copyright © 2017 Ascensio System SIA.</mrk> <mrk mtype="seg" mid="257">Alle Rechte vorbehalten.</mrk></target>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
     <body>
       <trans-unit id="%@ Help">
-        <source>%@ Help</source>
-        <target>%@ Help</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>%@ Help</source><seg-source><mrk mtype="seg" mid="258">%@ Help</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="258">%@ Hilfe</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@">
-        <source>About %@</source>
-        <target>About %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>About %@</source><seg-source><mrk mtype="seg" mid="259">About %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="259">Über %@</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Acknowledgments">
-        <source>Acknowledgments</source>
-        <target>Acknowledgments</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="260">Acknowledgments</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="260">Bestätigungen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel">
-        <source>Cancel</source>
-        <target>Cancel</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Cancel</source><seg-source><mrk mtype="seg" mid="261">Cancel</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="261">Abbrechen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values">
-        <source>Comma-Separated Values</source>
-        <target>Comma-Separated Values</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Comma-Separated Values</source><seg-source><mrk mtype="seg" mid="262">Comma-Separated Values</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="262">CSV (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal">
-        <source>Create portal</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Create portal</source><seg-source><mrk mtype="seg" mid="263">Create portal</mrk></seg-source><target state="new"><mrk mtype="seg" mid="263">Portal erstellen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit">
-        <source>Delete and Quit</source>
-        <target>Delete and Quit</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Delete and Quit</source><seg-source><mrk mtype="seg" mid="264">Delete and Quit</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="264">Löschen und beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File">
-        <source>DjVu File</source>
-        <target>DjVu File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>DjVu File</source><seg-source><mrk mtype="seg" mid="265">DjVu File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="265">DjVu-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
-        <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>Do you want to save the changes made to the document "%@"?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Do you want to save the changes made to the document "%@"?</source><seg-source><mrk mtype="seg" mid="266">Do you want to save the changes made to the document "%@"?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="266">Möchten Sie die Änderungen an "%@“ speichern?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document %ld.docx">
-        <source>Document %ld.docx</source>
-        <target>Document %ld.docx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Document %ld.docx</source><seg-source><mrk mtype="seg" mid="267">Document %ld.docx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="267">Dokument %ld.docx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
-        <source>Excel 97-2003 Spreadsheet</source>
-        <target>Excel 97-2003 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 97-2003 Spreadsheet</source><seg-source><mrk mtype="seg" mid="268">Excel 97-2003 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="268">Excel 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet">
-        <source>Excel 2007 Spreadsheet</source>
-        <target>Excel 2007 Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Excel 2007 Spreadsheet</source><seg-source><mrk mtype="seg" mid="269">Excel 2007 Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="269">Excel 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
-        <source>File "%@" can not be open or not exist.</source>
-        <target>File "%@" can not be open or not exist.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File "%@" can not be open or not exist.</source><seg-source><mrk mtype="seg" mid="270">File "%@" can not be open or not exist.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="270">Datei "%@" kann nicht geöffnet werden oder existiert nicht.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File Format:">
-        <source>File Format:</source>
-        <target>File Format:</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File Format:</source><seg-source><mrk mtype="seg" mid="271">File Format:</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="271">Dateiformat:</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File can not be open.">
-        <source>File can not be open.</source>
-        <target>File can not be open.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>File can not be open.</source><seg-source><mrk mtype="seg" mid="272">File can not be open.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="272">Die Datei kann nicht geöffnet werden.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Hide %@">
-        <source>Hide %@</source>
-        <target>Hide %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Hide %@</source><seg-source><mrk mtype="seg" mid="273">Hide %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="273">%@ verbergen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>If you don't review your documents, all your changeses will be lost.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>If you don't review your documents, all your changeses will be lost.</source><seg-source><mrk mtype="seg" mid="274">If you don't review your documents, all your changeses will be lost.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="274">Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="License Agreement">
-        <source>License Agreement</source>
-        <target>License Agreement</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>License Agreement</source><seg-source><mrk mtype="seg" mid="275">License Agreement</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="275">Lizenzvereinbarung</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book">
-        <source>Mobipocket e-book</source>
-        <target>Mobipocket e-book</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Mobipocket e-book</source><seg-source><mrk mtype="seg" mid="276">Mobipocket e-book</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="276">Mobipocket eBook</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No">
-        <source>No</source>
-        <target>No</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>No</source><seg-source><mrk mtype="seg" mid="277">No</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="277">Nein</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OK">
-        <source>OK</source>
-        <target>OK</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OK</source><seg-source><mrk mtype="seg" mid="278">OK</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="278">OK</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>ONLYOFFICE Free</source><seg-source><mrk mtype="seg" mid="279">ONLYOFFICE Free</mrk></seg-source><target state="new"><mrk mtype="seg" mid="279">ONLYOFFICE kostenlos</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document">
-        <source>OpenOffice Document</source>
-        <target>OpenOffice Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Document</source><seg-source><mrk mtype="seg" mid="280">OpenOffice Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="280">Openoffice-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation">
-        <source>OpenOffice Presentation</source>
-        <target>OpenOffice Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Presentation</source><seg-source><mrk mtype="seg" mid="281">OpenOffice Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="281">OpenOffice-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet">
-        <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice Spreadsheet</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>OpenOffice Spreadsheet</source><seg-source><mrk mtype="seg" mid="282">OpenOffice Spreadsheet</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="282">Openoffice-Tabelle</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening">
-        <source>Opening</source>
-        <target>Opening</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Opening</source><seg-source><mrk mtype="seg" mid="283">Opening</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="283">Öffnen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File">
-        <source>PDF File</source>
-        <target>PDF File</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PDF File</source><seg-source><mrk mtype="seg" mid="284">PDF File</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="284">Pdf-Datei</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text">
-        <source>Plain Text</source>
-        <target>Plain Text</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Plain Text</source><seg-source><mrk mtype="seg" mid="285">Plain Text</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="285">Einfacher Text</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
-        <source>PowerPoint 97-2003 Presentation</source>
-        <target>PowerPoint 97-2003 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 97-2003 Presentation</source><seg-source><mrk mtype="seg" mid="286">PowerPoint 97-2003 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="286">PowerPoint 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
-        <source>PowerPoint 2007 Presentation</source>
-        <target>PowerPoint 2007 Presentation</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint 2007 Presentation</source><seg-source><mrk mtype="seg" mid="287">PowerPoint 2007 Presentation</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="287">PowerPoint 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show">
-        <source>PowerPoint Slide Show</source>
-        <target>PowerPoint Slide Show</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>PowerPoint Slide Show</source><seg-source><mrk mtype="seg" mid="288">PowerPoint Slide Show</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="288">PowerPoint-Präsentation</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing...">
-        <source>Preparing...</source>
-        <target>Preparing...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Preparing...</source><seg-source><mrk mtype="seg" mid="289">Preparing...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="289">Wird vorbereitet...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation %ld.pptx">
-        <source>Presentation %ld.pptx</source>
-        <target>Presentation %ld.pptx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Presentation %ld.pptx</source><seg-source><mrk mtype="seg" mid="290">Presentation %ld.pptx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="290">Präsentation %ld.pptx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@">
-        <source>Quit %@</source>
-        <target>Quit %@</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Quit %@</source><seg-source><mrk mtype="seg" mid="291">Quit %@</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="291">%@ beenden</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Review Changes...">
-        <source>Review Changes...</source>
-        <target>Review Changes...</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Review Changes...</source><seg-source><mrk mtype="seg" mid="292">Review Changes...</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="292">Änderungen überprüfen...</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document">
-        <source>Rich Text Document</source>
-        <target>Rich Text Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Rich Text Document</source><seg-source><mrk mtype="seg" mid="293">Rich Text Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="293">Rich-Text-Dokument</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
-        <source>Spreadsheet %ld.xlsx</source>
-        <target>Spreadsheet %ld.xlsx</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Spreadsheet %ld.xlsx</source><seg-source><mrk mtype="seg" mid="294">Spreadsheet %ld.xlsx</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="294">Tabelle %ld.xlsx</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed">
-        <source>Unconfirmed</source>
-        <target>Unconfirmed</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Unconfirmed</source><seg-source><mrk mtype="seg" mid="295">Unconfirmed</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="295">Nicht bestätigt</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Untitled">
-        <source>Untitled</source>
-        <target>Untitled</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Untitled</source><seg-source><mrk mtype="seg" mid="296">Untitled</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="296">Ohne Namen</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)">
-        <source>Version %1$@ (%2$@)</source>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Version %1$@ (%2$@)</source><seg-source><mrk mtype="seg" mid="297">Version %1$@ (%2$@)</mrk></seg-source><target state="new"><mrk mtype="seg" mid="297">Version %1$@ (%2$@)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page">
-        <source>Web Page</source>
-        <target>Web Page</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Web Page</source><seg-source><mrk mtype="seg" mid="298">Web Page</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="298">Webseite</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document">
-        <source>Word 97-2003 Document</source>
-        <target>Word 97-2003 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 97-2003 Document</source><seg-source><mrk mtype="seg" mid="299">Word 97-2003 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="299">Word 97-2003</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document">
-        <source>Word 2007 Document</source>
-        <target>Word 2007 Document</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Word 2007 Document</source><seg-source><mrk mtype="seg" mid="300">Word 2007 Document</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="300">Word 2007</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification">
-        <source>XML Paper Specification</source>
-        <target>XML Paper Specification</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>XML Paper Specification</source><seg-source><mrk mtype="seg" mid="301">XML Paper Specification</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="301">XPS (Dateiformat)</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes">
-        <source>Yes</source>
-        <target>Yes</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Yes</source><seg-source><mrk mtype="seg" mid="302">Yes</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="302">Ja</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
-        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="303">You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="303">Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
-        <source>Your changes will be lost if you don’t save them.</source>
-        <target>Your changes will be lost if you don’t save them.</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
+        <source>Your changes will be lost if you don’t save them.</source><seg-source><mrk mtype="seg" mid="304">Your changes will be lost if you don’t save them.</mrk></seg-source>
+        <target state="translated"><mrk mtype="seg" mid="304">Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</mrk></target>
+        
+      <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b" />
     </header>
-    <body/>
+    <body />
   </file>
 </xliff>
