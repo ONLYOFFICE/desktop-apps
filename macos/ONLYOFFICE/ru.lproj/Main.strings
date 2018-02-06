@@ -77,7 +77,7 @@
 "BOF-NM-1cW.title" = "Настройки…";
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93"; */
-"BgM-ve-c93.title" = "	Left to Right";
+"BgM-ve-c93.title" = "\tLeft to Right";
 
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
 "Bw7-FT-i3A.title" = "Сохранить как…";
@@ -164,7 +164,7 @@
 "LVM-kO-fVI.title" = "Paste Ruler";
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU"; */
-"Lbh-J2-qVU.title" = "	Left to Right";
+"Lbh-J2-qVU.title" = "\tLeft to Right";
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Copy Ruler";
@@ -173,7 +173,7 @@
 "NMo-om-nkz.title" = "Службы";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
-"Nop-cj-93Q.title" = "	Default";
+"Nop-cj-93Q.title" = "\tDefault";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Свернуть";
@@ -200,7 +200,7 @@
 "R4o-n2-Eq4.title" = "Изменить масштаб";
 
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC"; */
-"RB4-Sm-HuC.title" = "	Right to Left";
+"RB4-Sm-HuC.title" = "\tRight to Left";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
 "Riu-oE-8dj.title" = "Закрыть";
@@ -254,7 +254,7 @@
 "YEy-JH-Tfz.title" = "Find and Replace…";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR"; */
-"YGs-j5-SAR.title" = "	Default";
+"YGs-j5-SAR.title" = "\tDefault";
 
 /* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ"; */
 "Ynk-f8-cLZ.title" = "Start Speaking";
@@ -347,7 +347,7 @@
 "jBQ-r6-VK2.title" = "Kern";
 
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx"; */
-"jFq-tB-4Kx.title" = "	Right to Left";
+"jFq-tB-4Kx.title" = "\tRight to Left";
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS"; */
 "jxT-CU-nIS.title" = "Format";

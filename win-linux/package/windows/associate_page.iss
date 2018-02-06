@@ -17,7 +17,7 @@ ru.AssociateDescription =Ассоциировать типы файлов офи
 de.AssociateDescription =Verknüpfung von Office-Dokumenten mit {#ASSC_APP_NAME}
 fr.AssociateDescription =Associer les fichiers office avec {#ASSC_APP_NAME}
 es.AssociateDescription =Asociar tipos de archivos de documentos de oficina con {#ASSC_APP_NAME}
-;it.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
+it_IT.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 pt_BR.AssociateCaption =Associações de arquivos
@@ -27,7 +27,7 @@ ru.AssociateCaption =Ассоциации файлов
 de.AssociateCaption =Dateiassoziationen
 fr.AssociateCaption =Associations de fichiers
 es.AssociateCaption =Asociaciones de archivos
-;it.AssociateCaption =Associazioni dei file
+it_IT.AssociateCaption =Associazioni dei file
 
 en.AssociateDont =Do not associate
 pt_BR.AssociateDont =Não associar
@@ -37,7 +37,7 @@ ru.AssociateDont =Не ассоциировать
 de.AssociateDont =Nicht assoziieren
 fr.AssociateDont =Ne pas associer
 es.AssociateDont =No asociar
-;it.AssociateDont =Non associare
+it_IT.AssociateDont =Non associare
 
 en.AssociateAll =Associate all
 pt_BR.AssociateAll =Associar todos
@@ -47,7 +47,7 @@ ru.AssociateAll =Ассоциировать все
 de.AssociateAll =Alle assoziieren
 fr.AssociateAll =Associer tous
 es.AssociateAll =Asociar todo
-;it.AssociateAll =Associare tutto
+it_IT.AssociateAll =Associare tutto
 
 en.AssociateSel =Associate selected
 pt_BR.AssociateSel =Associar selecionados
@@ -57,7 +57,7 @@ ru.AssociateSel =Ассоциировать выбранные
 de.AssociateSel =Ausgewählte assoziieren
 fr.AssociateSel =Associer sélectionnés
 es.AssociateSel =Asociar seleccionado
-;it.AssociateSel =Associare selezione
+it_IT.AssociateSel =Associare selezione
 
 en.AssociateAudio =File types
 pt_BR.AssociateAudio =Tipos de arquivo
@@ -67,7 +67,7 @@ ru.AssociateAudio =Типы файлов
 de.AssociateAudio =Dateitypen
 fr.AssociateAudio =Types de fichiers
 es.AssociateAudio =Tipos de archivos
-;it.AssociateAudio =Tipi di file
+it_IT.AssociateAudio =Tipi di file
 
 en.extMSWord =Microsoft Word Document
 pt_BR.extMSWord =Documento Microsoft Word
@@ -77,6 +77,7 @@ ru.extMSWord =Документ Microsoft Word
 de.extMSWord =Microsoft Word Dokument
 fr.extMSWord =Document Microsoft Word
 es.extMSWord =Documento de Microsoft Word
+it_IT.extMSWord =Documento di Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
 pt_BR.extMSExcel =Planilha Microsoft Excel
@@ -86,6 +87,7 @@ ru.extMSExcel =Книга Microsoft Excel
 de.extMSExcel =Microsoft Excel Arbeitsmappe
 fr.extMSExcel =Classeur Microsoft Excel
 es.extMSExcel =Libro de Microsoft Excel
+it_ITextMSExcel =Libro di Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 pt_BR.extMSPresentation =Apresentação Microsoft PowerPoint
@@ -94,8 +96,8 @@ sk.extMSPresentation =Microsoft PowerPoint Prezentácia
 ru.extMSPresentation =Презентация Microsoft PowerPoint
 de.extMSPresentation =Microsoft PowerPoint Präsentation
 fr.extMSPresentation =Présentation Microsoft PowerPoint
-es.extMSPresentation =Presentación de PowerPoint Microsoft
-
+es.extMSPresentation =Presentación de Microsoft PowerPoint
+it_IT.extMSPresentation =Presentazione di Microsoft PowerPoint
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 pt_BR.extMSSlideshow =Apresentações do PowerPoint da Microsoft
 cs.extMSSlideshow =Microsoft PowerPoint Slideshow
@@ -113,6 +115,7 @@ ru.extODT =Текстовый документ OpenDocument
 de.extODT =OpenDocument Textdokument
 fr.extODT =Document OpenDocument Texte
 es.extODT =Documento de texto de OpenDocument
+it_IT.extODT =Documento di testo di OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 pt_BR.extODS =Planilha do OpenDocument
@@ -131,6 +134,7 @@ ru.extODP =Презентация OpenDocument
 de.extODP =OpenDocument  Präsentation
 fr.extODP =Présentation OpenDocument
 es.extODP =Presentación de OpenDocument
+it_IT.extODP =Presentazione di OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
@@ -138,6 +142,8 @@ ru.defprogAppDescription=Бесплатный десктопный офисны�
 de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
 fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
+it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
+
 
 [Code]
 
