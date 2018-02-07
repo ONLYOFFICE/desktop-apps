@@ -457,11 +457,17 @@ qDebug() << "WM_CLOSE";
                     _in_args.append(QString::fromStdWString(szArglist[i]));
                 }
 
-                if (_in_args.size()) {
+                if ( _in_args.size() ) {
                     QStringList * _file_list = Utils::getInputFiles(_in_args);
 
-                    if (_file_list->size())
+                    if (_file_list->size()) {
                         window->mainPanel()->doOpenLocalFiles(*_file_list);
+
+                        if ( ::IsIconic(hWnd) ) {
+                            window->slot_windowChangeState( Qt::WindowNoState );
+                            ::FlashWindow(hWnd, TRUE);
+                        }
+                    }
 
                     delete _file_list;
                 }
