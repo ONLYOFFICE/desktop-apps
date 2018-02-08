@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -17,32 +17,32 @@
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title">
         <source>Find</source>
-        <target>Finden</target>
+        <target>Suchen</target>
         <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
       </trans-unit>
       <trans-unit id="1tx-W0-xDw.title">
         <source>Lower</source>
-        <target>Senken</target>
+        <target>Tiefer</target>
         <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title">
         <source>Raise</source>
-        <target>Erhöhen</target>
+        <target>Höher</target>
         <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
       </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title">
         <source>Transformations</source>
-        <target>Transformationen</target>
+        <target>Änderungen</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title">
         <source>Spelling</source>
-        <target>Spelling</target>
+        <target>Rechtschreibung</target>
         <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
       </trans-unit>
       <trans-unit id="3Om-Ey-2VK.title">
         <source>Use Default</source>
-        <target>Den Standard verwenden</target>
+        <target>Standardeinstellungen verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
       </trans-unit>
       <trans-unit id="3rS-ZA-NoH.title">
@@ -52,11 +52,12 @@
       </trans-unit>
       <trans-unit id="4EN-yA-p0u.title">
         <source>Find</source>
-        <target>Finden</target>
+        <target>Suchen</target>
         <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
       </trans-unit>
       <trans-unit id="4et-TX-a4m.title">
         <source>License Agreement</source>
+        <target>Lizenzvereinbarung</target>
         <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
       </trans-unit>
       <trans-unit id="4sb-4s-VLi.title">
@@ -71,7 +72,7 @@
       </trans-unit>
       <trans-unit id="5Vv-lz-BsD.title">
         <source>Copy Style</source>
-        <target>Stil kopieren</target>
+        <target>Format übertragen</target>
         <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
       </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title">
@@ -81,11 +82,12 @@
       </trans-unit>
       <trans-unit id="6dh-zS-Vam.title">
         <source>Redo</source>
-        <target>Überarbeiten</target>
+        <target>Wiederholen</target>
         <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
       </trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title">
         <source>License agreement</source>
+        <target>Lizenzvereinbarung</target>
         <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
       </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
@@ -95,31 +97,32 @@
       </trans-unit>
       <trans-unit id="9aQ-wl-gjS.title">
         <source>New</source>
+        <target>Neu</target>
         <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
       </trans-unit>
       <trans-unit id="9i7-kj-42B.title">
         <source>none</source>
-        <target>kein</target>
+        <target>Keine</target>
         <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
       </trans-unit>
       <trans-unit id="9ic-FL-obx.title">
         <source>Substitutions</source>
-        <target>Substitutionen</target>
+        <target>Ersetzungen</target>
         <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
       </trans-unit>
       <trans-unit id="9yt-4B-nSM.title">
         <source>Smart Copy/Paste</source>
-        <target>Smart Copy/Paste</target>
+        <target>Intelligentes Kopieren/Einfügen</target>
         <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
       </trans-unit>
       <trans-unit id="46P-cB-AYj.title">
         <source>Tighten</source>
-        <target>Spannen</target>
+        <target>Enger stellen</target>
         <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
       </trans-unit>
       <trans-unit id="78Y-hA-62v.title">
         <source>Correct Spelling Automatically</source>
-        <target>Spelling automatisch korrigieren</target>
+        <target>Automatische Rechtschreibkorrektur</target>
         <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
       </trans-unit>
       <trans-unit id="AYu-sK-qS6.title">
@@ -144,10 +147,12 @@
       </trans-unit>
       <trans-unit id="CJU-dx-a9l.title">
         <source>Acknowledgments</source>
+        <target>Bestätigungen</target>
         <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
       </trans-unit>
       <trans-unit id="DOj-j9-dza.title">
         <source>Spreadsheet</source>
+        <target>Tabelle</target>
         <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title">
@@ -167,7 +172,7 @@
       </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title">
         <source>Product Help</source>
-        <target>ONLYOFFICE Hilfe</target>
+        <target>Hilfe bei Fragen zum Produkt</target>
         <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
       </trans-unit>
       <trans-unit id="Fal-I4-PZk.title">
@@ -177,7 +182,7 @@
       </trans-unit>
       <trans-unit id="FeM-D8-WVr.title">
         <source>Substitutions</source>
-        <target>Substitutionen</target>
+        <target>Ersetzungen</target>
         <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
       </trans-unit>
       <trans-unit id="FoF-wl-Dxi.title">
@@ -197,7 +202,7 @@
       </trans-unit>
       <trans-unit id="GUa-eO-cwY.title">
         <source>Use Default</source>
-        <target>Standard verwenden</target>
+        <target>Standardeinstellungen übernehmen</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
       </trans-unit>
       <trans-unit id="Gi5-1S-RQB.title">
@@ -212,27 +217,27 @@
       </trans-unit>
       <trans-unit id="H8h-7b-M4v.title">
         <source>View</source>
-        <target>Aussicht</target>
+        <target>Anzeigen</target>
         <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
       </trans-unit>
       <trans-unit id="HFQ-gK-NFA.title">
         <source>Text Replacement</source>
-        <target>Textersetzung</target>
+        <target>Text ersetzen</target>
         <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
       </trans-unit>
       <trans-unit id="HFo-cy-zxI.title">
         <source>Show Spelling and Grammar</source>
-        <target>Rechtschreibung und Grammatik zeigen</target>
+        <target>Rechtschreibung und Grammatik anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
       </trans-unit>
       <trans-unit id="HyV-fh-RgO.title">
         <source>View</source>
-        <target>Aussicht</target>
+        <target>Anzeigen</target>
         <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
       </trans-unit>
       <trans-unit id="I0S-gh-46l.title">
         <source>Subscript</source>
-        <target>Unterer Index</target>
+        <target>Tiefstellen</target>
         <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
       </trans-unit>
       <trans-unit id="IAo-SY-fd9.title">
@@ -247,32 +252,32 @@
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title">
         <source>Justify</source>
-        <target>Rechtfertigen</target>
+        <target>Ausrichten</target>
         <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
       </trans-unit>
       <trans-unit id="J7y-lM-qPV.title">
         <source>Use None</source>
-        <target>Kein Verwenden</target>
+        <target>Keine Verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
       </trans-unit>
       <trans-unit id="KaW-ft-85H.title">
         <source>Revert to Saved</source>
-        <target>Zurück zu Gespeichert</target>
+        <target>Zurück zu Gespeicherte</target>
         <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
       </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title">
         <source>Show All</source>
-        <target>Alle Zeigen</target>
+        <target>Alle anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
       </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title">
         <source>Bring All to Front</source>
-        <target>Alle nach Vorne Bringen</target>
+        <target>Alle nach vorne bringen</target>
         <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
       </trans-unit>
       <trans-unit id="LVM-kO-fVI.title">
         <source>Paste Ruler</source>
-        <target>Ruler Fügen </target>
+        <target>Lineal einfügen</target>
         <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
       </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title">
@@ -282,7 +287,7 @@
       </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
         <source>Copy Ruler</source>
-        <target>Ruler Kopieren</target>
+        <target>Lineal kopieren</target>
         <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
       </trans-unit>
       <trans-unit id="NMo-om-nkz.title">
@@ -302,22 +307,22 @@
       </trans-unit>
       <trans-unit id="OaQ-X3-Vso.title">
         <source>Baseline</source>
-        <target>Grundlinie</target>
+        <target>Ausgangswert</target>
         <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title">
         <source>Hide ONLYOFFICE</source>
-        <target>ONLYOFFICE Verstecken </target>
+        <target>ONLYOFFICE verbergen</target>
         <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
       </trans-unit>
       <trans-unit id="OwM-mh-QMV.title">
         <source>Find Previous</source>
-        <target>Vorheriges Suchen</target>
+        <target>Letztes Ergebnis anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
       </trans-unit>
       <trans-unit id="Oyz-dy-DGm.title">
         <source>Stop Speaking</source>
-        <target>Zu Sprechen Aufhören</target>
+        <target>Sprachfunktion beenden</target>
         <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
       </trans-unit>
       <trans-unit id="Ptp-SP-VEL.title">
@@ -327,26 +332,27 @@
       </trans-unit>
       <trans-unit id="Q5e-8K-NDq.title">
         <source>Show Fonts</source>
-        <target>Schriften Anzeigen</target>
+        <target>Schriften anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
       </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title">
         <source>Zoom</source>
-        <target>Zoomen</target>
+        <target>Vergrößern</target>
         <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
       </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title">
         <source>	Right to Left</source>
-        <target>	Rechts nach Links</target>
+        <target>	Rechts nach links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
       <trans-unit id="Riu-oE-8dj.title">
         <source>Close</source>
+        <target>Schließen</target>
         <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
       </trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title">
         <source>none</source>
-        <target>kein</target>
+        <target>Keine</target>
         <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
       </trans-unit>
       <trans-unit id="RmO-tv-UKh.title">
@@ -356,21 +362,22 @@
       </trans-unit>
       <trans-unit id="Rqc-34-cIF.title">
         <source>Superscript</source>
-        <target>Superscript</target>
+        <target>Hochstellen</target>
         <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
       </trans-unit>
       <trans-unit id="Ruw-6m-B2m.title">
         <source>Select All</source>
-        <target>Alle Auswählen</target>
+        <target>Alles auswählen</target>
         <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
       </trans-unit>
       <trans-unit id="S0p-oC-mLd.title">
         <source>Jump to Selection</source>
-        <target>Wechseln zu Auswahl</target>
+        <target>Zu Auswahl wechseln</target>
         <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
       </trans-unit>
       <trans-unit id="TEm-B8-gsH.title">
         <source>Document</source>
+        <target>Dokument</target>
         <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
       </trans-unit>
       <trans-unit id="Td7-aD-5lo.title">
@@ -380,17 +387,17 @@
       </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title">
         <source>Capitalize</source>
-        <target>Kapitalisieren</target>
+        <target>Großschreibung</target>
         <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
       </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title">
         <source>Center</source>
-        <target>Zum Zentrum</target>
+        <target>Zentrieren</target>
         <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
       </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title">
         <source>Hide Others</source>
-        <target>Andere Verstecken</target>
+        <target>Andere ausblenden</target>
         <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
       </trans-unit>
       <trans-unit id="Vjx-xi-njq.title">
@@ -405,22 +412,22 @@
       </trans-unit>
       <trans-unit id="WRG-CD-K1S.title">
         <source>Underline</source>
-        <target>Unterstreichen</target>
+        <target>Unterstrichen</target>
         <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
       </trans-unit>
       <trans-unit id="WeT-3V-zwk.title">
         <source>Paste and Match Style</source>
-        <target>Einsetzen und Stil Anpassen</target>
+        <target>Einfügen und Format übernehmen</target>
         <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
       </trans-unit>
       <trans-unit id="Xz5-n4-O0W.title">
         <source>Find…</source>
-        <target>Finden…</target>
+        <target>Suchen…</target>
         <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
       </trans-unit>
       <trans-unit id="YEy-JH-Tfz.title">
         <source>Find and Replace…</source>
-        <target>Finden and Ersetzen…</target>
+        <target>Suchen und ersetzen...</target>
         <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
       </trans-unit>
       <trans-unit id="YGs-j5-SAR.title">
@@ -430,21 +437,22 @@
       </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title">
         <source>Start Speaking</source>
-        <target>Zu Sprechen Beginnen</target>
+        <target>Sprachfunktion starten</target>
         <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
       </trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title">
         <source>Align Left</source>
-        <target>Links Ausrichten</target>
+        <target>Linksbündig </target>
         <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
       </trans-unit>
       <trans-unit id="ZbA-hc-8PE.title">
         <source>Version</source>
+        <target>Version</target>
         <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
       </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title">
         <source>Email:</source>
-        <target>Email:</target>
+        <target>E-Mail:</target>
         <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
       </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title">
@@ -469,7 +477,7 @@
       </trans-unit>
       <trans-unit id="agt-UL-0e3.title">
         <source>Use Default</source>
-        <target>Standard Verwenden</target>
+        <target>Standardeinstellungen übernehmen</target>
         <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
       </trans-unit>
       <trans-unit id="bgn-CT-cEk.title">
@@ -489,12 +497,12 @@
       </trans-unit>
       <trans-unit id="c8a-y6-VQd.title">
         <source>Transformations</source>
-        <target>Transformationen</target>
+        <target>Änderungen</target>
         <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
       </trans-unit>
       <trans-unit id="cDB-IK-hbR.title">
         <source>Use None</source>
-        <target>Kein Verwenden</target>
+        <target>Keine Verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
       </trans-unit>
       <trans-unit id="cqv-fj-IhA.title">
@@ -509,7 +517,7 @@
       </trans-unit>
       <trans-unit id="d9M-CD-aMd.title">
         <source>Make Lower Case</source>
-        <target>Kleinschreibung Machen</target>
+        <target>Kleinschreibung</target>
         <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
       </trans-unit>
       <trans-unit id="d9c-me-L2H.title">
@@ -524,7 +532,7 @@
       </trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title">
         <source>Undo</source>
-        <target>Rückgängig Machen</target>
+        <target>Rückgängig</target>
         <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
       </trans-unit>
       <trans-unit id="gVA-U4-sdL.title">
@@ -539,20 +547,22 @@
       </trans-unit>
       <trans-unit id="hD5-Cz-ItX.title">
         <source>New</source>
+        <target>Neu</target>
         <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
       </trans-unit>
       <trans-unit id="hQb-2v-fYv.title">
         <source>Smart Quotes</source>
-        <target>Smart Quotes</target>
+        <target>Intelligente Anführungszeichen</target>
         <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
       </trans-unit>
       <trans-unit id="hkB-TU-Ps1.title">
         <source>Presentation</source>
+        <target>Präsentation</target>
         <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
       </trans-unit>
       <trans-unit id="hz2-CU-CR7.title">
         <source>Check Document Now</source>
-        <target>Dokument Jetzt Prüfen</target>
+        <target>Dokument jetzt überprüfen</target>
         <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
       </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title">
@@ -567,17 +577,17 @@
       </trans-unit>
       <trans-unit id="ijk-EB-dga.title">
         <source>Baseline</source>
-        <target>Grundlinie</target>
+        <target>Ausgangswert</target>
         <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
       </trans-unit>
       <trans-unit id="jBQ-r6-VK2.title">
         <source>Kern</source>
-        <target>Kern</target>
+        <target>Überhang</target>
         <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
       </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
         <source>	Right to Left</source>
-        <target>	Rechts nach Links</target>
+        <target>	Rechts nach links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
       </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
@@ -592,6 +602,7 @@
       </trans-unit>
       <trans-unit id="llV-Yc-IJ4.title">
         <source>START</source>
+        <target>BEGINNEN</target>
         <note>Class = "NSButtonCell"; title = "START"; ObjectID = "llV-Yc-IJ4";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title">
@@ -601,22 +612,22 @@
       </trans-unit>
       <trans-unit id="mK6-2p-4JG.title">
         <source>Check Grammar With Spelling</source>
-        <target>Grammatik und Rechtschreibung Prüfen </target>
+        <target>Grammatik und Rechtschreibung prüfen</target>
         <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
       </trans-unit>
       <trans-unit id="o6e-r0-MWq.title">
         <source>Ligatures</source>
-        <target>Ligaturen</target>
+        <target>Doppelbuchstaben</target>
         <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
       </trans-unit>
       <trans-unit id="oas-Oc-fiZ.title">
         <source>Open Recent</source>
-        <target>Letzte Öffnen</target>
+        <target>Kürzlich verwendete Dateien öffnen</target>
         <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
       </trans-unit>
       <trans-unit id="ogc-rX-tC1.title">
         <source>Loosen</source>
-        <target>Schwächen</target>
+        <target>Lockern</target>
         <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
       </trans-unit>
       <trans-unit id="pa3-QI-u2k.title">
@@ -626,41 +637,42 @@
       </trans-unit>
       <trans-unit id="pxx-59-PXV.title">
         <source>Save</source>
-        <target>Speichern…</target>
+        <target>Speichern</target>
         <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
       </trans-unit>
       <trans-unit id="q09-fT-Sye.title">
         <source>Find Next</source>
-        <target>Nächstes Finden</target>
+        <target>Weitersuchen</target>
         <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
       </trans-unit>
       <trans-unit id="qIS-W8-SiK.title">
         <source>Page Setup…</source>
-        <target>Seiteneinrichtung…</target>
+        <target>Seite einrichten...</target>
         <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
       </trans-unit>
       <trans-unit id="rG1-93-HjS.title">
         <source>ONLYOFFICE </source>
-        <target>ONLYOFFICE </target>
+        <target>ONLYOFFICE</target>
         <note>Class = "NSTextFieldCell"; title = "ONLYOFFICE "; ObjectID = "rG1-93-HjS";</note>
       </trans-unit>
       <trans-unit id="rbD-Rh-wIN.title">
         <source>Check Spelling While Typing</source>
-        <target>Rechtschreibprüfung während der Eingabe</target>
+        <target>Rechtschreibung während der Eingabe überprüfen</target>
         <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
       </trans-unit>
       <trans-unit id="rgM-f4-ycn.title">
         <source>Smart Dashes</source>
-        <target>Smart  Striche</target>
+        <target>Intelligente Bindestriche</target>
         <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
       </trans-unit>
       <trans-unit id="sGd-zc-V0B.title">
         <source>Copyright info</source>
+        <target>Copyright-Informationen</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
-        <target>Symbolleiste Anzeigen</target>
+        <target>Symbolleiste anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
       </trans-unit>
       <trans-unit id="tRr-pd-1PS.title">
@@ -670,12 +682,12 @@
       </trans-unit>
       <trans-unit id="tXI-mr-wws.title">
         <source>Open Recent</source>
-        <target>Letzte Öffnen</target>
+        <target>Kürzlich verwendete Dateien öffnen</target>
         <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
       </trans-unit>
       <trans-unit id="tlD-Oa-oAM.title">
         <source>Kern</source>
-        <target>Kern</target>
+        <target>Überhang</target>
         <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title">
@@ -685,46 +697,47 @@
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title">
         <source>Cut</source>
-        <target>Schneiden</target>
+        <target>Ausschneiden</target>
         <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
       </trans-unit>
       <trans-unit id="ud7-wC-A79.title">
         <source>Check for Updates…</source>
+        <target>Nach Updates suchen</target>
         <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
       </trans-unit>
       <trans-unit id="vKC-jM-MkH.title">
         <source>Paste Style</source>
-        <target>Stil Enfügen</target>
+        <target>Format einfügen</target>
         <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
       </trans-unit>
       <trans-unit id="vLm-3I-IUL.title">
         <source>Show Ruler</source>
-        <target>Ruler Anzeigen</target>
+        <target>Lineal anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
       </trans-unit>
       <trans-unit id="vNY-rz-j42.title">
         <source>Clear Menu</source>
-        <target>Menu Reinigen</target>
+        <target>Menü löschen</target>
         <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
       </trans-unit>
       <trans-unit id="vmV-6d-7jI.title">
         <source>Make Upper Case</source>
-        <target>Großbuchstaben Machen</target>
+        <target>Großschreibung</target>
         <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
       </trans-unit>
       <trans-unit id="w0m-vy-SC9.title">
         <source>Ligatures</source>
-        <target>Ligaturen</target>
+        <target>Doppelbuchstaben</target>
         <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
       </trans-unit>
       <trans-unit id="wb2-vD-lq4.title">
         <source>Align Right</source>
-        <target>Rechts Ausrichten</target>
+        <target>Rechtsbündig</target>
         <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
       </trans-unit>
       <trans-unit id="wpe-8d-5DV.title">
         <source>Text Cell</source>
-        <target>Text Sektion</target>
+        <target>Textzelle</target>
         <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
       </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title">
@@ -739,21 +752,22 @@
       </trans-unit>
       <trans-unit id="xCO-ey-2lo.title">
         <source>Product</source>
+        <target>Produkt</target>
         <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
       </trans-unit>
       <trans-unit id="xQD-1f-W4t.title">
         <source>Use All</source>
-        <target>Alle Verwenden</target>
+        <target>Alle verwenden</target>
         <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
       </trans-unit>
       <trans-unit id="xrE-MZ-jX0.title">
         <source>Speech</source>
-        <target>Rede</target>
+        <target>Sprache</target>
         <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
       </trans-unit>
       <trans-unit id="z6F-FW-3nz.title">
         <source>Show Substitutions</source>
-        <target>Auswechslungen Anzeigen</target>
+        <target>Ersetzungen anzeigen</target>
         <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
       </trans-unit>
       <trans-unit id="zwS-9G-S0N.title">
@@ -763,158 +777,136 @@
       </trans-unit>
     </body>
   </file>
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="Ygx-5K-Hn8.title">
+        <source>ONLYOFFICE Reporter Window</source>
+        <target>ONLYOFFICE Berichtefenster</target>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
+    </body>
+  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
         <source>ONLYOFFICE</source>
-      </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>1.0</source>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
         <target>ONLYOFFICE</target>
       </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>4.4</source>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
-        <target>© АО "Novyye Kommunikatsionnyye Tekhnologii" 2017 All rights reserved.</target>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-      </trans-unit>
-      <trans-unit id="CFBundleShortVersionString">
-        <source>4.4</source>
-      </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
         <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2018 Ascensio System SIA. Alle Rechte vorbehalten.</target>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
         <source>%@ Help</source>
-        <target>%@ Help</target>
+        <target>%@ Hilfe</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
         <source>About %@</source>
-        <target>About %@</target>
+        <target>Über %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Acknowledgments">
         <source>Acknowledgments</source>
-        <target>Acknowledgments</target>
+        <target>Bestätigungen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cancel">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Abbrechen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
-        <target>Comma-Separated Values</target>
+        <target>CSV (Dateiformat)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal">
         <source>Create portal</source>
+        <target>Portal erstellen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Delete and Quit">
         <source>Delete and Quit</source>
-        <target>Delete and Quit</target>
+        <target>Löschen und beenden</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="DjVu File">
         <source>DjVu File</source>
-        <target>DjVu File</target>
+        <target>DjVu-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>Do you want to save the changes made to the document "%@"?</target>
+        <target>Möchten Sie die Änderungen an "%@“ speichern?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
         <source>Document %ld.docx</source>
-        <target>Document %ld.docx</target>
+        <target>Dokument %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target>Excel 97-2003 Spreadsheet</target>
+        <target>Excel 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet">
         <source>Excel 2007 Spreadsheet</source>
-        <target>Excel 2007 Spreadsheet</target>
+        <target>Excel 2007</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
         <source>File "%@" can not be open or not exist.</source>
-        <target>File "%@" can not be open or not exist.</target>
+        <target>Datei "%@" kann nicht geöffnet werden oder existiert nicht.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File Format:">
         <source>File Format:</source>
-        <target>File Format:</target>
+        <target>Dateiformat:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open.">
         <source>File can not be open.</source>
-        <target>File can not be open.</target>
+        <target>Die Datei kann nicht geöffnet werden.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@">
         <source>Hide %@</source>
-        <target>Hide %@</target>
+        <target>%@ verbergen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
         <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>If you don't review your documents, all your changeses will be lost.</target>
+        <target>Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
         <source>License Agreement</source>
-        <target>License Agreement</target>
+        <target>Lizenzvereinbarung</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book">
         <source>Mobipocket e-book</source>
-        <target>Mobipocket e-book</target>
+        <target>Mobipocket eBook</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No">
         <source>No</source>
-        <target>No</target>
+        <target>Nein</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OK">
@@ -924,132 +916,660 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE Free">
         <source>ONLYOFFICE Free</source>
+        <target>ONLYOFFICE kostenlos</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document">
         <source>OpenOffice Document</source>
-        <target>OpenOffice Document</target>
+        <target>Openoffice-Dokument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation">
         <source>OpenOffice Presentation</source>
-        <target>OpenOffice Presentation</target>
+        <target>OpenOffice-Präsentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet">
         <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice Spreadsheet</target>
+        <target>Openoffice-Tabelle</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening">
         <source>Opening</source>
-        <target>Opening</target>
+        <target>Öffnen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF File">
         <source>PDF File</source>
-        <target>PDF File</target>
+        <target>Pdf-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
-        <target>Plain Text</target>
+        <target>Einfacher Text</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target>PowerPoint 97-2003 Presentation</target>
+        <target>PowerPoint 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
         <source>PowerPoint 2007 Presentation</source>
-        <target>PowerPoint 2007 Presentation</target>
+        <target>PowerPoint 2007</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show">
         <source>PowerPoint Slide Show</source>
-        <target>PowerPoint Slide Show</target>
+        <target>PowerPoint-Präsentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing...">
         <source>Preparing...</source>
-        <target>Preparing...</target>
+        <target>Wird vorbereitet...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx">
         <source>Presentation %ld.pptx</source>
-        <target>Presentation %ld.pptx</target>
+        <target>Präsentation %ld.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
         <source>Quit %@</source>
-        <target>Quit %@</target>
+        <target>%@ beenden</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes...">
         <source>Review Changes...</source>
-        <target>Review Changes...</target>
+        <target>Änderungen überprüfen...</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Rich Text Document">
         <source>Rich Text Document</source>
-        <target>Rich Text Document</target>
+        <target>Rich-Text-Dokument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
         <source>Spreadsheet %ld.xlsx</source>
-        <target>Spreadsheet %ld.xlsx</target>
+        <target>Tabelle %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
-        <target>Unconfirmed</target>
+        <target>Nicht bestätigt</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">
         <source>Untitled</source>
-        <target>Untitled</target>
+        <target>Ohne Namen</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Version %@ (%@)">
         <source>Version %1$@ (%2$@)</source>
+        <target>Version %1$@ (%2$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Web Page">
         <source>Web Page</source>
-        <target>Web Page</target>
+        <target>Webseite</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document">
         <source>Word 97-2003 Document</source>
-        <target>Word 97-2003 Document</target>
+        <target>Word 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document">
         <source>Word 2007 Document</source>
-        <target>Word 2007 Document</target>
+        <target>Word 2007</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification">
         <source>XML Paper Specification</source>
-        <target>XML Paper Specification</target>
+        <target>XPS (Dateiformat)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">
         <source>Yes</source>
-        <target>Yes</target>
+        <target>Ja</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</target>
+        <target>Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target>Your changes will be lost if you don’t save them.</target>
+        <target>Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
+        <target>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii 2018. Alle Rechte vorbehalten.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Hilfe</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>Über %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <target>Bestätigungen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <target>CSV (Dateiformat)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
+        <target>Portal erstellen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Löschen und beenden</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
+        <target>DjVu-Datei</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Möchten Sie die Änderungen an "%@“ speichern?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Dokument %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Datei "%@" kann nicht geöffnet werden oder existiert nicht.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>Dateiformat:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+        <target>Die Datei kann nicht geöffnet werden.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>%@ verbergen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changeses will be lost.</source>
+        <target>Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>Lizenzvereinbarung</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket eBook</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>Nein</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Free">
+        <source>ONLYOFFICE Free</source>
+        <target>ONLYOFFICE kostenlos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <target>Openoffice-Dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice-Präsentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <target>Openoffice-Tabelle</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
+        <target>Öffnen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <target>Pdf-Datei</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <target>Einfacher Text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint-Präsentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing...">
+        <source>Preparing...</source>
+        <target>Wird vorbereitet...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Präsentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>%@ beenden</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Review Changes...">
+        <source>Review Changes...</source>
+        <target>Änderungen überprüfen...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <target>Rich-Text-Dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Tabelle %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unconfirmed">
+        <source>Unconfirmed</source>
+        <target>Nicht bestätigt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Ohne Namen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <target>Version %1$@ (%2$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <target>Webseite</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <target>Word 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
+        <target>XPS (Dateiformat)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Ja</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them.">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target>Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body/>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2018 Ascensio System SIA. Alle Rechte vorbehalten.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Hilfe</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>Über %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <target>Bestätigungen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <target>CSV (Dateiformat)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
+        <target>Portal erstellen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Löschen und beenden</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
+        <target>DjVu-Datei</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Möchten Sie die Änderungen an "%@“ speichern?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Dokument %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Datei "%@" kann nicht geöffnet werden oder existiert nicht.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>Dateiformat:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+        <target>Die Datei kann nicht geöffnet werden.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>%@ verbergen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changeses will be lost.</source>
+        <target>Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>Lizenzvereinbarung</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket eBook</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>Nein</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE Free">
+        <source>ONLYOFFICE Free</source>
+        <target>ONLYOFFICE kostenlos</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <target>Openoffice-Dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice-Präsentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <target>Openoffice-Tabelle</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
+        <target>Öffnen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <target>Pdf-Datei</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <target>Einfacher Text</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint-Präsentation</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing...">
+        <source>Preparing...</source>
+        <target>Wird vorbereitet...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Präsentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>%@ beenden</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Review Changes...">
+        <source>Review Changes...</source>
+        <target>Änderungen überprüfen...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <target>Rich-Text-Dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Tabelle %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unconfirmed">
+        <source>Unconfirmed</source>
+        <target>Nicht bestätigt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Ohne Namen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <target>Version %1$@ (%2$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <target>Webseite</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <target>Word 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
+        <target>XPS (Dateiformat)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Ja</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them.">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target>Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.2" build-num="9C40b"/>
+    </header>
+    <body/>
   </file>
 </xliff>

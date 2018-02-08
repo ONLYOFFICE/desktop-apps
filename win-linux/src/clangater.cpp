@@ -60,7 +60,6 @@ void CLangater::init()
     GET_REGISTRY_SYSTEM(reg_system)
 
     QString _lang,
-            _lang_path = ":/i18n/langs/",
             _cmd_args = g_cmdArgs.join(',');
 
     QRegularExpression _re(reCmdLang);
@@ -96,6 +95,7 @@ void CLangater::init()
         !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = "en").size();
 #endif
 
+    QString _lang_path = ":/i18n/langs/";
     if ( !QFile(_lang_path + _lang + ".qm").exists() ) {
         if ( QFile("./langs/" + _lang + ".qm").exists() ) {
             _lang_path = "./langs";
@@ -106,6 +106,10 @@ void CLangater::init()
         if ( QFile("./langs/" + _lang.left(2) + ".qm").exists() ) {
             _lang = _lang.left(2);
             _lang_path = "./langs";
+        } else
+        // check if lang file has an alias
+        if ( QFile(":/i18n/" + _lang + ".qm").exists() ) {
+            _lang_path = ":/i18n/";
         } else
             _lang = APP_DEFAULT_LOCALE;
     }

@@ -1,0 +1,141 @@
+/* No comment provided by engineer. */
+"%@ Help" = "Ajuda do %@";
+
+/* No comment provided by engineer. */
+"About %@" = "Sobre o %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Reconhecimentos";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valores separados por vírgulas";
+
+/* No comment provided by engineer. */
+"Create portal" = "Criar portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Excluir e sair";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Arquivo DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Você deseja salvar as alterações realizadas no documento \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Documento %ld.docx";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Planilha do Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Planilha do Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Arquivo \"%@\" não pode ser aberto ou não existe.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formato do arquivo:";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Arquivo não pode ser aberto.";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Ocultar %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Se você não fizer a revisão dos seus documentos, todas as alterações serão perdidas.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Contrato de licença";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Livro eletrônico do Mobipocket";
+
+/* No comment provided by engineer. */
+"No" = "Não";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE Free" = "ONLYOFFICE gratuito";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Documento do OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Apresentação do OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Planilha do OpenOffice";
+
+/* No comment provided by engineer. */
+"Opening" = "Abrindo";
+
+/* No comment provided by engineer. */
+"PDF File" = "Arquivo PDF";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Texto sem formatação";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Apresentação do PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Apresentação do PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Apresentação de slides do PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Preparando...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Apresentação %ld.pptx";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Sair %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Rever alterações...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Documento RTF";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Planilha %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Não confirmado";
+
+/* No comment provided by engineer. */
+"Untitled" = "Sem título";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versão %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Página Web";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Documento do Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Documento do Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paper Specification";
+
+/* No comment provided by engineer. */
+"Yes" = "Sim";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Você tem %1$ld %2$@ documentos com alterações não confirmadas. Você deseja rever essas alterações antes de sair?";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "As suas alterações serão perdidas se você não salvá-las.";
+
