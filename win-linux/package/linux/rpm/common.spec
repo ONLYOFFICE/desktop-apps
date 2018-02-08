@@ -1,16 +1,13 @@
 Summary: Desktop editors for text, spreadsheet and presentation files
-Name: {{PACKAGE_NAME}}
-Version: {{PRODUCT_VERSION}}
-Release: {{BUILD_NUMBER}}
+Name: %{_package_name}
+Version: %{_product_version}
+Release: %{_build_number}
 License: AGPLv3
 Group: Applications/Office
 URL: http://onlyoffice.com/
 Vendor: Ascensio System SIA
 Packager: Ascensio System SIA <support@onlyoffice.com>
-#FullRequires: lib64x11_6, fonts-ttf-dejavu, fonts-ttf-liberation
-Requires: lib64x11_6, lib64xscrnsaver1, lib64curl4, lib64gtkglext1.0_0, lib64cairo2, fonts-ttf-dejavu, fonts-ttf-liberation
-#Suggests: webcore-fonts
-BuildArch: x86_64
+BuildArch: %{_package_arch}
 AutoReq: no
 AutoProv: no
 
@@ -19,18 +16,18 @@ ONLYOFFICE DesktopEditors installation package
  ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from onlyoffice cloud portal on local computer without browser using.
 
 %prep
-rm -rf "$RPM_BUILD_ROOT"
+rm -rf "%{buildroot}"
 
 %build
 
 %install
 
 #install desktopeditor files
-mkdir -p "$RPM_BUILD_ROOT"
-cp -r ../../../common/onlyoffice/* "$RPM_BUILD_ROOT/"
+mkdir -p "%{buildroot}"
+cp -r ../../../common/onlyoffice/* "%{buildroot}/"
 
 %clean
-rm -rf "$RPM_BUILD_ROOT"
+rm -rf "%{buildroot}"
 
 %files
 %attr(-, root, root) /opt/onlyoffice/desktopeditors/*

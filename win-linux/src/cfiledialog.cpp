@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include "defines.h"
 #include "utils.h"
+#include "cmessage.h"
 
 #include "../Common/OfficeFileFormats.h"
 
@@ -47,8 +48,6 @@ CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #define FILEDIALOG_DONT_USE_NATIVEDIALOGS
 //#define FILEDIALOG_DONT_USE_MODAL
 //
-
-#include "cmessage.h"
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
@@ -109,9 +108,13 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
     }
 
 #ifdef _WIN32
-    fileName = QFileDialog::getSaveFileName(this, tr("Save As"), fileName, _filters, &_sel_filter);
+    QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
+                                    fileName.left(fileName.lastIndexOf(".")) : fileName;
+    HWND _mess_parent = QWinWidget::parentWindow();
 #else
-    QString _croped_name = fileName.section(".",0,0);
+    QString _croped_name = fileName.left(fileName.lastIndexOf("."));
+    QWidget * _mess_parent = (QWidget *)parent();
+#endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [] (QWidget * p, QString n, QString f, QString& sf) {
@@ -126,11 +129,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #ifdef FILEDIALOG_DONT_USE_MODAL
     QWidget * _parent = NULL;
 #else
+# ifdef _WIN32
+    QWidget * _parent = this;
+# else
     QWidget * _parent = (QWidget *)parent();
+# endif
 #endif
-    CMessage mess(_parent);
-    mess.setButtons({tr("Yes"), tr("No")});
-    mess.setIcon(MESSAGE_TYPE_WARN);
 
     while (true) {
         fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
@@ -144,17 +148,19 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
             }
 
             QFileInfo info(fileName);
-            if ( info.exists() &&
-                    MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
-                                                            .arg(info.fileName())) )
-                continue;
+            if ( info.exists() ) {
+                CMessage mess(_mess_parent);
+                mess.setButtons({tr("Yes"), tr("No")});
+
+                if ( MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
+                                                                                .arg(info.fileName())) )
+                                    continue;
+            }
         }
 
         break;
     }
 
-
-#endif
 
     m_format = 0;
     if (m_filters.length()) {

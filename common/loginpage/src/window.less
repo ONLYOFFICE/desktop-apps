@@ -4,6 +4,7 @@
 dialog {
     top: 50%;
     visibility: hidden;
+    overflow: hidden;
     transform: scale(0.8) translateY(-50%);
     transition: all 200ms;
     &.scaled {
@@ -33,11 +34,12 @@ dialog {
         background: @color-gray-2;
 
         .caption {
-            flex:1;
+            flex-grow:1;
             text-align: left;
             font-size: 18px;
             white-space: nowrap;
-            text-owerflow: ellipsis;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
@@ -95,7 +97,7 @@ dialog {
 
 .dlg-login {
     .body {
-        padding: 15px 30px 30px;
+        padding: 20px 30px 30px;
         /*text-align: center;*/
     }
 
@@ -129,7 +131,7 @@ dialog {
 
     #box-btn-login-sso {
         position: relative;
-        padding-top: 15px;
+        padding-top: 12px;
 
         .separator {
             margin-bottom: 10px;
@@ -147,12 +149,35 @@ dialog {
             color: @color-gray-4;
         }
     }
+
+    .error-box {
+        height: 22px;
+    }
+
+    .combined {
+        margin: 0 15px 0 0;
+    }
+
+    .notice {
+        margin: 0;
+        line-height: 18px;
+    }
+
+    .timer {
+        margin-left: 10px;
+        color: #999;
+    }
 }
 
 .lr-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 36px;
+
+    &.bt-align {
+        align-items: flex-end;
+    }
 }
 
 #box-btn-login {

@@ -129,7 +129,7 @@ public slots:
 
     virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
-    void onFullScreen(bool);
+    void onFullScreen(bool apply, int id = -1);
     void onKeyDown(void *);
 
     void onNeedCheckKeyboard();

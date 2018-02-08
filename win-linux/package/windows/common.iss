@@ -24,7 +24,7 @@ VersionInfoVersion        ={#sAppVersion}
 AppPublisher              =Ascensio System SIA.
 AppPublisherURL           =http://www.onlyoffice.com/
 AppSupportURL             =http://www.onlyoffice.com/support.aspx
-AppCopyright              =Copyright (C) 2017 Ascensio System SIA.
+AppCopyright              =Copyright (C) 2018 Ascensio System SIA.
 
 DefaultGroupName          =ONLYOFFICE
 WizardImageFile           = data\dialogpicture.bmp
@@ -56,67 +56,78 @@ Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\
 Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-;Name: it; MessagesFile: compiler:Languages\Italian.isl;
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 
 
 [CustomMessages]
 ;======================================================================================================
 en.Launch =Launch %1
+pt_BR.Launch =Lance o %1
 cs.Launch =Spuštění %1
 sk.Launch =Spustenie %1
 ru.Launch =Запустить %1
 de.Launch =%1 starten
 fr.Launch =Lancer %1
 es.Launch =Ejecutar %1
-;it.Launch =Eseguire %1
+it_IT.Launch =Eseguire %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
+pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
 sk.CreateDesktopIcon =Vytvoriť %1 &ikonu na ploche
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
 de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
 fr.CreateDesktopIcon =Créer l'icône du bureau pour %1
 es.CreateDesktopIcon =Crear %1 &icono en el escritorio
-;it.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
+it_IT.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
+pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
 sk.InstallAdditionalComponents =Inštalácia ďalších systémových súčastí. Prosím čakajte...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
 de.InstallAdditionalComponents =Installation zusätzlicher Systemkomponenten. Bitte warten...
 fr.InstallAdditionalComponents =L'installation des composants supplémentaires du système. Attendez...
 es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
-;it.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
+it_IT.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
+pt_BR.AdditionalTasks =Tarefas:
 cs.AdditionalTasks =Úkoly:
 sk.AdditionalTasks =Úlohy:
 ru.AdditionalTasks =Задачи:
 de.AdditionalTasks =Aufgaben:
 fr.AdditionalTasks =Tâches:
 es.AdditionalTasks =Tareas:
-;it.AdditionalTasks =Compiti:
+it_IT.AdditionalTasks =Attività:
 ;======================================================================================================
 en.Uninstall =Uninstall
+pt_BR.Uninstall =Desinstalar
 cs.Uninstall =Odinstalovat
 sk.Uninstall =Odinštalovať
 ru.Uninstall =Удаление
 de.Uninstall =Deinstallieren
 fr.Uninstall =Desinstaller
 es.Uninstall =Desinstalar
-;it.Uninstall =Disinstalla
+it_IT.Uninstall =Disinstalla
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
 sk.WarningWrongArchitecture =Pokúšate sa nainštalovať %1-bitovej verziu na nainštalovanú %2-bitovú verziu. Najskôr odinštalujte predchádzajúcu verziu alebo stiahnite správnu verziu pre inštaláciu.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
 de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
 fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
 es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
-;it.Uninstall =Disinstalla
+it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'applicazione %1-bit sulla versione %2-bit installata. Si prega di disinstallare prima la versione precedente o scaricare la versione corretta per l'installazione.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
+Forse cercavi: Setup has detected that %1 is currently running.%on%It'll be closed automatically. Click OK to continue, or Cancel to exit.
+Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.% N% nSi chiude automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
+pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
@@ -125,6 +136,7 @@ fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
 
 ;en.AssociateDescription =Associate office document file types with %1
+;it_IT.AssociateDescription =Associa i file documentodi Office con %1
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
@@ -453,7 +465,7 @@ Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionarie
 Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk;
+Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk pt_BR;
 Source: ..\..\..\..\core\build\empty\ru-RU\*.*;                 DestDir: {app}\converter\empty;       Languages: ru;
 Source: ..\..\..\..\core\build\empty\fr-FR\*.*;                 DestDir: {app}\converter\empty;       Languages: fr;
 Source: ..\..\..\..\core\build\empty\es-ES\*.*;                 DestDir: {app}\converter\empty;       Languages: es;
@@ -466,7 +478,11 @@ Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\*;       DestDir: {
 
 Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\hunspell.dll;           DestDir: {app}\; Flags: ignoreversion;
+#if defined _WIN_XP
+Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
+#else
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
+#endif
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;

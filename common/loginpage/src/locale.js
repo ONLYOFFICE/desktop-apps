@@ -53,19 +53,29 @@ var en = {
     menuClear: 'Clear',
     menuLogout: 'Logout',
     textMyComputer: 'My Computer',
+    textThrough: 'through',
     linkForgotPass: 'Forgot password?',
     linkCreatePortal: 'Create Portal',
-    loginTitle: 'Connect to portal',
-    loginTitle2: 'Login to $1',
+    linkResend: 'Send the code again',
+    linkChangePhone: 'Change phone number',
+    loginTitleStart: 'Connect to portal',
+    loginTitleConnectTo: 'Login to $1',
+    loginTitleAssignPhone: 'Enter mobile phone number',
+    loginTitleApplyCode: 'Confirm phone number',
     errLogin: 'Wrong email or password',
     errLoginPortal: 'Check the portal name',
     errLoginEmail: 'Check the email address',
     errLoginServer: 'Incorrect server response during login',
     errLoginAuth: 'Error on user information query',
     errLoginPass: 'Check the password',
+    errLoginWrongPhone: 'Wrong phone number format',
     pshPortal: 'portal',
     pshEmail: 'email',
     pshPass: 'password',
+    pshPhone: 'phone number',
+    pshCode: 'code from text message',
+    loginNoteAssignPhone: 'The two-factor authentication is enabled to provide additional portal security. Enter your mobile phone number to continue work on the portal. Mobile phone number must be entered using an international format with country code.',
+    loginNoteApplyCode: 'The two-factor authentication is enabled. The code has been texted to $1 number.',    
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATION',
@@ -113,10 +123,15 @@ var cs = {
     menuClear: 'Vymazat',
     menuLogout: 'Logout',
     textMyComputer: 'Můj počítač',
+    textThrough: 'skrz',
     linkForgotPass: 'Zapomenuté heslo?',
     linkCreatePortal: 'Vytvořit portál',
-    loginTitle: 'Připojit se k portálu',
-    loginTitle2: 'Login to $1',
+    linkResend: 'Zadejte kód znovu',
+    linkChangePhone: 'Změňte telefonní číslo',
+    loginTitleStart: 'Připojit se k portálu',
+    loginTitleConnectTo: 'Login to $1',
+    loginTitleAssignPhone: 'Zadejte číslo mobilního telefonu',
+    loginTitleApplyCode: 'Potvrďte telefonní číslo',
     errLogin: 'Špatné email nebo heslo',
     errLoginPortal: 'Zkontrolujte jméno portálu',
     errLoginEmail: 'Zkontrolujte emailovou adresu',
@@ -126,6 +141,10 @@ var cs = {
     pshPortal: 'portál',
     pshEmail: 'email',
     pshPass: 'heslo',
+    pshPhone: 'telefonní číslo',
+    pshCode: 'kód z textové zprávy',
+    loginNoteAssignPhone: 'K zajištění další bezpečnosti portálu je zapnuto dvoufaktorové ověřování. Zadejte své číslo mobilního telefonu, abyste mohli pokračovat v práci na portálu. Číslo mobilního telefonu musí být zadáno pomocí mezinárodního formátu s kódem země.',
+    loginNoteApplyCode: 'Je povolena dvoufaktorová autentizace. Kód byl odeslán na číslo $1.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'SEŠIT',
     newPptx: 'PREZENTACE',
@@ -173,10 +192,15 @@ var sk = {
     menuClear: 'Vymazať',
     menuLogout: 'Odhlásiť sa',
     textMyComputer: 'Môj počítač',
+    textThrough: 'skrz',
     linkForgotPass: 'Zabudnuté heslo?',
     linkCreatePortal: 'Vytvoriť portál',
-    loginTitle: 'Pripojiť sa k portálu',
-    loginTitle2: 'Prihlásiť sa $1',
+    linkResend: 'Zadajte kód znovu',
+    linkChangePhone: 'Zmeňte telefónne číslo',
+    loginTitleStart: 'Pripojiť sa k portálu',
+    loginTitleConnectTo: 'Prihlásiť sa $1',
+    loginTitleAssignPhone: 'Zadajte číslo mobilného telefónu',
+    loginTitleApplyCode: 'Potvrďte telefónne číslo',
     errLogin: 'Nesprávny e-mail alebo heslo',
     errLoginPortal: 'Skontrolovať názov portálu',
     errLoginEmail: 'Skontrolovať e-mailovú adresu',
@@ -186,6 +210,10 @@ var sk = {
     pshPortal: 'portál',
     pshEmail: 'e-mail',
     pshPass: 'heslo',
+    pshPhone: 'telefónne číslo',
+    pshCode: 'kód z textovej správy',
+    loginNoteAssignPhone: 'Na dodatočné zabezpečenie portálu je zapnuté dvojfaktorové overenie. Ak chcete pokračovať v práci na portáli, zadajte svoje číslo mobilného telefónu. Číslo mobilného telefónu musí byť zadané pomocou medzinárodného formátu s kódom krajiny.',
+    loginNoteApplyCode: 'Dvojfaktorové overenie je povolené. Kód bol odoslaný na číslo $1.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'ZOŠIT',
     newPptx: 'PREZENTÁCIA',
@@ -233,19 +261,29 @@ var ru = {
     menuClear: 'Очистить',
     menuLogout: 'Выйти',
     textMyComputer: 'Мой компьютер',
+    textThrough: 'через',
     linkForgotPass: 'Забыли пароль?',
     linkCreatePortal: 'Создать портал',
-    loginTitle: 'Подключиться к порталу',
-    loginTitle2: 'Войти на $1',
+    linkResend: 'Отправить код еще раз',
+    linkChangePhone: 'Изменить номер телефона',
+    loginTitleStart: 'Подключиться к порталу',
+    loginTitleConnectTo: 'Войти на $1',
+    loginTitleAssignPhone: 'Введите номер мобильного телефона',
+    loginTitleApplyCode: 'Подтвердите номер телефона',
     errLogin: 'Неправильный email или пароль',
     errLoginPortal: 'Проверьте имя портала',
     errLoginEmail: 'Проверьте email',
     errLoginServer: 'Ошибка сервера при попытке входа',
     errLoginAuth: 'Ошибка при запросе информации о пользователе',
     errLoginPass: 'Проверьте пароль',
+    errLoginWrongPhone: 'Неправильный формат номера телефона',
     pshPortal: 'Портал',
     pshEmail: 'Еmail',
     pshPass: 'Пароль',
+    pshPhone: 'номер телефона',
+    pshCode: 'код из текстового сообщения',
+    loginNoteAssignPhone: 'Для обеспечения повышенной безопасности на портале включена двухфакторная аутентификация. Для продолжения работы на портале введите ваш номер мобильного телефона. Номер мобильного телефона необходимо ввести в международном формате с кодом страны.',
+    loginNoteApplyCode: 'Двухфакторная аутентификация включена. Код отправлен в SMS-сообщении на номер $1.',    
     newDoc: 'Документ',
     newXlsx: 'Таблица',
     newPptx: 'Презентация',
@@ -293,10 +331,15 @@ var de = {
     menuClear: 'Löschen',
     menuLogout: 'Abmelden',
     textMyComputer: 'Arbeitsplatz',
+    textThrough: 'durch',
     linkForgotPass: 'Passwort vergessen?',
     linkCreatePortal: 'Portal erstellen',
-    loginTitle: 'Mit Portal verbinden',
-    loginTitle2: 'Ins $1 anmelden',
+    linkResend: 'Code erneut zusenden',
+    linkChangePhone: 'Telefonnummer ändern',
+    loginTitleStart: 'Mit Portal verbinden',
+    loginTitleConnectTo: 'Ins $1 anmelden',
+    loginTitleAssignPhone: 'Handynummer eingeben',
+    loginTitleApplyCode: 'Telefonnummer bestätigen',
     errLogin: 'Falscher Passwort oder E-Mail',
     errLoginPortal: 'Überprüfen Sie den Portalnamen',
     errLoginEmail: 'Überprüfen Sie die E-Mail',
@@ -306,6 +349,10 @@ var de = {
     pshPortal: 'Portal',
     pshEmail: 'E-Mail',
     pshPass: 'Passwort',
+    pshPhone: 'Telefonnummer',
+    pshCode: 'Code aus der Textnachricht',
+    loginNoteAssignPhone: 'Die Zwei-Faktor-Authentifizierung ermöglicht zusätzliche Portalsicherheit. Geben Sie Ihre Handynummer ein, um die Arbeit am Portal fortzusetzen. Die Handynummer muss in einem internationalen Format mit Ländervorwahl eingegeben werden.',
+    loginNoteApplyCode: 'Die Zwei-Faktor-Authentifizierung ist aktiviert. Der Code wurde an $1-Nummer gesendet.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'ARBEITSMAPPE',
     newPptx: 'PRÄSENTATION',
@@ -328,6 +375,76 @@ var de = {
     ,adsDescr2: 'Vergessen Sie nicht, Dateien per E-Mail zur Überprüfung zu versenden. Gewähren Sie einen schnellen Zugriff auf das Dokument, ohne Ihr Desktop Editor zu verlassen. Regen Sie die anderen dazu an, Korrekturvorschläge anzubieten. Nehmen Sie Änderungen entweder an oder lehnen Sie diese ab.'
     ,checkUpdates: 'Prüfen Sie Updates'
     ,strVersion: 'version'
+};
+
+var it_IT = {
+    welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
+    welDescr: 'Una nuova soluzione veloce per lavorare con documenti usando ONLYOFFICE.',
+    btnConnect: 'Connetti',
+    textHavePortal: 'Sei già un utente ONLYOFFICE?',
+    btnCreatePortal: 'Fai una prova gratuita',
+    btnAddPortal: 'Aggiungi Portale',
+    btnLogin: 'Login',
+    btnBrowse: 'Sfoglia',
+    btnNext: 'Successivo',
+    portalEmptyTitle: 'Modifica simultanea dei documenti in tempo reale',
+    portalEmptyDescr: 'Lavora sullo stesso documento contemporaneamente con i tuoi compagni di squadra. Scegli tra la modifica in tempo reale rapida o rigorosa, la chat nel tuo documento o aggiungi commenti ad esso.',
+    portalListTitle: 'Portali Connessi',
+    textNoFiles: 'Non ci sono file',
+    listRecoveryTitle:'Recupera files',
+    listRecentFileTitle:'File Recenti',
+    listRecentDirTitle:'Cartelle Recenti',
+    menuFileOpen: 'Apri',
+    menuFileExplore: 'Mostra nella cartella',
+    menuRemoveModel: 'Rimuovi dalla lista',
+    menuClear: 'Svuota',
+    menuLogout: 'Logout',
+    textMyComputer: 'Il mio Computer',
+    textThrough: 'attraverso',
+    linkForgotPass: 'Password dimenticata?',
+    linkCreatePortal: 'Crea Portale',
+    linkResend: 'Invia nuovamente il codice',
+    linkChangePhone: 'Cambia numero di telefono',
+    loginTitleStart: 'Connetti al portale',
+    loginTitleConnectTo: 'Login su $1',
+    loginTitleAssignPhone: 'Inserisci Numero di telefono cellulare',
+    loginTitleApplyCode: 'Conferma numero di telefono',
+    errLogin: 'email or password errati',
+    errLoginPortal: 'Controlla il nome del portale',
+    errLoginEmail: 'Controlla l\'indirizzo email',
+    errLoginServer: 'Risposta del server errata durante l\'accesso',
+    errLoginAuth: 'Errore nella query delle informazioni dell\'utente',
+    errLoginPass: 'Controlla la password',
+    errLoginWrongPhone: 'Formato del numero di telefono errato',
+    pshPortal: 'portale',
+    pshEmail: 'email',
+    pshPass: 'password',
+    pshPhone: 'numero di telefono',
+    pshCode: 'codice dal messaggio di testo',
+    loginNoteAssignPhone: 'L\'autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del portale. Inserisci il tuo numero di cellulare per continuare a lavorare sul portale. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
+    loginNoteApplyCode: 'L\'autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',    
+    newDoc: 'DOCUMENTO',
+    newXlsx: 'FOGLIO DI CALCOLO',
+    newPptx: 'PRESENTAZIONE',
+    actCreateNew: 'Crea nuovo',
+    actRecentFiles: 'File recenti',
+    actOpenLocal: 'Apri file locale',
+    actConnectTo: 'Condividi e collabora',
+    actActivate: 'Attiva',
+    actAbout: 'Informazioni su',
+    licKeyHolder: 'digitare activation key',
+    btnActivate: 'Attiva',
+    licGetLicense: 'Get license now',
+    licPanelTitle: 'Inserisci product key',
+    licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
+    ,adsToolItem1: 'Cronologia delle versioni'
+    ,adsTitle1: 'Visualizza o ripristina versioni precedenti del documento'
+    ,adsDescr1: 'Torna indietro nel tempo: visualizza le versioni precedenti del documento, tiene traccia delle modifiche più piccole e dei relativi autori. Ripristina una versione precedente del tuo file se necessario.'
+    ,adsToolItem2: 'Collaborative review'
+    ,adsTitle2: 'Lascia che i tuoi compagni di squadra rivedano i documenti nel cloud'
+    ,adsDescr2: 'Dimentica l\'invio di file da rivedere via email. Concedi un accesso rapido al documento senza lasciare l\'editor desktop. Lascia che altri suggeriscano correzioni. Accetta o rifiuta le modifiche.'
+    ,checkUpdates: 'Controlla gli aggiornamenti'
+    ,strVersion: 'versione'
 };
 
 var fr = {
@@ -353,10 +470,15 @@ var fr = {
     menuClear: 'Effacer',
     menuLogout: 'Déconnexion',
     textMyComputer: 'Mon poste de travail',
+    textThrough: 'par',
     linkForgotPass: 'Mot de passe oublié ?',
     linkCreatePortal: 'Créer portail',
-    loginTitle: 'Se connecter au portail',
-    loginTitle2: 'Connecter au $1',
+    linkResend: 'Renvoyer le code',
+    linkChangePhone: 'Changer le numéro de téléphone',
+    loginTitleStart: 'Se connecter au portail',
+    loginTitleConnectTo: 'Connecter au $1',
+    loginTitleAssignPhone: 'Entrez votre numéro de téléphone portable',
+    loginTitleApplyCode: 'Confirmer le numéro de téléphone',
     errLogin: 'l\'e-mail ou le mot de passe erroné',
     errLoginPortal: 'Vérifier le nom de portail',
     errLoginEmail: 'Vérifier l\'adresse e-mail',
@@ -366,6 +488,10 @@ var fr = {
     pshPortal: 'portail',
     pshEmail: 'e-mail',
     pshPass: 'mot de passe',
+    pshPhone: 'numéro de téléphone',
+    pshCode: 'code reçu par SMS',
+    loginNoteAssignPhone: 'L\'authentification à deux facteurs est activée pour fournir une sécurité de portail supplémentaire. Entrez votre numéro de téléphone portable pour continuer à travailler sur le portail. Le numéro de téléphone portable doit être entré en utilisant un format international avec le code du pays.',
+    loginNoteApplyCode: 'L\'authentification à deux facteurs est activée. Le code a été envoyé au $1.',    
     newDoc: 'DOCUMENT',
     newXlsx: 'TABLEUR',
     newPptx: 'PRESENTATION',
@@ -413,10 +539,15 @@ var es = {
     menuClear: 'Limpiar',
     menuLogout: 'Cierre de Sesión',
     textMyComputer: 'Mi Ordenador',
+    textThrough: 'a través de',
     linkForgotPass: '¿Se le olvidó su contraseña?',
     linkCreatePortal: 'Crear Portal',
-    loginTitle: 'Conectar al portal',
-    loginTitle2: 'Acceder al $1',
+    linkResend: 'Enviar el código de nuevo',
+    linkChangePhone: 'Cambiar el número de teléfono',
+    loginTitleStart: 'Conectar al portal',
+    loginTitleConnectTo: 'Acceder al $1',
+    loginTitleAssignPhone: 'Introducir el número de móvil',
+    loginTitleApplyCode: 'Confirmar el número de teléfono',
     errLogin: 'Contraseña o correo electrónico incorrecto',
     errLoginPortal: 'Verificar el nombre de portal',
     errLoginEmail: 'Verificar la dirección del correo electrónico',
@@ -426,6 +557,10 @@ var es = {
     pshPortal: 'portal',
     pshEmail: 'correo electrónico',
     pshPass: 'contraseña',
+    pshPhone: 'número de teléfono',
+    pshCode: 'código del mensaje de texto',
+    loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de portal adicional. Introduzca su número de móvil para continuar el trabajo en el portal. El número de móvil debe introducirse usando un formato internacional con el código de país.',
+    loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',    
     newDoc: 'Documento',
     newXlsx: 'Libro de Excel',
     newPptx: 'Presentación',
@@ -451,41 +586,50 @@ var es = {
 };
 
 var pt_BR = {
-    welWelcome: 'Bem vindo ao ONLYOFFICE Desktop Editors!',
-    welDescr: 'Uma nova e rápida solução para trabalhar com documentos usando o seu ONLYOFFICE.',
+    welWelcome: 'Bem-vindo ao ONLYOFFICE Desktop Editors!',
+    welDescr: 'Uma nova e rápida solução para trabalhar com documentos usando o seu ONLYOFFICE..',
     btnConnect: 'Conectar',
     textHavePortal: 'Já usa o ONLYOFFICE?',
-    btnCreatePortal: 'Teste gratuitamente',
+    btnCreatePortal: 'Experimente-o agora de graça',
     btnAddPortal: 'Adicionar Portal',
-    btnLogin: 'Conectar',
+    btnLogin: 'Login',
     btnBrowse: 'Navegar',
-    btnNext: 'Próximo',
+    btnNext: 'Seguinte',
     portalEmptyTitle: 'Coeditar documentos em tempo real',
-    portalEmptyDescr: 'Trabalhe no mesmo documento simultaneamente com seus colegas de trabalho. Escolha entre coedição Rápida ou Restrita em tempo real, converse ou adicione comentários em seu documento.',
+    portalEmptyDescr: 'Trabalhe no mesmo documento simultaneamente com os seus colegas. Escolha entre coedição em tempo real Rápida ou Restrita, use o chat no seu documento ou adicione comentários a ele.',
     portalListTitle: 'Portais conectados',
     textNoFiles: 'Não há arquivos',
     listRecoveryTitle:'Recuperar arquivos',
     listRecentFileTitle:'Arquivos recentes',
-    listRecentDirTitle:'Locais recentes',
+    listRecentDirTitle:'Pastas recentes',
     menuFileOpen: 'Abrir',
     menuFileExplore: 'Mostrar na pasta',
     menuRemoveModel: 'Remover da lista',
     menuClear: 'Limpar',
-    menuLogout: 'Desconectar',
+    menuLogout: 'Logout',
     textMyComputer: 'Meu Computador',
+    textThrough: 'através',
     linkForgotPass: 'Esqueceu a senha?',
     linkCreatePortal: 'Criar Portal',
-    loginTitle: 'Conecte-se ao portal',
-    loginTitle2: 'Entre no seu $1',
-    errLogin: 'E-mail ou senha incorreto(a)',
-    errLoginPortal: 'Verifique o nome do portal',
-    errLoginEmail: 'Verifique o endereço de e-mail',
-    errLoginServer: 'Resposta incorreta do servidor durante o login',
-    errLoginAuth: 'Erro na consulta de informação de usuário',
+    linkResend: 'Enviar o código novamente',
+    linkChangePhone: 'Alterar o número de telefone',
+    loginTitleStart: 'Conectar ao portal',
+    loginTitleConnectTo: 'Login para $1',
+    loginTitleAssignPhone: 'Inserir número de celular',
+    loginTitleApplyCode: 'Confirmar o número de telefone',
+    errLogin: 'E-mail ou senha errada',
+    errLoginPortal: 'Verificar o nome do portal',
+    errLoginEmail: 'Verificar o endereço de e-mail',
+    errLoginServer: 'Resposta incorreta do servidor durante login',
+    errLoginAuth: 'Erro na consulta de informações do usuário',
     errLoginPass: 'Verifique a senha',
     pshPortal: 'portal',
     pshEmail: 'e-mail',
     pshPass: 'senha',
+    pshPhone: 'número de telefone',
+    pshCode: 'código da mensagem de texto',
+    loginNoteAssignPhone: 'A autenticação de dois fatores está habilitada para fornecer segurança adicional ao portal. Insira o seu número de celular para continuar trabalhando no portal. O número de telefone deve ser inserido usando um formato internacional com o código do país.',
+    loginNoteApplyCode: 'A autenticação de dois fatores está habilitada. O código foi enviado por mensagem de texto para o número $1.',    
     newDoc: 'DOCUMENTO',
     newXlsx: 'PLANILHA',
     newPptx: 'APRESENTAÇÃO',
@@ -499,20 +643,45 @@ var pt_BR = {
     btnActivate: 'Ativar',
     licGetLicense: 'Obter licença',
     licPanelTitle: 'Inserir chave de produto',
-    licPanelDescr: 'Sua chave de produto foi enviada para o e-mail cadastrado durante a compra.'
-    ,adsToolItem1: 'Histórico de versões'
-    ,adsTitle1: 'Visualizar ou restaurar versões anteriores do seu documento '
-    ,adsDescr1: 'Voltar no tempo: visualize versões anteriores do seu documento, rastreie as modificações e seus autores. Você pode restaurar versões mais antigas de seus arquivos caso seja necessário.'
+    licPanelDescr: 'A chave do seu produto foi enviada para o endereço de e-mail especificado durante a compra.'
+    ,adsToolItem1: 'Histórico de versão'
+    ,adsTitle1: 'Ver ou restaurar versões anteriores do seu documento '
+    ,adsDescr1: 'Voltar no tempo: ver versões anteriores do seu documento, rastrear as menores alterações e os seus autores. Restaurar uma versão antiga do seu arquivo se você precisar.'
     ,adsToolItem2: 'Revisão colaborativa'
-    ,adsTitle2: 'Permita que sua equipe revise os documentos na nuvem'
-    ,adsDescr2: 'Abandone o envio de documentos por e-mail. Conceda acesso ao documento sem sair do seu editor. Permita outras pessoas sugerirem correções. Você pode aceitar ou rejeitar as modificações.'
-    ,checkUpdates: 'Check for updates'
-    ,strVersion: 'version'
+    ,adsTitle2: 'Permita que os seus colegas revejam documentos na nuvem'
+    ,adsDescr2: 'Esqueça os arquivos enviados por e-mail para serem revistos. Obtenha acesso rápido ao documento sem sair do seu editor desktop. Deixe que outros sugiram correções. Aceite ou rejeite alterações.'
+    ,checkUpdates: 'Verifique atualizações'
+    ,strVersion: 'versão'
 }
 
-+function applyLocale(lang) {
-    (!lang || !window[lang]) && (lang = 'en');
-    utils.Lang = window[lang];
+function loadLocale(lang) {
+    if ( lang != 'en' ) {
+        for ( let i in window[lang] ) {
+            utils.Lang[i] = window[lang][i];
+        }
+    }
+};
+
++function mixLocale(lang) {
+    utils.Lang = window['en'];
+
+    if ( lang ) {
+        lang = lang.replace('-', '_');
+
+        if ( window[lang] )
+            loadLocale(lang);
+        else {
+            let _langs = ['en', 'de', 'fr', 'ru', 'es', 'sk', 'cs', 'pt_BR', 'it_IT'];
+            let _code = /^\w{2}/.exec(lang)[0];
+
+            for (let l of _langs) {
+                if ( l.substring(0,2) == _code ) {
+                    loadLocale(l);
+                    break;
+                }
+            }
+        }
+    }
 }(window.utils.inParams.lang);
 
 /*
