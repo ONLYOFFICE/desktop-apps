@@ -119,7 +119,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
         QStringList * _list = Utils::getInputFiles(args.split(";"));
 
         // remove app's self name from start arguments
-        if ( _list->isEmpty() ) _list->removeFirst();
+        if ( !_list->isEmpty() ) _list->removeFirst();
 
         if ( !_list->isEmpty() ) {
             m_pMainPanel->doOpenLocalFiles(*_list);
