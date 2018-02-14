@@ -125,8 +125,6 @@ it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'app
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
-Forse cercavi: Setup has detected that %1 is currently running.%on%It'll be closed automatically. Click OK to continue, or Cancel to exit.
-Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.% N% nSi chiude automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
