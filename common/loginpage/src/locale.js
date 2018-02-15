@@ -30,7 +30,8 @@
  *
 */
 
-var en = {
+var l10n = {};
+l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
     btnConnect: 'Connect',
@@ -100,7 +101,7 @@ var en = {
     ,strVersion: 'version'
 }
 
-var cs = {
+l10n.cs = {
     welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
     welDescr: 'Nové rychlé řešení pro práci s dokumenty pomocí Vašeho ONLYOFFICE.',
     btnConnect: 'Připojit',
@@ -169,7 +170,7 @@ var cs = {
     ,strVersion: 'version'
 }
 
-var sk = {
+l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
     welDescr: 'Nové rýchle riešenie pre prácu s dokumentmi pomocou Vášho ONLYOFFICE.',
     btnConnect: 'Pripojiť',
@@ -238,7 +239,7 @@ var sk = {
     ,strVersion: 'version'
 }
 
-var ru = {
+l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
     btnConnect: 'Подключить',
@@ -308,7 +309,7 @@ var ru = {
     ,strVersion: 'версия'
 }
 
-var de = {
+l10n.de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
     welDescr: 'Eine neue schnelle Lösung für die Arbeit mit Dokumenten mithilfe Ihrer ONLYOFFICE.',
     btnConnect: 'Zusammenarbeit',
@@ -377,7 +378,7 @@ var de = {
     ,strVersion: 'version'
 };
 
-var it_IT = {
+l10n.it_IT = {
     welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
     welDescr: 'Una nuova soluzione veloce per lavorare con documenti usando ONLYOFFICE.',
     btnConnect: 'Connetti',
@@ -447,7 +448,7 @@ var it_IT = {
     ,strVersion: 'versione'
 };
 
-var fr = {
+l10n.fr = {
     welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors!',
     welDescr: 'Une nouvelle solution rapide pour travailler sur des documents en utilisant votre ONLYOFFICE.',
     btnConnect: 'Se connecter',
@@ -516,7 +517,7 @@ var fr = {
     ,strVersion: 'version'
 };
 
-var es = {
+l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
     welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
     btnConnect: 'Colaboración',
@@ -585,7 +586,7 @@ var es = {
     ,strVersion: 'version'
 };
 
-var pt_BR = {
+l10n.pt_BR = {
     welWelcome: 'Bem-vindo ao ONLYOFFICE Desktop Editors!',
     welDescr: 'Uma nova e rápida solução para trabalhar com documentos usando o seu ONLYOFFICE..',
     btnConnect: 'Conectar',
@@ -656,25 +657,24 @@ var pt_BR = {
 
 function loadLocale(lang) {
     if ( lang != 'en' ) {
-        for ( let i in window[lang] ) {
-            utils.Lang[i] = window[lang][i];
+        for ( let i in l10n[lang] ) {
+            utils.Lang[i] = l10n[lang][i];
         }
     }
 };
 
 +function mixLocale(lang) {
-    utils.Lang = window['en'];
+    utils.Lang = l10n.en;
 
     if ( lang ) {
         lang = lang.replace('-', '_');
 
-        if ( window[lang] )
+        if ( l10n[lang] )
             loadLocale(lang);
         else {
-            let _langs = ['en', 'de', 'fr', 'ru', 'es', 'sk', 'cs', 'pt_BR', 'it_IT'];
             let _code = /^\w{2}/.exec(lang)[0];
 
-            for (let l of _langs) {
+            for (let l in l10n) {
                 if ( l.substring(0,2) == _code ) {
                     loadLocale(l);
                     break;
