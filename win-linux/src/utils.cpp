@@ -45,6 +45,7 @@
 #include <QJsonDocument>
 #include <QProcess>
 #include <QScreen>
+#include <QStorageInfo>
 
 #include "cascapplicationmanagerwrapper.h"
 
@@ -243,6 +244,17 @@ void Utils::openFileLocation(const QString& path)
         system(QString("nautilus \"" + fileInfo.absoluteFilePath() + "\"").toUtf8()) :
         system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
+}
+
+bool Utils::isFileLocal(const QString& path)
+{
+    QStorageInfo storage(QFileInfo(path).dir());
+
+# ifdef Q_OS_WIN
+    return storage.device().startsWith("\\\\?\\");
+# else
+    return storage.device().startsWith("/dev/");
+# endif
 }
 
 QString Utils::getPortalName(const QString& url)

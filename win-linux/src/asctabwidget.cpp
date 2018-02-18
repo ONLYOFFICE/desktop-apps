@@ -222,7 +222,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         CAscTabData * data = new CAscTabData(opts.name);
         data->setViewId(id_view);
         data->setUrl(opts.wurl);
-        data->setLocal(opts.type);
+        data->setLocal(opts.type == etNewFile || Utils::isFileLocal(opts.url));
 
         pView->setData(data);
         tab_index = addTab(pView, opts.name);
