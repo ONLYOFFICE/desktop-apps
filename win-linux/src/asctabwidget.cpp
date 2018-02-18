@@ -928,7 +928,7 @@ void CAscTabWidget::setScaling(uchar s)
 {
     _dpi_ratio = s;
 
-    setIconSize(QSize(18*_dpi_ratio, 10*_dpi_ratio));
+    setIconSize(m_tabIconSize * _dpi_ratio);
     updateIcons();
 
     (m_widthParams = size_params(m_defWidthParams)).apply_scale(_dpi_ratio);
@@ -971,5 +971,15 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
     if (!(r.indexIn(stylesheet) < 0)) {
         ((CTabBar *)tabBar())->setTabTextColor(QPalette::Active, _string_to_color(r.cap(1)) );
         ((CTabBar *)tabBar())->setTabTextColor(QPalette::Inactive, _string_to_color(r.cap(2)) );
+    }
+
+    r.setPattern("QTabBar::tab-icon\\s*\\{([^\\}]+)");
+    if ( !(r.indexIn(stylesheet) < 0) ) {
+        QRegExp ri("width:\\s*(\\d+);\\s*height:(\\d+)");
+
+        if ( !(ri.indexIn(r.cap(1)) < 0) ) {
+            m_tabIconSize.setWidth(ri.cap(1).toInt());
+            m_tabIconSize.setHeight(ri.cap(2).toInt());
+        }
     }
 }
