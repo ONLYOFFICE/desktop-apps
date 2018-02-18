@@ -1319,7 +1319,7 @@ void CMainPanel::onDocumentReady(int uid)
             doOpenLocalFiles();
         });
     } else {
-        m_pTabs->applyDocumentChanging(uid, -255);
+        m_pTabs->applyDocumentChanging(uid, -254);
     }
 }
 
