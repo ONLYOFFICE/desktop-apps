@@ -46,17 +46,30 @@ public:
     virtual ~CTabBar();
 
     void setTabTextColor(QPalette::ColorGroup, const QColor&);
+    void setUseTabCustomPalette(bool);
     QPalette& customColors();
 
+    void setTabIcon(int index, const QIcon &icon);
+    void setTabLoading(int, bool);
+    void activate(bool);
 protected:
     void mousePressEvent (QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void paintEvent(QPaintEvent *);
+    void tabInserted(int);
+    void tabRemoved(int index);
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
+    void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
+
+private slots:
+    void onCurrentChanged(int);
 
 private:
     QPalette m_palette;
     bool m_usePalette = false;
+    int m_current = -1,
+        m_overIndex = -1;
+    bool m_active = false;
 
 signals:
     void tabUndock(int);

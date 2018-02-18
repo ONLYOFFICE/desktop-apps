@@ -124,6 +124,7 @@ private:
                 m_defWidthParams;
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
+    QSize m_tabIconSize;
 
 
 signals:

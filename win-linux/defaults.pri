@@ -1,5 +1,6 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += svg
 
 TEMPLATE = app
 CONFIG += app_bundle
@@ -44,7 +45,8 @@ HEADERS += \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
-    $$PWD/src/cwindowbase.h
+    $$PWD/src/cwindowbase.h \
+    $$PWD/src/canimatedicon.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -68,7 +70,8 @@ SOURCES += \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
-    $$PWD/src/clangater.cpp
+    $$PWD/src/clangater.cpp \
+    $$PWD/src/canimatedicon.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

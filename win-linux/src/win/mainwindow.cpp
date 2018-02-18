@@ -411,16 +411,40 @@ qDebug() << "WM_CLOSE";
         break;
     }
 
-    case WM_PAINT:
-        break;
+    case WM_PAINT: {
+#ifdef __APP_NEW_APPEARANCE
+        RECT rect;
+        GetClientRect(hWnd, &rect);
+
+        PAINTSTRUCT ps;
+        HDC hDC = ::BeginPaint(hWnd, &ps);
+        HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
+        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+
+        HBRUSH hBrush = ::CreateSolidBrush(RGB(229,229,229));
+        HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
+
+        ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
+
+        ::SelectObject(hDC, hbrushOld);
+        ::DeleteObject(hBrush);
+
+        ::SelectObject(hDC, hpenOld);
+        ::EndPaint(hWnd, &ps);
+        return 0;
+#endif
+
+        break; }
 
     case WM_ERASEBKGND: {
+#ifndef __APP_NEW_APPEARANCE
         RECT rect;
         GetClientRect(hWnd, &rect);
 
         HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
         FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
         DeleteObject(hBrush);
+#endif
         return TRUE; }
 
     case WM_GETMINMAXINFO:
@@ -623,7 +647,7 @@ void CMainWindow::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = 3 * m_dpiRatio;
+        border_size = MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio;
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,

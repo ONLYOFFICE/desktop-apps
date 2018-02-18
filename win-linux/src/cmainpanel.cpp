@@ -149,7 +149,14 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     layoutBtns->addWidget(label);
 
     // Main
+#ifdef __APP_NEW_APPEARANCE
+    m_pButtonMain = new QPushButton( centralWidget );
+    m_pButtonMain->setIcon(QIcon(":/onlyru/icons/logo.png"));
+    m_pButtonMain->setIconSize(QSize(86,20));
+#else
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
+#endif
+
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
@@ -1325,17 +1332,21 @@ QString CMainPanel::getSaveMessage()
 
 void CMainPanel::updateScaling()
 {
-    if ( m_isCustomWindow ) {
-        QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+    QLayout * layoutBtns = m_boxTitleBtns->layout();
+    layoutBtns->setSpacing(1*m_dpiRatio);
 
+    if ( m_isCustomWindow ) {
+#ifdef __APP_NEW_APPEARANCE
+        layoutBtns->setContentsMargins(0,0,0,0);
+        QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+#else
+        layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
+        QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+#endif
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
-
-    QLayout * layoutBtns = m_boxTitleBtns->layout();
-    layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
-    layoutBtns->setSpacing(1*m_dpiRatio);
 
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
     if ( m_pWidgetDownload ) m_pWidgetDownload->setScaling(m_dpiRatio);
