@@ -811,6 +811,18 @@ void CMainPanel::onLocalFileLocation(QString path)
     Utils::openFileLocation(path);
 }
 
+void CMainPanel::onLocalFileLocation(int uid)
+{
+    QString path = m_pTabs->urlByView(uid);
+    if ( !path.isEmpty() ) {
+        if ( Utils::isFileLocal(path) )
+            onLocalFileLocation(path);
+        else {
+
+        }
+    }
+}
+
 void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
