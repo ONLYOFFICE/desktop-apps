@@ -160,6 +160,7 @@ public:
     int         tabIndexByUrl(QString);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
+    QString     urlByView(int id);
     bool        modifiedByIndex(int);
     int         modifiedCount();
     bool        closedByIndex(int);

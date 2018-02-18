@@ -799,6 +799,19 @@ QString CAscTabWidget::titleByIndex(int index, bool mod)
     return "";
 }
 
+QString CAscTabWidget::urlByView(int id)
+{
+    CAscTabData * doc;
+    for (int i(count()); i-- > 0; ) {
+        doc = ((CTabPanel *)widget(i))->data();
+
+        if (doc && doc->viewId() == id)
+            return QString::fromStdWString(doc->url());
+    }
+
+    return "";
+}
+
 bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
