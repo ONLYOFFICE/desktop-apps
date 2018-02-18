@@ -700,6 +700,14 @@ void CAscTabWidget::applyDocumentSave(int id, bool cancel)
 
 void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
+    if ( type == -255) {
+        int index = tabIndexByView(id);
+        if ( !(index < 0) )
+            ((CTabBar *)tabBar())->setTabLoading(index, false);
+
+        return;
+    }
+
     CCefView * pView = AscAppManager::getInstance().GetViewById(id);
     if (NULL != pView && pView->GetType() == cvwtEditor) {
         ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(type));
