@@ -34,7 +34,9 @@
 //#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
+#include "canimatedicon.h"
 
+#define TAB_ICON(index) tabButton(index, QTabBar::LeftSide)
 inline static bool verticalTabs(QTabBar::Shape shape)
 {
     return shape == QTabBar::RoundedWest || shape == QTabBar::RoundedEast
@@ -177,6 +179,9 @@ void QTabBarPrivate::setupMovableTab()
     QString text = tab.text;
     tab.text = "";
     p.drawControl(QStyle::CE_TabBarTab, tab);
+#ifdef __USE_COLORED_TAB
+    ((CTabBar*)q)->fillTabColor(&p, tab, pressedIndex, ((CTabBar*)q)->m_activeColor);
+#endif
     ((CTabBar*)q)->drawTabCaption(&p, text, tab);
     p.end();
 
@@ -326,10 +331,16 @@ void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionT
                 t.state & QStyle::State_Selected /*|| t.state & QStyle::State_MouseOver*/ )
             p->setPen( QPen(m_palette.color(QPalette::Active, QPalette::ButtonText)));
         else p->setPen( QPen(m_palette.color(QPalette::Inactive, QPalette::ButtonText)));
+    } else {
+        p->setPen(QPen(t.palette.foreground().color()));
     }
 
-    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 6, t.rect.top()),
+#ifdef __APP_NEW_APPEARANCE
+    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 15, t.rect.top()), QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
+#else
+    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 13, t.rect.top()),
                     QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
+#endif
 
 //    QFont f = font();
 //    f.setPointSize(8);
@@ -414,12 +425,7 @@ void CTabBar::paintEvent(QPaintEvent * event)
 
 #ifdef __USE_COLORED_TAB
             if ( m_activeColor != "none" ) {
-                QRect tabRect(tab.rect);
-//                tabRect.adjust(0, 0, 1, 0);
-                p.fillRect( tabRect, QBrush(QColor(m_activeColor)) );
-
-                QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
-                p.drawPixmap(tab.rect.topLeft() + QPoint(7,9), _pixmap);
+                fillTabColor(&p, tab, selected, m_activeColor);
             }
 #endif
             drawTabCaption(&p, text, tab);
@@ -437,6 +443,17 @@ void CTabBar::paintEvent(QPaintEvent * event)
     }
 }
 
+void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
+{
+    QRect tabRect(tab.rect);
+    tabRect.adjust(-1, 0, 0, 0);
+    p->fillRect( tabRect, QBrush(QColor(color)) );
+
+    QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
+    unsigned _icon_left = 4;
+    p->drawPixmap(tab.rect.topLeft() + QPoint(_icon_left, 6), _pixmap);
+}
+
 void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)
 {
     m_usePalette = true;
@@ -446,4 +463,94 @@ void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)
 QPalette& CTabBar::customColors()
 {
     return m_palette;
+}
+
+void CTabBar::setUseTabCustomPalette(bool use)
+{
+    m_usePalette = use;
+}
+
+void CTabBar::tabInserted(int index)
+{
+    CAnimatedIcon * icon = new CAnimatedIcon(this);
+#ifdef __APP_NEW_APPEARANCE
+    icon->setStyleSheet("padding:0 0 2px 4px;");
+#else
+    icon->setStyleSheet("padding:0 0 0 3px;");
+#endif
+
+    icon->setFixedSize(iconSize());
+    setTabButton(index, QTabBar::LeftSide, icon);
+
+    QTabBar::tabInserted(index);
+}
+
+void CTabBar::tabRemoved(int index)
+{
+    QTabBar::tabRemoved(index);
+}
+void CTabBar::setTabIcon(int index, const QIcon &icon)
+{
+    QWidget * i = TAB_ICON(index);
+    if ( i ) {
+        QSize _iconSize = iconSize();
+        QRect _tabRect = tabRect(index);
+        int _top = (_tabRect.height() - _iconSize.height()) / 2;
+
+        ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
+#ifdef __APP_NEW_APPEARANCE
+        i->setFixedSize(_iconSize.width() + 4, iconSize().height() + 2);
+        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top + 0),_iconSize));
+#else
+        i->setFixedSize(_iconSize.width()+5, iconSize().height());
+        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top),_iconSize));
+#endif
+
+        update(_tabRect);
+    }
+}
+
+void CTabBar::setTabLoading(int index, bool start)
+{
+    CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
+    if ( icon ) {
+        if ( start ) {
+            if ( !icon->isStarted() ) {
+                icon->startSvg(":/onlyru/icons/loading.svg");
+            }
+        } else {
+            icon->stop();
+        }
+    }
+}
+
+void CTabBar::onCurrentChanged(int index)
+{
+    CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
+    if ( i && i->isStarted() ) {
+        i->setSvgElement("dark");
+    }
+
+    i = (CAnimatedIcon *)TAB_ICON(index);
+    if ( i && i->isStarted() ) {
+        i->setSvgElement("light");
+    }
+
+    m_current = index;
+}
+
+void CTabBar::leaveEvent(QEvent * event)
+{
+    QTabBar::leaveEvent(event);
+}
+void CTabBar::activate(bool a)
+{
+    if ( m_active != a ) {
+        m_active = a;
+
+        CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
+        if ( i && i->isStarted() ) {
+            i->setSvgElement(a ? "light" : "dark");
+        }
+    }
 }

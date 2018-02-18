@@ -36,9 +36,21 @@
 #define WINDOW_MIN_WIDTH    500
 #define WINDOW_MIN_HEIGHT   300
 
-#define TOOLBTN_HEIGHT      29
-#define TITLE_HEIGHT        29
-#define BUTTON_MAIN_WIDTH   68
+#define MAIN_WINDOW_MIN_WIDTH  800
+#define MAIN_WINDOW_MIN_HEIGHT 600
+
+#define TOOLBTN_HEIGHT      28
+#define TITLE_HEIGHT        28
+
+#ifdef __APP_NEW_APPEARANCE
+# define BUTTON_MAIN_WIDTH   112
+# define MAIN_WINDOW_BORDER_WIDTH 4
+# define WINDOW_TITLE_MIN_WIDTH 200
+#else
+# define BUTTON_MAIN_WIDTH   68
+# define MAIN_WINDOW_BORDER_WIDTH 3
+# define WINDOW_TITLE_MIN_WIDTH 400
+#endif
 
 namespace WindowBase
 {

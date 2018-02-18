@@ -148,6 +148,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_tabIconSize(11, 11)
 {
     CTabBar * tabs = new CTabBar;
     tabs->setObjectName("asc_editors_tabbar");
@@ -161,7 +162,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     tabBar()->setMovable(true);
     setTabsClosable(true);
 
-    setIconSize(QSize(18, 10));
+    setIconSize(m_tabIconSize);
     setProperty("active", false);
     setProperty("empty", true);
 
@@ -443,6 +444,9 @@ void CAscTabWidget::updateTabIcon(int index)
 
             if (pEditor->GetType() == cvwtSimple) {
                 tab_type = etPortal;
+#ifdef __USE_COLORED_TAB
+                _color = "#fff";
+#endif
             } else {
                 tab_type = pEditor->GetEditorType();
                 switch ( tab_type ) {
@@ -450,24 +454,27 @@ void CAscTabWidget::updateTabIcon(int index)
                 case etPresentation: _color = TAB_COLOR_PRESENTATION; break;
                 case etSpreadsheet: _color = TAB_COLOR_SPREADSHEET; break;
                 case etDocument: _color = TAB_COLOR_DOCUMENT; break;
+                default: tab_type = etUndefined; _color = "#fff"; break;
 #else
                 case etPresentation:
                 case etSpreadsheet:
                 case etDocument: break;
-#endif
                 default: tab_type = etUndefined; break;
+#endif
                 }
             }
 
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
-            tabBar()->setTabIcon(index, QIcon(icon_name));
+            ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
 
 #ifdef __USE_COLORED_TAB
             if ( !isActive() )
                 _color = "none";
 
-            if ( index == currentIndex() )
+            if ( index == currentIndex() ) {
                 ((CTabBar *)tabBar())->setActiveTabColor(_color);
+                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
+            }
 #endif
         }
     }
@@ -736,6 +743,7 @@ void CAscTabWidget::activate(bool a)
 
     ((CTabBar*)tabBar())->customColors().setCurrentColorGroup(
                             a ? QPalette::Normal : QPalette::Disabled );
+    tabBar()->repaint();
 }
 
 bool CAscTabWidget::isActive()
