@@ -749,6 +749,7 @@ void CAscTabWidget::activate(bool a)
 
     updateTabIcon(currentIndex());
 
+    ((CTabBar*)tabBar())->activate(a);
     ((CTabBar*)tabBar())->customColors().setCurrentColorGroup(
                             a ? QPalette::Normal : QPalette::Disabled );
     tabBar()->repaint();
