@@ -52,16 +52,19 @@ public:
     void setTabIcon(int index, const QIcon &icon);
     void setTabLoading(int, bool);
     void activate(bool);
+
 protected:
     void mousePressEvent (QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void paintEvent(QPaintEvent *);
     void tabInserted(int);
     void tabRemoved(int index);
+    void leaveEvent(QEvent *);
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
     void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
 
 private slots:
+    void onCloseButton();
     void onCurrentChanged(int);
 
 private:

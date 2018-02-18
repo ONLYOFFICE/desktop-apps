@@ -34,9 +34,12 @@
 //#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
+#include <QPushButton>
 #include "canimatedicon.h"
 
+#define TAB_BTNCLOSE(index) tabButton(index, QTabBar::RightSide)
 #define TAB_ICON(index) tabButton(index, QTabBar::LeftSide)
+
 inline static bool verticalTabs(QTabBar::Shape shape)
 {
     return shape == QTabBar::RoundedWest || shape == QTabBar::RoundedEast
@@ -232,6 +235,11 @@ CTabBar::CTabBar(QWidget * parent)
     : QTabBar(parent)
 {
     setDrawBase(false);
+
+#ifdef __APP_NEW_APPEARANCE
+    QTabBar::setMouseTracking(true);
+    connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
+#endif
 }
 
 CTabBar::~CTabBar()
@@ -305,6 +313,26 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
             d->layoutTab(d->pressedIndex);
 
             update();
+        }
+    }
+
+    if ( event->buttons() == Qt::NoButton ) {
+        int index = tabAt(event->pos());
+        if ( !(index < 0) && (m_overIndex != index || !m_active) ) {
+            QWidget * b;
+            if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) ) {
+                b = TAB_BTNCLOSE(m_overIndex);
+                if ( b ) {
+                    b->hide();
+                }
+            }
+
+            b = TAB_BTNCLOSE(index);
+            if ( b ) {
+                b->show();
+            }
+
+            m_overIndex = index;
         }
     }
 
@@ -472,6 +500,24 @@ void CTabBar::setUseTabCustomPalette(bool use)
 
 void CTabBar::tabInserted(int index)
 {
+#ifdef __APP_NEW_APPEARANCE
+    QToolButton * close = new QToolButton(this);
+    close->setFocusPolicy(Qt::NoFocus);
+    close->setFixedSize(16, 16);
+    if ( index == currentIndex() )
+        close->setProperty("state", "active"); else
+        close->hide();
+    QString _stylesheet = "QToolButton{background-image:url(:/onlyru/icons/close_normal.png);}"
+                          "QToolButton[state=active]{background-image:url(:/onlyru/icons/close_active.png);}"
+                          "QToolButton:hover{background-position:right top;}"
+                          "QToolButton:pressed{background-position:left bottom;}"
+                          "QToolButton{background-color:rgba(255,255,255,0);}";
+    close->setStyleSheet(_stylesheet);
+
+    connect(close, &QToolButton::clicked, this, &CTabBar::onCloseButton);
+    setTabButton(index, QTabBar::RightSide, close);
+#endif
+
     CAnimatedIcon * icon = new CAnimatedIcon(this);
 #ifdef __APP_NEW_APPEARANCE
     icon->setStyleSheet("padding:0 0 2px 4px;");
@@ -487,8 +533,16 @@ void CTabBar::tabInserted(int index)
 
 void CTabBar::tabRemoved(int index)
 {
+    QWidget * i = TAB_ICON(index);
+    if ( i ) {
+        qDebug() << "tab removed: " << index;
+    } else {
+        qDebug() << "tab already removed: " << index;
+    }
+
     QTabBar::tabRemoved(index);
 }
+
 void CTabBar::setTabIcon(int index, const QIcon &icon)
 {
     QWidget * i = TAB_ICON(index);
@@ -524,11 +578,40 @@ void CTabBar::setTabLoading(int index, bool start)
     }
 }
 
+void CTabBar::onCloseButton()
+{
+    QWidget * b = (QWidget *)sender();
+    int tabToClose = -1;
+    for (int i(0); i < count(); ++i) {
+        if ( TAB_BTNCLOSE(i) == b ) {
+            tabToClose = i;
+            break;
+        }
+    }
+
+    if ( !(tabToClose < -1) )
+        emit tabCloseRequested(tabToClose);
+}
+
 void CTabBar::onCurrentChanged(int index)
 {
+    QWidget * b = TAB_BTNCLOSE(m_current);
+    if ( b ) {
+        b->hide();
+        b->setProperty("state", "normal");
+        b->style()->polish(b);
+    }
+
     CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
     if ( i && i->isStarted() ) {
         i->setSvgElement("dark");
+    }
+
+    b = TAB_BTNCLOSE(index);
+    if ( b ) {
+        b->show();
+        b->setProperty("state", "active");
+        b->style()->polish(b);
     }
 
     i = (CAnimatedIcon *)TAB_ICON(index);
@@ -541,12 +624,30 @@ void CTabBar::onCurrentChanged(int index)
 
 void CTabBar::leaveEvent(QEvent * event)
 {
+    if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) )
+    {
+        QWidget * b = TAB_BTNCLOSE(m_overIndex);
+        if ( b ) {
+            b->hide();
+        }
+
+        m_overIndex = -1;
+    }
+
     QTabBar::leaveEvent(event);
 }
+
 void CTabBar::activate(bool a)
 {
     if ( m_active != a ) {
         m_active = a;
+
+        QWidget * b = TAB_BTNCLOSE(m_current);
+        if ( b ) {
+            a ? b->show() : b->hide();
+            b->setProperty("state", a ? "active":"normal");
+            b->style()->polish(b);
+        }
 
         CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
         if ( i && i->isStarted() ) {
