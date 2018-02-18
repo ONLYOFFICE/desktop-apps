@@ -32,6 +32,10 @@ void CAnimatedIcon::startSvg(const QString& source, const QString& id)
     if ( m_svg->load(source) ) {
         setFixedSize( m_svg->defaultSize() );
 
+        if ( !m_static && pixmap() ) {
+            m_static = new QPixmap(*pixmap());
+        }
+
         if ( m_svg->animated() ) {
             m_svgElemId = id;
 
