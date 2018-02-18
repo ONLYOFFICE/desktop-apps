@@ -3,11 +3,6 @@
     padding: 0; 
 }
 
-#systemPanel { 
-    margin: 0; 
-    padding: 0; 
-} 
-
 #centralWidget { 
     background: #313437; 
 }
@@ -172,7 +167,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 }
 
 QTabBar::tab {
-    padding-left: 7px;
+    /*padding-left: 7px;*/
     /*padding-right: 2px;*/
 }
 
