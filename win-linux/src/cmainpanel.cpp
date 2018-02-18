@@ -1308,15 +1308,19 @@ wstring CMainPanel::readSystemUserName()
 #endif
 }
 
-void CMainPanel::onMainPageReady()
+void CMainPanel::onDocumentReady(int uid)
 {
-    QTimer::singleShot(20, this, [=]{
-        refreshAboutVersion();
-        emit mainPageReady();
+    if ( uid < 0 ) {
+        QTimer::singleShot(20, this, [=]{
+            refreshAboutVersion();
+            emit mainPageReady();
 
-        AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
-        doOpenLocalFiles();
-    });
+            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
+            doOpenLocalFiles();
+        });
+    } else {
+        m_pTabs->applyDocumentChanging(uid, -255);
+    }
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

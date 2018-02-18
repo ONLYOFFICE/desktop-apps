@@ -151,7 +151,7 @@ public slots:
 
     void onEditorAllowedClose(int);
 
-    virtual void onMainPageReady();
+    virtual void onDocumentReady(int);
     void onFileChecked(const QString&, int, bool);
     void onCheckUpdates();
 
