@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
@@ -13,7 +13,7 @@
                 <key>NSStringFormatValueTypeKey</key>
                 <string>ld</string>
                 <key>one</key>
-                <string>C�e %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
+                <string>C’e %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
                 <key>other</key>
                 <string>Ci sono %ld %@ documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
             </dict>
