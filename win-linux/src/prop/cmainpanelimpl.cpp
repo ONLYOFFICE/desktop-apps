@@ -62,11 +62,11 @@ void CMainPanelImpl::refreshAboutVersion()
     AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
 }
 
-void CMainPanelImpl::updateScaling()
+void CMainPanelImpl::updateScaling(int dpiratio)
 {
-    CMainPanel::updateScaling();
+    CMainPanel::updateScaling(dpiratio);
 
-    QString _tabs_stylesheets = m_dpiRatio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
         _tabs_stylesheets += ".qss";
 
@@ -81,7 +81,7 @@ void CMainPanelImpl::updateScaling()
     m_pTabs->setStyleSheet(QString(styleFile.readAll()));
 
     std::map<int, std::pair<QString, QString> > icons;
-    if ( m_dpiRatio > 1 ) {
+    if ( dpiratio > 1 ) {
         icons.insert({
             {etUndefined, std::make_pair(":/newdocument@2x.png", ":/newdocument@2x.png")},
             {etDocument, std::make_pair(":/de_normal@2x.png", ":/de_active@2x.png")},
@@ -100,5 +100,4 @@ void CMainPanelImpl::updateScaling()
     }
 
     m_pTabs->setTabIcons(icons);
-    m_pTabs->setScaling(m_dpiRatio);
 }

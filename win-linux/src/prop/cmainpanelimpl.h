@@ -40,7 +40,7 @@ class CMainPanelImpl : public CMainPanel
 public:
     CMainPanelImpl(QWidget *, bool, uchar);
 
-    void updateScaling();
+    void updateScaling(int);
 private:
     void refreshAboutVersion();
 };

@@ -125,7 +125,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
-    m_pMainPanel->updateScaling();
+    m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);

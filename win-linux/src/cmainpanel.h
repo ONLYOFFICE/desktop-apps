@@ -42,11 +42,12 @@
 #include "cdownloadwidget.h"
 #include "cpushbutton.h"
 #include "ccefeventstransformer.h"
+#include "cscalingwrapper.h"
 
 
 struct printdata;
 
-class CMainPanel : public QWidget
+class CMainPanel : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -70,7 +71,7 @@ public:
     void adoptEditor(QWidget *);
     QWidget * releaseEditor(int index = -1);
 
-    virtual void updateScaling();
+    virtual void updateScaling(int);
 
 #ifdef __linux
     QWidget * getTitleWidget();
@@ -159,7 +160,6 @@ public slots:
 protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
-    uchar           m_dpiRatio;
     bool            m_isCustomWindow;
 
 private:

@@ -39,6 +39,7 @@
 #include <QtWidgets/QPushButton>
 
 #include "qcefview.h"
+#include "cscalingwrapper.h"
 
 #include <QDebug>
 
@@ -72,7 +73,7 @@ struct COpenOptions {
 };
 
 class CTabPanel;
-class CAscTabWidget : public QTabWidget
+class CAscTabWidget : public QTabWidget, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -144,9 +145,9 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
-    void setScaling(uchar);
     void setStyleSheet(const QString&);
 
+    void updateScaling(int);
 protected:
     void resizeEvent(QResizeEvent* e);
     void closeEditor(int, bool, bool);

@@ -35,6 +35,7 @@
 
 #include <QWidget>
 #include "cpushbutton.h"
+#include "cscalingwrapper.h"
 
 //class CProfileMenuFilter;
 class CProfileMenuFilter : public QObject {
@@ -47,7 +48,7 @@ private:
     QPushButton * _parentButton;
 };
 
-class CDownloadWidget : public QWidget
+class CDownloadWidget : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -58,11 +59,12 @@ public:
     explicit CDownloadWidget(QWidget *parent = 0);
     ~CDownloadWidget();
 
-    void setScaling(uchar);
     void downloadProcess(void *);
     QPushButton * toolButton();
 //    void updateProgress();
 //    void cancelAll();
+
+    void updateScaling(int);
 
 protected:
     QWidget * addFile(const QString&, int);
@@ -72,6 +74,7 @@ protected:
     void updateProgress(MapItem, void *);
     QString getFileName(const QString&) const;
 
+    void applyScaling(int);
     void resizeEvent(QResizeEvent *);
 
 private:

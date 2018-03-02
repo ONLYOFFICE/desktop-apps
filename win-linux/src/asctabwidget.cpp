@@ -53,8 +53,6 @@
 
 #include "private/qtabbar_p.h"
 
-BYTE _dpi_ratio = 1;
-
 /*
  *
  *  Tab data
@@ -143,6 +141,7 @@ COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
 
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
+    , CScalingWrapper(parent)
     , m_pMainButton(NULL)
     , m_dataFullScreen(0)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
@@ -150,7 +149,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_isCustomStyle(true)
     , m_tabIconSize(11, 11)
 {
-    CTabBar * tabs = new CTabBar;
+    CTabBar * tabs = new CTabBar(this);
     tabs->setObjectName("asc_editors_tabbar");
     tabs->setTabTextColor(QPalette::Active, QColor(51, 51, 51));
     tabs->setTabTextColor(QPalette::Inactive, QColor(51, 51, 51));
@@ -402,7 +401,7 @@ void CAscTabWidget::adjustTabsSize()
         if (nTabWidth > m_widthParams.tab.max) nTabWidth = m_widthParams.tab.max;
         if (nTabWidth < m_widthParams.tab.min) nTabWidth = m_widthParams.tab.min;
 
-        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(10 * _dpi_ratio/*?*/)) * nCountTabs;
+        int nMinTabBarWidth = (nTabWidth + /*(2+2)*/(10 * scaling()/*?*/)) * nCountTabs;
         if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
     }
 
@@ -419,8 +418,8 @@ void CAscTabWidget::adjustTabsSize()
 void CAscTabWidget::applyCustomTheme(bool iscustom)
 {
     m_isCustomStyle = iscustom;
-    m_widthParams.tools_width = (iscustom ? 50 : 0) * _dpi_ratio;
-    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * _dpi_ratio;
+    m_widthParams.tools_width = (iscustom ? 50 : 0) * scaling();
+    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * scaling();
 }
 
 void CAscTabWidget::updateIcons()
@@ -943,17 +942,19 @@ QWidget * CAscTabWidget::fullScreenWidget()
     return m_dataFullScreen ? m_dataFullScreen->widget() : nullptr;
 }
 
-void CAscTabWidget::setScaling(uchar s)
+void CAscTabWidget::updateScaling(int f)
 {
-    _dpi_ratio = s;
+    CScalingWrapper::updateScaling(f);
 
-    setIconSize(m_tabIconSize * _dpi_ratio);
+    int dpi_ratio = scaling();
+
+    setIconSize(m_tabIconSize * dpi_ratio);
     updateIcons();
 
-    (m_widthParams = size_params(m_defWidthParams)).apply_scale(_dpi_ratio);
+    (m_widthParams = size_params(m_defWidthParams)).apply_scale(dpi_ratio);
     if ( m_isCustomStyle )
-        m_widthParams.tools_width = 50 * _dpi_ratio,
-        m_widthParams.title_width = WINDOW_TITLE_MIN_WIDTH * _dpi_ratio;
+        m_widthParams.tools_width = 50 * dpi_ratio,
+        m_widthParams.title_width = WINDOW_TITLE_MIN_WIDTH * dpi_ratio;
     else
         m_widthParams.tools_width = m_widthParams.title_width = 0;
 
