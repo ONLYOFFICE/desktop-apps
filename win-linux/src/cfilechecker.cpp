@@ -106,7 +106,7 @@ void CExistanceController::parseJson(const QString &json)
                 _file_name = objRoot[k].toString();
                 _uid = k.toInt();
 
-                if ( !m_setUncheck.count(_uid) ) {
+                if ( m_mapRemote.find(_uid) == m_mapRemote.end() ) {
                     m_mapStaff.insert(
                         std::pair<int, CFileInspector *>(_uid, new CFileInspector(this, _file_name, _uid)));
                 }
@@ -142,10 +142,20 @@ void CExistanceController::handleResults(const QString& name, int uid, int resul
     }
 
     if ( result == FILE_REMOTE ) {
-        m_setUncheck.insert(uid);
+        m_mapRemote.insert(std::pair<int, QString>(uid, QString(name)));
     } else
     if ( result == FILE_ABSENT ) {
         locker.unlock();
         emit checked(name, uid, false);
     }
+}
+
+bool CExistanceController::isFileRemote(const QString& path)
+{
+    for (auto &iter: getInstance()->m_mapRemote) {
+        if ( iter.second == path)
+            return true;
+    }
+
+    return false;
 }
