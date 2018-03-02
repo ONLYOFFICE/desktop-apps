@@ -8,7 +8,7 @@
 CAnimatedIcon::CAnimatedIcon(QWidget * parent)
     : QLabel(parent)
 {
-
+    setProperty("class", "tab-icon");
 }
 
 void CAnimatedIcon::setPixmap(const QPixmap & pixmap, bool forcestop)

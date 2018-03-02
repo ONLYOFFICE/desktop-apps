@@ -152,3 +152,7 @@ QPushButton {
 QDialog QPushButton {
     min-width: 80px;
 }
+
+QLabel[class=tab-icon] {
+    padding:0 0 2px 8px;
+}
