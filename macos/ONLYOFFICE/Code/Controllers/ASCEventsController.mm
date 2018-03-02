@@ -362,6 +362,17 @@ public:
                         [[ASCPresentationReporter sharedInstance] apply:pEvent];
                         break;
                     }
+                    case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
+                        pEvent->AddRef();
+
+                        CAscApplicationManager *appManager = [NSAscApplicationWorker getAppManager];
+
+                        if (appManager) {
+                            appManager->Apply(pEvent);
+                        }
+
+                        break;
+                    }
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
