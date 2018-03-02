@@ -208,6 +208,9 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
             pView->Apply(_event);
         }
         return; }
+    case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
+        this->Apply(_event);
+        return; }
 
     default: break;
     }
