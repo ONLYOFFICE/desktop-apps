@@ -10,6 +10,7 @@ public:
     explicit CAnimatedIcon(QWidget * parent = nullptr);
 
     void setPixmap(const QPixmap &, bool forcestop = false);
+    void setIconSize(const QSize&, bool forcegeometry = true);
 
     void startSvg(const QString&, const QString& id = QString());
     void setSvgElement(const QString&);
@@ -19,6 +20,7 @@ public:
 private:
     QSvgRenderer * m_svg = nullptr;
     QString m_svgElemId;
+    QSize m_svgSize;
     QPixmap * m_image = nullptr;
     QPixmap * m_static = nullptr;
 
