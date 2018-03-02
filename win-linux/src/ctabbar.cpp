@@ -35,6 +35,7 @@
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
 #include <QPushButton>
+#include <QHoverEvent>
 #include "canimatedicon.h"
 
 #define TAB_BTNCLOSE(index) tabButton(index, QTabBar::RightSide)
@@ -237,7 +238,6 @@ CTabBar::CTabBar(QWidget * parent)
     setDrawBase(false);
 
 #ifdef __APP_NEW_APPEARANCE
-    QTabBar::setMouseTracking(true);
     connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
 #endif
 }
@@ -313,26 +313,6 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
             d->layoutTab(d->pressedIndex);
 
             update();
-        }
-    }
-
-    if ( event->buttons() == Qt::NoButton ) {
-        int index = tabAt(event->pos());
-        if ( !(index < 0) && (m_overIndex != index || !m_active) ) {
-            QWidget * b;
-            if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) ) {
-                b = TAB_BTNCLOSE(m_overIndex);
-                if ( b ) {
-                    b->hide();
-                }
-            }
-
-            b = TAB_BTNCLOSE(index);
-            if ( b ) {
-                b->show();
-            }
-
-            m_overIndex = index;
         }
     }
 
@@ -611,21 +591,6 @@ void CTabBar::onCurrentChanged(int index)
     m_current = index;
 }
 
-void CTabBar::leaveEvent(QEvent * event)
-{
-    if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) )
-    {
-        QWidget * b = TAB_BTNCLOSE(m_overIndex);
-        if ( b ) {
-            b->hide();
-        }
-
-        m_overIndex = -1;
-    }
-
-    QTabBar::leaveEvent(event);
-}
-
 void CTabBar::activate(bool a)
 {
     if ( m_active != a ) {
@@ -643,4 +608,49 @@ void CTabBar::activate(bool a)
             i->setSvgElement(a ? "light" : "dark");
         }
     }
+}
+
+bool CTabBar::event(QEvent * e){
+#ifdef __APP_NEW_APPEARANCE
+    if ( e->type() == QEvent::HoverMove ) {
+        Q_D(QTabBar);
+
+        if ( !d->dragInProgress ) {
+            QHoverEvent * _hover = static_cast<QHoverEvent *>(e);
+
+            int _index = tabAt(_hover->pos());
+            if ( m_overIndex != _index ) {
+                int _hide(m_overIndex);
+                m_overIndex = _index;
+
+                QWidget * b;
+                if ( !(_hide < 0) && (!m_active || _hide != currentIndex()) ) {
+                    b = TAB_BTNCLOSE(_hide);
+                    if ( b ) b->hide();
+                }
+
+                if ( !(_index < 0) ) {
+                    b = TAB_BTNCLOSE(_index);
+                    if ( b ) {
+                        b->show();
+                    }
+                }
+            }
+        }
+    } else
+    if ( e->type() == QEvent::Leave ) {
+        if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) ) {
+            QWidget * b = TAB_BTNCLOSE(m_overIndex);
+            if ( b ) {
+                b->hide();
+            }
+
+            m_overIndex = -1;
+        }
+    }
+
+    //qDebug() << "event: " << e;
+#endif
+
+    return QTabBar::event(e);
 }
