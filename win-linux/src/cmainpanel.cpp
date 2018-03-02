@@ -149,13 +149,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     layoutBtns->addWidget(label);
 
     // Main
-#ifdef __APP_NEW_APPEARANCE
-    m_pButtonMain = new QPushButton( centralWidget );
-    m_pButtonMain->setIcon(QIcon(":/onlyru/icons/logo.png"));
-    m_pButtonMain->setIconSize(QSize(86,20));
-#else
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
-#endif
 
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
