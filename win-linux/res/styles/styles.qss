@@ -238,6 +238,10 @@ QTabBar::scroller {
     width:16px;
 }
 
+QLabel[class=tab-icon] {
+    padding:0 0 0 3px;
+}
+
 /*MyLabel { qproperty-pixmap: url(pixmap.png); }*/
 /*MyGroupBox { qproperty-titleColor: rgb(100, 200, 100); }*/
 

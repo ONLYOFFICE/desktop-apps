@@ -502,29 +502,18 @@ void CTabBar::tabInserted(int index)
 {
 #ifdef __APP_NEW_APPEARANCE
     QToolButton * close = new QToolButton(this);
+    close->setProperty("class", "tab-close");
     close->setFocusPolicy(Qt::NoFocus);
     close->setFixedSize(16, 16);
     if ( index == currentIndex() )
         close->setProperty("state", "active"); else
         close->hide();
-    QString _stylesheet = "QToolButton{background-image:url(:/onlyru/icons/close_normal.png);}"
-                          "QToolButton[state=active]{background-image:url(:/onlyru/icons/close_active.png);}"
-                          "QToolButton:hover{background-position:right top;}"
-                          "QToolButton:pressed{background-position:left bottom;}"
-                          "QToolButton{background-color:rgba(255,255,255,0);}";
-    close->setStyleSheet(_stylesheet);
 
     connect(close, &QToolButton::clicked, this, &CTabBar::onCloseButton);
     setTabButton(index, QTabBar::RightSide, close);
 #endif
 
     CAnimatedIcon * icon = new CAnimatedIcon(this);
-#ifdef __APP_NEW_APPEARANCE
-    icon->setStyleSheet("padding:0 0 2px 4px;");
-#else
-    icon->setStyleSheet("padding:0 0 0 3px;");
-#endif
-
     icon->setFixedSize(iconSize());
     setTabButton(index, QTabBar::LeftSide, icon);
 
