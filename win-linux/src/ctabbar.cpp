@@ -457,9 +457,9 @@ void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index,
     tabRect.adjust(-1, 0, 0, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
-    QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
-    unsigned _icon_left = 4;
-    p->drawPixmap(tab.rect.topLeft() + QPoint(_icon_left, 6), _pixmap);
+//    QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
+//    unsigned _icon_left = 4;
+//    p->drawPixmap(tab.rect.topLeft() + QPoint(_icon_left, 6), _pixmap);
 }
 
 void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)

@@ -380,7 +380,7 @@ qDebug() << "WM_CLOSE";
 
     case WM_EXITSIZEMOVE: {
 //#define DEBUG_SCALING
-#ifdef DEBUG_SCALING
+#if defined(DEBUG_SCALING) && defined(_DEBUG)
         QRect windowRect;
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
@@ -421,7 +421,7 @@ qDebug() << "WM_CLOSE";
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
         ::SetDCPenColor(hDC, RGB(136, 136, 136));
 
-        HBRUSH hBrush = ::CreateSolidBrush(RGB(229,229,229));
+        HBRUSH hBrush = ::CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);

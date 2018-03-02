@@ -158,13 +158,13 @@ public slots:
 
 protected:
     CAscTabWidget * m_pTabs;
+    QPushButton*    m_pButtonMain;
     uchar           m_dpiRatio;
     bool            m_isCustomWindow;
 
 private:
     std::wstring    m_sDownloadName;
 
-    QPushButton*    m_pButtonMain;
     QWidget*        m_pMainWidget;
 
     QPushButton*    m_pButtonMinimize;
