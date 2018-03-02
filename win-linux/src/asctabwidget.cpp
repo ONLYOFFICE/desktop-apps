@@ -48,6 +48,7 @@
 #include "common/Types.h"
 #include "defines.h"
 #include "utils.h"
+#include "cfilechecker.h"
 
 #include "cascapplicationmanagerwrapper.h"
 
@@ -221,7 +222,8 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         CAscTabData * data = new CAscTabData(opts.name);
         data->setViewId(id_view);
         data->setUrl(opts.wurl);
-        data->setLocal(opts.type == etNewFile || Utils::isFileLocal(opts.url));
+        data->setLocal( opts.type == etLocalFile ||
+                       (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
         tab_index = addTab(pView, opts.name);

@@ -31,6 +31,7 @@ public:
 
     static CExistanceController * getInstance();
     static void check(const QString& json);
+    static bool isFileRemote(const QString& path);
 
 public slots:
     void handleResults(const QString&, int, int);
@@ -48,7 +49,7 @@ private:
 private:
     QMutex m_mutex;
     std::map<int, CFileInspector *> m_mapStaff;
-    std::set<int> m_setUncheck;
+    std::map<int, QString> m_mapRemote;
 };
 
 #endif // CFILECHECKER_H
