@@ -6,6 +6,19 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>4.8.8</title>
+            <pubDate>Tue, 20 Feb 2018 12:55:41 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/4.8.8/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/4.8.8/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-4.8.8.zip" sparkle:shortVersionString="4.8.8" sparkle:version="239" length="197334298" type="application/octet-stream" sparkle:dsaSignature="MCwCFERnj5RS5S5wuJJcQ/EzlrQglfheAhQLb8X1WU82mCSn3Z+364nG6nkD1Q=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE239-237.delta" sparkle:version="239" sparkle:shortVersionString="4.8.8" sparkle:deltaFrom="237" length="97031" type="application/octet-stream" sparkle:dsaSignature="MCwCFA1axU6QzIJQolp/lriWuNU+9ry5AhQBV/ZISZ+Ffi7V0SZdi+7jTXLe2w=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE239-222.delta" sparkle:version="239" sparkle:shortVersionString="4.8.8" sparkle:deltaFrom="222" length="1305534" type="application/octet-stream" sparkle:dsaSignature="MCwCFGw+C3x8KuYKh6haJEVNnSUEhSEaAhQ50oeLfa4cf8r+JarCxWbawBqJRA=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE239-169.delta" sparkle:version="239" sparkle:shortVersionString="4.8.8" sparkle:deltaFrom="169" length="96550299" type="application/octet-stream" sparkle:dsaSignature="MCwCFGqbmGtE9KdC7VNhLKuxmUyskJR3AhQlicFgT45JuwAYrSfVLwdqc8VaLQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>4.8.7</title>
             <pubDate>Tue, 06 Feb 2018 19:11:16 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>

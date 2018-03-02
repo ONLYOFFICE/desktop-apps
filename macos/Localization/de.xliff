@@ -799,7 +799,7 @@
         <target>ONLYOFFICE</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2018 Ascensio System SIA. All rights reserved.</source>
         <target>Copyright © 2018 Ascensio System SIA. Alle Rechte vorbehalten.</target>
       </trans-unit>
     </body>
@@ -1056,7 +1056,7 @@
         <target>ONLYOFFICE</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2017 All rights reserved.</source>
+        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2018 All rights reserved.</source>
         <target>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii 2018. Alle Rechte vorbehalten.</target>
       </trans-unit>
     </body>
@@ -1319,7 +1319,7 @@
         <target>ONLYOFFICE</target>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2017 Ascensio System SIA. All rights reserved.</source>
+        <source>Copyright © 2018 Ascensio System SIA. All rights reserved.</source>
         <target>Copyright © 2018 Ascensio System SIA. Alle Rechte vorbehalten.</target>
       </trans-unit>
     </body>
