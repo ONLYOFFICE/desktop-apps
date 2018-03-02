@@ -46,7 +46,8 @@ HEADERS += \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
     $$PWD/src/cwindowbase.h \
-    $$PWD/src/canimatedicon.h
+    $$PWD/src/canimatedicon.h \
+    $$PWD/src/cscalingwrapper.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -71,7 +72,8 @@ SOURCES += \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
     $$PWD/src/clangater.cpp \
-    $$PWD/src/canimatedicon.cpp
+    $$PWD/src/canimatedicon.cpp \
+    $$PWD/src/cscalingwrapper.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

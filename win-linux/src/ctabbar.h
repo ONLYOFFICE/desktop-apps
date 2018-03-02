@@ -34,10 +34,11 @@
 #define CTABBAR_H
 
 #include <QTabBar>
+#include "cscalingwrapper.h"
 
 //class CTabBarPrivate;
 
-class CTabBar : public QTabBar
+class CTabBar : public QTabBar, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -52,6 +53,8 @@ public:
     void setTabIcon(int index, const QIcon &icon);
     void setTabLoading(int, bool);
     void activate(bool);
+
+    void updateScaling(int);
 
 protected:
     bool event(QEvent * e);

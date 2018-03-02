@@ -37,6 +37,7 @@
 #include <QPushButton>
 #include <QHoverEvent>
 #include "canimatedicon.h"
+#include "utils.h"
 
 #define TAB_BTNCLOSE(index) tabButton(index, QTabBar::RightSide)
 #define TAB_ICON(index) tabButton(index, QTabBar::LeftSide)
@@ -234,6 +235,7 @@ void QTabBarPrivate::Tab::TabBarAnimation::updateState(QAbstractAnimation::State
 
 CTabBar::CTabBar(QWidget * parent)
     : QTabBar(parent)
+    , CScalingWrapper(parent)
 {
     setDrawBase(false);
 
@@ -343,12 +345,16 @@ void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionT
         p->setPen(QPen(t.palette.foreground().color()));
     }
 
+    int _factor = scaling();
 #ifdef __APP_NEW_APPEARANCE
-    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 15, t.rect.top()), QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
+    QPoint _lt = QPoint(15, 0) * _factor;
+    QPoint _rb = QPoint(-22, -2) * _factor;
 #else
-    QRect trect(QPoint(t.rect.left() + t.iconSize.width() + 13, t.rect.top()),
-                    QPoint(t.rect.right() - 22, t.rect.bottom() - 2));
+    QPoint _lt = QPoint(13, 0) * _factor;
+    QPoint _rb = _factor > 1 ? QPoint(-44, -4) : QPoint(-22, -2);
 #endif
+    QRect trect(t.rect.topLeft() + QPoint(t.iconSize.width(), 0) + _lt,
+                    t.rect.bottomRight() + _rb);
 
 //    QFont f = font();
 //    f.setPointSize(8);
@@ -484,7 +490,7 @@ void CTabBar::tabInserted(int index)
     QToolButton * close = new QToolButton(this);
     close->setProperty("class", "tab-close");
     close->setFocusPolicy(Qt::NoFocus);
-    close->setFixedSize(16, 16);
+    close->setFixedSize( QSize(16, 16) * scaling() );
     if ( index == currentIndex() )
         close->setProperty("state", "active"); else
         close->hide();
@@ -519,14 +525,16 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
         QSize _iconSize = iconSize();
         QRect _tabRect = tabRect(index);
         int _top = (_tabRect.height() - _iconSize.height()) / 2;
+        int dpi_ratio = scaling();
 
         ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
 #ifdef __APP_NEW_APPEARANCE
-        i->setFixedSize(_iconSize.width() + 4, iconSize().height() + 2);
-        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top + 0),_iconSize));
+        int top_offset = dpi_ratio > 1 ? 4 : 1;
+        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
+        i->setFixedSize(_iconSize.width() + (8 * dpi_ratio), iconSize().height() + (4 * dpi_ratio));
 #else
-        i->setFixedSize(_iconSize.width()+5, iconSize().height());
         i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top),_iconSize));
+        i->setFixedSize(_iconSize.width() + (5 * scaling()), iconSize().height());
 #endif
 
         update(_tabRect);
@@ -539,7 +547,8 @@ void CTabBar::setTabLoading(int index, bool start)
     if ( icon ) {
         if ( start ) {
             if ( !icon->isStarted() ) {
-                icon->startSvg(":/onlyru/icons/loading.svg");
+                icon->startSvg(":/common/icons/loader.svg",
+                        index == currentIndex() && m_active ?  "light" : "dark");
             }
         } else {
             icon->stop();
@@ -608,6 +617,21 @@ void CTabBar::activate(bool a)
             i->setSvgElement(a ? "light" : "dark");
         }
     }
+}
+
+void CTabBar::updateScaling(int f)
+{
+    CScalingWrapper::updateScaling(f);
+
+    for (int i(count()); !(--i < 0); ) {
+        QWidget * b = TAB_BTNCLOSE(i);
+
+        if ( b ) {
+            b->setFixedSize( QSize(16, 16) * f );
+        }
+    }
+
+    repaint();
 }
 
 bool CTabBar::event(QEvent * e){

@@ -58,7 +58,6 @@
 #include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "cwindowbase.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -92,6 +91,7 @@ public:
 
 CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
+      CScalingWrapper(dpi_ratio),
         m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
         m_isMaximized(false)
       , m_isCustomWindow(isCustomWindow)
@@ -99,7 +99,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_mainWindowState(Qt::WindowNoState)
       , m_inFiles(NULL)
       , m_saveAction(0)
-      , m_dpiRatio(dpi_ratio)
 {
     setObjectName("mainPanel");
     connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
@@ -144,13 +143,12 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-    layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
-    layoutBtns->setSpacing(1*m_dpiRatio);
+    layoutBtns->setContentsMargins(0,0,4*dpi_ratio,0);
+    layoutBtns->setSpacing(1*dpi_ratio);
     layoutBtns->addWidget(label);
 
     // Main
     m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
-
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
@@ -207,7 +205,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
-    m_pTabs->setScaling(m_dpiRatio);
     m_pTabs->applyCustomTheme(isCustomWindow);
 
     QCefView * pMainWidget = new QCefView(centralWidget);
@@ -242,6 +239,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 void CMainPanel::RecalculatePlaces()
 {
     int cbw = 0;
+    int dpi_ratio = scaling();
 
 #ifdef __linux
     QWidget * cw = findChild<QWidget *>("centralWidget");
@@ -251,8 +249,8 @@ void CMainPanel::RecalculatePlaces()
     int windowW = width(),
         windowH = height(),
 #endif
-        captionH = TITLE_HEIGHT * m_dpiRatio,
-        btnMainWidth = BUTTON_MAIN_WIDTH * m_dpiRatio;
+        captionH = TITLE_HEIGHT * dpi_ratio,
+        btnMainWidth = BUTTON_MAIN_WIDTH * dpi_ratio;
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 
@@ -264,7 +262,7 @@ void CMainPanel::RecalculatePlaces()
     if (contentH < 1)
         contentH = 1;
 
-    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * m_dpiRatio);
+    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * dpi_ratio);
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
     m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
@@ -929,8 +927,7 @@ void CMainPanel::onDocumentSaveInnerRequest(int id)
 void CMainPanel::onDocumentDownload(void * info)
 {
     if ( !m_pWidgetDownload ) {
-        m_pWidgetDownload = new CDownloadWidget;
-        m_pWidgetDownload->setScaling(m_dpiRatio);
+        m_pWidgetDownload = new CDownloadWidget(this);
 
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
@@ -1340,27 +1337,29 @@ QString CMainPanel::getSaveMessage()
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
-void CMainPanel::updateScaling()
+void CMainPanel::updateScaling(int dpiratio)
 {
+    CScalingWrapper::updateScaling(dpiratio);
+
     QLayout * layoutBtns = m_boxTitleBtns->layout();
-    layoutBtns->setSpacing(1*m_dpiRatio);
+    layoutBtns->setSpacing(1 * dpiratio);
 
     if ( m_isCustomWindow ) {
 #ifdef __APP_NEW_APPEARANCE
         layoutBtns->setContentsMargins(0,0,0,0);
-        QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+        QSize small_btn_size(40*dpiratio, TOOLBTN_HEIGHT*dpiratio);
 #else
-        layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
-        QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+        layoutBtns->setContentsMargins(0,0,4*dpiratio,0);
+        QSize small_btn_size(28*dpiratio, TOOLBTN_HEIGHT*dpiratio);
 #endif
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
 
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * m_dpiRatio, TITLE_HEIGHT * m_dpiRatio);
-    if ( m_pWidgetDownload ) m_pWidgetDownload->setScaling(m_dpiRatio);
+    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * dpiratio, TITLE_HEIGHT * dpiratio);
 }
+
 void CMainPanel::onCheckUpdates()
 {
     emit checkUpdates();
@@ -1368,8 +1367,8 @@ void CMainPanel::onCheckUpdates()
 
 void CMainPanel::setScreenScalingFactor(uchar s)
 {
-    m_dpiRatio = s;
-    updateScaling();
+    updateScaling(s);
+    CScalingWrapper::updateChildScaling(this, s);
 }
 
 bool CMainPanel::holdUid(int uid) const
@@ -1411,7 +1410,7 @@ bool CMainPanel::isTabDragged() const
 bool CMainPanel::isPointInTabs(const QPoint& p) const
 {
     QRect _rect_title = m_pTabs->geometry();
-    _rect_title.setHeight(TITLE_HEIGHT * m_dpiRatio);
+    _rect_title.setHeight(TITLE_HEIGHT * scaling());
 
     return _rect_title.contains(p);
 }

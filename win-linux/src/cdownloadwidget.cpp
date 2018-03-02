@@ -94,6 +94,7 @@ private:
 
 CDownloadWidget::CDownloadWidget(QWidget *parent)
     : QWidget(parent)
+    , CScalingWrapper(parent)
     , m_pToolButton(new CPushButton)
 {
     setLayout(new QVBoxLayout);
@@ -122,6 +123,8 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     CProfileMenuFilter * eventFilter = new CProfileMenuFilter(this);
     eventFilter->setMenuButton(m_pToolButton);
     menuDownload->installEventFilter(eventFilter);
+
+    applyScaling(scaling());
 }
 
 CDownloadWidget::~CDownloadWidget()
@@ -304,7 +307,7 @@ void CDownloadWidget::resizeEvent(QResizeEvent * e)
 //    qDebug() << "resize: " << e->size();
 }
 
-void CDownloadWidget::setScaling(uchar factor)
+void CDownloadWidget::applyScaling(int factor)
 {
     if ( factor > 1 ) {
         setProperty("hdpi", true);
@@ -340,6 +343,12 @@ void CDownloadWidget::setScaling(uchar factor)
     m_pToolButton->menu()->style()->unpolish(m_pToolButton->menu());
     m_pToolButton->menu()->style()->polish(m_pToolButton->menu());
     QPixmap::grabWidget(m_pToolButton->menu());
+}
+
+void CDownloadWidget::updateScaling(int f)
+{
+    CScalingWrapper::updateScaling(f);
+    applyScaling(scaling());
 }
 
 //void CDownloadWidget::updateProgress()
