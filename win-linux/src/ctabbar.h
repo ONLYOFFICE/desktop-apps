@@ -54,12 +54,12 @@ public:
     void activate(bool);
 
 protected:
+    bool event(QEvent * e);
     void mousePressEvent (QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void paintEvent(QPaintEvent *);
     void tabInserted(int);
     void tabRemoved(int index);
-    void leaveEvent(QEvent *);
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
     void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
 
