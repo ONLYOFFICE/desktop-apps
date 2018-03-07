@@ -32,6 +32,13 @@
 
 #include <windows.h>
 #include "cwinpanel.h"
+#include "mainwindow.h"
+
+CWinPanel::CWinPanel(CMainWindow * w)
+    : CWinPanel(w->hWnd)
+{
+    m_parent = w;
+}
 
 CWinPanel::CWinPanel( HWND hWnd )
     : QWinWidget( hWnd )
@@ -106,4 +113,9 @@ void CWinPanel::resizeEvent(QResizeEvent* event)
     }
 
     if ( m_pPanel ) m_pPanel->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
+}
+
+CMainWindow * CWinPanel::parent()
+{
+    return m_parent;
 }
