@@ -116,7 +116,6 @@ public slots:
 
     void onTabClicked(int);
     void onTabChanged(int);
-    void onTabClosed(int, int);
     void onTabCloseRequest(int);
     void onTabUndockRequest(int);
     void onAppCloseRequest();
