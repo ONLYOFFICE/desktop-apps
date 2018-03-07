@@ -419,19 +419,6 @@ void CMainPanel::resizeEvent(QResizeEvent * event)
     RecalculatePlaces();
 }
 
-void CMainPanel::mousePressEvent(QMouseEvent *event)
-{
-    event->ignore();
-
-    m_dockTab = m_pTabs->tabBar()->geometry().contains(m_pTabs->mapFromParent(event->pos())) ? m_pTabs->currentIndex() : -1;
-}
-
-void CMainPanel::mouseReleaseEvent(QMouseEvent *event)
-{
-    event->ignore();
-    m_dockTab = -1;
-}
-
 void CMainPanel::onTabClicked(int index)
 {
     Q_UNUSED(index)
@@ -1386,10 +1373,7 @@ bool CMainPanel::holdUrl(const QString& url, AscEditorType type) const
     return false;
 }
 
-bool CMainPanel::isTabDragged() const
-{
-    return !(m_dockTab < 0);
-}
+CAscTabWidget * CMainPanel::tabWidget(){return m_pTabs;}
 
 bool CMainPanel::isPointInTabs(const QPoint& p) const
 {

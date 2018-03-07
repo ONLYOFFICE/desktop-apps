@@ -52,6 +52,7 @@
 #include "../csplash.h"
 #include "../clogger.h"
 #include "../clangater.h"
+#include "../ctabbar.h"
 
 #include <QTimer>
 #include <QSettings>
@@ -367,7 +368,7 @@ qDebug() << "WM_CLOSE";
         break;
 
     case WM_MOVING: {
-        if ( window->mainPanel()->isTabDragged() ) {
+        if ( window->moveByTab() ) {
             POINT pt{0};
 
             if ( GetCursorPos(&pt) ) {
@@ -693,6 +694,12 @@ int CMainWindow::joinTab(QWidget * panel)
     m_pMainPanel->adoptEditor(panel);
 
     return 0;
+}
+
+bool CMainWindow::moveByTab()
+{
+    return mainPanel()->tabWidget()->count() == 1 &&
+            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
 bool CMainWindow::holdView(int id)
