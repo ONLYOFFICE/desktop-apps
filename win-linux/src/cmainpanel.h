@@ -66,6 +66,7 @@ public:
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
+    void toggleButtonMain(bool, bool delay = false);
     bool isTabDragged() const;
     bool isPointInTabs(const QPoint&) const;
     void adoptEditor(QWidget *);
@@ -91,10 +92,10 @@ private:
     void mouseReleaseEvent(QMouseEvent *event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void toggleButtonMain(bool);
     void loadStartPage();
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
+    void RecalculatePlaces();
 
     wstring readSystemUserName();
 signals:
@@ -192,10 +193,6 @@ public:
     {
         return ((QWidget*)m_pTabs->parent())->winId();
     }
-
-
-private:
-    void RecalculatePlaces();
 
 };
 

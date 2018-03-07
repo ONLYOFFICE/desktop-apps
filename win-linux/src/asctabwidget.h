@@ -130,8 +130,9 @@ private:
 
 signals:
 //    void sendAddEditor();
-    void tabClosed(int, int);
     void closeAppRequest();
+    void editorInserted(int, int);
+    void editorRemoved(int, int);
     void tabUndockRequest(int);
 
 public:
@@ -150,6 +151,8 @@ public:
     void updateScaling(int);
 protected:
     void resizeEvent(QResizeEvent* e);
+    void tabInserted(int index);
+    void tabRemoved(int index);
     void closeEditor(int, bool, bool);
 
 public:
