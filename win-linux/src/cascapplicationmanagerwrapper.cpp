@@ -13,6 +13,7 @@
 #include "cfiledialog.h"
 #include "utils.h"
 #include "common/Types.h"
+#include "ctabundockevent.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -492,30 +493,22 @@ CSingleWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) c
 
 void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, const QPoint& c)
 {
+#define GET_CURRENT_PANEL -1
     APP_CAST(_app);
 
     if ( _app.m_vecWidows.size() > 1 ) {
-        QPoint _local_pos;
         CMainWindow * _window = nullptr,
                     * _source = reinterpret_cast<CMainWindow *>(s);
         for (auto const& w : _app.m_vecWidows) {
             if ( w != s ) {
                 _window = reinterpret_cast<CMainWindow *>(w);
-                _local_pos = _window->mainPanel()->mapFromGlobal(c);
 
-                if ( _window->mainPanel()->isPointInTabs(_local_pos) ) {
-                    QTimer::singleShot(0, [=] {
-                        QPoint pos = QCursor::pos();
-#ifdef _WIN32
-                        PostMessage(_source->hWnd, WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(pos.x(), pos.y()));
+                if ( _window->pointInTabs(c) ) {
+                    _source->hide();
+                    _window->attachEditor(
+                            _source->editorPanel(GET_CURRENT_PANEL), c );
 
-                        QWidget * panel = _source->mainPanel()->releaseEditor();
-                        _window->joinTab(panel);
-
-                        closeMainWindow(s);
-#endif
-                    });
-
+                    closeMainWindow(s);
                     break;
                 }
             }
@@ -564,4 +557,41 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(uint dpifactor)
 {
     APP_CAST(_app);
     return Utils::readStylesheets(&_app.m_vecStyles, &_app.m_vecStyles2x, dpifactor);
+}
+
+bool CAscApplicationManagerWrapper::event(QEvent *event)
+{
+    if ( event->type() == CTabUndockEvent::type() ) {
+        CTabUndockEvent * e = (CTabUndockEvent *)event;
+        if ( e->panel() ) {
+            e->accept();
+
+            QWidget * _panel = e->panel();
+            QTimer::singleShot(0, this, [=]{
+                CMainWindow * _main_window = nullptr;
+
+#ifdef _WIN32
+                CWinPanel * _wp = dynamic_cast<CWinPanel *>(_panel->window());
+                if ( _wp ) _main_window = _wp->parent();
+#else
+                _main_window = dynamic_cast<CMainWindow *>(_panel->window());
+#endif
+
+                if ( _main_window ) {
+                    QRect _win_rect = _main_window->windowRect();
+                    _win_rect.moveTo(QCursor::pos() - QPoint(BUTTON_MAIN_WIDTH + 50, 20));
+                    CMainWindow * window = createMainWindow(_win_rect);
+
+                    bool _is_maximized = _main_window->isMaximized();
+                    window->show(_is_maximized);
+                    window->toggleBorderless(_is_maximized);
+                    window->attachEditor( _panel );
+                }
+            });
+        }
+
+        return true;
+    }
+
+    return QObject::event(event);
 }

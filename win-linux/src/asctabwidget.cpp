@@ -51,6 +51,7 @@
 #include "cfilechecker.h"
 
 #include "cascapplicationmanagerwrapper.h"
+#include "ctabundockevent.h"
 
 #include "private/qtabbar_p.h"
 
@@ -166,10 +167,22 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
-    QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
+    QObject::connect(this, &QTabWidget::currentChanged, [=](){
+        updateIcons();
+        setFocusedView();
+
+        m_dragIndex = -1;
+    });
 #if defined(APP_MULTI_WINDOW)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
-        QTimer::singleShot(0, this, [=]{ emit tabUndockRequest(index);});
+        if ( m_dragIndex != index ) {
+            CTabUndockEvent event(widget(index));
+            QObject * obj = qobject_cast<QObject *>(
+                                static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
+                    m_dragIndex = index;
+            }
+        }
     });
 #endif
 }
@@ -341,16 +354,38 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     return tab_index;
 }
 
-int CAscTabWidget::pickupTab(QWidget * panel)
+int CAscTabWidget::insertPanel(QWidget * panel, int index)
 {
-    CAscTabData * tabdata = ((CTabPanel *)panel)->data();
+    int tabindex = -1;
 
-    int tabindex = insertTab(count(), panel, tabdata->title());
-    tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+    CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+    if ( _panel ) {
+        CAscTabData * tabdata = _panel->data();
 
-    resizeEvent(nullptr);
+        tabindex = insertTab(index, panel, tabdata->title());
+        tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+
+        resizeEvent(nullptr);
+    }
 
     return tabindex;
+}
+
+QWidget * CAscTabWidget::releaseEditor(int index)
+{
+    if ( index < 0 || index >= count() )
+        index = currentIndex();
+
+    if ( index < 0 )
+        return nullptr;
+    else {
+        QApplication::sendEvent( tabBar(),
+            &QMouseEvent(QEvent::MouseButtonRelease,
+                tabBar()->tabRect(index).topLeft() + (QPoint(5, 5)),
+                Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
+
+        return widget(index);
+    }
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)

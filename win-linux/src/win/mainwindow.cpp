@@ -133,11 +133,9 @@ CMainWindow::CMainWindow(QRect& rect) :
     setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
     CMainPanel * mainpanel = m_pMainPanel;
-    QObject::connect(mainpanel, &CMainPanel::undockTab, bind(&CMainWindow::slot_undockWindow, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
-    QObject::connect(mainpanel, &CMainPanel::abandoned, bind(&CMainWindow::slot_finalTabClosed, this));
 
     m_pWinPanel->show();
 
@@ -368,6 +366,7 @@ qDebug() << "WM_CLOSE";
         break;
 
     case WM_MOVING: {
+#if defined(APP_MULTI_WINDOW)
         if ( window->moveByTab() ) {
             POINT pt{0};
 
@@ -377,6 +376,7 @@ qDebug() << "WM_CLOSE";
         }
 
         break;
+#endif
     }
 
     case WM_EXITSIZEMOVE: {
@@ -689,11 +689,37 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
-int CMainWindow::joinTab(QWidget * panel)
+int CMainWindow::attachEditor(QWidget * panel, int index)
 {
-    m_pMainPanel->adoptEditor(panel);
+    int _index = m_pMainPanel->tabWidget()->insertPanel(panel, index);
+    if ( !(_index < 0) ) {
+        m_pMainPanel->toggleButtonMain(false);
+
+        QTabBar * tabs = m_pMainPanel->tabWidget()->tabBar();
+        tabs->setCurrentIndex(_index);
+
+        if ( false ) {
+            QApplication::sendEvent( tabs,
+                &QMouseEvent(QEvent::MouseButtonPress,
+                    tabs->tabRect(_index).topLeft() + (QPoint(10, 65)*m_dpiRatio),
+                    Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
+        }
+    }
 
     return 0;
+}
+
+int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
+{
+    QPoint _pt_local = m_pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+    int _index = m_pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
+
+    if ( !(_index < 0) ) {
+        QRect _rc_tab = m_pMainPanel->tabWidget()->tabBar()->tabRect(_index);
+        if ( _pt_local.x() > _rc_tab.left() + (_rc_tab.width() / 2) ) ++_index;
+    }
+
+    return attachEditor(panel, _index);
 }
 
 bool CMainWindow::moveByTab()
@@ -702,9 +728,22 @@ bool CMainWindow::moveByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
+QWidget * CMainWindow::editorPanel(int index)
+{
+    return m_pMainPanel->tabWidget()->releaseEditor(index);
+}
+
 bool CMainWindow::holdView(int id)
 {
     return m_pMainPanel->holdUid(id);
+}
+
+bool CMainWindow::pointInTabs(const QPoint& pt)
+{
+    QRect _rc_title(m_pMainPanel->geometry());
+    _rc_title.setHeight(TITLE_HEIGHT * m_dpiRatio);
+
+    return _rc_title.contains(m_pMainPanel->mapFromGlobal(pt));
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
@@ -724,52 +763,6 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 void CMainWindow::slot_windowClose()
 {
     AscAppManager::closeMainWindow( size_t(this) );
-}
-
-void CMainWindow::slot_finalTabClosed()
-{
-    qDebug() << "final tab close";
-    if ( AscAppManager::countMainWindow() > 1 ) {
-        AscAppManager::closeMainWindow( size_t(this) );
-    }
-}
-
-void CMainWindow::slot_undockWindow(QWidget * editorpanel)
-{
-    QRect _win_rect;
-    QPoint _top_left;
-    bool _is_maximized = false;
-
-    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-    if (GetWindowPlacement(hWnd, &wp)) {
-        _is_maximized = wp.showCmd == SW_MAXIMIZE;
-
-        _top_left = QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top);
-        _win_rect = QRect( _top_left, QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
-        _win_rect.adjust(30,30,-1+30,-1+30);
-    }
-
-    CMainWindow * window = AscAppManager::createMainWindow(_win_rect);
-
-    window->show(_is_maximized);
-    window->toggleBorderless(_is_maximized);
-    window->joinTab(editorpanel);
-
-    if ( !_is_maximized ) {
-        QTimer::singleShot(0, [=]{
-            QPoint cursor = QCursor::pos() + QPoint(-120, -12);
-            QPoint pos;
-
-            SetWindowPos(HWND(window->hWnd), NULL, cursor.x(), cursor.y(), 0, 0, SWP_FRAMECHANGED | SWP_NOSIZE);
-
-            QObject * _receiver = window->m_pWinPanel;
-            QMouseEvent * event = new QMouseEvent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton,  Qt::NoModifier);
-            QApplication::postEvent(_receiver, event);
-        });
-    } else {
-        wp.rcNormalPosition = {_win_rect.x(), _win_rect.y(), _win_rect.right(), _win_rect.bottom()};
-        SetWindowPlacement(window->hWnd, &wp);
-    }
 }
 
 void CMainWindow::slot_mainPageReady()
@@ -841,4 +834,30 @@ void CMainWindow::doClose()
 CMainPanel * CMainWindow::mainPanel() const
 {
     return m_pMainPanel;
+}
+
+QRect CMainWindow::windowRect() const
+{
+    QRect _win_rect;
+    QPoint _top_left;
+
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if ( GetWindowPlacement(hWnd, &wp) ) {
+        _top_left = QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top);
+        _win_rect = QRect( _top_left, QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+    }
+
+    return _win_rect;
+}
+
+bool CMainWindow::isMaximized() const
+{
+    bool _is_maximized = false;
+
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if ( GetWindowPlacement(hWnd, &wp) ) {
+        _is_maximized = wp.showCmd == SW_MAXIMIZE;
+    }
+
+    return _is_maximized;
 }

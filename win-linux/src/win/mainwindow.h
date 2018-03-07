@@ -73,20 +73,23 @@ public:
     void adjustGeometry();
 
     bool holdView(int id);
-    int joinTab(QWidget *);
+    int attachEditor(QWidget *, int index = -1);
+    int attachEditor(QWidget *, const QPoint&);
+    QWidget * editorPanel(int);
+    bool pointInTabs(const QPoint&);
     bool moveByTab();
 
     CMainPanel * mainPanel() const;
+    QRect windowRect() const;
+    bool isMaximized() const;
 
 private:
     void setScreenScalingFactor(uchar);
     void doClose();
 
-    void slot_undockWindow(QWidget *);
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
-    void slot_finalTabClosed();
 
 #ifdef _UPDMODULE
     static void updateFound();
