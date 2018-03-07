@@ -125,7 +125,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &CMainPanel::onAppCloseRequest);
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, -1));
-    connect(m_pTabs, &CAscTabWidget::tabUndockRequest, this, &CMainPanel::onTabUndockRequest);
 
     QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
@@ -428,16 +427,21 @@ void CMainPanel::onTabClicked(int index)
     }
 }
 
-void CMainPanel::onTabClosed(int index, int curcount)
+void CMainPanel::onTabsCountChanged(int count, int i, int d)
 {
-    Q_UNUSED(index)
+    Q_UNUSED(i)
+    Q_UNUSED(d)
 
-    if (curcount == 0) {
+    if ( count == 0 ) {
         toggleButtonMain(true);
     }
 
-    onTabChanged(m_pTabs->currentIndex());
-    RecalculatePlaces();
+    if ( d < 0 ) {
+        RecalculatePlaces();
+    } else
+    QTimer::singleShot(200, [=]{
+        RecalculatePlaces();
+    });
 }
 
 void CMainPanel::onEditorAllowedClose(int uid)
@@ -491,16 +495,7 @@ void CMainPanel::onTabCloseRequest(int index)
 {
     if (trySaveDocument(index) == MODAL_RESULT_NO) {
         m_pTabs->closeEditorByIndex(index, false);
-
-//        if ( !m_pTabs->count() ) {
-//            emit abandoned();
-//        }
     }
-}
-
-void CMainPanel::onTabUndockRequest(int index)
-{
-    emit undockTab( releaseEditor(index) );
 }
 
 int CMainPanel::trySaveDocument(int index)
@@ -1374,36 +1369,3 @@ bool CMainPanel::holdUrl(const QString& url, AscEditorType type) const
 }
 
 CAscTabWidget * CMainPanel::tabWidget(){return m_pTabs;}
-
-bool CMainPanel::isPointInTabs(const QPoint& p) const
-{
-    QRect _rect_title = m_pTabs->geometry();
-    _rect_title.setHeight(TITLE_HEIGHT * scaling());
-
-    return _rect_title.contains(p);
-}
-
-QWidget * CMainPanel::releaseEditor(int index)
-{
-    if ( index < 0 )
-        index = m_pTabs->currentIndex();
-
-    m_dockTab == index && (m_dockTab = -1);
-
-    QWidget * panel = m_pTabs->widget(index);
-    m_pTabs->removeTab(index);
-
-    RecalculatePlaces();
-    return panel;
-}
-
-void CMainPanel::adoptEditor(QWidget * widget)
-{
-    int _index = m_pTabs->pickupTab(widget);
-    if ( !(_index < 0) ) {
-        toggleButtonMain(false);
-        m_pTabs->setCurrentIndex(_index);
-
-        RecalculatePlaces();
-    }
-}

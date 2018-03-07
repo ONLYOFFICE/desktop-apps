@@ -68,9 +68,6 @@ public:
     bool holdUrl(const QString&, AscEditorType) const;
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
-    bool isPointInTabs(const QPoint&) const;
-    void adoptEditor(QWidget *);
-    QWidget * releaseEditor(int index = -1);
 
     virtual void updateScaling(int);
 
@@ -103,9 +100,6 @@ signals:
     void mainPageReady();
     void checkUpdates();
 
-    void undockTab(QWidget *);
-    void abandoned();
-
 public slots:
     void pushButtonMinimizeClicked();
     void pushButtonMaximizeClicked();
@@ -115,8 +109,8 @@ public slots:
     void onTabClicked(int);
     void onTabChanged(int);
     void onTabCloseRequest(int);
-    void onTabUndockRequest(int);
     void onAppCloseRequest();
+    void onTabsCountChanged(int, int, int);
 
     void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);
