@@ -120,7 +120,7 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
 
-    m_pWinPanel = new CWinPanel(hWnd);
+    m_pWinPanel = new CWinPanel(this);
 
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
