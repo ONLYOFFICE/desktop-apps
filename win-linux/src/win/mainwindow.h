@@ -74,6 +74,7 @@ public:
 
     bool holdView(int id);
     int joinTab(QWidget *);
+    bool moveByTab();
 
     CMainPanel * mainPanel() const;
 

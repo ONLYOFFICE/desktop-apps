@@ -673,8 +673,15 @@ bool CTabBar::event(QEvent * e){
         }
     }
 
-    //qDebug() << "event: " << e;
 #endif
 
+//    qDebug() << "event: " << e;
     return QTabBar::event(e);
+}
+
+int CTabBar::draggedTabIndex()
+{
+    Q_D(QTabBar);
+
+    return d->pressedIndex;
 }

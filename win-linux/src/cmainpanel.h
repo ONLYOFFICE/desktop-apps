@@ -67,7 +67,7 @@ public:
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
     void toggleButtonMain(bool, bool delay = false);
-    bool isTabDragged() const;
+    CAscTabWidget * tabWidget();
     bool isPointInTabs(const QPoint&) const;
     void adoptEditor(QWidget *);
     QWidget * releaseEditor(int index = -1);
@@ -88,8 +88,6 @@ private:
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
     void loadStartPage();
@@ -185,7 +183,6 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
-    int m_dockTab = -1;
 
 public:
     WId GetHwndForKeyboard()
