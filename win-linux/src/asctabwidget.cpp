@@ -252,8 +252,6 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
 //            RELEASEOBJECT(view)
 
 //            adjustTabsSize();
-
-//            if (r) emit tabClosed(i, tabBar()->count());
         }
 
 //        if (r) {
@@ -374,6 +372,18 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
             }
         }
     }
+}
+
+void CAscTabWidget::tabInserted(int index)
+{
+    adjustTabsSize();
+    emit editorInserted(index, count());
+}
+
+void CAscTabWidget::tabRemoved(int index)
+{
+    adjustTabsSize();
+    emit editorRemoved(index, count());
 }
 
 void CAscTabWidget::adjustTabsSize()
@@ -603,33 +613,26 @@ int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
 
 int CAscTabWidget::openPortal(const QString& url)
 {
-    int out_val = 1;
-
     QString portal_name = Utils::getPortalName(url);
 
     int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url, ""), out_val = 2;
+        tabIndex = addPortal(url, "");
     }
 
-    setCurrentIndex(tabIndex);
-    return out_val;
+    return tabIndex;
 }
 
 int CAscTabWidget::newPortal(const QString& url, const QString& name)
 {
-    int out_val = 1;
-
     int tabIndex = tabIndexByEditorType(etNewPortal);
     if ( tabIndex < 0 ) {
         if ( !((tabIndex = addPortal(url, name)) < 0) ) {
             ((CTabPanel *)widget(tabIndex))->data()->setContentType(etNewPortal);
-            out_val = 2;
         }
     }
 
-    setCurrentIndex(tabIndex);
-    return out_val;
+    return tabIndex;
 }
 
 void CAscTabWidget::closePortal(const QString& url, bool editors)

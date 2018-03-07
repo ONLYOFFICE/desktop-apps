@@ -58,6 +58,7 @@
 #include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "functional"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -72,6 +73,7 @@
 #endif
 
 using namespace NSEditorApi;
+using namespace std::placeholders;
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 #ifdef _WIN32
@@ -119,9 +121,10 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->activate(false);
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
-    connect(m_pTabs, SIGNAL(tabClosed(int, int)), this, SLOT(onTabClosed(int, int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::closeAppRequest, this, &CMainPanel::onAppCloseRequest);
+    connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, 1));
+    connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, -1));
     connect(m_pTabs, &CAscTabWidget::tabUndockRequest, this, &CMainPanel::onTabUndockRequest);
 
     QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
@@ -375,22 +378,30 @@ void CMainPanel::pushButtonMainClicked()
     }
 }
 
-void CMainPanel::toggleButtonMain(bool toggle)
+void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 {
-    if (m_pTabs->isActive() == toggle) {
-        if (toggle) {
-            m_pTabs->activate(false);
-            m_pMainWidget->setHidden(false);
+    auto _toggle = [=] (bool state) {
+        if (m_pTabs->isActive() == state) {
+            if ( state ) {
+                m_pTabs->activate(false);
+                m_pMainWidget->setHidden(false);
 
-            ((QCefView *)m_pMainWidget)->GetCefView()->focus();
-        } else {
-            m_pTabs->activate(true);
-            m_pMainWidget->setHidden(true);
+                ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+            } else {
+                m_pTabs->activate(true);
+                m_pMainWidget->setHidden(true);
 
-            m_pTabs->setFocusedView();
+                m_pTabs->setFocusedView();
+            }
+
+            onTabChanged(m_pTabs->currentIndex());
         }
+    };
 
-        onTabChanged(m_pTabs->currentIndex());
+    if ( delay ) {
+        QTimer::singleShot(200, [=]{ _toggle(toggle); });
+    } else {
+        _toggle(toggle);
     }
 }
 
@@ -464,7 +475,6 @@ void CMainPanel::onEditorAllowedClose(int uid)
             }
 
             onTabChanged(m_pTabs->currentIndex());
-            RecalculatePlaces();
         }
     }
 
@@ -552,8 +562,6 @@ void CMainPanel::doLogout(const QString& portal, bool allow)
 
     if (allow) {
         m_pTabs->closePortal(portal, true);
-        RecalculatePlaces();
-
         AscAppManager::getInstance().Logout(wp);
     } else
         wcmd.append(L":cancel");
@@ -613,13 +621,8 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 
     m_pTabs->openCloudDocument(opts, select);
 
-    if (id < 0)
-        RecalculatePlaces();
-
-    if (select)
-        QTimer::singleShot(200, this, [=]{
-            toggleButtonMain(false);
-        });
+    if ( select )
+        toggleButtonMain(false, true);
 }
 
 void CMainPanel::onLocalGetFile(int eventtype, void * d)
@@ -683,12 +686,8 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
     if (!info.isFile()) { return; }
 
     int result = m_pTabs->openLocalDocument(opts, true);
-    if (!(result < 0)) {
-        RecalculatePlaces();
-
-        QTimer::singleShot(200, this, [=]{
-            toggleButtonMain(false);
-        });
+    if ( !(result < 0) ) {
+        toggleButtonMain(false, true);
     } else
     if (result == -255) {
         CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
@@ -726,12 +725,8 @@ void CMainPanel::onLocalFileRecent(void * d)
 
 //    openLocalFile(opts);
     int result = m_pTabs->openLocalDocument(opts, true);
-    if (!(result < 0)) {
-        RecalculatePlaces();
-
-        QTimer::singleShot(200, this, [=]{
-            toggleButtonMain(false);
-        });
+    if ( !(result < 0) ) {
+        toggleButtonMain(false);
     } else
     if (result == -255) {
         CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
@@ -762,11 +757,7 @@ void CMainPanel::onLocalFileCreate(int fformat)
             m_pTabs->updateIcons();
             m_pTabs->setCurrentIndex(tabIndex);
 
-            RecalculatePlaces();
-
-            QTimer::singleShot(200, this, [=]{
-                toggleButtonMain(false);
-            });
+            toggleButtonMain(false, true);
         }
     }
 }
@@ -1221,12 +1212,9 @@ void CMainPanel::onKeyDown(void * eventData)
 void CMainPanel::onPortalOpen(QString url)
 {
     int res = m_pTabs->openPortal(url);
-    if (res == 2) { RecalculatePlaces(); }
-
-    if (!(res < 0)) {
-        QTimer::singleShot(200, this, [=]{
-            toggleButtonMain(false);
-        });
+    if ( !(res < 0) ) {
+        toggleButtonMain(false, true);
+        m_pTabs->setCurrentIndex(res);
     }
 }
 
@@ -1261,11 +1249,10 @@ void CMainPanel::onPortalCreate()
             _url += "&store=" + reg_system.value("Store").toString();
 
     int res = m_pTabs->newPortal(_url, tr("Sign Up"));
-    if (res == 2) { RecalculatePlaces(); }
-
-    QTimer::singleShot(200, this, [=]{
-        toggleButtonMain(false);
-    });
+    if ( !(res < 0) ) {
+        toggleButtonMain(false, true);
+        m_pTabs->setCurrentIndex(res);
+    }
 }
 
 void CMainPanel::onOutsideAuth(QString json)
@@ -1282,10 +1269,7 @@ void CMainPanel::onOutsideAuth(QString json)
         int res = m_pTabs->addOAuthPortal(_domain, objRoot["status"].toString(), _sso_service);
         if (!(res < 0)) {
             m_pTabs->setCurrentIndex(res);
-            RecalculatePlaces();
-            QTimer::singleShot(200, this, [=]{
-                toggleButtonMain(false);
-            });
+            toggleButtonMain(false, true);
         }
     }
 }
