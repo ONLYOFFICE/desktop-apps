@@ -91,6 +91,13 @@ void CAnimatedIcon::onSvgRepaint()
 
 void CAnimatedIcon::setSvgElement(const QString& id)
 {
+    if ( !m_svgStaticElem )
+        m_svgElemId = id;
+}
+
+void CAnimatedIcon::setSvgStaticElement(const QString& id)
+{
+    m_svgStaticElem = !id.isEmpty();
     m_svgElemId = id;
 }
 
