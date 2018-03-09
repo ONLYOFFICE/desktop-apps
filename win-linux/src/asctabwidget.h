@@ -126,13 +126,14 @@ private:
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
+    int m_dragIndex = -1;
 
 
 signals:
 //    void sendAddEditor();
-    void tabClosed(int, int);
     void closeAppRequest();
-    void tabUndockRequest(int);
+    void editorInserted(int, int);
+    void editorRemoved(int, int);
 
 public:
     CAscTabWidget(QWidget *parent = 0);
@@ -141,15 +142,18 @@ public:
     int  addEditor(COpenOptions&);
     int  addPortal(QString url, QString name);
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
-    int  pickupTab(QWidget * panel);
+    int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
     void setStyleSheet(const QString&);
+    QWidget * releaseEditor(int);
 
     void updateScaling(int);
 protected:
     void resizeEvent(QResizeEvent* e);
+    void tabInserted(int index);
+    void tabRemoved(int index);
     void closeEditor(int, bool, bool);
 
 public:

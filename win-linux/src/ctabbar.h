@@ -55,6 +55,7 @@ public:
     void activate(bool);
 
     void updateScaling(int);
+    int draggedTabIndex();
 
 protected:
     bool event(QEvent * e);

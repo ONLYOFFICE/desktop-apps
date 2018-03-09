@@ -66,10 +66,8 @@ public:
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
-    bool isTabDragged() const;
-    bool isPointInTabs(const QPoint&) const;
-    void adoptEditor(QWidget *);
-    QWidget * releaseEditor(int index = -1);
+    void toggleButtonMain(bool, bool delay = false);
+    CAscTabWidget * tabWidget();
 
     virtual void updateScaling(int);
 
@@ -87,14 +85,12 @@ private:
 //    void mousePressEvent( QMouseEvent *event );
 
     void resizeEvent(QResizeEvent* event);
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void toggleButtonMain(bool);
     void loadStartPage();
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
+    void RecalculatePlaces();
 
     wstring readSystemUserName();
 signals:
@@ -104,9 +100,6 @@ signals:
     void mainPageReady();
     void checkUpdates();
 
-    void undockTab(QWidget *);
-    void abandoned();
-
 public slots:
     void pushButtonMinimizeClicked();
     void pushButtonMaximizeClicked();
@@ -115,10 +108,9 @@ public slots:
 
     void onTabClicked(int);
     void onTabChanged(int);
-    void onTabClosed(int, int);
     void onTabCloseRequest(int);
-    void onTabUndockRequest(int);
     void onAppCloseRequest();
+    void onTabsCountChanged(int, int, int);
 
     void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);
@@ -185,17 +177,12 @@ private:
 
     QString m_savePortal;
     int m_saveAction;
-    int m_dockTab = -1;
 
 public:
     WId GetHwndForKeyboard()
     {
         return ((QWidget*)m_pTabs->parent())->winId();
     }
-
-
-private:
-    void RecalculatePlaces();
 
 };
 

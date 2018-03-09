@@ -37,21 +37,27 @@
 #include <QResizeEvent>
 #include "qwinwidget.h"
 
+#include <QDebug>
 
+class CMainWindow;
 class CWinPanel : public QWinWidget
 {
     Q_OBJECT
 
 public:
     CWinPanel( HWND hWnd );
+    explicit CWinPanel( CMainWindow * );
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
     void resizeEvent(QResizeEvent* event);
 
+    CMainWindow * parent();
+
 private:
     HWND windowHandle;
     QWidget * m_pPanel;
+    CMainWindow * m_parent = nullptr;
 };
 
 #endif // QMAINPANEL_H

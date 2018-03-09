@@ -52,6 +52,7 @@
 #include "canimatedicon.h"
 
 #include "cascapplicationmanagerwrapper.h"
+#include "ctabundockevent.h"
 
 #include "private/qtabbar_p.h"
 
@@ -167,10 +168,22 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
-    QObject::connect(this, &QTabWidget::currentChanged, [=](){updateIcons(); setFocusedView();});
+    QObject::connect(this, &QTabWidget::currentChanged, [=](){
+        updateIcons();
+        setFocusedView();
+
+        m_dragIndex = -1;
+    });
 #if defined(APP_MULTI_WINDOW)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
-        QTimer::singleShot(0, this, [=]{ emit tabUndockRequest(index);});
+        if ( m_dragIndex != index ) {
+            CTabUndockEvent event(widget(index));
+            QObject * obj = qobject_cast<QObject *>(
+                                static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
+                    m_dragIndex = index;
+            }
+        }
     });
 #endif
 }
@@ -253,8 +266,6 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
 //            RELEASEOBJECT(view)
 
 //            adjustTabsSize();
-
-//            if (r) emit tabClosed(i, tabBar()->count());
         }
 
 //        if (r) {
@@ -362,16 +373,38 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     return tab_index;
 }
 
-int CAscTabWidget::pickupTab(QWidget * panel)
+int CAscTabWidget::insertPanel(QWidget * panel, int index)
 {
-    CAscTabData * tabdata = ((CTabPanel *)panel)->data();
+    int tabindex = -1;
 
-    int tabindex = insertTab(count(), panel, tabdata->title());
-    tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+    CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+    if ( _panel ) {
+        CAscTabData * tabdata = _panel->data();
 
-    resizeEvent(nullptr);
+        tabindex = insertTab(index, panel, tabdata->title());
+        tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+
+        resizeEvent(nullptr);
+    }
 
     return tabindex;
+}
+
+QWidget * CAscTabWidget::releaseEditor(int index)
+{
+    if ( index < 0 || index >= count() )
+        index = currentIndex();
+
+    if ( index < 0 )
+        return nullptr;
+    else {
+        QApplication::sendEvent( tabBar(),
+            &QMouseEvent(QEvent::MouseButtonRelease,
+                tabBar()->tabRect(index).topLeft() + (QPoint(5, 5)),
+                Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
+
+        return widget(index);
+    }
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)
@@ -393,6 +426,18 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
             }
         }
     }
+}
+
+void CAscTabWidget::tabInserted(int index)
+{
+    adjustTabsSize();
+    emit editorInserted(index, count());
+}
+
+void CAscTabWidget::tabRemoved(int index)
+{
+    adjustTabsSize();
+    emit editorRemoved(index, count());
 }
 
 void CAscTabWidget::adjustTabsSize()
@@ -622,33 +667,26 @@ int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
 
 int CAscTabWidget::openPortal(const QString& url)
 {
-    int out_val = 1;
-
     QString portal_name = Utils::getPortalName(url);
 
     int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url, ""), out_val = 2;
+        tabIndex = addPortal(url, "");
     }
 
-    setCurrentIndex(tabIndex);
-    return out_val;
+    return tabIndex;
 }
 
 int CAscTabWidget::newPortal(const QString& url, const QString& name)
 {
-    int out_val = 1;
-
     int tabIndex = tabIndexByEditorType(etNewPortal);
     if ( tabIndex < 0 ) {
         if ( !((tabIndex = addPortal(url, name)) < 0) ) {
             ((CTabPanel *)widget(tabIndex))->data()->setContentType(etNewPortal);
-            out_val = 2;
         }
     }
 
-    setCurrentIndex(tabIndex);
-    return out_val;
+    return tabIndex;
 }
 
 void CAscTabWidget::closePortal(const QString& url, bool editors)

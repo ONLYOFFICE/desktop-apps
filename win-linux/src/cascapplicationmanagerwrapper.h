@@ -108,6 +108,7 @@ public:
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(uint);
 
+    bool event(QEvent *event);
 private:
     class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
