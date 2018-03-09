@@ -460,7 +460,7 @@ void CTabBar::paintEvent(QPaintEvent * event)
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
 {
     QRect tabRect(tab.rect);
-    tabRect.adjust(-1, 0, 0, 0);
+    tabRect.adjust(-1, 0, -1, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
 //    QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
@@ -607,8 +607,14 @@ void CTabBar::activate(bool a)
 
         QWidget * b = TAB_BTNCLOSE(m_current);
         if ( b ) {
-            a ? b->show() : b->hide();
-            b->setProperty("state", a ? "active":"normal");
+            if ( a ){
+                b->show();
+                b->setProperty("state", "active");
+            } else {
+                b->hide();
+                b->setProperty("state", "normal");
+                m_overIndex = -1;
+            }
             b->style()->polish(b);
         }
 
