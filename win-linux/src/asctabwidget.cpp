@@ -49,6 +49,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
+#include "canimatedicon.h"
 
 #include "cascapplicationmanagerwrapper.h"
 
@@ -304,6 +305,15 @@ int CAscTabWidget::addPortal(QString url, QString name)
     tab_index = insertTab(tab_index, pView, portal);
     tabBar()->setTabToolTip(tab_index, url);
 
+#ifdef __APP_NEW_APPEARANCE
+    QToolButton * b = (QToolButton *)tabBar()->tabButton(tab_index, QTabBar::RightSide);
+    if ( b ) b->setProperty("static-state", "normal");
+
+    CAnimatedIcon * i = (CAnimatedIcon *)tabBar()->tabButton(tab_index, QTabBar::LeftSide);
+    if ( i ) i->setSvgStaticElement("dark");
+    ((CTabBar *)tabBar())->setTabLoading(tab_index, true);
+#endif
+
 //    updateTabIcon(tabIndexByView(id));
 
     resizeEvent(NULL);
@@ -338,6 +348,15 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     tab_index = insertTab(tab_index, pView, _portal);
     tabBar()->setTabToolTip(tab_index, portal);
+
+#ifdef __APP_NEW_APPEARANCE
+    QToolButton * b = (QToolButton *)tabBar()->tabButton(tab_index, QTabBar::RightSide);
+    if ( b ) b->setProperty("static-state", "normal");
+
+    CAnimatedIcon * i = (CAnimatedIcon *)tabBar()->tabButton(tab_index, QTabBar::LeftSide);
+    if ( i ) i->setSvgStaticElement("dark");
+    ((CTabBar *)tabBar())->setTabLoading(tab_index, true);
+#endif
 
     resizeEvent(NULL);
     return tab_index;
