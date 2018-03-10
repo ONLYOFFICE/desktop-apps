@@ -52,10 +52,17 @@ public:
 
     void setTabIcon(int index, const QIcon &icon);
     void setTabLoading(int, bool);
+    void tabStartLoading(int, const QString& theme = QString());
     void activate(bool);
 
     void updateScaling(int);
     int draggedTabIndex();
+
+    enum TabTheme {
+        Light,
+        Dark
+    };
+    void setTabTheme(int, TabTheme);
 
 protected:
     bool event(QEvent * e);
@@ -69,13 +76,11 @@ protected:
 
 private slots:
     void onCloseButton();
-    void onCurrentChanged(int);
 
 private:
     QPalette m_palette;
     bool m_usePalette = false;
-    int m_current = -1,
-        m_overIndex = -1;
+    int  m_overIndex = -1;
     bool m_active = false;
 
 signals:

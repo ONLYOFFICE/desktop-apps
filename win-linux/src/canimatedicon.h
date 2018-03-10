@@ -14,7 +14,6 @@ public:
 
     void startSvg(const QString&, const QString& id = QString());
     void setSvgElement(const QString&);
-    void setSvgStaticElement(const QString&);
     void stop();
     bool isStarted();
 
@@ -24,7 +23,6 @@ private:
     QSize m_svgSize;
     QPixmap * m_image = nullptr;
     QPixmap * m_static = nullptr;
-    bool m_svgStaticElem = false;
 
 private slots:
     void onSvgRepaint();

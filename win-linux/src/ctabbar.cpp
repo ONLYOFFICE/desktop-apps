@@ -238,10 +238,6 @@ CTabBar::CTabBar(QWidget * parent)
     , CScalingWrapper(parent)
 {
     setDrawBase(false);
-
-#ifdef __APP_NEW_APPEARANCE
-    connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
-#endif
 }
 
 CTabBar::~CTabBar()
@@ -543,16 +539,20 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
 
 void CTabBar::setTabLoading(int index, bool start)
 {
+    if ( start ) {
+//        tabStartLoading(index, index == currentIndex() && m_active ?  "light" : "dark");
+    } else {
+        CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
+        if ( icon ) icon->stop();
+    }
+}
+
+void CTabBar::tabStartLoading(int index, const QString& theme)
+{
     CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
     if ( icon ) {
-        if ( start ) {
-            if ( !icon->isStarted() ) {
-                icon->startSvg(":/common/icons/loader.svg",
-                        index == currentIndex() && m_active ?  "light" : "dark");
-            }
-        } else {
-            icon->stop();
-        }
+        if ( !icon->isStarted() )
+            icon->startSvg(":/common/icons/loader.svg", theme);
     }
 }
 
@@ -571,57 +571,36 @@ void CTabBar::onCloseButton()
         emit tabCloseRequested(tabToClose);
 }
 
-void CTabBar::onCurrentChanged(int index)
+void CTabBar::setTabTheme(int index, TabTheme theme)
 {
-    QWidget * b = TAB_BTNCLOSE(m_current);
-    if ( b ) {
-        b->hide();
-        b->setProperty("state", "normal");
-        b->style()->polish(b);
-    }
+    CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
+    QWidget * b = TAB_BTNCLOSE(index);
+    if ( theme == TabTheme::Light ) {
+        if ( i && i->isStarted() ) {
+            i->setSvgElement("light");
+        }
 
-    CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
-    if ( i && i->isStarted() ) {
-        i->setSvgElement("dark");
-    }
+        if ( b && !(b->property("state") == "active") ) {
+            b->setProperty("state", "active");
+            b->style()->polish(b);
+        }
+    } else {
+        if ( i && i->isStarted() ) {
+            i->setSvgElement("dark");
+        }
 
-    b = TAB_BTNCLOSE(index);
-    if ( b ) {
-        b->show();
-        b->setProperty("state", "active");
-        b->style()->polish(b);
-    }
+        if ( b && !(b->property("state") == "normal") ) {
+            b->setProperty("state", "normal");
+            b->style()->polish(b);
+        }
 
-    i = (CAnimatedIcon *)TAB_ICON(index);
-    if ( i && i->isStarted() ) {
-        i->setSvgElement("light");
     }
-
-    m_current = index;
 }
 
 void CTabBar::activate(bool a)
 {
     if ( m_active != a ) {
         m_active = a;
-
-        QWidget * b = TAB_BTNCLOSE(m_current);
-        if ( b ) {
-            if ( a ){
-                b->show();
-                b->setProperty("state", "active");
-            } else {
-                b->hide();
-                b->setProperty("state", "normal");
-                m_overIndex = -1;
-            }
-            b->style()->polish(b);
-        }
-
-        CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(m_current);
-        if ( i && i->isStarted() ) {
-            i->setSvgElement(a ? "light" : "dark");
-        }
     }
 }
 
