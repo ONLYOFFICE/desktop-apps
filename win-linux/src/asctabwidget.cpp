@@ -765,12 +765,19 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 
 #ifdef __APP_NEW_APPEARANCE
     if ( !(tabIndex < 0) )
-        if ( type == -255) {
-            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
+        if ( type == DOCUMENT_CHANGED_LOADING_START) {
+//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
             return;
         } else
-        if ( type == -254) {
+        if ( type == DOCUMENT_CHANGED_LOADING_FINISH) {
             ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+            return;
+        } else
+        if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
+            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            if ( !doc->eventLoadSupported() )
+                ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+
             return;
         }
 #endif
@@ -786,6 +793,19 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     }
 
     updateTabIcon(tabIndexByView(id));
+}
+
+void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
+{
+    int tabIndex = tabIndexByView(id);
+
+#ifdef __APP_NEW_APPEARANCE
+    if ( !(tabIndex < 0) )
+        if ( option == "loading" ) {
+            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            doc->setEventLoadSupported(true);
+        }
+#endif
 }
 
 /*

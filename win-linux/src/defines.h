@@ -85,6 +85,10 @@
 
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
 
+#define DOCUMENT_CHANGED_LOADING_START          -255
+#define DOCUMENT_CHANGED_LOADING_FINISH         -254
+#define DOCUMENT_CHANGED_PAGE_LOAD_FINISH       -253
+
 #ifdef __linux
 typedef unsigned char BYTE;
 #else

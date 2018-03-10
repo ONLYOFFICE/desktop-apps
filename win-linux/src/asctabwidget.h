@@ -193,6 +193,7 @@ public:
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
     void applyDocumentSave(int, bool);
+    void setDocumentWebOption(int, const QString&);
 
     int  openPortal(const QString& url);
     int  newPortal(const QString& url, const QString& name);

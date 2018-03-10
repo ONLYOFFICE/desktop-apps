@@ -113,12 +113,15 @@ public slots:
     void onTabsCountChanged(int, int, int);
 
     void onCloudDocumentOpen(std::wstring, int, bool);
+    virtual void onDocumentReady(int);
     void onDocumentType(int id, int type);
     void onDocumentName(void *);
+    void onDocumentOptions(int id, QString);
     void onDocumentChanged(int id, bool changed);
     void onDocumentSave(int id, bool cancel);
     void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
+    void onDocumentLoadFinished(int);
 
     virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
@@ -145,7 +148,6 @@ public slots:
 
     void onEditorAllowedClose(int);
 
-    virtual void onDocumentReady(int);
     void onFileChecked(const QString&, int, bool);
     void onCheckUpdates();
 
