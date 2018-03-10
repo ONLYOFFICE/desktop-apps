@@ -147,3 +147,13 @@ bool CAscTabData::local() const
 {
     return _is_local;
 }
+
+bool CAscTabData::eventLoadSupported() const
+{
+    return _event_load_supported;
+}
+
+void CAscTabData::setEventLoadSupported(bool value)
+{
+    _event_load_supported = value;
+}

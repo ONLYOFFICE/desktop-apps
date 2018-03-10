@@ -195,6 +195,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                             Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         break; }
 
+    case ASC_MENU_EVENT_TYPE_PAGE_LOAD_END:
+        QMetaObject::invokeMethod( target, "onDocumentLoadFinished", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
+        break;
+
     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
         CAscExecCommand * pData = (CAscExecCommand *)event->m_pData;
         std::wstring cmd = pData->get_Command();
@@ -235,6 +239,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         } else
         if ( !(cmd.find(L"doc:onready") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
+        } else
+        if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
+                            Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"doc:onload") == std::wstring::npos) ) {
             // TODO: change to suitable event slot
