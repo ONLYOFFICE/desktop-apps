@@ -30,6 +30,9 @@ void CAnimatedIcon::setPixmap(const QPixmap & pixmap, bool forcestop)
         RELEASE_OBJECT(m_svg);
         RELEASE_OBJECT(m_image);
 
+        RELEASE_OBJECT(m_static);
+        m_static = new QPixmap(pixmap);
+
         QLabel::setPixmap(pixmap);
     }
 }
@@ -47,7 +50,7 @@ void CAnimatedIcon::startSvg(const QString& source, const QString& eid)
         }
 
         if ( m_svg->animated() ) {
-            m_svgElemId = eid;
+            if ( !eid.isEmpty() ) m_svgElemId = eid;
 
             if ( m_image ) delete m_image;
             m_image = new QPixmap( m_svgSize );
@@ -91,14 +94,7 @@ void CAnimatedIcon::onSvgRepaint()
 
 void CAnimatedIcon::setSvgElement(const QString& id)
 {
-    if ( !m_svgStaticElem )
         m_svgElemId = id;
-}
-
-void CAnimatedIcon::setSvgStaticElement(const QString& id)
-{
-    m_svgStaticElem = !id.isEmpty();
-    m_svgElemId = id;
 }
 
 bool CAnimatedIcon::isStarted()

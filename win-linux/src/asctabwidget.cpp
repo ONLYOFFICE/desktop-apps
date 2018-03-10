@@ -243,6 +243,9 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         tab_index = addTab(pView, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
 
+        ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+        ((CTabBar *)tabBar())->tabStartLoading(tab_index);
+
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
         resizeEvent(NULL);
@@ -317,12 +320,8 @@ int CAscTabWidget::addPortal(QString url, QString name)
     tabBar()->setTabToolTip(tab_index, url);
 
 #ifdef __APP_NEW_APPEARANCE
-    QToolButton * b = (QToolButton *)tabBar()->tabButton(tab_index, QTabBar::RightSide);
-    if ( b ) b->setProperty("static-state", "normal");
-
-    CAnimatedIcon * i = (CAnimatedIcon *)tabBar()->tabButton(tab_index, QTabBar::LeftSide);
-    if ( i ) i->setSvgStaticElement("dark");
-    ((CTabBar *)tabBar())->setTabLoading(tab_index, true);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
 //    updateTabIcon(tabIndexByView(id));
@@ -361,12 +360,8 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     tabBar()->setTabToolTip(tab_index, portal);
 
 #ifdef __APP_NEW_APPEARANCE
-    QToolButton * b = (QToolButton *)tabBar()->tabButton(tab_index, QTabBar::RightSide);
-    if ( b ) b->setProperty("static-state", "normal");
-
-    CAnimatedIcon * i = (CAnimatedIcon *)tabBar()->tabButton(tab_index, QTabBar::LeftSide);
-    if ( i ) i->setSvgStaticElement("dark");
-    ((CTabBar *)tabBar())->setTabLoading(tab_index, true);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
     resizeEvent(NULL);
@@ -505,12 +500,14 @@ void CAscTabWidget::updateTabIcon(int index)
             int tab_type = etUndefined;
 #ifdef __USE_COLORED_TAB
             QString _color = "none";
+            CTabBar::TabTheme _theme = is_active ? CTabBar::Light : CTabBar::Dark;
 #endif
 
             if (pEditor->GetType() == cvwtSimple) {
                 tab_type = etPortal;
 #ifdef __USE_COLORED_TAB
                 _color = "#fff";
+                _theme = CTabBar::Dark;
 #endif
             } else {
                 tab_type = pEditor->GetEditorType();
@@ -519,7 +516,11 @@ void CAscTabWidget::updateTabIcon(int index)
                 case etPresentation: _color = TAB_COLOR_PRESENTATION; break;
                 case etSpreadsheet: _color = TAB_COLOR_SPREADSHEET; break;
                 case etDocument: _color = TAB_COLOR_DOCUMENT; break;
-                default: tab_type = etUndefined; _color = "#fff"; break;
+                default:
+                    tab_type = etUndefined;
+                    _theme = CTabBar::Dark;
+                    _color = "#fff";
+                    break;
 #else
                 case etPresentation:
                 case etSpreadsheet:
@@ -530,7 +531,9 @@ void CAscTabWidget::updateTabIcon(int index)
             }
 
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
+            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
             ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
+
 
 #ifdef __USE_COLORED_TAB
             if ( !isActive() )
