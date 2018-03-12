@@ -617,13 +617,18 @@ int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
 
 int CAscTabWidget::tabIndexByUrl(QString url)
 {
-    CAscTabData * doc;
-    wstring _ws_url(url.toStdWString());
-    for (int i(count()); !(--i < 0);) {
-        doc = ((CTabPanel *)widget(i))->data();
+    CCefView * view = AscAppManager::getInstance().GetViewByUrl( url.toStdWString() );
+    if ( view ) {
+        return tabIndexByView(view->GetId());
+    } else {
+        CAscTabData * doc;
+        wstring _ws_url(url.toStdWString());
+        for (int i(count()); !(--i < 0);) {
+            doc = ((CTabPanel *)widget(i))->data();
 
-        if (doc && doc->url() == _ws_url)
-            return i;
+            if (doc && doc->url() == _ws_url)
+                return i;
+        }
     }
 
     return -1;
