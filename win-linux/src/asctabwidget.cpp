@@ -531,8 +531,10 @@ void CAscTabWidget::updateTabIcon(int index)
             }
 
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
-            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
             ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
+#ifdef __USE_COLORED_TAB
+            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
+#endif
 
 
 #ifdef __USE_COLORED_TAB
