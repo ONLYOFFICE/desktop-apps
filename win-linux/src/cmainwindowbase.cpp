@@ -1,4 +1,6 @@
 #include "cmainwindowbase.h"
+#include "cwindowbase.h"
+#include "ctabbar.h"
 
 CMainWindowBase::CMainWindowBase()
 {
@@ -38,4 +40,28 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     }
 
     return attachEditor(panel, _index);
+}
+
+bool CMainWindowBase::pointInTabs(const QPoint& pt)
+{
+    QRect _rc_title(mainPanel()->geometry());
+    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+
+    return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
+}
+
+bool CMainWindowBase::movedByTab()
+{
+    return mainPanel()->tabWidget()->count() == 1 &&
+            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
+}
+
+QWidget * CMainWindowBase::editorPanel(int index)
+{
+    return mainPanel()->tabWidget()->releaseEditor(index);
+}
+
+bool CMainWindowBase::holdView(int id) const
+{
+    return mainPanel()->holdUid(id);
 }
