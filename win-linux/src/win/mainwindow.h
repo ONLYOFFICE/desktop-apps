@@ -39,10 +39,11 @@
 #include "cmainpanelimpl.h"
 #include "qwinwidget.h"
 #include "cwindowbase.h"
+#include "cmainwindowbase.h"
 
 #include <QtWidgets/QApplication>
 
-class CMainWindow
+class CMainWindow : public CMainWindowBase
 {
 
 public:
@@ -73,8 +74,6 @@ public:
     void adjustGeometry();
 
     bool holdView(int id);
-    int attachEditor(QWidget *, int index = -1);
-    int attachEditor(QWidget *, const QPoint&);
     QWidget * editorPanel(int);
     bool pointInTabs(const QPoint&);
     bool moveByTab();

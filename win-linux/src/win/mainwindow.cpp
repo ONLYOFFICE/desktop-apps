@@ -689,39 +689,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
-int CMainWindow::attachEditor(QWidget * panel, int index)
-{
-    int _index = m_pMainPanel->tabWidget()->insertPanel(panel, index);
-    if ( !(_index < 0) ) {
-        m_pMainPanel->toggleButtonMain(false);
-
-        QTabBar * tabs = m_pMainPanel->tabWidget()->tabBar();
-        tabs->setCurrentIndex(_index);
-
-        if ( false ) {
-            QApplication::sendEvent( tabs,
-                &QMouseEvent(QEvent::MouseButtonPress,
-                    tabs->tabRect(_index).topLeft() + (QPoint(10, 65)*m_dpiRatio),
-                    Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
-        }
-    }
-
-    return 0;
-}
-
-int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
-{
-    QPoint _pt_local = m_pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
-    int _index = m_pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
-
-    if ( !(_index < 0) ) {
-        QRect _rc_tab = m_pMainPanel->tabWidget()->tabBar()->tabRect(_index);
-        if ( _pt_local.x() > _rc_tab.left() + (_rc_tab.width() / 2) ) ++_index;
-    }
-
-    return attachEditor(panel, _index);
-}
-
 bool CMainWindow::moveByTab()
 {
     return mainPanel()->tabWidget()->count() == 1 &&

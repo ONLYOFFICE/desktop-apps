@@ -300,3 +300,13 @@ bool CMainWindow::holdView(uint id) const
 {
     return m_pMainPanel->holdUid(id);
 }
+
+QRect CMainWindow::windowRect() const
+{
+    return geometry();
+}
+
+bool CMainWindow::isMaximized() const
+{
+    return windowState() == Qt::WindowMaximized;
+}
