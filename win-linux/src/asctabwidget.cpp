@@ -243,8 +243,10 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         tab_index = addTab(pView, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
 
+#ifdef __APP_NEW_APPEARANCE
         ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
         ((CTabBar *)tabBar())->tabStartLoading(tab_index);
+#endif
 
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
@@ -393,10 +395,10 @@ QWidget * CAscTabWidget::releaseEditor(int index)
     if ( index < 0 )
         return nullptr;
     else {
-        QApplication::sendEvent( tabBar(),
-            &QMouseEvent(QEvent::MouseButtonRelease,
-                tabBar()->tabRect(index).topLeft() + (QPoint(5, 5)),
-                Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
+        QMouseEvent _event(QEvent::MouseButtonRelease,
+            tabBar()->tabRect(index).topLeft() + (QPoint(5, 5)),
+            Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+        QApplication::sendEvent( tabBar(), &_event);
 
         return widget(index);
     }
