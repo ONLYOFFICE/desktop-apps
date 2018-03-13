@@ -38,9 +38,10 @@
 #include <QMainWindow>
 #include "applicationmanager.h"
 #include "cmainpanelimpl.h"
+#include "cmainwindowbase.h"
 
 
-class CMainWindow : public QMainWindow, public CX11Decoration
+class CMainWindow : public QMainWindow, public CX11Decoration, public CMainWindowBase
 {
     Q_OBJECT
 
@@ -52,6 +53,8 @@ public:
     void parseInputArgs(const QStringList&);
     CMainPanel * mainPanel() const;
     bool holdView(uint) const;
+    QRect windowRect() const;
+    bool isMaximized() const;
 
 protected:
     void closeEvent(QCloseEvent *);
