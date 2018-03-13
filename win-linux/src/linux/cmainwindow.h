@@ -38,6 +38,7 @@
 #include <QMainWindow>
 #include "applicationmanager.h"
 #include "cmainpanelimpl.h"
+#include "cwindowbase.h"
 #include "cmainwindowbase.h"
 
 

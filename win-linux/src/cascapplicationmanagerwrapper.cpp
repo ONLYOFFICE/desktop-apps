@@ -583,11 +583,15 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                     CMainWindow * window = createMainWindow(_win_rect);
 
                     bool _is_maximized = _main_window->isMaximized();
-                    window->show(_is_maximized);
-                    window->attachEditor( _panel );
 #ifdef Q_OS_WIN
+                    window->show(_is_maximized);
                     window->toggleBorderless(_is_maximized);
+#else
+                    window->show();
+                    if ( _is_maximized )
+                        window->slot_windowChangeState(Qt::WindowMaximized);
 #endif
+                    window->attachEditor( _panel );
                 }
             });
         }
