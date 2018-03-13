@@ -52,7 +52,6 @@ public:
 
     void parseInputArgs(const QStringList&);
     CMainPanel * mainPanel() const;
-    bool holdView(uint) const;
     QRect windowRect() const;
     bool isMaximized() const;
 

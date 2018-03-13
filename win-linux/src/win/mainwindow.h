@@ -73,11 +73,6 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
 
-    bool holdView(int id);
-    QWidget * editorPanel(int);
-    bool pointInTabs(const QPoint&);
-    bool moveByTab();
-
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;

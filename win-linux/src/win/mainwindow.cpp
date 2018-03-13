@@ -367,7 +367,7 @@ qDebug() << "WM_CLOSE";
 
     case WM_MOVING: {
 #if defined(APP_MULTI_WINDOW)
-        if ( window->moveByTab() ) {
+        if ( window->movedByTab() ) {
             POINT pt{0};
 
             if ( GetCursorPos(&pt) ) {
@@ -687,30 +687,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
     }
-}
-
-bool CMainWindow::moveByTab()
-{
-    return mainPanel()->tabWidget()->count() == 1 &&
-            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
-}
-
-QWidget * CMainWindow::editorPanel(int index)
-{
-    return m_pMainPanel->tabWidget()->releaseEditor(index);
-}
-
-bool CMainWindow::holdView(int id)
-{
-    return m_pMainPanel->holdUid(id);
-}
-
-bool CMainWindow::pointInTabs(const QPoint& pt)
-{
-    QRect _rc_title(m_pMainPanel->geometry());
-    _rc_title.setHeight(TITLE_HEIGHT * m_dpiRatio);
-
-    return _rc_title.contains(m_pMainPanel->mapFromGlobal(pt));
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)

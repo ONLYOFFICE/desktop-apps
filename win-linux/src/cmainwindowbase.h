@@ -14,6 +14,10 @@ public:
     virtual bool isMaximized() const = 0;
     virtual int attachEditor(QWidget *, int index = -1);
     virtual int attachEditor(QWidget *, const QPoint&);
+    virtual bool pointInTabs(const QPoint& pt);
+    virtual bool movedByTab();
+    virtual QWidget * editorPanel(int index);
+    virtual bool holdView(int id) const;
 
 protected:
 };
