@@ -584,8 +584,10 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 
                     bool _is_maximized = _main_window->isMaximized();
                     window->show(_is_maximized);
-                    window->toggleBorderless(_is_maximized);
                     window->attachEditor( _panel );
+#ifdef Q_OS_WIN
+                    window->toggleBorderless(_is_maximized);
+#endif
                 }
             });
         }
