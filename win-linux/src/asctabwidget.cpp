@@ -49,6 +49,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
+#include "canimatedicon.h"
 
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
@@ -242,6 +243,9 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         tab_index = addTab(pView, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
 
+        ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+        ((CTabBar *)tabBar())->tabStartLoading(tab_index);
+
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
         resizeEvent(NULL);
@@ -315,6 +319,11 @@ int CAscTabWidget::addPortal(QString url, QString name)
     tab_index = insertTab(tab_index, pView, portal);
     tabBar()->setTabToolTip(tab_index, url);
 
+#ifdef __APP_NEW_APPEARANCE
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->tabStartLoading(tab_index);
+#endif
+
 //    updateTabIcon(tabIndexByView(id));
 
     resizeEvent(NULL);
@@ -349,6 +358,11 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     tab_index = insertTab(tab_index, pView, _portal);
     tabBar()->setTabToolTip(tab_index, portal);
+
+#ifdef __APP_NEW_APPEARANCE
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->tabStartLoading(tab_index);
+#endif
 
     resizeEvent(NULL);
     return tab_index;
@@ -486,12 +500,14 @@ void CAscTabWidget::updateTabIcon(int index)
             int tab_type = etUndefined;
 #ifdef __USE_COLORED_TAB
             QString _color = "none";
+            CTabBar::TabTheme _theme = is_active ? CTabBar::Light : CTabBar::Dark;
 #endif
 
             if (pEditor->GetType() == cvwtSimple) {
                 tab_type = etPortal;
 #ifdef __USE_COLORED_TAB
                 _color = "#fff";
+                _theme = CTabBar::Dark;
 #endif
             } else {
                 tab_type = pEditor->GetEditorType();
@@ -500,7 +516,11 @@ void CAscTabWidget::updateTabIcon(int index)
                 case etPresentation: _color = TAB_COLOR_PRESENTATION; break;
                 case etSpreadsheet: _color = TAB_COLOR_SPREADSHEET; break;
                 case etDocument: _color = TAB_COLOR_DOCUMENT; break;
-                default: tab_type = etUndefined; _color = "#fff"; break;
+                default:
+                    tab_type = etUndefined;
+                    _theme = CTabBar::Dark;
+                    _color = "#fff";
+                    break;
 #else
                 case etPresentation:
                 case etSpreadsheet:
@@ -511,7 +531,9 @@ void CAscTabWidget::updateTabIcon(int index)
             }
 
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
+            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
             ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
+
 
 #ifdef __USE_COLORED_TAB
             if ( !isActive() )
@@ -595,13 +617,18 @@ int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
 
 int CAscTabWidget::tabIndexByUrl(QString url)
 {
-    CAscTabData * doc;
-    wstring _ws_url(url.toStdWString());
-    for (int i(count()); !(--i < 0);) {
-        doc = ((CTabPanel *)widget(i))->data();
+    CCefView * view = AscAppManager::getInstance().GetViewByUrl( url.toStdWString() );
+    if ( view ) {
+        return tabIndexByView(view->GetId());
+    } else {
+        CAscTabData * doc;
+        wstring _ws_url(url.toStdWString());
+        for (int i(count()); !(--i < 0);) {
+            doc = ((CTabPanel *)widget(i))->data();
 
-        if (doc && doc->url() == _ws_url)
-            return i;
+            if (doc && doc->url() == _ws_url)
+                return i;
+        }
     }
 
     return -1;
@@ -743,12 +770,19 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 
 #ifdef __APP_NEW_APPEARANCE
     if ( !(tabIndex < 0) )
-        if ( type == -255) {
-            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
+        if ( type == DOCUMENT_CHANGED_LOADING_START) {
+//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
             return;
         } else
-        if ( type == -254) {
+        if ( type == DOCUMENT_CHANGED_LOADING_FINISH) {
             ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+            return;
+        } else
+        if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
+            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            if ( !doc->eventLoadSupported() )
+                ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+
             return;
         }
 #endif
@@ -764,6 +798,19 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     }
 
     updateTabIcon(tabIndexByView(id));
+}
+
+void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
+{
+    int tabIndex = tabIndexByView(id);
+
+#ifdef __APP_NEW_APPEARANCE
+    if ( !(tabIndex < 0) )
+        if ( option == "loading" ) {
+            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            doc->setEventLoadSupported(true);
+        }
+#endif
 }
 
 /*

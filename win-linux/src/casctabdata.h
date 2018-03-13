@@ -63,6 +63,8 @@ public:
     CefType viewType() const;
     wstring url() const;
     bool    isViewType(CefType) const;
+    bool    eventLoadSupported() const;
+    void    setEventLoadSupported(bool);
 
     AscEditorType   contentType();
     void            setContentType(AscEditorType);
@@ -74,6 +76,7 @@ private:
     int     _panel_id;
     CefType _vtype;
     wstring _url;
+    bool    _event_load_supported = false;
 
     AscEditorType _typeContent;
 };

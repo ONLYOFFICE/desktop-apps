@@ -858,6 +858,31 @@ void CMainPanel::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
+void CMainPanel::onDocumentOptions(int id, QString opts)
+{
+    m_pTabs->setDocumentWebOption(id, opts);
+}
+
+void CMainPanel::onDocumentReady(int uid)
+{
+    if ( uid < 0 ) {
+        QTimer::singleShot(20, this, [=]{
+            refreshAboutVersion();
+            emit mainPageReady();
+
+            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
+            doOpenLocalFiles();
+        });
+    } else {
+        m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+    }
+}
+
+void CMainPanel::onDocumentLoadFinished(int uid)
+{
+    m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
+}
+
 void CMainPanel::onDocumentChanged(int id, bool changed)
 {
     m_pTabs->applyDocumentChanging(id, changed);
@@ -1275,21 +1300,6 @@ wstring CMainPanel::readSystemUserName()
 
     return _env_name.toStdWString();
 #endif
-}
-
-void CMainPanel::onDocumentReady(int uid)
-{
-    if ( uid < 0 ) {
-        QTimer::singleShot(20, this, [=]{
-            refreshAboutVersion();
-            emit mainPageReady();
-
-            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
-            doOpenLocalFiles();
-        });
-    } else {
-        m_pTabs->applyDocumentChanging(uid, -254);
-    }
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
