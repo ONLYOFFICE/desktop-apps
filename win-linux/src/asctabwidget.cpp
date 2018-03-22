@@ -174,7 +174,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
         m_dragIndex = -1;
     });
-#if defined(APP_MULTI_WINDOW)
+#if defined(__APP_MULTI_WINDOW)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
         if ( m_dragIndex != index ) {
             CTabUndockEvent event(widget(index));
@@ -789,6 +789,12 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 
             return;
         }
+#else
+    switch ( type ) {
+    case DOCUMENT_CHANGED_LOADING_START:
+    case DOCUMENT_CHANGED_LOADING_FINISH:
+    case DOCUMENT_CHANGED_PAGE_LOAD_FINISH: return;
+    }
 #endif
 
     CCefView * pView = AscAppManager::getInstance().GetViewById(id);

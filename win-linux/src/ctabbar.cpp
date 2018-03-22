@@ -506,9 +506,9 @@ void CTabBar::tabRemoved(int index)
 {
     QWidget * i = TAB_ICON(index);
     if ( i ) {
-        qDebug() << "tab removed: " << index;
+//        qDebug() << "tab removed: " << index;
     } else {
-        qDebug() << "tab already removed: " << index;
+//        qDebug() << "tab already removed: " << index;
     }
 
     QTabBar::tabRemoved(index);

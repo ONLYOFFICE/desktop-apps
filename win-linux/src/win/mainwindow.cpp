@@ -366,7 +366,7 @@ qDebug() << "WM_CLOSE";
         break;
 
     case WM_MOVING: {
-#if defined(APP_MULTI_WINDOW)
+#if defined(__APP_MULTI_WINDOW)
         if ( window->movedByTab() ) {
             POINT pt{0};
 
