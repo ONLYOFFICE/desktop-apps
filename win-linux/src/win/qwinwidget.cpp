@@ -47,15 +47,18 @@ void QWinWidget::init()
     {
         // make the widget window style be WS_CHILD so SetParent will work
         LONG lStyle = WS_CHILD | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
-
         SetWindowLong((HWND)winId(), GWL_STYLE, lStyle);
 
-        QWindow *window = windowHandle();
-        window->setProperty("_q_embedded_native_parent_handle", (WId)hParent);
-        HWND h = static_cast<HWND>(QGuiApplication::platformNativeInterface()->
-                                nativeResourceForWindow("handle", window));
-        SetParent(h, hParent);
-        window->setFlags(Qt::FramelessWindowHint);
+//        QWindow *window = windowHandle();
+//        window->setProperty("_q_embedded_native_parent_handle", (WId)hParent);
+//        HWND h = static_cast<HWND>(QGuiApplication::platformNativeInterface()->
+//                                nativeResourceForWindow("handle", window));
+//        SetParent(h, hParent);
+//        window->setFlags(Qt::FramelessWindowHint);
+
+        setProperty("_q_embedded_native_parent_handle", (WId)hParent);
+        SetParent((HWND)winId(), hParent);
+        setWindowFlags(Qt::FramelessWindowHint);
 
         QEvent e(QEvent::EmbeddingControl);
         QApplication::sendEvent(this, &e);
