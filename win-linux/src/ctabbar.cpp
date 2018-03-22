@@ -238,6 +238,10 @@ CTabBar::CTabBar(QWidget * parent)
     , CScalingWrapper(parent)
 {
     setDrawBase(false);
+
+#ifdef __APP_NEW_APPEARANCE
+    connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
+#endif
 }
 
 CTabBar::~CTabBar()
@@ -456,12 +460,14 @@ void CTabBar::paintEvent(QPaintEvent * event)
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
 {
     QRect tabRect(tab.rect);
-    tabRect.adjust(-1, 0, -1, 0);
+    tabRect.adjust(-1, 0, 0, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
-//    QPixmap _pixmap = tab.icon.pixmap(tab.iconSize);
-//    unsigned _icon_left = 4;
-//    p->drawPixmap(tab.rect.topLeft() + QPoint(_icon_left, 6), _pixmap);
+    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::Light ) {
+        p->setPen(QColor("#a5a5a5"));
+        p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
+        p->drawLine(tabRect.bottomRight(), tabRect.topRight());
+    }
 }
 
 void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)
@@ -500,6 +506,29 @@ void CTabBar::tabInserted(int index)
     setTabButton(index, QTabBar::LeftSide, icon);
 
     QTabBar::tabInserted(index);
+}
+
+void CTabBar::onCurrentChanged(int index)
+{
+    QWidget * b = TAB_BTNCLOSE(m_current);
+    if ( tabData(m_current).isNull() ) {
+        if ( b ) {
+            b->hide();
+            b->setProperty("state", "normal");
+            b->style()->polish(b);
+        }
+    }
+
+    if ( tabData(index).isNull() ) {
+        b = TAB_BTNCLOSE(index);
+        if ( b ) {
+            b->show();
+            b->setProperty("state", "active");
+            b->style()->polish(b);
+        }
+    }
+
+    m_current = index;
 }
 
 void CTabBar::tabRemoved(int index)
@@ -573,19 +602,12 @@ void CTabBar::onCloseButton()
 
 void CTabBar::setTabTheme(int index, TabTheme theme)
 {
+    setTabData(index, theme);
+
     CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
     QWidget * b = TAB_BTNCLOSE(index);
     if ( theme == TabTheme::Light ) {
-        if ( i && i->isStarted() ) {
-            i->setSvgElement("light");
-        }
-
-        if ( b && !(b->property("state") == "active") ) {
-            b->setProperty("state", "active");
-            b->style()->polish(b);
-        }
-    } else {
-        if ( i && i->isStarted() ) {
+        if ( i ) {
             i->setSvgElement("dark");
         }
 
@@ -593,7 +615,42 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
             b->setProperty("state", "normal");
             b->style()->polish(b);
         }
+    } else {
+        if ( i ) {
+            i->setSvgElement("light");
+        }
 
+        if ( b && !(b->property("state") == "active") ) {
+            b->setProperty("state", "active");
+            b->style()->polish(b);
+        }
+    }
+}
+
+void CTabBar::changeTabTheme(int index, TabTheme theme)
+{
+    if ( tabData(index).isNull() ) {
+        CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
+        QWidget * b = TAB_BTNCLOSE(index);
+        if ( theme == TabTheme::Light ) {
+            if ( i && i->isStarted() ) {
+                i->setSvgElement("dark");
+            }
+
+            if ( b && !(b->property("state") == "normal") ) {
+                b->setProperty("state", "normal");
+                b->style()->polish(b);
+            }
+        } else {
+            if ( i && i->isStarted() ) {
+                i->setSvgElement("light");
+            }
+
+            if ( b && !(b->property("state") == "active") ) {
+                b->setProperty("state", "active");
+                b->style()->polish(b);
+            }
+        }
     }
 }
 
@@ -601,6 +658,22 @@ void CTabBar::activate(bool a)
 {
     if ( m_active != a ) {
         m_active = a;
+
+        if ( tabData(m_current).isNull() ) {
+            QWidget * b = TAB_BTNCLOSE(m_current);
+            if ( b ) {
+                if ( a ){
+                    b->show();
+                    b->setProperty("state", "active");
+                } else {
+                    b->hide();
+                    b->setProperty("state", "normal");
+                    m_overIndex = -1;
+                }
+
+                b->style()->polish(b);
+            }
+        }
     }
 }
 

@@ -244,7 +244,6 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         tabBar()->setTabToolTip(tab_index, opts.name);
 
 #ifdef __APP_NEW_APPEARANCE
-        ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
         ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
@@ -322,7 +321,7 @@ int CAscTabWidget::addPortal(QString url, QString name)
     tabBar()->setTabToolTip(tab_index, url);
 
 #ifdef __APP_NEW_APPEARANCE
-    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
@@ -362,7 +361,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     tabBar()->setTabToolTip(tab_index, portal);
 
 #ifdef __APP_NEW_APPEARANCE
-    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Dark);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
@@ -502,14 +501,14 @@ void CAscTabWidget::updateTabIcon(int index)
             int tab_type = etUndefined;
 #ifdef __USE_COLORED_TAB
             QString _color = "none";
-            CTabBar::TabTheme _theme = is_active ? CTabBar::Light : CTabBar::Dark;
+            CTabBar::TabTheme _theme = is_active ? CTabBar::Dark : CTabBar::Light;
 #endif
 
             if (pEditor->GetType() == cvwtSimple) {
                 tab_type = etPortal;
 #ifdef __USE_COLORED_TAB
                 _color = "#fff";
-                _theme = CTabBar::Dark;
+                _theme = CTabBar::Light;
 #endif
             } else {
                 tab_type = pEditor->GetEditorType();
@@ -520,7 +519,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 case etDocument: _color = TAB_COLOR_DOCUMENT; break;
                 default:
                     tab_type = etUndefined;
-                    _theme = CTabBar::Dark;
+                    _theme = CTabBar::Light;
                     _color = "#fff";
                     break;
 #else
@@ -535,7 +534,7 @@ void CAscTabWidget::updateTabIcon(int index)
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
 #ifdef __USE_COLORED_TAB
-            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
+            ((CTabBar *)tabBar())->changeTabTheme(index, _theme);
 #endif
 
 
