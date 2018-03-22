@@ -167,8 +167,11 @@ procedure InitializeWizard();
 var
   paramSkip: string;
   path: string;
+  version: TWindowsVersion;
 begin
-  if not WizardSilent then begin
+  GetWindowsVersionEx(version);
+
+  if not WizardSilent and (version.Major < 10) then begin
     paramSkip := GetCommandlineParam('/skip');
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then
       InitializeAssociatePage();
