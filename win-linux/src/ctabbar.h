@@ -62,6 +62,7 @@ public:
         Light,
         Dark
     };
+    void changeTabTheme(int, TabTheme);
     void setTabTheme(int, TabTheme);
 
 protected:
@@ -76,11 +77,13 @@ protected:
 
 private slots:
     void onCloseButton();
+    void onCurrentChanged(int);
 
 private:
     QPalette m_palette;
     bool m_usePalette = false;
     int  m_overIndex = -1;
+    int  m_current = -1;
     bool m_active = false;
 
 signals:
