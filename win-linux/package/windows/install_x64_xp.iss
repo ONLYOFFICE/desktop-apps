@@ -8,8 +8,8 @@
 
 [Setup]
 OutputBaseFileName    =DesktopEditors_x64_xp
-MinVersion              =0,5.0.2195
-;MinVersion              =6.0
+MinVersion              =5.0
+OnlyBelowVersion        =6.1
 ArchitecturesAllowed    =x64
 ArchitecturesInstallIn64BitMode=x64
 ;ShowUndisplayableLanguages = true

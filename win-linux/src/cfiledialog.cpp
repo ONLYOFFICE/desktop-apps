@@ -191,7 +191,13 @@ QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter
 {
     QString _filter_ = filter;
     if ( _filter_.isEmpty() ) {
-        _filter_ = joinFilters();
+//        _filter_ = joinFilters();
+        _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
+                    tr("Text documents") + " (*.docx *.doc *.odt *.rtf *.odt *.docm *.dotx *.dotm *.fodt *.xml);;" +
+                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.csv *.xltx *.xltm *.fods);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.ppsm *.ppsx *.potx *.potm *.fodp);;" +
+                    tr("Web Page") + " (*.html *.htm *.mht);;" +
+                    tr("Text files") + " (*.txt)";
     }
 
     QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];

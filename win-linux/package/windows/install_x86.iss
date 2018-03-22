@@ -6,7 +6,7 @@
 
 [Setup]
 OutputBaseFileName    =DesktopEditors_x86
-MinVersion              =0,5.0.2195
+MinVersion            =6.1
 ;ArchitecturesAllowed    =x86
 
 
