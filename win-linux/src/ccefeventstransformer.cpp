@@ -244,11 +244,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
-        if ( !(cmd.find(L"doc:onload") == std::wstring::npos) ) {
-            // TODO: change to suitable event slot
-            QMetaObject::invokeMethod(target, "onDocumentType", Qt::QueuedConnection,
-                                      Q_ARG(int, event->get_SenderId()), Q_ARG(int, -255));
-        } else
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
             if ( QString::fromStdWString(pData->get_Param()) == "check" )
                 QMetaObject::invokeMethod( target, "onCheckUpdates", Qt::QueuedConnection);
