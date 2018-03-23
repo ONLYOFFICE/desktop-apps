@@ -162,6 +162,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 //    tabBar()->setFixedWidth(450);
 
     tabBar()->setMovable(true);
+    tabBar()->setExpanding(false);
     setTabsClosable(true);
 
     setIconSize(m_tabIconSize);
