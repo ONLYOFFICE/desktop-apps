@@ -743,3 +743,8 @@ int CTabBar::draggedTabIndex()
 
     return d->pressedIndex;
 }
+
+QSize CTabBar::tabSizeHint(int index) const
+{
+    return QTabBar::tabSizeHint(index);
+}
