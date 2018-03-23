@@ -75,6 +75,8 @@ protected:
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
     void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
 
+    QSize tabSizeHint(int index) const;
+
 private slots:
     void onCloseButton();
     void onCurrentChanged(int);
