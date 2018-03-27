@@ -31,10 +31,10 @@
 */
 
 #include "csinglewindow.h"
-#include "cwindowbase.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../utils.h"
 #include "cwindowbase.h"
+#include "defines.h"
 
 #include <windowsx.h>
 #include <functional>
@@ -77,7 +77,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = L"SingleWindowClass";
-    wcx.hbrBackground = CreateSolidBrush( RGB(49, 52, 55) );
+    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -259,18 +259,41 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
     case WM_NCACTIVATE:
         return TRUE;
 
-    case WM_PAINT:
-        break;
-
-    case WM_ERASEBKGND: {
+    case WM_PAINT: {
+#ifdef __APP_NEW_APPEARANCE
         RECT rect;
         GetClientRect(hWnd, &rect);
 
-        HBRUSH hBrush = CreateSolidBrush(RGB(49, 52, 55));
+        PAINTSTRUCT ps;
+        HDC hDC = ::BeginPaint(hWnd, &ps);
+        HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
+        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+
+        HBRUSH hBrush = ::CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+        HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
+
+        ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
+
+        ::SelectObject(hDC, hbrushOld);
+        ::DeleteObject(hBrush);
+
+        ::SelectObject(hDC, hpenOld);
+        ::EndPaint(hWnd, &ps);
+        return 0;
+#endif
+
+        break; }
+
+    case WM_ERASEBKGND: {
+#ifndef __APP_NEW_APPEARANCE
+        RECT rect;
+        GetClientRect(hWnd, &rect);
+
+        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
         FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
         DeleteObject(hBrush);
-        return TRUE;
-    }
+#endif
+        return TRUE; }
 
     case WM_GETMINMAXINFO: {
         MINMAXINFO * minMaxInfo = (MINMAXINFO *)lParam;
@@ -416,7 +439,7 @@ void CSingleWindow::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = 3 * m_dpiRatio;
+        border_size = MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio;
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,
@@ -489,8 +512,6 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
     centralWidget->setObjectName("centralWidget");
     centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    QSize small_btn_size(28 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
-
 #ifdef __linux__
     m_boxTitleBtns = new CX11Caption(centralWidget);
 #else
@@ -502,7 +523,14 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
+#ifdef __APP_NEW_APPEARANCE
+    layoutBtns->setContentsMargins(0,0,0,0);
+    QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+#else
     layoutBtns->setContentsMargins(0, 0, 4*m_dpiRatio, 0);
+    QSize small_btn_size(28 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
+#endif
+
     layoutBtns->setSpacing(1*m_dpiRatio);
     layoutBtns->addWidget(label);
 
