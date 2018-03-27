@@ -87,7 +87,7 @@ ru.extMSExcel =Книга Microsoft Excel
 de.extMSExcel =Microsoft Excel Arbeitsmappe
 fr.extMSExcel =Classeur Microsoft Excel
 es.extMSExcel =Libro de Microsoft Excel
-it_ITextMSExcel =Libro di Microsoft Excel
+it_IT.extMSExcel =Libro di Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 pt_BR.extMSPresentation =Apresentação Microsoft PowerPoint
@@ -106,6 +106,7 @@ ru.extMSSlideshow =Слайдшоу Microsoft PowerPoint
 de.extMSSlideshow =Microsoft PowerPoint Slideshow
 fr.extMSSlideshow =Diaporama Microsoft PowerPoint
 es.extMSSlideshow =Presentación de Microsoft PowerPoint
+it_IT.extMSSlideshow =Microsoft PowerPoint Slideshow
 
 en.extODT =OpenDocument Text Document
 pt_BR.extODT =Documento de Texto do OpenDocument
@@ -125,6 +126,7 @@ ru.extODS =Электронная таблица OpenDocument
 de.extODS =OpenDocument Tabelle
 fr.extODS =Classeur OpenDocument
 es.extODS =Hoja de cálculo de OpenDocument
+it_IT.extODS =OpenDocument Spreadsheet
 
 en.extODP =OpenDocument Presentation
 pt_BR.extODP =Apresentação do OpenDocument
@@ -138,6 +140,8 @@ it_IT.extODP =Presentazione di OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
+cs.defprogAppDescription=Free desktop office suite for document editing and collaboration
+sk.defprogAppDescription=Free desktop office suite for document editing and collaboration
 ru.defprogAppDescription=Бесплатный десктопный офисный пакет для редактирования документов и совместной работы
 de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
 fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration
