@@ -490,6 +490,7 @@ qDebug() << "WM_CLOSE";
 
                         if ( ::IsIconic(hWnd) ) {
                             window->slot_windowChangeState( Qt::WindowNoState );
+                            ::SetForegroundWindow(hWnd);
                             ::FlashWindow(hWnd, TRUE);
                         }
                     }
