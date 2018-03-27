@@ -98,6 +98,7 @@ de.extMSPresentation =Microsoft PowerPoint Präsentation
 fr.extMSPresentation =Présentation Microsoft PowerPoint
 es.extMSPresentation =Presentación de Microsoft PowerPoint
 it_IT.extMSPresentation =Presentazione di Microsoft PowerPoint
+
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 pt_BR.extMSSlideshow =Apresentações do PowerPoint da Microsoft
 cs.extMSSlideshow =Microsoft PowerPoint Slideshow
@@ -148,6 +149,15 @@ fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pou
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
 
+en.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+pt_BR.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+cs.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+sk.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+ru.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+de.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+fr.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+es.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+it_IT.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
 
 [Code]
 
@@ -268,6 +278,7 @@ end;
 procedure InitializeAssociatePage;
 var
   lblAudio: TLabel;
+  richViewer: TRichEditViewer;
   i: Integer;
   version: TWindowsVersion;
   createPage: Boolean;
@@ -279,46 +290,65 @@ begin
   if not WizardSilent then begin
     paramSkip := GetCommandlineParam('/skip');
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
-      GetWindowsVersionEx(version)
-      if version.Major < 10 then createPage := True
+      createPage := True
     end
   end;
 
   if createPage then begin
     associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
-    lblAudio          := TLabel.Create(associatePage);
-    lblAudio.Parent   := associatePage.Surface;
-    lblAudio.WordWrap := False;
-    lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
-    lblAudio.AutoSize := False;
-    lblAudio.Width    := associatePage.SurfaceWidth;
-    lblAudio.Left     := 0;
-    lblAudio.Top      := 0;
+    GetWindowsVersionEx(version);
+    if version.Major < 10 then begin
+      lblAudio          := TLabel.Create(associatePage);
+      lblAudio.Parent   := associatePage.Surface;
+      lblAudio.WordWrap := True;
+      lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
+      lblAudio.AutoSize := True;
+      lblAudio.Width    := associatePage.SurfaceWidth;
+      lblAudio.Left     := 0;
+      lblAudio.Top      := 0;
 
-    ChlbAudio         := TNewCheckListBox.Create(associatePage);
-    ChlbAudio.Parent  := associatePage.Surface;
-    ChlbAudio.Left    := 0;
-    ChlbAudio.Top     := lblAudio.Top + lblAudio.Height + 4;
-    ChlbAudio.Width   := associatePage.SurfaceWidth;
-    ChlbAudio.Height  := associatePage.SurfaceHeight - ChlbAudio.Top - 4 - 3;
+      ChlbAudio         := TNewCheckListBox.Create(associatePage);
+      ChlbAudio.Parent  := associatePage.Surface;
+      ChlbAudio.Left    := 0;
+      ChlbAudio.Top     := lblAudio.Top + lblAudio.Height + 4;
+      ChlbAudio.Width   := associatePage.SurfaceWidth;
+      ChlbAudio.Height  := associatePage.SurfaceHeight - ChlbAudio.Top - 4 - 3;
 
-    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateDont}'), '', 0, False, True, nil);
-    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateAll}'),  '', 0, False, True, nil);
-    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateSel}'),  '', 0, True,  True, nil);
-    AChecked := True;
+      ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateDont}'), '', 0, False, True, nil);
+      ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateAll}'),  '', 0, False, True, nil);
+      ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateSel}'),  '', 0, True,  True, nil);
 
-    for  i := 0 to GetArrayLength(AudioExts) - 1 do
-    begin
-      ChlbAudio.AddCheckBox(AudioExts[i], '', 1, False, True, False, False, nil);
-      AudioExtEnabled[i] := True;
-    end;
+      AChecked := True;
 
-    OnAudioClick := False;
-    ChlbAudio.OnClickCheck := @ChlbAudioClickCheck;
+      for  i := 0 to GetArrayLength(AudioExts) - 1 do
+      begin
+        ChlbAudio.AddCheckBox(AudioExts[i], '', 1, False, True, False, False, nil);
+        AudioExtEnabled[i] := True;
+      end;
 
-    ChlbAudio.Checked[1] := True;
-    ChlbAudioClickCheck(ChlbAudio);
+      OnAudioClick := False;
+      ChlbAudio.OnClickCheck := @ChlbAudioClickCheck;
+
+      ChlbAudio.Checked[1] := True;
+      ChlbAudioClickCheck(ChlbAudio);
+    end else begin
+      richViewer := TRichEditViewer.Create(associatePage);
+      with richViewer do begin
+        Left          := 0;
+        Top           := 0;
+        Width         := associatePage.SurfaceWidth;
+        Height        := associatePage.SurfaceHeight;
+        Parent        := associatePage.Surface;
+        BorderStyle   := bsNone;
+        TabStop       := False;
+        ReadOnly      := True;
+        Color         := associatePage.Surface.Color;
+        Cursor        := crArrow;
+        HideSelection := True;
+        RTFText       := '{\rtf1 ' + ExpandConstant('{cm:warnWin10FileAssociation}') + '}';
+      end
+    end
   end else begin
     associatePage := nil
   end;
