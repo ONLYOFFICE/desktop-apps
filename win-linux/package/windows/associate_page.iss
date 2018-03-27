@@ -154,6 +154,7 @@ var
   AudioExts: Array of String;
   ExtensionRegistryInfo: array of string;
   AChecked: Boolean;
+  associatePage: TWizardPage;
 
 procedure Explode(var Dest: TArrayOfString; Text: String; Separator: String);
 var
@@ -262,46 +263,61 @@ end;
 
 procedure InitializeAssociatePage;
 var
-  associatePage: TWizardPage;
   lblAudio: TLabel;
   i: Integer;
+  version: TWindowsVersion;
+  createPage: Boolean;
+  paramSkip: string;
 begin
   initExtensions();
 
-  associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
-
-  lblAudio          := TLabel.Create(associatePage);
-  lblAudio.Parent   := associatePage.Surface;
-  lblAudio.WordWrap := False;
-  lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
-  lblAudio.AutoSize := False;
-  lblAudio.Width    := associatePage.SurfaceWidth;
-  lblAudio.Left     := 0;
-  lblAudio.Top      := 0;
-
-  ChlbAudio         := TNewCheckListBox.Create(associatePage);
-  ChlbAudio.Parent  := associatePage.Surface;
-  ChlbAudio.Left    := 0;
-  ChlbAudio.Top     := lblAudio.Top + lblAudio.Height + 4;
-  ChlbAudio.Width   := associatePage.SurfaceWidth;
-  ChlbAudio.Height  := associatePage.SurfaceHeight - ChlbAudio.Top - 4 - 3;
-
-  ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateDont}'), '', 0, False, True, nil);
-  ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateAll}'),  '', 0, False, True, nil);
-  ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateSel}'),  '', 0, True,  True, nil); 
-  AChecked := True;
-
-  for  i := 0 to GetArrayLength(AudioExts) - 1 do
-  begin
-    ChlbAudio.AddCheckBox(AudioExts[i], '', 1, False, True, False, False, nil);
-    AudioExtEnabled[i] := True;
+  createPage := False;
+  if not WizardSilent then begin
+    paramSkip := GetCommandlineParam('/skip');
+    if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
+      GetWindowsVersionEx(version)
+      if version.Major < 10 then createPage := True
+    end
   end;
 
-  OnAudioClick := False;
-  ChlbAudio.OnClickCheck := @ChlbAudioClickCheck;
+  if createPage then begin
+    associatePage := CreateCustomPage(wpSelectTasks, CustomMessage('AssociateCaption'), CustomMessage('AssociateDescription'));
 
-  ChlbAudio.Checked[1] := True;
-  ChlbAudioClickCheck(ChlbAudio);
+    lblAudio          := TLabel.Create(associatePage);
+    lblAudio.Parent   := associatePage.Surface;
+    lblAudio.WordWrap := False;
+    lblAudio.Caption  := ExpandConstant('{cm:AssociateAudio}');
+    lblAudio.AutoSize := False;
+    lblAudio.Width    := associatePage.SurfaceWidth;
+    lblAudio.Left     := 0;
+    lblAudio.Top      := 0;
+
+    ChlbAudio         := TNewCheckListBox.Create(associatePage);
+    ChlbAudio.Parent  := associatePage.Surface;
+    ChlbAudio.Left    := 0;
+    ChlbAudio.Top     := lblAudio.Top + lblAudio.Height + 4;
+    ChlbAudio.Width   := associatePage.SurfaceWidth;
+    ChlbAudio.Height  := associatePage.SurfaceHeight - ChlbAudio.Top - 4 - 3;
+
+    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateDont}'), '', 0, False, True, nil);
+    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateAll}'),  '', 0, False, True, nil);
+    ChlbAudio.AddRadioButton(ExpandConstant('{cm:AssociateSel}'),  '', 0, True,  True, nil);
+    AChecked := True;
+
+    for  i := 0 to GetArrayLength(AudioExts) - 1 do
+    begin
+      ChlbAudio.AddCheckBox(AudioExts[i], '', 1, False, True, False, False, nil);
+      AudioExtEnabled[i] := True;
+    end;
+
+    OnAudioClick := False;
+    ChlbAudio.OnClickCheck := @ChlbAudioClickCheck;
+
+    ChlbAudio.Checked[1] := True;
+    ChlbAudioClickCheck(ChlbAudio);
+  end else begin
+    associatePage := nil
+  end;
 
   //vc_desctopiconshow := True;
   //WizardForm.TasksList.OnClickCheck := @OnTasksListClickCheck;
@@ -339,8 +355,7 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
 begin
-  if ( not WizardSilent() ) then
-  begin
+
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin     
       Explode(argsArray, ExtensionRegistryInfo[i],':');
@@ -356,7 +371,7 @@ begin
 
       ext := LowerCase(AudioExts[i]);
 
-      if isAssociateExtension(i) then
+      if (associatePage <> nil) and isAssociateExtension(i) then
       begin
         if not RegValueExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '') then begin
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', argsArray[0])
@@ -382,7 +397,6 @@ begin
         RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'), '', '');
       end;
     end;
-  end;
 
   AddToDefaultPrograms;
 end;
