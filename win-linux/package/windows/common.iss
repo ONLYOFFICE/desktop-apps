@@ -167,15 +167,8 @@ procedure InitializeWizard();
 var
   paramSkip: string;
   path: string;
-  version: TWindowsVersion;
 begin
-  GetWindowsVersionEx(version);
-
-  if not WizardSilent and (version.Major < 10) then begin
-    paramSkip := GetCommandlineParam('/skip');
-    if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then
-      InitializeAssociatePage();
-  end;
+  InitializeAssociatePage();
 
   if RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'AppPath', path) and
         FileExists(path + '\{#NAME_EXE_OUT}') then
