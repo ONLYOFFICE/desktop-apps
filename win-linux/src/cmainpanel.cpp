@@ -1170,6 +1170,7 @@ void CMainPanel::onFullScreen(bool apply, int id)
 
         emit mainWindowChangeState(m_mainWindowState);
         m_pTabs->setFullScreen(apply);
+        toggleButtonMain(false);
     }
 }
 

@@ -980,6 +980,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             CAscTabData * doc = ((CTabPanel *)fsWidget)->data();
 
             insertTab(index, fsWidget, doc->title());
+            adjustTabsSize();
             tabBar()->setTabToolTip(index, doc->title());
             tabBar()->setCurrentIndex(index);
 
