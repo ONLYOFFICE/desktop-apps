@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -1165,12 +1166,16 @@ DQ
         <scene sceneID="dZG-dh-jaa">
             <objects>
                 <viewController storyboardIdentifier="titleBarControllerID" id="9zi-Wa-ufJ" customClass="ASCTitleBarController" sceneMemberID="viewController">
-                    <view key="view" id="1M4-4k-lfG" customClass="ASCTitleBackground">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="38"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <visualEffectView key="view" appearanceType="vibrantDark" blendingMode="behindWindow" material="light" state="followsWindowActiveState" id="Imu-er-1JF">
+                        <rect key="frame" x="0.0" y="0.0" width="1100" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nh-tb-OhZ">
+                                <rect key="frame" x="468" y="-29" width="163" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="sAN-AD-cQX">
-                                <rect key="frame" x="976" y="0.0" width="48" height="38"/>
+                                <rect key="frame" x="1095" y="0.0" width="5" height="38"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYd-yR-16f">
                                         <rect key="frame" x="9" y="6" width="30" height="27"/>
@@ -1186,11 +1191,11 @@ DQ
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="PUh-yU-BlT"/>
-                                    <constraint firstAttribute="width" constant="48" id="paH-gl-wx3"/>
+                                    <constraint firstAttribute="width" constant="5" id="paH-gl-wx3"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh">
-                                <rect key="frame" x="946" y="0.0" width="30" height="38"/>
+                                <rect key="frame" x="1065" y="0.0" width="30" height="38"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
@@ -1215,19 +1220,10 @@ DQ
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="iPF-st-gBJ">
-                                <rect key="frame" x="148" y="0.0" width="798" height="38"/>
+                                <rect key="frame" x="192" y="0.0" width="873" height="38"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-DK-gsq">
-                                        <rect key="frame" x="135" y="0.0" width="663" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="ONLYOFFICE " drawsBackground="YES" usesSingleLineMode="YES" id="rG1-93-HjS">
-                                            <font key="font" metaFont="cellTitle"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="backgroundColor" red="0.19215686274509802" green="0.20392156862745098" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <customView horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGv-DD-716" customClass="ASCTabsControl">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="29"/>
+                                        <rect key="frame" x="0.0" y="-1" width="135" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </customView>
                                 </subviews>
@@ -1235,36 +1231,85 @@ DQ
                                     <constraint firstAttribute="height" constant="38" id="vsg-cC-UPz"/>
                                 </constraints>
                             </customView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv" customClass="ASCButton">
-                                <rect key="frame" x="78" y="0.0" width="70" height="29"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFr-m2-3nf">
+                                <rect key="frame" x="80" y="0.0" width="112" height="29"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbs-Vm-fo1" customClass="ASCColorView">
+                                        <rect key="frame" x="0.0" y="0.0" width="1" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="3Er-9p-AD1">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv" customClass="ASCButton">
+                                        <rect key="frame" x="1" y="0.0" width="110" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
+                                            <constraint firstAttribute="width" constant="110" id="rYS-3g-y3E"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logo-tab" imagePosition="only" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
+                                        </connections>
+                                    </button>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XZA-xX-bBL" customClass="ASCColorView">
+                                        <rect key="frame" x="111" y="0.0" width="1" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="70z-be-Jiz">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </constraint>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
-                                    <constraint firstAttribute="width" constant="70" id="rYS-3g-y3E"/>
+                                    <constraint firstAttribute="height" constant="29" id="qNM-FZ-k85"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" title="START" bezelStyle="smallSquare" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
-                                    <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="systemBold" size="10"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
-                                </connections>
-                            </button>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sAN-AD-cQX" secondAttribute="trailing" id="AVp-v8-bjd"/>
-                            <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="NSd-DS-T9w"/>
-                            <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="Q0W-oW-bGL"/>
-                            <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="Wg4-oE-g9S"/>
-                            <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="pge-pd-M7E"/>
-                            <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="vic-ho-Uzn"/>
-                            <constraint firstAttribute="bottom" secondItem="afO-TB-NDv" secondAttribute="bottom" id="xMp-Ch-iAU"/>
-                            <constraint firstItem="afO-TB-NDv" firstAttribute="leading" secondItem="1M4-4k-lfG" secondAttribute="leading" constant="78" id="yGh-ak-lKX"/>
-                            <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="afO-TB-NDv" secondAttribute="trailing" id="ztx-IR-EgB"/>
+                            <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="1IH-yP-kE0"/>
+                            <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="FGY-XD-p9y"/>
+                            <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="Fme-4L-HLS"/>
+                            <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="aFr-m2-3nf" secondAttribute="trailing" id="R1a-qd-7b2"/>
+                            <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="Zgl-o8-K6a"/>
+                            <constraint firstAttribute="bottom" secondItem="aFr-m2-3nf" secondAttribute="bottom" id="o0h-N2-3Ub"/>
+                            <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="xPm-bQ-5dJ"/>
+                            <constraint firstAttribute="trailing" secondItem="sAN-AD-cQX" secondAttribute="trailing" id="yHc-Bp-bcQ"/>
+                            <constraint firstItem="aFr-m2-3nf" firstAttribute="leading" secondItem="Imu-er-1JF" secondAttribute="leading" constant="80" id="zjL-wi-keq"/>
                         </constraints>
-                        <shadow key="shadow">
-                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        </shadow>
-                    </view>
+                    </visualEffectView>
                     <connections>
                         <outlet property="downloadBackgroundView" destination="M3X-hR-EHh" id="Cd9-iN-qsn"/>
                         <outlet property="downloadImageView" destination="rvn-zR-QDB" id="Gjm-Bh-1gJ"/>
@@ -1272,19 +1317,19 @@ DQ
                         <outlet property="portalButton" destination="afO-TB-NDv" id="gF9-rM-YGD"/>
                         <outlet property="tabsControl" destination="aGv-DD-716" id="eOq-aP-cel"/>
                         <outlet property="titleContainerView" destination="iPF-st-gBJ" id="lKP-KX-VKu"/>
-                        <outlet property="titleLabel" destination="BFe-DK-gsq" id="KgR-h9-YyL"/>
                         <outlet property="userProfileButton" destination="bYd-yR-16f" id="2FS-RI-aQS"/>
                     </connections>
                 </viewController>
                 <customObject id="gDf-Ym-x6b" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131" y="18"/>
+            <point key="canvasLocation" x="131" y="34"/>
         </scene>
     </scenes>
     <resources>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="icon-login_hover" width="12" height="12"/>
         <image name="icon-login_normal" width="12" height="12"/>
+        <image name="logo-tab" width="86" height="20"/>
         <image name="progress_download_icon" width="128" height="128"/>
     </resources>
 </document>

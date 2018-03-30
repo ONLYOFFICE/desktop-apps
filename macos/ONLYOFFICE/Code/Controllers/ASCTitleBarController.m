@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -48,9 +48,10 @@
 #import "ASCUserInfoViewController.h"
 #import "ASCDownloadViewController.h"
 #import "ASCDownloadController.h"
+#import "ASCMenuButtonCell.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
-static float kASCWindowMinTitleWidth = 320;
+static float kASCWindowMinTitleWidth = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
@@ -59,7 +60,7 @@ static float kASCWindowMinTitleWidth = 320;
 @property (nonatomic, weak) NSButton *closeButton;
 @property (nonatomic, weak) NSButton *miniaturizeButton;
 @property (nonatomic, weak) NSButton *fullscreenButton;
-@property (weak) IBOutlet NSTextField *titleLabel;
+
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
@@ -113,9 +114,7 @@ static float kASCWindowMinTitleWidth = 320;
     
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
-    
-    [self.titleLabel setStringValue:productName];
-    
+
     kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2.0; // OSX 10.11 magic
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -155,8 +154,18 @@ static float kASCWindowMinTitleWidth = 320;
     [self.portalButton setState:NSOnState];
     
     [self.tabsControl removeAllConstraints];
-    [self.titleLabel removeAllConstraints];
-    
+
+    ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
+
+    if (portalButtonCell) {
+        portalButtonCell.bgColor            = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.bgHoverColor       = kColorRGBA(255, 255, 255, 1.0);
+        portalButtonCell.bgActiveColor      = kColorRGBA(255, 255, 255, 1.0);
+        portalButtonCell.textColor          = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.textActiveColor    = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
+    }
+
     [self doLayout];
 }
 
@@ -205,7 +214,6 @@ static float kASCWindowMinTitleWidth = 320;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
     
     self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
-    self.titleLabel.frame   = CGRectMake(CGRectGetWidth(self.tabsControl.frame), self.titleLabel.frame.origin.y, containerWidth - CGRectGetWidth(self.tabsControl.frame), self.titleLabel.frame.size.height);
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
@@ -354,11 +362,8 @@ static float kASCWindowMinTitleWidth = 320;
 #endif
     
     if (tab) {
-        NSButton * btn = (NSButton *)tab;
-        [self.titleLabel setStringValue:[NSString stringWithFormat:@"%@  ▸  %@", productName, btn.title]];
         [self.portalButton setState:NSOffState];
     } else {
-        [self.titleLabel setStringValue:productName];
         [self.portalButton setState:NSOnState];
     }
 }

@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_se_active.png",
+      "filename" : "xls_desktop.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_se_active@2x.png",
+      "filename" : "xls_desktop_2x.png",
       "scale" : "2x"
     },
     {

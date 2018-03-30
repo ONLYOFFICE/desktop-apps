@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -42,12 +42,6 @@
 #import "ASCHelper.h"
 
 @interface ASCMenuButtonCell()
-@property (nonatomic) NSColor * bgColor;
-@property (nonatomic) NSColor * bgHoverColor;
-@property (nonatomic) NSColor * bgActiveColor;
-@property (nonatomic) NSColor * textColor;
-@property (nonatomic) NSColor * textActiveColor;
-@property (nonatomic) NSColor * lineColor;
 @end
 
 @implementation ASCMenuButtonCell
@@ -70,9 +64,9 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-    //    [super drawWithFrame:cellFrame inView:controlView];
-    
-    CGFloat rectangleCornerRadius = 2;
+//        [super drawWithFrame:cellFrame inView:controlView];
+
+    CGFloat rectangleCornerRadius = 0;
     
     // Color Declarations
     NSColor * color;
@@ -87,8 +81,14 @@
     NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width - 1, cellFrame.size.height);
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = [NSBezierPath bezierPath];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 180 endAngle: 270];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 270 endAngle: 360];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 180
+                                            endAngle: 270];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 270
+                                            endAngle: 360];
     [rectanglePath lineToPoint: NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath lineToPoint: NSMakePoint(NSMinX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath closePath];
@@ -104,6 +104,10 @@
     
     if (self.title) {
         [self drawTitle:[self attributedTitle] withFrame:cellFrame inView:controlView];
+    }
+
+    if (self.image) {
+        [self drawImage:self.image withFrame:cellFrame inView:controlView];
     }
 }
 
