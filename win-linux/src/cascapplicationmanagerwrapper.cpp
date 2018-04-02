@@ -251,7 +251,7 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         _window = _dest;
 
     if ( _window ) {
-        if ( countMainWindow() > 1 ) {
+        if ( (_event->m_nType == ASC_MENU_EVENT_TYPE_PAGE_GOT_FOCUS) && (countMainWindow() > 1) ) {
 #ifdef __linux
             QApplication::setActiveWindow(_window);
 #else
