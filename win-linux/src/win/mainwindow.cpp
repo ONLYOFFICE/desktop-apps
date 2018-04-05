@@ -96,8 +96,7 @@ CMainWindow::CMainWindow(QRect& rect) :
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
-    WNDCLASSEXW wcx = { 0 };
-    wcx.cbSize = sizeof( WNDCLASSEX );
+    WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
     wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = hInstance;
     wcx.lpfnWndProc = WndProc;
@@ -499,7 +498,6 @@ qDebug() << "WM_CLOSE";
                 }
             }
 
-            ::SetForegroundWindow(hWnd);
             ::SetFocus(hWnd);
             LocalFree(szArglist);
         }

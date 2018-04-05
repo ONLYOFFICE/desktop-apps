@@ -69,8 +69,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     }
 
     HINSTANCE hInstance = GetModuleHandle(NULL);
-    WNDCLASSEXW wcx = { 0 };
-    wcx.cbSize = sizeof( WNDCLASSEX );
+    WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
     wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = hInstance;
     wcx.lpfnWndProc = CSingleWindow::WndProc;
