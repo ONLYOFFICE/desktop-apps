@@ -250,7 +250,6 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
 
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
-        resizeEvent(NULL);
     } else {
         RELEASEOBJECT(pView)
     }
@@ -328,7 +327,6 @@ int CAscTabWidget::addPortal(QString url, QString name)
 
 //    updateTabIcon(tabIndexByView(id));
 
-    resizeEvent(NULL);
     return tab_index;
 }
 
@@ -366,7 +364,6 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 #endif
 
-    resizeEvent(NULL);
     return tab_index;
 }
 
@@ -380,8 +377,6 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
         tabindex = insertTab(index, panel, tabdata->title());
         tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
-
-        resizeEvent(nullptr);
     }
 
     return tabindex;
@@ -427,7 +422,7 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
 
 void CAscTabWidget::tabInserted(int index)
 {
-//    adjustTabsSize();
+    adjustTabsSize();
     emit editorInserted(index, count());
 }
 
