@@ -655,7 +655,13 @@ void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
 
 int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
 {
-    int tabIndex = tabIndexByUrl(opts.url);
+    int tabIndex = -1;
+    CCefView * view = AscAppManager::getInstance().GetViewByRecentId( opts.id );
+    if ( false && view ) {
+        tabIndex = tabIndexByView(view->GetId());
+    } else {
+        tabIndex = tabIndexByUrl(opts.url);
+    }
 
     if (tabIndex < 0){
         opts.name = QFileInfo(opts.url).fileName();
