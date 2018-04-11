@@ -186,11 +186,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 #ifdef __linux__
         mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
 
-        QPalette _palette(parent->palette());
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-        parent->setAutoFillBackground(true);
-        parent->setPalette(_palette);
-
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
     } else {

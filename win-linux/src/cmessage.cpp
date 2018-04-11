@@ -164,7 +164,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 {
     QLayoutItem * item;
     QWidget * widget;
-    while ( item = m_boxButtons->layout()->takeAt(0) ) {
+    while ( (item = m_boxButtons->layout()->takeAt(0)) ) {
         if ( (widget = item->widget()) ) {
             delete widget;
         }
