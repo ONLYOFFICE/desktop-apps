@@ -47,14 +47,17 @@ public:
     QWidget * createMainPanel(bool, const QString&, QWidget *);
 
 private:
-    void recalculatePlaces();
+    bool event(QEvent *event);
+    void resizeEvent(QResizeEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+    void mouseDoubleClickEvent(QMouseEvent *);
 
 private:
-    QWidget * m_pMainView;
-    QWidget * m_boxTitleBtns;
-    QPushButton * m_pButtonMinimize,
-                * m_pButtonMaximize,
-                * m_pButtonClose;
+    QWidget * m_pMainPanel;
+    QWidget * m_boxTitle;
+    QPushButton * m_btnMaximize;
 
     uchar m_dpiRatio;
 
@@ -62,8 +65,6 @@ signals:
 
 public slots:
     void pushButtonCloseClicked();
-    void pushButtonMinimizeClicked();
-    void pushButtonMaximizeClicked();
 };
 
 #endif // CSINGLEWINDOW_H

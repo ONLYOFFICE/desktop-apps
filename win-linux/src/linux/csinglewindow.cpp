@@ -51,6 +51,8 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
     if (reg_user.value("titlebar") == "custom" ||
             reg_system.value("titlebar") == "custom" )
         CX11Decoration::turnOff();
+    else
+        setWindowTitle(title);
 
     // adjust window size
     QRect _window_rect = geometry;
@@ -72,157 +74,161 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
     resize(_window_rect.width(), _window_rect.height());
 
-    m_pMainView = createMainPanel(!CX11Decoration::isDecorated(), title, view);
+    m_pMainPanel = createMainPanel(!CX11Decoration::isDecorated(), title, view);
 
-    recalculatePlaces();
+    if ( !CX11Decoration::isDecorated() ) {
+        CX11Decoration::setTitleWidget(m_boxTitle);
+        m_pMainPanel->setMouseTracking(true);
+        setMouseTracking(true);
+    }
+
+    setCentralWidget(m_pMainPanel);
+    updateGeometry();
 }
 
 bool CSingleWindow::holdView(int id) const
 {
-    return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
+    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+    return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
 }
 
 QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWidget * view)
 {
-    QWidget * mainPanel = new QWidget(this);
-//    mainpanel->setObjectName("mainPanel");
-
-    QGridLayout * mainGridLayout = new QGridLayout();
-    mainGridLayout->setSpacing(0);
-    mainGridLayout->setMargin(0);
-    mainPanel->setLayout(mainGridLayout);
+    QWidget * mainPanel = new QWidget;
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
-    // Central widget
-    QWidget * centralWidget = new QWidget(mainPanel);
-    centralWidget->setObjectName("centralWidget");
-    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QVBoxLayout * _layout = new QVBoxLayout(mainPanel);
 
-    QSize small_btn_size(28 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
-
-    m_boxTitleBtns = new CX11Caption(centralWidget);
-
-    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel(title);
-    label->setObjectName("labelAppTitle");
-    label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-
-    layoutBtns->setContentsMargins(0, 0, 4*m_dpiRatio, 0);
-    layoutBtns->setSpacing(1*m_dpiRatio);
-    layoutBtns->addWidget(label);
+    _layout->setAlignment(Qt::AlignTop);
+    _layout->setSpacing(0);
+    _layout->setMargin(0);
 
     if ( custom ) {
-        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
+        m_boxTitle = new QWidget(mainPanel);
+        m_boxTitle->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
+        _layout->addWidget(m_boxTitle);
+
+        m_boxTitle->setLayout(new QHBoxLayout);
+        m_boxTitle->layout()->setSpacing(0);
+        m_boxTitle->layout()->setContentsMargins(40*3,0,0,0);
+        m_boxTitle->layout()->setSpacing(1*m_dpiRatio);
+
+        QLabel * label = new QLabel(title);
+        label->setObjectName("labelAppTitle");
+        label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        label->setMouseTracking(true);
+        m_boxTitle->layout()->addWidget(label);
+
+        QSize small_btn_size(40 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
+
+        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent = nullptr) {
             QPushButton * btn = new QPushButton(parent);
             btn->setObjectName(name);
             btn->setProperty("class", "normal");
             btn->setProperty("act", "tool");
             btn->setFixedSize(small_btn_size);
+            btn->setMouseTracking(true);
 
             return btn;
         };
 
-        // Minimize
-        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", centralWidget);
-        connect(m_pButtonMinimize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMinimizeClicked, this));
+        QPushButton * _btn_minimize = _creatToolButton("toolButtonMinimize");
+        connect(_btn_minimize, &QPushButton::clicked, [=]{ setWindowState(Qt::WindowMinimized); });
 
-        // Maximize
-        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", centralWidget);
-        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMaximizeClicked, this));
+        m_btnMaximize = _creatToolButton("toolButtonMaximize");
+        QObject::connect(m_btnMaximize, &QPushButton::clicked, [=]{
+            setWindowState(windowState() == Qt::WindowMaximized ? Qt::WindowNoState : Qt::WindowMaximized);
+        });
 
-        // Close
-        m_pButtonClose = _creatToolButton("toolButtonClose", centralWidget);
-        QObject::connect(m_pButtonClose, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
+        QPushButton * _btn_close = _creatToolButton("toolButtonClose");
+        QObject::connect(_btn_close, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
 
-        layoutBtns->addWidget(m_pButtonMinimize);
-        layoutBtns->addWidget(m_pButtonMaximize);
-        layoutBtns->addWidget(m_pButtonClose);
+        m_boxTitle->layout()->addWidget(_btn_minimize);
+        m_boxTitle->layout()->addWidget(m_btnMaximize);
+        m_boxTitle->layout()->addWidget(_btn_close);
 
-#ifdef __linux
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+        _layout->setMargin(CX11Decoration::customWindowBorderWith());
 
         QPalette _palette(palette());
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
+        _palette.setColor(QPalette::Background, QColor("#f1f1f1"));
         setAutoFillBackground(true);
         setPalette(_palette);
 
-        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
-#endif
-
-        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-    } else {
-        QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
-        gradient.setColorAt(0, QColor("#eee"));
-        gradient.setColorAt(1, QColor("#e4e4e4"));
-
-        label->setFixedHeight(0);
-        m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
+        setStyleSheet("QMainWindow{border:1px solid #888;}");
     }
 
     if ( !view ) {
-        QCefView * pMainWidget = new QCefView(centralWidget);
-        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-        pMainWidget->setObjectName( "mainPanel" );
-        pMainWidget->setHidden(false);
+        QCefView * _view = new QCefView(mainPanel);
+        _view->Create(&AscAppManager::getInstance(), cvwtSimple);
+//        pMainWidget->setHidden(false);
 
-        m_pMainView = (QWidget *)pMainWidget;
-    } else {
-        m_pMainView = view;
-        m_pMainView->setParent(centralWidget);
-        m_pMainView->show();
+        view = _view;
     }
 
-//    m_pMainWidget->setVisible(false);
+    view->setObjectName("mainView");
+    _layout->addWidget(view, 1);
+    ((QCefView *)view)->GetCefView()->resizeEvent(width(), height());
 
-    mainGridLayout->addWidget( centralWidget );
     return mainPanel;
 }
 
 void CSingleWindow::pushButtonCloseClicked()
 {
-    if ( m_pMainView ) {
+    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+    if ( mainView ) {
+        mainView->setObjectName("destroyed");
         AscAppManager::getInstance().DestroyCefView(
-                ((QCefView *)m_pMainView)->GetCefView()->GetId() );
-
-        m_pMainView = nullptr;
+                ((QCefView *)mainView)->GetCefView()->GetId() );
     }
 
     AscAppManager::closeEditorWindow( size_t(this) );
 }
 
-void CSingleWindow::pushButtonMinimizeClicked()
+void CSingleWindow::resizeEvent(QResizeEvent *event)
 {
-    setWindowState(Qt::WindowMinimized);
+    QMainWindow::resizeEvent(event);
 }
 
-void CSingleWindow::pushButtonMaximizeClicked()
+void CSingleWindow::mouseMoveEvent(QMouseEvent *e)
 {
-    bool _is_maximized = windowState() == Qt::WindowMaximized;
-    if ( !CX11Decoration::isDecorated() ) {
-#ifdef __linux
-        layout()->setMargin(!_is_maximized ? 0 : CX11Decoration::customWindowBorderWith());
-#endif
+    CX11Decoration::dispatchMouseMove(e);
+}
+void CSingleWindow::mousePressEvent(QMouseEvent *e)
+{
+    CX11Decoration::dispatchMouseDown(e);
+}
+void CSingleWindow::mouseReleaseEvent(QMouseEvent *e)
+{
+    CX11Decoration::dispatchMouseUp(e);
+}
 
-        m_pButtonMaximize->setProperty("class", _is_maximized ? "min" : "normal");
-        m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+void CSingleWindow::mouseDoubleClickEvent(QMouseEvent *)
+{
+    if ( m_boxTitle->underMouse() ) {
+        m_btnMaximize->click();
+    }
+}
+
+bool CSingleWindow::event(QEvent * event)
+{
+    if (event->type() == QEvent::WindowStateChange) {
+        QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
+
+        CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
+
+        if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
+            layout()->setMargin(0);
+
+            m_btnMaximize->setProperty("class", "min");
+            m_btnMaximize->style()->polish(m_btnMaximize);
+        } else
+        if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
+            layout()->setMargin(CX11Decoration::customWindowBorderWith());
+
+            m_btnMaximize->setProperty("class", "normal");
+            m_btnMaximize->style()->polish(m_btnMaximize);
+        }
     }
 
-    setWindowState(_is_maximized ? Qt::WindowNoState : Qt::WindowMaximized);
-}
-
-void CSingleWindow::recalculatePlaces()
-{
-    int cbw = 0;
-
-    QWidget * cw = findChild<QWidget *>("centralWidget");
-    int windowW = cw->width(),
-        windowH = cw->height(),
-        captionH = TITLE_HEIGHT * m_dpiRatio;
-
-    int contentH = windowH - captionH;
-    if ( contentH < 1 ) contentH = 1;
-
-    m_boxTitleBtns->setFixedSize(windowW, TOOLBTN_HEIGHT * m_dpiRatio);
-    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);
+    return QMainWindow::event(event);
 }
