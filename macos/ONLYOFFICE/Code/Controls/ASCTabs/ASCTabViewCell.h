@@ -50,4 +50,8 @@
 @property (nonatomic) NSColor * inactiveTextColor;
 @property (nonatomic) NSColor * inactiveBorderColor;
 @property (nonatomic, weak) NSButton * closeButton;
+
+- (void)startProcessing;
+- (void)stopProcessing;
+
 @end

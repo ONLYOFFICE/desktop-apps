@@ -96,6 +96,12 @@
 		FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FC6718311BD918CA0028600F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
 		FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
+		FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
+		FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
+		FC73E6DE207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
+		FC73E6F3207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
+		FC73E6F4207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
+		FC73E6F5207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
 		FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
 		FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
 		FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
@@ -221,9 +227,6 @@
 		FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C62206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
-		FCC77C63206CDBCE001B7837 /* NSView+ASCView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C59206CDBCE001B7837 /* NSView+ASCView.m */; };
-		FCC77C64206CDBCE001B7837 /* NSView+ASCView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C59206CDBCE001B7837 /* NSView+ASCView.m */; };
-		FCC77C65206CDBCE001B7837 /* NSView+ASCView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C59206CDBCE001B7837 /* NSView+ASCView.m */; };
 		FCC77C66206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
 		FCC77C67206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
 		FCC77C68206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
@@ -236,9 +239,6 @@
 		FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
 		FCC77C7D206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
 		FCC77C7E206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
-		FCC77C7F206CEE5B001B7837 /* ASCColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C74206CEE5A001B7837 /* ASCColorView.m */; };
-		FCC77C80206CEE5B001B7837 /* ASCColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C74206CEE5A001B7837 /* ASCColorView.m */; };
-		FCC77C81206CEE5B001B7837 /* ASCColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C74206CEE5A001B7837 /* ASCColorView.m */; };
 		FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C84206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
@@ -260,6 +260,15 @@
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
+		FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
+		FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
+		FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
+		FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
+		FCE7D16A207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
+		FCE7D16B207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
+		FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
+		FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
+		FCE7D16E207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
 		FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E31CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
@@ -388,6 +397,10 @@
 		FC6718481BD91B410028600F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718491BD91B420028600F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC67184A1BD91B430028600F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		FC73E6DA207DE36A00EFFD2F /* NSView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSView+Extensions.h"; sourceTree = "<group>"; };
+		FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+Extensions.m"; sourceTree = "<group>"; };
+		FC73E6F1207E15BB00EFFD2F /* NSColor+OnlyOffice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+OnlyOffice.h"; sourceTree = "<group>"; };
+		FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+OnlyOffice.m"; sourceTree = "<group>"; };
 		FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC81D4BE2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		FC81D4BF2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
@@ -466,21 +479,17 @@
 		FCBC42751B9D650500405301 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FCBC42781B9D650500405301 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
-		FCC77C56206CDBCD001B7837 /* NSView+ASCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+ASCView.h"; sourceTree = "<group>"; };
 		FCC77C57206CDBCD001B7837 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		FCC77C59206CDBCE001B7837 /* NSView+ASCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+ASCView.m"; sourceTree = "<group>"; };
 		FCC77C5A206CDBCE001B7837 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OnlyOffice.h"; sourceTree = "<group>"; };
 		FCC77C5B206CDBCE001B7837 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
 		FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
 		FCC77C69206CDC84001B7837 /* NSLayoutConstraint+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Extensions.h"; sourceTree = "<group>"; };
 		FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Extensions.m"; sourceTree = "<group>"; };
-		FCC77C6F206CEE59001B7837 /* ASCColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCColorView.h; sourceTree = "<group>"; };
 		FCC77C70206CEE59001B7837 /* ASCMenuButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCMenuButtonCell.h; sourceTree = "<group>"; };
 		FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCMenuButtonCell.m; sourceTree = "<group>"; };
 		FCC77C72206CEE5A001B7837 /* ASCSavePanelWithFormatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCSavePanelWithFormatController.h; sourceTree = "<group>"; };
 		FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCSavePanelWithFormatController.m; sourceTree = "<group>"; };
-		FCC77C74206CEE5A001B7837 /* ASCColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCColorView.m; sourceTree = "<group>"; };
 		FCC77C75206CEE5B001B7837 /* ASCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCButton.m; sourceTree = "<group>"; };
 		FCC77C76206CEE5B001B7837 /* ASCButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCButtonCell.h; sourceTree = "<group>"; };
 		FCC77C77206CEE5B001B7837 /* ASCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCButton.h; sourceTree = "<group>"; };
@@ -510,6 +519,15 @@
 		FCD2B91C1BC64F1900F54560 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FCD2B9241BC68FBD00F54560 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCD65B931BDFAFCB008361F1 /* nsascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsascprinter.h; sourceTree = "<group>"; };
+		FCE7D15D207D002700642010 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
+		FCE7D15E207D002700642010 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		FCE7D160207D002700642010 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		FCE7D161207D002700642010 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		FCE7D162207D002700642010 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		FCE7D163207D002700642010 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		FCE7D164207D002700642010 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		FCE7D165207D002700642010 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFD46241C1ADAB300FDDCEE /* OfficeFileFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfficeFileFormats.h; path = ../../core/Common/OfficeFileFormats.h; sourceTree = SOURCE_ROOT; };
@@ -779,6 +797,7 @@
 		FC67182F1BD918250028600F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				FCE7D15C207D002700642010 /* PureLayout */,
 				FCFE61DD1CAD02D4000D2418 /* CocoaAnalytics */,
 				FCB454FC1C326A4E00FEACF2 /* PFMoveApplication */,
 				FC3BFDF91BBE83AB0040C904 /* SFBPopover */,
@@ -865,12 +884,12 @@
 		FCA0B3561B9F00780073EDD4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */,
-				FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */,
 				FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */,
 				FCAC6DF71C195FA6003D2457 /* ASCConstants.m */,
 				FCA0B3531B9F006F0073EDD4 /* ASCHelper.h */,
 				FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */,
+				FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */,
+				FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */,
 				FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */,
 				FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */,
 				FCA4502C1C2063460007134D /* ASCSharedSettings.h */,
@@ -1020,8 +1039,6 @@
 				FCC77C75206CEE5B001B7837 /* ASCButton.m */,
 				FCC77C76206CEE5B001B7837 /* ASCButtonCell.h */,
 				FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */,
-				FCC77C6F206CEE59001B7837 /* ASCColorView.h */,
-				FCC77C74206CEE5A001B7837 /* ASCColorView.m */,
 				FCC77C70206CEE59001B7837 /* ASCMenuButtonCell.h */,
 				FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */,
 				FCC77C72206CEE5A001B7837 /* ASCSavePanelWithFormatController.h */,
@@ -1040,10 +1057,12 @@
 				FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */,
 				FCC77C5A206CDBCE001B7837 /* NSString+OnlyOffice.h */,
 				FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */,
-				FCC77C56206CDBCD001B7837 /* NSView+ASCView.h */,
-				FCC77C59206CDBCE001B7837 /* NSView+ASCView.m */,
 				FCC77C69206CDC84001B7837 /* NSLayoutConstraint+Extensions.h */,
 				FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */,
+				FC73E6DA207DE36A00EFFD2F /* NSView+Extensions.h */,
+				FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */,
+				FC73E6F1207E15BB00EFFD2F /* NSColor+OnlyOffice.h */,
+				FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */,
 			);
 			name = Extensions;
 			path = Code/Extensions;
@@ -1062,6 +1081,22 @@
 				FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */,
 			);
 			path = ASCTabs;
+			sourceTree = "<group>";
+		};
+		FCE7D15C207D002700642010 /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FCE7D15D207D002700642010 /* PureLayoutDefines.h */,
+				FCE7D15E207D002700642010 /* ALView+PureLayout.h */,
+				FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */,
+				FCE7D160207D002700642010 /* NSArray+PureLayout.h */,
+				FCE7D161207D002700642010 /* NSLayoutConstraint+PureLayout.h */,
+				FCE7D162207D002700642010 /* ALView+PureLayout.m */,
+				FCE7D163207D002700642010 /* PureLayout+Internal.h */,
+				FCE7D164207D002700642010 /* PureLayout.h */,
+				FCE7D165207D002700642010 /* NSArray+PureLayout.m */,
+			);
+			path = PureLayout;
 			sourceTree = "<group>";
 		};
 		FCFE61DD1CAD02D4000D2418 /* CocoaAnalytics */ = {
@@ -1168,6 +1203,7 @@
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 2WH24U26GJ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -1454,13 +1490,14 @@
 				FC6718011BD913C00028600F /* ASCApplicationManager.cpp in Sources */,
 				FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */,
 				FC6718031BD913C00028600F /* ViewController.mm in Sources */,
+				FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
 				FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */,
 				FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */,
-				FCC77C64206CDBCE001B7837 /* NSView+ASCView.m in Sources */,
 				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */,
 				FC67180A1BD913C00028600F /* ASCHelper.m in Sources */,
+				FC73E6F4207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
 				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
 				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
@@ -1474,14 +1511,15 @@
 				FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FC6718121BD913C00028600F /* SFBPopover.m in Sources */,
 				FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
-				FCC77C80206CEE5B001B7837 /* ASCColorView.m in Sources */,
 				FC6718131BD913C00028600F /* ASCEventsController.mm in Sources */,
 				FCC77C67206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */,
 				FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */,
+				FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */,
 				FCC77C92206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
 				FCC77C86206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
 				FC6718181BD913C00028600F /* main.mm in Sources */,
+				FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FCC77C7A206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC6718191BD913C00028600F /* ASCDownloadViewController.m in Sources */,
 				FCC77C95206CEE85001B7837 /* ASCTabsControl.m in Sources */,
@@ -1491,6 +1529,7 @@
 				FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
 				FC67181E1BD913C00028600F /* SFBPopoverWindowFrame.m in Sources */,
 				FCC77C6D206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
+				FCE7D16A207D002700642010 /* ALView+PureLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,6 +1537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC73E6DE207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
 				FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */,
 				FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */,
 				FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */,
@@ -1511,16 +1551,17 @@
 				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
 				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
 				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
+				FC73E6F5207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
+				FCE7D16B207D002700642010 /* ALView+PureLayout.m in Sources */,
 				FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E61CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
+				FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */,
 				FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */,
 				FCC77C96206CEE85001B7837 /* ASCTabsControl.m in Sources */,
-				FCC77C65206CDBCE001B7837 /* NSView+ASCView.m in Sources */,
 				FC7FD3AB1C315DD6008F6641 /* ASCTitleBarController.m in Sources */,
 				FC7FD3AC1C315DD6008F6641 /* SFBPopover.m in Sources */,
 				FC7FD3AD1C315DD6008F6641 /* ASCEventsController.mm in Sources */,
-				FCC77C81206CEE5B001B7837 /* ASCColorView.m in Sources */,
 				FC659BFB1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */,
 				FCC77C87206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
@@ -1538,6 +1579,7 @@
 				FCC77C62206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
 				FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */,
 				FCC77C5F206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
+				FCE7D16E207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */,
 				FCC77C9C206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
 				FC7FD3BF1C315DD6008F6641 /* ASCReplacePresentationAnimator.m in Sources */,
@@ -1548,6 +1590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
 				FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */,
 				FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */,
@@ -1561,16 +1604,17 @@
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
+				FC73E6F3207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
+				FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
+				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */,
-				FCC77C63206CDBCE001B7837 /* NSView+ASCView.m in Sources */,
 				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
-				FCC77C7F206CEE5B001B7837 /* ASCColorView.m in Sources */,
 				FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
@@ -1588,6 +1632,7 @@
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
+				FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
 				FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */,
 				FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */,
@@ -1984,7 +2029,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Alexander Yuzhin (K97E25SHXE)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2WH24U26GJ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2013,6 +2059,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -2020,9 +2067,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: Ascensio System SIA (2WH24U26GJ)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2WH24U26GJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../core/build/cef/mac",
@@ -2049,6 +2098,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "asc.onlyoffice.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

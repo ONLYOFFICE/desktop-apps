@@ -39,7 +39,7 @@
 //
 
 #import "ASCMenuButtonCell.h"
-#import "ASCHelper.h"
+#import "NSColor+OnlyOffice.h"
 
 @interface ASCMenuButtonCell()
 @end

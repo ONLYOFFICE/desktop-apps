@@ -376,7 +376,13 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
-                        
+                        int senderId = -1;
+
+                        NSEditorApi::CAscCefMenuEvent * pCefEvent = dynamic_cast<NSEditorApi::CAscCefMenuEvent *>(pEvent);
+                        if (pCefEvent) {
+                            senderId = pCefEvent->get_SenderId();
+                        }
+
                         if (cmd.compare(L"portal:open") == 0) {
                             NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/"]];
                             NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
@@ -426,6 +432,18 @@ public:
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady
                                                                                 object:nil
                                                                               userInfo:nil];
+                        } else if (cmd.find(L"doc:onready") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorDocumentReady
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId]
+                                                                                         }];
+                        } else if (cmd.find(L"editor:ready") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorAppReady
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId]
+                                                                                         }];
                         }
                         
                         break;

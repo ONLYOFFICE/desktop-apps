@@ -43,6 +43,8 @@
 @interface ASCButtonCell : NSButtonCell
 @property (nonatomic, readonly) BOOL isHover;
 @property (nonatomic, readonly) BOOL isPressed;
+@property (nonatomic, copy) void (^updateState)(void);
+
 
 - (void)mouseEntered:(NSEvent *)theEvent;
 - (void)mouseExited:(NSEvent *)theEvent;

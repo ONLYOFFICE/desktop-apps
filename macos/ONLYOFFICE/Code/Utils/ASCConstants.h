@@ -38,6 +38,9 @@
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
+#import "ASCHelper.h"
+
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
 
@@ -109,6 +112,8 @@ static NSString * const CEFEventNamePortalSSO               = @"CEF_portalSSO";
 static NSString * const CEFEventNameFileInFinder            = @"CEF_fileOpenInFinder";
 static NSString * const CEFEventNameFilesCheck              = @"CEF_filesCheck";
 static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageReady";
+static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
+static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;

@@ -28,19 +28,34 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  NSView+ASCView.h
+//  NSView+Extensions.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/10/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 11/04/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@interface NSView (ASCView)
+@interface NSView (Extensions)
+
+@property (nonatomic) IBInspectable NSColor * backgroundColor;
+@property (nonatomic) IBInspectable NSColor * borderColor;
+@property (nonatomic) IBInspectable NSColor * shadowColor;
+@property (nonatomic) IBInspectable CGFloat borderWidth;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
+@property (nonatomic) IBInspectable CGFloat width;
+@property (nonatomic) IBInspectable CGFloat height;
+@property (nonatomic) IBInspectable CGSize shadowOffset;
+@property (nonatomic) IBInspectable CGFloat shadowOpacity;
+@property (nonatomic) IBInspectable CGFloat shadowRadius;
+@property (nonatomic) IBInspectable CGSize size;
+@property (nonatomic) IBInspectable NSInteger uuidTag;
+
 - (void)removeAllConstraints;
-- (void)setupFillConstraints;
+- (instancetype)duplicate;
+
 @end

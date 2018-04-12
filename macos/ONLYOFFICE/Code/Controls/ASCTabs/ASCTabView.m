@@ -41,7 +41,7 @@
 #import "ASCTabView.h"
 #import "ASCTabCloseButtonCell.h"
 #import "ASCTabViewCell.h"
-#import "ASCHelper.h"
+#import "NSColor+OnlyOffice.h"
 
 static NSUInteger const kASTabViewCloseButtonSize = 12;
 
@@ -84,13 +84,14 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    ASCTabView *copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
-    
+    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
     copy.type = self.type;
     
     NSButtonCell *cellCopy = [self.cell copy];
     [copy setCell:cellCopy];
-    
+    [copy setState:[self state]];
+    [copy setNeedsDisplay];
+
     return copy;
 }
 
@@ -111,9 +112,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                // ASCTabViewPortal
                @{@"normal": @"icon_tab_portal", @"active": @"icon_tab_portal"}
                ];
-    
+
+    ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
     [self setBordered:NO];
-    [self setCell:[[ASCTabViewCell alloc] initTextCell:self.title]];
+    [self setCell:tabCell];
     [self.cell setImagePosition:NSImageLeft];
     [self.cell setBordered:NO];
         
@@ -133,6 +135,23 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                                     kASTabViewCloseButtonSize,
                                     kASTabViewCloseButtonSize
                                     )];
+
+    ASCTabView * __weak weakSelf = self;
+    tabCell.updateState = ^{
+        if (weakSelf && weakSelf.close) {
+            BOOL hiddenClose = true;
+
+            if ([weakSelf.close state]) {
+                hiddenClose = false;
+            } else {
+                hiddenClose = !(tabCell.isHover || tabCell.isPressed);
+            }
+
+            [weakSelf.close setHidden:hiddenClose];
+        }
+    };
+
+    [self setNeedsDisplay];
 }
 
 - (void)setFrame:(NSRect)frame {
@@ -146,26 +165,30 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     
     if ([iconName length] > 0) {
         self.image = [NSImage imageNamed:iconName];
+//        self.image = [NSImage imageNamed:@"tab-loading-dark"];
     }
 
     ASCButton * closeButton = (ASCButton *)self.close;
+    ASCButtonCell * buttonCell = [closeButton cell];
 
-    if (closeButton) {
-        ASCTabCloseButtonCell * cell = [closeButton cell];
+    if (buttonCell && closeButton) {
+        ASCTabCloseButtonCell * closeButtonCell = [closeButton cell];
 
-        if (cell) {
-            NSInteger windowNumber = [[self window] windowNumber];
-            NSEvent *fakeEvent = [NSEvent enterExitEventWithType:NSEventTypeMouseExited
-                                                        location:NSMakePoint(0, 0)
-                                                   modifierFlags:0
-                                                       timestamp:0
-                                                    windowNumber:windowNumber
-                                                         context:NULL
-                                                     eventNumber:0
-                                                  trackingNumber:0xBADFACE
-                                                        userData:nil];
+        if (closeButtonCell) {
+            NSEvent *currentEvent = [NSApp currentEvent];
+//            NSInteger windowNumber = [[self window] windowNumber];
+//            NSEvent *fakeEvent = [NSEvent enterExitEventWithType:NSEventTypeMouseExited
+//                                                        location:NSMakePoint(0, 0)
+//                                                   modifierFlags:0
+//                                                       timestamp:0
+//                                                    windowNumber:windowNumber
+//                                                         context:NULL
+//                                                     eventNumber:0
+//                                                  trackingNumber:0xBADFACE
+//                                                        userData:nil];
 
-            [[closeButton cell] mouseExited:fakeEvent];
+            [[closeButton cell] mouseExited:currentEvent];
+            [closeButton setHidden:!(BOOL)self.state];
         }
     }
 
@@ -188,16 +211,16 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     if (type == ASCTabViewPortal) {
         tabViewCell.activeColor = kColorRGB(255, 255, 255);
     } else if (type == ASCTabViewDocumentType) {
-        tabViewCell.activeColor = UIColorFromRGB(0x446995);
-        tabViewCell.clickColor  = UIColorFromRGB(0x446995);
+        tabViewCell.activeColor = [NSColor brendDocumentEditor];
+        tabViewCell.clickColor  = [NSColor brendDocumentEditor];
         tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
     } else if (type == ASCTabViewSpreadsheetType) {
-        tabViewCell.activeColor = UIColorFromRGB(0x40865c);
-        tabViewCell.clickColor  = UIColorFromRGB(0x40865c);
+        tabViewCell.activeColor = [NSColor brendSpreadsheetEditor];
+        tabViewCell.clickColor  = [NSColor brendSpreadsheetEditor];
         tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
     } else if (type == ASCTabViewPresentationType) {
-        tabViewCell.activeColor = UIColorFromRGB(0xaa5252);
-        tabViewCell.clickColor  = UIColorFromRGB(0xaa5252);
+        tabViewCell.activeColor = [NSColor brendPresentationEditor];
+        tabViewCell.clickColor  = [NSColor brendPresentationEditor];
         tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
     }
 }

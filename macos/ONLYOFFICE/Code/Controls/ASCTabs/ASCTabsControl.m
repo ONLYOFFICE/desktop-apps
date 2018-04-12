@@ -517,7 +517,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     ASCTabView *draggingTab = [tab copy];
     [self addSubview:draggingTab];
     [tab setHidden:YES];
-    
+
     CGPoint prevPoint = dragPoint;
     
     while (1) {

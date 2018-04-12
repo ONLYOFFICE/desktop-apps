@@ -39,8 +39,7 @@
 //
 
 #import "ASCTitleBackground.h"
-#import "ASCHelper.h"
-
+#import "NSColor+OnlyOffice.h"
 
 @implementation ASCTitleBackground
 

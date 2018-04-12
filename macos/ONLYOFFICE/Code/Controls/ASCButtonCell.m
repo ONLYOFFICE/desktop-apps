@@ -42,23 +42,45 @@
 
 @implementation ASCButtonCell
 
+@synthesize updateState;
+
 - (void)mouseEntered:(NSEvent *)theEvent {
     _isHover = YES;
+
+    if (updateState) {
+        [self updateState]();
+    }
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     _isHover = NO;
+
+    if (updateState) {
+        [self updateState]();
+    }
 }
 
 - (void)mouseMoved:(NSEvent *)theEvent {
     _isHover = YES;
+
+    if (updateState) {
+        [self updateState]();
+    }
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
     _isPressed = YES;
+
+    if (updateState) {
+        [self updateState]();
+    }
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
     _isPressed = NO;
+
+    if (updateState) {
+        [self updateState]();
+    }
 }
 @end

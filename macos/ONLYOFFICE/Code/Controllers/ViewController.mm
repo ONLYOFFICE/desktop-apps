@@ -48,8 +48,9 @@
 #import "ASCHelper.h"
 #import "ASCConstants.h"
 #import "ASCUserInfoViewController.h"
-#import "NSView+ASCView.h"
+#import "NSView+Extensions.h"
 #import "NSAlert+SynchronousSheet.h"
+#import "NSColor+OnlyOffice.h"
 #import "NSString+OnlyOffice.h"
 #import "AppDelegate.h"
 #import "NSCefView.h"
@@ -60,8 +61,10 @@
 #import "ASCSharedSettings.h"
 #import "ASCReplacePresentationAnimator.h"
 #import "AnalyticsHelper.h"
+#import "PureLayout.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
+#define headerViewTag 7777
 
 @interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
@@ -74,6 +77,7 @@
 @property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
+@property (strong) IBOutlet NSView *headerView;
 @end
 
 @implementation ViewController
@@ -94,6 +98,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFChangedTabEditorName:)
                                                  name:CEFEventNameTabEditorNameChanged
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFChangedTabEditorType:)
+                                                 name:CEFEventNameTabEditorType
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -190,6 +199,16 @@
                                              selector:@selector(onCEFStartPageReady:)
                                                  name:CEFEventNameStartPageReady
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorDocumentReady:)
+                                                 name:CEFEventNameEditorDocumentReady
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorAppReady:)
+                                                 name:CEFEventNameEditorAppReady
+                                               object:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -232,7 +251,7 @@
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [self.cefStartPageView create:appManager withType:cvwtSimple];
         [tab.view addSubview:self.cefStartPageView];
-        [self.cefStartPageView setupFillConstraints];
+        [self.cefStartPageView autoPinEdgesToSuperviewEdges];
     }
 }
 
@@ -516,6 +535,58 @@
     return checkedList;
 }
 
+- (void)showHeaderPlaceholderWithIdentifier:(NSString *)uuid forType:(ASCTabViewType)type {
+    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
+    NSColor * headerColor = nil;
+
+    switch (type) {
+        case ASCTabViewDocumentType:
+            headerColor = [NSColor brendDocumentEditor];
+            break;
+        case ASCTabViewSpreadsheetType:
+            headerColor = [NSColor brendSpreadsheetEditor];
+            break;
+        case ASCTabViewPresentationType:
+            headerColor = [NSColor brendPresentationEditor];
+            break;
+        default:
+            break;
+    }
+
+    if (headerColor && self.headerView && tabIndex != NSNotFound) {
+        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
+
+        if (tabItem) {
+            NSView * headerView = [self.headerView duplicate];
+            headerView.uuidTag = headerViewTag;
+            headerView.backgroundColor = headerColor;
+            [tabItem.view addSubview:headerView];
+
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTop];
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+            [headerView autoSetDimension:ALDimensionHeight toSize:56.0];
+        }
+    }
+}
+
+- (void)hideHeaderPlaceholderWithIdentifier:(NSString *)uuid {
+    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
+
+    if (tabIndex != NSNotFound) {
+        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
+
+        if (tabItem) {
+            for (NSView * view in tabItem.view.subviews) {
+                if (view.uuidTag == headerViewTag) {
+                    [view removeFromSuperview];
+                    break;
+                }
+            }
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark CEF events handlers
 
@@ -563,6 +634,29 @@
         
         if (tab) {
             [tab.params addEntriesFromDictionary:params];
+            [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFChangedTabEditorType:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * viewId       = params[@"viewId"];
+        NSInteger type          = [params[@"type"] integerValue];
+
+        switch (type) {
+            case 0:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
+                break;
+            case 1:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
+                break;
+            case 2:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
+                break;
+            default:
+                break;
         }
     }
 }
@@ -1057,6 +1151,20 @@
     [self.cefStartPageView apply:pEvent];
 }
 
+- (void)onCEFEditorDocumentReady:(NSNotification *)notification {
+    //
+}
+
+- (void)onCEFEditorAppReady:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        if (NSString * viewId = json[@"viewId"]) {
+            [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
@@ -1172,7 +1280,7 @@
         item.label = tab.title;
         [self.tabView addTabViewItem:item];
         [item.view addSubview:cefView];
-        [cefView setupFillConstraints];
+        [cefView autoPinEdgesToSuperviewEdges];
     }
 }
 
