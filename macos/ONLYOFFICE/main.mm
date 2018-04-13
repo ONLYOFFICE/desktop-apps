@@ -40,7 +40,7 @@
 
 #import <Cocoa/Cocoa.h>
 #include "mac_application.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "ASCHelper.h"
 #include "ASCApplicationManager.h"
 

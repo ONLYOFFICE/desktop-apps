@@ -50,12 +50,11 @@
 #import "ASCUserInfoViewController.h"
 #import "NSView+Extensions.h"
 #import "NSAlert+SynchronousSheet.h"
-#import "NSColor+OnlyOffice.h"
-#import "NSString+OnlyOffice.h"
+#import "NSColor+Extensions.h"
+#import "NSString+Extensions.h"
 #import "AppDelegate.h"
 #import "NSCefView.h"
 #import "ASCEventsController.h"
-#import "NSString+OnlyOffice.h"
 #import "ASCDownloadController.h"
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCSharedSettings.h"
@@ -558,6 +557,7 @@
 
         if (tabItem) {
             NSView * headerView = [self.headerView duplicate];
+            headerView.alphaValue = 1;
             headerView.uuidTag = headerViewTag;
             headerView.backgroundColor = headerColor;
             [tabItem.view addSubview:headerView];
@@ -567,11 +567,22 @@
             [headerView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
             [headerView autoSetDimension:ALDimensionHeight toSize:56.0];
         }
+
+        ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
+
+        if (tab) {
+            tab.isProcessing = true;
+        }
     }
 }
 
 - (void)hideHeaderPlaceholderWithIdentifier:(NSString *)uuid {
     NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
+    ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
+
+    if (tab) {
+        tab.isProcessing = false;
+    }
 
     if (tabIndex != NSNotFound) {
         NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
@@ -579,7 +590,12 @@
         if (tabItem) {
             for (NSView * view in tabItem.view.subviews) {
                 if (view.uuidTag == headerViewTag) {
-                    [view removeFromSuperview];
+                    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+                        context.duration = 0.3;
+                        view.animator.alphaValue = 0;
+                    } completionHandler:^{
+                        [view removeFromSuperview];
+                    }];
                     break;
                 }
             }

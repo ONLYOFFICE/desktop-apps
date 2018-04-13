@@ -28,26 +28,22 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTitleBackground.m
+//  NSImage+Extensions.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 13/04/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCTitleBackground.h"
-#import "NSColor+Extensions.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation ASCTitleBackground
+@interface NSImage (Extensions)
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [kColorRGB(64, 68, 71) setFill];
-    NSRectFill(dirtyRect);
-    
-    [super drawRect:dirtyRect];
-}
+- (CGImageRef)CGImage;
+- (NSArray<NSImage *> *)images;
+- (BOOL)isGIF;
 
 @end

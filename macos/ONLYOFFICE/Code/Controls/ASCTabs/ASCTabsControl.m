@@ -38,9 +38,10 @@
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
+#import <objc/runtime.h>
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
-#import <objc/runtime.h>
+#import "ASCTabViewCell.h"
 
 static char kASCTabsScrollViewObservationContext;
 static CGFloat const kASCTabsScrollButtonWidth = 24.f;
@@ -514,7 +515,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     CGFloat tabX = NSMinX(tab.frame);
     NSPoint dragPoint = [self.tabsView convertPoint:event.locationInWindow fromView:nil];
     
-    ASCTabView *draggingTab = [tab copy];
+    ASCTabView * draggingTab = [tab copy];
+
     [self addSubview:draggingTab];
     [tab setHidden:YES];
 

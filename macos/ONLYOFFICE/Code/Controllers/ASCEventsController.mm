@@ -41,7 +41,7 @@
 #import "ASCEventsController.h"
 #import "mac_application.h"
 #import "ASCConstants.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "OfficeFileFormats.h"
 #import "ASCPresentationReporter.h"
 

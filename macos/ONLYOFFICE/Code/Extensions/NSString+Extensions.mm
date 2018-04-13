@@ -31,18 +31,18 @@
 */
 
 //
-//  NSString+OnlyOffice.m
-//  SpreadsheetEditor
+//  NSString+Extensions.mm
+//  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 7/7/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 /** Need for MD5 & SHA hashes */
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation NSString (OnlyOffice)
+@implementation NSString (Extensions)
 
 + (id)stringWithstdwstring:(const std::wstring&)string
 {

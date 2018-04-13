@@ -28,26 +28,41 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTitleBackground.m
+//  NSImage+Extensions.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 13/04/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCTitleBackground.h"
-#import "NSColor+Extensions.h"
+#import "NSImage+Extensions.h"
 
-@implementation ASCTitleBackground
+@implementation NSImage (Extensions)
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [kColorRGB(64, 68, 71) setFill];
-    NSRectFill(dirtyRect);
-    
-    [super drawRect:dirtyRect];
+- (CGImageRef)CGImage {
+    NSRect imageRect = NSMakeRect(0, 0, self.size.width, self.size.height);
+    CGImageRef cgImage = [self CGImageForProposedRect:&imageRect context:NULL hints:nil];
+    return cgImage;
+}
+
+- (NSArray<NSImage *> *)images {
+    return nil;
+}
+
+- (BOOL)isGIF {
+    BOOL isGIF = NO;
+    for (NSImageRep *rep in self.representations) {
+        if ([rep isKindOfClass:[NSBitmapImageRep class]]) {
+            NSBitmapImageRep *bitmapRep = (NSBitmapImageRep *)rep;
+            NSUInteger frameCount = [[bitmapRep valueForProperty:NSImageFrameCount] unsignedIntegerValue];
+            isGIF = frameCount > 1 ? YES : NO;
+            break;
+        }
+    }
+    return isGIF;
 }
 
 @end

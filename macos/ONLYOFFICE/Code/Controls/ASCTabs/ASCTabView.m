@@ -41,7 +41,7 @@
 #import "ASCTabView.h"
 #import "ASCTabCloseButtonCell.h"
 #import "ASCTabViewCell.h"
-#import "NSColor+OnlyOffice.h"
+#import "NSColor+Extensions.h"
 
 static NSUInteger const kASTabViewCloseButtonSize = 12;
 
@@ -51,6 +51,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 @end
 
 @implementation ASCTabView
+
+@synthesize isProcessing = _isProcessing;
 
 - (id)init {
     self = [super init];
@@ -86,8 +88,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 {
     ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
     copy.type = self.type;
-    
-    NSButtonCell *cellCopy = [self.cell copy];
+
+    ASCTabViewCell * cellCopy = [self.cell copy];
     [copy setCell:cellCopy];
     [copy setState:[self state]];
     [copy setNeedsDisplay];
@@ -136,7 +138,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                                     kASTabViewCloseButtonSize
                                     )];
 
-    ASCTabView * __weak weakSelf = self;
+    __weak __typeof__(self) weakSelf = self;
     tabCell.updateState = ^{
         if (weakSelf && weakSelf.close) {
             BOOL hiddenClose = true;
@@ -161,11 +163,12 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 - (void)setState:(NSInteger)state {
     [super setState:state];
     
-    NSString * iconName = (self.state) ? _icons[self.type][@"active"] : _icons[self.type][@"normal"];
+    NSString * iconName = (self.state)
+        ? _icons[self.type][@"active"]
+        : _icons[self.type][@"normal"];
     
     if ([iconName length] > 0) {
         self.image = [NSImage imageNamed:iconName];
-//        self.image = [NSImage imageNamed:@"tab-loading-dark"];
     }
 
     ASCButton * closeButton = (ASCButton *)self.close;
@@ -176,17 +179,6 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
         if (closeButtonCell) {
             NSEvent *currentEvent = [NSApp currentEvent];
-//            NSInteger windowNumber = [[self window] windowNumber];
-//            NSEvent *fakeEvent = [NSEvent enterExitEventWithType:NSEventTypeMouseExited
-//                                                        location:NSMakePoint(0, 0)
-//                                                   modifierFlags:0
-//                                                       timestamp:0
-//                                                    windowNumber:windowNumber
-//                                                         context:NULL
-//                                                     eventNumber:0
-//                                                  trackingNumber:0xBADFACE
-//                                                        userData:nil];
-
             [[closeButton cell] mouseExited:currentEvent];
             [closeButton setHidden:!(BOOL)self.state];
         }
@@ -199,7 +191,9 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     _type = type;
     
     if (type > ASCTabViewUnknownType && type < [_icons count]) {
-        NSString * iconName = (self.state) ? _icons[type][@"active"] : _icons[type][@"normal"];
+        NSString * iconName = (self.state)
+            ? _icons[type][@"active"]
+            : _icons[type][@"normal"];
         
         if ([iconName length] > 0) {
             self.image = [NSImage imageNamed:iconName];
@@ -222,6 +216,16 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         tabViewCell.activeColor = [NSColor brendPresentationEditor];
         tabViewCell.clickColor  = [NSColor brendPresentationEditor];
         tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+    }
+}
+
+- (void)setIsProcessing:(BOOL)isProcessing {
+    if (_isProcessing != isProcessing) {
+        _isProcessing = isProcessing;
+
+        ASCTabViewCell * tabViewCell = self.cell;
+        tabViewCell.isProcessing = _isProcessing;
+        [self setNeedsDisplay];
     }
 }
 

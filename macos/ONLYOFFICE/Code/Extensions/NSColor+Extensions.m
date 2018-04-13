@@ -28,26 +28,54 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTitleBackground.m
+//  NSColor+Extensions.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/8/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 11/04/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import "ASCTitleBackground.h"
 #import "NSColor+Extensions.h"
 
-@implementation ASCTitleBackground
+#pragma mark - ONLYOFFICE
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [kColorRGB(64, 68, 71) setFill];
-    NSRectFill(dirtyRect);
-    
-    [super drawRect:dirtyRect];
+@implementation NSColor (OnlyOffice)
+
++ (NSColor *) brendDocumentEditor {
+    return UIColorFromRGB(0x446995);
+}
+
++ (NSColor *) brendSpreadsheetEditor {
+    return UIColorFromRGB(0x40865c);
+}
+
++ (NSColor *) brendPresentationEditor {
+    return UIColorFromRGB(0xaa5252);
+}
+
+@end
+
+#pragma mark - Extensions
+
+@implementation NSColor (Extensions)
+
+- (BOOL) isLight {
+    CGFloat colorBrightness = 0;
+    CGColorSpaceRef colorSpace = CGColorGetColorSpace(self.CGColor);
+    CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(colorSpace);
+
+    if(colorSpaceModel == kCGColorSpaceModelRGB){
+        const CGFloat *componentColors = CGColorGetComponents(self.CGColor);
+
+        colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000;
+    } else {
+        [self getWhite:&colorBrightness alpha:0];
+    }
+
+    return (colorBrightness >= .5f);
 }
 
 @end

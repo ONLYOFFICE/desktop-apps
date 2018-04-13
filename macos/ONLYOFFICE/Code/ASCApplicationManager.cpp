@@ -42,7 +42,7 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 #import "ASCConstants.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 
 ASCApplicationManager::ASCApplicationManager() : CAscApplicationManager() {
 #ifdef DEBUG

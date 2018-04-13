@@ -40,20 +40,23 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "ASCTabViewCell.h"
-#import "NSColor+OnlyOffice.h"
+#import "NSColor+Extensions.h"
+#import "NSImage+Extensions.h"
 
 @interface ASCTabViewCell()
-@property (nonatomic) BOOL isAnimatedIcon;
 @property (nonatomic) NSImageView * animatedImageView;
 @property (nonatomic, weak) NSView * parentView;
 @property (nonatomic, readonly) CALayer * loaderLayer;
 @property (nonatomic, readonly) CABasicAnimation * loaderAnimation;
+@property (nonatomic) BOOL isLight;
 @end
 
 @implementation ASCTabViewCell
 
 @synthesize loaderLayer = _loaderLayer;
 @synthesize loaderAnimation = _loaderAnimation;
+@synthesize isProcessing = _isProcessing;
+@synthesize isLight = _isLight;
 
 #pragma mark - Properties
 
@@ -62,11 +65,13 @@
         return _loaderLayer;
     }
 
-    if (nil == self.image || nil == self.parentView) {
+    NSImage * loaderImage = [NSImage imageNamed:@"tab-loader-dark"];
+
+    if (nil == loaderImage || nil == self.parentView) {
         return nil;
     }
 
-    NSSize size = [self.image size];
+    NSSize size = [loaderImage size];
     CGRect rect = CGRectMake(
                              8,
                              (CGRectGetHeight(self.parentView.bounds) - size.width) * .5 - 1,
@@ -75,13 +80,14 @@
 
 
     CALayer * layer = [CALayer new];
-    layer.backgroundColor = NSColor.redColor.CGColor;
+    //layer.backgroundColor = NSColor.redColor.CGColor;
     layer.bounds = rect;
     layer.anchorPoint = CGPointMake(0.5, 0.5);
     layer.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-
-    //    layer.contents = UIImage(named:"logo3")?.cgImage
-    layer.contentsGravity = kCAGravityResizeAspectFill;
+    layer.contents = (id)[loaderImage CGImage];
+    layer.contentsGravity = kCAGravityCenter;
+    layer.zPosition = 1000;
+    layer.hidden = !_isProcessing;
 
     _loaderLayer = layer;
     return _loaderLayer;
@@ -96,13 +102,32 @@
 
     animation.fromValue = 0;
     animation.toValue = [NSNumber numberWithFloat: M_PI * 4];
-    animation.duration = 4;
+    animation.duration = 2;
     animation.repeatCount = HUGE_VALF;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     animation.removedOnCompletion = true;
 
     _loaderAnimation = animation;
+
     return animation;
+}
+
+- (void)setIsProcessing:(BOOL)isProcessing {
+    if (_isProcessing != isProcessing) {
+        _isProcessing = isProcessing;
+        _isProcessing ? [self startProcessing] : [self stopProcessing];
+    }
+}
+
+- (void)setIsLight:(BOOL)isLight {
+    if (_isLight != isLight) {
+        _isLight = isLight;
+
+        NSImage * loaderImage = isLight
+            ? [NSImage imageNamed:@"tab-loader-dark"]
+            : [NSImage imageNamed:@"tab-loader-light"];
+        self.loaderLayer.contents = (id)[loaderImage CGImage];
+    }
 }
 
 #pragma mark - Lifecycle Methods
@@ -120,10 +145,15 @@
         self.activeTextColor        = UIColorFromRGB(0x000000);
         self.inactiveTextColor      = UIColorFromRGB(0x000000);
         self.inactiveBorderColor    = UIColorFromRGBA(0x000000, 0);
+
+        _parentView = nil;
+        _loaderLayer = nil;
+        _loaderAnimation = nil;
     }
 
-//    [self startProcessing];
-//    self.isAnimatedIcon = true;
+    if (_isProcessing) {
+        [self startProcessing];
+    }
 
     return self;
 }
@@ -144,6 +174,8 @@
         color = (self.isHover) ? self.hoverInactiveColor : self.inactiveColor;
 //        (self.isHover) ? NSLog(@"Hover %@ TRUE", [self className]) : NSLog(@"Hover %@ FALSE", [self className]);
     }
+
+    self.isLight = [color isLight] || [color alphaComponent] < 0.5;
 
     // Rectangle Drawing
     NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
@@ -178,77 +210,38 @@
         [self drawTitle:[self attributedTitle] withFrame:cellFrame inView:controlView];
     }
 
-//    if (self.animatedImageView == nil) {
-//        NSSize size = [self.image size];
-//        CGRect rect = CGRectMake(8, (CGRectGetHeight(cellFrame) - size.width) * .5 - 1, size.width, size.height);
-//
-//        self.animatedImageView = [[NSImageView alloc] initWithFrame:rect];
-//        self.animatedImageView.wantsLayer = true;
-//        self.animatedImageView.layer.backgroundColor = NSColor.redColor.CGColor;
-//
-//        [self.animatedImageView.layer setBounds:rect];
-//        [self.animatedImageView.layer setPosition:CGPointMake(NSMidX(self.animatedImageView.frame), NSMidY(self.animatedImageView.frame))];
-//        [self.animatedImageView.layer setAnchorPoint:CGPointMake(0.5, 0.5)];
-////        [self.animatedImageView.layer setPosition:CGPointMake(NSMidX(self.animatedImageView.frame), NSMidY(self.animatedImageView.frame))];
-//
-//        [controlView addSubview:self.animatedImageView];
-//
-//
-//        CABasicAnimation * rotate =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//        rotate.removedOnCompletion = FALSE;
-//        rotate.fillMode = kCAFillModeForwards;
-//
-//        [rotate setToValue: [NSNumber numberWithFloat: M_PI / 2]];
-//        rotate.repeatCount = HUGE_VALF;
-//
-//        rotate.duration = 0.25;
-//        rotate.cumulative = TRUE;
-//        rotate.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//
-//
-//        [self.animatedImageView.layer addAnimation:rotate forKey:@"rotateAnimation"];
-//    }
+    if (self.parentView && self.loaderLayer && self.loaderLayer.superlayer != self.parentView.layer) {
+        [self.parentView.layer addSublayer:self.loaderLayer];
+    }
 
-//    if ([self.loaderLayer animationForKey:@"rotateAnimation"] == nil) {
-//        [controlView.layer addSublayer:self.loaderLayer];
+    if (_isProcessing) {
+        if ([self.loaderLayer animationForKey:@"rotateAnimation"] == nil) {
+            [self startProcessing];
+//            [controlView.layer addSublayer:self.loaderLayer];
 //
-//        ASCTabViewCell * __weak weakSelf = self;
-//
-//        [CATransaction begin];
-////        [CATransaction setCompletionBlock:^{
-////            if (weakSelf) {
-////                [[weakSelf loaderLayer] removeAnimationForKey:@"rotateAnimation"];
-////                [[weakSelf loaderLayer] removeFromSuperlayer];
-////            }
-////        }];
-//        [self.loaderLayer addAnimation:self.loaderAnimation forKey:@"rotateAnimation"];
-//        [CATransaction commit];
-//    }
-
-//    [self startProcessing];
+//            [CATransaction begin];
+//            [self.loaderLayer addAnimation:self.loaderAnimation forKey:@"rotateAnimation"];
+//            [CATransaction commit];
+        }
+    }
 
     if (self.image && self.imagePosition != NSNoImage) {
-        if (self.isAnimatedIcon) {
-            //
-        } else {
+        if (!_isProcessing) {
             [self drawImage:self.image withFrame:cellFrame inView:controlView];
+            [self stopProcessing];
         }
     }
 }
 
 - (void)startProcessing {
-//    if (self.isAnimatedIcon) {
-//        return;
-//    }
-
-    self.isAnimatedIcon = true;
+    self.loaderLayer.hidden = false;
 
     if ([self.loaderLayer animationForKey:@"rotateAnimation"]) {
         [self.loaderLayer removeAnimationForKey:@"rotateAnimation"];
         [self.loaderLayer removeFromSuperlayer];
     }
 
-    if (self.parentView) {
+    if (self.parentView && self.loaderLayer && self.loaderLayer.superlayer != self.parentView.layer) {
         [self.parentView.layer addSublayer:self.loaderLayer];
     }
 
@@ -258,8 +251,8 @@
 }
 
 - (void)stopProcessing {
-    self.isAnimatedIcon = false;
-
+    self.loaderLayer.hidden = true;
+    
     if ([self.loaderLayer animationForKey:@"rotateAnimation"]) {
         [self.loaderLayer removeAnimationForKey:@"rotateAnimation"];
         [self.loaderLayer removeFromSuperlayer];

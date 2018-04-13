@@ -39,7 +39,7 @@
 //
 
 #import "NSCefView.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "mac_application.h"
 
 class CCefViewWrapper : public CCefViewWidgetImpl

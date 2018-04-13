@@ -31,7 +31,7 @@
 */
 
 //
-//  NSString+OnlyOffice.h
+//  NSString+Extensions.h
 //  SpreadsheetEditor
 //
 //  Created by Alexander Yuzhin on 7/7/15.
@@ -42,7 +42,7 @@
 #import <Foundation/Foundation.h>
 #import <vector>
 
-@interface NSString (OnlyOffice)
+@interface NSString (Extensions)
 
 + (id)stringWithstdwstring:(const std::wstring&)string;
 - (std::wstring)stdwstring;
@@ -50,4 +50,5 @@
 + (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
 - (NSString *)stringByAppendingUrlQuery:(NSString *)query;
 - (NSString *)md5;
+
 @end

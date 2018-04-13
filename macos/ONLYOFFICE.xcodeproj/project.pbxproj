@@ -42,6 +42,9 @@
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC0907421C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
+		FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
+		FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
+		FC13B52B2080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
 		FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
 		FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
 		FC29CD441F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
@@ -99,9 +102,9 @@
 		FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
 		FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
 		FC73E6DE207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
-		FC73E6F3207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
-		FC73E6F4207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
-		FC73E6F5207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */; };
+		FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
+		FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
+		FC73E6F5207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
 		FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
 		FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
 		FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
@@ -227,9 +230,9 @@
 		FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C62206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
-		FCC77C66206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
-		FCC77C67206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
-		FCC77C68206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */; };
+		FCC77C66206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
+		FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
+		FCC77C68206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
 		FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
 		FCC77C6D206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
 		FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
@@ -322,6 +325,8 @@
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
 		FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCPopoverLightView.h; path = Code/Views/ASCPopoverLightView.h; sourceTree = "<group>"; };
 		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCPopoverLightView.m; path = Code/Views/ASCPopoverLightView.m; sourceTree = "<group>"; };
+		FC13B5272080BBF500524968 /* NSImage+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extensions.h"; sourceTree = "<group>"; };
+		FC13B5282080BBF500524968 /* NSImage+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Extensions.m"; sourceTree = "<group>"; };
 		FC25A1A51C2E844800063A42 /* ASCTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewController.h; path = Code/Controllers/ASCTabViewController.h; sourceTree = "<group>"; };
 		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewController.m; path = Code/Controllers/ASCTabViewController.m; sourceTree = "<group>"; };
 		FC29CD431F979981003F4136 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -399,8 +404,8 @@
 		FC67184A1BD91B430028600F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC73E6DA207DE36A00EFFD2F /* NSView+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSView+Extensions.h"; sourceTree = "<group>"; };
 		FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+Extensions.m"; sourceTree = "<group>"; };
-		FC73E6F1207E15BB00EFFD2F /* NSColor+OnlyOffice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+OnlyOffice.h"; sourceTree = "<group>"; };
-		FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+OnlyOffice.m"; sourceTree = "<group>"; };
+		FC73E6F1207E15BB00EFFD2F /* NSColor+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extensions.h"; sourceTree = "<group>"; };
+		FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extensions.m"; sourceTree = "<group>"; };
 		FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC81D4BE2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		FC81D4BF2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
@@ -481,9 +486,9 @@
 		FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
 		FCC77C57206CDBCD001B7837 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		FCC77C5A206CDBCE001B7837 /* NSString+OnlyOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OnlyOffice.h"; sourceTree = "<group>"; };
+		FCC77C5A206CDBCE001B7837 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		FCC77C5B206CDBCE001B7837 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
-		FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+OnlyOffice.mm"; sourceTree = "<group>"; };
+		FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+Extensions.mm"; sourceTree = "<group>"; };
 		FCC77C69206CDC84001B7837 /* NSLayoutConstraint+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Extensions.h"; sourceTree = "<group>"; };
 		FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Extensions.m"; sourceTree = "<group>"; };
 		FCC77C70206CEE59001B7837 /* ASCMenuButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCMenuButtonCell.h; sourceTree = "<group>"; };
@@ -1055,14 +1060,16 @@
 				FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */,
 				FCC77C5B206CDBCE001B7837 /* NSAlert+SynchronousSheet.h */,
 				FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */,
-				FCC77C5A206CDBCE001B7837 /* NSString+OnlyOffice.h */,
-				FCC77C5C206CDBCE001B7837 /* NSString+OnlyOffice.mm */,
+				FCC77C5A206CDBCE001B7837 /* NSString+Extensions.h */,
+				FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */,
 				FCC77C69206CDC84001B7837 /* NSLayoutConstraint+Extensions.h */,
 				FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */,
 				FC73E6DA207DE36A00EFFD2F /* NSView+Extensions.h */,
 				FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */,
-				FC73E6F1207E15BB00EFFD2F /* NSColor+OnlyOffice.h */,
-				FC73E6F2207E15BB00EFFD2F /* NSColor+OnlyOffice.m */,
+				FC73E6F1207E15BB00EFFD2F /* NSColor+Extensions.h */,
+				FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */,
+				FC13B5272080BBF500524968 /* NSImage+Extensions.h */,
+				FC13B5282080BBF500524968 /* NSImage+Extensions.m */,
 			);
 			name = Extensions;
 			path = Code/Extensions;
@@ -1390,7 +1397,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    else\n        rm -Rf $1\n        mkdir -p $1\n    fi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"$BASE_DIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASE_DIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_LOGINPAGE_DIR=\"$BASE_DIR\"/../common/loginpage/deploy\nSRC_WEBFONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_COMMONLICENCE_DIR=\"$BASE_DIR\"/ONLYOFFICE/Resources\nDST_LOGINPAGE_DIR=\"$DST_DIR\"/login\nDST_WEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nDST_COMMONLICENCE_DIR=\"$DST_LOGINPAGE_DIR\"\n\nCreateDir \"$DST_LOGINPAGE_DIR\"\nCreateDir \"$DST_WEBFONTS_DIR\"\n\ncp -vR \"$SRC_LOGINPAGE_DIR\"/index.html \"$DST_LOGINPAGE_DIR\"/index.html\ncp -vR \"$SRC_WEBFONTS_DIR\"/LICENSE.txt \"$DST_WEBFONTS_DIR\"/LICENSE.txt\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Light.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -vR \"$SRC_COMMONLICENCE_DIR\"/acknowledgments.html \"$DST_COMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop\"\nSRC_EDITORS_FONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_EDITORS_SDK_DIR=\"$JS_SDK_SVN\"/sdkjs\nSRC_EDITORS_SDKPLUGINS_DIR=\"$JS_SDK_SVN\"/sdkjs-plugins\nSRC_EDITORS_WEBAPPS_DIR=\"$JS_SDK_SVN\"/web-apps\nDST_EDITORS_DIR=\"$DST_DIR\"/editors\nDST_EDITORS_FONTS_DIR=\"$DST_EDITORS_DIR\"/fonts\nDST_EDITORS_SDK_DIR=\"$DST_EDITORS_DIR\"/sdkjs\nDST_EDITORS_SDKPLUGINS_DIR=\"$DST_EDITORS_DIR\"/sdkjs-plugins\nDST_EDITORS_WEBAPPS_DIR=\"$DST_EDITORS_DIR\"/web-apps\n\nCreateDir \"$DST_EDITORS_FONTS_DIR\"\nCreateDir \"$DST_EDITORS_SDK_DIR\"\nCreateDir \"$DST_EDITORS_SDKPLUGINS_DIR\"\nCreateDir \"$DST_EDITORS_WEBAPPS_DIR\"\n\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ariblk.ttf \"$DST_EDITORS_FONTS_DIR\"/ariblk.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ASANA.TTC \"$DST_EDITORS_FONTS_DIR\"/ASANA.TTC\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bold.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-italic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-regular.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/LICENSE.txt \"$DST_EDITORS_FONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$SRC_EDITORS_SDK_DIR\"/ \"$DST_EDITORS_SDK_DIR\"/\ncp -vR \"$SRC_EDITORS_SDKPLUGINS_DIR\"/ \"$DST_EDITORS_SDKPLUGINS_DIR\"/\ncp -vR \"$SRC_EDITORS_WEBAPPS_DIR\"/ \"$DST_EDITORS_WEBAPPS_DIR\"/\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_CONVERTER_DIR=\"$BASE_DIR\"/../common/converter\nDST_CONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$SRC_CONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/x2t\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/icudtl.dat\" \"$DST_CONVERTER_DIR\"\n\nchmod -v +x \"$DST_CONVERTER_DIR\"/x2t";
+			shellScript = "#!/bin/sh\n\nexit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    else\n        rm -Rf $1\n        mkdir -p $1\n    fi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"$BASE_DIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASE_DIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_LOGINPAGE_DIR=\"$BASE_DIR\"/../common/loginpage/deploy\nSRC_WEBFONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_COMMONLICENCE_DIR=\"$BASE_DIR\"/ONLYOFFICE/Resources\nDST_LOGINPAGE_DIR=\"$DST_DIR\"/login\nDST_WEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nDST_COMMONLICENCE_DIR=\"$DST_LOGINPAGE_DIR\"\n\nCreateDir \"$DST_LOGINPAGE_DIR\"\nCreateDir \"$DST_WEBFONTS_DIR\"\n\ncp -vR \"$SRC_LOGINPAGE_DIR\"/index.html \"$DST_LOGINPAGE_DIR\"/index.html\ncp -vR \"$SRC_WEBFONTS_DIR\"/LICENSE.txt \"$DST_WEBFONTS_DIR\"/LICENSE.txt\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Light.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -vR \"$SRC_COMMONLICENCE_DIR\"/acknowledgments.html \"$DST_COMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop\"\nSRC_EDITORS_FONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_EDITORS_SDK_DIR=\"$JS_SDK_SVN\"/sdkjs\nSRC_EDITORS_SDKPLUGINS_DIR=\"$JS_SDK_SVN\"/sdkjs-plugins\nSRC_EDITORS_WEBAPPS_DIR=\"$JS_SDK_SVN\"/web-apps\nDST_EDITORS_DIR=\"$DST_DIR\"/editors\nDST_EDITORS_FONTS_DIR=\"$DST_EDITORS_DIR\"/fonts\nDST_EDITORS_SDK_DIR=\"$DST_EDITORS_DIR\"/sdkjs\nDST_EDITORS_SDKPLUGINS_DIR=\"$DST_EDITORS_DIR\"/sdkjs-plugins\nDST_EDITORS_WEBAPPS_DIR=\"$DST_EDITORS_DIR\"/web-apps\n\nCreateDir \"$DST_EDITORS_FONTS_DIR\"\nCreateDir \"$DST_EDITORS_SDK_DIR\"\nCreateDir \"$DST_EDITORS_SDKPLUGINS_DIR\"\nCreateDir \"$DST_EDITORS_WEBAPPS_DIR\"\n\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ariblk.ttf \"$DST_EDITORS_FONTS_DIR\"/ariblk.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ASANA.TTC \"$DST_EDITORS_FONTS_DIR\"/ASANA.TTC\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bold.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-italic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-regular.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/LICENSE.txt \"$DST_EDITORS_FONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$SRC_EDITORS_SDK_DIR\"/ \"$DST_EDITORS_SDK_DIR\"/\ncp -vR \"$SRC_EDITORS_SDKPLUGINS_DIR\"/ \"$DST_EDITORS_SDKPLUGINS_DIR\"/\ncp -vR \"$SRC_EDITORS_WEBAPPS_DIR\"/ \"$DST_EDITORS_WEBAPPS_DIR\"/\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_CONVERTER_DIR=\"$BASE_DIR\"/../common/converter\nDST_CONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$SRC_CONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/x2t\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/icudtl.dat\" \"$DST_CONVERTER_DIR\"\n\nchmod -v +x \"$DST_CONVERTER_DIR\"/x2t";
 		};
 		FC5C4EEE1CF861A3008F5C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1497,7 +1504,7 @@
 				FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */,
 				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */,
 				FC67180A1BD913C00028600F /* ASCHelper.m in Sources */,
-				FC73E6F4207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
+				FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
 				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
@@ -1509,10 +1516,11 @@
 				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FC6718111BD913C00028600F /* ASCTitleBarController.m in Sources */,
 				FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */,
+				FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */,
 				FC6718121BD913C00028600F /* SFBPopover.m in Sources */,
 				FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
 				FC6718131BD913C00028600F /* ASCEventsController.mm in Sources */,
-				FCC77C67206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */,
+				FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
 				FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */,
 				FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */,
@@ -1551,8 +1559,9 @@
 				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
 				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
 				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
-				FC73E6F5207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
+				FC73E6F5207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FCE7D16B207D002700642010 /* ALView+PureLayout.m in Sources */,
+				FC13B52B2080BBF500524968 /* NSImage+Extensions.m in Sources */,
 				FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E61CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -1565,7 +1574,7 @@
 				FC659BFB1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */,
 				FCC77C87206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
-				FCC77C68206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */,
+				FCC77C68206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
 				FC7FD3B01C315DD6008F6641 /* ASCDownloadController.mm in Sources */,
 				FCC77C93206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
 				FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */,
@@ -1604,8 +1613,9 @@
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
-				FC73E6F3207E15BB00EFFD2F /* NSColor+OnlyOffice.m in Sources */,
+				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */,
+				FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
@@ -1618,7 +1628,7 @@
 				FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */,
 				FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
-				FCC77C66206CDBCE001B7837 /* NSString+OnlyOffice.mm in Sources */,
+				FCC77C66206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,

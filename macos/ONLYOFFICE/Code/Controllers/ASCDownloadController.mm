@@ -39,7 +39,7 @@
 //
 
 #import "ASCDownloadController.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "mac_application.h"
 #import <objc/runtime.h>
 

@@ -42,7 +42,7 @@
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
 #import "NSView+Extensions.h"
-#import "NSColor+OnlyOffice.h"
+#import "NSColor+Extensions.h"
 #import "ASCTabView.h"
 #import "SFBPopover.h"
 #import "ASCUserInfoViewController.h"

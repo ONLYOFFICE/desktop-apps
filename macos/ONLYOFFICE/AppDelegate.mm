@@ -43,7 +43,7 @@
 #import "ViewController.h"
 #import "ASCSharedSettings.h"
 #import "ASCTabView.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "NSCefView.h"
 #import "ASCHelper.h"
 #import "AnalyticsHelper.h"
