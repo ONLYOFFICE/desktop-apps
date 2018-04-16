@@ -126,6 +126,9 @@ app_linux {
                 $$PWD/src/linux/csinglewindow.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
+    HEADERS += $$PWD/src/linux/cdialogopenssl.h
+    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp
+
     DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gdk-2.0 gtkglext-1.0 atk cairo gtk+-unix-print-2.0
