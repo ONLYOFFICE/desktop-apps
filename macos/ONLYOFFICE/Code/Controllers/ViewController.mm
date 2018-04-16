@@ -208,6 +208,13 @@
                                              selector:@selector(onCEFEditorAppReady:)
                                                  name:CEFEventNameEditorAppReady
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorOpenFolder:)
+                                                 name:CEFEventNameEditorOpenFolder
+                                               object:nil];
+
+
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -1177,6 +1184,43 @@
 
         if (NSString * viewId = json[@"viewId"]) {
             [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFEditorOpenFolder:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSString * path = json[@"path"];
+
+        if (viewId && path) {
+            if ([path isEqualToString:@"offline"]) {
+                int cefViewId = [viewId intValue];
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                CCefView * cefView = appManager->GetViewById(cefViewId);
+
+                if (cefView) {
+                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetUrl()];
+
+                    if (urlString && urlString.length > 0) {
+                        // Offline file is exist
+                        if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
+                            [[NSWorkspace sharedWorkspace] openURL:url];
+                        }
+                    } else {
+                        // Offline file is new
+                        if (NSString * directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]) {
+                            if (NSURL * url = [NSURL fileURLWithPath:directory]) {
+                                [[NSWorkspace sharedWorkspace] openURL:url];
+                            }
+                        }
+                    }
+                }
+            } else if (NSURL * url = [NSURL URLWithString:path]) {
+                [[NSWorkspace sharedWorkspace] openURL:url];
+            }
         }
     }
 }

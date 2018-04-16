@@ -444,6 +444,13 @@ public:
                                                                               userInfo:@{
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId]
                                                                                          }];
+                        } else if (cmd.find(L"go:folder") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorOpenFolder
+                                                                                object:nil
+                                                                              userInfo: @{
+                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                          @"path": [NSString stringWithstdwstring:pData->get_Param()]
+                                                                                          }];
                         }
                         
                         break;

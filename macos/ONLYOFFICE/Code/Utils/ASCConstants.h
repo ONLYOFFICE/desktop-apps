@@ -114,6 +114,7 @@ static NSString * const CEFEventNameFilesCheck              = @"CEF_filesCheck";
 static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageReady";
 static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
 static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
+static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 
 @interface ASCConstants : NSObject
 + (NSArray *)images;
