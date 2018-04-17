@@ -94,7 +94,7 @@ public:
     static CAscApplicationManager & getInstance();
     static CAscApplicationManager * createInstance();
 
-    CSingleWindow * createReporterWindow(void *);
+    CSingleWindow * createReporterWindow(void *, int);
 
     static void             startApp();
     static void             initializeApp();
