@@ -249,6 +249,10 @@ button {
     background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x) no-repeat;
 }
 
+.img-format::before {
+    background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@2x.png') 2x) no-repeat;
+}
+
 li.menu-item {
     list-style: none;
     /*padding: 0 27px;*/
@@ -393,10 +397,10 @@ li.menu-item {
         height: 23px;
         padding: 0;
         background-color: transparent;
-        background-position: -72px -141px;
+        background-position: -82px -48px;
 
         &:hover {
-            background-position-x: -96px;
+            background-position-x: -106px;
         }
     }
 
@@ -415,6 +419,10 @@ li.menu-item {
 .lst-tools {
     text-align: left;
     margin-top: 30px;
+}
+
+.format-from-index(@index) {
+    background-position: -24px*@index 0;
 }
 
 .table-files {
@@ -468,60 +476,73 @@ li.menu-item {
     .icon {
         &::before {
             content: '';
-            background-position: 0 -48px;
             float: left;
             width: 24px;
             height: 30px;
             /*margin: 3px 0 0 -55px;*/
         }
 
+        &.docx::before {
+            .format-from-index(0);
+        }
+
+        &.doc::before {
+            .format-from-index(1);
+        }
+
         &.odt::before {
-            background-position-x: -24px;
+            .format-from-index(2);
         }
 
         &.rtf::before {
-            background-position-x: -48px;
+            .format-from-index(3);
         }
 
         &.txt::before {
-            background-position-y: -78px;
+            .format-from-index(4);
         }
 
         &.htm::before {
-            background-position: -24px -78px;
+            .format-from-index(5);
         }
 
         &.xlsx::before {
-            background-position: -48px -78px;
+            .format-from-index(6);
+        }
+        &.xls::before {
+            .format-from-index(7);
         }
         &.ods::before {
-            background-position-y: -108px;
+            .format-from-index(8);
         }
         &.csv::before {
-            background-position: -24px -108px;
+            .format-from-index(9);
         }
 
         &.pptx::before {
-            background-position: -48px -108px;
+            .format-from-index(10);
+        }
+        &.ppt::before {
+            .format-from-index(11);
         }
         &.odp::before {
-            background-position-y: -138px;
+            .format-from-index(12);
         }
         &.pps::before {
-            background-position: -24px -138px;
+            .format-from-index(13);
         }
         &.pdf::before {
-            background-position: -48px -138px;
+            .format-from-index(14);
         }
         &.djvu::before {
-            background-position-y: -168px;
+            .format-from-index(15);
         }
         &.xps::before {
-            background-position: -24px -168px;
+            .format-from-index(16);
         }
 
         &.folder::before {
-            background-position: -48px -168px;
+            background-position: -58px -48px;
         }
     }
 
@@ -573,7 +594,7 @@ li.menu-item {
 .text-emptylist::before {
     content: '';
     display: block;
-    background-position: -72px -48px;
+    background-position: 0 -48px;
     width: 58px;
     height: 78px;
     margin: 50px auto 10px;;
@@ -735,7 +756,7 @@ li.menu-item {
     .ver-logo {
         width: 142px;
         height: 28px;
-        background-position-y: -198px;
+        background-position-y: -126px;
     }
 }
 

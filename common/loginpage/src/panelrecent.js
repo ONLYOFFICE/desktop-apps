@@ -96,14 +96,14 @@
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
 
-            var _tpl = `<tr${id}>` +
-                          '<td class="row-cell cicon">'+
-                            `<span class="icon img-before-el ${info.type}" />` +
-                          '</td>' +
-                          '<td class="row-cell cname">' +
-                            `<p class="name primary">${info.name}</p>` +
-                            `<p class="descr minor">${info.descr}</p>` +
-                          '</td>';
+            var _tpl = `<tr${id}>
+                          <td class="row-cell cicon">
+                            <span class="icon ${info.type=='folder'?'img-before-el':'img-format'} ${info.type}" />
+                          </td>
+                          <td class="row-cell cname">
+                            <p class="name primary">${info.name}</p>
+                            <p class="descr minor">${info.descr}</p>
+                          </td>`;
 
             if (info.type != 'folder')
                 _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;

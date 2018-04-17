@@ -161,7 +161,7 @@ utils.defines.links = {
 
 utils.parseFileFormat = function(format) {
     switch (format) {
-    case utils.defines.FileFormat.FILE_DOCUMENT_DOC:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOC:        return 'doc';
     case utils.defines.FileFormat.FILE_DOCUMENT_DOCX:       return 'docx';
     case utils.defines.FileFormat.FILE_DOCUMENT_ODT:        return 'odt';
     case utils.defines.FileFormat.FILE_DOCUMENT_RTF:        return 'rtf';
@@ -169,12 +169,12 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_HTML: 
     case utils.defines.FileFormat.FILE_DOCUMENT_MHT:        return 'htm';
 
-    case utils.defines.FileFormat.FILE_SPREADSHEET_XLS: 
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLSX:    return 'xlsx';
     case utils.defines.FileFormat.FILE_SPREADSHEET_ODS:     return 'ods';
     case utils.defines.FileFormat.FILE_SPREADSHEET_CSV:     return 'csv';
 
-    case utils.defines.FileFormat.FILE_PRESENTATION_PPT:     
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPT:    return 'ppt';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPTX:   return 'pptx';
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP:    return 'odp';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'pps';
