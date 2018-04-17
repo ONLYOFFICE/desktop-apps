@@ -463,15 +463,18 @@ void CAscTabWidget::adjustTabsSize()
         if (nTabBarWidth > nMinTabBarWidth) nTabBarWidth = nMinTabBarWidth;
     }
 
-//    QString cssStyle = styleSheet();
-//    cssStyle
-//        .replace(QRegExp("QTabWidget::tab-bar\\s?\\{\\s?width\\:\\s?(\\-?\\d+px|auto)", Qt::CaseInsensitive),
-//                    QString("QTabWidget::tab-bar { width: %1px").arg(nTabBarWidth));
+#if 1
+    QString cssStyle = styleSheet();
+    cssStyle
+        .replace(QRegExp("QTabWidget::tab-bar\\s?\\{\\s?width\\:\\s?(\\-?\\d+px|auto)", Qt::CaseInsensitive),
+                    QString("QTabWidget::tab-bar { width: %1px").arg(nTabBarWidth));
 //        .replace(QRegExp("QTabBar::tab\\s?\\{\\s?width\\:\\s?\\d+px", Qt::CaseInsensitive),
 //                    QString("QTabBar::tab { width: %1px").arg(nTabWidth));
 
-//    QTabWidget::setStyleSheet(cssStyle);
+    QTabWidget::setStyleSheet(cssStyle);
+#else
     tabBar()->setFixedWidth(nTabBarWidth);
+#endif
 }
 
 void CAscTabWidget::applyCustomTheme(bool iscustom)
