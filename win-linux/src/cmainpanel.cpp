@@ -596,7 +596,7 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
     COpenOptions opts = {url};
     opts.id = id;
 
-    m_pTabs->openCloudDocument(opts, select);
+    m_pTabs->openCloudDocument(opts, select, true);
 
     if ( select )
         toggleButtonMain(false, true);
@@ -683,7 +683,8 @@ void CMainPanel::onLocalFileRecent(void * d)
     QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
-    if (!match.hasMatch()) {
+    bool forcenew = false;
+    if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.type != etRecoveryFile && !_info.exists() ) {
             CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
@@ -698,10 +699,10 @@ void CMainPanel::onLocalFileRecent(void * d)
 
             return;
         }
-    }
+    } else forcenew = true;
 
 //    openLocalFile(opts);
-    int result = m_pTabs->openLocalDocument(opts, true);
+    int result = m_pTabs->openLocalDocument(opts, true, forcenew);
     if ( !(result < 0) ) {
         toggleButtonMain(false);
     } else
