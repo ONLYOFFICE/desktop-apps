@@ -180,7 +180,7 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         return; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
-        CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData);
+        CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData, _event->get_SenderId());
 #ifdef __linux
         pEditorWindow->show();
 #else
@@ -380,7 +380,7 @@ CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
     return _window;
 }
 
-CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data)
+CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
 {
 //    QMutexLocker locker( &m_oMutex );
 
@@ -389,14 +389,21 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data)
     pData->put_Data(NULL);
 
     QCefView * pView = new QCefView(NULL);
-#if 0
-    pView->Create(this, cvwtSimple);
-    pView->GetCefView()->load(QString("https://onlyoffice.com").toStdWString());
-#else
     pView->CreateReporter(this, pCreateData);
-#endif
 
-    CSingleWindow * _window = new CSingleWindow(QRect(), "ONLYOFFICE Reporter Window", pView);
+    QRect _windowRect{100,100,1000,700};
+    if ( QApplication::desktop()->screenCount() > 1 ) {
+        CMainWindow * w = mainWindowFromViewId(parentid);
+        if ( w ) {
+            int _scrNum = QApplication::desktop()->screenNumber(w->windowRect().topLeft());
+            QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
+
+            _windowRect.setSize(QSize(1000,700));
+            _windowRect.moveCenter(_scrRect.center());
+        }
+    }
+
+    CSingleWindow * _window = new CSingleWindow(_windowRect, "ONLYOFFICE Reporter Window", pView);
 
     m_vecEditors.push_back( size_t(_window) );
 
