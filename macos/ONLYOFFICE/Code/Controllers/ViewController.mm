@@ -563,6 +563,14 @@
         NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
 
         if (tabItem) {
+            // Remove dummy
+            for (NSView * view in tabItem.view.subviews) {
+                if (view.uuidTag == headerViewTag) {
+                    [view removeFromSuperview];
+                    break;
+                }
+            }
+
             NSView * headerView = [self.headerView duplicate];
             headerView.alphaValue = 1;
             headerView.uuidTag = headerViewTag;
@@ -1202,7 +1210,7 @@
                 CCefView * cefView = appManager->GetViewById(cefViewId);
 
                 if (cefView) {
-                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetUrl()];
+                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetUrlAsLocal()];
 
                     if (urlString && urlString.length > 0) {
                         // Offline file is exist

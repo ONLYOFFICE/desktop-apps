@@ -1518,12 +1518,24 @@ DQ
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="umu-hB-VN1">
+                                <rect key="frame" x="1037" y="1" width="64" height="32"/>
+                                <buttonCell key="cell" type="push" title="test" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sM6-C6-Vo9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onTestButton:" target="9zi-Wa-ufJ" id="xpw-ll-kn9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="1IH-yP-kE0"/>
+                            <constraint firstAttribute="trailing" secondItem="umu-hB-VN1" secondAttribute="trailing" constant="5" id="1tV-ND-4rH"/>
                             <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="FGY-XD-p9y"/>
                             <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="Fme-4L-HLS"/>
                             <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="aFr-m2-3nf" secondAttribute="trailing" id="R1a-qd-7b2"/>
+                            <constraint firstItem="umu-hB-VN1" firstAttribute="centerY" secondItem="Imu-er-1JF" secondAttribute="centerY" id="YWe-Dx-0Av"/>
                             <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="Zgl-o8-K6a"/>
                             <constraint firstAttribute="bottom" secondItem="aFr-m2-3nf" secondAttribute="bottom" id="o0h-N2-3Ub"/>
                             <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="xPm-bQ-5dJ"/>

@@ -31,32 +31,52 @@
  */
 
 //
-//  NSView+Extensions.h
+//  ASCCertificateSelectDialogOpenSsl.hpp
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 11/04/2018.
+//  Created by Alexander Yuzhin on 17/04/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#ifndef ASCCertificateSelectDialogOpenSsl_hpp
+#define ASCCertificateSelectDialogOpenSsl_hpp
 
-@interface NSView (Extensions)
+#ifdef __OBJC__
+    #import <CoreFoundation/CoreFoundation.h>
+#else
+    #include <objc/objc.h>
+#endif
 
-@property (nonatomic) IBInspectable NSColor * backgroundColor;
-@property (nonatomic) IBInspectable NSColor * borderColor;
-@property (nonatomic) IBInspectable NSColor * shadowColor;
-@property (nonatomic) IBInspectable CGFloat borderWidth;
-@property (nonatomic) IBInspectable CGFloat cornerRadius;
-@property (nonatomic) IBInspectable CGFloat width;
-@property (nonatomic) IBInspectable CGFloat height;
-@property (nonatomic) IBInspectable CGSize shadowOffset;
-@property (nonatomic) IBInspectable CGFloat shadowOpacity;
-@property (nonatomic) IBInspectable CGFloat shadowRadius;
-@property (nonatomic) IBInspectable CGSize size;
-@property (nonatomic) IBInspectable NSInteger uuidTag;
+#import "applicationmanager.h"
 
-- (void)removeAllConstraints;
-- (instancetype)duplicate;
-- (void)shake;
+class ASCCertificateSelectDialogOpenSsl : public ICertificateSelectDialogOpenSsl
+{
+public:
+    CAscApplicationManager *m_pManager;
 
-@end
+    std::wstring            m_sCertPath;
+    std::wstring            m_sCertPassword;
+    std::wstring            m_sKeyPath;
+    std::wstring            m_sKeyPassword;
+
+public:
+    ASCCertificateSelectDialogOpenSsl()
+    {
+        m_pManager = NULL;
+    }
+    virtual ~ASCCertificateSelectDialogOpenSsl()
+    {
+    }
+
+public:
+    virtual std::wstring GetCertificatePath();
+    virtual std::wstring GetCertificatePassword();
+
+    virtual std::wstring GetKeyPath();
+    virtual std::wstring GetKeyPassword();
+
+    virtual bool ShowSelectDialog();
+    virtual int ShowCertificate(ICertificate* pCert);
+};
+
+#endif /* ASCCertificateSelectDialogOpenSsl_hpp */

@@ -43,6 +43,7 @@
 #import "NSString+Extensions.h"
 #import "ASCHelper.h"
 #include "ASCApplicationManager.h"
+#import "ASCDocSignController.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -57,7 +58,7 @@ int main(int argc, const char * argv[]) {
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
 
     // disable sign support
-    appManager->m_oSettings.sign_support = false;
+    appManager->m_oSettings.sign_support = true;
 
     // setup common user directory
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
@@ -94,7 +95,10 @@ int main(int argc, const char * argv[]) {
     
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
-    
+
+    // setup doc sign
+    [ASCDocSignController shared];
+
     [worker Start:argc :argv];
     int result = NSApplicationMain(argc, argv);
     [worker End];

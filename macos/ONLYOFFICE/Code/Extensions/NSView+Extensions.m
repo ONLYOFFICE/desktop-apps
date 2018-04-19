@@ -38,6 +38,7 @@
 //
 
 #import <objc/runtime.h>
+#import <QuartzCore/QuartzCore.h>
 #import "NSView+Extensions.h"
 
 static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
@@ -212,5 +213,63 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
 
     return nil;
 }
+
+- (CAKeyframeAnimation *)shakeAnimation:(NSRect)frame {
+    static int numberOfShakes = 3;
+    static float durationOfShake = 0.5f;
+    static float vigourOfShake = 0.02f;
+
+    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
+
+    CGMutablePathRef shakePath = CGPathCreateMutable();
+    CGPathMoveToPoint(shakePath, NULL, NSMinX(frame), NSMinY(frame));
+    int index;
+
+    for (index = 0; index < numberOfShakes; ++index) {
+        CGPathAddLineToPoint(shakePath, NULL, NSMinX(frame) - frame.size.width * vigourOfShake, NSMinY(frame));
+        CGPathAddLineToPoint(shakePath, NULL, NSMinX(frame) + frame.size.width * vigourOfShake, NSMinY(frame));
+    }
+    CGPathCloseSubpath(shakePath);
+    shakeAnimation.path = shakePath;
+    shakeAnimation.duration = durationOfShake;
+    return shakeAnimation;
+}
+
+- (void)shake {
+//    self.wantsLayer = YES;
+//    [self setAnimations:[NSDictionary dictionaryWithObject:[self shakeAnimation:[self frame]] forKey:@"frameOrigin"]];
+//    [self.animator setFrameOrigin:self.frame.origin];
+//
+//    return;
+    self.wantsLayer = YES;
+
+    CAKeyframeAnimation * animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animation.removedOnCompletion = true;
+    animation.duration = 0.6;
+    animation.values = @[@(-20.0), @(20.0), @(-20.0), @(20.0), @(-10.0), @(10.0), @(-5.0), @(5.0), @(0.0) ];
+    [self.layer addAnimation:animation forKey:@"shake"];
+}
+
+//func shake(with intensity : CGFloat = 0.05, duration : Double = 0.5 ){
+//    let numberOfShakes      = 3
+//    let frame : CGRect = self.frame
+//    let shakeAnimation :CAKeyframeAnimation  = CAKeyframeAnimation()
+//
+//    let shakePath = CGMutablePath()
+//    shakePath.move(to: CGPoint(x:NSMinX(frame),y:NSMinY(frame)))
+//
+//    for _ in 0...numberOfShakes-1 {
+//        shakePath.addLine(to: CGPoint(x:NSMinX(frame) - frame.size.width * intensity,y:NSMinY(frame)))
+//        shakePath.addLine(to: CGPoint(x:NSMinX(frame) + frame.size.width * intensity,y:NSMinY(frame)))
+//    }
+//
+//    shakePath.closeSubpath()
+//    shakeAnimation.path = shakePath
+//    shakeAnimation.duration = duration
+//
+//    self.animations = ["frameOrigin":shakeAnimation]
+//    self.animator().setFrameOrigin(self.frame.origin)
+//}
 
 @end

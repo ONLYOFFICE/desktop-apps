@@ -31,32 +31,24 @@
  */
 
 //
-//  NSView+Extensions.h
+//  ASCDocSignController.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 11/04/2018.
+//  Created by Alexander Yuzhin on 17/04/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import "applicationmanager.h"
 
-@interface NSView (Extensions)
+@interface ASCDocSignController : NSObject
 
-@property (nonatomic) IBInspectable NSColor * backgroundColor;
-@property (nonatomic) IBInspectable NSColor * borderColor;
-@property (nonatomic) IBInspectable NSColor * shadowColor;
-@property (nonatomic) IBInspectable CGFloat borderWidth;
-@property (nonatomic) IBInspectable CGFloat cornerRadius;
-@property (nonatomic) IBInspectable CGFloat width;
-@property (nonatomic) IBInspectable CGFloat height;
-@property (nonatomic) IBInspectable CGSize shadowOffset;
-@property (nonatomic) IBInspectable CGFloat shadowOpacity;
-@property (nonatomic) IBInspectable CGFloat shadowRadius;
-@property (nonatomic) IBInspectable CGSize size;
-@property (nonatomic) IBInspectable NSInteger uuidTag;
+@property (nonatomic) NSString * signFilePath;
+@property (nonatomic) NSString * signPassword;
+@property (nonatomic) NSString * privateKeyFilePath;
+@property (nonatomic) NSString * privateKeyPassword;
 
-- (void)removeAllConstraints;
-- (instancetype)duplicate;
-- (void)shake;
++ (instancetype)shared;
++ (void)startWizard;
 
 @end

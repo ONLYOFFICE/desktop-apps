@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="snb-hI-xeB">
+            <objects>
+                <windowController storyboardIdentifier="DocSignWindowController" id="Hbm-F9-Ihj" customClass="ASCDocumentSignatureController" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X8z-RQ-YLr">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="294" y="313" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="Hbm-F9-Ihj" id="aUV-qh-mNV"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="xte-yD-ed2" kind="relationship" relationship="window.shadowedContentViewController" id="XEu-9x-mTN"/>
+                    </connections>
+                </windowController>
+                <customObject id="Irn-Cf-7c3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-798" y="483"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="X3c-bg-nPO">
+            <objects>
+                <viewController id="xte-yD-ed2" sceneMemberID="viewController">
+                    <view key="view" id="IQX-sr-VCQ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                <color key="value" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </viewController>
+                <customObject id="ynf-jX-tCP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-798" y="923"/>
+        </scene>
+        <!--Document Signature Step Controller-->
+        <scene sceneID="Vr8-KE-5We">
+            <objects>
+                <viewController identifier="StepSignatureLoadController" storyboardIdentifier="StepSignatureLoadController" id="WIp-no-UpO" customClass="ASCDocumentSignatureStepController" sceneMemberID="viewController">
+                    <view key="view" id="4eF-kl-5dU">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="303"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QUt-aH-Eqd">
+                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GOU-av-TC1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancel:" target="WIp-no-UpO" id="lEs-4H-iqx"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hug-6v-NX4">
+                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="J3E-sR-sl1"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="jSF-al-P3A"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yw-aC-Zck">
+                                <rect key="frame" x="86" y="116" width="308" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify the digital signature file for the document." id="2Ck-6y-ygx">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-EZ-yQ7">
+                                <rect key="frame" x="174" y="68" width="132" height="32"/>
+                                <buttonCell key="cell" type="push" title="Load Signature" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="tTF-wa-eJp">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onSignatureLoad:" target="WIp-no-UpO" id="RiL-nq-aJr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hug-6v-NX4" firstAttribute="centerX" secondItem="4eF-kl-5dU" secondAttribute="centerX" id="3KG-Gq-l6W"/>
+                            <constraint firstAttribute="bottom" secondItem="QUt-aH-Eqd" secondAttribute="bottom" constant="20" id="Aaw-rO-rNk"/>
+                            <constraint firstItem="3yw-aC-Zck" firstAttribute="top" secondItem="hug-6v-NX4" secondAttribute="bottom" constant="20" id="Aja-1Z-hB4"/>
+                            <constraint firstItem="3yw-aC-Zck" firstAttribute="centerX" secondItem="4eF-kl-5dU" secondAttribute="centerX" id="NFh-sy-wum"/>
+                            <constraint firstItem="hug-6v-NX4" firstAttribute="top" secondItem="4eF-kl-5dU" secondAttribute="top" constant="20" id="UbC-9L-JC1"/>
+                            <constraint firstItem="QUt-aH-Eqd" firstAttribute="centerX" secondItem="4eF-kl-5dU" secondAttribute="centerX" id="eB4-TW-odc"/>
+                            <constraint firstItem="qcw-EZ-yQ7" firstAttribute="centerX" secondItem="4eF-kl-5dU" secondAttribute="centerX" id="iX6-eP-JzC"/>
+                            <constraint firstItem="qcw-EZ-yQ7" firstAttribute="top" secondItem="3yw-aC-Zck" secondAttribute="bottom" constant="20" id="t7K-3b-CTN"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="o0x-GG-BBA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-192" y="474.5"/>
+        </scene>
+        <!--Document Signature Step Controller-->
+        <scene sceneID="NCl-Rn-Afg">
+            <objects>
+                <viewController identifier="StepSignaturePasswordController" storyboardIdentifier="StepSignaturePasswordController" id="2Br-7W-6eB" customClass="ASCDocumentSignatureStepController" sceneMemberID="viewController">
+                    <view key="view" id="twX-hN-nHh">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="303"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="onD-Rb-T7N">
+                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RbM-Dq-A3K">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancel:" target="2Br-7W-6eB" id="LWO-Ry-oYY"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-2z-JzP">
+                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="FP0-xX-k3S"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="fSS-MZ-kPB"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-jw-byw">
+                                <rect key="frame" x="107" y="116" width="266" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the digital signature" id="1Fy-mg-aq9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-W1-Uhy">
+                                <rect key="frame" x="140" y="69" width="240" height="32"/>
+                                <subviews>
+                                    <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-od-Zca">
+                                        <rect key="frame" x="0.0" y="5" width="200" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="DeU-UC-lQb"/>
+                                        </constraints>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Enter Password" drawsBackground="YES" usesSingleLineMode="YES" id="4gA-s8-Lne">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-bT-dal">
+                                        <rect key="frame" x="208" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="eYh-l8-tU9"/>
+                                            <constraint firstAttribute="height" constant="32" id="ugR-rC-0b2"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="next-button" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="nKQ-rV-ssG">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="onSignaturePassword:" target="2Br-7W-6eB" id="0rs-ee-JqF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="qJu-jw-byw" firstAttribute="centerX" secondItem="twX-hN-nHh" secondAttribute="centerX" id="1d8-iY-giL"/>
+                            <constraint firstItem="oBE-W1-Uhy" firstAttribute="centerX" secondItem="twX-hN-nHh" secondAttribute="centerX" constant="20" id="GKb-bA-PNd"/>
+                            <constraint firstItem="oVk-2z-JzP" firstAttribute="top" secondItem="twX-hN-nHh" secondAttribute="top" constant="20" id="JFg-dB-gjF"/>
+                            <constraint firstItem="oVk-2z-JzP" firstAttribute="centerX" secondItem="twX-hN-nHh" secondAttribute="centerX" id="O9r-Ig-lcN"/>
+                            <constraint firstItem="onD-Rb-T7N" firstAttribute="centerX" secondItem="twX-hN-nHh" secondAttribute="centerX" id="OTO-uf-efQ"/>
+                            <constraint firstItem="qJu-jw-byw" firstAttribute="top" secondItem="oVk-2z-JzP" secondAttribute="bottom" constant="20" id="WOy-1K-D2v"/>
+                            <constraint firstAttribute="bottom" secondItem="onD-Rb-T7N" secondAttribute="bottom" constant="20" id="hHe-66-kh7"/>
+                            <constraint firstItem="oBE-W1-Uhy" firstAttribute="top" secondItem="qJu-jw-byw" secondAttribute="bottom" constant="15" id="pnL-rm-Zrw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordField" destination="sG4-od-Zca" id="Cky-kK-8eY"/>
+                    </connections>
+                </viewController>
+                <customObject id="1tA-pg-vvZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="409" y="474.5"/>
+        </scene>
+        <!--Document Signature Step Controller-->
+        <scene sceneID="6t5-8b-Nla">
+            <objects>
+                <viewController identifier="StepPrivateKeyLoadController" storyboardIdentifier="StepPrivateKeyLoadController" id="VqX-qy-5mf" customClass="ASCDocumentSignatureStepController" sceneMemberID="viewController">
+                    <view key="view" id="G6a-pm-Qre">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="303"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gM-D1-kWe">
+                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jpH-3g-Gt5">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancel:" target="VqX-qy-5mf" id="2X7-cU-Gth"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-z5-hta">
+                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="2Kb-2i-uUG"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="8se-6C-g2j"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUq-1c-377">
+                                <rect key="frame" x="103" y="116" width="274" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify a private key for the digital signature" id="Tfc-EF-VnS">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-70-cwJ">
+                                <rect key="frame" x="164" y="68" width="152" height="32"/>
+                                <buttonCell key="cell" type="push" title="Load a Private Key" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="P3k-kI-w22">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onPrivateKeyLoad:" target="VqX-qy-5mf" id="TBj-SZ-sv3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="PDX-z5-hta" firstAttribute="centerX" secondItem="G6a-pm-Qre" secondAttribute="centerX" id="9hJ-ic-tbX"/>
+                            <constraint firstItem="ZUq-1c-377" firstAttribute="top" secondItem="PDX-z5-hta" secondAttribute="bottom" constant="20" id="AC9-Pd-NeE"/>
+                            <constraint firstItem="n8D-70-cwJ" firstAttribute="centerX" secondItem="G6a-pm-Qre" secondAttribute="centerX" id="CZi-nF-2rb"/>
+                            <constraint firstItem="6gM-D1-kWe" firstAttribute="centerX" secondItem="G6a-pm-Qre" secondAttribute="centerX" id="Hh0-px-tmu"/>
+                            <constraint firstItem="ZUq-1c-377" firstAttribute="centerX" secondItem="G6a-pm-Qre" secondAttribute="centerX" id="Ibq-O9-Q4X"/>
+                            <constraint firstItem="PDX-z5-hta" firstAttribute="top" secondItem="G6a-pm-Qre" secondAttribute="top" constant="20" id="LXb-ec-B0a"/>
+                            <constraint firstItem="n8D-70-cwJ" firstAttribute="top" secondItem="ZUq-1c-377" secondAttribute="bottom" constant="20" id="P7h-5L-7TB"/>
+                            <constraint firstAttribute="bottom" secondItem="6gM-D1-kWe" secondAttribute="bottom" constant="20" id="cVf-YP-SFz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="ZpC-h2-eua" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-192" y="886"/>
+        </scene>
+        <!--Document Signature Step Controller-->
+        <scene sceneID="PQk-4t-LfL">
+            <objects>
+                <viewController identifier="StepPrivateKeyPasswordController" storyboardIdentifier="StepPrivateKeyPasswordController" id="t3q-Il-oVg" customClass="ASCDocumentSignatureStepController" sceneMemberID="viewController">
+                    <view key="view" id="loa-he-4Fr">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="303"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-RY-2Vo">
+                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qZ4-0O-L0G">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onCancel:" target="t3q-Il-oVg" id="9xt-4b-83M"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-rQ-arY">
+                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="2bP-84-1Ao"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="7x5-PD-SEB"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIs-Qo-Q9D">
+                                <rect key="frame" x="123" y="116" width="235" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the private key" id="1dL-nN-bJI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vd2-XW-sZs">
+                                <rect key="frame" x="140" y="69" width="240" height="32"/>
+                                <subviews>
+                                    <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fPT-cb-IZ0">
+                                        <rect key="frame" x="0.0" y="5" width="200" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="5Cn-7O-yls"/>
+                                        </constraints>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Enter Password" drawsBackground="YES" usesSingleLineMode="YES" id="Zj5-0h-hpW">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PSN-Iv-84o">
+                                        <rect key="frame" x="208" y="0.0" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="abd-6u-XNS"/>
+                                            <constraint firstAttribute="height" constant="32" id="bg9-Sy-i6W"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="next-button" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="WWJ-7v-s0W">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="onPrivateKeyPassword:" target="t3q-Il-oVg" id="fLt-Qd-MKG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="rdj-RY-2Vo" firstAttribute="centerX" secondItem="loa-he-4Fr" secondAttribute="centerX" id="CLB-N3-YY1"/>
+                            <constraint firstItem="BPu-rQ-arY" firstAttribute="top" secondItem="loa-he-4Fr" secondAttribute="top" constant="20" id="COv-SN-Drv"/>
+                            <constraint firstItem="BPu-rQ-arY" firstAttribute="centerX" secondItem="loa-he-4Fr" secondAttribute="centerX" id="Civ-16-W7G"/>
+                            <constraint firstItem="XIs-Qo-Q9D" firstAttribute="centerX" secondItem="loa-he-4Fr" secondAttribute="centerX" id="G44-0d-dEM"/>
+                            <constraint firstItem="Vd2-XW-sZs" firstAttribute="top" secondItem="XIs-Qo-Q9D" secondAttribute="bottom" constant="15" id="Hdv-LR-oAu"/>
+                            <constraint firstItem="Vd2-XW-sZs" firstAttribute="centerX" secondItem="loa-he-4Fr" secondAttribute="centerX" constant="20" id="fBc-RY-oVD"/>
+                            <constraint firstItem="XIs-Qo-Q9D" firstAttribute="top" secondItem="BPu-rQ-arY" secondAttribute="bottom" constant="20" id="iBk-7x-xIC"/>
+                            <constraint firstAttribute="bottom" secondItem="rdj-RY-2Vo" secondAttribute="bottom" constant="20" id="tD9-Cu-QsS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordField" destination="fPT-cb-IZ0" id="yoq-Mh-7rN"/>
+                    </connections>
+                </viewController>
+                <customObject id="wHc-IT-H8B" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="409" y="886"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+        <image name="next-button" width="24" height="24"/>
+    </resources>
+</document>

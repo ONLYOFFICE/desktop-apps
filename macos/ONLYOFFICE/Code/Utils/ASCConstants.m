@@ -44,6 +44,15 @@
 
 @implementation ASCConstants
 
++ (id)shared {
+    static ASCConstants * sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
+}
+
 + (NSArray *)images {
     return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico"];
 }

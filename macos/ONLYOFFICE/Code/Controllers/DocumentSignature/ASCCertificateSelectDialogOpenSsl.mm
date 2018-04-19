@@ -31,32 +31,44 @@
  */
 
 //
-//  NSView+Extensions.h
+//  ASCCertificateSelectDialogOpenSsl.cpp
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 11/04/2018.
+//  Created by Alexander Yuzhin on 17/04/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 
-@interface NSView (Extensions)
+#include "ASCCertificateSelectDialogOpenSsl.hpp"
+#import "ASCDocSignController.h"
 
-@property (nonatomic) IBInspectable NSColor * backgroundColor;
-@property (nonatomic) IBInspectable NSColor * borderColor;
-@property (nonatomic) IBInspectable NSColor * shadowColor;
-@property (nonatomic) IBInspectable CGFloat borderWidth;
-@property (nonatomic) IBInspectable CGFloat cornerRadius;
-@property (nonatomic) IBInspectable CGFloat width;
-@property (nonatomic) IBInspectable CGFloat height;
-@property (nonatomic) IBInspectable CGSize shadowOffset;
-@property (nonatomic) IBInspectable CGFloat shadowOpacity;
-@property (nonatomic) IBInspectable CGFloat shadowRadius;
-@property (nonatomic) IBInspectable CGSize size;
-@property (nonatomic) IBInspectable NSInteger uuidTag;
+std::wstring ASCCertificateSelectDialogOpenSsl::GetCertificatePath()
+{
+    return m_sCertPath;
+}
 
-- (void)removeAllConstraints;
-- (instancetype)duplicate;
-- (void)shake;
+std::wstring ASCCertificateSelectDialogOpenSsl::GetCertificatePassword()
+{
+    return m_sCertPassword;
+}
 
-@end
+std::wstring ASCCertificateSelectDialogOpenSsl::GetKeyPath()
+{
+    return m_sKeyPath;
+}
+
+std::wstring ASCCertificateSelectDialogOpenSsl::GetKeyPassword()
+{
+    return m_sKeyPassword;
+}
+
+bool ASCCertificateSelectDialogOpenSsl::ShowSelectDialog()
+{
+    [ASCDocSignController startWizard];
+    return true;
+}
+
+int ASCCertificateSelectDialogOpenSsl::ShowCertificate(ICertificate* pCert)
+{
+    return 1;
+}

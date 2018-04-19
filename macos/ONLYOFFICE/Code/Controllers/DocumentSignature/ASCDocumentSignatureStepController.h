@@ -31,32 +31,16 @@
  */
 
 //
-//  NSView+Extensions.h
+//  ASCDocumentSignatureStepController.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 11/04/2018.
+//  Created by Alexander Yuzhin on 16/04/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
+#import "KSNavigationController.h"
 
-@interface NSView (Extensions)
-
-@property (nonatomic) IBInspectable NSColor * backgroundColor;
-@property (nonatomic) IBInspectable NSColor * borderColor;
-@property (nonatomic) IBInspectable NSColor * shadowColor;
-@property (nonatomic) IBInspectable CGFloat borderWidth;
-@property (nonatomic) IBInspectable CGFloat cornerRadius;
-@property (nonatomic) IBInspectable CGFloat width;
-@property (nonatomic) IBInspectable CGFloat height;
-@property (nonatomic) IBInspectable CGSize shadowOffset;
-@property (nonatomic) IBInspectable CGFloat shadowOpacity;
-@property (nonatomic) IBInspectable CGFloat shadowRadius;
-@property (nonatomic) IBInspectable CGSize size;
-@property (nonatomic) IBInspectable NSInteger uuidTag;
-
-- (void)removeAllConstraints;
-- (instancetype)duplicate;
-- (void)shake;
+@interface ASCDocumentSignatureStepController : NSViewController <KSNavigationControllerCompatible>
 
 @end

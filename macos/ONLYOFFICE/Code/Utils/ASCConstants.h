@@ -117,6 +117,11 @@ static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppRea
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 
 @interface ASCConstants : NSObject
+
+//@property (nonatomic) NSSto *someProperty;
+
++ (id)shared;
+
 + (NSArray *)images;
 + (NSArray *)documents;
 + (NSArray *)spreadsheets;

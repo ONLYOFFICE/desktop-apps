@@ -50,6 +50,12 @@
 		FC29CD441F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
 		FC29CD451F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
 		FC29CD461F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
+		FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
+		FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
+		FC2A34D8208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
+		FC2A34DB20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
+		FC2A34DC20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
+		FC2A34DD20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
@@ -140,6 +146,18 @@
 		FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC8AA3032084ACC800549F2D /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8AA3022084ACC800549F2D /* Document-Sign.storyboard */; };
+		FC8AA3042084ACC800549F2D /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8AA3022084ACC800549F2D /* Document-Sign.storyboard */; };
+		FC8AA3052084ACC800549F2D /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC8AA3022084ACC800549F2D /* Document-Sign.storyboard */; };
+		FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
+		FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
+		FC8AA3102084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
+		FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
+		FC8AA3162084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
+		FC8AA3172084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
+		FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
+		FC8AA31B2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
+		FC8AA31C2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
@@ -330,6 +348,10 @@
 		FC25A1A51C2E844800063A42 /* ASCTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewController.h; path = Code/Controllers/ASCTabViewController.h; sourceTree = "<group>"; };
 		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewController.m; path = Code/Controllers/ASCTabViewController.m; sourceTree = "<group>"; };
 		FC29CD431F979981003F4136 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		FC2A34D4208610F0001B5784 /* ASCDocSignController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocSignController.h; sourceTree = "<group>"; };
+		FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDocSignController.mm; sourceTree = "<group>"; };
+		FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = ASCCertificateSelectDialogOpenSsl.mm; sourceTree = "<group>"; };
+		FC2A34DA20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ASCCertificateSelectDialogOpenSsl.hpp; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
 		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
@@ -417,6 +439,13 @@
 		FC81D4C52035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC81D4C62035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = it; path = it.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		FC81D4C72035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		FC8AA3022084ACC800549F2D /* Document-Sign.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Document-Sign.storyboard"; sourceTree = "<group>"; };
+		FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KSNavigationController.mm; sourceTree = "<group>"; };
+		FC8AA30D2084BFE700549F2D /* KSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNavigationController.h; sourceTree = "<group>"; };
+		FC8AA3132084C52500549F2D /* ASCDocumentSignatureController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocumentSignatureController.h; sourceTree = "<group>"; };
+		FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCDocumentSignatureController.m; sourceTree = "<group>"; };
+		FC8AA3182084C54D00549F2D /* ASCDocumentSignatureStepController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocumentSignatureStepController.h; sourceTree = "<group>"; };
+		FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDocumentSignatureStepController.mm; sourceTree = "<group>"; };
 		FC8B98662016129F0073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		FC8B98672016129F0073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC8B9868201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/EULA.html"; sourceTree = "<group>"; };
@@ -636,6 +665,7 @@
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */,
 				FC29CD431F979981003F4136 /* Registration.storyboard */,
+				FC8AA3022084ACC800549F2D /* Document-Sign.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -804,6 +834,7 @@
 			children = (
 				FCE7D15C207D002700642010 /* PureLayout */,
 				FCFE61DD1CAD02D4000D2418 /* CocoaAnalytics */,
+				FC8AA30B2084BFE700549F2D /* KSNavigationController */,
 				FCB454FC1C326A4E00FEACF2 /* PFMoveApplication */,
 				FC3BFDF91BBE83AB0040C904 /* SFBPopover */,
 			);
@@ -828,6 +859,31 @@
 				FCA0B35F1B9F07B30073EDD4 /* Controller */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		FC8AA30B2084BFE700549F2D /* KSNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */,
+				FC8AA30D2084BFE700549F2D /* KSNavigationController.h */,
+			);
+			path = KSNavigationController;
+			sourceTree = "<group>";
+		};
+		FC8AA3122084C4F100549F2D /* DocumentSignature */ = {
+			isa = PBXGroup;
+			children = (
+				FC8AA3132084C52500549F2D /* ASCDocumentSignatureController.h */,
+				FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */,
+				FC8AA3182084C54D00549F2D /* ASCDocumentSignatureStepController.h */,
+				FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */,
+				FC2A34D4208610F0001B5784 /* ASCDocSignController.h */,
+				FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */,
+				FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */,
+				FC2A34DA20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.hpp */,
+			);
+			name = DocumentSignature;
+			path = Code/Controllers/DocumentSignature;
 			sourceTree = "<group>";
 		};
 		FC98BAD31BAC438800747944 /* Views */ = {
@@ -911,6 +967,7 @@
 				FCA0B33D1B9EB56E0073EDD4 /* Main Window */,
 				FC54A2801F94B9B20086F4FE /* Reporter */,
 				FCAA9A391BBA7E7600F3C47F /* Download */,
+				FC8AA3122084C4F100549F2D /* DocumentSignature */,
 				FC659BF51C75EE5C00C99776 /* About */,
 				FCAF3EFA1BA31CF600B42BAA /* User Info */,
 			);
@@ -1277,6 +1334,7 @@
 				FC54A2861F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */,
 				FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */,
 				FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */,
+				FC8AA3042084ACC800549F2D /* Document-Sign.storyboard in Resources */,
 				FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */,
 				FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */,
 				FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */,
@@ -1299,6 +1357,7 @@
 				FC98AF2E1E94E16A00718A12 /* file-ppsx.icns in Resources */,
 				FC54A2871F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */,
 				FC7FD3CA1C315DD6008F6641 /* editors in Resources */,
+				FC8AA3052084ACC800549F2D /* Document-Sign.storyboard in Resources */,
 				FC98AF131E94E16A00718A12 /* file-djvu.icns in Resources */,
 				FC98AF101E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC081EFB1C325EE900F9881C /* dictionaries in Resources */,
@@ -1339,6 +1398,7 @@
 				FC98AF2C1E94E16A00718A12 /* file-ppsx.icns in Resources */,
 				FC54A2851F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */,
 				FC09073E1C1855A400D9E881 /* editors in Resources */,
+				FC8AA3032084ACC800549F2D /* Document-Sign.storyboard in Resources */,
 				FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */,
 				FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC081EFA1C325EE900F9881C /* dictionaries in Resources */,
@@ -1507,6 +1567,7 @@
 				FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
 				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
+				FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */,
 				FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
 				FC54A2951F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */,
@@ -1514,13 +1575,17 @@
 				FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */,
 				FC6718101BD913C00028600F /* NSCefView.mm in Sources */,
 				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
+				FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */,
 				FC6718111BD913C00028600F /* ASCTitleBarController.m in Sources */,
+				FC2A34DC20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
 				FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */,
 				FC6718121BD913C00028600F /* SFBPopover.m in Sources */,
+				FC8AA31B2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
 				FC6718131BD913C00028600F /* ASCEventsController.mm in Sources */,
 				FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
+				FC8AA3162084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */,
 				FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */,
@@ -1565,6 +1630,7 @@
 				FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E61CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				FC8AA3172084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */,
 				FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */,
 				FCC77C96206CEE85001B7837 /* ASCTabsControl.m in Sources */,
@@ -1580,7 +1646,11 @@
 				FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */,
 				FC54A2961F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FC7FD3B31C315DD6008F6641 /* main.mm in Sources */,
+				FC2A34DD20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
+				FC8AA3102084BFE700549F2D /* KSNavigationController.mm in Sources */,
+				FC8AA31C2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C84206CEE5B001B7837 /* ASCButton.m in Sources */,
+				FC2A34D8208610F0001B5784 /* ASCDocSignController.mm in Sources */,
 				FC7FD3B51C315DD6008F6641 /* ASCDownloadViewController.m in Sources */,
 				FC7FD3B61C315DD6008F6641 /* ASCTitleWindow.m in Sources */,
 				FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */,
@@ -1619,6 +1689,7 @@
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */,
@@ -1634,7 +1705,11 @@
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
+				FC2A34DB20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
+				FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */,
+				FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */,
+				FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */,
 				FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */,
 				FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */,
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
@@ -2054,6 +2129,7 @@
 					"$(inherited)",
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
+					DOCUMENTSCORE_OPENSSL_SUPPORT,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -2093,6 +2169,7 @@
 					"$(inherited)",
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
+					DOCUMENTSCORE_OPENSSL_SUPPORT,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

@@ -31,32 +31,34 @@
  */
 
 //
-//  NSView+Extensions.h
+//  ASCDocumentSignatureController.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 11/04/2018.
+//  Created by Alexander Yuzhin on 16/04/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "ASCDocumentSignatureController.h"
+#import "ASCDocumentSignatureStepController.h"
+#import "KSNavigationController.h"
 
-@interface NSView (Extensions)
+@interface ASCDocumentSignatureController ()
+@property (nonatomic) KSNavigationController * navigationController;
+@end
 
-@property (nonatomic) IBInspectable NSColor * backgroundColor;
-@property (nonatomic) IBInspectable NSColor * borderColor;
-@property (nonatomic) IBInspectable NSColor * shadowColor;
-@property (nonatomic) IBInspectable CGFloat borderWidth;
-@property (nonatomic) IBInspectable CGFloat cornerRadius;
-@property (nonatomic) IBInspectable CGFloat width;
-@property (nonatomic) IBInspectable CGFloat height;
-@property (nonatomic) IBInspectable CGSize shadowOffset;
-@property (nonatomic) IBInspectable CGFloat shadowOpacity;
-@property (nonatomic) IBInspectable CGFloat shadowRadius;
-@property (nonatomic) IBInspectable CGSize size;
-@property (nonatomic) IBInspectable NSInteger uuidTag;
+@implementation ASCDocumentSignatureController
 
-- (void)removeAllConstraints;
-- (instancetype)duplicate;
-- (void)shake;
+- (void)windowDidLoad {
+    [super windowDidLoad];
+
+    ASCDocumentSignatureStepController * controller = [self.storyboard instantiateControllerWithIdentifier:@"StepSignatureLoadController"];
+
+    if (controller) {
+        self.navigationController = [[KSNavigationController alloc] initWithRootViewController:controller];
+        self.navigationController.view.frame = controller.view.frame;
+        [self.window setContentViewController:self.navigationController];
+    }
+
+}
 
 @end

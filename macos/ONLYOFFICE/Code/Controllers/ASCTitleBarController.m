@@ -348,6 +348,19 @@ static float kASCWindowMinTitleWidth = 0;
     [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
 }
 
+- (IBAction)onTestButton:(NSButton *)sender {
+    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:@"Document-Sign" bundle:[NSBundle mainBundle]];
+
+    if (storyboard) {
+        NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];
+        NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+
+        [mainWindow beginSheet:[windowController window] completionHandler:^(NSModalResponse returnCode) {
+            //
+        }];
+    }
+}
+
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate
 
