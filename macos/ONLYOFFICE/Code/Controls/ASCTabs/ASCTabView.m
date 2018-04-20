@@ -118,6 +118,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
     [self setBordered:NO];
     [self setCell:tabCell];
+    [self setState:NSControlStateValueOn];
     [self.cell setImagePosition:NSImageLeft];
     [self.cell setBordered:NO];
         
@@ -143,7 +144,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         if (weakSelf && weakSelf.close) {
             BOOL hiddenClose = true;
 
-            if ([weakSelf.close state]) {
+            if ([weakSelf state] || [weakSelf.close state]) {
                 hiddenClose = false;
             } else {
                 hiddenClose = !(tabCell.isHover || tabCell.isPressed);

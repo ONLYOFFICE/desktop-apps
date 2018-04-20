@@ -41,6 +41,7 @@
 #import "ASCButtonCell.h"
 
 @interface ASCTabViewCell : ASCButtonCell
+
 @property (nonatomic) NSColor * inactiveColor;
 @property (nonatomic) NSColor * activeColor;
 @property (nonatomic) NSColor * hoverInactiveColor;
@@ -51,8 +52,6 @@
 @property (nonatomic) NSColor * inactiveBorderColor;
 @property (nonatomic, weak) NSButton * closeButton;
 @property (nonatomic) BOOL isProcessing;
-
-//- (void)startProcessing;
-//- (void)stopProcessing;
+@property (nonatomic) BOOL isLight;
 
 @end

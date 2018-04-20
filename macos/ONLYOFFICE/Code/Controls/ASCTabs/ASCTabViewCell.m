@@ -42,13 +42,13 @@
 #import "ASCTabViewCell.h"
 #import "NSColor+Extensions.h"
 #import "NSImage+Extensions.h"
+#import "ASCButtonCell.h"
 
 @interface ASCTabViewCell()
 @property (nonatomic) NSImageView * animatedImageView;
 @property (nonatomic, weak) NSView * parentView;
 @property (nonatomic, readonly) CALayer * loaderLayer;
 @property (nonatomic, readonly) CABasicAnimation * loaderAnimation;
-@property (nonatomic) BOOL isLight;
 @end
 
 @implementation ASCTabViewCell
@@ -126,7 +126,10 @@
         NSImage * loaderImage = isLight
             ? [NSImage imageNamed:@"tab-loader-dark"]
             : [NSImage imageNamed:@"tab-loader-light"];
+
         self.loaderLayer.contents = (id)[loaderImage CGImage];
+
+        [self updateCloseCell];
     }
 }
 
@@ -205,7 +208,6 @@
         [rightRectanglePath fill];
     }
 
-    
     if (self.title) {
         [self drawTitle:[self attributedTitle] withFrame:cellFrame inView:controlView];
     }
@@ -217,11 +219,6 @@
     if (_isProcessing) {
         if ([self.loaderLayer animationForKey:@"rotateAnimation"] == nil) {
             [self startProcessing];
-//            [controlView.layer addSublayer:self.loaderLayer];
-//
-//            [CATransaction begin];
-//            [self.loaderLayer addAnimation:self.loaderAnimation forKey:@"rotateAnimation"];
-//            [CATransaction commit];
         }
     }
 
@@ -309,6 +306,39 @@
                                      }
                              range:NSMakeRange(0, attributedTitle.length)];
     return attributedTitle;
+}
+//
+//- (void)mouseEntered:(NSEvent *)theEvent {
+//    [super mouseEntered:theEvent];
+//}
+//
+//- (void)mouseExited:(NSEvent *)theEvent {
+//    [super mouseExited:theEvent];
+//}
+//
+//- (void)mouseMoved:(NSEvent *)theEvent {
+//    [super mouseMoved:theEvent];
+//}
+//
+//- (void)mouseDown:(NSEvent *)theEvent {
+//    [super mouseDown:theEvent];
+//}
+//
+//- (void)mouseUp:(NSEvent *)theEvent {
+//    [super mouseUp:theEvent];
+//}
+
+- (void)updateCloseCell {
+    NSEvent * event = [NSApp currentEvent];
+
+    if (self.parentView) {
+        [self.parentView setNeedsDisplay:YES];
+    }
+
+    ASCButtonCell * closeCell = [[self closeButton] cell];
+    if (closeCell) {
+        [closeCell mouseExited:event];
+    }
 }
 
 @end

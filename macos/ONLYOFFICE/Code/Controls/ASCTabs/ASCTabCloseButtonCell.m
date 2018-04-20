@@ -39,6 +39,7 @@
 //
 
 #import "ASCTabCloseButtonCell.h"
+#import "ASCTabViewCell.h"
 
 @interface ASCTabCloseButtonCell ()
 
@@ -49,11 +50,9 @@
 - (id)initTextCell:(NSString *)string {
     self = [super initTextCell:string];
     if (self) {
-        self.image = [NSImage imageNamed:@"tab_close_dark_normal"];
-
-        if ([self isParentActive]) {
-            self.image = [NSImage imageNamed:@"tab_close_light_normal"];
-        }
+        self.image = [self isParentLight]
+            ? [NSImage imageNamed:@"tab_close_dark_normal"]
+            : [NSImage imageNamed:@"tab_close_light_normal"];
     }
     
     return self;
@@ -61,38 +60,34 @@
 
 - (void)mouseEntered:(NSEvent *)theEvent {
     [super mouseEntered:theEvent];
-    self.image = [NSImage imageNamed:@"tab_close_dark_hover"];
 
-    if ([self isParentActive]) {
-        self.image = [NSImage imageNamed:@"tab_close_light_hover"];
-    }
+    self.image = [self isParentLight]
+        ? [NSImage imageNamed:@"tab_close_dark_hover"]
+        : [NSImage imageNamed:@"tab_close_light_hover"];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
     [super mouseExited:theEvent];
-    self.image = [NSImage imageNamed:@"tab_close_dark_normal"];
 
-    if ([self isParentActive]) {
-        self.image = [NSImage imageNamed:@"tab_close_light_normal"];
-    }
+    self.image = [self isParentLight]
+        ? [NSImage imageNamed:@"tab_close_dark_normal"]
+        : [NSImage imageNamed:@"tab_close_light_normal"];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
-    self.image = [NSImage imageNamed:@"tab_close_dark_active"];
 
-    if ([self isParentActive]) {
-        self.image = [NSImage imageNamed:@"tab_close_light_active"];
-    }
+    self.image = [self isParentLight]
+        ? [NSImage imageNamed:@"tab_close_dark_active"]
+        : [NSImage imageNamed:@"tab_close_light_active"];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
     [super mouseUp:theEvent];
-    self.image = [NSImage imageNamed:@"tab_close_dark_normal"];
 
-    if ([self isParentActive]) {
-        self.image = [NSImage imageNamed:@"tab_close_light_normal"];
-    }
+    self.image = [self isParentLight]
+        ? [NSImage imageNamed:@"tab_close_dark_normal"]
+        : [NSImage imageNamed:@"tab_close_light_normal"];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
@@ -112,6 +107,20 @@
         }
     }
     return false;
+}
+
+- (BOOL)isParentLight {
+    id target = [self target];
+
+    if (target && [target isKindOfClass:[NSView class]]) {
+        ASCTabViewCell * buttonCell = [target cell];
+
+        if (buttonCell) {
+            return buttonCell.isLight;
+        }
+    }
+
+    return NO;
 }
 
 @end
