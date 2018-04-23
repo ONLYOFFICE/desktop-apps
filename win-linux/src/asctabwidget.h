@@ -185,8 +185,8 @@ public:
     void setFullScreen(bool, int id = -1);
     QWidget * fullScreenWidget();
 
-    void openCloudDocument(COpenOptions&, bool);
-    int  openLocalDocument(COpenOptions&, bool);
+    void openCloudDocument(COpenOptions&, bool, bool forcenew = false);
+    int  openLocalDocument(COpenOptions&, bool, bool forcenew = false);
 //    void changeDocumentType(int, int);
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
