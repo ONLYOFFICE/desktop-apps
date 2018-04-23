@@ -47,8 +47,9 @@
 @property (nonatomic) NSString * signPassword;
 @property (nonatomic) NSString * privateKeyFilePath;
 @property (nonatomic) NSString * privateKeyPassword;
+@property (nonatomic, readonly) NSInteger cefId;
 
 + (instancetype)shared;
-+ (void)startWizardWithCefId:(NSString *)cefId;
+- (void)startWizardWithCefId:(NSString *)cefId;
 
 @end

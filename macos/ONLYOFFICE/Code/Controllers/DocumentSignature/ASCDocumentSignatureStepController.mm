@@ -72,28 +72,23 @@
 #pragma mark - Internal
 
 - (void)closeDialogWithResult:(BOOL)complete {
-    id windowController = self.view.window.windowController;
+    if (CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager]) {
+        if (CCefView * cefView = appManager->GetViewById((int)[[ASCDocSignController shared] cefId])) {
+            NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
+            NSEditorApi::CAscOpenSslData * pEventData = new NSEditorApi::CAscOpenSslData();
 
-    if (complete && windowController && [windowController isKindOfClass:[ASCDocumentSignatureController class]]) {
-        ASCDocumentSignatureController * controller = windowController;
-        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
-        if (controller && appManager) {
-            if (CCefView * cefView = appManager->GetViewById((int)controller.cefId)) {
-                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
-                NSEditorApi::CAscOpenSslData * pEventData = new NSEditorApi::CAscOpenSslData();
-
-                if (pEvent && pEventData) {
+            if (pEvent && pEventData) {
+                if (complete) {
                     pEventData->put_CertPath([ASCDocSignController.shared.signFilePath stdwstring]);
                     pEventData->put_CertPassword([ASCDocSignController.shared.signPassword stdwstring]);
                     pEventData->put_KeyPath([ASCDocSignController.shared.privateKeyFilePath stdwstring]);
                     pEventData->put_KeyPassword([ASCDocSignController.shared.privateKeyPassword stdwstring]);
-
-                    pEvent->m_nType = ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE;
-                    pEvent->m_pData = pEventData;
-
-                    cefView->Apply(pEvent);
                 }
+
+                pEvent->m_nType = ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE;
+                pEvent->m_pData = pEventData;
+
+                cefView->Apply(pEvent);
             }
         }
     }

@@ -47,24 +47,6 @@
 
 @implementation ASCDocSignController
 
-#pragma mark - Properties
-
-- (void)setSignFilePath:(NSString *)signFilePath {
-    _signFilePath = signFilePath;
-}
-
-- (void)setSignPassword:(NSString *)signPassword {
-    _signPassword = signPassword;
-}
-
-- (void)setPrivateKeyFilePath:(NSString *)privateKeyFilePath {
-    _privateKeyFilePath = privateKeyFilePath;
-}
-
-- (void)setPrivateKeyPassword:(NSString *)privateKeyPassword {
-    _privateKeyPassword = privateKeyPassword;
-}
-
 #pragma mark - Life Cycle Methods
 
 + (instancetype)shared {
@@ -77,12 +59,17 @@
     return sharedManager;
 }
 
-- (void)initialize {
+- (void)internalReset {
     self.signFilePath = @"";
     self.signPassword = @"";
     self.privateKeyFilePath = @"";
     self.privateKeyPassword = @"";
 
+    _cefId = -1;
+}
+
+- (void)initialize {
+    [self internalReset];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFOpenSSLCertificate:)
                                                  name:CEFEventNameOpenSSLCertificate
@@ -94,29 +81,22 @@
         id json = notification.userInfo;
         
         if (NSString * viewId = json[@"viewId"]) {
-            [ASCDocSignController startWizardWithCefId:viewId];
+            [[ASCDocSignController shared] startWizardWithCefId:viewId];
         }
     }
 }
 
-+ (void)startWizardWithCefId:(NSString *)cefId {
-    if (ASCDocSignController * signController = [ASCDocSignController shared]) {
-        signController.signFilePath = @"";
-        signController.signPassword = @"";
-        signController.privateKeyFilePath = @"";
-        signController.privateKeyPassword = @"";
+- (void)startWizardWithCefId:(NSString *)cefId {
+    [self internalReset];
+
+    if (cefId && cefId.length > 0) {
+        _cefId = [cefId integerValue];
     }
 
     NSStoryboard * storyboard = [NSStoryboard storyboardWithName:@"Document-Sign" bundle:[NSBundle mainBundle]];
 
     if (storyboard) {
         NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];
-
-        if (cefId && cefId.length > 0 && [windowController isKindOfClass:[ASCDocumentSignatureController class]]) {
-            ASCDocumentSignatureController * windowSignatureController = (ASCDocumentSignatureController *)windowController;
-            windowSignatureController.cefId = [cefId integerValue];
-        }
-
         NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
 
         [mainWindow beginSheet:[windowController window] completionHandler:^(NSModalResponse returnCode) {
