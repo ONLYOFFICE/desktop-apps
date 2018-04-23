@@ -78,6 +78,13 @@ public:
         
         dispatch_async(eventListenerQueue, ^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                int senderId = -1;
+
+                NSEditorApi::CAscCefMenuEvent * pCefEvent = dynamic_cast<NSEditorApi::CAscCefMenuEvent *>(pEvent);
+                if (pCefEvent) {
+                    senderId = pCefEvent->get_SenderId();
+                }
+                
                 switch (pEvent->m_nType) {
                     case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
                         NSEditorApi::CAscCreateTab *pData = (NSEditorApi::CAscCreateTab*)pEvent->m_pData;
@@ -281,6 +288,7 @@ public:
                                                                                      }];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
                         NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
                         
@@ -326,6 +334,7 @@ public:
                                                                                      }];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
                         
@@ -337,6 +346,7 @@ public:
                                                                                      }];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
 
@@ -349,19 +359,23 @@ public:
                                                                                      }];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
                         [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
                         [[ASCPresentationReporter sharedInstance] destroy];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
                     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
                         [[ASCPresentationReporter sharedInstance] apply:pEvent];
                         break;
                     }
+
                     case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
                         pEvent->AddRef();
 
@@ -373,15 +387,26 @@ public:
 
                         break;
                     }
+
+                    case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenSSLCertificate
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId": [NSString stringWithFormat:@"%d", senderId]
+                                                                                     }];
+                        break;
+                    }
+
+                    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO: {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveBeforSign
+                                                                            object:nil
+                                                                          userInfo:nil];
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
-                        int senderId = -1;
-
-                        NSEditorApi::CAscCefMenuEvent * pCefEvent = dynamic_cast<NSEditorApi::CAscCefMenuEvent *>(pEvent);
-                        if (pCefEvent) {
-                            senderId = pCefEvent->get_SenderId();
-                        }
 
                         if (cmd.compare(L"portal:open") == 0) {
                             NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/"]];

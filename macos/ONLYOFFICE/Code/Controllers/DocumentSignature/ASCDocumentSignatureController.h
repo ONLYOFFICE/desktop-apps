@@ -41,5 +41,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ASCDocumentSignatureController : NSWindowController
-
+@property (nonatomic) NSInteger cefId;
 @end

@@ -53,9 +53,6 @@
 		FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
 		FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
 		FC2A34D8208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
-		FC2A34DB20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
-		FC2A34DC20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
-		FC2A34DD20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
@@ -68,6 +65,9 @@
 		FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
 		FC54A2951F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
 		FC54A2961F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
+		FC592514208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
+		FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
+		FC592516208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
 		FC6516021D1542C2009DBDCD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F51D1542C2009DBDCD /* EULA.html */; };
 		FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F71D1542C2009DBDCD /* InfoPlist.strings */; };
@@ -350,8 +350,6 @@
 		FC29CD431F979981003F4136 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		FC2A34D4208610F0001B5784 /* ASCDocSignController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocSignController.h; sourceTree = "<group>"; };
 		FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDocSignController.mm; sourceTree = "<group>"; };
-		FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = ASCCertificateSelectDialogOpenSsl.mm; sourceTree = "<group>"; };
-		FC2A34DA20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ASCCertificateSelectDialogOpenSsl.hpp; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
 		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
@@ -370,6 +368,10 @@
 		FC54A2911F94BA720086F4FE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASCPresentationReporter.h; path = Code/Controllers/ASCPresentationReporter.h; sourceTree = "<group>"; };
 		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCPresentationReporter.mm; path = Code/Controllers/ASCPresentationReporter.mm; sourceTree = "<group>"; };
+		FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLVerifier.h; sourceTree = "<group>"; };
+		FC5919D6208DC6D00006F664 /* XmlCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCertificate.h; sourceTree = "<group>"; };
+		FC5919D7208DC6D00006F664 /* OOXMLSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLSigner.h; sourceTree = "<group>"; };
+		FC592513208DE7440006F664 /* libooxmlsignature.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libooxmlsignature.dylib; path = ../../../core/build/lib/mac_64/libooxmlsignature.dylib; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = ../../core/build/lib/mac_64/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
 		FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "../../core/build/cef/mac/Chromium Embedded Framework.framework"; sourceTree = SOURCE_ROOT; };
 		FC5A2D381BAC075E001ACEB1 /* applicationmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationmanager.h; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
 				FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */,
 				FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */,
 			);
@@ -589,6 +592,7 @@
 				FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */,
 				FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */,
 				FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */,
+				FC592516208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +604,7 @@
 				FC6718311BD918CA0028600F /* Security.framework in Frameworks */,
 				FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */,
 				FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */,
+				FC592514208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +698,33 @@
 			name = Reporter;
 			sourceTree = "<group>";
 		};
+		FC591593208DC6CE0006F664 /* xmlsec */ = {
+			isa = PBXGroup;
+			children = (
+				FC5919D3208DC6D00006F664 /* src */,
+			);
+			name = xmlsec;
+			path = ../../../core/DesktopEditor/xmlsec;
+			sourceTree = "<group>";
+		};
+		FC5919D3208DC6D00006F664 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FC5919D4208DC6D00006F664 /* include */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		FC5919D4208DC6D00006F664 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */,
+				FC5919D6208DC6D00006F664 /* XmlCertificate.h */,
+				FC5919D7208DC6D00006F664 /* OOXMLSigner.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		FC5A2CFE1BABEF42001ACEB1 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +738,7 @@
 		FC5A2CFF1BABEF53001ACEB1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				FC591593208DC6CE0006F664 /* xmlsec */,
 				FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors */,
 				FC5A2D401BAC075E001ACEB1 /* common */,
 				FC5A2D531BAC075E001ACEB1 /* Word_Api */,
@@ -718,6 +751,7 @@
 		FC5A2D041BABEF74001ACEB1 /* bin */ = {
 			isa = PBXGroup;
 			children = (
+				FC592513208DE7440006F664 /* libooxmlsignature.dylib */,
 				FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */,
 				FC5A2D321BAC0749001ACEB1 /* Chromium Embedded Framework.framework */,
 			);
@@ -879,8 +913,6 @@
 				FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */,
 				FC2A34D4208610F0001B5784 /* ASCDocSignController.h */,
 				FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */,
-				FC2A34D920863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm */,
-				FC2A34DA20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.hpp */,
 			);
 			name = DocumentSignature;
 			path = Code/Controllers/DocumentSignature;
@@ -1442,7 +1474,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\nrm -rf \"${dst}\"/libooxmlsignature.dylib\nrm -rf \"${dst}\"/libssl.1.1.dylib\nrm -rf \"${dst}\"/libcrypto.1.1.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Copy libraries and frameworks\"\necho \"---------------------------------------------------------------------------------------\"\n\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libooxmlsignature.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libssl.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libcrypto.1.1.dylib \"${dst}\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change dynamic shared library install names\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@rpath/libooxmlsignature.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libssl.1.1.dylib \\\n@rpath/libssl.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libssl.1.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.55.dylib \\\n@rpath/libicuuc.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.55.1.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\nlibicudata.55.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.55.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Rename symbols in helper\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../../../../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Create symbol links\"\necho \"---------------------------------------------------------------------------------------\"\n\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change rights\"\necho \"---------------------------------------------------------------------------------------\"\n\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\necho \"---------------------------------------------------------------------------------------\"\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libooxmlsignature.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libssl.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libcrypto.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\nrm -rf \"${dst}\"/libooxmlsignature.dylib\nrm -rf \"${dst}\"/libssl.1.1.dylib\nrm -rf \"${dst}\"/libcrypto.1.1.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Copy libraries and frameworks\"\necho \"---------------------------------------------------------------------------------------\"\n\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libooxmlsignature.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libssl.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libcrypto.1.1.dylib \"${dst}\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change dynamic shared library install names\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@executable_path/../Frameworks/libooxmlsignature.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\n#install_name_tool \\\n#-change \\\n#@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n#@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n#\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@rpath/libooxmlsignature.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libssl.1.1.dylib \\\n@rpath/libssl.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libssl.1.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.55.dylib \\\n@rpath/libicuuc.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.55.1.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\nlibicudata.55.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.55.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Rename symbols in helper\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../../../../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Create symbol links\"\necho \"---------------------------------------------------------------------------------------\"\n\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change rights\"\necho \"---------------------------------------------------------------------------------------\"\n\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\necho \"---------------------------------------------------------------------------------------\"\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libooxmlsignature.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libssl.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libcrypto.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -1577,7 +1609,6 @@
 				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */,
 				FC6718111BD913C00028600F /* ASCTitleBarController.m in Sources */,
-				FC2A34DC20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
 				FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */,
 				FC6718121BD913C00028600F /* SFBPopover.m in Sources */,
@@ -1646,7 +1677,6 @@
 				FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */,
 				FC54A2961F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FC7FD3B31C315DD6008F6641 /* main.mm in Sources */,
-				FC2A34DD20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
 				FC8AA3102084BFE700549F2D /* KSNavigationController.mm in Sources */,
 				FC8AA31C2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C84206CEE5B001B7837 /* ASCButton.m in Sources */,
@@ -1705,7 +1735,6 @@
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
-				FC2A34DB20863783001B5784 /* ASCCertificateSelectDialogOpenSsl.mm in Sources */,
 				FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */,
 				FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */,
@@ -2124,12 +2153,12 @@
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
+					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
-					DOCUMENTSCORE_OPENSSL_SUPPORT,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -2164,12 +2193,12 @@
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
 					"$(PROJECT_DIR)/ONLYOFFICE",
 					"$(PROJECT_DIR)/Vendor/Sparkle",
+					"$(PROJECT_DIR)/../../core/DesktopEditor/xmlsec/src/include",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
-					DOCUMENTSCORE_OPENSSL_SUPPORT,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

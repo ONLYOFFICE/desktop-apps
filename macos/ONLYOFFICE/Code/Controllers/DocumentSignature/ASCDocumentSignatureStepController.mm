@@ -39,11 +39,13 @@
 //
 
 #import "ASCDocumentSignatureStepController.h"
+#include "mac_application.h"
+#include "XmlCertificate.h"
 #import "NSView+Extensions.h"
 #import "NSString+Extensions.h"
 #import "NSAlert+SynchronousSheet.h"
 #import "ASCDocSignController.h"
-#include "applicationmanager.h"
+#import "ASCDocumentSignatureController.h"
 
 @interface ASCDocumentSignatureStepController () <NSTextFieldDelegate>
 @property (weak) IBOutlet NSSecureTextField *passwordField;
@@ -69,7 +71,33 @@
 
 #pragma mark - Internal
 
-- (void)closeDialog {
+- (void)closeDialogWithResult:(BOOL)complete {
+    id windowController = self.view.window.windowController;
+
+    if (complete && windowController && [windowController isKindOfClass:[ASCDocumentSignatureController class]]) {
+        ASCDocumentSignatureController * controller = windowController;
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+        if (controller && appManager) {
+            if (CCefView * cefView = appManager->GetViewById((int)controller.cefId)) {
+                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent();
+                NSEditorApi::CAscOpenSslData * pEventData = new NSEditorApi::CAscOpenSslData();
+
+                if (pEvent && pEventData) {
+                    pEventData->put_CertPath([ASCDocSignController.shared.signFilePath stdwstring]);
+                    pEventData->put_CertPassword([ASCDocSignController.shared.signPassword stdwstring]);
+                    pEventData->put_KeyPath([ASCDocSignController.shared.privateKeyFilePath stdwstring]);
+                    pEventData->put_KeyPassword([ASCDocSignController.shared.privateKeyPassword stdwstring]);
+
+                    pEvent->m_nType = ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE;
+                    pEvent->m_pData = pEventData;
+
+                    cefView->Apply(pEvent);
+                }
+            }
+        }
+    }
+
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
     [mainWindow endSheet:[[self view] window]];
 }
@@ -85,8 +113,8 @@
 }
 
 - (BOOL)checkSignature {
-    int nCertValue = CAscApplicationManager::OpenSsl_LoadCert([ASCDocSignController.shared.signFilePath stdwstring],
-                                                              [ASCDocSignController.shared.signPassword stdstring]);
+    int nCertValue = NSOpenSSL::LoadCert([ASCDocSignController.shared.signFilePath stdwstring],
+                                         [ASCDocSignController.shared.signPassword stdstring]);
 
     switch (nCertValue) {
         case OPEN_SSL_WARNING_ERR: {
@@ -113,7 +141,7 @@
             return YES;
         }
         case OPEN_SSL_WARNING_ALL_OK: {
-            [self closeDialog];
+            [self closeDialogWithResult:YES];
             return YES;
         }
         default:
@@ -124,8 +152,8 @@
 }
 
 - (BOOL)checkPrivateKey {
-    int nCertValue = CAscApplicationManager::OpenSsl_LoadKey([ASCDocSignController.shared.privateKeyFilePath stdwstring],
-                                                             [ASCDocSignController.shared.privateKeyPassword stdstring]);
+    int nCertValue = NSOpenSSL::LoadKey([ASCDocSignController.shared.privateKeyFilePath stdwstring],
+                                        [ASCDocSignController.shared.privateKeyPassword stdstring]);
 
     switch (nCertValue) {
         case OPEN_SSL_WARNING_ERR: {
@@ -146,7 +174,7 @@
         }
         case OPEN_SSL_WARNING_OK:
         case OPEN_SSL_WARNING_ALL_OK: {
-            [self closeDialog];
+            [self closeDialogWithResult:YES];
             return YES;
         }
         default:
@@ -159,7 +187,7 @@
 #pragma mark - Actions
 
 - (IBAction)onCancel:(NSButton *)sender {
-    [self closeDialog];
+    [self closeDialogWithResult:NO];
 }
 
 - (IBAction)onSignatureLoad:(NSButton *)sender {

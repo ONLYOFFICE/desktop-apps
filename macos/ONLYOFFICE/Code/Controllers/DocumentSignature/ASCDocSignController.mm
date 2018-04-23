@@ -41,9 +41,9 @@
 #import "ASCDocSignController.h"
 #import "NSString+Extensions.h"
 #import "mac_application.h"
-#import "ASCCertificateSelectDialogOpenSsl.hpp"
+#import "ASCConstants.h"
+#import "ASCDocumentSignatureController.h"
 
-ASCCertificateSelectDialogOpenSsl *internalDialog = NULL;
 
 @implementation ASCDocSignController
 
@@ -51,34 +51,18 @@ ASCCertificateSelectDialogOpenSsl *internalDialog = NULL;
 
 - (void)setSignFilePath:(NSString *)signFilePath {
     _signFilePath = signFilePath;
-
-    if (internalDialog) {
-        internalDialog->m_sCertPath = [signFilePath stdwstring];
-    }
 }
 
 - (void)setSignPassword:(NSString *)signPassword {
     _signPassword = signPassword;
-
-    if (internalDialog) {
-        internalDialog->m_sCertPassword = [signPassword stdwstring];
-    }
 }
 
 - (void)setPrivateKeyFilePath:(NSString *)privateKeyFilePath {
     _privateKeyFilePath = privateKeyFilePath;
-
-    if (internalDialog) {
-        internalDialog->m_sKeyPath = [privateKeyFilePath stdwstring];
-    }
 }
 
 - (void)setPrivateKeyPassword:(NSString *)privateKeyPassword {
     _privateKeyPassword = privateKeyPassword;
-
-    if (internalDialog) {
-        internalDialog->m_sKeyPassword = [privateKeyPassword stdwstring];
-    }
 }
 
 #pragma mark - Life Cycle Methods
@@ -93,27 +77,29 @@ ASCCertificateSelectDialogOpenSsl *internalDialog = NULL;
     return sharedManager;
 }
 
-- (void)dealloc {
-    if (NULL != internalDialog) {
-        delete internalDialog;
-    }
-}
-
 - (void)initialize {
     self.signFilePath = @"";
     self.signPassword = @"";
     self.privateKeyFilePath = @"";
     self.privateKeyPassword = @"";
 
-    if (CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager]) {
-        if (NULL == internalDialog) {
-            internalDialog = new ASCCertificateSelectDialogOpenSsl();
-            appManager->OpenSsl_SetDialog(internalDialog);
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFOpenSSLCertificate:)
+                                                 name:CEFEventNameOpenSSLCertificate
+                                               object:nil];
+}
+
+- (void)onCEFOpenSSLCertificate:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+        
+        if (NSString * viewId = json[@"viewId"]) {
+            [ASCDocSignController startWizardWithCefId:viewId];
         }
     }
 }
 
-+ (void)startWizard {
++ (void)startWizardWithCefId:(NSString *)cefId {
     if (ASCDocSignController * signController = [ASCDocSignController shared]) {
         signController.signFilePath = @"";
         signController.signPassword = @"";
@@ -125,11 +111,19 @@ ASCCertificateSelectDialogOpenSsl *internalDialog = NULL;
 
     if (storyboard) {
         NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];
+
+        if (cefId && cefId.length > 0 && [windowController isKindOfClass:[ASCDocumentSignatureController class]]) {
+            ASCDocumentSignatureController * windowSignatureController = (ASCDocumentSignatureController *)windowController;
+            windowSignatureController.cefId = [cefId integerValue];
+        }
+
         NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
 
         [mainWindow beginSheet:[windowController window] completionHandler:^(NSModalResponse returnCode) {
-            //
+//            [NSApp stopModalWithCode:returnCode]; // Revert if need synchronize
         }];
+
+//        [NSApp runModalForWindow:[windowController window]]; // Revert if need synchronize
     }
 }
 

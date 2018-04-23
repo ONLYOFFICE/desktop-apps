@@ -68,11 +68,11 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hug-6v-NX4">
-                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <rect key="frame" x="191" y="153" width="99" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="J3E-sR-sl1"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="jSF-al-P3A"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-open-cert" id="jSF-al-P3A"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yw-aC-Zck">
                                 <rect key="frame" x="86" y="116" width="308" height="17"/>
@@ -134,15 +134,15 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-2z-JzP">
-                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <rect key="frame" x="189" y="153" width="102" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="FP0-xX-k3S"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="fSS-MZ-kPB"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-password" id="fSS-MZ-kPB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-jw-byw">
-                                <rect key="frame" x="107" y="116" width="266" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the digital signature" id="1Fy-mg-aq9">
+                                <rect key="frame" x="106" y="116" width="269" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the digital signature." id="1Fy-mg-aq9">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -231,15 +231,15 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-z5-hta">
-                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <rect key="frame" x="207" y="153" width="67" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2Kb-2i-uUG"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="8se-6C-g2j"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-open-key" id="8se-6C-g2j"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUq-1c-377">
-                                <rect key="frame" x="103" y="116" width="274" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify a private key for the digital signature" id="Tfc-EF-VnS">
+                                <rect key="frame" x="101" y="116" width="278" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify a private key for the digital signature." id="Tfc-EF-VnS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -297,15 +297,15 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-rQ-arY">
-                                <rect key="frame" x="176" y="153" width="128" height="130"/>
+                                <rect key="frame" x="189" y="153" width="102" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2bP-84-1Ao"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="7x5-PD-SEB"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-password" id="7x5-PD-SEB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIs-Qo-Q9D">
-                                <rect key="frame" x="123" y="116" width="235" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the private key" id="1dL-nN-bJI">
+                                <rect key="frame" x="122" y="116" width="237" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the private key." id="1dL-nN-bJI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -374,7 +374,9 @@ Gw
         </scene>
     </scenes>
     <resources>
-        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="next-button" width="24" height="24"/>
+        <image name="sign-open-cert" width="99" height="115"/>
+        <image name="sign-open-key" width="67" height="115"/>
+        <image name="sign-password" width="102" height="110"/>
     </resources>
 </document>

@@ -49,6 +49,6 @@
 @property (nonatomic) NSString * privateKeyPassword;
 
 + (instancetype)shared;
-+ (void)startWizard;
++ (void)startWizardWithCefId:(NSString *)cefId;
 
 @end

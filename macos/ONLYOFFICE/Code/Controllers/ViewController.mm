@@ -200,6 +200,11 @@
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFSaveBeforeSign:)
+                                                 name:CEFEventNameSaveBeforSign
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFEditorDocumentReady:)
                                                  name:CEFEventNameEditorDocumentReady
                                                object:nil];
@@ -1169,6 +1174,40 @@
 
             });
         });
+    }
+}
+
+- (void)onCEFSaveBeforeSign:(NSNotification *)notification {
+    ASCTabView * tab = [self.tabsControl selectedTab];
+    NSCefView * cefView = NULL;
+
+    if (tab) {
+        cefView = [self cefViewWithTab:tab];
+    }
+
+    if (NULL == cefView) {
+        return;
+    }
+
+    NSAlert *alert = [NSAlert new];
+    [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+    [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
+    [alert setAlertStyle:NSWarningAlertStyle];
+
+    NSInteger returnCode = [alert runModalSheet];
+
+    if (returnCode == NSAlertFirstButtonReturn) {
+        NSEditorApi::CAscEditorSaveQuestion * pEventData = new NSEditorApi::CAscEditorSaveQuestion();
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
+
+        if (pEvent && pEventData) {
+            pEventData->put_Value(true);
+            pEvent->m_pData = pEventData;
+
+            [cefView apply:pEvent];
+        }
     }
 }
 

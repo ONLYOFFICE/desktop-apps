@@ -119,7 +119,8 @@
     _stack.push(viewController);
     viewController.navigationController = self;
     _activeView = viewController.view;
-    [self addActiveViewAnimated:animated subtype:[NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ? kCATransitionFromRight : kCATransitionFromLeft];
+    [self addActiveViewAnimated:animated
+                        subtype:[NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ? kCATransitionFromRight : kCATransitionFromLeft];
 }
 
 - (NSViewController<KSNavigationControllerCompatible> *)popViewControllerAnimated:(BOOL)animated {
@@ -178,13 +179,14 @@
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         [self.view.animator addSubview:_activeView];
         [[self.view layer] addAnimation:animation forKey:@"Push"];
+//        [[self topViewController] viewDidAppear]; // Revert if need synchronize
         [CATransaction commit];
 
         self.transition.subtype = subtype;
-//        [self.view.animator addSubview:_activeView];
     } else {
         [self.view addSubview:_activeView];
     }
 }
 
 @end
+
