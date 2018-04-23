@@ -163,7 +163,7 @@
             if (/\:open/.test(action)) {
                 model.logged ?
                     window.sdk.execCommand("portal:open", model.path) :
-                        doLogin(model.path, model.email);
+                        _do_login(model.path, model.email);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model.path);
