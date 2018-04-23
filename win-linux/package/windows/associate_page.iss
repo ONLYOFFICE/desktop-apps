@@ -286,6 +286,7 @@ var
 begin
   initExtensions();
 
+  ChlbAudio  := nil;
   createPage := False;
   if not WizardSilent then begin
     paramSkip := GetCommandlineParam('/skip');
@@ -361,7 +362,10 @@ end;
 
 function isAssociateExtension(index: Integer): Boolean;
 begin
-  Result := ChlbAudio.Checked[1] or (ChlbAudio.Checked[2] and ChlbAudio.Checked[index + 3]);
+  if ChlbAudio = nil then
+    Result := False
+  else
+    Result := ChlbAudio.Checked[1] or (ChlbAudio.Checked[2] and ChlbAudio.Checked[index + 3]);
 end;
 
 //----------
