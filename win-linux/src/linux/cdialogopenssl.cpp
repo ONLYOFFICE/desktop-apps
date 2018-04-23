@@ -8,6 +8,7 @@
 
 #include <QLabel>
 #include <QLineEdit>
+#include <QToolButton>
 
 class CSslDialog_Private
 {
@@ -17,13 +18,15 @@ public:
         , _txtCertPass(new QLineEdit(parent))
         , _txtKeyPath(new QLineEdit(parent))
         , _txtKeyPass(new QLineEdit(parent))
-        , _btnCertFile(new QPushButton("...", parent))
-        , _btnKeyFile(new QPushButton("...", parent))
+        , _btnCertFile(new QToolButton(parent))
+        , _btnKeyFile(new QToolButton(parent))
         , _labelCertPass(new QLabel(parent))
         , _labelKeyPass(new QLabel(parent))
     {
         _txtCertPass->setEchoMode(QLineEdit::Password);
         _txtKeyPass->setEchoMode(QLineEdit::Password);
+        _btnCertFile->setText("...");
+        _btnKeyFile->setText("...");
     }
 
     void setKeyDisabled(bool v = true) {
@@ -83,7 +86,7 @@ public:
                 * _txtCertPass,
                 * _txtKeyPath,
                 * _txtKeyPass;
-    QPushButton * _btnCertFile,
+    QToolButton * _btnCertFile,
                 * _btnKeyFile;
     QLabel * _labelCertPass,
                 * _labelKeyPass;
@@ -103,8 +106,8 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent, CCertificateSelectDialogOpenSsl*
     m_private->_txtKeyPath->setPlaceholderText(tr("select key file..."));
     m_private->_labelKeyPass->setText(tr("Key password:"));
 
-    connect(m_private->_btnCertFile, &QPushButton::clicked, this, &CDialogOpenSsl::onBtnCertificateClick);
-    connect(m_private->_btnKeyFile, &QPushButton::clicked, this, &CDialogOpenSsl::onBtnKeyClick);
+    connect(m_private->_btnCertFile, &QToolButton::clicked, this, &CDialogOpenSsl::onBtnCertificateClick);
+    connect(m_private->_btnKeyFile, &QToolButton::clicked, this, &CDialogOpenSsl::onBtnKeyClick);
 
     QHBoxLayout * _pass_layout = new QHBoxLayout;
     _pass_layout->addWidget(m_private->_labelCertPass);
@@ -137,10 +140,9 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent, CCertificateSelectDialogOpenSsl*
     _btn_ok->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
     _ok_layout->addWidget(_btn_ok);
 
-//    _btn_ok->setMinimumWidth(30);
-    _btn_ok->setFixedSize(10,28);
-    m_private->_btnCertFile->setFixedSize(20,28);
-    m_private->_btnKeyFile->setFixedSize(20,28);
+    _btn_ok->setFixedSize(80, 28);
+    m_private->_btnCertFile->setFixedSize(40,28);
+    m_private->_btnKeyFile->setFixedSize(40,28);
 
     m_bIsOK = false;
     connect(_btn_ok, &QPushButton::clicked, [=]{
@@ -302,7 +304,7 @@ bool CCertificateSelectDialogOpenSsl::ShowSelectDialog()
     bool bResult = oDialog.m_bIsOK;
 
     m_sCertPath = oDialog.m_private->certificatePath().toStdWString();
-    m_sCertPassword = oDialog.m_private->keyPath().toStdWString();
+    m_sCertPassword = oDialog.m_private->certificatePassword().toStdWString();
 
     m_sKeyPath = oDialog.m_private->keyPath().toStdWString();
     m_sKeyPassword = oDialog.m_private->keyPassword().toStdWString();
