@@ -149,15 +149,15 @@ fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pou
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
 
-en.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-pt_BR.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-cs.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-sk.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-ru.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-de.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-fr.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-es.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
-it_IT.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > System > Default apps\b0  after the installation is complete.
+en.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > Apps > Default apps\b0  after the installation is complete.
+pt_BR.warnWin10FileAssociation=Para associar os arquivos com o aplicativo, vá para \b Configurações > Aplicativos > Aplicativos padrão\b0  após a instalação estar completa.
+cs.warnWin10FileAssociation=Pro připojení souborů k aplikaci, přejděte na \b Nastavení > Aplikace > Výchozí aplikace\b0  po dokončení aplikace.
+sk.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > Apps > Default apps\b0  after the installation is complete.
+ru.warnWin10FileAssociation=Чтобы ассоциировать файлы с приложением, перейдите в \b Настройки > Приложения > Приложения по умолчанию\b0  после того, как установка будет завершена.
+de.warnWin10FileAssociation=Nachdem die Installation abgeschlossen ist, gehen Sie zu \b Einstellungen > Apps > Standard-Apps\b0 , um die Dateien mit der Anwendung zu verknüpfen.
+fr.warnWin10FileAssociation=Pour associer les fichiers avec le logiciel après son installation suivez \b Paramètres > Apps > Logiciels par défaut\b0 .
+es.warnWin10FileAssociation=Para asociar los archivos con la aplicación, vaya a \b Ajustes > Aplicaciones > Aplicaciones predeterminadas\b0  una vez finalizada la instalación.
+it_IT.warnWin10FileAssociation=Per associare i file all’applicazione, andare su \b Impostazioni  > Apps > App predefinite\b0  al termine dell’installazione.
 
 [Code]
 
