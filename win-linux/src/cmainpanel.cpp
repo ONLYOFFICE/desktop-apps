@@ -781,6 +781,8 @@ void CMainPanel::onLocalFileLocation(int uid)
         else {
 
         }
+    } else {
+        CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
     }
 }
 
