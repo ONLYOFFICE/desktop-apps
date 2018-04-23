@@ -637,10 +637,10 @@ int CAscTabWidget::tabIndexByUrl(QString url)
     return -1;
 }
 
-void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
+void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool forcenew)
 {
     int tabIndex;
-    if (opts.id > 0) {
+    if (opts.id > 0 && !forcenew) {
         tabIndex = tabIndexByView(opts.id);
         if (!(tabIndex < 0))
             setCurrentIndex(tabIndex);
@@ -656,14 +656,16 @@ void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select)
     }
 }
 
-int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select)
+int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select, bool forcenew)
 {
     int tabIndex = -1;
-    CCefView * view = AscAppManager::getInstance().GetViewByRecentId( opts.id );
-    if ( false && view ) {
-        tabIndex = tabIndexByView(view->GetId());
-    } else {
-        tabIndex = tabIndexByUrl(opts.url);
+    if ( !forcenew && opts.type != etRecoveryFile ) {
+        CCefView * view = AscAppManager::getInstance().GetViewByRecentId( opts.id );
+        if ( view ) {
+            tabIndex = tabIndexByView(view->GetId());
+        } else {
+            tabIndex = tabIndexByUrl(opts.url);
+        }
     }
 
     if (tabIndex < 0){
