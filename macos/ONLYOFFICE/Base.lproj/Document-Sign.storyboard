@@ -68,7 +68,7 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hug-6v-NX4">
-                                <rect key="frame" x="191" y="153" width="99" height="130"/>
+                                <rect key="frame" x="192" y="153" width="97" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="J3E-sR-sl1"/>
                                 </constraints>
@@ -134,7 +134,7 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oVk-2z-JzP">
-                                <rect key="frame" x="189" y="153" width="102" height="130"/>
+                                <rect key="frame" x="188" y="153" width="104" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="FP0-xX-k3S"/>
                                 </constraints>
@@ -231,7 +231,7 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-z5-hta">
-                                <rect key="frame" x="207" y="153" width="67" height="130"/>
+                                <rect key="frame" x="207" y="153" width="68" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2Kb-2i-uUG"/>
                                 </constraints>
@@ -297,7 +297,7 @@ Gw
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-rQ-arY">
-                                <rect key="frame" x="189" y="153" width="102" height="130"/>
+                                <rect key="frame" x="188" y="153" width="104" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2bP-84-1Ao"/>
                                 </constraints>
@@ -375,8 +375,8 @@ Gw
     </scenes>
     <resources>
         <image name="next-button" width="24" height="24"/>
-        <image name="sign-open-cert" width="99" height="115"/>
-        <image name="sign-open-key" width="67" height="115"/>
-        <image name="sign-password" width="102" height="110"/>
+        <image name="sign-open-cert" width="97" height="115"/>
+        <image name="sign-open-key" width="68" height="114"/>
+        <image name="sign-password" width="104" height="98"/>
     </resources>
 </document>
