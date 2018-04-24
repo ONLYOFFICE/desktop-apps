@@ -11,7 +11,7 @@
         <scene sceneID="snb-hI-xeB">
             <objects>
                 <windowController storyboardIdentifier="DocSignWindowController" id="Hbm-F9-Ihj" customClass="ASCDocumentSignatureController" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X8z-RQ-YLr">
+                    <window key="window" title="ONLYOFFICE" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X8z-RQ-YLr">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="294" y="313" width="480" height="270"/>
@@ -72,7 +72,7 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="J3E-sR-sl1"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-open-cert" id="jSF-al-P3A"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-open-cert" id="jSF-al-P3A"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yw-aC-Zck">
                                 <rect key="frame" x="86" y="116" width="308" height="17"/>
@@ -138,7 +138,7 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="FP0-xX-k3S"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-password" id="fSS-MZ-kPB"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-password" id="fSS-MZ-kPB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-jw-byw">
                                 <rect key="frame" x="106" y="116" width="269" height="17"/>
@@ -235,7 +235,7 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2Kb-2i-uUG"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-open-key" id="8se-6C-g2j"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-open-key" id="8se-6C-g2j"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUq-1c-377">
                                 <rect key="frame" x="101" y="116" width="278" height="17"/>
@@ -301,7 +301,7 @@ Gw
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="2bP-84-1Ao"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign-password" id="7x5-PD-SEB"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-password" id="7x5-PD-SEB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIs-Qo-Q9D">
                                 <rect key="frame" x="122" y="116" width="237" height="17"/>
