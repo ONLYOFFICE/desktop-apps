@@ -962,7 +962,7 @@
             directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
 
-        NSArray * allowedFileTypes = @[@"*"];
+        NSArray * allowedFileTypes = @[];
 
         if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
@@ -975,8 +975,11 @@
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
-        openPanel.allowedFileTypes = allowedFileTypes;
         openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+
+        if (allowedFileTypes.count > 0) {
+            openPanel.allowedFileTypes = allowedFileTypes;
+        }
 
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];

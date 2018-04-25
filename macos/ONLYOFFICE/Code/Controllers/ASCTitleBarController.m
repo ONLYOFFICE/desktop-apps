@@ -93,11 +93,11 @@ static float kASCWindowMinTitleWidth = 0;
         }
     }
     
-    self.closeButton = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSTitledWindowMask];
+    self.closeButton = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
     [self.view addSubview:self.closeButton];
-    self.miniaturizeButton = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSTitledWindowMask];
+    self.miniaturizeButton = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskTitled];
     [self.view addSubview:self.miniaturizeButton];
-    self.fullscreenButton = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSTitledWindowMask];
+    self.fullscreenButton = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
     [self.view addSubview:self.fullscreenButton];
 
     if (mainWindow) {
