@@ -4,11 +4,12 @@
 #include <QGridLayout>
 #include <QFileDialog>
 #include <QtNetwork/QSslSocket>
-#include <QMessageBox>
 
 #include <QLabel>
 #include <QLineEdit>
 #include <QToolButton>
+
+#include "../../../core/DesktopEditor/xmlsec/src/include/XmlCertificate.h"
 
 class CSslDialog_Private
 {
@@ -92,7 +93,7 @@ public:
                 * _labelKeyPass;
 };
 
-CDialogOpenSsl::CDialogOpenSsl(QWidget *parent, CCertificateSelectDialogOpenSsl*)
+CDialogOpenSsl::CDialogOpenSsl(QWidget *parent)
     : QDialog(parent)
     , m_private(new CSslDialog_Private)
 {
@@ -144,10 +145,9 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent, CCertificateSelectDialogOpenSsl*
     m_private->_btnCertFile->setFixedSize(40,28);
     m_private->_btnKeyFile->setFixedSize(40,28);
 
-    m_bIsOK = false;
     connect(_btn_ok, &QPushButton::clicked, [=]{
-        if ( (m_bIsOK = checkCertificate()) ) {
-            close();
+        if ( checkCertificate() ) {
+            accept();
         }
     });
 
@@ -169,10 +169,6 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent, CCertificateSelectDialogOpenSsl*
 }
 
 CDialogOpenSsl::~CDialogOpenSsl()
-{
-}
-
-void CDialogOpenSsl::resizeEvent(QResizeEvent* e)
 {
 }
 
@@ -220,8 +216,8 @@ bool CDialogOpenSsl::checkCertificate()
         return false;
     }
 
-    int _result  = CAscApplicationManager::OpenSsl_LoadCert(
-                m_private->_txtCertPath->text().toStdWString(), m_private->_txtCertPass->text().toStdString() );
+    int _result  = NSOpenSSL::LoadCert( m_private->_txtCertPath->text().toStdWString(),
+                                        m_private->_txtCertPass->text().toStdString() );
 
     switch ( _result ) {
     case OPEN_SSL_WARNING_ERR:
@@ -246,8 +242,8 @@ bool CDialogOpenSsl::checkCertificate()
             m_private->_btnKeyFile->setDisabled(false);
             m_private->_txtKeyPath->setFocus();
         } else {
-            _result = CAscApplicationManager::OpenSsl_LoadKey(
-                        m_private->_txtKeyPass->text().toStdWString(), m_private->_txtKeyPass->text().toStdString() );
+            _result = NSOpenSSL::LoadKey( m_private->_txtKeyPass->text().toStdWString(),
+                                            m_private->_txtKeyPass->text().toStdString() );
 
             _result = OPEN_SSL_WARNING_PASS;
             switch ( _result ) {
@@ -273,46 +269,10 @@ bool CDialogOpenSsl::checkCertificate()
     return _result == OPEN_SSL_WARNING_ALL_OK;
 }
 
-///////////////
-std::wstring CCertificateSelectDialogOpenSsl::GetCertificatePath()
+void CDialogOpenSsl::getResult(NSEditorApi::CAscOpenSslData& data)
 {
-    return m_sCertPath;
-}
-
-std::wstring CCertificateSelectDialogOpenSsl::GetCertificatePassword()
-{
-    return m_sCertPassword;
-}
-
-std::wstring CCertificateSelectDialogOpenSsl::GetKeyPath()
-{
-    return m_sKeyPath;
-}
-
-std::wstring CCertificateSelectDialogOpenSsl::GetKeyPassword()
-{
-    return m_sKeyPassword;
-}
-
-bool CCertificateSelectDialogOpenSsl::ShowSelectDialog()
-{
-    CDialogOpenSsl oDialog(m_pParent, this);
-    //oDialog.setAttribute(Qt::WA_DeleteOnClose);
-    oDialog.setWindowModality(Qt::WindowModal);
-    oDialog.exec();
-
-    bool bResult = oDialog.m_bIsOK;
-
-    m_sCertPath = oDialog.m_private->certificatePath().toStdWString();
-    m_sCertPassword = oDialog.m_private->certificatePassword().toStdWString();
-
-    m_sKeyPath = oDialog.m_private->keyPath().toStdWString();
-    m_sKeyPassword = oDialog.m_private->keyPassword().toStdWString();
-
-    return bResult;
-}
-
-int CCertificateSelectDialogOpenSsl::ShowCertificate(ICertificate* pCert)
-{
-    return 1;
+    data.put_CertPath(m_private->certificatePath().toStdWString());
+    data.put_CertPassword(m_private->certificatePassword().toStdWString());
+    data.put_KeyPath(m_private->keyPath().toStdWString());
+    data.put_KeyPassword(m_private->keyPassword().toStdWString());
 }

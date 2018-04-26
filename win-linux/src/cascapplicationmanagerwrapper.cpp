@@ -17,10 +17,6 @@
 
 #ifdef _WIN32
 #include "csplash.h"
-#else
-# ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-#  include "linux/cdialogopenssl.h"
-# endif
 #endif
 
 
@@ -216,6 +212,14 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         this->Apply(_event);
         return; }
 
+    case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+        CMainWindow * _window = mainWindowFromViewId(_event->get_SenderId());
+        if ( _window ) {
+            _window->sendSertificate(_event->get_SenderId());
+        }
+#endif
+        return; }
     default: break;
     }
 
@@ -321,9 +325,6 @@ void CAscApplicationManagerWrapper::startApp()
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
     APP_CAST(_app);
-
-    CCertificateSelectDialogOpenSsl * _openSslDialog = new CCertificateSelectDialogOpenSsl(_window);
-    _app.OpenSsl_SetDialog(_openSslDialog);
 #endif
 }
 
