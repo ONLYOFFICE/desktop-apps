@@ -55,11 +55,12 @@ static float kASCWindowMinTitleWidth = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
-@property (nonatomic) NSArray *standardButtons;
+@property (nonatomic) NSArray *standardButtonsFullscreen;
 
-@property (nonatomic, weak) NSButton *closeButton;
-@property (nonatomic, weak) NSButton *miniaturizeButton;
-@property (nonatomic, weak) NSButton *fullscreenButton;
+@property (nonatomic, weak) NSButton *closeButtonFullscreen;
+@property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
+@property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
+@property (nonatomic) NSImageView * miniaturizeButtonImageViewFullscreen;
 
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
@@ -80,8 +81,8 @@ static float kASCWindowMinTitleWidth = 0;
 
 - (void)initialize {
     NSArray * windows = [[NSApplication sharedApplication] windows];
-    NSString * productName = [ASCHelper appName];
 #ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    NSString * productName = [ASCHelper appName];
     productName = [productName uppercaseString];
 #endif
     NSWindow * mainWindow = nil;
@@ -92,13 +93,23 @@ static float kASCWindowMinTitleWidth = 0;
             break;
         }
     }
-    
-    self.closeButton = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
-    [self.view addSubview:self.closeButton];
-    self.miniaturizeButton = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskTitled];
-    [self.view addSubview:self.miniaturizeButton];
-    self.fullscreenButton = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
-    [self.view addSubview:self.fullscreenButton];
+
+    // Standart window buttons in Fullscreen
+
+    self.closeButtonFullscreen = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
+    self.fullscreenButtonFullscreen = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
+    NSButton * miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
+
+    NSImage * miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
+    self.miniaturizeButtonImageViewFullscreen = [NSImageView imageViewWithImage:miniaturizeButtonImage];
+    self.miniaturizeButtonImageViewFullscreen.frame = CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height);
+
+    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *standardButtonView, NSUInteger idx, BOOL *stop) {
+        [self.view addSubview:standardButtonView];
+    }];
+
+    // Standart window buttons
 
     if (mainWindow) {
         self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
@@ -109,14 +120,16 @@ static float kASCWindowMinTitleWidth = 0;
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
         [self.view addSubview:standardButton];
     }];
-    
-    self.standardButtons = @[self.closeButton, self.miniaturizeButton, self.fullscreenButton];
-    
+
+    // Other window controls
+
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
 
-    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2.0; // OSX 10.11 magic
-    
+    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButtonFullscreen.frame) - 2.0; // OSX 10.11 magic
+
+    // Subscribe to events
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowDidResize:)
                                                  name:NSWindowDidResizeNotification
@@ -192,22 +205,21 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
-    void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *buttons, BOOL hidden) {
-        [buttons enumerateObjectsUsingBlock:^(NSButton *button, NSUInteger idx, BOOL *stop) {
-            NSRect frame = button.frame;
+    void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
+        [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+            NSRect frame = view.frame;
             frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
-            frame.origin.y = (int)((NSHeight(button.superview.frame) - NSHeight(button.frame)) / 2.0);
+            frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
-            [button setFrame:frame];
-            [button setHidden:hidden];
-            [button setNeedsDisplay:YES];
+            [view setFrame:frame];
+            [view setHidden:hidden];
+            [view setNeedsDisplay:YES];
         }];
     };
-    
+
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
-    layoutStandartButtons(self.standardButtons, ![self isFullScreen]);
-    [self.miniaturizeButton setEnabled:![self isFullScreen]];
-    
+    layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
+
     // Layout title and tabs
     CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
     CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth;
@@ -369,8 +381,8 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
-    NSString * productName = [ASCHelper appName];
 #ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    NSString * productName = [ASCHelper appName];
     productName = [productName uppercaseString];
 #endif
     

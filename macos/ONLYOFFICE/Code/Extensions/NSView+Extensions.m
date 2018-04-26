@@ -236,11 +236,6 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
 }
 
 - (void)shake {
-//    self.wantsLayer = YES;
-//    [self setAnimations:[NSDictionary dictionaryWithObject:[self shakeAnimation:[self frame]] forKey:@"frameOrigin"]];
-//    [self.animator setFrameOrigin:self.frame.origin];
-//
-//    return;
     self.wantsLayer = YES;
 
     CAKeyframeAnimation * animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
@@ -251,25 +246,23 @@ static NSString * const kASCUuidPropertyKey = @"ascUuidPropertyKey";
     [self.layer addAnimation:animation forKey:@"shake"];
 }
 
-//func shake(with intensity : CGFloat = 0.05, duration : Double = 0.5 ){
-//    let numberOfShakes      = 3
-//    let frame : CGRect = self.frame
-//    let shakeAnimation :CAKeyframeAnimation  = CAKeyframeAnimation()
-//
-//    let shakePath = CGMutablePath()
-//    shakePath.move(to: CGPoint(x:NSMinX(frame),y:NSMinY(frame)))
-//
-//    for _ in 0...numberOfShakes-1 {
-//        shakePath.addLine(to: CGPoint(x:NSMinX(frame) - frame.size.width * intensity,y:NSMinY(frame)))
-//        shakePath.addLine(to: CGPoint(x:NSMinX(frame) + frame.size.width * intensity,y:NSMinY(frame)))
-//    }
-//
-//    shakePath.closeSubpath()
-//    shakeAnimation.path = shakePath
-//    shakeAnimation.duration = duration
-//
-//    self.animations = ["frameOrigin":shakeAnimation]
-//    self.animator().setFrameOrigin(self.frame.origin)
-//}
+- (NSImage *)imageRepresentation {
+    BOOL wasHidden = self.isHidden;
+    CGFloat wantedLayer = self.wantsLayer;
+
+    self.hidden = NO;
+    self.wantsLayer = YES;
+
+    NSImage *image = [[NSImage alloc] initWithSize:self.bounds.size];
+    [image lockFocus];
+    CGContextRef ctx = [NSGraphicsContext currentContext].graphicsPort;
+    [self.layer renderInContext:ctx];
+    [image unlockFocus];
+
+    self.wantsLayer = wantedLayer;
+    self.hidden = wasHidden;
+
+    return image;
+}
 
 @end

@@ -58,5 +58,6 @@
 - (void)removeAllConstraints;
 - (instancetype)duplicate;
 - (void)shake;
+- (NSImage *)imageRepresentation;
 
 @end
