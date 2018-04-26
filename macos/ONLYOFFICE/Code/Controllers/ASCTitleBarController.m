@@ -101,8 +101,8 @@ static float kASCWindowMinTitleWidth = 0;
     NSButton * miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
 
     NSImage * miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
-    self.miniaturizeButtonImageViewFullscreen = [NSImageView imageViewWithImage:miniaturizeButtonImage];
-    self.miniaturizeButtonImageViewFullscreen.frame = CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height);
+    self.miniaturizeButtonImageViewFullscreen = [[NSImageView alloc] initWithFrame:CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height)];
+    self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
 
     self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
     [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *standardButtonView, NSUInteger idx, BOOL *stop) {

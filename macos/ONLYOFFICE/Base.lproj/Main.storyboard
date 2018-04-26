@@ -1452,72 +1452,56 @@ DQ
                                     <constraint firstAttribute="height" constant="38" id="vsg-cC-UPz"/>
                                 </constraints>
                             </customView>
-                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFr-m2-3nf">
-                                <rect key="frame" x="80" y="0.0" width="112" height="29"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbs-Vm-fo1">
-                                        <rect key="frame" x="0.0" y="0.0" width="1" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1" id="3Er-9p-AD1">
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </constraint>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv" customClass="ASCButton">
-                                        <rect key="frame" x="1" y="0.0" width="110" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
-                                            <constraint firstAttribute="width" constant="110" id="rYS-3g-y3E"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logo-tab" imagePosition="only" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
-                                        </connections>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XZA-xX-bBL">
-                                        <rect key="frame" x="111" y="0.0" width="1" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1" id="70z-be-Jiz">
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
-                                                        <integer key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </constraint>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                </subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbs-Vm-fo1">
+                                <rect key="frame" x="80" y="0.0" width="1" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="qNM-FZ-k85"/>
+                                    <constraint firstAttribute="width" constant="1" id="3Er-9p-AD1">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="29" id="iz7-VJ-8Gi"/>
                                 </constraints>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afO-TB-NDv" customClass="ASCButton">
+                                <rect key="frame" x="81" y="0.0" width="110" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
+                                    <constraint firstAttribute="width" constant="110" id="rYS-3g-y3E"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logo-tab" imagePosition="only" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onOnlyofficeButton:" target="9zi-Wa-ufJ" id="fWV-oh-658"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XZA-xX-bBL">
+                                <rect key="frame" x="191" y="0.0" width="1" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="70z-be-Jiz">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="preciseConstant">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="29" id="gSL-id-uWV"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                             <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="umu-hB-VN1">
                                 <rect key="frame" x="1037" y="1" width="64" height="32"/>
                                 <buttonCell key="cell" type="push" title="test" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sM6-C6-Vo9">
@@ -1532,15 +1516,19 @@ DQ
                         <constraints>
                             <constraint firstItem="sAN-AD-cQX" firstAttribute="leading" secondItem="M3X-hR-EHh" secondAttribute="trailing" id="1IH-yP-kE0"/>
                             <constraint firstAttribute="trailing" secondItem="umu-hB-VN1" secondAttribute="trailing" constant="5" id="1tV-ND-4rH"/>
+                            <constraint firstItem="XZA-xX-bBL" firstAttribute="leading" secondItem="afO-TB-NDv" secondAttribute="trailing" id="65D-sw-LvF"/>
                             <constraint firstItem="M3X-hR-EHh" firstAttribute="leading" secondItem="iPF-st-gBJ" secondAttribute="trailing" id="FGY-XD-p9y"/>
                             <constraint firstAttribute="bottom" secondItem="M3X-hR-EHh" secondAttribute="bottom" id="Fme-4L-HLS"/>
-                            <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="aFr-m2-3nf" secondAttribute="trailing" id="R1a-qd-7b2"/>
+                            <constraint firstItem="iPF-st-gBJ" firstAttribute="leading" secondItem="XZA-xX-bBL" secondAttribute="trailing" id="Ray-vs-abM"/>
+                            <constraint firstAttribute="bottom" secondItem="qbs-Vm-fo1" secondAttribute="bottom" id="Xu5-r9-Buc"/>
                             <constraint firstItem="umu-hB-VN1" firstAttribute="centerY" secondItem="Imu-er-1JF" secondAttribute="centerY" id="YWe-Dx-0Av"/>
                             <constraint firstAttribute="bottom" secondItem="iPF-st-gBJ" secondAttribute="bottom" id="Zgl-o8-K6a"/>
-                            <constraint firstAttribute="bottom" secondItem="aFr-m2-3nf" secondAttribute="bottom" id="o0h-N2-3Ub"/>
+                            <constraint firstAttribute="bottom" secondItem="afO-TB-NDv" secondAttribute="bottom" id="c5c-ZH-RwQ"/>
+                            <constraint firstAttribute="bottom" secondItem="XZA-xX-bBL" secondAttribute="bottom" id="qqP-zT-odp"/>
+                            <constraint firstItem="qbs-Vm-fo1" firstAttribute="leading" secondItem="Imu-er-1JF" secondAttribute="leading" constant="80" id="rgY-1y-j3Y"/>
+                            <constraint firstItem="afO-TB-NDv" firstAttribute="leading" secondItem="qbs-Vm-fo1" secondAttribute="trailing" id="uuy-Bp-Btg"/>
                             <constraint firstAttribute="bottom" secondItem="sAN-AD-cQX" secondAttribute="bottom" id="xPm-bQ-5dJ"/>
                             <constraint firstAttribute="trailing" secondItem="sAN-AD-cQX" secondAttribute="trailing" id="yHc-Bp-bcQ"/>
-                            <constraint firstItem="aFr-m2-3nf" firstAttribute="leading" secondItem="Imu-er-1JF" secondAttribute="leading" constant="80" id="zjL-wi-keq"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
