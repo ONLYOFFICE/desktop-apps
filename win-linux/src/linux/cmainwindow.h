@@ -55,6 +55,7 @@ public:
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
+    void sendSertificate(int viewid);
 
 protected:
     void closeEvent(QCloseEvent *);

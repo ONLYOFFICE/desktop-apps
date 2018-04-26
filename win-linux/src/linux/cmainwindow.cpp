@@ -43,6 +43,10 @@
 #include <QMimeData>
 #include "singleapplication.h"
 
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+# include "cdialogopenssl.h"
+#endif
+
 extern QStringList g_cmdArgs;
 
 CMainWindow::CMainWindow(QWidget *parent)
@@ -314,4 +318,20 @@ QRect CMainWindow::windowRect() const
 bool CMainWindow::isMaximized() const
 {
     return windowState() == Qt::WindowMaximized;
+}
+
+void CMainWindow::sendSertificate(int viewid)
+{
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+    CDialogOpenSsl _dialog(this);
+
+    NSEditorApi::CAscOpenSslData * pData = new NSEditorApi::CAscOpenSslData;
+    if ( _dialog.exec() == QDialog::Accepted ) {
+        _dialog.getResult(*pData);
+    }
+
+    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE);
+    pEvent->m_pData = pData;
+    AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
+#endif
 }
