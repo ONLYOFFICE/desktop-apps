@@ -1261,11 +1261,14 @@
                         }
                     } else {
                         // Offline file is new
-                        if (NSString * directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]) {
-                            if (NSURL * url = [NSURL fileURLWithPath:directory]) {
-                                [[NSWorkspace sharedWorkspace] openURL:url];
-                            }
-                        }
+
+                        NSAlert *alert = [NSAlert new];
+                        [alert addButtonWithTitle:@"OK"];
+                        [alert setMessageText:NSLocalizedString(@"Cannot open folder of the file location.", nil)];
+                        [alert setInformativeText:NSLocalizedString(@"To open the file location, it must be saved.", nil)];
+                        [alert setAlertStyle:NSWarningAlertStyle];
+
+                        [alert runModalSheet];
                     }
                 }
             } else if (NSURL * url = [NSURL URLWithString:path]) {

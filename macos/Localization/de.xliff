@@ -109,6 +109,10 @@
         <source>Cannot open file of Private Key</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Cannot open folder of the file location.">
+        <source>Cannot open folder of the file location.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
         <target>CSV (Dateiformat)</target>
@@ -172,6 +176,10 @@
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
         <source>If you don't review your documents, all your changeses will be lost.</source>
         <target>Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
@@ -290,6 +298,14 @@
         <target>Tabelle %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Thank you for evaluating %@!">
+        <source>Thank you for evaluating %@!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To open the file location, it must be saved.">
+        <source>To open the file location, it must be saved.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Nicht bestätigt</target>
@@ -335,9 +351,21 @@
         <target>Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You have successfully activated %@.">
+        <source>You have successfully activated %@.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.">
+        <source>Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.">
+        <source>Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

@@ -112,6 +112,11 @@
         <target>Не удалось открыть файл приватного ключа</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Cannot open folder of the file location.">
+        <source>Cannot open folder of the file location.</source>
+        <target>Не удалось открыть папку расположения файла.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
         <target>Значения, разделённые запятыми</target>
@@ -297,6 +302,11 @@
         <target>Книга %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="To open the file location, it must be saved.">
+        <source>To open the file location, it must be saved.</source>
+        <target>Чтобы открыть местоположение файла, он должен быть сохранен.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
         <target>Неподтвержденный</target>
@@ -361,18 +371,22 @@
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string">
         <source>%d days are left until the license expiration.</source>
+        <target>%d days are left until the license expiration.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/many:dict/:string">
         <source>%d days are left until the license expiration.</source>
+        <target>%d days are left until the license expiration.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string">
         <source>%d day are left until the license expiration.</source>
+        <target>%d day are left until the license expiration.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string">
         <source>%d days are left until the license expiration.</source>
+        <target>%d days are left until the license expiration.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string">
@@ -383,21 +397,29 @@
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
+        <target>You are using a trial version of the application.
+The trial period will end in %d day, after that you will not be able to create and edit documents.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string">

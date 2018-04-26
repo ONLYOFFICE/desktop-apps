@@ -109,6 +109,10 @@
         <source>Cannot open file of Private Key</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Cannot open folder of the file location.">
+        <source>Cannot open folder of the file location.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
         <target>Valores separados por una coma</target>
@@ -296,6 +300,10 @@
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To open the file location, it must be saved.">
+        <source>To open the file location, it must be saved.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
