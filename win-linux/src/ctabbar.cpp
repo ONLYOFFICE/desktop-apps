@@ -369,22 +369,20 @@ void CTabBar::paintEvent(QPaintEvent * event)
 {
     Q_D(QTabBar);
 
-    if (verticalTabs(d->shape)) {
-        QTabBar::paintEvent(event);
-        return;
-    }
-
-    QStyleOptionTabBarBaseV2 optTabBase;
+    QStyleOptionTabBarBase optTabBase;
     QTabBarPrivate::initStyleBaseOption(&optTabBase, this, size());
 
     QStylePainter p(this);
     int selected = -1;
-    int cut = -1;
-    bool rtl = optTabBase.direction == Qt::RightToLeft;
-    QStyleOptionTab cutTab;
+    int cutLeft = -1;
+    int cutRight = -1;
+    bool vertical = verticalTabs(d->shape);
+    QStyleOptionTab cutTabLeft;
+    QStyleOptionTab cutTabRight;
     selected = d->currentIndex;
     if (d->dragInProgress)
         selected = d->pressedIndex;
+    QRect scrollRect = d->normalizedScrollRect();
 
     for (int i = 0; i < d->tabList.count(); ++i)
          optTabBase.tabBarRect |= tabRect(i);
@@ -395,23 +393,35 @@ void CTabBar::paintEvent(QPaintEvent * event)
         p.drawPrimitive(QStyle::PE_FrameTabBarBase, optTabBase);
 
     for (int i = 0; i < d->tabList.count(); ++i) {
-        QStyleOptionTabV3 tab;
+        QStyleOptionTab tab;
         initStyleOption(&tab, i);
-
         if (d->paintWithOffsets && d->tabList[i].dragOffset != 0) {
-            tab.rect.moveLeft(tab.rect.x() + d->tabList[i].dragOffset);
+            if (vertical) {
+                tab.rect.moveTop(tab.rect.y() + d->tabList[i].dragOffset);
+            } else {
+                tab.rect.moveLeft(tab.rect.x() + d->tabList[i].dragOffset);
+            }
         }
         if (!(tab.state & QStyle::State_Enabled)) {
             tab.palette.setCurrentColorGroup(QPalette::Disabled);
         }
+
         // If this tab is partially obscured, make a note of it so that we can pass the information
         // along when we draw the tear.
-        if ((!rtl && tab.rect.left() < 0) || (rtl && tab.rect.right() > width())) {
-            cut = i;
-            cutTab = tab;
+        QRect tabRect = d->tabList[i].rect;
+        int tabStart = vertical ? tabRect.top() : tabRect.left();
+        int tabEnd = vertical ? tabRect.bottom() : tabRect.right();
+        if (tabStart < scrollRect.left() + d->scrollOffset) {
+            cutLeft = i;
+            cutTabLeft = tab;
+        } else if (tabEnd > scrollRect.right() + d->scrollOffset) {
+            cutRight = i;
+            cutTabRight = tab;
         }
+
         // Don't bother drawing a tab if the entire tab is outside of the visible tab bar.
-        if (tab.rect.right() < 0 || tab.rect.left() > width())
+        if ((!vertical && (tab.rect.right() < 0 || tab.rect.left() > width()))
+            || (vertical && (tab.rect.bottom() < 0 || tab.rect.top() > height())))
             continue;
 
         optTabBase.tabBarRect |= tab.rect;
@@ -426,11 +436,13 @@ void CTabBar::paintEvent(QPaintEvent * event)
 
     // Draw the selected tab last to get it "on top"
     if (selected >= 0) {
-        QStyleOptionTabV3 tab;
+        QStyleOptionTab tab;
         initStyleOption(&tab, selected);
-
         if (d->paintWithOffsets && d->tabList[selected].dragOffset != 0) {
-            tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
+            if (vertical)
+                tab.rect.moveTop(tab.rect.y() + d->tabList[selected].dragOffset);
+            else
+                tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
         }
         if (!d->dragInProgress) {
             QString text(tab.text);
@@ -445,15 +457,24 @@ void CTabBar::paintEvent(QPaintEvent * event)
             drawTabCaption(&p, text, tab);
         } else {
             int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
-            d->movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
+            if (verticalTabs(d->shape))
+                d->movingTab->setGeometry(tab.rect.adjusted(0, -taboverlap, 0, taboverlap));
+            else
+                d->movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
         }
     }
 
     // Only draw the tear indicator if necessary. Most of the time we don't need too.
-    if (d->leftB->isVisible() && cut >= 0) {
-        cutTab.rect = rect();
-        cutTab.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicator, &cutTab, this);
-        p.drawPrimitive(QStyle::PE_IndicatorTabTear, cutTab);
+    if (d->leftB->isVisible() && cutLeft >= 0) {
+        cutTabLeft.rect = rect();
+        cutTabLeft.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicatorLeft, &cutTabLeft, this);
+        p.drawPrimitive(QStyle::PE_IndicatorTabTearLeft, cutTabLeft);
+    }
+
+    if (d->rightB->isVisible() && cutRight >= 0) {
+        cutTabRight.rect = rect();
+        cutTabRight.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicatorRight, &cutTabRight, this);
+        p.drawPrimitive(QStyle::PE_IndicatorTabTearRight, cutTabRight);
     }
 }
 
