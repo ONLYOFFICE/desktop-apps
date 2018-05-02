@@ -471,6 +471,8 @@ void CMainPanel::onEditorAllowedClose(int uid)
 
 void CMainPanel::onTabChanged(int index)
 {
+    Q_UNUSED(index)
+
 #ifndef __DONT_WRITE_IN_APP_TITLE
     QLabel * title = (QLabel *)m_boxTitleBtns->layout()->itemAt(0)->widget();
 
@@ -616,7 +618,7 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
     if ( _filter == "plugin" ) {
         _file_path = dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN));
     } else
-    if ( _filter == "image" ) {
+    if ( _filter == "image" || _filter == "images" ) {
         _file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
     }
 
