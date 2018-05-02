@@ -772,17 +772,20 @@ void CMainPanel::onLocalFileLocation(QString path)
     Utils::openFileLocation(path);
 }
 
-void CMainPanel::onLocalFileLocation(int uid)
+void CMainPanel::onLocalFileLocation(int uid, QString param)
 {
-    QString path = m_pTabs->urlByView(uid);
-    if ( !path.isEmpty() ) {
-        if ( Utils::isFileLocal(path) )
-            onLocalFileLocation(path);
-        else {
-
+    if ( param == "offline" ) {
+        QString path = m_pTabs->urlByView(uid);
+        if ( !path.isEmpty() ) {
+            if ( Utils::isFileLocal(path) )
+                onLocalFileLocation(path);
+            else {
+            }
+        } else {
+            CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
         }
     } else {
-        CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
+//        m_pTabs->openPortal(param);
     }
 }
 

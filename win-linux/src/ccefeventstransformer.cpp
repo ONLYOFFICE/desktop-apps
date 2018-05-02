@@ -235,7 +235,8 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
-                QMetaObject::invokeMethod( target, "onLocalFileLocation", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
+            QMetaObject::invokeMethod( target, "onLocalFileLocation", Qt::QueuedConnection,
+                            Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"doc:onready") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
