@@ -13,7 +13,8 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/cs.ts \
                 ./langs/sk.ts \
                 ./langs/fr.ts \
-                ./langs/pt_BR.ts
+                ./langs/pt_BR.ts \
+                ./langs/it_IT.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
 BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
