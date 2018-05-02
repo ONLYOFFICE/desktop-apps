@@ -534,20 +534,22 @@ void CTabBar::tabInserted(int index)
 void CTabBar::onCurrentChanged(int index)
 {
     QWidget * b = TAB_BTNCLOSE(m_current);
-    if ( tabData(m_current).isNull() ) {
+//    if ( tabData(m_current).isNull() )
+    {
         if ( b ) {
             b->hide();
-            b->setProperty("state", "normal");
-            b->style()->polish(b);
+//            b->setProperty("state", "normal");
+//            b->style()->polish(b);
         }
     }
 
-    if ( tabData(index).isNull() ) {
+//    if ( tabData(index).isNull() )
+    {
         b = TAB_BTNCLOSE(index);
         if ( b ) {
             b->show();
-            b->setProperty("state", "active");
-            b->style()->polish(b);
+//            b->setProperty("state", "active");
+//            b->style()->polish(b);
         }
     }
 
@@ -682,15 +684,16 @@ void CTabBar::activate(bool a)
     if ( m_active != a ) {
         m_active = a;
 
-        if ( tabData(m_current).isNull() ) {
+//        if ( tabData(m_current).isNull() )
+        {
             QWidget * b = TAB_BTNCLOSE(m_current);
             if ( b ) {
                 if ( a ){
                     b->show();
-                    b->setProperty("state", "active");
+//                    b->setProperty("state", "active");
                 } else {
                     b->hide();
-                    b->setProperty("state", "normal");
+//                    b->setProperty("state", "normal");
                     m_overIndex = -1;
                 }
 
