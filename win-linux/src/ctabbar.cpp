@@ -330,8 +330,10 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
 
 void CTabBar::mousePressEvent(QMouseEvent * e)
 {
-    QTabBar::mousePressEvent(e);
-    if ( count() == 1 ) e->ignore();
+    if ( e->button() == Qt::LeftButton ) {
+        QTabBar::mousePressEvent(e);
+        if ( count() == 1 ) e->ignore();
+    } else e->ignore();
 }
 
 void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)
