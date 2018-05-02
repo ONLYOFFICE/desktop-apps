@@ -137,7 +137,7 @@ public slots:
     virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
-    void onLocalFileLocation(int);
+    void onLocalFileLocation(int, QString);
     void onLocalGetFile(int eventtype, void *);
     void onPortalOpen(QString);
     void onPortalLogin(QString);
