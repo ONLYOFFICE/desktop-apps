@@ -796,6 +796,7 @@ li.menu-item {
     font-size: 11px;
     z-index: 1;
     transition: all .3s ease-in-out .25s;
+    pointer-evets:none;
 }
 
 [tooltip]:hover:before {
@@ -806,7 +807,7 @@ li.menu-item {
     position: relative;
 
     &[tooltip]:before {
-        right: 20px;
-        top: 30px;
+        right: 120%;
+        top: -10px;
     }
 }
