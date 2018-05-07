@@ -787,7 +787,29 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
             CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
         }
     } else {
-//        m_pTabs->openPortal(param);
+        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpressionMatch _re_match = _re.match(param);
+
+        if ( _re_match.hasMatch() ) {
+            QString _domain = _re_match.captured(1);
+            QString _folder = param;
+
+            int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
+            if ( !(_tab_index < 0)) {
+                ((CAscTabWidget *)m_pTabs)->updatePortal(_tab_index, _folder);
+            } else {
+                int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                !(pos < 0) ? _folder.insert(pos, "?desktop=true&") :
+                                _folder.append("?desktop=true");
+
+                _tab_index = m_pTabs->addPortal(_folder, "");
+            }
+
+            if ( !(_tab_index < 0) ) {
+                toggleButtonMain(false, true);
+                m_pTabs->setCurrentIndex(_tab_index);
+            }
+        }
     }
 }
 

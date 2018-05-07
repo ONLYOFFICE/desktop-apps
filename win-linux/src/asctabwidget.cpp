@@ -300,6 +300,15 @@ int CAscTabWidget::addPortal(QString url, QString name)
     QString args;
     if ( !url.contains(QRegularExpression("desktop=true")) )
         args.append("/products/files/?desktop=true");
+    else {
+        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)([^\\s]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpressionMatch _re_match = _re.match(url);
+
+        if ( _re_match.hasMatch() ) {
+            url = _re_match.captured(1);
+            args = _re_match.captured(2);
+        }
+    }
 
     CTabPanel * pView = new CTabPanel(this);
     pView->SetBackgroundCefColor(244, 244, 244);
@@ -694,6 +703,21 @@ int CAscTabWidget::openPortal(const QString& url)
     }
 
     return tabIndex;
+}
+
+bool CAscTabWidget::updatePortal(int index,const QString& url)
+{
+    if ( !(index < 0) ) {
+        CTabPanel * _panel = dynamic_cast<CTabPanel *>(widget(index));
+
+        if ( _panel->data()->contentType() == etPortal ) {
+            _panel->GetCefView()->load(url.toStdWString());
+
+            return true;
+        }
+    }
+
+    return false;
 }
 
 int CAscTabWidget::newPortal(const QString& url, const QString& name)
