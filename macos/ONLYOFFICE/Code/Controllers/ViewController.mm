@@ -311,9 +311,12 @@
         }
         
         NSString *query = [NSString stringWithFormat:@"lang=%@", language.lowercaseString];
-        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] query:query title:NSLocalizedString(@"Acknowledgments", nil)];
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]
+                      query:query
+                      title:NSLocalizedString(@"Acknowledgments", nil)];
     } else {
-        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] title:NSLocalizedString(@"Acknowledgments", nil)];
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]
+                      title:NSLocalizedString(@"Acknowledgments", nil)];
     }
 }
 
@@ -1249,15 +1252,17 @@
             if ([path isEqualToString:@"offline"]) {
                 int cefViewId = [viewId intValue];
                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                CCefView * cefView = appManager->GetViewById(cefViewId);
+                CCefViewEditor * cefView = (CCefViewEditor *)appManager->GetViewById(cefViewId);
 
                 if (cefView) {
-                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetUrlAsLocal()];
+                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetLocalFilePath()];
 
                     if (urlString && urlString.length > 0) {
                         // Offline file is exist
                         if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
-                            [[NSWorkspace sharedWorkspace] openURL:url];
+                            if (NSURL * folder = [url URLByDeletingLastPathComponent]) {
+                                [[NSWorkspace sharedWorkspace] openURL:folder];
+                            }
                         }
                     } else {
                         // Offline file is new
