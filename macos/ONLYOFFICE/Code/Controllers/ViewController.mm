@@ -1277,7 +1277,46 @@
                     }
                 }
             } else if (NSURL * url = [NSURL URLWithString:path]) {
-                [[NSWorkspace sharedWorkspace] openURL:url];
+                NSString * urlHost = [url host];
+                BOOL isFoundPortal = false;
+
+                // Search opened tab of a portal
+                for (ASCTabView * tab in self.tabsControl.tabs) {
+                    if (tab.type == ASCTabViewPortal) {
+                        if (NSString * portalUrlString = tab.params[@"url"]) {
+                            if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
+                                NSString * portalHost = [portalURL host];
+
+                                if ([portalHost isEqualToString:urlHost]) {
+                                    [self.tabsControl selectTab:tab];
+
+                                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                                        [cefView loadWithUrl:path];
+                                    }
+
+                                    isFoundPortal = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Force open tab of a portal if not exist
+                if (!isFoundPortal) {
+                    NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
+                    NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+                    NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+                    urlPage.queryItems            = @[countryCode, portalAddress];
+
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"action"  : @(ASCTabActionOpenPortal),
+                                                                                 @"url"     : [urlPage string],
+                                                                                 @"active"  : @(YES)
+                                                                                 }];
+                }
             }
         }
     }
