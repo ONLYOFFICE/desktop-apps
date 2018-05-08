@@ -376,9 +376,6 @@ window.LoginDlg = function() {
             return;
         }
 
-        var url         = `${portal}/api/2.0/authentication.json`;
-        var check_url   = `${portal}/api/2.0/people/@self.json`;
-
         disableDialog(true);
 
         let _callback = (obj) => {
@@ -714,7 +711,8 @@ window.LoginDlg = function() {
         onsuccess: function(callback) {
             if (!!callback)
                 events.success = callback;
-        }
+        },
+        portalavailable: requirePortalInfo
     };  
 };
 

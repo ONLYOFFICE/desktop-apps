@@ -319,7 +319,17 @@
             for (let i in obj) {
                 let model = collection.find('name', i);
 
-                if (model) model.set('logged', obj[i].length > 0);
+                if (model) {
+                    model.set('logged', false)
+
+                    let _is_logged = obj[i].length > 0;
+                    if ( _is_logged ) {
+                        let _dlg_login = new LoginDlg();
+                        _dlg_login.portalavailable(model.path).then(
+                            data => { data.status == 'ok' && model.set('logged', true); },
+                            error => {});
+                    }
+                }
             };
         };
 
