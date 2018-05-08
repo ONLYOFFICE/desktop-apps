@@ -44,8 +44,9 @@
 #include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <regex>
 #include <QStorageInfo>
+#include <regex>
+#include <functional>
 
 #include "defines.h"
 #include "cprintprogress.h"
@@ -58,7 +59,7 @@
 #include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "functional"
+#include "../Common/OfficeFileFormats.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -1160,11 +1161,21 @@ void CMainPanel::onLocalFileSaveAs(void * d)
         if ( dlg.modalSaveAs(fullPath) ) {
             Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
 
-            pSaveData->put_Path(fullPath.toStdWString());
-            int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                    AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+            bool _allowed = true;
+            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+                mess.setButtons({tr("OK")+":default", tr("Cancel")});
 
-            pSaveData->put_FileType(format > -1 ? format : 0);
+                _allowed =  MODAL_RESULT_CUSTOM == mess.confirm(tr("Some data will lost.<br>Continue?"));
+            }
+
+            if ( _allowed ) {
+                pSaveData->put_Path(fullPath.toStdWString());
+                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
+                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+
+                pSaveData->put_FileType(format > -1 ? format : 0);
+            }
         }
 
         CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
