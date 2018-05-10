@@ -51,6 +51,7 @@
 
 #ifdef _WIN32
 #include "shlobj.h"
+typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 #include <sys/stat.h>
 #endif
@@ -390,4 +391,25 @@ QByteArray Utils::readStylesheets(const QString& path)
 QString Utils::replaceBackslash(QString& path)
 {
     return path.replace(QRegularExpression("\\\\"), "/");
+}
+
+bool Utils::setAppUserModelId(const QString& modelid)
+{
+    bool _result = false;
+
+#ifdef Q_OS_WIN
+    HMODULE _lib_shell32 = ::LoadLibrary(L"shell32.dll");
+    if ( _lib_shell32 != NULL ) {
+        SetCurrentProcessExplicitAppUserModelIDProc setCurrentProcessExplicitAppUserModelId =
+            reinterpret_cast<SetCurrentProcessExplicitAppUserModelIDProc>(GetProcAddress(_lib_shell32, "SetCurrentProcessExplicitAppUserModelID"));
+
+        if ( setCurrentProcessExplicitAppUserModelId != NULL ) {
+            _result = setCurrentProcessExplicitAppUserModelId(modelid.toStdWString().c_str()) == S_OK;
+        }
+
+        ::FreeLibrary(_lib_shell32);
+    }
+#endif
+
+    return _result;
 }
