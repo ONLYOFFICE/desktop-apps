@@ -670,7 +670,9 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         toggleButtonMain(false, true);
     } else
     if (result == -255) {
-        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        QTimer::singleShot(0, [=]{
+            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        });
     }
 }
 
