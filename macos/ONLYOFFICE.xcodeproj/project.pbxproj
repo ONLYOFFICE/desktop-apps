@@ -2186,6 +2186,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2226,6 +2227,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
