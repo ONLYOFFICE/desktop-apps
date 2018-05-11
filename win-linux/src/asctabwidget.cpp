@@ -251,6 +251,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
     } else {
+        tab_index = -255;
         RELEASEOBJECT(pView)
     }
 
