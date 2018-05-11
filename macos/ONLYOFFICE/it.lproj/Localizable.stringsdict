@@ -1,22 +1,57 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
-        <dict>
-            <key>NSStringLocalizedFormatKey</key>
-            <string>%#@documents@</string>
-            <key>documents</key>
-            <dict>
-                <key>NSStringFormatSpecTypeKey</key>
-                <string>NSStringPluralRuleType</string>
-                <key>NSStringFormatValueTypeKey</key>
-                <string>ld</string>
-                <key>one</key>
-                <string>C’e %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
-                <key>other</key>
-                <string>Ci sono %ld %@ documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
-            </dict>
-        </dict>
-    </dict>
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@giorni@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d giorno rimasto alla scadenza della licenza.</string>
+			<key>other</key>
+			<string>%d giorni rimasti alla scadenza della licenza.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@giorni@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Stai utilizzando una versione di prova dell'applicazione.
+Il periodo di prova terminerà in %d giorno, dopodiché non sarai in grado di creare e modificare documenti.</string>
+			<key>other</key>
+			<string>Stai utilizzando una versione di prova dell'applicazione.
+Il periodo di prova terminerà tra %d giorni, dopodiché non sarai in grado di creare e modificare documenti.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@documenti@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Hai %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
+			<key>other</key>
+			<string>Hai %ld %@ documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</string>
+		</dict>
+	</dict>
+</dict>
 </plist>

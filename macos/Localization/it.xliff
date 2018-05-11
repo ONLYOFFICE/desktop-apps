@@ -7,67 +7,67 @@
     <body>
       <trans-unit id="1Fy-mg-aq9.title">
         <source>Enter the password for the digital signature.</source>
-        <target>Enter the password for the digital signature.</target>
+        <target>Inserisci la password per la firma digitale.</target>
         <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note>
       </trans-unit>
       <trans-unit id="1dL-nN-bJI.title">
         <source>Enter the password for the private key.</source>
-        <target>Enter the password for the private key.</target>
+        <target>Inserirsci la password per la chiave privata.</target>
         <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
       </trans-unit>
       <trans-unit id="2Ck-6y-ygx.title">
         <source>Specify the digital signature file for the document.</source>
-        <target>Specify the digital signature file for the document.</target>
+        <target>Specifica il file della firma digitale per il documento.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note>
       </trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString">
         <source>Enter Password</source>
-        <target>Enter Password</target>
+        <target>Inserisci la Password</target>
         <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
       </trans-unit>
       <trans-unit id="GOU-av-TC1.title">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Annulla</target>
         <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note>
       </trans-unit>
       <trans-unit id="P3k-kI-w22.title">
         <source>Load a Private Key</source>
-        <target>Load a Private Key</target>
+        <target>Carica una Chiave Privata</target>
         <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note>
       </trans-unit>
       <trans-unit id="RbM-Dq-A3K.title">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Annulla</target>
         <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note>
       </trans-unit>
       <trans-unit id="Tfc-EF-VnS.title">
         <source>Specify a private key for the digital signature.</source>
-        <target>Specify a private key for the digital signature.</target>
+        <target>Specifica una chiave privata per la firma digitale.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
       </trans-unit>
       <trans-unit id="X8z-RQ-YLr.title">
         <source>ONLYOFFICE</source>
-        <target>Window</target>
+        <target>ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "X8z-RQ-YLr";</note>
       </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString">
         <source>Enter Password</source>
-        <target>Enter Password</target>
+        <target>Inserisci la Password</target>
         <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note>
       </trans-unit>
       <trans-unit id="jpH-3g-Gt5.title">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Annulla</target>
         <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note>
       </trans-unit>
       <trans-unit id="qZ4-0O-L0G.title">
         <source>Cancel</source>
-        <target>Cancel</target>
+        <target>Annulla</target>
         <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note>
       </trans-unit>
       <trans-unit id="tTF-wa-eJp.title">
         <source>Load Signature</source>
-        <target>Load Signature</target>
+        <target>Carica la Firma</target>
         <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
       </trans-unit>
     </body>
@@ -94,6 +94,7 @@
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved.">
         <source>Before signing the document, it must be saved.</source>
+        <target>Prima di firmare il documento, è necessario salvarlo.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cancel">
@@ -103,10 +104,12 @@
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature">
         <source>Cannot open file of Digital Signature</source>
+        <target>Impossibile aprire il file di Firma digitale</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Private Key">
         <source>Cannot open file of Private Key</source>
+        <target>Impossibile aprire il file della Chiave Privata</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
@@ -155,17 +158,17 @@
       </trans-unit>
       <trans-unit id="File Format:">
         <source>File Format:</source>
-        <target>Formato File:</target>
+        <target>File Formato:</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File \&quot;%@\&quot; can not be open or not exist.">
         <source>File \"%@\" can not be open or not exist.</source>
-        <target>File \"%@\" non può essere aperto o non esiste.</target>
+        <target>Il File \"%@\" non può essere aperto o non esiste.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open.">
         <source>File can not be open.</source>
-        <target>il File non può essere aperto.</target>
+        <target>File non può essere aperto.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@">
@@ -175,7 +178,7 @@
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
         <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>Se non controlli i tuoi documenti, tutte le tue modifiche andranno perse.</target>
+        <target>Se non revisioni i tuoi documenti, tutte le tue modifiche andranno perse.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
@@ -209,15 +212,17 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file.">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target>ONLYOFFICE non può aprire il File della Firma Digitale. Prova ad aprire un altro file.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file.">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target>ONLYOFFICE non può aprire la Chiave Privata. Prova ad aprire un altro file.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document">
         <source>OpenOffice Document</source>
-        <target>Documento OpenOffice</target>
+        <target>Documwnto OpenOffice</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation">
@@ -287,10 +292,12 @@
       </trans-unit>
       <trans-unit id="Save">
         <source>Save</source>
+        <target>Salva</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save the document?">
         <source>Save the document?</source>
+        <target>Salvare il documento?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx">
@@ -338,7 +345,7 @@
       </trans-unit>
       <trans-unit id="XML Paper Specification">
         <source>XML Paper Specification</source>
-        <target>Specifiche foglio XML</target>
+        <target>Specifiche Foglio XML</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes">
@@ -348,7 +355,7 @@
       </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>Ci sono %1$ld %2$@ Documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</target>
+        <target>Ci sono %1$ld %2$@ Documenti con modifiche non confermate. Vuoi revisionare le modifiche prima di uscire?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="You have successfully activated %@.">
@@ -377,43 +384,51 @@
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@days@</source>
+        <target>%#@giorni@</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string">
         <source>%d day are left until the license expiration.</source>
+        <target>%d giorno rimasto alla scadenza della licenza.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string">
         <source>%d days are left until the license expiration.</source>
+        <target>%d giorni rimasti alla scadenza della licenza.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@days@</source>
+        <target>%#@giorni@</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
+        <target>Stai utilizzando una versione di prova dell'applicazione.
+Il periodo di prova terminerà in %d giorno, dopodiché non sarai in grado di creare e modificare documenti.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>Stai utilizzando una versione di prova dell'applicazione.
+Il periodo di prova terminerà tra %d giorni, dopodiché non sarai in grado di creare e modificare documenti.</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@documents@</source>
-        <target>%#@documents@</target>
+        <target>%#@documenti@</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>C’e %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</target>
+        <target>Hai %ld %@ documento con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</target>
         <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target>Ci sono %ld %@ documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</target>
+        <target>Hai %ld %@ documenti con modifiche non confermate. Vuoi revisionare queste modifiche prima di uscire?</target>
         <note/>
       </trans-unit>
     </body>
@@ -450,7 +465,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title">
         <source>Transformations</source>
-        <target>Transformazioni</target>
+        <target>Trasformazioni</target>
         <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
       </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title">
@@ -510,7 +525,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title">
         <source>Writing Direction</source>
-        <target>Direzione di Scrittura</target>
+        <target>Direzione Scrittura</target>
         <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
       </trans-unit>
       <trans-unit id="9aQ-wl-gjS.title">
@@ -550,12 +565,12 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="BOF-NM-1cW.title">
         <source>Preferences…</source>
-        <target>Preferenze…</target>
+        <target>Preferenze...</target>
         <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
       </trans-unit>
       <trans-unit id="BgM-ve-c93.title">
         <source>	Left to Right</source>
-        <target>\tDa sinistra a destra</target>
+        <target>Da sinistra a destra</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
       </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title">
@@ -700,7 +715,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title">
         <source>	Left to Right</source>
-        <target>\tDa sinistra a destra</target>
+        <target>Da sinistra a destra</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
       </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
@@ -715,7 +730,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="Nop-cj-93Q.title">
         <source>	Default</source>
-        <target>\tPredefinito</target>
+        <target>Predefinito</target>
         <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
@@ -760,7 +775,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title">
         <source>	Right to Left</source>
-        <target>\tDa destra a sinistra</target>
+        <target>Da destra a sinistra</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
       <trans-unit id="Riu-oE-8dj.title">
@@ -850,7 +865,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="YGs-j5-SAR.title">
         <source>	Default</source>
-        <target>\tPredefinito</target>
+        <target>Predefinito</target>
         <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
       </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title">
@@ -1005,7 +1020,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
         <source>	Right to Left</source>
-        <target>\tDa destra a sinistra</target>
+        <target>Da destra a sinistra</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
       </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
@@ -1080,6 +1095,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="sM6-C6-Vo9.title">
         <source>test</source>
+        <target>Test</target>
         <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
       </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
@@ -1196,12 +1212,12 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="Could not move to Applications folder">
         <source>Could not move to Applications folder</source>
-        <target>Non posso spostarmi nella cartella Applicazioni</target>
+        <target>Non può essere spostato nella cartella Applicazioni</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do Not Move">
         <source>Do Not Move</source>
-        <target>Non spostarmi</target>
+        <target>Non spostare</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like.">
@@ -1211,27 +1227,27 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="Move to Applications Folder">
         <source>Move to Applications Folder</source>
-        <target>Spostami nella cartella Applicazioni</target>
+        <target>Vuoi spostarlo nella cartella Applicazioni</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?">
         <source>Move to Applications folder in your Home folder?</source>
-        <target>Vuoi spostarmi nella cartella Applicazioni del tuo utente?</target>
+        <target>Vuoi spostarlo nella cartella Applicazioni dellla tua cartella Home?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder?">
         <source>Move to Applications folder?</source>
-        <target>Vuoi spostarmi nella cartella Applicazioni?</target>
+        <target>Vuoi spostarlo nella cartella Applicazioni?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Note that this will require an administrator password.">
         <source>Note that this will require an administrator password.</source>
-        <target>Nota richiede la password di amministratore.</target>
+        <target>Nota che questo richiede la password di amministratore.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered.">
         <source>This will keep your Downloads folder uncluttered.</source>
-        <target>In questo modo la cartella Download sarà pulita.</target>
+        <target>Questo manterrà la cartella Download pulita.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -1272,7 +1288,7 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
-        <target>ONLYOFFICE</target>
+        <target>$(PRODUCT_NAME)</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
@@ -1289,6 +1305,7 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUCT_NAME)</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">

@@ -1,57 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
-        <dict>
-            <key>NSStringLocalizedFormatKey</key>
-            <string>%#@documents@</string>
-            <key>documents</key>
-            <dict>
-                <key>NSStringFormatSpecTypeKey</key>
-                <string>NSStringPluralRuleType</string>
-                <key>NSStringFormatValueTypeKey</key>
-                <string>ld</string>
-                <key>one</key>
-                <string>Voce tem %ld% @ documento com alteracoes nao confirmadas. Deseja rever estas alteracoes antes de sair?</string>
-                <key>other</key>
-                <string>Voce tem %ld% @ documentos com alteracoes nao confirmadas. Deseja rever estas alteracoes antes de sair?</string>
-            </dict>
-        </dict>
-        <key>%d days are left until the license expiration.</key>
-        <dict>
-            <key>NSStringLocalizedFormatKey</key>
-            <string>%#@days@</string>
-            <key>days</key>
-            <dict>
-                <key>NSStringFormatSpecTypeKey</key>
-                <string>NSStringPluralRuleType</string>
-                <key>NSStringFormatValueTypeKey</key>
-                <string>d</string>
-                <key>one</key>
-                <string>%d day are left until the license expiration.</string>
-                <key>other</key>
-                <string>%d days are left until the license expiration.</string>
-            </dict>
-        </dict>
-        <key>You are using a trial version of the application.
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Faltam %d dias para a licença expirar.</string>
+			<key>many</key>
+			<string>Faltam %d dias para a licença expirar.</string>
+			<key>one</key>
+			<string>Falta %d dia para a licença expirar.</string>
+			<key>other</key>
+			<string>Faltam %d dias para a licença expirar.</string>
+			<key>two</key>
+			<string>Faltam %d dias para a licença expirar.</string>
+			<key>zero</key>
+			<string>Faltam %d dias para a licença expirar.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
-        <dict>
-            <key>NSStringLocalizedFormatKey</key>
-            <string>%#@days@</string>
-            <key>days</key>
-            <dict>
-                <key>NSStringFormatSpecTypeKey</key>
-                <string>NSStringPluralRuleType</string>
-                <key>NSStringFormatValueTypeKey</key>
-                <string>d</string>
-                <key>one</key>
-                <string>You are using a trial version of the application.
-The trial period will end in %d day, after that you will not be able to create and edit documents.</string>
-                <key>other</key>
-                <string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
-            </dict>
-        </dict>
-    </dict>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
+			<key>many</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
+			<key>one</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dia, após o qual você não poderá criar e editar documentos.</string>
+			<key>other</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
+			<key>two</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
+			<key>zero</key>
+			<string>Você está usando uma versão de avaliação do aplicativo.
+O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@documents@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+			<key>many</key>
+			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+			<key>one</key>
+			<string>Você tem %ld %@ documento com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+			<key>other</key>
+			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+			<key>two</key>
+			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+			<key>zero</key>
+			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
+		</dict>
+	</dict>
+</dict>
 </plist>
