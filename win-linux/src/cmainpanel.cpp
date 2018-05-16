@@ -782,10 +782,10 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
     if ( param == "offline" ) {
         QString path = m_pTabs->urlByView(uid);
         if ( !path.isEmpty() ) {
-            if ( Utils::isFileLocal(path) )
+//            if ( Utils::isFileLocal(path) )
                 onLocalFileLocation(path);
-            else {
-            }
+//            else {
+//            }
         } else {
             CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
         }
