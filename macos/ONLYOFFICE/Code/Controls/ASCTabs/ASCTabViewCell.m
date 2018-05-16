@@ -71,6 +71,7 @@
         return nil;
     }
 
+    CGFloat scale = [[NSScreen mainScreen] backingScaleFactor];
     NSSize size = [loaderImage size];
     CGRect rect = CGRectMake(
                              8,
@@ -80,11 +81,12 @@
 
 
     CALayer * layer = [CALayer new];
-    //layer.backgroundColor = NSColor.redColor.CGColor;
+//    layer.backgroundColor = NSColor.redColor.CGColor;
     layer.bounds = rect;
     layer.anchorPoint = CGPointMake(0.5, 0.5);
     layer.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
     layer.contents = (id)[loaderImage CGImage];
+    layer.contentsScale = scale;
     layer.contentsGravity = kCAGravityCenter;
     layer.zPosition = 1000;
     layer.hidden = !_isProcessing;
