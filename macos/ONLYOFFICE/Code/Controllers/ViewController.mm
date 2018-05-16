@@ -550,6 +550,10 @@
 }
 
 - (void)showHeaderPlaceholderWithIdentifier:(NSString *)uuid forType:(ASCTabViewType)type {
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_12_2) {
+        return;
+    }
+
     NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
     NSColor * headerColor = nil;
 
@@ -605,6 +609,10 @@
 
     if (tab) {
         tab.isProcessing = false;
+    }
+
+    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_12_2) {
+        return;
     }
 
     if (tabIndex != NSNotFound) {
