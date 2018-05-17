@@ -237,7 +237,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         CAscTabData * data = new CAscTabData(opts.name);
         data->setViewId(id_view);
         data->setUrl(opts.wurl);
-        data->setLocal( opts.type == etLocalFile ||
+        data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
