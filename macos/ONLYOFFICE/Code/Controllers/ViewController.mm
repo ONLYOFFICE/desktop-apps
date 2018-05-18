@@ -550,10 +550,6 @@
 }
 
 - (void)showHeaderPlaceholderWithIdentifier:(NSString *)uuid forType:(ASCTabViewType)type {
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_12_2) {
-        return;
-    }
-
     NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
     NSColor * headerColor = nil;
 
@@ -584,10 +580,11 @@
             }
 
             NSView * headerView = [self.headerView duplicate];
+            [tabItem.view addSubview:headerView];
+
             headerView.alphaValue = 1;
             headerView.uuidTag = headerViewTag;
             headerView.backgroundColor = headerColor;
-            [tabItem.view addSubview:headerView];
 
             [headerView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
             [headerView autoPinEdgeToSuperviewEdge:ALEdgeTop];
@@ -609,10 +606,6 @@
 
     if (tab) {
         tab.isProcessing = false;
-    }
-
-    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_12_2) {
-        return;
     }
 
     if (tabIndex != NSNotFound) {
