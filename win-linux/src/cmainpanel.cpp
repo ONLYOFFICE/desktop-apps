@@ -1167,7 +1167,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
                 CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
                 mess.setButtons({tr("OK")+":default", tr("Cancel")});
 
-                _allowed =  MODAL_RESULT_CUSTOM == mess.confirm(tr("Some data will lost.<br>Continue?"));
+                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
             }
 
             if ( _allowed ) {
