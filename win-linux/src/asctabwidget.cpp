@@ -753,20 +753,20 @@ void CAscTabWidget::closePortal(const QString& url, bool editors)
     }
 }
 
-void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& info)
+void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& path)
 {
     int tabIndex = tabIndexByView(viewId);
 
     if (!(tabIndex < 0)) {
         CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
         doc->setTitle(name);
-        if ( doc->local() ) {
-            QString _path(info);
+        if ( doc->local() && !path.isEmpty() ) {
+            QString _path(path);
             doc->setUrl( Utils::replaceBackslash(_path) );
         }
 
         tabBar()->setTabText(tabIndex, doc->title());
-        tabBar()->setTabToolTip(tabIndex, info);
+        tabBar()->setTabToolTip(tabIndex, path.isEmpty() ? name : path);
     }
 }
 
