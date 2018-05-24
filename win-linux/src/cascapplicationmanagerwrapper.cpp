@@ -193,9 +193,9 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
         CAscTypeId * pData = (CAscTypeId *)_event->m_pData;
-
         CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
-        if ( pWindow ) closeEditorWindow(size_t(pWindow));
+        if ( pWindow )
+            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
 
         RELEASEINTERFACE(_event);
         return; }
@@ -220,6 +220,13 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         }
 #endif
         return; }
+    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
+        CSingleWindow * pWindow = editorWindowFromViewId(_event->get_SenderId());
+        if ( pWindow )
+            closeEditorWindow(size_t(pWindow));
+        break;
+    }
+
     default: break;
     }
 
