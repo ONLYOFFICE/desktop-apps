@@ -194,8 +194,10 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         // close editor window
         CAscTypeId * pData = (CAscTypeId *)_event->m_pData;
         CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
-        if ( pWindow )
+        if ( pWindow ) {
+            pWindow->hide();
             AscAppManager::getInstance().DestroyCefView(pData->get_Id());
+        }
 
         RELEASEINTERFACE(_event);
         return; }
