@@ -174,11 +174,12 @@ void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
+    qputenv("LD_PRELOAD", "");
     if ( _url.scheme() == "mailto" ) {
-        system(QString("LD_PRELOAD='' LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
+        system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
     } else {
-        system(QString("LD_PRELOAD='' LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
+        system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
                             .arg(QString( _url.toEncoded() )).toUtf8());
     }
 #else
@@ -252,12 +253,12 @@ void Utils::openFileLocation(const QString& path)
         }
     }
 
-    putenv("LD_PRELOAD=");
+    qputenv("LD_PRELOAD", "");
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
     } else
-        system(QString("LD_PRELOAD='' LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
+        system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
 }
 
