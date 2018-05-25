@@ -100,6 +100,7 @@ CWinWindow::CWinWindow(HWND parent, const QString& title)
     DeleteMenu(hmenu, SC_SIZE, MF_BYCOMMAND);
     DeleteMenu(hmenu, SC_MAXIMIZE, MF_BYCOMMAND);
     DeleteMenu(hmenu, SC_MINIMIZE, MF_BYCOMMAND);
+    DeleteMenu(hmenu, SC_RESTORE, MF_BYCOMMAND);
 
     SetWindowLong(m_hSelf, GWL_EXSTYLE, GetWindowLong(m_hSelf, GWL_EXSTYLE) | WS_EX_DLGMODALFRAME);
     SetWindowLongPtr(m_hSelf, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
