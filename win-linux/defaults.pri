@@ -144,8 +144,10 @@ app_linux {
         message("build for centos6")
     }
 
-    LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicuuc.so.55
-    LIBS += $$PWD/$$CORE_LIB_PATH/bin/icu/$$PLATFORM_BUILD/libicudata.so.55
+    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicuuc.so.58
+    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicudata.so.58
+
+    DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }
 
 

@@ -196,6 +196,7 @@ public:
     void setDocumentWebOption(int, const QString&);
 
     int  openPortal(const QString& url);
+    bool updatePortal(int index,const QString& url);
     int  newPortal(const QString& url, const QString& name);
 
 public slots:

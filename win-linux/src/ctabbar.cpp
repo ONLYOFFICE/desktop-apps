@@ -371,6 +371,94 @@ void CTabBar::paintEvent(QPaintEvent * event)
 {
     Q_D(QTabBar);
 
+#ifdef _QTVER_DOWNGRADE
+    if (verticalTabs(d->shape)) {
+        QTabBar::paintEvent(event);
+        return;
+    }
+
+    QStyleOptionTabBarBaseV2 optTabBase;
+    QTabBarPrivate::initStyleBaseOption(&optTabBase, this, size());
+
+    QStylePainter p(this);
+    int selected = -1;
+    int cut = -1;
+    bool rtl = optTabBase.direction == Qt::RightToLeft;
+    QStyleOptionTab cutTab;
+    selected = d->currentIndex;
+    if (d->dragInProgress)
+        selected = d->pressedIndex;
+
+    for (int i = 0; i < d->tabList.count(); ++i)
+         optTabBase.tabBarRect |= tabRect(i);
+
+    optTabBase.selectedTabRect = tabRect(selected);
+
+    if (d->drawBase)
+        p.drawPrimitive(QStyle::PE_FrameTabBarBase, optTabBase);
+
+    for (int i = 0; i < d->tabList.count(); ++i) {
+        QStyleOptionTabV3 tab;
+        initStyleOption(&tab, i);
+
+        if (d->paintWithOffsets && d->tabList[i].dragOffset != 0) {
+            tab.rect.moveLeft(tab.rect.x() + d->tabList[i].dragOffset);
+        }
+        if (!(tab.state & QStyle::State_Enabled)) {
+            tab.palette.setCurrentColorGroup(QPalette::Disabled);
+        }
+        // If this tab is partially obscured, make a note of it so that we can pass the information
+        // along when we draw the tear.
+        if ((!rtl && tab.rect.left() < 0) || (rtl && tab.rect.right() > width())) {
+            cut = i;
+            cutTab = tab;
+        }
+        // Don't bother drawing a tab if the entire tab is outside of the visible tab bar.
+        if (tab.rect.right() < 0 || tab.rect.left() > width())
+            continue;
+
+        optTabBase.tabBarRect |= tab.rect;
+        if (i == selected)
+            continue;
+
+        QString text(tab.text);
+        tab.text.clear();
+        p.drawControl(QStyle::CE_TabBarTab, tab);
+        drawTabCaption(&p, text, tab);
+    }
+
+    // Draw the selected tab last to get it "on top"
+    if (selected >= 0) {
+        QStyleOptionTabV3 tab;
+        initStyleOption(&tab, selected);
+
+        if (d->paintWithOffsets && d->tabList[selected].dragOffset != 0) {
+            tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
+        }
+        if (!d->dragInProgress) {
+            QString text(tab.text);
+            tab.text.clear();
+            p.drawControl(QStyle::CE_TabBarTab, tab);
+
+#ifdef __USE_COLORED_TAB
+            if ( m_activeColor != "none" ) {
+                fillTabColor(&p, tab, selected, m_activeColor);
+            }
+#endif
+            drawTabCaption(&p, text, tab);
+        } else {
+            int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
+            d->movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
+        }
+    }
+
+    // Only draw the tear indicator if necessary. Most of the time we don't need too.
+    if (d->leftB->isVisible() && cut >= 0) {
+        cutTab.rect = rect();
+        cutTab.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicator, &cutTab, this);
+        p.drawPrimitive(QStyle::PE_IndicatorTabTear, cutTab);
+    }
+#else
     QStyleOptionTabBarBase optTabBase;
     QTabBarPrivate::initStyleBaseOption(&optTabBase, this, size());
 
@@ -478,6 +566,7 @@ void CTabBar::paintEvent(QPaintEvent * event)
         cutTabRight.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicatorRight, &cutTabRight, this);
         p.drawPrimitive(QStyle::PE_IndicatorTabTearRight, cutTabRight);
     }
+#endif
 }
 
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
@@ -534,20 +623,22 @@ void CTabBar::tabInserted(int index)
 void CTabBar::onCurrentChanged(int index)
 {
     QWidget * b = TAB_BTNCLOSE(m_current);
-    if ( tabData(m_current).isNull() ) {
+//    if ( tabData(m_current).isNull() )
+    {
         if ( b ) {
             b->hide();
-            b->setProperty("state", "normal");
-            b->style()->polish(b);
+//            b->setProperty("state", "normal");
+//            b->style()->polish(b);
         }
     }
 
-    if ( tabData(index).isNull() ) {
+//    if ( tabData(index).isNull() )
+    {
         b = TAB_BTNCLOSE(index);
         if ( b ) {
             b->show();
-            b->setProperty("state", "active");
-            b->style()->polish(b);
+//            b->setProperty("state", "active");
+//            b->style()->polish(b);
         }
     }
 
@@ -682,15 +773,16 @@ void CTabBar::activate(bool a)
     if ( m_active != a ) {
         m_active = a;
 
-        if ( tabData(m_current).isNull() ) {
+//        if ( tabData(m_current).isNull() )
+        {
             QWidget * b = TAB_BTNCLOSE(m_current);
             if ( b ) {
                 if ( a ){
                     b->show();
-                    b->setProperty("state", "active");
+//                    b->setProperty("state", "active");
                 } else {
                     b->hide();
-                    b->setProperty("state", "normal");
+//                    b->setProperty("state", "normal");
                     m_overIndex = -1;
                 }
 

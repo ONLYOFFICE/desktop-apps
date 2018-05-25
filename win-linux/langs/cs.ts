@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="692"/>
+        <location filename="../src/asctabwidget.cpp" line="702"/>
         <source>Document</source>
         <translation>Dokument</translation>
     </message>
@@ -14,62 +14,62 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte certifikát</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte složku certifikátu...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>Certifacate password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo certifikátu</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte klíčový soubor...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klíčové heslo:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
         <source>Enter certificate path</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte cestu certifikátu</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
         <source>Certificate is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Certifikát není podporován</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
         <source>Enter certificate password</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte heslo certifikátu</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation type="unfinished"></translation>
+        <translation>Chybné heslo certifikátu.&lt;br&gt;Zadejte prosím znovu</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
         <source>Enter valid private key</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte platný soukromý klíč</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="251"/>
         <source>Key is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Klíč není podporován</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="256"/>
         <source>Enter key password</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte klíčové heslo</translation>
     </message>
 </context>
 <context>
@@ -225,27 +225,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="196"/>
         <source>Text documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Textové dokumenty</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="197"/>
         <source>Spreadsheets</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulky</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="198"/>
         <source>Presentations</source>
-        <translation type="unfinished"></translation>
+        <translation>Prezentace</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="199"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Webová stránka</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="200"/>
         <source>Text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Textové soubory</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="216"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>Plugin file (*.plugin)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin souboru (*.plugin)</translation>
     </message>
 </context>
 <context>
@@ -271,26 +271,27 @@
         <translation>SOUBOR</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1321"/>
+        <location filename="../src/cmainpanel.cpp" line="1358"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
         <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="920"/>
+        <location filename="../src/cmainpanel.cpp" line="945"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
         <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="920"/>
+        <location filename="../src/cmainpanel.cpp" line="945"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
+        <location filename="../src/cmainpanel.cpp" line="1175"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -308,10 +309,20 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="794"/>
         <source>Document must be saved firstly.</source>
+        <translation>Dokument musíte nejprve uložit.</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1175"/>
+        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1266"/>
+        <location filename="../src/cmainpanel.cpp" line="1177"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>Pokud budete pokračovat v ukládání v tomto formátu, vše kromě textu bude ztraceno.&lt;br&gt;Opravdu chcete pokračovat?</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1303"/>
         <source>Sign Up</source>
         <translation>Vytvořit portál</translation>
     </message>
@@ -331,12 +342,12 @@
         <translation>Prezentace%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="921"/>
+        <location filename="../src/cmainpanel.cpp" line="946"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished"></translation>
+        <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1006"/>
+        <location filename="../src/cmainpanel.cpp" line="1031"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>

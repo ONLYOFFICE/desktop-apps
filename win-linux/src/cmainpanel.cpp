@@ -44,8 +44,9 @@
 #include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <regex>
 #include <QStorageInfo>
+#include <regex>
+#include <functional>
 
 #include "defines.h"
 #include "cprintprogress.h"
@@ -58,7 +59,7 @@
 #include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "functional"
+#include "../Common/OfficeFileFormats.h"
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -669,7 +670,9 @@ void CMainPanel::doOpenLocalFile(COpenOptions& opts)
         toggleButtonMain(false, true);
     } else
     if (result == -255) {
-        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        QTimer::singleShot(0, [=]{
+            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        });
     }
 }
 
@@ -779,15 +782,36 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
     if ( param == "offline" ) {
         QString path = m_pTabs->urlByView(uid);
         if ( !path.isEmpty() ) {
-            if ( Utils::isFileLocal(path) )
+//            if ( Utils::isFileLocal(path) )
                 onLocalFileLocation(path);
-            else {
-            }
+//            else {
+//            }
         } else {
             CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
         }
     } else {
-//        m_pTabs->openPortal(param);
+        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpressionMatch _re_match = _re.match(param);
+
+        if ( _re_match.hasMatch() ) {
+            QString _domain = _re_match.captured(1);
+            QString _folder = param;
+
+            int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+            !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+
+            int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
+            if ( !(_tab_index < 0)) {
+                ((CAscTabWidget *)m_pTabs)->updatePortal(_tab_index, _folder);
+            } else {
+                _tab_index = m_pTabs->addPortal(_folder, "");
+            }
+
+            if ( !(_tab_index < 0) ) {
+                toggleButtonMain(false, true);
+                m_pTabs->setCurrentIndex(_tab_index);
+            }
+        }
     }
 }
 
@@ -852,10 +876,9 @@ void CMainPanel::onDocumentName(void * data)
     CAscDocumentName * pData = static_cast<CAscDocumentName *>(data);
 
     QString name = QString::fromStdWString(pData->get_Name());
-    QString info = pData->get_Url().size() > 0 ? name : QString::fromStdWString(pData->get_Path());
+    QString path = !pData->get_Url().empty() ? QString() : QString::fromStdWString(pData->get_Path());
 
-    if ( !info.length() ) info = name;
-    m_pTabs->applyDocumentChanging(pData->get_Id(), name, info);
+    m_pTabs->applyDocumentChanging(pData->get_Id(), name, path);
     onTabChanged(m_pTabs->currentIndex());
 
     RELEASEINTERFACE(pData);
@@ -1138,11 +1161,21 @@ void CMainPanel::onLocalFileSaveAs(void * d)
         if ( dlg.modalSaveAs(fullPath) ) {
             Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
 
-            pSaveData->put_Path(fullPath.toStdWString());
-            int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                    AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+            bool _allowed = true;
+            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+                mess.setButtons({tr("OK")+":default", tr("Cancel")});
 
-            pSaveData->put_FileType(format > -1 ? format : 0);
+                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
+            }
+
+            if ( _allowed ) {
+                pSaveData->put_Path(fullPath.toStdWString());
+                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
+                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+
+                pSaveData->put_FileType(format > -1 ? format : 0);
+            }
         }
 
         CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);

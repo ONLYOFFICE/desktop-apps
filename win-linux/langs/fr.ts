@@ -4,7 +4,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="692"/>
+        <location filename="../src/asctabwidget.cpp" line="702"/>
         <source>Document</source>
         <translation>Ouverture...</translation>
     </message>
@@ -14,62 +14,62 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez le certificat</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation type="unfinished"></translation>
+        <translation>sélectionnez le fichier de certificat...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>Certifacate password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe du certificat:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation type="unfinished"></translation>
+        <translation>sélectionnez le fichier de clé...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe clé:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
         <source>Enter certificate path</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez le chemin du certificat</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
         <source>Certificate is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>Le certificat n&apos;est pas pris en charge</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
         <source>Enter certificate password</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez le mot de passe du certificat</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe de certificat incorrect. &lt;br&gt; Veuillez l’entrer à nouveau</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
         <source>Enter valid private key</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez une clé privée valide</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="251"/>
         <source>Key is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation>La clé n&apos;est pas supportée</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="256"/>
         <source>Enter key password</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez le mot de passe clé</translation>
     </message>
 </context>
 <context>
@@ -225,27 +225,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="196"/>
         <source>Text documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documents texte</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="197"/>
         <source>Spreadsheets</source>
-        <translation type="unfinished"></translation>
+        <translation>Feuilles de calcul</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="198"/>
         <source>Presentations</source>
-        <translation type="unfinished"></translation>
+        <translation>Présentations</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="199"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Page web</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="200"/>
         <source>Text files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers texte</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="216"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>Plugin file (*.plugin)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier plugin (* .plugin)</translation>
     </message>
 </context>
 <context>
@@ -271,26 +271,27 @@
         <translation>DÉPART</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1321"/>
+        <location filename="../src/cmainpanel.cpp" line="1358"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
         <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="920"/>
+        <location filename="../src/cmainpanel.cpp" line="945"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
         <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="920"/>
+        <location filename="../src/cmainpanel.cpp" line="945"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="514"/>
+        <location filename="../src/cmainpanel.cpp" line="1175"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -308,10 +309,20 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="794"/>
         <source>Document must be saved firstly.</source>
+        <translation>Le document doit d’abord être enregistré.</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1175"/>
+        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1266"/>
+        <location filename="../src/cmainpanel.cpp" line="1177"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1303"/>
         <source>Sign Up</source>
         <translation>Créer portail</translation>
     </message>
@@ -331,12 +342,12 @@
         <translation>Diaporama%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="921"/>
+        <location filename="../src/cmainpanel.cpp" line="946"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1006"/>
+        <location filename="../src/cmainpanel.cpp" line="1031"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>

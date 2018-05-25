@@ -53,6 +53,7 @@ public:
     static unsigned getScreenDpiRatioByHWND(int);
     static QString replaceBackslash(QString&);
     static bool isFileLocal(const QString&);
+    static bool setAppUserModelId(const QString&);
 
     static bool makepath(const QString&);
 

@@ -237,7 +237,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         CAscTabData * data = new CAscTabData(opts.name);
         data->setViewId(id_view);
         data->setUrl(opts.wurl);
-        data->setLocal( opts.type == etLocalFile ||
+        data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
@@ -251,6 +251,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
     } else {
+        tab_index = -255;
         RELEASEOBJECT(pView)
     }
 
@@ -300,6 +301,15 @@ int CAscTabWidget::addPortal(QString url, QString name)
     QString args;
     if ( !url.contains(QRegularExpression("desktop=true")) )
         args.append("/products/files/?desktop=true");
+    else {
+        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)([^\\s]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpressionMatch _re_match = _re.match(url);
+
+        if ( _re_match.hasMatch() ) {
+            url = _re_match.captured(1);
+            args = _re_match.captured(2);
+        }
+    }
 
     CTabPanel * pView = new CTabPanel(this);
     pView->SetBackgroundCefColor(244, 244, 244);
@@ -534,7 +544,8 @@ void CAscTabWidget::updateTabIcon(int index)
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             ((CTabBar *)tabBar())->setTabIcon(index, QIcon(icon_name));
 #ifdef __USE_COLORED_TAB
-            ((CTabBar *)tabBar())->changeTabTheme(index, _theme);
+//            ((CTabBar *)tabBar())->changeTabTheme(index, _theme);
+            ((CTabBar *)tabBar())->setTabTheme(index, _theme);
 #endif
 
 
@@ -696,6 +707,21 @@ int CAscTabWidget::openPortal(const QString& url)
     return tabIndex;
 }
 
+bool CAscTabWidget::updatePortal(int index,const QString& url)
+{
+    if ( !(index < 0) ) {
+        CTabPanel * _panel = dynamic_cast<CTabPanel *>(widget(index));
+
+        if ( _panel->data()->contentType() == etPortal ) {
+            _panel->GetCefView()->load(url.toStdWString());
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int CAscTabWidget::newPortal(const QString& url, const QString& name)
 {
     int tabIndex = tabIndexByEditorType(etNewPortal);
@@ -727,20 +753,20 @@ void CAscTabWidget::closePortal(const QString& url, bool editors)
     }
 }
 
-void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& info)
+void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const QString& path)
 {
     int tabIndex = tabIndexByView(viewId);
 
     if (!(tabIndex < 0)) {
         CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
         doc->setTitle(name);
-        if ( doc->local() ) {
-            QString _path(info);
+        if ( doc->local() && !path.isEmpty() ) {
+            QString _path(path);
             doc->setUrl( Utils::replaceBackslash(_path) );
         }
 
         tabBar()->setTabText(tabIndex, doc->title());
-        tabBar()->setTabToolTip(tabIndex, info);
+        tabBar()->setTabToolTip(tabIndex, path.isEmpty() ? name : path);
     }
 }
 
