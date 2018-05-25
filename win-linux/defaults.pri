@@ -148,7 +148,6 @@ app_linux {
     LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
-    include($$PWD/$$CORE_LIB_PATH/../Common/3dParty/openssl/openssl.pri)
 }
 
 
