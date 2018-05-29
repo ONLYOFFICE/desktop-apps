@@ -147,7 +147,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
         m_boxTitle->layout()->addWidget(m_btnMaximize);
         m_boxTitle->layout()->addWidget(_btn_close);
 
-        _layout->setMargin(CX11Decoration::customWindowBorderWith());
+        _layout->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
 
         QPalette _palette(palette());
         _palette.setColor(QPalette::Background, QColor("#f1f1f1"));
@@ -166,8 +166,12 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
     }
 
     view->setObjectName("mainView");
+    QRect _cef_rect{0,0,width(),height()};
+    _cef_rect.setTopLeft(QPoint(_layout->margin() * m_dpiRatio * 2, (TOOLBTN_HEIGHT + _layout->margin() * 2) * m_dpiRatio));
+    _cef_rect.translate(-_layout->margin() * m_dpiRatio, -_layout->margin() * m_dpiRatio);
+    view->setGeometry(_cef_rect);
+    ((QCefView *)view)->GetCefView()->resizeEvent(_cef_rect.width(), _cef_rect.height());
     _layout->addWidget(view, 1);
-    ((QCefView *)view)->GetCefView()->resizeEvent(width(), height());
 
     return mainPanel;
 }
@@ -181,7 +185,7 @@ void CSingleWindow::pushButtonCloseClicked()
                 ((QCefView *)mainView)->GetCefView()->GetId() );
     }
 
-    AscAppManager::closeEditorWindow( size_t(this) );
+    hide();
 }
 
 void CSingleWindow::resizeEvent(QResizeEvent *event)

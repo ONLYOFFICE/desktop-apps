@@ -58,8 +58,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 
 #include <QDebug>
 
-bool is_file_browser_supported = true;
-
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
@@ -176,6 +174,7 @@ void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
+    qputenv("LD_PRELOAD", "");
     if ( _url.scheme() == "mailto" ) {
         system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
@@ -194,10 +193,9 @@ void Utils::openFileLocation(const QString& path)
     QStringList args{"/select,", QDir::toNativeSeparators(path)};
     QProcess::startDetached("explorer", args);
 #else
-    static QString is_browser_checked;
-    if ( is_browser_checked.isEmpty() ) {
-        is_browser_checked = "checked";
-
+    static QString _file_browser;
+    static QString _arg_select = "--no-desktop";
+    if ( _file_browser.isEmpty() ) {
         auto _get_cmd_output = [](const QString& cmd, const QStringList& args, QString& error) {
             QProcess process;
             process.start(cmd, args);
@@ -208,41 +206,58 @@ void Utils::openFileLocation(const QString& path)
         };
 
         QString _error;
-        QString _file_browser = _get_cmd_output("xdg-mime", QStringList{"query", "default", "inode/directory"}, _error);
+        QString _cmd_output = _get_cmd_output("xdg-mime", QStringList{"query", "default", "inode/directory"}, _error);
 
         //    if ( _error.isEmpty() )
         {
-            bool is_file_browser_nautilus =
-                        _file_browser.contains(QRegularExpression("nautilus\\.desktop", QRegularExpression::CaseInsensitiveOption)) ||
-                            _file_browser.contains(QRegularExpression("nautilus-folder-handler\\.desktop", QRegularExpression::CaseInsensitiveOption));
-
-            if ( is_file_browser_nautilus ) {
-                QString _version = _get_cmd_output("nautilus", QStringList{"--version"}, _error);
+            if ( _cmd_output.contains(QRegularExpression("nautilus\\.desktop", QRegularExpression::CaseInsensitiveOption)) ||
+                    _cmd_output.contains(QRegularExpression("nautilus-folder-handler\\.desktop", QRegularExpression::CaseInsensitiveOption)) )
+            {
+//                _cmd_output = _get_cmd_output("nautilus", QStringList{"--version"}, _error);
 
         //        if ( _error.isEmpty() )
                 {
-                    QRegularExpression _regex("nautilus\\s(\\d{1,3})\\.(\\d{1,3})(?:\\.(\\d{1,5}))?");
-                    QRegularExpressionMatch match = _regex.match(_version);
-                    if ( match.hasMatch() ) {
-                        bool is_verion_supported = match.captured(1).toInt() > 3;
-                        if ( !is_verion_supported && match.captured(1).toInt() == 3 ) {
-                            is_verion_supported = match.captured(2).toInt() > 0;
+//                    QRegularExpression _regex("nautilus\\s(\\d{1,3})\\.(\\d{1,3})(?:\\.(\\d{1,5}))?");
+//                    QRegularExpressionMatch match = _regex.match(_cmd_output);
+//                    if ( match.hasMatch() ) {
+//                        bool is_verion_supported = match.captured(1).toInt() > 3;
+//                        if ( !is_verion_supported && match.captured(1).toInt() == 3 ) {
+//                            is_verion_supported = match.captured(2).toInt() > 0;
 
-                            if ( !is_verion_supported && !match.captured(3).isEmpty() )
-                                is_verion_supported = !(match.captured(3).toInt() < 2);
-                        }
+//                            if ( !is_verion_supported && !match.captured(3).isEmpty() )
+//                                is_verion_supported = !(match.captured(3).toInt() < 2);
+//                        }
 
-                        is_file_browser_supported = is_verion_supported;
-                    }
+//                        is_file_browser_supported = is_verion_supported;
+//                    }
                 }
+
+                _file_browser = "nautilus";
+            } else
+            if ( _cmd_output.contains(QRegularExpression("dolphin\\.desktop", QRegularExpression::CaseInsensitiveOption)) ) {
+                _file_browser = "dolphin";
+                _arg_select = "--select";
+            } else
+            if ( _cmd_output == "caja-folder-handler.desktop" ) {
+                _file_browser = "caja";
+            } else
+            if ( _cmd_output == "nemo.desktop" ) {
+                _file_browser = "nemo";
+            } else
+            if ( _cmd_output == "kfmclient_dir.desktop" ) {
+                _file_browser = "konqueror";
+                _arg_select = "--select";
+            } else {
+                _file_browser = "unknown";
             }
         }
     }
 
-
+    qputenv("LD_PRELOAD", "");
     QFileInfo fileInfo(path);
-    is_file_browser_supported ?
-        system(QString("nautilus \"" + fileInfo.absoluteFilePath() + "\"").toUtf8()) :
+    if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
+        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
+    } else
         system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
 }
