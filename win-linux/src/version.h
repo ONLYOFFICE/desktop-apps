@@ -50,6 +50,9 @@
 #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
 #define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
 
-#include "version_p.h"
+#ifndef RC_COMPILE_FLAG
+# include "version_p.h"
+#endif
+
 #endif
 

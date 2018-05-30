@@ -172,7 +172,7 @@ public:
     void        editorCloseRequest(int);
 
     MapEditors  modified(const QString& portal);
-    int         findModified(const QString& portal);
+    int         findModified(const QString& portal = QString());
 
     void adjustTabsSize();
     void activate(bool);

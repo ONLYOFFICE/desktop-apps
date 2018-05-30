@@ -310,7 +310,7 @@ void CMainPanel::pushButtonCloseClicked()
 
         while (true) {
             // find a modified document
-            _index_ = m_pTabs->findModified("");
+            _index_ = m_pTabs->findModified();
             if ( _index_ < 0 ) {
                 // no modified documents
                 m_pTabs->closeAllEditors();

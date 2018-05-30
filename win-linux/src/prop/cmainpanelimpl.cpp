@@ -35,7 +35,6 @@
 #include "defines.h"
 #include "utils.h"
 #include "version.h"
-#include "version_p.h"
 
 #include <QJsonObject>
 

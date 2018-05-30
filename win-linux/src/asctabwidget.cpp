@@ -986,11 +986,17 @@ int CAscTabWidget::findModified(const QString& portalname)
     for (int i(tabBar()->count()); i-- > 0; ) {
         doc = ((CTabPanel *)widget(i))->data();
 
-        if ( doc->isViewType(cvwtEditor) &&
-                doc->changed() && !doc->closed() &&
-                (portal.empty() || doc->url().find(portal) != wstring::npos))
+        if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
+                (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
-            return i;
+            if ( doc->changed() ) {
+                return i;
+            }
+        }
+    }
+
+    return -1;
+}
         }
     }
 
