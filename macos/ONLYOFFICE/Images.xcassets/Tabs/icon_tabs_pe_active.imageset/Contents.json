@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_pe_active.png",
+      "filename" : "ppt_desktop.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_pe_active@2x.png",
+      "filename" : "ppt_desktop_2x.png",
       "scale" : "2x"
     },
     {

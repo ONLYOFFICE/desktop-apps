@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -45,9 +45,6 @@
 #else
 #   define DLog(...)
 #endif
-
-#define kColorRGBA(r, g, b, a)  [NSColor colorWithRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:(a)]
-#define kColorRGB(r, g, b)      [NSColor colorWithRed:(r)/255.f green:(g)/255.f blue:(b)/255.f alpha:1.f]
 
 @interface ASCHelper : NSObject
 + (NSMutableDictionary *)localSettings;
