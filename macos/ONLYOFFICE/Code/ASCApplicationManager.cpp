@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -42,7 +42,7 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 #import "ASCConstants.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 
 ASCApplicationManager::ASCApplicationManager() : CAscApplicationManager() {
 #ifdef DEBUG

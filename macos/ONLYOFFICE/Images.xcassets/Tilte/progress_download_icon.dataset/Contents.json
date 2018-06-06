@@ -5,11 +5,8 @@
   },
   "data" : [
     {
+      "idiom" : "universal",
       "filename" : "progress_download_icon.gif",
-      "universal-type-identifier" : "gif"
-    },
-    {
-      "filename" : "progress_download_icon@2x.gif",
       "universal-type-identifier" : "gif"
     }
   ]

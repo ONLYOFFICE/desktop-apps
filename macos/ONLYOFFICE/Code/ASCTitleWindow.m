@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -61,7 +61,7 @@
         [self removeTitlebarAccessoryViewControllerAtIndex:0];
     }
        
-    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 10, titleBarHeight)];
+    NSVisualEffectView * view = [[NSVisualEffectView alloc] initWithFrame:NSMakeRect(0, 0, 10, titleBarHeight)];
     _dummyTitlebarAccessoryViewController = [NSTitlebarAccessoryViewController new];
     _dummyTitlebarAccessoryViewController.view = view;
     _dummyTitlebarAccessoryViewController.fullScreenMinHeight = titleBarHeight;

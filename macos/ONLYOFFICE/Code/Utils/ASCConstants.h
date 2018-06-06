@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -37,6 +37,9 @@
 //  Created by Alexander Yuzhin on 9/8/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
+
+#import <Cocoa/Cocoa.h>
+#import "ASCHelper.h"
 
 #ifndef ONLYOFFICE_ASCConstants_h
 #define ONLYOFFICE_ASCConstants_h
@@ -80,7 +83,7 @@ static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSet
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
 
 // CEF types
-static NSString * const CEFOpenFileFilterImage              = @"image";
+static NSString * const CEFOpenFileFilterImage              = @"images";
 static NSString * const CEFOpenFileFilterPlugin             = @"plugin";
 
 // CEF event names
@@ -109,8 +112,18 @@ static NSString * const CEFEventNamePortalSSO               = @"CEF_portalSSO";
 static NSString * const CEFEventNameFileInFinder            = @"CEF_fileOpenInFinder";
 static NSString * const CEFEventNameFilesCheck              = @"CEF_filesCheck";
 static NSString * const CEFEventNameStartPageReady          = @"CEF_startPageReady";
+static NSString * const CEFEventNameSaveBeforSign           = @"CEF_saveBeforeSign";
+static NSString * const CEFEventNameOpenSSLCertificate      = @"CEF_openSSLCertificate";
+static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
+static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
+static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 
 @interface ASCConstants : NSObject
+
+//@property (nonatomic) NSSto *someProperty;
+
++ (id)shared;
+
 + (NSArray *)images;
 + (NSArray *)documents;
 + (NSArray *)spreadsheets;

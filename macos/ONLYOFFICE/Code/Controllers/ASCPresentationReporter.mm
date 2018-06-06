@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -40,7 +40,8 @@
 #import "ASCPresentationReporter.h"
 #import "NSCefView.h"
 #import "mac_application.h"
-#import "NSView+ASCView.h"
+#import "NSView+Extensions.h"
+#import "PureLayout.h"
 
 @interface ASCPresentationReporter() <NSWindowDelegate>
 @property (nonatomic) NSStoryboard * storyboard;
@@ -89,7 +90,7 @@
             _controller.window.delegate = self;
             
             [_controller.contentViewController.view addSubview:cefView];
-            [cefView setupFillConstraints];
+            [cefView autoPinEdgesToSuperviewEdges];
             
             [_controller showWindow:nil];
             

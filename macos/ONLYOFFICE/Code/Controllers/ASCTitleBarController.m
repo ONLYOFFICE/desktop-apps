@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -41,25 +41,27 @@
 #import "ASCTitleBarController.h"
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
-#import "NSView+ASCView.h"
+#import "NSView+Extensions.h"
+#import "NSColor+Extensions.h"
 #import "ASCTabView.h"
-#import "ASCHelper.h"
 #import "SFBPopover.h"
 #import "ASCUserInfoViewController.h"
 #import "ASCDownloadViewController.h"
 #import "ASCDownloadController.h"
+#import "ASCMenuButtonCell.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
-static float kASCWindowMinTitleWidth = 320;
+static float kASCWindowMinTitleWidth = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
-@property (nonatomic) NSArray *standardButtons;
+@property (nonatomic) NSArray *standardButtonsFullscreen;
 
-@property (nonatomic, weak) NSButton *closeButton;
-@property (nonatomic, weak) NSButton *miniaturizeButton;
-@property (nonatomic, weak) NSButton *fullscreenButton;
-@property (weak) IBOutlet NSTextField *titleLabel;
+@property (nonatomic, weak) NSButton *closeButtonFullscreen;
+@property (nonatomic, weak) NSButton *miniaturizeButtonFullscreen;
+@property (nonatomic, weak) NSButton *fullscreenButtonFullscreen;
+@property (nonatomic) NSImageView * miniaturizeButtonImageViewFullscreen;
+
 @property (weak) IBOutlet NSView *titleContainerView;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
@@ -79,8 +81,8 @@ static float kASCWindowMinTitleWidth = 320;
 
 - (void)initialize {
     NSArray * windows = [[NSApplication sharedApplication] windows];
-    NSString * productName = [ASCHelper appName];
 #ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    NSString * productName = [ASCHelper appName];
     productName = [productName uppercaseString];
 #endif
     NSWindow * mainWindow = nil;
@@ -91,13 +93,23 @@ static float kASCWindowMinTitleWidth = 320;
             break;
         }
     }
-    
-    self.closeButton = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSTitledWindowMask];
-    [self.view addSubview:self.closeButton];
-    self.miniaturizeButton = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSTitledWindowMask];
-    [self.view addSubview:self.miniaturizeButton];
-    self.fullscreenButton = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSTitledWindowMask];
-    [self.view addSubview:self.fullscreenButton];
+
+    // Standart window buttons in Fullscreen
+
+    self.closeButtonFullscreen = [NSWindow standardWindowButton:NSWindowCloseButton forStyleMask:NSWindowStyleMaskTitled];
+    self.fullscreenButtonFullscreen = [NSWindow standardWindowButton:NSWindowZoomButton forStyleMask:NSWindowStyleMaskTitled];
+    NSButton * miniaturizeButtonFullscreen = [NSWindow standardWindowButton:NSWindowMiniaturizeButton forStyleMask:NSWindowStyleMaskFullScreen];
+
+    NSImage * miniaturizeButtonImage = [miniaturizeButtonFullscreen imageRepresentation];
+    self.miniaturizeButtonImageViewFullscreen = [[NSImageView alloc] initWithFrame:CGRectMake(0, 0, miniaturizeButtonImage.size.width, miniaturizeButtonImage.size.height)];
+    self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
+
+    self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *standardButtonView, NSUInteger idx, BOOL *stop) {
+        [self.view addSubview:standardButtonView];
+    }];
+
+    // Standart window buttons
 
     if (mainWindow) {
         self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
@@ -108,16 +120,16 @@ static float kASCWindowMinTitleWidth = 320;
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
         [self.view addSubview:standardButton];
     }];
-    
-    self.standardButtons = @[self.closeButton, self.miniaturizeButton, self.fullscreenButton];
-    
+
+    // Other window controls
+
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
-    
-    [self.titleLabel setStringValue:productName];
-    
-    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButton.frame) - 2.0; // OSX 10.11 magic
-    
+
+    kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButtonFullscreen.frame) - 2.0; // OSX 10.11 magic
+
+    // Subscribe to events
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(windowDidResize:)
                                                  name:NSWindowDidResizeNotification
@@ -155,8 +167,18 @@ static float kASCWindowMinTitleWidth = 320;
     [self.portalButton setState:NSOnState];
     
     [self.tabsControl removeAllConstraints];
-    [self.titleLabel removeAllConstraints];
-    
+
+    ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
+
+    if (portalButtonCell) {
+        portalButtonCell.bgColor            = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.bgHoverColor       = kColorRGBA(255, 255, 255, 1.0);
+        portalButtonCell.bgActiveColor      = kColorRGBA(255, 255, 255, 1.0);
+        portalButtonCell.textColor          = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.textActiveColor    = kColorRGBA(255, 255, 255, 0.0);
+        portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
+    }
+
     [self doLayout];
 }
 
@@ -183,29 +205,27 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (void)doLayout {
-    void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *buttons, BOOL hidden) {
-        [buttons enumerateObjectsUsingBlock:^(NSButton *button, NSUInteger idx, BOOL *stop) {
-            NSRect frame = button.frame;
+    void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
+        [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
+            NSRect frame = view.frame;
             frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
-            frame.origin.y = (int)((NSHeight(button.superview.frame) - NSHeight(button.frame)) / 2.0);
+            frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
-            [button setFrame:frame];
-            [button setHidden:hidden];
-            [button setNeedsDisplay:YES];
+            [view setFrame:frame];
+            [view setHidden:hidden];
+            [view setNeedsDisplay:YES];
         }];
     };
-    
+
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
-    layoutStandartButtons(self.standardButtons, ![self isFullScreen]);
-    [self.miniaturizeButton setEnabled:![self isFullScreen]];
-    
+    layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
+
     // Layout title and tabs
     CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
     CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
     
     self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
-    self.titleLabel.frame   = CGRectMake(CGRectGetWidth(self.tabsControl.frame), self.titleLabel.frame.origin.y, containerWidth - CGRectGetWidth(self.tabsControl.frame), self.titleLabel.frame.size.height);
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
@@ -340,6 +360,19 @@ static float kASCWindowMinTitleWidth = 320;
     [self.popover displayPopoverInWindow:[sender window] atPoint:where chooseBestLocation:YES];
 }
 
+- (IBAction)onTestButton:(NSButton *)sender {
+    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:@"Document-Sign" bundle:[NSBundle mainBundle]];
+
+    if (storyboard) {
+        NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];
+        NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+
+        [mainWindow beginSheet:[windowController window] completionHandler:^(NSModalResponse returnCode) {
+            //
+        }];
+    }
+}
+
 #pragma mark -
 #pragma mark - ASCTabsControl Delegate
 
@@ -348,17 +381,14 @@ static float kASCWindowMinTitleWidth = 320;
 }
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
-    NSString * productName = [ASCHelper appName];
 #ifdef _PRODUCT_ONLYOFFICE_RU_FREE
+    NSString * productName = [ASCHelper appName];
     productName = [productName uppercaseString];
 #endif
     
     if (tab) {
-        NSButton * btn = (NSButton *)tab;
-        [self.titleLabel setStringValue:[NSString stringWithFormat:@"%@  ▸  %@", productName, btn.title]];
         [self.portalButton setState:NSOffState];
     } else {
-        [self.titleLabel setStringValue:productName];
         [self.portalButton setState:NSOnState];
     }
 }

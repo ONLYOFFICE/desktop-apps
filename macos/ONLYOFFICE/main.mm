@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -40,9 +40,10 @@
 
 #import <Cocoa/Cocoa.h>
 #include "mac_application.h"
-#import "NSString+OnlyOffice.h"
+#import "NSString+Extensions.h"
 #import "ASCHelper.h"
 #include "ASCApplicationManager.h"
+#import "ASCDocSignController.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -94,7 +95,10 @@ int main(int argc, const char * argv[]) {
     
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
-    
+
+    // setup doc sign
+    [ASCDocSignController shared];
+
     [worker Start:argc :argv];
     int result = NSApplicationMain(argc, argv);
     [worker End];
