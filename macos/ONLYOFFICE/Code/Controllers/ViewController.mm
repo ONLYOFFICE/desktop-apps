@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -48,20 +48,22 @@
 #import "ASCHelper.h"
 #import "ASCConstants.h"
 #import "ASCUserInfoViewController.h"
-#import "NSView+ASCView.h"
+#import "NSView+Extensions.h"
 #import "NSAlert+SynchronousSheet.h"
-#import "NSString+OnlyOffice.h"
+#import "NSColor+Extensions.h"
+#import "NSString+Extensions.h"
 #import "AppDelegate.h"
 #import "NSCefView.h"
 #import "ASCEventsController.h"
-#import "NSString+OnlyOffice.h"
 #import "ASCDownloadController.h"
 #import "ASCSavePanelWithFormatController.h"
 #import "ASCSharedSettings.h"
 #import "ASCReplacePresentationAnimator.h"
 #import "AnalyticsHelper.h"
+#import "PureLayout.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
+#define headerViewTag 7777
 
 @interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
@@ -74,6 +76,7 @@
 @property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
+@property (strong) IBOutlet NSView *headerView;
 @end
 
 @implementation ViewController
@@ -94,6 +97,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFChangedTabEditorName:)
                                                  name:CEFEventNameTabEditorNameChanged
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFChangedTabEditorType:)
+                                                 name:CEFEventNameTabEditorType
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -190,6 +198,28 @@
                                              selector:@selector(onCEFStartPageReady:)
                                                  name:CEFEventNameStartPageReady
                                                object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFSaveBeforeSign:)
+                                                 name:CEFEventNameSaveBeforSign
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorDocumentReady:)
+                                                 name:CEFEventNameEditorDocumentReady
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorAppReady:)
+                                                 name:CEFEventNameEditorAppReady
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorOpenFolder:)
+                                                 name:CEFEventNameEditorOpenFolder
+                                               object:nil];
+
+
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -232,7 +262,7 @@
         self.cefStartPageView = [[NSCefView alloc] initWithFrame:tab.view.frame];
         [self.cefStartPageView create:appManager withType:cvwtSimple];
         [tab.view addSubview:self.cefStartPageView];
-        [self.cefStartPageView setupFillConstraints];
+        [self.cefStartPageView autoPinEdgesToSuperviewEdges];
     }
 }
 
@@ -281,9 +311,12 @@
         }
         
         NSString *query = [NSString stringWithFormat:@"lang=%@", language.lowercaseString];
-        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] query:query title:NSLocalizedString(@"Acknowledgments", nil)];
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]
+                      query:query
+                      title:NSLocalizedString(@"Acknowledgments", nil)];
     } else {
-        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"] title:NSLocalizedString(@"Acknowledgments", nil)];
+        [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"acknowledgments" ofType:@"html" inDirectory:@"login"]
+                      title:NSLocalizedString(@"Acknowledgments", nil)];
     }
 }
 
@@ -516,6 +549,84 @@
     return checkedList;
 }
 
+- (void)showHeaderPlaceholderWithIdentifier:(NSString *)uuid forType:(ASCTabViewType)type {
+    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
+    NSColor * headerColor = nil;
+
+    switch (type) {
+        case ASCTabViewDocumentType:
+            headerColor = [NSColor brendDocumentEditor];
+            break;
+        case ASCTabViewSpreadsheetType:
+            headerColor = [NSColor brendSpreadsheetEditor];
+            break;
+        case ASCTabViewPresentationType:
+            headerColor = [NSColor brendPresentationEditor];
+            break;
+        default:
+            break;
+    }
+
+    if (headerColor && self.headerView && tabIndex != NSNotFound) {
+        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
+
+        if (tabItem) {
+            // Remove dummy
+            for (NSView * view in tabItem.view.subviews) {
+                if (view.uuidTag == headerViewTag) {
+                    [view removeFromSuperview];
+                    break;
+                }
+            }
+
+            NSView * headerView = [self.headerView duplicate];
+            [tabItem.view addSubview:headerView];
+
+            headerView.alphaValue = 1;
+            headerView.uuidTag = headerViewTag;
+            headerView.backgroundColor = headerColor;
+
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTop];
+            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+            [headerView autoSetDimension:ALDimensionHeight toSize:56.0];
+        }
+
+        ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
+
+        if (tab) {
+            tab.isProcessing = true;
+        }
+    }
+}
+
+- (void)hideHeaderPlaceholderWithIdentifier:(NSString *)uuid {
+    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
+    ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
+
+    if (tab) {
+        tab.isProcessing = false;
+    }
+
+    if (tabIndex != NSNotFound) {
+        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
+
+        if (tabItem) {
+            for (NSView * view in tabItem.view.subviews) {
+                if (view.uuidTag == headerViewTag) {
+                    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+                        context.duration = 0.3;
+                        view.animator.alphaValue = 0;
+                    } completionHandler:^{
+                        [view removeFromSuperview];
+                    }];
+                    break;
+                }
+            }
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark CEF events handlers
 
@@ -563,6 +674,29 @@
         
         if (tab) {
             [tab.params addEntriesFromDictionary:params];
+            [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFChangedTabEditorType:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params   = (NSDictionary *)notification.userInfo;
+        NSString * viewId       = params[@"viewId"];
+        NSInteger type          = [params[@"type"] integerValue];
+
+        switch (type) {
+            case 0:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
+                break;
+            case 1:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
+                break;
+            case 2:
+                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
+                break;
+            default:
+                break;
         }
     }
 }
@@ -832,7 +966,7 @@
             directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
         }
 
-        NSArray * allowedFileTypes = @[@"*"];
+        NSArray * allowedFileTypes = @[];
 
         if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
@@ -845,8 +979,11 @@
         openPanel.canChooseDirectories = NO;
         openPanel.allowsMultipleSelection = NO;
         openPanel.canChooseFiles = YES;
-        openPanel.allowedFileTypes = allowedFileTypes;
         openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+
+        if (allowedFileTypes.count > 0) {
+            openPanel.allowedFileTypes = allowedFileTypes;
+        }
 
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
@@ -1047,6 +1184,40 @@
     }
 }
 
+- (void)onCEFSaveBeforeSign:(NSNotification *)notification {
+    ASCTabView * tab = [self.tabsControl selectedTab];
+    NSCefView * cefView = NULL;
+
+    if (tab) {
+        cefView = [self cefViewWithTab:tab];
+    }
+
+    if (NULL == cefView) {
+        return;
+    }
+
+    NSAlert *alert = [NSAlert new];
+    [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+    [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
+    [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
+    [alert setAlertStyle:NSWarningAlertStyle];
+
+    NSInteger returnCode = [alert runModalSheet];
+
+    if (returnCode == NSAlertFirstButtonReturn) {
+        NSEditorApi::CAscEditorSaveQuestion * pEventData = new NSEditorApi::CAscEditorSaveQuestion();
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
+
+        if (pEvent && pEventData) {
+            pEventData->put_Value(true);
+            pEvent->m_pData = pEventData;
+
+            [cefView apply:pEvent];
+        }
+    }
+}
+
 - (void)onCEFStartPageReady:(NSNotification *)notification {
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"app:ready");
@@ -1055,6 +1226,101 @@
     pEvent->m_pData = pCommand;
     
     [self.cefStartPageView apply:pEvent];
+}
+
+- (void)onCEFEditorDocumentReady:(NSNotification *)notification {
+    //
+}
+
+- (void)onCEFEditorAppReady:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        if (NSString * viewId = json[@"viewId"]) {
+            [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFEditorOpenFolder:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSString * path = json[@"path"];
+
+        if (viewId && path) {
+            if ([path isEqualToString:@"offline"]) {
+                int cefViewId = [viewId intValue];
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                CCefViewEditor * cefView = (CCefViewEditor *)appManager->GetViewById(cefViewId);
+
+                if (cefView) {
+                    NSString * urlString = [NSString stringWithstdwstring:cefView->GetLocalFilePath()];
+
+                    if (urlString && urlString.length > 0) {
+                        // Offline file is exist
+                        if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
+                            if (NSURL * folder = [url URLByDeletingLastPathComponent]) {
+                                [[NSWorkspace sharedWorkspace] openURL:folder];
+                            }
+                        }
+                    } else {
+                        // Offline file is new
+
+                        NSAlert *alert = [NSAlert new];
+                        [alert addButtonWithTitle:@"OK"];
+                        [alert setMessageText:NSLocalizedString(@"Cannot open folder of the file location.", nil)];
+                        [alert setInformativeText:NSLocalizedString(@"To open the file location, it must be saved.", nil)];
+                        [alert setAlertStyle:NSWarningAlertStyle];
+
+                        [alert runModalSheet];
+                    }
+                }
+            } else if (NSURL * url = [NSURL URLWithString:path]) {
+                NSString * urlHost = [url host];
+                BOOL isFoundPortal = false;
+
+                // Search opened tab of a portal
+                for (ASCTabView * tab in self.tabsControl.tabs) {
+                    if (tab.type == ASCTabViewPortal) {
+                        if (NSString * portalUrlString = tab.params[@"url"]) {
+                            if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
+                                NSString * portalHost = [portalURL host];
+
+                                if ([portalHost isEqualToString:urlHost]) {
+                                    [self.tabsControl selectTab:tab];
+
+                                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                                        [cefView loadWithUrl:path];
+                                    }
+
+                                    isFoundPortal = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Force open tab of a portal if not exist
+                if (!isFoundPortal) {
+                    NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
+                    NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+                    NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+                    urlPage.queryItems            = @[countryCode, portalAddress];
+
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                        object:nil
+                                                                      userInfo:@{
+                                                                                 @"action"  : @(ASCTabActionOpenPortal),
+                                                                                 @"url"     : [urlPage string],
+                                                                                 @"active"  : @(YES)
+                                                                                 }];
+                }
+            }
+        }
+    }
 }
 
 
@@ -1172,7 +1438,7 @@
         item.label = tab.title;
         [self.tabView addTabViewItem:item];
         [item.view addSubview:cefView];
-        [cefView setupFillConstraints];
+        [cefView autoPinEdgesToSuperviewEdges];
     }
 }
 

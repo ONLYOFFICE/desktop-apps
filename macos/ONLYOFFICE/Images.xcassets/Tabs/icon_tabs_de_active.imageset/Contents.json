@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_de_active.png",
+      "filename" : "doc_desktop.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_tabs_de_active@2x.png",
+      "filename" : "doc_desktop_2x.png",
       "scale" : "2x"
     },
     {
