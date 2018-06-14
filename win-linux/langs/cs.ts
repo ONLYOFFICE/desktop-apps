@@ -304,7 +304,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="703"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 není dostupný. Možná byl přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
+        <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="794"/>
