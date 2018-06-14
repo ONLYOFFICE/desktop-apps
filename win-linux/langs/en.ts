@@ -304,7 +304,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="703"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 is not available. It might be moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
+        <translation>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="794"/>
