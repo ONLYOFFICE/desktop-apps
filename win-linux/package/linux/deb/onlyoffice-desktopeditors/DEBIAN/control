@@ -7,7 +7,7 @@ Maintainer: Ascensio System SIA <support@onlyoffice.com>
 #Build-Depends: debhelper (>= 8.0.0)
 Pre-Depends: dpkg (>= 1.14.0)
 #FullDepends: x11-common, fonts-dejavu | ttf-dejavu, fonts-opensymbol 
-Depends: x11-common, libxss1, libgtkglext1 (>=1.0), libcairo2, libgconf-2-4, libstdc++6 (>=4.8), fonts-dejavu | ttf-dejavu, fonts-opensymbol, fonts-liberation, fonts-crosextra-carlito
+Depends: x11-common, libasound2, libcurl3 | libcurl4, libcurl3-gnutls, libxss1, libgtkglext1 (>=1.0), libcairo2, libgconf-2-4, libstdc++6 (>=4.8), fonts-dejavu | ttf-dejavu, fonts-opensymbol, fonts-liberation, fonts-crosextra-carlito, xdg-utils
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
 #Standards-Version: 3.9.4
 Priority: optional
