@@ -50,7 +50,8 @@ HEADERS += \
     $$PWD/src/canimatedicon.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
-    $$PWD/src/cmainwindowbase.h
+    $$PWD/src/cmainwindowbase.h \
+    $$PWD/src/ctabpanel.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -78,7 +79,8 @@ SOURCES += \
     $$PWD/src/canimatedicon.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
-    $$PWD/src/cmainwindowbase.cpp
+    $$PWD/src/cmainwindowbase.cpp \
+    $$PWD/src/ctabpanel.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 

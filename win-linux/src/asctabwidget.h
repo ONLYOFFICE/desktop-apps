@@ -40,6 +40,7 @@
 
 #include "qcefview.h"
 #include "cscalingwrapper.h"
+#include "ctabpanel.h"
 
 #include <QDebug>
 
@@ -72,7 +73,6 @@ struct COpenOptions {
     std::wstring wurl;
 };
 
-class CTabPanel;
 class CAscTabWidget : public QTabWidget, public CScalingWrapper
 {
     Q_OBJECT

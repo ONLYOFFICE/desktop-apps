@@ -70,31 +70,6 @@ public:
 };
 
 
-class CTabPanel : public QCefView
-{
-public:
-    explicit CTabPanel(QWidget * parent)
-        : QCefView(parent)
-        , _data(nullptr)
-    {}
-
-    ~CTabPanel() {
-        RELEASEOBJECT( _data );
-    }
-
-    void setData(CAscTabData * data)
-    {
-        _data = data;
-    }
-
-    CAscTabData * const data()
-    {
-        return _data;
-    }
-private:
-    CAscTabData * _data;
-};
-
 /*
  *
  * COpenOptions structure definition
@@ -205,37 +180,34 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     }
 
     CTabPanel * pView = new CTabPanel(this);
-    pView->SetBackgroundCefColor(244, 244, 244);
+    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
-    pView->Create(&AscAppManager::getInstance(), cvwtEditor);
+    pView->initAsEditor();
 
     int tab_index = -1;
     bool res_open = true;
-    CCefView * cview = pView->GetCefView();    
     if (opts.type == etLocalFile) {
-        ((CCefViewEditor*)cview)->OpenLocalFile(opts.wurl, file_format);
+        pView->openLocalFile(opts.wurl, file_format);
 //        opts.type = etUndefined;
     } else
     if (opts.type == etRecoveryFile) {
-        res_open = ((CCefViewEditor*)cview)->OpenRecoverFile(opts.id);
+        res_open = pView->openRecoverFile(opts.id);
 //        opts.type = etUndefined;
     } else
     if (opts.type == etRecentFile) {
-        res_open = ((CCefViewEditor*)cview)->OpenRecentFile(opts.id);
+        res_open = pView->openRecentFile(opts.id);
 //        opts.type = etUndefined;
     } else
     if (opts.type == etNewFile) {
-        ((CCefViewEditor*)cview)->CreateLocalFile(opts.format, opts.name.toStdWString());
+        pView->createLocalFile(opts.format, opts.name.toStdWString());
 //        opts.type = AscEditorType(opts.format);
     } else {
-        cview->load(opts.wurl);
+        pView->cef()->load(opts.wurl);
     }
 
     if (res_open) {
-        int id_view = cview->GetId();
-
         CAscTabData * data = new CAscTabData(opts.name);
-        data->setViewId(id_view);
+        data->setViewId(pView->cef()->GetId());
         data->setUrl(opts.wurl);
         data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
@@ -312,16 +284,15 @@ int CAscTabWidget::addPortal(QString url, QString name)
     }
 
     CTabPanel * pView = new CTabPanel(this);
-    pView->SetBackgroundCefColor(244, 244, 244);
+    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
-    pView->Create(&AscAppManager::getInstance(), cvwtSimple);
-    pView->GetCefView()->load((url + args).toStdWString());
-    int id_view = pView->GetCefView()->GetId();
+    pView->initAsSimple();
+    pView->cef()->load((url + args).toStdWString());
 
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
     CAscTabData * data = new CAscTabData(portal, etPortal);
-    data->setViewId(id_view);
+    data->setViewId(pView->cef()->GetId());
     data->setUrl(url);
     pView->setData(data);
 
@@ -351,16 +322,15 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
         _prefix = "sso:";
 
     CTabPanel * pView = new CTabPanel(this);
-    pView->SetBackgroundCefColor(244, 244, 244);
+    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
-    pView->Create(&AscAppManager::getInstance(), cvwtSimple);
-    pView->GetCefView()->load((_prefix + service).toStdWString());
-    int id_view = pView->GetCefView()->GetId();
+    pView->initAsSimple();
+    pView->cef()->load((_prefix + service).toStdWString());
 
     QString _portal = portal.isEmpty() ? Utils::getPortalName(service) : Utils::getPortalName(portal);
 
     CAscTabData * data = new CAscTabData(_portal, etPortal);
-    data->setViewId(id_view);
+    data->setViewId(pView->cef()->GetId());
     data->setUrl(portal);
     pView->setData(data);
 
@@ -419,12 +389,14 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
         int w = e->size().width(),
             h = e->size().height() - tabBar()->height();
 
-        CCefView * view;
+        CTabPanel * view = nullptr;
         for (int i(count()); i > 0;) {
             if (--i != currentIndex()) {
-                view = ((QCefView *)widget(i))->GetCefView();
-
-                if (view) view->resizeEvent(w, h);
+                view = ((CTabPanel *)widget(i));
+                if (view) {
+//                    view->cef()->resizeEvent(w, h);
+                    view->resize(w,h);
+                }
             }
         }
     }
@@ -504,7 +476,7 @@ void CAscTabWidget::updateIcons()
 void CAscTabWidget::updateTabIcon(int index)
 {
     if ( !(index < 0) ) {
-        CCefViewEditor * pEditor = (CCefViewEditor *)((QCefView*)(widget(index)))->GetCefView();
+        CCefViewEditor * pEditor = (CCefViewEditor *)((CTabPanel *)widget(index))->cef();
 
         if (pEditor) {
             bool is_active = isActive() && index == currentIndex();
@@ -713,7 +685,7 @@ bool CAscTabWidget::updatePortal(int index,const QString& url)
         CTabPanel * _panel = dynamic_cast<CTabPanel *>(widget(index));
 
         if ( _panel->data()->contentType() == etPortal ) {
-            _panel->GetCefView()->load(url.toStdWString());
+            _panel->cef()->load(url.toStdWString());
 
             return true;
         }
@@ -864,7 +836,7 @@ void CAscTabWidget::setFocusedView(int index)
 {
     int nIndex = !(index < 0) ? index : currentIndex();
     if (!(nIndex < 0 ))
-        ((QCefView *)this->widget(nIndex))->GetCefView()->focus();
+        ((CTabPanel *)this->widget(nIndex))->cef()->focus();
 }
 
 void CAscTabWidget::activate(bool a)
@@ -910,7 +882,7 @@ int CAscTabWidget::modifiedCount()
 int CAscTabWidget::viewByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        CCefView * view = ((QCefView*)widget(index))->GetCefView();
+        CCefView * view = ((CTabPanel *)widget(index))->cef();
         return view ? view->GetId() : -1;
     }
 
@@ -1042,9 +1014,9 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             if (grandpa) fsWidget->setParent(grandpa);
 #endif
             fsWidget->showFullScreen();
-            ((QCefView *)fsWidget)->GetCefView()->focus();
+            ((CTabPanel *)fsWidget)->cef()->focus();
 
-            cefConnection = connect((QCefView *)fsWidget, &QCefView::closeWidget, [=](QCloseEvent * e){
+            cefConnection = connect(((CTabPanel *)fsWidget)->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
                 e->ignore();
 
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
@@ -1052,7 +1024,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 
                 NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
                 pEvent->m_pData = pCommand;
-                ((QCefView *)fsWidget)->GetCefView()->Apply(pEvent);
+                ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
 
                 emit closeAppRequest();
             });
