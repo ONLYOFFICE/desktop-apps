@@ -997,11 +997,6 @@ int CAscTabWidget::findModified(const QString& portalname)
 
     return -1;
 }
-        }
-    }
-
-    return -1;
-}
 
 void CAscTabWidget::setFullScreen(bool apply, int id)
 {
