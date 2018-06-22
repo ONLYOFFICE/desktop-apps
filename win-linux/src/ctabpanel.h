@@ -30,6 +30,8 @@ public:
     bool openRecoverFile(int id);
     bool openRecentFile(int id);
 
+    void applyLoader(const QString& cmd, const QString& args = QString());
+
     void resize(int w, int h);
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);

@@ -790,12 +790,16 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         } else
         if ( type == DOCUMENT_CHANGED_LOADING_FINISH ) {
             ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+            panel(tabIndex)->applyLoader("hide");
+
             return;
         } else
         if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
             CAscTabData * doc = panel(tabIndex)->data();
-            if ( !doc->eventLoadSupported() )
+            if ( !doc->eventLoadSupported() ) {
                 ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
+                panel(tabIndex)->applyLoader("hide");
+            }
 
             return;
         }
@@ -814,6 +818,13 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 
     if ( !(tabIndex < 0) ) {
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
+
+        switch (type) {
+        case etDocument: panel(tabIndex)->applyLoader("loader:style", "word"); break;
+        case etSpreadsheet: panel(tabIndex)->applyLoader("loader:style", "cell"); break;
+        case etPresentation: panel(tabIndex)->applyLoader("loader:style", "slide"); break;
+        default: break;
+        }
     }
 
     updateTabIcon(tabIndexByView(id));

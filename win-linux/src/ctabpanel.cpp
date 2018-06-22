@@ -1,8 +1,11 @@
 
 #include "ctabpanel.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "defines.h"
 
 #include <QDebug>
+
+using namespace NSEditorApi;
 
 CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
@@ -60,6 +63,21 @@ void CTabPanel::setData(CAscTabData * d)
 
 void CTabPanel::initAsEditor()
 {
+#ifdef USE_PARTICULAR_LOADER
+    GET_REGISTRY_USER(_reg_user);
+
+# if defined(QT_DEBUG)
+    QString _loader_path = _reg_user.value("loaderpage").value<QString>();
+# endif
+
+    m_pLoader = new QCefView(this);
+    m_pLoader->setGeometry(0,0, width(), height());
+    m_pLoader->Create(&AscAppManager::getInstance(), cvwtSimple);
+    m_pLoader->GetCefView()->load(_loader_path.toStdWString());
+
+    m_pViewer->hide();
+#endif
+
     m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);
 }
 
@@ -121,4 +139,14 @@ void CTabPanel::resize(int w, int h)
     m_lastSize = QSize(w, h);
 }
 
+void CTabPanel::applyLoader(const QString& cmd, const QString& args)
+{
+    if ( m_pLoader ) {
+        if ( cmd == "hide" ) {
+            m_pViewer->show();
+            m_pLoader->hide();
+        } else {
+            AscAppManager::sendCommandTo(m_pLoader, cmd, args);
+        }
+    }
 }
