@@ -164,6 +164,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 #endif
 }
 
+CTabPanel * CAscTabWidget::panel(int index)
+{
+    return static_cast<CTabPanel *>(widget(index));
+}
+
 int CAscTabWidget::addEditor(COpenOptions& opts)
 {
     if ( opts.url.isEmpty() && opts.type != etNewFile )
@@ -392,7 +397,7 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
         CTabPanel * view = nullptr;
         for (int i(count()); i > 0;) {
             if (--i != currentIndex()) {
-                view = ((CTabPanel *)widget(i));
+                view = panel(i);
                 if (view) {
 //                    view->cef()->resizeEvent(w, h);
                     view->resize(w,h);
@@ -476,7 +481,7 @@ void CAscTabWidget::updateIcons()
 void CAscTabWidget::updateTabIcon(int index)
 {
     if ( !(index < 0) ) {
-        CCefViewEditor * pEditor = (CCefViewEditor *)((CTabPanel *)widget(index))->cef();
+        CCefViewEditor * pEditor = (CCefViewEditor *)panel(index)->cef();
 
         if (pEditor) {
             bool is_active = isActive() && index == currentIndex();
@@ -546,14 +551,14 @@ void CAscTabWidget::setTabIcons(CTabIconSet& icons)
 
 void CAscTabWidget::editorCloseRequest(int index)
 {
-    ((CTabPanel *)widget(index))->data()->close();
+    panel(index)->data()->close();
 }
 
 int CAscTabWidget::tabIndexByView(int viewId)
 {
     CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc && doc->viewId() == viewId)
             return i;
@@ -566,7 +571,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 {
     CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc && doc->viewType() == vt && doc->title() == t)
             return i;
@@ -579,7 +584,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 {
     CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc && doc->contentType() == et && doc->title() == t)
             return i;
@@ -592,7 +597,7 @@ int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
 {
     CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc && doc->contentType() == et)
             return i;
@@ -610,7 +615,7 @@ int CAscTabWidget::tabIndexByUrl(QString url)
         CAscTabData * doc;
         wstring _ws_url(url.toStdWString());
         for (int i(count()); !(--i < 0);) {
-            doc = ((CTabPanel *)widget(i))->data();
+            doc = panel(i)->data();
 
             if (doc && doc->url() == _ws_url)
                 return i;
@@ -682,7 +687,7 @@ int CAscTabWidget::openPortal(const QString& url)
 bool CAscTabWidget::updatePortal(int index,const QString& url)
 {
     if ( !(index < 0) ) {
-        CTabPanel * _panel = dynamic_cast<CTabPanel *>(widget(index));
+        CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->contentType() == etPortal ) {
             _panel->cef()->load(url.toStdWString());
@@ -699,7 +704,7 @@ int CAscTabWidget::newPortal(const QString& url, const QString& name)
     int tabIndex = tabIndexByEditorType(etNewPortal);
     if ( tabIndex < 0 ) {
         if ( !((tabIndex = addPortal(url, name)) < 0) ) {
-            ((CTabPanel *)widget(tabIndex))->data()->setContentType(etNewPortal);
+            panel(tabIndex)->data()->setContentType(etNewPortal);
         }
     }
 
@@ -714,7 +719,7 @@ void CAscTabWidget::closePortal(const QString& url, bool editors)
         wstring wname = url.toStdWString();
         CAscTabData * doc;
         for (int i = tabBar()->count(); i-- > 0; ) {
-            doc = ((CTabPanel *)widget(i))->data();
+            doc = panel(i)->data();
 
             if (doc->viewType() == cvwtEditor &&
                     doc->url().find(wname) != wstring::npos)
@@ -730,7 +735,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     int tabIndex = tabIndexByView(viewId);
 
     if (!(tabIndex < 0)) {
-        CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+        CAscTabData * doc = panel(tabIndex)->data();
         doc->setTitle(name);
         if ( doc->local() && !path.isEmpty() ) {
             QString _path(path);
@@ -746,7 +751,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
 {
     int tabIndex = tabIndexByView(viewId);
     if (!(tabIndex < 0)) {
-        CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+        CAscTabData * doc = panel(tabIndex)->data();
 
         /* TODO: if exists the saving error, sdk rise the changing event
          * again. maybe not good action.
@@ -766,7 +771,7 @@ void CAscTabWidget::applyDocumentSave(int id, bool cancel)
 {
     int tabIndex = tabIndexByView(id);
     if (!(tabIndex < 0)) {
-        CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+        CAscTabData * doc = panel(tabIndex)->data();
         if (doc->closed()) {
             cancel ? doc->reuse() : closeEditor(tabIndex, false, true);
         }
@@ -779,16 +784,16 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 
 #ifdef __APP_NEW_APPEARANCE
     if ( !(tabIndex < 0) )
-        if ( type == DOCUMENT_CHANGED_LOADING_START) {
+        if ( type == DOCUMENT_CHANGED_LOADING_START ) {
 //            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
             return;
         } else
-        if ( type == DOCUMENT_CHANGED_LOADING_FINISH) {
+        if ( type == DOCUMENT_CHANGED_LOADING_FINISH ) {
             ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
             return;
         } else
         if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
-            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            CAscTabData * doc = panel(tabIndex)->data();
             if ( !doc->eventLoadSupported() )
                 ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
 
@@ -808,8 +813,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     }
 
     if ( !(tabIndex < 0) ) {
-        ((CTabPanel *)widget(tabIndex))->data()
-                ->setContentType(AscEditorType(type));
+        panel(tabIndex)->data()->setContentType(AscEditorType(type));
     }
 
     updateTabIcon(tabIndexByView(id));
@@ -822,7 +826,7 @@ void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
 #ifdef __APP_NEW_APPEARANCE
     if ( !(tabIndex < 0) )
         if ( option == "loading" ) {
-            CAscTabData * doc = ((CTabPanel *)widget(tabIndex))->data();
+            CAscTabData * doc = panel(tabIndex)->data();
             doc->setEventLoadSupported(true);
         }
 #endif
@@ -836,7 +840,7 @@ void CAscTabWidget::setFocusedView(int index)
 {
     int nIndex = !(index < 0) ? index : currentIndex();
     if (!(nIndex < 0 ))
-        ((CTabPanel *)this->widget(nIndex))->cef()->focus();
+        panel(nIndex)->cef()->focus();
 }
 
 void CAscTabWidget::activate(bool a)
@@ -872,7 +876,7 @@ int CAscTabWidget::modifiedCount()
     CAscTabData * doc;
 
     for (int i = tabBar()->count(); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
         doc->changed() && mod_count++;
     }
 
@@ -882,7 +886,7 @@ int CAscTabWidget::modifiedCount()
 int CAscTabWidget::viewByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        CCefView * view = ((CTabPanel *)widget(index))->cef();
+        CCefView * view = panel(index)->cef();
         return view ? view->GetId() : -1;
     }
 
@@ -892,7 +896,7 @@ int CAscTabWidget::viewByIndex(int index)
 QString CAscTabWidget::titleByIndex(int index, bool mod)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = ((CTabPanel *)widget(index))->data();
+        CAscTabData * doc = panel(index)->data();
         if (doc)
             return doc->title(mod);
     }
@@ -904,7 +908,7 @@ QString CAscTabWidget::urlByView(int id)
 {
     CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc && doc->viewId() == id)
             return QString::fromStdWString(doc->url());
@@ -916,7 +920,7 @@ QString CAscTabWidget::urlByView(int id)
 bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = ((CTabPanel *)widget(index))->data();
+        CAscTabData * doc = panel(index)->data();
         return doc->changed() && !doc->closed();
     }
 
@@ -925,7 +929,7 @@ bool CAscTabWidget::modifiedByIndex(int index)
 
 bool CAscTabWidget::closedByIndex(int index) {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = ((CTabPanel *)widget(index))->data();
+        CAscTabData * doc = panel(index)->data();
         return doc->closed();
     }
 
@@ -938,7 +942,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
     wstring portal = portalname.toStdWString();
     CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; i++) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if (doc->isViewType(cvwtEditor) &&
                 doc->changed() && !doc->closed() &&
@@ -956,7 +960,7 @@ int CAscTabWidget::findModified(const QString& portalname)
     wstring portal = portalname.toStdWString();
     CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; ) {
-        doc = ((CTabPanel *)widget(i))->data();
+        doc = panel(i)->data();
 
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
