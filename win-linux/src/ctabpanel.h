@@ -34,11 +34,16 @@ public:
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
+protected:
+    void timerEvent(QTimerEvent *event);
+
 private:
     QCefView *      m_pViewer;
     QCefView *      m_pLoader = nullptr;
     CAscTabData *   m_pData = nullptr;
 
+    QSize m_startSize, m_lastSize;
+    int m_idTimerResize = 0;
 signals:
 public slots:
 };

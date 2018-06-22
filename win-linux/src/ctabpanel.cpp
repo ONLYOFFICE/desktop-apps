@@ -96,10 +96,29 @@ void CTabPanel::resizeEvent(QResizeEvent *event)
 
 void CTabPanel::showEvent(QShowEvent *)
 {
-    cef()->resizeEvent();
+//    cef()->resizeEvent();
+}
+
+void CTabPanel::timerEvent(QTimerEvent *)
+{
+     if ( m_startSize == m_lastSize ) {
+        cef()->resizeEvent(m_lastSize.width(), m_lastSize.height());
+
+        QObject::killTimer(m_idTimerResize);
+        m_idTimerResize = 0;
+    } else {
+        m_startSize = m_lastSize;
+    }
 }
 
 void CTabPanel::resize(int w, int h)
 {
-    cef()->resizeEvent(w, h);
+    if ( m_idTimerResize == 0 ) {
+        m_startSize = QSize(w, h);
+        m_idTimerResize = QObject::startTimer(200);
+    }
+
+    m_lastSize = QSize(w, h);
+}
+
 }
