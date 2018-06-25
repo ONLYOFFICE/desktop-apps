@@ -614,21 +614,29 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
 #endif
 
     CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-    QString _filter = QString::fromStdWString(pData->get_Filter()),
-            _file_path;
+    QString _filter = QString::fromStdWString(pData->get_Filter());
+    QStringList _list;
     if ( _filter == "plugin" ) {
-        _file_path = dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN));
+        _list = pData->get_IsMultiselect() ? dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN)) :
+                            dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
     } else
     if ( _filter == "image" || _filter == "images" ) {
-        _file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
+            _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
+                            dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
+
     }
 
-    if (!_file_path.isEmpty()) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_file_path).absolutePath());
+    if ( !_list.isEmpty() ) {
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_list.at(0)).absolutePath());
     }
 
     /* data consits id of cefview */
-    pData->put_Path(_file_path.toStdWString());
+
+    pData->put_IsMultiselect(true);
+    vector<wstring>& _files = pData->get_Files();
+    for ( const auto& f : _list ) {
+        _files.push_back( f.toStdWString() );
+    }
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(eventtype);
     pEvent->m_pData = pData;
@@ -650,7 +658,7 @@ void CMainPanel::onLocalFileOpen(const QString& inpath)
     QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
                         inpath : Utils::lastPath(LOCAL_PATH_OPEN);
 
-    if (!(_path = dlg.modalOpen(_path)).isEmpty()) {
+    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
         Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
 
         COpenOptions opts = {"", etLocalFile, _path};
