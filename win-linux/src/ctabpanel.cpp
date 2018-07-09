@@ -116,6 +116,7 @@ void CTabPanel::resizeEvent(QResizeEvent *event)
 void CTabPanel::showEvent(QShowEvent *)
 {
 //    cef()->resizeEvent();
+}
 
 void CTabPanel::paintEvent(QPaintEvent *)
 {
