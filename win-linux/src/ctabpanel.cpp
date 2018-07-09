@@ -3,6 +3,7 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 
+#include <QPainter>
 #include <QDebug>
 
 using namespace NSEditorApi;
@@ -115,6 +116,13 @@ void CTabPanel::resizeEvent(QResizeEvent *event)
 void CTabPanel::showEvent(QShowEvent *)
 {
 //    cef()->resizeEvent();
+
+void CTabPanel::paintEvent(QPaintEvent *)
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
 void CTabPanel::timerEvent(QTimerEvent *)

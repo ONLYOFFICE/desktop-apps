@@ -38,6 +38,7 @@ public:
 
 protected:
     void timerEvent(QTimerEvent *event);
+    void paintEvent(QPaintEvent *event);
 
 private:
     QCefView *      m_pViewer;
