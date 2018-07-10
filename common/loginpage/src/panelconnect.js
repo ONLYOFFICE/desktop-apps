@@ -95,50 +95,6 @@
 
             this.$panelNoPortals = this.$panel.find('#box-empty-portals');
             this.$panelPortalList = this.$panel.find('#box-portals');
-
-            if ( !localStorage['commercial'] ) {
-                var onadsclick = (e) => {
-                    let $el = $(e.target);
-                    let action = $el.attr('action');
-
-                    let $title = this.$panel.find('h3.empty-title'),
-                        $descr = this.$panel.find('h4.text-description'),
-                        $img = this.$panel.find('img.img-connect');
-
-                    if (/^custom/.test(action)) {
-                        $('.action-panel').hide();
-                        this.$panel.show();
-                        $('.tool-menu > .menu-item').removeClass('selected');
-
-                        if (/verhistory$/.test(action)) {
-                            $title.html(utils.Lang.adsTitle1);
-                            $descr.html(utils.Lang.adsDescr1);
-                            $img.removeClass('docreview').addClass('verhistory');
-                            this.$adsItemHistory.addClass('selected');
-                        } else {
-                            $title.html(utils.Lang.adsTitle2);
-                            $descr.html(utils.Lang.adsDescr2);
-                            $img.removeClass('verhistory').addClass('docreview');
-                            this.$adsItemReview.addClass('selected');
-                        }
-                    } else
-                    if (/^connect/.test(action)) {
-                        $title.html(utils.Lang.portalEmptyTitle)
-                        $descr.html(utils.Lang.portalEmptyDescr);
-                        $img.removeClass('verhistory').removeClass('docreview');
-                    }
-                };
-
-                let action = 'custom ads-verhistory';
-                this.$adsItemHistory = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem1}</a></li>`);
-                this.$adsItemHistory.on('click', onadsclick);
-
-                action = 'custom ads-docreview';
-                this.$adsItemReview = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem2}</a></li>`);
-                this.$adsItemReview.on('click', onadsclick);
-
-                $(this.menuContainer).find('[action=connect]').parent().on('click', onadsclick);
-            }
         },
         portaltemplate: function(info) {
             return `<tr id=${info.elid}><td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
@@ -229,9 +185,6 @@
             var portals = PortalsStore.portals();
 
             if (portals.length) {
-                !localStorage['commercial'] &&
-                    localStorage.setItem('commercial', 'showed');
-
                 let auth_arr = {};
                 for (let rec of portals) {
                     var pm = new PortalModel(rec);
@@ -244,11 +197,6 @@
 
                 this.view.$panelNoPortals.hide();
                 this.view.$panelPortalList.show();
-
-                if ( !!this.view.$adsItemReview ) {
-                    this.view.$adsItemReview.hide();
-                    this.view.$adsItemHistory.hide();
-                }
             } else {
                 this.view.$panelNoPortals.show();
                 this.view.$panelPortalList.hide();

@@ -91,12 +91,6 @@ l10n.en = {
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
-    ,adsToolItem1: 'Version history'
-    ,adsTitle1: 'View or restore previous versions of your document '
-    ,adsDescr1: 'Go back in time: view previous versions of your document, track the smallest changes and their authors. Restore an older version of your file if you need to.'
-    ,adsToolItem2: 'Collaborative review'
-    ,adsTitle2: 'Let your teammates review documents in the cloud'
-    ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
 }
@@ -160,12 +154,6 @@ l10n.cs = {
     licGetLicense: 'Získat licenci',
     licPanelTitle: 'Vložit produkt klíč',
     licPanelDescr: 'Produktový klíč byl odeslán na e-mailovou adresu zadanou při nákupu.'
-    ,adsToolItem1: 'Historie verzí'
-    ,adsTitle1: 'Zobrazení nebo obnovení předchozích verzí dokumentu '
-    ,adsDescr1: 'Vrátit se zpět v čase: zobrazit předchozí verze dokumentu, sledovat nejmenší změny a jejich autory. Pokud potřebujete, obnovte starší verzi souboru.'
-    ,adsToolItem2: 'Souhrnná recenze'
-    ,adsTitle2: 'Nechte své kolegy pracovat na dokumentech v cloudu'
-    ,adsDescr2: 'Zapomeňte na odesílání souborů, které chcete zkontrolovat e-mailem. Umožňuje rychlý přístup k dokumentu bez opuštění editoru plochy. Nechte ostatní navrhnout opravy. Přijmout nebo odmítnout změny.'
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
 }
@@ -229,12 +217,6 @@ l10n.sk = {
     licGetLicense: 'Získať licenciu',
     licPanelTitle: 'Zadať licenčný kľúč',
     licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.'
-    ,adsToolItem1: 'História verzií'
-    ,adsTitle1: 'Zobrazte alebo obnovte predchádzajúce verzie dokumentu'
-    ,adsDescr1: 'Vráťte sa späť v čase: zobrazte predchádzajúce verzie dokumentu, sledujte najmenšie zmeny a ich autorov. Ak potrebujete, obnovte staršiu verziu súboru.'
-    ,adsToolItem2: 'Prehľad spolupráce'
-    ,adsTitle2: 'Nechajte svojich kolegov pracovať s dokumentami v cloude'
-    ,adsDescr2: 'Zabudnite na odosielanie súborov ktoré chcete dať skontrolovať e-mailom. Umožnite rýchly prístup k dokumentu bez toho, aby ste museli opustiť editor plochy. Nechajte ostatných navrhnúť opravy. Prijmite alebo odmietnite zmeny.'
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
 }
@@ -299,12 +281,6 @@ l10n.ru = {
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.'
-    ,adsToolItem1: 'История версий'
-    ,adsTitle1: 'Просматривайте или восстанавливайте предыдущие версии документа '
-    ,adsDescr1: 'Загляните в прошлое: просматривайте предыдущие версии документа, отслеживайте минимальные изменения, внесенные каждым из авторов. В случае необходимости восстанавливайте более раннюю версию файла.'
-    ,adsToolItem2: 'Рецензирование онлайн'
-    ,adsTitle2: 'Предоставьте коллегам возможность рецензировать документы в облаке'
-    ,adsDescr2: 'Забудьте об отправке файлов на рецензирование по электронной почте. Предоставляйте быстрый доступ к документу, не выходя из десктопного редактора. Разрешите остальным предлагать свои поправки. Принимайте или отклоняйте изменения.'
     ,checkUpdates: 'Проверить обновления'
     ,strVersion: 'версия'
 }
@@ -368,12 +344,6 @@ l10n.de = {
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,adsToolItem1: 'Versionshistorie'
-    ,adsTitle1: 'Anschau und Wiederherstellen von vorherigen Versionen '
-    ,adsDescr1: 'Gehen Sie ein wenig in der Zeit zurück: schauen Sie vorherige Version Ihres Dokumentes an,  verfolgen Sie kleinste Veränderungen. Wiederherstellen Sie bei Bedarf eine Vorgängerversion Ihrer Datei, wenn Sie das benötigen.'
-    ,adsToolItem2: 'Gemeinsamer Review'
-    ,adsTitle2: 'Lassen Sie Ihre Teamkollegen Dokumente in der Cloud überprüfen'
-    ,adsDescr2: 'Vergessen Sie nicht, Dateien per E-Mail zur Überprüfung zu versenden. Gewähren Sie einen schnellen Zugriff auf das Dokument, ohne Ihr Desktop Editor zu verlassen. Regen Sie die anderen dazu an, Korrekturvorschläge anzubieten. Nehmen Sie Änderungen entweder an oder lehnen Sie diese ab.'
     ,checkUpdates: 'Prüfen Sie Updates'
     ,strVersion: 'version'
 };
@@ -438,12 +408,6 @@ l10n.it_IT = {
     licGetLicense: 'Get license now',
     licPanelTitle: 'Inserisci product key',
     licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
-    ,adsToolItem1: 'Cronologia delle versioni'
-    ,adsTitle1: 'Visualizza o ripristina versioni precedenti del documento'
-    ,adsDescr1: 'Torna indietro nel tempo: visualizza le versioni precedenti del documento, tiene traccia delle modifiche più piccole e dei relativi autori. Ripristina una versione precedente del tuo file se necessario.'
-    ,adsToolItem2: 'Collaborative review'
-    ,adsTitle2: 'Lascia che i tuoi compagni di squadra rivedano i documenti nel cloud'
-    ,adsDescr2: 'Dimentica l\'invio di file da rivedere via email. Concedi un accesso rapido al documento senza lasciare l\'editor desktop. Lascia che altri suggeriscano correzioni. Accetta o rifiuta le modifiche.'
     ,checkUpdates: 'Controlla gli aggiornamenti'
     ,strVersion: 'versione'
 };
@@ -507,12 +471,6 @@ l10n.fr = {
     licGetLicense: 'Obtenir la licence maintenant',
     licPanelTitle: 'Entrer la clé de produit',
     licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.'
-    ,adsToolItem1: 'L\'historique des versions'
-    ,adsTitle1: 'Affichez ou restaurez les versions précédentes de votre document '
-    ,adsDescr1: 'Remontez dans le temps: affichez les versions précédentes de votre document, suivez les changements et leurs auteurs. Restaurez une ancienne version de votre fichier si vous le souhaitez.'
-    ,adsToolItem2: 'La révision collaborative'
-    ,adsTitle2: 'Permettez vos collègues d\'examiner des documents dans le nuage'
-    ,adsDescr2: 'Oubliez l’envoi de fichiers à examiner par e-mail. Accordez un accès rapide au document sans quitter votre éditeur de bureau. Permettez les autres de proposer les corrections. Acceptez ou refusez les modifications.'
     ,checkUpdates: 'Chercher les mises à jour'
     ,strVersion: 'version'
 };
@@ -576,12 +534,6 @@ l10n.es = {
     licGetLicense: 'Conseguir licencia ahora',
     licPanelTitle: 'Introduzca la clave del producto',
     licPanelDescr: 'La clave de producto ha sido enviado a la dirección de correo electrónico especificada durante la compra.'
-    ,adsToolItem1: 'Historia de versiones'
-    ,adsTitle1: 'Vea o restaure versiones anteriores de su documento '
-    ,adsDescr1: 'Retroceda en el tiempo: vea versiones anteriores de su documento,monitorice los cambios más pequeños y sus autores. Restaure  versión anterior de su archivo si es necesario.'
-    ,adsToolItem2: 'Revisión colaborativa'
-    ,adsTitle2: 'Deje que sus compañeros repasen documentos en la nube'
-    ,adsDescr2: 'Olvídese del envío de archivos para ser revisados por correo electrónico. Conceda un acceso rápido al documento sin salir de su editor de escritorio. Permita que otros sugieran correcciones. Acepte o rechace cambios.'
     ,checkUpdates: 'Comprobar si hay actualizaciones'
     ,strVersion: 'version'
 };
@@ -645,12 +597,6 @@ l10n.pt_BR = {
     licGetLicense: 'Obter licença',
     licPanelTitle: 'Inserir chave de produto',
     licPanelDescr: 'A chave do seu produto foi enviada para o endereço de e-mail especificado durante a compra.'
-    ,adsToolItem1: 'Histórico de versão'
-    ,adsTitle1: 'Ver ou restaurar versões anteriores do seu documento '
-    ,adsDescr1: 'Voltar no tempo: ver versões anteriores do seu documento, rastrear as menores alterações e os seus autores. Restaurar uma versão antiga do seu arquivo se você precisar.'
-    ,adsToolItem2: 'Revisão colaborativa'
-    ,adsTitle2: 'Permita que os seus colegas revejam documentos na nuvem'
-    ,adsDescr2: 'Esqueça os arquivos enviados por e-mail para serem revistos. Obtenha acesso rápido ao documento sem sair do seu editor desktop. Deixe que outros sugiram correções. Aceite ou rejeite alterações.'
     ,checkUpdates: 'Verifique atualizações'
     ,strVersion: 'versão'
 }
