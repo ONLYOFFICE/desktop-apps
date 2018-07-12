@@ -93,6 +93,12 @@ l10n.en = {
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Share & collaborate'
+    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add documents or share it for review.'
+    ,emptySlide2Title: 'View or restore previous versions'
+    ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
+    ,emptySlide3Title: 'Store in the cloud'
+    ,emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.'
 }
 
 l10n.cs = {

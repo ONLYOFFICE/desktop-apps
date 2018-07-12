@@ -52,30 +52,51 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html = `<div ${args.id} class="action-panel ${args.action}">` +
-                      '<div id="box-empty-portals" class="empty flex-center">' +
-                        '<section class="center-box">'+
-                          `<h3 class="empty-title" style="margin:0 0 42px;">${_lang.portalEmptyTitle}</h3>`+
-                          '<img class="img-connect">' +
-                          `<h4 class="text-description" style="margin:38px 0 6px;color:#666666;">${_lang.portalEmptyDescr}</h4>` +
-                          '<div class="tools-connect">'+
-                            `<button class="btn primary newportal">${_lang.btnCreatePortal}</button>`+
-                            '<section class="link-connect">'+
-                              `<label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>`+
-                            '</section>'+
-                          '</div>'+
-                        '</section>'+
-                      '</div>'+
-                      '<div id="box-portals">' +
-                        '<div class="flexbox">'+
-                          `<h3 class="table-caption">${_lang.portalListTitle}</h3>`+
-                          '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
-                          '<div class="lst-tools">'+
-                            `<button id="btn-addportal" class="btn login">${_lang.btnAddPortal}</button>`+
-                          '</div>'+
-                        '</div>'+
-                      '</div>' +
-                    '</div>';
+        var _html = `<div ${args.id} class="action-panel ${args.action}">
+                      <div id="box-empty-portals" class="empty flex-center">
+                        <section class="center-box">
+                          <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
+                          <div class='carousel'>
+                            <figure class='carousel__slidebox'>
+                                <div class='carousel__slide'>
+                                    <p class='carousel__slide__text title'>${_lang.emptySlide1Title}</p>
+                                    <p class='carousel__slide__text descr'>${_lang.emptySlide1Text}</p>
+                                    <img class='carousel__slide__img'>
+                                </div>
+                                <div class='carousel__slide'>
+                                    <p class='carousel__slide__text title'>${_lang.emptySlide2Title}</p>
+                                    <p class='carousel__slide__text descr'>${_lang.emptySlide2Text}</p>
+                                    <img class='carousel__slide__img'>
+                                </div>
+                                <div class='carousel__slide active'>
+                                    <p class='carousel__slide__text title'>${_lang.emptySlide3Title}</p>
+                                    <p class='carousel__slide__text descr'>${_lang.emptySlide3Text}</p>
+                                    <img class='carousel__slide__img'>
+                                </div>
+                            </figure>
+                            <nav class='carousel__scrolls'>
+                                <div class='carousel__scroll__btn prev' value='prev'></div>
+                                <div class='carousel__scroll__btn next' value='next'></div>
+                            </nav>
+                          </div>
+                          <div class="tools-connect">
+                            <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                            <section class="link-connect">
+                              <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                            </section>
+                          </div>
+                        </section>
+                      </div>
+                      <div id="box-portals">
+                        <div class="flexbox">
+                          <h3 class="table-caption">${_lang.portalListTitle}</h3>
+                          <div class="table-box flex-fill"><table class="table-files list"></table></div>
+                          <div class="lst-tools">
+                            <button id="btn-addportal" class="btn login">${_lang.btnAddPortal}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -286,6 +307,60 @@
             window.sdk.execCommand('portal:create', '');
         };
 
+        let carousel = {};
+        function _scrollCarousel(direction) {
+            function __check_limits(v, max) {
+                if ( v < 0 ) return max;
+                else if ( v > max ) return 0;
+                else return v;
+            };
+
+            let _activeindex = carousel.$items.filter('.active').index();
+            direction == 'next' ? ++_activeindex : --_activeindex;
+
+            _activeindex = __check_limits(_activeindex, carousel.$items.length - 1);
+
+            let _pre_index = _activeindex - 1,
+                _pro_index = _activeindex + 1;
+
+            _pre_index = __check_limits(_pre_index, carousel.$items.length - 1);
+            _pro_index = __check_limits(_pro_index, carousel.$items.length - 1);
+
+            carousel.$items.eq(_activeindex).addClass('migrate');
+            if ( direction == 'next' ) {
+                carousel.$items.filter('.pre-active').removeClass('pre-active').addClass('migrate');
+                carousel.$items.eq(_pre_index).removeClass('migrate pre-active active pro-active').addClass('pre-active');
+            } else {
+                carousel.$items.filter('.pro-active').removeClass('pro-active').addClass('migrate');
+                carousel.$items.eq(_pro_index).removeClass('migrate pre-active active pro-active').addClass('pro-active');
+            }
+
+            carousel.$items.eq(_activeindex).removeClass('migrate pre-active pro-active').addClass('active');
+
+            if ( direction == 'next' )
+                carousel.$items.eq(_pro_index).removeClass('migrate pre-active active pro-active').addClass('pro-active');
+            else carousel.$items.eq(_pre_index).removeClass('migrate pre-active active pro-active').addClass('pre-active');
+        };
+
+        function _initCarousel() {
+            let _$panel = this.view.$panelNoPortals;
+            carousel.$items = _$panel.find('.carousel__slide');
+            let _activeindex = carousel.$items.filter('.active').index();
+
+            let _pre_index = _activeindex - 1,
+                _pro_index = _activeindex + 1;
+
+            if ( _pre_index < 0 ) _pre_index = carousel.$items.length - 1;
+            if ( _pro_index > carousel.$items.length - 1 ) _pro_index = 0;
+            carousel.$items.eq(_pre_index).addClass('pre-active');
+            carousel.$items.eq(_pro_index).addClass('pro-active');
+
+            _$panel.find('.carousel__scrolls > .carousel__scroll__btn')
+                .on('click', e => {
+                    _scrollCarousel(e.target.getAttribute('value'));
+                });
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -341,6 +416,7 @@
                 _init_collection.call(this);
                 _update_portals.call(this);
                 _init_ppmenu.call(this);
+                _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{
                     _do_login.call(this);
