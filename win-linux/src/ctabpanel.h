@@ -49,6 +49,8 @@ private:
     int m_idTimerResize = 0;
 signals:
 public slots:
+    void showFullScreen();
+    void showNormal();
 };
 
 #endif // CTABPANEL_H

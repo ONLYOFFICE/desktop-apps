@@ -1430,10 +1430,10 @@ bool CMainPanel::holdUid(int uid) const
     bool _res_out = _view->GetId() == uid;
 
     if ( !_res_out ) {
-        QWidget * _widget = m_pTabs->fullScreenWidget();
+        CTabPanel *  _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
 
         if ( _widget ) {
-            _res_out = qobject_cast<QCefView *>(_widget)->GetCefView()->GetId();
+            _res_out = _widget->cef()->GetId();
         }
     }
 

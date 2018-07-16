@@ -159,3 +159,14 @@ void CTabPanel::applyLoader(const QString& cmd, const QString& args)
         }
     }
 }
+
+void CTabPanel::showFullScreen()
+{
+    QWidget::showFullScreen();
+    m_pViewer->setGeometry(QRect(0,0,width(),height()));
+}
+
+void CTabPanel::showNormal()
+{
+    QWidget::showNormal();
+}
