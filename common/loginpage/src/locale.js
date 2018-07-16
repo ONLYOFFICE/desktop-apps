@@ -94,7 +94,7 @@ l10n.en = {
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
     ,emptySlide1Title: 'Share & collaborate'
-    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add documents or share it for review.'
+    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.'
     ,emptySlide2Title: 'View or restore previous versions'
     ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
     ,emptySlide3Title: 'Store in the cloud'
@@ -152,7 +152,7 @@ l10n.cs = {
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',
-    actConnectTo: 'Share & collaborate',
+    actConnectTo: 'Sdílejte a spolupracujte',
     actActivate: 'Aktivovat',
     actAbout: 'O ONLYOFFICE',
     licKeyHolder: 'vstupní aktivační klíč',
@@ -160,8 +160,14 @@ l10n.cs = {
     licGetLicense: 'Získat licenci',
     licPanelTitle: 'Vložit produkt klíč',
     licPanelDescr: 'Produktový klíč byl odeslán na e-mailovou adresu zadanou při nákupu.'
-    ,checkUpdates: 'Check for updates'
-    ,strVersion: 'version'
+    ,checkUpdates: 'Kontrola aktualizací'
+    ,strVersion: 'verze'
+    ,emptySlide1Title: 'Sdílejte a spolupracujte'
+    ,emptySlide1Text: 'Vyberte si mezi rychlou nebo podrobnou spolu-úpravou v reálném čase, chatujte přímo v dokumentu, přidávejte či sdílejte dokumenty pro kontrolu.'
+    ,emptySlide2Title: 'Zobrazte si nebo obnovte předchozí verze'
+    ,emptySlide2Text: 'Obnovte nebo si zobrazte předchozí verze dokumentu, sledujte změny a jejich autory.'
+    ,emptySlide3Title: 'Ukládejte do cloudu'
+    ,emptySlide3Text: 'Ukládejte své dokumenty v cloudu od ONLYOFFICU a mějte k nim kdykoli přístup, odkudkoli.'
 }
 
 l10n.sk = {
@@ -223,8 +229,14 @@ l10n.sk = {
     licGetLicense: 'Získať licenciu',
     licPanelTitle: 'Zadať licenčný kľúč',
     licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.'
-    ,checkUpdates: 'Check for updates'
-    ,strVersion: 'version'
+    ,checkUpdates: 'Skontrolovať aktualizácie'
+    ,strVersion: 'verzia'
+    ,emptySlide1Title: 'Share & collaborate'
+    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.'
+    ,emptySlide2Title: 'View or restore previous versions'
+    ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
+    ,emptySlide3Title: 'Store in the cloud'
+    ,emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.'
 }
 
 l10n.ru = {
@@ -289,6 +301,12 @@ l10n.ru = {
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.'
     ,checkUpdates: 'Проверить обновления'
     ,strVersion: 'версия'
+    ,emptySlide1Title: 'Предоставление доступа и совместная работа'
+    ,emptySlide1Text: 'Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или отправляйте документ на рецензирование.'
+    ,emptySlide2Title: 'Просмотр или восстановление предыдущих версий'
+    ,emptySlide2Text: 'Восстанавливайте или просто просматривайте предыдущие версии документа, отслеживайте изменения, внесенные другими авторами.'
+    ,emptySlide3Title: 'Хранение в облаке'
+    ,emptySlide3Text: 'Храните документы в облаке ONLYOFFICE и получайте к ним доступ в любое время, из любой точки мира.'
 }
 
 l10n.de = {
@@ -351,7 +369,13 @@ l10n.de = {
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
     ,checkUpdates: 'Prüfen Sie Updates'
-    ,strVersion: 'version'
+    ,strVersion: 'Version'
+    ,emptySlide1Title: 'Freigabe & Zusammenarbeit'
+    ,emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.'
+    ,emptySlide2Title: 'Anzeigen oder Wiederherstellen der früheren Versionen'
+    ,emptySlide2Text: 'Stellen Sie wieder her oder zeigen Sie nur die früheren Versionen Ihres Dokuments an, verfolgen Sie die Änderungen und ihre Autoren.'
+    ,emptySlide3Title: 'Speichern in der Cloud'
+    ,emptySlide3Text: 'Speichern Sie Ihre Dokumente in der ONLYOFFICE-Cloud und greifen Sie darauf jederzeit von überall zu.'
 };
 
 l10n.it_IT = {
@@ -416,6 +440,12 @@ l10n.it_IT = {
     licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
     ,checkUpdates: 'Controlla gli aggiornamenti'
     ,strVersion: 'versione'
+    ,emptySlide1Title: 'Condividi e collabora'
+    ,emptySlide1Text: 'Scegli tra le modalità rapida e precisa, chatta nel tuo documento, aggiungi commenti o condividi i documenti per la revisione.'
+    ,emptySlide2Title: 'Visualizza o ripristina versioni precedenti'
+    ,emptySlide2Text: 'Ripristina o visualizza le versioni precedenti del documento, tiene traccia delle modifiche e delle modifiche apportate dagli altri autori.'
+    ,emptySlide3Title: 'Archiviare nel cloud'
+    ,emptySlide3Text: 'Archivia i tuoi documenti nel cloud ONLYOFFICE e accedili in qualsiasi momento da qualsiasi luogo.'
 };
 
 l10n.fr = {
@@ -479,6 +509,12 @@ l10n.fr = {
     licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.'
     ,checkUpdates: 'Chercher les mises à jour'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Partagez et collaborez'
+    ,emptySlide1Text: 'Choisissez entre la co-édition Rapide ou Strict, chattez dans votre document, ajoutez les commentaires ou partagez les documents pour la révision.'
+    ,emptySlide2Title: 'Voyez ou restaurez les versions précédentes'
+    ,emptySlide2Text: 'Restaurez ou juste voyez les versions précédentes de votre document, suivez les modifications et leurs auteurs.'
+    ,emptySlide3Title: 'Stockez dans le Cloud'
+    ,emptySlide3Text: 'Stockez vos documents dans ONLYOFFICE Cloud et accedez-les n\'importe où et à n\'importe quel moment.'
 };
 
 l10n.es = {
@@ -542,6 +578,12 @@ l10n.es = {
     licPanelDescr: 'La clave de producto ha sido enviado a la dirección de correo electrónico especificada durante la compra.'
     ,checkUpdates: 'Comprobar si hay actualizaciones'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Comparta y colabore'
+    ,emptySlide1Text: 'Seleccione entre dos modos de co-edición en tiempo real Rápido y Estricto, chatee en su documento, añada comentarios o compártalo para revisión.'
+    ,emptySlide2Title: 'Vea o restaure versiones anteriores'
+    ,emptySlide2Text: 'Restaure o simplemente vea las versiones anteriores de su documento, siga cambios y sus autores.'
+    ,emptySlide3Title: 'Almacene en la nube'
+    ,emptySlide3Text: 'Almacene sus documentos en la nube de ONLYOFFICE y acceda en cualquier momento y desde cualquier lugar.'
 };
 
 l10n.pt_BR = {
@@ -605,6 +647,12 @@ l10n.pt_BR = {
     licPanelDescr: 'A chave do seu produto foi enviada para o endereço de e-mail especificado durante a compra.'
     ,checkUpdates: 'Verifique atualizações'
     ,strVersion: 'versão'
+    ,emptySlide1Title: 'Compartilhe e colabore'
+    ,emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse em seu documento, adicione comentários ou compartilhá-lo para revisão.'
+    ,emptySlide2Title: 'Visualize ou restaure versões anteriores'
+    ,emptySlide2Text: 'Restaure ou apenas visualize versões anteriores do seu documento, controle as alterações e autores delas.'
+    ,emptySlide3Title: 'Armazene na nuvem'
+    ,emptySlide3Text: 'Armazene seus documentos na nuvem do ONLYOFFICE e acesse-os a qualquer momento, de qualquer lugar.'
 }
 
 function loadLocale(lang) {
