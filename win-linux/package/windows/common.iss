@@ -454,7 +454,7 @@ Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; 
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
-Source: ..\..\..\common\package\dictionaries\*;       DestDir: {app}\dictionaries; Flags: recursesubdirs;
+Source: ..\..\..\..\core\dictionaries\*;                        DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
