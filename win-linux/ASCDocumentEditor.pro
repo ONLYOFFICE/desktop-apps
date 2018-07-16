@@ -29,6 +29,8 @@ SOURCES += \
 
 RC_FILE = $$PWD/version.rc
 
+DEFINES += __DONT_WRITE_IN_APP_TITLE
+
 linux-g++ {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lhunspell -looxmlsignature
     DEFINES += LINUX _LINUX _LINUX_QT _GLIBCXX_USE_CXX11_ABI=0

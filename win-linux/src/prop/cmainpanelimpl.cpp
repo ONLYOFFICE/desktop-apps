@@ -65,38 +65,8 @@ void CMainPanelImpl::updateScaling(int dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
-    if ( m_isCustomWindow ) {
-        _tabs_stylesheets += ".qss";
-
-    } else {
-#ifdef __linux__
-        _tabs_stylesheets += ".nix.qss";
-#endif
-    }
-
-    QFile styleFile(_tabs_stylesheets);
-    styleFile.open( QFile::ReadOnly );
-    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
-
-    std::map<int, std::pair<QString, QString> > icons;
-    if ( dpiratio > 1 ) {
-        icons.insert({
-            {etUndefined, std::make_pair(":/newdocument@2x.png", ":/newdocument@2x.png")},
-            {etDocument, std::make_pair(":/de_normal@2x.png", ":/de_active@2x.png")},
-            {etPresentation, std::make_pair(":/pe_normal@2x.png", ":/pe_active@2x.png")},
-            {etSpreadsheet, std::make_pair(":/se_normal@2x.png", ":/se_active@2x.png")},
-            {etPortal, std::make_pair(":/portal.png", ":/portal@2x.png")}
-        });
-    } else {
-        icons.insert({
-            {etUndefined, std::make_pair(":/newdocument.png", ":/newdocument.png")},
-            {etDocument, std::make_pair(":/de_normal.png", ":/de_active.png")},
-            {etPresentation, std::make_pair(":/pe_normal.png", ":/pe_active.png")},
-            {etSpreadsheet, std::make_pair(":/se_normal.png", ":/se_active.png")},
-            {etPortal, std::make_pair(":/portal.png", ":/portal.png")}
-        });
-    }
-
-    m_pTabs->setTabIcons(icons);
+    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
+    m_pButtonMain->setText(QString());
+    m_pButtonMain->setIcon(QIcon(pixmap));
+    m_pButtonMain->setIconSize(pixmap.size());
 }

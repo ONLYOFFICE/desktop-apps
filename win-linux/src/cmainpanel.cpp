@@ -1366,19 +1366,51 @@ void CMainPanel::updateScaling(int dpiratio)
     layoutBtns->setSpacing(1 * dpiratio);
 
     if ( m_isCustomWindow ) {
-#ifdef __APP_NEW_APPEARANCE
         layoutBtns->setContentsMargins(0,0,0,0);
+
         QSize small_btn_size(40*dpiratio, TOOLBTN_HEIGHT*dpiratio);
-#else
-        layoutBtns->setContentsMargins(0,0,4*dpiratio,0);
-        QSize small_btn_size(28*dpiratio, TOOLBTN_HEIGHT*dpiratio);
-#endif
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
 
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * dpiratio, TITLE_HEIGHT * dpiratio);
+
+    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    if ( m_isCustomWindow ) {
+        _tabs_stylesheets += ".qss";
+    } else {
+#ifdef __linux__
+        _tabs_stylesheets += ".nix.qss";
+#endif
+    }
+
+    QFile styleFile(_tabs_stylesheets);
+    styleFile.open( QFile::ReadOnly );
+    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
+    m_pTabs->updateScaling(dpiratio);
+    styleFile.close();
+
+    std::map<int, std::pair<QString, QString> > icons;
+    if ( dpiratio > 1 ) {
+        icons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe@2x.png", ":/tabbar/icons/pe@2x.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")},
+            {etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}
+        });
+    } else {
+        icons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de.png", ":/tabbar/icons/de.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe.png", ":/tabbar/icons/pe.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")},
+            {etPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")}
+        });
+    }
+
+    m_pTabs->setTabIcons(icons);
 }
 
 void CMainPanel::onCheckUpdates()

@@ -98,11 +98,16 @@ typedef unsigned char BYTE;
 #endif
 
 #ifdef _WIN32
-#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
-#define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
+# define WINDOW_BACKGROUND_COLOR RGB(241, 241, 241)              // #f1f1f1
+# define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
 #else
-#define TABBAR_BACKGROUND_COLOR "#313437"
+# define TABBAR_BACKGROUND_COLOR "#f1f1f1"
 #endif
+
+#define TAB_COLOR_PRESENTATION  "#aa5252"
+#define TAB_COLOR_SPREADSHEET   "#40865c"
+#define TAB_COLOR_DOCUMENT      "#446995"
+
 
 #include "defines_p.h"
 

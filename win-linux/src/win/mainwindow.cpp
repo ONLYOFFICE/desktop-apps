@@ -412,7 +412,6 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_PAINT: {
-#ifdef __APP_NEW_APPEARANCE
         RECT rect;
         GetClientRect(hWnd, &rect);
 
@@ -431,20 +430,9 @@ qDebug() << "WM_CLOSE";
 
         ::SelectObject(hDC, hpenOld);
         ::EndPaint(hWnd, &ps);
-        return 0;
-#endif
-
-        break; }
+        return 0; }
 
     case WM_ERASEBKGND: {
-#ifndef __APP_NEW_APPEARANCE
-        RECT rect;
-        GetClientRect(hWnd, &rect);
-
-        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-        FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
-        DeleteObject(hBrush);
-#endif
         return TRUE; }
 
     case WM_GETMINMAXINFO:

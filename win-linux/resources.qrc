@@ -6,30 +6,6 @@
         <file>res/icons/tab_close_active_2x.png</file>
         <file>res/icons/tab_close_hover.png</file>
         <file>res/icons/tab_close_hover_2x.png</file>
-        <file alias="de_active.png">res/icons/tabicon_de_active.png</file>
-        <file alias="de_active@2x.png">res/icons/tabicon_de_active_2x.png</file>
-        <file alias="de_normal.png">res/icons/tabicon_de_normal.png</file>
-        <file alias="de_normal@2x.png">res/icons/tabicon_de_normal_2x.png</file>
-        <file alias="pe_active.png">res/icons/tabicon_pe_active.png</file>
-        <file alias="pe_active@2x.png">res/icons/tabicon_pe_active_2x.png</file>
-        <file alias="pe_normal.png">res/icons/tabicon_pe_normal.png</file>
-        <file alias="pe_normal@2x.png">res/icons/tabicon_pe_normal_2x.png</file>
-        <file alias="se_active.png">res/icons/tabicon_se_active.png</file>
-        <file alias="se_active@2x.png">res/icons/tabicon_se_active_2x.png</file>
-        <file alias="se_normal.png">res/icons/tabicon_se_normal.png</file>
-        <file alias="se_normal@2x.png">res/icons/tabicon_se_normal_2x.png</file>
-        <file alias="portal.png">res/icons/tabicon_portal.png</file>
-        <file alias="portal@2x.png">res/icons/tabicon_portal_2x.png</file>
-        <file alias="newdocument.png">res/icons/tabicon_opening.png</file>
-        <file alias="newdocument@2x.png">res/icons/tabicon_opening_2x.png</file>
-        <file>res/icons/changetab_left_normal.png</file>
-        <file>res/icons/changetab_left_normal_2x.png</file>
-        <file>res/icons/changetab_left_disabled.png</file>
-        <file>res/icons/changetab_left_disabled_2x.png</file>
-        <file>res/icons/changetab_right_normal.png</file>
-        <file>res/icons/changetab_right_normal_2x.png</file>
-        <file>res/icons/changetab_right_disabled.png</file>
-        <file>res/icons/changetab_right_disabled_2x.png</file>
         <file>res/icons/message_icons.png</file>
         <file>res/icons/message_icons_2x.png</file>
         <file>res/icons/downloading.gif</file>
@@ -47,6 +23,41 @@
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.png</file>
         <file>res/icons/splash_2x.png</file>
+        <file alias="logo.png">res/icons/logo.png</file>
+        <file alias="logo@2x.png">res/icons/logo_2x.png</file>
+    </qresource>
+    <qresource prefix="/tabbar/icons">
+        <file alias="scrolltab_lp.png">res/icons/tabbar/changetab_left_active.png</file>
+        <file alias="scrolltab_lp_2x.png">res/icons/tabbar/changetab_left_active@2x.png</file>
+        <file alias="scrolltab_ld.png">res/icons/tabbar/changetab_left_disabled.png</file>
+        <file alias="scrolltab_ld_2x.png">res/icons/tabbar/changetab_left_disabled@2x.png</file>
+        <file alias="scrolltab_lh.png">res/icons/tabbar/changetab_left_hover.png</file>
+        <file alias="scrolltab_lh_2x.png">res/icons/tabbar/changetab_left_hover@2x.png</file>
+        <file alias="scrolltab_ln.png">res/icons/tabbar/changetab_left_normal.png</file>
+        <file alias="scrolltab_ln_2x.png">res/icons/tabbar/changetab_left_normal@2x.png</file>
+        <file alias="scrolltab_rp.png">res/icons/tabbar/changetab_right_active.png</file>
+        <file alias="scrolltab_rp_2x.png">res/icons/tabbar/changetab_right_active@2x.png</file>
+        <file alias="scrolltab_rd.png">res/icons/tabbar/changetab_right_disabled.png</file>
+        <file alias="scrolltab_rd_2x.png">res/icons/tabbar/changetab_right_disabled@2x.png</file>
+        <file alias="scrolltab_rh.png">res/icons/tabbar/changetab_right_hover.png</file>
+        <file alias="scrolltab_rh_2x.png">res/icons/tabbar/changetab_right_hover@2x.png</file>
+        <file alias="scrolltab_rn.png">res/icons/tabbar/changetab_right_normal.png</file>
+        <file alias="scrolltab_rn_2x.png">res/icons/tabbar/changetab_right_normal@2x.png</file>
+        <file alias="de.png">res/icons/tabbar/tabicon_de_normal.png</file>
+        <file alias="de@2x.png">res/icons/tabbar/tabicon_de_normal_2x.png</file>
+        <file alias="pe.png">res/icons/tabbar/tabicon_pe_normal.png</file>
+        <file alias="pe@2x.png">res/icons/tabbar/tabicon_pe_normal_2x.png</file>
+        <file alias="se.png">res/icons/tabbar/tabicon_se_normal.png</file>
+        <file alias="se@2x.png">res/icons/tabbar/tabicon_se_normal_2x.png</file>
+        <file alias="portal.png">res/icons/tabbar/portal.png</file>
+        <file alias="portal@2x.png">res/icons/tabbar/portal@2x.png</file>
+        <file alias="newdoc.png">res/icons/tabbar/tabicon_undefined.png</file>
+        <file alias="newdoc@2x.png">res/icons/tabbar/tabicon_undefined_2x.png</file>
+        <file alias="loader.svg">res/icons/tabbar/loading.svg</file>
+        <file alias="close_normal.png">res/icons/tabbar/tab_close_dark.png</file>
+        <file alias="close_normal_2x.png">res/icons/tabbar/tab_close_dark_2x.png</file>
+        <file alias="close_active.png">res/icons/tabbar/tab_close_light.png</file>
+        <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light_2x.png</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
