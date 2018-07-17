@@ -231,12 +231,12 @@ l10n.sk = {
     licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.'
     ,checkUpdates: 'Skontrolovať aktualizácie'
     ,strVersion: 'verzia'
-    ,emptySlide1Title: 'Share & collaborate'
-    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.'
-    ,emptySlide2Title: 'View or restore previous versions'
-    ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
-    ,emptySlide3Title: 'Store in the cloud'
-    ,emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.'
+    ,emptySlide1Title: 'Zdieľajte a spolupracujte'
+    ,emptySlide1Text: 'Vyberte medzi Fast alebo Strict módom editácie dokumentov online v reálnom čase, komunikujte vo Vašich dokumentoch, pridávajte alebo zdieľajte komentáre v revíziách.'
+    ,emptySlide2Title: 'Zobrazte alebo obnovte predchádzajúce verzie'
+    ,emptySlide2Text: 'Obnovite alebo jednoducho zobrazte predchádzajúce verzie Vašich dokumentov, sledujte zmeny a ich autorov.'
+    ,emptySlide3Title: 'Uložte dáta do cloud-u'
+    ,emptySlide3Text: 'Uložte Vaše dokumenty v ONLYOFFICE cloude a pristupujte k nim kedykoľvek, nech ste už kdekoľvek.'
 }
 
 l10n.ru = {
