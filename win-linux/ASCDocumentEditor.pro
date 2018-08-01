@@ -39,6 +39,8 @@ linux-g++ {
 }
 
 win32 {
+    CONFIG -= debug_and_release debug_and_release_target
+
 #    CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
@@ -51,6 +53,8 @@ win32 {
 
     CONFIG(debug, debug|release) {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lkernel
+
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug
     } else {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore

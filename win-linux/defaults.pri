@@ -20,6 +20,9 @@ CORE_SRC_PATH = ../../core/DesktopEditor
 BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
 CORE_LIB_PATH = ../../core/build
 
+OBJECTS_DIR = ./obj
+MOC_DIR = ./moc
+
 INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
                 $$BASEEDITORS_PATH/lib/qcefview \
                 $$CORE_SRC_PATH
