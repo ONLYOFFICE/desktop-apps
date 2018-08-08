@@ -157,7 +157,7 @@
                 $chOpenMode = me.view.$panel.find('#sett-preview-mode');
 
                 $btnApply.on('click', _on_btn_apply).prop('disabled', true);
-                $userName.on('keypress', _on_txt_user_change);
+                $userName.on('input', _on_txt_user_change);
                 $chOpenMode.on('change', e => {
                     if ( $btnApply.prop('disabled') )
                         $btnApply.prop('disabled', false);
