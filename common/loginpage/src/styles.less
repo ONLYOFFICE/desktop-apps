@@ -127,6 +127,19 @@ button {
     background-color: @color-gray-4;
     padding: 0 36px;
 
+    &:hover {
+        background-color: @color-gray-6;
+    }
+
+    &:active:not(:disabled) {
+        background-color: @color-gray-5;
+    }
+
+    &:disabled {
+        background-color: @color-gray-4;
+        cursor: default;
+    }
+
     &.primary {
         background-color: @color-blue-light;
 
@@ -142,19 +155,6 @@ button {
             background-color: @color-blue-light;
             color: #a7cff8;
         }
-    }
-
-    &:hover {
-        background-color: @color-gray-6;
-    }
-
-    &:active {
-        background-color: @color-gray-5;
-    }
-
-    &:disabled {
-        background-color: @color-gray-4;
-        cursor: default;
     }
 
     .btn-quick {
