@@ -92,7 +92,6 @@ private:
     int  trySaveDocument(int);
     void RecalculatePlaces();
 
-    wstring readSystemUserName();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);

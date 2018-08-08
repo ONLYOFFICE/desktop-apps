@@ -51,6 +51,7 @@
 
 #ifdef _WIN32
 #include "shlobj.h"
+#include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 #include <sys/stat.h>
@@ -427,4 +428,25 @@ bool Utils::setAppUserModelId(const QString& modelid)
 #endif
 
     return _result;
+}
+
+wstring Utils::systemUserName()
+{
+#ifdef Q_OS_WIN
+    WCHAR _env_name[UNLEN + 1]{0};
+    DWORD _size = UNLEN + 1;
+
+    return GetUserName(_env_name, &_size) ?
+                            wstring(_env_name) : L"Unknown.User";
+#else
+    QString _env_name = qgetenv("USER");
+    if ( _env_name.isEmpty() ) {
+        _env_name = qgetenv("USERNAME");
+
+        if (_env_name.isEmpty())
+            _env_name = "Unknown.User";
+    }
+
+    return _env_name.toStdWString();
+#endif
 }

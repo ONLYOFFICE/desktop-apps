@@ -155,7 +155,7 @@ int main( int argc, char *argv[] )
     application_cef->Init_CEF(&AscAppManager::getInstance(), argc, argv);
     /* ********************** */
 
-    GET_REGISTRY_SYSTEM(reg_system)
+//    GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 

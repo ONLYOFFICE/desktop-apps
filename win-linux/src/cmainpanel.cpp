@@ -64,7 +64,6 @@
 #ifdef _WIN32
 #include "win/cprintdialog.h"
 #include "shlobj.h"
-#include "lmcons.h"
 
 #else
 #define VK_F4 0x73
@@ -228,7 +227,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
-    wstring user_name = readSystemUserName();
+    wstring user_name = Utils::systemUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
@@ -1324,27 +1323,6 @@ void CMainPanel::onOutsideAuth(QString json)
             toggleButtonMain(false, true);
         }
     }
-}
-
-wstring CMainPanel::readSystemUserName()
-{
-#ifdef Q_OS_WIN
-    WCHAR _env_name[UNLEN + 1]{0};
-    DWORD _size = UNLEN + 1;
-
-    return GetUserName(_env_name, &_size) ?
-                            wstring(_env_name) : L"Unknown.User";
-#else
-    QString _env_name = qgetenv("USER");
-    if ( _env_name.isEmpty() ) {
-        _env_name = qgetenv("USERNAME");
-
-        if (_env_name.isEmpty())
-            _env_name = "Unknown.User";
-    }
-
-    return _env_name.toStdWString();
-#endif
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
