@@ -171,7 +171,7 @@
                 dlgLogin.onclose(code=>{
                     dlgLogin = undefined;
                 });
-                dlgLogin.show(portal, user);
+                dlgLogin.show({portal: portal, email: user});
             }
         };
 
@@ -188,7 +188,7 @@
                 dlgLogin.onclose(code=>{
                     dlgLogin = undefined;
                 });
-                dlgLogin.show(portal, user);
+                dlgLogin.show({portal: portal, email: user});
             }
         };
 

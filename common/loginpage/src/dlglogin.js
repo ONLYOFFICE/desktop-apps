@@ -676,16 +676,18 @@ window.LoginDlg = function() {
     };
 
     return {
-        show: (inportal, inemail) => {
+        show: (params) => {
+            !params && (params = {});
+
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
 
-            if ( !!inportal ) {
-                portal = utils.skipUrlProtocol(inportal);
+            if ( !!params.portal ) {
+                portal = utils.skipUrlProtocol(params.portal);
 
-                let sp = utils.getUrlProtocol(inportal);
+                let sp = utils.getUrlProtocol(params.portal);
                 !!sp && (protocol = sp);
             }
-            !!inemail && (user = inemail);
+            !!params.email && (user = params.email);
 
             // $el.width(450).height(470);
             // set height without logo
