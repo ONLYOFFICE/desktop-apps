@@ -702,6 +702,10 @@ window.LoginDlg = function() {
             $el.on('close', doClose);
 
             startDialog();
+
+            if ( params.portal && params.forceportal ) {
+                firstConnect(params);
+            }
         },
         close: function(){
             doClose(0);
