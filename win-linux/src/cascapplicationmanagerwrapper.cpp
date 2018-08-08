@@ -662,13 +662,13 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
 
-        QString params = QString("lang=%1&username=%3&location=%2")
-                            .arg(CLangater::getLanguageName(), Utils::systemLocationCode(), _user_newname);
+        wstring params = QString("lang=%1&username=%3&location=%2")
+                            .arg(CLangater::getLanguageName(), Utils::systemLocationCode(), _user_newname).toStdWString();
 
         if ( objRoot["docopenmode"].toString() == "view" )
-            params.append("&mode=view");
+            params.append(L"&mode=view");
 
-        AscAppManager::getInstance().InitAdditionalEditorParams( params.toStdWString() );
+        AscAppManager::getInstance().InitAdditionalEditorParams( params );
     } else {
         /* parse settings error */
     }
