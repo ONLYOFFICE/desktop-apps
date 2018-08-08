@@ -149,15 +149,25 @@ fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pou
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
 
-en.warnWin10FileAssociation=To associate the files with the application, go to \b Settings > Apps > Default apps\b0  after the installation is complete.
-pt_BR.warnWin10FileAssociation=Para associar os arquivos com o aplicativo, vá para \b Configurações > Aplicativos > Aplicativos padrão\b0  após a instalação estar completa.
-cs.warnWin10FileAssociation=Pro připojení souborů k aplikaci, přejděte na \b Nastavení > Aplikace > Výchozí aplikace\b0  po dokončení aplikace.
-sk.warnWin10FileAssociation=Ak chcete súbory priradiť k aplikácii, po dokončení inštalácie prejdite na položku \b Nastavenia> Aplikácie> Predvolené aplikácie\b0 .
-ru.warnWin10FileAssociation=Чтобы ассоциировать файлы с приложением, перейдите в \b Настройки > Приложения > Приложения по умолчанию\b0  после того, как установка будет завершена.
-de.warnWin10FileAssociation=Nachdem die Installation abgeschlossen ist, gehen Sie zu \b Einstellungen > Apps > Standard-Apps\b0 , um die Dateien mit der Anwendung zu verknüpfen.
-fr.warnWin10FileAssociation=Pour associer les fichiers avec le logiciel après son installation suivez \b Paramètres > Apps > Logiciels par défaut\b0 .
-es.warnWin10FileAssociation=Para asociar los archivos con la aplicación, vaya a \b Ajustes > Aplicaciones > Aplicaciones predeterminadas\b0  una vez finalizada la instalación.
-it_IT.warnWin10FileAssociation=Per associare i file all’applicazione, andare su \b Impostazioni  > Apps > App predefinite\b0  al termine dell’installazione.
+en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
+pt_BR.warnWin10FileAssociationDesc=Para associar os arquivos com o aplicativo, abra a seguinte janela após a instalação estar completa:
+cs.warnWin10FileAssociationDesc=Pro připojení souborů k aplikaci, otevřete následující okno po dokončení aplikace:
+sk.warnWin10FileAssociationDesc=Ak chcete súbory priradiť k aplikácii, po dokončení inštalácie otvorte nasledujúce okno:
+ru.warnWin10FileAssociationDesc=Чтобы ассоциировать файлы с приложением, откройте следующее окно после того, как установка будет завершена:
+de.warnWin10FileAssociationDesc=Nachdem die Installation abgeschlossen ist, öffnen Sie das folgende Feld, um die Dateien mit der Anwendung zu verknüpfen:
+fr.warnWin10FileAssociationDesc=Pour associer les fichiers avec le logiciel après son installation, ouvre la fenêtre suivante:
+es.warnWin10FileAssociationDesc=Para asociar los archivos con la aplicación, abra la siguiente ventana una vez finalizada la instalación:
+it_IT.warnWin10FileAssociationDesc=Per associare i file all’applicazione, apri la seguente finestra al termine dell’installazione:
+
+en.warnWin10FileAssociationPath=Settings > Apps > Default apps
+pt_BR.warnWin10FileAssociationPath=Configurações > Aplicativos > Aplicativos padrão
+cs.warnWin10FileAssociationPath=Nastavení > Aplikace > Výchozí aplikace
+sk.warnWin10FileAssociationPath=Nastavenia> Aplikácie> Predvolené aplikácie
+ru.warnWin10FileAssociationPath=Настройки > Приложения > Приложения по умолчанию
+de.warnWin10FileAssociationPath=Einstellungen > Apps > Standard-Apps
+fr.warnWin10FileAssociationPath=Paramètres > Apps > Logiciels par défaut
+es.warnWin10FileAssociationPath=Ajustes > Aplicaciones > Aplicaciones predeterminadas
+it_IT.warnWin10FileAssociationPath=Impostazioni  > Apps > App predefinite
 
 [Code]
 
@@ -278,11 +288,12 @@ end;
 procedure InitializeAssociatePage;
 var
   lblAudio: TLabel;
-  richViewer: TRichEditViewer;
   i: Integer;
   version: TWindowsVersion;
   createPage: Boolean;
   paramSkip: string;
+
+  labelDesc, labelPath: TNewStaticText;
 begin
   initExtensions();
 
@@ -334,21 +345,24 @@ begin
       ChlbAudio.Checked[1] := True;
       ChlbAudioClickCheck(ChlbAudio);
     end else begin
-      richViewer := TRichEditViewer.Create(associatePage);
-      with richViewer do begin
-        Left          := 0;
-        Top           := 0;
-        Width         := associatePage.SurfaceWidth;
-        Height        := associatePage.SurfaceHeight;
-        Parent        := associatePage.Surface;
-        BorderStyle   := bsNone;
-        TabStop       := False;
-        ReadOnly      := True;
-        Color         := associatePage.Surface.Color;
-        Cursor        := crArrow;
-        HideSelection := True;
-        RTFText       := '{\rtf1 ' + ExpandConstant('{cm:warnWin10FileAssociation}') + '}';
-      end
+      labelDesc           := TNewStaticText.Create(associatePage);
+      labelDesc.Parent    := associatePage.Surface;
+      labelDesc.WordWrap  := True;
+      labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
+      labelDesc.AutoSize  := True;
+      labelDesc.Width     := associatePage.SurfaceWidth;
+      labelDesc.Left      := 0;
+      labelDesc.Top       := 0;
+
+      labelPath           := TNewStaticText.Create(associatePage);
+      labelPath.Parent    := associatePage.Surface;
+      labelPath.WordWrap  := True;
+      labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
+      labelPath.AutoSize  := True;
+      labelPath.Width     := associatePage.SurfaceWidth;
+      labelPath.Left      := 0;
+      labelPath.Top       := labelDesc.Top + 50;
+      labelPath.Font.Style := [fsBold];
     end
   end else begin
     associatePage := nil
