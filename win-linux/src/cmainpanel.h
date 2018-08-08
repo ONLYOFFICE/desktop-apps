@@ -129,7 +129,7 @@ public slots:
 
     void onNeedCheckKeyboard();
 
-    void onLocalFileOpen(const QString&);
+    virtual void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
     virtual void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
