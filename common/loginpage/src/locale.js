@@ -86,6 +86,7 @@ l10n.en = {
     actConnectTo: 'Share & collaborate',
     actActivate: 'Activate',
     actAbout: 'About',
+    actSettings: 'Settings',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
@@ -99,6 +100,10 @@ l10n.en = {
     ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
     ,emptySlide3Title: 'Store in the cloud'
     ,emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.'
+    ,settUserName: 'User Name'
+    ,settResetUserName: 'Reset to default'
+    ,settOpenMode: 'Open document in preview mode'
+    ,setBtnApply: 'Apply'
 }
 
 l10n.cs = {
@@ -294,6 +299,7 @@ l10n.ru = {
     actConnectTo: 'Редактировать совместно',
     actActivate: 'Активировать',
     actAbout: 'О программе',
+    actSettings: 'Настройки',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
@@ -307,6 +313,10 @@ l10n.ru = {
     ,emptySlide2Text: 'Восстанавливайте или просто просматривайте предыдущие версии документа, отслеживайте изменения, внесенные другими авторами.'
     ,emptySlide3Title: 'Хранение в облаке'
     ,emptySlide3Text: 'Храните документы в облаке ONLYOFFICE и получайте к ним доступ в любое время, из любой точки мира.'
+    ,settUserName: 'Имя пользователя'
+    ,settResetUserName: 'Восстановить системное'
+    ,settOpenMode: 'Открывать документы в режиме просмотра'
+    ,setBtnApply: 'Применить'
 }
 
 l10n.de = {

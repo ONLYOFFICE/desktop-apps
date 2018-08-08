@@ -175,6 +175,14 @@ button {
         cursor: default;
         pointer-events: none;
     }
+
+    &.link--gray {
+        color: @color-gray-4;
+    }
+
+    &.link--sizem {
+        font-size: 14px;
+    }
 }
 
 #field-pass-restore {
@@ -197,9 +205,8 @@ button {
 }
 
 .tool-quick-menu {
-    height: 250px;
     border-bottom: 1px solid @color-gray-3;
-    padding-left: 27px;
+    padding: 0 0 30px 27px;
 
     h3 {
         margin: 40px 0 12px;
@@ -274,6 +281,9 @@ li.menu-item {
 
 .tool-menu {
     position: relative;
+    display: flex;
+    flex-direction: column;
+
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
         background-color: #fff;
@@ -296,10 +306,13 @@ li.menu-item {
         }
         
         &.bottom {
-            position: absolute;
-            bottom: 0;
             width: 100%;
             border-bottom: 0 none;
+            border-top: 1px solid @color-gray-3;
+
+            &.separate {
+                margin-top: auto;
+            }
         }
     }
 }
@@ -798,6 +811,15 @@ li.menu-item {
     &[tooltip]:before {
         right: 120%;
         top: -10px;
+    }
+}
+
+.settings-field {
+    text-align: left;
+    margin-bottom: 35px;
+
+    .tbox {
+        width: 350px;
     }
 }
 

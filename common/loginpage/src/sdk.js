@@ -64,6 +64,10 @@
         notifySubscribers('publish', type, publication);
     };
 
+    sdk.command = function() {
+        window.AscDesktopEditor.execCommand.apply(this, arguments);
+    };
+
     var notifySubscribers = function(action, type, arg, context) {
         var pubtype = type || 'any',
             pubsubscribers = subscribers[pubtype],

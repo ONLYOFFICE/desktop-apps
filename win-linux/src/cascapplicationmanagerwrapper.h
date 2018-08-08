@@ -79,6 +79,7 @@ private:
     int  GetPlatformKeyboardLayout();
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
+    bool applySettings(const wstring& wstrjson);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CSingleWindow * editorWindowFromViewId(int uid) const;
@@ -105,6 +106,7 @@ public:
     static uint             countMainWindow();
     static CMainWindow *    topWindow();
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
+    static void             sendCommandTo(QCefView * target, const wstring& cmd, const wstring& args = L"");
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(uint);
 
