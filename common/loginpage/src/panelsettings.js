@@ -73,16 +73,13 @@
                                     </div>
                                     <div class='settings-field'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
-                                            <div class='onoffswitch'>
-                                                <input type="checkbox" name="onoffswitch" class="onoffswitch__checkbox" id="sett-preview-mode">
-                                                <label class="onoffswitch__label" for="sett-preview-mode"></label>
-                                            </div>
-                                            <label class='sett__caption'>${_lang.settOpenMode}</label>
+                                            <input type="checkbox" name="onoffswitch" class="checkbox" id="sett-preview-mode">
+                                            <label for="sett-preview-mode" class='sett__caption'>${_lang.settOpenMode}</label>
                                         </section>
                                     </div>
                                 </section>
                                 <div class="lst-tools">
-                                    <button class="btn primary" id="sett-btn-apply">${_lang.setBtnApply}</button>
+                                    <button class="btn" id="sett-btn-apply">${_lang.setBtnApply}</button>
                                 </div>
                             </div>
                         </div>
@@ -124,6 +121,8 @@
                 
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
+
+                _lock_createnew(_doc_open_mode == 'view');
             } else {
                 $userName.addClass('error');
             }
@@ -161,8 +160,6 @@
                 $chOpenMode.on('change', e => {
                     if ( $btnApply.prop('disabled') )
                         $btnApply.prop('disabled', false);
-
-                    _lock_createnew($chOpenMode.prop('checked'));
                 });
 
                 let _user_name = localStorage.getItem('username') || '';
