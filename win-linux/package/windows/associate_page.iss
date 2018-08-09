@@ -3,6 +3,14 @@
 # define ASSC_APP_NAME 'ONLYOFFICE'
 #endif
 
+#if !defined(ASCC_REG_PREFIX)
+# define ASCC_REG_PREFIX 'ASC'
+#endif
+
+#if !defined(ASCC_REG_REGISTERED_APP_NAME)
+# define ASCC_REG_REGISTERED_APP_NAME 'DesktopEditors'
+#endif
+
 [Setup]
 ChangesAssociations=true
 
@@ -226,7 +234,7 @@ begin
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
 
-  prefix := 'ASC.';
+  prefix := '{#ASCC_REG_PREFIX}' + '.';
 
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '11';
   ExtensionRegistryInfo[1]  := prefix + 'Document.12:'  + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
@@ -398,7 +406,7 @@ begin
       RegWriteStringValue(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities\FileAssociations', '.' + LowerCase(AudioExts[i]), argsArray[0]);
     end;
 
-    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', 'DesktopEditors', '{#APP_REG_PATH}\Capabilities');
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', '{#ASCC_REG_REGISTERED_APP_NAME}', '{#APP_REG_PATH}\Capabilities');
 end;
 
 procedure DoPostInstall();
