@@ -515,7 +515,7 @@ int CMainPanel::trySaveDocument(int index)
         default:{
             m_pTabs->editorCloseRequest(index);
 
-            QCefView * pView = (QCefView *)m_pTabs->widget(index);
+            QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
             NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
 
             pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
