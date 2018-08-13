@@ -653,7 +653,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wstrjson).toLatin1(), &jerror);
+    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wstrjson).toUtf8(), &jerror);
 
     if( jerror.error == QJsonParseError::NoError ) {
         QJsonObject objRoot = jdoc.object();
