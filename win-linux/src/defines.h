@@ -58,6 +58,7 @@
 #define APP_DEFAULT_LOCALE "en"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
+#define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""

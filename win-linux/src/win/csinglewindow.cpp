@@ -506,7 +506,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel("ONLYOFFICE Editor");
+    QLabel * label = new QLabel(APP_SIMPLE_WINDOW_TITLE);
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
