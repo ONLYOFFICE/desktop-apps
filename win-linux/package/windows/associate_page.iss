@@ -177,6 +177,20 @@ fr.warnWin10FileAssociationPath=Paramètres > Apps > Logiciels par défaut
 es.warnWin10FileAssociationPath=Ajustes > Aplicaciones > Aplicaciones predeterminadas
 it_IT.warnWin10FileAssociationPath=Impostazioni  > Apps > App predefinite
 
+en.runOpenDefaultApps=Open Default apps
+pt_BR.runOpenDefaultApps=Open Default apps
+cs.runOpenDefaultApps=Open Default apps
+sk.runOpenDefaultApps=Open Default apps
+ru.runOpenDefaultApps=Открыть Приложения по умолчанию
+de.runOpenDefaultApps=Open Default apps
+fr.runOpenDefaultApps=Open Default apps
+es.runOpenDefaultApps=Open Default apps
+it_IT.runOpenDefaultApps=Open Default apps
+
+[Run]
+Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \
+  Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+
 [Code]
 
 var
