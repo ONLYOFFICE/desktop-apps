@@ -620,9 +620,11 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
                             dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
     } else
     if ( _filter == "image" || _filter == "images" ) {
-            _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
+        _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
                             dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
-
+    } else
+    if ( _filter == "any" ) {
+        _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
     }
 
     if ( !_list.isEmpty() ) {

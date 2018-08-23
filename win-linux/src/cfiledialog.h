@@ -67,6 +67,7 @@ public:
     QString     modalOpenPlugin(const QString&);
     QStringList modalOpenPlugin(const QString&, bool list);
     QStringList modalOpenPlugins(const QString&);
+    QStringList modalOpenAny(const QString&, bool multi = false);
 
     void    setFormats(std::vector<int>&);
     int     getFormat();

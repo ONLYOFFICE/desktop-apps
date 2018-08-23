@@ -285,6 +285,12 @@ QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
     return modalOpen(path, _filter, &_plugins_filter, true);
 }
 
+QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    return modalOpen(path, _filter, nullptr, multi);
+}
+
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)
 {
     m_filters.clear();
