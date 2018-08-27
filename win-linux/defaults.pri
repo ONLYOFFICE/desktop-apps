@@ -19,6 +19,7 @@ TRANSLATIONS = ./langs/en.ts \
 CORE_SRC_PATH = ../../core/DesktopEditor
 BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
 CORE_LIB_PATH = ../../core/build
+CORE_3DPARTY_PATH = ../../core/Common/3dParty
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
@@ -119,7 +120,7 @@ app_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
@@ -149,8 +150,8 @@ app_linux {
         message("build for centos6")
     }
 
-    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicuuc.so.58
-    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicudata.so.58
+    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
+    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }
@@ -217,5 +218,5 @@ win32 {
         PLATFORM_BUILD = win_32
     }
 
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -llibcef
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
 }
