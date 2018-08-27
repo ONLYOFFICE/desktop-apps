@@ -119,7 +119,7 @@ app_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/../Common/3dParty/cef/$$PLATFORM_BUILD/build -lcef
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
