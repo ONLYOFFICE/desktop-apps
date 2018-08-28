@@ -16,6 +16,7 @@
 #include "utils.h"
 #include "common/Types.h"
 #include "ctabundockevent.h"
+#include "clangater.h"
 
 #ifdef _WIN32
 #include "csplash.h"
