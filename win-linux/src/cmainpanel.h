@@ -122,6 +122,9 @@ public slots:
     void onDocumentDownload(void * info);
     void onDocumentLoadFinished(int);
 
+    void onDocumentFragmented(int, bool);
+    void onDocumentFragmentedBuild(int, int);
+
     virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool apply, int id = -1);

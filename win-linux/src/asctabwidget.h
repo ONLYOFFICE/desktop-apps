@@ -178,6 +178,8 @@ public:
 
     MapEditors  modified(const QString& portal);
     int         findModified(const QString& portal = QString());
+    int         findFragmented(const QString& portal = QString());
+    bool        isFragmented(int index);
 
     void adjustTabsSize();
     void activate(bool);

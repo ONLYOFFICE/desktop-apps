@@ -109,6 +109,12 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 //        }
 //        break; }
 
+    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END:
+    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR: {
+        int _error = event->m_nType == ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR ? -1 : 0;
+        QMetaObject::invokeMethod(target, "onDocumentFragmentedBuild", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(int, _error));
+        break; }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW:
@@ -244,6 +250,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( cmd.compare(L"IsNeedBuildCryptedFile") == 0 ) {
+            bool isFragmented = pData->get_Param() == L"true" ? true : false;
+            QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
         } else
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
             if ( QString::fromStdWString(pData->get_Param()) == "check" )

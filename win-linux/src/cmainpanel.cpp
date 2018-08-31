@@ -304,7 +304,7 @@ void CMainPanel::pushButtonMaximizeClicked()
 void CMainPanel::pushButtonCloseClicked()
 {
     // if close doesn't act
-    if (m_saveAction != 2) {
+    if (m_saveAction != 2 || m_saveAction != 3) {
         int _index_, _answ_;
 
         while (true) {
@@ -490,8 +490,12 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if (trySaveDocument(index) == MODAL_RESULT_NO) {
-        m_pTabs->closeEditorByIndex(index, false);
+    if ( !m_pTabs->isFragmented(index) ) {
+        if (trySaveDocument(index) == MODAL_RESULT_NO) {
+            m_pTabs->closeEditorByIndex(index, false);
+        }
+    } else {
+        m_pTabs->editorCloseRequest(index);
     }
 }
 
@@ -967,6 +971,59 @@ void CMainPanel::onDocumentDownload(void * info)
 
     CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
     RELEASEINTERFACE(pData);
+}
+
+void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
+{
+    int index = m_pTabs->tabIndexByView(id), _answ;
+    if ( isfragmented ) {
+        if ( !(index < 0) ) {
+            CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+            mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+            _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
+            if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
+                QCefView * pView = (QCefView *)m_pTabs->widget(index);
+                pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+            } else
+            if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
+            } else
+            if ( _answ == MODAL_RESULT_CUSTOM + 2 ) {
+                m_saveAction = 0;
+                m_pTabs->applyDocumentSave(id, true);
+                return;
+            }
+        }
+    }
+
+    m_pTabs->applyDocumentSave(id, true);        // 'true' clears 'closed' doc status
+    _answ = trySaveDocument(index);
+    if ( _answ == MODAL_RESULT_NO ) {
+        m_pTabs->closeEditorByIndex(index, false);
+        if ( m_saveAction == 3 ) {
+            m_saveAction = 0;
+            pushButtonCloseClicked();
+        }
+    } else
+    if ( _answ == MODAL_RESULT_YES ) {
+        if ( m_saveAction == 3 )
+            m_saveAction = 2;
+    }
+}
+
+void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
+{
+    int index = m_pTabs->tabIndexByView(vid);
+    if ( error == 0 ) {
+        m_pTabs->closeEditorByIndex(index, false);
+
+        if ( m_saveAction == 3 ) {
+            m_saveAction = 0;
+            pushButtonCloseClicked();
+        }
+    } else {
+//        int index = m_pTabs->tabIndexByView(id);
+//        m_pTabs->applyDocumentSave(index, true);
+    }
 }
 
 void CMainPanel::loadStartPage()
