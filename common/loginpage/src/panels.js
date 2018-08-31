@@ -45,6 +45,7 @@ $(document).ready(function() {
     window.app.controller.settings = (new ControllerSettings).init();
     if (!!window.ControllerPortals)
         window.app.controller.portals = (new ControllerPortals({})).init();
+    !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
     $('a[action="new:docx"]').text(utils.Lang.newDoc);
