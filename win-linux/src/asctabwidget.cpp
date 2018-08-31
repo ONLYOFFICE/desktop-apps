@@ -266,6 +266,20 @@ void CAscTabWidget::closeAllEditors()
     }
 }
 
+int CAscTabWidget::count(int type) const
+{
+    if ( type < 0 )
+        return QTabWidget::count();
+    else {
+        int _out(0);
+        for (int i(count()); i-- > 0; ) {
+            if ( ((CTabPanel *)widget(i))->data()->viewType() == type )
+                ++_out;
+        }
+        return _out;
+    }
+}
+
 int CAscTabWidget::addPortal(QString url, QString name)
 {
     if ( url.isEmpty() ) return -1;
