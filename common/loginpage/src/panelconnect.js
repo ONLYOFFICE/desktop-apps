@@ -439,6 +439,9 @@
                     _authorize.call(this, portal, model.email, data);
                 }
             }
+            , collection: function() {
+                return collection;
+            }
         };
     })());
 }();
