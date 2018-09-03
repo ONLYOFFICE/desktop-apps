@@ -13,6 +13,8 @@ MinVersion            =6.1
 
 
 [Files]
+#ifndef SCRIPT_CUSTOM_FILES
 Source: data\libs\qt\win32\*;                                         DestDir: {app}\; Flags: ignoreversion recursesubdirs;
+#endif
 
 
