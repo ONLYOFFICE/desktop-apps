@@ -136,7 +136,7 @@ endif
 	$(INSTALL_DIR) $(QT_PLUGINS)/printsupport $(DEST_DIR)
 
 ifeq ($(PLATFORM),win)
-	rm $(DEST_DIR)/**/*.pdb
+	rm -f $(DEST_DIR)/**/*.pdb
 endif
 
 	$(INSTALL_DIR) $(DICT_DIR) $(DEST_DIR)
