@@ -11,8 +11,8 @@
 #define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_IN)
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
-#include "associate_page.iss"
 #include "utils.iss"
+#include "associate_page.iss"
 
 
 [Setup]
@@ -443,6 +443,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
+Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
+    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
+
 Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
 
 Source: ..\..\build\Release\release\{#NAME_EXE_IN};             DestDir: {app}; DestName: {#NAME_EXE_OUT};
@@ -454,30 +457,38 @@ Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; 
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
-Source: ..\..\..\..\core\dictionaries\*;                        DestDir: {app}\dictionaries; Flags: recursesubdirs;
+Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
 Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\empty\*.*;                       DestDir: {app}\converter\empty;       Languages: en sk pt_BR;
-Source: ..\..\..\..\core\build\empty\ru-RU\*.*;                 DestDir: {app}\converter\empty;       Languages: ru;
-Source: ..\..\..\..\core\build\empty\fr-FR\*.*;                 DestDir: {app}\converter\empty;       Languages: fr;
-Source: ..\..\..\..\core\build\empty\es-ES\*.*;                 DestDir: {app}\converter\empty;       Languages: es;
-Source: ..\..\..\..\core\build\empty\de-DE\*.*;                 DestDir: {app}\converter\empty;       Languages: de;
-Source: ..\..\..\..\core\build\empty\cs-CZ\*.*;                 DestDir: {app}\converter\empty;       Languages: cs;
+Source: ..\..\..\common\converter\empty\*.*;                    DestDir: {app}\converter\empty;       Languages: en sk pt_BR;
+Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty;       Languages: ru;
+Source: ..\..\..\common\converter\empty\fr-FR\*.*;              DestDir: {app}\converter\empty;       Languages: fr;
+Source: ..\..\..\common\converter\empty\es-ES\*.*;              DestDir: {app}\converter\empty;       Languages: es;
+Source: ..\..\..\common\converter\empty\de-DE\*.*;              DestDir: {app}\converter\empty;       Languages: de;
+Source: ..\..\..\common\converter\empty\cs-CZ\*.*;              DestDir: {app}\converter\empty;       Languages: cs;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\*;       DestDir: {app}\converter; \
+Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                DestDir: {app}\converter; \
     Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
 
-Source: ..\..\..\..\core\build\{#PATH_PREFIX}\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
 Source: ..\..\..\..\core\build\lib\{#os_arch}\hunspell.dll;           DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\{#os_arch}\x2t.exe;                DestDir: {app}\converter; Flags: ignoreversion;
 #if defined _WIN_XP
 Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 #else
 Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
 #endif
-Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
+
+Source: ..\..\..\..\core\Common\3dParty\icu\{#os_arch}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\*;                 DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+
+#ifdef _UPDMODULE
+Source: ..\..\3dparty\WinSparkle\{#os_arch}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
+#endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
 Source: ..\..\..\common\package\fonts\OpenSans-Bold.ttf;              DestDir: {app}\fonts; Flags: onlyifdoesntexist;
