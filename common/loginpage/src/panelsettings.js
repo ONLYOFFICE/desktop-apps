@@ -71,7 +71,7 @@
                                             <option value='pt_BR'>Brazil</option>
                                         </select>
                                     </div>
-                                    <div class='settings-field'>
+                                    <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
                                             <input type="checkbox" name="onoffswitch" class="checkbox" id="sett-preview-mode">
                                             <label for="sett-preview-mode" class='sett__caption'>${_lang.settOpenMode}</label>
