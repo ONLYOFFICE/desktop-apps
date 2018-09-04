@@ -12,9 +12,3 @@ MinVersion            =6.1
 ;ArchitecturesAllowed    =x86
 
 
-[Files]
-#ifndef SCRIPT_CUSTOM_FILES
-Source: data\libs\qt\win32\*;                                         DestDir: {app}\; Flags: ignoreversion recursesubdirs;
-#endif
-
-

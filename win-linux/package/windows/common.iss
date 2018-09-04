@@ -63,7 +63,6 @@ Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..
 [CustomMessages]
 ;======================================================================================================
 en.Launch =Launch %1
-pt_BR.Launch =Lance o %1
 cs.Launch =Spuštění %1
 sk.Launch =Spustenie %1
 ru.Launch =Запустить %1
@@ -71,9 +70,9 @@ de.Launch =%1 starten
 fr.Launch =Lancer %1
 es.Launch =Ejecutar %1
 it_IT.Launch =Eseguire %1
+pt_BR.Launch =Lance o %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
-pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
 sk.CreateDesktopIcon =Vytvoriť %1 &ikonu na ploche
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
@@ -81,9 +80,9 @@ de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
 fr.CreateDesktopIcon =Créer l'icône du bureau pour %1
 es.CreateDesktopIcon =Crear %1 &icono en el escritorio
 it_IT.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
+pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
-pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
 sk.InstallAdditionalComponents =Inštalácia ďalších systémových súčastí. Prosím čakajte...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
@@ -91,9 +90,9 @@ de.InstallAdditionalComponents =Installation zusätzlicher Systemkomponenten. Bi
 fr.InstallAdditionalComponents =L'installation des composants supplémentaires du système. Attendez...
 es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
 it_IT.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
+pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
-pt_BR.AdditionalTasks =Tarefas:
 cs.AdditionalTasks =Úkoly:
 sk.AdditionalTasks =Úlohy:
 ru.AdditionalTasks =Задачи:
@@ -101,9 +100,9 @@ de.AdditionalTasks =Aufgaben:
 fr.AdditionalTasks =Tâches:
 es.AdditionalTasks =Tareas:
 it_IT.AdditionalTasks =Attività:
+pt_BR.AdditionalTasks =Tarefas:
 ;======================================================================================================
 en.Uninstall =Uninstall
-pt_BR.Uninstall =Desinstalar
 cs.Uninstall =Odinstalovat
 sk.Uninstall =Odinštalovať
 ru.Uninstall =Удаление
@@ -111,9 +110,9 @@ de.Uninstall =Deinstallieren
 fr.Uninstall =Desinstaller
 es.Uninstall =Desinstalar
 it_IT.Uninstall =Disinstalla
+pt_BR.Uninstall =Desinstalar
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
-pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
 sk.WarningWrongArchitecture =Pokúšate sa nainštalovať %1-bitovej verziu na nainštalovanú %2-bitovú verziu. Najskôr odinštalujte predchádzajúcu verziu alebo stiahnite správnu verziu pre inštaláciu.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
@@ -121,17 +120,18 @@ de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung übe
 fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
 es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'applicazione %1-bit sulla versione %2-bit installata. Si prega di disinstallare prima la versione precedente o scaricare la versione corretta per l'installazione.
+pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
-it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
-pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
+it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
+pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 
 ;en.AssociateDescription =Associate office document file types with %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
@@ -448,45 +448,46 @@ Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafte
     AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
 #ifndef SCRIPT_CUSTOM_FILES
-Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
+Source: ..\..\deploy\{#os_arch}\3dparty\Qt\*;                   DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: ..\..\build\Release\release\{#NAME_EXE_IN};             DestDir: {app}; DestName: {#NAME_EXE_OUT};
+Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#iconsExe};
+Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
-;Source: ..\..\common\package\license\eula_onlyoffice.rtf; DestDir: {app}; DestName: LICENSE.rtf;
 Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; DestName: LICENSE.htm;
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;        DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-Source: ..\..\..\common\converter\empty\*.*;                    DestDir: {app}\converter\empty;       Languages: en sk pt_BR;
+Source: ..\..\..\common\converter\empty\*.*;                    DestDir: {app}\converter\empty;       Languages: en sk;
 Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty;       Languages: ru;
 Source: ..\..\..\common\converter\empty\fr-FR\*.*;              DestDir: {app}\converter\empty;       Languages: fr;
 Source: ..\..\..\common\converter\empty\es-ES\*.*;              DestDir: {app}\converter\empty;       Languages: es;
 Source: ..\..\..\common\converter\empty\de-DE\*.*;              DestDir: {app}\converter\empty;       Languages: de;
 Source: ..\..\..\common\converter\empty\cs-CZ\*.*;              DestDir: {app}\converter\empty;       Languages: cs;
+Source: ..\..\..\common\converter\empty\it-IT\*.*;              DestDir: {app}\converter\empty;       Languages: it_IT;
+Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty;       Languages: pt_BR;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\..\..\core\build\lib\{#os_arch}\*;                DestDir: {app}\converter; \
-    Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
 
-Source: ..\..\..\..\core\build\lib\{#os_arch}\HtmlFileInternal.exe;   DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\lib\{#os_arch}\hunspell.dll;           DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\lib\{#os_arch}\ooxmlsignature.dll;     DestDir: {app}\; Flags: ignoreversion;
-Source: ..\..\..\..\core\build\bin\{#os_arch}\x2t.exe;                DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
 #if defined _WIN_XP
-Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir: {app}; Flags: ignoreversion;
 #else
-Source: ..\..\..\..\core\build\lib\{#os_arch}\ascdocumentscore.dll;   DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\deploy\{#os_arch}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\..\core\Common\3dParty\icu\{#os_arch}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\*;                 DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\*;                 DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 
 #ifdef _UPDMODULE
 Source: ..\..\3dparty\WinSparkle\{#os_arch}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;

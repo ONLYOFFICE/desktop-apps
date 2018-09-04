@@ -14,8 +14,3 @@ ArchitecturesInstallIn64BitMode=x64
 ;ShowUndisplayableLanguages = true
 ;UsePreviousLanguage=no
 
-
-[Files]
-#ifndef SCRIPT_CUSTOM_FILES
-Source: data\libs\qt\win64\*;                                     DestDir: {app}\; Flags: ignoreversion recursesubdirs;
-#endif
