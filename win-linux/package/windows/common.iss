@@ -443,10 +443,11 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef SCRIPT_CUSTOM_FILES
+
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
+#ifndef SCRIPT_CUSTOM_FILES
 Source: .\data\projicons.exe;   DestDir: {app};   DestName: {#iconsExe};
 
 Source: ..\..\build\Release\release\{#NAME_EXE_IN};             DestDir: {app}; DestName: {#NAME_EXE_OUT};
@@ -509,6 +510,12 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 #else
+Source: ..\..\..\ONLYOFFICE\DesktopEditors\*;     DestDir: {app}; Flags: recursesubdirs;
+
+#ifdef _UPDMODULE
+Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
+#endif
+
 #endif
 
 [Tasks]

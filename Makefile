@@ -44,6 +44,8 @@ ifneq ($(filter %86,$(UNAME_M)),)
 	ARCHITECTURE := 32
 endif
 
+include win-linux/package/windows/Makefile.mk
+
 QT_ICU ?= $(QT_LIBS)
 
 DEST_CONV_DIR = $(DEST_DIR)/converter
@@ -107,6 +109,7 @@ install: $(TARGETS)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ooxmlsignature$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)hunspell$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) ./LICENSE.txt $(DEST_DIR)
+	$(INSTALL_FILE) common/package/license/3dparty/3DPARTYLICENSE $(DEST_DIR)
 
 	$(INSTALL_FILE) $(QT_LIBS)/$(SHARED_PREFIX)Qt5Core$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(QT_LIBS)/$(SHARED_PREFIX)Qt5Gui$(SHARED_EXT) $(DEST_DIR)
@@ -139,7 +142,8 @@ ifeq ($(PLATFORM),win)
 	rm -f $(DEST_DIR)/**/*.pdb
 endif
 
-	$(INSTALL_DIR) $(DICT_DIR) $(DEST_DIR)
+	mkdir -p $(DEST_DIR)/dictionaries
+	$(INSTALL_DIR) $(DICT_DIR)/* $(DEST_DIR)/dictionaries
 	$(INSTALL_DIR) common/package/fonts $(DEST_DIR)
 
 	$(INSTALL_FILE) ../core/Common/3dParty/cef/$(TARGET)/build/* $(DEST_DIR)
