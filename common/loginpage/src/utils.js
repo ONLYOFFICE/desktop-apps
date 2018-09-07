@@ -252,6 +252,39 @@ utils.fn.decodeHtml = function(str) {
     return $('<div>').html(str).text();
 }
 
+utils.fn.getToolMenuItemOrder = function(item) {
+    let $item = $(item);
+
+    let _action = $item.find('[action]').attr('action'),
+        _is_top_group = !$item.hasClass('bottom');
+
+    let _items_top_order = ['recent', 'open', 'connect', 'activation', 'external'],
+        _items_bottom_order = ['about', 'settings'],
+        _items_order = _is_top_group ? _items_top_order : _items_bottom_order;
+
+    let $menu = $('.main-column.tool-menu');
+    let $itemBefore = $menu.find(`.menu-item [action=${_action}]`);
+
+    if ( $itemBefore.length ) return {item: $itemBefore.parent(), after: _is_top_group};
+    else {
+        let _index = _items_order.indexOf(_action);
+        if ( _index > 0 ) {
+            while ( _index > 0 ) {
+                let _ab = _items_order[--_index];
+                $itemBefore = $menu.find(`.menu-item [action=${_ab}]`).parent();
+
+                if ( $itemBefore.length ) return {item: $itemBefore, after: _is_top_group};
+            }
+        } else
+        if ( _index == 0 ) {
+            return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
+        }
+
+        let $items = $menu.find('.menu-item:not(.bottom)');
+        return { item: $items.length ? $items.last() : $menu.find('.tool-quick-menu').get(0), after: true };
+    }
+};
+
 function getUrlParams() {
     var e,
     a = /\+/g,  
