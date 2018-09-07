@@ -86,6 +86,8 @@
 
             _panel.render();
             _panel.$panel.find('iframe').css({'height':'100%','border':'0 none'});
+
+            panels.push(_panel);
         };
 
         return {
