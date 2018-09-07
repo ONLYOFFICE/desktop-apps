@@ -664,7 +664,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             _user_newname = QString::fromStdWString(Utils::systemUserName());
 
         wstring params = QString("lang=%1&username=%3&location=%2")
-                            .arg(CLangater::getLanguageName(), Utils::systemLocationCode(), _user_newname).toStdWString();
+                            .arg(CLangater::getLanguageName(), Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 
         if ( objRoot["docopenmode"].toString() == "view" )
             params.append(L"&mode=view");
