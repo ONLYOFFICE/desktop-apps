@@ -95,6 +95,7 @@ $(document).ready(function() {
             window.sdk.execCommand('app:onready', '');
         } 
     }, 50);
+
 });
 
 function onActionClick(e) {
@@ -169,17 +170,22 @@ function onNewFileClick(e) {
 }
 
 window.sdk.on('on_native_message', function(cmd, param) {
+    let _re_res;
     if (cmd == 'portal:logout') {
         // var short_name = utils.skipUrlProtocol(param);
         // var model = portalCollection.find('name', short_name);
         // !!model && model.set('logged', false);
     } else
-    if ( /^panel\:(?:hide|show)/.test(cmd) ) {
-        let hide = !/\:show/.test(cmd);
+    if ( (_re_res = /^panel\:(hide|show|select)/.exec(cmd)) ) {
         let panel = param;
+        if ( _re_res[1] == 'select' ) {
+            selectAction( panel );
+        } else {
+            let hide = !(_re_res[1] == 'show');
 
-        if (panel.length) {
-            hideAction(panel, hide);
+            if ( panel.length ) {
+                hideAction(panel, hide);
+            }
         }
     } else
     if (/app\:ready/.test(cmd)) {
