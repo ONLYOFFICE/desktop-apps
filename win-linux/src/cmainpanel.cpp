@@ -982,7 +982,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
             mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
             _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
             if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
-                QCefView * pView = (QCefView *)m_pTabs->widget(index);
+                QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
                 pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
             } else
             if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
