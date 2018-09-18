@@ -224,6 +224,15 @@ public:
                         
                     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
                     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
+                        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                        CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
+
+                        if (pCefView && (pCefView->GetType() == cvwtEditor)) {
+                            if (((CCefViewEditor*)pCefView)->IsPresentationReporter()) {
+                                break;
+                            }
+                        }
+
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                                             object:nil
                                                                           userInfo:@{
@@ -407,9 +416,11 @@ public:
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
+                        std::wstring param = pData->get_Param();
+
 
                         if (cmd.compare(L"portal:open") == 0) {
-                            NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:pData->get_Param()], @"products/files/"]];
+                            NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:param], @"products/files/"]];
                             NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                             NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
                             urlPage.queryItems            = @[countryCode, portalAddress];
@@ -424,12 +435,12 @@ public:
                         } else if (cmd.compare(L"portal:login") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogin
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
                                                                               userInfo:@{
-                                                                                         @"url": [NSString stringWithstdwstring:pData->get_Param()],
+                                                                                         @"url": [NSString stringWithstdwstring:param],
                                                                                          }];
                         } else if (cmd.compare(L"portal:create") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
@@ -438,21 +449,21 @@ public:
                         } else if (cmd.compare(L"portal:new") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
                         } else if (cmd.compare(L"auth:sso") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalSSO
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
                         } else if (cmd.compare(L"files:explore") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
                                                                                 object:nil
                                                                               userInfo:@{
-                                                                                         @"path": [NSString stringWithstdwstring:pData->get_Param()]
+                                                                                         @"path": [NSString stringWithstdwstring:param]
                                                                                          }];
                         } else if (cmd.compare(L"files:check") == 0) {                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Param()])];
+                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
                         } else if (cmd.find(L"app:onready") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady
                                                                                 object:nil
@@ -474,8 +485,46 @@ public:
                                                                                 object:nil
                                                                               userInfo: @{
                                                                                           @"viewId": [NSString stringWithFormat:@"%d", senderId],
-                                                                                          @"path": [NSString stringWithstdwstring:pData->get_Param()]
+                                                                                          @"path": [NSString stringWithstdwstring:param]
                                                                                           }];
+                        } else if (cmd.find(L"settings:get") != std::wstring::npos) {
+                            if (param.find(L"username") != std::wstring::npos) {
+                                if (NSString * fullUserName = NSFullUserName()) {
+                                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"settings:username");
+                                    pCommand->put_Param([fullUserName stdwstring]);
+
+                                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
+
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->SetEventToAllMainWindows(pEvent);
+                                }
+                            }
+                        } else if (cmd.find(L"settings:apply") != std::wstring::npos) {
+                            if (NSDictionary * json = stringToJson([NSString stringWithstdwstring:param])) {
+                                NSMutableArray * params = [NSMutableArray array];
+                                [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+
+                                if (NSString * userName = json[@"username"]) {
+                                    if ([userName isEqualToString:@""]) {
+                                        [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                    } else {
+                                        [params addObject:[NSString stringWithFormat:@"username=%@", userName]];
+                                    }
+                                } else {
+                                    [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                }
+                                if (NSString * docopenMode = json[@"docopenmode"]) {
+                                    if ([docopenMode isEqualToString:@"view"]) {
+                                        [params addObject:[NSString stringWithFormat:@"mode=%@", @"view"]];
+                                    }
+                                }
+
+                                std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
+                                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                appManager->InitAdditionalEditorParams(wLocale);
+                            }
                         }
                         
                         break;

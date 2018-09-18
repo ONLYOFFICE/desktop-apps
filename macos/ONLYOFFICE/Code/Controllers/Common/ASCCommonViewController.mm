@@ -61,6 +61,7 @@
 #import "ASCReplacePresentationAnimator.h"
 #import "AnalyticsHelper.h"
 #import "PureLayout.h"
+#import "NSWindow+Extensions.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -322,6 +323,20 @@
 
 - (void)openEULA {
     [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"html"] title:NSLocalizedString(@"License Agreement", nil)];
+}
+
+- (void)openPreferences {
+    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+    [self.tabsControl selectTab:nil];
+
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"panel:select");
+    pCommand->put_Param(L"settings");
+
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    [self.cefStartPageView apply:pEvent];
 }
 
 #pragma mark -
@@ -752,15 +767,15 @@
         NSTabViewItem * item = [self.tabView selectedTabViewItem];
         
         if (isFullscreen) {
-            [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
-            
+            [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+
             ASCTabView * tab = [self.tabsControl selectedTab];
             
             if (tab) {
                 NSCefView * cefView = [self cefViewWithTab:tab];
                 [cefView focus];
             }
-        } else {
+        } else if ([item.view isInFullScreenMode]) {
             [item.view exitFullScreenModeWithOptions:nil];
             
             ASCTabView * tab = [self.tabsControl selectedTab];

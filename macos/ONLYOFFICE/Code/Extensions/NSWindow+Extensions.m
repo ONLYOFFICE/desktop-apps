@@ -28,27 +28,37 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCCommonViewController.h
+//  NSWindow+Extensions.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 14.09.2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCTabView.h"
-#import "NSCefView.h"
+#import "NSWindow+Extensions.h"
+#import "ASCTitleWindow.h"
 
-@interface ASCCommonViewController : NSViewController
-- (BOOL)shouldTerminateApplication;
-- (BOOL)shouldCloseMainWindow;
+@implementation NSWindow (Extensions)
 
-- (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
-- (void)openAcknowledgments;
-- (void)openEULA;
-- (void)openPreferences;
++ (NSWindow *)titleWindowOrMain {
+    NSArray * windows = [[NSApplication sharedApplication] windows];
+    NSWindow * mainWindow = nil;
+
+    for (NSWindow * window in windows) {
+        if ([window isKindOfClass:[ASCTitleWindow class]]) {
+            mainWindow = window;
+            break;
+        }
+    }
+
+    if (mainWindow == nil) {
+        mainWindow = [NSApp mainWindow];
+    }
+
+    return mainWindow;
+}
+
 @end
-

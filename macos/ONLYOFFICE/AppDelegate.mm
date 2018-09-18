@@ -170,6 +170,8 @@
         return YES;
     } else if ([item action] == @selector(onMenuEULA:)) {
         return YES;
+    } else if ([item action] == @selector(onPreferences:)) {
+        return YES;
     }
     
     return [super validateMenuItem:item];
@@ -291,6 +293,12 @@
         NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
         [NSApp runModalForWindow:windowController.window];
     }
+}
+
+- (IBAction)onPreferences:(NSMenuItem *)sender {
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
+    [controller openPreferences];
 }
 
 - (IBAction)onMenuHide:(NSMenuItem *)sender {
