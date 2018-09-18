@@ -1550,7 +1550,7 @@ DQ
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="icon-login_hover" width="12" height="12"/>
         <image name="icon-login_normal" width="12" height="12"/>
-        <image name="logo-tab" width="86" height="20"/>
+        <image name="logo-tab" width="80" height="16"/>
         <image name="progress_download_icon" width="128" height="128"/>
     </resources>
 </document>

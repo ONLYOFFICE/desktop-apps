@@ -309,7 +309,4 @@
     [NSApp terminate:sender];
 }
 
-
-
-
 @end

@@ -62,6 +62,7 @@
 #import "AnalyticsHelper.h"
 #import "PureLayout.h"
 #import "NSWindow+Extensions.h"
+#import "ASCExternalController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -78,13 +79,16 @@
 @property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
 @property (strong) IBOutlet NSView *headerView;
+@property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @end
 
 @implementation ASCCommonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    _externalDelegate = [[ASCExternalController shared] delegate];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onWindowLoaded:)
                                                  name:ASCEventNameMainWindowLoaded
@@ -242,6 +246,11 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
+
+        // External handle
+        if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onMainWindowLoaded:)]) {
+            [_externalDelegate onMainWindowLoaded:self];
+        }
     }
 }
 
