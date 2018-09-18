@@ -31,14 +31,14 @@
 */
 
 //
-//  ViewController.m
+//  ASCCommonViewController.m
 //  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 9/7/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ASCCommonViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
 #import "nsascprinter.h"
@@ -65,7 +65,7 @@
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
 
-@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
+@interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
@@ -79,7 +79,7 @@
 @property (strong) IBOutlet NSView *headerView;
 @end
 
-@implementation ViewController
+@implementation ASCCommonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
