@@ -44,7 +44,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ASCExternalDelegate <NSObject>
 @optional
+- (NSString *)onApplicationName;
 - (void)onMainWindowLoaded:(id)controller;
+- (void)onCommonViewDidLoad:(id)controller;
+- (void)onCefMenuEvent:(void *)event;
 @end
 
 @interface ASCExternalController : NSObject

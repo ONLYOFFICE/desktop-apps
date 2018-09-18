@@ -224,7 +224,9 @@
                                                  name:CEFEventNameEditorOpenFolder
                                                object:nil];
 
-
+    if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
+        [_externalDelegate onCommonViewDidLoad:self];
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {

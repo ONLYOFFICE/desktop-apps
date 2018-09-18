@@ -44,6 +44,7 @@
 #import "NSString+Extensions.h"
 #import "OfficeFileFormats.h"
 #import "ASCPresentationReporter.h"
+#import "ASCExternalController.h"
 
 
 #pragma mark -
@@ -60,9 +61,11 @@ id stringToJson(NSString *jsonString) {
 
 class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
+    id <ASCExternalDelegate> externalDelegate;
 public:
     ASCEventListener() : NSEditorApi::CAscCefMenuEventListener () {
         eventListenerQueue = dispatch_queue_create("asc.onlyoffice.MenuEventListenerQueue", NULL);
+        externalDelegate = [[ASCExternalController shared] delegate];
     }
     
     virtual void OnEvent(NSEditorApi::CAscCefMenuEvent* pRawEvent)
@@ -532,6 +535,10 @@ public:
 
                     default:
                         break;
+                }
+
+                if (externalDelegate && [externalDelegate respondsToSelector:@selector(onCefMenuEvent:)]) {
+                    [externalDelegate onCefMenuEvent:pEvent];
                 }
                 
                 if (NULL != pEvent) {
