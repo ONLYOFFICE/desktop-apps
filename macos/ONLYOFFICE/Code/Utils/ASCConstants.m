@@ -41,6 +41,7 @@
 #import <Foundation/Foundation.h>
 #import "ASCConstants.h"
 #import "OfficeFileFormats.h"
+#import "ASCExternalController.h"
 
 @implementation ASCConstants
 
@@ -58,19 +59,35 @@
 }
 
 + (NSArray *)documents {
-    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps"];
+    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp"];
+    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx"];
 }
 
 + (NSArray *)plugins {
     return @[@"plugin"];
+}
+
++ (NSString *)appInfo:(NSString *)key {
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppInfo:)]) {
+        return [externalDelegate onAppInfo:key];
+    }
+
+    NSDictionary * appInfo = @{
+                               kRegHelpUrl: @"https://onlyoffice.com/desktopeditors.aspx",
+                               kHelpUrl: @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx",
+                               kRegistrationPortalUrl: @"https://onlyoffice.com/registration.aspx?desktop=true"
+                               };
+
+    return appInfo[key];
 }
 
 + (NSDictionary *)ascFormatsInfo {
@@ -107,6 +124,10 @@
                      @"description" : NSLocalizedString(@"Mobipocket e-book", nil),
                      @"extension"   : @"epub"
                      },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX): @{
+                     @"description" : NSLocalizedString(@"Document template", nil),
+                     @"extension"   : @"dotx"
+                     },
              
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
                      @"description" : NSLocalizedString(@"PowerPoint 2007 Presentation", nil),
@@ -123,6 +144,10 @@
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX): @{
                      @"description" : NSLocalizedString(@"PowerPoint Slide Show", nil),
                      @"extension"   : @"ppsx"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_PRESENTATION_POTX): @{
+                     @"description" : NSLocalizedString(@"Presentation template", nil),
+                     @"extension"   : @"potx"
                      },
              
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
@@ -141,10 +166,18 @@
                      @"description" : NSLocalizedString(@"Comma-Separated Values", nil),
                      @"extension"   : @"csv"
                      },
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX): @{
+                     @"description" : NSLocalizedString(@"Spreadsheet template", nil),
+                     @"extension"   : @"xltx"
+                     },
              
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
                      @"description" : NSLocalizedString(@"PDF File", nil),
                      @"extension"   : @"pdf"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA): @{
+                     @"description" : NSLocalizedString(@"PDFA File", nil),
+                     @"extension"   : @"pdfa"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU): @{
                      @"description" : NSLocalizedString(@"DjVu File", nil),

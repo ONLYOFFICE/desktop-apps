@@ -31,14 +31,14 @@
 */
 
 //
-//  ViewController.m
+//  ASCCommonViewController.m
 //  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 9/7/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ASCCommonViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
 #import "nsascprinter.h"
@@ -61,11 +61,13 @@
 #import "ASCReplacePresentationAnimator.h"
 #import "AnalyticsHelper.h"
 #import "PureLayout.h"
+#import "NSWindow+Extensions.h"
+#import "ASCExternalController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
 
-@interface ViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
+@interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
@@ -77,13 +79,16 @@
 @property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
 @property (strong) IBOutlet NSView *headerView;
+@property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @end
 
-@implementation ViewController
+@implementation ASCCommonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    _externalDelegate = [[ASCExternalController shared] delegate];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onWindowLoaded:)
                                                  name:ASCEventNameMainWindowLoaded
@@ -219,7 +224,9 @@
                                                  name:CEFEventNameEditorOpenFolder
                                                object:nil];
 
-
+    if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
+        [_externalDelegate onCommonViewDidLoad:self];
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -241,6 +248,11 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
+
+        // External handle
+        if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onMainWindowLoaded:)]) {
+            [_externalDelegate onMainWindowLoaded:self];
+        }
     }
 }
 
@@ -322,6 +334,20 @@
 
 - (void)openEULA {
     [self openLocalPage:[[NSBundle mainBundle] pathForResource:@"EULA" ofType:@"html"] title:NSLocalizedString(@"License Agreement", nil)];
+}
+
+- (void)openPreferences {
+    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+    [self.tabsControl selectTab:nil];
+
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"panel:select");
+    pCommand->put_Param(L"settings");
+
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+    pEvent->m_pData = pCommand;
+
+    [self.cefStartPageView apply:pEvent];
 }
 
 #pragma mark -
@@ -752,15 +778,15 @@
         NSTabViewItem * item = [self.tabView selectedTabViewItem];
         
         if (isFullscreen) {
-            [item.view enterFullScreenMode:[NSScreen mainScreen] withOptions:nil];
-            
+            [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+
             ASCTabView * tab = [self.tabsControl selectedTab];
             
             if (tab) {
                 NSCefView * cefView = [self cefViewWithTab:tab];
                 [cefView focus];
             }
-        } else {
+        } else if ([item.view isInFullScreenMode]) {
             [item.view exitFullScreenModeWithOptions:nil];
             
             ASCTabView * tab = [self.tabsControl selectedTab];
@@ -1107,7 +1133,7 @@
                                                         object:nil
                                                       userInfo:@{
                                                                  @"action"  : @(ASCTabActionOpenPortal),
-                                                                 @"url"     : kRegistrationPortalUrl,
+                                                                 @"url"     : [ASCConstants appInfo:kRegistrationPortalUrl],
                                                                  @"title"   : NSLocalizedString(@"Create portal", nil),
                                                                  @"active"  : @(YES)
                                                                  }];
@@ -1123,7 +1149,7 @@
             domainName = [[NSURL URLWithString:domainName] host];
         }
         
-        ASCTabView * existTab = [self tabWithParam:@"url" value:kRegistrationPortalUrl];
+        ASCTabView * existTab = [self tabWithParam:@"url" value:[ASCConstants appInfo:kRegistrationPortalUrl]];
         
         if (existTab) {
             existTab.params[@"url"] = domainName;

@@ -40,7 +40,7 @@
 
 #import "AppDelegate.h"
 #import "ASCConstants.h"
-#import "ViewController.h"
+#import "ASCCommonViewController.h"
 #import "ASCSharedSettings.h"
 #import "ASCTabView.h"
 #import "NSString+Extensions.h"
@@ -127,7 +127,7 @@
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
     
     if (mainWindow) {
-        ViewController * controller = (ViewController *)mainWindow.contentViewController;
+        ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
         
         return [controller shouldTerminateApplication] ? NSTerminateNow : NSTerminateCancel;
     }
@@ -170,6 +170,8 @@
         return YES;
     } else if ([item action] == @selector(onMenuEULA:)) {
         return YES;
+    } else if ([item action] == @selector(onPreferences:)) {
+        return YES;
     }
     
     return [super validateMenuItem:item];
@@ -180,16 +182,16 @@
 
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
     NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
-    NSString * helpUrl  = [NSString stringWithFormat:kHelpUrl, @""];
+    NSString * helpUrl  = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @""];
     
     if ([@"ru" isEqualToString:langCode]) {
-        helpUrl = [NSString stringWithFormat:kHelpUrl, @"ru/"];
+        helpUrl = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @"ru/"];
     } else if ([@"de" isEqualToString:langCode]) {
-        helpUrl = [NSString stringWithFormat:kHelpUrl, @"de/"];
+        helpUrl = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @"de/"];
     } else if ([@"fr" isEqualToString:langCode]) {
-        helpUrl = [NSString stringWithFormat:kHelpUrl, @"fr/"];
+        helpUrl = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @"fr/"];
     } else if ([@"es" isEqualToString:langCode]) {
-        helpUrl = [NSString stringWithFormat:kHelpUrl, @"es/"];
+        helpUrl = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @"es/"];
     }
     
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:helpUrl]];
@@ -226,7 +228,7 @@
 - (IBAction)onMenuSave:(NSMenuItem *)sender {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     NSCefView * cefView = [controller cefViewWithTab:tab];
     
     if (cefView) {
@@ -238,7 +240,7 @@
 - (IBAction)onMenuSaveAs:(NSMenuItem *)sender {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     NSCefView * cefView = [controller cefViewWithTab:tab];
     
     if (cefView) {
@@ -255,7 +257,7 @@
 - (IBAction)onMenuPrint:(NSMenuItem *)sender {
     ASCTabView * tab = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsCurrentTab];
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     NSCefView * cefView = [controller cefViewWithTab:tab];
     
     if (cefView) {
@@ -271,13 +273,13 @@
 
 - (IBAction)onMenuAcknowledgments:(NSMenuItem *)sender {
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     [controller openAcknowledgments];
 }
 
 - (IBAction)onMenuEULA:(NSMenuItem *)sender {
     NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
-    ViewController * controller = (ViewController *)mainWindow.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
     [controller openEULA];
 }
 
@@ -286,11 +288,17 @@
     NSWindow * mainWindow = [NSApp mainWindow];
     
     if (mainWindow) {
-        ViewController * controller = (ViewController *)mainWindow.contentViewController;
+        ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
         
         NSWindowController * windowController = [controller.storyboard instantiateControllerWithIdentifier:@"ASCAboutWindowControllerId"];
         [NSApp runModalForWindow:windowController.window];
     }
+}
+
+- (IBAction)onPreferences:(NSMenuItem *)sender {
+    NSWindow * mainWindow = [[NSApplication sharedApplication] mainWindow];
+    ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
+    [controller openPreferences];
 }
 
 - (IBAction)onMenuHide:(NSMenuItem *)sender {
@@ -300,8 +308,5 @@
 - (IBAction)onMenuQuit:(NSMenuItem *)sender {
     [NSApp terminate:sender];
 }
-
-
-
 
 @end

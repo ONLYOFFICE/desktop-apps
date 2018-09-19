@@ -42,6 +42,7 @@
 #import "mac_application.h"
 #import "NSView+Extensions.h"
 #import "PureLayout.h"
+#import "ASCHelper.h"
 
 @interface ASCPresentationReporter() <NSWindowDelegate>
 @property (nonatomic) NSStoryboard * storyboard;
@@ -82,7 +83,9 @@
     
     if (_controller) {
         _isDisplay = true;
-        
+
+        [_controller.window setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Reporter Window", nil), [ASCHelper appName]]];
+
         NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
@@ -92,7 +95,25 @@
             [_controller.contentViewController.view addSubview:cefView];
             [cefView autoPinEdgesToSuperviewEdges];
             
-            [_controller showWindow:nil];
+
+            NSArray<NSScreen *> * screens = [NSScreen screens];
+
+            if ([screens count] > 1) {
+                for (NSScreen * screen in screens) {
+                    if (screen != [NSScreen mainScreen]) {
+                        NSRect screenRect = [screen frame];
+                        NSRect windowRect = [_controller.window frame];
+                        windowRect.origin.x = screenRect.origin.x + (screenRect.size.width - windowRect.size.width) / 2;
+                        windowRect.origin.y = screenRect.origin.y + (screenRect.size.height - windowRect.size.height) / 2;
+                        [_controller.window setFrame:windowRect display:YES];
+                        [_controller.window setLevel: CGShieldingWindowLevel()];
+                        [_controller.window makeKeyAndOrderFront:screen];
+                        break;
+                    }
+                }
+            } else {
+                [_controller showWindow:nil];
+            }
             
             NSEditorApi::CAscReporterCreate * pData = (NSEditorApi::CAscReporterCreate *)data;
             CAscReporterData * pCreateData = reinterpret_cast<CAscReporterData *>(pData->get_Data());

@@ -31,7 +31,7 @@
 */
 
 //
-//  ViewController.h
+//  ASCCommonViewController.h
 //  ONLYOFFICE
 //
 //  Created by Alexander Yuzhin on 9/7/15.
@@ -42,12 +42,13 @@
 #import "ASCTabView.h"
 #import "NSCefView.h"
 
-@interface ViewController : NSViewController
+@interface ASCCommonViewController : NSViewController
 - (BOOL)shouldTerminateApplication;
 - (BOOL)shouldCloseMainWindow;
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
 - (void)openAcknowledgments;
 - (void)openEULA;
+- (void)openPreferences;
 @end
 

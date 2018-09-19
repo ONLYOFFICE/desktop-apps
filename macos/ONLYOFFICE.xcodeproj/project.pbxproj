@@ -35,7 +35,6 @@
 		FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB01C3258A800F9881C /* InfoPlist.strings */; };
 		FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB71C3258B100F9881C /* InfoPlist.strings */; };
 		FC081EFA1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
-		FC081EFB1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC081EFC1C325EE900F9881C /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = FC081EF91C325EE900F9881C /* dictionaries */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC09073F1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
@@ -44,42 +43,29 @@
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
 		FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
-		FC13B52B2080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
 		FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
 		FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
-		FC29CD441F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
-		FC29CD451F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
-		FC29CD461F979981003F4136 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC29CD431F979981003F4136 /* Registration.storyboard */; };
 		FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
 		FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
-		FC2A34D8208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; };
 		FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
-		FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
+		FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */; };
 		FC54A2851F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */; };
 		FC54A2861F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */; };
-		FC54A2871F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */; };
 		FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
 		FC54A2951F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
-		FC54A2961F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
 		FC592514208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
-		FC592516208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
-		FC6516021D1542C2009DBDCD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F51D1542C2009DBDCD /* EULA.html */; };
-		FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6515F71D1542C2009DBDCD /* InfoPlist.strings */; };
-		FC6516051D154545009DBDCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
-		FC659BFB1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
-		FC65A6411F33355F00BD0F7E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC6515FF1D1542C2009DBDCD /* Info.plist */; };
 		FC65A6421F33356300BD0F7E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9D1C3257FF00F9881C /* Info.plist */; };
-		FC6718011BD913C00028600F /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
+		FC6718011BD913C00028600F /* ASCApplicationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */; };
 		FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
-		FC6718031BD913C00028600F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */; };
+		FC6718031BD913C00028600F /* ASCCommonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */; };
 		FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
 		FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; };
 		FC67180A1BD913C00028600F /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
@@ -107,116 +93,56 @@
 		FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
 		FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
 		FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
-		FC73E6DE207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
 		FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
 		FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
-		FC73E6F5207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
-		FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */; };
-		FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
-		FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
-		FC7FD39A1C315DD6008F6641 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */; };
-		FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
-		FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; };
-		FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
-		FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
-		FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
-		FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FC7FD3AB1C315DD6008F6641 /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
-		FC7FD3AC1C315DD6008F6641 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
-		FC7FD3AD1C315DD6008F6641 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
-		FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
-		FC7FD3B01C315DD6008F6641 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
-		FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
-		FC7FD3B31C315DD6008F6641 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
-		FC7FD3B51C315DD6008F6641 /* ASCDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */; };
-		FC7FD3B61C315DD6008F6641 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
-		FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
-		FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
-		FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
-		FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
-		FC7FD3BF1C315DD6008F6641 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
-		FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
-		FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
-		FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
-		FC7FD3CA1C315DD6008F6641 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
-		FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
-		FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
-		FC7FD3D71C315DD6008F6641 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
-		FC7FD3D81C315DD6008F6641 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
-		FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
-		FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
-		FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
 		FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
-		FC8AA3102084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
 		FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC8AA3162084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
-		FC8AA3172084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
 		FC8AA31B2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
-		FC8AA31C2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
-		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
-		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */; };
+		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
+		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC94247A1CB7C92100C78A27 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC9424791CB7C92000C78A27 /* dsa_pub.pem */; };
-		FC94247B1CB7C92100C78A27 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC9424791CB7C92000C78A27 /* dsa_pub.pem */; };
 		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
-		FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
 		FC98AF0F1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
-		FC98AF101E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
 		FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
 		FC98AF121E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
-		FC98AF131E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
 		FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
 		FC98AF151E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
-		FC98AF161E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
 		FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
 		FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
-		FC98AF191E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
 		FC98AF1A1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
 		FC98AF1B1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
-		FC98AF1C1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
 		FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
 		FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
-		FC98AF1F1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
 		FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
 		FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
-		FC98AF221E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
 		FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
 		FC98AF241E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
-		FC98AF251E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
 		FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
 		FC98AF271E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
-		FC98AF281E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
 		FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
 		FC98AF2A1E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
-		FC98AF2B1E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
 		FC98AF2C1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
 		FC98AF2D1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
-		FC98AF2E1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
 		FC98AF2F1E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
 		FC98AF301E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
-		FC98AF311E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
 		FC98AF321E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
 		FC98AF331E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
-		FC98AF341E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
 		FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
 		FC98AF361E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
-		FC98AF371E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
 		FC98AF381E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
 		FC98AF391E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
-		FC98AF3A1E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
 		FC98AF3B1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
 		FC98AF3C1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
-		FC98AF3D1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
 		FC98AF3E1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
 		FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
-		FC98AF401E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
 		FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
 		FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
-		FC98AF431E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
 		FC98BAD11BAC27CB00747944 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
@@ -225,7 +151,7 @@
 		FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
 		FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
 		FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
-		FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */; };
+		FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */; };
 		FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
 		FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
 		FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
@@ -234,83 +160,57 @@
 		FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
 		FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
 		FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FCB455001C326A4E00FEACF2 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
 		FCBC42711B9D650400405301 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
 		FCBC42761B9D650500405301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FCBC42791B9D650500405301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */; };
 		FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */; };
-		FCC77C5F206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */; };
 		FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
-		FCC77C62206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C66206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
 		FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
-		FCC77C68206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
 		FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
 		FCC77C6D206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
-		FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
 		FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */; };
 		FCC77C7A206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */; };
-		FCC77C7B206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */; };
 		FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
 		FCC77C7D206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
-		FCC77C7E206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
 		FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
-		FCC77C84206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
 		FCC77C86206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
-		FCC77C87206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
 		FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
 		FCC77C92206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
-		FCC77C93206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
 		FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
 		FCC77C95206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
-		FCC77C96206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
 		FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C98206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
-		FCC77C99206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
-		FCC77C9C206CEE86001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FCDDD602208F3C25008AF573 /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */; };
 		FCDDD603208F3C25008AF573 /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */; };
-		FCDDD604208F3C25008AF573 /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */; };
 		FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
 		FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
-		FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
 		FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
 		FCE7D16A207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
-		FCE7D16B207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
 		FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
 		FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
-		FCE7D16E207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
+		FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2897B21510402002FD438 /* NSWindow+Extensions.m */; };
+		FCF2897E21510403002FD438 /* NSWindow+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2897B21510402002FD438 /* NSWindow+Extensions.m */; };
+		FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2898021510C16002FD438 /* ASCExternalController.m */; };
+		FCF2898221510C16002FD438 /* ASCExternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2898021510C16002FD438 /* ASCExternalController.m */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
 		FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
-		FCFE61E31CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E41CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61E11CAD02D4000D2418 /* AnalyticsHelper.m */; };
-		FCFE61E61CAD02D4000D2418 /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61E11CAD02D4000D2418 /* AnalyticsHelper.m */; };
 		FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61E11CAD02D4000D2418 /* AnalyticsHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FC7FD3E01C315DD6008F6641 /* Copy Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				FC7FD3E11C315DD6008F6641 /* Sparkle.framework in Copy Frameworks */,
-			);
-			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FC8EFE021C2A86CE00BB2A43 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,33 +241,32 @@
 		FC081EF91C325EE900F9881C /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../core/dictionaries; sourceTree = SOURCE_ROOT; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
-		FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCPopoverLightView.h; path = Code/Views/ASCPopoverLightView.h; sourceTree = "<group>"; };
-		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCPopoverLightView.m; path = Code/Views/ASCPopoverLightView.m; sourceTree = "<group>"; };
+		FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCPopoverLightView.h; sourceTree = "<group>"; };
+		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCPopoverLightView.m; sourceTree = "<group>"; };
 		FC13B5272080BBF500524968 /* NSImage+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extensions.h"; sourceTree = "<group>"; };
 		FC13B5282080BBF500524968 /* NSImage+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Extensions.m"; sourceTree = "<group>"; };
-		FC25A1A51C2E844800063A42 /* ASCTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTabViewController.h; path = Code/Controllers/ASCTabViewController.h; sourceTree = "<group>"; };
-		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTabViewController.m; path = Code/Controllers/ASCTabViewController.m; sourceTree = "<group>"; };
-		FC29CD431F979981003F4136 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		FC25A1A51C2E844800063A42 /* ASCTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabViewController.h; sourceTree = "<group>"; };
+		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabViewController.m; sourceTree = "<group>"; };
 		FC2A34D4208610F0001B5784 /* ASCDocSignController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocSignController.h; sourceTree = "<group>"; };
 		FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDocSignController.mm; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
-		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCEventsController.h; path = Code/Controllers/ASCEventsController.h; sourceTree = "<group>"; };
-		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCEventsController.mm; path = Code/Controllers/ASCEventsController.mm; sourceTree = "<group>"; };
+		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEventsController.h; sourceTree = "<group>"; };
+		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEventsController.mm; sourceTree = "<group>"; };
 		FC3BFDFA1BBE83AB0040C904 /* SFBPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopover.h; sourceTree = "<group>"; };
 		FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopover.m; sourceTree = "<group>"; };
 		FC3BFDFC1BBE83AB0040C904 /* SFBPopoverWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopoverWindow.h; sourceTree = "<group>"; };
 		FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindow.m; sourceTree = "<group>"; };
 		FC3BFDFE1BBE83AB0040C904 /* SFBPopoverWindowFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBPopoverWindowFrame.h; sourceTree = "<group>"; };
 		FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBPopoverWindowFrame.m; sourceTree = "<group>"; };
-		FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 4; name = ASCApplicationManager.cpp; path = Code/ASCApplicationManager.cpp; sourceTree = "<group>"; };
-		FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCApplicationManager.h; path = Code/ASCApplicationManager.h; sourceTree = "<group>"; };
+		FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 4; path = ASCApplicationManager.mm; sourceTree = "<group>"; };
+		FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCApplicationManager.h; sourceTree = "<group>"; };
 		FC54A2881F94BA6D0086F4FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Presentation-Reporter.storyboard"; sourceTree = "<group>"; };
 		FC54A28B1F94BA6F0086F4FE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC54A28D1F94BA700086F4FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC54A28F1F94BA710086F4FE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC54A2911F94BA720086F4FE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
-		FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASCPresentationReporter.h; path = Code/Controllers/ASCPresentationReporter.h; sourceTree = "<group>"; };
-		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCPresentationReporter.mm; path = Code/Controllers/ASCPresentationReporter.mm; sourceTree = "<group>"; };
+		FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCPresentationReporter.h; sourceTree = "<group>"; };
+		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCPresentationReporter.mm; sourceTree = "<group>"; };
 		FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLVerifier.h; sourceTree = "<group>"; };
 		FC5919D6208DC6D00006F664 /* XmlCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCertificate.h; sourceTree = "<group>"; };
 		FC5919D7208DC6D00006F664 /* OOXMLSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLSigner.h; sourceTree = "<group>"; };
@@ -417,8 +316,8 @@
 		FC6515FF1D1542C2009DBDCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC6516001D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/EULA.html; sourceTree = "<group>"; };
 		FC6516011D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC659BF71C75EE8B00C99776 /* ASCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCAboutController.h; path = Code/Controllers/ASCAboutController.h; sourceTree = "<group>"; };
-		FC659BF81C75EE8B00C99776 /* ASCAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCAboutController.m; path = Code/Controllers/ASCAboutController.m; sourceTree = "<group>"; };
+		FC659BF71C75EE8B00C99776 /* ASCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAboutController.h; sourceTree = "<group>"; };
+		FC659BF81C75EE8B00C99776 /* ASCAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCAboutController.m; sourceTree = "<group>"; };
 		FC67182D1BD913C00028600F /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6718301BD918CA0028600F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FC6718451BD91B3A0028600F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/MoveApplication.strings; sourceTree = "<group>"; };
@@ -430,7 +329,6 @@
 		FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSView+Extensions.m"; sourceTree = "<group>"; };
 		FC73E6F1207E15BB00EFFD2F /* NSColor+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+Extensions.h"; sourceTree = "<group>"; };
 		FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Extensions.m"; sourceTree = "<group>"; };
-		FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC81D4BE2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		FC81D4BF2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC81D4C02035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/EULA.html; sourceTree = "<group>"; };
@@ -458,7 +356,7 @@
 		FC8B986E201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-BR"; path = "pt-BR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		FC8B986F201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
-		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCReplacePresentationAnimator.m; sourceTree = "<group>"; };
+		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCReplacePresentationAnimator.mm; sourceTree = "<group>"; };
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		FC9424791CB7C92000C78A27 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ONLYOFFICE/update/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		FC981B3B1C744D39006F669C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -481,30 +379,30 @@
 		FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsx.icns"; sourceTree = "<group>"; };
 		FC98AF0D1E94E16A00718A12 /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
 		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
-		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSCefView.h; path = Code/Views/NSCefView.h; sourceTree = "<group>"; };
-		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSCefView.mm; path = Code/Views/NSCefView.mm; sourceTree = "<group>"; };
-		FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleWindow.h; path = Code/ASCTitleWindow.h; sourceTree = "<group>"; };
-		FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleWindow.m; path = Code/ASCTitleWindow.m; sourceTree = "<group>"; };
-		FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleBackground.h; path = Code/Views/ASCTitleBackground.h; sourceTree = "<group>"; };
-		FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleBackground.m; path = Code/Views/ASCTitleBackground.m; sourceTree = "<group>"; };
+		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefView.h; sourceTree = "<group>"; };
+		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefView.mm; sourceTree = "<group>"; };
+		FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleWindow.h; sourceTree = "<group>"; };
+		FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTitleWindow.m; sourceTree = "<group>"; };
+		FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleBackground.h; sourceTree = "<group>"; };
+		FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTitleBackground.m; sourceTree = "<group>"; };
 		FCA0B3531B9F006F0073EDD4 /* ASCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCHelper.h; sourceTree = "<group>"; };
 		FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCHelper.m; sourceTree = "<group>"; };
 		FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCConstants.h; sourceTree = "<group>"; };
 		FCA4502C1C2063460007134D /* ASCSharedSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCSharedSettings.h; sourceTree = "<group>"; };
 		FCA4502D1C2063460007134D /* ASCSharedSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCSharedSettings.m; sourceTree = "<group>"; };
-		FCA9A18E1BA6DC6000ABF3AB /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Code/Controllers/ViewController.h; sourceTree = "<group>"; };
-		FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = Code/Controllers/ViewController.mm; sourceTree = "<group>"; };
-		FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleBarController.h; path = Code/Controllers/ASCTitleBarController.h; sourceTree = "<group>"; };
-		FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCTitleBarController.m; path = Code/Controllers/ASCTitleBarController.m; sourceTree = "<group>"; };
-		FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCTitleWindowController.h; path = Code/Controllers/ASCTitleWindowController.h; sourceTree = "<group>"; };
-		FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCTitleWindowController.mm; path = Code/Controllers/ASCTitleWindowController.mm; sourceTree = "<group>"; };
-		FCAA9A3C1BBA802100F3C47F /* ASCDownloadCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadCellView.h; path = Code/Views/ASCDownloadCellView.h; sourceTree = "<group>"; };
-		FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCDownloadCellView.m; path = Code/Views/ASCDownloadCellView.m; sourceTree = "<group>"; };
-		FCAA9A421BBA817B00F3C47F /* ASCDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadViewController.h; path = Code/Controllers/ASCDownloadViewController.h; sourceTree = "<group>"; };
-		FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCDownloadViewController.m; path = Code/Controllers/ASCDownloadViewController.m; sourceTree = "<group>"; };
+		FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCCommonViewController.h; sourceTree = "<group>"; };
+		FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCCommonViewController.mm; sourceTree = "<group>"; };
+		FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleBarController.h; sourceTree = "<group>"; };
+		FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTitleBarController.m; sourceTree = "<group>"; };
+		FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleWindowController.h; sourceTree = "<group>"; };
+		FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCTitleWindowController.mm; sourceTree = "<group>"; };
+		FCAA9A3C1BBA802100F3C47F /* ASCDownloadCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCDownloadCellView.h; sourceTree = "<group>"; };
+		FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCDownloadCellView.m; sourceTree = "<group>"; };
+		FCAA9A421BBA817B00F3C47F /* ASCDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCDownloadViewController.h; sourceTree = "<group>"; };
+		FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCDownloadViewController.m; sourceTree = "<group>"; };
 		FCAC6DF71C195FA6003D2457 /* ASCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCConstants.m; sourceTree = "<group>"; };
-		FCAF3EFB1BA31D3C00B42BAA /* ASCUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCUserInfoViewController.h; path = Code/Controllers/ASCUserInfoViewController.h; sourceTree = "<group>"; };
-		FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCUserInfoViewController.m; path = Code/Controllers/ASCUserInfoViewController.m; sourceTree = "<group>"; };
+		FCAF3EFB1BA31D3C00B42BAA /* ASCUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCUserInfoViewController.h; sourceTree = "<group>"; };
+		FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCUserInfoViewController.m; sourceTree = "<group>"; };
 		FCB454FD1C326A4E00FEACF2 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
 		FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
 		FCBC42681B9D650400405301 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -539,8 +437,8 @@
 		FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabViewCell.m; sourceTree = "<group>"; };
 		FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCMulticastDelegate.h; sourceTree = "<group>"; };
 		FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCMulticastDelegate.m; sourceTree = "<group>"; };
-		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCDownloadController.h; path = Code/Controllers/ASCDownloadController.h; sourceTree = "<group>"; };
-		FCD294681BB97D3300318930 /* ASCDownloadController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ASCDownloadController.mm; path = Code/Controllers/ASCDownloadController.mm; sourceTree = "<group>"; };
+		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCDownloadController.h; sourceTree = "<group>"; };
+		FCD294681BB97D3300318930 /* ASCDownloadController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDownloadController.mm; sourceTree = "<group>"; };
 		FCD2B9081BC6489800F54560 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		FCD2B9091BC6489800F54560 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCD2B90B1BC648A500F54560 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -570,6 +468,10 @@
 		FCE7D163207D002700642010 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
 		FCE7D164207D002700642010 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
 		FCE7D165207D002700642010 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		FCF2897B21510402002FD438 /* NSWindow+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Extensions.m"; sourceTree = "<group>"; };
+		FCF2897C21510403002FD438 /* NSWindow+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Extensions.h"; sourceTree = "<group>"; };
+		FCF2897F21510C16002FD438 /* ASCExternalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCExternalController.h; sourceTree = "<group>"; };
+		FCF2898021510C16002FD438 /* ASCExternalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCExternalController.m; sourceTree = "<group>"; };
 		FCFA5D021BC54631003E2B44 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		FCFC000C1BC54ACC00939341 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCFD46241C1ADAB300FDDCEE /* OfficeFileFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfficeFileFormats.h; path = ../../core/Common/OfficeFileFormats.h; sourceTree = SOURCE_ROOT; };
@@ -587,18 +489,6 @@
 				FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
 				FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */,
 				FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC7FD3C11C315DD6008F6641 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC981B3D1C744D41006F669C /* WebKit.framework in Frameworks */,
-				FC7FD3C21C315DD6008F6641 /* Security.framework in Frameworks */,
-				FC7FD3C31C315DD6008F6641 /* Sparkle.framework in Frameworks */,
-				FC7FD3C41C315DD6008F6641 /* libascdocumentscore.dylib in Frameworks */,
-				FC592516208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,21 +551,11 @@
 			path = "file-formats";
 			sourceTree = "<group>";
 		};
-		FC1127561BBAAC4600AA3648 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */,
-				FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		FC29CD421F979946003F4136 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				FCBC42771B9D650500405301 /* Main.storyboard */,
 				FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */,
-				FC29CD431F979981003F4136 /* Registration.storyboard */,
 				FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */,
 			);
 			name = Storyboard;
@@ -694,15 +574,6 @@
 			name = SFBPopover;
 			path = Vendor/SFBPopover;
 			sourceTree = SOURCE_ROOT;
-		};
-		FC54A2801F94B9B20086F4FE /* Reporter */ = {
-			isa = PBXGroup;
-			children = (
-				FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */,
-				FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */,
-			);
-			name = Reporter;
-			sourceTree = "<group>";
 		};
 		FC591593208DC6CE0006F664 /* xmlsec */ = {
 			isa = PBXGroup;
@@ -736,7 +607,6 @@
 			children = (
 				FC5A2D041BABEF74001ACEB1 /* bin */,
 				FC5A2CFF1BABEF53001ACEB1 /* include */,
-				FC98BAD31BAC438800747944 /* Views */,
 			);
 			name = SDK;
 			sourceTree = "<group>";
@@ -748,8 +618,6 @@
 				FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors */,
 				FC5A2D401BAC075E001ACEB1 /* common */,
 				FC5A2D531BAC075E001ACEB1 /* Word_Api */,
-				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.cpp */,
-				FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -852,23 +720,6 @@
 			path = "ONLYOFFICE-RU-FREE";
 			sourceTree = "<group>";
 		};
-		FC659BF51C75EE5C00C99776 /* About */ = {
-			isa = PBXGroup;
-			children = (
-				FC659BF61C75EE7200C99776 /* Controller */,
-			);
-			name = About;
-			sourceTree = "<group>";
-		};
-		FC659BF61C75EE7200C99776 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FC659BF71C75EE8B00C99776 /* ASCAboutController.h */,
-				FC659BF81C75EE8B00C99776 /* ASCAboutController.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
 		FC67182F1BD918250028600F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,15 +743,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FC739BE31C2BE8F700887739 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				FC1127561BBAAC4600AA3648 /* Views */,
-				FCA0B35F1B9F07B30073EDD4 /* Controller */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
 		FC8AA30B2084BFE700549F2D /* KSNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -920,17 +762,7 @@
 				FC2A34D4208610F0001B5784 /* ASCDocSignController.h */,
 				FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */,
 			);
-			name = DocumentSignature;
-			path = Code/Controllers/DocumentSignature;
-			sourceTree = "<group>";
-		};
-		FC98BAD31BAC438800747944 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FC98BAD41BAC43B400747944 /* NSCefView.h */,
-				FC98BAD51BAC43B400747944 /* NSCefView.mm */,
-			);
-			name = Views;
+			path = DocumentSignature;
 			sourceTree = "<group>";
 		};
 		FC98BAD71BAC4C6300747944 /* Resources */ = {
@@ -949,37 +781,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FCA0B33D1B9EB56E0073EDD4 /* Main Window */ = {
-			isa = PBXGroup;
-			children = (
-				FCA0B34F1B9EFFDF0073EDD4 /* Views */,
-				FCA0B34E1B9EFFD10073EDD4 /* Controllers */,
-			);
-			name = "Main Window";
-			sourceTree = "<group>";
-		};
-		FCA0B34E1B9EFFD10073EDD4 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */,
-				FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */,
-				FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */,
-				FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */,
-				FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */,
-				FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		FCA0B34F1B9EFFDF0073EDD4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */,
-				FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		FCA0B3561B9F00780073EDD4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,87 +789,13 @@
 				FCA0B3531B9F006F0073EDD4 /* ASCHelper.h */,
 				FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */,
 				FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */,
-				FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m */,
+				FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */,
 				FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */,
 				FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */,
 				FCA4502C1C2063460007134D /* ASCSharedSettings.h */,
 				FCA4502D1C2063460007134D /* ASCSharedSettings.m */,
 			);
-			name = Utils;
-			path = Code/Utils;
-			sourceTree = "<group>";
-		};
-		FCA0B35E1B9F07A10073EDD4 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				FC739BE31C2BE8F700887739 /* Common */,
-				FCA0B33D1B9EB56E0073EDD4 /* Main Window */,
-				FC54A2801F94B9B20086F4FE /* Reporter */,
-				FCAA9A391BBA7E7600F3C47F /* Download */,
-				FC8AA3122084C4F100549F2D /* DocumentSignature */,
-				FC659BF51C75EE5C00C99776 /* About */,
-				FCAF3EFA1BA31CF600B42BAA /* User Info */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		FCA0B35F1B9F07B30073EDD4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				FCA9A18E1BA6DC6000ABF3AB /* ViewController.h */,
-				FCA9A18F1BA6DC6000ABF3AB /* ViewController.mm */,
-				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
-				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
-				FCD294671BB97D3300318930 /* ASCDownloadController.h */,
-				FCD294681BB97D3300318930 /* ASCDownloadController.mm */,
-				FC25A1A51C2E844800063A42 /* ASCTabViewController.h */,
-				FC25A1A61C2E844800063A42 /* ASCTabViewController.m */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		FCAA9A391BBA7E7600F3C47F /* Download */ = {
-			isa = PBXGroup;
-			children = (
-				FCAA9A3A1BBA7FE000F3C47F /* Views */,
-				FCAA9A3B1BBA7FE800F3C47F /* Controllers */,
-			);
-			name = Download;
-			sourceTree = "<group>";
-		};
-		FCAA9A3A1BBA7FE000F3C47F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FCAA9A3C1BBA802100F3C47F /* ASCDownloadCellView.h */,
-				FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		FCAA9A3B1BBA7FE800F3C47F /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FCAA9A421BBA817B00F3C47F /* ASCDownloadViewController.h */,
-				FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		FCAF3EFA1BA31CF600B42BAA /* User Info */ = {
-			isa = PBXGroup;
-			children = (
-				FCAF3F051BA31DE200B42BAA /* Controllers */,
-			);
-			name = "User Info";
-			sourceTree = "<group>";
-		};
-		FCAF3F051BA31DE200B42BAA /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FCAF3EFB1BA31D3C00B42BAA /* ASCUserInfoViewController.h */,
-				FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */,
-			);
-			name = Controllers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		FCB454FC1C326A4E00FEACF2 /* PFMoveApplication */ = {
@@ -1094,7 +821,6 @@
 			children = (
 				FCBC42681B9D650400405301 /* ONLYOFFICE.app */,
 				FC67182D1BD913C00028600F /* ONLYOFFICE.app */,
-				FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1105,10 +831,7 @@
 				FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */,
 				FC29CD421F979946003F4136 /* Storyboard */,
 				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
-				FCA0B35E1B9F07A10073EDD4 /* UI */,
-				FCBC428E1B9D65CA00405301 /* Controls */,
-				FCA0B3561B9F00780073EDD4 /* Utils */,
-				FCC77C54206CDB0A001B7837 /* Extensions */,
+				FCF289712150E65A002FD438 /* Code */,
 				FC67182F1BD918250028600F /* Vendor */,
 				FCBC426D1B9D650400405301 /* AppDelegate.h */,
 				FCBC426E1B9D650400405301 /* AppDelegate.mm */,
@@ -1144,8 +867,7 @@
 				FCC77C72206CEE5A001B7837 /* ASCSavePanelWithFormatController.h */,
 				FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */,
 			);
-			name = Controls;
-			path = Code/Controls;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		FCC77C54206CDB0A001B7837 /* Extensions */ = {
@@ -1165,9 +887,10 @@
 				FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */,
 				FC13B5272080BBF500524968 /* NSImage+Extensions.h */,
 				FC13B5282080BBF500524968 /* NSImage+Extensions.m */,
+				FCF2897C21510403002FD438 /* NSWindow+Extensions.h */,
+				FCF2897B21510402002FD438 /* NSWindow+Extensions.m */,
 			);
-			name = Extensions;
-			path = Code/Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FCC77C88206CEE85001B7837 /* ASCTabs */ = {
@@ -1199,6 +922,115 @@
 				FCE7D165207D002700642010 /* NSArray+PureLayout.m */,
 			);
 			path = PureLayout;
+			sourceTree = "<group>";
+		};
+		FCF289712150E65A002FD438 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				FCF289732150E737002FD438 /* Views */,
+				FCF289722150E6A1002FD438 /* Controllers */,
+				FCBC428E1B9D65CA00405301 /* Controls */,
+				FCC77C54206CDB0A001B7837 /* Extensions */,
+				FCA0B3561B9F00780073EDD4 /* Utils */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		FCF289722150E6A1002FD438 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FCF289742150E820002FD438 /* Common */,
+				FCF289762150E904002FD438 /* MainWindow */,
+				FCF289782150E95F002FD438 /* About */,
+				FCF289792150E999002FD438 /* Download */,
+				FCF289772150E929002FD438 /* PresentationReporter */,
+				FC8AA3122084C4F100549F2D /* DocumentSignature */,
+				FCF2897A2150E9BF002FD438 /* UserInfo */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FCF289732150E737002FD438 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC98BAD41BAC43B400747944 /* NSCefView.h */,
+				FC98BAD51BAC43B400747944 /* NSCefView.mm */,
+				FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */,
+				FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */,
+				FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */,
+				FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */,
+				FCAA9A3C1BBA802100F3C47F /* ASCDownloadCellView.h */,
+				FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FCF289742150E820002FD438 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */,
+				FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */,
+				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */,
+				FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */,
+				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
+				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
+				FCF2897F21510C16002FD438 /* ASCExternalController.h */,
+				FCF2898021510C16002FD438 /* ASCExternalController.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		FCF289762150E904002FD438 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */,
+				FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */,
+				FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */,
+				FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */,
+				FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */,
+				FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */,
+				FC25A1A51C2E844800063A42 /* ASCTabViewController.h */,
+				FC25A1A61C2E844800063A42 /* ASCTabViewController.m */,
+			);
+			path = MainWindow;
+			sourceTree = "<group>";
+		};
+		FCF289772150E929002FD438 /* PresentationReporter */ = {
+			isa = PBXGroup;
+			children = (
+				FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */,
+				FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */,
+			);
+			path = PresentationReporter;
+			sourceTree = "<group>";
+		};
+		FCF289782150E95F002FD438 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				FC659BF71C75EE8B00C99776 /* ASCAboutController.h */,
+				FC659BF81C75EE8B00C99776 /* ASCAboutController.m */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		FCF289792150E999002FD438 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				FCD294671BB97D3300318930 /* ASCDownloadController.h */,
+				FCD294681BB97D3300318930 /* ASCDownloadController.mm */,
+				FCAA9A421BBA817B00F3C47F /* ASCDownloadViewController.h */,
+				FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		FCF2897A2150E9BF002FD438 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				FCAF3EFB1BA31D3C00B42BAA /* ASCUserInfoViewController.h */,
+				FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */,
+			);
+			path = UserInfo;
 			sourceTree = "<group>";
 		};
 		FCFE61DD1CAD02D4000D2418 /* CocoaAnalytics */ = {
@@ -1233,26 +1065,6 @@
 			name = "ONLYOFFICE-MAS";
 			productName = ONLYOFFICE;
 			productReference = FC67182D1BD913C00028600F /* ONLYOFFICE.app */;
-			productType = "com.apple.product-type.application";
-		};
-		FC7FD3941C315DD6008F6641 /* ONLYOFFICE-RU-FREE */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-RU-FREE" */;
-			buildPhases = (
-				FC7FD3951C315DD6008F6641 /* Copy Library */,
-				FC7FD3961C315DD6008F6641 /* Sources */,
-				FC7FD3C11C315DD6008F6641 /* Frameworks */,
-				FC7FD3C51C315DD6008F6641 /* Resources */,
-				FC7FD3DF1C315DD6008F6641 /* Rename symbols */,
-				FC7FD3E01C315DD6008F6641 /* Copy Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "ONLYOFFICE-RU-FREE";
-			productName = ONLYOFFICE;
-			productReference = FC7FD3E51C315DD6008F6641 /* ONLYOFFICE.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FCBC42671B9D650400405301 /* ONLYOFFICE */ = {
@@ -1299,9 +1111,6 @@
 							};
 						};
 					};
-					FC7FD3941C315DD6008F6641 = {
-						DevelopmentTeam = 6YRY82J794;
-					};
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 2WH24U26GJ;
@@ -1338,7 +1147,6 @@
 			targets = (
 				FCBC42671B9D650400405301 /* ONLYOFFICE */,
 				FC6717FE1BD913C00028600F /* ONLYOFFICE-MAS */,
-				FC7FD3941C315DD6008F6641 /* ONLYOFFICE-RU-FREE */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
 				FC5C4EEA1CF8618F008F5C11 /* Prepare */,
 			);
@@ -1350,7 +1158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC29CD451F979981003F4136 /* Registration.storyboard in Resources */,
 				FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */,
 				FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */,
 				FC09073F1C1855A400D9E881 /* editors in Resources */,
@@ -1383,47 +1190,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC7FD3C51C315DD6008F6641 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC98AF251E94E16A00718A12 /* file-odt.icns in Resources */,
-				FC98AF371E94E16A00718A12 /* file-rtf.icns in Resources */,
-				FC98AF1F1E94E16A00718A12 /* file-odp.icns in Resources */,
-				FC98AF281E94E16A00718A12 /* file-pdf.icns in Resources */,
-				FC98AF401E94E16A00718A12 /* file-xlsx.icns in Resources */,
-				FC98AF2E1E94E16A00718A12 /* file-ppsx.icns in Resources */,
-				FC54A2871F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */,
-				FC7FD3CA1C315DD6008F6641 /* editors in Resources */,
-				FCDDD604208F3C25008AF573 /* Document-Sign.storyboard in Resources */,
-				FC98AF131E94E16A00718A12 /* file-djvu.icns in Resources */,
-				FC98AF101E94E16A00718A12 /* file-csv.icns in Resources */,
-				FC081EFB1C325EE900F9881C /* dictionaries in Resources */,
-				FC98AF431E94E16A00718A12 /* file-xps.icns in Resources */,
-				FC98AF191E94E16A00718A12 /* file-docx.icns in Resources */,
-				FC29CD461F979981003F4136 /* Registration.storyboard in Resources */,
-				FC7FD3D71C315DD6008F6641 /* login in Resources */,
-				FC98AF161E94E16A00718A12 /* file-doc.icns in Resources */,
-				FC98AF2B1E94E16A00718A12 /* file-pps.icns in Resources */,
-				FC7FD3D81C315DD6008F6641 /* converter in Resources */,
-				FC98AF221E94E16A00718A12 /* file-ods.icns in Resources */,
-				FC6516051D154545009DBDCD /* Images.xcassets in Resources */,
-				FC6516031D1542C2009DBDCD /* InfoPlist.strings in Resources */,
-				FC6516021D1542C2009DBDCD /* EULA.html in Resources */,
-				FC98AF311E94E16A00718A12 /* file-ppt.icns in Resources */,
-				FC94247B1CB7C92100C78A27 /* dsa_pub.pem in Resources */,
-				FC98AF3D1E94E16A00718A12 /* file-xls.icns in Resources */,
-				FC98AF1C1E94E16A00718A12 /* file-html.icns in Resources */,
-				FC7FD3DC1C315DD6008F6641 /* Localizable.stringsdict in Resources */,
-				FC7FD3D01C315DD6008F6641 /* Localizable.strings in Resources */,
-				FC98AF341E94E16A00718A12 /* file-pptx.icns in Resources */,
-				FC98AF3A1E94E16A00718A12 /* file-txt.icns in Resources */,
-				FC7FD3D21C315DD6008F6641 /* MoveApplication.strings in Resources */,
-				FC7FD3DB1C315DD6008F6641 /* Main.storyboard in Resources */,
-				FC65A6411F33355F00BD0F7E /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCBC42661B9D650400405301 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1442,7 +1208,6 @@
 				FC081EFA1C325EE900F9881C /* dictionaries in Resources */,
 				FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */,
 				FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */,
-				FC29CD441F979981003F4136 /* Registration.storyboard in Resources */,
 				FC3B777B1BB28CE900DB9705 /* login in Resources */,
 				FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */,
 				FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */,
@@ -1480,7 +1245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\nrm -rf \"${dst}\"/libooxmlsignature.dylib\nrm -rf \"${dst}\"/libssl.1.1.dylib\nrm -rf \"${dst}\"/libcrypto.1.1.dylib\n\nif [ ! -d \"${dst}\" ]; then\n    mkdir -p \"${dst}\"\nfi\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Copy libraries and frameworks\"\necho \"---------------------------------------------------------------------------------------\"\n\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libooxmlsignature.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libssl.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libcrypto.1.1.dylib \"${dst}\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change dynamic shared library install names\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@executable_path/../Frameworks/libooxmlsignature.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@rpath/libooxmlsignature.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libssl.1.1.dylib \\\n@rpath/libssl.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libssl.1.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.60.dylib \\\n@rpath/libicuuc.60.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.60.2.dylib \\\n@rpath/libicudata.60.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.60.2.dylib \\\nlibicudata.60.dylib \\\n\"${contents}\"/Resources/converter/x2t\n\ninstall_name_tool \\\n-change \\\nlibicudata.60.dylib \\\n@rpath/libicudata.60.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.60.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Rename symbols in helper\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../../../../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change rights\"\necho \"---------------------------------------------------------------------------------------\"\n\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\necho \"---------------------------------------------------------------------------------------\"\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libooxmlsignature.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libssl.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libcrypto.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\nrm -rf \"${dst}\"/libooxmlsignature.dylib\nrm -rf \"${dst}\"/libssl.1.1.dylib\nrm -rf \"${dst}\"/libcrypto.1.1.dylib\nrm -rf \"${dst}\"/libkernel.dylib\nrm -rf \"${dst}\"/libhunspell.dylib\nrm -rf \"${dst}\"/libgraphics.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Copy libraries and frameworks\"\necho \"---------------------------------------------------------------------------------------\"\n\ncp -Rv \"${core_path}\"/build/cef/mac/${TARGET_NAME}\\ Helper.app \"${dst}\"/${TARGET_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libooxmlsignature.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libssl.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libcrypto.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libkernel.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libhunspell.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libgraphics.dylib \"${dst}\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change dynamic shared library install names\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@executable_path/../Frameworks/libooxmlsignature.dylib \\\n\"${contents}\"/MacOS/${TARGET_NAME}\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@rpath/libooxmlsignature.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibhunspell.dylib \\\n@rpath/libhunspell.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libssl.1.1.dylib \\\n@rpath/libssl.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libssl.1.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libgraphics.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${dst}\"/libgraphics.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.58.dylib \\\n@rpath/libicuuc.58.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.58.2.dylib \\\n@rpath/libicudata.58.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.58.2.dylib \\\nlibicudata.58.dylib \\\n\"${contents}\"/Resources/converter/x2t\n\ninstall_name_tool \\\n-change \\\nlibicudata.58.dylib \\\n@rpath/libicudata.58.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.58.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libgraphics.dylib\n\ninstall_name_tool \\\n-change \\\nlibkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${contents}\"/Resources/converter/libgraphics.dylib\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Rename symbols in helper\"\necho \"---------------------------------------------------------------------------------------\"\n\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libgraphics.dylib \\\n@rpath/libgraphics.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -change libkernel.dylib \\\n@rpath/libkernel.dylib \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Frameworks \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\ninstall_name_tool \\\n-change \\\n@rpath/Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n@executable_path/../../../../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Change rights\"\necho \"---------------------------------------------------------------------------------------\"\n\nchmod -v +x \"${dst}\"/${TARGET_NAME}\\ Helper.app/Contents/MacOS/${TARGET_NAME}\\ Helper\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\necho \"---------------------------------------------------------------------------------------\"\n\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libooxmlsignature.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libssl.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libcrypto.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libkernel.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libhunspell.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libgraphics.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/${TARGET_NAME} Helper.app/\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -1495,7 +1260,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    else\n        rm -Rf $1\n        mkdir -p $1\n    fi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"$BASE_DIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASE_DIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_LOGINPAGE_DIR=\"$BASE_DIR\"/../common/loginpage/deploy\nSRC_WEBFONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_COMMONLICENCE_DIR=\"$BASE_DIR\"/ONLYOFFICE/Resources\nDST_LOGINPAGE_DIR=\"$DST_DIR\"/login\nDST_WEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nDST_COMMONLICENCE_DIR=\"$DST_LOGINPAGE_DIR\"\n\nCreateDir \"$DST_LOGINPAGE_DIR\"\nCreateDir \"$DST_WEBFONTS_DIR\"\n\ncp -vR \"$SRC_LOGINPAGE_DIR\"/index.html \"$DST_LOGINPAGE_DIR\"/index.html\ncp -vR \"$SRC_WEBFONTS_DIR\"/LICENSE.txt \"$DST_WEBFONTS_DIR\"/LICENSE.txt\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Light.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -vR \"$SRC_COMMONLICENCE_DIR\"/acknowledgments.html \"$DST_COMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop\"\nSRC_EDITORS_FONTS_DIR=\"$BASE_DIR\"/../common/package/fonts\nSRC_EDITORS_SDK_DIR=\"$JS_SDK_SVN\"/sdkjs\nSRC_EDITORS_SDKPLUGINS_DIR=\"$JS_SDK_SVN\"/sdkjs-plugins\nSRC_EDITORS_WEBAPPS_DIR=\"$JS_SDK_SVN\"/web-apps\nDST_EDITORS_DIR=\"$DST_DIR\"/editors\nDST_EDITORS_FONTS_DIR=\"$DST_EDITORS_DIR\"/fonts\nDST_EDITORS_SDK_DIR=\"$DST_EDITORS_DIR\"/sdkjs\nDST_EDITORS_SDKPLUGINS_DIR=\"$DST_EDITORS_DIR\"/sdkjs-plugins\nDST_EDITORS_WEBAPPS_DIR=\"$DST_EDITORS_DIR\"/web-apps\n\nCreateDir \"$DST_EDITORS_FONTS_DIR\"\nCreateDir \"$DST_EDITORS_SDK_DIR\"\nCreateDir \"$DST_EDITORS_SDKPLUGINS_DIR\"\nCreateDir \"$DST_EDITORS_WEBAPPS_DIR\"\n\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ariblk.ttf \"$DST_EDITORS_FONTS_DIR\"/ariblk.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ASANA.TTC \"$DST_EDITORS_FONTS_DIR\"/ASANA.TTC\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bold.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-italic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-regular.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/LICENSE.txt \"$DST_EDITORS_FONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$SRC_EDITORS_SDK_DIR\"/ \"$DST_EDITORS_SDK_DIR\"/\ncp -vR \"$SRC_EDITORS_SDKPLUGINS_DIR\"/ \"$DST_EDITORS_SDKPLUGINS_DIR\"/\ncp -vR \"$SRC_EDITORS_WEBAPPS_DIR\"/ \"$DST_EDITORS_WEBAPPS_DIR\"/\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_CONVERTER_DIR=\"$BASE_DIR\"/../common/converter\nDST_CONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$SRC_CONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.60.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.60.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/x2t\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/icudtl.dat\" \"$DST_CONVERTER_DIR\"\n\nchmod -v +x \"$DST_CONVERTER_DIR\"/x2t";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"$BASE_DIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASE_DIR\"/../../core\nOPENSOURCE_DESKTOP_APPS_DIR=\"$BASE_DIR\"/..\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_LOGINPAGE_DIR=\"$BASE_DIR\"/../common/loginpage/deploy\nSRC_WEBFONTS_DIR=\"$OPENSOURCE_DESKTOP_APPS_DIR\"/common/package/fonts\nSRC_COMMONLICENCE_DIR=\"$BASE_DIR\"/ONLYOFFICE/Resources\nDST_LOGINPAGE_DIR=\"$DST_DIR\"/login\nDST_WEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nDST_COMMONLICENCE_DIR=\"$DST_LOGINPAGE_DIR\"\n\nCreateDir \"$DST_LOGINPAGE_DIR\"\nCreateDir \"$DST_WEBFONTS_DIR\"\n\ncp -vR \"$SRC_LOGINPAGE_DIR\"/index.html \"$DST_LOGINPAGE_DIR\"/index.html\ncp -vR \"$SRC_WEBFONTS_DIR\"/LICENSE.txt \"$DST_WEBFONTS_DIR\"/LICENSE.txt\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Light.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -vR \"$SRC_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DST_WEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -vR \"$SRC_COMMONLICENCE_DIR\"/acknowledgments.html \"$DST_COMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop\"\nSRC_EDITORS_FONTS_DIR=\"$OPENSOURCE_DESKTOP_APPS_DIR\"/common/package/fonts\nSRC_EDITORS_SDK_DIR=\"$JS_SDK_SVN\"/sdkjs\nSRC_EDITORS_SDKPLUGINS_DIR=\"$JS_SDK_SVN\"/sdkjs-plugins\nSRC_EDITORS_WEBAPPS_DIR=\"$JS_SDK_SVN\"/web-apps\nDST_EDITORS_DIR=\"$DST_DIR\"/editors\nDST_EDITORS_FONTS_DIR=\"$DST_EDITORS_DIR\"/fonts\nDST_EDITORS_SDK_DIR=\"$DST_EDITORS_DIR\"/sdkjs\nDST_EDITORS_SDKPLUGINS_DIR=\"$DST_EDITORS_DIR\"/sdkjs-plugins\nDST_EDITORS_WEBAPPS_DIR=\"$DST_EDITORS_DIR\"/web-apps\n\nCreateDir \"$DST_EDITORS_FONTS_DIR\"\nCreateDir \"$DST_EDITORS_SDK_DIR\"\nCreateDir \"$DST_EDITORS_SDKPLUGINS_DIR\"\nCreateDir \"$DST_EDITORS_WEBAPPS_DIR\"\n\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ariblk.ttf \"$DST_EDITORS_FONTS_DIR\"/ariblk.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/ASANA.TTC \"$DST_EDITORS_FONTS_DIR\"/ASANA.TTC\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bold.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-bolditalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-italic.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/caladea-regular.ttf \"$DST_EDITORS_FONTS_DIR\"/caladea-regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Italic.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf \"$DST_EDITORS_FONTS_DIR\"/Carlito-Regular.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf \"$DST_EDITORS_FONTS_DIR\"/Comic_Sans_MS.ttf\ncp -vR \"$SRC_EDITORS_FONTS_DIR\"/LICENSE.txt \"$DST_EDITORS_FONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$SRC_EDITORS_SDK_DIR\"/ \"$DST_EDITORS_SDK_DIR\"/\ncp -vR \"$SRC_EDITORS_SDKPLUGINS_DIR\"/ \"$DST_EDITORS_SDKPLUGINS_DIR\"/\ncp -vR \"$SRC_EDITORS_WEBAPPS_DIR\"/ \"$DST_EDITORS_WEBAPPS_DIR\"/\n\ncd \"$BASE_DIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRC_CONVERTER_DIR=\"$OPENSOURCE_DESKTOP_APPS_DIR\"/common/converter\nDST_CONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$SRC_CONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$OPENSOURCE_DESKTOP_APPS_DIR\"/common/converter/empty \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libkernel.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libgraphics.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.58.dylib\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.58.dylib\" \"$DST_CONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/x2t\" \"$DST_CONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/icudtl.dat\" \"$DST_CONVERTER_DIR\"\n\nchmod -v +x \"$DST_CONVERTER_DIR\"/x2t\n\n";
 		};
 		FC5C4EEE1CF861A3008F5C11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1539,35 +1304,6 @@
 			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\n    mkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${PRODUCT_NAME}\\ Helper.app \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\necho \"Remove some helpers\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_report_sender.app/\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_inspector\"\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/${PRODUCT_NAME} Helper.app/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${contents}\"/Resources/converter/x2t";
 			showEnvVarsInLog = 0;
 		};
-		FC7FD3951C315DD6008F6641 /* Copy Library */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Library";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n    mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCWEBFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTWEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nSRCCOMMONLICENCE_DIR=\"$BASEDIR\"/ONLYOFFICE/Resources\nDSTCOMMONLICENCE_DIR=\"$DSTLOGINPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTWEBFONTS_DIR\"\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.onlyru.html \"$DSTLOGINPAGE_DIR\"/index.html\ncp -R \"$SRCWEBFONTS_DIR\"/LICENSE.txt \"$DSTWEBFONTS_DIR\"/LICENSE.txt\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Light.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -R \"$SRCCOMMONLICENCE_DIR\"/acknowledgments.html \"$DSTCOMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsdesktop\"\nSRCEDITORPAGE_DIR=\"$JS_SDK_SVN\"/web-apps\nDSTEDITORPAGE_DIR=\"$DST_DIR\"/editors\nSRCEDITORFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTEDITORFONTS_DIR=\"$DSTEDITORPAGE_DIR\"/fonts\nWEBAPPS_DIR=\"$DSTEDITORPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTEDITORFONTS_DIR\"\nCreateDir \"$DSTEDITORPAGE_DIR\"/sdkjs\nCreateDir \"$WEBAPPS_DIR\"\n\ncp -R \"$SRCEDITORFONTS_DIR\"/ariblk.ttf \"$DSTEDITORFONTS_DIR\"/ariblk.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Asana-Math.ttf \"$DSTEDITORFONTS_DIR\"/Asana-Math.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bold.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bolditalic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bolditalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-italic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-regular.ttf \"$DSTEDITORFONTS_DIR\"/caladea-regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Bold.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Italic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Regular.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/LICENSE.txt \"$DSTEDITORFONTS_DIR\"/LICENSE.txt\n\nrsync -av --progress \"$JS_SDK_SVN\"/ \"$DSTEDITORPAGE_DIR\" --exclude='web-apps' --exclude='startpage'\ncp -vR \"$SRCEDITORPAGE_DIR\" \"$WEBAPPS_DIR\"\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCCONVERTER_DIR=\"$BASEDIR\"/../common/converter\nDSTCONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$SRCCONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/x2t\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac_64/icudtl.dat\" \"$DSTCONVERTER_DIR\"\n\nchmod -v +x \"$DSTCONVERTER_DIR\"/x2t";
-		};
-		FC7FD3DF1C315DD6008F6641 /* Rename symbols */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Rename symbols";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/ONLYOFFICE\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\nrm -rf \"${dst}\"/libooxmlsignature.dylib\nrm -rf \"${dst}\"/libssl.1.1.dylib\nrm -rf \"${dst}\"/libcrypto.1.1.dylib\n\nif [ ! -d \"${dst}\" ]; then\nmkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/ONLYOFFICE\\ Helper.app \"${dst}\"/ONLYOFFICE\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libooxmlsignature.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libssl.1.1.dylib \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libcrypto.1.1.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/ONLYOFFICE\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/ONLYOFFICE\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibooxmlsignature.dylib \\\n@rpath/libooxmlsignature.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libssl.1.1.dylib \\\n@rpath/libssl.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libooxmlsignature.dylib\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libcrypto.1.1.dylib \\\n@rpath/libcrypto.1.1.dylib \\\n\"${dst}\"/libssl.1.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibicuuc.55.dylib \\\n@rpath/libicuuc.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\n../lib/libicudata.55.1.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libUnicodeConverter.dylib\n\ninstall_name_tool \\\n-change \\\nlibicudata.55.dylib \\\n@rpath/libicudata.55.dylib \\\n\"${contents}\"/Resources/converter/libicuuc.55.1.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfWriter.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\ninstall_name_tool -change libUnicodeConverter.dylib \\\n@rpath/libUnicodeConverter.dylib \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/ONLYOFFICE\\ Helper.app/Contents/MacOS/ONLYOFFICE\\ Helper\n\necho \"Sign libraries and frameworks\"\necho \"${CODE_SIGN_IDENTITY}\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libooxmlsignature.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libssl.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/libcrypto.1.1.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" \"${dst}/ONLYOFFICE Helper.app/\"";
-			showEnvVarsInLog = 0;
-		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1592,15 +1328,15 @@
 			files = (
 				FCC77C7D206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
 				FCFE61E41CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
-				FC6718011BD913C00028600F /* ASCApplicationManager.cpp in Sources */,
+				FC6718011BD913C00028600F /* ASCApplicationManager.mm in Sources */,
 				FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */,
-				FC6718031BD913C00028600F /* ViewController.mm in Sources */,
+				FC6718031BD913C00028600F /* ASCCommonViewController.mm in Sources */,
 				FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
 				FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */,
 				FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */,
-				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */,
+				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,
 				FC67180A1BD913C00028600F /* ASCHelper.m in Sources */,
 				FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
@@ -1611,6 +1347,7 @@
 				FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */,
 				FCC77C98206CEE85001B7837 /* ASCTabView.m in Sources */,
 				FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */,
+				FCF2897E21510403002FD438 /* NSWindow+Extensions.m in Sources */,
 				FC6718101BD913C00028600F /* NSCefView.mm in Sources */,
 				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
 				FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */,
@@ -1630,6 +1367,7 @@
 				FCC77C86206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
 				FC6718181BD913C00028600F /* main.mm in Sources */,
 				FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */,
+				FCF2898221510C16002FD438 /* ASCExternalController.m in Sources */,
 				FCC77C7A206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC6718191BD913C00028600F /* ASCDownloadViewController.m in Sources */,
 				FCC77C95206CEE85001B7837 /* ASCTabsControl.m in Sources */,
@@ -1643,80 +1381,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC7FD3961C315DD6008F6641 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC73E6DE207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
-				FC7FD3971C315DD6008F6641 /* ASCApplicationManager.cpp in Sources */,
-				FC7FD3981C315DD6008F6641 /* ASCSharedSettings.m in Sources */,
-				FC7FD3991C315DD6008F6641 /* ASCDownloadCellView.m in Sources */,
-				FCC77C7E206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
-				FC7FD39A1C315DD6008F6641 /* ViewController.mm in Sources */,
-				FCFE61E31CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
-				FC7FD3A01C315DD6008F6641 /* ASCTitleWindowController.mm in Sources */,
-				FCB455001C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
-				FCC77C99206CEE85001B7837 /* ASCTabView.m in Sources */,
-				FCC77C7B206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
-				FC7FD3A21C315DD6008F6641 /* SFBPopoverWindow.m in Sources */,
-				FC7FD3A31C315DD6008F6641 /* ASCHelper.m in Sources */,
-				FC7FD3A41C315DD6008F6641 /* ASCUserInfoViewController.m in Sources */,
-				FC73E6F5207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
-				FCE7D16B207D002700642010 /* ALView+PureLayout.m in Sources */,
-				FC13B52B2080BBF500524968 /* NSImage+Extensions.m in Sources */,
-				FCC77C6E206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
-				FCFE61E61CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
-				FCE7D168207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
-				FC8AA3172084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
-				FC7FD3A81C315DD6008F6641 /* ASCPopoverLightView.m in Sources */,
-				FC7FD3AA1C315DD6008F6641 /* NSCefView.mm in Sources */,
-				FCC77C96206CEE85001B7837 /* ASCTabsControl.m in Sources */,
-				FC7FD3AB1C315DD6008F6641 /* ASCTitleBarController.m in Sources */,
-				FC7FD3AC1C315DD6008F6641 /* SFBPopover.m in Sources */,
-				FC7FD3AD1C315DD6008F6641 /* ASCEventsController.mm in Sources */,
-				FC659BFB1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
-				FC7FD3AF1C315DD6008F6641 /* ASCMulticastDelegate.m in Sources */,
-				FCC77C87206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
-				FCC77C68206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
-				FC7FD3B01C315DD6008F6641 /* ASCDownloadController.mm in Sources */,
-				FCC77C93206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
-				FC7FD3B21C315DD6008F6641 /* ASCTabViewController.m in Sources */,
-				FC54A2961F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
-				FC7FD3B31C315DD6008F6641 /* main.mm in Sources */,
-				FC8AA3102084BFE700549F2D /* KSNavigationController.mm in Sources */,
-				FC8AA31C2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
-				FCC77C84206CEE5B001B7837 /* ASCButton.m in Sources */,
-				FC2A34D8208610F0001B5784 /* ASCDocSignController.mm in Sources */,
-				FC7FD3B51C315DD6008F6641 /* ASCDownloadViewController.m in Sources */,
-				FC7FD3B61C315DD6008F6641 /* ASCTitleWindow.m in Sources */,
-				FC7FD3B81C315DD6008F6641 /* ASCTitleBackground.m in Sources */,
-				FC7FD3B91C315DD6008F6641 /* ASCConstants.m in Sources */,
-				FCC77C62206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
-				FC7FD3BD1C315DD6008F6641 /* AppDelegate.mm in Sources */,
-				FCC77C5F206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
-				FCE7D16E207D002700642010 /* NSArray+PureLayout.m in Sources */,
-				FC7FD3BE1C315DD6008F6641 /* SFBPopoverWindowFrame.m in Sources */,
-				FCC77C9C206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
-				FC7FD3BF1C315DD6008F6641 /* ASCReplacePresentationAnimator.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCBC42641B9D650400405301 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
-				FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.cpp in Sources */,
+				FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.mm in Sources */,
 				FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */,
 				FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */,
 				FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
-				FCA9A1901BA6DC6000ABF3AB /* ViewController.mm in Sources */,
+				FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */,
 				FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
+				FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */,
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
 				FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
+				FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
 				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
@@ -1755,7 +1437,7 @@
 				FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */,
 				FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */,
 				FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */,
-				FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.m in Sources */,
+				FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2005,79 +1687,6 @@
 			};
 			name = Release;
 		};
-		FC7FD3E31C315DD6008F6641 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Alexander Yuzhin (48KSML6N7L)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6YRY82J794;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/cef/mac",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-					"$(PROJECT_DIR)/ONLYOFFICE",
-					"$(PROJECT_DIR)/Vendor/Sparkle",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					_MAC,
-					_PRODUCT_ONLYOFFICE_RU_FREE,
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/$(TARGET_NAME)/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				OTHER_CODE_SIGN_FLAGS = "";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-headerpad_max_install_names",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.ONLYOFFICE;
-				PRODUCT_NAME = ONLYOFFICE;
-				PROVISIONING_PROFILE = "";
-			};
-			name = Debug;
-		};
-		FC7FD3E41C315DD6008F6641 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application: NKT, ZAO (6YRY82J794)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/cef/mac",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-					"$(PROJECT_DIR)/ONLYOFFICE",
-					"$(PROJECT_DIR)/Vendor/Sparkle",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					_MAC,
-					_PRODUCT_ONLYOFFICE_RU_FREE,
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/$(TARGET_NAME)/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				OTHER_CODE_SIGN_FLAGS = "";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-headerpad_max_install_names",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.ONLYOFFICE;
-				PRODUCT_NAME = ONLYOFFICE;
-				PROVISIONING_PROFILE = "";
-			};
-			name = Release;
-		};
 		FCBC42861B9D650500405301 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2163,7 +1772,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2WH24U26GJ;
@@ -2203,8 +1812,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 2WH24U26GJ;
@@ -2271,15 +1880,6 @@
 			buildConfigurations = (
 				FC67182B1BD913C00028600F /* Debug */,
 				FC67182C1BD913C00028600F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC7FD3E21C315DD6008F6641 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-RU-FREE" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC7FD3E31C315DD6008F6641 /* Debug */,
-				FC7FD3E41C315DD6008F6641 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

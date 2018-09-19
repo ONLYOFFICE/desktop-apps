@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title">
@@ -74,12 +74,16 @@
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
         <source>%@ Help</source>
         <target>%@ Hilfe</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Reporter Window">
+        <source>%@ Reporter Window</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -136,14 +140,18 @@
         <target>DjVu-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Do you want to save the changes made to the document \&quot;%@\&quot;?">
-        <source>Do you want to save the changes made to the document \"%@\"?</source>
-        <target>Möchten Sie vorgenommene am Dokument Änderungen  \"%@\" speichern?</target>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Möchten Sie vorgenommene am Dokument Änderungen  "%@" speichern?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
         <source>Document %ld.docx</source>
         <target>Dokument %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document template">
+        <source>Document template</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -156,14 +164,14 @@
         <target>Excel 2007</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Datei "%@" kann nicht geöffnet werden oder existiert nicht.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File Format:">
         <source>File Format:</source>
         <target>Dateiformat:</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="File \&quot;%@\&quot; can not be open or not exist.">
-        <source>File \"%@\" can not be open or not exist.</source>
-        <target>Datei \"%@\" kann nicht geöffnet werden oder existiert nicht.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open.">
@@ -179,6 +187,10 @@
       <trans-unit id="If you don't review your documents, all your changeses will be lost.">
         <source>If you don't review your documents, all your changeses will be lost.</source>
         <target>Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
@@ -241,6 +253,10 @@
         <target>Pdf-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="PDFA File">
+        <source>PDFA File</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
         <target>Einfacher Text</target>
@@ -271,6 +287,10 @@
         <target>Präsentation %ld.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Presentation template">
+        <source>Presentation template</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quit %@">
         <source>Quit %@</source>
         <target>%@ beenden</target>
@@ -299,6 +319,14 @@
       <trans-unit id="Spreadsheet %ld.xlsx">
         <source>Spreadsheet %ld.xlsx</source>
         <target>Tabelle %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet template">
+        <source>Spreadsheet template</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Thank you for evaluating %@!">
+        <source>Thank you for evaluating %@!</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
@@ -350,16 +378,35 @@
         <target>Sie haben %1$ld %2$@ Dokumente mit nicht bestätigten Änderungen. Möchten Sie diese Änderungen vor dem Beenden überprüfen?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="You have successfully activated %@.">
+        <source>You have successfully activated %@.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
         <target>Wenn Sie Ihre Änderungen nicht speichern, gehen alle Änderungen verloren.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount.">
+        <source>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
+        <source>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
@@ -415,7 +462,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -1187,7 +1234,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder">
@@ -1234,19 +1281,19 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
-        <source>ONLYOFFICE Reporter Window</source>
+        <source>Reporter Window</source>
         <target>ONLYOFFICE Berichtefenster</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -1261,26 +1308,9 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="de">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-        <target>ONLYOFFICE</target>
-        <note>Bundle name</note>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2018 All rights reserved.</source>
-        <target>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii 2018. Alle Rechte vorbehalten.</target>
-        <note>Copyright (human-readable)</note>
-      </trans-unit>
-    </body>
-  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="de">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.0" build-num="10A255"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">

@@ -41,7 +41,7 @@
 #import "ASCTitleWindowController.h"
 #import "ASCTitleWindow.h"
 #import "ASCConstants.h"
-#import "ViewController.h"
+#import "ASCCommonViewController.h"
 #import "ASCHelper.h"
 
 @interface ASCTitleWindowController ()
@@ -67,7 +67,7 @@
 
 - (BOOL)windowShouldClose:(id)sender {
     ASCTitleWindow * window = (ASCTitleWindow *)self.window;
-    ViewController * controller = (ViewController *)window.contentViewController;
+    ASCCommonViewController * controller = (ASCCommonViewController *)window.contentViewController;
     NSEvent * event = [window currentEvent];
 
 //    BOOL isCommandKey = ([event modifierFlags] & NSCommandKeyMask) != 0;
