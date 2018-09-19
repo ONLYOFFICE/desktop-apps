@@ -1133,7 +1133,7 @@
                                                         object:nil
                                                       userInfo:@{
                                                                  @"action"  : @(ASCTabActionOpenPortal),
-                                                                 @"url"     : kRegistrationPortalUrl,
+                                                                 @"url"     : [ASCConstants appInfo:kRegistrationPortalUrl],
                                                                  @"title"   : NSLocalizedString(@"Create portal", nil),
                                                                  @"active"  : @(YES)
                                                                  }];
@@ -1149,7 +1149,7 @@
             domainName = [[NSURL URLWithString:domainName] host];
         }
         
-        ASCTabView * existTab = [self tabWithParam:@"url" value:kRegistrationPortalUrl];
+        ASCTabView * existTab = [self tabWithParam:@"url" value:[ASCConstants appInfo:kRegistrationPortalUrl]];
         
         if (existTab) {
             existTab.params[@"url"] = domainName;

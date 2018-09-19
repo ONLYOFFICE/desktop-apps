@@ -41,6 +41,7 @@
 #import <Foundation/Foundation.h>
 #import "ASCConstants.h"
 #import "OfficeFileFormats.h"
+#import "ASCExternalController.h"
 
 @implementation ASCConstants
 
@@ -71,6 +72,22 @@
 
 + (NSArray *)plugins {
     return @[@"plugin"];
+}
+
++ (NSString *)appInfo:(NSString *)key {
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppInfo:)]) {
+        return [externalDelegate onAppInfo:key];
+    }
+
+    NSDictionary * appInfo = @{
+                               kRegHelpUrl: @"https://onlyoffice.com/desktopeditors.aspx",
+                               kHelpUrl: @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx",
+                               kRegistrationPortalUrl: @"https://onlyoffice.com/registration.aspx?desktop=true"
+                               };
+
+    return appInfo[key];
 }
 
 + (NSDictionary *)ascFormatsInfo {
