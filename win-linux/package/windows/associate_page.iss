@@ -8,7 +8,15 @@
 #endif
 
 #if !defined(ASCC_REG_REGISTERED_APP_NAME)
-# define ASCC_REG_REGISTERED_APP_NAME 'DesktopEditors'
+# define ASCC_REG_REGISTERED_APP_NAME 'ONLYOFFICE Editors'
+#endif
+
+#if !defined(ASSOC_PROG_ID)
+# define ASSOC_PROG_ID 'ASC.Editors'
+#endif
+
+#if !defined(ASSOC_APP_FRIENDLY_NAME)
+# define ASSOC_APP_FRIENDLY_NAME 'ONLYOFFICE Editors'
 #endif
 
 [Setup]
@@ -190,6 +198,13 @@ it_IT.runOpenDefaultApps=Open Default apps
 [Run]
 Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \
   Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+
+[Registry]
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      ValueType: string; ValueName:; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\DefaultIcon;          ValueType: string; ValueName:; ValueData: "{app}\{#iconsExe},0";
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open\command;   ValueType: string; ValueName:; ValueData: """{app}\{#iconsExe}"" ""%1""";
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open;           ValueType: string; ValueName: FriendlyAppName; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
 
 [Code]
 
@@ -429,7 +444,6 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
 begin
-
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin     
       Explode(argsArray, ExtensionRegistryInfo[i],':');
@@ -467,8 +481,7 @@ begin
         end;
       end else
       begin
-        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT}\shell\open\command'), '', ExpandConstant('"{app}\{#iconsExe}" "%1"'));
-        RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'), '', '');
+        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', ExpandConstant('{#ASSOC_PROG_ID}'), '');
       end;
     end;
 
@@ -498,6 +511,7 @@ begin
 
     ext := LowerCase(AudioExts[i]);
     RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', ExpandConstant('{#ASSOC_PROG_ID}'));
 
     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', str);
     if CompareText(str, argsArray[0]) = 0 then
@@ -516,4 +530,5 @@ begin
   end;
 
   RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', 'DesktopEditors');
+  RegDeleteValue(HKEY_CLASSES_ROOT, 'Local Settings\Software\Microsoft\Windows\Shell\MuiCache', ExpandConstant('{app}\{#iconsExe}'));
 end;
