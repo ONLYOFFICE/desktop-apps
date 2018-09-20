@@ -39,8 +39,8 @@
 
 #define VER_NUM_MAJOR               5
 #define VER_NUM_MINOR               2
-#define VER_NUM_BUILD               43
-#define VER_NUM_REVISION            390
+#define VER_NUM_BUILD               46
+#define VER_NUM_REVISION            398
 #define VER_NUMBER                  VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION
 #define VER_STRING                  VER_STR_LONG(VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION)
 #define VER_STRING_SHORT            VER_STR_SHORT(VER_NUM_MAJOR,VER_NUM_MINOR)
@@ -61,6 +61,10 @@
 #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
 #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
 #define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
+
+#define VER_LANG_AND_CHARSET        "040904E4"
+#define VER_LANG_ID                 0x0409
+#define VER_CHARSET_ID              1252
 
 #ifndef RC_COMPILE_FLAG
 # include "version_p.h"

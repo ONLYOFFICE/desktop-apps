@@ -8,7 +8,7 @@
 #define licfile             'agpl-3.0'
 #define APPWND_CLASS_NAME   'DocEditorsWindowClass'
 
-#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\release\' + NAME_EXE_IN)
+#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
@@ -461,7 +461,7 @@ Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-Source: ..\..\..\..\core\build\jsdesktop\web-apps-ant\*;        DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*.*;                    DestDir: {app}\converter\empty;       Languages: en sk;
@@ -487,7 +487,12 @@ Source: ..\..\deploy\{#os_arch}\libs\ascdocumentscore.dll;      DestDir: {app}; 
 #endif
 
 Source: ..\..\..\..\core\Common\3dParty\icu\{#os_arch}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\*;                 DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\build\*;           DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+
+#ifdef _ENCRYPT_MODULE
+Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\common\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\engine\blockchain\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+#endif
 
 #ifdef _UPDMODULE
 Source: ..\..\3dparty\WinSparkle\{#os_arch}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
