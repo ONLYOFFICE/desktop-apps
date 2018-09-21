@@ -81,10 +81,6 @@ static float kASCWindowMinTitleWidth = 0;
 
 - (void)initialize {
     NSArray * windows = [[NSApplication sharedApplication] windows];
-#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
-    NSString * productName = [ASCHelper appName];
-    productName = [productName uppercaseString];
-#endif
     NSWindow * mainWindow = nil;
     
     for (NSWindow * window in windows) {
@@ -380,12 +376,7 @@ static float kASCWindowMinTitleWidth = 0;
     [self doLayout];
 }
 
-- (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {
-#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
-    NSString * productName = [ASCHelper appName];
-    productName = [productName uppercaseString];
-#endif
-    
+- (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {  
     if (tab) {
         [self.portalButton setState:NSOffState];
     } else {
