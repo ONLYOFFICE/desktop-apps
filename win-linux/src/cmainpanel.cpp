@@ -984,6 +984,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
             if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
                 QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
                 pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+                return;
             } else
             if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
             } else
