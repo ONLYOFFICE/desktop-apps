@@ -246,6 +246,26 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         break;
     }
 
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
+        auto _send_plugins = [](IMenuEventDataBase * d){
+            CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(d);
+            QJsonObject _json_obj;
+
+            for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
+                _json_obj["name"] = QString::fromStdWString(item.name);
+                _json_obj["id"] = QString::fromStdWString(item.id);
+                _json_obj["url"] = QString::fromStdWString(item.url);
+
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
+            }
+        };
+
+        QTimer::singleShot(0, [=] {
+            _send_plugins(_event->m_pData);
+        });
+
+        return; }
+
     default: break;
     }
 
