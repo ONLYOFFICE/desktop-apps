@@ -230,6 +230,10 @@ public:
                         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                         CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
 
+                        if (pCefView == NULL) {
+                            break;
+                        }
+
                         if (pCefView && (pCefView->GetType() == cvwtEditor)) {
                             if (((CCefViewEditor*)pCefView)->IsPresentationReporter()) {
                                 break;
