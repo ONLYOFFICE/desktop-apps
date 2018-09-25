@@ -58,7 +58,7 @@ public:
 
     void goStart();
     void focus();
-    void doOpenLocalFile(COpenOptions&);
+    virtual void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
