@@ -71,7 +71,9 @@
         return nil;
     }
 
-    CGFloat scale = [[NSScreen mainScreen] backingScaleFactor];
+    CGFloat desiredScaleFactor = [[NSApp mainWindow] backingScaleFactor];
+    CGFloat actualScaleFactor = [loaderImage recommendedLayerContentsScale:desiredScaleFactor];
+    id layerContents = [loaderImage layerContentsForContentsScale:actualScaleFactor];
     NSSize size = [loaderImage size];
     CGRect rect = CGRectMake(
                              8,
@@ -85,8 +87,8 @@
     layer.bounds = rect;
     layer.anchorPoint = CGPointMake(0.5, 0.5);
     layer.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    layer.contents = (id)[loaderImage CGImage];
-    layer.contentsScale = scale;
+    layer.contents = layerContents;
+    layer.contentsScale = actualScaleFactor;
     layer.contentsGravity = kCAGravityCenter;
     layer.zPosition = 1000;
     layer.hidden = !_isProcessing;
@@ -129,7 +131,13 @@
             ? [NSImage imageNamed:@"tab-loader-dark"]
             : [NSImage imageNamed:@"tab-loader-light"];
 
-        self.loaderLayer.contents = (id)[loaderImage CGImage];
+        CGFloat desiredScaleFactor = [[NSApp mainWindow] backingScaleFactor];
+        CGFloat actualScaleFactor = [loaderImage recommendedLayerContentsScale:desiredScaleFactor];
+
+        id layerContents = [loaderImage layerContentsForContentsScale:actualScaleFactor];
+
+        [self.loaderLayer setContents:layerContents];
+        [self.loaderLayer setContentsScale:actualScaleFactor];
 
         [self updateCloseCell];
     }
@@ -186,8 +194,14 @@
     NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = [NSBezierPath bezierPath];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 180 endAngle: 270];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 270 endAngle: 360];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 180
+                                            endAngle: 270];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 270
+                                            endAngle: 360];
     [rectanglePath lineToPoint: NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath lineToPoint: NSMakePoint(NSMinX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath closePath];
