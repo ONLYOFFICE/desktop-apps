@@ -43,6 +43,7 @@
 #import "ASCConstants.h"
 #import "NSView+Extensions.h"
 #import "NSColor+Extensions.h"
+#import "NSApplication+Extensions.h"
 #import "ASCTabView.h"
 #import "SFBPopover.h"
 #import "ASCUserInfoViewController.h"
@@ -167,12 +168,21 @@ static float kASCWindowMinTitleWidth = 0;
     ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
 
     if (portalButtonCell) {
-        portalButtonCell.bgColor            = kColorRGBA(255, 255, 255, 0.0);
-        portalButtonCell.bgHoverColor       = kColorRGBA(255, 255, 255, 1.0);
-        portalButtonCell.bgActiveColor      = kColorRGBA(255, 255, 255, 1.0);
-        portalButtonCell.textColor          = kColorRGBA(255, 255, 255, 0.0);
-        portalButtonCell.textActiveColor    = kColorRGBA(255, 255, 255, 0.0);
-        portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
+        if (@available(macOS 10.13, *)) {
+            portalButtonCell.bgColor            = [NSColor colorNamed:@"tab-inactiveColor"];
+            portalButtonCell.bgHoverColor       = [NSColor colorNamed:@"tab-hoverInactiveColor"];
+            portalButtonCell.bgActiveColor      = [NSColor colorNamed:@"tab-portal-activeColor"];
+            portalButtonCell.textColor          = [NSColor clearColor];
+            portalButtonCell.textActiveColor    = [NSColor clearColor];
+            portalButtonCell.lineColor          = [NSColor clearColor];
+        } else {
+            portalButtonCell.bgColor            = kColorRGBA(255, 255, 255, 0.0);
+            portalButtonCell.bgHoverColor       = kColorRGBA(255, 255, 255, 1.0);
+            portalButtonCell.bgActiveColor      = kColorRGBA(255, 255, 255, 1.0);
+            portalButtonCell.textColor          = kColorRGBA(255, 255, 255, 0.0);
+            portalButtonCell.textActiveColor    = kColorRGBA(255, 255, 255, 0.0);
+            portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
+        }
     }
 
     [self doLayout];
@@ -381,6 +391,15 @@ static float kASCWindowMinTitleWidth = 0;
         [self.portalButton setState:NSOffState];
     } else {
         [self.portalButton setState:NSOnState];
+    }
+
+    if ([NSApplication isDarkMode]) {
+        [self.portalButton setImage:(self.portalButton.state == NSOnState)
+         ? [NSImage imageNamed:@"logo-tab-dark"]
+         : [NSImage imageNamed:@"logo-tab-light"]
+        ];
+    } else {
+        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     }
 }
 

@@ -73,7 +73,7 @@
         NSMutableAttributedString * attrTitle = [[NSMutableAttributedString alloc] initWithAttributedString:[self.licenseButton attributedTitle]];
         long len = [attrTitle length];
         NSRange range = NSMakeRange(0, len);
-        [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor keyboardFocusIndicatorColor] range:range];
+        [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor linkColor] range:range];
         [attrTitle fixAttributesInRange:range];
         [self.licenseButton setAttributedTitle:attrTitle];
         

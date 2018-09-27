@@ -1476,7 +1476,7 @@ DQ
                                     <constraint firstAttribute="height" constant="29" id="27h-TZ-qE6"/>
                                     <constraint firstAttribute="width" constant="110" id="rYS-3g-y3E"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logo-tab" imagePosition="only" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logo-tab-dark" imagePosition="only" alignment="center" inset="2" id="llV-Yc-IJ4" customClass="ASCMenuButtonCell">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1550,7 +1550,7 @@ DQ
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="icon-login_hover" width="12" height="12"/>
         <image name="icon-login_normal" width="12" height="12"/>
-        <image name="logo-tab" width="80" height="16"/>
+        <image name="logo-tab-dark" width="86" height="20"/>
         <image name="progress_download_icon" width="128" height="128"/>
     </resources>
 </document>

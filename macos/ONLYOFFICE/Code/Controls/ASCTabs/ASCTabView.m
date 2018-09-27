@@ -42,12 +42,13 @@
 #import "ASCTabCloseButtonCell.h"
 #import "ASCTabViewCell.h"
 #import "NSColor+Extensions.h"
+#import "NSApplication+Extensions.h"
 
 static NSUInteger const kASTabViewCloseButtonSize = 12;
 
 @interface ASCTabView()
 @property (nonatomic) NSButton * close;
-@property (nonatomic) NSArray * icons;
+@property (nonatomic) NSMutableArray * icons;
 @end
 
 @implementation ASCTabView
@@ -100,7 +101,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 - (void)initialize {   
     _uuid = [[NSUUID UUID] UUIDString];
     
-    _icons = @[
+    _icons = [NSMutableArray arrayWithArray:@[
                // ASCTabViewUnknownType
                @{@"normal": @"", @"active": @""},
                // ASCTabViewOpeningType
@@ -112,8 +113,13 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                // ASCTabViewPresentationType
                @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"},
                // ASCTabViewPortal
-               @{@"normal": @"icon_tab_portal", @"active": @"icon_tab_portal"}
-               ];
+               @{@"normal": @"icon_tab_portal_active", @"active": @"icon_tab_portal_active"}
+               ]
+    ];
+
+    if ([NSApplication isDarkMode]) {
+        _icons[ASCTabViewPortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
+    }
 
     ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
     [self setBordered:NO];
@@ -204,19 +210,36 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
 
     if (type == ASCTabViewPortal) {
-        tabViewCell.activeColor = kColorRGB(255, 255, 255);
+        if (@available(macOS 10.13, *)) {
+            tabViewCell.activeColor = [NSColor colorNamed:@"tab-portal-activeColor"];
+        } else {
+            tabViewCell.activeColor = UIColorFromRGB(0xffffff);
+        }
+        tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewDocumentType) {
         tabViewCell.activeColor = [NSColor brendDocumentEditor];
         tabViewCell.clickColor  = [NSColor brendDocumentEditor];
-        tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        if (@available(macOS 10.13, *)) {
+            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
+        } else {
+            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        }
     } else if (type == ASCTabViewSpreadsheetType) {
         tabViewCell.activeColor = [NSColor brendSpreadsheetEditor];
         tabViewCell.clickColor  = [NSColor brendSpreadsheetEditor];
-        tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        if (@available(macOS 10.13, *)) {
+            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
+        } else {
+            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        }
     } else if (type == ASCTabViewPresentationType) {
         tabViewCell.activeColor = [NSColor brendPresentationEditor];
         tabViewCell.clickColor  = [NSColor brendPresentationEditor];
-        tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        if (@available(macOS 10.13, *)) {
+            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
+        } else {
+            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        }
     }
 }
 

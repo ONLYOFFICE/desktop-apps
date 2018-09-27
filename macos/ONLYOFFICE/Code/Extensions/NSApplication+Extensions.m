@@ -31,17 +31,27 @@
  */
 
 //
-//  NSWindow+NSWindow_Extensions.h
+//  NSApplication+Extensions.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 14.09.2018.
+//  Created by Alexander Yuzhin on 27/09/2018.
 //  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "NSApplication+Extensions.h"
 
-@interface NSWindow (Extensions)
+@implementation NSApplication (Extensions)
 
-+ (NSWindow *)titleWindowOrMain;
++ (BOOL) isDarkMode {
+    if (@available(macOS 10.14, *)) {
+        NSString * appleInterfaceStyle = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
+
+        if (appleInterfaceStyle && [appleInterfaceStyle length] > 0) {
+            return [[appleInterfaceStyle lowercaseString] containsString:@"dark"];
+        }
+    }
+
+    return false;
+}
 
 @end
