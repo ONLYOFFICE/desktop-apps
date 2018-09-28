@@ -908,8 +908,6 @@ li.menu-item {
 }
 
 #sett-box-user {
-    margin-top: 10px;
-
     input {
         margin-right: 20px;
     }
@@ -919,7 +917,30 @@ li.menu-item {
     width: 18px;
     height: 18px;
     margin-right: 10px;
+}
 
+.sett--label-lift-top {
+    margin-top: 10px;
+}
 
+.sett__note {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    border-radius: 20px;
+    background-color: #2196F3;
+    line-height: 20px;
+    padding: 1px 8px;
+    color: #fff;
+    /*vertical-align: middle;*/
 
+    .settings-field:not(.notted) & {
+        display: none;
+    }
+}
 
+.settings-field-lang {
+    .sett__note {
+        margin-left: 10px;
+    }
+}

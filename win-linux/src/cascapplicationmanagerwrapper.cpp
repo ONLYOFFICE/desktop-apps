@@ -683,8 +683,16 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
 
+        QString _lang_id = CLangater::getCurrentLangCode();
+        if ( objRoot.contains("langid") ) {
+            _lang_id = objRoot.value("langid").toString();
+
+            GET_REGISTRY_USER(_reg_user)
+            _reg_user.setValue("locale", _lang_id);
+        }
+
         wstring params = QString("lang=%1&username=%3&location=%2")
-                            .arg(CLangater::getLanguageName(), Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
+                            .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 
         if ( objRoot["docopenmode"].toString() == "view" )
             params.append(L"&mode=view");

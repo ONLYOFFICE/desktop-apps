@@ -34,8 +34,23 @@ public:
         }
     }
 
+    QString langName(const QString& code) {
+        return m_langs.value(code);
+    }
+
 private:
     std::list<QTranslator *> m_list;
+
+    QMap<QString, QString> m_langs{
+        {"en", "English"},
+        {"ru", "Русский"},
+        {"de", "Deutsch"},
+        {"fr", "French"},
+        {"es", "Spanish"},
+        {"sk", "Slovak"},
+        {"it_IT", "Italian"},
+        {"pt_BR", "Brazil"}
+    };
 };
 
 CLangater::CLangater()
@@ -125,6 +140,28 @@ void CLangater::init()
 QString CLangater::getCurrentLangCode()
 {
     return getInstance()->m_lang;
+}
+
+QString CLangater::getLangName(const QString& code)
+{
+    if ( code.isEmpty() ) {
+        return getInstance()->m_lang;
+    }
+
+    return getInstance()->m_intf->langName(code);
+}
+
+QJsonObject CLangater::availableLangsToJson()
+{
+    QJsonObject _out_obj;
+
+    QMap<QString, QString>::const_iterator i = getInstance()->m_intf->m_langs.constBegin();
+    while ( i != getInstance()->m_intf->m_langs.constEnd() ) {
+        _out_obj.insert(i.key(), i.value());
+        ++i;
+    }
+
+    return _out_obj;
 }
 
 void CLangater::addTranslation(const QString& dir, const QString& lang)

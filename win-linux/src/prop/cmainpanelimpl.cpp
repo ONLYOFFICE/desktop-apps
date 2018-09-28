@@ -35,6 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "version.h"
+#include "clangater.h"
 
 #include <QJsonObject>
 
@@ -59,6 +60,16 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["link"]       = URL_SITE;
 
     AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
+
+    _json_obj.empty();
+    _json_obj.insert("locale",
+        QJsonObject({
+            {"current", CLangater::getCurrentLangCode()},
+            {"langs", CLangater::availableLangsToJson()}
+        })
+    );
+
+    AscAppManager::sendCommandTo( nullptr, "settings:init", Utils::encodeJson(_json_obj) );
 }
 
 void CMainPanelImpl::updateScaling(int dpiratio)

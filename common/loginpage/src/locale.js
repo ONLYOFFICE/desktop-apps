@@ -104,6 +104,8 @@ l10n.en = {
     ,settResetUserName: 'Reset to default'
     ,settOpenMode: 'Open document in preview mode'
     ,setBtnApply: 'Apply'
+    ,settLanguage: 'Language'
+    ,settAfterRestart: 'Option will be applied after the app restart'
 }
 
 l10n.cs = {
@@ -317,6 +319,8 @@ l10n.ru = {
     ,settResetUserName: 'Восстановить системное'
     ,settOpenMode: 'Открывать документы в режиме просмотра'
     ,setBtnApply: 'Применить'
+    ,settLanguage: 'Язык'
+    ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
 }
 
 l10n.de = {

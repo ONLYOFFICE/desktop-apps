@@ -58,18 +58,19 @@
                                 <section>
                                     <div class='settings-field'>
                                         <label class='sett__caption'>${_lang.settUserName}</label>
-                                        <div class='hbox' id='sett-box-user'>
+                                        <div class='hbox sett--label-lift-top' id='sett-box-user'>
                                             <input type='text' class='tbox' spellcheck='false' maxlenght='30'>
                                             <a class='link link--sizem link--gray' href='#'>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
-                                    <div class='settings-field' style='display:none;'>
-                                        <label class='sett__caption'>Language</label>
-                                        <select>
-                                            <option value='en'>English</option>
-                                            <option value='ru'>Русский</option>
-                                            <option value='pt_BR'>Brazil</option>
-                                        </select>
+                                    <div class='settings-field settings-field-lang'>
+                                        <label class='sett__caption'>${_lang.settLanguage}</label>
+                                        <div class='sett--label-lift-top'>
+                                            <section class='box-cmp-select'>
+                                                <select class='selectpicker'></select>
+                                            </section>
+                                            <strong class='sett__note' tooltip='${_lang.settAfterRestart}' tooltip-pos='top'>i</strong>
+                                        </div>
                                     </div>
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -103,6 +104,8 @@
         let $btnApply,
             $userName,
             $chOpenMode;
+        let $panel;
+        let $optsLang;
 
         function _set_user_name(name) {
             let me = this;
@@ -115,8 +118,16 @@
             let _user_new_name = $userName.val();
             if ( _user_new_name && _user_new_name.length ) {
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
+                let _new_settings = {
+                    username:_user_new_name,
+                    docopenmode: _doc_open_mode
+                };
 
-                sdk.command("settings:apply", JSON.stringify({username:_user_new_name, docopenmode: _doc_open_mode}));
+                if ( $optsLang.is(':visible') ) {
+                    _new_settings.langid = $optsLang.find('select').val();
+                }
+
+                sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.prop('disabled', true);
                 
                 localStorage.setItem('username', _user_new_name);
@@ -135,9 +146,47 @@
                 $btnApply.prop('disabled', false);
         };
 
+        function _on_lang_change(e) {
+            if ( $btnApply.isdisabled() ) {
+                $btnApply.disable(false);
+            }
+
+            $optsLang.toggleClass('notted', true);
+        };
+
         function _lock_createnew(lock) {
             lock === true ? $('.tool-quick-menu .menu-item').addClass('disabled') :
                     $('.tool-quick-menu .menu-item').removeClass('disabled');
+        };
+
+        function _on_app_message(cmd, param) {
+            if (/^settings\:/.test(cmd)) {
+                if (/username$/.test(cmd)) {
+                    _set_user_name.call(this, param);
+                } else
+                if (/init$/.test(cmd)) {
+                    let opts;
+                    try {
+                        opts = JSON.parse( $('<div>').html(param).text() );
+                    } catch (e) { /*delete opts;*/ }
+
+                    if ( opts ) {
+                        if ( opts.langs === 0 ) {
+                            $panel.find('.settings-field-lang').hide();
+                        } else
+                        if ( opts.locale ) {
+                            $panel.find('.settings-field-lang').show();
+                            let $combo = $panel.find('.settings-field-lang select');
+
+                            for (let lang in opts.locale.langs) {
+                                $combo.append(`<option value='${lang}'>${opts.locale.langs[lang]}</option>`);
+                            }
+
+                            $combo.val(opts.locale.current);
+                        }
+                    }
+                }
+            }
         };
 
         return {
@@ -151,6 +200,7 @@
                     sdk.command("settings:get", "username");
                 });
 
+                $panel = me.view.$panel;
                 $btnApply = me.view.$panel.find('#sett-btn-apply');
                 $userName = me.view.$panel.find('#sett-box-user > input');
                 $chOpenMode = me.view.$panel.find('#sett-preview-mode');
@@ -180,11 +230,10 @@
                     sdk.command("settings:apply", JSON.stringify({username:_user_name, docopenmode: _open_mode}));
                 }
 
-                window.sdk.on('on_native_message', (cmd, param) => {
-                    if (/settings\:username/.test(cmd)) {
-                        _set_user_name.call(this, param);
-                    }
-                });
+                ($optsLang = $panel.find('.settings-field-lang')).hide();
+                $optsLang.find('select').on('change', _on_lang_change.bind(this));
+
+                window.sdk.on('on_native_message', _on_app_message.bind(this));
 
                 return this;
             }
