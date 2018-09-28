@@ -721,7 +721,7 @@ void CMainWindow::slot_mainPageReady()
                                         QString(VER_FILEVERSION_STR).toStdWString().c_str());
         win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
         win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
-        win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
+        win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
         win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
         win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);

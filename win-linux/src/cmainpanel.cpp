@@ -225,7 +225,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 //    m_pTabs->updateIcons();
 
     QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
+                        .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
     wstring user_name = Utils::systemUserName();
 
@@ -1037,7 +1037,7 @@ void CMainPanel::loadStartPage()
     QString data_path = qApp->applicationDirPath() + "/index.html";
 #endif
 
-    QString additional = "?waitingloader=yes&lang=" + CLangater::getLanguageName();
+    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
 
     QString _portal = _reg_user.value("portal").value<QString>();
     if (!_portal.isEmpty()) {

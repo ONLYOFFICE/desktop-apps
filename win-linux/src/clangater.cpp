@@ -122,7 +122,7 @@ void CLangater::init()
     QCoreApplication::installTranslator(tr);
 }
 
-QString CLangater::getLanguageName()
+QString CLangater::getCurrentLangCode()
 {
     return getInstance()->m_lang;
 }
