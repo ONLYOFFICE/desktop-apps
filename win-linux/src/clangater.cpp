@@ -16,6 +16,7 @@ extern QStringList g_cmdArgs;
 
 class CLangater::CLangaterIntf
 {
+    friend class CLangater;
 public:
     QTranslator * createTranslator()
     {
