@@ -1374,7 +1374,7 @@ void CMainPanel::onOutsideAuth(QString json)
         QString _domain = objRoot["portal"].toString();
         QString _sso_service = objRoot["provider"].toString();
 
-        int res = m_pTabs->addOAuthPortal(_domain, objRoot["status"].toString(), _sso_service);
+        int res = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
         if (!(res < 0)) {
             m_pTabs->setCurrentIndex(res);
             toggleButtonMain(false, true);

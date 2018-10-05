@@ -68,6 +68,22 @@
         window.AscDesktopEditor.execCommand.apply(this, arguments);
     };
 
+    sdk.externalClouds = function() {
+        let _clouds = sdk.GetExternalClouds();
+        if ( _clouds ) {
+            for (let c of _clouds) {
+                if ( !c.checkUrl.startsWith('/') )
+                    c.checkUrl = '/' + c.checkUrl;
+            }
+        } else {
+            _clouds = [{ id: "asc",
+                            name: "ONLYOFFICE",
+                            checkUrl: "/api/2.0/capabilities.json" }];
+        }
+
+        return _clouds;
+    };
+
     var notifySubscribers = function(action, type, arg, context) {
         var pubtype = type || 'any',
             pubsubscribers = subscribers[pubtype],

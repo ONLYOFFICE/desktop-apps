@@ -326,19 +326,25 @@ int CAscTabWidget::addPortal(QString url, QString name)
 
 int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, const QString& service)
 {
-    if ( service.isEmpty() ) return -1;
+    if ( service.isEmpty() || !type.contains(QRegularExpression("sso|outer")) ) return -1;
 
     setProperty("empty", false);
-
-    QString _prefix;
-    if ( type == "sso" )
-        _prefix = "sso:";
 
     CTabPanel * pView = new CTabPanel(this);
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
-    pView->cef()->load((_prefix + service).toStdWString());
+
+    if ( type == "sso" ) {
+        pView->cef()->load(("sso:" + service).toStdWString());
+    } else
+    if ( type == "outer" ) {
+        pView->cef()->SetExternalCloud(service.toStdWString());
+
+        QString _postfix;
+        if (service == "asc") _postfix = "/products/files/?desktop=true";
+        pView->cef()->load((portal + _postfix).toStdWString());
+    }
 
     QString _portal = portal.isEmpty() ? Utils::getPortalName(service) : Utils::getPortalName(portal);
 

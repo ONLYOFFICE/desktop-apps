@@ -163,6 +163,7 @@ function PortalModel(attributes) {
     this.logged = false;
     this.user   = attributes.user || '';
     this.email  = attributes.email || '';
+    this.provider = attributes.provider || 'asc';
 };
 
 PortalModel.prototype = Object.create(Model.prototype); /*new Model();*/

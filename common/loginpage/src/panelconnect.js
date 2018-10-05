@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -36,6 +36,9 @@
 */
 
 +function(){ 'use strict'
+    window.config = { portals: {}};
+    window.config.portals.checklist = sdk.externalClouds();
+
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
         args.action = 
@@ -140,7 +143,7 @@
             if (/\:open/.test(action)) {
                 model.logged ?
                     window.sdk.execCommand("portal:open", model.path) :
-                        _do_login(model.path, model.email);
+                        _do_login(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model.path);
@@ -151,43 +154,66 @@
             }
         };
 
-        function _do_login(portal, user) {
+        function _do_connect(portal) {
+            let _dialog = new DialogConnectTo({
+                portal: portal,
+                onclose: function(opts) {
+                    if ( opts ) {
+                        // window.sdk.execCommand("auth:external", JSON.stringify(opts));
+                    }
+
+                    _dialog = undefined;
+                }
+            });
+
+            _dialog.show();
+        };
+
+        function _do_login(model) {
             if ( !dlgLogin ) {
-                dlgLogin = new LoginDlg();
-                dlgLogin.onsuccess(info => {
-                    if ( info.status == 'sso' ) {
-                        window.sdk.execCommand("auth:sso", JSON.stringify(info));
-                    } else
-                    if ( info.status == 'user' ) {
-                        window.sdk.execCommand("portal:open", info.data.portal);
+                !model && (model = {})
+                dlgLogin = new LoginDlg({
+                    success: info => {
+                        if ( info.type == 'sso' ) {
+                            window.sdk.execCommand("auth:sso", JSON.stringify(info));
+                        } else
+                        if ( info.type == 'outer' ) {
+                            window.sdk.execCommand("auth:outer", JSON.stringify(info));
+                        } else
+                        if ( info.type == 'user' ) {
+                            window.sdk.execCommand("portal:open", info.data.portal);
 
-                        dlgLogin.onclose();
-                        PortalsStore.keep(info.data);
-                        _update_portals.call(this);
+                            // dlgLogin.close();
+                            PortalsStore.keep(info.data);
+                            _update_portals.call(this);
 
-                        window.selectAction('connect');
+                            window.selectAction('connect');
+                        }
+                    },
+                    close: code => {
+                        dlgLogin = undefined;
                     }
                 });
-                dlgLogin.onclose(code=>{
-                    dlgLogin = undefined;
-                });
-                dlgLogin.show({portal: portal, email: user});
+
+                dlgLogin.show({portal: model.path, provider: model.provider, email: model.email});
             }
         };
 
         function _authorize(portal, user, data) {
             if ( !dlgLogin ) {
-                dlgLogin = new LoginDlg();
-                dlgLogin.onsuccess(info => {
-                    dlgLogin.onclose();
-                    PortalsStore.keep(info.data);
-                    _update_portals.call(this);
+                dlgLogin = new LoginDlg({
+                    success: info => {
+                        // dlgLogin.close();
+                        PortalsStore.keep(info.data);
+                        _update_portals.call(this);
 
-                    CommonEvents.fire('portal:authorized', [data]);
+                        CommonEvents.fire('portal:authorized', [data]);
+                    },
+                    close: code => {
+                        dlgLogin = undefined;
+                    }
                 });
-                dlgLogin.onclose(code=>{
-                    dlgLogin = undefined;
-                });
+
                 dlgLogin.show({portal: portal, email: user});
             }
         };
@@ -256,7 +282,7 @@
                 collection.events.click.attach((collection, model)=>{
                     model.logged ?
                         window.sdk.execCommand("portal:open", model.path) :
-                        _do_login.call(this, model.path, model.email);
+                        _do_login.call(this, model);
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -294,7 +320,7 @@
                     let _is_logged = obj[i].length > 0;
                     if ( _is_logged ) {
                         let _dlg_login = new LoginDlg();
-                        _dlg_login.portalavailable(model.path).then(
+                        _dlg_login.portalavailable(model.path, model.provider).then(
                             data => { data.status == 'ok' && model.set('logged', true); },
                             error => {});
                     }
@@ -400,6 +426,7 @@
 
                             let info = {
                                 portal: obj.domain,
+                                provider: obj.provider,
                                 user: obj.displayName,
                                 email: obj.email
                             };

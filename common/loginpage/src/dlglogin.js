@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,15 +30,24 @@
  *
 */
 
-window.LoginDlg = function() {
+window.LoginDlg = function(opts) {
     "use strict";
+
+    !opts && (opts = {});
 
     let panels = {
         panelPortalName: {
             title: utils.Lang.loginTitleStart,
             template: () => {
                 return `<section><div id="panel-portal" class="sl-panel">
-                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
+                          <div class='lr-flex select-field'>
+                            <label style='font-size:14px'>Cloud provider</label>
+                            <span />
+                            <section class='box-cmp-select'>
+                              <select class='selectpicker'></select>
+                            </section>
+                          </div>
+                          <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
                           <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">
                           <div style="height:10px;"></div>
                           <div id="box-btn-next" class="lr-flex">
@@ -126,10 +135,14 @@ window.LoginDlg = function() {
     var protocol = 'https://',
         protarr = ['https://', 'http://'],
         startmodule = '/products/files/?desktop=true';
-    var portal = undefined,
+    var portal = opts.portal,
+        provider = opts.provider || 'asc',
         ssoservice = undefined,
-        user = undefined;
-    var events = {};
+        user = opts.user;
+    var events = {
+        success: opts.success,
+        close: opts.close
+    };
     var STATUS_EXIST = 1;
     var STATUS_NOT_EXIST = 0;
     var STATUS_UNKNOWN = -1;
@@ -154,7 +167,7 @@ window.LoginDlg = function() {
                                     email: info.email
                                 };
 
-                                events.success({status:'user', data:auth_info});
+                                events.success({type:'user', data:auth_info});
                             }
 
                             window.on_set_cookie = undefined;
@@ -384,14 +397,19 @@ window.LoginDlg = function() {
                     disableDialog(false);
                     let params = {portal: portal};
 
-                    if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
-                        params.authservice = {url: obj.response.ssoUrl};
+                    if ( vendor == 'asc' && obj.response.innerauth ) {
+                        if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
+                            params.authservice = {url: obj.response.ssoUrl};
 
-                        if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
-                            params.authservice.label = obj.response.ssoLabel;
+                            if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
+                                params.authservice.label = obj.response.ssoLabel;
+                        }
+
+                        firstConnect(params);
+                    } else {
+                        events.success({type:'outer', portal:protocol+portal, provider:vendor});
+                        doClose(0);
                     }
-
-                    firstConnect(params);
                 } else {
                     if ( obj.status == 'error' ) {
                         if ( obj.response.status == 404 ) {
@@ -405,7 +423,8 @@ window.LoginDlg = function() {
             }
         };
 
-        requirePortalInfo(protocol + portal).then(
+        let vendor = $el.find('.body select').val();
+        requirePortalInfo(protocol + portal, vendor).then(
             _callback,
             obj => {
                 if ( obj.status == 'error' && obj.response.status == 404 ) {
@@ -417,9 +436,10 @@ window.LoginDlg = function() {
         ).then( _callback, _callback );
     };
 
-    function requirePortalInfo(portal) {
+    function requirePortalInfo(portal, vendor) {
         return new Promise ((resolve, reject)=>{
-            var _url = portal + "/api/2.0/capabilities.json";
+            !vendor && (vendor = 'asc');
+            var _url = portal + config.portals.checklist.find(i => i.id == vendor).checkUrl;
 
             $.ajax({
                 url: _url,
@@ -428,11 +448,15 @@ window.LoginDlg = function() {
                 timeout: 10000,
                 complete: function(e, status) {
                     if (status == 'success') {
-                        var obj = JSON.parse(e.responseText);
-                        if (obj.statusCode == 200) {
-                            resolve({status:'ok', response:obj.response});
+                        if ( vendor == 'asc' ) {
+                            var obj = JSON.parse(e.responseText);
+                            if (obj.statusCode == 200) {
+                                resolve({status:'ok', response:obj.response});
+                            } else {
+                                reject({status:'error', response: e});
+                            }
                         } else {
-                            reject({status:'error', response: e});
+                            resolve({status:'ok', response:e});
                         }
                     } else {
                         reject({status:status, response:e});
@@ -451,6 +475,19 @@ window.LoginDlg = function() {
         setTitle( _panel.title );
         $el.find('.body').html( _panel.template() );
         $el.find('#btn-next').click(onNextClick);
+
+        let $combo = $el.find('select');
+        let _clouds = sdk.externalClouds();
+        if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
+            $combo.append(`<option value='asc'>onlyoffice</option>`);
+            $combo.parents('.select-field').hide();
+        } else {
+            for (let c of _clouds) {
+                $combo.append(`<option value='${c.id}'>${c.name}</option>`);
+            }
+
+            $combo.val(provider);
+        }
 
         let $portal = $el.find('#auth-portal');
         if ( !!portal ) $portal.val(portal);
@@ -471,7 +508,7 @@ window.LoginDlg = function() {
 
             let _sso_btn = $el.find('#btn-login-sso');
             _sso_btn.click( e => {
-                    events.success({status:'sso', portal:protocol+portal, provider:params.authservice.url});
+                    events.success({type:'sso', portal:protocol+portal, provider:params.authservice.url});
                     doClose(0);
                 });
 
@@ -688,6 +725,11 @@ window.LoginDlg = function() {
                 !!sp && (protocol = sp);
             }
             !!params.email && (user = params.email);
+            if ( !!params.provider &&
+                    config.portals.checklist.find(i => i.id == params.provider) )
+            {
+                provider = params.provider;
+            }
 
             // $el.width(450).height(470);
             // set height without logo
@@ -709,14 +751,6 @@ window.LoginDlg = function() {
         },
         close: function(){
             doClose(0);
-        },
-        onclose: function(callback) {
-            if (!!callback)
-                events.close = callback;
-        },
-        onsuccess: function(callback) {
-            if (!!callback)
-                events.success = callback;
         },
         portalavailable: requirePortalInfo
     };  
