@@ -55,41 +55,44 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      <div id="box-empty-portals" class="empty flex-center">
-                        <section class="center-box">
-                          <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
-                          <div class='carousel'>
-                            <figure class='carousel__slidebox'>
-                                <div class='carousel__slide'>
-                                    <p class='carousel__slide__text title'>${_lang.emptySlide1Title}</p>
-                                    <p class='carousel__slide__text descr'>${_lang.emptySlide1Text}</p>
-                                    <img class='carousel__slide__img'>
-                                </div>
-                                <div class='carousel__slide'>
-                                    <p class='carousel__slide__text title'>${_lang.emptySlide2Title}</p>
-                                    <p class='carousel__slide__text descr'>${_lang.emptySlide2Text}</p>
-                                    <img class='carousel__slide__img'>
-                                </div>
-                                <div class='carousel__slide active'>
-                                    <p class='carousel__slide__text title'>${_lang.emptySlide3Title}</p>
-                                    <p class='carousel__slide__text descr'>${_lang.emptySlide3Text}</p>
-                                    <img class='carousel__slide__img'>
-                                </div>
-                            </figure>
-                            <nav class='carousel__scrolls'>
-                                <div class='carousel__scroll__btn prev' value='prev'></div>
-                                <div class='carousel__scroll__btn next' value='next'></div>
-                            </nav>
-                          </div>
-                          <div class="tools-connect">
-                            <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
-                            <section class="link-connect">
-                              <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+        var _html_empty_panel =
+                        `<div id="box-empty-portals" class="empty flex-center">
+                            <section class="center-box">
+                              <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
+                              <div class='carousel'>
+                                <figure class='carousel__slidebox'>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide1Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide1Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide2Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide2Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                    <div class='carousel__slide active'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide3Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide3Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                </figure>
+                                <nav class='carousel__scrolls'>
+                                    <div class='carousel__scroll__btn prev' value='prev'></div>
+                                    <div class='carousel__scroll__btn next' value='next'></div>
+                                </nav>
+                              </div>
+                              <div class="tools-connect">
+                                <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                <section class="link-connect">
+                                  <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                </section>
+                              </div>
                             </section>
-                          </div>
-                        </section>
-                      </div>
+                        </div>`;
+
+        var _html = `<div ${args.id} class="action-panel ${args.action}">
+                      ${_html_empty_panel}
                       <div id="box-portals">
                         <div class="flexbox">
                           <h3 class="table-caption">${_lang.portalListTitle}</h3>

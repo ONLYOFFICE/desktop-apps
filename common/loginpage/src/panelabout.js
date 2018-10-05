@@ -61,7 +61,7 @@
     ViewAbout.prototype.constructor = ViewAbout;
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
-        !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + '. ' + _opts.active : _opts.active);
+        !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
         var _lang = utils.Lang;

@@ -111,7 +111,7 @@
             let me = this;
 
             $userName.val(name).removeClass('error');
-            $btnApply.prop('disabled', false);
+            $btnApply.disable(false);
         };
 
         function _on_btn_apply(e) {
@@ -128,7 +128,7 @@
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
-                $btnApply.prop('disabled', true);
+                $btnApply.disable(true);
                 
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
@@ -142,8 +142,8 @@
         function _on_txt_user_change(e) {
             $userName.removeClass('error');
             
-            if ( $btnApply.prop('disabled') )
-                $btnApply.prop('disabled', false);
+            if ( $btnApply.isdisabled() )
+                $btnApply.disable(false);
         };
 
         function _on_lang_change(e) {

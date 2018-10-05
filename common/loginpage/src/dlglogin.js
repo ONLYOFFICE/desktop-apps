@@ -127,7 +127,7 @@ window.LoginDlg = function(opts) {
     var _tpl = `<dialog class="dlg dlg-login">
                   <div class="title">
                     <label class="caption">Title</label>
-                    <span class="tool close img-el"></span>
+                    <span class="tool close"></span>
                   </div>
                   <div class="body"></div>
                 </dialog>`;

@@ -36,6 +36,16 @@
     $.fn.hasScrollBar = function() {
         return this.get(0).scrollHeight > this.height();
     }
+
+    $.fn.extend({
+        disable: function(state) {
+            $(this).prop('disabled', state);
+            return this;
+        },
+        isdisabled: function() {
+            return !!$(this).prop('disabled');
+        }
+    });
 })(jQuery);
 
 var utils = {};
