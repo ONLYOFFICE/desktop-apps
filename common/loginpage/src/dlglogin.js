@@ -255,9 +255,10 @@ window.LoginDlg = function(opts) {
     };
 
     function showLoginError(error, focusel) {
+        !error && (error = 'connection internal error');
         let $lbl = $el.find('#auth-error');
 
-        !!error && $lbl.text(error);
+        $lbl.text(error);
         $lbl.fadeIn(100);
 
         !!focusel && $el.find(focusel).addClass('error').focus();
@@ -418,7 +419,7 @@ window.LoginDlg = function(opts) {
                         }
                     }
 
-                    showLoginError(obj.status, '#auth-portal');
+                    showLoginError(obj.response.statusText, '#auth-portal');
                 }
             }
         };
