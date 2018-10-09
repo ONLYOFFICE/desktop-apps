@@ -39,11 +39,14 @@
 
     $.fn.extend({
         disable: function(state) {
-            $(this).prop('disabled', state);
+            if ( this.is('a') ) {
+                state ? this.attr('disabled', 'disabled') : this.removeAttr('disabled');
+            } else $(this).prop('disabled', state);
+
             return this;
         },
         isdisabled: function() {
-            return !!$(this).prop('disabled');
+            return !this.is('a') ? !!$(this).prop('disabled') : !!this.attr('disabled');
         }
     });
 })(jQuery);
