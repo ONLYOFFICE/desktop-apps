@@ -72,13 +72,14 @@
         let _clouds = sdk.GetExternalClouds();
         if ( _clouds ) {
             for (let c of _clouds) {
-                if ( !c.checkUrl.startsWith('/') )
-                    c.checkUrl = '/' + c.checkUrl;
+                (!c.check || !c.check.url) && (c.check = {url:''});
+                if ( !c.check.url.startsWith('/') )
+                    c.check.url = '/'.concat(c.check.url);
             }
         } else {
             _clouds = [{ id: "asc",
                             name: "ONLYOFFICE",
-                            checkUrl: "/api/2.0/capabilities.json" }];
+                            check: {"url":"/api/2.0/capabilities.json"} }];
         }
 
         return _clouds;
