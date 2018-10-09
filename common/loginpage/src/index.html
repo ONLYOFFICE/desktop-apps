@@ -210,6 +210,15 @@
         </div>
     </div>
 
+    <script src="../vendor/svg-injector/svg-injector.min.js"></script>
+    <img class="inline-svg" src="../res/img/logo_nextcloud.svg">
+    <img class="inline-svg" src="../res/img/logo_onlyoffice.svg">
+    <img class="inline-svg" src="../res/img/logo_owncloud.svg">
+    <script>
+        var svgpoints = document.querySelectorAll('img.inline-svg');
+        SVGInjector(svgpoints, {evalScripts:'never'});
+    </script>
+
     <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap/dropdown.js"></script>
     <!-- <script type="text/javascript" src="../vendor/bootstrap/bootstrap.mods.js"></script> -->
