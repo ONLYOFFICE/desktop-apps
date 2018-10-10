@@ -280,21 +280,21 @@ int CAscTabWidget::count(int type) const
     }
 }
 
-int CAscTabWidget::addPortal(QString url, QString name)
+int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider)
 {
     if ( url.isEmpty() ) return -1;
 
     setProperty("empty", false);
 
-    QString args;
-    if ( !url.contains(QRegularExpression("desktop=true")) )
+    QString args, _url = url;
+    if ( !_url.contains(QRegularExpression("desktop=true")) )
         args.append("/products/files/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)([^\\s]+)", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
 
         if ( _re_match.hasMatch() ) {
-            url = _re_match.captured(1);
+            _url = _re_match.captured(1);
             args = _re_match.captured(2);
         }
     }
@@ -303,19 +303,20 @@ int CAscTabWidget::addPortal(QString url, QString name)
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
-    pView->cef()->load((url + args).toStdWString());
+    pView->cef()->SetExternalCloud(provider.toStdWString());
+    pView->cef()->load((_url + args).toStdWString());
 
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
     CAscTabData * data = new CAscTabData(portal, etPortal);
     data->setViewId(pView->cef()->GetId());
-    data->setUrl(url);
+    data->setUrl(_url);
     pView->setData(data);
 
     int tab_index = -1;
 
     tab_index = insertTab(tab_index, pView, portal);
-    tabBar()->setTabToolTip(tab_index, url);
+    tabBar()->setTabToolTip(tab_index, _url);
     ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
@@ -668,13 +669,13 @@ int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select, bool force
     return tabIndex;
 }
 
-int CAscTabWidget::openPortal(const QString& url)
+int CAscTabWidget::openPortal(const QString& url, const QString& provider)
 {
     QString portal_name = Utils::getPortalName(url);
 
     int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url, "");
+        tabIndex = addPortal(url, "", provider);
     }
 
     return tabIndex;
@@ -699,7 +700,7 @@ int CAscTabWidget::newPortal(const QString& url, const QString& name)
 {
     int tabIndex = tabIndexByEditorType(etNewPortal);
     if ( tabIndex < 0 ) {
-        if ( !((tabIndex = addPortal(url, name)) < 0) ) {
+        if ( !((tabIndex = addPortal(url, name, "asc")) < 0) ) {
             panel(tabIndex)->data()->setContentType(etNewPortal);
         }
     }

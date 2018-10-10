@@ -814,7 +814,7 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
             if ( !(_tab_index < 0)) {
                 ((CAscTabWidget *)m_pTabs)->updatePortal(_tab_index, _folder);
             } else {
-                _tab_index = m_pTabs->addPortal(_folder, "");
+                _tab_index = m_pTabs->addPortal(_folder, "", "");
             }
 
             if ( !(_tab_index < 0) ) {
@@ -1319,7 +1319,9 @@ void CMainPanel::onKeyDown(void * eventData)
 
 void CMainPanel::onPortalOpen(QString url)
 {
-    int res = m_pTabs->openPortal(url);
+    QStringList _opts = url.split("#");
+    int res = _opts.size() > 1 ? m_pTabs->openPortal(_opts.at(1), _opts.at(0)) :
+                                        m_pTabs->openPortal(_opts.at(0), "asc");
     if ( !(res < 0) ) {
         toggleButtonMain(false, true);
         m_pTabs->setCurrentIndex(res);
