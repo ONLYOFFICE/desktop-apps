@@ -235,3 +235,9 @@ $(document).on('keydown', function(e){
         }
     }
 });
+
+window.addEventListener('message', e => {
+    let msg = window.JSON.parse(e.data);
+    if ( msg.type == 'plugin' )
+        sdk.fire('on_native_message', Object.values(msg.data));
+}, false);
