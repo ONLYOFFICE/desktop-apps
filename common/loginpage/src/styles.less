@@ -291,6 +291,17 @@ li.menu-item {
     #btn-connect {
         margin-top: 50px;
     }
+
+    button {
+        &[data-cprov] {
+            width: 160px;
+            margin: 0 20px 20px 0;
+        }
+
+        &[data-cprov=asc] {
+            width: 340px;
+        }
+    }
 }
 
 .text-welcome {
@@ -944,4 +955,8 @@ li.menu-item {
     .sett__note {
         margin-left: 10px;
     }
+}
+
+.separate-top {
+    margin-top: auto;
 }

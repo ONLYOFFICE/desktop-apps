@@ -55,7 +55,7 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html_empty_panel =
+        var _html_empty_panel1 =
                         `<div id="box-empty-portals" class="empty flex-center">
                             <section class="center-box">
                               <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
@@ -90,6 +90,36 @@
                               </div>
                             </section>
                         </div>`;
+
+        var _html_empty_panel =
+                            `<div id="box-empty-portals" class="empty flex-center">
+                                <section style='max-width:690px;margin-top:-4vh;'>
+                                    <h3 class="empty-title" style="margin-top:0;">${_lang.portalEmptyTitle}</h3>
+                                    <h4 class='text-description' style='margin-bottom:50px;'>${_lang.portalEmptyDescr}</h4>
+                                    <section class='tools-connect2' style='margin-bottom:143px;'>
+                                        <div>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
+                                                <svg class='icon'><use xlink:href='#logo__asc'></svg>
+                                            </button>
+                                        </div>
+                                        <div style='font-size:0;'>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextc'>
+                                                <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
+                                            </button>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='ownc'>
+                                                <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
+                                            </button>
+                                        </div>
+                                    </section>
+                                    <h4 class='text-description separate-top' style='margin-bottom:8px;'>${_lang.portalEmptyAdv1}</h4>
+                                    <div class="tools-connect">
+                                        <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                        <section class="link-connect">
+                                            <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>`;
 
         var _html = `<div ${args.id} class="action-panel ${args.action}">
                       ${_html_empty_panel}

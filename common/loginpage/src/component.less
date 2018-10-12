@@ -46,6 +46,34 @@ button {
     .btn-quick {
         background-color: transparent;
     }
+
+    &.btn--big {
+        height: 50px;
+    }
+
+    &.btn--light {
+        border: 1px solid @color-gray-3;
+        background-color: #fff;
+
+        &:hover {
+            border-color: @color-gray-2;
+            background-color: @color-gray-2;
+        }
+
+        &:active {
+            border-color: @color-gray-5;
+            background-color: @color-gray-5;
+        }
+    }
+
+    &.btn--svg {
+        padding: 5px;
+    }
+
+    svg.icon {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 /* 
