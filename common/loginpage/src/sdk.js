@@ -79,7 +79,7 @@
         } else {
             _clouds = [{ id: "asc",
                             name: "ONLYOFFICE",
-                            check: {"url":"/api/2.0/capabilities.json"} }];
+                            check: {url:"/api/2.0/capabilities.json"} }];
         }
 
         return _clouds;

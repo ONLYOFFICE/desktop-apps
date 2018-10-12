@@ -266,8 +266,11 @@ window.LoginDlg = function(opts) {
     };
 
     function hideLoginError() {
-        $el.find('#auth-error').fadeOut(100);
-        $el.find('.error').removeClass('error');
+        let $lbl = $el.find('#auth-error');
+        if ( $lbl.is(':visible') ) {
+            $lbl.fadeOut(100);
+            $el.find('.error').removeClass('error');
+        }
     };
 
     function getUserInfo(url, token) {
