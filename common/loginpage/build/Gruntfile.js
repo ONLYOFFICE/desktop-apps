@@ -99,7 +99,7 @@ module.exports = function(grunt) {
                         }
                     },
                     files: {
-                        '../src/dlglogin.min.js' : ['../src/dlglogin.js']
+                        '../src/dlglogin.min.js' : ['../src/dlglogin.js','../src/dialogconnect.js']
                     }
                 },
                 my_target: {

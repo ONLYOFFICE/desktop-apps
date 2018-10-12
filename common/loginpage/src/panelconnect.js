@@ -145,8 +145,8 @@
             var model = data;
             if (/\:open/.test(action)) {
                 model.logged ?
-                    window.sdk.execCommand("portal:open", model.path) :
-                        _do_login(model);
+                    window.sdk.execCommand("portal:open", JSON.stringify({portal: model.path, provider:model.provider})) :
+                        _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model.path);
@@ -157,12 +157,14 @@
             }
         };
 
-        function _do_connect(portal) {
-            let _dialog = new DialogConnectTo({
-                portal: portal,
-                onclose: function(opts) {
+        var _do_connect = function(model) {
+            let _dialog = new DialogConnect({
+                portal: model.path,
+                provider: model.provider,
+                onclose: opts => {
                     if ( opts ) {
-                        // window.sdk.execCommand("auth:external", JSON.stringify(opts));
+                        opts.type = 'outer';
+                        sdk.execCommand("auth:outer", JSON.stringify(opts));
                     }
 
                     _dialog = undefined;
@@ -184,7 +186,7 @@
                             window.sdk.execCommand("auth:outer", JSON.stringify(info));
                         } else
                         if ( info.type == 'user' ) {
-                            window.sdk.execCommand("portal:open", info.data.portal);
+                            window.sdk.execCommand("portal:open", JSON.stringify({portal:info.data.portal}));
 
                             // dlgLogin.close();
                             PortalsStore.keep(info.data);
@@ -201,6 +203,10 @@
                 dlgLogin.show({portal: model.path, provider: model.provider, email: model.email});
             }
         };
+
+        if ( config.portals && !!config.portals.auth_use_api ) {
+            _do_connect = _do_login;
+        }
 
         function _authorize(portal, user, data) {
             if ( !dlgLogin ) {
@@ -283,9 +289,8 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
-                    model.logged ?
-                        window.sdk.execCommand("portal:open", model.path) :
-                        _do_login.call(this, model);
+                    !model.logged ? _do_connect.call(this, model) :
+                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -322,10 +327,8 @@
 
                     let _is_logged = obj[i].length > 0;
                     if ( _is_logged ) {
-                        let _dlg_login = new LoginDlg();
-                        _dlg_login.portalavailable(model.path, model.provider).then(
-                            data => { data.status == 'ok' && model.set('logged', true); },
-                            error => {});
+                        (new DialogConnect).portalexists(model.path, model.provider)
+                            .then( data => { data.status == 'success' && model.set('logged', true); } );
                     }
                 }
             };
@@ -334,6 +337,63 @@
         var _on_create_portal = function() {
             dlgLogin && dlgLogin.close();
             window.sdk.execCommand('portal:create', '');
+        };
+
+        var _on_login_message = function(info) {
+            let obj = JSON.parse(utils.fn.decodeHtml(info));
+            if ( obj ) {
+                var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
+                if ( model ) {
+                    if ( model.email == obj.email ) {
+                        !model.get('logged') && model.set('logged', true);
+                        return;
+                    } else {
+                        PortalsStore.forget(obj.domain);
+                    }
+                }
+
+                let _p;
+                if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
+                            (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
+                    obj.provider = _p.id;
+
+                let info = {
+                    portal: obj.domain,
+                    provider: obj.provider,
+                    user: obj.displayName,
+                    email: obj.email
+                };
+
+                info.portal.endsWith('/') &&
+                        (info.portal = info.portal.slice(0,-1));
+
+                PortalsStore.keep(info);
+                if ( obj.provider != 'asc' ) {
+                    sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
+
+                    window.on_set_cookie = () => {
+                        window.on_set_cookie = undefined;
+                        _update_portals.call(this);
+                    }
+                } else {
+                    _update_portals.call(this);
+                }
+            }
+        };
+
+        var _on_settings = function(cmd, params) {
+            if (/init$/.test(cmd)) {
+                if ( params.includes('\"portals\"\:') ) {
+                    let opts;
+                    try {
+                        opts = JSON.parse( utils.fn.decodeHtml(params) );
+                    } catch (e) { /*delete opts;*/ }
+
+                    if ( opts && opts.portals && opts.portals.auth_use_api ) {
+                        _do_connect = _do_login;
+                    }
+                }
+            }
         };
 
         let carousel = {};
@@ -415,31 +475,10 @@
                         }
                     } else
                     if (/portal:login/.test(cmd)) {
-                        let obj = JSON.parse(utils.fn.decodeHtml(param));
-                        if ( obj ) {
-                            var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
-                            if ( model ) {
-                                if ( model.email == obj.email ) {
-                                    !model.get('logged') && model.set('logged', true);
-                                    return;
-                                } else {
-                                    PortalsStore.forget(obj.domain);
-                                }
-                            }
-
-                            let info = {
-                                portal: obj.domain,
-                                provider: obj.provider,
-                                user: obj.displayName,
-                                email: obj.email
-                            };
-
-                            info.portal.endsWith('/') &&
-                                    (info.portal = info.portal.slice(0,-1));
-
-                            PortalsStore.keep(info);
-                            _update_portals.call(this);
-                        }
+                        _on_login_message.call(this, param);
+                    } else
+                    if (/^settings\:/.test(cmd)) {
+                        _on_settings.call(this, cmd, param);
                     }
                 });
 
@@ -449,7 +488,8 @@
                 _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{
-                    _do_login.call(this);
+                    let _data = $(e.currentTarget).data();
+                    !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
                 });
 
                 window.CommonEvents.on('portal:create', _on_create_portal);

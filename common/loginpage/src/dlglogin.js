@@ -40,15 +40,10 @@ window.LoginDlg = function(opts) {
             title: utils.Lang.loginTitleStart,
             template: () => {
                 return `<section><div id="panel-portal" class="sl-panel">
-                          <div class='lr-flex select-field'>
-                            <label style='font-size:14px'>Cloud provider</label>
-                            <span />
-                            <section class='box-cmp-select'>
-                              <select class='selectpicker'></select>
-                            </section>
+                          <div class="error-box">
+                            <p id="auth-error" class="msg-error">error</p>
+                            <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox dlg--option" placeholder="${utils.Lang.pshPortal}" value="">
                           </div>
-                          <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
-                          <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">
                           <div style="height:10px;"></div>
                           <div id="box-btn-next" class="lr-flex">
                             <a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
@@ -70,9 +65,11 @@ window.LoginDlg = function(opts) {
                             <div class="separator"></div>
                             <span class="separator-label">or</span>
                           </section>
-                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
-                          <input id="auth-email" type="text" class="tbox auth-control first" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">
-                          <input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">
+                          <div class="error-box">
+                              <p id="auth-error" class="msg-error">asd</p>
+                              <input id="auth-email" type="text" class="tbox dlg--option" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">
+                          </div>
+                          <input id="auth-pass" type="password" name="" spellcheck="false" class="tbox dlg--option last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">
                           <div id="box-btn-login" class="lr-flex">
                             <a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkForgotPass}</a>
                             <span />
@@ -89,9 +86,9 @@ window.LoginDlg = function(opts) {
             template: () => {
                 return `<section><div id="panel-assign-phone" class="sl-panel">
                           <p class="notice text-sub">${utils.Lang.loginNoteAssignPhone}</p>
-                          <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
-                          <div class="lr-flex">
-                            <input id="auth-phone" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshPhone}" maxlenght="255" value="">
+                          <div class="lr-flex error-box">
+                            <p id="auth-error" class="msg-error">error</p>
+                            <input id="auth-phone" type="text" class="tbox dlg--option combined" name="" spellcheck="false" placeholder="${utils.Lang.pshPhone}" maxlenght="255" value="">
                             <div>
                               <button id="btn-assign-phone" class="btn primary">${utils.Lang.btnNext}</button>
                             </div>
@@ -104,9 +101,9 @@ window.LoginDlg = function(opts) {
             template: (code) => {
                 return `<section><div id="panel-apply-code" class="sl-panel">
                     <p class="notice text-sub">${utils.Lang.loginNoteApplyCode.replace(/\$1/, code)}</p>
-                    <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
-                    <div class="lr-flex">
-                      <input id="auth-code" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshCode}" maxlenght="255" value="">
+                    <div class="lr-flex error-box">
+                      <p id="auth-error" class="msg-error">error</p>
+                      <input id="auth-code" type="text" class="tbox dlg--option combined" name="" spellcheck="false" placeholder="${utils.Lang.pshCode}" maxlenght="255" value="">
                       <div>
                         <button id="btn-apply-code" class="btn primary">${utils.Lang.btnNext}</button>
                       </div>
@@ -344,7 +341,7 @@ window.LoginDlg = function(opts) {
     };
 
     function bindEvents() {
-        $el.find('.body').on('keypress', '.auth-control', 
+        $el.find('.body').on('keypress', '.tbox', 
             function(e) {
                 if (e.which == 13) {
                     if (/auth-portal/.test(e.target.id)) 
@@ -401,34 +398,29 @@ window.LoginDlg = function(opts) {
                     disableDialog(false);
                     let params = {portal: portal};
 
-                    if ( vendor == 'asc' && obj.response.innerauth ) {
-                        if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
-                            params.authservice = {url: obj.response.ssoUrl};
+                    if ( !!obj.response.ssoUrl && obj.response.ssoUrl.length ) {
+                        params.authservice = {url: obj.response.ssoUrl};
 
-                            if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
-                                params.authservice.label = obj.response.ssoLabel;
-                        }
-
-                        firstConnect(params);
-                    } else {
-                        events.success({type:'outer', portal:protocol+portal, provider:vendor});
-                        doClose(0);
+                        if ( obj.response.ssoLabel && obj.response.ssoLabel.length )
+                            params.authservice.label = obj.response.ssoLabel;
                     }
+
+                    firstConnect(params);
                 } else {
-                    if ( obj.status == 'error' ) {
-                        if ( obj.response.status == 404 ) {
-                            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
-                            return;
-                        }
-                    }
+                    let _mess;
+                    if ( obj.status == 'error' && obj.response.status == 404 )
+                        _mess = utils.Lang.errLoginPortal;
+                    else
+                    if ( obj.response && !!obj.response.statusText )
+                        _mess = obj.response.statusText;
+                    else _mess = 'error: portal is unvailable';
 
-                    showLoginError(obj.response.statusText, '#auth-portal');
+                    showLoginError(_mess, '#auth-portal');
                 }
             }
         };
 
-        let vendor = $el.find('.body select').val();
-        requirePortalInfo(protocol + portal, vendor).then(
+        requirePortalInfo(protocol + portal).then(
             _callback,
             obj => {
                 if ( obj.status == 'error' && obj.response.status == 404 ) {
@@ -443,7 +435,8 @@ window.LoginDlg = function(opts) {
     function requirePortalInfo(portal, vendor) {
         return new Promise ((resolve, reject)=>{
             !vendor && (vendor = 'asc');
-            var _url = portal + config.portals.checklist.find(i => i.id == vendor).checkUrl;
+            let _info = config.portals.checklist.find(i => i.id == vendor);
+            var _url = portal + _info.check.url;
 
             $.ajax({
                 url: _url,
@@ -479,19 +472,6 @@ window.LoginDlg = function(opts) {
         setTitle( _panel.title );
         $el.find('.body').html( _panel.template() );
         $el.find('#btn-next').click(onNextClick);
-
-        let $combo = $el.find('select');
-        let _clouds = sdk.externalClouds();
-        if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
-            $combo.append(`<option value='asc'>onlyoffice</option>`);
-            $combo.parents('.select-field').hide();
-        } else {
-            for (let c of _clouds) {
-                $combo.append(`<option value='${c.id}'>${c.name}</option>`);
-            }
-
-            $combo.val(provider);
-        }
 
         let $portal = $el.find('#auth-portal');
         if ( !!portal ) $portal.val(portal);
