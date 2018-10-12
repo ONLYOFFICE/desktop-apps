@@ -80,11 +80,13 @@ void CTabPanel::initAsEditor()
 #endif
 
     m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);
+    cef()->resizeEvent(width(), height());
 }
 
 void CTabPanel::initAsSimple()
 {
     m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);
+    cef()->resizeEvent(width(), height());
 }
 
 void CTabPanel::openLocalFile(const std::wstring& path, int format)
