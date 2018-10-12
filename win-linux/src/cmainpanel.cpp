@@ -1317,14 +1317,22 @@ void CMainPanel::onKeyDown(void * eventData)
     }
 }
 
-void CMainPanel::onPortalOpen(QString url)
+void CMainPanel::onPortalOpen(QString json)
 {
-    QStringList _opts = url.split("#");
-    int res = _opts.size() > 1 ? m_pTabs->openPortal(_opts.at(1), _opts.at(0)) :
-                                        m_pTabs->openPortal(_opts.at(0), "asc");
-    if ( !(res < 0) ) {
-        toggleButtonMain(false, true);
-        m_pTabs->setCurrentIndex(res);
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if(jerror.error == QJsonParseError::NoError) {
+        QJsonObject objRoot = jdoc.object();
+
+        QString _portal = objRoot["portal"].toString();
+        if ( !_portal.isEmpty() ) {
+            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"));
+            if ( !(res < 0) ) {
+                toggleButtonMain(false, true);
+                m_pTabs->setCurrentIndex(res);
+            }
+        }
     }
 }
 
