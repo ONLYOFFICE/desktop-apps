@@ -131,6 +131,11 @@ void CLangater::init()
     }
 
     QTranslator * tr = getInstance()->m_intf->createTranslator();
+    if ( tr->load("qtbase_" + _lang, _lang_path) ) {
+        QCoreApplication::installTranslator(tr);
+    }
+
+    tr = getInstance()->m_intf->createTranslator();
     if ( tr->load(_lang, _lang_path) ) {
         getInstance()->m_lang = _lang;
     }

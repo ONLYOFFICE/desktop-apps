@@ -76,6 +76,7 @@
         <file>langs/sk.qm</file>
         <file>langs/pt_BR.qm</file>
         <file>langs/it_IT.qm</file>
+        <file>langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
