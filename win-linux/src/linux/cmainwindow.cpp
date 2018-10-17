@@ -105,12 +105,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
         setMouseTracking(true);
 
         QPalette _palette(palette());
-#ifdef __APP_NEW_APPEARANCE
         _palette.setColor(QPalette::Background, QColor("#f1f1f1"));
         setStyleSheet("QMainWindow{border:1px solid #888;}");
-#else
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-#endif
         setAutoFillBackground(true);
         setPalette(_palette);
     }

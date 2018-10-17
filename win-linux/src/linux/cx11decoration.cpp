@@ -40,11 +40,7 @@
 #include "X11/cursorfont.h"
 #include <gdk/gdkscreen.h>
 
-#ifdef __APP_NEW_APPEARANCE
-# define CUSTOM_BORDER_WIDTH 4
-#else
-# define CUSTOM_BORDER_WIDTH 3
-#endif
+#define CUSTOM_BORDER_WIDTH 4
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
