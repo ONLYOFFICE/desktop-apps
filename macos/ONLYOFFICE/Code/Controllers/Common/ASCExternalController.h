@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (NSString *)onApplicationName;
 - (NSString *)onAppInfo:(NSString *)key;
+- (NSString *)onCommercialInfo;
 - (void)onMainWindowLoaded:(id)controller;
 - (void)onCommonViewDidLoad:(id)controller;
 - (void)onCefMenuEvent:(void *)event;

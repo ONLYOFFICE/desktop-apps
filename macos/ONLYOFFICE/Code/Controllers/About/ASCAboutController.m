@@ -41,6 +41,7 @@
 #import "ASCAboutController.h"
 #import <WebKit/WebKit.h>
 #import "ASCConstants.h"
+#import "ASCExternalController.h"
 
 @interface ASCAboutController ()
 @property (weak) IBOutlet NSTextField *appNameText;
@@ -48,12 +49,15 @@
 @property (weak) IBOutlet NSTextField *copyrightText;
 @property (weak) IBOutlet NSButton *licenseButton;
 @property (weak) IBOutlet WebView *eulaWebView;
+@property (weak) IBOutlet NSStackView *infoStackView;
 @end
 
 @implementation ASCAboutController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
     
     NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSDictionary * localizedInfoDictionary = [[NSBundle mainBundle] localizedInfoDictionary];
@@ -62,7 +66,23 @@
     NSString * locCopyright     = localizedInfoDictionary[@"NSHumanReadableCopyright"];
 
     locCopyright = locCopyright ? locCopyright : infoDictionary[@"NSHumanReadableCopyright"];
-    
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onCommercialInfo)]) {
+        NSString * commercialInfo = [externalDelegate onCommercialInfo];
+
+        if (commercialInfo) {
+            NSTextField * commercialTextField = [NSTextField textFieldWithString:commercialInfo];
+            [commercialTextField setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
+            [commercialTextField setAlignment:NSTextAlignmentCenter];
+            [commercialTextField setBezeled:NO];
+            [commercialTextField setDrawsBackground:NO];
+            [commercialTextField setEditable:NO];
+            [commercialTextField setSelectable:NO];
+
+            [self.infoStackView insertArrangedSubview:commercialTextField atIndex:2];
+        }
+    }
+
     // EULA View
     if (self.eulaWebView) {
         NSURL * eulaUrl = [[NSBundle mainBundle] URLForResource:@"EULA" withExtension:@"html"];
