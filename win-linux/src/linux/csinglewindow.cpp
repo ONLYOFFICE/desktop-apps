@@ -72,7 +72,7 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
     }
 
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
-    resize(_window_rect.width(), _window_rect.height());
+    setGeometry(_window_rect);
 
     m_pMainPanel = createMainPanel(!CX11Decoration::isDecorated(), title, view);
 
