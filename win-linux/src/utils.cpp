@@ -93,7 +93,7 @@ QString Utils::lastPath(int t)
         _path = _reg_user.value("openPath").value<QString>(); else
         _path = _reg_user.value("savePath").value<QString>();
 
-    return _path.length() > 0 && QDir(_path).exists() ?
+    return !_path.isEmpty() && QDir(_path).exists() ?
         _path : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 }
 

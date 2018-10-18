@@ -181,8 +181,6 @@ window.DialogConnect = function(params) {
     };
 
     function _require_portal_info(portal, provider) {
-        console.log('require info: ' + provider);
-
         !provider && (provider = 'asc');
         let _info = config.portals.checklist.find(i => i.id == provider);
         var _url = portal + _info.check.url;
