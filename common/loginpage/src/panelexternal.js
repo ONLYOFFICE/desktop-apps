@@ -88,6 +88,42 @@
             _panel.$panel.find('iframe').css({'height':'100%','border':'0 none'});
 
             panels.push(_panel);
+
+            /**/
+            if ( panel_id.includes('\{B17BDC61\-') ) {
+                _encrype_workaround(_panel);
+            }
+            /**/
+        };
+
+        function _encrype_workaround(view) {
+            let _ison = (localStorage.getItem('encrypt') || 'false') == 'true';
+
+            let _l10n = {
+                en: 'View encrypt options',
+                ru: 'Показать настройки шифрования'
+            };
+            let _label = window.utils.inParams.lang in _l10n ? 
+                                _l10n[window.utils.inParams.lang] : _l10n['en'];
+
+            let tpl = `<div class='settings-field hbox'>
+                            <div class='onoffswitch' id='sett-encrypt-switch'>
+                                <input type="checkbox" name="onoffswitch" class="onoffswitch__checkbox" id="sett-checkbox-encrypt">
+                                <label class="onoffswitch__label" for="sett-checkbox-encrypt"></label>
+                            </div>
+                            <label class='sett__caption'>${_label}</label>
+                        </div>`;
+
+            $('.action-panel.settings .settings-items').append(tpl);
+            $('.action-panel.settings #sett-encrypt-switch').parent().show();
+            let checkbox = $('.action-panel.settings #sett-checkbox-encrypt');
+            checkbox.prop('checked', _ison);
+
+            if ( !_ison ) view.$menuitem.hide();
+            checkbox.on('change', e => {
+                e.target.checked ? view.$menuitem.show() : view.$menuitem.hide();
+                localStorage.setItem('encrypt', e.target.checked);
+            });
         };
 
         return {

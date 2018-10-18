@@ -55,7 +55,7 @@
                         <div id='box-settings'>
                             <div class='flexbox'>
                                 <h3 class='table-caption'>${_lang.actSettings}</h3>
-                                <section>
+                                <section class='settings-items'>
                                     <div class='settings-field'>
                                         <label class='sett__caption'>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
@@ -72,12 +72,14 @@
                                             <strong class='sett__note' tooltip='${_lang.settAfterRestart}' tooltip-pos='top'>i</strong>
                                         </div>
                                     </div>
+                                    <!-- temporary elements section -->
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
                                             <input type="checkbox" name="onoffswitch" class="checkbox" id="sett-preview-mode">
                                             <label for="sett-preview-mode" class='sett__caption'>${_lang.settOpenMode}</label>
                                         </section>
                                     </div>
+                                    <!-- end section -->
                                 </section>
                                 <div class="lst-tools">
                                     <button class="btn" id="sett-btn-apply">${_lang.setBtnApply}</button>
