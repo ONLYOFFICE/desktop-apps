@@ -47,6 +47,7 @@
 #import "NSCefView.h"
 #import "ASCHelper.h"
 #import "AnalyticsHelper.h"
+#import "ASCExternalController.h"
 
 #ifndef _MAS
     #import "PFMoveApplication.h"
@@ -183,7 +184,13 @@
 - (IBAction)onShowHelp:(NSMenuItem *)sender {
     NSString * langCode = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
     NSString * helpUrl  = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @""];
-    
+
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+        langCode = [externalDelegate onAppPreferredLanguage];
+    }
+
     if ([@"ru" isEqualToString:langCode]) {
         helpUrl = [NSString stringWithFormat:[ASCConstants appInfo:kHelpUrl], @"ru/"];
     } else if ([@"de" isEqualToString:langCode]) {

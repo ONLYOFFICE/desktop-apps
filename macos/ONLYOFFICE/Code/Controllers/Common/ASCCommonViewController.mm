@@ -280,10 +280,17 @@
 
 - (void)loadStartPage {
     if (self.cefStartPageView ) {
+        id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+        
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
         NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[[NSLocale currentLocale] objectForKey:NSLocaleIdentifier]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
+
+        if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+            countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
+        }
+
         loginPage.queryItems            = @[countryCode, portalAddress];
         loginPage.scheme                = NSURLFileScheme;
         
@@ -1331,9 +1338,15 @@
 
                 // Force open tab of a portal if not exist
                 if (!isFoundPortal) {
+                    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
                     NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
                     NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                     NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+
+                    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                        countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
+                    }
+
                     urlPage.queryItems            = @[countryCode, portalAddress];
 
                     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab

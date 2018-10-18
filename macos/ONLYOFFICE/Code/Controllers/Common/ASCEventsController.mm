@@ -430,6 +430,11 @@ public:
                             NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:param], @"products/files/"]];
                             NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                             NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+
+                            if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                                countryCode = [NSURLQueryItem queryItemWithName:@"lang" value: [externalDelegate onAppPreferredLanguage]];
+                            }
+
                             urlPage.queryItems            = @[countryCode, portalAddress];
                             
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
@@ -511,7 +516,14 @@ public:
                         } else if (cmd.find(L"settings:apply") != std::wstring::npos) {
                             if (NSDictionary * json = stringToJson([NSString stringWithstdwstring:param])) {
                                 NSMutableArray * params = [NSMutableArray array];
-                                [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+
+                                id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+                                if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [externalDelegate onAppPreferredLanguage]]];
+                                } else {
+                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+                                }
 
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
