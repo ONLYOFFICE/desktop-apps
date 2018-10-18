@@ -382,7 +382,9 @@
                     }
                 }
 
+
                 let _p;
+                !obj.provider && (obj.provider = 'asc');
                 if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
                     obj.provider = _p.id;
