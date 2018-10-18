@@ -1178,10 +1178,7 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
 {
     GET_REGISTRY_USER(_reg_user);
 
-    QString savePath = _reg_user.value("savePath").value<QString>();
-    if (savePath.isEmpty() || !QDir(savePath).exists())
-        savePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-
+    QString savePath = Utils::lastPath(LOCAL_PATH_SAVE);
     static bool saveInProcess = false;
     if (!saveInProcess) {
         saveInProcess = true;
@@ -1190,9 +1187,8 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
             CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
 
-            if (dlg.modalSaveAs(fullPath)) {
-                savePath = QFileInfo(fullPath).absolutePath();
-                _reg_user.setValue("savePath", savePath);
+            if ( dlg.modalSaveAs(fullPath) ) {
+                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
             }
 
             AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
@@ -1207,13 +1203,11 @@ void CMainPanel::onLocalFileSaveAs(void * d)
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
     QFileInfo info( QString::fromStdWString(pData->get_Path()) );
-    if ( info.fileName().size() ) {
-        QString _lastSavePath = Utils::lastPath(LOCAL_PATH_SAVE);
-        if ( !QDir(_lastSavePath).exists() ) {
-            _lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-        }
-
-        QString fullPath = _lastSavePath + "/" + info.fileName();
+    if ( !info.fileName().isEmpty() ) {
+        bool _keep_path = false;
+        QString fullPath;
+        if ( info.exists() ) fullPath = info.absoluteFilePath();
+        else fullPath = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
 
         CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
         dlg.setFormats(pData->get_SupportFormats());
@@ -1223,7 +1217,8 @@ void CMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Path(L"");
 
         if ( dlg.modalSaveAs(fullPath) ) {
-            Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
+            if ( _keep_path )
+                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
 
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
