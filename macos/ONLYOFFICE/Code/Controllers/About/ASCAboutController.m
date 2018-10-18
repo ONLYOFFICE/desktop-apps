@@ -71,13 +71,21 @@
         NSString * commercialInfo = [externalDelegate onCommercialInfo];
 
         if (commercialInfo) {
-            NSTextField * commercialTextField = [NSTextField textFieldWithString:commercialInfo];
-            [commercialTextField setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
+            NSTextField * commercialTextField;
+            if (@available(macOS 10.12, *)) {
+                commercialTextField = [NSTextField labelWithString:commercialInfo];
+            } else {
+                commercialTextField = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, self.infoStackView.frame.size.width, 35)];
+                [commercialTextField setStringValue:commercialInfo];
+                [commercialTextField setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
+                [commercialTextField setBezeled:NO];
+                [commercialTextField setDrawsBackground:NO];
+                [commercialTextField setEditable:NO];
+                [commercialTextField setSelectable:NO];
+            }
             [commercialTextField setAlignment:NSTextAlignmentCenter];
-            [commercialTextField setBezeled:NO];
-            [commercialTextField setDrawsBackground:NO];
-            [commercialTextField setEditable:NO];
-            [commercialTextField setSelectable:NO];
+            [commercialTextField setLineBreakMode:NSLineBreakByWordWrapping];
+            [commercialTextField setUsesSingleLineMode:NO];
 
             [self.infoStackView insertArrangedSubview:commercialTextField atIndex:2];
         }
