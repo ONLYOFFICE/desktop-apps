@@ -2,9 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
+    <name>CAscApplicationManagerWrapper</name>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
+        <source>Presenter View</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="612"/>
+        <location filename="../src/asctabwidget.cpp" line="633"/>
         <source>Document</source>
         <translation>Dokument</translation>
     </message>
@@ -296,83 +304,91 @@
         <translation>SOUBOR</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1336"/>
+        <location filename="../src/cmainpanel.cpp" line="1398"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="507"/>
-        <location filename="../src/cmainpanel.cpp" line="703"/>
-        <location filename="../src/cmainpanel.cpp" line="946"/>
+        <location filename="../src/cmainpanel.cpp" line="511"/>
+        <location filename="../src/cmainpanel.cpp" line="706"/>
+        <location filename="../src/cmainpanel.cpp" line="949"/>
+        <location filename="../src/cmainpanel.cpp" line="982"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="507"/>
-        <location filename="../src/cmainpanel.cpp" line="703"/>
-        <location filename="../src/cmainpanel.cpp" line="946"/>
+        <location filename="../src/cmainpanel.cpp" line="511"/>
+        <location filename="../src/cmainpanel.cpp" line="706"/>
+        <location filename="../src/cmainpanel.cpp" line="949"/>
+        <location filename="../src/cmainpanel.cpp" line="982"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="507"/>
-        <location filename="../src/cmainpanel.cpp" line="1174"/>
+        <location filename="../src/cmainpanel.cpp" line="511"/>
+        <location filename="../src/cmainpanel.cpp" line="982"/>
+        <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="681"/>
-        <location filename="../src/cmainpanel.cpp" line="722"/>
+        <location filename="../src/cmainpanel.cpp" line="684"/>
+        <location filename="../src/cmainpanel.cpp" line="725"/>
         <source>File format not supported.</source>
         <translation>Formát souboru není podporován.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="706"/>
+        <location filename="../src/cmainpanel.cpp" line="709"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="797"/>
+        <location filename="../src/cmainpanel.cpp" line="800"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musíte nejprve uložit.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1174"/>
+        <location filename="../src/cmainpanel.cpp" line="983"/>
+        <source>%1 must be built. Continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1176"/>
+        <location filename="../src/cmainpanel.cpp" line="1228"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Pokud budete pokračovat v ukládání v tomto formátu, vše kromě textu bude ztraceno.&lt;br&gt;Opravdu chcete pokračovat?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1302"/>
+        <location filename="../src/cmainpanel.cpp" line="1364"/>
         <source>Sign Up</source>
         <translation>Vytvořit portál</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="735"/>
+        <location filename="../src/cmainpanel.cpp" line="738"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="736"/>
+        <location filename="../src/cmainpanel.cpp" line="739"/>
         <source>Book%1.xlsx</source>
         <translation>Sešit%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="737"/>
+        <location filename="../src/cmainpanel.cpp" line="740"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentace%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="947"/>
+        <location filename="../src/cmainpanel.cpp" line="950"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1032"/>
+        <location filename="../src/cmainpanel.cpp" line="1089"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>

@@ -460,7 +460,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         }
     }
 
-    CSingleWindow * _window = new CSingleWindow(_windowRect, "ONLYOFFICE Reporter Window", pView);
+    CSingleWindow * _window = new CSingleWindow(_windowRect, tr("Presenter View"), pView);
 
     m_vecEditors.push_back( size_t(_window) );
 
