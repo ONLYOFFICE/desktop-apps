@@ -244,6 +244,7 @@ window.DialogConnect = function(params) {
             $el.get(0).showModal();
             $el.addClass('scaled');
             $el.on('close', _on_close_click);
+            $body.find('.newportal').on('click', e => {CommonEvents.fire("portal:create"); _close();});
 
             setTimeout(()=>{$portal.focus();}, 50);
         },
