@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)onAppInfo:(NSString *)key;
 - (NSString *)onAppPreferredLanguage;
 - (NSString *)onCommercialInfo;
+- (BOOL)onShouldOpenFile:(NSString *)filePath;
 - (void)onMainWindowLoaded:(id)controller;
 - (void)onCommonViewDidLoad:(id)controller;
 - (void)onCefMenuEvent:(void *)event;

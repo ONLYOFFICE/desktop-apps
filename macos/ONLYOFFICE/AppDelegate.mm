@@ -97,6 +97,20 @@
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames {
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onShouldOpenFile:)]) {
+        NSMutableArray<NSString *> * processedFileList = [NSMutableArray array];
+
+        for (NSString * filePath in filenames) {
+            if ([externalDelegate onShouldOpenFile:filePath]) {
+                [processedFileList addObject:filePath];
+            }
+        }
+
+        filenames = processedFileList;
+    }
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         for (NSString * filePath in filenames) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
