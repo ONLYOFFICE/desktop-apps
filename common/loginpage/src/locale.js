@@ -420,7 +420,7 @@ l10n.de = {
 
 l10n.it_IT = {
     welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
-    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welDescr: 'Lavora ai documenti offline o collega la suite al tuo cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Connetti',
     textHavePortal: 'Sei già un utente cloud?',
     btnCreatePortal: 'Crea ONLYOFFICE cloud',
@@ -428,9 +428,9 @@ l10n.it_IT = {
     btnLogin: 'Login',
     btnBrowse: 'Sfoglia',
     btnNext: 'Successivo',
-    portalEmptyTitle: 'Connect to your cloud',
-    portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
-    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and try collaborative capabilities for free.',
+    portalEmptyTitle: 'Collegati al tuo Cloud',
+    portalEmptyDescr: 'Salva i documenti nel cloud e accedi quando vuoi, ovunque, collabora e condividi. Discuti dal documento, aggiungi commenti o condividilo per revisioni.',
+    portalEmptyAdv1: 'Non hai ancora un account cloud? Vai online con ONLYOFFICE Cloud Service e prova le capacità di collaborazione gratis.',
     portalListTitle: 'Cloud connessi',
     textNoFiles: 'Non ci sono file',
     listRecoveryTitle:'Recupera files',
@@ -471,10 +471,10 @@ l10n.it_IT = {
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',
-    actConnectTo: 'Connect to cloud',
+    actConnectTo: 'Connetti al Cloud',
     actActivate: 'Attiva',
     actAbout: 'Informazioni su',
-    actSettings: 'Settings',
+    actSettings: 'Impostazioni',
     licKeyHolder: 'digitare activation key',
     btnActivate: 'Attiva',
     licGetLicense: 'Get license now',
@@ -488,12 +488,12 @@ l10n.it_IT = {
     ,emptySlide2Text: 'Ripristina o visualizza le versioni precedenti del documento, tiene traccia delle modifiche e delle modifiche apportate dagli altri autori.'
     ,emptySlide3Title: 'Archiviare nel cloud'
     ,emptySlide3Text: 'Archivia i tuoi documenti nel cloud ONLYOFFICE e accedili in qualsiasi momento da qualsiasi luogo.'
-    ,settUserName: 'User Name'
-    ,settResetUserName: 'Reset to default'
-    ,settOpenMode: 'Open document in preview mode'
-    ,setBtnApply: 'Apply'
-    ,settLanguage: 'Language'
-    ,settAfterRestart: 'Option will be applied after the app restart'
+    ,settUserName: 'Nome Utente'
+    ,settResetUserName: 'Ripristina valori predefiniti'
+    ,settOpenMode: 'Apri il documento in modalità Anteprima'
+    ,setBtnApply: 'Applica'
+    ,settLanguage: 'Lingua'
+    ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
 };
 
 l10n.fr = {
