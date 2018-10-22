@@ -33,9 +33,9 @@
 var l10n = {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
-    welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
-    btnConnect: 'Connect',
-    textHavePortal: 'Already use ONLYOFFICE?',
+    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Connect now',
+    textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
     btnAddPortal: 'Add сloud',
     btnLogin: 'Login',
@@ -43,7 +43,7 @@ l10n.en = {
     btnNext: 'Next',
     portalEmptyTitle: 'Connect to your cloud',
     portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
-    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and try collaborative capabilities for free.',
+    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and <br />try collaborative capabilities for free.',
     portalListTitle: 'Connected clouds',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
@@ -57,7 +57,7 @@ l10n.en = {
     textMyComputer: 'My Computer',
     textThrough: 'through',
     linkForgotPass: 'Forgot password?',
-    linkCreatePortal: 'Create cloud office',
+    linkCreatePortal: 'Create an ONLYOFFICE cloud',
     linkResend: 'Send the code again',
     linkChangePhone: 'Change phone number',
     loginTitleStart: 'Connect to cloud office',
@@ -84,7 +84,7 @@ l10n.en = {
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
-    actConnectTo: 'Share & collaborate',
+    actConnectTo: 'Connect to cloud',
     actActivate: 'Activate',
     actAbout: 'About',
     actSettings: 'Settings',
@@ -111,16 +111,17 @@ l10n.en = {
 
 l10n.cs = {
     welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
-    welDescr: 'Nové rychlé řešení pro práci s dokumenty pomocí Vašeho ONLYOFFICE.',
+    welDescr: 'Práce na dokumentech offline nebo propojení sady do cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Připojit',
-    textHavePortal: 'Už používáte ONLYOFFICE?',
-    btnCreatePortal: 'Vyzkoušejte zdarma',
+    textHavePortal: 'Už používáte cloud?',
+    btnCreatePortal: 'Vytvořit ONLYOFFICE cloud',
     btnAddPortal: 'Přidat cloud',
     btnLogin: 'Login',
     btnBrowse: 'Procházet',
     btnNext: 'Další',
-    portalEmptyTitle: 'Editace a vytváření dokumentů v reálném čase',
-    portalEmptyDescr: 'Práce na stejném dokumentu současně s kolegy. Vyberte si mezi rychlou nebo přesnou úpravou v reálném čase, chatováním v dokumentu nebo přidáním poznámek k němu.',
+    portalEmptyTitle: 'Připojte se k cloudu',
+    portalEmptyDescr: 'Uložte dokumenty v cloudu a získáte k nim přístup kdykoli a odkudkoli. Sdílejte a spolupracujte na nich. Chatujte ve svém dokumentu, přidejte komentáře nebo je sdílejte ke kontrole.',
+    portalEmptyAdv1: 'Nemáte ještě cloud účet? Navštivte službu Cloud Service ONLYOFFICE a vyzkoušejte možnosti spolupráce zdarma.',
     portalListTitle: 'Připojit cloud',
     textNoFiles: 'Neexistují žádné soubory',
     listRecoveryTitle:'Obnovit soubory',
@@ -134,7 +135,7 @@ l10n.cs = {
     textMyComputer: 'Můj počítač',
     textThrough: 'skrz',
     linkForgotPass: 'Zapomenuté heslo?',
-    linkCreatePortal: 'Vytvořit kancelářu cloud',
+    linkCreatePortal: 'Vytvořit ONLYOFFICE cloud',
     linkResend: 'Zadejte kód znovu',
     linkChangePhone: 'Změňte telefonní číslo',
     loginTitleStart: 'Připojit se k kanceláři cloud',
@@ -160,9 +161,10 @@ l10n.cs = {
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',
-    actConnectTo: 'Sdílejte a spolupracujte',
+    actConnectTo: 'Připojte se k cloudu',
     actActivate: 'Aktivovat',
     actAbout: 'O ONLYOFFICE',
+    actSettings: 'Nastavení',
     licKeyHolder: 'vstupní aktivační klíč',
     btnActivate: 'Aktivovat',
     licGetLicense: 'Získat licenci',
@@ -176,20 +178,27 @@ l10n.cs = {
     ,emptySlide2Text: 'Obnovte nebo si zobrazte předchozí verze dokumentu, sledujte změny a jejich autory.'
     ,emptySlide3Title: 'Ukládejte do cloudu'
     ,emptySlide3Text: 'Ukládejte své dokumenty v cloudu od ONLYOFFICU a mějte k nim kdykoli přístup, odkudkoli.'
+    ,settUserName: 'Uživatelské jméno'
+    ,settResetUserName: 'Obnovit do základního nastavení'
+    ,settOpenMode: 'Otevřete dokument v režimu náhledu'
+    ,setBtnApply: 'Uložit změny'
+    ,settLanguage: 'Jazyk'
+    ,settAfterRestart: 'Možnost bude k dispozici až po restartu aplikace'
 }
 
 l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
-    welDescr: 'Nové rýchle riešenie pre prácu s dokumentmi pomocou Vášho ONLYOFFICE.',
+    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Pripojiť',
-    textHavePortal: 'Už používate ONLYOFFICE?',
-    btnCreatePortal: 'Vyskúšajte zadarmo',
+    textHavePortal: 'Už používate cloud?',
+    btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
     btnAddPortal: 'Pridať cloud',
     btnLogin: 'Prihlásiť sa',
     btnBrowse: 'Prechádzať',
     btnNext: 'Nasledujúci',
-    portalEmptyTitle: 'Spolueditovanie dokumentov v reálnom čase',
-    portalEmptyDescr: 'Pracujte na tom istom dokumente súčasne s vašimi kolegami. Vyberte si medzi rýchlym alebo striktným editovaním v reálnom čase, chatovaním v dokumente alebo pridaním komentárov k nemu.',
+    portalEmptyTitle: 'Connect to your cloud',
+    portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
+    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and try collaborative capabilities for free.',
     portalListTitle: 'Pripojené cloud',
     textNoFiles: 'Neexistujú žiadne súbory',
     listRecoveryTitle:'Obnoviť súbory',
@@ -203,7 +212,7 @@ l10n.sk = {
     textMyComputer: 'Môj počítač',
     textThrough: 'skrz',
     linkForgotPass: 'Zabudnuté heslo?',
-    linkCreatePortal: 'Vytvoriť kanceláriu cloud',
+    linkCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
     linkResend: 'Zadajte kód znovu',
     linkChangePhone: 'Zmeňte telefónne číslo',
     loginTitleStart: 'Pripojiť sa k kancelárie cloud',
@@ -229,9 +238,10 @@ l10n.sk = {
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Posledné súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',
-    actConnectTo: 'Zdieľať a spolupracovať',
+    actConnectTo: 'Connect to cloud',
     actActivate: 'Aktivovať',
     actAbout: 'O OnlyOffice',
+    actSettings: 'Settings',
     licKeyHolder: 'vstupný aktivačný kľúč',
     btnActivate: 'Aktivovať',
     licGetLicense: 'Získať licenciu',
@@ -245,20 +255,27 @@ l10n.sk = {
     ,emptySlide2Text: 'Obnovite alebo jednoducho zobrazte predchádzajúce verzie Vašich dokumentov, sledujte zmeny a ich autorov.'
     ,emptySlide3Title: 'Uložte dáta do cloud-u'
     ,emptySlide3Text: 'Uložte Vaše dokumenty v ONLYOFFICE cloude a pristupujte k nim kedykoľvek, nech ste už kdekoľvek.'
+    ,settUserName: 'User Name'
+    ,settResetUserName: 'Reset to default'
+    ,settOpenMode: 'Open document in preview mode'
+    ,setBtnApply: 'Apply'
+    ,settLanguage: 'Language'
+    ,settAfterRestart: 'Option will be applied after the app restart'
 }
 
 l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
-    welDescr: 'Новое быстрое решение для работы с документами в вашем облаке ONLYOFFICE.',
+    welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Подключить',
-    textHavePortal: 'Уже используете ONLYOFFICE?',
-    btnCreatePortal: 'Попробуйте прямо сейчас бесплатно',
+    textHavePortal: 'Уже используете облако?',
+    btnCreatePortal: 'Создать облако ONLYOFFICE',
     btnAddPortal: 'Добавить облако',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
     btnNext: 'Далее',
-    portalEmptyTitle: 'Совместное редактирование в режиме реального времени',
-    portalEmptyDescr: 'Работайте над одним и тем же документом одновременно с другими участниками команды. Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или добавляйте комментарии к документу.',
+    portalEmptyTitle: 'Подключитесь к облаку',
+    portalEmptyDescr: 'Храните документы в облаке и работайте с ними в любое время из любой точки мира. Предоставляйте к ним доступ и работайте совместно. Используйте встроенный чат, добавляйте комментарии или отправляйте документ на рецензирование.',
+    portalEmptyAdv1: 'Еще нет облачного аккаунта? Перейдите в онлайн-режим с облачным сервисом ONLYOFFICE и попробуйте возможности совместного редактирования бесплатно.',
     portalListTitle: 'Подключенные облака',
     textNoFiles: 'Нет файлов для просмотра',
     listRecoveryTitle:'Файлы для восстановления',
@@ -272,7 +289,7 @@ l10n.ru = {
     textMyComputer: 'Мой компьютер',
     textThrough: 'через',
     linkForgotPass: 'Забыли пароль?',
-    linkCreatePortal: 'Создать облачный офис',
+    linkCreatePortal: 'Создать облако ONLYOFFICE',
     linkResend: 'Отправить код еще раз',
     linkChangePhone: 'Изменить номер телефона',
     loginTitleStart: 'Подключиться к облачному офису',
@@ -299,7 +316,7 @@ l10n.ru = {
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
-    actConnectTo: 'Редактировать совместно',
+    actConnectTo: 'Подключиться к облаку',
     actActivate: 'Активировать',
     actAbout: 'О программе',
     actSettings: 'Настройки',
@@ -326,16 +343,17 @@ l10n.ru = {
 
 l10n.de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
-    welDescr: 'Eine neue schnelle Lösung für die Arbeit mit Dokumenten mithilfe Ihrer ONLYOFFICE.',
+    welDescr: 'Arbeiten Sie offline an Dokumenten oder verbinden Sie die Suite mit Ihrer Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Zusammenarbeit',
-    textHavePortal: 'Haben Sie ONLYOFFICE schon benutzt?',
-    btnCreatePortal: 'Probieren Sie es jetzt kostenlos aus',
+    textHavePortal: 'Haben Sie Cloud schon benutzt?',
+    btnCreatePortal: 'ONLYOFFICE-Cloud erstellen',
     btnAddPortal: 'Cloud hinzufügen',
     btnLogin: 'Anmelden',
     btnBrowse: 'Browsen',
     btnNext: 'Weiter',
-    portalEmptyTitle: 'Gemeinsame Bearbeiten von Dokumenten in Echtzeit',
-    portalEmptyDescr: 'Arbeiten Sie am selben Dokument gleichzeitig mit Ihren Teamkollegen. Wählen Sie zwischen 2 Modi der gemeinsamen Bearbeitung: Formal und Halbformal, chatten Sie in Ihrem Dokument oder fügen Sie Kommentare hinzu.',
+    portalEmptyTitle: 'Stellen Sie eine Verbindung zu Ihrer Cloud her',
+    portalEmptyDescr: 'Speichern Sie Ihre Dokumente in der Cloud und greifen Sie jederzeit und von überall darauf zu. Teilen und arbeiten Sie an Dokumenten zusammen. Chatten Sie in Echtzeit im Dokument, fügen Sie Kommentare hinzu oder teilen Sie es zur Überprüfung.',
+    portalEmptyAdv1: 'Haben Sie noch kein Cloud-Konto? Wechseln Sie zum Onlinemodus mit dem ONLYOFFICE Cloud Service und testen Sie die Möglichkeiten zur Zusammenarbeit  kostenlos.',
     portalListTitle: 'Angeschlosse Cloud',
     textNoFiles: 'Keine Dateien',
     listRecoveryTitle:'Dateien wiederherstellen',
@@ -349,7 +367,7 @@ l10n.de = {
     textMyComputer: 'Arbeitsplatz',
     textThrough: 'durch',
     linkForgotPass: 'Passwort vergessen?',
-    linkCreatePortal: 'Cloud-Büro erstellen',
+    linkCreatePortal: 'ONLYOFFICE-Cloud erstellen',
     linkResend: 'Code erneut zusenden',
     linkChangePhone: 'Telefonnummer ändern',
     loginTitleStart: 'Mit dem Cloud-Büro verbinden',
@@ -375,9 +393,10 @@ l10n.de = {
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
-    actConnectTo: 'Teilen und Zusammenarbeiten',
+    actConnectTo: 'Stellen Sie eine Verbindung zur Cloud her',
     actActivate: 'Aktivieren',
     actAbout: 'Über',
+    actSettings: 'Einstellungen',
     licKeyHolder: 'Geben Sie den Aktivierungsschlüssel ein',
     btnActivate: 'Aktivieren',
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
@@ -391,20 +410,27 @@ l10n.de = {
     ,emptySlide2Text: 'Stellen Sie wieder her oder zeigen Sie nur die früheren Versionen Ihres Dokuments an, verfolgen Sie die Änderungen und ihre Autoren.'
     ,emptySlide3Title: 'Speichern in der Cloud'
     ,emptySlide3Text: 'Speichern Sie Ihre Dokumente in der ONLYOFFICE-Cloud und greifen Sie darauf jederzeit von überall zu.'
+    ,settUserName: 'Benutzername'
+    ,settResetUserName: 'Auf Standard zurücksetzen'
+    ,settOpenMode: 'Öffnen Sie das Dokument im Vorschaumodus'
+    ,setBtnApply: 'Anwenden'
+    ,settLanguage: 'Sprache'
+    ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
 };
 
 l10n.it_IT = {
     welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
-    welDescr: 'Una nuova soluzione veloce per lavorare con documenti usando ONLYOFFICE.',
+    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Connetti',
-    textHavePortal: 'Sei già un utente ONLYOFFICE?',
-    btnCreatePortal: 'Fai una prova gratuita',
+    textHavePortal: 'Sei già un utente cloud?',
+    btnCreatePortal: 'Crea ONLYOFFICE cloud',
     btnAddPortal: 'Aggiungi cloud',
     btnLogin: 'Login',
     btnBrowse: 'Sfoglia',
     btnNext: 'Successivo',
-    portalEmptyTitle: 'Modifica simultanea dei documenti in tempo reale',
-    portalEmptyDescr: 'Lavora sullo stesso documento contemporaneamente con i tuoi compagni di squadra. Scegli tra la modifica in tempo reale rapida o rigorosa, la chat nel tuo documento o aggiungi commenti ad esso.',
+    portalEmptyTitle: 'Connect to your cloud',
+    portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
+    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and try collaborative capabilities for free.',
     portalListTitle: 'Cloud connessi',
     textNoFiles: 'Non ci sono file',
     listRecoveryTitle:'Recupera files',
@@ -418,7 +444,7 @@ l10n.it_IT = {
     textMyComputer: 'Il mio Computer',
     textThrough: 'attraverso',
     linkForgotPass: 'Password dimenticata?',
-    linkCreatePortal: 'Crea un ufficio cloud',
+    linkCreatePortal: 'Crea ONLYOFFICE cloud',
     linkResend: 'Invia nuovamente il codice',
     linkChangePhone: 'Cambia numero di telefono',
     loginTitleStart: 'Connetti al cloud office',
@@ -445,9 +471,10 @@ l10n.it_IT = {
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',
-    actConnectTo: 'Condividi e collabora',
+    actConnectTo: 'Connect to cloud',
     actActivate: 'Attiva',
     actAbout: 'Informazioni su',
+    actSettings: 'Settings',
     licKeyHolder: 'digitare activation key',
     btnActivate: 'Attiva',
     licGetLicense: 'Get license now',
@@ -461,20 +488,27 @@ l10n.it_IT = {
     ,emptySlide2Text: 'Ripristina o visualizza le versioni precedenti del documento, tiene traccia delle modifiche e delle modifiche apportate dagli altri autori.'
     ,emptySlide3Title: 'Archiviare nel cloud'
     ,emptySlide3Text: 'Archivia i tuoi documenti nel cloud ONLYOFFICE e accedili in qualsiasi momento da qualsiasi luogo.'
+    ,settUserName: 'User Name'
+    ,settResetUserName: 'Reset to default'
+    ,settOpenMode: 'Open document in preview mode'
+    ,setBtnApply: 'Apply'
+    ,settLanguage: 'Language'
+    ,settAfterRestart: 'Option will be applied after the app restart'
 };
 
 l10n.fr = {
     welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors!',
-    welDescr: 'Une nouvelle solution rapide pour travailler sur des documents en utilisant votre ONLYOFFICE.',
+    welDescr: 'Travaillez avec vos documents  en mode hors-connexion ou connectez la suite à votre Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Se connecter',
-    textHavePortal: 'Utilisez-vous déjà ONLYOFFICE ?',
-    btnCreatePortal: 'Essayez maintenant gratuitement',
+    textHavePortal: 'Utilisez-vous déjà cloud ?',
+    btnCreatePortal: 'Créer ONLYOFFICE cloud',
     btnAddPortal: 'Ajouter cloud',
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
     btnNext: 'Suivant',
-    portalEmptyTitle: 'Co-éditez des documents en temps réel',
-    portalEmptyDescr: 'Collaborez sur un document simultanément avec vos collègues. Choisissez entre une co-édition en temps réel Rapide et Précise, chattez dans votre document ou ajoutez des commentaires.',
+    portalEmptyTitle: 'Connectez  à votre Office dans les nuages',
+    portalEmptyDescr: 'Stockez vos documents dans le cloud et  accédez-y partout, à tout moment. Сollaborez  à vos documents et partagez-les. Chattez  dans les document, ajoutez des commentaires ou partagez les document en mode révision.',
+    portalEmptyAdv1: 'Vous n\'avez pas encore de compte Cloud? Accéder en ligne avec ONLYOFFICE et essayez les capacités de gestion collaborative gratuitement.',
     portalListTitle: 'Cloud connectés',
     textNoFiles: 'Il n\'y a pas de fichiers',
     listRecoveryTitle:'Restaurer fichiers',
@@ -488,7 +522,7 @@ l10n.fr = {
     textMyComputer: 'Mon poste de travail',
     textThrough: 'par',
     linkForgotPass: 'Mot de passe oublié ?',
-    linkCreatePortal: 'Créer un bureau de cloud',
+    linkCreatePortal: 'Créer ONLYOFFICE cloud',
     linkResend: 'Renvoyer le code',
     linkChangePhone: 'Changer le numéro de téléphone',
     loginTitleStart: 'Se connecter au bureau de cloud',
@@ -514,9 +548,10 @@ l10n.fr = {
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',
-    actConnectTo: 'Partagez et collaborez',
+    actConnectTo: 'Connecter à Cloud',
     actActivate: 'Activer',
     actAbout: 'A propos',
+    actSettings: 'Paramètres',
     licKeyHolder: 'Entrez la clé d\'activation',
     btnActivate: 'Activer',
     licGetLicense: 'Obtenir la licence maintenant',
@@ -530,20 +565,27 @@ l10n.fr = {
     ,emptySlide2Text: 'Restaurez ou juste voyez les versions précédentes de votre document, suivez les modifications et leurs auteurs.'
     ,emptySlide3Title: 'Stockez dans le Cloud'
     ,emptySlide3Text: 'Stockez vos documents dans ONLYOFFICE Cloud et accedez-les n\'importe où et à n\'importe quel moment.'
+    ,settUserName: 'Nom d\'utilisateur'
+    ,settResetUserName: 'Rétablir paramètres par défaut'
+    ,settOpenMode: 'Afficher le document en mode Aperçu'
+    ,setBtnApply: 'Appliquer'
+    ,settLanguage: 'Langue'
+    ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
 };
 
 l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
-    welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
+    welDescr: 'Trabaje en documentos offline o conecte la suite a su nube: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Colaboración',
-    textHavePortal: '¿Está usando ONLYOFFICE ya?',
-    btnCreatePortal: 'Pruébelo gratis',
+    textHavePortal: '¿Está usando nube ya?',
+    btnCreatePortal: 'Crear ONLYOFFICE en la nube',
     btnAddPortal: 'Añadir nube',
     btnLogin: 'Iniciar Sesión',
     btnBrowse: 'Navegar',
     btnNext: 'Siguiente',
-    portalEmptyTitle: 'Coeditar documentos en tiempo real',
-    portalEmptyDescr: 'Trabaje en el mismo documento simultáneamente con sus compañeros. Elija entre co-ediciónen rápida o estricta en tiempo real, chatee en su documento o añada comentarios.',
+    portalEmptyTitle: 'Conecte a su nube',
+    portalEmptyDescr: 'Almacene sus documentos en la nube y acceda a ellos en cualquier momento y desde cualquier lugar. Comparta y colabore en archivos. Chatee en su documento, añada comentarios o compártalo para revisión.',
+    portalEmptyAdv1: '¿Todavía no tiene su cuenta en la nube? Conéctese en línea con el Servicio de ONLYOFFICE en Nube y pruebe capacidades de colaboración gratis.',
     portalListTitle: 'Nube conectados',
     textNoFiles: 'No hay archivos',
     listRecoveryTitle:'Recuperar archivos',
@@ -557,7 +599,7 @@ l10n.es = {
     textMyComputer: 'Mi Ordenador',
     textThrough: 'a través de',
     linkForgotPass: '¿Se le olvidó su contraseña?',
-    linkCreatePortal: 'Crear una oficina en la nube',
+    linkCreatePortal: 'Crear ONLYOFFICE en la nube',
     linkResend: 'Enviar el código de nuevo',
     linkChangePhone: 'Cambiar el número de teléfono',
     loginTitleStart: 'Conectar a la oficina en la nube',
@@ -583,9 +625,10 @@ l10n.es = {
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
-    actConnectTo: 'Comparta y colabore',
+    actConnectTo: 'Conectar a la nube',
     actActivate: 'Activar',
     actAbout: 'Acerca de',
+    actSettings: 'Ajustes',
     licKeyHolder: 'entrar la clave de activación',
     btnActivate: 'Activar',
     licGetLicense: 'Conseguir licencia ahora',
@@ -599,20 +642,27 @@ l10n.es = {
     ,emptySlide2Text: 'Restaure o simplemente vea las versiones anteriores de su documento, siga cambios y sus autores.'
     ,emptySlide3Title: 'Almacene en la nube'
     ,emptySlide3Text: 'Almacene sus documentos en la nube de ONLYOFFICE y acceda en cualquier momento y desde cualquier lugar.'
+    ,settUserName: 'Nombre de Usuario'
+    ,settResetUserName: 'Reestablecer a valor predeterminado'
+    ,settOpenMode: 'Abrir documento en modo de vista previa'
+    ,setBtnApply: 'Aplicar'
+    ,settLanguage: 'Idioma'
+    ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
 };
 
 l10n.pt_BR = {
     welWelcome: 'Bem-vindo ao ONLYOFFICE Desktop Editors!',
-    welDescr: 'Uma nova e rápida solução para trabalhar com documentos usando o seu ONLYOFFICE..',
+    welDescr: 'Trabalhe em documentos offline ou conecte-se  à sua nuvem: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Conectar',
-    textHavePortal: 'Já usa o ONLYOFFICE?',
-    btnCreatePortal: 'Experimente-o agora de graça',
+    textHavePortal: 'Já usa o nuvem?',
+    btnCreatePortal: 'Criar ONLYOFFICE na nuvem',
     btnAddPortal: 'Adicionar nuvem',
     btnLogin: 'Login',
     btnBrowse: 'Navegar',
     btnNext: 'Seguinte',
-    portalEmptyTitle: 'Coeditar documentos em tempo real',
-    portalEmptyDescr: 'Trabalhe no mesmo documento simultaneamente com os seus colegas. Escolha entre coedição em tempo real Rápida ou Restrita, use o chat no seu documento ou adicione comentários a ele.',
+    portalEmptyTitle: 'Conectar à sua nuvem',
+    portalEmptyDescr: 'Armazene seus documentos na nuvem e acesse-os a qualquer momento, de qualquer lugar. Compartilhe e colabore neles. Converse em seu documento, adicione comentários ou compartilhe-o para revisão.',
+    portalEmptyAdv1: 'Ainda não tem uma conta? Experimente colaboracão na nuvem do ONLYOFFICE gratuitamente.',
     portalListTitle: 'Nuvem conectados',
     textNoFiles: 'Não há arquivos',
     listRecoveryTitle:'Recuperar arquivos',
@@ -626,7 +676,7 @@ l10n.pt_BR = {
     textMyComputer: 'Meu Computador',
     textThrough: 'através',
     linkForgotPass: 'Esqueceu a senha?',
-    linkCreatePortal: 'Criar um escritório na nuvem',
+    linkCreatePortal: 'Criar ONLYOFFICE na nuvem',
     linkResend: 'Enviar o código novamente',
     linkChangePhone: 'Alterar o número de telefone',
     loginTitleStart: 'Conectar ao escritório na nuvem',
@@ -652,9 +702,10 @@ l10n.pt_BR = {
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Arquivos recentes',
     actOpenLocal: 'Abrir arquivo local',
-    actConnectTo: 'Compartilhar e colaborar',
+    actConnectTo: 'Conectar à nuvem',
     actActivate: 'Ativar',
     actAbout: 'Sobre',
+    actSettings: 'Definições',
     licKeyHolder: 'Inserir chave de ativação',
     btnActivate: 'Ativar',
     licGetLicense: 'Obter licença',
@@ -668,6 +719,12 @@ l10n.pt_BR = {
     ,emptySlide2Text: 'Restaure ou apenas visualize versões anteriores do seu documento, controle as alterações e autores delas.'
     ,emptySlide3Title: 'Armazene na nuvem'
     ,emptySlide3Text: 'Armazene seus documentos na nuvem do ONLYOFFICE e acesse-os a qualquer momento, de qualquer lugar.'
+    ,settUserName: 'Nome de usuário'
+    ,settResetUserName: 'Voltar para predefinições'
+    ,settOpenMode: 'Pré-visualização'
+    ,setBtnApply: 'Aplicar'
+    ,settLanguage: 'Idioma'
+    ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
 }
 
 function loadLocale(lang) {
