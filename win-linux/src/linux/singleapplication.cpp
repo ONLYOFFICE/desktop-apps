@@ -200,6 +200,10 @@ public:
  * @param argc
  * @param argv
  */
+SingleApplication::SingleApplication( int &argc, char *argv[], const QString& servername)
+    : SingleApplication(argc, argv, servername, 0)
+{}
+
 SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondaryInstances )
     : app_t( argc, argv ), d_ptr( new SingleApplicationPrivate( this ) )
 {

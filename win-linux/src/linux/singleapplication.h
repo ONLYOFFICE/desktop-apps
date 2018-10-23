@@ -45,7 +45,8 @@ class SingleApplication : public QAPPLICATION_CLASS
     typedef QAPPLICATION_CLASS app_t;
 
 public:
-    explicit SingleApplication( int &argc, char *argv[], uint8_t secondaryInstances = 0 );
+    explicit SingleApplication( int &argc, char *argv[], const QString& servername);
+    explicit SingleApplication( int &argc, char *argv[], const QString& servername, uint8_t secondaryInstances);
     ~SingleApplication();
 
     bool isPrimary();

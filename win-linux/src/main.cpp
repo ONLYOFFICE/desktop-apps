@@ -139,7 +139,7 @@ int main( int argc, char *argv[] )
     }
 
 #ifdef __linux__
-    SingleApplication app(argc, argv);
+    SingleApplication app(argc, argv, APP_MUTEX_NAME);
 #else
     QApplication app(argc, argv);
 #endif
