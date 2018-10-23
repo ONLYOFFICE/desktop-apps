@@ -305,9 +305,9 @@ unsigned Utils::getScreenDpiRatio(int scrnum)
     UINT _dpi_x = 0,
          _dpi_y = 0;
 
-    int _f = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-    if ( _f > 0 )
-        return _f;
+//    int _f = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+//    if ( _f > 0 )
+//        return _f;
 #endif
 
     QScreen * _screen;
