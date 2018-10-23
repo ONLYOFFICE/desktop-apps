@@ -65,7 +65,7 @@
                                     </div>
                                     <div class='settings-field settings-field-lang'>
                                         <label class='sett__caption'>${_lang.settLanguage}</label>
-                                        <div class='sett--label-lift-top'>
+                                        <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='selectpicker'></select>
                                             </section>
