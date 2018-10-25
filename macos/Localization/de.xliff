@@ -45,11 +45,6 @@
         <target>Bestimmen Sie einen privaten Schlüssel für digitale Signatur.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
       </trans-unit>
-      <trans-unit id="X8z-RQ-YLr.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "X8z-RQ-YLr";</note>
-      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString">
         <source>Enter Password</source>
         <target>Kennwort eingeben</target>
@@ -213,11 +208,6 @@
         <target>OK</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <target>ONLYOFFICE kostenlos</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file.">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
         <target>ONLYOFFICE kann die digitale Signaturdatei nicht öffnen. Versuchen Sie, eine andere Datei zu öffnen.</target>
@@ -253,8 +243,8 @@
         <target>Pdf-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="PDFA File">
-        <source>PDFA File</source>
+      <trans-unit id="PDF/A File">
+        <source>PDF/A File</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">

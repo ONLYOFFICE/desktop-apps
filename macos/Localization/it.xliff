@@ -45,11 +45,6 @@
         <target>Specifica una chiave privata per la firma digitale.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
       </trans-unit>
-      <trans-unit id="X8z-RQ-YLr.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "X8z-RQ-YLr";</note>
-      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString">
         <source>Enter Password</source>
         <target>Inserisci la Password</target>
@@ -213,11 +208,6 @@
         <target>OK</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <target>ONLYOFFICE Free</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file.">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
         <target>ONLYOFFICE non può aprire il File della Firma Digitale. Prova ad aprire un altro file.</target>
@@ -253,8 +243,8 @@
         <target>File PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="PDFA File">
-        <source>PDFA File</source>
+      <trans-unit id="PDF/A File">
+        <source>PDF/A File</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -1315,7 +1305,7 @@ Il periodo di prova terminerà tra %d giorni, dopodiché non sarai in grado di c
     <body>
       <trans-unit id="CFBundleName">
         <source>$(PRODUCT_NAME)</source>
-        <target>$(PRODUCT_NAME)</target>
+        <target>ONLYOFFICE</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">

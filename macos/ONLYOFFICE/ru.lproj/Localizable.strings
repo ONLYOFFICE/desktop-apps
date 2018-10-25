@@ -89,9 +89,6 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не может открыть файл приватного ключа. Попробуйте открыть другой файл.";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE Free" = "ONLYOFFICE Свободный";
-
-/* No comment provided by engineer. */
 "Opening" = "Открытие";
 
 /* No comment provided by engineer. */
@@ -107,7 +104,7 @@
 "PDF File" = "PDF Файл";
 
 /* No comment provided by engineer. */
-"PDFA File" = "PDFA Файл";
+"PDF/A File" = "PDF/A Файл";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Простой текст";
