@@ -426,24 +426,38 @@ public:
                         std::wstring param = pData->get_Param();
 
 
-                        if (cmd.compare(L"portal:open") == 0) {
-                            NSURLComponents *urlPage      = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", [NSString stringWithstdwstring:param], @"products/files/"]];
-                            NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
-                            NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+                        if (cmd.compare(L"portal:open") == 0 || cmd.find(L"auth:outer") != std::wstring::npos) {
+                            NSDictionary * json = stringToJson([NSString stringWithstdwstring:param]);
+                            NSString * portal = json[@"portal"];
+                            NSString * provider = json[@"provider"];
 
-                            if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
-                                countryCode = [NSURLQueryItem queryItemWithName:@"lang" value: [externalDelegate onAppPreferredLanguage]];
+                            if (portal && provider) {
+                                NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
+                                id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+                                if ([provider isEqualToString:@"asc"]) {
+                                    urlPage = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", portal, @"products/files/"]];
+                                }
+
+                                NSURLQueryItem *countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+
+                                if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                                    countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
+                                }
+
+                                NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+
+                                urlPage.queryItems            = @[countryCode, portalAddress];
+
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                             @"action"  : @(ASCTabActionOpenPortal),
+                                                                                             @"url"     : [urlPage string],
+                                                                                             @"provider": provider,
+                                                                                             @"active"  : @(YES)
+                                                                                             }];
                             }
-
-                            urlPage.queryItems            = @[countryCode, portalAddress];
-                            
-                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                                                object:nil
-                                                                              userInfo:@{
-                                                                                         @"action"  : @(ASCTabActionOpenPortal),
-                                                                                         @"url"     : [urlPage string],
-                                                                                         @"active"  : @(YES)
-                                                                                         }];
                         } else if (cmd.compare(L"portal:login") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogin
                                                                                 object:nil

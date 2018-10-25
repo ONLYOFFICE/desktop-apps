@@ -1394,9 +1394,14 @@
                 tab.type = ASCTabViewPortal;
                 
                 NSString * newTitle = [[NSURL URLWithString:tab.params[@"url"]] host];
+                NSString * provider = tab.params[@"provider"];
                 
                 if (newTitle && newTitle.length > 0) {
                     tab.title = [[NSURL URLWithString:tab.params[@"url"]] host];
+                }
+
+                if (provider && [provider length] > 0) {
+                    [cefView setExternalCloud:provider];
                 }
             }
             case ASCTabActionOpenUrl: {

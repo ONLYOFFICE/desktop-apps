@@ -187,6 +187,12 @@ public:
     }
 }
 
+- (void)setExternalCloud:(NSString *)provider {
+    if (m_pCefView) {
+        m_pCefView->GetCefView()->SetExternalCloud([provider stdwstring]);
+    }
+}
+
 - (NSInteger)uuid {
     if (m_pCefView) {
         return m_pCefView->GetCefView()->GetId();

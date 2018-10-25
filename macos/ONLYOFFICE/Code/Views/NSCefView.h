@@ -48,6 +48,7 @@
 - (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 - (void)setParentCef:(int)idx;
+- (void)setExternalCloud:(NSString *)provider;
 - (void)internalClean;
 - (void)focus;
 
