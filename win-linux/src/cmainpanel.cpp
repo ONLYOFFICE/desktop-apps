@@ -1283,7 +1283,7 @@ void CMainPanel::onKeyDown(void * eventData)
     case 'W':
     case VK_F4:
         if (_is_ctrl && m_pTabs->isActive()) {
-            m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
+            onTabCloseRequest(m_pTabs->currentIndex());
         }
         break;
     case VK_TAB:
