@@ -2,6 +2,8 @@
 #define sAppName            'ONLYOFFICE Desktop Editors'
 #define APP_PATH            'ONLYOFFICE\DesktopEditors'
 #define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
+#define APP_USER_MODEL_ID   'ASC.Documents.5'
+#define sAppIconName        'ONLYOFFICE Editors'
 #define NAME_EXE_IN         'DesktopEditors.exe'
 #define NAME_EXE_OUT        'editors.exe'
 #define iconsExe            'DesktopEditors.exe'
@@ -532,8 +534,8 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico;
-Name: {group}\{#sAppName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico;
+Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
+Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 
