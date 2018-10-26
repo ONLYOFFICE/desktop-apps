@@ -94,6 +94,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
+    setMinimumSize(MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio);
     resize(_window_rect.width(), _window_rect.height());
 
     m_pMainPanel = new CMainPanelImpl(this, !CX11Decoration::isDecorated(), m_dpiRatio);
