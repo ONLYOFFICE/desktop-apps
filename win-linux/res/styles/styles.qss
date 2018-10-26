@@ -490,31 +490,31 @@ QSpinBox, QDoubleSpinBox, QTimeEdit {
     background-color:#fff;
 }
 
-*::up-arrow1, *::down-arrow1 {
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
     width: 5px;
     height: 3px;
 }
 
-*::up-arrow1 {
+QPrintDialog *::up-arrow {
     border-image: url(:/res/icons/arrow_down.png) 3 0 0 0 repeat repeat;
     margin-bottom:1px;
 }
 
-*::up-arrow1:disabled, *::up-arrow1:off {
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
     border-image: url(:/res/icons/arrow_down.png) 3 0 0 5 repeat repeat;
 }
 
 /*QSpinBox::down-arrow, QDoubleSpinBox::down-arrow, QTimeEdit::down-arrow {*/
-*::down-arrow1 {
+QPrintDialog *::down-arrow {
     border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat;
     margin-top:1px;
 }
 
-*::down-arrow1:disabled, QSpinBox::down-arrow1:off {
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
     border-image: url(:/res/icons/arrow_down.png) 0 0 0 5 repeat repeat;
 }
 
-*::up-button1, *::down-button1 {
+QPrintDialog *::up-button, QPrintDialog  *::down-button {
     border: 0 none;
 }
 
@@ -532,11 +532,17 @@ QPrintDialog QTabBar::tab {
     border-top-right-radius: 2px;
     margin-right:-1px;
     font-size: 11px;
-    color:#444;
+}
+
+QPrintDialog QTabBar::tab:first {
 }
 
 QPrintDialog QTabBar::tab:last {
     margin-right:0;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 10px;
 }
 
 QPrintDialog QTabBar::tab:selected {
@@ -546,4 +552,5 @@ QPrintDialog QTabBar::tab:selected {
 
 QPrintDialog QTabBar::tab:!selected {
     /*margin-top: 2px;*/
+    color:#444;
 }
