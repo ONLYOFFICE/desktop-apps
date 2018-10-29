@@ -393,7 +393,7 @@ l10n.de = {
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
-    actConnectTo: 'Stellen Sie eine Verbindung zur Cloud her',
+    actConnectTo: 'Verbindung zur Cloud',
     actActivate: 'Aktivieren',
     actAbout: 'Über',
     actSettings: 'Einstellungen',
