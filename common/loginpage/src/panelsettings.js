@@ -69,7 +69,7 @@
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'></select>
                                             </section>
-                                            <strong class='sett__note' tooltip='${_lang.settAfterRestart}' tooltip-pos='top'>i</strong>
+                                            <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top'>i</strong>
                                         </div>
                                     </div>
                                     <!-- temporary elements section -->
