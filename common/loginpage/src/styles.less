@@ -21,11 +21,12 @@
 
 @col-width: 287px;
 
-@import 'component.less';
-@import 'window.less';
-@import 'css/loader.less';
-@import '../vendor/bootstrap/variables.less';
-@import '../vendor/bootstrap/dropdowns.less';
+@import '../vendor/bootstrap/variables';
+@import '../vendor/bootstrap/dropdowns';
+@import (inline) '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
+@import 'component';
+@import 'window';
+@import 'css/loader';
 
 * {
     box-sizing: border-box;
@@ -115,11 +116,13 @@ h4 {
     }
 }
 
+/*
 .text {
     color: @color-gray-dark;
     font-size: 18px;
     font-weight: 600;
 }
+*/
 
 .text-sub {
     color: @color-gray;
@@ -602,25 +605,6 @@ li.menu-item {
     .table-box {
         overflow-y: auto;
         flex-grow: 0;
-    }
-}
-
-.dropdown-menu {
-    li > a {
-        cursor: pointer;
-        font-size: 13px;
-        color: @color-gray;
-
-        &:hover, &:focus {
-            outline: none;
-            background-color: @color-gray-2;
-        }
-    }
-
-    > .disabled > a {
-        &:hover {
-            cursor: default;
-        }
     }
 }
 

@@ -29,6 +29,10 @@
                     "dest": "../deploy/"
                 },
                 {
+                    "src": "../vendor/bootstrap-select/dist/js/bootstrap-select.min.js",
+                    "dest": "../deploy/bs-select.min.js"
+                },
+                {
                     "expand": true,
                     "cwd": "../src/",
                     "src": [

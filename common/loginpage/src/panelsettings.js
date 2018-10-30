@@ -67,7 +67,7 @@
                                         <label class='sett__caption'>${_lang.settLanguage}</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
-                                                <select class='selectpicker'></select>
+                                                <select class='combobox'></select>
                                             </section>
                                             <strong class='sett__note' tooltip='${_lang.settAfterRestart}' tooltip-pos='top'>i</strong>
                                         </div>
@@ -185,6 +185,7 @@
                             }
 
                             $combo.val(opts.locale.current);
+                            $combo.selectpicker();
                         }
                     }
                 }

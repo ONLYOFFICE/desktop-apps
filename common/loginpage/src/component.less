@@ -248,38 +248,82 @@ input[type="radio"] {
 .box-cmp-select {
     /*display: inline-block;*/
     font-size: 0;
-
-    &:after {
-        content: '';
-        border: solid @color-gray-light;
-        border-width: 0 2px 2px 0;
-        width: 8px;
-        height: 8px;
-        transform: rotate(45deg);
-        display: inline-block;
-        margin: 0 0 2px -30px;
-        cursor: pointer;
-        pointer-events:none;
-    }
+    width: 200px;
 
     &:hover:after {
         border-color: @color-gray;
     }
+
+    .dropdown.bootstrap-select:not([class=combo-box]) {
+        width: 100%;
+    }
+
+    .btn {
+        background-color: #fff;
+        border: 1px solid @color-gray-3;
+        color: @color-gray-dark;
+        padding-left: 15px;
+
+        &:focus {
+            outline: 0 none !important;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+        }
+    }
 }
 
-select {
-    -webkit-appearance: none;
-    height: 36px;
-    width: 150px;
-    outline: none;    
-    border-radius: 3px;
-    color: @color-gray-dark;
-    border: 1px solid @color-gray-3;
-    padding: 0 15px;
-    font-size: 14px;
-    cursor: pointer;
+.bootstrap-select {
+    .dropdown-toggle { 
+        .caret {
+            border: solid @color-gray-light;
+            border-width: 2px 2px 0 0;
+            width: 10px;
+            height: 10px;
+            transform: rotate(135deg);
+            margin-top: -7px;
 
-    option {
-        padding: 10px 4px;
+            transition: transform .2s, margin .2s;
+        }
+    }
+
+    &.open {
+        .caret {
+            transform: rotate(315deg);
+            margin-top: -4px;
+        }
+    }
+}
+
+/*
+*    dropdown menu
+*
+*/
+.dropdown-menu {
+    li > a {
+        cursor: pointer;
+        font-size: 13px;
+        color: @color-gray;
+
+        &:hover, &:focus {
+            outline: none;
+            background-color: @color-gray-2;
+        }
+    }
+
+    > .active > a {
+        background-color: @color-gray-4;
+
+        &:hover, &:focus {
+            background-color: @color-gray-4;
+        }
+    }
+
+    > .disabled > a {
+        &:hover {
+            cursor: default;
+        }
     }
 }

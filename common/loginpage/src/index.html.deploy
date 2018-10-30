@@ -126,6 +126,7 @@
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>
+    <script type="text/javascript" replace="yes" src="bs-select.min.js"></script>
     <script type="text/javascript" replace="yes" src="build.min.js"></script>
 </body>
 </html>

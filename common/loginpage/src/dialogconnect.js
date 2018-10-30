@@ -50,7 +50,7 @@ window.DialogConnect = function(params) {
                             <div id="panel-portal" class="sl-panel">
                                 <div class='select-field dlg--option'>
                                     <section class='box-cmp-select'>
-                                        <select class='selectpicker'></select>
+                                        <select class='combobox'></select>
                                     </section>
                                 </div>
                                 <div class="error-box">
@@ -232,6 +232,8 @@ window.DialogConnect = function(params) {
                     $newportal.disable(!(e.target.value=='asc'));
                     _clear_error();
                 });
+
+                $combo.selectpicker();
             }
             
             let $portal = $body.find('#auth-portal');
