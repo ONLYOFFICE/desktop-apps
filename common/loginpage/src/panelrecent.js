@@ -207,12 +207,12 @@
             });
 
             collectionRecents.events.click.attach((collection, model) => {
-                var _portal = model.descr;
-                if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
-                    app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
-                } else {
+                // var _portal = model.descr;
+                // if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
+                    // app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
+                // } else {
                     openFile(OPEN_FILE_RECENT, model.fileid);
-                }
+                // }
             });
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
