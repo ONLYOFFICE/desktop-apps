@@ -1027,6 +1027,12 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
     }
 }
 
+void CMainPanel::onEditorCloseRequest(int vid)
+{
+    int index = m_pTabs->tabIndexByView(vid);
+    if ( !(index < 0) ) onTabCloseRequest(index);
+}
+
 void CMainPanel::loadStartPage()
 {
     GET_REGISTRY_USER(_reg_user);

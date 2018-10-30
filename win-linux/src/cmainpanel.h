@@ -109,6 +109,7 @@ public slots:
     void onTabChanged(int);
     void onTabCloseRequest(int);
     void onAppCloseRequest();
+    void onEditorCloseRequest(int);
     void onTabsCountChanged(int, int, int);
 
     void onCloudDocumentOpen(std::wstring, int, bool);

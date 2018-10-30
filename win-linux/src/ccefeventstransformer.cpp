@@ -248,6 +248,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"doc:onready") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
         } else
+        if ( !(cmd.find(L"editor:request") == std::wstring::npos) ) {
+            if ( pData->get_Param().find(L"close") != std::wstring::npos )
+                QMetaObject::invokeMethod( target, "onEditorCloseRequest", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
+        } else
         if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
