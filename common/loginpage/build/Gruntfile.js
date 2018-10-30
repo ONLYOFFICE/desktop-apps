@@ -150,7 +150,7 @@ module.exports = function(grunt) {
                             return '<style type="text/css">' + css + '</style>';
                         }
                     },{
-                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\.]+\.js)\"\>\<\/script\>)/g,
+                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\S\.]+\.js)\"\>\<\/script\>)/g,
                         to: function(matchedWord, index, fullText, regexMatches) {
                             if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
                                 grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
