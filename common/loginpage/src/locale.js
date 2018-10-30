@@ -188,7 +188,7 @@ l10n.cs = {
 
 l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
-    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welDescr: 'Pracujte na dokumentoch v offline režime alebo sa pripojte k Vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Pripojiť',
     textHavePortal: 'Už používate cloud?',
     btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
@@ -196,9 +196,9 @@ l10n.sk = {
     btnLogin: 'Prihlásiť sa',
     btnBrowse: 'Prechádzať',
     btnNext: 'Nasledujúci',
-    portalEmptyTitle: 'Connect to your cloud',
-    portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
-    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and try collaborative capabilities for free.',
+    portalEmptyTitle: 'Pripojte sa k Vášmu cloudu',
+    portalEmptyDescr: 'Uchovávajte Dokumenty v cloude a majte k nim prístup kedykoľvek a odkiaľkoľvek. Zdieľajte a spolupracujte na nich. Chatujte vo svojich dokumentoch, pridávajte komentáre alebo ich zdieľajte na posúdenie.',
+    portalEmptyAdv1: 'Ešte nemáte cloud účet? Buďte online so službou ONLYOFFICE Cloud Service a bezplatne vyskúšajte možnosti spolupráce.',
     portalListTitle: 'Pripojené cloud',
     textNoFiles: 'Neexistujú žiadne súbory',
     listRecoveryTitle:'Obnoviť súbory',
@@ -238,10 +238,10 @@ l10n.sk = {
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Posledné súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',
-    actConnectTo: 'Connect to cloud',
+    actConnectTo: 'Pripojte cloud',
     actActivate: 'Aktivovať',
     actAbout: 'O OnlyOffice',
-    actSettings: 'Settings',
+    actSettings: 'Nastavenia',
     licKeyHolder: 'vstupný aktivačný kľúč',
     btnActivate: 'Aktivovať',
     licGetLicense: 'Získať licenciu',
@@ -255,12 +255,12 @@ l10n.sk = {
     ,emptySlide2Text: 'Obnovite alebo jednoducho zobrazte predchádzajúce verzie Vašich dokumentov, sledujte zmeny a ich autorov.'
     ,emptySlide3Title: 'Uložte dáta do cloud-u'
     ,emptySlide3Text: 'Uložte Vaše dokumenty v ONLYOFFICE cloude a pristupujte k nim kedykoľvek, nech ste už kdekoľvek.'
-    ,settUserName: 'User Name'
-    ,settResetUserName: 'Reset to default'
-    ,settOpenMode: 'Open document in preview mode'
-    ,setBtnApply: 'Apply'
-    ,settLanguage: 'Language'
-    ,settAfterRestart: 'Option will be applied after the app restart'
+    ,settUserName: 'Používateľské meno'
+    ,settResetUserName: 'Obnoviť pôvodné nastavenia'
+    ,settOpenMode: 'Otvorte dokument v režime ukážky'
+    ,setBtnApply: 'Použiť'
+    ,settLanguage: 'Jazyk'
+    ,settAfterRestart: 'Prejaví sa po reštarte aplikácie'
 }
 
 l10n.ru = {
