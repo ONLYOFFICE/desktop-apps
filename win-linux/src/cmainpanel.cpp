@@ -847,10 +847,10 @@ void CMainPanel::doOpenLocalFiles(const QStringList& list)
     while (i.hasNext()) {
         QString n = i.next();
         if ( n.startsWith("--new:") ) {
-            QRegularExpression re("^--new:(doc|sheet|slide)");
+            QRegularExpression re("^--new:(word|cell|slide)");
             QRegularExpressionMatch match = re.match(n);
             if ( match.hasMatch() ) {
-                if ( match.captured(1) == "doc" ) onLocalFileCreate(etDocument); else
+                if ( match.captured(1) == "word" ) onLocalFileCreate(etDocument); else
                 if ( match.captured(1) == "cell" ) onLocalFileCreate(etSpreadsheet); else
                 if ( match.captured(1) == "slide" ) onLocalFileCreate(etPresentation);
             }
