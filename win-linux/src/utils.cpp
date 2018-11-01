@@ -301,38 +301,43 @@ QString Utils::encodeJson(const QString& s)
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
-#ifdef _WIN32
-    UINT _dpi_x = 0,
-         _dpi_y = 0;
-
-//    int _f = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-//    if ( _f > 0 )
-//        return _f;
-#endif
-
-    QScreen * _screen;
-    if ( !(scrnum < 0) && scrnum < QApplication::screens().count() )
-        _screen = QApplication::screens().at(scrnum);
-    else _screen = QApplication::primaryScreen();
-
-    return _screen->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
+    unsigned int _dpi_x = 0;
+    unsigned int _dpi_y = 0;
+    int nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+    return (-1 == nScale) ? 1 : nScale;
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 {
-#ifdef __linux
-    return 1;
-#else
-    UINT _dpi_x = 0,
-         _dpi_y = 0;
+    unsigned int _dpi_x = 0;
+    unsigned int _dpi_y = 0;
+    int nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
+    return (-1 == nScale) ? 1 : nScale;
+}
 
-    int _f = AscAppManager::getInstance().GetMonitorScaleByWindow((HWND)hwnd, _dpi_x, _dpi_y);
-    if ( !(_f > 0) ) {
-        return QApplication::primaryScreen()->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
+unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
+{
+    if (!wid)
+        return 1;
+
+    CAscDpiChecker* pDpiCheckerBase = CAscApplicationManager::GetDpiChecker();
+    if (!pDpiCheckerBase)
+        return 1;
+
+    QAscDpiChecker* pDpiChecker = (QAscDpiChecker*)pDpiCheckerBase;
+    unsigned int nDpiX = 0;
+    unsigned int nDpiY = 0;
+    int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
+
+    if (nRet >= 0)
+    {
+        double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
+
+        // пока только 1 или 2
+        return (dDpiApp > 1.9) ? 2 : 1;
     }
 
-    return _f;
-#endif
+    return wid->devicePixelRatio();
 }
 
 /*

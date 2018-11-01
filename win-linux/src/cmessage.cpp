@@ -84,7 +84,7 @@ CMessage::CMessage(HWND p)
 #else
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
-    , m_dpiRatio(CX11Decoration::devicePixelRatio())
+    , m_dpiRatio(Utils::getScreenDpiRatioByWidget(p))
 #endif
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
