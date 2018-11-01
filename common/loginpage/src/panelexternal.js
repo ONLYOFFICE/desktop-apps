@@ -98,13 +98,7 @@
 
         function _encrype_workaround(view) {
             let _ison = (localStorage.getItem('encrypt') || 'false') == 'true';
-
-            let _l10n = {
-                en: 'View encrypt options',
-                ru: 'Показать настройки шифрования'
-            };
-            let _label = window.utils.inParams.lang in _l10n ? 
-                                _l10n[window.utils.inParams.lang] : _l10n['en'];
+            let _label = utils.Lang.settShowEncryptOpts;
 
             let tpl = `<div class='settings-field hbox'>
                             <div class='onoffswitch' id='sett-encrypt-switch'>

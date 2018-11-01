@@ -107,6 +107,7 @@ l10n.en = {
     ,setBtnApply: 'Apply'
     ,settLanguage: 'Language'
     ,settAfterRestart: 'Option will be applied after the app restart'
+    ,settShowEncryptOpts: 'End-to-end encryption ON/OFF'
 }
 
 l10n.cs = {
@@ -339,6 +340,7 @@ l10n.ru = {
     ,setBtnApply: 'Применить'
     ,settLanguage: 'Язык'
     ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
+    ,settShowEncryptOpts: 'Показать настройки шифрования'
 }
 
 l10n.de = {
