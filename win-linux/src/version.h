@@ -39,8 +39,8 @@
 
 #define VER_NUM_MAJOR               5
 #define VER_NUM_MINOR               2
-#define VER_NUM_BUILD               61
-#define VER_NUM_REVISION            428
+#define VER_NUM_BUILD               62
+#define VER_NUM_REVISION            430
 #define VER_NUMBER                  VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION
 #define VER_STRING                  VER_STR_LONG(VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION)
 #define VER_STRING_SHORT            VER_STR_SHORT(VER_NUM_MAJOR,VER_NUM_MINOR)

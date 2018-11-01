@@ -286,9 +286,14 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         } else
         if ( _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN ) {
             CAscExecCommand * pData = (CAscExecCommand *)_event->m_pData;
-            QString url = QString::fromStdWString(pData->get_Param());
+            QString json = QString::fromStdWString(pData->get_Param()),
+                    url;
 
-            if ( _window->mainPanel()->holdUrl(url, etPortal) ) {
+            QRegularExpression re("portal[\\\\\":]+([^\\\]+)");
+            QRegularExpressionMatch match = re.match(json);
+            if ( match.hasMatch() ) url = match.captured(1);
+
+            if ( !url.isEmpty() && _window->mainPanel()->holdUrl(url, etPortal) ) {
                 _target = _window;
                 break;
             }

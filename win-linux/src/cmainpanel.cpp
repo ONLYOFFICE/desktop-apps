@@ -1383,11 +1383,14 @@ void CMainPanel::onOutsideAuth(QString json)
         QJsonObject objRoot = jdoc.object();
 
         QString _domain = objRoot["portal"].toString();
-        QString _sso_service = objRoot["provider"].toString();
+        int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
+        if ( _tab_index < 0 ) {
+            QString _sso_service = objRoot["provider"].toString();
+            _tab_index = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
+        }
 
-        int res = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
-        if (!(res < 0)) {
-            m_pTabs->setCurrentIndex(res);
+        if ( !(_tab_index < 0) ) {
+            m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
         }
     }
