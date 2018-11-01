@@ -35,6 +35,7 @@
 
 #include <QStringList>
 #include <QFileInfo>
+#include <QWidget>
 
 using namespace std;
 
@@ -52,6 +53,7 @@ public:
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
     static unsigned getScreenDpiRatioByHWND(int);
+    static unsigned getScreenDpiRatioByWidget(QWidget*);
     static QString replaceBackslash(QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);

@@ -99,7 +99,7 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 #if defined(_WIN32)
             Utils::getScreenDpiRatioByHWND(int(hParentWnd));
 #else
-            CX11Decoration::devicePixelRatio();
+            Utils::getScreenDpiRatioByWidget(parent);
 #endif
 
     m_progressText = tr("Document is printing: page %1 of %2");

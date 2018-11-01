@@ -704,3 +704,8 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
     return true;
 }
+
+CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
+{
+    return new QAscDpiChecker();
+}
