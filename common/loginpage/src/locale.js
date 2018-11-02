@@ -185,6 +185,7 @@ l10n.cs = {
     ,setBtnApply: 'Uložit změny'
     ,settLanguage: 'Jazyk'
     ,settAfterRestart: 'Možnost bude k dispozici až po restartu aplikace'
+    ,settShowEncryptOpts: 'Šifrování koncového bodu zapnuto / vypnuto'
 }
 
 l10n.sk = {
@@ -262,6 +263,7 @@ l10n.sk = {
     ,setBtnApply: 'Použiť'
     ,settLanguage: 'Jazyk'
     ,settAfterRestart: 'Prejaví sa po reštarte aplikácie'
+    ,settShowEncryptOpts: 'End-to-end šifrovanie ON/OFF'
 }
 
 l10n.ru = {
@@ -418,6 +420,7 @@ l10n.de = {
     ,setBtnApply: 'Anwenden'
     ,settLanguage: 'Sprache'
     ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
+    ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung Ein/Aus'
 };
 
 l10n.it_IT = {
@@ -496,6 +499,7 @@ l10n.it_IT = {
     ,setBtnApply: 'Applica'
     ,settLanguage: 'Lingua'
     ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
+    ,settShowEncryptOpts: 'Crittografia end-to-end ON / OFF'
 };
 
 l10n.fr = {
@@ -573,6 +577,7 @@ l10n.fr = {
     ,setBtnApply: 'Appliquer'
     ,settLanguage: 'Langue'
     ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
+    ,settShowEncryptOpts: 'Chiffrement de bout en bout Activé/Désactivé'
 };
 
 l10n.es = {
@@ -650,6 +655,7 @@ l10n.es = {
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Idioma'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
+    ,settShowEncryptOpts: 'Cifrado de extremo a extremo Activar/Desactivar'
 };
 
 l10n.pt_BR = {
@@ -727,6 +733,7 @@ l10n.pt_BR = {
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Idioma'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
+    ,settShowEncryptOpts: 'Criptografia de ponta a ponta LIGA/DESLIGA'
 }
 
 function loadLocale(lang) {
