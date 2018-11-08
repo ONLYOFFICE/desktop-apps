@@ -250,11 +250,24 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         auto _send_plugins = [](IMenuEventDataBase * d){
             CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(d);
             QJsonObject _json_obj;
+            QJsonParseError jerror;
+            QJsonDocument jdoc;
 
             for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
                 _json_obj["name"] = QString::fromStdWString(item.name);
                 _json_obj["id"] = QString::fromStdWString(item.id);
                 _json_obj["url"] = QString::fromStdWString(item.url);
+
+                if ( !item.nameLocale.empty() ) {
+                    jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+
+                        if ( jdoc.object().contains(CLangater::getCurrentLangCode()) ) {
+                            _json_obj["name"] = jdoc.object()[CLangater::getCurrentLangCode()].toString();
+                        }
+                    }
+                }
 
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
             }
