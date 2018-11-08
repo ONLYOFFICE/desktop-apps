@@ -924,6 +924,15 @@ bool CAscTabWidget::modifiedByIndex(int index)
     return false;
 }
 
+bool CAscTabWidget::isLocalByIndex(int index)
+{
+    if (!(index < 0) && index < count()) {
+        return panel(index)->data()->local();
+    }
+
+    return true;
+}
+
 bool CAscTabWidget::closedByIndex(int index) {
     if (!(index < 0) && index < count()) {
         CAscTabData * doc = panel(index)->data();

@@ -172,6 +172,7 @@ public:
     QString     titleByIndex(int, bool original = true);
     QString     urlByView(int id);
     bool        modifiedByIndex(int);
+    bool        isLocalByIndex(int);
     int         modifiedCount();
     bool        closedByIndex(int);
     void        editorCloseRequest(int);

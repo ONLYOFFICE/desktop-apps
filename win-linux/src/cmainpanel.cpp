@@ -1027,10 +1027,31 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
     }
 }
 
-void CMainPanel::onEditorCloseRequest(int vid)
+void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
-    if ( !(index < 0) ) onTabCloseRequest(index);
+    if ( !(index < 0) ) {
+        if ( args.contains(QRegExp("action\\\":\\\"close")) ) {
+            bool _is_local = m_pTabs->isLocalByIndex(index);
+            onTabCloseRequest(index);
+
+            if (  !_is_local  ) {
+                QJsonParseError jerror;
+                QJsonDocument jdoc = QJsonDocument::fromJson(args.toLatin1(), &jerror);
+
+                if( jerror.error == QJsonParseError::NoError ) {
+                    QJsonObject objRoot = jdoc.object();
+
+                    QString _url = objRoot["url"].toString();
+                    if ( !_url.isEmpty() )
+                        onLocalFileLocation(vid, _url);
+                    else _is_local = true;
+                }
+            }
+
+            if (  _is_local  ) toggleButtonMain(true);
+        }
+    }
 }
 
 void CMainPanel::loadStartPage()
