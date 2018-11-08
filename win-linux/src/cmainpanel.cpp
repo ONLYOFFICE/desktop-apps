@@ -807,8 +807,12 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
             QString _domain = _re_match.captured(1);
             QString _folder = param;
 
-            int pos = _folder.indexOf(QRegularExpression("#\\d+"));
-            !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+            if ( _folder.indexOf("?") > 0 )
+                _folder.append("&desktop=true");
+            else {
+                int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+            }
 
             int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
             if ( !(_tab_index < 0)) {
