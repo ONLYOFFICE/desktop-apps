@@ -38,6 +38,7 @@
                     , 'onupdaterecovers'
                     , 'on_native_message'
                     , 'on_check_auth'
+                    , 'onChangeCryptoMode'
                 ];
 
     let subscribers = {
@@ -83,6 +84,27 @@
         }
 
         return _clouds;
+    };
+
+    sdk.encrypt = {
+        ENCRYPT_MODE_NONE: 0,
+        ENCRYPT_MODE_SIMPLE: 1,
+        ENCRYPT_MODE_STANDARD: 2,
+        ENCRYPT_MODE_ADVANCED: 3
+    };
+
+    sdk.CryptoMode = sdk.GetCryptoMode();
+    sdk.encrypt.mode = function(mode, pass) {
+        if ( !!mode ) sdk.SetCryptoMode(pass, mode);
+        else return sdk.CryptoMode;
+    };
+
+    sdk.encrypt.available = function() {
+        return sdk.GetSupportCryptoModes();
+    };
+
+    window.onChangeCryptoMode = e => {
+        sdk.CryptoMode = e;
     };
 
     var notifySubscribers = function(action, type, arg, context) {
