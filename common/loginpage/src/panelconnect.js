@@ -122,7 +122,7 @@
                             </div>`;
 
         var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      ${_html_empty_panel}
+                      ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
                       <div id="box-portals">
                         <div class="flexbox">
                           <h3 class="table-caption">${_lang.portalListTitle}</h3>
