@@ -39,7 +39,7 @@
 
     $.fn.extend({
         disable: function(state) {
-            if ( this.is('a') ) {
+            if ( this.is('a, label') ) {
                 state ? this.attr('disabled', 'disabled') : this.removeAttr('disabled');
             } else $(this).prop('disabled', state);
 
