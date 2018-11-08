@@ -50,7 +50,7 @@
     var ViewCustomPanel = function(args) {
         var _lang = utils.Lang;
 
-        let _html = `<div class="action-panel ${args.action}">
+        let _html = `<div class="action-panel style--free ${args.action}">
                       <div class="flexbox">
                         <iframe name="${args.id}" id="${args.id}" src="${args.url}"></iframe>
                       </div>
@@ -87,6 +87,12 @@
             _panel.render();
             _panel.$panel.find('iframe').css({'height':'100%','border':'0 none'});
 
+            let iframe = _panel.$panel.find('iframe');
+            iframe.load( e => {
+                $(e.target).contents().find("head")
+                    .append($("<style type='text/css'>body{margin-left:287px;}</style>"));
+            });
+
             panels.push(_panel);
 
             /**/
@@ -117,6 +123,11 @@
             checkbox.on('change', e => {
                 e.target.checked ? view.$menuitem.show() : view.$menuitem.hide();
                 localStorage.setItem('encrypt', e.target.checked);
+            });
+
+            sdk.on('onChangeCryptoMode', e => {
+                checkbox.disable(e!=sdk.encrypt.ENCRYPT_MODE_NONE);
+                checkbox.parents('.settings-field').find('.sett__caption').disable(e!=sdk.encrypt.ENCRYPT_MODE_NONE);
             });
         };
 

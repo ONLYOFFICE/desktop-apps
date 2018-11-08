@@ -246,6 +246,11 @@ li.menu-item {
     display: flex;
     flex-direction: column;
 
+    background-color: #fff;
+    &:not(.view--modal) {
+        z-index: 1;
+    }
+
     > li.menu-item {
         border-bottom: 1px solid @color-gray-3;
         background-color: #fff;
@@ -288,6 +293,14 @@ li.menu-item {
     > label {
         position: absolute;
         top: 50%;
+    }
+
+    &.style--free {
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
 }
 
@@ -901,6 +914,12 @@ li.menu-item {
 .sett__caption {
     color: @color-gray-8;
     font-size: 14px;
+
+    &[disabled] {
+        opacity: 0.4;
+        /*cursor: default;*/
+        /*pointer-events: none;*/
+    }
 }
 
 .hbox {

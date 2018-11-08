@@ -136,7 +136,7 @@ window.DialogConnect = function(params) {
                 } else {
                     if ( obj.response.status == 404 )
                         _set_error(utils.Lang.errLoginPortal, '#auth-portal');
-                    else _set_error(obj.status, '#auth-portal');
+                    else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
                 }
             }
 

@@ -238,6 +238,11 @@ $(document).on('keydown', function(e){
 
 window.addEventListener('message', e => {
     let msg = window.JSON.parse(e.data);
-    if ( msg.type == 'plugin' )
-        sdk.fire('on_native_message', Object.values(msg.data));
+    if ( msg.type == 'plugin' ) {
+        if ( !!msg.event ) {
+            if ( msg.event == 'modal:open' )
+                $('.main-column.tool-menu').addClass('view--modal')
+            else $('.main-column.tool-menu').removeClass('view--modal');
+        } else sdk.fire('on_native_message', Object.values(msg.data));
+    }
 }, false);

@@ -342,7 +342,7 @@ l10n.ru = {
     ,setBtnApply: 'Применить'
     ,settLanguage: 'Язык'
     ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
-    ,settShowEncryptOpts: 'Показать настройки шифрования'
+    ,settShowEncryptOpts: 'Включить/выключить сквозное шифрование'
 }
 
 l10n.de = {
