@@ -50,6 +50,7 @@ QT_ICU ?= $(QT_LIBS)
 
 DEST_CONV_DIR = $(DEST_DIR)/converter
 DEST_EDITOR_DIR = $(DEST_DIR)/editors
+DEST_PLUGINS_DIR = $(DEST_EDITOR_DIR)/sdkjs-plugins
 
 TARGET := $(PLATFORM)_$(ARCHITECTURE)
 
@@ -59,6 +60,7 @@ CORE_LIB_DIR := $(CORE_DIR)/lib/$(TARGET)
 
 DICT_DIR := ../dictionaries
 WEBAPPS_DIR := ../web-apps-pro/deploy
+UI_PLUGINS_DIR := ../desktop-sdk/ChromiumBasedEditors/plugins
 
 ASCDOCUMENTEDITOR := win-linux/ASCDocumentEditor.build/DesktopEditors$(EXEC_EXT)
 
@@ -151,6 +153,15 @@ endif
 	
 	mkdir -p $(DEST_EDITOR_DIR)
 	$(INSTALL_FILE) $(WEBAPPS_DIR)/* $(DEST_EDITOR_DIR)
+
+	mkdir -p $(DEST_PLUGINS_DIR)
+	$(INSTALL_DIR) \
+		$(UI_PLUGINS_DIR)/encrypt/ui/common/{14A8FC87-8E26-4216-B34E-F27F053B2EC4} \
+		$(DEST_PLUGINS_DIR)
+
+	$(INSTALL_DIR) \
+		$(UI_PLUGINS_DIR)/encrypt/ui/engine/blockchain/{B17BDC61-59FC-41A7-A471-CD2C415A665E} \
+		$(DEST_PLUGINS_DIR)
 
 	$(INSTALL_DIR) common/converter $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)graphics$(SHARED_EXT) $(DEST_CONV_DIR)
