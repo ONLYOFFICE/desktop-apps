@@ -134,6 +134,17 @@ fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
 it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
+;======================================================================================================
+en.WarningClearAppData =Do you want to clear user settings and application cashed data?
+cs.WarningClearAppData =Do you want to clear user settings and application cashed data?
+sk.WarningClearAppData =Do you want to clear user settings and application cashed data?
+ru.WarningClearAppData =Do you want to clear user settings and application cashed data?
+de.WarningClearAppData =Do you want to clear user settings and application cashed data?
+fr.WarningClearAppData =Do you want to clear user settings and application cashed data?
+es.WarningClearAppData =Do you want to clear user settings and application cashed data?
+it_IT.WarningClearAppData =Do you want to clear user settings and application cashed data?
+pt_BR.WarningClearAppData =Do you want to clear user settings and application cashed data?
+;======================================================================================================
 
 ;en.AssociateDescription =Associate office document file types with %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
@@ -249,20 +260,21 @@ var
 begin
   if CurUninstallStep = usUninstall then
   begin
-//    if MsgBox('Do you want to clear application cashed data?.', mbConfirmation, MB_YESNO) == IDYES then
-//    begin
-//      DelTree('', True, True, True)
-//    end
-    UnassociateExtensions();
-  end else
-  if CurUninstallStep = usPostUninstall then begin
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
+
+    if (regValue <> 'full') and
+        (MsgBox(ExpandConstant('{cm:WarningClearAppData}'), mbConfirmation, MB_YESNO) = IDYES)
+            then regValue := 'full';
 
     if regValue = 'full' then begin
       DelTree(ExpandConstant('{localappdata}\ONLYOFFICE'), True, True, True);
       RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
       RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
     end;
+
+    UnassociateExtensions();
+  end else
+  if CurUninstallStep = usPostUninstall then begin
   end;
 end;
 
