@@ -376,7 +376,14 @@ li.menu-item {
     display: none;
 
     .table-files {
-        table-layout: auto;
+        /*table-layout: auto;*/
+        td:first-child {
+            /*width: 50%;*/
+        }
+
+        td:empty {
+            width: 1px;
+        }
     }
 
     .cportal, .cuser, .cemail {
@@ -556,6 +563,8 @@ li.menu-item {
     .cname {
         .name, .descr {
             margin: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
