@@ -18,6 +18,7 @@ public:
     virtual bool movedByTab();
     virtual QWidget * editorPanel(int index);
     virtual bool holdView(int id) const;
+    virtual int editorsCount() const;
 
 protected:
 };

@@ -65,3 +65,8 @@ bool CMainWindowBase::holdView(int id) const
 {
     return mainPanel()->holdUid(id);
 }
+
+int CMainWindowBase::editorsCount() const
+{
+    return mainPanel()->tabWidget()->count(cvwtEditor);
+}
