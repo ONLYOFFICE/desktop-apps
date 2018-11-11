@@ -9,6 +9,7 @@
 #include <QTranslator>
 
 #include <list>
+#include <algorithm>
 
 #include <QDebug>
 
@@ -22,6 +23,34 @@ public:
     {
         m_list.push_back(new QTranslator);
         return m_list.back();
+    }
+
+    QTranslator * createTranslator(const QString& file)
+    {
+        QTranslator * t = nullptr;
+        for (auto d: m_dirs) {
+            t = createTranslator(file, d);
+            if ( t ) break;
+        }
+
+        return t;
+    }
+
+    QTranslator * createTranslator(const QString& file, const QString& path)
+    {
+        auto * t = new QTranslator;
+        if ( t->load(file, path) ) {
+            m_list.push_back(t);
+
+            auto d = std::find(m_dirs.begin(), m_dirs.end(), path);
+            if ( d == m_dirs.end() )
+                m_dirs.push_back(QString(path));
+        } else {
+            delete t,
+            t = nullptr;
+        }
+
+        return t;
     }
 
     ~CLangaterIntf()
@@ -39,8 +68,28 @@ public:
         return m_langs.value(code);
     }
 
+    bool reload(const QString& lang) {
+        QTranslator * t;
+        for (auto p: m_list) {
+            t = p;
+            if ( !t->parent() )
+                delete t;
+        }
+
+        m_list.clear();
+
+        bool _res = false;
+        for (auto d: m_dirs) {
+            t = createTranslator(lang, d);
+            if ( !_res && t ) _res = true;
+        }
+
+        return _res;
+    }
+
 private:
     std::list<QTranslator *> m_list;
+    std::list<QString> m_dirs;
 
     QMap<QString, QString> m_langs{
         {"en", "English"},
@@ -130,17 +179,26 @@ void CLangater::init()
             _lang = APP_DEFAULT_LOCALE;
     }
 
-    QTranslator * tr = getInstance()->m_intf->createTranslator();
-    if ( tr->load("qtbase_" + _lang, _lang_path) ) {
-        QCoreApplication::installTranslator(tr);
-    }
+    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + _lang, _lang_path);
+    if ( tr ) QCoreApplication::installTranslator(tr);
 
-    tr = getInstance()->m_intf->createTranslator();
-    if ( tr->load(_lang, _lang_path) ) {
-        getInstance()->m_lang = _lang;
-    }
+    tr = getInstance()->m_intf->createTranslator(_lang, _lang_path);
+    if ( tr ) getInstance()->m_lang = _lang;
 
     QCoreApplication::installTranslator(tr);
+}
+
+void CLangater::reloadTranslations(const QString& lang)
+{
+    for ( auto p : getInstance()->m_intf->m_list ) {
+        QCoreApplication::removeTranslator(p);
+    }
+
+    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + lang);
+    if ( tr ) QCoreApplication::installTranslator(tr);
+
+    if ( getInstance()->m_intf->reload(lang) )
+        getInstance()->m_lang = lang;
 }
 
 QString CLangater::getCurrentLangCode()

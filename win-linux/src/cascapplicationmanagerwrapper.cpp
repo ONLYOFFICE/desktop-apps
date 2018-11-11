@@ -179,11 +179,7 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
                 applySettings(pData->get_Param());
             } else
             if ( cmd.rfind(L"get") != wstring::npos ) {
-                if ( pData->get_Param() == L"username" ) {
-                    QTimer::singleShot(0, [] {
-                        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"settings:username", Utils::systemUserName());
-                    });
-                }
+                sendSettings(pData->get_Param());
             }
 
             return;
@@ -703,10 +699,24 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         QString _lang_id = CLangater::getCurrentLangCode();
         if ( objRoot.contains("langid") ) {
-            _lang_id = objRoot.value("langid").toString();
+            QString l = objRoot.value("langid").toString();
+            if ( _lang_id != l ) {
+                _lang_id = l;
 
-            GET_REGISTRY_USER(_reg_user)
-            _reg_user.setValue("locale", _lang_id);
+                GET_REGISTRY_USER(_reg_user)
+                _reg_user.setValue("locale", _lang_id);
+
+                CLangater::reloadTranslations(_lang_id);
+
+                CMainWindow * _window = nullptr;
+                for (auto const& w : m_vecWidows) {
+                    _window = reinterpret_cast<CMainWindow *>(w);
+
+                    if ( _window ) {
+                        _window->mainPanel()->loadStartPage();
+                    }
+                }
+            }
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")
@@ -721,6 +731,33 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
     }
 
     return true;
+}
+
+void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
+{
+    wstring _send_cmd, _send_opts;
+    if ( opts == L"username" ) {
+        _send_cmd = L"settings:username";
+        _send_opts = Utils::systemUserName();
+    } else
+    if ( opts == L"has:opened" ) {
+        _send_cmd = L"settings:hasopened";
+
+        CMainWindow * _window = nullptr;
+        for (auto const& w : m_vecWidows) {
+            _window = reinterpret_cast<CMainWindow *>(w);
+
+            if ( _window && _window->editorsCount() ) {
+                _send_opts = L"has";
+                break;
+            }
+        }
+    }
+
+    if ( !_send_opts.empty() )
+        QTimer::singleShot(0, [_send_cmd, _send_opts] {
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
+        });
 }
 
 CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()

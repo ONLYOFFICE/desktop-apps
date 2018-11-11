@@ -144,6 +144,7 @@ private:
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const wstring& wstrjson);
+    void sendSettings(const wstring& opts);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CSingleWindow * editorWindowFromViewId(int uid) const;

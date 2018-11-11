@@ -744,8 +744,13 @@ function loadLocale(lang) {
     }
 };
 
+function translate(str, lang) {
+    return !!l10n[lang] ? l10n[lang][str] : undefined;
+};
+
 +function mixLocale(lang) {
-    utils.Lang = l10n.en;
+    utils.Lang = Object.assign({}, l10n.en);
+    utils.Lang.tr = translate;
 
     if ( lang ) {
         lang = lang.replace('-', '_');

@@ -69,7 +69,6 @@
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'></select>
                                             </section>
-                                            <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top'>i</strong>
                                         </div>
                                     </div>
                                     <!-- temporary elements section -->
@@ -83,6 +82,7 @@
                                 </section>
                                 <div class="lst-tools">
                                     <button class="btn" id="sett-btn-apply">${_lang.setBtnApply}</button>
+                                    <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top'>i</strong> -->
                                 </div>
                             </div>
                         </div>
@@ -135,6 +135,10 @@
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
 
+                localStorage.setItem('reload', 'settings');
+                // remove item if it'll not be reloaded
+                setTimeout(e => localStorage.removeItem('reload'), 3000);
+
                 _lock_createnew(_doc_open_mode == 'view');
             } else {
                 $userName.addClass('error');
@@ -149,6 +153,9 @@
         };
 
         function _on_lang_change(e) {
+            let l = $optsLang.find('select').val(),
+                c = utils.Lang.tr('setBtnApply', l);
+            if ( !!c ) $btnApply.text(c);
             if ( $btnApply.isdisabled() ) {
                 $btnApply.disable(false);
             }
@@ -165,6 +172,10 @@
             if (/^settings\:/.test(cmd)) {
                 if (/username$/.test(cmd)) {
                     _set_user_name.call(this, param);
+                } else
+                if (/hasopened$/.test(cmd)) {
+                    // $btnApply.parent().addClass('noted');
+                    console.log('has opened editors');
                 } else
                 if (/init$/.test(cmd)) {
                     let opts;
@@ -237,6 +248,10 @@
                 $optsLang.find('select').on('change', _on_lang_change.bind(this));
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
+
+                if ( !!localStorage.reload ) {
+                    sdk.command("settings:get", "has:opened");
+                }
 
                 return this;
             }

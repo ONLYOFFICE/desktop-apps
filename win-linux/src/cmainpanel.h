@@ -69,6 +69,7 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
+    void loadStartPage();
     virtual void updateScaling(int);
 
 #ifdef __linux
@@ -87,7 +88,6 @@ private:
     void resizeEvent(QResizeEvent* event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void loadStartPage();
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
     void RecalculatePlaces();
