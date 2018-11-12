@@ -194,11 +194,14 @@ void CLangater::reloadTranslations(const QString& lang)
         QCoreApplication::removeTranslator(p);
     }
 
-    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + lang);
-    if ( tr ) QCoreApplication::installTranslator(tr);
-
-    if ( getInstance()->m_intf->reload(lang) )
+    getInstance()->m_intf->createTranslator("qtbase_" + lang);
+    if ( getInstance()->m_intf->reload(lang) ) {
         getInstance()->m_lang = lang;
+
+        for ( auto t : getInstance()->m_intf->m_list ) {
+            QCoreApplication::installTranslator(t);
+        }
+    }
 }
 
 QString CLangater::getCurrentLangCode()
