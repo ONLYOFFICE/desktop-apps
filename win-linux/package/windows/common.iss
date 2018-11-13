@@ -414,13 +414,18 @@ function getAppPrevLang(param: string): string;
 var
   lang: string;
 begin
-  if WizardSilent and
+  if not (WizardSilent and
         RegValueExists(GetHKLM(), '{#APP_REG_PATH}', 'locale') and
-            RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang) then
+            RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang)) then
   begin
-    result := lang
-  end else
-    result := ExpandConstant('{language}');
+    lang := ExpandConstant('{language}')
+  end;
+
+  // make code according to lang_region
+  if Length(lang) = 2 then
+    lang := lang + '_' + Uppercase(lang);
+
+  result := lang;
 end;
 
 function libExists(const dllname: String) : boolean;
@@ -479,14 +484,14 @@ Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\e
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\externalcloud.json;    DestDir: {app}\editors;               Flags: recursesubdirs;
-Source: ..\..\..\common\converter\empty\*.*;                    DestDir: {app}\converter\empty;       Languages: en sk;
-Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty;       Languages: ru;
-Source: ..\..\..\common\converter\empty\fr-FR\*.*;              DestDir: {app}\converter\empty;       Languages: fr;
-Source: ..\..\..\common\converter\empty\es-ES\*.*;              DestDir: {app}\converter\empty;       Languages: es;
-Source: ..\..\..\common\converter\empty\de-DE\*.*;              DestDir: {app}\converter\empty;       Languages: de;
-Source: ..\..\..\common\converter\empty\cs-CZ\*.*;              DestDir: {app}\converter\empty;       Languages: cs;
-Source: ..\..\..\common\converter\empty\it-IT\*.*;              DestDir: {app}\converter\empty;       Languages: it_IT;
-Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty;       Languages: pt_BR;
+Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
+;Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty\ru;
+;Source: ..\..\..\common\converter\empty\fr-FR\*.*;              DestDir: {app}\converter\empty\fr;
+;Source: ..\..\..\common\converter\empty\es-ES\*.*;              DestDir: {app}\converter\empty\es;
+;Source: ..\..\..\common\converter\empty\de-DE\*.*;              DestDir: {app}\converter\empty\de;
+;Source: ..\..\..\common\converter\empty\cs-CZ\*.*;              DestDir: {app}\converter\empty\cs;
+;Source: ..\..\..\common\converter\empty\it-IT\*.*;              DestDir: {app}\converter\empty\it-IT;
+;Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty\pt-BR;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
 Source: ..\..\deploy\{#os_arch}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;

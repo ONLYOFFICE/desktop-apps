@@ -258,9 +258,10 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
                     jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
 
                     if( jerror.error == QJsonParseError::NoError ) {
+                        QString _lang(CLangater::getCurrentLangCode());
 
-                        if ( jdoc.object().contains(CLangater::getCurrentLangCode()) ) {
-                            _json_obj["name"] = jdoc.object()[CLangater::getCurrentLangCode()].toString();
+                        if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
+                            _json_obj["name"] = jdoc.object()[_lang].toString();
                         }
                     }
                 }

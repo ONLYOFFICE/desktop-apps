@@ -745,6 +745,7 @@ function loadLocale(lang) {
 };
 
 function translate(str, lang) {
+    !l10n[lang] && (lang = /^\w{2}/.exec(lang)[0]);
     return !!l10n[lang] ? l10n[lang][str] : undefined;
 };
 
