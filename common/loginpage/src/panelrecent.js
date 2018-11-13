@@ -67,7 +67,7 @@
                           '<div class="flexbox">'+
                             `<h3 class="table-caption">${_lang.listRecentFileTitle}</h3>`+
                             '<div class="table-box flex-fill">'+
-                              '<table %id class="table-files list"></table>'+
+                              '<table class="table-files list"></table>'+
                               '<h4 class="text-emptylist img-before-el">' + _lang.textNoFiles + '</h4>' +
                             '</div>' +
                           '</div>' +

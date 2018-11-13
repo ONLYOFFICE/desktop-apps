@@ -87,19 +87,30 @@ public:
         return _res;
     }
 
+    void addSearchPath(const QString& path) {
+        auto d = std::find(m_dirs.begin(), m_dirs.end(), path);
+        if ( d == m_dirs.end() )
+            m_dirs.push_back(QString(path));
+    }
+
+    void addSearchPath(const std::list<QString>& l) {
+        m_dirs.insert(std::end(m_dirs), std::begin(l), std::end(l));
+    }
+
 private:
     std::list<QTranslator *> m_list;
     std::list<QString> m_dirs;
 
     QMap<QString, QString> m_langs{
-        {"en", "English"},
-        {"ru", "Русский"},
-        {"de", "Deutsch"},
-        {"fr", "French"},
-        {"es", "Spanish"},
-        {"sk", "Slovak"},
-        {"it_IT", "Italian"},
-        {"pt_BR", "Brazil"}
+        {"en_EN", "English"},
+        {"ru_RU", "Русский"},
+        {"de_DE", "Deutsch"},
+        {"fr_FR", "Français"},
+        {"es_ES", "Español"},
+        {"sk_SK", "Slovenčina"},
+        {"cs_CS", "Čeština"},
+        {"it_IT", "Italiano"},
+        {"pt_BR", "Português Brasileiro"}
     };
 };
 
@@ -160,29 +171,24 @@ void CLangater::init()
         !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = "en").size();
 #endif
 
-    QString _lang_path = ":/i18n/langs/";
-    if ( !QFile(_lang_path + _lang + ".qm").exists() ) {
-        if ( QFile("./langs/" + _lang + ".qm").exists() ) {
-            _lang_path = "./langs";
-        } else
-        if ( QFile(_lang_path + _lang.left(2) + ".qm").exists() ) {
-            _lang = _lang.left(2);
-        } else
-        if ( QFile("./langs/" + _lang.left(2) + ".qm").exists() ) {
-            _lang = _lang.left(2);
-            _lang_path = "./langs";
-        } else
-        // check if lang file has an alias
-        if ( QFile(":/i18n/" + _lang + ".qm").exists() ) {
-            _lang_path = ":/i18n/";
-        } else
-            _lang = APP_DEFAULT_LOCALE;
+    getInstance()->m_intf->addSearchPath({"./langs", ":/i18n/langs", ":/i18n"});
+
+    auto _check_lang = [=](const std::list<QString>& dirs, const QString& l) {
+        for ( auto& d : dirs ) {
+            if ( QFile(d + "/" + l + ".qm").exists() ) return true;
+        }
+
+        return false;
+    };
+
+    if ( !_check_lang(getInstance()->m_intf->m_dirs, _lang) ) {
+        _lang = _check_lang(getInstance()->m_intf->m_dirs, _lang.left(2)) ? _lang.left(2) : APP_DEFAULT_LOCALE;
     }
 
-    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + _lang, _lang_path);
+    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + _lang);
     if ( tr ) QCoreApplication::installTranslator(tr);
 
-    tr = getInstance()->m_intf->createTranslator(_lang, _lang_path);
+    tr = getInstance()->m_intf->createTranslator(_lang);
     if ( tr ) getInstance()->m_lang = _lang;
 
     QCoreApplication::installTranslator(tr);
