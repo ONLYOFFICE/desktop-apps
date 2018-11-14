@@ -421,10 +421,6 @@ begin
     lang := ExpandConstant('{language}')
   end;
 
-  // make code according to lang_region
-  if Length(lang) = 2 then
-    lang := lang + '_' + Uppercase(lang);
-
   result := lang;
 end;
 

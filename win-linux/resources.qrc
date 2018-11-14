@@ -67,16 +67,16 @@
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
     </qresource>
     <qresource prefix="/i18n">
-        <file alias="en_EN.qm">langs/en.qm</file>
-        <file alias="ru_RU.qm">langs/ru.qm</file>
-        <file alias="es_ES.qm">langs/es.qm</file>
-        <file alias="fr_FR.qm">langs/fr.qm</file>
-        <file alias="de_DE.qm">langs/de.qm</file>
-        <file alias="cs_CS.qm">langs/cs.qm</file>
-        <file alias="sk_SK.qm">langs/sk.qm</file>
+        <file alias="en-EN.qm">langs/en.qm</file>
+        <file alias="ru-RU.qm">langs/ru.qm</file>
+        <file alias="es-ES.qm">langs/es.qm</file>
+        <file alias="fr-FR.qm">langs/fr.qm</file>
+        <file alias="de-DE.qm">langs/de.qm</file>
+        <file alias="cs-CS.qm">langs/cs.qm</file>
+        <file alias="sk-SK.qm">langs/sk.qm</file>
         <file>langs/pt_BR.qm</file>
         <file>langs/it_IT.qm</file>
-        <file alias="qtbase_ru_RU.qm">langs/qtbase_ru.qm</file>
+        <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>

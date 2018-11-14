@@ -56,7 +56,7 @@
 
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
 #define REG_APP_NAME "DesktopEditors"
-#define APP_DEFAULT_LOCALE "en"
+#define APP_DEFAULT_LOCALE "en-EN"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"

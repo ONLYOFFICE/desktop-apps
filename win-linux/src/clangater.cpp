@@ -102,15 +102,15 @@ private:
     std::list<QString> m_dirs;
 
     QMap<QString, QString> m_langs{
-        {"en_EN", "English"},
-        {"ru_RU", "Русский"},
-        {"de_DE", "Deutsch"},
-        {"fr_FR", "Français"},
-        {"es_ES", "Español"},
-        {"sk_SK", "Slovenčina"},
-        {"cs_CS", "Čeština"},
-        {"it_IT", "Italiano"},
-        {"pt_BR", "Português Brasileiro"}
+        {"en-EN", "English"},
+        {"ru-RU", "Русский"},
+        {"de-DE", "Deutsch"},
+        {"fr-FR", "Français"},
+        {"es-ES", "Español"},
+        {"sk-SK", "Slovenčina"},
+        {"cs-CS", "Čeština"},
+        {"it-IT", "Italiano"},
+        {"pt-BR", "Português Brasileiro"}
     };
 };
 
@@ -181,8 +181,18 @@ void CLangater::init()
         return false;
     };
 
-    if ( !_check_lang(getInstance()->m_intf->m_dirs, _lang) ) {
-        _lang = _check_lang(getInstance()->m_intf->m_dirs, _lang.left(2)) ? _lang.left(2) : APP_DEFAULT_LOCALE;
+    bool _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+    if ( !_exist && _lang.length() == 2 )
+            _lang.append("-" + _lang.toUpper()),
+                    _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+
+    if ( !_exist ) {
+        if ( _lang.at(2) == '-' ) _lang.replace(2, 1, '_'); else
+        if ( _lang.at(2) == '_' ) _lang.replace(2, 1, '-');
+
+        if ( !_check_lang(getInstance()->m_intf->m_dirs, _lang) ) {
+            _lang = APP_DEFAULT_LOCALE;
+        }
     }
 
     QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + _lang);
