@@ -290,7 +290,7 @@ utils.fn.getToolMenuItemOrder = function(item) {
     let _action = $item.find('[action]').attr('action'),
         _is_top_group = !$item.hasClass('bottom');
 
-    let _items_top_order = ['recent', 'open', 'connect', 'activation', 'external'],
+    let _items_top_order = ['recent', 'open', 'connect', 'activation', 'external-'],
         _items_bottom_order = ['about', 'settings'],
         _items_order = _is_top_group ? _items_top_order : _items_bottom_order;
 
@@ -299,7 +299,10 @@ utils.fn.getToolMenuItemOrder = function(item) {
 
     if ( $itemBefore.length ) return {item: $itemBefore.parent(), after: _is_top_group};
     else {
-        let _index = _items_order.indexOf(_action);
+        let _index = _items_order.findIndex(element => {
+            if ( element.endsWith('-') ) return _action.startsWith(element);
+            else return _action == element;
+        });
         if ( _index > 0 ) {
             while ( _index > 0 ) {
                 let _ab = _items_order[--_index];

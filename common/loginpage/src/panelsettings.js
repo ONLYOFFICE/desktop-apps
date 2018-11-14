@@ -89,7 +89,7 @@
                     </div>`;
 
         args.tplPage = _html;
-        args.itemcls = 'bottom separate';
+        args.itemcls = 'bottom';
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemtext = _lang.actSettings;
