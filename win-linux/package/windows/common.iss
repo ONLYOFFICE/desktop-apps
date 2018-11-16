@@ -256,7 +256,8 @@ end;
 
 procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
-  regValue: string;
+  regValue, userPath: string;
+  findRec: TFindRec;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -264,10 +265,35 @@ begin
 
     if (regValue <> 'full') and
         (MsgBox(ExpandConstant('{cm:WarningClearAppData}'), mbConfirmation, MB_YESNO) = IDYES)
-            then regValue := 'full';
+            then regValue := 'soft';
 
+    userPath := ExpandConstant('{localappdata}\ONLYOFFICE');
+    if regValue = 'soft' then begin
+      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
+
+      // remove all app and user cashed data except of folders 'recover' and 'sdkjs-plugins'
+      userPath := userPath + '\DesktopEditors';
+      DelTree(userPath + '\*', False, True, False);
+
+      userPath := userPath + '\data';
+      if FindFirst(userPath + '\*', findRec) then begin
+        try repeat
+            if findRec.Attributes and FILE_ATTRIBUTE_DIRECTORY = 0 then
+              DeleteFile(userPath + '\' + findRec.Name)
+            else if (findRec.Name <> '.') and (findRec.Name <> '..') and
+                (findRec.Name <> 'recover') and (findRec.Name <> 'sdkjs-plugins') then begin
+              DelTree(userPath + '\' + findRec.Name, True, True, True);
+            end;
+          until not FindNext(findRec);
+        finally
+          FindClose(findRec);
+        end;
+      end;
+
+    end else
     if regValue = 'full' then begin
-      DelTree(ExpandConstant('{localappdata}\ONLYOFFICE'), True, True, True);
+      DelTree(userPath, True, True, True);
       RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
       RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
     end;
