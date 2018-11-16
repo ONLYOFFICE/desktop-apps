@@ -95,7 +95,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
-    m_pMainPanel = createMainPanel(m_pWinPanel, true, view);
+    m_pMainPanel = createMainPanel(m_pWinPanel, title, true, view);
 
     m_pWinPanel->show();
     recalculatePlaces();
@@ -483,7 +483,7 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
-QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget * view)
+QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
 {
     QWidget * mainPanel = new QWidget(parent);
 //    mainpanel->setObjectName("mainPanel");
@@ -506,7 +506,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel(APP_SIMPLE_WINDOW_TITLE);
+    QLabel * label = new QLabel(title);
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
@@ -554,7 +554,11 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
 
-        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+//        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+
+        QWidget * _lb = new QWidget;
+        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
+        layoutBtns->insertWidget(0, _lb);
     } else {
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
