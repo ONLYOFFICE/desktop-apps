@@ -445,6 +445,7 @@ begin
             RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang)) then
   begin
     lang := ExpandConstant('{language}')
+    if (Length(lang) > 2) and (lang[3] = '_') then StringChangeEx(lang, '_', '-', false);
   end;
 
   result := lang;
@@ -505,7 +506,7 @@ Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\d
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\jsdesktop\externalcloud.json;    DestDir: {app}\editors;               Flags: recursesubdirs;
+Source: ..\..\..\common\loginpage\addon\externalcloud.json;     DestDir: {app}\editors;               Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
 ;Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty\ru;
 ;Source: ..\..\..\common\converter\empty\fr-FR\*.*;              DestDir: {app}\converter\empty\fr;
