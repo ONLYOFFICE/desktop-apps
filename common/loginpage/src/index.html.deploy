@@ -114,6 +114,7 @@
                   <a class="img-before-el" action="new:pptx">PRESENTATION</a>
                 </li>
               </div>
+              <li class="menu-item separator"></li>
             </div>
             <div class="main-column col-center after-left">
             </div>
