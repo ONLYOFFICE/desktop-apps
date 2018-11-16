@@ -74,8 +74,8 @@
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="cs-CS.qm">langs/cs.qm</file>
         <file alias="sk-SK.qm">langs/sk.qm</file>
-        <file>langs/pt_BR.qm</file>
-        <file>langs/it_IT.qm</file>
+        <file alias="pt-BR.qm">langs/pt_BR.qm</file>
+        <file alias="it-IT.qm">langs/it_IT.qm</file>
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
