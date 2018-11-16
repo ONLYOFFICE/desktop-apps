@@ -164,6 +164,7 @@ endif
 	
 	mkdir -p $(DEST_EDITOR_DIR)
 	$(INSTALL_FILE) $(WEBAPPS_DIR)/* $(DEST_EDITOR_DIR)
+	$(INSTALL_FILE) common/loginpage/addon/externalcloud.json $(DEST_EDITOR_DIR)
 
 	mkdir -p $(DEST_PLUGINS_DIR)
 
