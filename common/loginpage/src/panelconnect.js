@@ -93,10 +93,10 @@
 
         var _html_empty_panel =
                             `<div id="box-empty-portals" class="empty flex-center">
-                                <section style='max-width:690px;margin-top:-4vh;'>
-                                    <h3 class="empty-title" style="margin-top:0;">${_lang.portalEmptyTitle}</h3>
+                                <section id='connect-empty-var-2'>
+                                    <h3 class="empty-title" style="margin:0;">${_lang.portalEmptyTitle}</h3>
                                     <h4 class='text-description' style='margin-bottom:50px;'>${_lang.portalEmptyDescr}</h4>
-                                    <section class='tools-connect2' style='margin-bottom:143px;'>
+                                    <section class='tools-connect2'>
                                         <div>
                                             <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
                                                 <svg class='icon'><use xlink:href='#logo__asc'></svg>
