@@ -16,6 +16,11 @@
 #include "utils.iss"
 #include "associate_page.iss"
 
+#define UNINSTALL_USE_CLEAR_PAGE
+#ifdef UNINSTALL_USE_CLEAR_PAGE
+# include "uninstall_page.iss"
+#endif
+
 
 [Setup]
 AppName                   ={#sAppName}
@@ -264,7 +269,11 @@ begin
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
 
     if (regValue <> 'full') and
+#ifndef UNINSTALL_USE_CLEAR_PAGE
         (MsgBox(ExpandConstant('{cm:WarningClearAppData}'), mbConfirmation, MB_YESNO) = IDYES)
+#else
+        IsClearData
+#endif
             then regValue := 'soft';
 
     userPath := ExpandConstant('{localappdata}\ONLYOFFICE');
