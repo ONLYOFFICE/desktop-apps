@@ -220,6 +220,11 @@
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorAppActionRequest:)
+                                                 name:CEFEventNameEditorAppActionRequest
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFEditorOpenFolder:)
                                                  name:CEFEventNameEditorOpenFolder
                                                object:nil];
@@ -318,6 +323,68 @@
         tab.params      = [@{@"url" : [urlPage string]} mutableCopy];
         
         [self.tabsControl addTab:tab selected:YES];
+    }
+}
+
+- (void)displayPortalTabBy:(NSString *)path {
+    if (NSURL * url = [NSURL URLWithString:path]) {
+        NSString * urlHost = [url host];
+        BOOL isFoundPortal = false;
+
+        // Search opened tab of a portal
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if (tab.type == ASCTabViewPortal) {
+                if (NSString * portalUrlString = tab.params[@"url"]) {
+                    if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
+                        NSString * portalHost = [portalURL host];
+
+                        if ([portalHost isEqualToString:urlHost]) {
+                            [self.tabsControl selectTab:tab];
+
+                            if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                                id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+                                NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
+                                NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+                                NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+
+                                if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                                    countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
+                                }
+
+                                urlPage.queryItems            = @[countryCode, portalAddress];
+
+                                [cefView loadWithUrl:[urlPage string]];
+                            }
+
+                            isFoundPortal = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Force open tab of a portal if not exist
+        if (!isFoundPortal) {
+            id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+            NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
+            NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
+            NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
+
+            if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
+                countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
+            }
+
+            urlPage.queryItems            = @[countryCode, portalAddress];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionOpenPortal),
+                                                                         @"url"     : [urlPage string],
+                                                                         @"active"  : @(YES)
+                                                                         }];
+        }
     }
 }
 
@@ -1275,6 +1342,34 @@
     }
 }
 
+- (void)onCEFEditorAppActionRequest:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSString * action = json[@"action"];
+        NSString * path = json[@"url"];
+
+        if (viewId && action) {
+            if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
+                if ([action isEqualToString:@"close"]) {
+                    [self.tabsControl removeTab:tab selected:NO];
+                }
+            }
+
+            // Open start page or portal
+            if (path) {
+                if ([path isEqualToString:@"onlyoffice.com"]) { // onlyoffice.com equal "offline"
+                    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+                    [self.tabsControl selectTab:nil];
+                } else {
+                    [self displayPortalTabBy:path];
+                }
+            }
+        }
+    }
+}
+
 - (void)onCEFEditorOpenFolder:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
@@ -1310,53 +1405,8 @@
                         [alert runModalSheet];
                     }
                 }
-            } else if (NSURL * url = [NSURL URLWithString:path]) {
-                NSString * urlHost = [url host];
-                BOOL isFoundPortal = false;
-
-                // Search opened tab of a portal
-                for (ASCTabView * tab in self.tabsControl.tabs) {
-                    if (tab.type == ASCTabViewPortal) {
-                        if (NSString * portalUrlString = tab.params[@"url"]) {
-                            if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
-                                NSString * portalHost = [portalURL host];
-
-                                if ([portalHost isEqualToString:urlHost]) {
-                                    [self.tabsControl selectTab:tab];
-
-                                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
-                                        [cefView loadWithUrl:path];
-                                    }
-
-                                    isFoundPortal = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Force open tab of a portal if not exist
-                if (!isFoundPortal) {
-                    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
-                    NSURLComponents *urlPage      = [NSURLComponents componentsWithString:path];
-                    NSURLQueryItem *countryCode   = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
-                    NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
-
-                    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
-                        countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
-                    }
-
-                    urlPage.queryItems            = @[countryCode, portalAddress];
-
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                                        object:nil
-                                                                      userInfo:@{
-                                                                                 @"action"  : @(ASCTabActionOpenPortal),
-                                                                                 @"url"     : [urlPage string],
-                                                                                 @"active"  : @(YES)
-                                                                                 }];
-                }
+            } else {
+                [self displayPortalTabBy:path];
             }
         }
     }
