@@ -506,6 +506,13 @@ public:
                                                                               userInfo:@{
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId]
                                                                                          }];
+                        } else if (cmd.find(L"editor:request") != std::wstring::npos) {
+                            NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{@"viewId": [NSString stringWithFormat:@"%d", senderId]}];
+                            [params addEntriesFromDictionary:stringToJson([NSString stringWithstdwstring:param])];
+
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorAppActionRequest
+                                                                                object:nil
+                                                                              userInfo:params];
                         } else if (cmd.find(L"go:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorOpenFolder
                                                                                 object:nil
