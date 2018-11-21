@@ -217,7 +217,7 @@ window.DialogConnect = function(params) {
             $body.html( _body_template );
 
             let $combo = $el.find('select');
-            let _clouds = sdk.externalClouds();
+            let _clouds = config.portals.checklist;
             if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
                 $combo.append(`<option value='asc'>onlyoffice</option>`);
                 $combo.parents('.select-field').hide();
