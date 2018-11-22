@@ -116,7 +116,7 @@ int main( int argc, char *argv[] )
 #ifdef _WIN32
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
+        HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
         if (hwnd != NULL) {
             WCHAR * cm_line = GetCommandLine();
 

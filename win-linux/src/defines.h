@@ -55,6 +55,7 @@
 #endif
 
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define REG_APP_NAME "DesktopEditors"
 #define APP_DEFAULT_LOCALE "en-EN"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
