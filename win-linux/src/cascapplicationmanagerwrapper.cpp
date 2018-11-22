@@ -299,7 +299,7 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
             QString json = QString::fromStdWString(pData->get_Param()),
                     url;
 
-            QRegularExpression re("portal[\\\\\":]+([^\\\]+)");
+            QRegularExpression re("portal[\":]+([^\"]+)");
             QRegularExpressionMatch match = re.match(json);
             if ( match.hasMatch() ) url = match.captured(1);
 
