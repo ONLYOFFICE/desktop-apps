@@ -1161,10 +1161,6 @@ The trial period will end in %d days, after that you will not be able to create 
         <target>Авторское право</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sM6-C6-Vo9.title">
-        <source>test</source>
-        <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
-      <target>тест</target></trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Show Toolbar</target>

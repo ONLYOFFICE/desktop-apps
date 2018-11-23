@@ -1128,11 +1128,6 @@ O período de avaliação terminará em %d dias, após o qual você não poderá
         <target>Informações de copyright</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sM6-C6-Vo9.title">
-        <source>test</source>
-        <target>teste</target>
-        <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
-      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Exibir barra de ferramentas</target>

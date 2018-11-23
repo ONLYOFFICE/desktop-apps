@@ -1129,11 +1129,6 @@ Il periodo di prova terminerà tra %d giorni, dopodiché non sarai in grado di c
         <target>Informazioni sul Copyright</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sM6-C6-Vo9.title">
-        <source>test</source>
-        <target>Test</target>
-        <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
-      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Mostra Barra degli strumenti</target>

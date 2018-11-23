@@ -182,5 +182,28 @@
 "You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У Вас %ld %@ Документов с неподтвержденными изменениями. Просмотреть документы перед завершением?";
 
 /* No comment provided by engineer. */
+"You have successfully activated %@." = "Вы успешно активировали %@.";
+
+/* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "Ваши изменения будут потеряны, если вы не сохраните их.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount." = "Закончился срок действия подписки.
+
+Программа работает в неактивированном режиме.
+
+Сейчас Вы можете продлить или обновить подписку со скидкой.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you." = "Скоро истечет срок действия подписки
+(осталось дней: %d).
+
+Для Вас доступно специальное предложение.";
 
