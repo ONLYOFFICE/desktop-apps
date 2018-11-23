@@ -463,11 +463,14 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     QCefView * pView = new QCefView(NULL);
     pView->CreateReporter(this, pCreateData);
 
+    QString _doc_name;
     QRect _windowRect{100,100,1000,700};
-    if ( QApplication::desktop()->screenCount() > 1 ) {
-        CMainWindow * w = mainWindowFromViewId(parentid);
-        if ( w ) {
-            int _scrNum = QApplication::desktop()->screenNumber(w->windowRect().topLeft());
+    CMainWindow * _main_window = mainWindowFromViewId(parentid);
+    if ( _main_window ) {
+        _doc_name = _main_window->documentName(parentid);
+
+        if ( QApplication::desktop()->screenCount() > 1 ) {
+            int _scrNum = QApplication::desktop()->screenNumber(_main_window->windowRect().topLeft());
             QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
 
             _windowRect.setSize(QSize(1000,700));
@@ -475,7 +478,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         }
     }
 
-    CSingleWindow * _window = new CSingleWindow(_windowRect, tr("Presenter View"), pView);
+    CSingleWindow * _window = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
 
     m_vecEditors.push_back( size_t(_window) );
 
