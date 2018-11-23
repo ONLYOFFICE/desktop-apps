@@ -249,8 +249,8 @@ QJsonObject CLangater::availableLangsToJson()
 
 void CLangater::addTranslation(const QString& dir, const QString& lang)
 {
-    QTranslator * tr = getInstance()->m_intf->createTranslator();
-    if ( tr->load(lang, dir) ) {
+    QTranslator * tr = getInstance()->m_intf->createTranslator(lang, dir);
+    if ( tr ) {
         QCoreApplication::installTranslator(tr);
     }
 }
