@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window">
         <source>%@ Reporter Window</source>
+        <target>Janela de Relatório %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -113,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>Não é possível abir a pasta no local do arquivo</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -147,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
+        <target>Modelo de Documento</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -186,6 +189,7 @@
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target>Se você já comprou o %@, você deve encontrar a chave de ativação no seu e-mail de confirmação.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
@@ -245,6 +249,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
+        <target>Arquivo PDF/A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -279,6 +284,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
+        <target>Modelo de Apresentação</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -313,14 +319,17 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
+        <target>Modelo de Planilha</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
+        <target>Obrigado por avaliar o %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Para abrir o local do arquivo, ele precisa estar salvo.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
@@ -370,6 +379,7 @@
       </trans-unit>
       <trans-unit id="You have successfully activated %@.">
         <source>You have successfully activated %@.</source>
+        <target>Você ativou o %@ com sucesso.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
@@ -383,6 +393,11 @@
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>Sua inscrição expirou.
+
+O programa funciona no modo desativado.
+
+Agora você pode prolongar ou atualizar sua inscrição com um desconto.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
@@ -390,6 +405,9 @@ Now you can prolong or upgrade your subscription with a discount.</source>
 (%d days left).
 
 We have a special offer for you.</source>
+        <target>Sua inscrição está prestes a expirar (%d dias restantes).
+
+Nós temos uma oferta especial para você.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

@@ -42,7 +42,7 @@
       </trans-unit>
       <trans-unit id="Tfc-EF-VnS.title">
         <source>Specify a private key for the digital signature.</source>
-        <target>Bestimmen Sie einen privaten Schlüssel für digitale Signatur.</target>
+        <target>Bestimmen Sie einen privaten Schlüssel die für digitale Signatur.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
       </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString">
@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window">
         <source>%@ Reporter Window</source>
+        <target>%@ Reporter-Fenster</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -113,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>Ordner des Speicherorts kann nicht geöffnet werden.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -137,7 +139,7 @@
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target>Möchten Sie vorgenommene am Dokument Änderungen  "%@" speichern?</target>
+        <target>Möchten Sie die am Dokument "%@" vorgenommenen Änderungen speichern?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
@@ -147,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
+        <target>Dokumentenvorlage</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -186,6 +189,7 @@
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target>Wenn Sie %@ bereits erworben haben, finden Sie Ihren Aktivierungsschlüssel in einer E-Mail-Bestätigung.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
@@ -245,6 +249,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
+        <target>Pdf/A-Datei</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -279,6 +284,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
+        <target>Präsentationsvorlage</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -313,14 +319,17 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
+        <target>Tabellenvorlage</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
+        <target>Vielen Dank, dass Sie sich die Zeit genommen haben %@ zu bewerten!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Um den Dateispeicherort zu öffnen, muss die Datei gespeichert werden.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
@@ -370,6 +379,7 @@
       </trans-unit>
       <trans-unit id="You have successfully activated %@.">
         <source>You have successfully activated %@.</source>
+        <target>Sie haben %@ erfolgreich aktiviert.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
@@ -383,6 +393,11 @@
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>Ihr Abo ist abgelaufen.
+
+Das Programm ist im Modus nicht aktiviert nutzbar.
+
+Sie erhalten einen Rabatt für die Verlängerung oder ein Upgrade Ihres Abos.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
@@ -390,6 +405,10 @@ Now you can prolong or upgrade your subscription with a discount.</source>
 (%d days left).
 
 We have a special offer for you.</source>
+        <target>Ihr Abo läuft aus
+(noch %d Tage gültig).
+
+Wir haben ein Sonderangebot für Sie.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -587,7 +606,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="BgM-ve-c93.title">
         <source>	Left to Right</source>
-        <target>Links nach Rechts</target>
+        <target>	Links nach Rechts</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
       </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title">
@@ -732,7 +751,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title">
         <source>	Left to Right</source>
-        <target>Links nach Rechts</target>
+        <target>	Links nach Rechts</target>
         <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
       </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title">
@@ -747,7 +766,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="Nop-cj-93Q.title">
         <source>	Default</source>
-        <target>Standard</target>
+        <target>	Standard</target>
         <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
       </trans-unit>
       <trans-unit id="OY7-WF-poV.title">
@@ -792,7 +811,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title">
         <source>	Right to Left</source>
-        <target>Rechts nach links</target>
+        <target>	Rechts nach links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
       </trans-unit>
       <trans-unit id="Riu-oE-8dj.title">
@@ -882,7 +901,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="YGs-j5-SAR.title">
         <source>	Default</source>
-        <target>Standard</target>
+        <target>	Standard</target>
         <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
       </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title">
@@ -1037,7 +1056,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title">
         <source>	Right to Left</source>
-        <target>Rechts nach links</target>
+        <target>	Rechts nach links</target>
         <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
       </trans-unit>
       <trans-unit id="jxT-CU-nIS.title">
@@ -1244,12 +1263,12 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
       </trans-unit>
       <trans-unit id="Move to Applications Folder">
         <source>Move to Applications Folder</source>
-        <target>In den  Programme-Ordner verschieben</target>
+        <target>In den Programme-Ordner verschieben</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?">
         <source>Move to Applications folder in your Home folder?</source>
-        <target>In den  Programme-Ordner in Ihrem Heimatverzeichnis verschieben?</target>
+        <target>In den Programme-Ordner in Ihrem Heimatverzeichnis verschieben?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder?">

@@ -12,7 +12,7 @@
       </trans-unit>
       <trans-unit id="1dL-nN-bJI.title">
         <source>Enter the password for the private key.</source>
-        <target>Inserirsci la password per la chiave privata.</target>
+        <target>Inserisci la password per la chiave privata.</target>
         <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
       </trans-unit>
       <trans-unit id="2Ck-6y-ygx.title">
@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window">
         <source>%@ Reporter Window</source>
+        <target>%@ Reporter Finestra</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -113,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>Impossibile aprire la cartella localizzazione file</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -147,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
+        <target>Modello documento</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -186,6 +189,7 @@
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target>Se hai già acquistato %@, dovresti trovare la chiave di attivazione in una email di conferma.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement">
@@ -245,6 +249,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
+        <target>File PDF/A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -279,6 +284,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
+        <target>Modello Presentazione</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -313,14 +319,17 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
+        <target>Modello Foglio di calcolo</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
+        <target>Grazie per aver valutato %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Per aprire la localizzazione file, deve essere prima salvato. </target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
@@ -370,6 +379,7 @@
       </trans-unit>
       <trans-unit id="You have successfully activated %@.">
         <source>You have successfully activated %@.</source>
+        <target>Hai attivato con successo %@.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
@@ -383,6 +393,11 @@
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>La tua iscrizione è scaduta.
+
+Il programma lavora in modalità non-attiva.
+
+Ora puoi prolungare o aggiornare l’iscrizione con uno sconto. </target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
@@ -390,6 +405,10 @@ Now you can prolong or upgrade your subscription with a discount.</source>
 (%d days left).
 
 We have a special offer for you.</source>
+        <target>La tua iscrizione sta per scadere 
+(%d giorni rimasti).
+
+Abbiamo un’offerta speciale per te </target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

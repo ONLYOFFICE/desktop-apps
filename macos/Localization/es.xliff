@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window">
         <source>%@ Reporter Window</source>
+        <target>%@ Ventana de Informe</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -113,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>No se puede abrir la carpeta de la ubicación del archivo.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -147,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
+        <target>Plantilla de documento</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -246,6 +249,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
+        <target>Archivo PDF/A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -280,6 +284,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
+        <target>Plantilla de presentación</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -314,6 +319,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
+        <target>Plantilla de hoja de cálculo</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
@@ -323,11 +329,12 @@
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Para abrir la ubicación del archivo este debe estar guardado.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
         <source>Unconfirmed</source>
-        <target>Si confirmar</target>
+        <target>Sin confirmar</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled">

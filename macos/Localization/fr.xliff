@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window">
         <source>%@ Reporter Window</source>
+        <target>Fenêtre de rapports %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -113,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>Impossible d'ouvrir le dossier de l'emplacement du fichier.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -147,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
+        <target>Modèle de document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -246,6 +249,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
+        <target>Fichier PDF/A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text">
@@ -280,6 +284,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
+        <target>Modèle de présentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -314,6 +319,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
+        <target>Modèle de feuille de calcul</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
@@ -323,6 +329,7 @@
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Pour ouvrir l'emplacement du fichier, il faut l'enregistrer.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
