@@ -1290,7 +1290,7 @@ El período de prueba terminará en %d días, después de lo cual no podrá crea
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
         <source>Reporter Window</source>
-        <target>Ventana para reportar ONLYOFFICE</target>
+        <target>Ventana para reportar</target>
         <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>

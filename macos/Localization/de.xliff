@@ -1290,7 +1290,7 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
         <source>Reporter Window</source>
-        <target>ONLYOFFICE Berichtefenster</target>
+        <target>Berichtefenster</target>
         <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>

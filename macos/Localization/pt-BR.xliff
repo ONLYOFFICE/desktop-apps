@@ -1289,7 +1289,7 @@ O período de avaliação terminará em %d dias, após o qual você não poderá
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
         <source>Reporter Window</source>
-        <target>ONLYOFFICE Reporter Window</target>
+        <target>Reporter Window</target>
         <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>

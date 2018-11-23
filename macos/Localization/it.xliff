@@ -1290,7 +1290,7 @@ Il periodo di prova terminerà tra %d giorni, dopodiché non sarai in grado di c
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
         <source>Reporter Window</source>
-        <target>ONLYOFFICE Reporter Finestra</target>
+        <target>Reporter Finestra</target>
         <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>

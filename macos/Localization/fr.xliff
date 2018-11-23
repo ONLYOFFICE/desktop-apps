@@ -1290,7 +1290,7 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
         <source>Reporter Window</source>
-        <target>Fenêtre de rapports ONLYOFFICE</target>
+        <target>Fenêtre de rapports</target>
         <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>

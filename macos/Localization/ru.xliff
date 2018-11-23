@@ -379,8 +379,8 @@
       </trans-unit>
       <trans-unit id="You have successfully activated %@.">
         <source>You have successfully activated %@.</source>
-        <note>No comment provided by engineer.</note>
         <target>Вы успешно активировали %@.</target>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them.">
         <source>Your changes will be lost if you don’t save them.</source>
@@ -393,22 +393,24 @@
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
-        <note>No comment provided by engineer.</note>
-      <target>Закончился срок действия подписки.
+        <target>Закончился срок действия подписки.
 
 Программа работает в неактивированном режиме.
 
-Сейчас Вы можете продлить или обновить подписку со скидкой.</target></trans-unit>
+Сейчас Вы можете продлить или обновить подписку со скидкой.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
         <source>Your subscription is about to expire
 (%d days left).
 
 We have a special offer for you.</source>
-        <note>No comment provided by engineer.</note>
-      <target>Скоро истечет срок действия подписки
+        <target>Скоро истечет срок действия подписки
 (осталось дней: %d).
 
-Для Вас доступно специальное предложение.</target></trans-unit>
+Для Вас доступно специальное предложение.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" datatype="plaintext" target-language="ru">
