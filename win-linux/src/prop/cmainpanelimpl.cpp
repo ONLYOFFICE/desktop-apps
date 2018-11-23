@@ -49,7 +49,7 @@ CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale
 
 void CMainPanelImpl::refreshAboutVersion()
 {
-    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
+    QString _license = "Licensed under &lt;a class=" HTML_QUOTE "link" HTML_QUOTE " onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
                             " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
 
     QJsonObject _json_obj;
