@@ -170,9 +170,9 @@ window.DialogConnect = function(params) {
                 }
         });
 
-        $el.on('keyup', e => {
-            if (e.which == 27) _close();
-        });
+        // $el.on('keyup', e => {
+        //     if (e.which == 27) _close();
+        // });
     };
 
     function _disable_dialog(disable) {
