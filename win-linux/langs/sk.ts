@@ -6,15 +6,15 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
         <source>Presenter View</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim prezentácie</translation>
     </message>
 </context>
 <context>
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/asctabwidget.cpp" line="633"/>
-        <source>Document</source>
-        <translation>Dokument</translation>
+        <source>Opening...</source>
+        <translation>Otváranie ...</translation>
     </message>
 </context>
 <context>
@@ -31,7 +31,7 @@
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
-        <source>Certifacate password:</source>
+        <source>Certificate password:</source>
         <translation>Heslo certifikátu:</translation>
     </message>
     <message>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
-        <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
+        <source>Wrong certificate password.&lt;br&gt;Please enter once again</source>
         <translation>Nesprávne heslo certifikátu.&lt;br&gt;Zadajte znova</translation>
     </message>
     <message>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
         <source>Document template (*.dotx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablóna dokumentu (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="59"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="69"/>
         <source>Presentation template (*.potx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablóna prezentácie (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="70"/>
@@ -173,7 +173,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="74"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablóna zošitu (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="75"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="80"/>
         <source>PDFA File (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDFA Súbor (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="81"/>
@@ -237,7 +237,7 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="184"/>
-        <source>Excel Workbook</source>
+        <source>Excel Spreadsheet</source>
         <translation>Excel Zošit</translation>
     </message>
     <message>
@@ -299,13 +299,8 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="153"/>
-        <source>FILE</source>
-        <translation>SÚBOR</translation>
-    </message>
-    <message>
         <location filename="../src/cmainpanel.cpp" line="1398"/>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <source>%1 has been modified.&lt;br&gt;Do you want to save the changes?</source>
         <translation>%1 bol upravený.&lt;br&gt;Chcete zmeny zachovať?</translation>
     </message>
     <message>
@@ -315,6 +310,11 @@
         <location filename="../src/cmainpanel.cpp" line="982"/>
         <source>Yes</source>
         <translation>Áno</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="153"/>
+        <source>START</source>
+        <translation>SÚBOR</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="511"/>
@@ -334,38 +334,38 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="684"/>
         <location filename="../src/cmainpanel.cpp" line="725"/>
-        <source>File format not supported.</source>
+        <source>File format is not supported</source>
         <translation>Formát súboru nie je podporovaný.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="709"/>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <source>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</source>
         <translation>%1 neexistuje.&lt;br&gt;Odstrániť súbor zo zoznamu?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="800"/>
-        <source>Document must be saved firstly.</source>
+        <source>The document must be saved first.</source>
         <translation>Dokument musí byť uložený ako prvý.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="983"/>
         <source>%1 must be built. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 musí byť vytvorené. Pokračovať?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1228"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <source>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</source>
         <translation>Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1364"/>
-        <source>Sign Up</source>
-        <translation>Zaregistrovať</translation>
+        <source>Create cloud office</source>
+        <translation>Vytvoriť kancelárie cloud</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="738"/>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1089"/>
-        <source>Print Document</source>
+        <source>Print document</source>
         <translation>Vytlačiť dokument</translation>
     </message>
 </context>
@@ -397,12 +397,12 @@
     <name>CPrintProgress</name>
     <message>
         <location filename="../src/cprintprogress.cpp" line="105"/>
-        <source>Document is printing: page %1 of %2</source>
+        <source>Printing document: page %1 of %2</source>
         <translation>Tlačí sa dokument: strana %1 z %2</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="107"/>
-        <source>Document is preparing</source>
+        <source>Preparing document</source>
         <translation>Dokument sa pripravuje</translation>
     </message>
     <message>
@@ -413,7 +413,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="123"/>
         <source>Printing...</source>
-        <translation>Tlačí sa ...</translation>
+        <translation>Tlačí sa...</translation>
     </message>
 </context>
 <context>

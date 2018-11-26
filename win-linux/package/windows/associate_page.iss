@@ -30,10 +30,11 @@ pt_BR.AssociateDescription =Associe tipos de arquivos de documento office com {#
 cs.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
 sk.AssociateDescription =Priradiť typy súborov kancelárskych dokumentov {#ASSC_APP_NAME}
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
-de.AssociateDescription =Verknüpfung von Office-Dokumenten mit {#ASSC_APP_NAME}
-fr.AssociateDescription =Associer les fichiers office avec {#ASSC_APP_NAME}
-es.AssociateDescription =Asociar tipos de archivos de documentos de oficina con {#ASSC_APP_NAME}
-it_IT.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
+de.AssociateDescription =Office-Dokument-Dateitypen {#ASSC_APP_NAME} zuordnen
+fr.AssociateDescription =Associer les types de fichiers de documents de bureau avec {#ASSC_APP_NAME}
+es.AssociateDescription =Asociar los tipos de archivo de documentos office con {#ASSC_APP_NAME}
+it_IT.AssociateDescription =Associa tipi di file di documenti office con {#ASSC_APP_NAME}
+pl.AssociateDescription =Skojarz rodzaje plików dokumentów biurowych z {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 pt_BR.AssociateCaption =Associações de arquivos
@@ -44,6 +45,7 @@ de.AssociateCaption =Dateiassoziationen
 fr.AssociateCaption =Associations de fichiers
 es.AssociateCaption =Asociaciones de archivos
 it_IT.AssociateCaption =Associazioni dei file
+pl.AssociateCaption =Skojarzenia Plików
 
 en.AssociateDont =Do not associate
 pt_BR.AssociateDont =Não associar
@@ -54,6 +56,7 @@ de.AssociateDont =Nicht assoziieren
 fr.AssociateDont =Ne pas associer
 es.AssociateDont =No asociar
 it_IT.AssociateDont =Non associare
+pl.AssociateDont =Nie kojarz
 
 en.AssociateAll =Associate all
 pt_BR.AssociateAll =Associar todos
@@ -64,6 +67,7 @@ de.AssociateAll =Alle assoziieren
 fr.AssociateAll =Associer tous
 es.AssociateAll =Asociar todo
 it_IT.AssociateAll =Associare tutto
+pl.AssociateAll =Skojarz wszystkie
 
 en.AssociateSel =Associate selected
 pt_BR.AssociateSel =Associar selecionados
@@ -74,6 +78,7 @@ de.AssociateSel =Ausgewählte assoziieren
 fr.AssociateSel =Associer sélectionnés
 es.AssociateSel =Asociar seleccionado
 it_IT.AssociateSel =Associare selezione
+pl.AssociateSel =Skojarz wybrane
 
 en.AssociateAudio =File types
 pt_BR.AssociateAudio =Tipos de arquivo
@@ -84,6 +89,7 @@ de.AssociateAudio =Dateitypen
 fr.AssociateAudio =Types de fichiers
 es.AssociateAudio =Tipos de archivos
 it_IT.AssociateAudio =Tipi di file
+pl.AssociateAudio =Rodzaje plików
 
 en.extMSWord =Microsoft Word Document
 pt_BR.extMSWord =Documento Microsoft Word
@@ -94,6 +100,7 @@ de.extMSWord =Microsoft Word Dokument
 fr.extMSWord =Document Microsoft Word
 es.extMSWord =Documento de Microsoft Word
 it_IT.extMSWord =Documento di Microsoft Word
+pl.extMSWord =Dokument Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
 pt_BR.extMSExcel =Planilha Microsoft Excel
@@ -104,6 +111,7 @@ de.extMSExcel =Microsoft Excel Arbeitsmappe
 fr.extMSExcel =Classeur Microsoft Excel
 es.extMSExcel =Libro de Microsoft Excel
 it_IT.extMSExcel =Libro di Microsoft Excel
+pl.extMSExcel =Skoroszyt Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 pt_BR.extMSPresentation =Apresentação Microsoft PowerPoint
@@ -114,6 +122,7 @@ de.extMSPresentation =Microsoft PowerPoint Präsentation
 fr.extMSPresentation =Présentation Microsoft PowerPoint
 es.extMSPresentation =Presentación de Microsoft PowerPoint
 it_IT.extMSPresentation =Presentazione di Microsoft PowerPoint
+pl.extMSPresentation =Prezentacja Microsoft PowerPoint
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 pt_BR.extMSSlideshow =Apresentações do PowerPoint da Microsoft
@@ -124,6 +133,7 @@ de.extMSSlideshow =Microsoft PowerPoint Slideshow
 fr.extMSSlideshow =Diaporama Microsoft PowerPoint
 es.extMSSlideshow =Presentación de Microsoft PowerPoint
 it_IT.extMSSlideshow =Microsoft PowerPoint Slideshow
+pl.extMSSlideshow =Pokaz Slajdów Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
 pt_BR.extODT =Documento de Texto do OpenDocument
@@ -134,6 +144,7 @@ de.extODT =OpenDocument Textdokument
 fr.extODT =Document OpenDocument Texte
 es.extODT =Documento de texto de OpenDocument
 it_IT.extODT =Documento di testo di OpenDocument
+pl.extODT =Dokument Tekstowy OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 pt_BR.extODS =Planilha do OpenDocument
@@ -144,6 +155,7 @@ de.extODS =OpenDocument Tabelle
 fr.extODS =Classeur OpenDocument
 es.extODS =Hoja de cálculo de OpenDocument
 it_IT.extODS =OpenDocument Spreadsheet
+pl.extODS =Arkusz Kalkulacyjny OpenDocument
 
 en.extODP =OpenDocument Presentation
 pt_BR.extODP =Apresentação do OpenDocument
@@ -154,16 +166,18 @@ de.extODP =OpenDocument  Präsentation
 fr.extODP =Présentation OpenDocument
 es.extODP =Presentación de OpenDocument
 it_IT.extODP =Presentazione di OpenDocument
+pl.extODP =Prezentacja OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
-cs.defprogAppDescription=Free desktop office suite for document editing and collaboration
-sk.defprogAppDescription=Free desktop office suite for document editing and collaboration
+cs.defprogAppDescription=Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci
+sk.defprogAppDescription=Bezplatná kancelárska sada pre stolné počítače na úpravu dokumentov a spoluprácu
 ru.defprogAppDescription=Бесплатный десктопный офисный пакет для редактирования документов и совместной работы
 de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
 fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
+pl.defprogAppDescription=Bezpłatny pakiet biurowy do edycji dokumentów i kolaboracji
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 pt_BR.warnWin10FileAssociationDesc=Para associar os arquivos com o aplicativo, abra a seguinte janela após a instalação estar completa:
@@ -174,6 +188,7 @@ de.warnWin10FileAssociationDesc=Nachdem die Installation abgeschlossen ist, öff
 fr.warnWin10FileAssociationDesc=Pour associer les fichiers avec le logiciel après son installation, ouvre la fenêtre suivante:
 es.warnWin10FileAssociationDesc=Para asociar los archivos con la aplicación, abra la siguiente ventana una vez finalizada la instalación:
 it_IT.warnWin10FileAssociationDesc=Per associare i file all’applicazione, apri la seguente finestra al termine dell’installazione:
+pl.warnWin10FileAssociationDesc=Aby skojarzyć pliki z aplikacją, otwórz następujące okno po zakończeniu instalacji:
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 pt_BR.warnWin10FileAssociationPath=Configurações > Aplicativos > Aplicativos padrão
@@ -184,16 +199,18 @@ de.warnWin10FileAssociationPath=Einstellungen > Apps > Standard-Apps
 fr.warnWin10FileAssociationPath=Paramètres > Apps > Logiciels par défaut
 es.warnWin10FileAssociationPath=Ajustes > Aplicaciones > Aplicaciones predeterminadas
 it_IT.warnWin10FileAssociationPath=Impostazioni  > Apps > App predefinite
+pl.warnWin10FileAssociationPath=Ustawienia > Aplikacje > Domyślne aplikacje
 
 en.runOpenDefaultApps=Open Default apps
-pt_BR.runOpenDefaultApps=Open Default apps
-cs.runOpenDefaultApps=Open Default apps
-sk.runOpenDefaultApps=Open Default apps
+pt_BR.runOpenDefaultApps=Abrir apps predefinidos
+cs.runOpenDefaultApps=Otevřít výchozí aplikaci
+sk.runOpenDefaultApps=Otvorte predvolené aplikácie
 ru.runOpenDefaultApps=Открыть Приложения по умолчанию
-de.runOpenDefaultApps=Open Default apps
-fr.runOpenDefaultApps=Open Default apps
-es.runOpenDefaultApps=Open Default apps
-it_IT.runOpenDefaultApps=Open Default apps
+de.runOpenDefaultApps=Standardanwendungen öffnen
+fr.runOpenDefaultApps=Ouvrir les applications par défaut
+es.runOpenDefaultApps=Abrir programas predeterminados
+it_IT.runOpenDefaultApps=Apri apps di Default
+pl.runOpenDefaultApps=Otwórz Domyślne aplikacje
 
 [Run]
 Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \

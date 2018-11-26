@@ -6,14 +6,14 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
         <source>Presenter View</source>
-        <translation type="unfinished"></translation>
+        <translation>Referentenansicht</translation>
     </message>
 </context>
 <context>
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/asctabwidget.cpp" line="633"/>
-        <source>Document</source>
+        <source>Opening...</source>
         <translation>Öffnung...</translation>
     </message>
 </context>
@@ -31,7 +31,7 @@
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
-        <source>Certifacate password:</source>
+        <source>Certificate password:</source>
         <translation>Kennwort für das Zertifikat</translation>
     </message>
     <message>
@@ -61,7 +61,7 @@
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
-        <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
+        <source>Wrong certificate password.&lt;br&gt;Please enter once again</source>
         <translation>Falsches Zertifikats-Kennwort.&lt;br&gt;Bitte noch einmal eingeben</translation>
     </message>
     <message>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
         <source>Document template (*.dotx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentvorlage (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="59"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="69"/>
         <source>Presentation template (*.potx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Präsentationsvorlage (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="70"/>
@@ -173,7 +173,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="74"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellenvorlage (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="75"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="80"/>
         <source>PDFA File (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDFA Datei (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="81"/>
@@ -237,7 +237,7 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="184"/>
-        <source>Excel Workbook</source>
+        <source>Excel Spreadsheet</source>
         <translation>Excel Arbeitsmappe</translation>
     </message>
     <message>
@@ -286,7 +286,7 @@
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="264"/>
@@ -299,13 +299,8 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="153"/>
-        <source>FILE</source>
-        <translation>START</translation>
-    </message>
-    <message>
         <location filename="../src/cmainpanel.cpp" line="1398"/>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <source>%1 has been modified.&lt;br&gt;Do you want to save the changes?</source>
         <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
     </message>
     <message>
@@ -315,6 +310,11 @@
         <location filename="../src/cmainpanel.cpp" line="982"/>
         <source>Yes</source>
         <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="153"/>
+        <source>START</source>
+        <translation>START</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="511"/>
@@ -334,38 +334,38 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="684"/>
         <location filename="../src/cmainpanel.cpp" line="725"/>
-        <source>File format not supported.</source>
+        <source>File format is not supported</source>
         <translation>Dateiformat wird nicht unterstützt.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="709"/>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <source>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</source>
         <translation>%1 ist nicht verfügbar. Es wurde vermutlich umbenannt, gelöscht oder verschoben.&lt;br&gt;Wollen Sie die Datei aus der Liste entfernen?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="800"/>
-        <source>Document must be saved firstly.</source>
+        <source>The document must be saved first.</source>
         <translation>Das Dokument muss zuerst gespeichert werden.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="983"/>
         <source>%1 must be built. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 must erstellt werden. Fortsetzen?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1228"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <source>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</source>
         <translation>Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1364"/>
-        <source>Sign Up</source>
-        <translation>Portal erstellen</translation>
+        <source>Create cloud office</source>
+        <translation>Cloud-Büro erstellen</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="738"/>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1089"/>
-        <source>Print Document</source>
+        <source>Print document</source>
         <translation>Dokument drucken</translation>
     </message>
 </context>
@@ -397,12 +397,12 @@
     <name>CPrintProgress</name>
     <message>
         <location filename="../src/cprintprogress.cpp" line="105"/>
-        <source>Document is printing: page %1 of %2</source>
+        <source>Printing document: page %1 of %2</source>
         <translation>Der Druck des Dokuments: Seite %1 von %2</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="107"/>
-        <source>Document is preparing</source>
+        <source>Preparing document</source>
         <translation>Vorbereitung des Dokuments</translation>
     </message>
     <message>
@@ -413,7 +413,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="123"/>
         <source>Printing...</source>
-        <translation>Drucken...</translation>
+        <translation>Drucken…</translation>
     </message>
 </context>
 <context>

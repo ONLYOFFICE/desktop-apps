@@ -6,15 +6,15 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
         <source>Presenter View</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/asctabwidget.cpp" line="633"/>
-        <source>Document</source>
-        <translation>Opening...</translation>
+        <source>Opening...</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -22,62 +22,62 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
-        <source>Certifacate password:</source>
-        <translation>Certificate password:</translation>
+        <source>Certificate password:</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
         <source>Enter certificate path</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
         <source>Certificate is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
         <source>Enter certificate password</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
-        <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Wrong certificate password.&lt;br&gt;Please enter once again</translation>
+        <source>Wrong certificate password.&lt;br&gt;Please enter once again</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
         <source>Enter valid private key</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="251"/>
         <source>Key is not supported</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="256"/>
         <source>Enter key password</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -237,8 +237,8 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="184"/>
-        <source>Excel Workbook</source>
-        <translation>Excel Spreadsheet</translation>
+        <source>Excel Spreadsheet</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="187"/>
@@ -300,8 +300,8 @@
     <name>CMainPanel</name>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1398"/>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
+        <source>%1 has been modified.&lt;br&gt;Do you want to save the changes?</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="511"/>
@@ -313,8 +313,8 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="153"/>
-        <source>FILE</source>
-        <translation>START</translation>
+        <source>START</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="511"/>
@@ -334,23 +334,23 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="684"/>
         <location filename="../src/cmainpanel.cpp" line="725"/>
-        <source>File format not supported.</source>
-        <translation>File format is not supported</translation>
+        <source>File format is not supported</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="709"/>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
+        <source>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="800"/>
-        <source>Document must be saved firstly.</source>
-        <translation>The document must be saved first.</translation>
+        <source>The document must be saved first.</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="983"/>
         <source>%1 must be built. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
@@ -359,13 +359,13 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1228"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</translation>
+        <source>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1364"/>
-        <source>Sign Up</source>
-        <translation>Create portal</translation>
+        <source>Create cloud office</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="738"/>
@@ -385,25 +385,25 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="950"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1089"/>
-        <source>Print Document</source>
-        <translation>Print document</translation>
+        <source>Print document</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>CPrintProgress</name>
     <message>
         <location filename="../src/cprintprogress.cpp" line="105"/>
-        <source>Document is printing: page %1 of %2</source>
-        <translation>Printing document: page %1 of %2</translation>
+        <source>Printing document: page %1 of %2</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="107"/>
-        <source>Document is preparing</source>
-        <translation>Preparing document</translation>
+        <source>Preparing document</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="113"/>
