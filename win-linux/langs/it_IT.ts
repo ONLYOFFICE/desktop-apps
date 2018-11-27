@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
         <source>Presenter View</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizzazione del presenter</translation>
     </message>
 </context>
 <context>
@@ -62,7 +62,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Password del certificato errata. &lt;br&gt; Inserire nuovamente</translation>
+        <translation>Password del certificato errata.&lt;br&gt;Inserire nuovamente</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -103,12 +103,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
         <source>Document template (*.dotx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello documento (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="59"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Documento DOC</translation>
+        <translation>Documento DOC (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="60"/>
@@ -143,47 +143,47 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="67"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Documento PPTX (*.pptx)</translation>
+        <translation>File PPTX (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="68"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Documento PPT (*.ppt)</translation>
+        <translation>File PPT (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="69"/>
         <source>Presentation template (*.potx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello Presentazione (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="70"/>
         <source>ODP File (*.odp)</source>
-        <translation>Documento ODP (*.odp)</translation>
+        <translation>File ODP (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="71"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Documento PPSX (*.ppsx)</translation>
+        <translation>File PPSX (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="73"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Documento XLSX (*.xlsx)</translation>
+        <translation>File XLSX (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="74"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello Foglio di calcolo (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="75"/>
         <source>XLS File (*.xls)</source>
-        <translation>Documento XLS (*.xls)</translation>
+        <translation>File XLS (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="76"/>
         <source>ODS File (*.ods)</source>
-        <translation>Documento ODS (*.ods)</translation>
+        <translation>File ODS (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="77"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="80"/>
         <source>PDFA File (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>File PDFA (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="81"/>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1398"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 È stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
+        <translation>%1 è stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="511"/>
@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="983"/>
         <source>%1 must be built. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 deve essere costruito. Continuare?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1228"/>
@@ -365,7 +365,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1364"/>
         <source>Sign Up</source>
-        <translation>Crea portale</translation>
+        <translation>Crea cloud office</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="738"/>

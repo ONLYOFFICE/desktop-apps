@@ -14,7 +14,6 @@
     <message>
         <location filename="../src/asctabwidget.cpp" line="633"/>
         <source>Document</source>
-        <translatorcomment>надпись на табе при открытии файла с портала. потом приходит имя файла</translatorcomment>
         <translation>Открытие...</translation>
     </message>
 </context>
@@ -287,7 +286,7 @@
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="264"/>
@@ -330,13 +329,13 @@
         <location filename="../src/cmainpanel.cpp" line="982"/>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Стоп</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="684"/>
         <location filename="../src/cmainpanel.cpp" line="725"/>
         <source>File format not supported.</source>
-        <translation>Формат файла не поддерживается.</translation>
+        <translation>Формат файла не поддерживается</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="709"/>
@@ -356,7 +355,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1226"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1228"/>
@@ -366,7 +365,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1364"/>
         <source>Sign Up</source>
-        <translation>Создать портал</translation>
+        <translation>Создать облачный офис</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="738"/>

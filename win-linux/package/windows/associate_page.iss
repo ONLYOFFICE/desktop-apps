@@ -30,10 +30,10 @@ pt_BR.AssociateDescription =Associe tipos de arquivos de documento office com {#
 cs.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
 sk.AssociateDescription =Priradiť typy súborov kancelárskych dokumentov {#ASSC_APP_NAME}
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
-de.AssociateDescription =Verknüpfung von Office-Dokumenten mit {#ASSC_APP_NAME}
-fr.AssociateDescription =Associer les fichiers office avec {#ASSC_APP_NAME}
-es.AssociateDescription =Asociar tipos de archivos de documentos de oficina con {#ASSC_APP_NAME}
-it_IT.AssociateDescription =Associare i tipi di file video/audio ad {#ASSC_APP_NAME}
+de.AssociateDescription =Office-Dokument-Dateitypen {#ASSC_APP_NAME} zuordnen
+fr.AssociateDescription =Associer les types de fichiers de documents de bureau avec {#ASSC_APP_NAME}
+es.AssociateDescription =Asociar los tipos de archivo de documentos office con {#ASSC_APP_NAME}
+it_IT.AssociateDescription =Associa tipi di file di documenti office con {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 pt_BR.AssociateCaption =Associações de arquivos
@@ -157,8 +157,8 @@ it_IT.extODP =Presentazione di OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
-cs.defprogAppDescription=Free desktop office suite for document editing and collaboration
-sk.defprogAppDescription=Free desktop office suite for document editing and collaboration
+cs.defprogAppDescription=Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci
+sk.defprogAppDescription=Bezplatná kancelárska sada pre stolné počítače na úpravu dokumentov a spoluprácu
 ru.defprogAppDescription=Бесплатный десктопный офисный пакет для редактирования документов и совместной работы
 de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
 fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration
@@ -186,14 +186,14 @@ es.warnWin10FileAssociationPath=Ajustes > Aplicaciones > Aplicaciones predetermi
 it_IT.warnWin10FileAssociationPath=Impostazioni  > Apps > App predefinite
 
 en.runOpenDefaultApps=Open Default apps
-pt_BR.runOpenDefaultApps=Open Default apps
-cs.runOpenDefaultApps=Open Default apps
-sk.runOpenDefaultApps=Open Default apps
+pt_BR.runOpenDefaultApps=Abrir apps predefinidos
+cs.runOpenDefaultApps=Otevřít výchozí aplikaci
+sk.runOpenDefaultApps=Otvorte predvolené aplikácie
 ru.runOpenDefaultApps=Открыть Приложения по умолчанию
-de.runOpenDefaultApps=Open Default apps
-fr.runOpenDefaultApps=Open Default apps
-es.runOpenDefaultApps=Open Default apps
-it_IT.runOpenDefaultApps=Open Default apps
+de.runOpenDefaultApps=Standardanwendungen öffnen
+fr.runOpenDefaultApps=Ouvrir les applications par défaut
+es.runOpenDefaultApps=Abrir programas predeterminados
+it_IT.runOpenDefaultApps=Apri apps di Default
 
 [Run]
 Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \

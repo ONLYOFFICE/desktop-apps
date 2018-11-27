@@ -105,7 +105,7 @@ l10n.en = {
     ,settResetUserName: 'Reset to default'
     ,settOpenMode: 'Open document in preview mode'
     ,setBtnApply: 'Apply'
-    ,settLanguage: 'Language'
+    ,settLanguage: 'Interface language'
     ,settAfterRestart: 'Option will be applied after the app restart'
     ,settShowEncryptOpts: 'End-to-end encryption ON/OFF'
 }
@@ -140,7 +140,7 @@ l10n.cs = {
     linkResend: 'Zadejte kód znovu',
     linkChangePhone: 'Změňte telefonní číslo',
     loginTitleStart: 'Připojit se k kanceláři cloud',
-    loginTitleConnectTo: 'Login to $1',
+    loginTitleConnectTo: 'Přihlášení do $1',
     loginTitleAssignPhone: 'Zadejte číslo mobilního telefonu',
     loginTitleApplyCode: 'Potvrďte telefonní číslo',
     errLogin: 'Špatné email nebo heslo',
@@ -149,6 +149,7 @@ l10n.cs = {
     errLoginServer: 'Nesprávná odpověď serveru během přihlášení',
     errLoginAuth: 'Chyba při dotazu na informace o uživateli',
     errLoginPass: 'Zkontrolujte heslo',
+    errLoginWrongPhone: 'Chybný formát telefonního čísla',
     pshPortal: 'Adresa URL kanceláře cloud',
     pshEmail: 'email',
     pshPass: 'heslo',
@@ -183,7 +184,7 @@ l10n.cs = {
     ,settResetUserName: 'Obnovit do základního nastavení'
     ,settOpenMode: 'Otevřete dokument v režimu náhledu'
     ,setBtnApply: 'Uložit změny'
-    ,settLanguage: 'Jazyk'
+    ,settLanguage: 'Jazyk rozhraní'
     ,settAfterRestart: 'Možnost bude k dispozici až po restartu aplikace'
     ,settShowEncryptOpts: 'Šifrování koncového bodu zapnuto / vypnuto'
 }
@@ -227,6 +228,7 @@ l10n.sk = {
     errLoginServer: 'Nesprávna odpoveď servera počas prihlasovania',
     errLoginAuth: 'Chyba v informačnom dopyte používateľa',
     errLoginPass: 'Skontrolovať heslo',
+    errLoginWrongPhone: 'Chybný formát telefónneho čísla',
     pshPortal: 'Adresa URL kancelárie cloud',
     pshEmail: 'e-mail',
     pshPass: 'heslo',
@@ -242,7 +244,7 @@ l10n.sk = {
     actOpenLocal: 'Otvoriť lokálny súbor',
     actConnectTo: 'Pripojte cloud',
     actActivate: 'Aktivovať',
-    actAbout: 'O OnlyOffice',
+    actAbout: 'O ONLYOFFICE',
     actSettings: 'Nastavenia',
     licKeyHolder: 'vstupný aktivačný kľúč',
     btnActivate: 'Aktivovať',
@@ -261,7 +263,7 @@ l10n.sk = {
     ,settResetUserName: 'Obnoviť pôvodné nastavenia'
     ,settOpenMode: 'Otvorte dokument v režime ukážky'
     ,setBtnApply: 'Použiť'
-    ,settLanguage: 'Jazyk'
+    ,settLanguage: 'Jazyk rozhrania'
     ,settAfterRestart: 'Prejaví sa po reštarte aplikácie'
     ,settShowEncryptOpts: 'End-to-end šifrovanie ON/OFF'
 }
@@ -340,7 +342,7 @@ l10n.ru = {
     ,settResetUserName: 'Восстановить системное'
     ,settOpenMode: 'Открывать документы в режиме просмотра'
     ,setBtnApply: 'Применить'
-    ,settLanguage: 'Язык'
+    ,settLanguage: 'Язык интерфейса'
     ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
     ,settShowEncryptOpts: 'Включить/выключить сквозное шифрование'
 }
@@ -364,7 +366,7 @@ l10n.de = {
     listRecentFileTitle:'Neueste Dateien',
     listRecentDirTitle:'Neueste Ordner',
     menuFileOpen: 'Öffnen',
-    menuFileExplore: 'In dem Odner anzeigen',
+    menuFileExplore: 'In dem Ordner anzeigen',
     menuRemoveModel: 'Aus Liste entfernen',
     menuClear: 'Löschen',
     menuLogout: 'Abmelden',
@@ -384,6 +386,7 @@ l10n.de = {
     errLoginServer: 'Falsche Serversantwort während der Anmeldung',
     errLoginAuth: 'Fehler auf Benutzerinformation Anfrage',
     errLoginPass: 'Überprüfen Sie das Passwort',
+    errLoginWrongPhone: 'Falsches Telefonnummernformat',
     pshPortal: 'Cloud-Büro-URL',
     pshEmail: 'E-Mail',
     pshPass: 'Passwort',
@@ -418,7 +421,7 @@ l10n.de = {
     ,settResetUserName: 'Auf Standard zurücksetzen'
     ,settOpenMode: 'Öffnen Sie das Dokument im Vorschaumodus'
     ,setBtnApply: 'Anwenden'
-    ,settLanguage: 'Sprache'
+    ,settLanguage: 'Sprache der Benutzeroberfläche'
     ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
     ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung Ein/Aus'
 };
@@ -482,7 +485,7 @@ l10n.it_IT = {
     actSettings: 'Impostazioni',
     licKeyHolder: 'digitare activation key',
     btnActivate: 'Attiva',
-    licGetLicense: 'Get license now',
+    licGetLicense: 'Ottieni la licenza ora',
     licPanelTitle: 'Inserisci product key',
     licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
     ,checkUpdates: 'Controlla gli aggiornamenti'
@@ -497,14 +500,14 @@ l10n.it_IT = {
     ,settResetUserName: 'Ripristina valori predefiniti'
     ,settOpenMode: 'Apri il documento in modalità Anteprima'
     ,setBtnApply: 'Applica'
-    ,settLanguage: 'Lingua'
+    ,settLanguage: 'Linguaggio di interfaccia'
     ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
     ,settShowEncryptOpts: 'Crittografia end-to-end ON / OFF'
 };
 
 l10n.fr = {
-    welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors!',
-    welDescr: 'Travaillez avec vos documents  en mode hors-connexion ou connectez la suite à votre Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors !',
+    welDescr: 'Travaillez avec vos documents  en mode hors-connexion ou connectez la suite à votre Cloud : ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Se connecter',
     textHavePortal: 'Utilisez-vous déjà cloud ?',
     btnCreatePortal: 'Créer ONLYOFFICE cloud',
@@ -514,7 +517,7 @@ l10n.fr = {
     btnNext: 'Suivant',
     portalEmptyTitle: 'Connectez  à votre Office dans les nuages',
     portalEmptyDescr: 'Stockez vos documents dans le cloud et  accédez-y partout, à tout moment. Сollaborez  à vos documents et partagez-les. Chattez  dans les document, ajoutez des commentaires ou partagez les document en mode révision.',
-    portalEmptyAdv1: 'Vous n\'avez pas encore de compte Cloud? Accéder en ligne avec ONLYOFFICE et essayez les capacités de gestion collaborative gratuitement.',
+    portalEmptyAdv1: 'Vous n\'avez pas encore de compte Cloud ? Accéder en ligne avec ONLYOFFICE et essayez les capacités de gestion collaborative gratuitement.',
     portalListTitle: 'Cloud connectés',
     textNoFiles: 'Il n\'y a pas de fichiers',
     listRecoveryTitle:'Restaurer fichiers',
@@ -541,6 +544,7 @@ l10n.fr = {
     errLoginServer: 'Réponse du serveur incorrect lors de la connexion',
     errLoginAuth: 'Erreur lors de la requête d\'informations sur l\'utilisateur',
     errLoginPass: 'Vérifier le mot de passe',
+    errLoginWrongPhone: 'Format de numéro de téléphone non valide',
     pshPortal: 'URL du bureau cloud',
     pshEmail: 'e-mail',
     pshPass: 'mot de passe',
@@ -575,7 +579,7 @@ l10n.fr = {
     ,settResetUserName: 'Rétablir paramètres par défaut'
     ,settOpenMode: 'Afficher le document en mode Aperçu'
     ,setBtnApply: 'Appliquer'
-    ,settLanguage: 'Langue'
+    ,settLanguage: 'Langue de l\'interface'
     ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
     ,settShowEncryptOpts: 'Chiffrement de bout en bout Activé/Désactivé'
 };
@@ -619,6 +623,7 @@ l10n.es = {
     errLoginServer: 'Respuesta del servidor incorrecta durante el inicio de sesión',
     errLoginAuth: 'Error en la consulta de información de usuario',
     errLoginPass: 'Verificar la contraseña',
+    errLoginWrongPhone: 'Formato de número de teléfono incorrecto',
     pshPortal: 'URL de oficina en la nube',
     pshEmail: 'correo electrónico',
     pshPass: 'contraseña',
@@ -626,9 +631,9 @@ l10n.es = {
     pshCode: 'código del mensaje de texto',
     loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de nube ONLYOFFICE adicional. Introduzca su número de móvil para continuar el trabajo en el oficina en la nube. El número de móvil debe introducirse usando un formato internacional con el código de país.',
     loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',    
-    newDoc: 'Documento',
-    newXlsx: 'Libro de Excel',
-    newPptx: 'Presentación',
+    newDoc: 'DOCUMENTO',
+    newXlsx: 'LIBRO DE EXCEL',
+    newPptx: 'PRESENTACIÓN',
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
@@ -653,7 +658,7 @@ l10n.es = {
     ,settResetUserName: 'Reestablecer a valor predeterminado'
     ,settOpenMode: 'Abrir documento en modo de vista previa'
     ,setBtnApply: 'Aplicar'
-    ,settLanguage: 'Idioma'
+    ,settLanguage: 'Lenguaje de interfaz'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
     ,settShowEncryptOpts: 'Cifrado de extremo a extremo Activar/Desactivar'
 };
@@ -697,6 +702,7 @@ l10n.pt_BR = {
     errLoginServer: 'Resposta incorreta do servidor durante login',
     errLoginAuth: 'Erro na consulta de informações do usuário',
     errLoginPass: 'Verifique a senha',
+    errLoginWrongPhone: 'Formato de número de telefone errado',
     pshPortal: 'URL do escritório na nuvem',
     pshEmail: 'e-mail',
     pshPass: 'senha',
@@ -731,7 +737,7 @@ l10n.pt_BR = {
     ,settResetUserName: 'Voltar para predefinições'
     ,settOpenMode: 'Pré-visualização'
     ,setBtnApply: 'Aplicar'
-    ,settLanguage: 'Idioma'
+    ,settLanguage: 'Idioma de Interface'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
     ,settShowEncryptOpts: 'Criptografia de ponta a ponta LIGA/DESLIGA'
 }
