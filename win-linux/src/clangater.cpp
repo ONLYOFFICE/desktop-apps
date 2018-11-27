@@ -111,6 +111,7 @@ private:
         {"cs-CS", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
+        ,{"pl-PL", "Polski"}
     };
 };
 
