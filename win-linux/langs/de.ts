@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="482"/>
         <source>Presenter View</source>
         <translation>Referentenansicht</translation>
     </message>
@@ -299,96 +299,96 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="153"/>
+        <location filename="../src/cmainpanel.cpp" line="155"/>
         <source>FILE</source>
         <translation>START</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1398"/>
+        <location filename="../src/cmainpanel.cpp" line="1441"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="706"/>
-        <location filename="../src/cmainpanel.cpp" line="949"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="706"/>
-        <location filename="../src/cmainpanel.cpp" line="949"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
-        <location filename="../src/cmainpanel.cpp" line="1226"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="684"/>
-        <location filename="../src/cmainpanel.cpp" line="725"/>
+        <location filename="../src/cmainpanel.cpp" line="686"/>
+        <location filename="../src/cmainpanel.cpp" line="727"/>
         <source>File format not supported.</source>
         <translation>Dateiformat wird nicht unterstützt.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="709"/>
+        <location filename="../src/cmainpanel.cpp" line="711"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 ist nicht verfügbar. Es wurde vermutlich umbenannt, gelöscht oder verschoben.&lt;br&gt;Wollen Sie die Datei aus der Liste entfernen?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="800"/>
+        <location filename="../src/cmainpanel.cpp" line="802"/>
         <source>Document must be saved firstly.</source>
         <translation>Das Dokument muss zuerst gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="983"/>
+        <location filename="../src/cmainpanel.cpp" line="995"/>
         <source>%1 must be built. Continue?</source>
         <translation>%1 must erstellt werden. Fortsetzen?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1226"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1228"/>
+        <location filename="../src/cmainpanel.cpp" line="1268"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1364"/>
+        <location filename="../src/cmainpanel.cpp" line="1404"/>
         <source>Sign Up</source>
         <translation>Cloud-Büro erstellen</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="738"/>
+        <location filename="../src/cmainpanel.cpp" line="740"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="739"/>
+        <location filename="../src/cmainpanel.cpp" line="741"/>
         <source>Book%1.xlsx</source>
         <translation>Buch%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="740"/>
+        <location filename="../src/cmainpanel.cpp" line="742"/>
         <source>Presentation%1.pptx</source>
         <translation>Präsentation%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="950"/>
+        <location filename="../src/cmainpanel.cpp" line="956"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Das Dokument muss gespeichert werden, um fortzusetzen.&lt;br&gt;Möchten Sie das Dokument speichern?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1089"/>
+        <location filename="../src/cmainpanel.cpp" line="1129"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>

@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="463"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="482"/>
         <source>Presenter View</source>
         <translation>Mode présentateur</translation>
     </message>
@@ -299,96 +299,96 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="153"/>
+        <location filename="../src/cmainpanel.cpp" line="155"/>
         <source>FILE</source>
         <translation>DÉPART</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1398"/>
+        <location filename="../src/cmainpanel.cpp" line="1441"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="706"/>
-        <location filename="../src/cmainpanel.cpp" line="949"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="706"/>
-        <location filename="../src/cmainpanel.cpp" line="949"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="511"/>
-        <location filename="../src/cmainpanel.cpp" line="982"/>
-        <location filename="../src/cmainpanel.cpp" line="1226"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="684"/>
-        <location filename="../src/cmainpanel.cpp" line="725"/>
+        <location filename="../src/cmainpanel.cpp" line="686"/>
+        <location filename="../src/cmainpanel.cpp" line="727"/>
         <source>File format not supported.</source>
         <translation>Format de fichier non pris en charge</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="709"/>
+        <location filename="../src/cmainpanel.cpp" line="711"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="800"/>
+        <location filename="../src/cmainpanel.cpp" line="802"/>
         <source>Document must be saved firstly.</source>
         <translation>Le document doit d’abord être enregistré.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="983"/>
+        <location filename="../src/cmainpanel.cpp" line="995"/>
         <source>%1 must be built. Continue?</source>
         <translation>%1 doit être réalisé. Continuer ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1226"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1228"/>
+        <location filename="../src/cmainpanel.cpp" line="1268"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1364"/>
+        <location filename="../src/cmainpanel.cpp" line="1404"/>
         <source>Sign Up</source>
         <translation>Créer bureau de cloud</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="738"/>
+        <location filename="../src/cmainpanel.cpp" line="740"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="739"/>
+        <location filename="../src/cmainpanel.cpp" line="741"/>
         <source>Book%1.xlsx</source>
         <translation>Livre%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="740"/>
+        <location filename="../src/cmainpanel.cpp" line="742"/>
         <source>Presentation%1.pptx</source>
         <translation>Diaporama%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="950"/>
+        <location filename="../src/cmainpanel.cpp" line="956"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1089"/>
+        <location filename="../src/cmainpanel.cpp" line="1129"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>
