@@ -525,10 +525,11 @@ begin
     if CompareText(str, argsArray[0]) = 0 then
       RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
   
-    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT})'));
+    //RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT})'));
     RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'));
   end;
 
-  RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', 'DesktopEditors');
+  RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities');
+  RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', '{#ASCC_REG_REGISTERED_APP_NAME}');
   RegDeleteValue(HKEY_CLASSES_ROOT, 'Local Settings\Software\Microsoft\Windows\Shell\MuiCache', ExpandConstant('{app}\{#iconsExe}'));
 end;
