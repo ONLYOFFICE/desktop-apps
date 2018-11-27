@@ -48,6 +48,7 @@
 #include <QStorageInfo>
 
 #include "cascapplicationmanagerwrapper.h"
+#include "cdpichecker.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -324,13 +325,12 @@ unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (!pDpiCheckerBase)
         return 1;
 
-    QAscDpiChecker* pDpiChecker = (QAscDpiChecker*)pDpiCheckerBase;
+    CDpiChecker * pDpiChecker = (CDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
     int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
 
-    if (nRet >= 0)
-    {
+    if (nRet >= 0) {
         double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
 
         // пока только 1 или 2

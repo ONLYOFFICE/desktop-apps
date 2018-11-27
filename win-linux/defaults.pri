@@ -55,7 +55,8 @@ HEADERS += \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
-    $$PWD/src/ctabpanel.h
+    $$PWD/src/ctabpanel.h \
+    $$PWD/src/cdpichecker.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h

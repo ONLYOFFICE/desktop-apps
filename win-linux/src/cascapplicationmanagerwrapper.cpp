@@ -17,6 +17,7 @@
 #include "common/Types.h"
 #include "ctabundockevent.h"
 #include "clangater.h"
+#include "cdpichecker.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -766,5 +767,5 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
 
 CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
 {
-    return new QAscDpiChecker();
+    return new CDpiChecker();
 }
