@@ -1,24 +1,26 @@
-
+﻿
 [CustomMessages]
 en.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-cs.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-sk.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-ru.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-de.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-fr.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-es.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-it_IT.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-pt_BR.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
+cs.UninstallPageLabel=Stisknutím Odinstalovat pokračujte v odinstalování.
+sk.UninstallPageLabel=Stlačením Odinštalovať pokračujte v odinštalácii.
+ru.UninstallPageLabel=Нажмите кнопку «Удалить», чтобы приступить к удалению.
+de.UninstallPageLabel=Klicken Sie auf Deinstallieren, um mit der Deinstallation fortzufahren.
+fr.UninstallPageLabel=Appuyez sur Désinstaller pour effectuer la désinstallation.
+es.UninstallPageLabel=Presione Desinstalar para continuar con la desinstalación.
+it_IT.UninstallPageLabel=Scegliere Disinstalla per procedere con la disinstallazione.
+pt_BR.UninstallPageLabel=Clique em Desinstalar para prosseguir com a desinstalação.
+pl.UninstallPageLabel=Kliknij Odinstaluj, aby rozpocząć proces odinstalowywania.
 
-en.UninstallOptionClearData=Remove user settings and application cashed data
-cs.UninstallOptionClearData=Remove user settings and application cashed data
-sk.UninstallOptionClearData=Remove user settings and application cashed data
-ru.UninstallOptionClearData=Remove user settings and application cashed data
-de.UninstallOptionClearData=Remove user settings and application cashed data
-fr.UninstallOptionClearData=Remove user settings and application cashed data
-es.UninstallOptionClearData=Remove user settings and application cashed data
-it_IT.UninstallOptionClearData=Remove user settings and application cashed data
-pt_BR.UninstallOptionClearData=Remove user settings and application cashed data
+en.UninstallOptionClearData=Clear all user settings and application cached data
+cs.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
+sk.UninstallOptionClearData=Vymazať všetky používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti
+ru.UninstallOptionClearData=Очистить все пользовательские настройки и кэш приложения
+de.UninstallOptionClearData=Alle Benutzereinstellungen und zwischengespeicherten Daten der Anwendung löschen
+fr.UninstallOptionClearData=Effacer tous les paramètres utilisateur et les données en cache de l'application
+es.UninstallOptionClearData=Eliminar todos los ajustes de usuario y datos en caché de la aplicación
+it_IT.UninstallOptionClearData=Cancella le impostazioni utente e i dati memorizzati nella cache dell’applicazione
+pt_BR.UninstallOptionClearData=Limpar todas definições de usuário e dados salvos do programa
+pl.UninstallOptionClearData=Usuń wszystkie ustawienia użytkownika oraz dane pamięci podręcznej aplikacji
 
 
 [Code]

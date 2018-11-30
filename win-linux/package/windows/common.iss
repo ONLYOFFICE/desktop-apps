@@ -65,6 +65,7 @@ Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 
 
 [CustomMessages]
@@ -78,6 +79,7 @@ fr.Launch =Lancer %1
 es.Launch =Ejecutar %1
 it_IT.Launch =Eseguire %1
 pt_BR.Launch =Lance o %1
+pl.Launch =Uruchom %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
@@ -88,6 +90,7 @@ fr.CreateDesktopIcon =Créer l'icône du bureau pour %1
 es.CreateDesktopIcon =Crear %1 &icono en el escritorio
 it_IT.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
+pl.CreateDesktopIcon =Stwórz %1 oraz ikonę pulpitu
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
@@ -98,6 +101,7 @@ fr.InstallAdditionalComponents =L'installation des composants supplémentaires d
 es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
 it_IT.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
+pl.InstallAdditionalComponents =Instalacja dodatkowych elementów systemu. Proszę czekać...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 cs.AdditionalTasks =Úkoly:
@@ -108,6 +112,7 @@ fr.AdditionalTasks =Tâches:
 es.AdditionalTasks =Tareas:
 it_IT.AdditionalTasks =Attività:
 pt_BR.AdditionalTasks =Tarefas:
+pl.AdditionalTasks =Zadania:
 ;======================================================================================================
 en.Uninstall =Uninstall
 cs.Uninstall =Odinstalovat
@@ -118,6 +123,7 @@ fr.Uninstall =Desinstaller
 es.Uninstall =Desinstalar
 it_IT.Uninstall =Disinstalla
 pt_BR.Uninstall =Desinstalar
+pl.Uninstall =Odinstaluj
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
@@ -128,28 +134,32 @@ fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la v
 es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
 it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'applicazione %1-bit sulla versione %2-bit installata. Si prega di disinstallare prima la versione precedente o scaricare la versione corretta per l'installazione.
 pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
+pl.WarningWrongArchitecture =Próbujesz zainstalować %1-bitową wersję aplikacji na %2-bitowej wersji zainstalowanej. Odinstaluj najpierw poprzednią wersję lub pobierz odpowiednią wersję dla instalacji.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
-cs.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
-sk.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
+sk.UpdateAppRunning=Inštalátor zistil, že % 1 aktuálne prebieha.%n%nBude automaticky zatvorené. Ak chcete pokračovať, kliknite na tlačidlo OK.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
 it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
+pl.UpdateAppRunning=Konfiguracja wykryła , że %1 jest uruchomiona.%n%nZostanie ona automatycznie zamknięta. Kliknij OK, aby kontynuować lub Anuluj, aby wyjść.
 ;======================================================================================================
-en.WarningClearAppData =Do you want to clear user settings and application cashed data?
-cs.WarningClearAppData =Do you want to clear user settings and application cashed data?
-sk.WarningClearAppData =Do you want to clear user settings and application cashed data?
-ru.WarningClearAppData =Do you want to clear user settings and application cashed data?
-de.WarningClearAppData =Do you want to clear user settings and application cashed data?
-fr.WarningClearAppData =Do you want to clear user settings and application cashed data?
-es.WarningClearAppData =Do you want to clear user settings and application cashed data?
-it_IT.WarningClearAppData =Do you want to clear user settings and application cashed data?
-pt_BR.WarningClearAppData =Do you want to clear user settings and application cashed data?
+en.WarningClearAppData =Do you want to clear the user settings and application cached data?
+cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
+sk.WarningClearAppData =Chcete zrušiť používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti?
+ru.WarningClearAppData =Вы хотите очистить пользовательские настройки и кэш приложения?
+de.WarningClearAppData =Möchten Sie die Benutzereinstellungen und die zwischengespeicherten Daten der Anwendung löschen?
+fr.WarningClearAppData =Voulez-vous effacer les paramètres utilisateur et les données en cache de l'application ?
+es.WarningClearAppData =¿Desea eliminar los ajustes de usuario y datos en caché de la aplicación?
+it_IT.WarningClearAppData =Vuoi cancellare le impostazioni utente e i dati memorizzati nella cache dell’applicazione?
+pt_BR.WarningClearAppData =Você deseja limpar as definições de usuário e dados salvos do programa?
+pl.WarningClearAppData =Czy chcesz usunąć ustawienia użytkownika oraz dane pamięci podręcznej aplikacji?
 ;======================================================================================================
+
 
 ;en.AssociateDescription =Associate office document file types with %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
