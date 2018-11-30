@@ -20,6 +20,7 @@ public:
     virtual bool holdView(int id) const;
     virtual int editorsCount() const;
     virtual QString documentName(int vid);
+    virtual WId handle() const = 0;
 
 protected:
 };

@@ -791,3 +791,8 @@ bool CMainWindow::isMaximized() const
 
     return _is_maximized;
 }
+
+WId CMainWindow::handle() const
+{
+    return (WId)hWnd;
+}

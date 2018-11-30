@@ -56,6 +56,7 @@ public:
     QRect windowRect() const;
     bool isMaximized() const;
     void sendSertificate(int viewid);
+    WId handle() const override;
 
 protected:
     void closeEvent(QCloseEvent *);
