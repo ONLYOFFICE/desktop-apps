@@ -28,29 +28,24 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  NSString+Extensions.h
-//  SpreadsheetEditor
+//  NSDictionary+Extensions.h
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 03/12/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <string>
 #import <Foundation/Foundation.h>
-#import <vector>
 
-@interface NSString (Extensions)
+NS_ASSUME_NONNULL_BEGIN
 
-+ (id)stringWithstdwstring:(const std::wstring&)string;
-- (std::wstring)stdwstring;
-- (std::string)stdstring;
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query;
-- (NSString *)md5;
-- (NSDictionary *)dictionary;
-- (NSString *)encodeJson;
+@interface NSDictionary (Extensions)
+
+- (NSString *)jsonString;
 
 @end
+
+NS_ASSUME_NONNULL_END

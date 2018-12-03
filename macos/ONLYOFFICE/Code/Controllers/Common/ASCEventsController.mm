@@ -45,19 +45,13 @@
 #import "OfficeFileFormats.h"
 #import "ASCPresentationReporter.h"
 #import "ASCExternalController.h"
-
+#import "NSDictionary+Extensions.h"
 
 #pragma mark -
 #pragma mark ========================================================
 #pragma mark ASCEventListener
 #pragma mark ========================================================
 #pragma mark -
-
-id stringToJson(NSString *jsonString) {
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    return json;
-}
 
 class ASCEventListener: public NSEditorApi::CAscCefMenuEventListener {
     dispatch_queue_t eventListenerQueue;
@@ -168,7 +162,7 @@ public:
                         if (range.location == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameLogin
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:pData->get_Value()])];
+                                                                              userInfo:[[NSString stringWithstdwstring:pData->get_Value()] dictionary]];
                         }
                         break;
                     }
@@ -420,6 +414,45 @@ public:
                         break;
                     }
 
+                    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
+                        NSEditorApi::CAscSystemExternalPlugins * pData = dynamic_cast<NSEditorApi::CAscSystemExternalPlugins *>(pEvent->m_pData);
+
+                        if (pData) {
+                            for (const NSEditorApi::CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
+                                NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary:
+                                                              @{
+                                                                @"name": [NSString stringWithstdwstring:item.name],
+                                                                @"id": [NSString stringWithstdwstring:item.id],
+                                                                @"url": [NSString stringWithstdwstring:item.url]
+                                                                }];
+
+                                if (!item.nameLocale.empty()) {
+                                    NSString * currentLocale = [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString];
+
+                                    if (NSDictionary * nameLocales = [[NSString stringWithstdwstring:item.nameLocale] dictionary]) {
+                                        if (NSString * nameLocale = nameLocales[currentLocale]) {
+                                            json[@"name"] = nameLocale;
+                                        }
+                                    }
+                                }
+
+                                if (NSString * jsonString = [json jsonString]) {
+                                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"panel:external");
+                                    pCommand->put_Param([[jsonString encodeJson] stdwstring]);
+
+                                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
+
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->SetEventToAllMainWindows(pEvent);
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
@@ -427,7 +460,7 @@ public:
 
 
                         if (cmd.compare(L"portal:open") == 0 || cmd.find(L"auth:outer") != std::wstring::npos) {
-                            NSDictionary * json = stringToJson([NSString stringWithstdwstring:param]);
+                            NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary];
                             NSString * portal = json[@"portal"];
                             NSString * provider = json[@"provider"];
 
@@ -461,7 +494,7 @@ public:
                         } else if (cmd.compare(L"portal:login") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogin
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
+                                                                              userInfo:[[NSString stringWithstdwstring:param] dictionary]];
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
@@ -475,11 +508,11 @@ public:
                         } else if (cmd.compare(L"portal:new") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalNew
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
+                                                                              userInfo:[[NSString stringWithstdwstring:param] dictionary]];
                         } else if (cmd.compare(L"auth:sso") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalSSO
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
+                                                                              userInfo:[[NSString stringWithstdwstring:param] dictionary]];
                         } else if (cmd.compare(L"files:explore") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFileInFinder
                                                                                 object:nil
@@ -489,7 +522,7 @@ public:
                         } else if (cmd.compare(L"files:check") == 0) {                            
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFilesCheck
                                                                                 object:nil
-                                                                              userInfo:stringToJson([NSString stringWithstdwstring:param])];
+                                                                              userInfo:[[NSString stringWithstdwstring:param] dictionary]];
                         } else if (cmd.find(L"app:onready") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameStartPageReady
                                                                                 object:nil
@@ -508,7 +541,7 @@ public:
                                                                                          }];
                         } else if (cmd.find(L"editor:request") != std::wstring::npos) {
                             NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{@"viewId": [NSString stringWithFormat:@"%d", senderId]}];
-                            [params addEntriesFromDictionary:stringToJson([NSString stringWithstdwstring:param])];
+                            [params addEntriesFromDictionary:[[NSString stringWithstdwstring:param] dictionary]];
 
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorAppActionRequest
                                                                                 object:nil
@@ -535,7 +568,7 @@ public:
                                 }
                             }
                         } else if (cmd.find(L"settings:apply") != std::wstring::npos) {
-                            if (NSDictionary * json = stringToJson([NSString stringWithstdwstring:param])) {
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
                                 NSMutableArray * params = [NSMutableArray array];
 
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];

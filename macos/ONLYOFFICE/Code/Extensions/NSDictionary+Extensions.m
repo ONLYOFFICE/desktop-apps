@@ -28,29 +28,29 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  NSString+Extensions.h
-//  SpreadsheetEditor
+//  NSDictionary+Extensions.m
+//  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 7/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 03/12/2018.
+//  Copyright © 2018 Ascensio System SIA. All rights reserved.
 //
 
-#import <string>
-#import <Foundation/Foundation.h>
-#import <vector>
+#import "NSDictionary+Extensions.h"
 
-@interface NSString (Extensions)
+@implementation NSDictionary (Extensions)
 
-+ (id)stringWithstdwstring:(const std::wstring&)string;
-- (std::wstring)stdwstring;
-- (std::string)stdstring;
-+ (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
-- (NSString *)stringByAppendingUrlQuery:(NSString *)query;
-- (NSString *)md5;
-- (NSDictionary *)dictionary;
-- (NSString *)encodeJson;
+- (NSString *)jsonString {
+    NSError * error;
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&error];
+
+    if (error) {
+        NSLog(@"NSJSONSerialization Error: %@", error);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
 
 @end

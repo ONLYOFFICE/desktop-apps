@@ -62,6 +62,8 @@
 		FC592514208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
+		FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */; };
+		FC64391C21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */; };
 		FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC65A6421F33356300BD0F7E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9D1C3257FF00F9881C /* Info.plist */; };
@@ -309,6 +311,8 @@
 		FC5C71EA1C64F6FD00FBBF70 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
 		FC5C71EB1C64F6FF00FBBF70 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
 		FC5C71EC1C64F70200FBBF70 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
+		FC64391921B52DAF00A25CD1 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
 		FC6515F61D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EULA.html; sourceTree = "<group>"; };
 		FC6515F81D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC6515F91D1542C2009DBDCD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
@@ -906,6 +910,8 @@
 				FCF2897B21510402002FD438 /* NSWindow+Extensions.m */,
 				FC148B1D215CEF900054FF91 /* NSApplication+Extensions.h */,
 				FC148B1E215CEF900054FF91 /* NSApplication+Extensions.m */,
+				FC64391921B52DAF00A25CD1 /* NSDictionary+Extensions.h */,
+				FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1352,6 +1358,7 @@
 				FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
 				FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */,
+				FC64391C21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
 				FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */,
 				FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */,
 				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,
@@ -1412,6 +1419,7 @@
 				FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */,
 				FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
 				FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */,
+				FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
 				FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */,
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
