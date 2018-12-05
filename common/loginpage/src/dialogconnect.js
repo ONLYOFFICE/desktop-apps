@@ -107,7 +107,7 @@ window.DialogConnect = function(params) {
             portal = $body.find('#auth-portal').val(),
             protocol = 'https://';
 
-        var re_wrong_symb = /[\s\\]/;
+        var re_wrong_symb = /([\s\r\n\t\\]|%(?!\d{2}))/;
         if (!portal.length || re_wrong_symb.test(portal)) {
             _set_error(utils.Lang.errLoginPortal, '#auth-portal');
             return;
