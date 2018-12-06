@@ -1,0 +1,50 @@
+ICON1       ICON    DISCARDABLE APP_ICON_PATH
+ICON2       ICON    DISCARDABLE "./res/doc.ico"
+ICON3       ICON    DISCARDABLE "./res/odt.ico"
+ICON4       ICON    DISCARDABLE "./res/rtf.ico"
+ICON5       ICON    DISCARDABLE "./res/txt.ico"
+ICON6       ICON    DISCARDABLE "./res/html.ico"
+ICON7       ICON    DISCARDABLE "./res/xls.ico"
+ICON8       ICON    DISCARDABLE "./res/ods.ico"
+ICON9       ICON    DISCARDABLE "./res/csv.ico"
+ICON10      ICON    DISCARDABLE "./res/ppt.ico"
+ICON11      ICON    DISCARDABLE "./res/pps.ico"
+ICON12      ICON    DISCARDABLE "./res/odp.ico"
+ICON13      ICON    DISCARDABLE "./res/djvu.ico"
+ICON14      ICON    DISCARDABLE "./res/pdf.ico"
+ICON15      ICON    DISCARDABLE "./res/xps.ico"
+ICON16      ICON    DISCARDABLE "./res/docx.ico"
+ICON17      ICON    DISCARDABLE "./res/ppsx.ico"
+ICON18      ICON    DISCARDABLE "./res/pptx.ico"
+ICON19      ICON    DISCARDABLE "./res/xlsx.ico"
+
+#include <windows.h>
+#include "src/version.h"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     VER_FILEVERSION
+PRODUCTVERSION  VER_PRODUCTVERSION
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK VER_LANG_AND_CHARSET_STR
+        BEGIN
+            VALUE "CompanyName",        VER_COMPANYNAME_STR
+            VALUE "FileDescription",    VER_FILEDESCRIPTION_STR
+            VALUE "FileVersion",        VER_FILEVERSION_STR
+            VALUE "InternalName",       VER_INTERNALNAME_STR
+            VALUE "LegalCopyright",     VER_LEGALCOPYRIGHT_STR
+            VALUE "LegalTrademarks1",   VER_LEGALTRADEMARKS1_STR
+            VALUE "LegalTrademarks2",   VER_LEGALTRADEMARKS2_STR
+            VALUE "OriginalFilename",   VER_ORIGINALFILENAME_STR
+            VALUE "ProductName",        VER_PRODUCTNAME_STR
+            VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", VER_LANG_ID, VER_CHARSET_ID
+    END
+END
+
