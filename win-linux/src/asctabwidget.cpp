@@ -1015,6 +1015,9 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
+            if ( m_dataFullScreen->parent )
+                m_dataFullScreen->parent->show();
+
             fsWidget = m_dataFullScreen->widget();
             ((CTabPanel *)fsWidget)->showNormal();
 
@@ -1049,8 +1052,12 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
 #else
-            QWidget * grandpa = qobject_cast<QWidget *>(parent()->parent());
-            if (grandpa) fsWidget->setParent(grandpa);
+            m_dataFullScreen->parent = qobject_cast<QWidget *>(parent());
+            QWidget * grandpa = qobject_cast<QWidget *>(m_dataFullScreen->parent->parent());
+            if (grandpa) {
+                fsWidget->setParent(grandpa);
+                m_dataFullScreen->parent->hide();
+            }
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
             ((CTabPanel *)fsWidget)->cef()->focus();

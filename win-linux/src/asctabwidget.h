@@ -84,6 +84,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
         QWidget * widget() { return _widget; }
         int tabindex() { return _index; }
+        QWidget * parent = nullptr;
     private:
         QWidget * _widget;
         int _index;
