@@ -71,6 +71,7 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
+    setWindowIcon(Utils::appIcon());
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
     setGeometry(_window_rect);
 
