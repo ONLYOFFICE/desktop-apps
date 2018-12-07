@@ -81,6 +81,13 @@ ASCDOCUMENTEDITOR_PRO := $(abspath win-linux/ASCDocumentEditor.pro)
 
 QT_PROJ += ASCDOCUMENTEDITOR
 
+ifeq ($(PLATFORM),win)
+PROJICONS := win-linux/extras/projicons/ProjIcons.build/projicons$(EXEC_EXT)
+TARGETS += $(PROJICONS)
+PROJICONS_PRO := $(abspath win-linux/extras/projicons/ProjIcons.pro)
+QT_PROJ += PROJICONS
+endif
+
 #Template for next statment:
 #FOO_MAKE := $(basename $(FOO_PRO)).build/Makefile
 #$(FOO): $(FOO_MAKE)
@@ -97,7 +104,7 @@ endef
 
 all: bin
 
-bin: $(ASCDOCUMENTEDITOR)
+bin: $(TARGETS)
 
 $(foreach proj, $(QT_PROJ), $(eval $(call build_proj_tmpl, $(proj))))
 
@@ -117,6 +124,12 @@ install: $(TARGETS)
 	mkdir -p $(DEST_DIR)
 
 	$(INSTALL_PROGRAM) $(TARGETS) $(DEST_DIR)
+
+ifeq ($(PLATFORM),win)
+	mv $(DEST_DIR)/DesktopEditors$(EXEC_EXT) $(DEST_DIR)/editors$(EXEC_EXT)
+	mv $(DEST_DIR)/projicons$(EXEC_EXT) $(DEST_DIR)/DesktopEditors$(EXEC_EXT)
+endif
+	
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/HtmlFileInternal$(EXEC_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ascdocumentscore$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ooxmlsignature$(SHARED_EXT) $(DEST_DIR)
