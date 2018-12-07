@@ -1,161 +1,209 @@
 /* No comment provided by engineer. */
-"%@ Help" = "%@ Help";
+"%@ Help" = "%@ Pomoc";
 
 /* No comment provided by engineer. */
-"About %@" = "About %@";
+"%@ Reporter Window" = "% @ Okno Reportera";
 
 /* No comment provided by engineer. */
-"Acknowledgments" = "Acknowledgments";
+"About %@" = "O %@";
 
 /* No comment provided by engineer. */
-"Cancel" = "Cancel";
+"Acknowledgments" = "Podziękowania";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Comma-Separated Values";
+"Before signing the document, it must be saved." = "Dokument należy zapisać przed jego podpisaniem.";
 
 /* No comment provided by engineer. */
-"Delete and Quit" = "Delete and Quit";
+"Cancel" = "Anuluj";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu File";
+"Cannot open file of Digital Signature" = "Nie można otworzyć pliku Podpisu Cyfrowego";
 
 /* No comment provided by engineer. */
-"Do you want to save the changes made to the document \"%@\"?" = "Do you want to save the changes made to the document \"%@\"?";
+"Cannot open file of Private Key" = "Nie można otworzyć pliku Klucza Prywatnego";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "Document %ld.docx";
+"Cannot open folder of the file location." = "Nie można otworzyć folderu lokalizacji pliku.";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
+"Comma-Separated Values" = "Wartości Rozdzielone Przecinkami";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 Spreadsheet";
+"Create portal" = "Stwórz portal";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+"Delete and Quit" = "Usuń i Zamknij";
 
 /* No comment provided by engineer. */
-"File can not be open." = "File can not be open.";
+"DjVu File" = "Plik DjVu";
 
 /* No comment provided by engineer. */
-"File Format:" = "File Format:";
+"Do you want to save the changes made to the document \"%@\"?" = "Czy chcesz zapisać zmiany dokonane w dokumencie \"%@\"?";
 
 /* No comment provided by engineer. */
-"Hide %@" = "Hide %@";
+"Document %ld.docx" = "Dokument % ld.docx";
 
 /* No comment provided by engineer. */
-"If you don't review your documents, all your changeses will be lost." = "If you don't review your documents, all your changeses will be lost.";
+"Document template" = "Szablon dokumentu";
 
 /* No comment provided by engineer. */
-"If you have already purchased %@, you should find your activation key in an email confirmation." = "If you have already purchased %@, you should find your activation key in an email confirmation.";
+"Excel 97-2003 Spreadsheet" = "Arkusz Kalkulacyjny Excel 97-2003";
 
 /* No comment provided by engineer. */
-"License Agreement" = "License Agreement";
+"Excel 2007 Spreadsheet" = "Arkusz Kalkulacyjny Excel 2007";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book";
+"File \"%@\" can not be open or not exist." = "Plik „% @” nie może być otworzony lub nie istnieje.";
 
 /* No comment provided by engineer. */
-"No" = "No";
+"File can not be open." = "Nie można otworzyć pliku.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Format Pliku:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Ukryj %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Jeśli nie sprawdzisz swoich dokumentów, wszystkie zmiany zostaną utracone.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Jeśli zakupiłeś już %@, Twój klucz aktywacyjny powinien znajdować się w e-mailu potwierdzającym.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Umowa licencyjna";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-Book Mobipocket";
+
+/* No comment provided by engineer. */
+"No" = "Nie";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"Opening" = "Opening";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nie może otworzyć pliku Podpisu Cyfrowego. Spróbuj otworzyć inny plik.";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Document";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nie może otworzyć Kucza Prywatnego. Spróbuj otworzyć inny plik.";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Presentation";
+"Opening" = "Otwieranie";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Spreadsheet";
+"OpenOffice Document" = "Dokument OpenOffice";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF File";
+"OpenOffice Presentation" = "Prezentacja OpenOffice";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Plain Text";
+"OpenOffice Spreadsheet" = "Arkusz Kalkulacyjny OpenOffice";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentation";
+"PDF File" = "Plik PDF";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 Presentation";
+"PDF/A File" = "PDF/Plik";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint Slide Show";
+"Plain Text" = "Zwykły Tekst";
 
 /* No comment provided by engineer. */
-"Preparing..." = "Preparing...";
+"PowerPoint 97-2003 Presentation" = "Prezentacja PowerPoint 97-2003";
 
 /* No comment provided by engineer. */
-"Presentation %ld.pptx" = "Presentation %ld.pptx";
+"PowerPoint 2007 Presentation" = "Prezentacja PowerPoint 2007";
 
 /* No comment provided by engineer. */
-"Quit %@" = "Quit %@";
+"PowerPoint Slide Show" = "Pokaz Slajdów PowerPoint";
 
 /* No comment provided by engineer. */
-"Review Changes..." = "Review Changes...";
+"Preparing..." = "Przygotowywanie…";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Document";
+"Presentation %ld.pptx" = "Prezentacja %ld.pptx";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
+"Presentation template" = "Szablon prezentacji";
 
 /* No comment provided by engineer. */
-"Thank you for evaluating %@!" = "Thank you for evaluating %@!";
+"Quit %@" = "Zakończ %@";
 
 /* No comment provided by engineer. */
-"Unconfirmed" = "Unconfirmed";
+"Review Changes..." = "Sprawdź Zmiany...";
 
 /* No comment provided by engineer. */
-"Untitled" = "Untitled";
+"Rich Text Document" = "Dokument Rich Text";
 
 /* No comment provided by engineer. */
-"Web Page" = "Web Page";
+"Save" = "Zapisz";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Document";
+"Save the document?" = "Czy zapisać dokument?";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Document";
+"Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny % ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Szablon arkusza kalkulacyjnego";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Dziękujemy za ocenę %@!";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Aby otworzyć lokalizację pliku, należy go zapisać.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Niepotwierdzone";
+
+/* No comment provided by engineer. */
+"Untitled" = "Bez Nazwy";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Wersja %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Strona Internetowa";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Dokument Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Dokument Word 2007";
 
 /* No comment provided by engineer. */
 "XML Paper Specification" = "XML Paper Specification";
 
 /* No comment provided by engineer. */
-"Yes" = "Yes";
+"Yes" = "Tak";
 
 /* No comment provided by engineer. */
-"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?";
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Posiadasz %1$ld %2$@ dokumenty z niepotwierdzonymi zmianami. Czy chcesz sprawdzić te zmiany przed zamknięciem?";
 
 /* No comment provided by engineer. */
-"You have successfully activated %@." = "You have successfully activated %@.";
+"You have successfully activated %@." = "Pomyślnie aktywowano % @.";
 
 /* No comment provided by engineer. */
-"Your changes will be lost if you don’t save them." = "Your changes will be lost if you don’t save them.";
+"Your changes will be lost if you don’t save them." = "Twoje zmiany zostaną utracone, jeśli ich nie zapiszesz.";
 
 /* No comment provided by engineer. */
 "Your subscription has expired.
 
 The program works in the non-activated mode.
 
-Now you can prolong or upgrade your subscription with a discount." = "Your subscription has expired.
+Now you can prolong or upgrade your subscription with a discount." = "Twoja subskrypcja wygasła.
 
-The program works in the non-activated mode.
+Program działa w trybie nieaktywowanym.
 
-Now you can prolong or upgrade your subscription with a discount.";
+Tylko teraz możesz przedłużyć lub zaktualizować swoją subskrypcję ze specjalną zniżką.";
 
 /* No comment provided by engineer. */
 "Your subscription is about to expire
 (%d days left).
 
-We have a special offer for you." = "Your subscription is about to expire
-(%d days left).
+We have a special offer for you." = "Twoja subskrypcja wkrótce wygaśnie
+(pozostało %d dni)
 
-We have a special offer for you.";
+Mamy dla Ciebie specjalną ofertę.";
 

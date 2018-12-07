@@ -76,6 +76,7 @@ public:
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
+    WId handle() const override;
 
 private:
     void setScreenScalingFactor(uchar);

@@ -332,3 +332,8 @@ void CMainWindow::sendSertificate(int viewid)
     AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
 #endif
 }
+
+WId CMainWindow::handle() const
+{
+    return winId();
+}

@@ -155,8 +155,7 @@
         },
         portaltemplate: function(info) {
             return `<tr id=${info.elid}><td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
-                          <td class="row-cell cuser minor"><span>${info.user}</span></td>
-                          <td class="row-cell cemail minor"><span>${info.email}</span></td>
+                          <td class="row-cell cuser minor"><span>${info.user}${info.email.length && (' (' + info.email + ')') || ''}</span></td>
                           <td class="cell-tools">
                             <div class="hlayout">
                               <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>

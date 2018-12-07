@@ -1,36 +1,36 @@
 /* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
-"1dL-nN-bJI.title" = "Enter the password for the private key.";
+"1dL-nN-bJI.title" = "Wprowadź hasło dla klucza prywatnego.";
 
 /* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
-"1Fy-mg-aq9.title" = "Enter the password for the digital signature.";
+"1Fy-mg-aq9.title" = "Wprowadź hasło dla podpisu cyfrowego.";
 
 /* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
-"2Ck-6y-ygx.title" = "Specify the digital signature file for the document.";
+"2Ck-6y-ygx.title" = "Wybierz plik podpisu cyfrowego dla dokumentu.";
 
 /* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
-"4gA-s8-Lne.placeholderString" = "Enter Password";
+"4gA-s8-Lne.placeholderString" = "Wprowadź hasło";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
-"GOU-av-TC1.title" = "Cancel";
+"GOU-av-TC1.title" = "Anuluj";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
-"jpH-3g-Gt5.title" = "Cancel";
+"jpH-3g-Gt5.title" = "Anuluj";
 
 /* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
-"P3k-kI-w22.title" = "Load a Private Key";
+"P3k-kI-w22.title" = "Wczytaj Klucz Prywatny";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
-"qZ4-0O-L0G.title" = "Cancel";
+"qZ4-0O-L0G.title" = "Anuluj";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
-"RbM-Dq-A3K.title" = "Cancel";
+"RbM-Dq-A3K.title" = "Anuluj";
 
 /* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
-"Tfc-EF-VnS.title" = "Specify a private key for the digital signature.";
+"Tfc-EF-VnS.title" = "Wybierz klucz prywatny dla podpisu cyfrowego.";
 
 /* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
-"tTF-wa-eJp.title" = "Load Signature";
+"tTF-wa-eJp.title" = "Wczytaj Podpis.";
 
 /* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
-"Zj5-0h-hpW.placeholderString" = "Enter Password";
+"Zj5-0h-hpW.placeholderString" = "Wprowadź hasło";
 

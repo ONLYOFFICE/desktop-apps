@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        body {
+            background:white;
+            color: #000000;
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: #f4f4f4;
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: #dcdcdc solid 0.5px;
+        }
+        .releasedate {
+            color: #888;
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 5.2<span class="releasedate"> - May 18, 2018</span></h1>
+        <h2>New features</h2>
+        <h4>All editors</h4>
+        <ul>
+            <li>Updated the interface translations to all the main languages available in the editors;</li>
+            <li>Added the possibility to customize the initial zoom for the embedded editors;</li>
+            <li>Added the possibility to customize availability of help in the editor;</li>
+            <li>Added the display of the <b>File</b> and <b>Plugins</b> tabs for viewers;</li>
+            <li>The username is now highlihgted by color in the comments, review changes, chat messages;</li>
+            <li>Prevented the duplication of online users in the left chat panel;</li>
+            <li>Added the possibility to sort comments in the popover by ascending creation time;</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Added the possibility to work with bookmarks;</li>
+            <li>Added the possibility to add/change hyperlinks anchored to bookmarks/headings;</li>
+            <li>Added the possibility to change numbering value, start/continue numbering;</li>
+            <li>Added settings for content controls (highlighting and appearance);</li>
+            <li>Review changes and comments are now displayed in the combined window;</li>
+            <li>Added presets for А0, А1, А2, А6 page size (bug #36583);</li>
+            <li>Changed the encoding format for the <code>TXT</code> files (bug #36998);</li>
+            <li>Added the mode for filling forms;</li>
+            <li>Enabled closing the chart dialog while loading (bug #36870);</li>
+            <li>Enabled closing the window when saving to <code>TXT</code> format;</li>
+            <li>Enabled inserting shapes when a shape is selected;</li>
+            <li>The new revisions are now checked in the <b>Fast</b> co-editing mode;</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Enhanced the application due to the completely rewritten scroll;</li>
+            <li>Added the possibility to set options when saving to PDF format (bug #34914);</li>
+            <li>Added the cell settings in the right panel;</li>
+            <li>Added the <b>Layout</b> tab;</li>
+            <li>Added the hint for autofilters;</li>
+            <li>Added the possibility to change the encoding format for <code>CSV</code> files (bug #36998);</li>
+            <li>Enabled closing the window when saving to <code>CSV</code>;</li>
+            <li>Enabled saving page options to a file before printing;</li>
+            <li>Added the possibility to view combo charts;</li>
+        </ul>
+        <h4>Preseentation Editor</h4>
+        <ul>
+            <li>Added hints to presentation themes (bug #21362);</li>
+            <li>Added the presenter preview in the viewer (bug #37499);</li>
+            <li>Enabled closing the chart dialog while loading (bug #36870);</li>
+        </ul>
+        <h4>Formats</h4>
+        <ul>
+            <li>Performed refactoring for conversion of WordArts from <code>ODF</code> to <code>OOXML</code> and vice versa;</li>
+            <li>Performed refactoring for conversion of form controls in spreadsheets (for <code>ODF</code> files);</li>
+            <li>Added conversion for bookmarks for <code>OdfFormatwriter</code> component;</li>
+            <li>Added the <code>PDFA</code> file type;</li>
+        </ul>
+        <h2>Bugfix</h2>
+        <h4>All editors</h4>
+        <ul>
+            <li>Fixed the bug with <code>CFF</code> fonts (glyph loader);</li>
+            <li>Fixed the <code>Cannot read property '$icon' of undefined</code> error when using the <code>Ctrl+S</code> keyboard shortcut in chart editor (bug #39254);</li>
+            <li>Removed the <code>Command+H</code> keyboard shortcut used for Mac OS;</li>
+            <li>Fixed the issue when comments from other users were missing (bug #37570);</li>
+            <li>Fixed the issues which occurred when opening some files received from users;</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Fixed the issue with opening a <code>DOCX</code> file with track changes and calculations created by Aspose;</li>
+            <li>Fixed the problem with reading the ID of a content control;</li>
+            <li>Fixed the crash in <code>CNumberingLvlLegacy.ReadFromBinary</code>;</li>
+            <li>Fixed the problem with table selection;</li>
+            <li>Fixed the problem with replacing a misspelled word with another;</li>
+            <li>Fixed the bug with pressing the <code>TAB</code> key;</li>
+            <li>Fixed the critical issue which occurred when the document had been locked on the undo in the <b>Fast</b> collaboration mode;</li>
+            <li>Fixed the missing <b>Hide Degree</b> menu entry for equations (bug #39135);</li>
+            <li>Fixed the problem which occurred when recalculations were made in co-editing;</li>
+            <li>Fixed the problem with processing the <code>pageDown</code> button in co-editing;</li>
+            <li>Fixed the <code>Cannot read property 'eb' of nul</code> error which occurred when a table column was deleted (bug #39252);</li>
+            <li>Fixed the problem with rendering which occurred when replacing the text (bug #39269);</li>
+            <li>Fixed the <code>Cannot read property 'length' of null</code> error which occurred when some files were opened (bug #39210);</li>
+            <li>Fixed the problem with saving/loading the table state on undo/redo;</li>
+            <li>Fixed the issue with displaying the chart added with macros (bug #39304);</li>
+            <li>Fixed the problem with calculating large tables separated by columns;</li>
+            <li>Disabled bookmarks in the document headers (bug #38957);</li>
+            <li>Fixed XML parsing error in Firefox (bug #36960);</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fixed the crash which occurred when a file was built with comment changes;</li>
+            <li>Fixed the issue when an incorrect chart was added to the area with autofilter (bug #39168);</li>
+            <li>Fixed the issue with the incorrectly selected cells when a formula was changed using the keyboard (bug #39181);</li>
+            <li>Fixed the issue when the browser hung on some files with formulas (bug #39190);</li>
+            <li>Fixed the incorrect display of doughnut chart with autofilter (bug #39200);</li>
+            <li>Fixed the incorrect <code>IF</code> function values (bug #39233);</li>
+            <li>Fixed the problem with the number of replacements made (bug #39273);</li>
+            <li>Fixed the <code>Cannot read property 'Zb' of null</code> which occurred when trying to copy a shape deleted by another user (bug #39312);</li>
+            <li>Fixed the <code>Maximum call stack size exceeded</code> which occurred when the application was switched to fullscreen (bug #38972);</li>
+            <li>Fixed the <code>this.dPc is not a function</code> which occurred during the data sorting (bug #39397);</li>
+            <li>Fixed the issues with undo applied to the filter in specific files (bug #39402);</li>
+            <li>Fixed the scroll to end of the table issue (bug #21946);</li>
+            <li>Fixed the issue with sorting of the first row in some files (bug #39397);</li>
+            <li>Fixed the issue with the sorting range if filtered data was present in it (bug #39410);</li>
+            <li>Fixed the double columns borders display issue (bug #39392);</li>
+            <li>Fixed the issue with rendering of the last rows in some files (bug #39394);</li>
+            <li>Disabled the cell settings when editor is disconnected;</li>
+            <li>Fixed the issues with printing and calculation; sped up cache preparation;</li>
+            <li>Fixed the issue which occurred when the active cell in selection across merge was merged;</li>
+            <li>Fixed the issue with the selection which occurred when selecting a row/column/all;</li>
+            <li>The options for hiding headings, gridlines, freeze panes are hidden in the viewer (bug #38033);</li>
+        </ul>
+        <h4>Preseentation Editor</h4>
+        <ul>
+            <li>The viewer now shows an error when trying to open password protected files (bug #39251);</li>
+            <li>Fixed the JavaScript error which occurred when opening <code>TXT</code> files (bug #39250);</li>
+        </ul>
+        <h4>Formats</h4>
+        <ul>
+            <li>Fixed the issue when an empty <code>RTF</code> file was opened (bug #39172);</li>
+            <li>Fixed the problems with opening of some <code>ODS</code> files (bug #39192);</li>
+            <li>Fixed the conversion to raster for graphiscs on linux without set fonts;</li>
+            <li>Fixed the binary conversion of <code>mathType</code> version over 3.0 with <code>PptxFormat</code> component;</li>
+            <li>Fixed the problems with the document structure for specific files (bug #39236);</li>
+            <li>Fixed the issue which occurred when opening in some resulting files in MS Word (bug #39216);</li>
+            <li>Fixed the problems with opening specific <code>DOCX</code> files (bug #39248);</li>
+            <li>Fixed the problems with the user files in <code>XlsFormatReader</code> component;</li>
+            <li>Fixed the problems with the user files in <code>PptFormatReader</code> component;</li>
+            <li>Fixed the problems with some user files in <code>PptxFormat</code> component;</li>
+            <li>Fixed the problems in <code>OdfFormat</code> and <code>OdfFormatWriter</code> components;</li>
+            <li>Disabled truetype fonts conversion in <code>HTML</code> viewer;</li>
+            <li>Fixed the problems with opening of some <code>RTF</code> files (bug #39315);</li>
+            <li>Fixed the row selection issue in <code>PDF</code> files (bug #39214);</li>
+            <li>Fixed the issue when only the last <code>ConditionalFormatting</code> was written from the <code>Editor.bin</code> (bug #39391);</li>
+        </ul>
+        <p>and lots other fixes in all editors</p>
+    </div>
+</body>
+</html>
