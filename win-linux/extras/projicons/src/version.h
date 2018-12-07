@@ -65,5 +65,9 @@
 #define VER_PRODUCTVERSION          VER_FILEVERSION
 #define VER_PRODUCTVERSION_STR      VER_STRING_SHORT
 
+#ifdef APP_USE_PRIVATE_ASSETS
+# include "version_p.h"
+#endif
+
 #endif
 
