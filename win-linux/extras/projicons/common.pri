@@ -12,10 +12,10 @@ CONFIG  -= debug_and_release debug_and_release_target
 
 TEMPLATE = app
 
-HEADERS += ./src/version.h
-SOURCES += ./src/main.cpp
+HEADERS += $$PWD/src/version.h
+SOURCES += $$PWD/src/main.cpp
 
-RC_FILE = version.rc
+RC_FILE = $$PWD/version.rc
 
 contains(QMAKE_TARGET.arch, x86_64):{
     QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
