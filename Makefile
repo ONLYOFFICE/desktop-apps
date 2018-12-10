@@ -164,10 +164,6 @@ endif
 	$(INSTALL_DIR) $(QT_PLUGINS)/playlistformats $(DEST_DIR)
 	$(INSTALL_DIR) $(QT_PLUGINS)/printsupport $(DEST_DIR)
 
-ifeq ($(PLATFORM),win)
-	rm -f $(DEST_DIR)/**/*.pdb
-endif
-
 	mkdir -p $(DEST_DIR)/dictionaries
 	$(INSTALL_DIR) $(DICT_DIR)/* $(DEST_DIR)/dictionaries
 	$(INSTALL_DIR) common/package/fonts $(DEST_DIR)
@@ -218,6 +214,11 @@ endif
 	$(INSTALL_FILE) ../core/Common/3dParty/icu/$(TARGET)/build/$(SHARED_PREFIX)*$(SHARED_EXT) $(DEST_CONV_DIR)
 
 	$(INSTALL_FILE) $(CORE_BIN_DIR)/x2t$(EXEC_EXT) $(DEST_CONV_DIR)
+	
+ifeq ($(PLATFORM),win)
+	rm -f $(DEST_DIR)/**/*.pdb
+	rm -f $(DEST_DIR)/*.lib
+endif
 
 uninstall:
 	rm -fr $(DEST_DIR)
