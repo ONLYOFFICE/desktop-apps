@@ -34,6 +34,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QKeyEvent>
+#include <QCoreApplication>
 #include "common/Types.h"
 #include "utils.h"
 
@@ -48,8 +49,11 @@
 
 class CDialogEventFilter : public QObject
 {
+    CPrintProgress * m_parent;
+
 public:
     CDialogEventFilter(QObject * parent = 0) : QObject(parent)
+      , m_parent(qobject_cast<CPrintProgress*>(parent))
     {}
 
     bool eventFilter(QObject * obj, QEvent * event) {
@@ -64,6 +68,9 @@ public:
             if (keyEvent->key() == Qt::Key_Escape) {
                 return true;
             }
+        } else
+        if ( event->type() == QEvent::Paint ) {
+            emit m_parent->signal(18);
         }
 
 //        return QDialog::eventFilter(obj, event);
@@ -124,8 +131,8 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 
     m_Dlg.installEventFilter(m_eventFilter);
 
-
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
+    connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
 }
 
 CPrintProgress::~CPrintProgress()
@@ -153,6 +160,12 @@ void CPrintProgress::startProgress()
     m_Dlg.move(x, y);
 #endif
     m_Dlg.show();
+
+#ifdef __linux
+    while ( !m_showed ) {
+        qApp->processEvents();
+    }
+#endif
 }
 
 void CPrintProgress::onCancelClicked()

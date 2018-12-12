@@ -1151,20 +1151,19 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < 1 && (finish = 1);
                 finish < start && (finish = start);
 
-                CAscPrintPage * pData;
-
+                if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
-//                EnableWindow(parentWindow(), FALSE);
-                EnableWindow((HWND)parentWidget()->winId(), FALSE);
+//                    EnableWindow(parentWindow(), FALSE);
+                    EnableWindow((HWND)parentWidget()->winId(), FALSE);
 
-                CPrintProgress progressDlg((HWND)parentWidget()->winId());
+                    CPrintProgress progressDlg((HWND)parentWidget()->winId());
 #else
-                CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
+                    CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
 #endif
-                progressDlg.startProgress();
+                    progressDlg.startProgress();
 
-                uint count = finish - start;
-                if (pContext->BeginPaint()) {
+                    CAscPrintPage * pData;
+                    uint count = finish - start;
                     for (; !(start > finish); ++start) {
                         pContext->AddRef();
 
@@ -1188,12 +1187,12 @@ void CMainPanel::onDocumentPrint(void * opts)
                         start < finish && printer->newPage();
                     }
                     pContext->EndPaint();
-                }
 
 #if defined(_WIN32)
-//                EnableWindow(parentWindow(), TRUE);
-                EnableWindow((HWND)parentWidget()->winId(), TRUE);
+//                    EnableWindow(parentWindow(), TRUE);
+                    EnableWindow((HWND)parentWidget()->winId(), TRUE);
 #endif
+                }
             } else {
                 // TODO: show error message
             }
