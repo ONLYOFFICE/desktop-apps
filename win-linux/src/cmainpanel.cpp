@@ -1153,9 +1153,6 @@ void CMainPanel::onDocumentPrint(void * opts)
 
                 if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
-//                    EnableWindow(parentWindow(), FALSE);
-                    EnableWindow((HWND)parentWidget()->winId(), FALSE);
-
                     CPrintProgress progressDlg((HWND)parentWidget()->winId());
 #else
                     CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
@@ -1187,11 +1184,6 @@ void CMainPanel::onDocumentPrint(void * opts)
                         start < finish && printer->newPage();
                     }
                     pContext->EndPaint();
-
-#if defined(_WIN32)
-//                    EnableWindow(parentWindow(), TRUE);
-                    EnableWindow((HWND)parentWidget()->winId(), TRUE);
-#endif
                 }
             } else {
                 // TODO: show error message

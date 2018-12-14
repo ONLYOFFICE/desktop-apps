@@ -59,8 +59,6 @@ fi
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
-/opt/onlyoffice/desktopeditors/post_install.sh
-
 %preun
 
 set -e

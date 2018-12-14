@@ -58,7 +58,7 @@ SetupMutex                =ASC
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: cs; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
@@ -71,7 +71,7 @@ Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\
 [CustomMessages]
 ;======================================================================================================
 en.Launch =Launch %1
-cs.Launch =Spuštění %1
+cs_CZ.Launch =Spuštění %1
 sk.Launch =Spustenie %1
 ru.Launch =Запустить %1
 de.Launch =%1 starten
@@ -82,7 +82,7 @@ pt_BR.Launch =Lance o %1
 pl.Launch =Uruchom %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
-cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
+cs_CZ.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
 sk.CreateDesktopIcon =Vytvoriť %1 &ikonu na ploche
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
 de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
@@ -93,7 +93,7 @@ pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 pl.CreateDesktopIcon =Stwórz %1 oraz ikonę pulpitu
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
-cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
+cs_CZ.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
 sk.InstallAdditionalComponents =Inštalácia ďalších systémových súčastí. Prosím čakajte...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
 de.InstallAdditionalComponents =Installation zusätzlicher Systemkomponenten. Bitte warten...
@@ -104,7 +104,7 @@ pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. 
 pl.InstallAdditionalComponents =Instalacja dodatkowych elementów systemu. Proszę czekać...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
-cs.AdditionalTasks =Úkoly:
+cs_CZ.AdditionalTasks =Úkoly:
 sk.AdditionalTasks =Úlohy:
 ru.AdditionalTasks =Задачи:
 de.AdditionalTasks =Aufgaben:
@@ -115,7 +115,7 @@ pt_BR.AdditionalTasks =Tarefas:
 pl.AdditionalTasks =Zadania:
 ;======================================================================================================
 en.Uninstall =Uninstall
-cs.Uninstall =Odinstalovat
+cs_CZ.Uninstall =Odinstalovat
 sk.Uninstall =Odinštalovať
 ru.Uninstall =Удаление
 de.Uninstall =Deinstallieren
@@ -126,7 +126,7 @@ pt_BR.Uninstall =Desinstalar
 pl.Uninstall =Odinstaluj
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
-cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
+cs_CZ.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
 sk.WarningWrongArchitecture =Pokúšate sa nainštalovať %1-bitovej verziu na nainštalovanú %2-bitovú verziu. Najskôr odinštalujte predchádzajúcu verziu alebo stiahnite správnu verziu pre inštaláciu.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
 de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
@@ -138,7 +138,7 @@ pl.WarningWrongArchitecture =Próbujesz zainstalować %1-bitową wersję aplikac
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
-cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
+cs_CZ.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
 sk.UpdateAppRunning=Inštalátor zistil, že % 1 aktuálne prebieha.%n%nBude automaticky zatvorené. Ak chcete pokračovať, kliknite na tlačidlo OK.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
@@ -149,7 +149,7 @@ pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em exec
 pl.UpdateAppRunning=Konfiguracja wykryła , że %1 jest uruchomiona.%n%nZostanie ona automatycznie zamknięta. Kliknij OK, aby kontynuować lub Anuluj, aby wyjść.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
-cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
+cs_CZ.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
 sk.WarningClearAppData =Chcete zrušiť používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti?
 ru.WarningClearAppData =Вы хотите очистить пользовательские настройки и кэш приложения?
 de.WarningClearAppData =Möchten Sie die Benutzereinstellungen und die zwischengespeicherten Daten der Anwendung löschen?
