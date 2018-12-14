@@ -132,11 +132,17 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     m_Dlg.installEventFilter(m_eventFilter);
 
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
+#ifdef __linux
     connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
+#endif
 }
 
 CPrintProgress::~CPrintProgress()
 {
+#if defined(_WIN32)
+    EnableWindow(parentWindow(), TRUE);
+#endif
+
     RELEASEOBJECT(m_fLayout)
     RELEASEOBJECT(m_eventFilter)
 }
@@ -151,6 +157,8 @@ void CPrintProgress::startProgress()
 //    m_Dlg.adjustSize();
 
 #ifdef _WIN32
+    EnableWindow(parentWindow(), FALSE);
+
     RECT rc;
     ::GetWindowRect(parentWindow(), &rc);
 
