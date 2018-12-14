@@ -797,7 +797,7 @@ l10n.pl = {
     actOpenLocal: 'Otwórz plik lokalny',
     actConnectTo: 'Połącz z chmurą',
     actActivate: 'Aktywuj',
-    actAbout: 'O ',
+    actAbout: 'O programie',
     actSettings: 'Ustawienia',
     licKeyHolder: 'wprowadź kod aktywacyjny',
     btnActivate: 'Aktywuj',
