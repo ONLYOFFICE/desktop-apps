@@ -108,7 +108,7 @@ private:
         {"fr-FR", "Français"},
         {"es-ES", "Español"},
         {"sk-SK", "Slovenčina"},
-        {"cs-CS", "Čeština"},
+        {"cs-CZ", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
         ,{"pl-PL", "Polski"}

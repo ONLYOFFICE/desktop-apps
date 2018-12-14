@@ -27,7 +27,7 @@ ChangesAssociations=true
 
 en.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
 pt_BR.AssociateDescription =Associe tipos de arquivos de documento office com {#ASSC_APP_NAME}
-cs.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
+cs_CZ.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
 sk.AssociateDescription =Priradiť typy súborov kancelárskych dokumentov {#ASSC_APP_NAME}
 ru.AssociateDescription =Ассоциировать типы файлов офисных документов с {#ASSC_APP_NAME}
 de.AssociateDescription =Office-Dokument-Dateitypen {#ASSC_APP_NAME} zuordnen
@@ -38,7 +38,7 @@ pl.AssociateDescription =Skojarz rodzaje plików dokumentów biurowych z {#ASSC_
 
 en.AssociateCaption =File Associations
 pt_BR.AssociateCaption =Associações de arquivos
-cs.AssociateCaption =Asociace souboru
+cs_CZ.AssociateCaption =Asociace souboru
 sk.AssociateCaption =Asociácia súboru
 ru.AssociateCaption =Ассоциации файлов
 de.AssociateCaption =Dateiassoziationen
@@ -49,7 +49,7 @@ pl.AssociateCaption =Skojarzenia Plików
 
 en.AssociateDont =Do not associate
 pt_BR.AssociateDont =Não associar
-cs.AssociateDont =Neasociováno
+cs_CZ.AssociateDont =Neasociováno
 sk.AssociateDont =Neasociované
 ru.AssociateDont =Не ассоциировать
 de.AssociateDont =Nicht assoziieren
@@ -60,7 +60,7 @@ pl.AssociateDont =Nie kojarz
 
 en.AssociateAll =Associate all
 pt_BR.AssociateAll =Associar todos
-cs.AssociateAll =Asociovat vše
+cs_CZ.AssociateAll =Asociovat vše
 sk.AssociateAll =Asociovať všetko
 ru.AssociateAll =Ассоциировать все
 de.AssociateAll =Alle assoziieren
@@ -71,7 +71,7 @@ pl.AssociateAll =Skojarz wszystkie
 
 en.AssociateSel =Associate selected
 pt_BR.AssociateSel =Associar selecionados
-cs.AssociateSel =Vybraná asociace
+cs_CZ.AssociateSel =Vybraná asociace
 sk.AssociateSel =Vybraná asociácia
 ru.AssociateSel =Ассоциировать выбранные
 de.AssociateSel =Ausgewählte assoziieren
@@ -82,7 +82,7 @@ pl.AssociateSel =Skojarz wybrane
 
 en.AssociateAudio =File types
 pt_BR.AssociateAudio =Tipos de arquivo
-cs.AssociateAudio =Typy souborů
+cs_CZ.AssociateAudio =Typy souborů
 sk.AssociateAudio =Typy súborov
 ru.AssociateAudio =Типы файлов
 de.AssociateAudio =Dateitypen
@@ -93,7 +93,7 @@ pl.AssociateAudio =Rodzaje plików
 
 en.extMSWord =Microsoft Word Document
 pt_BR.extMSWord =Documento Microsoft Word
-cs.extMSWord =Microsoft Word Dokument
+cs_CZ.extMSWord =Microsoft Word Dokument
 sk.extMSWord =Microsoft Word Dokument
 ru.extMSWord =Документ Microsoft Word
 de.extMSWord =Microsoft Word Dokument
@@ -104,7 +104,7 @@ pl.extMSWord =Dokument Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
 pt_BR.extMSExcel =Planilha Microsoft Excel
-cs.extMSExcel =Microsoft Excel Sešit
+cs_CZ.extMSExcel =Microsoft Excel Sešit
 sk.extMSExcel =Microsoft Excel Zošit
 ru.extMSExcel =Книга Microsoft Excel
 de.extMSExcel =Microsoft Excel Arbeitsmappe
@@ -115,7 +115,7 @@ pl.extMSExcel =Skoroszyt Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 pt_BR.extMSPresentation =Apresentação Microsoft PowerPoint
-cs.extMSPresentation =Microsoft PowerPoint Prezentace
+cs_CZ.extMSPresentation =Microsoft PowerPoint Prezentace
 sk.extMSPresentation =Microsoft PowerPoint Prezentácia
 ru.extMSPresentation =Презентация Microsoft PowerPoint
 de.extMSPresentation =Microsoft PowerPoint Präsentation
@@ -126,7 +126,7 @@ pl.extMSPresentation =Prezentacja Microsoft PowerPoint
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 pt_BR.extMSSlideshow =Apresentações do PowerPoint da Microsoft
-cs.extMSSlideshow =Microsoft PowerPoint Slideshow
+cs_CZ.extMSSlideshow =Microsoft PowerPoint Slideshow
 sk.extMSSlideshow =Microsoft PowerPoint Slideshow
 ru.extMSSlideshow =Слайдшоу Microsoft PowerPoint
 de.extMSSlideshow =Microsoft PowerPoint Slideshow
@@ -137,7 +137,7 @@ pl.extMSSlideshow =Pokaz Slajdów Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
 pt_BR.extODT =Documento de Texto do OpenDocument
-cs.extODT =Dokumenty OpenDocument
+cs_CZ.extODT =Dokumenty OpenDocument
 sk.extODT =Dokumenty OpenDocument
 ru.extODT =Текстовый документ OpenDocument
 de.extODT =OpenDocument Textdokument
@@ -148,7 +148,7 @@ pl.extODT =Dokument Tekstowy OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 pt_BR.extODS =Planilha do OpenDocument
-cs.extODS =Sešit OpenDocument
+cs_CZ.extODS =Sešit OpenDocument
 sk.extODS =Zošit OpenDocument
 ru.extODS =Электронная таблица OpenDocument
 de.extODS =OpenDocument Tabelle
@@ -159,7 +159,7 @@ pl.extODS =Arkusz Kalkulacyjny OpenDocument
 
 en.extODP =OpenDocument Presentation
 pt_BR.extODP =Apresentação do OpenDocument
-cs.extODP =Prezentace OpenDocument
+cs_CZ.extODP =Prezentace OpenDocument
 sk.extODP =Prezentácia OpenDocument
 ru.extODP =Презентация OpenDocument
 de.extODP =OpenDocument  Präsentation
@@ -170,7 +170,7 @@ pl.extODP =Prezentacja OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
-cs.defprogAppDescription=Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci
+cs_CZ.defprogAppDescription=Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci
 sk.defprogAppDescription=Bezplatná kancelárska sada pre stolné počítače na úpravu dokumentov a spoluprácu
 ru.defprogAppDescription=Бесплатный десктопный офисный пакет для редактирования документов и совместной работы
 de.defprogAppDescription=Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit
@@ -181,7 +181,7 @@ pl.defprogAppDescription=Bezpłatny pakiet biurowy do edycji dokumentów i kolab
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 pt_BR.warnWin10FileAssociationDesc=Para associar os arquivos com o aplicativo, abra a seguinte janela após a instalação estar completa:
-cs.warnWin10FileAssociationDesc=Pro připojení souborů k aplikaci, otevřete následující okno po dokončení aplikace:
+cs_CZ.warnWin10FileAssociationDesc=Pro připojení souborů k aplikaci, otevřete následující okno po dokončení aplikace:
 sk.warnWin10FileAssociationDesc=Ak chcete súbory priradiť k aplikácii, po dokončení inštalácie otvorte nasledujúce okno:
 ru.warnWin10FileAssociationDesc=Чтобы ассоциировать файлы с приложением, откройте следующее окно после того, как установка будет завершена:
 de.warnWin10FileAssociationDesc=Nachdem die Installation abgeschlossen ist, öffnen Sie das folgende Feld, um die Dateien mit der Anwendung zu verknüpfen:
@@ -192,7 +192,7 @@ pl.warnWin10FileAssociationDesc=Aby skojarzyć pliki z aplikacją, otwórz nast�
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 pt_BR.warnWin10FileAssociationPath=Configurações > Aplicativos > Aplicativos padrão
-cs.warnWin10FileAssociationPath=Nastavení > Aplikace > Výchozí aplikace
+cs_CZ.warnWin10FileAssociationPath=Nastavení > Aplikace > Výchozí aplikace
 sk.warnWin10FileAssociationPath=Nastavenia> Aplikácie> Predvolené aplikácie
 ru.warnWin10FileAssociationPath=Настройки > Приложения > Приложения по умолчанию
 de.warnWin10FileAssociationPath=Einstellungen > Apps > Standard-Apps
@@ -203,7 +203,7 @@ pl.warnWin10FileAssociationPath=Ustawienia > Aplikacje > Domyślne aplikacje
 
 en.runOpenDefaultApps=Open Default apps
 pt_BR.runOpenDefaultApps=Abrir apps predefinidos
-cs.runOpenDefaultApps=Otevřít výchozí aplikaci
+cs_CZ.runOpenDefaultApps=Otevřít výchozí aplikaci
 sk.runOpenDefaultApps=Otvorte predvolené aplikácie
 ru.runOpenDefaultApps=Открыть Приложения по умолчанию
 de.runOpenDefaultApps=Standardanwendungen öffnen

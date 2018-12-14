@@ -1,7 +1,7 @@
 ﻿
 [CustomMessages]
 en.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
-cs.UninstallPageLabel=Stisknutím Odinstalovat pokračujte v odinstalování.
+cs_CZ.UninstallPageLabel=Stisknutím Odinstalovat pokračujte v odinstalování.
 sk.UninstallPageLabel=Stlačením Odinštalovať pokračujte v odinštalácii.
 ru.UninstallPageLabel=Нажмите кнопку «Удалить», чтобы приступить к удалению.
 de.UninstallPageLabel=Klicken Sie auf Deinstallieren, um mit der Deinstallation fortzufahren.
@@ -12,7 +12,7 @@ pt_BR.UninstallPageLabel=Clique em Desinstalar para prosseguir com a desinstala�
 pl.UninstallPageLabel=Kliknij Odinstaluj, aby rozpocząć proces odinstalowywania.
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
-cs.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
+cs_CZ.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
 sk.UninstallOptionClearData=Vymazať všetky používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti
 ru.UninstallOptionClearData=Очистить все пользовательские настройки и кэш приложения
 de.UninstallOptionClearData=Alle Benutzereinstellungen und zwischengespeicherten Daten der Anwendung löschen
