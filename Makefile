@@ -13,6 +13,8 @@ BUILD_NUMBER ?= 0
 QT_PATH ?= /opt/qt5
 QT_PLUGINS ?= $(QT_PATH)/plugins
 
+END2END_ENCRYPT ?= false
+
 ifeq ($(OS),Windows_NT)
 	PLATFORM := win
 	EXEC_EXT := .exe
@@ -182,6 +184,7 @@ endif
 		$(UI_PLUGINS_DIR)/{8D67F3C5-7736-4BAE-A0F2-8C7127DC4BB8} \
 		$(DEST_PLUGINS_DIR)
 
+ifeq ($(END2END_ENCRYPT),true)
 	$(INSTALL_DIR) \
 		$(UI_PLUGINS_DIR)/encrypt/ui/common/{14A8FC87-8E26-4216-B34E-F27F053B2EC4} \
 		$(DEST_PLUGINS_DIR)
@@ -189,6 +192,7 @@ endif
 	$(INSTALL_DIR) \
 		$(UI_PLUGINS_DIR)/encrypt/ui/engine/blockchain/{B17BDC61-59FC-41A7-A471-CD2C415A665E} \
 		$(DEST_PLUGINS_DIR)
+endif
 
 	$(INSTALL_DIR) common/converter $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)graphics$(SHARED_EXT) $(DEST_CONV_DIR)
