@@ -1004,9 +1004,9 @@ bool CAscTabWidget::isFragmented(int index)
     if (!(index < 0) && index < count()) {
         CTabPanel * panel = (CTabPanel *)widget(index);
         CAscTabData * doc = panel->data();
-         return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
+        return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
     }
-     return false;
+    return false;
 }
 
 void CAscTabWidget::setFullScreen(bool apply, int id)

@@ -84,8 +84,6 @@ using namespace std::placeholders;
 #endif
 
 
-extern QStringList g_cmdArgs;
-
 struct printdata {
 public:
     printdata() : _print_range(QPrintDialog::PrintRange::AllPages) {}
@@ -984,7 +982,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     int index = m_pTabs->tabIndexByView(id), _answ;
     if ( isfragmented ) {
         if ( !(index < 0) ) {
-            static bool _skip_user_warning = !g_cmdArgs.contains("--warning-doc-fragmented");
+            static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
             if ( _skip_user_warning ) {
                 QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
                 pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
