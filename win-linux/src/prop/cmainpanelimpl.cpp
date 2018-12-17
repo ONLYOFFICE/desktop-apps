@@ -38,6 +38,8 @@
 #include "clangater.h"
 
 #include <QJsonObject>
+#include <QJsonDocument>
+#include <QFile>
 
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
@@ -70,6 +72,8 @@ void CMainPanelImpl::refreshAboutVersion()
     );
 
     AscAppManager::sendCommandTo( nullptr, "settings:init", Utils::encodeJson(_json_obj) );
+    if ( Utils::appArgsContains("--ascdesktop-reveal-app-config") )
+            AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
 void CMainPanelImpl::updateScaling(int dpiratio)
@@ -80,4 +84,17 @@ void CMainPanelImpl::updateScaling(int dpiratio)
     m_pButtonMain->setText(QString());
     m_pButtonMain->setIcon(QIcon(pixmap));
     m_pButtonMain->setIconSize(pixmap.size());
+}
+
+void CMainPanelImpl::onLocalOptions(const QString& json)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QFile file(Utils::getAppCommonPath() + "/app.conf");
+        file.open(QFile::WriteOnly);
+        file.write(jdoc.toJson());
+        file.close();
+    }
 }

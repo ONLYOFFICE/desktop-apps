@@ -273,6 +273,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                 if (cmd.find(L"app:onready") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, -1) );
                 } else
+                if (cmd.find(L"app:localoptions") != std::wstring::npos) {
+                    QMetaObject::invokeMethod( target, "onLocalOptions", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+                } else
                 if (cmd.find(L"app:buynow") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onBuyNow", Qt::QueuedConnection );
                 }
