@@ -107,7 +107,7 @@ l10n.en = {
     ,setBtnApply: 'Apply'
     ,settLanguage: 'Interface language'
     ,settAfterRestart: 'Option will be applied after the app restart'
-    ,settShowEncryptOpts: 'End-to-end encryption ON/OFF'
+    ,settShowEncryptOpts: 'Test end-to-end encryption'
 }
 
 l10n.cs = {
@@ -186,7 +186,7 @@ l10n.cs = {
     ,setBtnApply: 'Uložit změny'
     ,settLanguage: 'Jazyk rozhraní'
     ,settAfterRestart: 'Možnost bude k dispozici až po restartu aplikace'
-    ,settShowEncryptOpts: 'Šifrování koncového bodu zapnuto / vypnuto'
+    ,settShowEncryptOpts: 'Testujte šifrování koncového'
 }
 
 l10n.sk = {
@@ -265,7 +265,7 @@ l10n.sk = {
     ,setBtnApply: 'Použiť'
     ,settLanguage: 'Jazyk rozhrania'
     ,settAfterRestart: 'Prejaví sa po reštarte aplikácie'
-    ,settShowEncryptOpts: 'End-to-end šifrovanie ON/OFF'
+    ,settShowEncryptOpts: 'Skúšajte end-to-end šifrovanie'
 }
 
 l10n.ru = {
@@ -344,7 +344,7 @@ l10n.ru = {
     ,setBtnApply: 'Применить'
     ,settLanguage: 'Язык интерфейса'
     ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
-    ,settShowEncryptOpts: 'Включить/выключить сквозное шифрование'
+    ,settShowEncryptOpts: 'Тестирование сквозного шифрования'
 }
 
 l10n.de = {
@@ -423,7 +423,7 @@ l10n.de = {
     ,setBtnApply: 'Anwenden'
     ,settLanguage: 'Sprache der Benutzeroberfläche'
     ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
-    ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung Ein/Aus'
+    ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung testen'
 };
 
 l10n.it_IT = {
@@ -502,7 +502,7 @@ l10n.it_IT = {
     ,setBtnApply: 'Applica'
     ,settLanguage: 'Linguaggio di interfaccia'
     ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
-    ,settShowEncryptOpts: 'Crittografia end-to-end ON / OFF'
+    ,settShowEncryptOpts: 'Testare la crittografia end-to-end'
 };
 
 l10n.fr = {
@@ -581,7 +581,7 @@ l10n.fr = {
     ,setBtnApply: 'Appliquer'
     ,settLanguage: 'Langue de l\'interface'
     ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
-    ,settShowEncryptOpts: 'Chiffrement de bout en bout Activé/Désactivé'
+    ,settShowEncryptOpts: 'Tester le chiffrement de bout en bout'
 };
 
 l10n.es = {
@@ -660,7 +660,7 @@ l10n.es = {
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Lenguaje de interfaz'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
-    ,settShowEncryptOpts: 'Cifrado de extremo a extremo Activar/Desactivar'
+    ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
 };
 
 l10n.pt_BR = {
@@ -739,7 +739,7 @@ l10n.pt_BR = {
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Idioma de Interface'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
-    ,settShowEncryptOpts: 'Criptografia de ponta a ponta LIGA/DESLIGA'
+    ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
 }
 
 l10n.pl = {
@@ -818,7 +818,7 @@ l10n.pl = {
     setBtnApply: 'Zastosuj',
     settLanguage: 'Język Interfejsu',
     settAfterRestart: 'Opcja zostanie zastosowana po ponownym uruchomieniu aplikacji',
-    settShowEncryptOpts: 'Szyfrowanie typu end-to-end WŁĄCZ/WYŁĄCZ'
+    settShowEncryptOpts: 'Skúšajte šifrovanie typu end-to-end'
 }
 
 function loadLocale(lang) {
