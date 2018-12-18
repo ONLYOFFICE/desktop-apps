@@ -453,6 +453,19 @@ public:
                         break;
                     }
 
+                    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END:
+                    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR: {
+                        int error = pEvent->m_nType == ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR ? -1 : 0;
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDocumentFragmentBuild
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                     @"error": @(error)
+                                                                                     }];
+
+                        break;
+                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;
                         std::wstring cmd = pData->get_Command();
@@ -598,6 +611,14 @@ public:
                                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                 appManager->InitAdditionalEditorParams(wLocale);
                             }
+                        } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
+                            bool isFragmented = pData->get_Param() == L"true" ? true : false;
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDocumentFragmented
+                                                                                object:nil
+                                                                              userInfo: @{
+                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                          @"isFragmented": @(isFragmented)
+                                                                                          }];
                         }
                         
                         break;

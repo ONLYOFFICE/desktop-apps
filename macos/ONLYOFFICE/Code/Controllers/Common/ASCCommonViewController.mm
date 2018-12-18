@@ -230,6 +230,17 @@
                                                  name:CEFEventNameEditorOpenFolder
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFDocumentFragmentBuild:)
+                                                 name:CEFEventNameDocumentFragmentBuild
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFDocumentFragmented:)
+                                                 name:CEFEventNameDocumentFragmented
+                                               object:nil];
+
+
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
     }
@@ -430,17 +441,29 @@
 
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
-    
+    BOOL preventTerminate = NO;
+
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
                                                       userInfo:@{@"fullscreen" : @(NO)}];
-    
+
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
             unsaved++;
         }
+
+        // Blockchain check
+        if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+            if ([cefView checkCloudCryptoNeedBuild]) {
+                preventTerminate = YES;
+            }
+        }
     }
-    
+
+    if (preventTerminate) {
+        return NO;
+    }
+
     if (unsaved > 0) {
         NSString * productName = [ASCHelper appName];
         
@@ -728,6 +751,38 @@
     }
 }
 
+- (void)requestSaveChangesForTab:(ASCTabView *)tab {
+    if (tab && tab.changed) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
+        [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
+        [alert setAlertStyle:NSWarningAlertStyle];
+
+        [self.tabsControl selectTab:tab];
+
+        NSInteger returnCode = [alert runModalSheet];
+
+        if(returnCode == NSAlertFirstButtonReturn) {
+            NSCefView * cefView = [self cefViewWithTab:tab];
+
+            tab.params[@"shouldClose"] = @(YES);
+
+            if (cefView) {
+                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
+                [cefView apply:pEvent];
+            }
+        } else if (returnCode == NSAlertSecondButtonReturn) {
+            [self.tabsControl removeTab:tab];
+        } else if (returnCode == NSAlertThirdButtonReturn) {
+            self.shouldTerminateApp = NO;
+            self.shouldLogoutPortal = NO;
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark CEF events handlers
 
@@ -786,18 +841,28 @@
         NSString * viewId       = params[@"viewId"];
         NSInteger type          = [params[@"type"] integerValue];
 
-        switch (type) {
-            case 0:
-                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
-                break;
-            case 1:
-                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
-                break;
-            case 2:
-                [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
-                break;
-            default:
-                break;
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+
+        if (tab) {
+            // Blockchain hook
+            NSString * name = tab.params[@"name"];
+            if (name && [name length] > 0) {
+                return;
+            }
+
+            switch (type) {
+                case 0:
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
+                    break;
+                case 1:
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
+                    break;
+                case 2:
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
@@ -1408,6 +1473,63 @@
     }
 }
 
+- (void)onCEFDocumentFragmentBuild:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        int error = [json[@"error"] intValue];
+
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        if (tab) {
+            if (error == 0) {
+                [self.tabsControl removeTab:tab selected:YES];
+            }
+        }
+    }
+}
+
+- (void)onCEFDocumentFragmented:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        BOOL isFragmented = [json[@"isFragmented"] boolValue];
+
+        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+        if (tab) {
+            if (isFragmented) {
+                NSAlert * alert = [NSAlert new];
+                [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
+                [alert setAlertStyle:NSInformationalAlertStyle];
+
+                NSInteger returnCode = [alert runModalSheet];
+
+                if (returnCode == NSAlertFirstButtonReturn) {
+                    NSCefView * cefView = [self cefViewWithTab:tab];
+
+                    if (cefView) {
+                        self.shouldTerminateApp = NO;
+
+                        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD);
+                        [cefView apply:pEvent];
+                        return;
+                    }
+                } else if (returnCode == NSAlertSecondButtonReturn) {
+                    //
+                } else {
+                    return;
+                }
+            }
+
+            self.shouldTerminateApp = YES;
+            [self.tabsControl removeTab:tab selected:YES];
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark ASCTabsControl Delegate
@@ -1533,38 +1655,18 @@
 }
 
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab {
-    if (tab && tab.changed) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-        [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
-        [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
-        [alert setAlertStyle:NSWarningAlertStyle];
-        
-        [self.tabsControl selectTab:tab];
-        
-        NSInteger returnCode = [alert runModalSheet];
-
-        if(returnCode == NSAlertFirstButtonReturn) {
-            NSCefView * cefView = [self cefViewWithTab:tab];
-            
-            tab.params[@"shouldClose"] = @(YES);
-            
-            if (cefView) {
-                NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE);
-                [cefView apply:pEvent];
-            }
-        } else if (returnCode == NSAlertSecondButtonReturn) {
-            [control removeTab:tab];
-        } else if (returnCode == NSAlertThirdButtonReturn) {
+    if (tab) {
+        NSCefView * cefView = [self cefViewWithTab:tab];
+        if (cefView && [cefView checkCloudCryptoNeedBuild]) {
             self.shouldTerminateApp = NO;
-            self.shouldLogoutPortal = NO;
+            return NO;
         }
-        
-        return NO;
-    }
 
+        if (tab.changed) {
+            [self requestSaveChangesForTab:tab];
+            return NO;
+        }
+    }
     return YES;
 }
 
