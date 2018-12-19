@@ -1034,7 +1034,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
         }
     } else {
 //        int index = m_pTabs->tabIndexByView(id);
-//        m_pTabs->applyDocumentSave(index, true);
+        m_pTabs->applyDocumentSave(index, true);
     }
 }
 
