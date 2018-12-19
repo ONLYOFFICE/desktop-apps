@@ -666,8 +666,16 @@
     NSMutableDictionary * checkedList = @{}.mutableCopy;
     
     for (NSString * key in fileList) {
-        id value = [fileList objectForKey:key];
-        checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:value] ? @"true" : @"false";
+        if (NSString * pathString = [fileList objectForKey:key]) {
+            NSRange typeRange = [pathString rangeOfString:@"^https?://"
+                                                  options:NSRegularExpressionSearch];
+
+            if (typeRange.location != NSNotFound) {
+                checkedList[key] = @"true";
+            } else {
+                checkedList[key] = [[NSFileManager defaultManager] fileExistsAtPath:pathString] ? @"true" : @"false";
+            }
+        }
     }
     
     return checkedList;
