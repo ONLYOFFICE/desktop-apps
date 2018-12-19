@@ -360,15 +360,13 @@ public:
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
 
-                        // TODO: Need handle IsMultiselect
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenFileDialog
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"filter"  : [NSString stringWithstdwstring:pData->get_Filter()],
                                                                                      @"fileId"  : @(pData->get_Id()),
-                                                             
-                                                                                     @"isMulti" : pData->get_IsMultiselect() ? @"YES" : @"NO"
+                                                                                     @"isMulti" : @(pData->get_IsMultiselect())
                                                                                      }];
                         break;
                     }

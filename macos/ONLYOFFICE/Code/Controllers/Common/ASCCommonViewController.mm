@@ -1135,7 +1135,7 @@
         NSString * directory = notification.userInfo[@"path"];
         NSString * fileTypes = notification.userInfo[@"filter"];
         NSInteger fileId = [notification.userInfo[@"fileId"] intValue];
-        NSString * isMulti = notification.userInfo[@"isMulti"];
+        BOOL isMulti = [notification.userInfo[@"isMulti"] boolValue];
 
         if (!directory || directory.length < 1) {
             directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -1171,8 +1171,9 @@
                 imageInfo->put_Filter([fileTypes stdwstring]);
                 imageInfo->put_Path([[[openPanel URL] path] stdwstring]);
                 
-                if ([isMulti isEqualToString:@"YES"])
+                if (isMulti) {
                     imageInfo->put_IsMultiselect(true);
+                }
 
                 NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
                 pEvent->m_pData = imageInfo;
