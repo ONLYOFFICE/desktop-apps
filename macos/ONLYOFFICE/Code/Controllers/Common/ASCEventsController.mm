@@ -366,7 +366,9 @@ public:
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"filter"  : [NSString stringWithstdwstring:pData->get_Filter()],
-                                                                                     @"fileId"  : @(pData->get_Id())
+                                                                                     @"fileId"  : @(pData->get_Id()),
+                                                             
+                                                                                     @"isMulti" : pData->get_IsMultiselect() ? @"YES" : @"NO"
                                                                                      }];
                         break;
                     }
