@@ -360,6 +360,7 @@ public:
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
 
+                        // TODO: Need handle IsMultiselect
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenFileDialog
                                                                             object:nil
                                                                           userInfo:@{
