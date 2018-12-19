@@ -52,6 +52,7 @@
 - (void)internalClean;
 - (void)focus;
 - (BOOL)checkCloudCryptoNeedBuild;
+- (BOOL)checkBuilding;
 
 - (void)loadWithUrl:(NSString *)url;
 - (void)createFileWithName:(NSString *)name type:(NSInteger)type;

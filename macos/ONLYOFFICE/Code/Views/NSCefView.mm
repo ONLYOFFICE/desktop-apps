@@ -293,5 +293,14 @@ public:
     return NO;
 }
 
+- (BOOL)checkBuilding {
+    if (m_pCefView && m_pCefView->GetCefView()) {
+        if (m_pCefView->GetCefView()->GetType() == cvwtEditor) {
+            return ((CCefViewEditor *)m_pCefView->GetCefView())->IsBuilding();
+        }
+    }
+    return NO;
+}
+
 
 @end
