@@ -1009,6 +1009,18 @@ bool CAscTabWidget::isFragmented(int index)
     return false;
 }
 
+bool CAscTabWidget::isProcessed(int index) const
+{
+    if (!(index < 0) && index < count()) {
+        CTabPanel * panel = static_cast<CTabPanel *>(widget(index));
+        CAscTabData * doc = panel->data();
+
+        return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->IsBuilding();
+    }
+
+    return false;
+}
+
 void CAscTabWidget::setFullScreen(bool apply, int id)
 {
     QWidget * fsWidget;

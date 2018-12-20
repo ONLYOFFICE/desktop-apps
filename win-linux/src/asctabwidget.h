@@ -182,6 +182,7 @@ public:
     int         findModified(const QString& portal = QString());
     int         findFragmented(const QString& portal = QString());
     bool        isFragmented(int index);
+    bool        isProcessed(int index) const;
 
     void adjustTabsSize();
     void activate(bool);

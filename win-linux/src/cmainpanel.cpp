@@ -490,6 +490,9 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
+    if ( m_pTabs->isProcessed(index) ) {
+        return;
+    } else
     if ( !m_pTabs->isFragmented(index) ) {
         if (trySaveDocument(index) == MODAL_RESULT_NO) {
             m_pTabs->closeEditorByIndex(index, false);
