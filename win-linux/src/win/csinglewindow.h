@@ -62,7 +62,7 @@ private:
     QPushButton * m_pButtonMaximize;
     QPushButton * m_pButtonClose;
 
-    QWidget * createMainPanel(QWidget *, bool, QWidget *);
+    QWidget * createMainPanel(QWidget *, const QString&, bool, QWidget *);
     void recalculatePlaces();
     void pushButtonCloseClicked();
     void pushButtonMinimizeClicked();

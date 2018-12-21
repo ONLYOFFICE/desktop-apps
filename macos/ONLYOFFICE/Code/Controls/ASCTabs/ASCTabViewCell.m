@@ -43,6 +43,7 @@
 #import "NSColor+Extensions.h"
 #import "NSImage+Extensions.h"
 #import "ASCButtonCell.h"
+#import "NSApplication+Extensions.h"
 
 @interface ASCTabViewCell()
 @property (nonatomic) NSImageView * animatedImageView;
@@ -65,13 +66,17 @@
         return _loaderLayer;
     }
 
-    NSImage * loaderImage = [NSImage imageNamed:@"tab-loader-dark"];
+    NSImage * loaderImage = [NSApplication isDarkMode]
+        ? [NSImage imageNamed:@"tab-loader-light"]
+        : [NSImage imageNamed:@"tab-loader-dark"];
 
     if (nil == loaderImage || nil == self.parentView) {
         return nil;
     }
 
-    CGFloat scale = [[NSScreen mainScreen] backingScaleFactor];
+    CGFloat desiredScaleFactor = [[NSApp mainWindow] backingScaleFactor];
+    CGFloat actualScaleFactor = [loaderImage recommendedLayerContentsScale:desiredScaleFactor];
+    id layerContents = [loaderImage layerContentsForContentsScale:actualScaleFactor];
     NSSize size = [loaderImage size];
     CGRect rect = CGRectMake(
                              8,
@@ -85,8 +90,8 @@
     layer.bounds = rect;
     layer.anchorPoint = CGPointMake(0.5, 0.5);
     layer.position = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
-    layer.contents = (id)[loaderImage CGImage];
-    layer.contentsScale = scale;
+    layer.contents = layerContents;
+    layer.contentsScale = actualScaleFactor;
     layer.contentsGravity = kCAGravityCenter;
     layer.zPosition = 1000;
     layer.hidden = !_isProcessing;
@@ -129,7 +134,13 @@
             ? [NSImage imageNamed:@"tab-loader-dark"]
             : [NSImage imageNamed:@"tab-loader-light"];
 
-        self.loaderLayer.contents = (id)[loaderImage CGImage];
+        CGFloat desiredScaleFactor = [[NSApp mainWindow] backingScaleFactor];
+        CGFloat actualScaleFactor = [loaderImage recommendedLayerContentsScale:desiredScaleFactor];
+
+        id layerContents = [loaderImage layerContentsForContentsScale:actualScaleFactor];
+
+        [self.loaderLayer setContents:layerContents];
+        [self.loaderLayer setContentsScale:actualScaleFactor];
 
         [self updateCloseCell];
     }
@@ -142,14 +153,26 @@
     if (self) {
         [self setLineBreakMode:NSLineBreakByTruncatingTail];
 
-        self.inactiveColor          = UIColorFromRGBA(0xe5e5e5, 0);
-        self.activeColor            = UIColorFromRGBA(0x000000, 0.1);
-        self.hoverInactiveColor     = UIColorFromRGBA(0x000000, 0.1);
-        self.hoverActiveColor       = UIColorFromRGB(0xe5e5e5);
-        self.clickColor             = UIColorFromRGB(0xe5e5e5);
-        self.activeTextColor        = UIColorFromRGB(0x000000);
-        self.inactiveTextColor      = UIColorFromRGB(0x000000);
-        self.inactiveBorderColor    = UIColorFromRGBA(0x000000, 0);
+
+        if (@available(macOS 10.13, *)) {
+            self.inactiveColor          = [NSColor colorNamed:@"tab-inactiveColor"];
+            self.activeColor            = [NSColor colorNamed:@"tab-activeColor"];
+            self.hoverInactiveColor     = [NSColor colorNamed:@"tab-hoverInactiveColor"];
+            self.hoverActiveColor       = [NSColor colorNamed:@"tab-hoverActiveColor"];
+            self.clickColor             = [NSColor colorNamed:@"tab-clickColor"];
+            self.activeTextColor        = [NSColor colorNamed:@"tab-activeTextColor"];
+            self.inactiveTextColor      = [NSColor colorNamed:@"tab-inactiveTextColor"];
+            self.inactiveBorderColor    = [NSColor colorNamed:@"tab-inactiveBorderColor"];
+        } else {
+            self.inactiveColor          = UIColorFromRGBA(0xe5e5e5, 0);
+            self.activeColor            = UIColorFromRGBA(0x000000, 0.1);
+            self.hoverInactiveColor     = UIColorFromRGBA(0x000000, 0.1);
+            self.hoverActiveColor       = UIColorFromRGB(0xe5e5e5);
+            self.clickColor             = UIColorFromRGB(0xe5e5e5);
+            self.activeTextColor        = UIColorFromRGB(0x000000);
+            self.inactiveTextColor      = UIColorFromRGB(0x000000);
+            self.inactiveBorderColor    = UIColorFromRGBA(0x000000, 0);
+        }
 
         _parentView = nil;
         _loaderLayer = nil;
@@ -180,14 +203,20 @@
 //        (self.isHover) ? NSLog(@"Hover %@ TRUE", [self className]) : NSLog(@"Hover %@ FALSE", [self className]);
     }
 
-    self.isLight = [color isLight] || [color alphaComponent] < 0.5;
+    self.isLight = [color isLight] || ([NSApplication isDarkMode] ? false : [color alphaComponent] < 0.5);
 
     // Rectangle Drawing
     NSRect rectangleRect = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.width, cellFrame.size.height);
     NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
     NSBezierPath* rectanglePath = [NSBezierPath bezierPath];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 180 endAngle: 270];
-    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 270 endAngle: 360];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 180
+                                            endAngle: 270];
+    [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMaxX(rectangleInnerRect), NSMinY(rectangleInnerRect))
+                                              radius: rectangleCornerRadius
+                                          startAngle: 270
+                                            endAngle: 360];
     [rectanglePath lineToPoint: NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath lineToPoint: NSMakePoint(NSMinX(rectangleRect), NSMaxY(rectangleRect))];
     [rectanglePath closePath];

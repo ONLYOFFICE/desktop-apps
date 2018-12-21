@@ -48,8 +48,11 @@
 - (void)create:(CAscApplicationManager *)manager withType:(CefViewWrapperType)type;
 - (void)apply:(NSEditorApi::CAscMenuEvent *)event;
 - (void)setParentCef:(int)idx;
+- (void)setExternalCloud:(NSString *)provider;
 - (void)internalClean;
 - (void)focus;
+- (BOOL)checkCloudCryptoNeedBuild;
+- (BOOL)checkBuilding;
 
 - (void)loadWithUrl:(NSString *)url;
 - (void)createFileWithName:(NSString *)name type:(NSInteger)type;

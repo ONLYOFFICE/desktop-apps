@@ -14,11 +14,16 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/sk.ts \
                 ./langs/fr.ts \
                 ./langs/pt_BR.ts \
-                ./langs/it_IT.ts
+                ./langs/it_IT.ts \
+                ./langs/pl.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
 BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
 CORE_LIB_PATH = ../../core/build
+CORE_3DPARTY_PATH = ../../core/Common/3dParty
+
+OBJECTS_DIR = ./obj
+MOC_DIR = ./moc
 
 INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
                 $$BASEEDITORS_PATH/lib/qcefview \
@@ -50,7 +55,9 @@ HEADERS += \
     $$PWD/src/canimatedicon.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
-    $$PWD/src/cmainwindowbase.h
+    $$PWD/src/cmainwindowbase.h \
+    $$PWD/src/ctabpanel.h \
+    $$PWD/src/cdpichecker.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -78,7 +85,8 @@ SOURCES += \
     $$PWD/src/canimatedicon.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
-    $$PWD/src/cmainwindowbase.cpp
+    $$PWD/src/cmainwindowbase.cpp \
+    $$PWD/src/ctabpanel.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -114,8 +122,8 @@ app_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -lcef
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
+    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter -lkernel -lgraphics
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
@@ -144,8 +152,8 @@ app_linux {
         message("build for centos6")
     }
 
-    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicuuc.so.58
-    LIBS += $$PWD/$$CORE_LIB_PATH/../Common/3dParty/icu/linux_64/build/libicudata.so.58
+    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
+    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
     include($$PWD/$$CORE_LIB_PATH/../Common/3dParty/openssl/openssl.pri)
@@ -213,5 +221,5 @@ win32 {
         PLATFORM_BUILD = win_32
     }
 
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/cef/$$PLATFORM_BUILD -llibcef
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
 }

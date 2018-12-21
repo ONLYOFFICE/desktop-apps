@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -36,6 +36,9 @@
 */
 
 +function(){ 'use strict'
+    window.config = { portals: {}};
+    window.config.portals.checklist = sdk.externalClouds();
+
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
         args.action = 
@@ -52,30 +55,84 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html = `<div ${args.id} class="action-panel ${args.action}">` +
-                      '<div id="box-empty-portals" class="empty flex-center">' +
-                        '<section class="center-box">'+
-                          `<h3 class="empty-title" style="margin:0 0 42px;">${_lang.portalEmptyTitle}</h3>`+
-                          '<img class="img-connect">' +
-                          `<h4 class="text-description" style="margin:38px 0 6px;color:#666666;">${_lang.portalEmptyDescr}</h4>` +
-                          '<div class="tools-connect">'+
-                            `<button class="btn primary newportal">${_lang.btnCreatePortal}</button>`+
-                            '<section class="link-connect">'+
-                              `<label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>`+
-                            '</section>'+
-                          '</div>'+
-                        '</section>'+
-                      '</div>'+
-                      '<div id="box-portals">' +
-                        '<div class="flexbox">'+
-                          `<h3 class="table-caption">${_lang.portalListTitle}</h3>`+
-                          '<div class="table-box flex-fill"><table class="table-files list"></table></div>'+
-                          '<div class="lst-tools">'+
-                            `<button id="btn-addportal" class="btn login">${_lang.btnAddPortal}</button>`+
-                          '</div>'+
-                        '</div>'+
-                      '</div>' +
-                    '</div>';
+        var _html_empty_panel1 =
+                        `<div id="box-empty-portals" class="empty flex-center">
+                            <section class="center-box">
+                              <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
+                              <div class='carousel'>
+                                <figure class='carousel__slidebox'>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide1Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide1Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide2Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide2Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                    <div class='carousel__slide active'>
+                                        <p class='carousel__slide__text title'>${_lang.emptySlide3Title}</p>
+                                        <p class='carousel__slide__text descr'>${_lang.emptySlide3Text}</p>
+                                        <img class='carousel__slide__img'>
+                                    </div>
+                                </figure>
+                                <nav class='carousel__scrolls'>
+                                    <div class='carousel__scroll__btn prev' value='prev'></div>
+                                    <div class='carousel__scroll__btn next' value='next'></div>
+                                </nav>
+                              </div>
+                              <div class="tools-connect">
+                                <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                <section class="link-connect">
+                                  <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                </section>
+                              </div>
+                            </section>
+                        </div>`;
+
+        var _html_empty_panel =
+                            `<div id="box-empty-portals" class="empty flex-center">
+                                <section id='connect-empty-var-2'>
+                                    <h3 class="empty-title" style="margin:0;">${_lang.portalEmptyTitle}</h3>
+                                    <h4 class='text-description' style='margin-bottom:50px;'>${_lang.portalEmptyDescr}</h4>
+                                    <section class='tools-connect2'>
+                                        <div>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
+                                                <svg class='icon'><use xlink:href='#logo__asc'></svg>
+                                            </button>
+                                        </div>
+                                        <div style='font-size:0;'>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextc'>
+                                                <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
+                                            </button>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='ownc'>
+                                                <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
+                                            </button>
+                                        </div>
+                                    </section>
+                                    <h4 class='text-description separate-top' style='margin-bottom:8px;'>${_lang.portalEmptyAdv1}</h4>
+                                    <div class="tools-connect">
+                                        <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                        <section class="link-connect">
+                                            <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>`;
+
+        var _html = `<div ${args.id} class="action-panel ${args.action}">
+                      ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
+                      <div id="box-portals">
+                        <div class="flexbox">
+                          <h3 class="table-caption">${_lang.portalListTitle}</h3>
+                          <div class="table-box flex-fill"><table class="table-files list"></table></div>
+                          <div class="lst-tools">
+                            <button id="btn-addportal" class="btn login">${_lang.btnAddPortal}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -95,55 +152,10 @@
 
             this.$panelNoPortals = this.$panel.find('#box-empty-portals');
             this.$panelPortalList = this.$panel.find('#box-portals');
-
-            if ( !localStorage['commercial'] ) {
-                var onadsclick = (e) => {
-                    let $el = $(e.target);
-                    let action = $el.attr('action');
-
-                    let $title = this.$panel.find('h3.empty-title'),
-                        $descr = this.$panel.find('h4.text-description'),
-                        $img = this.$panel.find('img.img-connect');
-
-                    if (/^custom/.test(action)) {
-                        $('.action-panel').hide();
-                        this.$panel.show();
-                        $('.tool-menu > .menu-item').removeClass('selected');
-
-                        if (/verhistory$/.test(action)) {
-                            $title.html(utils.Lang.adsTitle1);
-                            $descr.html(utils.Lang.adsDescr1);
-                            $img.removeClass('docreview').addClass('verhistory');
-                            this.$adsItemHistory.addClass('selected');
-                        } else {
-                            $title.html(utils.Lang.adsTitle2);
-                            $descr.html(utils.Lang.adsDescr2);
-                            $img.removeClass('verhistory').addClass('docreview');
-                            this.$adsItemReview.addClass('selected');
-                        }
-                    } else
-                    if (/^connect/.test(action)) {
-                        $title.html(utils.Lang.portalEmptyTitle)
-                        $descr.html(utils.Lang.portalEmptyDescr);
-                        $img.removeClass('verhistory').removeClass('docreview');
-                    }
-                };
-
-                let action = 'custom ads-verhistory';
-                this.$adsItemHistory = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem1}</a></li>`);
-                this.$adsItemHistory.on('click', onadsclick);
-
-                action = 'custom ads-docreview';
-                this.$adsItemReview = this.renderMenuItem(`<li class="menu-item"><a action='${action}'>${utils.Lang.adsToolItem2}</a></li>`);
-                this.$adsItemReview.on('click', onadsclick);
-
-                $(this.menuContainer).find('[action=connect]').parent().on('click', onadsclick);
-            }
         },
         portaltemplate: function(info) {
             return `<tr id=${info.elid}><td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
-                          <td class="row-cell cuser minor"><span>${info.user}</span></td>
-                          <td class="row-cell cemail minor"><span>${info.email}</span></td>
+                          <td class="row-cell cuser minor"><span>${info.user}${info.email.length && (' (' + info.email + ')') || ''}</span></td>
                           <td class="cell-tools">
                             <div class="hlayout">
                               <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
@@ -162,8 +174,8 @@
             var model = data;
             if (/\:open/.test(action)) {
                 model.logged ?
-                    window.sdk.execCommand("portal:open", model.path) :
-                        _do_login(model.path, model.email);
+                    window.sdk.execCommand("portal:open", JSON.stringify({portal: model.path, provider:model.provider})) :
+                        _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model.path);
@@ -174,44 +186,73 @@
             }
         };
 
-        function _do_login(portal, user) {
+        var _do_connect = function(model) {
+            let _dialog = new DialogConnect({
+                portal: model.path,
+                provider: model.provider,
+                onclose: opts => {
+                    if ( opts ) {
+                        opts.type = 'outer';
+                        sdk.execCommand("auth:outer", JSON.stringify(opts));
+                    }
+
+                    _dialog = undefined;
+                }
+            });
+
+            _dialog.show();
+        };
+
+        function _do_login(model) {
             if ( !dlgLogin ) {
-                dlgLogin = new LoginDlg();
-                dlgLogin.onsuccess(info => {
-                    if ( info.status == 'sso' ) {
-                        window.sdk.execCommand("auth:sso", JSON.stringify(info));
-                    } else
-                    if ( info.status == 'user' ) {
-                        window.sdk.execCommand("portal:open", info.data.portal);
+                !model && (model = {})
+                dlgLogin = new LoginDlg({
+                    success: info => {
+                        if ( info.type == 'sso' ) {
+                            window.sdk.execCommand("auth:sso", JSON.stringify(info));
+                        } else
+                        if ( info.type == 'outer' ) {
+                            window.sdk.execCommand("auth:outer", JSON.stringify(info));
+                        } else
+                        if ( info.type == 'user' ) {
+                            window.sdk.execCommand("portal:open", JSON.stringify({portal:info.data.portal}));
 
-                        dlgLogin.onclose();
-                        PortalsStore.keep(info.data);
-                        _update_portals.call(this);
+                            // dlgLogin.close();
+                            PortalsStore.keep(info.data);
+                            _update_portals.call(this);
 
-                        window.selectAction('connect');
+                            window.selectAction('connect');
+                        }
+                    },
+                    close: code => {
+                        dlgLogin = undefined;
                     }
                 });
-                dlgLogin.onclose(code=>{
-                    dlgLogin = undefined;
-                });
-                dlgLogin.show(portal, user);
+
+                dlgLogin.show({portal: model.path, provider: model.provider, email: model.email});
             }
         };
 
+        if ( config.portals && !!config.portals.auth_use_api ) {
+            _do_connect = _do_login;
+        }
+
         function _authorize(portal, user, data) {
             if ( !dlgLogin ) {
-                dlgLogin = new LoginDlg();
-                dlgLogin.onsuccess(info => {
-                    dlgLogin.onclose();
-                    PortalsStore.keep(info.data);
-                    _update_portals.call(this);
+                dlgLogin = new LoginDlg({
+                    success: info => {
+                        // dlgLogin.close();
+                        PortalsStore.keep(info.data);
+                        _update_portals.call(this);
 
-                    CommonEvents.fire('portal:authorized', [data]);
+                        CommonEvents.fire('portal:authorized', [data]);
+                    },
+                    close: code => {
+                        dlgLogin = undefined;
+                    }
                 });
-                dlgLogin.onclose(code=>{
-                    dlgLogin = undefined;
-                });
-                dlgLogin.show(portal, user);
+
+                dlgLogin.show({portal: portal, email: user});
             }
         };
 
@@ -229,9 +270,6 @@
             var portals = PortalsStore.portals();
 
             if (portals.length) {
-                !localStorage['commercial'] &&
-                    localStorage.setItem('commercial', 'showed');
-
                 let auth_arr = {};
                 for (let rec of portals) {
                     var pm = new PortalModel(rec);
@@ -244,11 +282,6 @@
 
                 this.view.$panelNoPortals.hide();
                 this.view.$panelPortalList.show();
-
-                if ( !!this.view.$adsItemReview ) {
-                    this.view.$adsItemReview.hide();
-                    this.view.$adsItemHistory.hide();
-                }
             } else {
                 this.view.$panelNoPortals.show();
                 this.view.$panelPortalList.hide();
@@ -285,9 +318,8 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
-                    model.logged ?
-                        window.sdk.execCommand("portal:open", model.path) :
-                        _do_login.call(this, model.path, model.email);
+                    !model.logged ? _do_connect.call(this, model) :
+                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -324,10 +356,8 @@
 
                     let _is_logged = obj[i].length > 0;
                     if ( _is_logged ) {
-                        let _dlg_login = new LoginDlg();
-                        _dlg_login.portalavailable(model.path).then(
-                            data => { data.status == 'ok' && model.set('logged', true); },
-                            error => {});
+                        (new DialogConnect).portalexists(model.path, model.provider)
+                            .then( data => { data.status == 'success' && model.set('logged', true); } );
                     }
                 }
             };
@@ -336,6 +366,119 @@
         var _on_create_portal = function() {
             dlgLogin && dlgLogin.close();
             window.sdk.execCommand('portal:create', '');
+        };
+
+        var _on_login_message = function(info) {
+            let obj = JSON.parse(utils.fn.decodeHtml(info));
+            if ( obj ) {
+                var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
+                if ( model ) {
+                    if ( model.email == obj.email ) {
+                        !model.get('logged') && model.set('logged', true);
+                        return;
+                    } else {
+                        PortalsStore.forget(obj.domain);
+                    }
+                }
+
+
+                let _p;
+                !obj.provider && (obj.provider = 'asc');
+                if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
+                            (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
+                    obj.provider = _p.id;
+
+                let info = {
+                    portal: obj.domain,
+                    provider: obj.provider,
+                    user: obj.displayName,
+                    email: obj.email
+                };
+
+                info.portal.endsWith('/') &&
+                        (info.portal = info.portal.slice(0,-1));
+
+                PortalsStore.keep(info);
+                if ( obj.provider != 'asc' ) {
+                    sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
+
+                    window.on_set_cookie = () => {
+                        window.on_set_cookie = undefined;
+                        _update_portals.call(this);
+                    }
+                } else {
+                    _update_portals.call(this);
+                }
+            }
+        };
+
+        var _on_settings = function(cmd, params) {
+            if (/init$/.test(cmd)) {
+                if ( params.includes('\"portals\"\:') ) {
+                    let opts;
+                    try {
+                        opts = JSON.parse( utils.fn.decodeHtml(params) );
+                    } catch (e) { /*delete opts;*/ }
+
+                    if ( opts && opts.portals && opts.portals.auth_use_api ) {
+                        _do_connect = _do_login;
+                    }
+                }
+            }
+        };
+
+        let carousel = {};
+        function _scrollCarousel(direction) {
+            function __check_limits(v, max) {
+                if ( v < 0 ) return max;
+                else if ( v > max ) return 0;
+                else return v;
+            };
+
+            let _activeindex = carousel.$items.filter('.active').index();
+            direction == 'next' ? ++_activeindex : --_activeindex;
+
+            _activeindex = __check_limits(_activeindex, carousel.$items.length - 1);
+
+            let _pre_index = _activeindex - 1,
+                _pro_index = _activeindex + 1;
+
+            _pre_index = __check_limits(_pre_index, carousel.$items.length - 1);
+            _pro_index = __check_limits(_pro_index, carousel.$items.length - 1);
+
+            carousel.$items.eq(_activeindex).addClass('migrate');
+            if ( direction == 'next' ) {
+                carousel.$items.filter('.pre-active').removeClass('pre-active').addClass('migrate');
+                carousel.$items.eq(_pre_index).removeClass('migrate pre-active active pro-active').addClass('pre-active');
+            } else {
+                carousel.$items.filter('.pro-active').removeClass('pro-active').addClass('migrate');
+                carousel.$items.eq(_pro_index).removeClass('migrate pre-active active pro-active').addClass('pro-active');
+            }
+
+            carousel.$items.eq(_activeindex).removeClass('migrate pre-active pro-active').addClass('active');
+
+            if ( direction == 'next' )
+                carousel.$items.eq(_pro_index).removeClass('migrate pre-active active pro-active').addClass('pro-active');
+            else carousel.$items.eq(_pre_index).removeClass('migrate pre-active active pro-active').addClass('pre-active');
+        };
+
+        function _initCarousel() {
+            let _$panel = this.view.$panelNoPortals;
+            carousel.$items = _$panel.find('.carousel__slide');
+            let _activeindex = carousel.$items.filter('.active').index();
+
+            let _pre_index = _activeindex - 1,
+                _pro_index = _activeindex + 1;
+
+            if ( _pre_index < 0 ) _pre_index = carousel.$items.length - 1;
+            if ( _pro_index > carousel.$items.length - 1 ) _pro_index = 0;
+            carousel.$items.eq(_pre_index).addClass('pre-active');
+            carousel.$items.eq(_pro_index).addClass('pro-active');
+
+            _$panel.find('.carousel__scrolls > .carousel__scroll__btn')
+                .on('click', e => {
+                    _scrollCarousel(e.target.getAttribute('value'));
+                });
         };
 
         return {
@@ -363,39 +506,21 @@
                         }
                     } else
                     if (/portal:login/.test(cmd)) {
-                        let obj = JSON.parse(utils.fn.decodeHtml(param));
-                        if ( obj ) {
-                            var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
-                            if ( model ) {
-                                if ( model.email == obj.email ) {
-                                    !model.get('logged') && model.set('logged', true);
-                                    return;
-                                } else {
-                                    PortalsStore.forget(obj.domain);
-                                }
-                            }
-
-                            let info = {
-                                portal: obj.domain,
-                                user: obj.displayName,
-                                email: obj.email
-                            };
-
-                            info.portal.endsWith('/') &&
-                                    (info.portal = info.portal.slice(0,-1));
-
-                            PortalsStore.keep(info);
-                            _update_portals.call(this);
-                        }
+                        _on_login_message.call(this, param);
+                    } else
+                    if (/^settings\:/.test(cmd)) {
+                        _on_settings.call(this, cmd, param);
                     }
                 });
 
                 _init_collection.call(this);
                 _update_portals.call(this);
                 _init_ppmenu.call(this);
+                _initCarousel.call(this);
 
                 $('body').on('click', '.login', e=>{
-                    _do_login.call(this);
+                    let _data = $(e.currentTarget).data();
+                    !_data ? _do_connect.call(this) : _do_connect.call(this, {provider:_data.cprov});
                 });
 
                 window.CommonEvents.on('portal:create', _on_create_portal);
@@ -414,6 +539,9 @@
                 if ( !model.logged ) {
                     _authorize.call(this, portal, model.email, data);
                 }
+            }
+            , collection: function() {
+                return collection;
             }
         };
     })());

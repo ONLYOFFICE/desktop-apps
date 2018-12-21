@@ -6,11 +6,12 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-inline');
 
     function doRegisterInitializeAppTask(name, appName, configFile) {
         return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
@@ -94,11 +95,11 @@ module.exports = function(grunt) {
                 separate_target: {
                     options: {
                         mangle: {
-                            sort: true
+                            // sort: true
                         }
                     },
                     files: {
-                        '../src/dlglogin.min.js' : ['../src/dlglogin.js']
+                        '../src/dlglogin.min.js' : ['../src/dlglogin.js','../src/dialogconnect.js']
                     }
                 },
                 my_target: {
@@ -118,6 +119,13 @@ module.exports = function(grunt) {
                     files: {
                         '../deploy/index.html': '../deploy/index.html'
                     }
+                }
+            },
+
+            inline: {
+                dist: {
+                    src: '../deploy/index.html',
+                    dest: '../deploy/index.html'
                 }
             },
 
@@ -142,7 +150,7 @@ module.exports = function(grunt) {
                             return '<style type="text/css">' + css + '</style>';
                         }
                     },{
-                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\.]+\.js)\"\>\<\/script\>)/g,
+                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\S\.]+\.js)\"\>\<\/script\>)/g,
                         to: function(matchedWord, index, fullText, regexMatches) {
                             if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
                                 grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
@@ -162,6 +170,7 @@ module.exports = function(grunt) {
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'uglify:separate_target', 'concat', 'clean', 'uglify', 'htmlmin', 'compile-html']);
+    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'uglify:separate_target', 
+        'concat', 'clean', 'inline', 'uglify', 'htmlmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };

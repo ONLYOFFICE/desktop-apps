@@ -101,4 +101,21 @@
     
     return output;
 }
+
+- (NSDictionary *)dictionary {
+    NSError * error;
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+
+    if (error) {
+        NSLog(@"NSJSONSerialization Error: %@", error);
+    }
+
+    return json;
+}
+
+- (NSString *)encodeJson {
+    return [self stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]; // ¯\_(ツ)_/¯
+}
+
 @end

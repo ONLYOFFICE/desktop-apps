@@ -39,6 +39,7 @@
 //
 
 #import "ASCHelper.h"
+#import "ASCExternalController.h"
 
 static NSMutableDictionary * localSettings;
 
@@ -124,22 +125,24 @@ static NSMutableDictionary * localSettings;
 }
 
 + (NSString *)appName {
-#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
-    return NSLocalizedString(@"ONLYOFFICE Free", nil);
-#else
-    CFBundleRef localInfoBundle = CFBundleGetMainBundle();
-    NSDictionary * localInfoDict = (NSDictionary *)CFBundleGetLocalInfoDictionary(localInfoBundle);
-    
-    if (localInfoDict) {
-        NSString * productName = [localInfoDict objectForKey:@"CFBundleName"];
-        
-        if (productName && productName.length > 0) {
-            return productName;
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onApplicationName)]) {
+        return [externalDelegate onApplicationName];
+    } else {
+        CFBundleRef localInfoBundle = CFBundleGetMainBundle();
+        NSDictionary * localInfoDict = (NSDictionary *)CFBundleGetLocalInfoDictionary(localInfoBundle);
+
+        if (localInfoDict) {
+            NSString * productName = [localInfoDict objectForKey:@"CFBundleName"];
+
+            if (productName && productName.length > 0) {
+                return productName;
+            }
         }
+
+        return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
     }
-    
-    return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
-#endif
 }
 
 @end

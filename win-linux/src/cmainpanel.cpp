@@ -64,7 +64,6 @@
 #ifdef _WIN32
 #include "win/cprintdialog.h"
 #include "shlobj.h"
-#include "lmcons.h"
 
 #else
 #define VK_F4 0x73
@@ -226,9 +225,9 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 //    m_pTabs->updateIcons();
 
     QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(CLangater::getLanguageName(), Utils::systemLocationCode());
+                        .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
-    wstring user_name = readSystemUserName();
+    wstring user_name = Utils::systemUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
@@ -305,12 +304,12 @@ void CMainPanel::pushButtonMaximizeClicked()
 void CMainPanel::pushButtonCloseClicked()
 {
     // if close doesn't act
-    if (m_saveAction != 2) {
+    if (m_saveAction != 2 || m_saveAction != 3) {
         int _index_, _answ_;
 
         while (true) {
             // find a modified document
-            _index_ = m_pTabs->findModified("");
+            _index_ = m_pTabs->findModified();
             if ( _index_ < 0 ) {
                 // no modified documents
                 m_pTabs->closeAllEditors();
@@ -491,8 +490,15 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if (trySaveDocument(index) == MODAL_RESULT_NO) {
-        m_pTabs->closeEditorByIndex(index, false);
+    if ( m_pTabs->isProcessed(index) ) {
+        return;
+    } else
+    if ( !m_pTabs->isFragmented(index) ) {
+        if (trySaveDocument(index) == MODAL_RESULT_NO) {
+            m_pTabs->closeEditorByIndex(index, false);
+        }
+    } else {
+        m_pTabs->editorCloseRequest(index);
     }
 }
 
@@ -516,11 +522,8 @@ int CMainPanel::trySaveDocument(int index)
         default:{
             m_pTabs->editorCloseRequest(index);
 
-            QCefView * pView = (QCefView *)m_pTabs->widget(index);
-            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent();
-
-            pEvent->m_nType = ASC_MENU_EVENT_TYPE_CEF_SAVE;
-            pView->GetCefView()->Apply(pEvent);
+            QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
+            pView->GetCefView()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
 
             modal_res = MODAL_RESULT_YES;
             break;}
@@ -614,21 +617,31 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
 #endif
 
     CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-    QString _filter = QString::fromStdWString(pData->get_Filter()),
-            _file_path;
+    QString _filter = QString::fromStdWString(pData->get_Filter());
+    QStringList _list;
     if ( _filter == "plugin" ) {
-        _file_path = dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN));
+        _list = pData->get_IsMultiselect() ? dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN)) :
+                            dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
     } else
     if ( _filter == "image" || _filter == "images" ) {
-        _file_path = dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN));
+        _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
+                            dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
+    } else
+    if ( _filter == "any" ) {
+        _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
     }
 
-    if (!_file_path.isEmpty()) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_file_path).absolutePath());
+    if ( !_list.isEmpty() ) {
+        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_list.at(0)).absolutePath());
     }
 
     /* data consits id of cefview */
-    pData->put_Path(_file_path.toStdWString());
+
+    pData->put_IsMultiselect(true);
+    vector<wstring>& _files = pData->get_Files();
+    for ( const auto& f : _list ) {
+        _files.push_back( f.toStdWString() );
+    }
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(eventtype);
     pEvent->m_pData = pData;
@@ -650,7 +663,7 @@ void CMainPanel::onLocalFileOpen(const QString& inpath)
     QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
                         inpath : Utils::lastPath(LOCAL_PATH_OPEN);
 
-    if (!(_path = dlg.modalOpen(_path)).isEmpty()) {
+    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
         Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
 
         COpenOptions opts = {"", etLocalFile, _path};
@@ -797,14 +810,18 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
             QString _domain = _re_match.captured(1);
             QString _folder = param;
 
-            int pos = _folder.indexOf(QRegularExpression("#\\d+"));
-            !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+            if ( _folder.indexOf("?") > 0 )
+                _folder.append("&desktop=true");
+            else {
+                int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+            }
 
             int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
             if ( !(_tab_index < 0)) {
                 ((CAscTabWidget *)m_pTabs)->updatePortal(_tab_index, _folder);
             } else {
-                _tab_index = m_pTabs->addPortal(_folder, "");
+                _tab_index = m_pTabs->addPortal(_folder, "", "");
             }
 
             if ( !(_tab_index < 0) ) {
@@ -837,10 +854,10 @@ void CMainPanel::doOpenLocalFiles(const QStringList& list)
     while (i.hasNext()) {
         QString n = i.next();
         if ( n.startsWith("--new:") ) {
-            QRegularExpression re("^--new:(doc|sheet|slide)");
+            QRegularExpression re("^--new:(word|cell|slide)");
             QRegularExpressionMatch match = re.match(n);
             if ( match.hasMatch() ) {
-                if ( match.captured(1) == "doc" ) onLocalFileCreate(etDocument); else
+                if ( match.captured(1) == "word" ) onLocalFileCreate(etDocument); else
                 if ( match.captured(1) == "cell" ) onLocalFileCreate(etSpreadsheet); else
                 if ( match.captured(1) == "slide" ) onLocalFileCreate(etPresentation);
             }
@@ -963,6 +980,94 @@ void CMainPanel::onDocumentDownload(void * info)
     RELEASEINTERFACE(pData);
 }
 
+void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
+{
+    int index = m_pTabs->tabIndexByView(id), _answ;
+    if ( isfragmented ) {
+        if ( !(index < 0) ) {
+            static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
+            if ( _skip_user_warning ) {
+                QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
+                pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+                return;
+            } else {
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+                mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+                _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
+                if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
+                    QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
+                    pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+                    return;
+                } else
+                if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
+                } else
+                if ( _answ == MODAL_RESULT_CUSTOM + 2 ) {
+                    m_saveAction = 0;
+                    m_pTabs->applyDocumentSave(id, true);
+                    return;
+                }
+            }
+        }
+    }
+
+    m_pTabs->applyDocumentSave(id, true);        // 'true' clears 'closed' doc status
+    _answ = trySaveDocument(index);
+    if ( _answ == MODAL_RESULT_NO ) {
+        m_pTabs->closeEditorByIndex(index, false);
+        if ( m_saveAction == 3 ) {
+            m_saveAction = 0;
+            pushButtonCloseClicked();
+        }
+    } else
+    if ( _answ == MODAL_RESULT_YES ) {
+        if ( m_saveAction == 3 )
+            m_saveAction = 2;
+    }
+}
+
+void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
+{
+    int index = m_pTabs->tabIndexByView(vid);
+    if ( error == 0 ) {
+        m_pTabs->closeEditorByIndex(index, false);
+
+        if ( m_saveAction == 3 ) {
+            m_saveAction = 0;
+            pushButtonCloseClicked();
+        }
+    } else {
+//        int index = m_pTabs->tabIndexByView(id);
+        m_pTabs->applyDocumentSave(index, true);
+    }
+}
+
+void CMainPanel::onEditorActionRequest(int vid, const QString& args)
+{
+    int index = m_pTabs->tabIndexByView(vid);
+    if ( !(index < 0) ) {
+        if ( args.contains(QRegExp("action\\\":\\\"close")) ) {
+            bool _is_local = m_pTabs->isLocalByIndex(index);
+            onTabCloseRequest(index);
+
+            if (  !_is_local  ) {
+                QJsonParseError jerror;
+                QJsonDocument jdoc = QJsonDocument::fromJson(args.toLatin1(), &jerror);
+
+                if( jerror.error == QJsonParseError::NoError ) {
+                    QJsonObject objRoot = jdoc.object();
+
+                    QString _url = objRoot["url"].toString();
+                    if ( !_url.isEmpty() )
+                        onLocalFileLocation(vid, _url);
+                    else _is_local = true;
+                }
+            }
+
+            if (  _is_local  ) toggleButtonMain(true);
+        }
+    }
+}
+
 void CMainPanel::loadStartPage()
 {
     GET_REGISTRY_USER(_reg_user);
@@ -973,7 +1078,7 @@ void CMainPanel::loadStartPage()
     QString data_path = qApp->applicationDirPath() + "/index.html";
 #endif
 
-    QString additional = "?waitingloader=yes&lang=" + CLangater::getLanguageName();
+    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
 
     QString _portal = _reg_user.value("portal").value<QString>();
     if (!_portal.isEmpty()) {
@@ -1047,20 +1152,16 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < 1 && (finish = 1);
                 finish < start && (finish = start);
 
-                CAscPrintPage * pData;
-
+                if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
-//                EnableWindow(parentWindow(), FALSE);
-                EnableWindow((HWND)parentWidget()->winId(), FALSE);
-
-                CPrintProgress progressDlg((HWND)parentWidget()->winId());
+                    CPrintProgress progressDlg((HWND)parentWidget()->winId());
 #else
-                CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
+                    CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
 #endif
-                progressDlg.startProgress();
+                    progressDlg.startProgress();
 
-                uint count = finish - start;
-                if (pContext->BeginPaint()) {
+                    CAscPrintPage * pData;
+                    uint count = finish - start;
                     for (; !(start > finish); ++start) {
                         pContext->AddRef();
 
@@ -1085,11 +1186,6 @@ void CMainPanel::onDocumentPrint(void * opts)
                     }
                     pContext->EndPaint();
                 }
-
-#if defined(_WIN32)
-//                EnableWindow(parentWindow(), TRUE);
-                EnableWindow((HWND)parentWidget()->winId(), TRUE);
-#endif
             } else {
                 // TODO: show error message
             }
@@ -1114,10 +1210,7 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
 {
     GET_REGISTRY_USER(_reg_user);
 
-    QString savePath = _reg_user.value("savePath").value<QString>();
-    if (savePath.isEmpty() || !QDir(savePath).exists())
-        savePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-
+    QString savePath = Utils::lastPath(LOCAL_PATH_SAVE);
     static bool saveInProcess = false;
     if (!saveInProcess) {
         saveInProcess = true;
@@ -1126,9 +1219,8 @@ void CMainPanel::onDialogSave(std::wstring sName, uint id)
             QString fullPath = savePath + "/" + QString().fromStdWString(sName);
             CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
 
-            if (dlg.modalSaveAs(fullPath)) {
-                savePath = QFileInfo(fullPath).absolutePath();
-                _reg_user.setValue("savePath", savePath);
+            if ( dlg.modalSaveAs(fullPath) ) {
+                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
             }
 
             AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
@@ -1143,13 +1235,11 @@ void CMainPanel::onLocalFileSaveAs(void * d)
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
 
     QFileInfo info( QString::fromStdWString(pData->get_Path()) );
-    if ( info.fileName().size() ) {
-        QString _lastSavePath = Utils::lastPath(LOCAL_PATH_SAVE);
-        if ( !QDir(_lastSavePath).exists() ) {
-            _lastSavePath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
-        }
-
-        QString fullPath = _lastSavePath + "/" + info.fileName();
+    if ( !info.fileName().isEmpty() ) {
+        bool _keep_path = false;
+        QString fullPath;
+        if ( info.exists() ) fullPath = info.absoluteFilePath();
+        else fullPath = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
 
         CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
         dlg.setFormats(pData->get_SupportFormats());
@@ -1159,7 +1249,8 @@ void CMainPanel::onLocalFileSaveAs(void * d)
         pSaveData->put_Path(L"");
 
         if ( dlg.modalSaveAs(fullPath) ) {
-            Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
+            if ( _keep_path )
+                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
 
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
@@ -1224,7 +1315,7 @@ void CMainPanel::onKeyDown(void * eventData)
     case 'W':
     case VK_F4:
         if (_is_ctrl && m_pTabs->isActive()) {
-            m_pTabs->closeEditorByIndex(m_pTabs->currentIndex());
+            onTabCloseRequest(m_pTabs->currentIndex());
         }
         break;
     case VK_TAB:
@@ -1253,12 +1344,22 @@ void CMainPanel::onKeyDown(void * eventData)
     }
 }
 
-void CMainPanel::onPortalOpen(QString url)
+void CMainPanel::onPortalOpen(QString json)
 {
-    int res = m_pTabs->openPortal(url);
-    if ( !(res < 0) ) {
-        toggleButtonMain(false, true);
-        m_pTabs->setCurrentIndex(res);
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if(jerror.error == QJsonParseError::NoError) {
+        QJsonObject objRoot = jdoc.object();
+
+        QString _portal = objRoot["portal"].toString();
+        if ( !_portal.isEmpty() ) {
+            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"));
+            if ( !(res < 0) ) {
+                toggleButtonMain(false, true);
+                m_pTabs->setCurrentIndex(res);
+            }
+        }
     }
 }
 
@@ -1308,35 +1409,17 @@ void CMainPanel::onOutsideAuth(QString json)
         QJsonObject objRoot = jdoc.object();
 
         QString _domain = objRoot["portal"].toString();
-        QString _sso_service = objRoot["provider"].toString();
+        int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
+        if ( _tab_index < 0 ) {
+            QString _sso_service = objRoot["provider"].toString();
+            _tab_index = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
+        }
 
-        int res = m_pTabs->addOAuthPortal(_domain, objRoot["status"].toString(), _sso_service);
-        if (!(res < 0)) {
-            m_pTabs->setCurrentIndex(res);
+        if ( !(_tab_index < 0) ) {
+            m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
         }
     }
-}
-
-wstring CMainPanel::readSystemUserName()
-{
-#ifdef Q_OS_WIN
-    WCHAR _env_name[UNLEN + 1]{0};
-    DWORD _size = UNLEN + 1;
-
-    return GetUserName(_env_name, &_size) ?
-                            wstring(_env_name) : L"Unknown.User";
-#else
-    QString _env_name = qgetenv("USER");
-    if ( _env_name.isEmpty() ) {
-        _env_name = qgetenv("USERNAME");
-
-        if (_env_name.isEmpty())
-            _env_name = "Unknown.User";
-    }
-
-    return _env_name.toStdWString();
-#endif
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
@@ -1358,19 +1441,51 @@ void CMainPanel::updateScaling(int dpiratio)
     layoutBtns->setSpacing(1 * dpiratio);
 
     if ( m_isCustomWindow ) {
-#ifdef __APP_NEW_APPEARANCE
         layoutBtns->setContentsMargins(0,0,0,0);
+
         QSize small_btn_size(40*dpiratio, TOOLBTN_HEIGHT*dpiratio);
-#else
-        layoutBtns->setContentsMargins(0,0,4*dpiratio,0);
-        QSize small_btn_size(28*dpiratio, TOOLBTN_HEIGHT*dpiratio);
-#endif
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
 
     m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * dpiratio, TITLE_HEIGHT * dpiratio);
+
+    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    if ( m_isCustomWindow ) {
+        _tabs_stylesheets += ".qss";
+    } else {
+#ifdef __linux__
+        _tabs_stylesheets += ".nix.qss";
+#endif
+    }
+
+    QFile styleFile(_tabs_stylesheets);
+    styleFile.open( QFile::ReadOnly );
+    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
+    m_pTabs->updateScaling(dpiratio);
+    styleFile.close();
+
+    std::map<int, std::pair<QString, QString> > icons;
+    if ( dpiratio > 1 ) {
+        icons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe@2x.png", ":/tabbar/icons/pe@2x.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")},
+            {etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}
+        });
+    } else {
+        icons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de.png", ":/tabbar/icons/de.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe.png", ":/tabbar/icons/pe.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")},
+            {etPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")}
+        });
+    }
+
+    m_pTabs->setTabIcons(icons);
 }
 
 void CMainPanel::onCheckUpdates()
@@ -1390,10 +1505,10 @@ bool CMainPanel::holdUid(int uid) const
     bool _res_out = _view->GetId() == uid;
 
     if ( !_res_out ) {
-        QWidget * _widget = m_pTabs->fullScreenWidget();
+        CTabPanel *  _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
 
         if ( _widget ) {
-            _res_out = qobject_cast<QCefView *>(_widget)->GetCefView()->GetId();
+            _res_out = _widget->cef()->GetId();
         }
     }
 

@@ -2,7 +2,7 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title">
@@ -45,11 +45,6 @@
         <target>Spécifier une clé privée pour la signature numérique.</target>
         <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
       </trans-unit>
-      <trans-unit id="X8z-RQ-YLr.title">
-        <source>ONLYOFFICE</source>
-        <target>ONLYOFFICE</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "X8z-RQ-YLr";</note>
-      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString">
         <source>Enter Password</source>
         <target>Entrer le mot de passe</target>
@@ -74,12 +69,17 @@
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
         <source>%@ Help</source>
         <target>Aide de %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Reporter Window">
+        <source>%@ Reporter Window</source>
+        <target>Fenêtre de rapports %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@">
@@ -114,6 +114,7 @@
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location.">
         <source>Cannot open folder of the file location.</source>
+        <target>Impossible d'ouvrir le dossier de l'emplacement du fichier.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
@@ -136,14 +137,19 @@
         <target>Fichier DjVu</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Do you want to save the changes made to the document \&quot;%@\&quot;?">
-        <source>Do you want to save the changes made to the document \"%@\"?</source>
-        <target>Voulez-vous enregistrer les modifications apportées au document \"%@\" ?</target>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Voulez-vous enregistrer les modifications apportées au document "%@" ?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx">
         <source>Document %ld.docx</source>
         <target>Document %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document template">
+        <source>Document template</source>
+        <target>Modèle de document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
@@ -156,14 +162,14 @@
         <target>Feuille de calcul Excel 2007</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Le fichier "%@" ne peut pas être ouvert ou n'existe pas.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File Format:">
         <source>File Format:</source>
         <target>Format de fichier :</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="File \&quot;%@\&quot; can not be open or not exist.">
-        <source>File \"%@\" can not be open or not exist.</source>
-        <target>Le fichier \"%@\" ne peut pas être ouvert ou n'existe pas.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open.">
@@ -206,11 +212,6 @@
         <target>OK</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="ONLYOFFICE Free">
-        <source>ONLYOFFICE Free</source>
-        <target>ONLYOFFICE Gratuit</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file.">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
         <target>ONLYOFFICE ne peut pas ouvrir le fichier de signature numérique. Essayez d'ouvrir un autre fichier.</target>
@@ -246,6 +247,11 @@
         <target>Fichier PDF</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="PDF/A File">
+        <source>PDF/A File</source>
+        <target>Fichier PDF/A</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
         <target>Texte brut</target>
@@ -274,6 +280,11 @@
       <trans-unit id="Presentation %ld.pptx">
         <source>Presentation %ld.pptx</source>
         <target>Présentation %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation template">
+        <source>Presentation template</source>
+        <target>Modèle de présentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@">
@@ -306,6 +317,11 @@
         <target>Feuille de calcul %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Spreadsheet template">
+        <source>Spreadsheet template</source>
+        <target>Modèle de feuille de calcul</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
         <target>Merci d'avoir évalué %@!</target>
@@ -313,6 +329,7 @@
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
+        <target>Pour ouvrir l'emplacement du fichier, il faut l'enregistrer.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed">
@@ -370,21 +387,35 @@
         <target>Vos modifications seront perdues si vous ne les enregistrez pas.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.">
-        <source>Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.</source>
-        <target>Votre abonnement a expiré.\n\nLe programme fonctionne en mode non activé.\n\nVous pouvez maintenant prolonger ou mettre à jour votre abonnement avec une réduction.</target>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount.">
+        <source>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>Votre abonnement a expiré.
+
+Le programme fonctionne en mode non activé.
+
+Vous pouvez maintenant prolonger ou mettre à jour votre abonnement avec une réduction.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.">
-        <source>Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.</source>
-        <target>Votre abonnement est sur le point d'expirer\n(%d jours restants).\n\nNous vous proposons une offre spéciale.</target>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
+        <source>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</source>
+        <target>Votre abonnement est sur le point d'expirer
+(%d jours restants).
+
+Nous vous proposons une offre spéciale.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
@@ -440,7 +471,7 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -1098,11 +1129,6 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
         <target>Informations de copyright</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sM6-C6-Vo9.title">
-        <source>test</source>
-        <target>test</target>
-        <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
-      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Afficher la barre d'outils</target>
@@ -1212,7 +1238,7 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder">
@@ -1259,19 +1285,19 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
-        <source>ONLYOFFICE Reporter Window</source>
-        <target>Fenêtre de rapports ONLYOFFICE</target>
-        <note>Class = "NSWindow"; title = "ONLYOFFICE Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+        <source>Reporter Window</source>
+        <target>Fenêtre de rapports</target>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -1286,26 +1312,9 @@ La période d'essai se termine dans %d jours, après quoi vous ne serez plus en 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE-RU-FREE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="fr">
-    <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
-    </header>
-    <body>
-      <trans-unit id="CFBundleName">
-        <source>$(PRODUCT_NAME)</source>
-        <target>ONLYOFFICE</target>
-        <note>Bundle name</note>
-      </trans-unit>
-      <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2018 All rights reserved.</source>
-        <target>Copyright © АО Novyye Kommunikatsionnyye Tekhnologii. 2018 Tous droits réservés.</target>
-        <note>Copyright (human-readable)</note>
-      </trans-unit>
-    </body>
-  </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="fr">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="9.3" build-num="9E145"/>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">

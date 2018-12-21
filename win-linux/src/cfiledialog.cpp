@@ -55,6 +55,7 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]   = tr("DOCX Document (*.docx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]   = tr("Document template (*.dotx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]    = tr("DOC Document (*.doc)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]    = tr("ODT Document (*.odt)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]    = tr("RTF File (*.rtf)");
@@ -65,15 +66,18 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_POTX]   = tr("Presentation template (*.potx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP]    = tr("ODP File (*.odp)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File (*.ppsx)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File (*.xlsx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX]    = tr("Spreadsheet template (*.xltx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS]     = tr("XLS File (*.xls)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File (*.ods)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV]     = tr("CSV File (*.csv)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF]   = tr("PDF File (*.pdf)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
 }
@@ -98,7 +102,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
             _sel_filter = reFilter.cap(1);
         } else {
-            fileName = info.absolutePath() + "\\" + info.baseName();
+            fileName = info.absolutePath() + QDir::separator() + info.baseName();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
@@ -187,7 +191,7 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
     }
 }
 
-QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected)
+QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected, bool multi)
 {
     QString _filter_ = filter;
     if ( _filter_.isEmpty() ) {
@@ -203,21 +207,31 @@ QString CFileDialogWrapper::modalOpen(const QString& path, const QString& filter
     QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
-    return QFileDialog::getOpenFileName(
+    QWidget * _parent =
 #ifdef _WIN32
-                this,
+                        this;
 #else
 # ifdef FILEDIALOG_DONT_USE_MODAL
-                NULL,
+                        NULL;
 # else
-                (QWidget *)parent(),
+                        (QWidget *)parent();
 # endif
 #endif
-                tr("Open Document"), path, _filter_, &_sel_filter
+    QFileDialog::Options _opts =
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-                , QFileDialog::DontUseNativeDialog
+            QFileDialog::DontUseNativeDialog;
+#else
+            QFileDialog::Options();
 #endif
-                );
+
+    return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
+            QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
+}
+
+QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& filter, QString * selected)
+{
+    QStringList _list = modalOpen(path, filter, selected, false);
+    return _list.isEmpty() ? QString() : _list.at(0);
 }
 
 QString CFileDialogWrapper::modalOpenImage(const QString& path)
@@ -225,16 +239,56 @@ QString CFileDialogWrapper::modalOpenImage(const QString& path)
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
 
-    return modalOpen(path, filter);
+    return modalOpenSingle(path, filter);
 }
 
-QString CFileDialogWrapper::modalOpenPlugins(const QString& path)
+QStringList CFileDialogWrapper::modalOpenImage(const QString& path, bool list)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+
+    return list ? modalOpen(path, filter, nullptr, false) : QStringList();
+}
+
+QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+
+    return modalOpen(path, filter,  nullptr, true);
+}
+
+QString CFileDialogWrapper::modalOpenPlugin(const QString& path)
 {
     QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     QString _plugins_filter = tr("Plugin file (*.plugin)");
     _filter.append(";;" + _plugins_filter);
 
-    return modalOpen(path, _filter, &_plugins_filter);
+    return modalOpenSingle(path, _filter, &_plugins_filter);
+}
+
+QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path, bool list)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    _filter.append(";;" + _plugins_filter);
+
+    return list ? modalOpen(path, _filter, &_plugins_filter, false) : QStringList();
+}
+
+QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString _plugins_filter = tr("Plugin file (*.plugin)");
+    _filter.append(";;" + _plugins_filter);
+
+    return modalOpen(path, _filter, &_plugins_filter, true);
+}
+
+QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
+{
+    QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    return modalOpen(path, _filter, nullptr, multi);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)

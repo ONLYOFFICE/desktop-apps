@@ -36,6 +36,19 @@
     $.fn.hasScrollBar = function() {
         return this.get(0).scrollHeight > this.height();
     }
+
+    $.fn.extend({
+        disable: function(state) {
+            if ( this.is('a, label') ) {
+                state ? this.attr('disabled', 'disabled') : this.removeAttr('disabled');
+            } else $(this).prop('disabled', state);
+
+            return this;
+        },
+        isdisabled: function() {
+            return !this.is('a') ? !!$(this).prop('disabled') : !!this.attr('disabled');
+        }
+    });
 })(jQuery);
 
 var utils = {};
@@ -133,18 +146,35 @@ utils.defines.FileFormat = {
     FILE_DOCUMENT_EPUB: FILE_DOCUMENT + 0x0008,
     FILE_DOCUMENT_FB2:  FILE_DOCUMENT + 0x0009,
     FILE_DOCUMENT_MOBI: FILE_DOCUMENT + 0x000a,
+    FILE_DOCUMENT_DOCM: FILE_DOCUMENT + 0x000b,
+    FILE_DOCUMENT_DOTX: FILE_DOCUMENT + 0x000c,
+    FILE_DOCUMENT_DOTM: FILE_DOCUMENT + 0x000d,
+    FILE_DOCUMENT_ODT_FLAT: FILE_DOCUMENT + 0x000e,
+    FILE_DOCUMENT_OTT:  FILE_DOCUMENT + 0x000f,
+    FILE_DOCUMENT_DOC_FLAT: FILE_DOCUMENT + 0x0010,
     
     FILE_PRESENTATION:      FILE_PRESENTATION,
     FILE_PRESENTATION_PPTX: FILE_PRESENTATION + 0x0001,
     FILE_PRESENTATION_PPT:  FILE_PRESENTATION + 0x0002,
     FILE_PRESENTATION_ODP:  FILE_PRESENTATION + 0x0003,
     FILE_PRESENTATION_PPSX: FILE_PRESENTATION + 0x0004,
+    FILE_PRESENTATION_PPTM: FILE_PRESENTATION + 0x0005,
+    FILE_PRESENTATION_PPSM: FILE_PRESENTATION + 0x0006,
+    FILE_PRESENTATION_POTX: FILE_PRESENTATION + 0x0007,
+    FILE_PRESENTATION_POTM: FILE_PRESENTATION + 0x0008,
+    FILE_PRESENTATION_ODP_FLAT: FILE_PRESENTATION + 0x0009,
+    FILE_PRESENTATION_OTP:  FILE_PRESENTATION + 0x000a,
 
     FILE_SPREADSHEET:       FILE_SPREADSHEET,
     FILE_SPREADSHEET_XLSX:  FILE_SPREADSHEET + 0x0001,
     FILE_SPREADSHEET_XLS:   FILE_SPREADSHEET + 0x0002,
     FILE_SPREADSHEET_ODS:   FILE_SPREADSHEET + 0x0003,
     FILE_SPREADSHEET_CSV:   FILE_SPREADSHEET + 0x0004,
+    FILE_SPREADSHEET_XLSM:  FILE_SPREADSHEET + 0x0005,
+    FILE_SPREADSHEET_XLTX:  FILE_SPREADSHEET + 0x0006,
+    FILE_SPREADSHEET_XLTM:  FILE_SPREADSHEET + 0x0007,
+    FILE_SPREADSHEET_ODS_FLAT: FILE_SPREADSHEET + 0x0008,
+    FILE_SPREADSHEET_OTS:   FILE_SPREADSHEET + 0x0009,
 
     FILE_CROSSPLATFORM:     FILE_CROSSPLATFORM,
     FILE_CROSSPLATFORM_PDF: FILE_CROSSPLATFORM + 0x0001,
@@ -170,11 +200,13 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_MHT:        return 'htm';
 
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLSX:    return 'xlsx';
     case utils.defines.FileFormat.FILE_SPREADSHEET_ODS:     return 'ods';
     case utils.defines.FileFormat.FILE_SPREADSHEET_CSV:     return 'csv';
 
     case utils.defines.FileFormat.FILE_PRESENTATION_PPT:    return 'ppt';
+    case utils.defines.FileFormat.FILE_PRESENTATION_POTX:
     case utils.defines.FileFormat.FILE_PRESENTATION_PPTX:   return 'pptx';
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP:    return 'odp';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'pps';
@@ -251,6 +283,47 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 utils.fn.decodeHtml = function(str) {
     return $('<div>').html(str).text();
 }
+
+utils.fn.getToolMenuItemOrder = function(item) {
+    let $item = $(item);
+
+    let _action = $item.find('[action]').attr('action'),
+        _is_top_group = !$item.hasClass('bottom');
+
+    let _items_top_order = ['recent', 'open', 'connect', 'activation', 'external-'],
+        _items_bottom_order = ['about', 'settings'],
+        _items_order = _is_top_group ? _items_top_order : _items_bottom_order;
+
+    let $menu = $('.main-column.tool-menu');
+    let $itemBefore = $menu.find(`.menu-item [action=${_action}]`);
+
+    if ( $itemBefore.length ) return {item: $itemBefore.parent(), after: _is_top_group};
+    else {
+        let _index = _items_order.findIndex(element => {
+            if ( element.endsWith('-') ) return _action.startsWith(element);
+            else return _action == element;
+        });
+        if ( _index > 0 ) {
+            while ( _index > 0 ) {
+                let _ab = _items_order[--_index];
+                $itemBefore = $menu.find(`.menu-item [action=${_ab}]`).parent();
+
+                if ( $itemBefore.length ) return {item: $itemBefore, after: _is_top_group};
+            }
+        } else
+        if ( _index == 0 ) {
+            return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
+        }
+
+        let $items = $menu.find('.menu-item:not(.bottom)');
+        return { item: $items.length ? $items.last() : $menu.find('.tool-quick-menu').get(0), after: true };
+    }
+};
+
+utils.fn.uuid = function() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+};
 
 function getUrlParams() {
     var e,

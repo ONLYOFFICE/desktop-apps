@@ -29,6 +29,10 @@
                     "dest": "../deploy/"
                 },
                 {
+                    "src": "../vendor/bootstrap-select/dist/js/bootstrap-select.min.js",
+                    "dest": "../deploy/bs-select.min.js"
+                },
+                {
                     "expand": true,
                     "cwd": "../src/",
                     "src": [
@@ -60,6 +64,8 @@
                     ,"../src/panelconnect.js"
                     ,"../src/panelabout.js"
                     ,"../src/panelwelcome.js"
+                    ,"../src/panelsettings.js"
+                    ,"../src/panelexternal.js"
                     ,"../src/dlglogin.min.js"
                     ,"../src/panels.js"
                 ],

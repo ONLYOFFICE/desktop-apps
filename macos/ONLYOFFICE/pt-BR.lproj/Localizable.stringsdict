@@ -12,17 +12,9 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
-			<key>few</key>
-			<string>Faltam %d dias para a licença expirar.</string>
-			<key>many</key>
-			<string>Faltam %d dias para a licença expirar.</string>
 			<key>one</key>
 			<string>Falta %d dia para a licença expirar.</string>
 			<key>other</key>
-			<string>Faltam %d dias para a licença expirar.</string>
-			<key>two</key>
-			<string>Faltam %d dias para a licença expirar.</string>
-			<key>zero</key>
 			<string>Faltam %d dias para a licença expirar.</string>
 		</dict>
 	</dict>
@@ -37,22 +29,10 @@ The trial period will end in %d days, after that you will not be able to create 
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
-			<key>few</key>
-			<string>Você está usando uma versão de avaliação do aplicativo.
-O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
-			<key>many</key>
-			<string>Você está usando uma versão de avaliação do aplicativo.
-O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
 			<key>one</key>
 			<string>Você está usando uma versão de avaliação do aplicativo.
 O período de avaliação terminará em %d dia, após o qual você não poderá criar e editar documentos.</string>
 			<key>other</key>
-			<string>Você está usando uma versão de avaliação do aplicativo.
-O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
-			<key>two</key>
-			<string>Você está usando uma versão de avaliação do aplicativo.
-O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
-			<key>zero</key>
 			<string>Você está usando uma versão de avaliação do aplicativo.
 O período de avaliação terminará em %d dias, após o qual você não poderá criar e editar documentos.</string>
 		</dict>
@@ -67,17 +47,9 @@ O período de avaliação terminará em %d dias, após o qual você não poderá
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
-			<key>few</key>
-			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
-			<key>many</key>
-			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
 			<key>one</key>
 			<string>Você tem %ld %@ documento com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
 			<key>other</key>
-			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
-			<key>two</key>
-			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
-			<key>zero</key>
 			<string>Você tem %ld %@ documentos com alterações não confirmadas. Deseja rever essas alterações antes de sair?</string>
 		</dict>
 	</dict>

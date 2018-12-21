@@ -116,7 +116,7 @@ int main( int argc, char *argv[] )
 #ifdef _WIN32
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        HWND hwnd = FindWindow(L"DocEditorsWindowClass", NULL);
+        HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
         if (hwnd != NULL) {
             WCHAR * cm_line = GetCommandLine();
 
@@ -139,7 +139,7 @@ int main( int argc, char *argv[] )
     }
 
 #ifdef __linux__
-    SingleApplication app(argc, argv);
+    SingleApplication app(argc, argv, APP_MUTEX_NAME ":" + QString::fromStdWString(Utils::systemUserName()));
 #else
     QApplication app(argc, argv);
 #endif
@@ -155,7 +155,7 @@ int main( int argc, char *argv[] )
     application_cef->Init_CEF(&AscAppManager::getInstance(), argc, argv);
     /* ********************** */
 
-    GET_REGISTRY_SYSTEM(reg_system)
+//    GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 

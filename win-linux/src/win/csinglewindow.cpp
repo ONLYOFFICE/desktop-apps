@@ -95,7 +95,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
-    m_pMainPanel = createMainPanel(m_pWinPanel, true, view);
+    m_pMainPanel = createMainPanel(m_pWinPanel, title, true, view);
 
     m_pWinPanel->show();
     recalculatePlaces();
@@ -259,7 +259,6 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         return TRUE;
 
     case WM_PAINT: {
-#ifdef __APP_NEW_APPEARANCE
         RECT rect;
         GetClientRect(hWnd, &rect);
 
@@ -278,20 +277,9 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
 
         ::SelectObject(hDC, hpenOld);
         ::EndPaint(hWnd, &ps);
-        return 0;
-#endif
-
-        break; }
+        return 0;}
 
     case WM_ERASEBKGND: {
-#ifndef __APP_NEW_APPEARANCE
-        RECT rect;
-        GetClientRect(hWnd, &rect);
-
-        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-        FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
-        DeleteObject(hBrush);
-#endif
         return TRUE; }
 
     case WM_GETMINMAXINFO: {
@@ -495,7 +483,7 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
-QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget * view)
+QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
 {
     QWidget * mainPanel = new QWidget(parent);
 //    mainpanel->setObjectName("mainPanel");
@@ -518,17 +506,12 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel("ONLYOFFICE Editor");
+    QLabel * label = new QLabel(title);
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-#ifdef __APP_NEW_APPEARANCE
     layoutBtns->setContentsMargins(0,0,0,0);
     QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-#else
-    layoutBtns->setContentsMargins(0, 0, 4*m_dpiRatio, 0);
-    QSize small_btn_size(28 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
-#endif
 
     layoutBtns->setSpacing(1*m_dpiRatio);
     layoutBtns->addWidget(label);
@@ -571,7 +554,11 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, bool custom, QWidget 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
 
-        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+//        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+
+        QWidget * _lb = new QWidget;
+        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
+        layoutBtns->insertWidget(0, _lb);
     } else {
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));

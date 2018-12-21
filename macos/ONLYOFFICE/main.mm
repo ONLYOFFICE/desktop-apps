@@ -40,10 +40,11 @@
 
 #import <Cocoa/Cocoa.h>
 #include "mac_application.h"
+#include "ASCApplicationManager.h"
 #import "NSString+Extensions.h"
 #import "ASCHelper.h"
-#include "ASCApplicationManager.h"
 #import "ASCDocSignController.h"
+#import "ASCExternalController.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();

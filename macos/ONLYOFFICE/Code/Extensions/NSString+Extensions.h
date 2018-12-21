@@ -50,5 +50,7 @@
 + (NSMutableArray*)stringsArray:(const std::vector<std::wstring>&)sources;
 - (NSString *)stringByAppendingUrlQuery:(NSString *)query;
 - (NSString *)md5;
+- (NSDictionary *)dictionary;
+- (NSString *)encodeJson;
 
 @end

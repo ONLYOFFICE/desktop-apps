@@ -48,25 +48,77 @@ dialog {
         width: 100%;
         top: @title-height;
         bottom: 0;
+        padding: 20px 30px 30px;
     }
 
     .tool.close {
-        width:12px;
-        height:12px;
-        background-position:  -108px 0;
-        border: 1px solid @color-gray-2;
+        width:14px;
+        height:14px;
+        /*border: 1px solid @color-gray-2;*/
         cursor: pointer;
         float: right;
         margin-left: 10px;
 
+        position: relative;
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: #3a3a3a;
+            opacity: .8;
+
+            transition: transform .3s opacity .2s;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
+
         &:hover {
-            background-position-x:-118px;
+            transform: scale(1.1);
+
+            &:before {
+                opacity: 1;
+                /*transform: rotate(135deg);*/
+            }
+
+            &:after {
+                opacity: 1;
+                /*transform: rotate(45deg);*/
+            }
         }
     }
 
     .separator {
         border-top: 1px solid @color-gray-3;
         margin: 24px 0;
+    }
+
+    .dlg--option {
+        margin: 12px 0;
+
+        &.first {
+            margin-top: 0;
+        }
+    }
+
+    .error-box {
+        /*height: 22px;*/
+        position: relative;
+    }
+
+    .msg-error {
+        position: absolute;
+        top: -7px;
+        font-size: 12px;
     }
 }
 
@@ -96,26 +148,9 @@ dialog {
 }
 
 .dlg-login {
-    .body {
-        padding: 20px 30px 30px;
-        /*text-align: center;*/
-    }
-
-    .tbox {
-        margin: 12px 0;
-    }
-
-    .tbox.first {
-        margin-top: 0;
-    }
-
     #btn-login, #btn-next {
         margin-left: 30px;
     }    
-
-    .msg-error {
-        font-size: 12px;
-    }
 
     .logo {
         margin: 10px 0 6px;
@@ -150,22 +185,28 @@ dialog {
         }
     }
 
-    .error-box {
-        height: 22px;
-    }
-
     .combined {
-        margin: 0 15px 0 0;
+        margin-right: 15px;
     }
 
     .notice {
-        margin: 0;
+        margin: 0 0 12px;
         line-height: 18px;
     }
 
     .timer {
         margin-left: 10px;
         color: #999;
+    }
+
+    .box-cmp-select, select {
+        width: 100%;
+    }
+}
+
+.dlg-connect-to {
+    .box-cmp-select {
+        width: 100%;
     }
 }
 

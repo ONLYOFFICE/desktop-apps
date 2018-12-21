@@ -40,7 +40,18 @@ function Event(sender) {
 
 Event.prototype = {
     attach : function (listener) {
-        this._listeners.push(listener);
+        return this._listeners.push(listener);
+    },
+    detach : function (value) {
+        if ( !Number.isInteger(value) )
+            value = this._listeners.indexOf(value);
+
+        if ( !(value < 0) ) {
+            this._listeners.splice(value, 1);
+        }
+    },
+    clear: function() {
+        this._listeners = [];
     },
     notify : function (args) {
         var index;
@@ -152,6 +163,7 @@ function PortalModel(attributes) {
     this.logged = false;
     this.user   = attributes.user || '';
     this.email  = attributes.email || '';
+    this.provider = attributes.provider || 'asc';
 };
 
 PortalModel.prototype = Object.create(Model.prototype); /*new Model();*/

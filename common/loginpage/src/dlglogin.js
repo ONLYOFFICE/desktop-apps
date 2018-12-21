@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2017
+ * (c) Copyright Ascensio System SIA 2010-2018
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,16 +30,20 @@
  *
 */
 
-window.LoginDlg = function() {
+window.LoginDlg = function(opts) {
     "use strict";
+
+    !opts && (opts = {});
 
     let panels = {
         panelPortalName: {
             title: utils.Lang.loginTitleStart,
             template: () => {
                 return `<section><div id="panel-portal" class="sl-panel">
-                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
-                          <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox auth-control first" placeholder="${utils.Lang.pshPortal}" value="">
+                          <div class="error-box">
+                            <p id="auth-error" class="msg-error">error</p>
+                            <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox dlg--option" placeholder="${utils.Lang.pshPortal}" value="">
+                          </div>
                           <div style="height:10px;"></div>
                           <div id="box-btn-next" class="lr-flex">
                             <a id="link-create" class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
@@ -61,9 +65,11 @@ window.LoginDlg = function() {
                             <div class="separator"></div>
                             <span class="separator-label">or</span>
                           </section>
-                          <div class="error-box"><p id="auth-error" class="msg-error">asd</p></div>
-                          <input id="auth-email" type="text" class="tbox auth-control first" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">
-                          <input id="auth-pass" type="password" name="" spellcheck="false" class="tbox auth-control last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">
+                          <div class="error-box">
+                              <p id="auth-error" class="msg-error">asd</p>
+                              <input id="auth-email" type="text" class="tbox dlg--option" name="" spellcheck="false" placeholder="${utils.Lang.pshEmail}" maxlenght="255" value="">
+                          </div>
+                          <input id="auth-pass" type="password" name="" spellcheck="false" class="tbox dlg--option last" placeholder="${utils.Lang.pshPass}" maxlenght="64" value="">
                           <div id="box-btn-login" class="lr-flex">
                             <a id="link-restore" class="text-sub link" target="popup" href="javascript:void(0)">${utils.Lang.linkForgotPass}</a>
                             <span />
@@ -80,9 +86,9 @@ window.LoginDlg = function() {
             template: () => {
                 return `<section><div id="panel-assign-phone" class="sl-panel">
                           <p class="notice text-sub">${utils.Lang.loginNoteAssignPhone}</p>
-                          <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
-                          <div class="lr-flex">
-                            <input id="auth-phone" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshPhone}" maxlenght="255" value="">
+                          <div class="lr-flex error-box">
+                            <p id="auth-error" class="msg-error">error</p>
+                            <input id="auth-phone" type="text" class="tbox dlg--option combined" name="" spellcheck="false" placeholder="${utils.Lang.pshPhone}" maxlenght="255" value="">
                             <div>
                               <button id="btn-assign-phone" class="btn primary">${utils.Lang.btnNext}</button>
                             </div>
@@ -95,9 +101,9 @@ window.LoginDlg = function() {
             template: (code) => {
                 return `<section><div id="panel-apply-code" class="sl-panel">
                     <p class="notice text-sub">${utils.Lang.loginNoteApplyCode.replace(/\$1/, code)}</p>
-                    <div class="error-box"><p id="auth-error" class="msg-error">error</p></div>
-                    <div class="lr-flex">
-                      <input id="auth-code" type="text" class="tbox auth-control first combined" name="" spellcheck="false" placeholder="${utils.Lang.pshCode}" maxlenght="255" value="">
+                    <div class="lr-flex error-box">
+                      <p id="auth-error" class="msg-error">error</p>
+                      <input id="auth-code" type="text" class="tbox dlg--option combined" name="" spellcheck="false" placeholder="${utils.Lang.pshCode}" maxlenght="255" value="">
                       <div>
                         <button id="btn-apply-code" class="btn primary">${utils.Lang.btnNext}</button>
                       </div>
@@ -118,7 +124,7 @@ window.LoginDlg = function() {
     var _tpl = `<dialog class="dlg dlg-login">
                   <div class="title">
                     <label class="caption">Title</label>
-                    <span class="tool close img-el"></span>
+                    <span class="tool close"></span>
                   </div>
                   <div class="body"></div>
                 </dialog>`;
@@ -126,10 +132,14 @@ window.LoginDlg = function() {
     var protocol = 'https://',
         protarr = ['https://', 'http://'],
         startmodule = '/products/files/?desktop=true';
-    var portal = undefined,
+    var portal = opts.portal,
+        provider = opts.provider || 'asc',
         ssoservice = undefined,
-        user = undefined;
-    var events = {};
+        user = opts.user;
+    var events = {
+        success: opts.success,
+        close: opts.close
+    };
     var STATUS_EXIST = 1;
     var STATUS_NOT_EXIST = 0;
     var STATUS_UNKNOWN = -1;
@@ -154,7 +164,7 @@ window.LoginDlg = function() {
                                     email: info.email
                                 };
 
-                                events.success({status:'user', data:auth_info});
+                                events.success({type:'user', data:auth_info});
                             }
 
                             window.on_set_cookie = undefined;
@@ -242,9 +252,10 @@ window.LoginDlg = function() {
     };
 
     function showLoginError(error, focusel) {
+        !error && (error = 'connection internal error');
         let $lbl = $el.find('#auth-error');
 
-        !!error && $lbl.text(error);
+        $lbl.text(error);
         $lbl.fadeIn(100);
 
         !!focusel && $el.find(focusel).addClass('error').focus();
@@ -252,8 +263,11 @@ window.LoginDlg = function() {
     };
 
     function hideLoginError() {
-        $el.find('#auth-error').fadeOut(100);
-        $el.find('.error').removeClass('error');
+        let $lbl = $el.find('#auth-error');
+        if ( $lbl.is(':visible') ) {
+            $lbl.fadeOut(100);
+            $el.find('.error').removeClass('error');
+        }
     };
 
     function getUserInfo(url, token) {
@@ -327,7 +341,7 @@ window.LoginDlg = function() {
     };
 
     function bindEvents() {
-        $el.find('.body').on('keypress', '.auth-control', 
+        $el.find('.body').on('keypress', '.tbox', 
             function(e) {
                 if (e.which == 13) {
                     if (/auth-portal/.test(e.target.id)) 
@@ -393,14 +407,15 @@ window.LoginDlg = function() {
 
                     firstConnect(params);
                 } else {
-                    if ( obj.status == 'error' ) {
-                        if ( obj.response.status == 404 ) {
-                            showLoginError(utils.Lang.errLoginPortal, '#auth-portal');
-                            return;
-                        }
-                    }
+                    let _mess;
+                    if ( obj.status == 'error' && obj.response.status == 404 )
+                        _mess = utils.Lang.errLoginPortal;
+                    else
+                    if ( obj.response && !!obj.response.statusText )
+                        _mess = obj.response.statusText;
+                    else _mess = 'error: portal is unvailable';
 
-                    showLoginError(obj.status, '#auth-portal');
+                    showLoginError(_mess, '#auth-portal');
                 }
             }
         };
@@ -417,9 +432,11 @@ window.LoginDlg = function() {
         ).then( _callback, _callback );
     };
 
-    function requirePortalInfo(portal) {
+    function requirePortalInfo(portal, vendor) {
         return new Promise ((resolve, reject)=>{
-            var _url = portal + "/api/2.0/capabilities.json";
+            !vendor && (vendor = 'asc');
+            let _info = config.portals.checklist.find(i => i.id == vendor);
+            var _url = portal + _info.check.url;
 
             $.ajax({
                 url: _url,
@@ -428,11 +445,15 @@ window.LoginDlg = function() {
                 timeout: 10000,
                 complete: function(e, status) {
                     if (status == 'success') {
-                        var obj = JSON.parse(e.responseText);
-                        if (obj.statusCode == 200) {
-                            resolve({status:'ok', response:obj.response});
+                        if ( vendor == 'asc' ) {
+                            var obj = JSON.parse(e.responseText);
+                            if (obj.statusCode == 200) {
+                                resolve({status:'ok', response:obj.response});
+                            } else {
+                                reject({status:'error', response: e});
+                            }
                         } else {
-                            reject({status:'error', response: e});
+                            resolve({status:'ok', response:e});
                         }
                     } else {
                         reject({status:status, response:e});
@@ -471,7 +492,7 @@ window.LoginDlg = function() {
 
             let _sso_btn = $el.find('#btn-login-sso');
             _sso_btn.click( e => {
-                    events.success({status:'sso', portal:protocol+portal, provider:params.authservice.url});
+                    events.success({type:'sso', portal:protocol+portal, provider:params.authservice.url});
                     doClose(0);
                 });
 
@@ -676,16 +697,23 @@ window.LoginDlg = function() {
     };
 
     return {
-        show: (inportal, inemail) => {
+        show: (params) => {
+            !params && (params = {});
+
             $el = $('#placeholder').append(_tpl).find('.dlg-login');
 
-            if ( !!inportal ) {
-                portal = utils.skipUrlProtocol(inportal);
+            if ( !!params.portal ) {
+                portal = utils.skipUrlProtocol(params.portal);
 
-                let sp = utils.getUrlProtocol(inportal);
+                let sp = utils.getUrlProtocol(params.portal);
                 !!sp && (protocol = sp);
             }
-            !!inemail && (user = inemail);
+            !!params.email && (user = params.email);
+            if ( !!params.provider &&
+                    config.portals.checklist.find(i => i.id == params.provider) )
+            {
+                provider = params.provider;
+            }
 
             // $el.width(450).height(470);
             // set height without logo
@@ -700,17 +728,13 @@ window.LoginDlg = function() {
             $el.on('close', doClose);
 
             startDialog();
+
+            if ( params.portal && params.forceportal ) {
+                firstConnect(params);
+            }
         },
         close: function(){
             doClose(0);
-        },
-        onclose: function(callback) {
-            if (!!callback)
-                events.close = callback;
-        },
-        onsuccess: function(callback) {
-            if (!!callback)
-                events.success = callback;
         },
         portalavailable: requirePortalInfo
     };  

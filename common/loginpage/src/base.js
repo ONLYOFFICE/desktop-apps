@@ -86,13 +86,14 @@
     view.prototype.renderMenuItem = function(node, index) {
         let $itemout;
         if (node != 'nomenuitem') {
-            let $menu = $(this.menuContainer);
-            if (index >= 0) {
-                let $items = $menu.children('.menu-item');
-                $itemout = $items.size() > index ?
-                        $(node).insertBefore($items.eq(index)) : $(node).appendTo($menu);
+            $itemout = $(node);
+
+            let _ib = utils.fn.getToolMenuItemOrder($itemout);
+            if ( !_ib.item ) {
+                let $menu = $(this.menuContainer);
+                $itemout.appendTo($menu);
             } else {
-                $itemout = $(node).appendTo($menu);
+                _ib.after ? $itemout.insertAfter(_ib.item) : $itemout.insertBefore(_ib.item);
             }
         }
 

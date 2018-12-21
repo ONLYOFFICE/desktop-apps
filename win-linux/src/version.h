@@ -33,11 +33,23 @@
 #ifndef VERSION_H
 #define VERSION_H
 
-#define VER_FILEVERSION             4,8,7,392
-#define VER_FILEVERSION_STR         "4.8.7.392\0"
+#define VER_STRINGIFY(d)            #d
+#define VER_STR_LONG(mj,mn,b,r)     VER_STRINGIFY(mj) "." VER_STRINGIFY(mn) "." VER_STRINGIFY(b) "." VER_STRINGIFY(r) "\0"
+#define VER_STR_SHORT(mj,mn)        VER_STRINGIFY(mj) "." VER_STRINGIFY(mn) "\0"
+
+#define VER_NUM_MAJOR               5
+#define VER_NUM_MINOR               2
+#define VER_NUM_BUILD               80
+#define VER_NUM_REVISION            470
+#define VER_NUMBER                  VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION
+#define VER_STRING                  VER_STR_LONG(VER_NUM_MAJOR,VER_NUM_MINOR,VER_NUM_BUILD,VER_NUM_REVISION)
+#define VER_STRING_SHORT            VER_STR_SHORT(VER_NUM_MAJOR,VER_NUM_MINOR)
+
+#define VER_FILEVERSION             VER_NUMBER
+#define VER_FILEVERSION_STR         VER_STRING
 
 #define VER_PRODUCTVERSION          VER_FILEVERSION
-#define VER_PRODUCTVERSION_STR      "4.8\0"
+#define VER_PRODUCTVERSION_STR      VER_STRING_SHORT
 
 #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
 #define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2018\0"
@@ -50,6 +62,13 @@
 #define VER_ORIGINALFILENAME_STR    "documenteditor.exe\0"
 #define VER_PRODUCTNAME_STR         "ONLYOFFICE Desktop Editors\0"
 
-#include "version_p.h"
+#define VER_LANG_AND_CHARSET        "040904E4"
+#define VER_LANG_ID                 0x0409
+#define VER_CHARSET_ID              1252
+
+#ifndef RC_COMPILE_FLAG
+# include "version_p.h"
+#endif
+
 #endif
 

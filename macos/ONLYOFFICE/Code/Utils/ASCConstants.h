@@ -57,18 +57,9 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
-#ifdef _PRODUCT_ONLYOFFICE_RU_FREE
-static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
-static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
-#elif _PRODUCT_ONLYOFFICE_RU_PRO
-static NSString * kRegHelpUrl   = @"http://onlyoffice.ru/help";
-static NSString * kHelpUrl      = @"http://onlyoffice.ru/help";
-#else
-static NSString * kRegHelpUrl   = @"https://onlyoffice.com/desktopeditors.aspx";
-static NSString * kHelpUrl      = @"http://helpcenter.onlyoffice.com/%@ONLYOFFICE-Editors/index.aspx";
-#endif
-
-static NSString * kRegistrationPortalUrl = @"https://onlyoffice.com/registration.aspx?desktop=true";
+static NSString * kRegHelpUrl               = @"kRegHelpUrl";
+static NSString * kHelpUrl                  = @"kHelpUrl";
+static NSString * kRegistrationPortalUrl    = @"kRegistrationPortalUrl";
 
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
@@ -116,7 +107,10 @@ static NSString * const CEFEventNameSaveBeforSign           = @"CEF_saveBeforeSi
 static NSString * const CEFEventNameOpenSSLCertificate      = @"CEF_openSSLCertificate";
 static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
 static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
+static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppActionRequest";
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
+static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
+static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
 
 @interface ASCConstants : NSObject
 
@@ -130,6 +124,7 @@ static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFo
 + (NSArray *)presentations;
 + (NSArray *)plugins;
 
++ (NSString *)appInfo:(NSString *)key;
 + (NSDictionary *)ascFormatsInfo;
 @end
 

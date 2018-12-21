@@ -2,7 +2,9 @@ MAINICON   ICON    DISCARDABLE "./res/icons/desktopeditors.ico"
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./res/manifest/DesktopEditors.manifest"
 
 #include <windows.h>
-#include "src/version.h"
+#define RC_COMPILE_FLAG
+# include "src/version.h"
+#undef RC_COMPILE_FLAG
 
 VS_VERSION_INFO VERSIONINFO
 FILEVERSION     VER_FILEVERSION

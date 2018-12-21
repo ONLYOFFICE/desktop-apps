@@ -65,3 +65,18 @@ bool CMainWindowBase::holdView(int id) const
 {
     return mainPanel()->holdUid(id);
 }
+
+int CMainWindowBase::editorsCount() const
+{
+    return mainPanel()->tabWidget()->count(cvwtEditor);
+}
+
+QString CMainWindowBase::documentName(int vid)
+{
+    int i = mainPanel()->tabWidget()->tabIndexByView(vid);
+    if ( !(i < 0) ) {
+        return mainPanel()->tabWidget()->panel(i)->data()->title();
+    }
+
+    return "";
+}

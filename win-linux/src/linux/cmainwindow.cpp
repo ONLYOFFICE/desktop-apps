@@ -94,6 +94,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
+    setMinimumSize(MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio);
     resize(_window_rect.width(), _window_rect.height());
 
     m_pMainPanel = new CMainPanelImpl(this, !CX11Decoration::isDecorated(), m_dpiRatio);
@@ -105,12 +106,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
         setMouseTracking(true);
 
         QPalette _palette(palette());
-#ifdef __APP_NEW_APPEARANCE
         _palette.setColor(QPalette::Background, QColor("#f1f1f1"));
         setStyleSheet("QMainWindow{border:1px solid #888;}");
-#else
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-#endif
         setAutoFillBackground(true);
         setPalette(_palette);
     }
@@ -334,4 +331,9 @@ void CMainWindow::sendSertificate(int viewid)
     pEvent->m_pData = pData;
     AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
 #endif
+}
+
+WId CMainWindow::handle() const
+{
+    return winId();
 }

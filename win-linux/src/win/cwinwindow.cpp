@@ -31,6 +31,7 @@
 */
 
 #include "cwinwindow.h"
+#include "utils.h"
 #include <stdexcept>
 #include <QDebug>
 
@@ -100,6 +101,7 @@ CWinWindow::CWinWindow(HWND parent, const QString& title)
     DeleteMenu(hmenu, SC_SIZE, MF_BYCOMMAND);
     DeleteMenu(hmenu, SC_MAXIMIZE, MF_BYCOMMAND);
     DeleteMenu(hmenu, SC_MINIMIZE, MF_BYCOMMAND);
+    DeleteMenu(hmenu, SC_RESTORE, MF_BYCOMMAND);
 
     SetWindowLong(m_hSelf, GWL_EXSTYLE, GetWindowLong(m_hSelf, GWL_EXSTYLE) | WS_EX_DLGMODALFRAME);
     SetWindowLongPtr(m_hSelf, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
@@ -144,8 +146,10 @@ void CWinWindow::center()
     GetWindowRect(m_hParent, &rc1);
     GetWindowRect(m_hSelf, &rc2);
 
-    int x = rc1.left + (rc1.right - rc1.left - (rc2.right - rc2.left))/2;
-    int y = (rc1.bottom - rc1.top - (rc2.bottom - rc2.top))/2;
+    QPoint center = Utils::getScreenGeometry(QPoint((rc1.left + rc1.right)/2, (rc1.top + rc1.bottom)/2)).center();
+
+    int x = center.x() - (rc2.right - rc2.left) /2;
+    int y = center.y() - (rc2.bottom - rc2.top)/2;
 
     SetWindowPos(m_hSelf, NULL, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
 }

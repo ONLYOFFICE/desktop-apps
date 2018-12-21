@@ -29,6 +29,8 @@ SOURCES += \
 
 RC_FILE = $$PWD/version.rc
 
+DEFINES += __DONT_WRITE_IN_APP_TITLE
+
 linux-g++ {
     LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lhunspell -looxmlsignature
     DEFINES += LINUX _LINUX _LINUX_QT _GLIBCXX_USE_CXX11_ABI=0
@@ -37,6 +39,8 @@ linux-g++ {
 }
 
 win32 {
+    CONFIG -= debug_and_release debug_and_release_target
+
 #    CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
@@ -49,9 +53,11 @@ win32 {
 
     CONFIG(debug, debug|release) {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lkernel
+
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug
     } else {
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore
+        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lkernel
     }
 
     message($$PLATFORM_BUILD)

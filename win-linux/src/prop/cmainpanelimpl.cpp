@@ -35,9 +35,11 @@
 #include "defines.h"
 #include "utils.h"
 #include "version.h"
-#include "version_p.h"
+#include "clangater.h"
 
 #include <QJsonObject>
+#include <QJsonDocument>
+#include <QFile>
 
 #define HTML_QUOTE "\\u005c&quot;" // \" symbols
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
@@ -49,7 +51,7 @@ CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale
 
 void CMainPanelImpl::refreshAboutVersion()
 {
-    QString _license = "Licensed under &lt;a onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
+    QString _license = "Licensed under &lt;a class=" HTML_QUOTE "link" HTML_QUOTE " onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
                             " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
 
     QJsonObject _json_obj;
@@ -60,44 +62,39 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["link"]       = URL_SITE;
 
     AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
+
+    _json_obj.empty();
+    _json_obj.insert("locale",
+        QJsonObject({
+            {"current", CLangater::getCurrentLangCode()},
+            {"langs", CLangater::availableLangsToJson()}
+        })
+    );
+
+    AscAppManager::sendCommandTo( nullptr, "settings:init", Utils::encodeJson(_json_obj) );
+    if ( Utils::appArgsContains("--ascdesktop-reveal-app-config") )
+            AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
 void CMainPanelImpl::updateScaling(int dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
-    if ( m_isCustomWindow ) {
-        _tabs_stylesheets += ".qss";
+    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
+    m_pButtonMain->setText(QString());
+    m_pButtonMain->setIcon(QIcon(pixmap));
+    m_pButtonMain->setIconSize(pixmap.size());
+}
 
-    } else {
-#ifdef __linux__
-        _tabs_stylesheets += ".nix.qss";
-#endif
+void CMainPanelImpl::onLocalOptions(const QString& json)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toLatin1(), &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QFile file(Utils::getAppCommonPath() + "/app.conf");
+        file.open(QFile::WriteOnly);
+        file.write(jdoc.toJson());
+        file.close();
     }
-
-    QFile styleFile(_tabs_stylesheets);
-    styleFile.open( QFile::ReadOnly );
-    m_pTabs->setStyleSheet(QString(styleFile.readAll()));
-
-    std::map<int, std::pair<QString, QString> > icons;
-    if ( dpiratio > 1 ) {
-        icons.insert({
-            {etUndefined, std::make_pair(":/newdocument@2x.png", ":/newdocument@2x.png")},
-            {etDocument, std::make_pair(":/de_normal@2x.png", ":/de_active@2x.png")},
-            {etPresentation, std::make_pair(":/pe_normal@2x.png", ":/pe_active@2x.png")},
-            {etSpreadsheet, std::make_pair(":/se_normal@2x.png", ":/se_active@2x.png")},
-            {etPortal, std::make_pair(":/portal.png", ":/portal@2x.png")}
-        });
-    } else {
-        icons.insert({
-            {etUndefined, std::make_pair(":/newdocument.png", ":/newdocument.png")},
-            {etDocument, std::make_pair(":/de_normal.png", ":/de_active.png")},
-            {etPresentation, std::make_pair(":/pe_normal.png", ":/pe_active.png")},
-            {etSpreadsheet, std::make_pair(":/se_normal.png", ":/se_active.png")},
-            {etPortal, std::make_pair(":/portal.png", ":/portal.png")}
-        });
-    }
-
-    m_pTabs->setTabIcons(icons);
 }

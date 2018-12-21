@@ -40,6 +40,7 @@
 
 #include "qcefview.h"
 #include "cscalingwrapper.h"
+#include "ctabpanel.h"
 
 #include <QDebug>
 
@@ -72,7 +73,6 @@ struct COpenOptions {
     std::wstring wurl;
 };
 
-class CTabPanel;
 class CAscTabWidget : public QTabWidget, public CScalingWrapper
 {
     Q_OBJECT
@@ -84,6 +84,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
         QWidget * widget() { return _widget; }
         int tabindex() { return _index; }
+        QWidget * parent = nullptr;
     private:
         QWidget * _widget;
         int _index;
@@ -138,9 +139,11 @@ signals:
 public:
     CAscTabWidget(QWidget *parent = 0);
 
+    CTabPanel * panel(int);
+
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
-    int  addPortal(QString url, QString name);
+    int  addPortal(const QString& url, const QString& name, const QString& provider);
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
@@ -148,6 +151,9 @@ public:
     void closePortal(const QString&, bool editors = false);
     void setStyleSheet(const QString&);
     QWidget * releaseEditor(int);
+
+    using QTabWidget::count;
+    int  count(int type) const;
 
     void updateScaling(int);
 protected:
@@ -167,12 +173,16 @@ public:
     QString     titleByIndex(int, bool original = true);
     QString     urlByView(int id);
     bool        modifiedByIndex(int);
+    bool        isLocalByIndex(int);
     int         modifiedCount();
     bool        closedByIndex(int);
     void        editorCloseRequest(int);
 
     MapEditors  modified(const QString& portal);
-    int         findModified(const QString& portal);
+    int         findModified(const QString& portal = QString());
+    int         findFragmented(const QString& portal = QString());
+    bool        isFragmented(int index);
+    bool        isProcessed(int index) const;
 
     void adjustTabsSize();
     void activate(bool);
@@ -195,7 +205,7 @@ public:
     void applyDocumentSave(int, bool);
     void setDocumentWebOption(int, const QString&);
 
-    int  openPortal(const QString& url);
+    int  openPortal(const QString& url, const QString& provider);
     bool updatePortal(int index,const QString& url);
     int  newPortal(const QString& url, const QString& name);
 

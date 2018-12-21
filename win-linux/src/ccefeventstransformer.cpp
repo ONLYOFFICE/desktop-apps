@@ -109,6 +109,12 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 //        }
 //        break; }
 
+    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END:
+    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR: {
+        int _error = event->m_nType == ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR ? -1 : 0;
+        QMetaObject::invokeMethod(target, "onDocumentFragmentedBuild", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(int, _error));
+        break; }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONCLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORECLOSE: break;
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW:
@@ -214,7 +220,8 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"portal:create") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onPortalCreate", Qt::QueuedConnection);
         } else
-        if ( !(cmd.find(L"auth:sso") == std::wstring::npos) ) {
+        if ( !(cmd.find(L"auth:sso") == std::wstring::npos) ||
+                !(cmd.find(L"auth:outer") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onOutsideAuth", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
@@ -241,9 +248,17 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"doc:onready") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
         } else
+        if ( !(cmd.find(L"editor:request") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( target, "onEditorActionRequest", Qt::QueuedConnection,
+                                       Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
         if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        } else
+        if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
+            bool isFragmented = pData->get_Param() == L"true" ? true : false;
+            QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
         } else
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
             if ( QString::fromStdWString(pData->get_Param()) == "check" )
@@ -257,6 +272,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 //                cmd = _cmd_match.str(1);
                 if (cmd.find(L"app:onready") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, -1) );
+                } else
+                if (cmd.find(L"app:localoptions") != std::wstring::npos) {
+                    QMetaObject::invokeMethod( target, "onLocalOptions", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
                 } else
                 if (cmd.find(L"app:buynow") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onBuyNow", Qt::QueuedConnection );

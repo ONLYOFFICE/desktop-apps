@@ -102,7 +102,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.lpfnWndProc = WndProc;
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
-    wcx.lpszClassName = L"DocEditorsWindowClass";
+    wcx.lpszClassName = WINDOW_CLASS_NAME;
     wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
@@ -113,7 +113,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    hWnd = CreateWindow( L"DocEditorsWindowClass", QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+    hWnd = CreateWindow( WINDOW_CLASS_NAME, QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
         throw std::runtime_error( "couldn't create window because of reasons" );
@@ -412,7 +412,6 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_PAINT: {
-#ifdef __APP_NEW_APPEARANCE
         RECT rect;
         GetClientRect(hWnd, &rect);
 
@@ -431,20 +430,9 @@ qDebug() << "WM_CLOSE";
 
         ::SelectObject(hDC, hpenOld);
         ::EndPaint(hWnd, &ps);
-        return 0;
-#endif
-
-        break; }
+        return 0; }
 
     case WM_ERASEBKGND: {
-#ifndef __APP_NEW_APPEARANCE
-        RECT rect;
-        GetClientRect(hWnd, &rect);
-
-        HBRUSH hBrush = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-        FillRect((HDC)wParam, &rect, (HBRUSH)hBrush);
-        DeleteObject(hBrush);
-#endif
         return TRUE; }
 
     case WM_GETMINMAXINFO:
@@ -733,7 +721,7 @@ void CMainWindow::slot_mainPageReady()
                                         QString(VER_FILEVERSION_STR).toStdWString().c_str());
         win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
         win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
-        win_sparkle_set_lang(CLangater::getLanguageName().toLatin1());
+        win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
         win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
         win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
@@ -802,4 +790,9 @@ bool CMainWindow::isMaximized() const
     }
 
     return _is_maximized;
+}
+
+WId CMainWindow::handle() const
+{
+    return (WId)hWnd;
 }

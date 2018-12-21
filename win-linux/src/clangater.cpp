@@ -9,6 +9,7 @@
 #include <QTranslator>
 
 #include <list>
+#include <algorithm>
 
 #include <QDebug>
 
@@ -16,11 +17,40 @@ extern QStringList g_cmdArgs;
 
 class CLangater::CLangaterIntf
 {
+    friend class CLangater;
 public:
     QTranslator * createTranslator()
     {
         m_list.push_back(new QTranslator);
         return m_list.back();
+    }
+
+    QTranslator * createTranslator(const QString& file)
+    {
+        QTranslator * t = nullptr;
+        for (auto d: m_dirs) {
+            t = createTranslator(file, d);
+            if ( t ) break;
+        }
+
+        return t;
+    }
+
+    QTranslator * createTranslator(const QString& file, const QString& path)
+    {
+        auto * t = new QTranslator;
+        if ( t->load(file, path) ) {
+            m_list.push_back(t);
+
+            auto d = std::find(m_dirs.begin(), m_dirs.end(), path);
+            if ( d == m_dirs.end() )
+                m_dirs.push_back(QString(path));
+        } else {
+            delete t,
+            t = nullptr;
+        }
+
+        return t;
     }
 
     ~CLangaterIntf()
@@ -34,8 +64,55 @@ public:
         }
     }
 
+    QString langName(const QString& code) {
+        return m_langs.value(code);
+    }
+
+    bool reload(const QString& lang) {
+        QTranslator * t;
+        for (auto p: m_list) {
+            t = p;
+            if ( !t->parent() )
+                delete t;
+        }
+
+        m_list.clear();
+
+        bool _res = false;
+        for (auto d: m_dirs) {
+            t = createTranslator(lang, d);
+            if ( !_res && t ) _res = true;
+        }
+
+        return _res;
+    }
+
+    void addSearchPath(const QString& path) {
+        auto d = std::find(m_dirs.begin(), m_dirs.end(), path);
+        if ( d == m_dirs.end() )
+            m_dirs.push_back(QString(path));
+    }
+
+    void addSearchPath(const std::list<QString>& l) {
+        m_dirs.insert(std::end(m_dirs), std::begin(l), std::end(l));
+    }
+
 private:
     std::list<QTranslator *> m_list;
+    std::list<QString> m_dirs;
+
+    QMap<QString, QString> m_langs{
+        {"en-EN", "English"},
+        {"ru-RU", "Русский"},
+        {"de-DE", "Deutsch"},
+        {"fr-FR", "Français"},
+        {"es-ES", "Español"},
+        {"sk-SK", "Slovenčina"},
+        {"cs-CZ", "Čeština"},
+        {"it-IT", "Italiano"},
+        {"pt-BR", "Português Brasileiro"}
+        ,{"pl-PL", "Polski"}
+    };
 };
 
 CLangater::CLangater()
@@ -95,42 +172,86 @@ void CLangater::init()
         !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = "en").size();
 #endif
 
-    QString _lang_path = ":/i18n/langs/";
-    if ( !QFile(_lang_path + _lang + ".qm").exists() ) {
-        if ( QFile("./langs/" + _lang + ".qm").exists() ) {
-            _lang_path = "./langs";
-        } else
-        if ( QFile(_lang_path + _lang.left(2) + ".qm").exists() ) {
-            _lang = _lang.left(2);
-        } else
-        if ( QFile("./langs/" + _lang.left(2) + ".qm").exists() ) {
-            _lang = _lang.left(2);
-            _lang_path = "./langs";
-        } else
-        // check if lang file has an alias
-        if ( QFile(":/i18n/" + _lang + ".qm").exists() ) {
-            _lang_path = ":/i18n/";
-        } else
+    getInstance()->m_intf->addSearchPath({"./langs", ":/i18n/langs", ":/i18n"});
+
+    auto _check_lang = [=](const std::list<QString>& dirs, const QString& l) {
+        for ( auto& d : dirs ) {
+            if ( QFile(d + "/" + l + ".qm").exists() ) return true;
+        }
+
+        return false;
+    };
+
+    bool _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+    if ( !_exist && _lang.length() == 2 )
+            _lang.append("-" + _lang.toUpper()),
+                    _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+
+    if ( !_exist ) {
+        if ( _lang.at(2) == '-' ) _lang.replace(2, 1, '_'); else
+        if ( _lang.at(2) == '_' ) _lang.replace(2, 1, '-');
+
+        if ( !_check_lang(getInstance()->m_intf->m_dirs, _lang) ) {
             _lang = APP_DEFAULT_LOCALE;
+        }
     }
 
-    QTranslator * tr = getInstance()->m_intf->createTranslator();
-    if ( tr->load(_lang, _lang_path) ) {
-        getInstance()->m_lang = _lang;
-    }
+    QTranslator * tr = getInstance()->m_intf->createTranslator("qtbase_" + _lang);
+    if ( tr ) QCoreApplication::installTranslator(tr);
+
+    tr = getInstance()->m_intf->createTranslator(_lang);
+    if ( tr ) getInstance()->m_lang = _lang;
 
     QCoreApplication::installTranslator(tr);
 }
 
-QString CLangater::getLanguageName()
+void CLangater::reloadTranslations(const QString& lang)
+{
+    for ( auto p : getInstance()->m_intf->m_list ) {
+        QCoreApplication::removeTranslator(p);
+    }
+
+    getInstance()->m_intf->createTranslator("qtbase_" + lang);
+    if ( getInstance()->m_intf->reload(lang) ) {
+        getInstance()->m_lang = lang;
+
+        for ( auto t : getInstance()->m_intf->m_list ) {
+            QCoreApplication::installTranslator(t);
+        }
+    }
+}
+
+QString CLangater::getCurrentLangCode()
 {
     return getInstance()->m_lang;
 }
 
+QString CLangater::getLangName(const QString& code)
+{
+    if ( code.isEmpty() ) {
+        return getInstance()->m_lang;
+    }
+
+    return getInstance()->m_intf->langName(code);
+}
+
+QJsonObject CLangater::availableLangsToJson()
+{
+    QJsonObject _out_obj;
+
+    QMap<QString, QString>::const_iterator i = getInstance()->m_intf->m_langs.constBegin();
+    while ( i != getInstance()->m_intf->m_langs.constEnd() ) {
+        _out_obj.insert(i.key(), i.value());
+        ++i;
+    }
+
+    return _out_obj;
+}
+
 void CLangater::addTranslation(const QString& dir, const QString& lang)
 {
-    QTranslator * tr = getInstance()->m_intf->createTranslator();
-    if ( tr->load(lang, dir) ) {
+    QTranslator * tr = getInstance()->m_intf->createTranslator(lang, dir);
+    if ( tr ) {
         QCoreApplication::installTranslator(tr);
     }
 }

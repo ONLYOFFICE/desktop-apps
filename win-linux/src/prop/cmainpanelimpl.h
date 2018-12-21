@@ -41,6 +41,7 @@ public:
     CMainPanelImpl(QWidget *, bool, uchar);
 
     void updateScaling(int);
+    void onLocalOptions(const QString&);
 private:
     void refreshAboutVersion();
 };

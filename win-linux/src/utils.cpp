@@ -48,15 +48,18 @@
 #include <QStorageInfo>
 
 #include "cascapplicationmanagerwrapper.h"
+#include "cdpichecker.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
+#include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 #include <sys/stat.h>
 #endif
 
 #include <QDebug>
+extern QStringList g_cmdArgs;
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
@@ -92,7 +95,7 @@ QString Utils::lastPath(int t)
         _path = _reg_user.value("openPath").value<QString>(); else
         _path = _reg_user.value("savePath").value<QString>();
 
-    return _path.length() > 0 && QDir(_path).exists() ?
+    return !_path.isEmpty() && QDir(_path).exists() ?
         _path : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 }
 
@@ -256,7 +259,8 @@ void Utils::openFileLocation(const QString& path)
     qputenv("LD_PRELOAD", "");
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
-        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
+        qputenv("LD_LIBRARY_PATH", "");
+        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});        
     } else
         system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
@@ -299,38 +303,42 @@ QString Utils::encodeJson(const QString& s)
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
-#ifdef _WIN32
-    UINT _dpi_x = 0,
-         _dpi_y = 0;
-
-    int _f = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-    if ( _f > 0 )
-        return _f;
-#endif
-
-    QScreen * _screen;
-    if ( !(scrnum < 0) && scrnum < QApplication::screens().count() )
-        _screen = QApplication::screens().at(scrnum);
-    else _screen = QApplication::primaryScreen();
-
-    return _screen->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
+    unsigned int _dpi_x = 0;
+    unsigned int _dpi_y = 0;
+    int nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+    return (-1 == nScale) ? 1 : nScale;
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 {
-#ifdef __linux
-    return 1;
-#else
-    UINT _dpi_x = 0,
-         _dpi_y = 0;
+    unsigned int _dpi_x = 0;
+    unsigned int _dpi_y = 0;
+    int nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
+    return (-1 == nScale) ? 1 : nScale;
+}
 
-    int _f = AscAppManager::getInstance().GetMonitorScaleByWindow((HWND)hwnd, _dpi_x, _dpi_y);
-    if ( !(_f > 0) ) {
-        return QApplication::primaryScreen()->logicalDotsPerInch() / 96.f < 1.5 ? 1 : 2;
+unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
+{
+    if (!wid)
+        return 1;
+
+    CAscDpiChecker* pDpiCheckerBase = CAscApplicationManager::GetDpiChecker();
+    if (!pDpiCheckerBase)
+        return 1;
+
+    CDpiChecker * pDpiChecker = (CDpiChecker *)pDpiCheckerBase;
+    unsigned int nDpiX = 0;
+    unsigned int nDpiY = 0;
+    int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
+
+    if (nRet >= 0) {
+        double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
+
+        // пока только 1 или 2
+        return (dDpiApp > 1.9) ? 2 : 1;
     }
 
-    return _f;
-#endif
+    return wid->devicePixelRatio();
 }
 
 /*
@@ -427,4 +435,30 @@ bool Utils::setAppUserModelId(const QString& modelid)
 #endif
 
     return _result;
+}
+
+wstring Utils::systemUserName()
+{
+#ifdef Q_OS_WIN
+    WCHAR _env_name[UNLEN + 1]{0};
+    DWORD _size = UNLEN + 1;
+
+    return GetUserName(_env_name, &_size) ?
+                            wstring(_env_name) : L"Unknown.User";
+#else
+    QString _env_name = qgetenv("USER");
+    if ( _env_name.isEmpty() ) {
+        _env_name = qgetenv("USERNAME");
+
+        if (_env_name.isEmpty())
+            _env_name = "Unknown.User";
+    }
+
+    return _env_name.toStdWString();
+#endif
+}
+
+bool Utils::appArgsContains(const QString& a)
+{
+    return g_cmdArgs.contains(a);
 }

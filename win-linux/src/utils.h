@@ -35,6 +35,7 @@
 
 #include <QStringList>
 #include <QFileInfo>
+#include <QWidget>
 
 using namespace std;
 
@@ -44,6 +45,7 @@ public:
     static QString lastPath(int type);
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
+    static wstring systemUserName();
     static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
@@ -51,9 +53,11 @@ public:
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
     static unsigned getScreenDpiRatioByHWND(int);
+    static unsigned getScreenDpiRatioByWidget(QWidget*);
     static QString replaceBackslash(QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
+    static bool appArgsContains(const QString&);
 
     static bool makepath(const QString&);
 

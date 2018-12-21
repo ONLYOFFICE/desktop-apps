@@ -200,7 +200,11 @@ public:
  * @param argc
  * @param argv
  */
-SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondaryInstances )
+SingleApplication::SingleApplication( int &argc, char *argv[], const QString& servername)
+    : SingleApplication(argc, argv, servername, 0)
+{}
+
+SingleApplication::SingleApplication( int &argc, char *argv[], const QString& servername, uint8_t secondaryInstances )
     : app_t( argc, argv ), d_ptr( new SingleApplicationPrivate( this ) )
 {
     Q_D(SingleApplication);
@@ -229,7 +233,7 @@ SingleApplication::SingleApplication( int &argc, char *argv[], uint8_t secondary
 
 //    QString serverName = app_t::organizationName() + app_t::applicationName();
 //    serverName.replace( QRegExp("[^\\w\\-. ]"), "" );
-    QString serverName = "asc:desktop:editors";
+    QString serverName = servername;
 
 //    QSystemSemaphore _semaphore("asc:desktop:editors", 1);
 //    _semaphore.acquire();

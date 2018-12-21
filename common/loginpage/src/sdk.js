@@ -38,6 +38,7 @@
                     , 'onupdaterecovers'
                     , 'on_native_message'
                     , 'on_check_auth'
+                    , 'onChangeCryptoMode'
                 ];
 
     let subscribers = {
@@ -62,6 +63,48 @@
 
     sdk.fire = function(type, publication) {
         notifySubscribers('publish', type, publication);
+    };
+
+    sdk.command = function() {
+        window.AscDesktopEditor.execCommand.apply(this, arguments);
+    };
+
+    sdk.externalClouds = function() {
+        let _clouds = sdk.GetExternalClouds();
+        if ( _clouds ) {
+            for (let c of _clouds) {
+                (!c.check || !c.check.url) && (c.check = {url:''});
+                if ( !c.check.url.startsWith('/') )
+                    c.check.url = '/'.concat(c.check.url);
+            }
+        } else {
+            _clouds = [{ id: "asc",
+                            name: "ONLYOFFICE",
+                            check: {url:"/api/2.0/capabilities.json"} }];
+        }
+
+        return _clouds;
+    };
+
+    sdk.encrypt = {
+        ENCRYPT_MODE_NONE: 0,
+        ENCRYPT_MODE_SIMPLE: 1,
+        ENCRYPT_MODE_STANDARD: 2,
+        ENCRYPT_MODE_ADVANCED: 3
+    };
+
+    sdk.CryptoMode = sdk.GetCryptoMode();
+    sdk.encrypt.mode = function(mode, pass) {
+        if ( !!mode ) sdk.SetCryptoMode(pass, mode);
+        else return sdk.CryptoMode;
+    };
+
+    sdk.encrypt.available = function() {
+        return sdk.GetSupportCryptoModes();
+    };
+
+    window.onChangeCryptoMode = e => {
+        sdk.CryptoMode = e;
     };
 
     var notifySubscribers = function(action, type, arg, context) {

@@ -57,6 +57,7 @@ public:
     void startProgress();
     void setProgress(int, int);
     bool isRejected();
+
 private:
     QDialog         m_Dlg;
     QLabel          m_progressLabel;
@@ -64,8 +65,10 @@ private:
     QFormLayout *   m_fLayout;
     QObject *       m_eventFilter;
     bool            m_isRejected;
+    bool            m_showed = false;
 
 signals:
+    void signal(int);
 
 public slots:
     void onCancelClicked();

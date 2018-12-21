@@ -7,6 +7,8 @@
 #include <QDir>
 #include <QDateTime>
 #include <QDesktopWidget>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #include "cstyletweaks.h"
 #include "defines.h"
@@ -14,6 +16,8 @@
 #include "utils.h"
 #include "common/Types.h"
 #include "ctabundockevent.h"
+#include "clangater.h"
+#include "cdpichecker.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -170,6 +174,16 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         if ( cmd.compare(L"portal:logout") == 0 ) {
             broadcastEvent(_event);
             return;
+        } else
+        if ( cmd.compare(0, 8, L"settings") == 0 ) {
+            if ( cmd.rfind(L"apply") != wstring::npos ) {
+                applySettings(pData->get_Param());
+            } else
+            if ( cmd.rfind(L"get") != wstring::npos ) {
+                sendSettings(pData->get_Param());
+            }
+
+            return;
         }
 
         break; }
@@ -229,14 +243,40 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         break;
     }
 
-    case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-        CMainWindow * _window = mainWindowFromViewId(_event->get_SenderId());
-        if ( _window ) {
-            _window->sendSertificate(_event->get_SenderId());
-        }
-#endif
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
+        auto _send_plugins = [](IMenuEventDataBase * d){
+            CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(d);
+            QJsonObject _json_obj;
+            QJsonParseError jerror;
+            QJsonDocument jdoc;
+
+            for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
+                _json_obj["name"] = QString::fromStdWString(item.name);
+                _json_obj["id"] = QString::fromStdWString(item.id);
+                _json_obj["url"] = QString::fromStdWString(item.url);
+
+                if ( !item.nameLocale.empty() ) {
+                    jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+                        QString _lang(CLangater::getCurrentLangCode());
+
+                        if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
+                            _json_obj["name"] = jdoc.object()[_lang].toString();
+                        }
+                    }
+                }
+
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
+            }
+        };
+
+        QTimer::singleShot(0, [=] {
+            _send_plugins(_event->m_pData);
+        });
+
         return; }
+
     default: break;
     }
 
@@ -257,9 +297,14 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         } else
         if ( _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN ) {
             CAscExecCommand * pData = (CAscExecCommand *)_event->m_pData;
-            QString url = QString::fromStdWString(pData->get_Param());
+            QString json = QString::fromStdWString(pData->get_Param()),
+                    url;
 
-            if ( _window->mainPanel()->holdUrl(url, etPortal) ) {
+            QRegularExpression re("portal[\":]+([^\"]+)");
+            QRegularExpressionMatch match = re.match(json);
+            if ( match.hasMatch() ) url = match.captured(1);
+
+            if ( !url.isEmpty() && _window->mainPanel()->holdUrl(url, etPortal) ) {
                 _target = _window;
                 break;
             }
@@ -419,11 +464,14 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     QCefView * pView = new QCefView(NULL);
     pView->CreateReporter(this, pCreateData);
 
+    QString _doc_name;
     QRect _windowRect{100,100,1000,700};
-    if ( QApplication::desktop()->screenCount() > 1 ) {
-        CMainWindow * w = mainWindowFromViewId(parentid);
-        if ( w ) {
-            int _scrNum = QApplication::desktop()->screenNumber(w->windowRect().topLeft());
+    CMainWindow * _main_window = mainWindowFromViewId(parentid);
+    if ( _main_window ) {
+        _doc_name = _main_window->documentName(parentid);
+
+        if ( QApplication::desktop()->screenCount() > 1 ) {
+            int _scrNum = QApplication::desktop()->screenNumber(_main_window->windowRect().topLeft());
             QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
 
             _windowRect.setSize(QSize(1000,700));
@@ -431,7 +479,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         }
     }
 
-    CSingleWindow * _window = new CSingleWindow(_windowRect, "ONLYOFFICE Reporter Window", pView);
+    CSingleWindow * _window = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
 
     m_vecEditors.push_back( size_t(_window) );
 
@@ -562,10 +610,15 @@ CMainWindow * CAscApplicationManagerWrapper::topWindow()
 
 void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const QString& cmd, const QString& args)
 {
+    sendCommandTo(target, cmd.toStdWString(), args.toStdWString() );
+}
+
+void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const wstring& cmd, const wstring& args)
+{
     CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(cmd.toStdWString());
-    if ( !args.isEmpty() )
-        pCommand->put_Param(args.toStdWString());
+    pCommand->put_Command(cmd);
+    if ( !args.empty() )
+        pCommand->put_Param(args);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
@@ -635,4 +688,84 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
     }
 
     return QObject::event(event);
+}
+
+bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
+{
+    QJsonParseError jerror;
+    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wstrjson).toUtf8(), &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QJsonObject objRoot = jdoc.object();
+
+        QString _user_newname = objRoot["username"].toString();
+        if ( _user_newname.isEmpty() )
+            _user_newname = QString::fromStdWString(Utils::systemUserName());
+
+        QString _lang_id = CLangater::getCurrentLangCode();
+        if ( objRoot.contains("langid") ) {
+            QString l = objRoot.value("langid").toString();
+            if ( _lang_id != l ) {
+                _lang_id = l;
+
+                GET_REGISTRY_USER(_reg_user)
+                _reg_user.setValue("locale", _lang_id);
+
+                CLangater::reloadTranslations(_lang_id);
+
+                CMainWindow * _window = nullptr;
+                for (auto const& w : m_vecWidows) {
+                    _window = reinterpret_cast<CMainWindow *>(w);
+
+                    if ( _window ) {
+                        _window->mainPanel()->loadStartPage();
+                    }
+                }
+            }
+        }
+
+        wstring params = QString("lang=%1&username=%3&location=%2")
+                            .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
+
+        if ( objRoot["docopenmode"].toString() == "view" )
+            params.append(L"&mode=view");
+
+        AscAppManager::getInstance().InitAdditionalEditorParams( params );
+    } else {
+        /* parse settings error */
+    }
+
+    return true;
+}
+
+void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
+{
+    wstring _send_cmd, _send_opts;
+    if ( opts == L"username" ) {
+        _send_cmd = L"settings:username";
+        _send_opts = Utils::systemUserName();
+    } else
+    if ( opts == L"has:opened" ) {
+        _send_cmd = L"settings:hasopened";
+
+        CMainWindow * _window = nullptr;
+        for (auto const& w : m_vecWidows) {
+            _window = reinterpret_cast<CMainWindow *>(w);
+
+            if ( _window && _window->editorsCount() ) {
+                _send_opts = L"has";
+                break;
+            }
+        }
+    }
+
+    if ( !_send_opts.empty() )
+        QTimer::singleShot(0, [_send_cmd, _send_opts] {
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
+        });
+}
+
+CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
+{
+    return new CDpiChecker();
 }

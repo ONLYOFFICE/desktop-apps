@@ -67,7 +67,7 @@
                           '<div class="flexbox">'+
                             `<h3 class="table-caption">${_lang.listRecentFileTitle}</h3>`+
                             '<div class="table-box flex-fill">'+
-                              '<table %id class="table-files list"></table>'+
+                              '<table class="table-files list"></table>'+
                               '<h4 class="text-emptylist img-before-el">' + _lang.textNoFiles + '</h4>' +
                             '</div>' +
                           '</div>' +
@@ -207,12 +207,12 @@
             });
 
             collectionRecents.events.click.attach((collection, model) => {
-                var _portal = model.descr;
-                if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
-                    app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
-                } else {
+                // var _portal = model.descr;
+                // if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
+                    // app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
+                // } else {
                     openFile(OPEN_FILE_RECENT, model.fileid);
-                }
+                // }
             });
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){

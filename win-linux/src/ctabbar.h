@@ -52,6 +52,7 @@ public:
 
     void setTabIcon(int index, const QIcon &icon);
     void setTabLoading(int, bool);
+    void setActiveTabColor(const QString&);
     void tabStartLoading(int, const QString& theme = QString());
     void activate(bool);
 
@@ -87,19 +88,10 @@ private:
     int  m_overIndex = -1;
     int  m_current = -1;
     bool m_active = false;
+    QString m_activeColor = "none";
 
 signals:
     void tabUndock(int);
-
-#ifdef __USE_COLORED_TAB
-public:
-    void setActiveTabColor(const QString& color)
-    {
-        m_activeColor = color;
-    }
-private:
-    QString m_activeColor = "none";
-#endif
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)

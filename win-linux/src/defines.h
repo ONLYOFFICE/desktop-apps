@@ -47,17 +47,20 @@
 #ifdef __linux
 # define APP_DATA_PATH "/onlyoffice/desktopeditors"
 # define REG_GROUP_KEY "onlyoffice"
+# define APP_MUTEX_NAME "asc:editors"
 #else
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
 # define REG_GROUP_KEY "ONLYOFFICE"
+# define APP_MUTEX_NAME "TEAMLAB"
 #endif
 
 #define WINDOW_NAME "ONLYOFFICE Desktop Editors"
+#define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define REG_APP_NAME "DesktopEditors"
-#define APP_MUTEX_NAME "TEAMLAB"
-#define APP_DEFAULT_LOCALE "en"
+#define APP_DEFAULT_LOCALE "en-EN"
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
+#define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""
@@ -98,11 +101,16 @@ typedef unsigned char BYTE;
 #endif
 
 #ifdef _WIN32
-#define WINDOW_BACKGROUND_COLOR RGB(49, 52, 55)
-#define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
+# define WINDOW_BACKGROUND_COLOR RGB(241, 241, 241)              // #f1f1f1
+# define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
 #else
-#define TABBAR_BACKGROUND_COLOR "#313437"
+# define TABBAR_BACKGROUND_COLOR "#f1f1f1"
 #endif
+
+#define TAB_COLOR_PRESENTATION  "#aa5252"
+#define TAB_COLOR_SPREADSHEET   "#40865c"
+#define TAB_COLOR_DOCUMENT      "#446995"
+
 
 #include "defines_p.h"
 

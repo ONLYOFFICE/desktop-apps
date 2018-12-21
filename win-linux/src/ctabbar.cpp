@@ -184,9 +184,7 @@ void QTabBarPrivate::setupMovableTab()
     QString text = tab.text;
     tab.text = "";
     p.drawControl(QStyle::CE_TabBarTab, tab);
-#ifdef __USE_COLORED_TAB
     ((CTabBar*)q)->fillTabColor(&p, tab, pressedIndex, ((CTabBar*)q)->m_activeColor);
-#endif
     ((CTabBar*)q)->drawTabCaption(&p, text, tab);
     p.end();
 
@@ -239,9 +237,7 @@ CTabBar::CTabBar(QWidget * parent)
 {
     setDrawBase(false);
 
-#ifdef __APP_NEW_APPEARANCE
     connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
-#endif
 }
 
 CTabBar::~CTabBar()
@@ -348,13 +344,9 @@ void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionT
     }
 
     int _factor = scaling();
-#ifdef __APP_NEW_APPEARANCE
     QPoint _lt = QPoint(15, 0) * _factor;
     QPoint _rb = QPoint(-22, -2) * _factor;
-#else
-    QPoint _lt = QPoint(13, 0) * _factor;
-    QPoint _rb = _factor > 1 ? QPoint(-44, -4) : QPoint(-22, -2);
-#endif
+
     QRect trect(t.rect.topLeft() + QPoint(t.iconSize.width(), 0) + _lt,
                     t.rect.bottomRight() + _rb);
 
@@ -440,11 +432,8 @@ void CTabBar::paintEvent(QPaintEvent * event)
             tab.text.clear();
             p.drawControl(QStyle::CE_TabBarTab, tab);
 
-#ifdef __USE_COLORED_TAB
-            if ( m_activeColor != "none" ) {
+            if ( m_activeColor != "none" )
                 fillTabColor(&p, tab, selected, m_activeColor);
-            }
-#endif
             drawTabCaption(&p, text, tab);
         } else {
             int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
@@ -539,11 +528,8 @@ void CTabBar::paintEvent(QPaintEvent * event)
             tab.text.clear();
             p.drawControl(QStyle::CE_TabBarTab, tab);
 
-#ifdef __USE_COLORED_TAB
-            if ( m_activeColor != "none" ) {
+            if ( m_activeColor != "none" )
                 fillTabColor(&p, tab, selected, m_activeColor);
-            }
-#endif
             drawTabCaption(&p, text, tab);
         } else {
             int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
@@ -600,7 +586,6 @@ void CTabBar::setUseTabCustomPalette(bool use)
 
 void CTabBar::tabInserted(int index)
 {
-#ifdef __APP_NEW_APPEARANCE
     QToolButton * close = new QToolButton(this);
     close->setProperty("class", "tab-close");
     close->setFocusPolicy(Qt::NoFocus);
@@ -611,7 +596,6 @@ void CTabBar::tabInserted(int index)
 
     connect(close, &QToolButton::clicked, this, &CTabBar::onCloseButton);
     setTabButton(index, QTabBar::RightSide, close);
-#endif
 
     CAnimatedIcon * icon = new CAnimatedIcon(this);
     icon->setFixedSize(iconSize());
@@ -667,14 +651,9 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
         int dpi_ratio = scaling();
 
         ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
-#ifdef __APP_NEW_APPEARANCE
         int top_offset = dpi_ratio > 1 ? 4 : 1;
         i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
         i->setFixedSize(_iconSize.width() + (8 * dpi_ratio), iconSize().height() + (4 * dpi_ratio));
-#else
-        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top),_iconSize));
-        i->setFixedSize(_iconSize.width() + (5 * scaling()), iconSize().height());
-#endif
 
         update(_tabRect);
     }
@@ -695,7 +674,7 @@ void CTabBar::tabStartLoading(int index, const QString& theme)
     CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
     if ( icon ) {
         if ( !icon->isStarted() )
-            icon->startSvg(":/common/icons/loader.svg", theme);
+            icon->startSvg(":/tabbar/icons/loader.svg", theme);
     }
 }
 
@@ -739,6 +718,11 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
             b->style()->polish(b);
         }
     }
+}
+
+void CTabBar::setActiveTabColor(const QString& color)
+{
+    m_activeColor = color;
 }
 
 void CTabBar::changeTabTheme(int index, TabTheme theme)
@@ -807,8 +791,8 @@ void CTabBar::updateScaling(int f)
     repaint();
 }
 
-bool CTabBar::event(QEvent * e){
-#ifdef __APP_NEW_APPEARANCE
+bool CTabBar::event(QEvent * e)
+{
     if ( e->type() == QEvent::HoverMove ) {
         Q_D(QTabBar);
 
@@ -845,8 +829,6 @@ bool CTabBar::event(QEvent * e){
             m_overIndex = -1;
         }
     }
-
-#endif
 
 //    qDebug() << "event: " << e;
     return QTabBar::event(e);

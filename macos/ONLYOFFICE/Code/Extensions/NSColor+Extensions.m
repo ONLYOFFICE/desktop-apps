@@ -45,14 +45,23 @@
 @implementation NSColor (OnlyOffice)
 
 + (NSColor *) brendDocumentEditor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"brend-DocumentEditor"];
+    }
     return UIColorFromRGB(0x446995);
 }
 
 + (NSColor *) brendSpreadsheetEditor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"brend-SpreadsheetEditor"];
+    }
     return UIColorFromRGB(0x40865c);
 }
 
 + (NSColor *) brendPresentationEditor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"brend-PresentationEditor"];
+    }
     return UIColorFromRGB(0xaa5252);
 }
 

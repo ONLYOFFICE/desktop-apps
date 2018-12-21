@@ -42,8 +42,10 @@ $(document).ready(function() {
     window.app.controller.recent = (new ControllerRecent).init();
     window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
+    window.app.controller.settings = (new ControllerSettings).init();
     if (!!window.ControllerPortals)
         window.app.controller.portals = (new ControllerPortals({})).init();
+    !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
     $('a[action="new:docx"]').text(utils.Lang.newDoc);
@@ -91,8 +93,14 @@ $(document).ready(function() {
             window.sdk.LocalFileRecents();
 
             window.sdk.execCommand('app:onready', '');
+
+            if ( !!localStorage.reload ) {
+                selectAction(localStorage.reload);
+                localStorage.removeItem('reload');
+            }
         } 
     }, 50);
+
 });
 
 function onActionClick(e) {
@@ -167,17 +175,22 @@ function onNewFileClick(e) {
 }
 
 window.sdk.on('on_native_message', function(cmd, param) {
+    let _re_res;
     if (cmd == 'portal:logout') {
         // var short_name = utils.skipUrlProtocol(param);
         // var model = portalCollection.find('name', short_name);
         // !!model && model.set('logged', false);
     } else
-    if ( /^panel\:(?:hide|show)/.test(cmd) ) {
-        let hide = !/\:show/.test(cmd);
+    if ( (_re_res = /^panel\:(hide|show|select)/.exec(cmd)) ) {
         let panel = param;
+        if ( _re_res[1] == 'select' ) {
+            selectAction( panel );
+        } else {
+            let hide = !(_re_res[1] == 'show');
 
-        if (panel.length) {
-            hideAction(panel, hide);
+            if ( panel.length ) {
+                hideAction(panel, hide);
+            }
         }
     } else
     if (/app\:ready/.test(cmd)) {
@@ -227,3 +240,14 @@ $(document).on('keydown', function(e){
         }
     }
 });
+
+window.addEventListener('message', e => {
+    let msg = window.JSON.parse(e.data);
+    if ( msg.type == 'plugin' ) {
+        if ( !!msg.event ) {
+            if ( msg.event == 'modal:open' )
+                $('.main-column.tool-menu').addClass('view--modal')
+            else $('.main-column.tool-menu').removeClass('view--modal');
+        } else sdk.fire('on_native_message', Object.values(msg.data));
+    }
+}, false);

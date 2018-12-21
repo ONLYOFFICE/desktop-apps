@@ -50,23 +50,22 @@
     var ViewWelcome = function(args) {
         var _lang = utils.Lang;
 
-        var _html = `<div class="action-panel ${args.action}">` +
-                      '<div class="flex-center">' +
-                        '<section class="center-box">' +
-                          `<h3 style="margin-top:0;">${_lang.welWelcome}</h3>` +
-                          `<h4 class="text-description">${_lang.welDescr}</h4>` +
-                          '<img class="img-welcome">' +
-                          '<div class="tools-connect">' +
-                            // '<button class="btn primary login">'+ utils.Lang.btnConnect +'</button>' +
-                            `<button class="btn primary newportal">${_lang.btnCreatePortal}</button>` +
-                            '<section class="link-connect">' +
-                              `<label>${_lang.textHavePortal}</label>` +
-                              `<a class="login link" href="#">${_lang.btnConnect}</a>` +
-                            '</section>' +
-                          '</div>' +
-                        '</section>' +
-                      '</div>' +
-                    '</div>';
+        var _html = `<div class="action-panel ${args.action}">
+                      <div class="flex-center">
+                        <section class="center-box">
+                          <h3 style="margin-top:0;">${_lang.welWelcome}</h3>
+                          <h4 class="text-description">${_lang.welDescr}</h4>
+                          <img class="img-welcome">
+                          <div class="tools-connect">
+                            <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                            <section class="link-connect">
+                              <label>${_lang.textHavePortal}</label>
+                              <a class="login link" href="#">${_lang.btnConnect}</a>
+                            </section>
+                          </div>
+                        </section>
+                      </div>
+                    </div>`;
 
         args.tplPage = _html;
         args.tplItem = 'nomenuitem';

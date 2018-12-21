@@ -33,17 +33,18 @@
 var l10n = {};
 l10n.en = {
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
-    welDescr: 'A new fast solution for work with documents using your ONLYOFFICE.',
-    btnConnect: 'Connect',
-    textHavePortal: 'Already use ONLYOFFICE?',
-    btnCreatePortal: 'Try it now for free',
-    btnAddPortal: 'Add Portal',
+    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Connect now',
+    textHavePortal: 'Already use a cloud?',
+    btnCreatePortal: 'Create an ONLYOFFICE cloud',
+    btnAddPortal: 'Add сloud',
     btnLogin: 'Login',
     btnBrowse: 'Browse',
     btnNext: 'Next',
-    portalEmptyTitle: 'Co-edit documents in real time',
-    portalEmptyDescr: 'Work on the same document simultaneously with your teammates. Choose between Fast or Strict real-time co-editing, chat in your document or add comments to it.',
-    portalListTitle: 'Connected portals',
+    portalEmptyTitle: 'Connect to your cloud',
+    portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
+    portalEmptyAdv1: 'Don\'t have a cloud account yet? Go online with ONLYOFFICE Cloud Service and <br />try collaborative capabilities for free.',
+    portalListTitle: 'Connected clouds',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
     listRecentFileTitle:'Recent files',
@@ -56,26 +57,26 @@ l10n.en = {
     textMyComputer: 'My Computer',
     textThrough: 'through',
     linkForgotPass: 'Forgot password?',
-    linkCreatePortal: 'Create Portal',
+    linkCreatePortal: 'Create an ONLYOFFICE cloud',
     linkResend: 'Send the code again',
     linkChangePhone: 'Change phone number',
-    loginTitleStart: 'Connect to portal',
+    loginTitleStart: 'Connect to cloud office',
     loginTitleConnectTo: 'Login to $1',
     loginTitleAssignPhone: 'Enter mobile phone number',
     loginTitleApplyCode: 'Confirm phone number',
     errLogin: 'Wrong email or password',
-    errLoginPortal: 'Check the portal name',
+    errLoginPortal: 'Check the cloud office URL',
     errLoginEmail: 'Check the email address',
     errLoginServer: 'Incorrect server response during login',
     errLoginAuth: 'Error on user information query',
     errLoginPass: 'Check the password',
     errLoginWrongPhone: 'Wrong phone number format',
-    pshPortal: 'portal',
+    pshPortal: 'Cloud office URL',
     pshEmail: 'email',
     pshPass: 'password',
     pshPhone: 'phone number',
     pshCode: 'code from text message',
-    loginNoteAssignPhone: 'The two-factor authentication is enabled to provide additional portal security. Enter your mobile phone number to continue work on the portal. Mobile phone number must be entered using an international format with country code.',
+    loginNoteAssignPhone: 'The two-factor authentication is enabled to provide additional ONLYOFFICE cloud security. Enter your mobile phone number to continue work on the cloud office. Mobile phone number must be entered using an international format with country code.',
     loginNoteApplyCode: 'The two-factor authentication is enabled. The code has been texted to $1 number.',    
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
@@ -83,37 +84,46 @@ l10n.en = {
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
-    actConnectTo: 'Share & collaborate',
+    actConnectTo: 'Connect to cloud',
     actActivate: 'Activate',
     actAbout: 'About',
+    actSettings: 'Settings',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
     licPanelTitle: 'Enter product key',
     licPanelDescr: 'Your product key was sent to the email address specified during the purchase.'
-    ,adsToolItem1: 'Version history'
-    ,adsTitle1: 'View or restore previous versions of your document '
-    ,adsDescr1: 'Go back in time: view previous versions of your document, track the smallest changes and their authors. Restore an older version of your file if you need to.'
-    ,adsToolItem2: 'Collaborative review'
-    ,adsTitle2: 'Let your teammates review documents in the cloud'
-    ,adsDescr2: 'Forget about sending files to be reviewed via email. Grant a quick access to the document without leaving your desktop editor. Let others suggest corrections. Accept or reject changes.'
     ,checkUpdates: 'Check for updates'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Share & collaborate'
+    ,emptySlide1Text: 'Choose between Fast or Strict real-time co-editing, chat in your doc, add comments or share it for review.'
+    ,emptySlide2Title: 'View or restore previous versions'
+    ,emptySlide2Text: 'Restore or just view previous versions of your document, track changes and their authors.'
+    ,emptySlide3Title: 'Store in the cloud'
+    ,emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.'
+    ,settUserName: 'User Name'
+    ,settResetUserName: 'Reset to default'
+    ,settOpenMode: 'Open document in preview mode'
+    ,setBtnApply: 'Apply'
+    ,settLanguage: 'Interface language'
+    ,settAfterRestart: 'Option will be applied after the app restart'
+    ,settShowEncryptOpts: 'Test end-to-end encryption'
 }
 
 l10n.cs = {
     welWelcome: 'Vítejte v ONLYOFFICE Desktop Editors!',
-    welDescr: 'Nové rychlé řešení pro práci s dokumenty pomocí Vašeho ONLYOFFICE.',
+    welDescr: 'Práce na dokumentech offline nebo propojení sady do cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Připojit',
-    textHavePortal: 'Už používáte ONLYOFFICE?',
-    btnCreatePortal: 'Vyzkoušejte zdarma',
-    btnAddPortal: 'Přidat portál',
+    textHavePortal: 'Už používáte cloud?',
+    btnCreatePortal: 'Vytvořit ONLYOFFICE cloud',
+    btnAddPortal: 'Přidat cloud',
     btnLogin: 'Login',
     btnBrowse: 'Procházet',
     btnNext: 'Další',
-    portalEmptyTitle: 'Editace a vytváření dokumentů v reálném čase',
-    portalEmptyDescr: 'Práce na stejném dokumentu současně s kolegy. Vyberte si mezi rychlou nebo přesnou úpravou v reálném čase, chatováním v dokumentu nebo přidáním poznámek k němu.',
-    portalListTitle: 'Připojit portály',
+    portalEmptyTitle: 'Připojte se k cloudu',
+    portalEmptyDescr: 'Uložte dokumenty v cloudu a získáte k nim přístup kdykoli a odkudkoli. Sdílejte a spolupracujte na nich. Chatujte ve svém dokumentu, přidejte komentáře nebo je sdílejte ke kontrole.',
+    portalEmptyAdv1: 'Nemáte ještě cloud účet? Navštivte službu Cloud Service ONLYOFFICE a vyzkoušejte možnosti spolupráce zdarma.',
+    portalListTitle: 'Připojit cloud',
     textNoFiles: 'Neexistují žádné soubory',
     listRecoveryTitle:'Obnovit soubory',
     listRecentFileTitle:'Poslední soubory',
@@ -126,25 +136,26 @@ l10n.cs = {
     textMyComputer: 'Můj počítač',
     textThrough: 'skrz',
     linkForgotPass: 'Zapomenuté heslo?',
-    linkCreatePortal: 'Vytvořit portál',
+    linkCreatePortal: 'Vytvořit ONLYOFFICE cloud',
     linkResend: 'Zadejte kód znovu',
     linkChangePhone: 'Změňte telefonní číslo',
-    loginTitleStart: 'Připojit se k portálu',
-    loginTitleConnectTo: 'Login to $1',
+    loginTitleStart: 'Připojit se k kanceláři cloud',
+    loginTitleConnectTo: 'Přihlášení do $1',
     loginTitleAssignPhone: 'Zadejte číslo mobilního telefonu',
     loginTitleApplyCode: 'Potvrďte telefonní číslo',
     errLogin: 'Špatné email nebo heslo',
-    errLoginPortal: 'Zkontrolujte jméno portálu',
+    errLoginPortal: 'Zkontrolujte adresu URL kanceláře cloud',
     errLoginEmail: 'Zkontrolujte emailovou adresu',
     errLoginServer: 'Nesprávná odpověď serveru během přihlášení',
     errLoginAuth: 'Chyba při dotazu na informace o uživateli',
     errLoginPass: 'Zkontrolujte heslo',
-    pshPortal: 'portál',
+    errLoginWrongPhone: 'Chybný formát telefonního čísla',
+    pshPortal: 'Adresa URL kanceláře cloud',
     pshEmail: 'email',
     pshPass: 'heslo',
     pshPhone: 'telefonní číslo',
     pshCode: 'kód z textové zprávy',
-    loginNoteAssignPhone: 'K zajištění další bezpečnosti portálu je zapnuto dvoufaktorové ověřování. Zadejte své číslo mobilního telefonu, abyste mohli pokračovat v práci na portálu. Číslo mobilního telefonu musí být zadáno pomocí mezinárodního formátu s kódem země.',
+    loginNoteAssignPhone: 'K zajištění další bezpečnosti ONLYOFFICE cloud je zapnuto dvoufaktorové ověřování. Zadejte své číslo mobilního telefonu, abyste mohli pokračovat v práci na kanceláře cloud. Číslo mobilního telefonu musí být zadáno pomocí mezinárodního formátu s kódem země.',
     loginNoteApplyCode: 'Je povolena dvoufaktorová autentizace. Kód byl odeslán na číslo $1.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'SEŠIT',
@@ -152,37 +163,46 @@ l10n.cs = {
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',
-    actConnectTo: 'Share & collaborate',
+    actConnectTo: 'Připojte se k cloudu',
     actActivate: 'Aktivovat',
     actAbout: 'O ONLYOFFICE',
+    actSettings: 'Nastavení',
     licKeyHolder: 'vstupní aktivační klíč',
     btnActivate: 'Aktivovat',
     licGetLicense: 'Získat licenci',
     licPanelTitle: 'Vložit produkt klíč',
     licPanelDescr: 'Produktový klíč byl odeslán na e-mailovou adresu zadanou při nákupu.'
-    ,adsToolItem1: 'Historie verzí'
-    ,adsTitle1: 'Zobrazení nebo obnovení předchozích verzí dokumentu '
-    ,adsDescr1: 'Vrátit se zpět v čase: zobrazit předchozí verze dokumentu, sledovat nejmenší změny a jejich autory. Pokud potřebujete, obnovte starší verzi souboru.'
-    ,adsToolItem2: 'Souhrnná recenze'
-    ,adsTitle2: 'Nechte své kolegy pracovat na dokumentech v cloudu'
-    ,adsDescr2: 'Zapomeňte na odesílání souborů, které chcete zkontrolovat e-mailem. Umožňuje rychlý přístup k dokumentu bez opuštění editoru plochy. Nechte ostatní navrhnout opravy. Přijmout nebo odmítnout změny.'
-    ,checkUpdates: 'Check for updates'
-    ,strVersion: 'version'
+    ,checkUpdates: 'Kontrola aktualizací'
+    ,strVersion: 'verze'
+    ,emptySlide1Title: 'Sdílejte a spolupracujte'
+    ,emptySlide1Text: 'Vyberte si mezi rychlou nebo podrobnou spolu-úpravou v reálném čase, chatujte přímo v dokumentu, přidávejte či sdílejte dokumenty pro kontrolu.'
+    ,emptySlide2Title: 'Zobrazte si nebo obnovte předchozí verze'
+    ,emptySlide2Text: 'Obnovte nebo si zobrazte předchozí verze dokumentu, sledujte změny a jejich autory.'
+    ,emptySlide3Title: 'Ukládejte do cloudu'
+    ,emptySlide3Text: 'Ukládejte své dokumenty v cloudu od ONLYOFFICU a mějte k nim kdykoli přístup, odkudkoli.'
+    ,settUserName: 'Uživatelské jméno'
+    ,settResetUserName: 'Obnovit do základního nastavení'
+    ,settOpenMode: 'Otevřete dokument v režimu náhledu'
+    ,setBtnApply: 'Uložit změny'
+    ,settLanguage: 'Jazyk rozhraní'
+    ,settAfterRestart: 'Možnost bude k dispozici až po restartu aplikace'
+    ,settShowEncryptOpts: 'Testujte šifrování koncového'
 }
 
 l10n.sk = {
     welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
-    welDescr: 'Nové rýchle riešenie pre prácu s dokumentmi pomocou Vášho ONLYOFFICE.',
+    welDescr: 'Pracujte na dokumentoch v offline režime alebo sa pripojte k Vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Pripojiť',
-    textHavePortal: 'Už používate ONLYOFFICE?',
-    btnCreatePortal: 'Vyskúšajte zadarmo',
-    btnAddPortal: 'Pridať portál',
+    textHavePortal: 'Už používate cloud?',
+    btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
+    btnAddPortal: 'Pridať cloud',
     btnLogin: 'Prihlásiť sa',
     btnBrowse: 'Prechádzať',
     btnNext: 'Nasledujúci',
-    portalEmptyTitle: 'Spolueditovanie dokumentov v reálnom čase',
-    portalEmptyDescr: 'Pracujte na tom istom dokumente súčasne s vašimi kolegami. Vyberte si medzi rýchlym alebo striktným editovaním v reálnom čase, chatovaním v dokumente alebo pridaním komentárov k nemu.',
-    portalListTitle: 'Pripojené portály',
+    portalEmptyTitle: 'Pripojte sa k Vášmu cloudu',
+    portalEmptyDescr: 'Uchovávajte Dokumenty v cloude a majte k nim prístup kedykoľvek a odkiaľkoľvek. Zdieľajte a spolupracujte na nich. Chatujte vo svojich dokumentoch, pridávajte komentáre alebo ich zdieľajte na posúdenie.',
+    portalEmptyAdv1: 'Ešte nemáte cloud účet? Buďte online so službou ONLYOFFICE Cloud Service a bezplatne vyskúšajte možnosti spolupráce.',
+    portalListTitle: 'Pripojené cloud',
     textNoFiles: 'Neexistujú žiadne súbory',
     listRecoveryTitle:'Obnoviť súbory',
     listRecentFileTitle:'Posledné súbory',
@@ -195,25 +215,26 @@ l10n.sk = {
     textMyComputer: 'Môj počítač',
     textThrough: 'skrz',
     linkForgotPass: 'Zabudnuté heslo?',
-    linkCreatePortal: 'Vytvoriť portál',
+    linkCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
     linkResend: 'Zadajte kód znovu',
     linkChangePhone: 'Zmeňte telefónne číslo',
-    loginTitleStart: 'Pripojiť sa k portálu',
+    loginTitleStart: 'Pripojiť sa k kancelárie cloud',
     loginTitleConnectTo: 'Prihlásiť sa $1',
     loginTitleAssignPhone: 'Zadajte číslo mobilného telefónu',
     loginTitleApplyCode: 'Potvrďte telefónne číslo',
     errLogin: 'Nesprávny e-mail alebo heslo',
-    errLoginPortal: 'Skontrolovať názov portálu',
+    errLoginPortal: 'Skontrolovať adresu URL kancelárie cloud',
     errLoginEmail: 'Skontrolovať e-mailovú adresu',
     errLoginServer: 'Nesprávna odpoveď servera počas prihlasovania',
     errLoginAuth: 'Chyba v informačnom dopyte používateľa',
     errLoginPass: 'Skontrolovať heslo',
-    pshPortal: 'portál',
+    errLoginWrongPhone: 'Chybný formát telefónneho čísla',
+    pshPortal: 'Adresa URL kancelárie cloud',
     pshEmail: 'e-mail',
     pshPass: 'heslo',
     pshPhone: 'telefónne číslo',
     pshCode: 'kód z textovej správy',
-    loginNoteAssignPhone: 'Na dodatočné zabezpečenie portálu je zapnuté dvojfaktorové overenie. Ak chcete pokračovať v práci na portáli, zadajte svoje číslo mobilného telefónu. Číslo mobilného telefónu musí byť zadané pomocou medzinárodného formátu s kódom krajiny.',
+    loginNoteAssignPhone: 'Na dodatočné zabezpečenie ONLYOFFICE cloud je zapnuté dvojfaktorové overenie. Ak chcete pokračovať v práci na kancelárie cloud, zadajte svoje číslo mobilného telefónu. Číslo mobilného telefónu musí byť zadané pomocou medzinárodného formátu s kódom krajiny.',
     loginNoteApplyCode: 'Dvojfaktorové overenie je povolené. Kód bol odoslaný na číslo $1.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'ZOŠIT',
@@ -221,37 +242,46 @@ l10n.sk = {
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Posledné súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',
-    actConnectTo: 'Zdieľať a spolupracovať',
+    actConnectTo: 'Pripojte cloud',
     actActivate: 'Aktivovať',
-    actAbout: 'O OnlyOffice',
+    actAbout: 'O ONLYOFFICE',
+    actSettings: 'Nastavenia',
     licKeyHolder: 'vstupný aktivačný kľúč',
     btnActivate: 'Aktivovať',
     licGetLicense: 'Získať licenciu',
     licPanelTitle: 'Zadať licenčný kľúč',
     licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.'
-    ,adsToolItem1: 'História verzií'
-    ,adsTitle1: 'Zobrazte alebo obnovte predchádzajúce verzie dokumentu'
-    ,adsDescr1: 'Vráťte sa späť v čase: zobrazte predchádzajúce verzie dokumentu, sledujte najmenšie zmeny a ich autorov. Ak potrebujete, obnovte staršiu verziu súboru.'
-    ,adsToolItem2: 'Prehľad spolupráce'
-    ,adsTitle2: 'Nechajte svojich kolegov pracovať s dokumentami v cloude'
-    ,adsDescr2: 'Zabudnite na odosielanie súborov ktoré chcete dať skontrolovať e-mailom. Umožnite rýchly prístup k dokumentu bez toho, aby ste museli opustiť editor plochy. Nechajte ostatných navrhnúť opravy. Prijmite alebo odmietnite zmeny.'
-    ,checkUpdates: 'Check for updates'
-    ,strVersion: 'version'
+    ,checkUpdates: 'Skontrolovať aktualizácie'
+    ,strVersion: 'verzia'
+    ,emptySlide1Title: 'Zdieľajte a spolupracujte'
+    ,emptySlide1Text: 'Vyberte medzi Fast alebo Strict módom editácie dokumentov online v reálnom čase, komunikujte vo Vašich dokumentoch, pridávajte alebo zdieľajte komentáre v revíziách.'
+    ,emptySlide2Title: 'Zobrazte alebo obnovte predchádzajúce verzie'
+    ,emptySlide2Text: 'Obnovite alebo jednoducho zobrazte predchádzajúce verzie Vašich dokumentov, sledujte zmeny a ich autorov.'
+    ,emptySlide3Title: 'Uložte dáta do cloud-u'
+    ,emptySlide3Text: 'Uložte Vaše dokumenty v ONLYOFFICE cloude a pristupujte k nim kedykoľvek, nech ste už kdekoľvek.'
+    ,settUserName: 'Používateľské meno'
+    ,settResetUserName: 'Obnoviť pôvodné nastavenia'
+    ,settOpenMode: 'Otvorte dokument v režime ukážky'
+    ,setBtnApply: 'Použiť'
+    ,settLanguage: 'Jazyk rozhrania'
+    ,settAfterRestart: 'Prejaví sa po reštarte aplikácie'
+    ,settShowEncryptOpts: 'Skúšajte end-to-end šifrovanie'
 }
 
 l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
-    welDescr: 'Новое быстрое решение для работы с документами на вашем портале ONLYOFFICE.',
+    welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Подключить',
-    textHavePortal: 'Уже используете ONLYOFFICE?',
-    btnCreatePortal: 'Попробуйте прямо сейчас бесплатно',
-    btnAddPortal: 'Добавить портал',
+    textHavePortal: 'Уже используете облако?',
+    btnCreatePortal: 'Создать облако ONLYOFFICE',
+    btnAddPortal: 'Добавить облако',
     btnLogin: 'Войти',
     btnBrowse: 'Открыть',
     btnNext: 'Далее',
-    portalEmptyTitle: 'Совместное редактирование в режиме реального времени',
-    portalEmptyDescr: 'Работайте над одним и тем же документом одновременно с другими участниками команды. Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или добавляйте комментарии к документу.',
-    portalListTitle: 'Подключенные порталы',
+    portalEmptyTitle: 'Подключитесь к облаку',
+    portalEmptyDescr: 'Храните документы в облаке и работайте с ними в любое время из любой точки мира. Предоставляйте к ним доступ и работайте совместно. Используйте встроенный чат, добавляйте комментарии или отправляйте документ на рецензирование.',
+    portalEmptyAdv1: 'Еще нет облачного аккаунта? Перейдите в онлайн-режим с облачным сервисом ONLYOFFICE и попробуйте возможности совместного редактирования бесплатно.',
+    portalListTitle: 'Подключенные облака',
     textNoFiles: 'Нет файлов для просмотра',
     listRecoveryTitle:'Файлы для восстановления',
     listRecentFileTitle:'Последние файлы',
@@ -264,26 +294,26 @@ l10n.ru = {
     textMyComputer: 'Мой компьютер',
     textThrough: 'через',
     linkForgotPass: 'Забыли пароль?',
-    linkCreatePortal: 'Создать портал',
+    linkCreatePortal: 'Создать облако ONLYOFFICE',
     linkResend: 'Отправить код еще раз',
     linkChangePhone: 'Изменить номер телефона',
-    loginTitleStart: 'Подключиться к порталу',
+    loginTitleStart: 'Подключиться к облачному офису',
     loginTitleConnectTo: 'Войти на $1',
     loginTitleAssignPhone: 'Введите номер мобильного телефона',
     loginTitleApplyCode: 'Подтвердите номер телефона',
     errLogin: 'Неправильный email или пароль',
-    errLoginPortal: 'Проверьте имя портала',
+    errLoginPortal: 'Проверьте URL облачного офиса',
     errLoginEmail: 'Проверьте email',
     errLoginServer: 'Ошибка сервера при попытке входа',
     errLoginAuth: 'Ошибка при запросе информации о пользователе',
     errLoginPass: 'Проверьте пароль',
     errLoginWrongPhone: 'Неправильный формат номера телефона',
-    pshPortal: 'Портал',
+    pshPortal: 'Адрес облачного офиса',
     pshEmail: 'Еmail',
     pshPass: 'Пароль',
     pshPhone: 'номер телефона',
     pshCode: 'код из текстового сообщения',
-    loginNoteAssignPhone: 'Для обеспечения повышенной безопасности на портале включена двухфакторная аутентификация. Для продолжения работы на портале введите ваш номер мобильного телефона. Номер мобильного телефона необходимо ввести в международном формате с кодом страны.',
+    loginNoteAssignPhone: 'Для обеспечения повышенной безопасности в облаке ONLYOFFICE включена двухфакторная аутентификация. Для продолжения работы в облачном офисе введите ваш номер мобильного телефона. Номер мобильного телефона необходимо ввести в международном формате с кодом страны.',
     loginNoteApplyCode: 'Двухфакторная аутентификация включена. Код отправлен в SMS-сообщении на номер $1.',    
     newDoc: 'Документ',
     newXlsx: 'Таблица',
@@ -291,68 +321,78 @@ l10n.ru = {
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
-    actConnectTo: 'Редактировать совместно',
+    actConnectTo: 'Подключиться к облаку',
     actActivate: 'Активировать',
     actAbout: 'О программе',
+    actSettings: 'Настройки',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
     licPanelTitle: 'Введите ключ активации',
     licPanelDescr: 'Ваш ключ продукта был выслан на адрес электронной почты, указанный при покупке.'
-    ,adsToolItem1: 'История версий'
-    ,adsTitle1: 'Просматривайте или восстанавливайте предыдущие версии документа '
-    ,adsDescr1: 'Загляните в прошлое: просматривайте предыдущие версии документа, отслеживайте минимальные изменения, внесенные каждым из авторов. В случае необходимости восстанавливайте более раннюю версию файла.'
-    ,adsToolItem2: 'Рецензирование онлайн'
-    ,adsTitle2: 'Предоставьте коллегам возможность рецензировать документы в облаке'
-    ,adsDescr2: 'Забудьте об отправке файлов на рецензирование по электронной почте. Предоставляйте быстрый доступ к документу, не выходя из десктопного редактора. Разрешите остальным предлагать свои поправки. Принимайте или отклоняйте изменения.'
     ,checkUpdates: 'Проверить обновления'
     ,strVersion: 'версия'
+    ,emptySlide1Title: 'Предоставление доступа и совместная работа'
+    ,emptySlide1Text: 'Выбирайте быстрый или строгий режим совместного редактирования, используйте встроенный чат или отправляйте документ на рецензирование.'
+    ,emptySlide2Title: 'Просмотр или восстановление предыдущих версий'
+    ,emptySlide2Text: 'Восстанавливайте или просто просматривайте предыдущие версии документа, отслеживайте изменения, внесенные другими авторами.'
+    ,emptySlide3Title: 'Хранение в облаке'
+    ,emptySlide3Text: 'Храните документы в облаке ONLYOFFICE и получайте к ним доступ в любое время, из любой точки мира.'
+    ,settUserName: 'Имя пользователя'
+    ,settResetUserName: 'Восстановить системное'
+    ,settOpenMode: 'Открывать документы в режиме просмотра'
+    ,setBtnApply: 'Применить'
+    ,settLanguage: 'Язык интерфейса'
+    ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
+    ,settShowEncryptOpts: 'Тестирование сквозного шифрования'
 }
 
 l10n.de = {
     welWelcome: 'Willkommen in ONLYOFFICE Desktop-Editoren!',
-    welDescr: 'Eine neue schnelle Lösung für die Arbeit mit Dokumenten mithilfe Ihrer ONLYOFFICE.',
+    welDescr: 'Arbeiten Sie offline an Dokumenten oder verbinden Sie die Suite mit Ihrer Cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Zusammenarbeit',
-    textHavePortal: 'Haben Sie ONLYOFFICE schon benutzt?',
-    btnCreatePortal: 'Probieren Sie es jetzt kostenlos aus',
-    btnAddPortal: 'Portal hinzufügen',
+    textHavePortal: 'Haben Sie Cloud schon benutzt?',
+    btnCreatePortal: 'ONLYOFFICE-Cloud erstellen',
+    btnAddPortal: 'Cloud hinzufügen',
     btnLogin: 'Anmelden',
     btnBrowse: 'Browsen',
     btnNext: 'Weiter',
-    portalEmptyTitle: 'Gemeinsame Bearbeiten von Dokumenten in Echtzeit',
-    portalEmptyDescr: 'Arbeiten Sie am selben Dokument gleichzeitig mit Ihren Teamkollegen. Wählen Sie zwischen 2 Modi der gemeinsamen Bearbeitung: Formal und Halbformal, chatten Sie in Ihrem Dokument oder fügen Sie Kommentare hinzu.',
-    portalListTitle: 'Angeschlosse Portale',
+    portalEmptyTitle: 'Stellen Sie eine Verbindung zu Ihrer Cloud her',
+    portalEmptyDescr: 'Speichern Sie Ihre Dokumente in der Cloud und greifen Sie jederzeit und von überall darauf zu. Teilen und arbeiten Sie an Dokumenten zusammen. Chatten Sie in Echtzeit im Dokument, fügen Sie Kommentare hinzu oder teilen Sie es zur Überprüfung.',
+    portalEmptyAdv1: 'Haben Sie noch kein Cloud-Konto? Wechseln Sie zum Onlinemodus mit dem ONLYOFFICE Cloud Service und testen Sie die Möglichkeiten zur Zusammenarbeit  kostenlos.',
+    portalListTitle: 'Angeschlosse Cloud',
     textNoFiles: 'Keine Dateien',
     listRecoveryTitle:'Dateien wiederherstellen',
     listRecentFileTitle:'Neueste Dateien',
     listRecentDirTitle:'Neueste Ordner',
     menuFileOpen: 'Öffnen',
-    menuFileExplore: 'In dem Odner anzeigen',
+    menuFileExplore: 'In dem Ordner anzeigen',
     menuRemoveModel: 'Aus Liste entfernen',
     menuClear: 'Löschen',
     menuLogout: 'Abmelden',
     textMyComputer: 'Arbeitsplatz',
     textThrough: 'durch',
     linkForgotPass: 'Passwort vergessen?',
-    linkCreatePortal: 'Portal erstellen',
+    linkCreatePortal: 'ONLYOFFICE-Cloud erstellen',
     linkResend: 'Code erneut zusenden',
     linkChangePhone: 'Telefonnummer ändern',
-    loginTitleStart: 'Mit Portal verbinden',
+    loginTitleStart: 'Mit dem Cloud-Büro verbinden',
     loginTitleConnectTo: 'Ins $1 anmelden',
     loginTitleAssignPhone: 'Handynummer eingeben',
     loginTitleApplyCode: 'Telefonnummer bestätigen',
     errLogin: 'Falscher Passwort oder E-Mail',
-    errLoginPortal: 'Überprüfen Sie den Portalnamen',
+    errLoginPortal: 'Überprüfen Sie die Cloud-Büro-URL',
     errLoginEmail: 'Überprüfen Sie die E-Mail',
     errLoginServer: 'Falsche Serversantwort während der Anmeldung',
     errLoginAuth: 'Fehler auf Benutzerinformation Anfrage',
     errLoginPass: 'Überprüfen Sie das Passwort',
-    pshPortal: 'Portal',
+    errLoginWrongPhone: 'Falsches Telefonnummernformat',
+    pshPortal: 'Cloud-Büro-URL',
     pshEmail: 'E-Mail',
     pshPass: 'Passwort',
     pshPhone: 'Telefonnummer',
     pshCode: 'Code aus der Textnachricht',
-    loginNoteAssignPhone: 'Die Zwei-Faktor-Authentifizierung ermöglicht zusätzliche Portalsicherheit. Geben Sie Ihre Handynummer ein, um die Arbeit am Portal fortzusetzen. Die Handynummer muss in einem internationalen Format mit Ländervorwahl eingegeben werden.',
+    loginNoteAssignPhone: 'Die Zwei-Faktor-Authentifizierung ermöglicht zusätzliche ONLYOFFICE Cloud Sicherheit. Geben Sie Ihre Handynummer ein, um die Arbeit am Cloud-Büro fortzusetzen. Die Handynummer muss in einem internationalen Format mit Ländervorwahl eingegeben werden.',
     loginNoteApplyCode: 'Die Zwei-Faktor-Authentifizierung ist aktiviert. Der Code wurde an $1-Nummer gesendet.',    
     newDoc: 'DOKUMENT',
     newXlsx: 'ARBEITSMAPPE',
@@ -360,37 +400,46 @@ l10n.de = {
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
-    actConnectTo: 'Teilen und Zusammenarbeiten',
+    actConnectTo: 'Verbindung zur Cloud',
     actActivate: 'Aktivieren',
     actAbout: 'Über',
+    actSettings: 'Einstellungen',
     licKeyHolder: 'Geben Sie den Aktivierungsschlüssel ein',
     btnActivate: 'Aktivieren',
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,adsToolItem1: 'Versionshistorie'
-    ,adsTitle1: 'Anschau und Wiederherstellen von vorherigen Versionen '
-    ,adsDescr1: 'Gehen Sie ein wenig in der Zeit zurück: schauen Sie vorherige Version Ihres Dokumentes an,  verfolgen Sie kleinste Veränderungen. Wiederherstellen Sie bei Bedarf eine Vorgängerversion Ihrer Datei, wenn Sie das benötigen.'
-    ,adsToolItem2: 'Gemeinsamer Review'
-    ,adsTitle2: 'Lassen Sie Ihre Teamkollegen Dokumente in der Cloud überprüfen'
-    ,adsDescr2: 'Vergessen Sie nicht, Dateien per E-Mail zur Überprüfung zu versenden. Gewähren Sie einen schnellen Zugriff auf das Dokument, ohne Ihr Desktop Editor zu verlassen. Regen Sie die anderen dazu an, Korrekturvorschläge anzubieten. Nehmen Sie Änderungen entweder an oder lehnen Sie diese ab.'
     ,checkUpdates: 'Prüfen Sie Updates'
-    ,strVersion: 'version'
+    ,strVersion: 'Version'
+    ,emptySlide1Title: 'Freigabe & Zusammenarbeit'
+    ,emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.'
+    ,emptySlide2Title: 'Anzeigen oder Wiederherstellen der früheren Versionen'
+    ,emptySlide2Text: 'Stellen Sie wieder her oder zeigen Sie nur die früheren Versionen Ihres Dokuments an, verfolgen Sie die Änderungen und ihre Autoren.'
+    ,emptySlide3Title: 'Speichern in der Cloud'
+    ,emptySlide3Text: 'Speichern Sie Ihre Dokumente in der ONLYOFFICE-Cloud und greifen Sie darauf jederzeit von überall zu.'
+    ,settUserName: 'Benutzername'
+    ,settResetUserName: 'Auf Standard zurücksetzen'
+    ,settOpenMode: 'Öffnen Sie das Dokument im Vorschaumodus'
+    ,setBtnApply: 'Anwenden'
+    ,settLanguage: 'Sprache der Benutzeroberfläche'
+    ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
+    ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung testen'
 };
 
 l10n.it_IT = {
     welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
-    welDescr: 'Una nuova soluzione veloce per lavorare con documenti usando ONLYOFFICE.',
+    welDescr: 'Lavora ai documenti offline o collega la suite al tuo cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Connetti',
-    textHavePortal: 'Sei già un utente ONLYOFFICE?',
-    btnCreatePortal: 'Fai una prova gratuita',
-    btnAddPortal: 'Aggiungi Portale',
+    textHavePortal: 'Sei già un utente cloud?',
+    btnCreatePortal: 'Crea ONLYOFFICE cloud',
+    btnAddPortal: 'Aggiungi cloud',
     btnLogin: 'Login',
     btnBrowse: 'Sfoglia',
     btnNext: 'Successivo',
-    portalEmptyTitle: 'Modifica simultanea dei documenti in tempo reale',
-    portalEmptyDescr: 'Lavora sullo stesso documento contemporaneamente con i tuoi compagni di squadra. Scegli tra la modifica in tempo reale rapida o rigorosa, la chat nel tuo documento o aggiungi commenti ad esso.',
-    portalListTitle: 'Portali Connessi',
+    portalEmptyTitle: 'Collegati al tuo Cloud',
+    portalEmptyDescr: 'Salva i documenti nel cloud e accedi quando vuoi, ovunque, collabora e condividi. Discuti dal documento, aggiungi commenti o condividilo per revisioni.',
+    portalEmptyAdv1: 'Non hai ancora un account cloud? Vai online con ONLYOFFICE Cloud Service e prova le capacità di collaborazione gratis.',
+    portalListTitle: 'Cloud connessi',
     textNoFiles: 'Non ci sono file',
     listRecoveryTitle:'Recupera files',
     listRecentFileTitle:'File Recenti',
@@ -403,26 +452,26 @@ l10n.it_IT = {
     textMyComputer: 'Il mio Computer',
     textThrough: 'attraverso',
     linkForgotPass: 'Password dimenticata?',
-    linkCreatePortal: 'Crea Portale',
+    linkCreatePortal: 'Crea ONLYOFFICE cloud',
     linkResend: 'Invia nuovamente il codice',
     linkChangePhone: 'Cambia numero di telefono',
-    loginTitleStart: 'Connetti al portale',
+    loginTitleStart: 'Connetti al cloud office',
     loginTitleConnectTo: 'Login su $1',
     loginTitleAssignPhone: 'Inserisci Numero di telefono cellulare',
     loginTitleApplyCode: 'Conferma numero di telefono',
     errLogin: 'email or password errati',
-    errLoginPortal: 'Controlla il nome del portale',
+    errLoginPortal: 'Controlla l\'URL dell\'ufficio cloud',
     errLoginEmail: 'Controlla l\'indirizzo email',
     errLoginServer: 'Risposta del server errata durante l\'accesso',
     errLoginAuth: 'Errore nella query delle informazioni dell\'utente',
     errLoginPass: 'Controlla la password',
     errLoginWrongPhone: 'Formato del numero di telefono errato',
-    pshPortal: 'portale',
+    pshPortal: 'URL dell\'ufficio cloud',
     pshEmail: 'email',
     pshPass: 'password',
     pshPhone: 'numero di telefono',
     pshCode: 'codice dal messaggio di testo',
-    loginNoteAssignPhone: 'L\'autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del portale. Inserisci il tuo numero di cellulare per continuare a lavorare sul portale. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
+    loginNoteAssignPhone: 'L\'autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del ONLYOFFICE cloud. Inserisci il tuo numero di cellulare per continuare a lavorare sul ufficio cloud. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
     loginNoteApplyCode: 'L\'autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',    
     newDoc: 'DOCUMENTO',
     newXlsx: 'FOGLIO DI CALCOLO',
@@ -430,37 +479,46 @@ l10n.it_IT = {
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',
-    actConnectTo: 'Condividi e collabora',
+    actConnectTo: 'Connetti al Cloud',
     actActivate: 'Attiva',
     actAbout: 'Informazioni su',
+    actSettings: 'Impostazioni',
     licKeyHolder: 'digitare activation key',
     btnActivate: 'Attiva',
-    licGetLicense: 'Get license now',
+    licGetLicense: 'Ottieni la licenza ora',
     licPanelTitle: 'Inserisci product key',
     licPanelDescr: 'Il codice prodotto è stato inviato all\'indirizzo e-mail specificato durante l\'acquisto.'
-    ,adsToolItem1: 'Cronologia delle versioni'
-    ,adsTitle1: 'Visualizza o ripristina versioni precedenti del documento'
-    ,adsDescr1: 'Torna indietro nel tempo: visualizza le versioni precedenti del documento, tiene traccia delle modifiche più piccole e dei relativi autori. Ripristina una versione precedente del tuo file se necessario.'
-    ,adsToolItem2: 'Collaborative review'
-    ,adsTitle2: 'Lascia che i tuoi compagni di squadra rivedano i documenti nel cloud'
-    ,adsDescr2: 'Dimentica l\'invio di file da rivedere via email. Concedi un accesso rapido al documento senza lasciare l\'editor desktop. Lascia che altri suggeriscano correzioni. Accetta o rifiuta le modifiche.'
     ,checkUpdates: 'Controlla gli aggiornamenti'
     ,strVersion: 'versione'
+    ,emptySlide1Title: 'Condividi e collabora'
+    ,emptySlide1Text: 'Scegli tra le modalità rapida e precisa, chatta nel tuo documento, aggiungi commenti o condividi i documenti per la revisione.'
+    ,emptySlide2Title: 'Visualizza o ripristina versioni precedenti'
+    ,emptySlide2Text: 'Ripristina o visualizza le versioni precedenti del documento, tiene traccia delle modifiche e delle modifiche apportate dagli altri autori.'
+    ,emptySlide3Title: 'Archiviare nel cloud'
+    ,emptySlide3Text: 'Archivia i tuoi documenti nel cloud ONLYOFFICE e accedili in qualsiasi momento da qualsiasi luogo.'
+    ,settUserName: 'Nome Utente'
+    ,settResetUserName: 'Ripristina valori predefiniti'
+    ,settOpenMode: 'Apri il documento in modalità Anteprima'
+    ,setBtnApply: 'Applica'
+    ,settLanguage: 'Linguaggio di interfaccia'
+    ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
+    ,settShowEncryptOpts: 'Testare la crittografia end-to-end'
 };
 
 l10n.fr = {
-    welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors!',
-    welDescr: 'Une nouvelle solution rapide pour travailler sur des documents en utilisant votre ONLYOFFICE.',
+    welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors !',
+    welDescr: 'Travaillez avec vos documents  en mode hors-connexion ou connectez la suite à votre Cloud : ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Se connecter',
-    textHavePortal: 'Utilisez-vous déjà ONLYOFFICE ?',
-    btnCreatePortal: 'Essayez maintenant gratuitement',
-    btnAddPortal: 'Ajouter portail',
+    textHavePortal: 'Utilisez-vous déjà cloud ?',
+    btnCreatePortal: 'Créer ONLYOFFICE cloud',
+    btnAddPortal: 'Ajouter cloud',
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
     btnNext: 'Suivant',
-    portalEmptyTitle: 'Co-éditez des documents en temps réel',
-    portalEmptyDescr: 'Collaborez sur un document simultanément avec vos collègues. Choisissez entre une co-édition en temps réel Rapide et Précise, chattez dans votre document ou ajoutez des commentaires.',
-    portalListTitle: 'Portails connectés',
+    portalEmptyTitle: 'Connectez  à votre Office dans les nuages',
+    portalEmptyDescr: 'Stockez vos documents dans le cloud et  accédez-y partout, à tout moment. Сollaborez  à vos documents et partagez-les. Chattez  dans les document, ajoutez des commentaires ou partagez les document en mode révision.',
+    portalEmptyAdv1: 'Vous n\'avez pas encore de compte Cloud ? Accéder en ligne avec ONLYOFFICE et essayez les capacités de gestion collaborative gratuitement.',
+    portalListTitle: 'Cloud connectés',
     textNoFiles: 'Il n\'y a pas de fichiers',
     listRecoveryTitle:'Restaurer fichiers',
     listRecentFileTitle:'Fichiers récents',
@@ -473,25 +531,26 @@ l10n.fr = {
     textMyComputer: 'Mon poste de travail',
     textThrough: 'par',
     linkForgotPass: 'Mot de passe oublié ?',
-    linkCreatePortal: 'Créer portail',
+    linkCreatePortal: 'Créer ONLYOFFICE cloud',
     linkResend: 'Renvoyer le code',
     linkChangePhone: 'Changer le numéro de téléphone',
-    loginTitleStart: 'Se connecter au portail',
+    loginTitleStart: 'Se connecter au bureau de cloud',
     loginTitleConnectTo: 'Connecter au $1',
     loginTitleAssignPhone: 'Entrez votre numéro de téléphone portable',
     loginTitleApplyCode: 'Confirmer le numéro de téléphone',
     errLogin: 'l\'e-mail ou le mot de passe erroné',
-    errLoginPortal: 'Vérifier le nom de portail',
+    errLoginPortal: 'Vérifier l\'URL du bureau cloud',
     errLoginEmail: 'Vérifier l\'adresse e-mail',
     errLoginServer: 'Réponse du serveur incorrect lors de la connexion',
     errLoginAuth: 'Erreur lors de la requête d\'informations sur l\'utilisateur',
     errLoginPass: 'Vérifier le mot de passe',
-    pshPortal: 'portail',
+    errLoginWrongPhone: 'Format de numéro de téléphone non valide',
+    pshPortal: 'URL du bureau cloud',
     pshEmail: 'e-mail',
     pshPass: 'mot de passe',
     pshPhone: 'numéro de téléphone',
     pshCode: 'code reçu par SMS',
-    loginNoteAssignPhone: 'L\'authentification à deux facteurs est activée pour fournir une sécurité de portail supplémentaire. Entrez votre numéro de téléphone portable pour continuer à travailler sur le portail. Le numéro de téléphone portable doit être entré en utilisant un format international avec le code du pays.',
+    loginNoteAssignPhone: 'L\'authentification à deux facteurs est activée pour fournir une sécurité de ONLYOFFICE cloud supplémentaire. Entrez votre numéro de téléphone portable pour continuer à travailler sur le bureau cloud. Le numéro de téléphone portable doit être entré en utilisant un format international avec le code du pays.',
     loginNoteApplyCode: 'L\'authentification à deux facteurs est activée. Le code a été envoyé au $1.',    
     newDoc: 'DOCUMENT',
     newXlsx: 'TABLEUR',
@@ -499,37 +558,46 @@ l10n.fr = {
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',
-    actConnectTo: 'Partagez et collaborez',
+    actConnectTo: 'Connecter à Cloud',
     actActivate: 'Activer',
     actAbout: 'A propos',
+    actSettings: 'Paramètres',
     licKeyHolder: 'Entrez la clé d\'activation',
     btnActivate: 'Activer',
     licGetLicense: 'Obtenir la licence maintenant',
     licPanelTitle: 'Entrer la clé de produit',
     licPanelDescr: 'Votre clé de produit a été envoyée à l\'adresse e-mail spécifiée lors de l\'achat.'
-    ,adsToolItem1: 'L\'historique des versions'
-    ,adsTitle1: 'Affichez ou restaurez les versions précédentes de votre document '
-    ,adsDescr1: 'Remontez dans le temps: affichez les versions précédentes de votre document, suivez les changements et leurs auteurs. Restaurez une ancienne version de votre fichier si vous le souhaitez.'
-    ,adsToolItem2: 'La révision collaborative'
-    ,adsTitle2: 'Permettez vos collègues d\'examiner des documents dans le nuage'
-    ,adsDescr2: 'Oubliez l’envoi de fichiers à examiner par e-mail. Accordez un accès rapide au document sans quitter votre éditeur de bureau. Permettez les autres de proposer les corrections. Acceptez ou refusez les modifications.'
     ,checkUpdates: 'Chercher les mises à jour'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Partagez et collaborez'
+    ,emptySlide1Text: 'Choisissez entre la co-édition Rapide ou Strict, chattez dans votre document, ajoutez les commentaires ou partagez les documents pour la révision.'
+    ,emptySlide2Title: 'Voyez ou restaurez les versions précédentes'
+    ,emptySlide2Text: 'Restaurez ou juste voyez les versions précédentes de votre document, suivez les modifications et leurs auteurs.'
+    ,emptySlide3Title: 'Stockez dans le Cloud'
+    ,emptySlide3Text: 'Stockez vos documents dans ONLYOFFICE Cloud et accedez-les n\'importe où et à n\'importe quel moment.'
+    ,settUserName: 'Nom d\'utilisateur'
+    ,settResetUserName: 'Rétablir paramètres par défaut'
+    ,settOpenMode: 'Afficher le document en mode Aperçu'
+    ,setBtnApply: 'Appliquer'
+    ,settLanguage: 'Langue de l\'interface'
+    ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
+    ,settShowEncryptOpts: 'Tester le chiffrement de bout en bout'
 };
 
 l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
-    welDescr: 'Una nueva solución rápida para el trabajo con documentos utilizando su ONLYOFFICE.',
+    welDescr: 'Trabaje en documentos offline o conecte la suite a su nube: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Colaboración',
-    textHavePortal: '¿Está usando ONLYOFFICE ya?',
-    btnCreatePortal: 'Pruébelo gratis',
-    btnAddPortal: 'Añadir Portal',
+    textHavePortal: '¿Está usando nube ya?',
+    btnCreatePortal: 'Crear ONLYOFFICE en la nube',
+    btnAddPortal: 'Añadir nube',
     btnLogin: 'Iniciar Sesión',
     btnBrowse: 'Navegar',
     btnNext: 'Siguiente',
-    portalEmptyTitle: 'Coeditar documentos en tiempo real',
-    portalEmptyDescr: 'Trabaje en el mismo documento simultáneamente con sus compañeros. Elija entre co-ediciónen rápida o estricta en tiempo real, chatee en su documento o añada comentarios.',
-    portalListTitle: 'Portales conectados',
+    portalEmptyTitle: 'Conecte a su nube',
+    portalEmptyDescr: 'Almacene sus documentos en la nube y acceda a ellos en cualquier momento y desde cualquier lugar. Comparta y colabore en archivos. Chatee en su documento, añada comentarios o compártalo para revisión.',
+    portalEmptyAdv1: '¿Todavía no tiene su cuenta en la nube? Conéctese en línea con el Servicio de ONLYOFFICE en Nube y pruebe capacidades de colaboración gratis.',
+    portalListTitle: 'Nube conectados',
     textNoFiles: 'No hay archivos',
     listRecoveryTitle:'Recuperar archivos',
     listRecentFileTitle:'Archivos recientes',
@@ -542,63 +610,73 @@ l10n.es = {
     textMyComputer: 'Mi Ordenador',
     textThrough: 'a través de',
     linkForgotPass: '¿Se le olvidó su contraseña?',
-    linkCreatePortal: 'Crear Portal',
+    linkCreatePortal: 'Crear ONLYOFFICE en la nube',
     linkResend: 'Enviar el código de nuevo',
     linkChangePhone: 'Cambiar el número de teléfono',
-    loginTitleStart: 'Conectar al portal',
+    loginTitleStart: 'Conectar a la oficina en la nube',
     loginTitleConnectTo: 'Acceder al $1',
     loginTitleAssignPhone: 'Introducir el número de móvil',
     loginTitleApplyCode: 'Confirmar el número de teléfono',
     errLogin: 'Contraseña o correo electrónico incorrecto',
-    errLoginPortal: 'Verificar el nombre de portal',
+    errLoginPortal: 'Verificar la URL de la oficina en la nube',
     errLoginEmail: 'Verificar la dirección del correo electrónico',
     errLoginServer: 'Respuesta del servidor incorrecta durante el inicio de sesión',
     errLoginAuth: 'Error en la consulta de información de usuario',
     errLoginPass: 'Verificar la contraseña',
-    pshPortal: 'portal',
+    errLoginWrongPhone: 'Formato de número de teléfono incorrecto',
+    pshPortal: 'URL de oficina en la nube',
     pshEmail: 'correo electrónico',
     pshPass: 'contraseña',
     pshPhone: 'número de teléfono',
     pshCode: 'código del mensaje de texto',
-    loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de portal adicional. Introduzca su número de móvil para continuar el trabajo en el portal. El número de móvil debe introducirse usando un formato internacional con el código de país.',
+    loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de nube ONLYOFFICE adicional. Introduzca su número de móvil para continuar el trabajo en el oficina en la nube. El número de móvil debe introducirse usando un formato internacional con el código de país.',
     loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',    
-    newDoc: 'Documento',
-    newXlsx: 'Libro de Excel',
-    newPptx: 'Presentación',
+    newDoc: 'DOCUMENTO',
+    newXlsx: 'LIBRO DE EXCEL',
+    newPptx: 'PRESENTACIÓN',
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
-    actConnectTo: 'Comparta y colabore',
+    actConnectTo: 'Conectar a la nube',
     actActivate: 'Activar',
     actAbout: 'Acerca de',
+    actSettings: 'Ajustes',
     licKeyHolder: 'entrar la clave de activación',
     btnActivate: 'Activar',
     licGetLicense: 'Conseguir licencia ahora',
     licPanelTitle: 'Introduzca la clave del producto',
     licPanelDescr: 'La clave de producto ha sido enviado a la dirección de correo electrónico especificada durante la compra.'
-    ,adsToolItem1: 'Historia de versiones'
-    ,adsTitle1: 'Vea o restaure versiones anteriores de su documento '
-    ,adsDescr1: 'Retroceda en el tiempo: vea versiones anteriores de su documento,monitorice los cambios más pequeños y sus autores. Restaure  versión anterior de su archivo si es necesario.'
-    ,adsToolItem2: 'Revisión colaborativa'
-    ,adsTitle2: 'Deje que sus compañeros repasen documentos en la nube'
-    ,adsDescr2: 'Olvídese del envío de archivos para ser revisados por correo electrónico. Conceda un acceso rápido al documento sin salir de su editor de escritorio. Permita que otros sugieran correcciones. Acepte o rechace cambios.'
     ,checkUpdates: 'Comprobar si hay actualizaciones'
     ,strVersion: 'version'
+    ,emptySlide1Title: 'Comparta y colabore'
+    ,emptySlide1Text: 'Seleccione entre dos modos de co-edición en tiempo real Rápido y Estricto, chatee en su documento, añada comentarios o compártalo para revisión.'
+    ,emptySlide2Title: 'Vea o restaure versiones anteriores'
+    ,emptySlide2Text: 'Restaure o simplemente vea las versiones anteriores de su documento, siga cambios y sus autores.'
+    ,emptySlide3Title: 'Almacene en la nube'
+    ,emptySlide3Text: 'Almacene sus documentos en la nube de ONLYOFFICE y acceda en cualquier momento y desde cualquier lugar.'
+    ,settUserName: 'Nombre de Usuario'
+    ,settResetUserName: 'Reestablecer a valor predeterminado'
+    ,settOpenMode: 'Abrir documento en modo de vista previa'
+    ,setBtnApply: 'Aplicar'
+    ,settLanguage: 'Lenguaje de interfaz'
+    ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
+    ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
 };
 
 l10n.pt_BR = {
     welWelcome: 'Bem-vindo ao ONLYOFFICE Desktop Editors!',
-    welDescr: 'Uma nova e rápida solução para trabalhar com documentos usando o seu ONLYOFFICE..',
+    welDescr: 'Trabalhe em documentos offline ou conecte-se  à sua nuvem: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Conectar',
-    textHavePortal: 'Já usa o ONLYOFFICE?',
-    btnCreatePortal: 'Experimente-o agora de graça',
-    btnAddPortal: 'Adicionar Portal',
+    textHavePortal: 'Já usa o nuvem?',
+    btnCreatePortal: 'Criar ONLYOFFICE na nuvem',
+    btnAddPortal: 'Adicionar nuvem',
     btnLogin: 'Login',
     btnBrowse: 'Navegar',
     btnNext: 'Seguinte',
-    portalEmptyTitle: 'Coeditar documentos em tempo real',
-    portalEmptyDescr: 'Trabalhe no mesmo documento simultaneamente com os seus colegas. Escolha entre coedição em tempo real Rápida ou Restrita, use o chat no seu documento ou adicione comentários a ele.',
-    portalListTitle: 'Portais conectados',
+    portalEmptyTitle: 'Conectar à sua nuvem',
+    portalEmptyDescr: 'Armazene seus documentos na nuvem e acesse-os a qualquer momento, de qualquer lugar. Compartilhe e colabore neles. Converse em seu documento, adicione comentários ou compartilhe-o para revisão.',
+    portalEmptyAdv1: 'Ainda não tem uma conta? Experimente colaboracão na nuvem do ONLYOFFICE gratuitamente.',
+    portalListTitle: 'Nuvem conectados',
     textNoFiles: 'Não há arquivos',
     listRecoveryTitle:'Recuperar arquivos',
     listRecentFileTitle:'Arquivos recentes',
@@ -611,25 +689,26 @@ l10n.pt_BR = {
     textMyComputer: 'Meu Computador',
     textThrough: 'através',
     linkForgotPass: 'Esqueceu a senha?',
-    linkCreatePortal: 'Criar Portal',
+    linkCreatePortal: 'Criar ONLYOFFICE na nuvem',
     linkResend: 'Enviar o código novamente',
     linkChangePhone: 'Alterar o número de telefone',
-    loginTitleStart: 'Conectar ao portal',
+    loginTitleStart: 'Conectar ao escritório na nuvem',
     loginTitleConnectTo: 'Login para $1',
     loginTitleAssignPhone: 'Inserir número de celular',
     loginTitleApplyCode: 'Confirmar o número de telefone',
     errLogin: 'E-mail ou senha errada',
-    errLoginPortal: 'Verificar o nome do portal',
+    errLoginPortal: 'Verificar o URL do escritório na nuvem',
     errLoginEmail: 'Verificar o endereço de e-mail',
     errLoginServer: 'Resposta incorreta do servidor durante login',
     errLoginAuth: 'Erro na consulta de informações do usuário',
     errLoginPass: 'Verifique a senha',
-    pshPortal: 'portal',
+    errLoginWrongPhone: 'Formato de número de telefone errado',
+    pshPortal: 'URL do escritório na nuvem',
     pshEmail: 'e-mail',
     pshPass: 'senha',
     pshPhone: 'número de telefone',
     pshCode: 'código da mensagem de texto',
-    loginNoteAssignPhone: 'A autenticação de dois fatores está habilitada para fornecer segurança adicional ao portal. Insira o seu número de celular para continuar trabalhando no portal. O número de telefone deve ser inserido usando um formato internacional com o código do país.',
+    loginNoteAssignPhone: 'A autenticação de dois fatores está habilitada para fornecer segurança adicional ao nuvem do ONLYOFFICE. Insira o seu número de celular para continuar trabalhando no escritório na nuvem. O número de telefone deve ser inserido usando um formato internacional com o código do país.',
     loginNoteApplyCode: 'A autenticação de dois fatores está habilitada. O código foi enviado por mensagem de texto para o número $1.',    
     newDoc: 'DOCUMENTO',
     newXlsx: 'PLANILHA',
@@ -637,22 +716,109 @@ l10n.pt_BR = {
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Arquivos recentes',
     actOpenLocal: 'Abrir arquivo local',
-    actConnectTo: 'Compartilhar e colaborar',
+    actConnectTo: 'Conectar à nuvem',
     actActivate: 'Ativar',
     actAbout: 'Sobre',
+    actSettings: 'Definições',
     licKeyHolder: 'Inserir chave de ativação',
     btnActivate: 'Ativar',
     licGetLicense: 'Obter licença',
     licPanelTitle: 'Inserir chave de produto',
     licPanelDescr: 'A chave do seu produto foi enviada para o endereço de e-mail especificado durante a compra.'
-    ,adsToolItem1: 'Histórico de versão'
-    ,adsTitle1: 'Ver ou restaurar versões anteriores do seu documento '
-    ,adsDescr1: 'Voltar no tempo: ver versões anteriores do seu documento, rastrear as menores alterações e os seus autores. Restaurar uma versão antiga do seu arquivo se você precisar.'
-    ,adsToolItem2: 'Revisão colaborativa'
-    ,adsTitle2: 'Permita que os seus colegas revejam documentos na nuvem'
-    ,adsDescr2: 'Esqueça os arquivos enviados por e-mail para serem revistos. Obtenha acesso rápido ao documento sem sair do seu editor desktop. Deixe que outros sugiram correções. Aceite ou rejeite alterações.'
     ,checkUpdates: 'Verifique atualizações'
     ,strVersion: 'versão'
+    ,emptySlide1Title: 'Compartilhe e colabore'
+    ,emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse em seu documento, adicione comentários ou compartilhá-lo para revisão.'
+    ,emptySlide2Title: 'Visualize ou restaure versões anteriores'
+    ,emptySlide2Text: 'Restaure ou apenas visualize versões anteriores do seu documento, controle as alterações e autores delas.'
+    ,emptySlide3Title: 'Armazene na nuvem'
+    ,emptySlide3Text: 'Armazene seus documentos na nuvem do ONLYOFFICE e acesse-os a qualquer momento, de qualquer lugar.'
+    ,settUserName: 'Nome de usuário'
+    ,settResetUserName: 'Voltar para predefinições'
+    ,settOpenMode: 'Pré-visualização'
+    ,setBtnApply: 'Aplicar'
+    ,settLanguage: 'Idioma de Interface'
+    ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
+    ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
+}
+
+l10n.pl = {
+    welWelcome: 'Witaj w ONLYOFFICE Desktop Editiors!',
+    welDescr: 'Pracuj nad dokumentami offline lub połącz pakiet ze swoją chmurą: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Połącz teraz',
+    textHavePortal: 'Korzystasz już z chmury?',
+    btnCreatePortal: 'Utwórz chmurę ONLYOFFICE',
+    btnAddPortal: 'Dodaj chmurę',
+    btnLogin: 'Zaloguj się',
+    btnBrowse: 'Przeglądaj',
+    btnNext: 'Dalej',
+    portalEmptyTitle: 'Połącz ze swoją chmurą',
+    portalEmptyDescr: 'Przechowuj swoje dokumenty w chmurze i miej do nich dostęp gdziekolwiek jesteś, kiedykolwiek zechcesz. Udostępniaj i współpracuj nad nimi. Czatuj w dokumencie, dodawaj komentarze lub udostępniaj go do przeglądu.',
+    portalEmptyAdv1: 'Nie masz jeszcze konta w chmurze? Przejdź online z Chmurą ONLYOFFICE i wypróbuj bezpłatnie nowe możliwości współpracy.',
+    portalListTitle: 'Połączone chmury',
+    textNoFiles: 'Brak plików',
+    listRecoveryTitle: 'Odzyskaj pliki',
+    listRecentFileTitle: 'Ostatnie pliki',
+    listRecentDirTitle: 'Ostatnie foldery',
+    menuFileOpen: 'Otwórz',
+    menuFileExplore: 'Pokaż w folderze',
+    menuRemoveModel: 'Usuń z listy',
+    menuClear: 'Wyczyść',
+    menuLogout: 'Wyloguj się',
+    textMyComputer: 'Mój Komputer',
+    textThrough: 'poprzez',
+    linkForgotPass: 'Zapomniałeś hasło?',
+    linkCreatePortal: 'Utwórz chmurę ONLYOFFICE',
+    linkResend: 'Wyślij kod jeszcze raz',
+    linkChangePhone: 'Zmień numer telefonu',
+    loginTitleStart: 'Połącz z pakietem w chmurze',
+    loginTitleConnectTo: '﻿Logowanie $1',
+    loginTitleAssignPhone: 'Wprowadź numer telefonu komórkowego',
+    loginTitleApplyCode: 'Potwierdź numer telefonu',
+    errLogin: 'Nieprawidłowy e-mail lub hasło',
+    errLoginPortal: 'Sprawdź URL pakietu w chmurze',
+    errLoginEmail: 'Sprawdź adres e-mail',
+    errLoginServer: 'Nieprawidłowa odpowiedź serwera podczas logowania',
+    errLoginAuth: 'Błąd zapytania wybierającego użytkownika',
+    errLoginPass: 'Sprawdź hasło',
+    errLoginWrongPhone: 'Nieprawidłowy format numeru telefonu',
+    pshPortal: 'URL pakietu w chmurze',
+    pshEmail: 'e-mail',
+    pshPass: 'hasło',
+    pshPhone: 'numer telefonu',
+    pshCode: 'kod z wiadomości tekstowej',
+    loginNoteAssignPhone: 'Uwierzytelnianie dwuskładnikowe jest włączone, aby zapewnić dodatkową ochronę w chmurze ONLYOFFICE Wpisz swój numer telefonu komórkowego, aby kontynuować pracę w chmurze. Numer telefonu komórkowego musi być wpisany w formacie międzynarodowym z uwzględnieniem kodu kraju.',
+    loginNoteApplyCode: 'Uwierzytelnianie dwuskładnikowe zostało aktywowane. Kod został wysłany na numer $1',
+    newDoc: 'DOKUMENT',
+    newXlsx: 'ARKUSZ KALKULACYJNY',
+    newPptx: 'PREZENTACJA ',
+    actCreateNew: 'Utwórz nowy',
+    actRecentFiles: 'Ostatnie pliki',
+    actOpenLocal: 'Otwórz plik lokalny',
+    actConnectTo: 'Połącz z chmurą',
+    actActivate: 'Aktywuj',
+    actAbout: 'O programie',
+    actSettings: 'Ustawienia',
+    licKeyHolder: 'wprowadź kod aktywacyjny',
+    btnActivate: 'Aktywuj',
+    licGetLicense: 'Uzyskaj licencję już teraz',
+    licPanelTitle: 'Wprowadź klucz produktu',
+    licPanelDescr: 'Klucz produktu został wysłany na adres e-mail podany podczas zakupu.',
+    checkUpdates: 'Sprawdź Dostępność Aktualizacji',
+    strVersion: 'wersja',
+    emptySlide1Title: 'Udostępniaj i współpracuj',
+    emptySlide1Text: 'Wybierz pomiędzy Szybkim lub Dokładnym współedytowaniem w czasie rzeczywistym, czatuj w dokumencie, dodawaj komentarze lub udostępniaj go do przeglądu.',
+    emptySlide2Title: 'Wyświetl lub przywróć poprzednie wersje',
+    emptySlide2Text: 'Przywracaj lub tylko wyświetlaj poprzednie wersje swojego dokumentu, śledź zmiany i ich autorów',
+    emptySlide3Title: 'Przechowuj w chmurze',
+    emptySlide3Text: 'Przechowuj swoje dokumenty w chmurze ONLY OFFICE i miej do nich dostęp gdziekolwiek jesteś, kiedykolwiek zechcesz.',
+    settUserName: 'Nazwa Użytkownika',
+    settResetUserName: 'Przywróć ustawienia domyślne',
+    settOpenMode: 'Otwórz dokument w trybie podglądu',
+    setBtnApply: 'Zastosuj',
+    settLanguage: 'Język Interfejsu',
+    settAfterRestart: 'Opcja zostanie zastosowana po ponownym uruchomieniu aplikacji',
+    settShowEncryptOpts: 'Skúšajte šifrovanie typu end-to-end'
 }
 
 function loadLocale(lang) {
@@ -663,8 +829,14 @@ function loadLocale(lang) {
     }
 };
 
+function translate(str, lang) {
+    !l10n[lang] && (lang = /^\w{2}/.exec(lang)[0]);
+    return !!l10n[lang] ? l10n[lang][str] : undefined;
+};
+
 +function mixLocale(lang) {
-    utils.Lang = l10n.en;
+    utils.Lang = Object.assign({}, l10n.en);
+    utils.Lang.tr = translate;
 
     if ( lang ) {
         lang = lang.replace('-', '_');

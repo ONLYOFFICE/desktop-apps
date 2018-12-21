@@ -2,6 +2,7 @@
 #define CLANGATER_H
 
 #include <QString>
+#include <QJsonObject>
 
 class CLangater
 {
@@ -10,9 +11,13 @@ public:
 
     static CLangater * getInstance();
     static void init();
-    static QString getLanguageName();
+    static void reloadTranslations(const QString&);
+    static QString getCurrentLangCode();
+    static QString getLangName(const QString& code = QString());
     static void addTranslation(const QString& dir, const QString& name);
     static void addTranslation(const QString& dir);
+
+    static QJsonObject availableLangsToJson();
 
 private:
     CLangater();

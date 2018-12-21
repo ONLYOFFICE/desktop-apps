@@ -58,7 +58,7 @@ public:
 
     void goStart();
     void focus();
-    void doOpenLocalFile(COpenOptions&);
+    virtual void doOpenLocalFile(COpenOptions&);
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
@@ -69,6 +69,7 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
+    void loadStartPage();
     virtual void updateScaling(int);
 
 #ifdef __linux
@@ -87,12 +88,10 @@ private:
     void resizeEvent(QResizeEvent* event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void loadStartPage();
     void doLogout(const QString&, bool);
     int  trySaveDocument(int);
     void RecalculatePlaces();
 
-    wstring readSystemUserName();
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
@@ -110,6 +109,7 @@ public slots:
     void onTabChanged(int);
     void onTabCloseRequest(int);
     void onAppCloseRequest();
+    void onEditorActionRequest(int, const QString&);
     void onTabsCountChanged(int, int, int);
 
     void onCloudDocumentOpen(std::wstring, int, bool);
@@ -123,6 +123,9 @@ public slots:
     void onDocumentDownload(void * info);
     void onDocumentLoadFinished(int);
 
+    void onDocumentFragmented(int, bool);
+    void onDocumentFragmentedBuild(int, int);
+
     virtual void onDocumentPrint(void *);
     void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool apply, int id = -1);
@@ -130,7 +133,8 @@ public slots:
 
     void onNeedCheckKeyboard();
 
-    void onLocalFileOpen(const QString&);
+    virtual void onLocalOptions(const QString&){}
+    virtual void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
     virtual void onLocalFileCreate(int);
     void onLocalFileRecent(void *);

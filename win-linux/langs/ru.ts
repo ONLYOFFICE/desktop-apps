@@ -2,11 +2,18 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU">
 <context>
+    <name>CAscApplicationManagerWrapper</name>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="482"/>
+        <source>Presenter View</source>
+        <translation>Режим докладчика</translation>
+    </message>
+</context>
+<context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="702"/>
+        <location filename="../src/asctabwidget.cpp" line="633"/>
         <source>Document</source>
-        <translatorcomment>надпись на табе при открытии файла с портала. потом приходит имя файла</translatorcomment>
         <translation>Открытие...</translation>
     </message>
 </context>
@@ -95,171 +102,196 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="58"/>
+        <source>Document template (*.dotx)</source>
+        <translation>Шаблон документа (*.dotx)</translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="59"/>
         <source>DOC Document (*.doc)</source>
         <translation>Документ DOC (*.doc)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="59"/>
+        <location filename="../src/cfiledialog.cpp" line="60"/>
         <source>ODT Document (*.odt)</source>
         <translation>Документ ODT (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="60"/>
+        <location filename="../src/cfiledialog.cpp" line="61"/>
         <source>RTF File (*.rtf)</source>
         <translation>Файл RTF (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="61"/>
+        <location filename="../src/cfiledialog.cpp" line="62"/>
         <source>TXT File (*.txt)</source>
         <translation>Файл TXT (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="62"/>
+        <location filename="../src/cfiledialog.cpp" line="63"/>
         <source>HTML File (*.html)</source>
         <translation>Файл HTML (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="63"/>
+        <location filename="../src/cfiledialog.cpp" line="64"/>
         <source>MHT File (*.mht)</source>
         <translation>Файл MHT (*.mht)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="64"/>
+        <location filename="../src/cfiledialog.cpp" line="65"/>
         <source>EPUB File (*.epub)</source>
         <translation>Файл EPUB (*.epub)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="66"/>
+        <location filename="../src/cfiledialog.cpp" line="67"/>
         <source>PPTX File (*.pptx)</source>
         <translation>Файл PPTX (*.pptx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="67"/>
+        <location filename="../src/cfiledialog.cpp" line="68"/>
         <source>PPT File (*.ppt)</source>
         <translation>Файл PPT (*.ppt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="68"/>
+        <location filename="../src/cfiledialog.cpp" line="69"/>
+        <source>Presentation template (*.potx)</source>
+        <translation>Шаблон презентации (*.potx)</translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="70"/>
         <source>ODP File (*.odp)</source>
         <translation>Файл ODP (*.odp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="69"/>
+        <location filename="../src/cfiledialog.cpp" line="71"/>
         <source>PPSX File (*.ppsx)</source>
         <translation>Файл PPSX (*.ppsx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="71"/>
+        <location filename="../src/cfiledialog.cpp" line="73"/>
         <source>XLSX File (*.xlsx)</source>
         <translation>Файл XLSX (*.xlsx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="72"/>
+        <location filename="../src/cfiledialog.cpp" line="74"/>
+        <source>Spreadsheet template (*.xltx)</source>
+        <translation>Шаблон таблицы (*.xltx)</translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="75"/>
         <source>XLS File (*.xls)</source>
         <translation>Файл XLS (*.xls)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="73"/>
+        <location filename="../src/cfiledialog.cpp" line="76"/>
         <source>ODS File (*.ods)</source>
         <translation>Файл ODS (*.ods)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="74"/>
+        <location filename="../src/cfiledialog.cpp" line="77"/>
         <source>CSV File (*.csv)</source>
         <translation>Файл CSV (*.csv)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="76"/>
+        <location filename="../src/cfiledialog.cpp" line="79"/>
         <source>PDF File (*.pdf)</source>
         <translation>Файл PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="77"/>
+        <location filename="../src/cfiledialog.cpp" line="80"/>
+        <source>PDFA File (*.pdf)</source>
+        <translation>Файл PDFA (*.pdf)</translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="81"/>
         <source>DJVU File (*.djvu)</source>
         <translation>Файл DJVU (*.djvu)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="78"/>
+        <location filename="../src/cfiledialog.cpp" line="82"/>
         <source>XPS File (*.xps)</source>
         <translation>Файл XPS (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="121"/>
+        <location filename="../src/cfiledialog.cpp" line="125"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="153"/>
+        <location filename="../src/cfiledialog.cpp" line="157"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="153"/>
+        <location filename="../src/cfiledialog.cpp" line="157"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="155"/>
+        <location filename="../src/cfiledialog.cpp" line="159"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 уже существует.&lt;br&gt;Хотите его перезаписать?</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="177"/>
+        <location filename="../src/cfiledialog.cpp" line="181"/>
         <source>Word Document</source>
         <translation>Документ Word</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="180"/>
+        <location filename="../src/cfiledialog.cpp" line="184"/>
         <source>Excel Workbook</source>
         <translation>Книга Excel</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="183"/>
+        <location filename="../src/cfiledialog.cpp" line="187"/>
         <source>PowerPoint Presentation</source>
         <translation>Презентация PowerPoint</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="186"/>
+        <location filename="../src/cfiledialog.cpp" line="190"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Файл (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="196"/>
+        <location filename="../src/cfiledialog.cpp" line="200"/>
         <source>Text documents</source>
         <translation>Текстовые документы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="197"/>
+        <location filename="../src/cfiledialog.cpp" line="201"/>
         <source>Spreadsheets</source>
         <translation>Электронные таблицы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="198"/>
+        <location filename="../src/cfiledialog.cpp" line="202"/>
         <source>Presentations</source>
         <translation>Презентации</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="199"/>
+        <location filename="../src/cfiledialog.cpp" line="203"/>
         <source>Web Page</source>
         <translation>Веб-страница</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="200"/>
+        <location filename="../src/cfiledialog.cpp" line="204"/>
         <source>Text files</source>
         <translation>Текстовые файлы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="216"/>
+        <location filename="../src/cfiledialog.cpp" line="227"/>
+        <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>Open Document</source>
         <translation>Открыть документ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="226"/>
+        <location filename="../src/cfiledialog.cpp" line="240"/>
+        <location filename="../src/cfiledialog.cpp" line="248"/>
+        <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="234"/>
+        <location filename="../src/cfiledialog.cpp" line="264"/>
+        <location filename="../src/cfiledialog.cpp" line="273"/>
+        <location filename="../src/cfiledialog.cpp" line="282"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Файл плагина (*.plugin)</translation>
     </message>
@@ -267,89 +299,97 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="154"/>
+        <location filename="../src/cmainpanel.cpp" line="155"/>
         <source>FILE</source>
         <translation>СТАРТ</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1358"/>
+        <location filename="../src/cmainpanel.cpp" line="1441"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="514"/>
-        <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="945"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="514"/>
-        <location filename="../src/cmainpanel.cpp" line="700"/>
-        <location filename="../src/cmainpanel.cpp" line="945"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="708"/>
+        <location filename="../src/cmainpanel.cpp" line="955"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="514"/>
-        <location filename="../src/cmainpanel.cpp" line="1175"/>
+        <location filename="../src/cmainpanel.cpp" line="513"/>
+        <location filename="../src/cmainpanel.cpp" line="994"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Стоп</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="679"/>
-        <location filename="../src/cmainpanel.cpp" line="719"/>
+        <location filename="../src/cmainpanel.cpp" line="686"/>
+        <location filename="../src/cmainpanel.cpp" line="727"/>
         <source>File format not supported.</source>
-        <translation>Формат файла не поддерживается.</translation>
+        <translation>Формат файла не поддерживается</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="703"/>
+        <location filename="../src/cmainpanel.cpp" line="711"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 недоступен. Возможно, он был перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
+        <translation>%1 недоступен. Возможно, он был переименован, перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="794"/>
+        <location filename="../src/cmainpanel.cpp" line="802"/>
         <source>Document must be saved firstly.</source>
         <translation>Сначала необходимо сохранить документ.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1175"/>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/cmainpanel.cpp" line="995"/>
+        <source>%1 must be built. Continue?</source>
+        <translation>%1 должен быть подготовлен. Продолжить?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1177"/>
+        <location filename="../src/cmainpanel.cpp" line="1266"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1268"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&lt;br&gt;Вы действительно хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1303"/>
+        <location filename="../src/cmainpanel.cpp" line="1404"/>
         <source>Sign Up</source>
-        <translation>Создать портал</translation>
+        <translation>Создать облачный офис</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="732"/>
+        <location filename="../src/cmainpanel.cpp" line="740"/>
         <source>Document%1.docx</source>
         <translatorcomment>дефолтное название документа при создании. %1 заменяется числом</translatorcomment>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="733"/>
+        <location filename="../src/cmainpanel.cpp" line="741"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="734"/>
+        <location filename="../src/cmainpanel.cpp" line="742"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="946"/>
+        <location filename="../src/cmainpanel.cpp" line="956"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Необходимо сохранить документ для продолжения.&lt;br&gt;Сохранить?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1031"/>
+        <location filename="../src/cmainpanel.cpp" line="1129"/>
         <source>Print Document</source>
         <translation>Печать документа</translation>
     </message>
