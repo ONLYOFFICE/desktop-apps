@@ -84,8 +84,6 @@ using namespace std::placeholders;
 #endif
 
 
-extern QStringList g_cmdArgs;
-
 struct printdata {
 public:
     printdata() : _print_range(QPrintDialog::PrintRange::AllPages) {}
@@ -492,6 +490,9 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
+    if ( m_pTabs->isProcessed(index) ) {
+        return;
+    } else
     if ( !m_pTabs->isFragmented(index) ) {
         if (trySaveDocument(index) == MODAL_RESULT_NO) {
             m_pTabs->closeEditorByIndex(index, false);
@@ -984,7 +985,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     int index = m_pTabs->tabIndexByView(id), _answ;
     if ( isfragmented ) {
         if ( !(index < 0) ) {
-            static bool _skip_user_warning = !g_cmdArgs.contains("--warning-doc-fragmented");
+            static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
             if ( _skip_user_warning ) {
                 QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
                 pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
@@ -1036,7 +1037,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
         }
     } else {
 //        int index = m_pTabs->tabIndexByView(id);
-//        m_pTabs->applyDocumentSave(index, true);
+        m_pTabs->applyDocumentSave(index, true);
     }
 }
 
@@ -1151,20 +1152,16 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < 1 && (finish = 1);
                 finish < start && (finish = start);
 
-                CAscPrintPage * pData;
-
+                if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
-//                EnableWindow(parentWindow(), FALSE);
-                EnableWindow((HWND)parentWidget()->winId(), FALSE);
-
-                CPrintProgress progressDlg((HWND)parentWidget()->winId());
+                    CPrintProgress progressDlg((HWND)parentWidget()->winId());
 #else
-                CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
+                    CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
 #endif
-                progressDlg.startProgress();
+                    progressDlg.startProgress();
 
-                uint count = finish - start;
-                if (pContext->BeginPaint()) {
+                    CAscPrintPage * pData;
+                    uint count = finish - start;
                     for (; !(start > finish); ++start) {
                         pContext->AddRef();
 
@@ -1189,11 +1186,6 @@ void CMainPanel::onDocumentPrint(void * opts)
                     }
                     pContext->EndPaint();
                 }
-
-#if defined(_WIN32)
-//                EnableWindow(parentWindow(), TRUE);
-                EnableWindow((HWND)parentWidget()->winId(), TRUE);
-#endif
             } else {
                 // TODO: show error message
             }

@@ -59,6 +59,7 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #endif
 
 #include <QDebug>
+extern QStringList g_cmdArgs;
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
@@ -455,4 +456,9 @@ wstring Utils::systemUserName()
 
     return _env_name.toStdWString();
 #endif
+}
+
+bool Utils::appArgsContains(const QString& a)
+{
+    return g_cmdArgs.contains(a);
 }

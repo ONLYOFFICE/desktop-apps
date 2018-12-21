@@ -84,6 +84,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
         QWidget * widget() { return _widget; }
         int tabindex() { return _index; }
+        QWidget * parent = nullptr;
     private:
         QWidget * _widget;
         int _index;
@@ -181,6 +182,7 @@ public:
     int         findModified(const QString& portal = QString());
     int         findFragmented(const QString& portal = QString());
     bool        isFragmented(int index);
+    bool        isProcessed(int index) const;
 
     void adjustTabsSize();
     void activate(bool);

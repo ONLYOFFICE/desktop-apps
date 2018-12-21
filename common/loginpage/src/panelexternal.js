@@ -91,6 +91,22 @@
             iframe.load( e => {
                 $(e.target).contents().find("head")
                     .append($("<style type='text/css'>body{margin-left:287px;}</style>"));
+
+                // var script = e.target.contentWindow.document.createElement("script");
+                // script.type = "text/javascript";
+                // script.innerHTML = `console.log('script loaded: ' + ONLYONET)`;
+                // e.target.contentWindow.document.body.appendChild(script);
+
+                if ( !!e.target.contentWindow.ONLYONET ) {
+                    let _funcKeepPhrase = e.target.contentWindow.ONLYONET.storeSeedPhraseToFile;
+                    e.target.contentWindow.ONLYONET.storeSeedPhraseToFile = function(seedPhrase, password, callback){
+                        let _c = 0;
+                        while ( !!localStorage['seedphrase' + _c] ) { ++_c; }
+                        localStorage.setItem('seedphrase' + _c, seedPhrase);
+
+                        return _funcKeepPhrase(seedPhrase, password, callback);
+                    };
+                }
             });
 
             panels.push(_panel);
@@ -129,6 +145,16 @@
                 checkbox.disable(e!=sdk.encrypt.ENCRYPT_MODE_NONE);
                 checkbox.parents('.settings-field').find('.sett__caption').disable(e!=sdk.encrypt.ENCRYPT_MODE_NONE);
             });
+
+            let _f_handle = (cmd, param) => {
+                if (/retrive\:localoptions/.test(cmd)) {
+                    setTimeout(e =>{
+                        sdk.command('app:localoptions', JSON.stringify(localStorage,null,'\t'));
+                        sdk.remove('on_native_message', _f_handle);
+                    }, 0);
+                }
+            };
+            sdk.on('on_native_message', _f_handle);
         };
 
         return {

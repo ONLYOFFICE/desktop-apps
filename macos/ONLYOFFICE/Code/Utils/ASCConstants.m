@@ -177,7 +177,7 @@
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA): @{
                      @"description" : NSLocalizedString(@"PDF/A File", nil),
-                     @"extension"   : @"pdfa"
+                     @"extension"   : @"pdf"
                      },
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU): @{
                      @"description" : NSLocalizedString(@"DjVu File", nil),

@@ -365,7 +365,8 @@ public:
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"filter"  : [NSString stringWithstdwstring:pData->get_Filter()],
-                                                                                     @"fileId"  : @(pData->get_Id())
+                                                                                     @"fileId"  : @(pData->get_Id()),
+                                                                                     @"isMulti" : @(pData->get_IsMultiselect())
                                                                                      }];
                         break;
                     }
@@ -449,6 +450,19 @@ public:
                                 }
                             }
                         }
+
+                        break;
+                    }
+
+                    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END:
+                    case ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR: {
+                        int error = pEvent->m_nType == ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD_END_ERROR ? -1 : 0;
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDocumentFragmentBuild
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                     @"error": @(error)
+                                                                                     }];
 
                         break;
                     }
@@ -598,6 +612,14 @@ public:
                                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                 appManager->InitAdditionalEditorParams(wLocale);
                             }
+                        } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
+                            bool isFragmented = pData->get_Param() == L"true" ? true : false;
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameDocumentFragmented
+                                                                                object:nil
+                                                                              userInfo: @{
+                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                          @"isFragmented": @(isFragmented)
+                                                                                          }];
                         }
                         
                         break;
