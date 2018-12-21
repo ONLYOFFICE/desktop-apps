@@ -6,6 +6,18 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>5.2</title>
+            <pubDate>Fri, 21 Dec 2018 09:58:48 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.2/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.2/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-5.2.zip" sparkle:version="286" sparkle:shortVersionString="5.2" length="195816933" type="application/octet-stream" sparkle:dsaSignature="MCwCFBODy6bJ2KbNErtf8pEnjllON6kOAhRigTqOf0/7hmzbw9Uom7oGfgFlgg=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE286-269.delta" sparkle:version="286" sparkle:shortVersionString="5.2" sparkle:deltaFrom="269" length="68791787" type="application/octet-stream" sparkle:dsaSignature="MCwCFCeW+uADayVpaQnuxYLtvVc2DMZHAhQC6c/DkoQAu3Hy/OxELPy0ZjJUAQ=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE286-239.delta" sparkle:version="286" sparkle:shortVersionString="5.2" sparkle:deltaFrom="239" length="80073737" type="application/octet-stream" sparkle:dsaSignature="MCwCFEGEQfxl6p16BFzWky3epYyUNqlmAhR2ZoX2DFVv5GF6Axtvb6Ppuf66dA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>5.1</title>
             <pubDate>Fri, 18 May 2018 14:25:32 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
