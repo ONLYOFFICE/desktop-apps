@@ -78,7 +78,7 @@ begin
     UninstallNextButton.Top := UninstallProgressForm.CancelButton.Top;
     UninstallNextButton.Width := UninstallProgressForm.CancelButton.Width;
     UninstallNextButton.Height := UninstallProgressForm.CancelButton.Height;
-    UninstallNextButton.Caption := 'Uninstall';
+    UninstallNextButton.Caption := ExpandConstant('{cm:Uninstall}');
     { Make the "Uninstall" button break the ShowModal loop }
     UninstallNextButton.ModalResult := mrOK;
 
