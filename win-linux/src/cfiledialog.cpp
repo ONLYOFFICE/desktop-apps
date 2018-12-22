@@ -102,7 +102,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
             _sel_filter = reFilter.cap(1);
         } else {
-            fileName = info.absolutePath() + QDir::separator() + info.baseName();
+            fileName = info.absolutePath() + QDir::separator() + info.fileName();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
@@ -114,6 +114,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #ifdef _WIN32
     QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
                                     fileName.left(fileName.lastIndexOf(".")) : fileName;
+
     HWND _mess_parent = QWinWidget::parentWindow();
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
