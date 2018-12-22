@@ -988,7 +988,7 @@ int CAscTabWidget::findFragmented(const QString& portalname)
     for (int i(tabBar()->count()); i-- > 0; ) {
         panel = (CTabPanel *)widget(i);
         doc = panel->data();
-         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
+        if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
             if ( ((CCefViewEditor*)panel->cef())->CheckCloudCryptoNeedBuild() ) {
@@ -996,7 +996,7 @@ int CAscTabWidget::findFragmented(const QString& portalname)
             }
         }
     }
-     return -1;
+    return -1;
 }
 
 bool CAscTabWidget::isFragmented(int index)
@@ -1007,6 +1007,23 @@ bool CAscTabWidget::isFragmented(int index)
         return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
     }
     return false;
+}
+
+int CAscTabWidget::findProcessed() const
+{
+    CAscTabData * doc;
+    CTabPanel * panel;
+    for (int i(count()); i-- > 0; ) {
+        panel = (CTabPanel *)widget(i);
+        doc = panel->data();
+        if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
+                ((CCefViewEditor *)panel->cef())->IsBuilding() )
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
 bool CAscTabWidget::isProcessed(int index) const
