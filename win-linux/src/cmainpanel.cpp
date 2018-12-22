@@ -311,9 +311,16 @@ void CMainPanel::pushButtonCloseClicked()
             // find a modified document
             _index_ = m_pTabs->findModified();
             if ( _index_ < 0 ) {
-                // no modified documents
-                m_pTabs->closeAllEditors();
-                QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
+                if ( (_index_ = m_pTabs->findProcessed()) < 0 ) {
+                    // no modified documents
+                    m_pTabs->closeAllEditors();
+                    QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
+                } else
+                if ( m_saveAction == 0 ) {
+                    qApp->processEvents();
+                    continue;
+                }
+
                 break;
             } else {
                 if (m_mainWindowState == Qt::WindowMinimized)
