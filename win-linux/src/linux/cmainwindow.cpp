@@ -126,6 +126,11 @@ CMainWindow::CMainWindow(const QRect& geometry)
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
 
+    auto _detachevent = [=] {
+        CX11Decoration::raiseWindow();
+        setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    };
+
     connect(app, &SingleApplication::showUp, [=](QString args){
         QStringList * _list = Utils::getInputFiles(args.split(";"));
 
@@ -138,7 +143,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
 
         delete _list, _list = NULL;
 
-        CX11Decoration::raiseWindow();
+        QTimer::singleShot(0, _detachevent);
     });
 }
 
