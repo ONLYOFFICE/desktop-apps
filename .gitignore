@@ -5,6 +5,8 @@ win-linux/ASCDocumentEditor.build/*
 
 win-linux/*.user
 
+win-linux/package/linux/index.html
+
 common/loginpage/build/node_modules/*
 common/converter/*
 */.svn/*
