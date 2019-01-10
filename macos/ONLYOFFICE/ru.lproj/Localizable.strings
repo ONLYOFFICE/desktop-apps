@@ -77,6 +77,15 @@
 "Mobipocket e-book" = "Mobipocket e-book";
 
 /* No comment provided by engineer. */
+"new-document" = "Новый Документ";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Новая Презентация";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Новая Таблица";
+
+/* No comment provided by engineer. */
 "No" = "Нет";
 
 /* No comment provided by engineer. */
@@ -150,6 +159,9 @@
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Спасибо за то, что выбрали %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Документ \"%@\" необходимо сформировать. Продолжить?";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Чтобы открыть местоположение файла, он должен быть сохранен.";

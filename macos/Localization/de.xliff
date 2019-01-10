@@ -327,6 +327,10 @@
         <target>Vielen Dank, dass Sie sich die Zeit genommen haben %@ zu bewerten!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The document &quot;%@&quot; must be built. Continue?">
+        <source>The document "%@" must be built. Continue?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
         <target>Um den Dateispeicherort zu öffnen, muss die Datei gespeichert werden.</target>
@@ -409,6 +413,18 @@ We have a special offer for you.</source>
 (noch %d Tage gültig).
 
 Wir haben ein Sonderangebot für Sie.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-document">
+        <source>New Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-presentation">
+        <source>New Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-spreadsheet">
+        <source>New Spreadsheet</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -1323,8 +1339,8 @@ Die Testphase endet in% d Tagen, danach können Sie keine Dokumente mehr erstell
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2018 Ascensio System SIA. All rights reserved.</source>
-        <target>Copyright © 2018 Ascensio System SIA. Alle Rechte vorbehalten.</target>
+        <source>Copyright © 2019 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2019 Ascensio System SIA. Alle Rechte vorbehalten.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>

@@ -247,19 +247,19 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
         NSArray * creationButtons = @[
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"document"]
                                                                color:[NSColor brendDocumentEditor]
-                                                               title:NSLocalizedString(@"New Document", nil)
+                                                               title:NSLocalizedStringWithDefaultValue(@"new-document", @"Localizable", [NSBundle mainBundle], @"New Document", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New Document", nil)],
+                                                  customizationLabel:NSLocalizedStringWithDefaultValue(@"new-document", @"Localizable", [NSBundle mainBundle], @"New Document", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]
                                                                color:[NSColor brendSpreadsheetEditor]
-                                                               title:NSLocalizedString(@"New Spreadsheet", nil)
+                                                               title:NSLocalizedStringWithDefaultValue(@"new-spreadsheet", @"Localizable", [NSBundle mainBundle], @"New Spreadsheet", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New Spreadsheet", nil)],
+                                                  customizationLabel:NSLocalizedStringWithDefaultValue(@"new-spreadsheet", @"Localizable", [NSBundle mainBundle], @"New Spreadsheet", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]
                                                                color:[NSColor brendPresentationEditor]
-                                                               title:NSLocalizedString(@"New Presentation", nil)
+                                                               title:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New Presentation", nil)],
+                                                  customizationLabel:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)],
                                       ];
         
         NSGroupTouchBarItem * createonGroup = [NSGroupTouchBarItem groupItemWithIdentifier:kNewItemsItemIdentifier items:creationButtons];
