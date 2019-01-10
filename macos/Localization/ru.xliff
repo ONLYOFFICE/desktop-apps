@@ -327,6 +327,11 @@
         <target>Спасибо за то, что выбрали %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The document &quot;%@&quot; must be built. Continue?">
+        <source>The document "%@" must be built. Continue?</source>
+        <target>Документ "%@" необходимо сформировать. Продолжить?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
         <target>Чтобы открыть местоположение файла, он должен быть сохранен.</target>
@@ -409,6 +414,21 @@ We have a special offer for you.</source>
 (осталось дней: %d).
 
 Для Вас доступно специальное предложение.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-document">
+        <source>Create Document</source>
+        <target>Новый Документ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-presentation">
+        <source>New Presentation</source>
+        <target>Новая Презентация</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-spreadsheet">
+        <source>New Spreadsheet</source>
+        <target>Новая Таблица</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -1357,8 +1377,8 @@ The trial period will end in %d days, after that you will not be able to create 
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2018 Ascensio System SIA. All rights reserved.</source>
-        <target>© 2018 Ascensio System SIA. Все права защищены.</target>
+        <source>Copyright © 2019 Ascensio System SIA. All rights reserved.</source>
+        <target>© 2019 Ascensio System SIA. Все права защищены.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
