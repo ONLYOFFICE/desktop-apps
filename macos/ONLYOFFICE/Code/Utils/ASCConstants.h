@@ -63,9 +63,9 @@ typedef NS_ENUM(int, CEFDocumentType) {
     CEFDocumentPresentation = 1
 };
 
-static NSString * kRegHelpUrl               = @"kRegHelpUrl";
-static NSString * kHelpUrl                  = @"kHelpUrl";
-static NSString * kRegistrationPortalUrl    = @"kRegistrationPortalUrl";
+static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
+static NSString * const kHelpUrl                            = @"kHelpUrl";
+static NSString * const kRegistrationPortalUrl              = @"kRegistrationPortalUrl";
 
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
