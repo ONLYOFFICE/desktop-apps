@@ -509,6 +509,12 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     }
 }
 
+- (void)updateTab:(ASCTabView *)tab {
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didUpdateTab:)]) {
+        [_delegate tabs:self didUpdateTab:tab];
+    }
+}
+
 - (void)reorderTab:(ASCTabView *)tab withEvent:(NSEvent *)event {
     NSMutableArray *orderedTabs = [[NSMutableArray alloc] initWithArray:[self tabs]];
     
@@ -531,10 +537,32 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];
                 [tab setHidden:NO];
-                if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:)]) {
-                    [_delegate tabs:self didReorderTab:tab];
-                }
+
+                // Calculate indexes
+                NSString * uuidTab = tab.uuid;
+
+                NSInteger oldIndex = [self.tabs indexOfObjectPassingTest:^BOOL(ASCTabView *  _Nonnull tabView, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([tabView.uuid isEqualToString:uuidTab]) {
+                        *stop = YES;
+                        return YES;
+                    }
+                    return NO;
+                }];
+                NSInteger newIndex = [orderedTabs indexOfObjectPassingTest:^BOOL(ASCTabView *  _Nonnull tabView, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([tabView.uuid isEqualToString:uuidTab]) {
+                        *stop = YES;
+                        return YES;
+                    }
+                    return NO;
+                }];
+
                 self.tabs = orderedTabs;
+
+                if (oldIndex != newIndex && oldIndex != NSNotFound && newIndex != NSNotFound) {
+                    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:from:to:)]) {
+                        [_delegate tabs:self didReorderTab:tab from:oldIndex to:newIndex];
+                    }
+                }
             }];
             
             [[draggingTab animator] setFrame:CGRectOffset(tab.frame, -scrollPosition, 0)];
@@ -689,8 +717,13 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             return;
         }
     }
-    
     [self removeTab:tab];
+}
+
+- (void)tabDidUpdate:(ASCTabView *)tab {
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didUpdateTab:)]) {
+        [_delegate tabs:self didUpdateTab:tab];
+    }
 }
 
 #pragma mark -

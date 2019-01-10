@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title">
@@ -69,7 +69,7 @@
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="%@ Help">
@@ -327,6 +327,10 @@
         <target>Dziękujemy za ocenę %@!</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="The document &quot;%@&quot; must be built. Continue?">
+        <source>The document "%@" must be built. Continue?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved.">
         <source>To open the file location, it must be saved.</source>
         <target>Aby otworzyć lokalizację pliku, należy go zapisać.</target>
@@ -387,7 +391,7 @@
         <target>Twoje zmiany zostaną utracone, jeśli ich nie zapiszesz.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount.">
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount.">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
@@ -400,7 +404,7 @@ Program działa w trybie nieaktywowanym.
 Tylko teraz możesz przedłużyć lub zaktualizować swoją subskrypcję ze specjalną zniżką.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you.">
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
         <source>Your subscription is about to expire
 (%d days left).
 
@@ -411,101 +415,113 @@ We have a special offer for you.</source>
 Mamy dla Ciebie specjalną ofertę.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-document">
+        <source>New Document</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-presentation">
+        <source>New Presentation</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-spreadsheet">
+        <source>New Spreadsheet</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@days@</source>
-        <target>%#@dni@</target>
-        
+        <target>%#@days@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string">
         <source>%d days are left until the license expiration.</source>
         <target>Pozostał %d dzień do wygaśnięcia licencji.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/many:dict/:string">
         <source>%d days are left until the license expiration.</source>
         <target>Pozostały%d dni do wygaśnięcia licencji.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string">
         <source>%d day are left until the license expiration.</source>
         <target>Pozostało %d dni do wygaśnięcia licencji</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string">
         <source>%d days are left until the license expiration.</source>
         <target>Pozostał %d dzień do wygaśnięcia licencji.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@days@</source>
-        <target>%#@dni@</target>
-        
+        <target>%#@days@</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target>Korzystasz z wersji próbnej aplikacji.
 Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w stanie tworzyć, ani edytować dokumentów.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target>Korzystasz z wersji próbnej aplikacji.
 Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w stanie tworzyć, ani edytować dokumentów.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
         <target>Korzystasz z wersji próbnej aplikacji.
 Okres próbny zakończy się za %d dni, po tym czasie nie będziesz już w stanie tworzyć, ani edytować dokumentów.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target>Korzystasz z wersji próbnej aplikacji.
 Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w stanie tworzyć, ani edytować dokumentów.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@documents@</source>
-        <target>%#@dokumenty@</target>
-        
+        <target>%#@documents@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Posiadasz %ld %@ dokument z niepotwierdzonymi zmianami. Czy chcesz sprawdzić te zmiany przed zamknięciem?</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/many:dict/:string">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Posiadasz %ld %@ dokument z niepotwierdzonymi zmianami. Czy chcesz sprawdzić te zmiany przed zamknięciem?</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Posiadasz %ld %@ dokumentów z niepotwierdzonymi zmianami. Czy chcesz sprawdzić te zmiany przed zamknięciem?</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target>Posiadasz %ld %@ dokument z niepotwierdzonymi zmianami. Czy chcesz sprawdzić te zmiany przed zamknięciem?</target>
-        
+        <note/>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title">
@@ -1163,11 +1179,6 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <target>Informacje o prawach autorskich</target>
         <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
       </trans-unit>
-      <trans-unit id="sM6-C6-Vo9.title">
-        <source>test</source>
-        <target>test</target>
-        <note>Class = "NSButtonCell"; title = "test"; ObjectID = "sM6-C6-Vo9";</note>
-      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title">
         <source>Show Toolbar</source>
         <target>Pokaż Pasek Narzędzi</target>
@@ -1277,7 +1288,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder">
@@ -1324,7 +1335,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title">
@@ -1336,7 +1347,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE-MAS/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -1353,7 +1364,7 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="pl">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
     </header>
     <body>
       <trans-unit id="CFBundleName">
@@ -1361,8 +1372,8 @@ Okres próbny zakończy się za %d dzień, po tym czasie nie będziesz już w st
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright">
-        <source>Copyright © 2018 Ascensio System SIA. All rights reserved.</source>
-        <target>Copyright © 2018 Ascensio System SIA. Wszelkie prawa zastrzeżone.</target>
+        <source>Copyright © 2019 Ascensio System SIA. All rights reserved.</source>
+        <target>Copyright © 2019 Ascensio System SIA. Wszelkie prawa zastrzeżone.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>

@@ -28,50 +28,21 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabsControl.h
+//  ASCBlockHolder.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 4/28/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-@class ASCTabsControl;
-@class ASCTabView;
+#import <Foundation/Foundation.h>
 
-@interface ASCTabsMulticastDelegate : NSObject
-- (void)addDelegate:(id)delegate;
-@end
+@interface ASCBlockHolder : NSObject
+@property (nonatomic, copy) void (^blockAction)(void);
 
-@protocol ASCTabsControlDelegate <NSObject>
-@optional
-- (void)tabs:(ASCTabsControl *)control didResize:(CGRect)rect;
-- (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab;
-- (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex;
-@end
-
-@interface ASCTabsControl : NSControl
-@property (nonatomic) NSMutableArray *tabs;
-@property (nonatomic) CGFloat minTabWidth;
-@property (nonatomic) CGFloat maxTabWidth;
-@property (nonatomic, assign) id <ASCTabsControlDelegate> delegate;
-@property (readonly) ASCTabsMulticastDelegate* multicastDelegate;
-
-- (void)addTab:(ASCTabView *)tab;
-- (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeTab:(ASCTabView *)tab;
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeAllTabs;
-- (void)selectTab:(ASCTabView *)tab;
-- (void)updateTab:(ASCTabView *)tab;
-
-- (ASCTabView *)tabWithUUID:(NSString *)uuid;
-- (ASCTabView *)selectedTab;
+- (instancetype)initWithBlock:(void (^)(void))block;
+- (void)invoke:(id)sender;
 @end

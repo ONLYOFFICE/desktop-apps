@@ -28,50 +28,54 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabsControl.h
+//  ASCBlockHolder.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 4/28/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-@class ASCTabsControl;
-@class ASCTabView;
+#import "ASCBlockHolder.h"
+#import <objc/runtime.h>
 
-@interface ASCTabsMulticastDelegate : NSObject
-- (void)addDelegate:(id)delegate;
-@end
+static const char * ASCBlockHolderActions = "asc-block-actions";
 
-@protocol ASCTabsControlDelegate <NSObject>
-@optional
-- (void)tabs:(ASCTabsControl *)control didResize:(CGRect)rect;
-- (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab;
-- (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex;
-@end
+@implementation ASCBlockHolder
 
-@interface ASCTabsControl : NSControl
-@property (nonatomic) NSMutableArray *tabs;
-@property (nonatomic) CGFloat minTabWidth;
-@property (nonatomic) CGFloat maxTabWidth;
-@property (nonatomic, assign) id <ASCTabsControlDelegate> delegate;
-@property (readonly) ASCTabsMulticastDelegate* multicastDelegate;
+- (id)init {
+    return [self initWithBlock:nil];
+}
 
-- (void)addTab:(ASCTabView *)tab;
-- (void)addTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeTab:(ASCTabView *)tab;
-- (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected;
-- (void)removeAllTabs;
-- (void)selectTab:(ASCTabView *)tab;
-- (void)updateTab:(ASCTabView *)tab;
+- (instancetype)initWithBlock:(void (^)(void))block {
+    self = [super init];
+    
+    if (self) {
+        NSMutableArray * blockActions = objc_getAssociatedObject(self, &ASCBlockHolderActions);
+        
+        if (blockActions == nil) {
+            blockActions = [NSMutableArray array];
+            objc_setAssociatedObject(self, &ASCBlockHolderActions, blockActions, OBJC_ASSOCIATION_RETAIN);
+        }
+        
+        [blockActions addObject:self];
+        
+        [self setBlockAction:block];
+    }
+    
+    return self;
+}
 
-- (ASCTabView *)tabWithUUID:(NSString *)uuid;
-- (ASCTabView *)selectedTab;
+- (void)dealloc
+{
+    [self setBlockAction:nil];
+}
+
+- (void)invoke:(id)sender
+{
+    [self blockAction]();
+}
+
 @end

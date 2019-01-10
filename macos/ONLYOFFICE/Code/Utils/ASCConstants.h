@@ -57,9 +57,15 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionSaveLocalFile,
 };
 
-static NSString * kRegHelpUrl               = @"kRegHelpUrl";
-static NSString * kHelpUrl                  = @"kHelpUrl";
-static NSString * kRegistrationPortalUrl    = @"kRegistrationPortalUrl";
+typedef NS_ENUM(int, CEFDocumentType) {
+    CEFDocumentDocument = 0,
+    CEFDocumentSpreadsheet = 2,
+    CEFDocumentPresentation = 1
+};
+
+static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
+static NSString * const kHelpUrl                            = @"kHelpUrl";
+static NSString * const kRegistrationPortalUrl              = @"kRegistrationPortalUrl";
 
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
