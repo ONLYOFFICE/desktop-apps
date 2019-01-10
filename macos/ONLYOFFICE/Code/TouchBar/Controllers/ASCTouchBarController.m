@@ -365,15 +365,6 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
             NSInteger lastIndex = weakSelf.tabs.count - 1;
             [[weakSelf.tabsScrubber animator] scrollItemAtIndex:lastIndex toAlignment:NSScrubberAlignmentNone];
         });
-
-//        if (self.tabs.count > 1) {
-//            NSInteger lastIndex = self.tabs.count - 1;
-//
-//            [[self.tabsScrubber animator] insertItemsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex]];
-//            [[self.tabsScrubber animator] scrollItemAtIndex:lastIndex toAlignment:NSScrubberAlignmentCenter];
-//        } else {
-//            [self invalidateTouchBar];
-//        }
     }
 }
 
@@ -391,9 +382,15 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
     }
 }
 
-- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab {
-    NSLog(@"TouchBar - didReorderTab");
-    //
+- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex {
+    id object = [self.tabs objectAtIndex:oldIndex];
+    [self.tabs removeObjectAtIndex:oldIndex];
+    [self.tabs insertObject:object atIndex:newIndex];
+
+    //    [[self.tabsScrubber animator] moveItemAtIndex:oldIndex toIndex:newIndex]; // TODO: Don't call redraw for old index, check in new SDK
+    [self.tabsScrubber reloadData];
+    [self.tabsScrubber setSelectedIndex:newIndex];
+    [self.tabsScrubber scrollItemAtIndex:newIndex toAlignment:NSScrubberAlignmentNone];
 }
 
 @end

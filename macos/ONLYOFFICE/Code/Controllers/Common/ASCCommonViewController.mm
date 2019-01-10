@@ -1772,7 +1772,7 @@
     }
 }
 
-- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab {
+- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex {
     //
 }
 
