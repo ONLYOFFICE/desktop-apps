@@ -54,7 +54,7 @@
 - (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
-- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex;
 @end
 
 @interface ASCTabsControl : NSControl
