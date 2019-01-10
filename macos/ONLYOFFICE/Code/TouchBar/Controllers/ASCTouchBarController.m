@@ -44,6 +44,7 @@
 #import "NSColor+Extensions.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
+#import "ASCHelper.h"
 
 static NSTouchBarCustomizationIdentifier const kScrubberCustomizationIdentifier = @"com.onlyoffice.touchbar.scrubberViewController";
 static NSTouchBarItemIdentifier const kScrubbedItemIdentifier = @"com.onlyoffice.touchbar.item.scrubber";
@@ -224,41 +225,41 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
 }
 
 - (nullable NSTouchBarItem *)touchBar:(NSTouchBar *)touchBar makeItemForIdentifier:(NSTouchBarItemIdentifier)identifier {
-     // Create the ONLYOFICE tabs
+     // Create the Start Page tabs
     if ([identifier isEqualToString:kStartPageItemIdentifier]) {
-        NSCustomTouchBarItem * onlyofficeItem = [[NSCustomTouchBarItem alloc] initWithIdentifier:kStartPageItemIdentifier];
-        NSButton * onlyofficeButton;
+        NSCustomTouchBarItem * startPageItem = [[NSCustomTouchBarItem alloc] initWithIdentifier:kStartPageItemIdentifier];
+        NSButton * startPageButton;
         ASCBlockHolder * blockHolder = [[ASCBlockHolder alloc] initWithBlock:^{
             if (self.onItemTap) {
-                self.onItemTap(onlyofficeButton, kStartPageButtonIdentifier);
+                self.onItemTap(startPageButton, kStartPageButtonIdentifier);
             }
         }];
-        onlyofficeButton = [NSButton buttonWithTitle:@"ONLYOFFICE"
-                                               image:[NSImage imageNamed:@"touchbar-tab-onlyoffice"]
+        startPageButton = [NSButton buttonWithTitle:[ASCHelper appName]
+                                               image:[NSImage imageNamed:@"touchbar-tab-startpage"]
                                               target:blockHolder
                                               action:@selector(invoke:)];
-        onlyofficeItem.view = onlyofficeButton;
+        startPageItem.view = startPageButton;
 
-        return onlyofficeItem;
+        return startPageItem;
     }
     // Createtion buttons
     else if ([identifier isEqualToString:kNewItemsItemIdentifier]) {
         NSArray * creationButtons = @[
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"document"]
                                                                color:[NSColor brendDocumentEditor]
-                                                               title:NSLocalizedString(@"New document", nil)
+                                                               title:NSLocalizedString(@"New Document", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New document", nil)],
+                                                  customizationLabel:NSLocalizedString(@"New Document", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]
                                                                color:[NSColor brendSpreadsheetEditor]
-                                                               title:NSLocalizedString(@"New spreadsheet", nil)
+                                                               title:NSLocalizedString(@"New Spreadsheet", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New spreadsheet", nil)],
+                                                  customizationLabel:NSLocalizedString(@"New Spreadsheet", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]
                                                                color:[NSColor brendPresentationEditor]
-                                                               title:NSLocalizedString(@"New presentation", nil)
+                                                               title:NSLocalizedString(@"New Presentation", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
-                                                  customizationLabel:NSLocalizedString(@"New presentation", nil)],
+                                                  customizationLabel:NSLocalizedString(@"New Presentation", nil)],
                                       ];
         
         NSGroupTouchBarItem * createonGroup = [NSGroupTouchBarItem groupItemWithIdentifier:kNewItemsItemIdentifier items:creationButtons];
