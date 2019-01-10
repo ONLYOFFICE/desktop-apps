@@ -260,6 +260,7 @@ static float kASCWindowMinTitleWidth = 0;
                     break;
             }
             [tab setType:docType];
+            [self.tabsControl updateTab:tab];
         }
     }
 }
@@ -275,10 +276,11 @@ static float kASCWindowMinTitleWidth = 0;
         if (tab) {
             [tab setTitle:name];
             [tab setToolTip:name];
-            
-            if ([tab state] == NSOnState) {
-                [self.tabsControl selectTab:tab];
-            }
+
+            [self.tabsControl updateTab:tab];
+//            if ([tab state] == NSOnState) {
+//                [self.tabsControl reloadTab:tab];
+//            }
         }
     }
 }
@@ -290,13 +292,14 @@ static float kASCWindowMinTitleWidth = 0;
         BOOL changed            = [params[@"сhanged"] boolValue];
         
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-        
+
         if (tab) {
             tab.changed = changed;
-            
-            if ([tab state] == NSOnState) {
-                [self.tabsControl selectTab:tab];
-            }
+
+            [self.tabsControl updateTab:tab];
+//            if ([tab state] == NSOnState) {
+//                [self.tabsControl reloadTab:tab];
+//            }
         }
     }
 }

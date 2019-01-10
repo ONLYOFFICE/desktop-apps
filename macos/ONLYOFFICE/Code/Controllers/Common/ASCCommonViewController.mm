@@ -64,6 +64,7 @@
 #import "PureLayout.h"
 #import "NSWindow+Extensions.h"
 #import "ASCExternalController.h"
+#import "ASCTouchBarController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -81,6 +82,7 @@
 @property (nonatomic) BOOL shouldLogoutPortal;
 @property (strong) IBOutlet NSView *headerView;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
+@property (nonatomic) ASCTouchBarController *touchBarController;
 @end
 
 @implementation ASCCommonViewController
@@ -262,6 +264,7 @@
         [self setupTabControl];
         [self createStartPage];
         [self loadStartPage];
+        [self setupTouchBar];
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
@@ -278,6 +281,16 @@
     self.tabsControl.maxTabWidth = 135;
     
     [self.tabsControl.multicastDelegate addDelegate:self];
+}
+
+- (void)setupTouchBar {
+    __weak typeof(self) weakSelf = self;
+    _touchBarController = [[ASCTouchBarController alloc] init:self];
+    _touchBarController.onItemTap = ^(id  _Nonnull sender, NSString * _Nonnull senderId) {
+        [weakSelf onTouchBarItemTap:sender senderId:senderId];
+    };
+    [self.tabsControl.multicastDelegate addDelegate:_touchBarController];
+    [_touchBarController invalidateTouchBar];
 }
 
 - (void)createStartPage {
@@ -434,6 +447,55 @@
     pEvent->m_pData = pCommand;
 
     [self.cefStartPageView apply:pEvent];
+}
+
+#pragma mark -
+#pragma mark TouchBar
+
+- (NSTouchBar *)makeTouchBar {
+    if (_touchBarController) {
+        return [_touchBarController makeTouchBar];
+    }
+    return nil;
+}
+
+- (void)onTouchBarItemTap:(id)sender senderId:(NSString *)senderId {
+//    NSLog(@"onTouchBarItemTap: %@", senderId);
+
+    if (senderId) {
+        if ([senderId isEqualToString:kStartPageButtonIdentifier]) {
+            [self onOnlyofficeButton:nil];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"document"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(CEFDocumentDocument),
+                                                                         @"active"  : @(YES)
+                                                                         }];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(CEFDocumentSpreadsheet),
+                                                                         @"active"  : @(YES)
+                                                                         }];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(CEFDocumentPresentation),
+                                                                         @"active"  : @(YES)
+                                                                         }];
+        } else {
+            ASCTabView * tab = [self.tabsControl tabWithUUID:senderId];
+            if (tab) {
+                [self.tabsControl selectTab:tab];
+            }
+        }
+    }
 }
 
 #pragma mark -
@@ -859,14 +921,14 @@
             }
 
             switch (type) {
-                case 0:
+                case CEFDocumentDocument:
                     [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
                     break;
-                case 1:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
-                    break;
-                case 2:
+                case CEFDocumentSpreadsheet:
                     [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
+                    break;
+                case CEFDocumentPresentation:
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
                     break;
                 default:
                     break;
@@ -1555,6 +1617,10 @@
     }
 }
 
+//- (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab {
+//    NSLog(@"didUpdateTab");
+//}
+
 - (void)tabs:(ASCTabsControl *)control didAddTab:(ASCTabView *)tab {
     if (tab.params) {
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
@@ -1601,9 +1667,15 @@
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {
-                    case 0: docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++documentNameCounter]; break;
-                    case 1: docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter]; break;
-                    case 2: docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++spreadsheetNameCounter];   break;
+                    case CEFDocumentDocument:
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++documentNameCounter];
+                        break;
+                    case CEFDocumentSpreadsheet:
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++spreadsheetNameCounter];
+                        break;
+                    case CEFDocumentPresentation:
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter];
+                        break;
                 }
                 
                 [cefView createFileWithName:docName type:docType];

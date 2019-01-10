@@ -28,42 +28,54 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabView.h
+//  ASCBlockHolder.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 4/28/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCButton.h"
+#import "ASCBlockHolder.h"
+#import <objc/runtime.h>
 
-@class ASCTabView;
+static const char * ASCBlockHolderActions = "asc-block-actions";
 
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
+@implementation ASCBlockHolder
 
-@protocol ASCTabViewDelegate  <NSObject>
-@optional
-- (void)tabDidClose:(ASCTabView *)tab;
-- (void)tabDidUpdate:(ASCTabView *)tab;
-@end
+- (id)init {
+    return [self initWithBlock:nil];
+}
 
-@interface ASCTabView : ASCButton
-@property (nonatomic) ASCTabViewType type;
-@property (nonatomic) NSString *uuid;
-@property (nonatomic) NSMutableDictionary *params;
-@property (nonatomic) BOOL changed;
-@property (nonatomic) BOOL isProcessing;
+- (instancetype)initWithBlock:(void (^)(void))block {
+    self = [super init];
+    
+    if (self) {
+        NSMutableArray * blockActions = objc_getAssociatedObject(self, &ASCBlockHolderActions);
+        
+        if (blockActions == nil) {
+            blockActions = [NSMutableArray array];
+            objc_setAssociatedObject(self, &ASCBlockHolderActions, blockActions, OBJC_ASSOCIATION_RETAIN);
+        }
+        
+        [blockActions addObject:self];
+        
+        [self setBlockAction:block];
+    }
+    
+    return self;
+}
 
-@property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
+- (void)dealloc
+{
+    [self setBlockAction:nil];
+}
+
+- (void)invoke:(id)sender
+{
+    [self blockAction]();
+}
+
 @end

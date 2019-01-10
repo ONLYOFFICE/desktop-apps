@@ -65,4 +65,16 @@
     return isGIF;
 }
 
+- (NSImage *)imageTintedWithColor:(NSColor *)tint {
+    NSImage *image = [self copy];
+    if (tint) {
+        [image lockFocus];
+        [tint set];
+        NSRect imageRect = {NSZeroPoint, [image size]};
+        NSRectFillUsingOperation(imageRect, NSCompositingOperationSourceAtop);
+        [image unlockFocus];
+    }
+    return image;
+}
+
 @end

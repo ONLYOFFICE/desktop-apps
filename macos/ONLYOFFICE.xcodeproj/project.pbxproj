@@ -192,6 +192,11 @@
 		FCC77C98206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
+		FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */; };
+		FCCC2FDB21E5E04000FB9209 /* ASCTabTouchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FDA21E5E04000FB9209 /* ASCTabTouchBar.m */; };
+		FCCC2FE121E5E10D00FB9209 /* ASCTabTouchBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FDD21E5E10D00FB9209 /* ASCTabTouchBarItem.m */; };
+		FCCC2FE221E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FDE21E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m */; };
+		FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FE421E5E1CA00FB9209 /* ASCTouchBarController.m */; };
 		FCD294661BB97C8B00318930 /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
@@ -443,6 +448,16 @@
 		FCC77C8E206CEE85001B7837 /* ASCTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabView.m; sourceTree = "<group>"; };
 		FCC77C8F206CEE85001B7837 /* ASCTabViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabViewCell.h; sourceTree = "<group>"; };
 		FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabViewCell.m; sourceTree = "<group>"; };
+		FCCC2FD521E5DF7700FB9209 /* ASCBlockHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCBlockHolder.h; sourceTree = "<group>"; };
+		FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCBlockHolder.m; sourceTree = "<group>"; };
+		FCCC2FD921E5E04000FB9209 /* ASCTabTouchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabTouchBar.h; sourceTree = "<group>"; };
+		FCCC2FDA21E5E04000FB9209 /* ASCTabTouchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabTouchBar.m; sourceTree = "<group>"; };
+		FCCC2FDD21E5E10D00FB9209 /* ASCTabTouchBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabTouchBarItem.m; sourceTree = "<group>"; };
+		FCCC2FDE21E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabsScrubberSelectionView.m; sourceTree = "<group>"; };
+		FCCC2FDF21E5E10D00FB9209 /* ASCTabsScrubberSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabsScrubberSelectionView.h; sourceTree = "<group>"; };
+		FCCC2FE021E5E10D00FB9209 /* ASCTabTouchBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTabTouchBarItem.h; sourceTree = "<group>"; };
+		FCCC2FE421E5E1CA00FB9209 /* ASCTouchBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTouchBarController.m; sourceTree = "<group>"; };
+		FCCC2FE521E5E1CA00FB9209 /* ASCTouchBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTouchBarController.h; sourceTree = "<group>"; };
 		FCD294641BB97C8B00318930 /* ASCMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCMulticastDelegate.h; sourceTree = "<group>"; };
 		FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCMulticastDelegate.m; sourceTree = "<group>"; };
 		FCD294671BB97D3300318930 /* ASCDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCDownloadController.h; sourceTree = "<group>"; };
@@ -805,6 +820,8 @@
 			children = (
 				FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */,
 				FCAC6DF71C195FA6003D2457 /* ASCConstants.m */,
+				FCCC2FD521E5DF7700FB9209 /* ASCBlockHolder.h */,
+				FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */,
 				FCA0B3531B9F006F0073EDD4 /* ASCHelper.h */,
 				FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */,
 				FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */,
@@ -931,6 +948,45 @@
 			path = ASCTabs;
 			sourceTree = "<group>";
 		};
+		FCCC2FD421E5DD5800FB9209 /* TouchBar */ = {
+			isa = PBXGroup;
+			children = (
+				FCCC2FD821E5E02400FB9209 /* Models */,
+				FCCC2FDC21E5E0E400FB9209 /* Views */,
+				FCCC2FE321E5E19000FB9209 /* Controllers */,
+			);
+			path = TouchBar;
+			sourceTree = "<group>";
+		};
+		FCCC2FD821E5E02400FB9209 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FCCC2FD921E5E04000FB9209 /* ASCTabTouchBar.h */,
+				FCCC2FDA21E5E04000FB9209 /* ASCTabTouchBar.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FCCC2FDC21E5E0E400FB9209 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FCCC2FDF21E5E10D00FB9209 /* ASCTabsScrubberSelectionView.h */,
+				FCCC2FDE21E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m */,
+				FCCC2FE021E5E10D00FB9209 /* ASCTabTouchBarItem.h */,
+				FCCC2FDD21E5E10D00FB9209 /* ASCTabTouchBarItem.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FCCC2FE321E5E19000FB9209 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FCCC2FE521E5E1CA00FB9209 /* ASCTouchBarController.h */,
+				FCCC2FE421E5E1CA00FB9209 /* ASCTouchBarController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		FCE7D15C207D002700642010 /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +1007,7 @@
 			isa = PBXGroup;
 			children = (
 				FCF289732150E737002FD438 /* Views */,
+				FCCC2FD421E5DD5800FB9209 /* TouchBar */,
 				FCF289722150E6A1002FD438 /* Controllers */,
 				FCBC428E1B9D65CA00405301 /* Controls */,
 				FCC77C54206CDB0A001B7837 /* Extensions */,
@@ -1422,6 +1479,7 @@
 				FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
 				FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */,
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
+				FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
 				FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
@@ -1431,9 +1489,11 @@
 				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */,
 				FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */,
+				FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
+				FCCC2FE221E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m in Sources */,
 				FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
@@ -1448,6 +1508,7 @@
 				FC148B1F215CEF900054FF91 /* NSApplication+Extensions.m in Sources */,
 				FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */,
 				FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
+				FCCC2FE121E5E10D00FB9209 /* ASCTabTouchBarItem.m in Sources */,
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
 				FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
@@ -1460,6 +1521,7 @@
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
+				FCCC2FDB21E5E04000FB9209 /* ASCTabTouchBar.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
 				FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */,

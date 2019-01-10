@@ -45,5 +45,6 @@
 - (CGImageRef)CGImage;
 - (NSArray<NSImage *> *)images;
 - (BOOL)isGIF;
+- (NSImage *)imageTintedWithColor:(NSColor *)tint;
 
 @end
