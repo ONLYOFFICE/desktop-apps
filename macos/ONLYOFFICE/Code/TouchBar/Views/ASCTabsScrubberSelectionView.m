@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2018
+ * (c) Copyright Ascensio System SIA 2010-2019
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,42 +28,30 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabView.h
+//  ASCTabsScrubberSelectionView.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 02/01/2019.
+//  Copyright (c) 2019 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCButton.h"
+#import "ASCTabsScrubberSelectionView.h"
 
-@class ASCTabView;
+@implementation ASCTabsScrubberSelectionView
 
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
+- (void)drawRect:(NSRect)dirtyRect {
+//    [super drawRect:dirtyRect];
+    
+    // Draw as an overlay: with a rounded rect, blue .5 alpha.
+    [[NSColor colorWithSRGBRed:0.0 green:0.0 blue:1.0 alpha:.5] set];
+    NSRect fillRect = NSInsetRect(dirtyRect, 4, 4);
+    NSBezierPath *roundedRect = [NSBezierPath bezierPathWithRoundedRect:fillRect
+                                                                xRadius:6
+                                                                yRadius:6];
+    [roundedRect fill];
+}
 
-@protocol ASCTabViewDelegate  <NSObject>
-@optional
-- (void)tabDidClose:(ASCTabView *)tab;
-- (void)tabDidUpdate:(ASCTabView *)tab;
-@end
-
-@interface ASCTabView : ASCButton
-@property (nonatomic) ASCTabViewType type;
-@property (nonatomic) NSString *uuid;
-@property (nonatomic) NSMutableDictionary *params;
-@property (nonatomic) BOOL changed;
-@property (nonatomic) BOOL isProcessing;
-
-@property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
 @end

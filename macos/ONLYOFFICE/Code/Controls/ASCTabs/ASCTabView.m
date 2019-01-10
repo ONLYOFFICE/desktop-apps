@@ -192,6 +192,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     }
 
     [self setNeedsDisplay];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabDidUpdate:)]) {
+        [_delegate tabDidUpdate:self];
+    }
 }
 
 - (void)setType:(ASCTabViewType)type {
@@ -241,6 +245,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
     }
+
+    if (_delegate && [_delegate respondsToSelector:@selector(tabDidUpdate:)]) {
+        [_delegate tabDidUpdate:self];
+    }
 }
 
 - (void)setIsProcessing:(BOOL)isProcessing {
@@ -250,6 +258,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         ASCTabViewCell * tabViewCell = self.cell;
         tabViewCell.isProcessing = _isProcessing;
         [self setNeedsDisplay];
+
+        if (_delegate && [_delegate respondsToSelector:@selector(tabDidUpdate:)]) {
+            [_delegate tabDidUpdate:self];
+        }
     }
 }
 

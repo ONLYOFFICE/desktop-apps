@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2018
+ * (c) Copyright Ascensio System SIA 2010-2019
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,42 +28,18 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabView.h
+//  ASCTabTouchBar.m
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
-//  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
+//  Created by Alexander Yuzhin on 02/01/2019.
+//  Copyright (c) 2019 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCButton.h"
+#import "ASCTabTouchBar.h"
 
-@class ASCTabView;
+@implementation ASCTabTouchBar
 
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
-
-@protocol ASCTabViewDelegate  <NSObject>
-@optional
-- (void)tabDidClose:(ASCTabView *)tab;
-- (void)tabDidUpdate:(ASCTabView *)tab;
-@end
-
-@interface ASCTabView : ASCButton
-@property (nonatomic) ASCTabViewType type;
-@property (nonatomic) NSString *uuid;
-@property (nonatomic) NSMutableDictionary *params;
-@property (nonatomic) BOOL changed;
-@property (nonatomic) BOOL isProcessing;
-
-@property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
 @end

@@ -28,42 +28,21 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
 //
-//  ASCTabView.h
+//  ASCBlockHolder.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 9/7/15.
+//  Created by Alexander Yuzhin on 4/28/15.
 //  Copyright (c) 2015 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "ASCButton.h"
+#import <Foundation/Foundation.h>
 
-@class ASCTabView;
+@interface ASCBlockHolder : NSObject
+@property (nonatomic, copy) void (^blockAction)(void);
 
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
-
-@protocol ASCTabViewDelegate  <NSObject>
-@optional
-- (void)tabDidClose:(ASCTabView *)tab;
-- (void)tabDidUpdate:(ASCTabView *)tab;
-@end
-
-@interface ASCTabView : ASCButton
-@property (nonatomic) ASCTabViewType type;
-@property (nonatomic) NSString *uuid;
-@property (nonatomic) NSMutableDictionary *params;
-@property (nonatomic) BOOL changed;
-@property (nonatomic) BOOL isProcessing;
-
-@property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
+- (instancetype)initWithBlock:(void (^)(void))block;
+- (void)invoke:(id)sender;
 @end

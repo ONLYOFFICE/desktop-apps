@@ -509,6 +509,12 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     }
 }
 
+- (void)updateTab:(ASCTabView *)tab {
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didUpdateTab:)]) {
+        [_delegate tabs:self didUpdateTab:tab];
+    }
+}
+
 - (void)reorderTab:(ASCTabView *)tab withEvent:(NSEvent *)event {
     NSMutableArray *orderedTabs = [[NSMutableArray alloc] initWithArray:[self tabs]];
     
@@ -531,10 +537,11 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];
                 [tab setHidden:NO];
+                self.tabs = orderedTabs;
+
                 if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:)]) {
                     [_delegate tabs:self didReorderTab:tab];
                 }
-                self.tabs = orderedTabs;
             }];
             
             [[draggingTab animator] setFrame:CGRectOffset(tab.frame, -scrollPosition, 0)];
@@ -689,8 +696,13 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             return;
         }
     }
-    
     [self removeTab:tab];
+}
+
+- (void)tabDidUpdate:(ASCTabView *)tab {
+    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didUpdateTab:)]) {
+        [_delegate tabs:self didUpdateTab:tab];
+    }
 }
 
 #pragma mark -

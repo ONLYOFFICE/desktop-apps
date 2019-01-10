@@ -53,6 +53,7 @@
 - (BOOL)tabs:(ASCTabsControl *)control willRemovedTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didRemovedTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab;
+- (void)tabs:(ASCTabsControl *)control didUpdateTab:(ASCTabView *)tab;
 - (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab;
 @end
 
@@ -69,6 +70,7 @@
 - (void)removeTab:(ASCTabView *)tab selected:(BOOL)selected;
 - (void)removeAllTabs;
 - (void)selectTab:(ASCTabView *)tab;
+- (void)updateTab:(ASCTabView *)tab;
 
 - (ASCTabView *)tabWithUUID:(NSString *)uuid;
 - (ASCTabView *)selectedTab;
