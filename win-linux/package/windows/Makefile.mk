@@ -5,12 +5,14 @@ ifeq ($(UNAME_M),x86_64)
 	OS_ARCH := _x64
 	VCREDIST_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
 	WINSPARKLE_DLL := WinSparkle-0.6.0/x64/Release/WinSparkle.dll
+	ISCC_S_PARAM := //S
 endif
 
 ifneq ($(filter %86,$(UNAME_M)),)
 	OS_ARCH := _x86
 	VCREDIST_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
 	WINSPARKLE_DLL := WinSparkle-0.6.0/Release/WinSparkle.dll
+	ISCC_S_PARAM := /S
 endif
 
 PUBLISHER_NAME ?= Ascensio System SIA
@@ -50,7 +52,7 @@ win-linux/package/windows/%.exe:
 	cd $(dir $@) && $(ISCC) \
 		//DSCRIPT_CUSTOM_FILES=1 \
 		//Qp \
-		//S$(SIGN_STR) \
+		$(ISCC_S_PARAM)$(SIGN_STR) \
 		install$(OS_ARCH).iss
 	
 win-linux/package/windows/%.zip:
