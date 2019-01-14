@@ -331,7 +331,7 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
-                    !model.logged ? _do_connect.call(this, model) :
+                    // !model.logged ? _do_connect.call(this, model) :
                         sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
                 });
 
