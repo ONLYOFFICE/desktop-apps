@@ -227,7 +227,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         } else
         if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
-                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection,
