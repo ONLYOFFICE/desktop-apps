@@ -113,7 +113,7 @@ window.DialogConnect = function(params) {
             return;
         }
 
-        portal = /^(https?:\/{2})?([^\/]+)/i.exec(portal);
+        portal = /^(https?:\/{2})?([^\s\?\&]+)/i.exec(portal);
         if (!!portal && portal[2].length) {
             portal[1] && (protocol = portal[1]);
             portal = portal[2];

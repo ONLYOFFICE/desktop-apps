@@ -382,6 +382,13 @@
         };
 
         var _on_login_message = function(info) {
+            let _write_portal_cookie = portal => {
+                let _re = /^(https?:\/{2})?([^\<\>\/\s]+)(\/[^\s]+)?/i.exec(portal);
+                let _domain = _re[2];
+
+                sdk.setCookie(portal, _domain, _re[3] || '/', "asc_auth_key", utils.fn.uuid());
+            };
+
             let obj = JSON.parse(utils.fn.decodeHtml(info));
             if ( obj ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
@@ -390,6 +397,7 @@
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
+                            _write_portal_cookie(obj.domain);
 
                             if ( model.get('user') != obj.displayName ) {
                                 model.set('user', obj.displayName);
@@ -426,7 +434,8 @@
 
                 PortalsStore.keep(info);
                 if ( obj.provider != 'asc' ) {
-                    sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
+                    // sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
+                    _write_portal_cookie(info.portal);
 
                     window.on_set_cookie = () => {
                         window.on_set_cookie = undefined;
