@@ -290,7 +290,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
         args.append("/products/files/?desktop=true");
     else {
-        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)([^\\s]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
 
         if ( _re_match.hasMatch() ) {
