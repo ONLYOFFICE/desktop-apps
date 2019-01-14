@@ -70,6 +70,18 @@ window.PortalsStore = (function() {
         return index;
     };
 
+    function getModel(info) {
+        if ( !!info.portal ) {
+            let _p = portals(),
+                _i = contain(_p, info);
+            if ( _i >= 0 ) {
+                return _p[_i];
+            }
+        }
+
+        return undefined;
+    };
+
     /* info format: {portal: any.portal.com, user: 'User Name', email: 'user@portal.com'} */
     function addPortal(info) {        
         var portals = !!localStorage.portals ? JSON.parse(localStorage.portals) : [];
@@ -113,6 +125,7 @@ window.PortalsStore = (function() {
     };
 
     return {
+        get: getModel,
         keep: addPortal,
         portals: portals,
         forget: removePortal

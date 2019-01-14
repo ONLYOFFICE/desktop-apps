@@ -153,14 +153,15 @@
             this.$panelNoPortals = this.$panel.find('#box-empty-portals');
             this.$panelPortalList = this.$panel.find('#box-portals');
         },
-        portaltemplate: function(info) {
-            return `<tr id=${info.elid}><td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
-                          <td class="row-cell cuser minor"><span>${info.user}${info.email.length && (' (' + info.email + ')') || ''}</span></td>
-                          <td class="cell-tools">
+        portaltemplate: function(info, edit) {
+            let _row = `<td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
+                        <td class="row-cell cuser minor"><span>${info.user}${info.email.length && (' (' + info.email + ')') || ''}</span></td>
+                        <td class="cell-tools">
                             <div class="hlayout">
                               <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
                             </span>
-                          </td>`;
+                        </td>`;
+            return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         }
     });
 
@@ -294,8 +295,20 @@
                     list: '.table-files.list'
                 });
 
-                collection.events.changed.attach((collection, model) => {
-                    this.view.$panelPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
+                collection.events.changed.attach((collection, model, value) => {
+                    if ( !!value ) {
+                        if ( value.logged != undefined )
+                            this.view.$panelPortalList.find('#' + model.uid)[model.logged?'addClass':'removeClass']('logged');
+                        else
+                        if ( value.user ) {
+                            let el = this.view.$panelPortalList.find('#' + model.uid);
+                            el.html(
+                                $(this.view.portaltemplate({
+                                    portal: model.name,
+                                    user: model.user,
+                                    email: model.email}, true)));
+                        }
+                    }
                 });
 
                 collection.events.inserted.attach((collection, model) => {
@@ -373,8 +386,21 @@
             if ( obj ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
+                    !obj.email && (obj.email = '');
                     if ( model.email == obj.email ) {
-                        !model.get('logged') && model.set('logged', true);
+                        if ( !model.get('logged') ) {
+                            model.set('logged', true);
+
+                            if ( model.get('user') != obj.displayName ) {
+                                model.set('user', obj.displayName);
+
+                                let _m = PortalsStore.get({portal:model.path});
+                                if ( !!_m ) {
+                                    _m['user'] = obj.displayName;
+                                    PortalsStore.keep(_m);
+                                }
+                            }
+                        }
                         return;
                     } else {
                         PortalsStore.forget(obj.domain);
