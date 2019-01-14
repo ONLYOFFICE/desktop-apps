@@ -17,9 +17,9 @@ endif
 
 PUBLISHER_NAME ?= Ascensio System SIA
 PACKAGE_NAME := onlyoffice-desktopeditors
-PACKAGE_VERSION ?= 0.0.0
+PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
-PACKAGE_VERSION := $(PACKAGE_VERSION).$(BUILD_NUMBER)
+PACKAGE_VERSION := $(PRODUCT_VERSION).$(BUILD_NUMBER)
 
 SIGN_STR := "byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 
@@ -75,7 +75,12 @@ clean-package:
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
-	$(PACKAGES) \
+	$(DESKTOP_EDITORS_EXE) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	--acl public-read
+
+	aws s3 cp \
+	$(DESKTOP_EDITORS_ZIP) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
 
