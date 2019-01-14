@@ -144,7 +144,7 @@ public slots:
     void onLocalFileLocation(int, QString);
     void onLocalGetFile(int eventtype, void *);
     void onPortalOpen(QString);
-    void onPortalLogin(QString);
+    void onPortalLogin(int, QString);
     void onPortalLogout(QString);
     void onPortalNew(QString);
     void onPortalCreate();
