@@ -75,19 +75,15 @@ clean-package:
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
-	$(DESKTOP_EDITORS_EXE) \
+	$(PACKAGES) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_ZIP) \
+	aws s3 sync \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
-
-	aws s3 cp \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/* \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
-	--acl public-read
+	--acl public-read \
+	--delete
 
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(S3_BUCKET)
