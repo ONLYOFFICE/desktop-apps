@@ -1248,15 +1248,33 @@
 
 - (void)onCEFPortalLogin:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        if (NSString * jsonString = [notification.userInfo jsonString]) {
-            NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-            pCommand->put_Command(L"portal:login");
-            pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+        id json = notification.userInfo;
 
-            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-            pEvent->m_pData = pCommand;
+        if (NSString *viewId = json[@"viewId"]) {
+            if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
+                if ([tab.params[@"isPortalPage"] boolValue]) {
+                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                        if (NSString *infoString = json[@"info"]) {
+                            if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
+                                if (NSString *originalUrl = [cefView originalUrl]) {
+                                    info[@"domain"] = [cefView originalUrl];
 
-            [self.cefStartPageView apply:pEvent];
+                                    if (NSString * jsonString = [info jsonString]) {
+                                        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                        pCommand->put_Command(L"portal:login");
+                                        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+
+                                        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                        pEvent->m_pData = pCommand;
+
+                                        [self.cefStartPageView apply:pEvent];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -1649,6 +1667,10 @@
 
                 if (provider && [provider length] > 0) {
                     [cefView setExternalCloud:provider];
+                }
+
+                if (provider) {
+                    tab.params[@"isPortalPage"] = @(YES);
                 }
             }
             case ASCTabActionOpenUrl: {

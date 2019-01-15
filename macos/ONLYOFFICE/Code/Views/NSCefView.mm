@@ -302,5 +302,12 @@ public:
     return NO;
 }
 
+- (NSString *)originalUrl {
+    if (m_pCefView && m_pCefView->GetCefView()) {
+        return [NSString stringWithstdwstring:m_pCefView->GetCefView()->GetOriginalUrl()];
+    }
+    return nil;
+}
+
 
 @end
