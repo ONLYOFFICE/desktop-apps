@@ -54,6 +54,7 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
 @interface ASCTouchBarController () <NSTouchBarDelegate, NSScrubberDelegate, NSScrubberDataSource, NSScrubberFlowLayoutDelegate, ASCTabsControlDelegate>
 @property (weak) NSViewController *viewController;
 @property (nonatomic) NSScrubber *tabsScrubber;
+@property (nonatomic) NSButton *startPageButton;
 @end
 
 @implementation ASCTouchBarController
@@ -75,6 +76,10 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     _selectedIndex = selectedIndex;
+
+    self.startPageButton.bezelColor = _selectedIndex < 0 ? [NSColor grayColor] : nil;
+    [self.startPageButton setNeedsDisplay];
+    [self.startPageButton setNeedsLayout:YES];
 
     if (self.tabsScrubber) {
         self.tabsScrubber.selectedIndex = selectedIndex;
@@ -228,17 +233,16 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
      // Create the Start Page tabs
     if ([identifier isEqualToString:kStartPageItemIdentifier]) {
         NSCustomTouchBarItem * startPageItem = [[NSCustomTouchBarItem alloc] initWithIdentifier:kStartPageItemIdentifier];
-        NSButton * startPageButton;
         ASCBlockHolder * blockHolder = [[ASCBlockHolder alloc] initWithBlock:^{
             if (self.onItemTap) {
-                self.onItemTap(startPageButton, kStartPageButtonIdentifier);
+                self.onItemTap(self.startPageButton, kStartPageButtonIdentifier);
             }
         }];
-        startPageButton = [NSButton buttonWithTitle:[ASCHelper appName]
+        _startPageButton = [NSButton buttonWithTitle:[ASCHelper appName]
                                                image:[NSImage imageNamed:@"touchbar-tab-startpage"]
                                               target:blockHolder
                                               action:@selector(invoke:)];
-        startPageItem.view = startPageButton;
+        startPageItem.view = _startPageButton;
 
         return startPageItem;
     }
