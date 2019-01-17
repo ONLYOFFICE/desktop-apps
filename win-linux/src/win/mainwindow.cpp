@@ -140,6 +140,7 @@ CMainWindow::CMainWindow(QRect& rect) :
 
 #ifdef _UPDMODULE
     QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
+        win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
         win_sparkle_check_update_with_ui();
     });
 #endif
