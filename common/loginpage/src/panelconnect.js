@@ -193,6 +193,12 @@
                 provider: model.provider,
                 onclose: opts => {
                     if ( opts ) {
+                        /* skip last '/' for owncloud */
+                        if ( opts.provider == 'ownc' ) {
+                            opts.portal.endsWith('/') &&
+                                (opts.portal = opts.portal.slice(0,-1));
+                        }
+
                         opts.type = 'outer';
                         sdk.execCommand("auth:outer", JSON.stringify(opts));
                     }
