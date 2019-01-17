@@ -122,6 +122,10 @@ window.DialogConnect = function(params) {
             return;
         }
 
+        /* skip last '/' for owncloud */
+        if ( provider == 'ownc' )
+            portal.endsWith('/') && (portal = portal.slice(0,-1));
+
         _disable_dialog(true);
 
         // portal += config.portals.checklist[farm];
