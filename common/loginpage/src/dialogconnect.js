@@ -123,8 +123,12 @@ window.DialogConnect = function(params) {
         }
 
         /* skip last '/' for owncloud */
-        if ( provider == 'ownc' )
+        if ( provider == 'ownc' ) {
             portal.endsWith('/') && (portal = portal.slice(0,-1));
+        }
+        if ( provider == 'ownc' || provider == 'nextc' ) {
+            portal.endsWith('/index.php/login') && (portal = portal.slice(0,-16));
+        }
 
         _disable_dialog(true);
 
