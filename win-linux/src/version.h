@@ -52,7 +52,7 @@
 #define VER_PRODUCTVERSION_STR      VER_STRING_SHORT
 
 #define VER_COMPANYNAME_STR         "Ascensio System SIA\0"
-#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2018\0"
+#define VER_LEGALCOPYRIGHT_STR      "Ascensio System SIA 2019\0"
 #define VER_COMPANYDOMAIN_STR       "www.onlyoffice.com\0"
 #define ABOUT_COPYRIGHT_STR         VER_LEGALCOPYRIGHT_STR
 #define VER_FILEDESCRIPTION_STR     "ONLYOFFICE Desktop Editors\0"

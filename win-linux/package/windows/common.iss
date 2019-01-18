@@ -55,7 +55,7 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 #ifdef ISPPCC_INVOKED
-SignTool                  =byparam $p
+;SignTool                  =byparam $p
 #endif
 
 [Languages]
