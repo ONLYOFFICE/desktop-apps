@@ -52,22 +52,19 @@ CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 class CParentDisable
 {
 private:
-    QWidget* m_pChild;
+    QWidget* m_pChild = nullptr;
 public:
     CParentDisable(QWidget* parent)
     {
-        if (!parent)
+        if (parent)
         {
-            m_pChild = NULL;
-            return;
+            m_pChild = new QWidget(parent);
+            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
+            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
+            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+            m_pChild->show();
         }
-
-        m_pChild = new QWidget(parent);
-        m_pChild->setGeometry(0, 0, parent->width(), parent->height());
-        m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
-        m_pChild->setAttribute(Qt::WA_NoSystemBackground);
-        m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-        m_pChild->show();
     }
     ~CParentDisable()
     {
