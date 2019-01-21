@@ -553,7 +553,7 @@ l10n.fr = {
     loginNoteAssignPhone: 'L\'authentification à deux facteurs est activée pour fournir une sécurité de ONLYOFFICE cloud supplémentaire. Entrez votre numéro de téléphone portable pour continuer à travailler sur le bureau cloud. Le numéro de téléphone portable doit être entré en utilisant un format international avec le code du pays.',
     loginNoteApplyCode: 'L\'authentification à deux facteurs est activée. Le code a été envoyé au $1.',    
     newDoc: 'DOCUMENT',
-    newXlsx: 'TABLEUR',
+    newXlsx: 'CLASSEUR',
     newPptx: 'PRESENTATION',
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
