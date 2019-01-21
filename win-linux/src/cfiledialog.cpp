@@ -45,9 +45,36 @@
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
 // because bug in cef - 'open/save dialog' doesn't open for second time
-#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
-//#define FILEDIALOG_DONT_USE_MODAL
+#if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
+#define FILEDIALOG_DONT_USE_MODAL
+#endif
 //
+class CParentDisable
+{
+private:
+    QWidget* m_pChild;
+public:
+    CParentDisable(QWidget* parent)
+    {
+        if (!parent)
+        {
+            m_pChild = NULL;
+            return;
+        }
+
+        m_pChild = new QWidget(parent);
+        m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+        m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
+        m_pChild->setAttribute(Qt::WA_NoSystemBackground);
+        m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+        m_pChild->show();
+    }
+    ~CParentDisable()
+    {
+        if (m_pChild)
+            m_pChild->deleteLater();
+    }
+};
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
@@ -141,6 +168,10 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 # endif
 #endif
 
+#ifndef _WIN32
+    CParentDisable oDisabler((QWidget *)parent());
+#endif
+
     while (true) {
         fileName = _exec_dialog(_parent, _croped_name, _filters, _sel_filter);
 
@@ -223,6 +254,10 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
             QFileDialog::DontUseNativeDialog;
 #else
             QFileDialog::Options();
+#endif
+
+#ifndef _WIN32
+    CParentDisable oDisabler((QWidget *)parent());
 #endif
 
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :

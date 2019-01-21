@@ -156,6 +156,14 @@ app_linux {
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
+
+isEqual(QT_MAJOR_VERSION, 5) {
+    lessThan(QT_MINOR_VERSION, 10) {
+        DEFINES += _QTVER_DOWNGRADE
+        message("QTVER_DOWNGRADE")
+    }
+}
+
 }
 
 
