@@ -115,13 +115,7 @@ INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-ifeq ($(PACKAGE_EDITION), cool)
-BILD_PATH := ../../../../core/build/linux_desktop/desktop$(DESKTOP_SUFFIX)/*
-PORTABLE_BILD_PATH := ../../../../core/build/linux_desktop/desktop_full_modern$(DESKTOP_SUFFIX)/*
-else
-BILD_PATH := ../../../../core/build/linux_desktop/desktop_full$(DESKTOP_SUFFIX)/*
-PORTABLE_BILD_PATH := $(BILD_PATH)
-endif
+BUILD_PATH := ../../../../core/build/linux_desktop/desktop$(DESKTOP_SUFFIX)/*
 
 TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
@@ -166,7 +160,7 @@ clean:
 
 desktopeditor:
 	mkdir -p $(PROGRAM_PATH)
-	cp -rf $(BILD_PATH) $(PROGRAM_PATH)
+	cp -rf $(BUILD_PATH) $(PROGRAM_PATH)
 
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
@@ -175,7 +169,7 @@ desktopeditor:
 	
 tar-desktopeditor:
 	mkdir -p $(TAR_PROGRAM_PATH)
-	cp -rf $(PORTABLE_BILD_PATH) $(TAR_PROGRAM_PATH)
+	cp -rf $(BUILD_PATH) $(TAR_PROGRAM_PATH)
 
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
