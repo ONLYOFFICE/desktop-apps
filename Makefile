@@ -168,6 +168,11 @@ endif
 	$(INSTALL_DIR) $(QT_PLUGINS)/imageformats $(DEST_DIR)
 	$(INSTALL_DIR) $(QT_PLUGINS)/mediaservice $(DEST_DIR)
 	$(INSTALL_DIR) $(QT_PLUGINS)/platforms $(DEST_DIR)
+	
+	if [ -d $(QT_PLUGINS)/platformthemes ]; then \
+		$(INSTALL_DIR) $(QT_PLUGINS)/platformthemes $(DEST_DIR); \
+	fi
+
 	$(INSTALL_DIR) $(QT_PLUGINS)/playlistformats $(DEST_DIR)
 	$(INSTALL_DIR) $(QT_PLUGINS)/printsupport $(DEST_DIR)
 
