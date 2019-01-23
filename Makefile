@@ -61,7 +61,7 @@ CORE_BIN_DIR := $(CORE_DIR)/bin/$(TARGET)
 CORE_LIB_DIR := $(CORE_DIR)/lib/$(TARGET)
 
 DICT_DIR := ../dictionaries
-WEBAPPS_DIR := ../web-apps-pro/deploy
+WEBAPPS_DIR ?= ../web-apps-pro/deploy
 UI_PLUGINS_DIR := ../desktop-sdk/ChromiumBasedEditors/plugins
 SDKJS_PLUGINS_DIR := ../sdkjs-plugins
 
@@ -133,8 +133,11 @@ ifeq ($(PLATFORM),win)
 	mv $(DEST_DIR)/DesktopEditors$(EXEC_EXT) $(DEST_DIR)/editors$(EXEC_EXT)
 	mv $(DEST_DIR)/projicons$(EXEC_EXT) $(DEST_DIR)/DesktopEditors$(EXEC_EXT)
 endif
-	
-	$(INSTALL_FILE) $(CORE_LIB_DIR)/HtmlFileInternal$(EXEC_EXT) $(DEST_DIR)
+
+	if [ -f $(CORE_LIB_DIR)/HtmlFileInternal$(EXEC_EXT)/ ]; then \
+		$(INSTALL_FILE) $(CORE_LIB_DIR)/HtmlFileInternal$(EXEC_EXT) $(DEST_DIR); \
+	fi
+
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ascdocumentscore$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ooxmlsignature$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)hunspell$(SHARED_EXT) $(DEST_DIR)
