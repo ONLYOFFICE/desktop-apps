@@ -453,8 +453,10 @@
 #pragma mark TouchBar
 
 - (NSTouchBar *)makeTouchBar {
-    if (_touchBarController) {
-        return [_touchBarController makeTouchBar];
+    if (@available(macOS 10.12.2, *)) {
+        if (_touchBarController) {
+            return [_touchBarController makeTouchBar];
+        }
     }
     return nil;
 }

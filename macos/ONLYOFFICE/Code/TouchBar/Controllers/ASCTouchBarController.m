@@ -119,36 +119,42 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
 // Used to invalidate the current NSTouchBar.
 - (void)invalidateTouchBar
 {
-    if (_viewController == nil) {
-        return;
+    if (@available(macOS 10.12.2, *)) {
+        if (_viewController == nil) {
+            return;
+        }
+
+        self.tabsScrubber = nil;
+
+        // We need to set the first responder status when one of our radio knobs was clicked.
+        [self.viewController.view.window makeFirstResponder:self.viewController.view];
+
+        // Set to nil so makeTouchBar can be called again to re-create our NSTouchBarItem instances.
+        self.viewController.touchBar = nil;
     }
-
-    self.tabsScrubber = nil;
-
-    // We need to set the first responder status when one of our radio knobs was clicked.
-    [self.viewController.view.window makeFirstResponder:self.viewController.view];
-    
-    // Set to nil so makeTouchBar can be called again to re-create our NSTouchBarItem instances.
-    self.viewController.touchBar = nil;
 }
 
 - (NSTouchBar *)makeTouchBar
 {
-    NSTouchBar *bar = [[NSTouchBar alloc] init];
-    bar.delegate = self;
-    
-    bar.customizationIdentifier = kScrubberCustomizationIdentifier;
-    
-    // Set the default ordering of items.
-    if (_tabs.count > 0) {
-        bar.defaultItemIdentifiers = @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
-    } else {
-        bar.defaultItemIdentifiers = @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+    if (@available(macOS 10.12.2, *)) {
+        NSTouchBar *bar = [[NSTouchBar alloc] init];
+        bar.delegate = self;
+
+        bar.customizationIdentifier = kScrubberCustomizationIdentifier;
+
+        // Set the default ordering of items.
+        if (_tabs.count > 0) {
+            bar.defaultItemIdentifiers = @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+        } else {
+            bar.defaultItemIdentifiers = @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+        }
+        //    bar.customizationAllowedItemIdentifiers = @[kScrubbedItemIdentifier];
+        //    bar.principalItemIdentifier = kScrubbedItemIdentifier;
+
+        return bar;
     }
-//    bar.customizationAllowedItemIdentifiers = @[kScrubbedItemIdentifier];
-//    bar.principalItemIdentifier = kScrubbedItemIdentifier;
-    
-    return bar;
+
+    return nil;
 }
 
 - (NSInteger)indexOf:(ASCTabView *)tab {
