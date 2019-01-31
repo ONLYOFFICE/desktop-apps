@@ -244,7 +244,7 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                 self.onItemTap(self.startPageButton, kStartPageButtonIdentifier);
             }
         }];
-        _startPageButton = [NSButton buttonWithTitle:[ASCHelper appName]
+        _startPageButton = [NSButton buttonWithTitle:[ASCHelper appNameShort]
                                                image:[NSImage imageNamed:@"touchbar-tab-startpage"]
                                               target:blockHolder
                                               action:@selector(invoke:)];

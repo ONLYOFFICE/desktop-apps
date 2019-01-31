@@ -53,4 +53,5 @@
 + (NSString *)licensePath;
 + (void)createCloudPath;
 + (NSString *)appName;
++ (NSString *)appNameShort;
 @end

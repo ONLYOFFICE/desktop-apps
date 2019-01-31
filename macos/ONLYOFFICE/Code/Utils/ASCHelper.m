@@ -145,4 +145,25 @@ static NSMutableDictionary * localSettings;
     }
 }
 
++ (NSString *)appNameShort {
+    id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
+
+    if (externalDelegate && [externalDelegate respondsToSelector:@selector(onApplicationNameShort)]) {
+        return [externalDelegate onApplicationNameShort];
+    } else {
+        CFBundleRef localInfoBundle = CFBundleGetMainBundle();
+        NSDictionary * localInfoDict = (NSDictionary *)CFBundleGetLocalInfoDictionary(localInfoBundle);
+
+        if (localInfoDict) {
+            NSString * productName = [localInfoDict objectForKey:@"CFBundleName"];
+
+            if (productName && productName.length > 0) {
+                return productName;
+            }
+        }
+
+        return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey];
+    }
+}
+
 @end
