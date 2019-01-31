@@ -1399,11 +1399,13 @@
         NSString * portalUrl = json[@"portal"];
         NSString * providerUrl = json[@"provider"];
 
-        if (portalUrl && portalUrl) {
+        if (portalUrl && providerUrl) {
             ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
             tab.title       = portalUrl;
             tab.type        = ASCTabViewPortal;
-            tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl]} mutableCopy];
+            tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl],
+                                 @"provider": @"asc"
+                                 } mutableCopy];
 
             [self.tabsControl addTab:tab selected:YES];
         }
