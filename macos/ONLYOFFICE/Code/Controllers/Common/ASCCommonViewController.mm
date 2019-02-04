@@ -619,12 +619,26 @@
 #pragma mark Internal
 
 - (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value {
-    if (param && value && value.length > 0) {
+    if (param && value && [value isKindOfClass:[NSString class]] && value.length > 0) {
         for (ASCTabView * tab in self.tabsControl.tabs) {
-            NSString * tabValue = tab.params[param];
-            
-            if (tabValue && tabValue.length > 0 && [tabValue isEqualToString:value]) {
-                return tab;
+            if (tab.params[param] && [tab.params[param] isKindOfClass:[NSString class]]) {
+                NSString * localTabValue = [NSString stringWithString:tab.params[param]];
+                NSString * localValue = [NSString stringWithString:value];
+
+                if (tab.params[@"isPortalPage"]) {
+                    if (NSString *provider = tab.params[@"provider"]) {
+                        if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                            localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
+                        }
+                    }
+                }
+
+                localTabValue = [localTabValue removeUrlQuery:@[@"lang", @"desktop"]];
+                localValue = [localValue removeUrlQuery:@[@"lang", @"desktop"]];
+
+                if (localTabValue && localTabValue.length > 0 && [localTabValue isEqualToString:localValue]) {
+                    return tab;
+                }
             }
         }
     }
@@ -1259,7 +1273,17 @@
                         if (NSString *infoString = json[@"info"]) {
                             if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
                                 if (NSString *originalUrl = [cefView originalUrl]) {
-                                    info[@"domain"] = [cefView originalUrl];
+                                    originalUrl = [[originalUrl stringByReplacingOccurrencesOfString:@"://" withString:@":////"]
+                                                   stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+
+                                    // Hotfix virtual path
+                                    if (NSString *provider = tab.params[@"provider"]) {
+                                        if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                                            originalUrl = [originalUrl stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
+                                        }
+                                    }
+                                    originalUrl = [originalUrl virtualUrl];
+                                    info[@"domain"] = originalUrl;
 
                                     if (NSString * jsonString = [info jsonString]) {
                                         NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
@@ -1270,6 +1294,9 @@
                                         pEvent->m_pData = pCommand;
 
                                         [self.cefStartPageView apply:pEvent];
+
+                                        // Hotfix for SSO
+                                        tab.params[@"url"] = info[@"domain"];
                                     }
                                 }
                             }
@@ -1290,11 +1317,13 @@
             
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
-            
+
+            NSString *logoutVirtualUrl = [url virtualUrl];
+
             for (ASCTabView * tab in self.tabsControl.tabs) {
-                NSString * tabUrl = tab.params[@"url"];
+                NSString * tabVirtualUrl = [tab.params[@"url"] virtualUrl];
                 
-                if (tabUrl && tabUrl.length > 0 && [tabUrl rangeOfString:url].location != NSNotFound) {
+                if (tabVirtualUrl && tabVirtualUrl.length > 0 && [tabVirtualUrl rangeOfString:logoutVirtualUrl].location != NSNotFound) {
                     [portalTabs addObject:tab];
                     
                     if (tab.changed) {

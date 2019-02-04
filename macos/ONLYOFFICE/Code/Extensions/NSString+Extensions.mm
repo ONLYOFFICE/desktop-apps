@@ -118,4 +118,41 @@
     return [self stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]; // ¯\_(ツ)_/¯
 }
 
+- (NSString *)removeUrlQuery:(NSArray<NSString *> *)params {
+    if (NSURLComponents *components = [NSURLComponents componentsWithString:self]) {
+        NSMutableArray<NSURLQueryItem *> *newQueryItems = [[components queryItems] mutableCopy];
+
+        for (NSString *param in params) {
+            NSUInteger index = [newQueryItems indexOfObjectPassingTest:^BOOL(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                return [param isEqualToString:obj.name];
+            }];
+
+            if (NSNotFound != index) {
+                [newQueryItems removeObjectAtIndex:index];
+            }
+        }
+
+        if (newQueryItems.count < 1) {
+            components.query = nil;
+        } else {
+            components.queryItems = newQueryItems;
+        }
+        
+        components.fragment = nil;
+
+        return [components string];
+    }
+    return self;
+}
+
+- (NSString *)virtualUrl {
+    if (NSURLComponents *components = [NSURLComponents componentsWithString:self]) {
+        components.query = nil;
+        components.fragment = nil;
+        return [components string];
+    }
+
+    return self;
+}
+
 @end
