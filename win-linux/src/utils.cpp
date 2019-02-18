@@ -177,7 +177,6 @@ void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
-    qputenv("LD_PRELOAD", "");
     if ( _url.scheme() == "mailto" ) {
         system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
@@ -256,7 +255,6 @@ void Utils::openFileLocation(const QString& path)
         }
     }
 
-    qputenv("LD_PRELOAD", "");
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
