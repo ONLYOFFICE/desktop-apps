@@ -111,6 +111,7 @@ public:
     static void             sendCommandTo(QCefView * target, const wstring& cmd, const wstring& args = L"");
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(uint);
+    static bool             canAppClose();
 
     bool event(QEvent *event);
 private:

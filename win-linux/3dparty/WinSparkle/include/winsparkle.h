@@ -445,6 +445,11 @@ WIN_SPARKLE_API void __cdecl win_sparkle_check_update_with_ui_and_install();
 */
 WIN_SPARKLE_API void __cdecl win_sparkle_check_update_without_ui();
 
+/**
+
+*/
+WIN_SPARKLE_API bool __cdecl win_sparkle_is_processing();
+
 //@}
 
 #ifdef __cplusplus

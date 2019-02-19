@@ -303,6 +303,9 @@ void CMainPanel::pushButtonMaximizeClicked()
 
 void CMainPanel::pushButtonCloseClicked()
 {
+    if ( !AscAppManager::canAppClose() )
+        return;
+
     // if close doesn't act
     if (m_saveAction != 2 || m_saveAction != 3) {
         int _index_, _answ_;

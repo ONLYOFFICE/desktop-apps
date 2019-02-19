@@ -18,9 +18,14 @@
 #include "ctabundockevent.h"
 #include "clangater.h"
 #include "cdpichecker.h"
+#include "cmessage.h"
 
 #ifdef _WIN32
 #include "csplash.h"
+
+# ifdef _UPDMODULE
+   #include "3dparty/WinSparkle/include/winsparkle.h"
+# endif
 #endif
 
 
@@ -768,4 +773,19 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
 CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
 {
     return new CDpiChecker();
+}
+
+bool CAscApplicationManagerWrapper::canAppClose()
+{
+#ifdef Q_OS_WIN
+# ifdef _UPDMODULE
+    if ( win_sparkle_is_processing() ) {
+        CMessage mess(topWindow()->hWnd);
+        mess.setButtons({tr("Yes"), tr("No") + ":default"});
+        return mess.confirm(QObject::tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
+    }
+# endif
+#endif
+
+    return true;
 }
