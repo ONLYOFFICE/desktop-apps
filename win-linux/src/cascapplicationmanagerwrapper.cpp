@@ -717,15 +717,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _reg_user.setValue("locale", _lang_id);
 
                 CLangater::reloadTranslations(_lang_id);
-
-                CMainWindow * _window = nullptr;
-                for (auto const& w : m_vecWidows) {
-                    _window = reinterpret_cast<CMainWindow *>(w);
-
-                    if ( _window ) {
-                        _window->mainPanel()->loadStartPage();
-                    }
-                }
             }
         }
 

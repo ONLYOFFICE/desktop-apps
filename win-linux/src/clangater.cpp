@@ -220,6 +220,8 @@ void CLangater::reloadTranslations(const QString& lang)
         for ( auto t : getInstance()->m_intf->m_list ) {
             QCoreApplication::installTranslator(t);
         }
+
+        emit getInstance()->onLangChanged(lang);
     }
 }
 

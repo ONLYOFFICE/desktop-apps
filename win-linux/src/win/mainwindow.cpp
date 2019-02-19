@@ -140,7 +140,6 @@ CMainWindow::CMainWindow(QRect& rect) :
 
 #ifdef _UPDMODULE
     QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
-        win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
         win_sparkle_check_update_with_ui();
     });
 #endif
@@ -710,25 +709,31 @@ void CMainWindow::slot_mainPageReady()
 
     // skip updates for XP
     if ( osvi.dwMajorVersion > 5 ) {
-        QString _prod_name = WINDOW_NAME;
-
-        GET_REGISTRY_USER(_user)
-        if (!_user.contains("CheckForUpdates")) {
-            _user.setValue("CheckForUpdates", "1");
-        }
-
-        win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
-                                        _prod_name.toStdWString().c_str(),
-                                        QString(VER_FILEVERSION_STR).toStdWString().c_str());
-        win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
-        win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
-        win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
-        win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
-        win_sparkle_set_error_callback(&CMainWindow::updateError);
+        static bool _init = false;
+        if ( !_init ) {
+            _init = true;
 
-        win_sparkle_init();
+            QString _prod_name = WINDOW_NAME;
+
+            GET_REGISTRY_USER(_user)
+            if (!_user.contains("CheckForUpdates")) {
+                _user.setValue("CheckForUpdates", "1");
+            }
+
+            win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
+                                            _prod_name.toStdWString().c_str(),
+                                            QString(VER_FILEVERSION_STR).toStdWString().c_str());
+            win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+            win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
+
+            win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
+            win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
+            win_sparkle_set_error_callback(&CMainWindow::updateError);
+
+            win_sparkle_init();
+        }
 
         AscAppManager::sendCommandTo(0, "updates", "on");
         CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);

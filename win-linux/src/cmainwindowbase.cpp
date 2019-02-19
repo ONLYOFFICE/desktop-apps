@@ -1,10 +1,13 @@
 #include "cmainwindowbase.h"
 #include "cwindowbase.h"
 #include "ctabbar.h"
+#include "clangater.h"
 
 CMainWindowBase::CMainWindowBase()
 {
-
+    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
+        mainPanel()->loadStartPage();
+    });
 }
 
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
