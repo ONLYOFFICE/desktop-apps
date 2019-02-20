@@ -140,17 +140,8 @@ app_linux {
 
     DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gdk-2.0 gtkglext-1.0 atk cairo gtk+-unix-print-2.0
-
-    build_for_centos6 {
-        app_linux_64 {
-            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
-        }
-        app_linux_32 {
-            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux.so.2
-        }
-        message("build for centos6")
-    }
+    PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
+    LIBS += -lX11
 
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
