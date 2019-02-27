@@ -644,6 +644,7 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
     CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
     QString _filter = QString::fromStdWString(pData->get_Filter());
     QStringList _list;
+
     if ( _filter == "plugin" ) {
         _list = pData->get_IsMultiselect() ? dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN)) :
                             dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
@@ -652,7 +653,7 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
         _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
                             dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
     } else
-    if ( _filter == "any" ) {
+    if ( _filter == "any" || _filter == "*.*" ) {
         _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
     }
 
