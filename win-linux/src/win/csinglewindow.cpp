@@ -102,7 +102,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
 }
 
 CSingleWindow::CSingleWindow(const QRect& rect)
-    : CSingleWindow(rect, QString("ONLYOFFICE Editor"), new QCefView(0))
+    : CSingleWindow(rect, QString("ONLYOFFICE Editor"), AscAppManager::createViewer(nullptr))
 {
 }
 
@@ -569,7 +569,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
     }
 
     if ( !view ) {
-        QCefView * pMainWidget = new QCefView(centralWidget);
+        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
         pMainWidget->setObjectName( "mainPanel" );
         pMainWidget->setHidden(false);

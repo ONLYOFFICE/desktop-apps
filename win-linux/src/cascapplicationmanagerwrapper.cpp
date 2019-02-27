@@ -466,7 +466,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     CAscReporterData * pCreateData = reinterpret_cast<CAscReporterData *>(pData->get_Data());
     pData->put_Data(NULL);
 
-    QCefView * pView = new QCefView(NULL);
+    QCefView * pView = createViewer(NULL);
     pView->CreateReporter(this, pCreateData);
 
     QString _doc_name;
@@ -779,4 +779,11 @@ bool CAscApplicationManagerWrapper::canAppClose()
 #endif
 
     return true;
+}
+
+QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent)
+{
+    APP_CAST(_app);
+
+    return _app.m_private->createView(parent);
 }

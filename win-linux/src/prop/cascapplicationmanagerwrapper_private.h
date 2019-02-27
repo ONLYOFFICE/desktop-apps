@@ -48,6 +48,10 @@ public:
     void initializeApp() {}
     bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
     void applyStylesheets() {}
+    QCefView * createView(QWidget * parent)
+    {
+        return new QCefView(parent);
+    }
 };
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

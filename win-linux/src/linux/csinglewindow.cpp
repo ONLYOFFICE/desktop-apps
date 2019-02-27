@@ -159,7 +159,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
     }
 
     if ( !view ) {
-        QCefView * _view = new QCefView(mainPanel);
+        QCefView * _view = AscAppManager::createViewer(mainPanel);
         _view->Create(&AscAppManager::getInstance(), cvwtSimple);
 //        pMainWidget->setHidden(false);
 

@@ -10,7 +10,7 @@ using namespace NSEditorApi;
 
 CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
-    , m_pViewer(new QCefView(this))
+    , m_pViewer(AscAppManager::createViewer(this))
 {
 //    QGridLayout * _layout = new QGridLayout(this);
 //    setLayout(_layout);

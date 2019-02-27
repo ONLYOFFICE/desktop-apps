@@ -112,6 +112,7 @@ public:
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(uint);
     static bool             canAppClose();
+    static QCefView *       createViewer(QWidget * parent);
 
     bool event(QEvent *event);
 private:
