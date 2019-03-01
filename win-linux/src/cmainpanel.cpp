@@ -655,8 +655,7 @@ void CMainPanel::onLocalGetFile(int eventtype, void * d)
     } else
     if ( _filter == "any" || _filter == "*.*" ) {
         _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
-    } else
-    if ( _filter.startsWith("*.") ) {
+    } else {
         QString _sel_filter;
         _list = dlg.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _filter, &_sel_filter, pData->get_IsMultiselect());
     }
