@@ -35,6 +35,7 @@
 #include "common/Types.h"
 //#include "regex"
 
+#include <QProcess>
 #include <QDebug>
 using namespace NSEditorApi;
 
@@ -284,6 +285,20 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 
         break;
     }
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PROCESS: {
+        NSEditorApi::CAscExternalProcess* pData = (NSEditorApi::CAscExternalProcess*)event->m_pData;
+        QStringList arguments;
+        const std::vector<std::wstring>& srcArgs = pData->get_Arguments();
+
+        for (std::vector<std::wstring>::const_iterator iter = srcArgs.begin(); iter != srcArgs.end(); iter++)
+            arguments.append(QString::fromStdWString(*iter));
+
+        if (pData->get_Detached())
+            QProcess::startDetached(QString::fromStdWString(pData->get_Program()), arguments, QString::fromStdWString(pData->get_WorkingDirectory()));
+        else
+            QProcess::execute(QString::fromStdWString(pData->get_Program()), arguments);
+
+        break; }
     }
 
     RELEASEINTERFACE(event);
