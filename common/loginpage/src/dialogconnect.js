@@ -122,10 +122,9 @@ window.DialogConnect = function(params) {
             return;
         }
 
-        /* skip last '/' for owncloud */
-        if ( provider == 'ownc' ) {
-            portal.endsWith('/') && (portal = portal.slice(0,-1));
-        }
+        portal = portal.replace(/\/+$/i, '');
+
+        /* skip odd url parts for owncloud */       
         if ( provider == 'ownc' || provider == 'nextc' ) {
             portal.endsWith('/index.php/login') && (portal = portal.slice(0,-16));
         }
@@ -252,7 +251,9 @@ window.DialogConnect = function(params) {
             $el.get(0).showModal();
             $el.addClass('scaled');
             $el.on('close', _on_close_click);
-            $body.find('.newportal').on('click', e => {CommonEvents.fire("portal:create"); _close();});
+            $body.find('.newportal').one('click', e => {
+                setTimeout(t =>_close(), 0);
+            });
 
             setTimeout(()=>{$portal.focus();}, 50);
         },

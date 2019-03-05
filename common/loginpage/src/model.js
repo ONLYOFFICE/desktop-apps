@@ -33,12 +33,12 @@
 'use strict';
 
 var nCounter = 0;
-function Event(sender) {
+function ModelEvent(sender) {
     this._sender = sender;
     this._listeners = [];
 }
 
-Event.prototype = {
+ModelEvent.prototype = {
     attach : function (listener) {
         return this._listeners.push(listener);
     },
@@ -71,8 +71,8 @@ function Collection(attributes) {
     this.list = attributes.list;
 
     var _time = Date.now();
-    this.on_item_changed = function(model) {
-        this.events.changed.notify(model);
+    this.on_item_changed = function(model, value) {
+        this.events.changed.notify(model, value);
     }.bind(this);
 
     this.on_item_click = function(e) {
@@ -93,11 +93,11 @@ function Collection(attributes) {
     }.bind(this);
 
     this.events = {};
-    this.events.changed = new Event(this);
-    this.events.erased = new Event(this);
-    this.events.inserted = new Event(this);
-    this.events.click = new Event(this);
-    this.events.contextmenu = new Event(this);
+    this.events.changed = new ModelEvent(this);
+    this.events.erased = new ModelEvent(this);
+    this.events.inserted = new ModelEvent(this);
+    this.events.click = new ModelEvent(this);
+    this.events.contextmenu = new ModelEvent(this);
 };
 
 Collection.prototype.add = function(item) {    
@@ -138,7 +138,7 @@ function Model(attributes) {
 
     this.prefix = attr.prefix || 'asc-gen';
     this.uid = this.prefix + ++nCounter;
-    this.changed = new Event(this);
+    this.changed = new ModelEvent(this);
 };
 
 Model.prototype.set = function(key, value, opts) {

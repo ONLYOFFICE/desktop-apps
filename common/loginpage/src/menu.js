@@ -38,7 +38,7 @@ var Menu = function(args) {
 
     this.prefix = args.prefix || 'asc-gen';
     this.events = {};
-    this.events.itemclick = new Event(this);
+    this.events.itemclick = new ModelEvent(this);
 };
 
 Menu.prototype.init = function(parent) {
