@@ -51,8 +51,6 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
     if (reg_user.value("titlebar") == "custom" ||
             reg_system.value("titlebar") == "custom" )
         CX11Decoration::turnOff();
-    else
-        setWindowTitle(title);
 
     // adjust window size
     QRect _window_rect = geometry;
@@ -71,6 +69,7 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
+    setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
     setGeometry(_window_rect);
