@@ -80,7 +80,7 @@ CMainWindow::CMainWindow(QRect& rect) :
 {
     // adjust window size
     QRect _window_rect = rect;
-    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+    m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
@@ -177,8 +177,10 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     switch ( message )
     {
-    case WM_HOTKEY:
-        qDebug() << "key down";
+    case WM_DPICHANGED:
+        qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
+        break;
+
         break;
 
     case WM_KEYDOWN:

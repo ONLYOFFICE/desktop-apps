@@ -36,6 +36,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QSettings>
+#include <QStyle>
 #include "utils.h"
 
 CSplash * _splash;
@@ -48,14 +49,7 @@ CSplash::CSplash(const QPixmap &p, Qt::WindowFlags f)
 
 void CSplash::show(int scrnum)
 {
-    if (QApplication::desktop()->screenCount() > 1) {
-        GET_REGISTRY_USER(reg_user)
-
-        if (reg_user.contains("position")) {
-            move(QApplication::desktop()->screenGeometry(scrnum).center() - rect().center());
-        }
-    }
-
+    setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, size(), QApplication::desktop()->availableGeometry(scrnum)));
     QSplashScreen::show();
 }
 
@@ -64,14 +58,18 @@ void CSplash::showSplash()
     if ( !_splash ) {
         GET_REGISTRY_USER(reg_user)
 
-        int _scr_num = QApplication::desktop()->screenNumber( reg_user.value("position").toRect().topLeft() );
-        uchar _dpi_ratio = Utils::getScreenDpiRatio( _scr_num );
+        int _scr_num = -1;
+        _splash = new CSplash(QPixmap(), Qt::WindowStaysOnTopHint);
 
-        QPixmap _pixmap = _dpi_ratio > 1 ?
-            QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
+        if (QApplication::desktop()->screenCount() > 1) {
+            _scr_num = QApplication::desktop()->screenNumber( reg_user.value("position").toRect().topLeft() );
+            _splash->move(QApplication::desktop()->screenGeometry(_scr_num).center());
+        }
 
-        (_splash = new CSplash(_pixmap, Qt::WindowStaysOnTopHint))
-        ->show(_scr_num);
+        uchar _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
+
+        _splash->setPixmap(_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+        _splash->show(_scr_num);
     }
 }
 
@@ -83,4 +81,24 @@ void CSplash::hideSplash()
 
         delete _splash, _splash = NULL;
     }
+}
+
+uint CSplash::startupDpiRatio()
+{
+    if (_splash) {
+        return Utils::getScreenDpiRatioByHWND(_splash->winId());
+    } else {
+        QSplashScreen splash;
+
+        if (QApplication::desktop()->screenCount() > 1) {
+            GET_REGISTRY_USER(reg_user)
+
+            int _scr_num = QApplication::desktop()->screenNumber( reg_user.value("position").toRect().topLeft() );
+            splash.move(QApplication::desktop()->screenGeometry(_scr_num).center());
+        }
+
+        return Utils::getScreenDpiRatioByHWND(splash.winId());
+    }
+
+    return 1;
 }

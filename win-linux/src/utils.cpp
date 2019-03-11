@@ -307,6 +307,14 @@ unsigned Utils::getScreenDpiRatio(int scrnum)
     return (-1 == nScale) ? 1 : nScale;
 }
 
+unsigned Utils::getScreenDpiRatio(const QPoint& pt)
+{
+    QWidget _w;
+    _w.setGeometry(QRect(pt, QSize(10,10)));
+
+    return getScreenDpiRatioByHWND(_w.winId());
+}
+
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
 {
     unsigned int _dpi_x = 0;

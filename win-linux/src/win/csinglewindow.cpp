@@ -52,7 +52,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
 {
     // adjust window size
     QRect _window_rect = rect;
-    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+    m_dpiRatio = Utils::getScreenDpiRatio(_window_rect.topLeft());
 
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);

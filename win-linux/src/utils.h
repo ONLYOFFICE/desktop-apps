@@ -52,6 +52,7 @@ public:
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
+    static unsigned getScreenDpiRatio(const QPoint&);
     static unsigned getScreenDpiRatioByHWND(int);
     static unsigned getScreenDpiRatioByWidget(QWidget*);
     static QString replaceBackslash(QString&);
