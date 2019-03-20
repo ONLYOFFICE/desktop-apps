@@ -4,6 +4,10 @@
 #include <QDesktopWidget>
 #include <QScreen>
 
+#ifdef __linux
+# include <QX11Info>
+#endif
+
 #include "applicationmanager.h"
 
 class CDpiChecker : public CAscDpiChecker
@@ -24,11 +28,23 @@ public:
         QScreen * _screen;
         if (nScreenNumber >=  0 && nScreenNumber < QApplication::screens().count())
             _screen = QApplication::screens().at(nScreenNumber);
-        else
+        else {
+            nScreenNumber = 0;
             _screen = QApplication::primaryScreen();
+        }
 
         int nDpiX = _screen->physicalDotsPerInchX();
         int nDpiY = _screen->physicalDotsPerInchY();
+
+#ifdef __linux
+        if ( QX11Info::isPlatformX11() ) {
+            int _x11_dpix = QX11Info::appDpiX(nScreenNumber),
+                _x11_dpiy = QX11Info::appDpiY(nScreenNumber);
+
+            if ( nDpiX < _x11_dpix ) nDpiX = _x11_dpix;
+            if ( nDpiY < _x11_dpiy ) nDpiY = _x11_dpiy;
+        }
+#endif
 
         QSize size = _screen->size();
         if (nDpiX > 150 && nDpiX < 180 && nDpiY > 150 && nDpiY < 180 && size.width() >= 3840 && size.height() >= 2160)
