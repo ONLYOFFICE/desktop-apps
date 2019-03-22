@@ -37,6 +37,7 @@
 
 #include <QWidget>
 #include <QMouseEvent>
+#include <QTimer>
 
 #define FORCE_LINUX_CUSTOMWINDOW_MARGINS
 
@@ -60,11 +61,13 @@ public:
     static int devicePixelRatio();
     static int customWindowBorderWith();
 
+    bool checkButtonState(Qt::MouseButton);
     int m_nDirection;
 
 private:
     QWidget * m_window;
     QWidget * m_title;
+    QTimer * m_motionTimer;
     ulong m_currentCursor;
     bool m_decoration;
     int m_nBorderSize;
@@ -77,6 +80,7 @@ private:
     int  hitTest(int x, int y) const;
     void checkCursor(QPoint & p);
     void switchDecoration(bool);
+    void sendButtonRelease();
 };
 
 class CX11Caption : public QWidget

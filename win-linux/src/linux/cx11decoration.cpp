@@ -41,6 +41,7 @@
 #include <gdk/gdkscreen.h>
 
 #define CUSTOM_BORDER_WIDTH 4
+#define MOTION_TIMER_MS 500
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
@@ -64,6 +65,7 @@ typedef struct {
 CX11Decoration::CX11Decoration(QWidget * w)
     : m_window(w)
     , m_title(NULL)
+    , m_motionTimer(nullptr)
     , m_currentCursor(0)
     , m_decoration(true)
     , m_nBorderSize(CUSTOM_BORDER_WIDTH)
@@ -76,6 +78,10 @@ CX11Decoration::CX11Decoration(QWidget * w)
 CX11Decoration::~CX11Decoration()
 {
     freeCursors();
+    if ( m_motionTimer ) {
+        m_motionTimer->deleteLater();
+        m_motionTimer = nullptr;
+    }
 }
 
 void CX11Decoration::setTitleWidget(QWidget * w)
@@ -198,12 +204,25 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
 {
     if (m_decoration) return;
 
+    if ( !m_motionTimer ) {
+        m_motionTimer = new QTimer;
+
+        QObject::connect(m_motionTimer, &QTimer::timeout, [=]{
+            if ( CX11Decoration::checkButtonState(Qt::LeftButton) ) {
+            } else {
+                m_motionTimer->stop();
+                sendButtonRelease();
+            }
+        });
+    }
+
     if (m_nDirection >= 0 && e->buttons() == Qt::LeftButton)
     {
         Display * xdisplay_ = QX11Info::display();
         Window x_root_window_ = DefaultRootWindow(xdisplay_);
 
         XUngrabPointer(xdisplay_, CurrentTime);
+        if ( !m_motionTimer->isActive() ) m_motionTimer->start(MOTION_TIMER_MS);
 
         XEvent event;
         memset(&event, 0, sizeof(event));
@@ -215,7 +234,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
         event.xclient.data.l[0] = e->globalPos().x();
         event.xclient.data.l[1] = e->globalPos().y();
         event.xclient.data.l[2] = m_nDirection;
-        event.xclient.data.l[3] = 0;
+        event.xclient.data.l[3] = Button1;
         event.xclient.data.l[4] = 0;
 
         XSendEvent(xdisplay_, x_root_window_, False, SubstructureRedirectMask | SubstructureNotifyMask, &event);
@@ -333,4 +352,45 @@ int CX11Decoration::customWindowBorderWith()
 void CX11Decoration::raiseWindow()
 {
     XRaiseWindow(QX11Info::display(), m_window->winId());
+}
+
+bool CX11Decoration::checkButtonState(Qt::MouseButton b)
+{
+    Display * xdisplay_ = QX11Info::display();
+    Window x_root_window_ = DefaultRootWindow(xdisplay_);
+
+    Window root_, child_;
+    int root_x, root_y, child_x, child_y;
+    uint mask;
+
+    Bool res = XQueryPointer(xdisplay_, x_root_window_, &root_, &child_,
+                                &root_x, &root_y, &child_x, &child_y, &mask);
+
+    if ( res ) {
+        if ( b == Qt::LeftButton)
+            return mask & Button1MotionMask;
+    }
+
+    return false;
+}
+
+void CX11Decoration::sendButtonRelease()
+{
+    Display * xdisplay_ = QX11Info::display();
+    Window x_root_window_ = DefaultRootWindow(xdisplay_);
+
+    XEvent event;
+    memset(&event, 0, sizeof(XEvent));
+
+    event.type = ButtonRelease;
+    event.xbutton.button = Button1;
+    event.xbutton.same_screen = True;
+
+//    event.xbutton.root = x_root_window_;
+//    event.xbutton.window = m_window->winId();
+
+    XQueryPointer(xdisplay_, x_root_window_, &event.xbutton.root, &event.xbutton.window,
+                        &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+    XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
+    XFlush(xdisplay_);
 }
