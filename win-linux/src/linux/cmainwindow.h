@@ -69,6 +69,7 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
+    void setScreenScalingFactor(uchar factor);
 private:
     CMainPanelImpl *   m_pMainPanel;
     uchar m_dpiRatio = 1;

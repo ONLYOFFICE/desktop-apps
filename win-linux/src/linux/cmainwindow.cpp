@@ -189,6 +189,9 @@ void CMainWindow::showEvent(QShowEvent * e)
 
 bool CMainWindow::event(QEvent * event)
 {
+    static bool _flg_motion = false;
+    static bool _flg_left_button = false;
+
     if (event->type() == QEvent::WindowStateChange) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
@@ -203,6 +206,23 @@ bool CMainWindow::event(QEvent * event)
         if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
             ((CMainPanel *)m_pMainPanel)->applyMainWindowState(Qt::WindowNoState);
         }
+    } else
+    if ( event->type() == QEvent::MouseButtonPress ) {
+        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
+    } else
+    if ( event->type() == QEvent::MouseButtonRelease ) {
+        if ( _flg_left_button && _flg_motion ) {
+            uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+
+            if ( dpi_ratio != m_dpiRatio )
+                setScreenScalingFactor(dpi_ratio);
+        }
+
+        _flg_left_button = _flg_motion = false;
+    } else
+    if ( event->type() == QEvent::Move ) {
+        if ( !_flg_motion )
+            _flg_motion = true;
     }
 
     return QMainWindow::event(event);
@@ -305,6 +325,27 @@ void CMainWindow::slot_windowClose()
     }
 
     AscAppManager::closeMainWindow( (size_t)this );
+}
+
+void CMainWindow::setScreenScalingFactor(uchar factor)
+{
+    QString css(AscAppManager::getWindowStylesheets(factor));
+
+    if ( !css.isEmpty() ) {
+        QRect _new_rect = geometry();
+        bool increase = factor > m_dpiRatio;
+        m_dpiRatio = factor;
+
+        m_pMainPanel->setStyleSheet(css);
+        m_pMainPanel->setScreenScalingFactor(factor);
+        setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
+
+        if ( increase ) {
+            _new_rect.setSize(_new_rect.size() * 2);
+        } else _new_rect.setSize(_new_rect.size() / 2);
+
+        setGeometry(_new_rect);
+    }
 }
 
 CMainPanel * CMainWindow::mainPanel() const

@@ -45,6 +45,7 @@ public:
 
     bool holdView(int id) const;
     QWidget * createMainPanel(bool, const QString&, QWidget *);
+    void setScreenScalingFactor(uchar factor);
 
 private:
     bool event(QEvent *event);

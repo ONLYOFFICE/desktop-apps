@@ -215,6 +215,9 @@ void CSingleWindow::mouseDoubleClickEvent(QMouseEvent *)
 
 bool CSingleWindow::event(QEvent * event)
 {
+    static bool _flg_motion = false;
+    static bool _flg_left_button = false;
+
     if (event->type() == QEvent::WindowStateChange) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
@@ -232,7 +235,44 @@ bool CSingleWindow::event(QEvent * event)
             m_btnMaximize->setProperty("class", "normal");
             m_btnMaximize->style()->polish(m_btnMaximize);
         }
+    } else
+    if ( event->type() == QEvent::MouseButtonPress ) {
+        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
+    } else
+    if ( event->type() == QEvent::MouseButtonRelease ) {
+        if ( _flg_left_button && _flg_motion ) {
+            uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+
+            if ( dpi_ratio != m_dpiRatio )
+                setScreenScalingFactor(dpi_ratio);
+        }
+
+        _flg_left_button = _flg_motion = false;
+    } else
+    if ( event->type() == QEvent::Move ) {
+        if ( !_flg_motion )
+            _flg_motion = true;
     }
 
     return QMainWindow::event(event);
+}
+
+void CSingleWindow::setScreenScalingFactor(uchar factor)
+{
+    QString css(AscAppManager::getWindowStylesheets(factor));
+
+    if ( !css.isEmpty() ) {
+        QRect _new_rect = geometry();
+        bool increase = factor > m_dpiRatio;
+        m_dpiRatio = factor;
+
+        m_pMainPanel->setStyleSheet(css);
+        setMinimumSize( WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor );
+
+        if ( increase ) {
+            _new_rect.setSize(_new_rect.size() * 2);
+        } else _new_rect.setSize(_new_rect.size() / 2);
+
+        setGeometry(_new_rect);
+    }
 }
