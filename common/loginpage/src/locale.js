@@ -355,7 +355,7 @@ l10n.de = {
     btnCreatePortal: 'ONLYOFFICE-Cloud erstellen',
     btnAddPortal: 'Cloud hinzufügen',
     btnLogin: 'Anmelden',
-    btnBrowse: 'Browsen',
+    btnBrowse: 'Durchsuchen',
     btnNext: 'Weiter',
     portalEmptyTitle: 'Stellen Sie eine Verbindung zu Ihrer Cloud her',
     portalEmptyDescr: 'Speichern Sie Ihre Dokumente in der Cloud und greifen Sie jederzeit und von überall darauf zu. Teilen und arbeiten Sie an Dokumenten zusammen. Chatten Sie in Echtzeit im Dokument, fügen Sie Kommentare hinzu oder teilen Sie es zur Überprüfung.',
