@@ -260,9 +260,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
+#ifdef _UPDMODULE
             if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
                 CMainWindow::checkUpdates();
             }
+#endif
 
             return true;
         }
