@@ -97,7 +97,6 @@ signals:
     void mainWindowChangeState(Qt::WindowState);
     void mainWindowClose();
     void mainPageReady();
-    void checkUpdates();
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -153,7 +152,6 @@ public slots:
     void onEditorAllowedClose(int);
 
     void onFileChecked(const QString&, int, bool);
-    void onCheckUpdates();
 
 protected:
     CAscTabWidget * m_pTabs;

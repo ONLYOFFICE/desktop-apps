@@ -78,6 +78,10 @@ public:
     bool isMaximized() const;
     WId handle() const override;
 
+#ifdef _UPDMODULE
+    static void checkUpdates();
+#endif
+
 private:
     void setScreenScalingFactor(uchar);
     void doClose();

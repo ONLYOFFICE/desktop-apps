@@ -137,12 +137,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
 
     m_pWinPanel->show();
-
-#ifdef _UPDMODULE
-    QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
-        win_sparkle_check_update_with_ui();
-    });
-#endif
 }
 
 CMainWindow::~CMainWindow()
@@ -757,6 +751,11 @@ void CMainWindow::updateNotFound()
 void CMainWindow::updateError()
 {
     CLogger::log("updates error");
+}
+
+void CMainWindow::checkUpdates()
+{
+    win_sparkle_check_update_with_ui();
 }
 #endif
 

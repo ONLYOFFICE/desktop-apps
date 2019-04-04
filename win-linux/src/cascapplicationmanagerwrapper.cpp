@@ -9,6 +9,7 @@
 #include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QProcess>
 
 #include "cstyletweaks.h"
 #include "defines.h"
@@ -31,6 +32,8 @@
 
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = dynamic_cast<CAscApplicationManagerWrapper &>(getInstance());
+
+#define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
 using namespace NSEditorApi;
 
@@ -127,7 +130,10 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 
     CAscCefMenuEvent * _event = static_cast<CAscCefMenuEvent *>(e);
 
-    if ( m_private->processEvent(_event) ) return;
+    if ( m_private->processEvent(_event) || processCommonEvent(_event) )  {
+        RELEASEINTERFACE(_event);
+        return;
+    }
 
     CMainWindow * _window, * _target = nullptr, * _dest = nullptr;
     int _uid = _event->get_SenderId();
@@ -161,130 +167,6 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         }
     }
 #endif
-
-    switch ( _event->m_nType ) {
-    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
-        locker.unlock();
-
-        CAscOnOpenExternalLink * pData = (CAscOnOpenExternalLink *)_event->m_pData;
-        Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
-
-        RELEASEINTERFACE(_event);
-        return; }
-
-    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
-        CAscExecCommand * pData = static_cast<CAscExecCommand *>(_event->m_pData);
-        std::wstring cmd = pData->get_Command();
-
-        if ( cmd.compare(L"portal:logout") == 0 ) {
-            broadcastEvent(_event);
-            return;
-        } else
-        if ( cmd.compare(0, 8, L"settings") == 0 ) {
-            if ( cmd.rfind(L"apply") != wstring::npos ) {
-                applySettings(pData->get_Param());
-            } else
-            if ( cmd.rfind(L"get") != wstring::npos ) {
-                sendSettings(pData->get_Param());
-            }
-
-            return;
-        }
-
-        break; }
-
-    case ASC_MENU_EVENT_TYPE_SSO_TOKEN: {
-//        CAscSSOToken * pData = (CAscSSOToken *)_event->m_pData;
-        return; }
-
-    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
-        CSingleWindow * pEditorWindow = createReporterWindow(_event->m_pData, _event->get_SenderId());
-#ifdef __linux
-        pEditorWindow->show();
-#else
-        pEditorWindow->show(false);
-        pEditorWindow->toggleBorderless(false);
-#endif
-
-        RELEASEINTERFACE(_event);
-        return; }
-
-    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
-        // close editor window
-        CAscTypeId * pData = (CAscTypeId *)_event->m_pData;
-        CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
-        if ( pWindow ) {
-            pWindow->hide();
-            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
-        }
-
-        RELEASEINTERFACE(_event);
-        return; }
-
-    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
-    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
-        CAscReporterMessage * pData = (CAscReporterMessage *)_event->m_pData;
-        CCefView * pView = GetViewById(pData->get_ReceiverId());
-        if ( pView ) {
-            pView->Apply(_event);
-        }
-        return; }
-    case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
-        this->Apply(_event);
-        return; }
-
-    case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-        CMainWindow * _window = mainWindowFromViewId(_event->get_SenderId());
-        if ( _window ) {
-            _window->sendSertificate(_event->get_SenderId());
-        }
-#endif
-        return; }
-    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
-        CSingleWindow * pWindow = editorWindowFromViewId(_event->get_SenderId());
-        if ( pWindow )
-            closeEditorWindow(size_t(pWindow));
-        break;
-    }
-
-    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
-        auto _send_plugins = [](IMenuEventDataBase * d){
-            CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(d);
-            QJsonObject _json_obj;
-            QJsonParseError jerror;
-            QJsonDocument jdoc;
-
-            for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
-                _json_obj["name"] = QString::fromStdWString(item.name);
-                _json_obj["id"] = QString::fromStdWString(item.id);
-                _json_obj["url"] = QString::fromStdWString(item.url);
-
-                if ( !item.nameLocale.empty() ) {
-                    jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
-
-                    if( jerror.error == QJsonParseError::NoError ) {
-                        QString _lang(CLangater::getCurrentLangCode());
-
-                        if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
-                            _json_obj["name"] = jdoc.object()[_lang].toString();
-                        }
-                    }
-                }
-
-                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
-            }
-        };
-
-        QTimer::singleShot(0, [=] {
-            _send_plugins(_event->m_pData);
-        });
-
-        return; }
-
-    default: break;
-    }
-
 
     for (auto const& w : m_vecWidows) {
         _window = reinterpret_cast<CMainWindow *>(w);
@@ -337,6 +219,164 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     } else {
         RELEASEINTERFACE(_event);
     }
+}
+
+bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuEvent * event)
+{
+    switch ( event->m_nType ) {
+    case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
+        event->AddRef();
+
+        SKIP_EVENTS_QUEUE([&event] () {
+            CAscOnOpenExternalLink * const pData = static_cast<CAscOnOpenExternalLink *>(event->m_pData);
+            Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
+
+            RELEASEINTERFACE(event);
+        });
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
+        CAscExecCommand * const pData = static_cast<CAscExecCommand * const>(event->m_pData);
+        std::wstring const & cmd = pData->get_Command();
+
+        if ( cmd.compare(L"portal:logout") == 0 ) {
+            broadcastEvent(event);
+
+//            RELEASEINTERFACE(event);
+            return true;
+        } else
+        if ( cmd.compare(0, 8, L"settings") == 0 ) {
+            if ( cmd.rfind(L"apply") != wstring::npos ) {
+                applySettings(pData->get_Param());
+            } else
+            if ( cmd.rfind(L"get") != wstring::npos ) {
+                sendSettings(pData->get_Param());
+            }
+
+//            RELEASEINTERFACE(event);
+            return true;
+        } else
+        if ( !(cmd.find(L"webapps:config") == std::wstring::npos) ) {
+            return true;
+        } else
+        if ( !(cmd.find(L"update") == std::wstring::npos) ) {
+            if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
+                CMainWindow::checkUpdates();
+            }
+
+            return true;
+        }
+
+        break; }
+
+    case ASC_MENU_EVENT_TYPE_SSO_TOKEN: {
+//        CAscSSOToken * pData = (CAscSSOToken *)_event->m_pData;
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
+        CSingleWindow * pEditorWindow = createReporterWindow(event->m_pData, event->get_SenderId());
+#ifdef __linux
+        pEditorWindow->show();
+#else
+        pEditorWindow->show(false);
+        pEditorWindow->toggleBorderless(false);
+#endif
+
+//        RELEASEINTERFACE(event);
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
+        // close editor window
+        CAscTypeId * pData = (CAscTypeId *)event->m_pData;
+        CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
+        if ( pWindow ) {
+            pWindow->hide();
+            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
+        }
+
+//        RELEASEINTERFACE(event);
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
+        CAscReporterMessage * pData = (CAscReporterMessage *)event->m_pData;
+        CCefView * pView = GetViewById(pData->get_ReceiverId());
+        if ( pView ) {
+            pView->Apply(event);
+        }
+        return true; }
+    case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
+        this->Apply(event);
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+        CMainWindow * _window = mainWindowFromViewId(_event->get_SenderId());
+        if ( _window ) {
+            _window->sendSertificate(_event->get_SenderId());
+        }
+#endif
+        return true; }
+    case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
+        CSingleWindow * pWindow = editorWindowFromViewId(event->get_SenderId());
+        if ( pWindow )
+            closeEditorWindow(size_t(pWindow));
+        break;
+    }
+
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
+        event->AddRef();
+
+        SKIP_EVENTS_QUEUE([&event] () {
+            CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(event->m_pData);
+            QJsonObject _json_obj;
+            QJsonParseError jerror;
+            QJsonDocument jdoc;
+
+            for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
+                _json_obj["name"] = QString::fromStdWString(item.name);
+                _json_obj["id"] = QString::fromStdWString(item.id);
+                _json_obj["url"] = QString::fromStdWString(item.url);
+
+                if ( !item.nameLocale.empty() ) {
+                    jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+                        QString _lang(CLangater::getCurrentLangCode());
+
+                        if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
+                            _json_obj["name"] = jdoc.object()[_lang].toString();
+                        }
+                    }
+                }
+
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
+            }
+
+            RELEASEINTERFACE(event);
+        });
+
+        return true; }
+
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PROCESS: {
+        CAscExternalProcess * pData = (CAscExternalProcess *)event->m_pData;
+        QStringList arguments;
+        const vector<wstring>& srcArgs = pData->get_Arguments();
+
+        for (auto & wstr: srcArgs)
+            arguments.append(QString::fromStdWString(wstr));
+
+        if (pData->get_Detached())
+            QProcess::startDetached(QString::fromStdWString(pData->get_Program()), arguments, QString::fromStdWString(pData->get_WorkingDirectory()));
+        else QProcess::execute(QString::fromStdWString(pData->get_Program()), arguments);
+
+//        RELEASEINTERFACE(event);
+        return true; }
+
+    default: break;
+    }
+
+    return false;
 }
 
 void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent * event)

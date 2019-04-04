@@ -1517,11 +1517,6 @@ void CMainPanel::updateScaling(int dpiratio)
     m_pTabs->setTabIcons(icons);
 }
 
-void CMainPanel::onCheckUpdates()
-{
-    emit checkUpdates();
-}
-
 void CMainPanel::setScreenScalingFactor(uchar s)
 {
     updateScaling(s);

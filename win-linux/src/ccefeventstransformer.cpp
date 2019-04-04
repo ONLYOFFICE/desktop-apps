@@ -207,8 +207,8 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         break;
 
     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
-        CAscExecCommand * pData = (CAscExecCommand *)event->m_pData;
-        std::wstring cmd = pData->get_Command();
+        CAscExecCommand * const pData = (CAscExecCommand *)event->m_pData;
+        const std::wstring& cmd = pData->get_Command();
 
         if (cmd.compare(L"portal:open") == 0) {
             QMetaObject::invokeMethod( target, "onPortalOpen", Qt::QueuedConnection,
@@ -260,10 +260,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
             bool isFragmented = pData->get_Param() == L"true" ? true : false;
             QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
-        } else
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {
-            if ( QString::fromStdWString(pData->get_Param()) == "check" )
-                QMetaObject::invokeMethod( target, "onCheckUpdates", Qt::QueuedConnection);
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
@@ -276,27 +272,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                 } else
                 if (cmd.find(L"app:localoptions") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onLocalOptions", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-                } else
-                if (cmd.find(L"app:buynow") != std::wstring::npos) {
-                    QMetaObject::invokeMethod( target, "onBuyNow", Qt::QueuedConnection );
                 }
 //            }
         }
-
-        break;
-    }
-    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PROCESS: {
-        NSEditorApi::CAscExternalProcess* pData = (NSEditorApi::CAscExternalProcess*)event->m_pData;
-        QStringList arguments;
-        const std::vector<std::wstring>& srcArgs = pData->get_Arguments();
-
-        for (std::vector<std::wstring>::const_iterator iter = srcArgs.begin(); iter != srcArgs.end(); iter++)
-            arguments.append(QString::fromStdWString(*iter));
-
-        if (pData->get_Detached())
-            QProcess::startDetached(QString::fromStdWString(pData->get_Program()), arguments, QString::fromStdWString(pData->get_WorkingDirectory()));
-        else
-            QProcess::execute(QString::fromStdWString(pData->get_Program()), arguments);
 
         break; }
     }

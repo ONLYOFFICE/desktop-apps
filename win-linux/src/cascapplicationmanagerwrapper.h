@@ -79,6 +79,7 @@ private:
     void OnNeedCheckKeyboard();
     int  GetPlatformKeyboardLayout();
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
+    bool processCommonEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const wstring& wstrjson);
     void sendSettings(const wstring& opts);
