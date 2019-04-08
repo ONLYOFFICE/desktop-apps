@@ -35,6 +35,7 @@ fr.AssociateDescription =Associer les types de fichiers de documents de bureau a
 es.AssociateDescription =Asociar los tipos de archivo de documentos office con {#ASSC_APP_NAME}
 it_IT.AssociateDescription =Associa tipi di file di documenti office con {#ASSC_APP_NAME}
 pl.AssociateDescription =Skojarz rodzaje plików dokumentów biurowych z {#ASSC_APP_NAME}
+zh_CN.AssociateDescription =关联office文档文件类型与{#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 pt_BR.AssociateCaption =Associações de arquivos
@@ -46,6 +47,7 @@ fr.AssociateCaption =Associations de fichiers
 es.AssociateCaption =Asociaciones de archivos
 it_IT.AssociateCaption =Associazioni dei file
 pl.AssociateCaption =Skojarzenia Plików
+zh_CN.AssociateCaption =文件关联
 
 en.AssociateDont =Do not associate
 pt_BR.AssociateDont =Não associar
@@ -57,6 +59,7 @@ fr.AssociateDont =Ne pas associer
 es.AssociateDont =No asociar
 it_IT.AssociateDont =Non associare
 pl.AssociateDont =Nie kojarz
+zh_CN.AssociateDont =不关联
 
 en.AssociateAll =Associate all
 pt_BR.AssociateAll =Associar todos
@@ -68,6 +71,7 @@ fr.AssociateAll =Associer tous
 es.AssociateAll =Asociar todo
 it_IT.AssociateAll =Associare tutto
 pl.AssociateAll =Skojarz wszystkie
+zh_CN.AssociateAll =全部关联
 
 en.AssociateSel =Associate selected
 pt_BR.AssociateSel =Associar selecionados
@@ -79,6 +83,7 @@ fr.AssociateSel =Associer sélectionnés
 es.AssociateSel =Asociar seleccionado
 it_IT.AssociateSel =Associare selezione
 pl.AssociateSel =Skojarz wybrane
+zh_CN.AssociateSel =关联选定内容
 
 en.AssociateAudio =File types
 pt_BR.AssociateAudio =Tipos de arquivo
@@ -90,6 +95,7 @@ fr.AssociateAudio =Types de fichiers
 es.AssociateAudio =Tipos de archivos
 it_IT.AssociateAudio =Tipi di file
 pl.AssociateAudio =Rodzaje plików
+zh_CN.AssociateAudio =文件类型
 
 en.extMSWord =Microsoft Word Document
 pt_BR.extMSWord =Documento Microsoft Word
@@ -101,6 +107,7 @@ fr.extMSWord =Document Microsoft Word
 es.extMSWord =Documento de Microsoft Word
 it_IT.extMSWord =Documento di Microsoft Word
 pl.extMSWord =Dokument Microsoft Word
+zh_CN.extMSWord =Microsoft Word文档
 
 en.extMSExcel =Microsoft Excel Workbook
 pt_BR.extMSExcel =Planilha Microsoft Excel
@@ -112,6 +119,7 @@ fr.extMSExcel =Classeur Microsoft Excel
 es.extMSExcel =Libro de Microsoft Excel
 it_IT.extMSExcel =Libro di Microsoft Excel
 pl.extMSExcel =Skoroszyt Microsoft Excel
+zh_CN.extMSExcel =Microsoft Excel工作簿
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 pt_BR.extMSPresentation =Apresentação Microsoft PowerPoint
@@ -123,6 +131,7 @@ fr.extMSPresentation =Présentation Microsoft PowerPoint
 es.extMSPresentation =Presentación de Microsoft PowerPoint
 it_IT.extMSPresentation =Presentazione di Microsoft PowerPoint
 pl.extMSPresentation =Prezentacja Microsoft PowerPoint
+zh_CN.extMSPresentation =Microsoft PowerPoint演示文稿
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 pt_BR.extMSSlideshow =Apresentações do PowerPoint da Microsoft
@@ -134,6 +143,7 @@ fr.extMSSlideshow =Diaporama Microsoft PowerPoint
 es.extMSSlideshow =Presentación de Microsoft PowerPoint
 it_IT.extMSSlideshow =Microsoft PowerPoint Slideshow
 pl.extMSSlideshow =Pokaz Slajdów Microsoft PowerPoint
+zh_CN.extMSSlideshow =Microsoft PowerPoint幻灯片
 
 en.extODT =OpenDocument Text Document
 pt_BR.extODT =Documento de Texto do OpenDocument
@@ -145,6 +155,7 @@ fr.extODT =Document OpenDocument Texte
 es.extODT =Documento de texto de OpenDocument
 it_IT.extODT =Documento di testo di OpenDocument
 pl.extODT =Dokument Tekstowy OpenDocument
+zh_CN.extODT =OpenDocument文本文件
 
 en.extODS =OpenDocument Spreadsheet
 pt_BR.extODS =Planilha do OpenDocument
@@ -156,6 +167,7 @@ fr.extODS =Classeur OpenDocument
 es.extODS =Hoja de cálculo de OpenDocument
 it_IT.extODS =OpenDocument Spreadsheet
 pl.extODS =Arkusz Kalkulacyjny OpenDocument
+zh_CN.extODS =OpenDocument电子表格
 
 en.extODP =OpenDocument Presentation
 pt_BR.extODP =Apresentação do OpenDocument
@@ -167,6 +179,7 @@ fr.extODP =Présentation OpenDocument
 es.extODP =Presentación de OpenDocument
 it_IT.extODP =Presentazione di OpenDocument
 pl.extODP =Prezentacja OpenDocument
+zh_CN.extODP =OpenDocument演示文稿
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 pt_BR.defprogAppDescription=Pacote office para desktop gratuito para edição e colaboração em documentos
@@ -178,6 +191,7 @@ fr.defprogAppDescription=Suite bureautique d'applications de bureau gratuite pou
 es.defprogAppDescription=Paquete desktop de oficina gratuito para edición de documentos y colaboración
 it_IT.defprogAppDescription=Suite gratuita per l'ufficio desktop per la modifica e la collaborazione in tempo reale di documenti
 pl.defprogAppDescription=Bezpłatny pakiet biurowy do edycji dokumentów i kolaboracji
+zh_CN.defprogAppDescription=用于文档编辑和协作的免费桌面办公套件
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 pt_BR.warnWin10FileAssociationDesc=Para associar os arquivos com o aplicativo, abra a seguinte janela após a instalação estar completa:
@@ -189,6 +203,7 @@ fr.warnWin10FileAssociationDesc=Pour associer les fichiers avec le logiciel apr�
 es.warnWin10FileAssociationDesc=Para asociar los archivos con la aplicación, abra la siguiente ventana una vez finalizada la instalación:
 it_IT.warnWin10FileAssociationDesc=Per associare i file all’applicazione, apri la seguente finestra al termine dell’installazione:
 pl.warnWin10FileAssociationDesc=Aby skojarzyć pliki z aplikacją, otwórz następujące okno po zakończeniu instalacji:
+zh_CN.warnWin10FileAssociationDesc=如需关联文件与应用程序，请在安装完成后打开以下窗口：
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 pt_BR.warnWin10FileAssociationPath=Configurações > Aplicativos > Aplicativos padrão
@@ -200,6 +215,7 @@ fr.warnWin10FileAssociationPath=Paramètres > Apps > Logiciels par défaut
 es.warnWin10FileAssociationPath=Ajustes > Aplicaciones > Aplicaciones predeterminadas
 it_IT.warnWin10FileAssociationPath=Impostazioni  > Apps > App predefinite
 pl.warnWin10FileAssociationPath=Ustawienia > Aplikacje > Domyślne aplikacje
+zh_CN.warnWin10FileAssociationPath=设置 > 应用 > 默认应用
 
 en.runOpenDefaultApps=Open Default apps
 pt_BR.runOpenDefaultApps=Abrir apps predefinidos
@@ -211,6 +227,7 @@ fr.runOpenDefaultApps=Ouvrir les applications par défaut
 es.runOpenDefaultApps=Abrir programas predeterminados
 it_IT.runOpenDefaultApps=Apri apps di Default
 pl.runOpenDefaultApps=Otwórz Domyślne aplikacje
+zh_CN.runOpenDefaultApps=打开默认应用
 
 [Run]
 Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \

@@ -1,0 +1,207 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@帮助";
+
+/* No comment provided by engineer. */
+"%@ Reporter Window" = "%@Reporter窗口";
+
+/* No comment provided by engineer. */
+"About %@" = "关于%@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "确认";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "在签名之前，您必须首先保存文档。";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "无法打开数字签名文件";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "无法打开私钥文件";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "无法打开文件位置的文件夹。";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "逗号分隔值";
+
+/* No comment provided by engineer. */
+"Create portal" = "创建门户";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "删除并退出";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu文件";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Do you want to save the changes made to the document \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "文档%ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "文档模板";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003电子表格";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007电子表格";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "无法打开文件。";
+
+/* No comment provided by engineer. */
+"File Format:" = "文件格式：";
+
+/* No comment provided by engineer. */
+"Hide %@" = "隐藏%@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "如果您不审阅文档，您所做的所有更改都将丢失。";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "如果您已经购买了%@，您可以在确认电子邮件中找到您的激活密钥。";
+
+/* No comment provided by engineer. */
+"License Agreement" = "许可协议";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket电子书";
+
+/* No comment provided by engineer. */
+"new-document" = "新文本文件";
+
+/* No comment provided by engineer. */
+"new-presentation" = "新建幻灯片";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "新建表格";
+
+/* No comment provided by engineer. */
+"No" = "否";
+
+/* No comment provided by engineer. */
+"OK" = "确定";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE无法打开该数字签名文件。请尝试打开另一个文件。";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE无法打开该私钥。请尝试打开另一个文件。";
+
+/* No comment provided by engineer. */
+"Opening" = "正在打开";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice文档";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice演示文稿";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice电子表格";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF文件";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A文件";
+
+/* No comment provided by engineer. */
+"Plain Text" = "纯文本";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003演示文稿";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007演示文稿";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint幻灯片放映";
+
+/* No comment provided by engineer. */
+"Preparing..." = "准备中...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "演示文稿%ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "演示文稿模板";
+
+/* No comment provided by engineer. */
+"Quit %@" = "退出%@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "审阅更改...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "RTF文档";
+
+/* No comment provided by engineer. */
+"Save" = "保存";
+
+/* No comment provided by engineer. */
+"Save the document?" = "保存该文件？";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "电子表格%ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "电子表格模板";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "感谢您对%@的评价！";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "The document \"%@\" must be built. Continue?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "您必须保存后才能打开文件位置。";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "未确认";
+
+/* No comment provided by engineer. */
+"Untitled" = "无标题";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "版本 %1$@ (%@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "网页";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003文档";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007文档";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML纸张规范";
+
+/* No comment provided by engineer. */
+"Yes" = "是";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "您的%ld %@文档包含未确认的更改。您是否要在退出之前审阅这些更改？";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "您已经成功激活%@。";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "如果不保存，您的更改都将丢失。";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "您的订阅已过期。\n\n该软件在非激活模式下工作。\n\n现在延长或升级订阅立享费率优惠。";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "您的订阅即将到期（剩余%d天）。\n\n我们为您提供特别优惠。";
+
