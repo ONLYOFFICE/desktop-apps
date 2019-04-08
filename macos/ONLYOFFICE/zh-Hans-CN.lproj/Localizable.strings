@@ -38,7 +38,7 @@
 "DjVu File" = "DjVu文件";
 
 /* No comment provided by engineer. */
-"Do you want to save the changes made to the document \"%@\"?" = "Do you want to save the changes made to the document \"%@\"?";
+"Do you want to save the changes made to the document \"%@\"?" = "您是否要保存对文档“%@”所做的更改？";
 
 /* No comment provided by engineer. */
 "Document %ld.docx" = "文档%ld.docx";
@@ -53,7 +53,7 @@
 "Excel 2007 Spreadsheet" = "Excel 2007电子表格";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+"File \"%@\" can not be open or not exist." = "文件“%@”无法打开或不存在。";
 
 /* No comment provided by engineer. */
 "File can not be open." = "无法打开文件。";
@@ -75,15 +75,6 @@
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket电子书";
-
-/* No comment provided by engineer. */
-"new-document" = "新文本文件";
-
-/* No comment provided by engineer. */
-"new-presentation" = "新建幻灯片";
-
-/* No comment provided by engineer. */
-"new-spreadsheet" = "新建表格";
 
 /* No comment provided by engineer. */
 "No" = "否";
@@ -161,9 +152,6 @@
 "Thank you for evaluating %@!" = "感谢您对%@的评价！";
 
 /* No comment provided by engineer. */
-"The document \"%@\" must be built. Continue?" = "The document \"%@\" must be built. Continue?";
-
-/* No comment provided by engineer. */
 "To open the file location, it must be saved." = "您必须保存后才能打开文件位置。";
 
 /* No comment provided by engineer. */
@@ -173,7 +161,7 @@
 "Untitled" = "无标题";
 
 /* No comment provided by engineer. */
-"Version %@ (%@)" = "版本 %1$@ (%@)";
+"Version %@ (%@)" = "版本 %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "网页";
@@ -191,17 +179,11 @@
 "Yes" = "是";
 
 /* No comment provided by engineer. */
-"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "您的%ld %@文档包含未确认的更改。您是否要在退出之前审阅这些更改？";
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "您的%1$ld %2$@文档包含未确认的更改。是否要在退出前审阅这些更改？";
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "您已经成功激活%@。";
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "如果不保存，您的更改都将丢失。";
-
-/* No comment provided by engineer. */
-"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "您的订阅已过期。\n\n该软件在非激活模式下工作。\n\n现在延长或升级订阅立享费率优惠。";
-
-/* No comment provided by engineer. */
-"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "您的订阅即将到期（剩余%d天）。\n\n我们为您提供特别优惠。";
 

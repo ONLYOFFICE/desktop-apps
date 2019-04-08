@@ -188,22 +188,8 @@
 "Your changes will be lost if you don’t save them." = "Le modifiche andranno perse se non si procede al salvataggio.";
 
 /* No comment provided by engineer. */
-"Your subscription has expired.
-
-The program works in the non-activated mode.
-
-Now you can prolong or upgrade your subscription with a discount." = "La tua iscrizione è scaduta.
-
-Il programma lavora in modalità non-attiva.
-
-Ora puoi prolungare o aggiornare l’iscrizione con uno sconto. ";
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "La tua iscrizione è scaduta.\n\nIl programma lavora in modalità non-attiva.\n\nOra puoi prolungare o aggiornare l’iscrizione con uno sconto. ";
 
 /* No comment provided by engineer. */
-"Your subscription is about to expire
-(%d days left).
-
-We have a special offer for you." = "La tua iscrizione sta per scadere 
-(%d giorni rimasti).
-
-Abbiamo un’offerta speciale per te ";
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "La tua iscrizione sta per scadere \n(%d giorni rimasti).\n\nAbbiamo un’offerta speciale per te ";
 

@@ -394,6 +394,17 @@
 		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefView.h; sourceTree = "<group>"; };
 		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefView.mm; sourceTree = "<group>"; };
+		FC9EA18D225B712D0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
+		FC9EA18E225B712D0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		FC9EA18F225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		FC9EA190225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/EULA.html"; sourceTree = "<group>"; };
+		FC9EA191225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FC9EA192225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/EULA.html"; sourceTree = "<group>"; };
+		FC9EA193225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FC9EA194225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FC9EA195225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		FC9EA196225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		FC9EA197225B712F0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleWindow.h; sourceTree = "<group>"; };
 		FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTitleWindow.m; sourceTree = "<group>"; };
 		FCA0B3501B9F002B0073EDD4 /* ASCTitleBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleBackground.h; sourceTree = "<group>"; };
@@ -1211,6 +1222,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ru,
@@ -1220,6 +1232,7 @@
 				"pt-BR",
 				it,
 				pl,
+				"zh-Hans-CN",
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -1545,6 +1558,7 @@
 				FC8B9869201612A00073D57C /* pt-BR */,
 				FC81D4C12035AE3D000FAA9D /* it */,
 				FCEC1A2E219EF1E700617DF3 /* pl */,
+				FC9EA191225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1560,6 +1574,7 @@
 				FC8B986C201612A00073D57C /* pt-BR */,
 				FC81D4C42035AE3E000FAA9D /* it */,
 				FCEC1A31219EF1E800617DF3 /* pl */,
+				FC9EA194225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1575,6 +1590,7 @@
 				FC8B98672016129F0073D57C /* pt-BR */,
 				FC81D4BF2035AE3D000FAA9D /* it */,
 				FCEC1A2B219EF1E500617DF3 /* pl */,
+				FC9EA18E225B712D0093CADF /* zh-Hans-CN */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -1590,6 +1606,7 @@
 				FC8B9868201612A00073D57C /* pt-BR */,
 				FC81D4C02035AE3D000FAA9D /* it */,
 				FCEC1A2D219EF1E700617DF3 /* pl */,
+				FC9EA190225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -1605,6 +1622,7 @@
 				FC8B986A201612A00073D57C /* pt-BR */,
 				FC81D4C22035AE3D000FAA9D /* it */,
 				FCEC1A2F219EF1E800617DF3 /* pl */,
+				FC9EA192225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -1620,6 +1638,7 @@
 				FC8B986B201612A00073D57C /* pt-BR */,
 				FC81D4C32035AE3D000FAA9D /* it */,
 				FCEC1A30219EF1E800617DF3 /* pl */,
+				FC9EA193225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1635,6 +1654,7 @@
 				FC8B986F201612A00073D57C /* pt-BR */,
 				FC81D4C72035AE3E000FAA9D /* it */,
 				FCEC1A34219EF1EC00617DF3 /* pl */,
+				FC9EA197225B712F0093CADF /* zh-Hans-CN */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -1650,6 +1670,7 @@
 				FC8B98662016129F0073D57C /* pt-BR */,
 				FC81D4BE2035AE3D000FAA9D /* it */,
 				FCEC1A2A219EF1E500617DF3 /* pl */,
+				FC9EA18D225B712D0093CADF /* zh-Hans-CN */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1665,6 +1686,7 @@
 				FC8B986E201612A00073D57C /* pt-BR */,
 				FC81D4C62035AE3E000FAA9D /* it */,
 				FCEC1A33219EF1EA00617DF3 /* pl */,
+				FC9EA196225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -1680,6 +1702,7 @@
 				FCDDD610208F3C2D008AF573 /* pt-BR */,
 				FCDDD612208F3C2E008AF573 /* it */,
 				FCEC1A2C219EF1E600617DF3 /* pl */,
+				FC9EA18F225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = "Document-Sign.storyboard";
 			sourceTree = "<group>";
@@ -1695,6 +1718,7 @@
 				FC8B986D201612A00073D57C /* pt-BR */,
 				FC81D4C52035AE3E000FAA9D /* it */,
 				FCEC1A32219EF1EA00617DF3 /* pl */,
+				FC9EA195225B712E0093CADF /* zh-Hans-CN */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

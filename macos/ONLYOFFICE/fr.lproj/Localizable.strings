@@ -188,22 +188,8 @@
 "Your changes will be lost if you don’t save them." = "Vos modifications seront perdues si vous ne les enregistrez pas.";
 
 /* No comment provided by engineer. */
-"Your subscription has expired.
-
-The program works in the non-activated mode.
-
-Now you can prolong or upgrade your subscription with a discount." = "Votre abonnement a expiré.
-
-Le programme fonctionne en mode non activé.
-
-Vous pouvez maintenant prolonger ou mettre à jour votre abonnement avec une réduction.";
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Votre abonnement a expiré.\n\nLe programme fonctionne en mode non activé.\n\nVous pouvez maintenant prolonger ou mettre à jour votre abonnement avec une réduction.";
 
 /* No comment provided by engineer. */
-"Your subscription is about to expire
-(%d days left).
-
-We have a special offer for you." = "Votre abonnement est sur le point d'expirer
-(%d jours restants).
-
-Nous vous proposons une offre spéciale.";
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Votre abonnement est sur le point d'expirer\n(%d jours restants).\n\nNous vous proposons une offre spéciale.";
 
