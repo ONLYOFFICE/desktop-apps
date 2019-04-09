@@ -227,11 +227,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
         event->AddRef();
 
-        SKIP_EVENTS_QUEUE([&event] () {
+        SKIP_EVENTS_QUEUE([event] () {
             CAscOnOpenExternalLink * const pData = static_cast<CAscOnOpenExternalLink *>(event->m_pData);
             Utils::openUrl( QString::fromStdWString(pData->get_Url()) );
 
-            RELEASEINTERFACE(event);
+            event->Release();
         });
         return true; }
 
@@ -313,9 +313,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
     case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-        CMainWindow * _window = mainWindowFromViewId(_event->get_SenderId());
+        CMainWindow * _window = mainWindowFromViewId(event->get_SenderId());
         if ( _window ) {
-            _window->sendSertificate(_event->get_SenderId());
+            _window->sendSertificate(event->get_SenderId());
         }
 #endif
         return true; }
@@ -327,36 +327,30 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     }
 
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_PLUGINS: {
-        event->AddRef();
+        CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(event->m_pData);
+        QJsonObject _json_obj;
+        QJsonParseError jerror;
+        QJsonDocument jdoc;
 
-        SKIP_EVENTS_QUEUE([&event] () {
-            CAscSystemExternalPlugins * pData = static_cast<CAscSystemExternalPlugins *>(event->m_pData);
-            QJsonObject _json_obj;
-            QJsonParseError jerror;
-            QJsonDocument jdoc;
+        for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
+            _json_obj["name"] = QString::fromStdWString(item.name);
+            _json_obj["id"] = QString::fromStdWString(item.id);
+            _json_obj["url"] = QString::fromStdWString(item.url);
 
-            for (const CAscSystemExternalPlugins::CItem& item: pData->get_Items()) {
-                _json_obj["name"] = QString::fromStdWString(item.name);
-                _json_obj["id"] = QString::fromStdWString(item.id);
-                _json_obj["url"] = QString::fromStdWString(item.url);
+            if ( !item.nameLocale.empty() ) {
+                jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
 
-                if ( !item.nameLocale.empty() ) {
-                    jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
+                if( jerror.error == QJsonParseError::NoError ) {
+                    QString _lang(CLangater::getCurrentLangCode());
 
-                    if( jerror.error == QJsonParseError::NoError ) {
-                        QString _lang(CLangater::getCurrentLangCode());
-
-                        if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
-                            _json_obj["name"] = jdoc.object()[_lang].toString();
-                        }
+                    if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
+                        _json_obj["name"] = jdoc.object()[_lang].toString();
                     }
                 }
-
-                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
             }
 
-            RELEASEINTERFACE(event);
-        });
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:external", Utils::encodeJson(_json_obj));
+        }
 
         return true; }
 
