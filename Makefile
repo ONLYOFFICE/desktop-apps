@@ -48,8 +48,6 @@ endif
 
 include win-linux/package/windows/Makefile.mk
 
-QT_3RDPARTY_LIBS ?= $(QT_LIBS)
-
 DEST_CONV_DIR = $(DEST_DIR)/converter
 DEST_EDITOR_DIR = $(DEST_DIR)/editors
 DEST_PLUGINS_DIR = $(DEST_EDITOR_DIR)/sdkjs-plugins
