@@ -1,7 +1,66 @@
+# 1.21.3
+
+ * Losslessly reduced the size of PNG (Barijaona Ramaholimihaso)
+ * Catch exceptions from subcommands (Julian Mayer)
+ * `generate_appcast` can sign any bundles instead of just apps (Nate Weaver)
+ * Check that effectiveAppearance is being observed before calling removeObserver (Pierluigi)
+
+# 1.21.2
+
+ * Allow EdDSA for delta updates, too (Kornel)
+ * Warning fixes (Brian Bergstrand)
+ * Improvements to release notes view context menu and dark mode (Bi11)
+
+# 1.21.0
+
+ * Added support EdDSA (ed25519) signatures (Kornel)
+    * DSA signatures are considered outdated, and Apple's `Security.framework` only supports weaker SHA-1-based DSA.
+    * Both old DSA and new EdDSA are still supported (and one app can use both), but new applications should use EdDSA only, and we recommend migrating away from DSA signatures.
+ * `generate_keys` is now a Swift tool that stores EdDSA private keys in the Keychain
+    * Existing apps can continue using their old DSA keys, but we've dropped support for generation of old DSA keys
+ * `sign_update` is now a Swift tool that signs using EdDSA from private keys in the Keychain
+    * The old DSA-based signing script has been moved to `bin/old_dsa_scripts`
+    * The old DSA-based signing script has been fixed to work on pre-10.13 systems (Thomas Tempelmann)
+ * `generate_appcast` has been updated to support EdDSA signatures
+    * It can sign both DSA (if `dsa_priv.pem` file is specified) and EdDSA (from Keychain)
+    * The tool now uses Caches directory and doesn't generate unnecessary delta files
+ * Fixed verification of delta updates on filesystems that change permissions of symlinks
+ * Fixed `NSURLSession` leak (Michael Ehrmann)
+
+# 1.20.0
+
+ * `generate_appcast` option to read private key directly from the keychain (Tamás Lustyik)
+ * Add delegate callbacks for fininshed download and extraction related events (Csaba Horony)
+ * Don't check for updates if Do Not Disturb is on (Kornel)
+ * Expose `CodesigningVerifier`, add codesign info API (sunuslee)
+ * Threading fixes:
+   * Fix potential hang with `dispatch_sync` to main thread (Brian Bergstrand)
+   * Fix closeCheckingWindow called from background thread (Alexey Martemyanov)
+ * Improve 'read-only' error message (#1192) (Adrian Thomas)
+ * New Spanish localisation (Ken Arroyo Ohori)
+ * Updated Finnish language resources (Jason Pollack)
+ * Hungarian localization (Csaba Horony)
+ * Log more information about authentication requests (Kornel)
+ * Explicitly specify types to silence "Messaging unqualified id" warning that's new in Xcode 10. Removed __has_feature(objc_generics) check and use generisc to help silence the warnings. (Kent Sutherland)
+ * Fix binary delta creation on network drives (sagecook)
+ * Fix compilation issues on Xcode 10 with new build system (Leo Natan)
+
+# 1.19.0
+
+ * Refactoring of downloader code to avoid deprecated methods (Deadpikle)
+ * Changes to which methods run on the main thread.
+   Note: some delegate methods may be called on non-main thread now. (Kornel)
+ * Update Japanese localization (1024jp)
+ * Update Sparkle.strings (Stefan Paychère)
+ * Fix Sparkle clients polling too frequently (Jonathan Bullard)
+ * Handle SecTransformExecute errors (Kornel)
+ * Silence Touch Bar availability warnings on Xcode 9 by using API_AVAILABLE. Disable gnu-zero-variadic-macro-arguments to prevent warnings from use of API_AVAILABLE. (Kent Sutherland)
+ * 10.11 SDK compatibility (David Fuhrmann)
+
 # 1.18.1
 
- * Add optional `updaterDidRelaunchApplication:` method on `SUUpdaterDelegate` (App Tyrant)
- * Implemented `sparkle:os` attribute as documented (Memphiz)
+ * Add optional updaterDidRelaunchApplication: method on SUUpdaterDelegate (#1115) (App Tyrant)
+ * Implemented sparkle:os attribute as documented (Memphiz)
  * Additional termination detection in case kpoll fails. (fujisoft)
  * Included bin files in CocoaPods installation (Keith Smiley)
  * Updated Dutch localization (Eitot)
