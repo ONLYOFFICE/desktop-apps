@@ -69,6 +69,7 @@ Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
 
 
 [CustomMessages]
@@ -559,6 +560,7 @@ Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir
 Source: ..\..\deploy\{#os_arch}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
 #endif
 
+Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#os_arch}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\Common\3dParty\icu\{#os_arch}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\build\*;           DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 
