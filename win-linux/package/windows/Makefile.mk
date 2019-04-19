@@ -35,8 +35,8 @@ PACKAGES += $(DESKTOP_EDITORS_ZIP)
 VCREDIST := win-linux/package/windows/data/vcredist/vcredist$(OS_ARCH).exe
 
 WINSPARKLE := win-linux/windows/data/winsparkle/WinSparkle.dll
-WINSPARKLE_URL := https://github.com/vslavik/winsparkle/releases/download/v0.6.0/WinSparkle-0.6.0.zip
-WINSPARKLE_ARCH := WinSparkle-0.6.0.zip
+WINSPARKLE_URL := https://github.com/ONLYOFFICE/winsparkle/releases/download/v0.7.0b/WinSparkle-0.7.0.zip
+WINSPARKLE_ARCH := WinSparkle-0.7.0.zip
 
 INDEX_HTML := win-linux/package/windows/index.html
 
