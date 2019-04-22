@@ -169,7 +169,11 @@ QString Utils::systemLocationCode()
 
     return QString::fromWCharArray(_country_code);
 #else
-    return QLocale().name().split('_').at(1);
+    QStringList list = QLocale().name().split('_');
+    if (list.size() < 2)
+        return "EN";
+
+    return list.at(1);
 #endif
 }
 
