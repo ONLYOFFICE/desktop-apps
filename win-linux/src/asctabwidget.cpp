@@ -282,6 +282,20 @@ int CAscTabWidget::count(int type) const
     }
 }
 
+bool CAscTabWidget::hasForPortal(const QString& portal)
+{
+    const wstring _wsp = portal.toStdWString();
+    for (int i(count()); i-- > 0; ) {
+        if ( panel(i)->data()->isViewType(cvwtEditor) &&
+                panel(i)->data()->url().find(_wsp) != wstring::npos )
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider)
 {
     if ( url.isEmpty() ) return -1;
@@ -985,7 +999,7 @@ bool CAscTabWidget::isFragmented(int index)
     if (!(index < 0) && index < count()) {
         CTabPanel * panel = (CTabPanel *)widget(index);
         CAscTabData * doc = panel->data();
-        return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
     }
     return false;
 }
@@ -1013,7 +1027,7 @@ bool CAscTabWidget::isProcessed(int index) const
         CTabPanel * panel = static_cast<CTabPanel *>(widget(index));
         CAscTabData * doc = panel->data();
 
-        return !doc->closed() && doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->IsBuilding();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->IsBuilding();
     }
 
     return false;

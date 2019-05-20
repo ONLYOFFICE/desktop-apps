@@ -385,7 +385,7 @@ void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent
         CCefEventsTransformer::OnEvent(_window->mainPanel(), event);
     }
 
-    RELEASEINTERFACE(event);
+//    RELEASEINTERFACE(event);
 }
 
 CAscApplicationManager & CAscApplicationManagerWrapper::getInstance()
