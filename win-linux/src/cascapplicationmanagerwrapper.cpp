@@ -56,18 +56,18 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-    CSingleWindow * _sw = nullptr;
-    for (auto const& w : m_vecEditors) {
-        _sw = reinterpret_cast<CSingleWindow *>(w);
+//    CSingleWindow * _sw = nullptr;
+//    for (auto const& w : m_vecEditors) {
+//        _sw = reinterpret_cast<CSingleWindow *>(w);
 
-        if ( _sw ) {
-#ifdef _WIN32
-            delete _sw, _sw = NULL;
-#else
-            _sw->deleteLater();
-#endif
-        }
-    }
+//        if ( _sw ) {
+//#ifdef _WIN32
+//            delete _sw, _sw = NULL;
+//#else
+//            _sw->deleteLater();
+//#endif
+//        }
+//    }
 
 
     CMainWindow * _window = nullptr;
@@ -84,7 +84,7 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
     }
 
     m_vecWidows.clear();
-    m_vecEditors.clear();
+//    m_vecEditors.clear();
 }
 
 int CAscApplicationManagerWrapper::GetPlatformKeyboardLayout()
@@ -289,11 +289,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
-        CAscTypeId * pData = (CAscTypeId *)event->m_pData;
-        CSingleWindow * pWindow = editorWindowFromViewId(pData->get_Id());
-        if ( pWindow ) {
-            pWindow->hide();
-            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
+        if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
+            AscAppManager::getInstance().DestroyCefView(event->get_SenderId());
         }
 
 //        RELEASEINTERFACE(event);
@@ -321,9 +318,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
         return true; }
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
-        CSingleWindow * pWindow = editorWindowFromViewId(event->get_SenderId());
-        if ( pWindow )
-            closeEditorWindow(size_t(pWindow));
+        if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
+            delete m_reporterWindow, m_reporterWindow = nullptr;
+            return true;
+        }
+
         break;
     }
 
@@ -521,11 +520,10 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         }
     }
 
-    CSingleWindow * _window = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    m_reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
 
-    m_vecEditors.push_back( size_t(_window) );
 
-    return _window;
+    return m_reporterWindow;
 }
 
 void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)

@@ -68,6 +68,8 @@ private:
     vector<QString> m_vecStyles2x;
     QMutex         m_oMutex;
 
+    CSingleWindow * m_reporterWindow = nullptr;
+
 private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
     void operator =(CAscApplicationManagerWrapper const&);

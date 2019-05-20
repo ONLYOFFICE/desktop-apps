@@ -616,10 +616,8 @@ void CSingleWindow::pushButtonCloseClicked()
         AscAppManager::getInstance().DestroyCefView(
                 ((QCefView *)m_pMainView)->GetCefView()->GetId() );
 
-        m_pMainView = nullptr;
+//        m_pMainView = nullptr;
     }
-
-    AscAppManager::closeEditorWindow( size_t(this) );
 }
 
 void CSingleWindow::pushButtonMinimizeClicked()
