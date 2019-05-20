@@ -303,52 +303,44 @@ void CMainPanel::pushButtonMaximizeClicked()
 
 void CMainPanel::pushButtonCloseClicked()
 {
-    if ( !AscAppManager::canAppClose() )
-        return;
+    emit mainWindowWantToClose();
+}
 
-    // if close doesn't act
-    if (m_saveAction != 2 || m_saveAction != 3) {
-        int _index_, _answ_;
+bool CMainPanel::closeAll()
+{
+    if ( !m_closeAct.isEmpty() ) return false;
 
-        while (true) {
-            // find a modified document
-            _index_ = m_pTabs->findModified();
-            if ( _index_ < 0 ) {
-                if ( (_index_ = m_pTabs->findProcessed()) < 0 ) {
-                    // no modified documents
-                    m_pTabs->closeAllEditors();
-                    QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
-                } else
-                if ( m_saveAction == 0 ) {
-                    qApp->processEvents();
-                    continue;
+    if ( m_pTabs->count() ) {
+        for (int i(m_pTabs->count()); !(--i < 0);) {
+            CTabPanel& _p = *m_pTabs->panel(i);
+            if ( _p.data()->modified() &&
+                    _p.data()->isViewType(cvwtEditor) )
+            {
+                if ( !_p.data()->closed() ) {
+                    int _answer = trySaveDocument(i);
+                    if ( _answer == MODAL_RESULT_NO ) {
+                        m_pTabs->editorCloseRequest(i);
+                        onDocumentSave(_p.cef()->GetId());
+                    } else
+                    if ( _answer == MODAL_RESULT_CANCEL ) {
+                        m_closeAct.clear();
+                        return false;
+                    }
                 }
-
-                break;
             } else {
-                if (m_mainWindowState == Qt::WindowMinimized)
-                    emit mainWindowChangeState(Qt::WindowNoState);
-
-                // attempt to save the modified document
-                _answ_ = trySaveDocument(_index_);
-
-                // deny saving
-                if ( _answ_ == MODAL_RESULT_NO ) {
-                    m_pTabs->closeEditorByIndex(_index_, false);
-                    continue;
-                } else
-                // saving in progress
-                if ( _answ_ == MODAL_RESULT_YES ) {
-                    m_saveAction = 2; // close portal
-                    m_savePortal = "";
-                    break;
-                } else
-                if ( _answ_ == MODAL_RESULT_CANCEL) {
-                    break;
-                }
+                m_pTabs->closeEditorByIndex(i);
             }
+
+            if ( m_closeAct.isEmpty() )
+                m_closeAct = "window";
         }
+
+        return true;
+    } else {
+        emit mainWindowDestroy();
     }
+
+    return true;
 }
 
 void CMainPanel::onAppCloseRequest()
@@ -452,9 +444,9 @@ void CMainPanel::onTabsCountChanged(int count, int i, int d)
 void CMainPanel::onEditorAllowedClose(int uid)
 {
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
-        if ( m_pTabs->count() ) {
-            m_pMainWidget->setProperty("removed", true);
-        }
+//        if ( m_pTabs->count() ) {
+//            m_pMainWidget->setProperty("removed", true);
+//        }
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
         if ( !(_index < 0) ) {
@@ -474,8 +466,15 @@ void CMainPanel::onEditorAllowedClose(int uid)
         }
     }
 
-    if ( !m_pTabs->count() && m_pMainWidget->property("removed") == true ) {
-        QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
+    if ( !m_closeAct.isEmpty() ) {
+        if ( m_closeAct.compare("window") == 0 ) {
+            if ( !m_pTabs->count() )
+                emit mainWindowDestroy();
+        } else
+        if ( !m_pTabs->hasForPortal(m_closeAct) ) {
+            doLogout(m_closeAct, true);
+            m_closeAct.clear();
+        }
     }
 }
 
@@ -500,15 +499,15 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
+    if ( !m_closeAct.isEmpty() ) return;
+
     if ( m_pTabs->isProcessed(index) ) {
         return;
-    } else
-    if ( !m_pTabs->isFragmented(index) ) {
-        if (trySaveDocument(index) == MODAL_RESULT_NO) {
-            m_pTabs->closeEditorByIndex(index, false);
-        }
     } else {
-        m_pTabs->editorCloseRequest(index);
+        if ( trySaveDocument(index) == MODAL_RESULT_NO ) {
+            m_pTabs->editorCloseRequest(index);
+            onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
+        }
     }
 }
 
@@ -569,34 +568,42 @@ void CMainPanel::doLogout(const QString& portal, bool allow)
 
 void CMainPanel::onPortalLogout(QString portal)
 {
-    if (m_saveAction > 1) return;
+    if (!m_closeAct.isEmpty()) return;
 
-    int _index_, _answ_;
-    bool _allow = true;
-    while (true) {
-        _index_ = m_pTabs->findModified(portal);
-        if ( _index_ < 0 ) {
-            break;
-        } else {
-            _answ_ = trySaveDocument(_index_);
+    if ( m_pTabs->count() ) {
+        const wstring & _wp = portal.toStdWString();
+        for (int i(m_pTabs->count()); !(--i < 0);) {
+            int _answer = MODAL_RESULT_NO;
 
-            if ( _answ_ == MODAL_RESULT_NO ) {
-                m_pTabs->closeEditorByIndex(_index_, false);
-                continue;
-            } else
-            if ( _answ_ == MODAL_RESULT_YES ) {
-                m_saveAction = 1; // close portal
-                m_savePortal = portal;
-                return;
-            } else
-            if ( _answ_ == MODAL_RESULT_CANCEL ) {
-                _allow = false;
-                break;
+            CAscTabData& _doc = *m_pTabs->panel(i)->data();
+            if (_doc.isViewType(cvwtEditor) && !_doc.closed() &&
+                    _doc.url().find(_wp) != wstring::npos)
+            {
+                if ( _doc.hasChanges() ) {
+                    _answer = trySaveDocument(i);
+                    if ( _answer == MODAL_RESULT_CANCEL) {
+                        m_closeAct.clear();
+
+                        doLogout(portal, false);
+                        return;
+                    }
+                }
+
+                if ( _answer != MODAL_RESULT_YES ) {
+                    m_pTabs->editorCloseRequest(i);
+                    onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                }
+
+                if ( m_closeAct.isEmpty() )
+                    m_closeAct = portal;
             }
         }
     }
 
-    doLogout(portal, _allow);
+    if ( m_closeAct.isEmpty() )
+        doLogout(portal, true);
+
+    return;
 }
 
 void CMainPanel::onPortalLogin(int vid, QString info)
@@ -960,19 +967,19 @@ void CMainPanel::onDocumentChanged(int id, bool changed)
 
 void CMainPanel::onDocumentSave(int id, bool cancel)
 {
-    m_pTabs->applyDocumentSave(id, cancel);
-
-    if (!cancel && m_saveAction != 0) {
-        if (m_saveAction == 1) {
-            m_saveAction = 0;
-            onPortalLogout(m_savePortal);
-        } else
-        if (m_saveAction == 2) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
+    int _i = m_pTabs->tabIndexByView(id);
+    if ( !(_i < 0) ) {
+        if ( !cancel ) {
+            if ( m_pTabs->closedByIndex(_i) &&
+                    !m_pTabs->isProcessed(_i) &&
+                        !m_pTabs->isFragmented(_i) )
+                {
+                    m_pTabs->closeEditorByIndex(_i);
+                }
+        } else {
+            m_pTabs->cancelDocumentSaving(_i);
+            m_closeAct.clear();
         }
-    } else {
-        m_saveAction = 0;
     }
 }
 
@@ -1008,43 +1015,36 @@ void CMainPanel::onDocumentDownload(void * info)
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 {
-    int index = m_pTabs->tabIndexByView(id), _answ;
-    if ( isfragmented ) {
-        if ( !(index < 0) ) {
-            static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
-            if ( _skip_user_warning ) {
-                m_pTabs->panel(index)->cef()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
-                return;
-            } else {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
-                _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
-                if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
-                    m_pTabs->panel(index)->cef()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
-                    return;
-                } else
-                if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
-                } else
-                if ( _answ == MODAL_RESULT_CUSTOM + 2 ) {
-                    m_saveAction = 0;
-                    m_pTabs->applyDocumentSave(id, true);
-                    return;
-                }
-            }
-        }
-    }
 
-    m_pTabs->applyDocumentSave(id, true);        // 'true' clears 'closed' doc status
-    _answ = trySaveDocument(index);
-    if ( _answ == MODAL_RESULT_NO ) {
-        m_pTabs->closeEditorByIndex(index, false);
-        if ( m_saveAction == 3 ) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
-        }
-    } else
-    if ( _answ == MODAL_RESULT_YES ) {
-        if ( m_saveAction == 3 )
-            m_saveAction = 2;
+    int index = m_pTabs->tabIndexByView(id);
+    if ( !(index < 0) ) {
+            int _answer = MODAL_RESULT_NO;
+            if ( isfragmented ) {
+                static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
+                if ( _skip_user_warning ) {
+                    qDebug() << "build document";
+                    m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
+                    return;
+                } else {
+//                    CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+//                    mess.setButtons(CMessageOpts::cmButtons::cmbYesDefNoCancel);
+//                    _answer = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
+//                    switch (_answer) {
+//                    case MODAL_RESULT_CUSTOM + 0:
+//                        m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
+//                        return;
+//                    case MODAL_RESULT_CUSTOM + 1: _answer == MODAL_RESULT_NO; break;
+//                    case MODAL_RESULT_CUSTOM + 2:
+//                    default:                      _answer = MODAL_RESULT_CANCEL; break;
+//                    }
+                }
+            } else {
+                onDocumentFragmentedBuild(id, 0);
+            }
+
+            if ( _answer == MODAL_RESULT_CANCEL ) {
+                m_closeAct.clear();
+            }
     }
 }
 
@@ -1052,15 +1052,10 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-        m_pTabs->closeEditorByIndex(index, false);
-
-        if ( m_saveAction == 3 ) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
-        }
+        if ( !m_closeAct.isEmpty() )
+            m_pTabs->closeEditorByIndex(index, false);
     } else {
-//        int index = m_pTabs->tabIndexByView(id);
-        m_pTabs->applyDocumentSave(index, true);
+        m_pTabs->cancelDocumentSaving(index);
     }
 }
 

@@ -133,8 +133,9 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
-    QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowDestroy, bind(&CMainWindow::slot_windowDestroy, this));
 
     m_pWinPanel->show();
 }
@@ -173,8 +174,6 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     {
     case WM_DPICHANGED:
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
-        break;
-
         break;
 
     case WM_KEYDOWN:
@@ -371,8 +370,8 @@ qDebug() << "WM_CLOSE";
             }
         }
 
-        break;
 #endif
+        break;
     }
 
     case WM_EXITSIZEMOVE: {
@@ -690,6 +689,11 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 void CMainWindow::slot_windowClose()
 {
     AscAppManager::closeMainWindow( size_t(this) );
+}
+
+void CMainWindow::slot_windowDestroy()
+{
+    AscAppManager::destroyMainWindow(size_t(this));
 }
 
 void CMainWindow::slot_mainPageReady()

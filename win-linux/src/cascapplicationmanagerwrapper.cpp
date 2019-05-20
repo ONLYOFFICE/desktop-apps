@@ -536,22 +536,49 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
     size_t _size = _app.m_vecWidows.size();
 
     if ( _size > 1 ) {
-        vector<size_t>::iterator it = _app.m_vecWidows.begin();
-        while ( it != _app.m_vecWidows.end() ) {
-            if ( *it == p && _app.m_vecWidows.size() ) {
-                CMainWindow * _w = reinterpret_cast<CMainWindow*>(*it);
+//        vector<size_t>::iterator it = _app.m_vecWidows.begin();
+//        while ( it != _app.m_vecWidows.end() ) {
+//            if ( *it == p && _app.m_vecWidows.size() ) {
+//                CMainWindow * _w = reinterpret_cast<CMainWindow*>(*it);
 
-                delete _w, _w = nullptr;
+//                delete _w, _w = nullptr;
 
-                _app.m_vecWidows.erase(it);
-                break;
-            }
+//                _app.m_vecWidows.erase(it);
+//                break;
+//            }
 
-            ++it;
-        }
+//            ++it;
+//        }
     } else
     if ( _size == 1 && _app.m_vecWidows[0] == p ) {
-        AscAppManager::getInstance().DestroyCefView(-1);
+        SKIP_EVENTS_QUEUE([p]{
+            if ( canAppClose() ) {
+                CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
+                if ( _w ) {
+                    _w->mainPanel()->closeAll();
+                }
+            }
+        });
+    }
+}
+
+void CAscApplicationManagerWrapper::destroyMainWindow(const size_t p)
+{
+    CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
+    if ( _w ) {
+        APP_CAST(_app);
+        auto & it = find(_app.m_vecWidows.begin(), _app.m_vecWidows.end(), p);
+        if ( it != _app.m_vecWidows.end() ) {
+            _app.m_vecWidows.erase(it);
+        }
+
+        if (_app.m_vecWidows.empty()) {
+            while (!_app.m_vecEditors.empty()) {
+                qApp->processEvents();
+            }
+        }
+
+        delete _w, _w = nullptr;
     }
 }
 

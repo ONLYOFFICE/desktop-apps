@@ -69,6 +69,7 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
+    bool closeAll();
     void loadStartPage();
     virtual void updateScaling(int);
 
@@ -95,8 +96,9 @@ private:
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
-    void mainWindowClose();
+    void mainWindowWantToClose();
     void mainPageReady();
+    void mainWindowDestroy();
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -157,6 +159,8 @@ protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
     bool            m_isCustomWindow;
+
+    QString m_closeAct;
 
 private:
     std::wstring    m_sDownloadName;

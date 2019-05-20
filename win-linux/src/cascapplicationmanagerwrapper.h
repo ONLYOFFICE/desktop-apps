@@ -115,6 +115,8 @@ public:
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
 
+    static void             destroyMainWindow(const size_t);
+
     bool event(QEvent *event);
 private:
     class CAscApplicationManagerWrapper_Private;

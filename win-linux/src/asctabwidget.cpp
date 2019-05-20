@@ -748,13 +748,13 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
     }
 }
 
-void CAscTabWidget::applyDocumentSave(int id, bool cancel)
+void CAscTabWidget::cancelDocumentSaving(int index)
 {
-    int tabIndex = tabIndexByView(id);
-    if (!(tabIndex < 0)) {
-        CAscTabData * doc = panel(tabIndex)->data();
-        if (doc->closed()) {
-            cancel ? doc->reuse() : closeEditor(tabIndex, false, true);
+    if ( !(index < 0) ) {
+        CAscTabData * doc = panel(index)->data();
+
+        if ( doc->closed() ) {
+            doc->reuse();
         }
     }
 }

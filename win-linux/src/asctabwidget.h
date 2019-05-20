@@ -202,7 +202,7 @@ public:
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
-    void applyDocumentSave(int, bool);
+    void cancelDocumentSaving(int index);
     void setDocumentWebOption(int, const QString&);
 
     int  openPortal(const QString& url, const QString& provider);
