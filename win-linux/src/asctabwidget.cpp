@@ -153,11 +153,14 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 #if defined(__APP_MULTI_WINDOW)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
         if ( m_dragIndex != index ) {
-            CTabUndockEvent event(widget(index));
-            QObject * obj = qobject_cast<QObject *>(
-                                static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
-            if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
-                    m_dragIndex = index;
+            CTabPanel * _panel = panel(index);
+            if ( _panel->data()->viewType() == cvwtEditor ) {
+                CTabUndockEvent event(_panel);
+                QObject * obj = qobject_cast<QObject *>(
+                                    static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+                if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
+                        m_dragIndex = index;
+                }
             }
         }
     });
@@ -212,7 +215,6 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
 
     if (res_open) {
         CAscTabData * data = new CAscTabData(opts.name);
-        data->setViewId(pView->cef()->GetId());
         data->setUrl(opts.wurl);
         data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
@@ -238,9 +240,9 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
         CTabPanel * view = (CTabPanel *)widget(i);
         CAscTabData * doc = view->data();
 
-        if (doc && (!m || !doc->changed())) {
+        if (doc && (!m || !doc->hasChanges())) {
             doc->close();
-            AscAppManager::getInstance().DestroyCefView(doc->viewId());
+            AscAppManager::getInstance().DestroyCefView(view->cef()->GetId());
 
 //            RELEASEOBJECT(view)
 
@@ -309,7 +311,6 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
     CAscTabData * data = new CAscTabData(portal, etPortal);
-    data->setViewId(pView->cef()->GetId());
     data->setUrl(_url);
     pView->setData(data);
 
@@ -350,7 +351,6 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
     QString _portal = portal.isEmpty() ? Utils::getPortalName(service) : Utils::getPortalName(portal);
 
     CAscTabData * data = new CAscTabData(_portal, etPortal);
-    data->setViewId(pView->cef()->GetId());
     data->setUrl(portal);
     pView->setData(data);
 
@@ -377,23 +377,6 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
     }
 
     return tabindex;
-}
-
-QWidget * CAscTabWidget::releaseEditor(int index)
-{
-    if ( index < 0 || index >= count() )
-        index = currentIndex();
-
-    if ( index < 0 )
-        return nullptr;
-    else {
-        QMouseEvent _event(QEvent::MouseButtonRelease,
-            tabBar()->tabRect(index).topLeft() + (QPoint(5, 5)),
-            Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-        QApplication::sendEvent( tabBar(), &_event);
-
-        return widget(index);
-    }
 }
 
 void CAscTabWidget::resizeEvent(QResizeEvent* e)
@@ -553,11 +536,8 @@ void CAscTabWidget::editorCloseRequest(int index)
 
 int CAscTabWidget::tabIndexByView(int viewId)
 {
-    CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = panel(i)->data();
-
-        if (doc && doc->viewId() == viewId)
+        if (panel(i)->cef()->GetId() == viewId)
             return i;
     }
 
@@ -583,8 +563,12 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
-        if (doc && doc->contentType() == et && doc->title() == t)
-            return i;
+        if (doc && doc->contentType() == et)
+            if (doc->title() == t ||
+                    (et == etPortal && doc->title().contains(t)))
+            {
+                return i;
+            }
     }
 
     return -1;
@@ -756,7 +740,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
         if (state && doc->closed()) doc->reuse();
         /**/
 
-        if (doc->changed() != state && (!doc->closed() || state)) {
+        if (doc->hasChanges() != state && (!doc->closed() || state)) {
             doc->setChanged(state);
             tabBar()->setTabText(tabIndex, doc->title());
             tabBar()->setTabToolTip(tabIndex, doc->title());
@@ -874,7 +858,7 @@ int CAscTabWidget::modifiedCount()
 
     for (int i = tabBar()->count(); i-- > 0; ) {
         doc = panel(i)->data();
-        doc->changed() && mod_count++;
+        doc->hasChanges() && mod_count++;
     }
 
     return mod_count;
@@ -903,12 +887,9 @@ QString CAscTabWidget::titleByIndex(int index, bool mod)
 
 QString CAscTabWidget::urlByView(int id)
 {
-    CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
-        doc = panel(i)->data();
-
-        if (doc && doc->viewId() == id)
-            return QString::fromStdWString(doc->url());
+        if (panel(i)->cef()->GetId() == id)
+            return QString::fromStdWString(panel(i)->data()->url());
     }
 
     return "";
@@ -918,7 +899,7 @@ bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
         CAscTabData * doc = panel(index)->data();
-        return doc->changed() && !doc->closed();
+        return doc->hasChanges() && !doc->closed();
     }
 
     return false;
@@ -951,7 +932,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
         doc = panel(i)->data();
 
         if (doc->isViewType(cvwtEditor) &&
-                doc->changed() && !doc->closed() &&
+                doc->hasChanges() && !doc->closed() &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos))
         {
             mapModified.insert(viewByIndex(i), titleByIndex(i, true));
@@ -971,7 +952,7 @@ int CAscTabWidget::findModified(const QString& portalname)
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
-            if ( doc->changed() ) {
+            if ( doc->hasChanges() ) {
                 return i;
             }
         }

@@ -31,7 +31,7 @@
 
 
 #define APP_CAST(app) \
-    CAscApplicationManagerWrapper & app = dynamic_cast<CAscApplicationManagerWrapper &>(getInstance());
+    CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(getInstance());
 
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
@@ -308,6 +308,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
         return true; }
     case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
+        event->AddRef();
         this->Apply(event);
         return true; }
 
@@ -630,7 +631,7 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
                 if ( _window->pointInTabs(c) ) {
                     _source->hide();
                     _window->attachEditor(
-                            _source->editorPanel(GET_CURRENT_PANEL), c );
+                            _source->getEditor(GET_CURRENT_PANEL), c );
 
                     closeMainWindow(s);
                     break;
@@ -651,10 +652,10 @@ CMainWindow * CAscApplicationManagerWrapper::topWindow()
 
 void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const QString& cmd, const QString& args)
 {
-    sendCommandTo(target, cmd.toStdWString(), args.toStdWString() );
+    sendCommandTo(target ? target->GetCefView() : nullptr, cmd.toStdWString(), args.toStdWString() );
 }
 
-void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const wstring& cmd, const wstring& args)
+void CAscApplicationManagerWrapper::sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args)
 {
     CAscExecCommandJS * pCommand = new CAscExecCommandJS;
     pCommand->put_Command(cmd);
@@ -664,12 +665,12 @@ void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const wstri
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
 
-    if ( target )
-        target->GetCefView()->Apply(pEvent); else
-        AscAppManager::getInstance().SetEventToAllMainWindows(pEvent);
+    if ( target ) {
+        if ( target->GetType() == cvwtEditor )
+            pCommand->put_FrameName(L"frameEditor");
 
-//    delete pCommand;
-//    delete pEvent;
+        target->Apply(pEvent);
+    } else AscAppManager::getInstance().SetEventToAllMainWindows(pEvent);
 }
 
 void CAscApplicationManagerWrapper::sendEvent(int type, void * data)

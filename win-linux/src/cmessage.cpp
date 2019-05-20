@@ -77,6 +77,16 @@ private:
     CMessage * m_mess;
 };
 
+#if defined(Q_OS_WIN)
+CMessage::CMessage(HWND p, CMessageOpts::moButtons b)
+#else
+CMessage::CMessage(QWidget * p, CMessageOpts::moButtons b)
+#endif
+    : CMessage(p)
+{
+    setButtons(b);
+}
+
 #if defined(_WIN32)
 CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
@@ -196,6 +206,17 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
     if (_btn_num > 2)
         m_centralWidget->setMinimumWidth(400*m_dpiRatio);
+}
+
+void CMessage::setButtons(CMessageOpts::moButtons btns)
+{
+    switch (btns) {
+    case CMessageOpts::moButtons::mbYesDefNo:       setButtons({QObject::tr("Yes")+":default", QObject::tr("No")}); break;
+    case CMessageOpts::moButtons::mbYesNo:          setButtons({QObject::tr("Yes"), QObject::tr("No")+":default"}); break;
+    case CMessageOpts::moButtons::mbYesNoCancel:    setButtons({QObject::tr("Yes"), QObject::tr("No"), QObject::tr("Cancel")+":default"}); break;
+    case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({QObject::tr("Yes")+":default", QObject::tr("No"), QObject::tr("Cancel")}); break;
+    default: break;
+    }
 }
 
 int CMessage::info(const QString& mess)

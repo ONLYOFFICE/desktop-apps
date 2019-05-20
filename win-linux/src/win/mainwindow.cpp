@@ -70,8 +70,8 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 
 CMainWindow::CMainWindow(QRect& rect) :
-    hWnd(0),
-    hInstance( GetModuleHandle(NULL) ),
+    hWnd(nullptr),
+    hInstance(GetModuleHandle(nullptr)),
     borderless( false ),
     borderlessResizeable( true ),
     closed( false ),
@@ -217,7 +217,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     // ALT + SPACE or F10 system menu
     case WM_SYSCOMMAND:
     {
-        if ( wParam == SC_KEYMENU )
+        if ( GET_SC_WPARAM(wParam) == SC_KEYMENU )
         {
 //            RECT winrect;
 //            GetWindowRect( hWnd, &winrect );
@@ -225,8 +225,9 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //            break;
             return 0;
         } else
-        if (wParam == SC_MAXIMIZE) {
+        if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
             qDebug() << "wm syscommand";
+            break;
         }
         else
         {
@@ -459,7 +460,7 @@ qDebug() << "WM_CLOSE";
             int nArgs;
             LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
 
-            if (szArglist != NULL) {
+            if (szArglist != nullptr) {
                 QStringList _in_args;
                 for(int i(1); i < nArgs; i++) {
                     _in_args.append(QString::fromStdWString(szArglist[i]));

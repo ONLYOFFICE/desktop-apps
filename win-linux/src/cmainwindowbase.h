@@ -16,7 +16,7 @@ public:
     virtual int attachEditor(QWidget *, const QPoint&);
     virtual bool pointInTabs(const QPoint& pt);
     virtual bool movedByTab();
-    virtual QWidget * editorPanel(int index);
+    virtual QWidget * getEditor(int index);
     virtual bool holdView(int id) const;
     virtual int editorsCount() const;
     virtual QString documentName(int vid);

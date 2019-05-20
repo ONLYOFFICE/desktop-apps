@@ -117,7 +117,7 @@ public slots:
     void onDocumentName(void *);
     void onDocumentOptions(int id, QString);
     void onDocumentChanged(int id, bool changed);
-    void onDocumentSave(int id, bool cancel);
+    void onDocumentSave(int id, bool cancel = false);
     void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
     void onDocumentLoadFinished(int);

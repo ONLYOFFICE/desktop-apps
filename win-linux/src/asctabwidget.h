@@ -150,7 +150,6 @@ public:
     void closeAllEditors();
     void closePortal(const QString&, bool editors = false);
     void setStyleSheet(const QString&);
-    QWidget * releaseEditor(int);
 
     using QTabWidget::count;
     int  count(int type) const;

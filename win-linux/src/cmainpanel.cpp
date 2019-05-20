@@ -520,8 +520,7 @@ int CMainPanel::trySaveDocument(int index)
     if ( m_pTabs->modifiedByIndex(index) ) {
         m_pTabs->setCurrentIndex(index);
 
-        CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-        mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+        CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
         modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
@@ -531,9 +530,7 @@ int CMainPanel::trySaveDocument(int index)
         case MODAL_RESULT_CUSTOM + 0:
         default:{
             m_pTabs->editorCloseRequest(index);
-
-            QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-            pView->GetCefView()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
+            m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
 
             modal_res = MODAL_RESULT_YES;
             break;}
@@ -1016,16 +1013,13 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
         if ( !(index < 0) ) {
             static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
             if ( _skip_user_warning ) {
-                QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-                pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+                m_pTabs->panel(index)->cef()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
                 return;
             } else {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-                mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
                 _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
                 if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
-                    QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-                    pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+                    m_pTabs->panel(index)->cef()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
                     return;
                 } else
                 if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {

@@ -59,9 +59,9 @@ bool CMainWindowBase::movedByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
-QWidget * CMainWindowBase::editorPanel(int index)
+QWidget * CMainWindowBase::getEditor(int index)
 {
-    return mainPanel()->tabWidget()->releaseEditor(index);
+    return mainPanel()->tabWidget()->panel(index);
 }
 
 bool CMainWindowBase::holdView(int id) const
