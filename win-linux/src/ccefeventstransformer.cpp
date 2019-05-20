@@ -257,6 +257,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
+        if ( !(cmd.find(L"editor:config") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( target, "onEditorConfig", Qt::QueuedConnection,
+                            Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()) );
+        } else
         if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
             bool isFragmented = pData->get_Param() == L"true" ? true : false;
             QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));

@@ -39,6 +39,8 @@
 #include <vector>
 #include <memory>
 #include "ccefeventstransformer.h"
+#include "ccefeventsgate.h"
+#include "ceditorwindow.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -68,6 +70,7 @@ private:
     vector<QString> m_vecStyles2x;
     QMutex         m_oMutex;
 
+    map<int, CCefEventsGate *> m_receivers;
     CSingleWindow * m_reporterWindow = nullptr;
 
 private:
@@ -87,7 +90,11 @@ private:
     void sendSettings(const wstring& opts);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
-    CSingleWindow * editorWindowFromViewId(int uid) const;
+    CEditorWindow * editorWindowFromViewId(int uid) const;
+
+public:
+    static void bindReceiver(int view_id, CCefEventsGate * const receiver);
+    static void unbindReceiver(int view_id);
 
 signals:
     void coreEvent(void *);
@@ -107,17 +114,23 @@ public:
     static CMainWindow *    createMainWindow(QRect&);
     static void             closeMainWindow(const size_t);
     static void             closeEditorWindow(const size_t);
+
     static void             processMainWindowMoving(const size_t, const QPoint&);
     static uint             countMainWindow();
     static CMainWindow *    topWindow();
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
+
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(uint);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
 
+    static void             destroyViewer(int id);
+    static void             destroyViewer(QCefView * v);
     static void             destroyMainWindow(const size_t);
+
+    void manageUndocking(int uid, const std::wstring& action);
 
     bool event(QEvent *event);
 private:

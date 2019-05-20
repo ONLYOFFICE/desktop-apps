@@ -43,7 +43,12 @@
 #define MAIN_WINDOW_BORDER_WIDTH 4
 #define WINDOW_TITLE_MIN_WIDTH 200
 #define TOOLBTN_HEIGHT      28
+#define TOOLBTN_WIDTH       40
 #define TITLE_HEIGHT        28
+
+#ifdef _WIN32
+# include <windows.h>
+#endif
 
 namespace WindowBase
 {

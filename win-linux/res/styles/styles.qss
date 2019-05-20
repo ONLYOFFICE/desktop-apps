@@ -36,6 +36,10 @@ QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
 QPushButton[act=tool] {
     /*background-origin: content;*/
     /*padding: 6px;*/
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius:0;
 }
 
 QPushButton[act=tool]:hover {

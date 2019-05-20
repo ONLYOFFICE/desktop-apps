@@ -57,7 +57,13 @@ HEADERS += \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/cdpichecker.h
+    $$PWD/src/cdpichecker.h \
+    $$PWD/src/csinglewindowbase.h \
+    $$PWD/src/ceditorwindow.h \
+    $$PWD/src/win/csinglewindowplatform.h \
+    $$PWD/src/ccefeventsgate.h \
+    $$PWD/src/ceditorwindow_p.h \
+    $$PWD/src/ceditortools.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -86,7 +92,12 @@ SOURCES += \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/cmainwindowbase.cpp \
-    $$PWD/src/ctabpanel.cpp
+    $$PWD/src/ctabpanel.cpp \
+    $$PWD/src/csinglewindowbase.cpp \
+    $$PWD/src/ceditorwindow.cpp \
+    $$PWD/src/win/csinglewindowplatform.cpp \
+    $$PWD/src/ccefeventsgate.cpp \
+    $$PWD/src/ceditortools.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
