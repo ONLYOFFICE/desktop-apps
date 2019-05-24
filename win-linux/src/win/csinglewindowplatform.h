@@ -15,6 +15,7 @@ public:
     CSingleWindowPlatform(const QRect&, const QString&, QWidget *);
     virtual ~CSingleWindowPlatform();
 
+    HWND handle() const;
     virtual void show(bool);
     virtual void hide();
     virtual bool visible();

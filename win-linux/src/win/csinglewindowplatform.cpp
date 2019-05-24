@@ -51,6 +51,11 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
     qDebug() << "destroy platform window";
 }
 
+HWND CSingleWindowPlatform::handle() const
+{
+    return m_hWnd;
+}
+
 LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     CSingleWindowPlatform * window = reinterpret_cast<CSingleWindowPlatform *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));

@@ -276,3 +276,8 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
         setGeometry(_new_rect);
     }
 }
+
+QWidget * CSingleWindow::handle() const
+{
+    return this;
+}

@@ -76,7 +76,7 @@ public:
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
-    WId handle() const override;
+    HWND handle() const;
 
 #ifdef _UPDMODULE
     static void checkUpdates();
