@@ -35,6 +35,7 @@ public slots:
 
     virtual void onEditorAllowedClose(int) = 0;
     virtual void onKeyDown(void *);
+    virtual void onFullScreen(int id, bool apply) = 0;
 };
 
 #endif // CCEFEVENTSGATE_H

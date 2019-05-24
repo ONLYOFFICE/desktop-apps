@@ -398,6 +398,12 @@ void CSingleWindowPlatform::setWindowState(Qt::WindowState state)
     }
 }
 
+void CSingleWindowPlatform::setWindowTitle(const QString& title)
+{
+    CSingleWindowBase::setWindowTitle(title);
+    SetWindowText(m_hWnd, title.toStdWString().c_str());
+}
+
 const QRect& CSingleWindowPlatform::geometry() const
 {
     return m_pMainPanel->geometry();

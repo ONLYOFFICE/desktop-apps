@@ -19,6 +19,7 @@ public:
     virtual const QObject * receiver() = 0;
     virtual Qt::WindowState windowState() = 0;
     virtual void setWindowState(Qt::WindowState) = 0;
+    virtual void setWindowTitle(const QString&);
 
 protected:
     uint m_dpiRatio;

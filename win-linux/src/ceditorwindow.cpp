@@ -46,7 +46,7 @@ CEditorWindow::CEditorWindow()
 }
 
 CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
-    : CSingleWindowPlatform(rect, QString(), panel)
+    : CSingleWindowPlatform(rect, panel->data()->title(), panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
@@ -95,6 +95,8 @@ bool CEditorWindow::holdView(int id) const
 
 int CEditorWindow::closeWindow()
 {
+    d_ptr.get()->onFullScreen(false);
+
     CTabPanel * panel = d_ptr.get()->panel();
 
     int _reply = MODAL_RESULT_YES;

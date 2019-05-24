@@ -66,16 +66,18 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        if ( window->m_labelTitle )
-            window->m_labelTitle->setText(m_panel->data()->title());
+        window->setWindowTitle(m_panel->data()->title());
+        window->m_boxTitleBtns->repaint();
     }
 
     void onDocumentChanged(int id, bool state) override
     {
-        CCefEventsGate::onDocumentChanged(id, state);
+        if ( panel()->data()->hasChanges() != state ) {
+            CCefEventsGate::onDocumentChanged(id, state);
 
-        if ( window->m_labelTitle )
-            window->m_labelTitle->setText(m_panel->data()->title());
+            window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
+        }
     }
 
     void onDocumentSave(int id, bool cancel = false) override
@@ -207,6 +209,72 @@ public:
 
         if ( btndock )
             btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+    }
+
+    void onFullScreen(bool apply)
+    {
+        if ( apply == panel()->windowState().testFlag(Qt::WindowFullScreen) )
+            return;
+
+        auto _break_demonstration = [&] {
+            CAscExecCommandJS * pCommand = new CAscExecCommandJS;
+            pCommand->put_Command(L"editor:stopDemonstration");
+
+            CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+            pEvent->m_pData = pCommand;
+            panel()->cef()->Apply(pEvent);
+        };
+
+        CTabPanel * _fs_widget = panel();
+        static QMetaObject::Connection cefConnection;
+        if (!apply) {
+            _break_demonstration();
+
+            window->show(false);
+
+            _fs_widget->showNormal();
+            window->m_pMainPanel->layout()->addWidget(_fs_widget);
+            window->recalculatePlaces();
+
+            disconnect(cefConnection);
+        } else {
+#ifdef _WIN32
+            _fs_widget->clearMask();
+            _fs_widget->setWindowIcon(Utils::appIcon());
+            _fs_widget->setParent(nullptr);
+            window->hide();
+#else
+//                m_dataFullScreen->parent = qobject_cast<QWidget *>(parent());
+//                QWidget * grandpa = qobject_cast<QWidget *>(m_dataFullScreen->parent->parent());
+//                if (grandpa) {
+//                    fsWidget->setParent(grandpa);
+//                    m_dataFullScreen->parent->hide();
+                }
+#endif
+            _fs_widget->showFullScreen();
+            _fs_widget->cef()->focus();
+
+            cefConnection = connect(_fs_widget->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
+                _break_demonstration();
+
+                e->ignore();
+                window->closeWindow();
+            });
+
+            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
+#ifdef _WIN32
+            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+#else
+
+//            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
+//            fsWidget->setGeometry(QRect(QPoint(0,0), _scr_rect.size()));
+#endif
+        }
+    }
+
+    void onFullScreen(int, bool apply) override
+    {
+        onFullScreen(apply);
     }
 
     QLabel * const iconUser()

@@ -62,6 +62,13 @@ void CSingleWindowBase::setScreenScalingFactor(int f)
     }
 }
 
+void CSingleWindowBase::setWindowTitle(const QString& title)
+{
+    if ( m_labelTitle ) {
+        m_labelTitle->setText(title);
+    }
+}
+
 //#include <QSvgRenderer>
 //#include <QPainter>
 QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget *)
