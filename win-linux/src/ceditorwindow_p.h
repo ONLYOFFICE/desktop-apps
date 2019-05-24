@@ -62,7 +62,7 @@ public:
         }
     }
 
-    void onDocumentName(void * data)
+    void onDocumentName(void * data) override
     {
         CCefEventsGate::onDocumentName(data);
 
@@ -70,7 +70,7 @@ public:
             window->m_labelTitle->setText(m_panel->data()->title());
     }
 
-    void onDocumentChanged(int id, bool state)
+    void onDocumentChanged(int id, bool state) override
     {
         CCefEventsGate::onDocumentChanged(id, state);
 
@@ -78,7 +78,7 @@ public:
             window->m_labelTitle->setText(m_panel->data()->title());
     }
 
-    void onDocumentSave(int id, bool cancel = false)
+    void onDocumentSave(int id, bool cancel = false) override
     {
         CCefEventsGate::onDocumentSave(id, cancel);
 
@@ -90,7 +90,7 @@ public:
         }
     }
 
-    void onDocumentSaveInnerRequest(int)
+    void onDocumentSaveInnerRequest(int) override
     {
         CMessage mess(parentWindow(), CMessageOpts::moButtons::mbYesDefNo);
         int reply = mess.confirm(QObject::tr("Document must be saved to continue.<br>Save the document?"));
@@ -104,7 +104,7 @@ public:
         m_panel->cef()->Apply(pEvent);
     }
 
-    void onDocumentFragmented(int id, bool needbuild)
+    void onDocumentFragmented(int id, bool needbuild) override
     {
         if ( needbuild ) {
 //            static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
@@ -115,7 +115,7 @@ public:
 
     }
 
-    void onDocumentFragmentedBuild(int id, int error)
+    void onDocumentFragmentedBuild(int id, int error) override
     {
         CCefEventsGate::onDocumentFragmentedBuild(id, error);
 
@@ -125,7 +125,7 @@ public:
         }
     }
 
-    void onDocumentPrint(int currentpage, uint pagescount)
+    void onDocumentPrint(int currentpage, uint pagescount) override
     {
         if ( isPrinting ) return;
         isPrinting = true;
@@ -183,13 +183,13 @@ public:
     }
 
 
-    void onEditorAllowedClose(int)
+    void onEditorAllowedClose(int) override
     {
         AscAppManager::unbindReceiver(m_panel->cef()->GetId());
         AscAppManager::closeEditorWindow(size_t(window));
     }
 
-    void onLocalFileSaveAs(void * d)
+    void onLocalFileSaveAs(void * d) override
     {
         window->onLocalFileSaveAs(d);
     }

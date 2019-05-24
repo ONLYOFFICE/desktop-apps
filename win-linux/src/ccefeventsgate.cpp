@@ -15,28 +15,14 @@ void CCefEventsGate::init(CTabPanel * const p)
     m_panel = p;
 }
 
-void CCefEventsGate::onPortalLogout(wstring portal)
-{
-    if ( m_panel && !portal.empty() ) {
-        if ( m_panel->data()->closed() &&
-                m_panel->data()->url().find(portal) != wstring::npos )
-        {
-            /*
-             * checck if changed,
-             * close window after save
-            */
-        }
-    }
-}
-
 void CCefEventsGate::onDocumentChanged(int, bool changed)
 {
     CAscTabData * doc = m_panel->data();
 
     /* TODO: if exists the saving error, sdk rise the changing event
-     * again. maybe not good action.
+     * again. maybe not a good action.
     */
-    if (changed && doc->closed()) doc->reuse();
+    if (doc->closed() && changed) doc->reuse();
     /**/
 
     if (doc->hasChanges() != changed && (!doc->closed() || changed)) {
@@ -76,14 +62,14 @@ void CCefEventsGate::onDocumentPrint(void * data)
     RELEASEINTERFACE(pData);
 }
 
-void CCefEventsGate::onKeyDown(void *)
-{
-
-}
-
 void CCefEventsGate::onDocumentFragmentedBuild(int, int error)
 {
     if ( error && m_panel->data()->closed() ) {
         m_panel->data()->reuse();
     }
+}
+
+void CCefEventsGate::onKeyDown(void *)
+{
+
 }

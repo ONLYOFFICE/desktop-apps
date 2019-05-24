@@ -89,7 +89,7 @@ private:
     void resizeEvent(QResizeEvent* event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void doLogout(const QString&, bool);
+    void doLogout(const wstring&, bool);
     int  trySaveDocument(int);
     void RecalculatePlaces();
 
@@ -128,7 +128,7 @@ public slots:
     void onDocumentFragmentedBuild(int, int);
 
     virtual void onDocumentPrint(void *);
-    void onFullScreen(bool apply, int id = -1);
+    void onFullScreen(int id, bool apply);
     void onKeyDown(void *);
 
     virtual void onLocalOptions(const QString&){}
@@ -139,11 +139,11 @@ public slots:
     virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
-    void onLocalFileLocation(int, QString);
+    void onFileLocation(int, QString);
     void onLocalGetFile(int eventtype, void *);
     void onPortalOpen(QString);
     void onPortalLogin(int, QString);
-    void onPortalLogout(QString);
+    void onPortalLogout(std::wstring portal);
     void onPortalNew(QString);
     void onPortalCreate();
     void onOutsideAuth(QString);

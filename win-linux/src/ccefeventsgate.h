@@ -21,7 +21,7 @@ protected:
     CTabPanel * m_panel = nullptr;
 
 public slots:
-    virtual void onPortalLogout(std::wstring portal);
+    virtual void onPortalLogout(std::wstring portal) = 0;
     virtual void onEditorConfig(int id, std::wstring cfg) = 0;
     virtual void onDocumentName(void *);
     virtual void onDocumentChanged(int id, bool changed);

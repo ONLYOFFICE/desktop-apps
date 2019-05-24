@@ -345,7 +345,7 @@ bool CMainPanel::closeAll()
 
 void CMainPanel::onAppCloseRequest()
 {
-    onFullScreen(false);
+    onFullScreen(-1, false);
     pushButtonCloseClicked();
 }
 
@@ -472,7 +472,7 @@ void CMainPanel::onEditorAllowedClose(int uid)
                 emit mainWindowDestroy();
         } else
         if ( !m_pTabs->hasForPortal(m_closeAct) ) {
-            doLogout(m_closeAct, true);
+            doLogout(m_closeAct.toStdWString(), true);
             m_closeAct.clear();
         }
     }
@@ -539,20 +539,19 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::doLogout(const QString& portal, bool allow)
+void CMainPanel::doLogout(const wstring& portal, bool allow)
 {
-    wstring wp = portal.toStdWString();
     wstring wcmd = L"portal:logout";
 
     if (allow) {
         m_pTabs->closePortal(portal, true);
-        AscAppManager::getInstance().Logout(wp);
+        AscAppManager::getInstance().Logout(portal);
     } else
         wcmd.append(L":cancel");
 
     CAscExecCommandJS * pCommand = new CAscExecCommandJS;
     pCommand->put_Command(wcmd);
-    pCommand->put_Param(wp);
+    pCommand->put_Param(portal);
 
     CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
@@ -561,18 +560,17 @@ void CMainPanel::doLogout(const QString& portal, bool allow)
     goStart();
 }
 
-void CMainPanel::onPortalLogout(QString portal)
+void CMainPanel::onPortalLogout(wstring portal)
 {
     if (!m_closeAct.isEmpty()) return;
 
     if ( m_pTabs->count() ) {
-        const wstring & _wp = portal.toStdWString();
         for (int i(m_pTabs->count()); !(--i < 0);) {
             int _answer = MODAL_RESULT_NO;
 
             CAscTabData& _doc = *m_pTabs->panel(i)->data();
             if (_doc.isViewType(cvwtEditor) && !_doc.closed() &&
-                    _doc.url().find(_wp) != wstring::npos)
+                    _doc.url().find(portal) != wstring::npos)
             {
                 if ( _doc.hasChanges() ) {
                     _answer = trySaveDocument(i);
@@ -590,7 +588,7 @@ void CMainPanel::onPortalLogout(QString portal)
                 }
 
                 if ( m_closeAct.isEmpty() )
-                    m_closeAct = portal;
+                    m_closeAct = QString::fromStdWString(portal);
             }
         }
     }
@@ -818,7 +816,7 @@ void CMainPanel::onLocalFileLocation(QString path)
     Utils::openFileLocation(path);
 }
 
-void CMainPanel::onLocalFileLocation(int uid, QString param)
+void CMainPanel::onFileLocation(int uid, QString param)
 {
     if ( param == "offline" ) {
         QString path = m_pTabs->urlByView(uid);
@@ -1073,7 +1071,7 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 
                     QString _url = objRoot["url"].toString();
                     if ( !_url.isEmpty() )
-                        onLocalFileLocation(vid, _url);
+                        onFileLocation(vid, _url);
                     else _is_local = true;
                 }
             }
@@ -1272,7 +1270,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onFullScreen(bool apply, int id)
+void CMainPanel::onFullScreen(int id, bool apply)
 {
     if ( apply ) {
         if ( m_mainWindowState != Qt::WindowFullScreen ) {
