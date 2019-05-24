@@ -124,14 +124,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 
-//    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START: deprecated
-    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
-        NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo *)event->m_pData;
-
-        ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onDocumentDownload", Qt::QueuedConnection, Q_ARG(void *, pData));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
         NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)event->m_pData;
 
