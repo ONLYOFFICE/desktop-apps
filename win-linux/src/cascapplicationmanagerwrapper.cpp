@@ -548,18 +548,26 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     pView->CreateReporter(this, pCreateData);
 
     QString _doc_name;
-    QRect _windowRect{100,100,1000,700};
+    QRect _windowRect{100,100,1000,700}, _currentRect;
     CMainWindow * _main_window = mainWindowFromViewId(parentid);
     if ( _main_window ) {
         _doc_name = _main_window->documentName(parentid);
+        _currentRect = _main_window->windowRect();
+    } else {
+        CEditorWindow * _window = editorWindowFromViewId(parentid);
 
-        if ( QApplication::desktop()->screenCount() > 1 ) {
-            int _scrNum = QApplication::desktop()->screenNumber(_main_window->windowRect().topLeft());
-            QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
-
-            _windowRect.setSize(QSize(1000,700));
-            _windowRect.moveCenter(_scrRect.center());
+        if ( _window ) {
+            _doc_name = _window->documentName();
+            _currentRect = _window->geometry();
         }
+    }
+
+    if ( QApplication::desktop()->screenCount() > 1 ) {
+        int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
+        QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
+
+        _windowRect.setSize(QSize(1000,700));
+        _windowRect.moveCenter(_scrRect.center());
     }
 
     m_reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);

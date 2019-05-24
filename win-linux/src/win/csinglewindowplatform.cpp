@@ -397,3 +397,8 @@ void CSingleWindowPlatform::setWindowState(Qt::WindowState state)
     default: ShowWindow(m_hWnd, IsZoomed(m_hWnd) || IsIconic(m_hWnd) ? SW_RESTORE : SW_NORMAL);
     }
 }
+
+const QRect& CSingleWindowPlatform::geometry() const
+{
+    return m_pMainPanel->geometry();
+}

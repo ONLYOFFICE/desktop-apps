@@ -359,3 +359,8 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
 
     RELEASEINTERFACE(pData);
 }
+
+const QString& CEditorWindow::documentName() const
+{
+    return d_ptr.get()->panel()->data()->title(true);
+}

@@ -5,6 +5,7 @@
 #include "windows.h"
 #include "cwinpanel.h"
 #include "cwindowbase.h"
+#include <QWidget>
 
 #define TOP_NATIVE_WINDOW_HANDLE (HWND)m_pMainPanel->winId()
 
@@ -20,6 +21,7 @@ public:
 
     virtual Qt::WindowState windowState();
     virtual void setWindowState(Qt::WindowState);
+    virtual const QRect& geometry() const;
 
     void toggleBorderless(bool showmax);
 
