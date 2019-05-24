@@ -13,6 +13,8 @@
 #include "ceditortools.h"
 
 #include <QPrinterInfo>
+#include <QDesktopWidget>
+#include <QJsonDocument>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -284,6 +286,48 @@ public:
                     m_panel->data()->url().find(portal) != wstring::npos )
             {
                 window->closeWindow();
+            }
+        }
+    }
+
+    void onFileLocation(int, QString param)
+    {
+        if ( m_panel->data()->local() ) {
+            const wstring& path = m_panel->data()->url();
+            if (!path.empty()) {
+                Utils::openFileLocation(QString::fromStdWString(path));
+            } else
+                CMessage::info(parentWindow(), QObject::tr("Document must be saved firstly."));
+        } else {
+            QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+            QRegularExpressionMatch _re_match = _re.match(param);
+
+            if ( _re_match.hasMatch() ) {
+                QString _domain = _re_match.captured(1);
+                QString _folder = param;
+
+                if ( !_folder.contains("desktop=true") ) {
+                    if ( _folder.contains("?") )
+                        _folder.append("&desktop=true");
+                    else {
+                        int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                        !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+                    }
+                }
+
+                // emulate 'open portal' command
+                QJsonObject _json_obj{{"portal", _folder}};
+
+                CAscExecCommand * pData = new CAscExecCommand;
+                pData->put_Command(L"portal:open");
+                pData->put_Param(QString(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact)).toStdWString());
+
+                CAscCefMenuEvent * event = new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
+                event->m_nSenderId = 1; // id of 'start' page
+                event->m_pData = pData;
+
+                CAscApplicationManagerWrapper& app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
+                app.OnEvent(event);
             }
         }
     }

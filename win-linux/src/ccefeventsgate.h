@@ -33,6 +33,8 @@ public slots:
     virtual void onDocumentPrint(void *);
     virtual void onDocumentPrint(int current, uint count) = 0;
 
+    virtual void onFileLocation(int id, QString path) = 0;
+
     virtual void onEditorAllowedClose(int) = 0;
     virtual void onKeyDown(void *);
     virtual void onFullScreen(int id, bool apply) = 0;
