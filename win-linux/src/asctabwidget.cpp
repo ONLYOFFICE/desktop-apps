@@ -601,18 +601,22 @@ int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
     return -1;
 }
 
-int CAscTabWidget::tabIndexByUrl(QString url)
+int CAscTabWidget::tabIndexByUrl(const QString& url)
 {
-    CCefView * view = AscAppManager::getInstance().GetViewByUrl( url.toStdWString() );
+    return tabIndexByUrl(url.toStdWString());
+}
+
+int CAscTabWidget::tabIndexByUrl(const wstring& url)
+{
+    CCefView * view = AscAppManager::getInstance().GetViewByUrl(url);
     if ( view ) {
         return tabIndexByView(view->GetId());
     } else {
         CAscTabData * doc;
-        wstring _ws_url(url.toStdWString());
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
 
-            if (doc && doc->url() == _ws_url)
+            if (doc && doc->url().compare(url) == 0)
                 return i;
         }
     }
@@ -647,7 +651,7 @@ int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select, bool force
         if ( view ) {
             tabIndex = tabIndexByView(view->GetId());
         } else {
-            tabIndex = tabIndexByUrl(opts.url);
+            tabIndex = tabIndexByUrl(opts.wurl);
         }
     }
 
@@ -706,18 +710,17 @@ int CAscTabWidget::newPortal(const QString& url, const QString& name)
     return tabIndex;
 }
 
-void CAscTabWidget::closePortal(const QString& url, bool editors)
+void CAscTabWidget::closePortal(const wstring& url, bool editors)
 {
     closeEditorByIndex(tabIndexByUrl(url));
 
     if (editors) {
-        wstring wname = url.toStdWString();
         CAscTabData * doc;
         for (int i = tabBar()->count(); i-- > 0; ) {
             doc = panel(i)->data();
 
             if (doc->viewType() == cvwtEditor &&
-                    doc->url().find(wname) != wstring::npos)
+                    doc->url().find(url) != wstring::npos)
             {
                 closeEditor(i, false, false);
             }
@@ -1087,8 +1090,6 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             ((CTabPanel *)fsWidget)->cef()->focus();
 
             cefConnection = connect(((CTabPanel *)fsWidget)->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
-                e->ignore();
-
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
 
@@ -1096,6 +1097,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 pEvent->m_pData = pCommand;
                 ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
 
+                e->ignore();
                 emit closeAppRequest();
             });
 

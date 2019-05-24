@@ -83,7 +83,6 @@ private:
     void StartSaveDialog(const std::wstring& sName, unsigned int nId);
     void OnNeedCheckKeyboard();
     int  GetPlatformKeyboardLayout();
-    void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool processCommonEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const wstring& wstrjson);
@@ -101,6 +100,7 @@ signals:
 
 public slots:
     void onCoreEvent(void *);
+    void onDownloadSaveDialog(const std::wstring& name, uint id);
 
 
 public:
@@ -132,6 +132,7 @@ public:
 
     void manageUndocking(int uid, const std::wstring& action);
 
+    void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:
     class CAscApplicationManagerWrapper_Private;

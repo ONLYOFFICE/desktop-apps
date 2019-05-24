@@ -14,8 +14,6 @@ public:
     CSingleWindowPlatform(const QRect&, const QString&, QWidget *);
     virtual ~CSingleWindowPlatform();
 
-    static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
     virtual void show(bool);
     virtual void hide();
     virtual bool visible();
@@ -50,6 +48,7 @@ protected:
     virtual void onScreenScalingFactor(uint f);
 
 private:
+    static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 
 #endif // CSINGLEWINDOWPLATFORM_H

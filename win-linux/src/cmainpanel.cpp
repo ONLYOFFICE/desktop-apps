@@ -539,11 +539,6 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onNeedCheckKeyboard()
-{
-    AscAppManager::getInstance().CheckKeyboard();
-}
-
 void CMainPanel::doLogout(const QString& portal, bool allow)
 {
     wstring wp = portal.toStdWString();
@@ -1224,30 +1219,6 @@ void CMainPanel::onDocumentPrint(void * opts)
 
     printInProcess = false;
     RELEASEINTERFACE(pData)
-}
-
-void CMainPanel::onDialogSave(std::wstring sName, uint id)
-{
-    GET_REGISTRY_USER(_reg_user);
-
-    QString savePath = Utils::lastPath(LOCAL_PATH_SAVE);
-    static bool saveInProcess = false;
-    if (!saveInProcess) {
-        saveInProcess = true;
-
-        if (sName.size()) {
-            QString fullPath = savePath + "/" + QString().fromStdWString(sName);
-            CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-
-            if ( dlg.modalSaveAs(fullPath) ) {
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
-            }
-
-            AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
-        }
-
-        saveInProcess = false;
-    }
 }
 
 void CMainPanel::onLocalFileSaveAs(void * d)

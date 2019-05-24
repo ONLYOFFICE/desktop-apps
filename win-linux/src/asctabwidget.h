@@ -148,7 +148,7 @@ public:
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
-    void closePortal(const QString&, bool editors = false);
+    void closePortal(const wstring&, bool editors = false);
     void setStyleSheet(const QString&);
 
     using QTabWidget::count;
@@ -168,7 +168,8 @@ public:
     int         tabIndexByView(QString);
     int         tabIndexByTitle(QString t, CefType vt);
     int         tabIndexByTitle(QString t, AscEditorType vt);
-    int         tabIndexByUrl(QString);
+    int         tabIndexByUrl(const QString&);
+    int         tabIndexByUrl(const wstring&);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     QString     urlByView(int id);

@@ -75,7 +75,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     wcx.lpfnWndProc = CSingleWindow::WndProc;
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
-    wcx.lpszClassName = L"SingleWindowClass";
+    wcx.lpszClassName = L"ReporterWindowClass";
     wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
@@ -86,7 +86,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    m_hWnd = CreateWindow( L"SingleWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+    m_hWnd = CreateWindow( L"ReporterWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !m_hWnd )
         throw std::runtime_error("couldn't create window because of reasons");

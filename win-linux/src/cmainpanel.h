@@ -128,11 +128,8 @@ public slots:
     void onDocumentFragmentedBuild(int, int);
 
     virtual void onDocumentPrint(void *);
-    void onDialogSave(std::wstring sName, uint id);
     void onFullScreen(bool apply, int id = -1);
     void onKeyDown(void *);
-
-    void onNeedCheckKeyboard();
 
     virtual void onLocalOptions(const QString&){}
     virtual void onLocalFileOpen(const QString&);

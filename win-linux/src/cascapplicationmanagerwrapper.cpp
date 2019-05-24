@@ -99,18 +99,19 @@ int CAscApplicationManagerWrapper::GetPlatformKeyboardLayout()
 
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
 {
-    CMainWindow * _window = mainWindowFromViewId(nId);
-    if ( _window ) {
-        QMetaObject::invokeMethod(_window->mainPanel(), "onDialogSave", Qt::QueuedConnection, Q_ARG(std::wstring, sName), Q_ARG(uint, nId));
-    }
+    CAscSaveDialog * data = new CAscSaveDialog;
+    data->put_FilePath(sName);
+    data->put_IdDownload(nId);
+
+    CAscCefMenuEvent * event = new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVEFILEDIALOG);
+    event->m_pData = data;
+
+    OnEvent(event);
 }
 
 void CAscApplicationManagerWrapper::OnNeedCheckKeyboard()
 {
-    if ( !m_vecWidows.empty() ) {
-        CMainWindow * _window = reinterpret_cast<CMainWindow *>(m_vecWidows.front());
-        QMetaObject::invokeMethod(_window->mainPanel(), "onNeedCheckKeyboard", Qt::QueuedConnection);
-    }
+    OnEvent(new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD));
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -396,6 +397,20 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //        RELEASEINTERFACE(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_SAVEFILEDIALOG:{
+        CAscSaveDialog * pData = (CAscSaveDialog *)event->m_pData;
+        SKIP_EVENTS_QUEUE(std::bind(&CAscApplicationManagerWrapper::onDownloadSaveDialog, this, pData->get_FilePath(), pData->get_IdDownload()));
+        return true;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
+        CMainWindow * mw = topWindow();
+        if ( mw ) mw->mainPanel()->onDocumentDownload(event->m_pData);
+        return true;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD:
+        CheckKeyboard();
+        return true;
+
     default: break;
     }
 
@@ -645,12 +660,7 @@ CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
             return _window;
     }
 
-    // TODO: remove for multi-windowed mode
-    if ( !m_vecWidows.empty() ) {
-        return reinterpret_cast<CMainWindow *>(m_vecWidows.at(0));
-    }
-
-    return 0;
+    return nullptr;
 }
 
 CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) const
@@ -971,3 +981,34 @@ void CAscApplicationManagerWrapper::unbindReceiver(int view_id)
     APP_CAST(_app);
     _app.m_receivers.erase(view_id);
 }
+
+void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& name, uint id)
+{
+#ifdef Q_OS_WIN
+    HWND parent = GetActiveWindow();
+#else
+    QWidget * parent = nullptr;
+#endif
+
+    if ( parent ) {
+        static bool saveInProcess = false;
+        if ( !saveInProcess ) {
+            saveInProcess = true;
+
+            if ( name.size() ) {
+                QString savePath = Utils::lastPath(LOCAL_PATH_SAVE);
+                QString fullPath = savePath + "/" + QString().fromStdWString(name);
+                CFileDialogWrapper dlg(parent);
+
+                if ( dlg.modalSaveAs(fullPath) ) {
+                    Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
+                }
+
+                AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
+            }
+
+            saveInProcess = false;
+        }
+    }
+}
+
