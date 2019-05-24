@@ -277,6 +277,17 @@ public:
         onFullScreen(apply);
     }
 
+    void onPortalLogout(wstring portal) override
+    {
+        if ( m_panel && !portal.empty() ) {
+            if ( !m_panel->data()->closed() &&
+                    m_panel->data()->url().find(portal) != wstring::npos )
+            {
+                window->closeWindow();
+            }
+        }
+    }
+
     QLabel * const iconUser()
     {
         if ( !iconuser ) {

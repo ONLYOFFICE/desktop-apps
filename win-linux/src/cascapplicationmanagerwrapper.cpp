@@ -427,6 +427,11 @@ void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent
         CCefEventsTransformer::OnEvent(_window->mainPanel(), event);
     }
 
+    for (const auto& it: m_receivers) {
+        ADDREFINTERFACE(event);
+        CCefEventsTransformer::OnEvent(it.second, event);
+    }
+
 //    RELEASEINTERFACE(event);
 }
 
