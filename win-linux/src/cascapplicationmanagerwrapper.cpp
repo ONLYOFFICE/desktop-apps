@@ -21,7 +21,7 @@
 #include "clangater.h"
 #include "cdpichecker.h"
 #include "cmessage.h"
-#include "ceditorwindow.h"
+#include "ceditortools.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -411,6 +411,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CheckKeyboard();
         return true;
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
+        static_cast<CAscLocalOpenFileDialog *>(event->m_pData)->put_Filter(L"image");}
+
+    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
+        event->AddRef();
+        SKIP_EVENTS_QUEUE([event]{
+            CEditorTools::getlocalfile(event);
+            event->Release();
+        });
+
+        return true;}
+
     default: break;
     }
 
@@ -685,6 +697,20 @@ CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) c
 
         if ( _window->holdView(uid) )
             return _window;
+    }
+
+    return nullptr;
+}
+
+ParentHandle CAscApplicationManagerWrapper::windowHandleFromId(int id)
+{
+    APP_CAST(_app);
+
+    CMainWindow * w = _app.mainWindowFromViewId(id);
+    if ( w ) return w->handle();
+    else {
+        CEditorWindow * e = _app.editorWindowFromViewId(id);
+        if ( e ) return e->handle();
     }
 
     return nullptr;

@@ -133,6 +133,8 @@ public:
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
 
+    static ParentHandle     windowHandleFromId(int id);
+
     static void             destroyViewer(int id);
     static void             destroyViewer(QCefView * v);
     static void             destroyMainWindow(const size_t);

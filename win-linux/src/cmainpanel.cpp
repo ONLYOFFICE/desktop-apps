@@ -621,6 +621,7 @@ void CMainPanel::onPortalLogin(int vid, QString info)
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
+    qDebug() << "on document open: " << url;
     COpenOptions opts = {url};
     opts.id = id;
 
@@ -628,54 +629,6 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 
     if ( select )
         toggleButtonMain(false, true);
-}
-
-void CMainPanel::onLocalGetFile(int eventtype, void * d)
-{
-#ifdef _WIN32
-    CFileDialogWrapper dlg((HWND)parentWidget()->winId());
-#else
-    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-#endif
-
-    CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-    QString _filter = QString::fromStdWString(pData->get_Filter());
-    QStringList _list;
-
-    if ( _filter == "plugin" ) {
-        _list = pData->get_IsMultiselect() ? dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN)) :
-                            dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
-    } else
-    if ( _filter == "image" || _filter == "images" ) {
-        _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
-                            dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
-    } else
-    if ( _filter == "any" || _filter == "*.*" ) {
-        _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
-    } else {
-        QString _sel_filter;
-        _list = dlg.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _filter, &_sel_filter, pData->get_IsMultiselect());
-    }
-
-    if ( !_list.isEmpty() ) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_list.at(0)).absolutePath());
-    }
-
-    /* data consits id of cefview */
-
-    pData->put_IsMultiselect(true);
-    vector<wstring>& _files = pData->get_Files();
-    for ( const auto& f : _list ) {
-        _files.push_back( f.toStdWString() );
-    }
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(eventtype);
-    pEvent->m_pData = pData;
-
-    AscAppManager::getInstance().Apply(pEvent);
-
-    /* release would be made in the method Apply */
-//    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onLocalFileOpen(const QString& inpath)

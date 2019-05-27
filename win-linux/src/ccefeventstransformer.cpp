@@ -177,17 +177,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onLocalFileSaveAs", Qt::QueuedConnection, Q_ARG(void *, pData));
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
-        static_cast<CAscLocalOpenFileDialog *>(event->m_pData)->put_Filter(L"image");}
-
-    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG:{
-        CAscLocalOpenFileDialog * pData = (CAscLocalOpenFileDialog *)event->m_pData;
-
-        ADDREFINTERFACE(pData);
-        QMetaObject::invokeMethod(target, "onLocalGetFile", Qt::QueuedConnection,
-                                    Q_ARG(int, event->m_nType), Q_ARG(void *, pData));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN: {
         CAscExecCommand * pData = (CAscExecCommand *)event->m_pData;
         QMetaObject::invokeMethod( target, "onPortalOpen", Qt::QueuedConnection,
