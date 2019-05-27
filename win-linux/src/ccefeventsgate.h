@@ -25,7 +25,6 @@ public slots:
     virtual void onEditorConfig(int id, std::wstring cfg) = 0;
     virtual void onDocumentName(void *);
     virtual void onDocumentChanged(int id, bool changed);
-    virtual void onLocalFileSaveAs(void *) = 0;
     virtual void onDocumentSave(int id, bool cancel = false);
     virtual void onDocumentSaveInnerRequest(int id) = 0;
     virtual void onDocumentFragmented(int id, bool needbuild) = 0;
@@ -34,6 +33,7 @@ public slots:
     virtual void onDocumentPrint(int current, uint count) = 0;
 
     virtual void onFileLocation(int id, QString path) = 0;
+    virtual void onLocalFileSaveAs(void *) = 0;
 
     virtual void onEditorAllowedClose(int) = 0;
     virtual void onKeyDown(void *);

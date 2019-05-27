@@ -53,6 +53,13 @@
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
+#ifdef Q_OS_WIN
+typedef HWND ParentHandle;
+#else
+typedef QWidget* ParentHandle;
+#endif
+
+
 using namespace std;
 
 

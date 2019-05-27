@@ -8,11 +8,7 @@ namespace CEditorTools
 {
     struct sPrintConf
     {
-#ifdef Q_OS_WIN
-        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, HWND p)
-#else
-        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, QWidget * p)
-#endif
+        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, ParentHandle p)
             : view(v)
             , context(c)
             , pagetstart(s)
@@ -24,14 +20,11 @@ namespace CEditorTools
         QAscPrinterContext * context;
         int pagetstart,
             pagestop;
-#ifdef Q_OS_WIN
-        HWND parent;
-#else
-        QWidget * parent;
-#endif
+        ParentHandle parent;
     };
 
     void print(const sPrintConf&);
+    void getlocalfile(void * data);
 }
 
 #endif // CEDITORTOOLS_H
