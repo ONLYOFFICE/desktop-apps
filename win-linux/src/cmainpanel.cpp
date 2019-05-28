@@ -621,7 +621,7 @@ void CMainPanel::onPortalLogin(int vid, QString info)
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
-    qDebug() << "on document open: " << url;
+//    qDebug() << "on document open: " << url;
     COpenOptions opts = {url};
     opts.id = id;
 

@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QProcess>
 #include <algorithm>
+#include <functional>
 
 #include "cstyletweaks.h"
 #include "defines.h"
