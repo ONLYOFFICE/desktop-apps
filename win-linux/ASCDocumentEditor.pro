@@ -2,7 +2,6 @@
 TARGET = DesktopEditors
 
 #CONFIG += core_build_deploy
-CONFIG += build_xp
 
 include(defaults.pri)
 
