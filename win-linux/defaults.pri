@@ -228,6 +228,14 @@ win32 {
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
         PLATFORM_BUILD = win_32
     }
+}
 
-    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
+TARGET = $$join(TARGET,,,_$$PLATFORM_BUILD)
+OBJECTS_DIR = $$join(OBJECTS_DIR,,./$$PLATFORM_BUILD/,)
+MOC_DIR = $$join(MOC_DIR,,./$$PLATFORM_BUILD/,)
+
+win32:build_xp {
+    TARGET = $$join(TARGET,,,_xp)
+    OBJECTS_DIR = $$replace(OBJECTS_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
+    MOC_DIR = $$replace(MOC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
 }

@@ -2,6 +2,7 @@
 TARGET = DesktopEditors
 
 #CONFIG += core_build_deploy
+CONFIG += build_xp
 
 include(defaults.pri)
 
@@ -51,6 +52,7 @@ win32 {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lkernel
 
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug
+        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     } else {
         LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lkernel
     }
