@@ -4,7 +4,7 @@
 #define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
 #define APP_USER_MODEL_ID   'ASC.Documents.5'
 #define sAppIconName        'ONLYOFFICE Editors'
-#define NAME_EXE_IN         'DesktopEditors.exe'
+#define NAME_EXE_IN         'DesktopEditors_'+os_arch+'.exe'
 #define NAME_EXE_OUT        'editors.exe'
 #define iconsExe            'DesktopEditors.exe'
 #define licfile             'agpl-3.0'
