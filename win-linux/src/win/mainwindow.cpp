@@ -72,7 +72,7 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
     hInstance(GetModuleHandle(nullptr)),
-    borderless( false ),
+    borderless( true ),
     borderlessResizeable( true ),
     closed( false ),
     visible( false ),

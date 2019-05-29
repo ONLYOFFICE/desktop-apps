@@ -94,7 +94,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     m_pMainPanel = createMainPanel(m_pWinPanel, panel);
 
     m_pWinPanel->show();
-    recalculatePlaces();
 
     QTimer::singleShot(0, [=]{m_pMainView->show();});
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());

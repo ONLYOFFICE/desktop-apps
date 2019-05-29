@@ -474,7 +474,7 @@ void CAscApplicationManagerWrapper::startApp()
         _window->slot_windowChangeState(Qt::WindowMaximized);
 #else
     _window->show(_is_maximized);
-    _window->toggleBorderless(_is_maximized);
+//    _window->toggleBorderless(_is_maximized);
 
     if ( _is_maximized ) {
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
@@ -997,8 +997,7 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
             tabpanel = qobject_cast<CTabPanel *>(main_win->getEditor(index));
 
             CEditorWindow * editor_win = new CEditorWindow(QRect(r.left() + 50, r.top() + 50, r.width(), r.height()), tabpanel);
-            editor_win->show(false);
-            editor_win->toggleBorderless(false);
+            editor_win->show(main_win->isMaximized());
 
             m_vecEditors.push_back( size_t(editor_win) );
 //            main_win->mainPanel()->tabWidget()->removeTab(index);

@@ -62,7 +62,7 @@ public:
 protected:
     HWND m_hWnd;
     COLORREF m_bgColor;
-    bool m_borderless = false;
+    bool m_borderless = true;
     bool m_visible = false;
     bool m_closed = false;
     CWinPanel * m_pWinPanel;
