@@ -31,6 +31,7 @@ INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
 
 HEADERS += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.h \
     $$PWD/src/asctabwidget.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
@@ -71,6 +72,7 @@ HEADERS += \
 
 SOURCES += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -133,6 +135,36 @@ linux-g++-32 {
     PLATFORM_BUILD = linux_32
 }
 
+win32 {
+    CONFIG -= debug_and_release debug_and_release_target
+
+    contains(QMAKE_TARGET.arch, x86_64):{
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
+        PLATFORM_BUILD = win_64
+    } else {
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+        PLATFORM_BUILD = win_32
+    }
+}
+
+CORE_LIB_PATH_PLATFORM=$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
+
+win32 {
+    CONFIG(debug, debug|release) {
+        CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH_PLATFORM/DEBUG
+        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
+    }
+}
+
+LIBS += -L$$CORE_LIB_PATH_PLATFORM -lPdfReader -lPdfWriter -lDjVuFile -lXpsFile -lHtmlRenderer -lUnicodeConverter -lhunspell -looxmlsignature -lkernel -lgraphics
+
+QT += multimedia multimediawidgets
+build_xp {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lvideoplayer
+} else {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lvideoplayer
+}
+
 app_linux {
     QT += network x11extras
 
@@ -141,7 +173,6 @@ app_linux {
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
     LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter -lkernel -lgraphics
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
@@ -161,6 +192,7 @@ app_linux {
     PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
     LIBS += -lX11
 
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
@@ -220,14 +252,6 @@ win32 {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
-
-    contains(QMAKE_TARGET.arch, x86_64):{
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        PLATFORM_BUILD = win_64
-    } else {
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        PLATFORM_BUILD = win_32
-    }
 }
 
 TARGET = $$join(TARGET,,,_$$PLATFORM_BUILD)
