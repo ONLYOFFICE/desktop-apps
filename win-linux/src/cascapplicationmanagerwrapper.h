@@ -101,6 +101,7 @@ private:
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);
     static void unbindReceiver(int view_id);
+    static void unbindReceiver(const CCefEventsGate * receiver);
 
 signals:
     void coreEvent(void *);

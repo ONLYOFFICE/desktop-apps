@@ -46,6 +46,7 @@
 #include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
+#include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "cdpichecker.h"
@@ -301,6 +302,11 @@ QString Utils::encodeJson(const QJsonObject& obj)
 QString Utils::encodeJson(const QString& s)
 {
     return QString(s).replace("\"", "\\\"");
+}
+
+wstring Utils::encodeJson(const wstring& s)
+{
+    return std::regex_replace(wstring(s), std::wregex(L"\""), L"\\\"");
 }
 
 unsigned Utils::getScreenDpiRatio(int scrnum)

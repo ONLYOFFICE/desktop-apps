@@ -56,6 +56,7 @@ public:
     virtual void setWindowState(Qt::WindowState);
     virtual void setWindowTitle(const QString&) override;
     virtual const QRect& geometry() const;
+    virtual void activateWindow();
 
     void toggleBorderless(bool showmax);
 

@@ -250,6 +250,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CAscExecCommand * const pData = static_cast<CAscExecCommand * const>(event->m_pData);
         std::wstring const & cmd = pData->get_Command();
 
+        if ( cmd.compare(L"portal:login") == 0 ) {
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", Utils::encodeJson(pData->get_Param()));
+            return true;
+        } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
             broadcastEvent(event);
 
@@ -653,18 +657,20 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
     APP_CAST(_app)
 //    QMutexLocker locker( &_app.m_oMutex );
 
-    vector<size_t>::iterator it = _app.m_vecEditors.begin();
-    while ( it != _app.m_vecEditors.end() ) {
-        if ( *it == p && !_app.m_vecEditors.empty() ) {
-            CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
+    if ( p ) {
+        vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
+        while ( it != _app.m_vecEditors.end() ) {
+            if ( *it == p /*&& !_app.m_vecEditors.empty()*/ ) {
+                CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
 
-            delete _w, _w = nullptr;
+                AscAppManager::unbindReceiver(static_cast<const CCefEventsGate *>(_w->receiver()));
 
-            _app.m_vecEditors.erase(it);
-            break;
+                delete _w, _w = nullptr;
+
+                it = _app.m_vecEditors.erase(it);
+                break;
+            } else ++it;
         }
-
-        ++it;
     }
 }
 
@@ -1019,6 +1025,20 @@ void CAscApplicationManagerWrapper::unbindReceiver(int view_id)
 {
     APP_CAST(_app);
     _app.m_receivers.erase(view_id);
+}
+
+void CAscApplicationManagerWrapper::unbindReceiver(const CCefEventsGate * receiver)
+{
+    APP_CAST(_app);
+
+    map<int, CCefEventsGate *>::const_iterator it = _app.m_receivers.begin();
+    while ( it != _app.m_receivers.cend() ) {
+        if ( it->second == receiver ) {
+            it = _app.m_receivers.erase(it);
+            break;
+        } else ++it;
+    }
+
 }
 
 void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& name, uint id)

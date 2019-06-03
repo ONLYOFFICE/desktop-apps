@@ -221,7 +221,6 @@ public:
 
     void onEditorAllowedClose(int) override
     {
-        AscAppManager::unbindReceiver(m_panel->cef()->GetId());
         AscAppManager::closeEditorWindow(size_t(window));
     }
 

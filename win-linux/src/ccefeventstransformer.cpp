@@ -207,10 +207,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onOutsideAuth", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
-        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
-                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-        } else
+//        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
+//            QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
+//                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+//        } else
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection, Q_ARG(std::wstring, pData->get_Param()) );
         } else

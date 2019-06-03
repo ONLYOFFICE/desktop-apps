@@ -134,8 +134,9 @@ int CEditorWindow::closeWindow()
         if (windowState() == Qt::WindowMinimized)
             setWindowState(Qt::WindowNoState);
 
-//        CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::cmButtons::cmbYesDefNoCancel);
-        CMessage mess(m_hWnd, CMessageOpts::moButtons::mbYesDefNoCancel);
+        activateWindow();
+
+        CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
         _reply = mess.warning(QObject::tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
 

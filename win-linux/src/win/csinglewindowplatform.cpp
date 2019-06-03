@@ -40,7 +40,7 @@
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
-CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
+CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget *)
     : CSingleWindowBase(const_cast<QRect&>(rect))
     , m_bgColor(WINDOW_BACKGROUND_COLOR)
 {
@@ -443,4 +443,9 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 const QRect& CSingleWindowPlatform::geometry() const
 {
     return m_pMainPanel->geometry();
+}
+
+void CSingleWindowPlatform::activateWindow()
+{
+    SetActiveWindow(m_hWnd);
 }
