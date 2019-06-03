@@ -363,6 +363,30 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         }
 
+        if ( m_closeCount && --m_closeCount == 0 && !m_closeTarget.empty() ) {
+            if ( m_closeTarget.find(L"http") != wstring::npos ) {
+                const wstring& portal = m_closeTarget;
+                Logout(portal);
+
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
+            } else
+            if ( m_closeTarget.compare(L"app") == 0 ) {
+                if ( !m_vecEditors.empty() ) {
+                    vector<size_t>::const_iterator it = m_vecEditors.begin();
+                    while ( it != m_vecEditors.end() ) {
+                        CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
+                        AscAppManager::unbindReceiver(static_cast<const CCefEventsGate *>(_w->receiver()));
+
+                        delete _w, _w = nullptr;
+                        it = m_vecEditors.erase(it);
+                    }
+                }
+
+                if ( !m_vecWindows.empty() )
+                    destroyMainWindow(m_vecWindows.at(0));
+            }
+        }
+
         break;
     }
 
@@ -601,6 +625,10 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
 
     m_reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
 
+//    QTimer::singleShot(5000, [=]{
+//        ::SetForegroundWindow((HWND)_window->handle());
+//        ::FlashWindow((HWND)_window->handle(), TRUE);
+//    });
 
     return m_reporterWindow;
 }
@@ -628,14 +656,43 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 //        }
     } else
     if ( _size == 1 && _app.m_vecWindows[0] == p ) {
-        SKIP_EVENTS_QUEUE([p]{
-            if ( canAppClose() ) {
-                CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
-                if ( _w ) {
-                    _w->mainPanel()->closeAll();
-                }
-            }
-        });
+        if ( _app.m_closeTarget.empty() ) {
+            QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::lauchAppClose);
+        }
+    }
+}
+
+void CAscApplicationManagerWrapper::lauchAppClose()
+{
+    if ( canAppClose() ) {
+        m_closeTarget = L"app";
+        m_closeCount = static_cast<int>(m_vecEditors.size());
+
+        CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
+        m_closeCount += _w->editorsCount();
+
+        /* close all editors windows */
+        auto it = m_vecEditors.begin();
+        while ( it != m_vecEditors.end() ) {
+            CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+
+            int _r = _w->closeWindow();
+            if ( _r == MODAL_RESULT_CANCEL ) {
+                AscAppManager::cancelClose();
+                return;
+            } else ++it;
+        }
+
+        /* close main window */
+        if ( !_w->mainPanel()->closeAll() ) {
+            AscAppManager::cancelClose();
+            return;
+        }
+
+        if ( m_closeCount == 0 ) {
+            if ( !m_vecWindows.empty() )
+                destroyMainWindow(m_vecWindows.at(0));
+        }
     }
 }
 
@@ -919,27 +976,6 @@ CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
 
 bool CAscApplicationManagerWrapper::canAppClose()
 {
-    APP_CAST(_app);
-
-    if ( !_app.m_vecEditors.empty() ) {
-        CMessage mess(topWindow()->hWnd, CMessageOpts::moButtons::mbYesNo);
-        if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
-            /* close all editors windows */
-            auto it = _app.m_vecEditors.begin();
-            while ( it != _app.m_vecEditors.end() ) {
-                CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
-
-                int _r = _w->closeWindow();
-                if ( _r == MODAL_RESULT_CANCEL ) {
-                    return false;
-                } else ++it;
-            }
-
-            return true;
-        } else
-            return false;
-    }
-
 #ifdef Q_OS_WIN
 # ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
@@ -949,6 +985,15 @@ bool CAscApplicationManagerWrapper::canAppClose()
     }
 # endif
 #endif
+
+    APP_CAST(_app);
+
+    if ( !_app.m_vecEditors.empty() ) {
+        CMessage mess(topWindow()->hWnd, CMessageOpts::moButtons::mbYesNo);
+        if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
+            return true;
+        } else return false;
+    }
 
     return true;
 }

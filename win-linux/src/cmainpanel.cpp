@@ -334,10 +334,6 @@ bool CMainPanel::closeAll()
             if ( m_closeAct.isEmpty() )
                 m_closeAct = "window";
         }
-
-        return true;
-    } else {
-        emit mainWindowDestroy();
     }
 
     return true;
@@ -463,13 +459,6 @@ void CMainPanel::onEditorAllowedClose(int uid)
             }
 
             onTabChanged(m_pTabs->currentIndex());
-        }
-    }
-
-    if ( !m_closeAct.isEmpty() ) {
-        if ( m_closeAct.compare("window") == 0 ) {
-            if ( !m_pTabs->count() )
-                emit mainWindowDestroy();
         }
     }
 }
