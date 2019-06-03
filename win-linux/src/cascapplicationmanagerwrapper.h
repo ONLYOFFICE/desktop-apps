@@ -71,7 +71,7 @@ class CAscApplicationManagerWrapper : public QObject, public CAscApplicationMana
     Q_OBJECT
 
 private:
-    vector<size_t> m_vecWidows;
+    vector<size_t> m_vecWindows;
     vector<size_t> m_vecEditors;
     vector<QString> m_vecStyles;
     vector<QString> m_vecStyles2x;
