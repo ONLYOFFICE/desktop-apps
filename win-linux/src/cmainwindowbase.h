@@ -19,6 +19,7 @@ public:
     virtual QWidget * getEditor(int index);
     virtual bool holdView(int id) const;
     virtual int editorsCount() const;
+    virtual int editorsCount(const wstring& portal) const;
     virtual QString documentName(int vid);
 //    virtual WId handle() const = 0;
 

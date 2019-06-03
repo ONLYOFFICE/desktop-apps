@@ -123,7 +123,7 @@ public:
                 AscAppManager::getInstance().DestroyCefView(m_panel->cef()->GetId());
                 window->hide();
             }
-        }
+        } else AscAppManager::cancelClose();
     }
 
     void onDocumentSaveInnerRequest(int) override
@@ -158,7 +158,7 @@ public:
         if ( m_panel->data()->closed() ) {
             AscAppManager::getInstance().DestroyCefView(m_panel->cef()->GetId());
             window->hide();
-        }
+        } else AscAppManager::cancelClose();
     }
 
     void onDocumentPrint(int currentpage, uint pagescount) override

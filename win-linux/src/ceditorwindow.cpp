@@ -123,6 +123,11 @@ bool CEditorWindow::holdView(int id) const
     return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
 }
 
+bool CEditorWindow::holdView(const wstring& portal) const
+{
+    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
+}
+
 int CEditorWindow::closeWindow()
 {
     d_ptr.get()->onFullScreen(false);

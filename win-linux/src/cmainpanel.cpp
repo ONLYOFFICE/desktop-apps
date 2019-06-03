@@ -470,10 +470,6 @@ void CMainPanel::onEditorAllowedClose(int uid)
         if ( m_closeAct.compare("window") == 0 ) {
             if ( !m_pTabs->count() )
                 emit mainWindowDestroy();
-        } else
-        if ( !m_pTabs->hasForPortal(m_closeAct) ) {
-            doLogout(m_closeAct.toStdWString(), true);
-            m_closeAct.clear();
         }
     }
 }
@@ -539,27 +535,6 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::doLogout(const wstring& portal, bool allow)
-{
-    wstring wcmd = L"portal:logout";
-
-    if (allow) {
-        m_pTabs->closePortal(portal, true);
-        AscAppManager::getInstance().Logout(portal);
-    } else
-        wcmd.append(L":cancel");
-
-    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(wcmd);
-    pCommand->put_Param(portal);
-
-    CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-    pEvent->m_pData = pCommand;
-
-    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
-    goStart();
-}
-
 void CMainPanel::onPortalLogout(wstring portal)
 {
     if (!m_closeAct.isEmpty()) return;
@@ -569,7 +544,7 @@ void CMainPanel::onPortalLogout(wstring portal)
             int _answer = MODAL_RESULT_NO;
 
             CAscTabData& _doc = *m_pTabs->panel(i)->data();
-            if (_doc.isViewType(cvwtEditor) && !_doc.closed() &&
+            if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
                     _doc.url().find(portal) != wstring::npos)
             {
                 if ( _doc.hasChanges() ) {
@@ -577,7 +552,7 @@ void CMainPanel::onPortalLogout(wstring portal)
                     if ( _answer == MODAL_RESULT_CANCEL) {
                         m_closeAct.clear();
 
-                        doLogout(portal, false);
+                        AscAppManager::cancelClose();
                         return;
                     }
                 }
@@ -586,17 +561,9 @@ void CMainPanel::onPortalLogout(wstring portal)
                     m_pTabs->editorCloseRequest(i);
                     onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                 }
-
-                if ( m_closeAct.isEmpty() )
-                    m_closeAct = QString::fromStdWString(portal);
             }
         }
     }
-
-    if ( m_closeAct.isEmpty() )
-        doLogout(portal, true);
-
-    return;
 }
 
 void CMainPanel::onPortalLogin(int vid, QString info)
@@ -927,6 +894,8 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
         } else {
             m_pTabs->cancelDocumentSaving(_i);
             m_closeAct.clear();
+
+            AscAppManager::cancelClose();
         }
     }
 }
@@ -992,6 +961,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
                 m_closeAct.clear();
+                AscAppManager::cancelClose();
             }
     }
 }
@@ -1004,6 +974,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
             m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
+        AscAppManager::cancelClose();
     }
 }
 

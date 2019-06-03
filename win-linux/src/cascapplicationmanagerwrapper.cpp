@@ -255,7 +255,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
-            broadcastEvent(event);
+            const wstring& portal = pData->get_Param();
+            if ( (m_closeCount = logoutCount(portal)) > 0 ) {
+                m_closeTarget = portal;
+                broadcastEvent(event);
+            } else {
+                Logout(portal);
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
+            }
 
 //            RELEASEINTERFACE(event);
             return true;
@@ -1015,6 +1022,25 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
     }
 }
 
+uint CAscApplicationManagerWrapper::logoutCount(const wstring& portal) const
+{
+    uint _count = 0;
+    CMainWindow * _window;
+    for (auto const& w : m_vecWindows ) {
+        _window = reinterpret_cast<CMainWindow *>(w);
+        _count += _window->editorsCount(portal);
+    }
+
+    CEditorWindow * _editor;
+    for (auto const& e : m_vecEditors ) {
+        _editor = reinterpret_cast<CEditorWindow *>(e);
+        if ( _editor->holdView(portal) )
+            ++_count;
+    }
+
+    return _count;
+}
+
 void CAscApplicationManagerWrapper::bindReceiver(int view_id, CCefEventsGate * const receiver)
 {
     APP_CAST(_app);
@@ -1071,3 +1097,14 @@ void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& nam
     }
 }
 
+void CAscApplicationManagerWrapper::cancelClose()
+{
+    APP_CAST(_app);
+
+    if ( _app.m_closeTarget.find(L"http") ) {
+        _app.sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout:cancel", _app.m_closeTarget);
+    }
+
+    _app.m_closeCount = 0;
+    _app.m_closeTarget.clear();
+}

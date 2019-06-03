@@ -80,6 +80,9 @@ private:
     map<int, CCefEventsGate *> m_receivers;
     CSingleWindow * m_reporterWindow = nullptr;
 
+    uint m_closeCount = 0;
+    wstring m_closeTarget;
+
 private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
     void operator =(CAscApplicationManagerWrapper const&);
@@ -140,7 +143,10 @@ public:
     static void             destroyViewer(QCefView * v);
     static void             destroyMainWindow(const size_t);
 
+    static void             cancelClose();
+
     void manageUndocking(int uid, const std::wstring& action);
+    uint logoutCount(const wstring& portal) const;
 
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);

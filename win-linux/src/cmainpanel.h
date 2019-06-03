@@ -89,7 +89,6 @@ private:
     void resizeEvent(QResizeEvent* event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void doLogout(const wstring&, bool);
     int  trySaveDocument(int);
     void RecalculatePlaces();
 

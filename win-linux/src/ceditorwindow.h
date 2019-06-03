@@ -50,6 +50,7 @@ public:
     ~CEditorWindow();
 
     bool holdView(int id) const override;
+    bool holdView(const wstring& portal) const;
     int closeWindow();
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;

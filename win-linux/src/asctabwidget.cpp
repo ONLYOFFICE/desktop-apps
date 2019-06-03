@@ -282,6 +282,20 @@ int CAscTabWidget::count(int type) const
     }
 }
 
+int CAscTabWidget::count(const wstring& portal)
+{
+    if ( portal.empty() )
+        return QTabWidget::count();
+    else {
+        int _out(0);
+        for (int i(count()); i-- > 0; ) {
+            if ( panel(i)->data()->url().find(portal) != wstring::npos )
+                ++_out;
+        }
+        return _out;
+    }
+}
+
 bool CAscTabWidget::hasForPortal(const QString& portal)
 {
     const wstring _wsp = portal.toStdWString();
