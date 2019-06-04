@@ -323,12 +323,13 @@ public:
 
     void onFileLocation(int, QString param)
     {
-        if ( m_panel->data()->local() ) {
+//        if ( m_panel->data()->local() ) {
+        if ( param == "offline" ) {
             const wstring& path = m_panel->data()->url();
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
-                CMessage::info(parentWindow(), QObject::tr("Document must be saved firstly."));
+                CMessage::info(window->handle(), QObject::tr("Document must be saved firstly."));
         } else {
             QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
             QRegularExpressionMatch _re_match = _re.match(param);

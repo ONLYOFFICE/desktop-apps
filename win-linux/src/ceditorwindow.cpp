@@ -358,7 +358,7 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
         if ( info.exists() ) _full_path = info.absoluteFilePath();
         else _full_path = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
 
-        CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
+        CFileDialogWrapper dlg(handle());
         dlg.setFormats(pData->get_SupportFormats());
 
         CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
