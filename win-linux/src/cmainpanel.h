@@ -140,7 +140,6 @@ public slots:
     void onLocalFileLocation(QString);
     void onFileLocation(int, QString);
     void onPortalOpen(QString);
-    void onPortalLogin(int, QString);
     void onPortalLogout(std::wstring portal);
     void onPortalNew(QString);
     void onPortalCreate();

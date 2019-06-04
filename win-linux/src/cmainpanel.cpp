@@ -555,26 +555,6 @@ void CMainPanel::onPortalLogout(wstring portal)
     }
 }
 
-void CMainPanel::onPortalLogin(int vid, QString info)
-{
-    int _i = m_pTabs->tabIndexByView(vid);
-    if ( !(_i < 0) && m_pTabs->panel(_i)->data()->contentType() == etPortal ) {
-        QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(info.toUtf8(), &jerror);
-
-        if ( jerror.error == QJsonParseError::NoError ) {
-            QJsonObject objRoot = jdoc.object();
-
-            objRoot["domain"] = QString::fromStdWString(m_pTabs->panel(_i)->data()->url());
-            jdoc.setObject(objRoot);
-
-            info = jdoc.toJson(QJsonDocument::Compact);
-        }
-
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "portal:login", Utils::encodeJson(info));
-    }
-}
-
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
 //    qDebug() << "on document open: " << url;
