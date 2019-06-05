@@ -41,6 +41,7 @@
 #include "ctabpanel.h"
 #include <memory>
 
+class CEditorWindowPrivate;
 class CEditorWindow : public CSingleWindowPlatform
 {
 public:

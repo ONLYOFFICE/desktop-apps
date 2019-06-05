@@ -701,7 +701,7 @@ void CAscApplicationManagerWrapper::destroyMainWindow(const size_t p)
     CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
     if ( _w ) {
         APP_CAST(_app);
-        auto & it = find(_app.m_vecWindows.begin(), _app.m_vecWindows.end(), p);
+        const auto& it = find(_app.m_vecWindows.begin(), _app.m_vecWindows.end(), p);
         if ( it != _app.m_vecWindows.end() ) {
             _app.m_vecWindows.erase(it);
         }
@@ -989,7 +989,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
-        CMessage mess(topWindow()->hWnd, CMessageOpts::moButtons::mbYesNo);
+        CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
         if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
             return true;
         } else return false;
