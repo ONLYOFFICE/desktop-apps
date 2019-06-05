@@ -657,12 +657,12 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
     } else
     if ( _size == 1 && _app.m_vecWindows[0] == p ) {
         if ( _app.m_closeTarget.empty() ) {
-            QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::lauchAppClose);
+            QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
         }
     }
 }
 
-void CAscApplicationManagerWrapper::lauchAppClose()
+void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
         m_closeTarget = L"app";

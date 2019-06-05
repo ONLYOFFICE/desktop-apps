@@ -147,7 +147,7 @@ public:
 
     void manageUndocking(int uid, const std::wstring& action);
     uint logoutCount(const wstring& portal) const;
-    void lauchAppClose();
+    void launchAppClose();
 
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
