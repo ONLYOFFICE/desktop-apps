@@ -32,7 +32,6 @@
 
 #include "ceditorwindow.h"
 #include "utils.h"
-#include "windows.h"
 #include "cwindowbase.h"
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
@@ -81,15 +80,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
-
-    QColor color;
-    switch (panel->data()->contentType()) {
-    case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
-    case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
-    case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
-    }
-
-    m_bgColor = RGB(color.red(), color.green(), color.blue());
 
     m_pMainPanel = createMainPanel(m_pWinPanel, panel);
 

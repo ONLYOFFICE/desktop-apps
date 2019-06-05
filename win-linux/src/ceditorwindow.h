@@ -39,7 +39,6 @@
 # include "win/csinglewindowplatform.h"
 #endif
 #include "ctabpanel.h"
-#include <windows.h>
 #include <memory>
 
 class CEditorWindow : public CSingleWindowPlatform
