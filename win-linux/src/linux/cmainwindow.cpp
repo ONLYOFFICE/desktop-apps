@@ -118,7 +118,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
     QMetaObject::connectSlotsByName(this);
 
     connect(m_pMainPanel, &CMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
-    connect(m_pMainPanel, &CMainPanel::mainWindowClose, this, &CMainWindow::slot_windowClose);
+    connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));

@@ -81,9 +81,38 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 {
     d_ptr.get()->init(panel);
 
-    m_pMainPanel = createMainPanel(m_pWinPanel, panel);
+#ifdef Q_OS_LINUX
+    m_pMainPanel = createMainPanel(this, panel);
+    setCentralWidget(m_pMainPanel);
 
+    QString background = "background-color:";
+    switch (panel->data()->contentType()) {
+    case etDocument: background.append(TAB_COLOR_DOCUMENT";"); break;
+    case etPresentation: background.append(TAB_COLOR_PRESENTATION";"); break;
+    case etSpreadsheet: background.append(TAB_COLOR_SPREADSHEET";"); break;
+    default:break;
+    }
+
+    setStyleSheet(background);
+#else
+    QColor color;
+    switch (panel->data()->contentType()) {
+    case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
+    case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
+    case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
+    }
+
+    m_bgColor = RGB(color.red(), color.green(), color.blue());
+
+    m_pMainPanel = createMainPanel(m_pWinPanel, panel);
     m_pWinPanel->show();
+#endif
+
+    if ( !CX11Decoration::isDecorated() ) {
+        CX11Decoration::setTitleWidget(m_boxTitleBtns);
+        m_pMainPanel->setMouseTracking(true);
+        setMouseTracking(true);
+    }
 
     QTimer::singleShot(0, [=]{m_pMainView->show();});
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
@@ -175,7 +204,12 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
     QGridLayout * mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing(0);
+#ifdef Q_OS_WIN
     mainGridLayout->setMargin(0);
+#else
+    int b = CX11Decoration::customWindowBorderWith() * m_dpiRatio;
+    mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
+#endif
     mainPanel->setLayout(mainGridLayout);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
@@ -293,7 +327,6 @@ void CEditorWindow::recalculatePlaces()
 {
     if ( !m_pMainView ) return;
 
-    int cbw = 0;
     int windowW = m_pMainPanel->width(),
         windowH = m_pMainPanel->height(),
         captionH = TITLE_HEIGHT * m_dpiRatio;
@@ -307,7 +340,12 @@ void CEditorWindow::recalculatePlaces()
     QSize _s{TOOLBTN_WIDTH * 3, TOOLBTN_HEIGHT};
     _s *= m_dpiRatio;
 //    m_boxTitleBtns->setFixedSize(_s.width(), _s.height());
+#ifdef Q_OS_WIN
     m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, _s.height());
+#else
+    int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
+    m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, _s.height());
+#endif
 //    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
 //    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);
 

@@ -175,11 +175,13 @@ app_linux {
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
                 $$PWD/src/linux/csinglewindow.h \
+                $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
                 $$PWD/src/linux/csinglewindow.cpp \
+                $$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
     HEADERS += $$PWD/src/linux/cdialogopenssl.h
