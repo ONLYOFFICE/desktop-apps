@@ -379,7 +379,7 @@ void CMainWindow::sendSertificate(int viewid)
 #endif
 }
 
-WId CMainWindow::handle() const
+QWidget * CMainWindow::handle() const
 {
-    return winId();
+    return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
 }

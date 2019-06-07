@@ -175,3 +175,8 @@ QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
 
     return btn;
 }
+
+void CSingleWindowBase::adjustGeometry()
+{
+
+}

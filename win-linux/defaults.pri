@@ -61,7 +61,6 @@ HEADERS += \
     $$PWD/src/cdpichecker.h \
     $$PWD/src/csinglewindowbase.h \
     $$PWD/src/ceditorwindow.h \
-    $$PWD/src/win/csinglewindowplatform.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
     $$PWD/src/ceditortools.h
@@ -97,7 +96,6 @@ SOURCES += \
     $$PWD/src/ctabpanel.cpp \
     $$PWD/src/csinglewindowbase.cpp \
     $$PWD/src/ceditorwindow.cpp \
-    $$PWD/src/win/csinglewindowplatform.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp
 #    src/ctabstyle.cpp
@@ -213,6 +211,7 @@ win32 {
                 $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
                 $$PWD/src/win/csinglewindow.h \
+                $$PWD/src/win/csinglewindowplatform.h \
                 $$PWD/src/win/cprintdialog.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
@@ -221,6 +220,7 @@ win32 {
                 $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/csinglewindow.cpp \
+                $$PWD/src/win/csinglewindowplatform.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \

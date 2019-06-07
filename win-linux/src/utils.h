@@ -55,7 +55,7 @@ public:
     static unsigned getScreenDpiRatio(const QPoint&);
     static unsigned getScreenDpiRatioByHWND(int);
     static unsigned getScreenDpiRatioByWidget(QWidget*);
-    static QString replaceBackslash(QString&);
+    static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
     static bool appArgsContains(const QString&);

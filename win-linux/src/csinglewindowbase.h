@@ -49,9 +49,10 @@ public:
     virtual bool holdView(int uid) const = 0;
     virtual QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel);
     virtual const QObject * receiver() = 0;
-    virtual Qt::WindowState windowState() = 0;
-    virtual void setWindowState(Qt::WindowState) = 0;
+//    virtual Qt::WindowState windowState() = 0;
+//    virtual void setWindowState(Qt::WindowState) = 0;
     virtual void setWindowTitle(const QString&);
+    virtual void adjustGeometry();
 
 protected:
     uint m_dpiRatio;

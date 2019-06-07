@@ -68,6 +68,14 @@ class CEditorWindowPrivate : public CCefEventsGate
 
     sPrintData m_printData;
 
+    CEditorWindow * window = nullptr;
+    QLabel * iconuser = nullptr;
+    QPushButton * btndock = nullptr;
+    bool isPrinting = false;
+
+public:
+    int titleLeftOffset = 168;
+
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w)
     {}
@@ -128,7 +136,7 @@ public:
 
     void onDocumentSaveInnerRequest(int) override
     {
-        CMessage mess(parentWindow(), CMessageOpts::moButtons::mbYesDefNo);
+        CMessage mess(window->handle(), CMessageOpts::moButtons::mbYesDefNo);
         int reply = mess.confirm(QObject::tr("Document must be saved to continue.<br>Save the document?"));
 
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
@@ -179,7 +187,7 @@ public:
             CPrintDialogWinWrapper wrapper(printer, parentWindow());
             QPrintDialog * dialog = wrapper.q_dialog();
 #else
-            QPrintDialog * dialog =  new QPrintDialog(printer, this);
+            QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
 #endif // _WIN32
 
             dialog->setWindowTitle(tr("Print Document"));
@@ -201,7 +209,7 @@ public:
                 case QPrintDialog::CurrentPage: start = currentpage, finish = currentpage; break;
                 }
 
-                CEditorTools::print({m_panel->cef(), pContext, start, finish, parentWindow()});
+                CEditorTools::print({m_panel->cef(), pContext, start, finish, window->handle()});
             }
 
             pContext->Release();
@@ -282,7 +290,7 @@ public:
 //                if (grandpa) {
 //                    fsWidget->setParent(grandpa);
 //                    m_dataFullScreen->parent->hide();
-                }
+//                }
 #endif
             _fs_widget->showFullScreen();
             _fs_widget->cef()->focus();
@@ -364,7 +372,7 @@ public:
         }
     }
 
-    QLabel * const iconUser()
+    QLabel * iconUser()
     {
         if ( !iconuser ) {
             iconuser = new QLabel(window->m_boxTitleBtns);
@@ -376,7 +384,7 @@ public:
         return iconuser;
     }
 
-    QPushButton * const buttonDock()
+    QPushButton * buttonDock()
     {
         if ( !btndock ) {
             btndock = window->createToolButton(window->m_boxTitleBtns);
@@ -385,27 +393,6 @@ public:
 
         return btndock;
     }
-
-#ifdef Q_OS_WIN
-    HWND parentWindow() const
-    {
-        return (HWND)window->m_pMainPanel->winId();
-    }
-#else
-    QWidget * parentWindow() const
-    {
-        return window->m_pMainPanel;
-    }
-#endif
-
-public:
-    int titleLeftOffset = 168;
-
-private:
-    CEditorWindow * window = nullptr;
-    QLabel * iconuser = nullptr;
-    QPushButton * btndock = nullptr;
-    bool isPrinting = false;
 };
 
 #endif // CEDITORWINDOW_P_H

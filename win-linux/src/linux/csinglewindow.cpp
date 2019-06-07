@@ -277,7 +277,7 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
     }
 }
 
-QWidget * CSingleWindow::handle() const
+const QWidget * CSingleWindow::handle() const
 {
     return this;
 }

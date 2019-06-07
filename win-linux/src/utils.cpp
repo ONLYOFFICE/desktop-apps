@@ -427,9 +427,9 @@ QByteArray Utils::readStylesheets(const QString& path)
     return _css;
 }
 
-QString Utils::replaceBackslash(QString& path)
+QString Utils::replaceBackslash(const QString& path)
 {
-    return path.replace(QRegularExpression("\\\\"), "/");
+    return QString(path).replace(QRegularExpression("\\\\"), "/");
 }
 
 bool Utils::setAppUserModelId(const QString& modelid)

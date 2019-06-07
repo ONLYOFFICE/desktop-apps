@@ -47,7 +47,7 @@ public:
     QWidget * createMainPanel(bool, const QString&, QWidget *);
     void setScreenScalingFactor(uchar factor);
 
-    QWidget * handle() const;
+    const QWidget * handle() const;
 
 private:
     bool event(QEvent *event);
