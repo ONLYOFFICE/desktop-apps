@@ -44,15 +44,6 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     : CSingleWindowBase(const_cast<QRect&>(rect))
     , m_bgColor(WINDOW_BACKGROUND_COLOR)
 {
-    QColor color;
-    switch (((CTabPanel*)panel)->data()->contentType()) {
-    case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
-    case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
-    case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
-    }
-
-    m_bgColor = RGB(color.red(), color.green(), color.blue());
-
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
     WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };

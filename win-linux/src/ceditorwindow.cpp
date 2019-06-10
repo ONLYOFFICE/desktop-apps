@@ -82,14 +82,15 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     d_ptr.get()->init(panel);
 
 #ifdef Q_OS_LINUX
+    setObjectName("editorWindow");
     m_pMainPanel = createMainPanel(this, panel);
     setCentralWidget(m_pMainPanel);
 
-    QString background = "background-color:";
+    QString background = "#editorWindow{background-color:";
     switch (panel->data()->contentType()) {
-    case etDocument: background.append(TAB_COLOR_DOCUMENT";"); break;
-    case etPresentation: background.append(TAB_COLOR_PRESENTATION";"); break;
-    case etSpreadsheet: background.append(TAB_COLOR_SPREADSHEET";"); break;
+    case etDocument: background.append(TAB_COLOR_DOCUMENT";}"); break;
+    case etPresentation: background.append(TAB_COLOR_PRESENTATION";}"); break;
+    case etSpreadsheet: background.append(TAB_COLOR_SPREADSHEET";}"); break;
     default:break;
     }
 
@@ -302,7 +303,6 @@ void CEditorWindow::onMaximizeEvent()
 void CEditorWindow::onSizeEvent(int type)
 {
     CSingleWindowPlatform::onSizeEvent(type);
-
     recalculatePlaces();
 }
 
