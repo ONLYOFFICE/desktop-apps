@@ -23,7 +23,11 @@ public:
     virtual QString documentName(int vid);
 //    virtual WId handle() const = 0;
 
+    bool isClosing() const;
+    void setClosing();
+
 protected:
+    bool m_closed = false;
 };
 
 #endif // CMAINWINDOWBASE_H

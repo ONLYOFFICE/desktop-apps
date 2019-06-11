@@ -95,6 +95,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     }
 
     setStyleSheet(background);
+
+    if ( !CX11Decoration::isDecorated() ) {
+        CX11Decoration::setTitleWidget(m_boxTitleBtns);
+        m_pMainPanel->setMouseTracking(true);
+        setMouseTracking(true);
+    }
 #else
     QColor color;
     switch (panel->data()->contentType()) {
@@ -108,12 +114,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     m_pMainPanel = createMainPanel(m_pWinPanel, panel);
     m_pWinPanel->show();
 #endif
-
-    if ( !CX11Decoration::isDecorated() ) {
-        CX11Decoration::setTitleWidget(m_boxTitleBtns);
-        m_pMainPanel->setMouseTracking(true);
-        setMouseTracking(true);
-    }
 
     QTimer::singleShot(0, [=]{m_pMainView->show();});
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());

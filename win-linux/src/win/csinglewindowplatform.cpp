@@ -326,11 +326,8 @@ bool CSingleWindowPlatform::visible()
 
 void CSingleWindowPlatform::applyWindowState(Qt::WindowState s)
 {
-//    if ( m_isCustomWidown )
-    {
-        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
-        m_buttonMaximize->style()->polish(m_buttonMaximize);
-    }
+    m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
+    m_buttonMaximize->style()->polish(m_buttonMaximize);
 }
 
 void CSingleWindowPlatform::onSizeEvent(int type)

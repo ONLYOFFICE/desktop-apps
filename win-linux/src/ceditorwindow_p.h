@@ -184,7 +184,7 @@ public:
             printer->setFromTo(1, pagescount);
 
 #ifdef _WIN32
-            CPrintDialogWinWrapper wrapper(printer, parentWindow());
+            CPrintDialogWinWrapper wrapper(printer, window->handle());
             QPrintDialog * dialog = wrapper.q_dialog();
 #else
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());

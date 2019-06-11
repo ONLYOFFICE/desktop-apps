@@ -389,7 +389,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else {
             CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
             if ( _w && _w->isClosing() ) {
-                _w->close();
+                _w->hide();
 
                 delete _w, _w = nullptr;
             }
