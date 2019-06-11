@@ -383,3 +383,13 @@ QWidget * CMainWindow::handle() const
 {
     return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
 }
+
+bool CMainWindow::isClosing() const
+{
+    return m_closed;
+}
+
+void CMainWindow::setClosing()
+{
+    m_closed = true;
+}

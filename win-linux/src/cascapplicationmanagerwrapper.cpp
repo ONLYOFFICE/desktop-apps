@@ -382,9 +382,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     }
                 }
 
-                if ( !m_vecWindows.empty() )
+                if ( !m_vecWindows.empty() ) {
                     destroyMainWindow(m_vecWindows.at(0));
+                }
             }
+        } else {
+            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
+            if ( _w && _w->isClosing() ) {
+                _w->close();
+
+                delete _w, _w = nullptr;
+            }
+
+            m_vecWindows.clear();
         }
 
         break;
@@ -701,10 +711,10 @@ void CAscApplicationManagerWrapper::destroyMainWindow(const size_t p)
     CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
     if ( _w ) {
         APP_CAST(_app);
-        const auto& it = find(_app.m_vecWindows.begin(), _app.m_vecWindows.end(), p);
-        if ( it != _app.m_vecWindows.end() ) {
-            _app.m_vecWindows.erase(it);
-        }
+//        const auto& it = find(_app.m_vecWindows.begin(), _app.m_vecWindows.end(), p);
+//        if ( it != _app.m_vecWindows.end() ) {
+//            _app.m_vecWindows.erase(it);
+//        }
 
         if (_app.m_vecWindows.empty()) {
             while (!_app.m_vecEditors.empty()) {
@@ -712,7 +722,8 @@ void CAscApplicationManagerWrapper::destroyMainWindow(const size_t p)
             }
         }
 
-        delete _w, _w = nullptr;
+        _w->setClosing();
+        _app.DestroyCefView(-1);
     }
 }
 

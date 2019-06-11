@@ -57,6 +57,8 @@ public:
     bool isMaximized() const;
     void sendSertificate(int viewid);
     QWidget * handle() const;
+    bool isClosing() const;
+    void setClosing();
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -73,6 +75,7 @@ protected:
 private:
     CMainPanelImpl *   m_pMainPanel;
     uchar m_dpiRatio = 1;
+    bool m_closed = false;
 
 signals:
 public slots:
