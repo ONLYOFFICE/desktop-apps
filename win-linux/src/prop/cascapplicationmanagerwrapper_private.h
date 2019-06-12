@@ -34,6 +34,9 @@
 #define CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
 
 #include "cascapplicationmanagerwrapper.h"
+#ifdef SUPPORT_EMBEDDED_MEDIA
+# include "qcefview_media.h"
+#endif
 
 class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
 {
@@ -50,7 +53,11 @@ public:
     void applyStylesheets() {}
     QCefView * createView(QWidget * parent)
     {
+#ifdef SUPPORT_EMBEDDED_MEDIA
+        return new QCefView_Media(parent);
+#else
         return new QCefView(parent);
+#endif
     }
 };
 
