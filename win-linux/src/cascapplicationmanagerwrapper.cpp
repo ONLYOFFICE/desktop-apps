@@ -55,10 +55,18 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
                         this, &CAscApplicationManagerWrapper::onCoreEvent);
+
+#ifdef SUPPORT_EMBEDDED_MEDIA
+    NSBaseVideoLibrary::Init(nullptr);
+#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
+#ifdef SUPPORT_EMBEDDED_MEDIA
+    NSBaseVideoLibrary::Destroy();
+#endif
+
 //    CSingleWindow * _sw = nullptr;
 //    for (auto const& w : m_vecEditors) {
 //        _sw = reinterpret_cast<CSingleWindow *>(w);
@@ -468,6 +476,24 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         });
 
         return true;}
+
+#ifdef SUPPORT_EMBEDDED_MEDIA
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
+        CCefView * _cef = GetViewById(event->get_SenderId());
+        if ( _cef ) {
+            CCefViewWidgetImpl * _impl = _cef->GetWidgetImpl();
+
+            if ( _impl ) {
+                event->m_nType == ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START ?
+                    static_cast<QCefView *>(_impl)->OnMediaStart(static_cast<CAscExternalMedia *>(event->m_pData)) :
+                        static_cast<QCefView *>(_impl)->OnMediaEnd();
+            }
+        }
+
+        return true;
+    }
+#endif
 
     default: break;
     }
