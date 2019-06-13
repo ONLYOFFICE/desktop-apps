@@ -54,7 +54,7 @@ PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
-#ifdef ISPPCC_INVOKED
+#ifdef ENABLE_SIGNING
 SignTool                  =byparam $p
 #endif
 
