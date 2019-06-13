@@ -625,11 +625,9 @@
                 NSString * localTabValue = [NSString stringWithString:tab.params[param]];
                 NSString * localValue = [NSString stringWithString:value];
 
-                if (tab.params[@"isPortalPage"]) {
-                    if (NSString *provider = tab.params[@"provider"]) {
-                        if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
-                            localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
-                        }
+                if (NSString *provider = tab.params[@"provider"]) {
+                    if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                        localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                     }
                 }
 
@@ -1268,36 +1266,33 @@
 
         if (NSString *viewId = json[@"viewId"]) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
-                if ([tab.params[@"isPortalPage"] boolValue]) {
-                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
-                        if (NSString *infoString = json[@"info"]) {
-                            if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
-                                if (NSString *originalUrl = [cefView originalUrl]) {
-                                    originalUrl = [[originalUrl stringByReplacingOccurrencesOfString:@"://" withString:@":////"]
-                                                   stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+                if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                    if (NSString *infoString = json[@"info"]) {
+                        if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
+                            if (NSString *originalUrl = [cefView originalUrl]) {
+                                originalUrl = [[originalUrl stringByReplacingOccurrencesOfString:@"://" withString:@":////"]
+                                               stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
 
-                                    // Hotfix virtual path
-                                    if (NSString *provider = tab.params[@"provider"]) {
-                                        if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
-                                            originalUrl = [originalUrl stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
-                                        }
+                                // Hotfix virtual path
+                                if (NSString *provider = tab.params[@"provider"]) {
+                                    if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                                        originalUrl = [originalUrl stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                                     }
-                                    originalUrl = [originalUrl virtualUrl];
-                                    info[@"domain"] = originalUrl;
+                                }
+                                originalUrl = [originalUrl virtualUrl];
 
-                                    if (NSString * jsonString = [info jsonString]) {
-                                        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-                                        pCommand->put_Command(L"portal:login");
-                                        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+                                if (NSString * jsonString = [info jsonString]) {
+                                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"portal:login");
+                                    pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
 
-                                        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-                                        pEvent->m_pData = pCommand;
+                                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
 
-                                        [self.cefStartPageView apply:pEvent];
+                                    [self.cefStartPageView apply:pEvent];
 
-                                        // Hotfix for SSO
-                                        tab.params[@"url"] = info[@"domain"];
-                                    }
+                                    // Hotfix for SSO
+                                    tab.params[@"url"] = originalUrl;
                                 }
                             }
                         }
@@ -1700,10 +1695,6 @@
 
                 if (provider && [provider length] > 0) {
                     [cefView setExternalCloud:provider];
-                }
-
-                if (provider) {
-                    tab.params[@"isPortalPage"] = @(YES);
                 }
             }
             case ASCTabActionOpenUrl: {
