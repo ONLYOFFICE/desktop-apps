@@ -591,22 +591,23 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 #else
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\DjVuFile.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\graphics.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\HtmlFile.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\kernel.dll;   DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\x2t.exe;      DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\XpsFile.dll;  DestDir: {app}; Flags: signonce;
+# define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + '\ONLYOFFICE'
+Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
+Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\DjVuFile.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\graphics.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlFile.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\kernel.dll;   DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;      DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;  DestDir: {app}; Flags: signonce;
 
 #ifdef _UPDMODULE
 Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
