@@ -97,7 +97,6 @@ signals:
     void mainWindowChangeState(Qt::WindowState);
     void mainWindowWantToClose();
     void mainPageReady();
-    void mainWindowDestroy();
 
 public slots:
     void pushButtonMinimizeClicked();

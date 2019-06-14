@@ -81,6 +81,7 @@ private:
     CSingleWindow * m_reporterWindow = nullptr;
 
     uint m_closeCount = 0;
+    uint m_countViews = 0;
     wstring m_closeTarget;
 
 private:
@@ -141,7 +142,6 @@ public:
 
     static void             destroyViewer(int id);
     static void             destroyViewer(QCefView * v);
-    static void             destroyMainWindow(const size_t);
 
     static void             cancelClose();
 

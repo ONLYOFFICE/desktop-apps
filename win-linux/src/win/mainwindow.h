@@ -89,7 +89,6 @@ private:
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
-    void slot_windowDestroy();
 
 #ifdef _UPDMODULE
     static void updateFound();

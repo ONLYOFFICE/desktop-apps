@@ -88,13 +88,3 @@ QString CMainWindowBase::documentName(int vid)
 
     return "";
 }
-
-bool CMainWindowBase::isClosing() const
-{
-    return m_closed;
-}
-
-void CMainWindowBase::setClosing()
-{
-    m_closed = true;
-}
