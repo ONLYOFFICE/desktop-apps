@@ -204,7 +204,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
 
-    QCefView * pMainWidget = new QCefView(centralWidget);
+    QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
     pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
     pMainWidget->setObjectName( "mainPanel" );
     pMainWidget->setHidden(false);
@@ -328,6 +328,7 @@ bool CMainPanel::closeAll()
                     }
                 }
             } else {
+                qDebug() << "close portal: id " << m_pTabs->panel(i)->cef()->GetId();
                 m_pTabs->closeEditorByIndex(i);
             }
 
@@ -439,6 +440,7 @@ void CMainPanel::onTabsCountChanged(int count, int i, int d)
 
 void CMainPanel::onEditorAllowedClose(int uid)
 {
+    qDebug() << "tab allowed to close: " << uid;
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
 //        if ( m_pTabs->count() ) {
 //            m_pMainWidget->setProperty("removed", true);
@@ -901,6 +903,7 @@ void CMainPanel::onDocumentDownload(void * info)
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 {
+    qDebug() << "on document fragmented: " << isfragmented;
 
     int index = m_pTabs->tabIndexByView(id);
     if ( !(index < 0) ) {

@@ -366,43 +366,36 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
         return true; }
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
+        --m_countViews;
+
         if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
             delete m_reporterWindow, m_reporterWindow = nullptr;
             return true;
         }
 
+        if ( m_closeTarget.compare(L"app") == 0 ) {
+            switch ( m_countViews ) {
+            case 1: DestroyCefView(-1); break;
+            case 0: {
+                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
+                if ( _w ) {
+                    _w->hide();
+
+                    delete _w, _w = nullptr;
+                }
+
+                m_vecWindows.clear();
+            }
+            default: break;
+            }
+        } else
         if ( m_closeCount && --m_closeCount == 0 && !m_closeTarget.empty() ) {
             if ( m_closeTarget.find(L"http") != wstring::npos ) {
                 const wstring& portal = m_closeTarget;
                 Logout(portal);
 
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
-            } else
-            if ( m_closeTarget.compare(L"app") == 0 ) {
-                if ( !m_vecEditors.empty() ) {
-                    vector<size_t>::const_iterator it = m_vecEditors.begin();
-                    while ( it != m_vecEditors.end() ) {
-                        CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
-                        AscAppManager::unbindReceiver(static_cast<const CCefEventsGate *>(_w->receiver()));
-
-                        delete _w, _w = nullptr;
-                        it = m_vecEditors.erase(it);
-                    }
-                }
-
-                if ( !m_vecWindows.empty() ) {
-                    destroyMainWindow(m_vecWindows.at(0));
-                }
             }
-        } else {
-            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
-            if ( _w && _w->isClosing() ) {
-                _w->hide();
-
-                delete _w, _w = nullptr;
-            }
-
-            m_vecWindows.clear();
         }
 
         break;
@@ -701,55 +694,32 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
-        m_closeTarget = L"app";
-        m_closeCount = static_cast<int>(m_vecEditors.size());
+        if ( m_countViews > 1 ) {
+            m_closeTarget = L"app";
+            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
 
-        CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-        m_closeCount += _w->editorsCount();
+            /* close all editors windows */
+            auto& it = m_vecEditors.begin();
+            while ( it != m_vecEditors.end() ) {
+                CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
 
-        /* close all editors windows */
-        auto it = m_vecEditors.begin();
-        while ( it != m_vecEditors.end() ) {
-            CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+                int _r = _w->closeWindow();
+                if ( _r == MODAL_RESULT_CANCEL ) {
+                    AscAppManager::cancelClose();
+                    return;
+                } else ++it;
+            }
 
-            int _r = _w->closeWindow();
-            if ( _r == MODAL_RESULT_CANCEL ) {
+            /* close main window */
+            if ( !_w->mainPanel()->closeAll() ) {
                 AscAppManager::cancelClose();
                 return;
-            } else ++it;
-        }
-
-        /* close main window */
-        if ( !_w->mainPanel()->closeAll() ) {
-            AscAppManager::cancelClose();
-            return;
-        }
-
-        if ( m_closeCount == 0 ) {
-            if ( !m_vecWindows.empty() )
-                destroyMainWindow(m_vecWindows.at(0));
-        }
-    }
-}
-
-void CAscApplicationManagerWrapper::destroyMainWindow(const size_t p)
-{
-    CMainWindow * _w = reinterpret_cast<CMainWindow *>(p);
-    if ( _w ) {
-        APP_CAST(_app);
-//        const auto& it = find(_app.m_vecWindows.begin(), _app.m_vecWindows.end(), p);
-//        if ( it != _app.m_vecWindows.end() ) {
-//            _app.m_vecWindows.erase(it);
-//        }
-
-        if (_app.m_vecWindows.empty()) {
-            while (!_app.m_vecEditors.empty()) {
-                qApp->processEvents();
             }
         }
 
-        _w->setClosing();
-        _app.DestroyCefView(-1);
+        if ( !(m_countViews > 1) ) {
+            DestroyCefView(-1);
+        }
     }
 }
 
@@ -1039,6 +1009,7 @@ QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent)
 {
     APP_CAST(_app);
 
+    ++_app.m_countViews;
     return _app.m_private->createView(parent);
 }
 
@@ -1050,7 +1021,6 @@ void CAscApplicationManagerWrapper::destroyViewer(int id)
 
 void CAscApplicationManagerWrapper::destroyViewer(QCefView * v)
 {
-    APP_CAST(_app);
     destroyViewer(v->GetCefView()->GetId());
 }
 
