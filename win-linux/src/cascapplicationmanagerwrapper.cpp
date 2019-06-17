@@ -337,21 +337,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
-        if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
-            AscAppManager::getInstance().DestroyCefView(event->get_SenderId());
+        CAscTypeId * pData = static_cast<CAscTypeId *>(event->m_pData);
+
+        if ( m_reporterWindow && m_reporterWindow->holdView(pData->get_Id()) ) {
+            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
         }
 
 //        RELEASEINTERFACE(event);
         return true; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
-    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
-        CAscReporterMessage * pData = (CAscReporterMessage *)event->m_pData;
-        CCefView * pView = GetViewById(pData->get_ReceiverId());
-        if ( pView ) {
-            pView->Apply(event);
-        }
-        return true; }
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: return true;
+
     case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
         event->AddRef();
         this->Apply(event);
