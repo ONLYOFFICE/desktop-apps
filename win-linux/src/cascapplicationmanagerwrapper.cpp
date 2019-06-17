@@ -704,8 +704,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
                 if ( _r == MODAL_RESULT_CANCEL ) {
                     AscAppManager::cancelClose();
                     return;
-                } else
-                    ++it;
+                } else ++it;
             }
 
             /* close main window */
@@ -727,7 +726,12 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
 //    QMutexLocker locker( &_app.m_oMutex );
 
     if ( p ) {
-        vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
+#if (__GNUC__ <= 4 && __GNUC_MINOR__ < 9)
+        vector<size_t>::iterator
+#else
+        vector<size_t>::const_iterator
+#endif
+        it = _app.m_vecEditors.begin();
         while ( it != _app.m_vecEditors.end() ) {
             if ( *it == p /*&& !_app.m_vecEditors.empty()*/ ) {
                 CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
