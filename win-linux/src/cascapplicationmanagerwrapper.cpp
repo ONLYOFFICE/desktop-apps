@@ -696,7 +696,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
             CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
 
             /* close all editors windows */
-            auto& it = m_vecEditors.begin();
+            vector<size_t>::const_iterator it = m_vecEditors.begin();
             while ( it != m_vecEditors.end() ) {
                 CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
 
@@ -704,7 +704,8 @@ void CAscApplicationManagerWrapper::launchAppClose()
                 if ( _r == MODAL_RESULT_CANCEL ) {
                     AscAppManager::cancelClose();
                     return;
-                } else ++it;
+                } else
+                    ++it;
             }
 
             /* close main window */
