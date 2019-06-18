@@ -306,8 +306,8 @@ QString Utils::encodeJson(const QString& s)
 
 wstring Utils::encodeJson(const wstring& s)
 {
-#if (__GNUC__ <= 4 && __GNUC_MINOR__ < 9)
-    QString::fromStdWString(s).replace("\"", "\\\"").toStdWString();
+#if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 9
+    return QString::fromStdWString(s).replace("\"", "\\\"").toStdWString();
 #else
     return std::regex_replace(wstring(s), std::wregex(L"\""), L"\\\"");
 #endif
