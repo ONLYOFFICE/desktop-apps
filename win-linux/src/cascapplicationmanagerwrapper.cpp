@@ -56,16 +56,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
                         this, &CAscApplicationManagerWrapper::onCoreEvent);
 
-#ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Init(nullptr);
-#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-#ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Destroy();
-#endif
 
 //    CSingleWindow * _sw = nullptr;
 //    for (auto const& w : m_vecEditors) {
@@ -467,7 +463,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
-#ifdef SUPPORT_EMBEDDED_MEDIA
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
         CCefView * _cef = GetViewById(event->get_SenderId());
@@ -483,7 +478,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;
     }
-#endif
 
     default: break;
     }
@@ -726,7 +720,7 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
 //    QMutexLocker locker( &_app.m_oMutex );
 
     if ( p ) {
-#if (__GNUC__ <= 4 && __GNUC_MINOR__ < 9)
+#if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 9
         vector<size_t>::iterator
 #else
         vector<size_t>::const_iterator

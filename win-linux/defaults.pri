@@ -156,7 +156,6 @@ win32 {
 
 LIBS += -L$$CORE_LIB_PATH_PLATFORM -lPdfReader -lPdfWriter -lDjVuFile -lXpsFile -lHtmlRenderer -lUnicodeConverter -lhunspell -looxmlsignature -lkernel -lgraphics
 
-DEFINES += SUPPORT_EMBEDDED_MEDIA
 INCLUDEPATH += ../../core-ext/desktop-sdk-wrapper/additional
 QT += multimedia multimediawidgets
 build_xp {
