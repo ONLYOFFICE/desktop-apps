@@ -32,6 +32,8 @@
 # endif
 #endif
 
+#include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
+
 
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(getInstance());
