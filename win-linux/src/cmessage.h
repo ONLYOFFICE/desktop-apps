@@ -47,7 +47,9 @@ namespace CMessageOpts {
         mbYesDefNo,
         mbYesNo,
         mbYesNoCancel,
-        mbYesDefNoCancel
+        mbYesDefNoCancel,
+        mbOkCancel,
+        mbOkDefCancel
     };
 }
 

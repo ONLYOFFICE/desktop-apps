@@ -984,8 +984,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 #ifdef Q_OS_WIN
 # ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
-        CMessage mess(topWindow()->hWnd);
-        mess.setButtons({tr("Yes"), tr("No") + ":default"});
+        CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
         return mess.confirm(QObject::tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
     }
 # endif
