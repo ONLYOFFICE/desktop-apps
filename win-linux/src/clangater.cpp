@@ -112,6 +112,7 @@ private:
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
         ,{"pl-PL", "Polski"}
+        ,{"zh-CN", "Chinese"}
     };
 };
 
