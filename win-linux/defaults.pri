@@ -15,6 +15,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts \
                 ./langs/pt_BR.ts \
                 ./langs/it_IT.ts \
+                ./langs/zh_CN.ts \
                 ./langs/pl.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor

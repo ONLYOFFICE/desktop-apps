@@ -60,6 +60,7 @@ $(DEST_DIR): install
 win-linux/package/windows/%.exe:
 	cd $(dir $@) && $(ISCC) \
 		//DSCRIPT_CUSTOM_FILES=1 \
+		//DENABLE_SIGNING=1 \
 		//Qp \
 		$(ISCC_S_PARAM)$(SIGN_STR) \
 		install$(OS_ARCH).iss
