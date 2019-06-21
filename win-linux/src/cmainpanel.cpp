@@ -938,7 +938,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-        if ( !m_closeAct.isEmpty() )
+//        if ( !m_closeAct.isEmpty() )
             m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
