@@ -439,7 +439,6 @@ void CMainPanel::onTabsCountChanged(int count, int i, int d)
 
 void CMainPanel::onEditorAllowedClose(int uid)
 {
-    qDebug() << "tab allowed to close: " << uid;
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
 //        if ( m_pTabs->count() ) {
 //            m_pMainWidget->setProperty("removed", true);
@@ -899,15 +898,12 @@ void CMainPanel::onDocumentDownload(void * info)
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 {
-    qDebug() << "on document fragmented: " << isfragmented;
-
     int index = m_pTabs->tabIndexByView(id);
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
                 static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
-                    qDebug() << "build document";
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
                 } else {
