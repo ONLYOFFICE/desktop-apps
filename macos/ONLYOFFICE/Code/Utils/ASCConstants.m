@@ -188,15 +188,15 @@
                      @"extension"   : @"xps"
                      },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT): @{
-                     @"description" : NSLocalizedString(@"OpenDocument Document Template", nil),
+                     @"description" : NSLocalizedString(@"OpenDocument Document template", nil),
                      @"extension"   : @"ott"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_OTP): @{
-                     @"description" : NSLocalizedString(@"OpenDocument Presentation Template", nil),
+                     @"description" : NSLocalizedString(@"OpenDocument Presentation template", nil),
                      @"extension"   : @"otp"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS): @{
-                     @"description" : NSLocalizedString(@"OpenDocument Spreadsheet Template", nil),
+                     @"description" : NSLocalizedString(@"OpenDocument Spreadsheet template", nil),
                      @"extension"   : @"ots"
                      }
              };
