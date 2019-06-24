@@ -597,17 +597,18 @@ Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Fl
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\DjVuFile.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\graphics.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlFile.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\kernel.dll;   DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;      DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;  DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\WinSparkle.dll;         DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\DjVuFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\graphics.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\kernel.dll;       DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
 
 #ifdef _UPDMODULE
 Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
