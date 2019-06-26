@@ -593,6 +593,8 @@ Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fo
 #else
 # ifdef _WIN_XP
 #   define xp_suffix  _xp
+# else
+#   define xp_suffix
 # endif
 # define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
