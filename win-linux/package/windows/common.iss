@@ -591,7 +591,10 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 #else
-# define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + '\ONLYOFFICE'
+# ifdef _WIN_XP
+#   define xp_suffix  _xp
+# endif
+# define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
