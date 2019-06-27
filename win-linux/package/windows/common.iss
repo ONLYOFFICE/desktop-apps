@@ -10,7 +10,18 @@
 #define licfile             'agpl-3.0'
 #define APPWND_CLASS_NAME   'DocEditorsWindowClass'
 
-#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
+#ifndef SCRIPT_CUSTOM_FILES
+#  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
+#else
+#  ifdef _WIN_XP
+#    define xp_suffix  _xp
+#  else
+#    define xp_suffix
+#  endif
+#  define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
+#  define sAppVersion         GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+#endif
+
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
@@ -591,12 +602,6 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 #else
-# ifdef _WIN_XP
-#   define xp_suffix  _xp
-# else
-#   define xp_suffix
-# endif
-# define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
