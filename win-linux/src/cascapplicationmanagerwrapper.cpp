@@ -34,7 +34,7 @@
 
 
 #define APP_CAST(app) \
-    CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(getInstance());
+    CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
 
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
@@ -138,8 +138,6 @@ void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 
 void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 {
-    QMutexLocker locker( &m_oMutex );
-
     CAscCefMenuEvent * _event = static_cast<CAscCefMenuEvent *>(e);
 
     if ( m_private->processEvent(_event) || processCommonEvent(_event) )  {
@@ -512,7 +510,7 @@ void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent
 //    RELEASEINTERFACE(event);
 }
 
-CAscApplicationManager & CAscApplicationManagerWrapper::getInstance()
+CAscApplicationManagerWrapper & CAscApplicationManagerWrapper::getInstance()
 {
     static CAscApplicationManagerWrapper _manager;
     return _manager;
@@ -610,8 +608,6 @@ CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
 {
     APP_CAST(_app)
 
-    QMutexLocker locker( &_app.m_oMutex );
-
     CMainWindow * _window = new CMainWindow(rect);
     _app.m_vecWindows.push_back( size_t(_window) );
 
@@ -666,7 +662,6 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 {
     APP_CAST(_app)
 
-    QMutexLocker locker( &_app.m_oMutex );
     size_t _size = _app.m_vecWindows.size();
 
     if ( _size > 1 ) {
@@ -726,7 +721,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
 void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
 {
     APP_CAST(_app)
-//    QMutexLocker locker( &_app.m_oMutex );
 
     if ( p ) {
         vector<size_t>::const_iterator it = _app.m_vecEditors.begin();

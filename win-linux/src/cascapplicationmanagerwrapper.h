@@ -75,7 +75,6 @@ private:
     vector<size_t> m_vecEditors;
     vector<QString> m_vecStyles;
     vector<QString> m_vecStyles2x;
-    QMutex         m_oMutex;
 
     map<int, CCefEventsGate *> m_receivers;
     CSingleWindow * m_reporterWindow = nullptr;
@@ -116,7 +115,7 @@ public slots:
 
 
 public:
-    static CAscApplicationManager & getInstance();
+    static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
     CSingleWindow * createReporterWindow(void *, int);
