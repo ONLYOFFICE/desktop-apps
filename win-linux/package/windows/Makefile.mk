@@ -79,13 +79,15 @@ clean-package:
 	rm -f $(PACKAGES) $(WINSPARKLE_ARCH) $(WINSPARKLE) $(VCREDIST) $(INDEX_HTML)
 
 deploy: $(PACKAGES) $(INDEX_HTML)
-	aws s3 cp --acl public-read \
-	-t s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	$(DESKTOP_EDITORS_EXE)
+	aws s3 cp \
+	$(DESKTOP_EDITORS_EXE) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	--acl public-read 
 
-	aws s3 cp --acl public-read \
-	-t s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	$(DESKTOP_EDITORS_ZIP)
+	aws s3 cp \
+	$(DESKTOP_EDITORS_ZIP) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	--acl public-read 
 
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
