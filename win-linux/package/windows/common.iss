@@ -19,7 +19,7 @@
 #    define xp_suffix
 #  endif
 #  define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
-#  define sAppVersion         GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+#  define sAppVersion         GetFileVersion(AddBackslash(DEPLOY_PATH) + 'DesktopEditors\' + NAME_EXE_OUT)
 #endif
 
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
