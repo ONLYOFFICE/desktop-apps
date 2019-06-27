@@ -174,11 +174,12 @@ int CEditorWindow::closeWindow()
             return MODAL_RESULT_CANCEL;
 
         case MODAL_RESULT_CUSTOM + 0:
-        default:{
+        default:
             panel->data()->close();
             panel->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
 
-            return MODAL_RESULT_NO;}
+            _reply = MODAL_RESULT_NO;
+            break;
         }
     }
 
@@ -187,7 +188,7 @@ int CEditorWindow::closeWindow()
         d_ptr.get()->onDocumentSave(panel->cef()->GetId());
     }
 
-    return MODAL_RESULT_YES;
+    return _reply;
 }
 
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, CTabPanel * const panel)
