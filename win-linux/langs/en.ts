@@ -125,194 +125,179 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="85"/>
-        <source>OpenDocument Document template (*.ott)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="86"/>
         <source>RTF File (*.rtf)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="87"/>
+        <location filename="../src/cfiledialog.cpp" line="86"/>
         <source>TXT File (*.txt)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="88"/>
+        <location filename="../src/cfiledialog.cpp" line="87"/>
         <source>HTML File (*.html)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="89"/>
+        <location filename="../src/cfiledialog.cpp" line="88"/>
         <source>MHT File (*.mht)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="90"/>
+        <location filename="../src/cfiledialog.cpp" line="89"/>
         <source>EPUB File (*.epub)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="92"/>
+        <location filename="../src/cfiledialog.cpp" line="91"/>
         <source>PPTX File (*.pptx)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="93"/>
+        <location filename="../src/cfiledialog.cpp" line="92"/>
         <source>PPT File (*.ppt)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="94"/>
+        <location filename="../src/cfiledialog.cpp" line="93"/>
         <source>Presentation template (*.potx)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="95"/>
+        <location filename="../src/cfiledialog.cpp" line="94"/>
         <source>ODP File (*.odp)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="96"/>
-        <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="97"/>
+        <location filename="../src/cfiledialog.cpp" line="95"/>
         <source>PPSX File (*.ppsx)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="99"/>
+        <location filename="../src/cfiledialog.cpp" line="97"/>
         <source>XLSX File (*.xlsx)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="100"/>
+        <location filename="../src/cfiledialog.cpp" line="98"/>
         <source>Spreadsheet template (*.xltx)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="101"/>
+        <location filename="../src/cfiledialog.cpp" line="99"/>
         <source>XLS File (*.xls)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="102"/>
+        <location filename="../src/cfiledialog.cpp" line="100"/>
         <source>ODS File (*.ods)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="103"/>
-        <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="104"/>
+        <location filename="../src/cfiledialog.cpp" line="101"/>
         <source>CSV File (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="106"/>
+        <location filename="../src/cfiledialog.cpp" line="103"/>
         <source>PDF File (*.pdf)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="107"/>
+        <location filename="../src/cfiledialog.cpp" line="104"/>
         <source>PDFA File (*.pdf)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="108"/>
+        <location filename="../src/cfiledialog.cpp" line="105"/>
         <source>DJVU File (*.djvu)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="109"/>
+        <location filename="../src/cfiledialog.cpp" line="106"/>
         <source>XPS File (*.xps)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="153"/>
+        <location filename="../src/cfiledialog.cpp" line="150"/>
         <source>Save As</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="189"/>
+        <location filename="../src/cfiledialog.cpp" line="186"/>
         <source>Yes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="189"/>
+        <location filename="../src/cfiledialog.cpp" line="186"/>
         <source>No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="191"/>
+        <location filename="../src/cfiledialog.cpp" line="188"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="213"/>
+        <location filename="../src/cfiledialog.cpp" line="210"/>
         <source>Word Document</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="216"/>
+        <location filename="../src/cfiledialog.cpp" line="213"/>
         <source>Excel Workbook</source>
         <translation>Excel Spreadsheet</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="219"/>
+        <location filename="../src/cfiledialog.cpp" line="216"/>
         <source>PowerPoint Presentation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="222"/>
+        <location filename="../src/cfiledialog.cpp" line="219"/>
         <source>%1 File (*.%2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="232"/>
+        <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>Text documents</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="233"/>
+        <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>Spreadsheets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="234"/>
+        <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>Presentations</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="235"/>
+        <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>Web Page</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="236"/>
+        <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>Text files</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="263"/>
-        <location filename="../src/cfiledialog.cpp" line="264"/>
+        <location filename="../src/cfiledialog.cpp" line="260"/>
+        <location filename="../src/cfiledialog.cpp" line="261"/>
         <source>Open Document</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="276"/>
-        <location filename="../src/cfiledialog.cpp" line="284"/>
+        <location filename="../src/cfiledialog.cpp" line="273"/>
+        <location filename="../src/cfiledialog.cpp" line="281"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="292"/>
-        <location filename="../src/cfiledialog.cpp" line="301"/>
+        <location filename="../src/cfiledialog.cpp" line="289"/>
+        <location filename="../src/cfiledialog.cpp" line="298"/>
         <source>Plugin file (*.plugin)</source>
         <translation></translation>
     </message>
@@ -407,29 +392,29 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="142"/>
+        <location filename="../src/cmessage.cpp" line="140"/>
         <source>&amp;OK</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../src/cmessage.cpp" line="214"/>
+        <location filename="../src/cmessage.cpp" line="215"/>
         <location filename="../src/cmessage.cpp" line="216"/>
         <location filename="../src/cmessage.cpp" line="217"/>
-        <location filename="../src/cmessage.cpp" line="218"/>
-        <location filename="../src/cmessage.cpp" line="219"/>
         <source>Yes</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../src/cmessage.cpp" line="214"/>
+        <location filename="../src/cmessage.cpp" line="215"/>
         <location filename="../src/cmessage.cpp" line="216"/>
         <location filename="../src/cmessage.cpp" line="217"/>
-        <location filename="../src/cmessage.cpp" line="218"/>
-        <location filename="../src/cmessage.cpp" line="219"/>
         <source>No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="220"/>
-        <location filename="../src/cmessage.cpp" line="221"/>
+        <location filename="../src/cmessage.cpp" line="218"/>
+        <location filename="../src/cmessage.cpp" line="219"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -440,13 +425,13 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="988"/>
         <source>Update is running. Break update and close the app?</source>
-        <translation type="unfinished"></translation>
+        <translation>Update is under way. Cancel the update and close the application?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="997"/>
         <source>Close all editors windows?</source>
         <translatorcomment>don&apos;t translate for awile</translatorcomment>
-        <translation type="unfinished"></translation>
+        <translation>Close all editor windows?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="166"/>
@@ -454,10 +439,10 @@
         <translation>%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
     </message>
     <message>
+        <location filename="../src/cmessage.cpp" line="216"/>
+        <location filename="../src/cmessage.cpp" line="217"/>
         <location filename="../src/cmessage.cpp" line="218"/>
         <location filename="../src/cmessage.cpp" line="219"/>
-        <location filename="../src/cmessage.cpp" line="220"/>
-        <location filename="../src/cmessage.cpp" line="221"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
