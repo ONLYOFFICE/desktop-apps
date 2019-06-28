@@ -624,6 +624,9 @@ Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;      DestDir: {app}
 Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
 #endif
 
+[InstallDelete]
+Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
+
 #endif
 
 [Tasks]
