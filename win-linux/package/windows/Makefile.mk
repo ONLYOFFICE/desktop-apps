@@ -26,8 +26,12 @@ SIGN_STR := "byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t htt
 S3_BUCKET ?= repo-doc-onlyoffice-com
 WIN_REPO_DIR := windows
 
-DESKTOP_EDITORS_EXE = win-linux/package/windows/DesktopEditors$(OS_ARCH).exe
-DESKTOP_EDITORS_ZIP = win-linux/package/windows/DesktopEditors$(OS_ARCH).zip
+ifdef _WIN_XP
+	OS_ARCH_SUFFIX := _xp
+endif
+
+DESKTOP_EDITORS_EXE += win-linux/package/windows/DesktopEditors$(OS_ARCH)$(OS_ARCH_SUFFIX).exe
+DESKTOP_EDITORS_ZIP += win-linux/package/windows/DesktopEditors$(OS_ARCH)$(OS_ARCH_SUFFIX).zip
 
 PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
@@ -63,7 +67,7 @@ win-linux/package/windows/%.exe:
 		//DENABLE_SIGNING=1 \
 		//Qp \
 		$(ISCC_S_PARAM)$(SIGN_STR) \
-		install$(OS_ARCH).iss
+		install$(OS_ARCH)$(OS_ARCH_SUFFIX).iss
 	
 win-linux/package/windows/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
@@ -78,18 +82,18 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_EXE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
+	--acl public-read 
 
 	aws s3 cp \
 	$(DESKTOP_EDITORS_ZIP) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
+	--acl public-read 
 
-	aws s3 sync \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
-	--acl public-read \
-	--delete
+#	aws s3 sync \
+#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
+#	--acl public-read \
+#	--delete
 
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(subst _,,$(OS_ARCH))
