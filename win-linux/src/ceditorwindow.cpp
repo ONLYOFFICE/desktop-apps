@@ -431,3 +431,8 @@ const QString& CEditorWindow::documentName() const
 {
     return d_ptr.get()->panel()->data()->title(true);
 }
+
+bool CEditorWindow::closed() const
+{
+    return d_ptr.get()->panel()->data()->closed();
+}

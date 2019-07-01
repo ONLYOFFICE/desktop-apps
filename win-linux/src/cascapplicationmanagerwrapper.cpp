@@ -990,10 +990,18 @@ bool CAscApplicationManagerWrapper::canAppClose()
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
-        CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-        if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
-            return true;
-        } else return false;
+        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
+                [](size_t h){
+                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
+                    return _e && !_e->closed();
+                }) != _app.m_vecEditors.end();
+
+        if ( _has_opened_editors ) {
+            CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+            if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
+                return true;
+            } else return false;
+        }
     }
 
     return true;
