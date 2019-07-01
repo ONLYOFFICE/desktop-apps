@@ -892,8 +892,8 @@ void CMainPanel::onDocumentDownload(void * info)
 
     m_pWidgetDownload->downloadProcess(info);
 
-    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-    RELEASEINTERFACE(pData);
+//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
+//    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
