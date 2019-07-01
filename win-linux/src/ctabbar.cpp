@@ -553,6 +553,12 @@ void CTabBar::paintEvent(QPaintEvent * event)
         p.drawPrimitive(QStyle::PE_IndicatorTabTearRight, cutTabRight);
     }
 #endif
+
+    if ( scaling() > 1 ) {
+        /* qtabbar scroller doesn't apply big width */
+        d->leftB->setGeometry(d->rightB->geometry().adjusted(0,0,-24,0));
+        d->leftB->raise();
+    }
 }
 
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
