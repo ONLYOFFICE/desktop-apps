@@ -39,6 +39,7 @@
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
 using namespace NSEditorApi;
+using namespace std::placeholders;
 
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
@@ -50,11 +51,14 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     , CCefEventsTransformer(nullptr)
     , QObject(nullptr)
     , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private(this))
+    , m_queueToClose(new CWindowsQueue<sWinTag>)
 {
     CAscApplicationManager::SetEventListener(this);
 
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
                         this, &CAscApplicationManagerWrapper::onCoreEvent);
+
+    m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
 #ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Init(nullptr);
@@ -66,6 +70,8 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 #ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Destroy();
 #endif
+
+    delete m_queueToClose, m_queueToClose = nullptr;
 
 //    CSingleWindow * _sw = nullptr;
 //    for (auto const& w : m_vecEditors) {
@@ -689,9 +695,10 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
+        CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
+
         if ( m_countViews > 1 ) {
             m_closeTarget = L"app";
-            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
 
             /* close all editors windows */
             auto& it = m_vecEditors.begin();
@@ -715,6 +722,10 @@ void CAscApplicationManagerWrapper::launchAppClose()
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
         }
+
+        closeQueue().leave(sWinTag{1,size_t(_w)});
+    } else {
+        cancelClose();
     }
 }
 
@@ -1161,4 +1172,27 @@ void CAscApplicationManagerWrapper::cancelClose()
 
     _app.m_closeCount = 0;
     _app.m_closeTarget.clear();
+
+    getInstance().closeQueue().cancel();
+}
+
+CWindowsQueue<sWinTag>& CAscApplicationManagerWrapper::closeQueue()
+{
+    return *m_queueToClose;
+}
+
+void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
+{
+    if ( t.type == 1 ) {
+        closeMainWindow(t.handle);
+    } else {
+        CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
+        int res = _e->closeWindow();
+        if ( res == MODAL_RESULT_CANCEL ) {
+            AscAppManager::getInstance().closeQueue().cancel();
+        } else {
+            _e->hide();
+            AscAppManager::getInstance().closeQueue().leave(t);
+        }
+    }
 }

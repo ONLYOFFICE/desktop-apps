@@ -129,7 +129,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         qDebug() << "wm_close";
         if ( window->m_pMainPanel )
             QTimer::singleShot(0, window->m_pMainPanel, [=]{
-                window->onCloseEvent();
+                AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(window)});
             });
         else return 1;
         }

@@ -41,6 +41,7 @@
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
 #include "ceditorwindow.h"
+#include "cwindowsqueue.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -62,6 +63,15 @@ typedef QWidget* ParentHandle;
 
 using namespace std;
 
+struct sWinTag {
+    int     type;
+    size_t  handle;
+
+    bool operator==(const sWinTag& other) const
+    {
+        return other.handle == this->handle;
+    }
+};
 
 class CAscApplicationManagerWrapper;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -82,6 +92,10 @@ private:
     uint m_closeCount = 0;
     uint m_countViews = 0;
     wstring m_closeTarget;
+
+    CWindowsQueue<sWinTag> * m_queueToClose;
+public:
+    CWindowsQueue<sWinTag>& closeQueue();
 
 private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
@@ -112,6 +126,7 @@ signals:
 public slots:
     void onCoreEvent(void *);
     void onDownloadSaveDialog(const std::wstring& name, uint id);
+    void onQueueCloseWindow(const sWinTag&);
 
 
 public:

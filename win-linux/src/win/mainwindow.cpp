@@ -263,7 +263,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     case WM_CLOSE:
 qDebug() << "WM_CLOSE";
-        window->doClose();
+
+        AscAppManager::getInstance().closeQueue().enter(sWinTag{1, size_t(window)});
         return 0;
 
     case WM_DESTROY:
