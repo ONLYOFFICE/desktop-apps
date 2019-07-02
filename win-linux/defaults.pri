@@ -111,6 +111,11 @@ isEqual(QT_MAJOR_VERSION, 5) {
     }
 }
 
+ENV_BUILD_NUMBER = $$(BUILD_NUMBER)
+!isEmpty(ENV_BUILD_NUMBER) {
+    DEFINES += VER_NUM_REVISION=$$ENV_BUILD_NUMBER
+}
+
 linux-g++ {
     CONFIG += app_linux
 	linux-g++:contains(QMAKE_HOST.arch, x86_64): {
