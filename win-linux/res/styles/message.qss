@@ -16,6 +16,9 @@ QLabel[class=msg-icon][type=msg-confirm] {
 #messageBody[hdpi] QLabel[class=msg-icon] {
     background-image: url(":/res/icons/message_icons_2x.png");
 }
+#messageBody QLabel[class=msg-report] {
+    font-size: 11px;
+}
 #messageBody[hdpi] QLabel[class=msg-report] {
     font-size: 22px;
 }

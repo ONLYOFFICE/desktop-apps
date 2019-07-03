@@ -272,7 +272,17 @@ QTabBar::scroller {
     width:16px;
 }
 
-/*QTabBar::scroller { width:24px; }*/
+QTabBar[scroll=var2] QToolButton::left-arrow {
+    border-width: 8px 12px 8px 8px;
+}
+
+QTabBar[scroll=var2] QToolButton::right-arrow {
+    border-width: 8px 8px 8px 12px;
+}
+
+QTabBar[scroll=var2]::scroller {
+    width:32px;
+}
 
 QLabel[class=tab-icon] {
     padding:0 0 2px 4px;
