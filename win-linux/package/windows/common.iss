@@ -14,7 +14,7 @@
 #  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
 #else
 #  ifdef _WIN_XP
-#    define xp_suffix  _xp
+#    define xp_suffix  '_xp'
 #  else
 #    define xp_suffix
 #  endif
