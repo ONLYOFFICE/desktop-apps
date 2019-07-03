@@ -1121,7 +1121,7 @@ void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& nam
 #ifdef Q_OS_WIN
     HWND parent = GetActiveWindow();
 #else
-    QWidget * parent = nullptr;
+    QWidget * parent = topWindow();
 #endif
 
     if ( parent ) {
