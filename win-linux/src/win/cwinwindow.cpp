@@ -134,8 +134,12 @@ void CWinWindow::close()
 
 void CWinWindow::setSize(int w, int h)
 {
-    int _title_height = GetSystemMetrics(SM_CYCAPTION) + GetSystemMetrics(SM_CYFIXEDFRAME) * 2,
-        _border_width = GetSystemMetrics(SM_CYFIXEDFRAME) * 2;
+    RECT wrc, crc;
+    GetWindowRect(m_hSelf, &wrc);
+    GetClientRect(m_hSelf, &crc);
+
+    int _title_height = wrc.bottom - wrc.top - crc.bottom + crc.top,
+        _border_width = wrc.right - wrc.left - crc.right + crc.left;
 
     SetWindowPos(m_hSelf, NULL, 0, 0, w + _border_width, h + _title_height, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 }

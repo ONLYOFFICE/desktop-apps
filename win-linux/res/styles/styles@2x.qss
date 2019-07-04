@@ -100,13 +100,11 @@ QTabBar QToolButton,
     border-width:2px;
 }
 
+QTabBar[scroll=var2] QToolButton::left-arrow,
 QTabBar QToolButton::left-arrow {
     border-image: url(:/tabbar/icons/scrolltab_ln_2x.png) 0;
     /*border-width:12px;*/
-    border-top-width:16px;
-    border-bottom-width:16px;
-    border-left-width:0px;
-    border-right-width:2px;
+    border-width:16px 0 16px 2px;
 }
 
 QTabBar QToolButton::left-arrow:disabled {
@@ -121,13 +119,11 @@ QTabBar QToolButton::left-arrow:pressed {
     border-image: url(:/tabbar/icons/scrolltab_lp_2x.png) 0;
 }
 
+QTabBar[scroll=var2] QToolButton::right-arrow,
 QTabBar QToolButton::right-arrow {
     border-image: url(:/tabbar/icons/scrolltab_rn_2x.png) 0;
     /*border-width:12px;*/
-    border-top-width:16px;
-    border-bottom-width:16px;
-    border-left-width:26px;
-    border-right-width:0px;
+    border-width:16px 0 16px 26px;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
@@ -141,9 +137,7 @@ QTabBar QToolButton::right-arrow:pressed {
     border-image: url(:/tabbar/icons/scrolltab_rp_2x.png) 0;
 }
 
-QTabBar::scroller {
-    /*width:32px;*/
-}
+QTabBar[scroll=var2]::scroller,
 QTabBar::scroller {
     width:48px;
 }
