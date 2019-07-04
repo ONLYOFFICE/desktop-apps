@@ -25,6 +25,7 @@ CORE_3DPARTY_PATH = ../../core/Common/3dParty
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
+RCC_DIR = ./rcc
 
 INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
                 $$BASEEDITORS_PATH/lib/qcefview \
@@ -266,9 +267,11 @@ win32 {
 TARGET = $$join(TARGET,,,_$$PLATFORM_BUILD)
 OBJECTS_DIR = $$join(OBJECTS_DIR,,./$$PLATFORM_BUILD/,)
 MOC_DIR = $$join(MOC_DIR,,./$$PLATFORM_BUILD/,)
+RCC_DIR = $$join(RCC_DIR,,./$$PLATFORM_BUILD/,)
 
 win32:build_xp {
     TARGET = $$join(TARGET,,,_xp)
     OBJECTS_DIR = $$replace(OBJECTS_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
     MOC_DIR = $$replace(MOC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
+    RCC_DIR = $$replace(RCC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
 }
