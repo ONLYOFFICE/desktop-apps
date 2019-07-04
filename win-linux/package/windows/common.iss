@@ -9,6 +9,7 @@
 #define iconsExe            'DesktopEditors.exe'
 #define licfile             'agpl-3.0'
 #define APPWND_CLASS_NAME   'DocEditorsWindowClass'
+#define VISEFFECTS_MANIFEST_NAME ChangeFileExt(iconsExe, 'VisualElementsManifest.xml')
 
 #ifndef SCRIPT_CUSTOM_FILES
 #  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
@@ -536,6 +537,7 @@ Source: ..\..\deploy\{#os_arch}\3dparty\Qt\*;                   DestDir: {app}; 
 
 Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#iconsExe};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
+Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.1 ;
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
