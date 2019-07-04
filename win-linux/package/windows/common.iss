@@ -532,14 +532,15 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
+Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
+Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
+Source: .\data\visual_elements_icon_71x71.png;                  DestDir: {app}\browser;   MinVersion: 6.3;
+
 #ifndef SCRIPT_CUSTOM_FILES
 Source: ..\..\deploy\{#os_arch}\3dparty\Qt\*;                   DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
 Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#iconsExe};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
-Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
-Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
-Source: .\data\visual_elements_icon_71x71.png;                  DestDir: {app}\browser;   MinVersion: 6.3;
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
