@@ -908,9 +908,14 @@ function loadLocale(lang) {
     }
 };
 
+function correctLang(lang) {
+    return lang.replace('-', '_');
+}
+
 function translate(str, lang) {
-    !l10n[lang] && (lang = /^\w{2}/.exec(lang)[0]);
-    return !!l10n[lang] ? l10n[lang][str] : undefined;
+    let _l = correctLang(lang);
+    !l10n[_l] && (_l = /^\w{2}/.exec(lang)[0]);
+    return !!l10n[_l] ? l10n[_l][str] : undefined;
 };
 
 +function mixLocale(lang) {
@@ -918,7 +923,7 @@ function translate(str, lang) {
     utils.Lang.tr = translate;
 
     if ( lang ) {
-        lang = lang.replace('-', '_');
+        lang = correctLang(lang);
 
         if ( l10n[lang] )
             loadLocale(lang);
