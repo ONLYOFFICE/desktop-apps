@@ -1150,7 +1150,7 @@ void CAscApplicationManagerWrapper::cancelClose()
 {
     APP_CAST(_app);
 
-    if ( _app.m_closeTarget.find(L"http") ) {
+    if ( _app.m_closeTarget.find(L"http") != wstring::npos ) {
         _app.sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout:cancel", _app.m_closeTarget);
     }
 
