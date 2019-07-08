@@ -68,6 +68,9 @@ extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
+typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = NULL;
+
 
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
@@ -137,6 +140,10 @@ CMainWindow::CMainWindow(QRect& rect) :
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
 
     m_pWinPanel->show();
+
+    HMODULE _lib = ::LoadLibrary(L"user32.dll");
+    dpi_adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+    FreeLibrary(_lib);
 }
 
 CMainWindow::~CMainWindow()
@@ -634,7 +641,9 @@ void CMainWindow::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        if ( dpi_adjustWindowRectEx != NULL ) {
+            dpi_adjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0, 96*m_dpiRatio);
+        } else AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -729,7 +738,7 @@ void CMainWindow::slot_windowClose()
 void CMainWindow::slot_mainPageReady()
 {
     CSplash::hideSplash();
-
+#define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcast.xml"
 #ifdef _UPDMODULE
     OSVERSIONINFO osvi;
 
