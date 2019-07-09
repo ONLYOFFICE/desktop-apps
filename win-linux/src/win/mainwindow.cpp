@@ -738,7 +738,7 @@ void CMainWindow::slot_windowClose()
 void CMainWindow::slot_mainPageReady()
 {
     CSplash::hideSplash();
-#define URL_APPCAST_UPDATES "http://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice/appcast.xml"
+
 #ifdef _UPDMODULE
     OSVERSIONINFO osvi;
 
