@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        body {
+            background:white;
+            color: #000000;
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: #f4f4f4;
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: #dcdcdc solid 0.5px;
+        }
+        .releasedate {
+            color: #888;
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 5.3.3<span class="releasedate"> - July 9, 2019</span></h1>
+        <h2>New features</h2>
+        <h4>All editors</h4>
+        <ul>
+            <li>Completely rewritten the font engine, adding a better support of Chinese, Japanese and Korean fonts and much more;</li>
+            <li>Added the possibility to flip and rotate shapes and images;</li>
+            <li>Added the possibility to crop images;</li>
+            <li>Adding a bookmark does not close the bookmark window;</li>
+            <li>The comments are now shown in all editing and viewing modes;</li>
+            <li>Added the new hotkeys on macOS and their description in documentation;</li>
+            <li>Added options for objects alignment (align to page, margin, slide);</li>
+            <li>Added new hints for shapes (bug #20091);</li>
+            <li>Completely rewritten the photo editor plugin;</li>
+            <li>Updated the interface translations to all the main languages available in the editors;</li>
+            <li>Updated the documentation articles;</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Added the support for calculating tabs in Word 2013 style positioned to the right of the right margin;</li>
+            <li>Added formulas in tables;</li>
+            <li>Added the possibility to save as <code>DOTX</code>, <code>PDF-A</code>, <code>OTT</code>;</li>
+            <li>The review changes are now shown in view mode;</li>
+            <li>Added the possibility to prevent deletion of the review changes of another user;</li>
+            <li>Added the possibility to prevent deletion of the comments of another user;</li>
+            <li>Added the description for moved text and move to changed text in review mode;</li>
+            <li>Added the possibility to get link to bookmark;</li>
+            <li>Added the possibility to automatically copy the selected text to the search window;</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Added the <code>bg-BG</code>, <code>sv-SE</code> and <code>sv-FI</code> number formats;</li>
+            <li>Translates the functions and their descriptions to Italian;</li>
+            <li>Replaced the behavior of the mouse click for the links in cells;</li>
+            <li>Added the <code>ASC</code>, <code>BETAINV</code>, <code>HYPERLINK</code> functions;</li>
+            <li>Added the support of print areas;</li>
+            <li>Added the possibility to set the exact text orientations in degrees;</li>
+            <li>Added the text to column wizard;</li>
+            <li>Added the paste text wizard;</li>
+            <li>Added the possibility to save as <code>XLTX</code>, <code>PDF-A</code>, <code>OTS</code>;</li>
+            <li>Added the support of the array formulas;</li>
+            <li>Added the support for the gradient and texture cell fill;</li>
+            <li>A hint is now shown with function and argument descriptions while typing;</li>
+            <li>Added the support to show minimum and maximum values in the status bar;</li>
+            <li>Added the possibility to distribute objects;</li>
+            <li>Rewritten the cut cell process (cell is not removed after cutting);</li>
+        </ul>
+        <h4>Preseentation Editor</h4>
+        <ul>
+            <li>Added the possibility to save as <code>POTX</code>, <code>PDF-A</code>, <code>OTP</code>;</li>
+            <li>Added the font rendering option;</li>
+            <li>Added an option to search and replace the text;</li>
+            <li>Added the possibility to enter the slide number manually for the internal hyperlinks;</li>
+        </ul>
+        <h2>Bugfix</h2>
+        <h4>All editors</h4>
+        <ul>
+            <li>Fixed a lot of bugs with drawings positioning;</li>
+            <li>Fixed more problems with <code>SVG</code>;</li>
+            <li>A lot of bugfixes in all product modules;</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Fixed the problem with calculating the numbering value within merged cells (bug #41699);</li>
+            <li>Fixed the issue with deleting the whole TOC field after selecting it (bug #41714);</li>
+            <li>Fixed the issue with showing the numbering as changes for review in specific documents (bug #41518);</li>
+            <li>Fixed the crash which occurred when refreshing the recalculated data;</li>
+            <li>Fixed the bug with moving object in group;</li>
+            <li>Fixed the problem with updating positions in the inner classes within a paragraph (bug #41848);</li>
+            <li>Fixed the issue when records were added to reviews with changes of the text properties if in fact there have been no changes (bug #41833);</li>
+            <li>Fixed the issue with showing the changes from the second user if the display of the changes was disabled (bug #41576);</li>
+            <li>Fixed the problem with accepting/rejecting review changes;</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fixed the issue with undoing the moved cell in print area (bug #41723);</li>
+            <li>Fixed the JavaScript error which occurred for <b>Replace all</b> in some cases (bug #41760);</li>
+            <li>Fixed the column index error which occurred during insertion;</li>
+            <li>Fixed the issue with adding the changes to the history on drawing sparklines;</li>
+        </ul>
+        <p>and lots other fixes in all editors</p>
+    </div>
+</body>
+</html>
