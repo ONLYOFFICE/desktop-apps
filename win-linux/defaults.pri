@@ -65,7 +65,8 @@ HEADERS += \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
-    $$PWD/src/ceditortools.h
+    $$PWD/src/ceditortools.h \
+    $$PWD/src/cwindowsqueue.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
