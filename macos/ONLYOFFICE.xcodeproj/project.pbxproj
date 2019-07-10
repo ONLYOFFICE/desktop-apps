@@ -34,20 +34,13 @@
 /* Begin PBXBuildFile section */
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB01C3258A800F9881C /* InfoPlist.strings */; };
-		FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC081EB71C3258B100F9881C /* InfoPlist.strings */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
-		FC09073F1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
-		FC0907421C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
-		FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
 		FC148B1F215CEF900054FF91 /* NSApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC148B1E215CEF900054FF91 /* NSApplication+Extensions.m */; };
-		FC148B20215CEF900054FF91 /* NSApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC148B1E215CEF900054FF91 /* NSApplication+Extensions.m */; };
 		FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
-		FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
 		FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
-		FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
@@ -55,110 +48,52 @@
 		FC3BFE021BBE83AB0040C904 /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
 		FC3BFE0D1BBEBB7B0040C904 /* ASCApplicationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */; };
 		FC54A2851F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */; };
-		FC54A2861F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC54A2891F94BA6D0086F4FE /* Presentation-Reporter.storyboard */; };
 		FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
-		FC54A2951F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */; };
-		FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC5C71E81C64F6F300FBBF70 /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FC5C71E61C64F6F300FBBF70 /* EULA.html */; };
 		FC64391B21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */; };
-		FC64391C21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */; };
 		FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
-		FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
 		FC65A6421F33356300BD0F7E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC081E9D1C3257FF00F9881C /* Info.plist */; };
-		FC6718011BD913C00028600F /* ASCApplicationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */; };
-		FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
-		FC6718031BD913C00028600F /* ASCCommonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */; };
-		FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
-		FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFD1BBE83AB0040C904 /* SFBPopoverWindow.m */; };
-		FC67180A1BD913C00028600F /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
-		FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
-		FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
-		FC6718101BD913C00028600F /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FC6718111BD913C00028600F /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
-		FC6718121BD913C00028600F /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
-		FC6718131BD913C00028600F /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
-		FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD294651BB97C8B00318930 /* ASCMulticastDelegate.m */; };
-		FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
-		FC6718181BD913C00028600F /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC42701B9D650400405301 /* main.mm */; };
-		FC6718191BD913C00028600F /* ASCDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */; };
-		FC67181A1BD913C00028600F /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
-		FC67181C1BD913C00028600F /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
-		FC67181D1BD913C00028600F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
-		FC67181E1BD913C00028600F /* SFBPopoverWindowFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFF1BBE83AB0040C904 /* SFBPopoverWindowFrame.m */; };
-		FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
-		FC6718231BD913C00028600F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
-		FC6718251BD913C00028600F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
-		FC6718261BD913C00028600F /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
-		FC6718271BD913C00028600F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
-		FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FC6718311BD918CA0028600F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
 		FC6718461BD91B3A0028600F /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
 		FC73E6DC207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
-		FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6DB207DE3C700EFFD2F /* NSView+Extensions.m */; };
 		FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
-		FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC73E6F2207E15BB00EFFD2F /* NSColor+Extensions.m */; };
 		FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
-		FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA30C2084BFE700549F2D /* KSNavigationController.mm */; };
 		FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
-		FC8AA3162084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
-		FC8AA31B2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
-		FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC94247A1CB7C92100C78A27 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC9424791CB7C92000C78A27 /* dsa_pub.pem */; };
 		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
-		FC98AF0F1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
 		FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
-		FC98AF121E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
 		FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
-		FC98AF151E94E16A00718A12 /* file-doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFE1E94E16A00718A12 /* file-doc.icns */; };
 		FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
-		FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFF1E94E16A00718A12 /* file-docx.icns */; };
 		FC98AF1A1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
-		FC98AF1B1E94E16A00718A12 /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
 		FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
-		FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF011E94E16A00718A12 /* file-odp.icns */; };
 		FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
-		FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF021E94E16A00718A12 /* file-ods.icns */; };
 		FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
-		FC98AF241E94E16A00718A12 /* file-odt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF031E94E16A00718A12 /* file-odt.icns */; };
 		FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
-		FC98AF271E94E16A00718A12 /* file-pdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF041E94E16A00718A12 /* file-pdf.icns */; };
 		FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
-		FC98AF2A1E94E16A00718A12 /* file-pps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF051E94E16A00718A12 /* file-pps.icns */; };
 		FC98AF2C1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
-		FC98AF2D1E94E16A00718A12 /* file-ppsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF061E94E16A00718A12 /* file-ppsx.icns */; };
 		FC98AF2F1E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
-		FC98AF301E94E16A00718A12 /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
 		FC98AF321E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
-		FC98AF331E94E16A00718A12 /* file-pptx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF081E94E16A00718A12 /* file-pptx.icns */; };
 		FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
-		FC98AF361E94E16A00718A12 /* file-rtf.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF091E94E16A00718A12 /* file-rtf.icns */; };
 		FC98AF381E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
-		FC98AF391E94E16A00718A12 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
 		FC98AF3B1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
-		FC98AF3C1E94E16A00718A12 /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
 		FC98AF3E1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
-		FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */; };
 		FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
-		FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0D1E94E16A00718A12 /* file-xps.icns */; };
 		FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
-		FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FCA0B3401B9EB5960073EDD4 /* ASCTitleWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */; };
 		FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3511B9F002B0073EDD4 /* ASCTitleBackground.m */; };
 		FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA0B3541B9F006F0073EDD4 /* ASCHelper.m */; };
 		FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
-		FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
 		FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */; };
 		FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
 		FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
 		FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
 		FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */; };
 		FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
-		FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAC6DF71C195FA6003D2457 /* ASCConstants.m */; };
 		FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAF3EFC1BA31D3C00B42BAA /* ASCUserInfoViewController.m */; };
 		FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB454FE1C326A4E00FEACF2 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
@@ -166,29 +101,17 @@
 		FCBC42761B9D650500405301 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42751B9D650500405301 /* Images.xcassets */; };
 		FCBC42791B9D650500405301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */; };
-		FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C55206CDBCD001B7837 /* NSAlert+SynchronousSheet.m */; };
 		FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
-		FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C58206CDBCE001B7837 /* GTMNSString+HTML.m */; };
 		FCC77C66206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
-		FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C5C206CDBCE001B7837 /* NSString+Extensions.mm */; };
 		FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
-		FCC77C6D206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C6B206CE28F001B7837 /* NSLayoutConstraint+Extensions.m */; };
 		FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */; };
-		FCC77C7A206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C71206CEE5A001B7837 /* ASCMenuButtonCell.m */; };
 		FCC77C7C206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
-		FCC77C7D206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C73206CEE5A001B7837 /* ASCSavePanelWithFormatController.m */; };
 		FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
-		FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C75206CEE5B001B7837 /* ASCButton.m */; };
 		FCC77C85206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
-		FCC77C86206CEE5B001B7837 /* ASCButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C78206CEE5B001B7837 /* ASCButtonCell.m */; };
 		FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
-		FCC77C92206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8A206CEE85001B7837 /* ASCTabCloseButtonCell.m */; };
 		FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
-		FCC77C95206CEE85001B7837 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
 		FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
-		FCC77C98206CEE85001B7837 /* ASCTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8E206CEE85001B7837 /* ASCTabView.m */; };
 		FCC77C9A206CEE85001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
-		FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C90206CEE85001B7837 /* ASCTabViewCell.m */; };
 		FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FD621E5DF7700FB9209 /* ASCBlockHolder.m */; };
 		FCCC2FDB21E5E04000FB9209 /* ASCTabTouchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FDA21E5E04000FB9209 /* ASCTabTouchBar.m */; };
 		FCCC2FE121E5E10D00FB9209 /* ASCTabTouchBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCC2FDD21E5E10D00FB9209 /* ASCTabTouchBarItem.m */; };
@@ -198,24 +121,16 @@
 		FCD294691BB97D3300318930 /* ASCDownloadController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCD294681BB97D3300318930 /* ASCDownloadController.mm */; };
 		FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FCDDD602208F3C25008AF573 /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */; };
-		FCDDD603208F3C25008AF573 /* Document-Sign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */; };
 		FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
-		FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D15F207D002700642010 /* NSLayoutConstraint+PureLayout.m */; };
 		FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
-		FCE7D16A207D002700642010 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D162207D002700642010 /* ALView+PureLayout.m */; };
 		FCE7D16C207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
-		FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCE7D165207D002700642010 /* NSArray+PureLayout.m */; };
 		FCF2762022C10D9400984E83 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FCF2762122C10DA400984E83 /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */; };
 		FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2897B21510402002FD438 /* NSWindow+Extensions.m */; };
-		FCF2897E21510403002FD438 /* NSWindow+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2897B21510402002FD438 /* NSWindow+Extensions.m */; };
 		FCF2898121510C16002FD438 /* ASCExternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2898021510C16002FD438 /* ASCExternalController.m */; };
-		FCF2898221510C16002FD438 /* ASCExternalController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF2898021510C16002FD438 /* ASCExternalController.m */; };
 		FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCFC000B1BC54ACC00939341 /* Localizable.strings */; };
 		FCFE61E21CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
-		FCFE61E41CAD02D4000D2418 /* AnalyticsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61DF1CAD02D4000D2418 /* AnalyticsEvent.m */; };
 		FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61E11CAD02D4000D2418 /* AnalyticsHelper.m */; };
-		FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFE61E11CAD02D4000D2418 /* AnalyticsHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -317,20 +232,8 @@
 		FC5C71EC1C64F70200FBBF70 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
 		FC64391921B52DAF00A25CD1 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
 		FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
-		FC6515F61D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EULA.html; sourceTree = "<group>"; };
-		FC6515F81D1542C2009DBDCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC6515F91D1542C2009DBDCD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/EULA.html; sourceTree = "<group>"; };
-		FC6515FA1D1542C2009DBDCD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC6515FB1D1542C2009DBDCD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = es.lproj/EULA.html; sourceTree = "<group>"; };
-		FC6515FC1D1542C2009DBDCD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC6515FD1D1542C2009DBDCD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/EULA.html; sourceTree = "<group>"; };
-		FC6515FE1D1542C2009DBDCD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC6515FF1D1542C2009DBDCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC6516001D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = ru.lproj/EULA.html; sourceTree = "<group>"; };
-		FC6516011D1542C2009DBDCD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC659BF71C75EE8B00C99776 /* ASCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAboutController.h; sourceTree = "<group>"; };
 		FC659BF81C75EE8B00C99776 /* ASCAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCAboutController.m; sourceTree = "<group>"; };
-		FC67182D1BD913C00028600F /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC6718301BD918CA0028600F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FC6718451BD91B3A0028600F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		FC6718471BD91B3F0028600F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MoveApplication.strings; sourceTree = "<group>"; };
@@ -345,8 +248,6 @@
 		FC81D4BF2035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "it.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC81D4C02035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/EULA.html; sourceTree = "<group>"; };
 		FC81D4C12035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FC81D4C22035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/EULA.html; sourceTree = "<group>"; };
-		FC81D4C32035AE3D000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC81D4C42035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC81D4C52035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FC81D4C62035AE3E000FAA9D /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = it; path = it.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -361,8 +262,6 @@
 		FC8B98672016129F0073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		FC8B9868201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/EULA.html"; sourceTree = "<group>"; };
 		FC8B9869201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		FC8B986A201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/EULA.html"; sourceTree = "<group>"; };
-		FC8B986B201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC8B986C201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC8B986D201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC8B986E201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-BR"; path = "pt-BR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -398,8 +297,6 @@
 		FC9EA18F225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		FC9EA190225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/EULA.html"; sourceTree = "<group>"; };
 		FC9EA191225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		FC9EA192225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/EULA.html"; sourceTree = "<group>"; };
-		FC9EA193225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC9EA194225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FC9EA195225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		FC9EA196225B712E0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -506,8 +403,6 @@
 		FCEC1A2C219EF1E600617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = "pl.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		FCEC1A2D219EF1E700617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pl; path = pl.lproj/EULA.html; sourceTree = "<group>"; };
 		FCEC1A2E219EF1E700617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FCEC1A2F219EF1E800617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pl; path = pl.lproj/EULA.html; sourceTree = "<group>"; };
-		FCEC1A30219EF1E800617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCEC1A31219EF1E800617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCEC1A32219EF1EA00617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FCEC1A33219EF1EA00617DF3 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = pl; path = pl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -526,16 +421,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FC67181F1BD913C00028600F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC592515208DE7440006F664 /* libooxmlsignature.dylib in Frameworks */,
-				FC9A2B471CBB7A3300F54A39 /* WebKit.framework in Frameworks */,
-				FC6718201BD913C00028600F /* libascdocumentscore.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCBC42651B9D650400405301 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -754,16 +639,6 @@
 			path = ../../core/DesktopEditor/Word_Api;
 			sourceTree = SOURCE_ROOT;
 		};
-		FC6515F41D1542C2009DBDCD /* ONLYOFFICE-RU-FREE */ = {
-			isa = PBXGroup;
-			children = (
-				FC6515F51D1542C2009DBDCD /* EULA.html */,
-				FC6515F71D1542C2009DBDCD /* InfoPlist.strings */,
-				FC6515FF1D1542C2009DBDCD /* Info.plist */,
-			);
-			path = "ONLYOFFICE-RU-FREE";
-			sourceTree = "<group>";
-		};
 		FC67182F1BD918250028600F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,7 +690,6 @@
 				BE6251B922BD089100656116 /* dictionaries */,
 				FC9424791CB7C92000C78A27 /* dsa_pub.pem */,
 				FC081E981C32575800F9881C /* ONLYOFFICE */,
-				FC6515F41D1542C2009DBDCD /* ONLYOFFICE-RU-FREE */,
 				FC081E9A1C3257A800F9881C /* ONLYOFFICE-MAS */,
 				FC081EBC1C325E8400F9881C /* file-formats */,
 				FC0907401C186A7A00D9E881 /* converter */,
@@ -867,7 +741,6 @@
 			isa = PBXGroup;
 			children = (
 				FCBC42681B9D650400405301 /* ONLYOFFICE.app */,
-				FC67182D1BD913C00028600F /* ONLYOFFICE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1146,25 +1019,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FC6717FE1BD913C00028600F /* ONLYOFFICE-MAS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FC67182A1BD913C00028600F /* Build configuration list for PBXNativeTarget "ONLYOFFICE-MAS" */;
-			buildPhases = (
-				FC6717FF1BD913C00028600F /* Copy Library */,
-				FC6718001BD913C00028600F /* Sources */,
-				FC67181F1BD913C00028600F /* Frameworks */,
-				FC6718211BD913C00028600F /* Resources */,
-				FC6718291BD913C00028600F /* Rename symbols */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "ONLYOFFICE-MAS";
-			productName = ONLYOFFICE;
-			productReference = FC67182D1BD913C00028600F /* ONLYOFFICE.app */;
-			productType = "com.apple.product-type.application";
-		};
 		FCBC42671B9D650400405301 /* ONLYOFFICE */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE" */;
@@ -1197,17 +1051,6 @@
 				TargetAttributes = {
 					FC5C4EEA1CF8618F008F5C11 = {
 						CreatedOnToolsVersion = 7.3.1;
-					};
-					FC6717FE1BD913C00028600F = {
-						DevelopmentTeam = 2WH24U26GJ;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
-							};
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
 					};
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1247,7 +1090,6 @@
 			projectRoot = "";
 			targets = (
 				FCBC42671B9D650400405301 /* ONLYOFFICE */,
-				FC6717FE1BD913C00028600F /* ONLYOFFICE-MAS */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
 				FC5C4EEA1CF8618F008F5C11 /* Prepare */,
 			);
@@ -1255,41 +1097,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FC6718211BD913C00028600F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC98AF1E1E94E16A00718A12 /* file-odp.icns in Resources */,
-				FC98AF421E94E16A00718A12 /* file-xps.icns in Resources */,
-				FC09073F1C1855A400D9E881 /* editors in Resources */,
-				FC98AF1B1E94E16A00718A12 /* file-html.icns in Resources */,
-				FC98AF121E94E16A00718A12 /* file-djvu.icns in Resources */,
-				FC98AF0F1E94E16A00718A12 /* file-csv.icns in Resources */,
-				FC98AF331E94E16A00718A12 /* file-pptx.icns in Resources */,
-				FC98AF241E94E16A00718A12 /* file-odt.icns in Resources */,
-				FC0907421C186A7A00D9E881 /* converter in Resources */,
-				FC98AF301E94E16A00718A12 /* file-ppt.icns in Resources */,
-				FC98AF3C1E94E16A00718A12 /* file-xls.icns in Resources */,
-				FC6718261BD913C00028600F /* login in Resources */,
-				FC6718251BD913C00028600F /* Images.xcassets in Resources */,
-				FC6718231BD913C00028600F /* Localizable.strings in Resources */,
-				FC98AF361E94E16A00718A12 /* file-rtf.icns in Resources */,
-				FC98AF2A1E94E16A00718A12 /* file-pps.icns in Resources */,
-				FC98AF271E94E16A00718A12 /* file-pdf.icns in Resources */,
-				FC54A2861F94BA6D0086F4FE /* Presentation-Reporter.storyboard in Resources */,
-				FC98AF3F1E94E16A00718A12 /* file-xlsx.icns in Resources */,
-				FC6718281BD913C00028600F /* Localizable.stringsdict in Resources */,
-				FCDDD603208F3C25008AF573 /* Document-Sign.storyboard in Resources */,
-				FC98AF211E94E16A00718A12 /* file-ods.icns in Resources */,
-				FC98AF181E94E16A00718A12 /* file-docx.icns in Resources */,
-				FC081EB51C3258B100F9881C /* InfoPlist.strings in Resources */,
-				FC98AF2D1E94E16A00718A12 /* file-ppsx.icns in Resources */,
-				FC98AF391E94E16A00718A12 /* file-txt.icns in Resources */,
-				FC6718271BD913C00028600F /* Main.storyboard in Resources */,
-				FC98AF151E94E16A00718A12 /* file-doc.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCBC42661B9D650400405301 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1375,35 +1182,6 @@
 			shellPath = /bin/sh;
 			shellScript = "CreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\n# Prepare binaries\nCreateDir \"$CORE_BASE_DIR\"/build\ncd \"$CORE_BASE_DIR\"/build\nsvn co svn://192.168.3.15/onlyoffice/trunk/build .\ncd \"$BASEDIR\"\n\n";
 		};
-		FC6717FF1BD913C00028600F /* Copy Library */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Library";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nexit 0\n\nCreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nDST_DIR=\"$BASEDIR\"/Vendor/ONLYOFFICE\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Login page\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCLOGINPAGE_DIR=\"$BASEDIR\"/../common/loginpage/deploy\nDSTLOGINPAGE_DIR=\"$DST_DIR\"/login\nSRCWEBFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTWEBFONTS_DIR=\"$DST_DIR\"/login/fonts\nSRCCOMMONLICENCE_DIR=\"$BASEDIR\"/ONLYOFFICE/Resources\nDSTCOMMONLICENCE_DIR=\"$DSTLOGINPAGE_DIR\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTWEBFONTS_DIR\"\n\ncp -R \"$SRCLOGINPAGE_DIR\"/index.html \"$DSTLOGINPAGE_DIR\"/index.html\ncp -R \"$SRCWEBFONTS_DIR\"/LICENSE.txt \"$DSTWEBFONTS_DIR\"/LICENSE.txt\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Bold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Bold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-BoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-ExtraBoldItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Italic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Italic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Light.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Light.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-LightItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-LightItalic.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Regular.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Regular.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-Semibold.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-Semibold.ttf\ncp -R \"$SRCWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf \"$DSTWEBFONTS_DIR\"/OpenSans-SemiboldItalic.ttf\ncp -R \"$SRCCOMMONLICENCE_DIR\"/acknowledgments.html \"$DSTCOMMONLICENCE_DIR\"/acknowledgments.html\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Editors\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCEDITORPAGE_DIR=\"$BASEDIR\"/../common/editors/\nDSTEDITORPAGE_DIR=\"$DST_DIR\"/editors\nSRCEDITORFONTS_DIR=\"$BASEDIR\"/../common/package/fonts\nDSTEDITORFONTS_DIR=\"$DSTEDITORPAGE_DIR\"/fonts\nWEBAPPS_DIR=\"$DSTEDITORPAGE_DIR\"/web-apps\nJS_SDK_SVN=\"$CORE_BASE_DIR/build/jsbuilds/\"\n\nCreateDir \"$DSTLOGINPAGE_DIR\"\nCreateDir \"$DSTEDITORFONTS_DIR\"\nCreateDir \"$WEBAPPS_DIR\"\n\ncp -R \"$SRCEDITORFONTS_DIR\"/ariblk.ttf \"$DSTEDITORFONTS_DIR\"/ariblk.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Asana-Math.ttf \"$DSTEDITORFONTS_DIR\"/Asana-Math.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bold.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-bolditalic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-bolditalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-italic.ttf \"$DSTEDITORFONTS_DIR\"/caladea-italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/caladea-regular.ttf \"$DSTEDITORFONTS_DIR\"/caladea-regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Bold.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-BoldItalic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Italic.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Italic.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Carlito-Regular.ttf \"$DSTEDITORFONTS_DIR\"/Carlito-Regular.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS_Bold.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/Comic_Sans_MS.ttf \"$DSTEDITORFONTS_DIR\"/Comic_Sans_MS.ttf\ncp -R \"$SRCEDITORFONTS_DIR\"/LICENSE.txt \"$DSTEDITORFONTS_DIR\"/LICENSE.txt\n\ncp -vR \"$JS_SDK_SVN\" \"$DSTEDITORPAGE_DIR\"/sdkjs\ncp -vR \"$SRCEDITORPAGE_DIR\" \"$WEBAPPS_DIR\"\n\ncd \"$BASEDIR\"\n\necho \"---------------------------------------------------------------------------------------\"\necho \"Import Converter\"\necho \"---------------------------------------------------------------------------------------\"\n\nSRCCONVERTER_DIR=\"$BASEDIR\"/../common/converter\nDSTCONVERTER_DIR=\"$DST_DIR\"/converter\n\nCreateDir \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$SRCCONVERTER_DIR\" \"$DST_DIR\"\ncp -vR \"$CORE_BASE_DIR\"/build/empty \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libDjVuFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libdoctrenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlFile.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libHtmlRenderer.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfReader.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libPdfWriter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libUnicodeConverter.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/lib/mac_64/libXpsFile.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicuuc.55.1.dylib\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/icu/mac_64/libicudata.55.1.dylib\" \"$DSTCONVERTER_DIR\"\n\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/x2t\" \"$DSTCONVERTER_DIR\"\ncp -vR \"$CORE_BASE_DIR/build/bin/mac/icudtl_dat.S\" \"$DSTCONVERTER_DIR\"\n\nchmod -v +x \"$DSTCONVERTER_DIR\"/x2t\n";
-		};
-		FC6718291BD913C00028600F /* Rename symbols */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Rename symbols";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\ncontents=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\ndst=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n\ncore_path=${SRCROOT}/../../core\n\nrm -rf \"${dst}\"/Chromium\\ Embedded\\ Framework.framework\nrm -rf \"${dst}\"/${TARGET_NAME}\\ Helper.app\nrm -rf \"${dst}\"/libascdocumentscore.dylib\n\nif [ ! -d \"${dst}\" ]; then\n    mkdir -p \"${dst}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}\"/build/cef/mac/${PRODUCT_NAME}\\ Helper.app \"${dst}\"/${PRODUCT_NAME}\\ Helper.app\ncp -Rv \"${core_path}\"/build/cef/mac/Chromium\\ Embedded\\ Framework.framework \"${dst}\"\ncp -Rv \"${core_path}\"/build/lib/mac_64/libascdocumentscore.dylib \"${dst}\"\n\necho \"Change dynamic shared library install names\"\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n/usr/local/lib/libascdocumentscore.dylib \\\n@executable_path/../Frameworks/libascdocumentscore.dylib \\\n\"${contents}\"/MacOS/\"${PRODUCT_NAME}\"\n\ninstall_name_tool \\\n-change \\\n@executable_path/Chromium\\ Embedded\\ Framework \\\n@executable_path/../Frameworks/Chromium\\ Embedded\\ Framework.framework/Chromium\\ Embedded\\ Framework \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/libascdocumentscore.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libDjVuFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibPdfWriter.dylib \\\n@rpath/libPdfWriter.dylib \\\n\"${contents}\"/Resources/converter/libXpsFile.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libPdfReader.dylib\n\ninstall_name_tool \\\n-change \\\nlibHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${contents}\"/Resources/converter/libHtmlRenderer.dylib\n\n# rename symbols in helper ==========\ninstall_name_tool -change libDjVuFile.dylib \\\n@rpath/libDjVuFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libPdfReader.dylib \\\n@rpath/libPdfReader.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libXpsFile.dylib \\\n@rpath/libXpsFile.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -change libHtmlRenderer.dylib \\\n@rpath/libHtmlRenderer.dylib \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\ninstall_name_tool -add_rpath \\\n@executable_path/../../../../Resources/converter \\\n\"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n# ===================================\n\necho \"Create symbol links\"\n(cd \"${contents}\"/Resources/converter && ln -siv libicuuc.55.1.dylib libicuuc.55.dylib)\n(cd \"${contents}\"/Resources/converter && ln -siv libicudata.55.1.dylib libicudata.55.dylib)\n\necho \"Change rights\"\nchmod -v +x \"${dst}\"/${PRODUCT_NAME}\\ Helper.app/Contents/MacOS/${PRODUCT_NAME}\\ Helper\n\necho \"Remove some helpers\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_report_sender.app/\"\nrm -rf \"${dst}/Chromium Embedded Framework.framework/Resources/crash_inspector\"\n\necho \"Sign libraries and frameworks\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/libascdocumentscore.dylib\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${dst}/${PRODUCT_NAME} Helper.app/\"\ncodesign --verbose=4 --force -s \"${CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" \"${contents}\"/Resources/converter/x2t";
-			showEnvVarsInLog = 0;
-		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1422,67 +1200,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FC6718001BD913C00028600F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FCC77C7D206CEE5B001B7837 /* ASCSavePanelWithFormatController.m in Sources */,
-				FCFE61E41CAD02D4000D2418 /* AnalyticsEvent.m in Sources */,
-				FC6718011BD913C00028600F /* ASCApplicationManager.mm in Sources */,
-				FC6718021BD913C00028600F /* ASCDownloadCellView.m in Sources */,
-				FC6718031BD913C00028600F /* ASCCommonViewController.mm in Sources */,
-				FC73E6DD207DE3C700EFFD2F /* NSView+Extensions.m in Sources */,
-				FCFE61E71CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
-				FCA4502F1C2063460007134D /* ASCSharedSettings.m in Sources */,
-				FC64391C21B52E5800A25CD1 /* NSDictionary+Extensions.m in Sources */,
-				FC6718081BD913C00028600F /* ASCTitleWindowController.mm in Sources */,
-				FC6718091BD913C00028600F /* SFBPopoverWindow.m in Sources */,
-				FC8DDD3E1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */,
-				FC148B20215CEF900054FF91 /* NSApplication+Extensions.m in Sources */,
-				FC67180A1BD913C00028600F /* ASCHelper.m in Sources */,
-				FC73E6F4207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
-				FC67180B1BD913C00028600F /* ASCUserInfoViewController.m in Sources */,
-				FC25A1A81C2E844800063A42 /* ASCTabViewController.m in Sources */,
-				FC2A34D7208610F0001B5784 /* ASCDocSignController.mm in Sources */,
-				FCC77C5E206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
-				FC54A2951F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
-				FC67180F1BD913C00028600F /* ASCPopoverLightView.m in Sources */,
-				FCC77C98206CEE85001B7837 /* ASCTabView.m in Sources */,
-				FCC77C83206CEE5B001B7837 /* ASCButton.m in Sources */,
-				FCF2897E21510403002FD438 /* NSWindow+Extensions.m in Sources */,
-				FC6718101BD913C00028600F /* NSCefView.mm in Sources */,
-				FC659BFC1C75EE8B00C99776 /* ASCAboutController.m in Sources */,
-				FC8AA30F2084BFE700549F2D /* KSNavigationController.mm in Sources */,
-				FC6718111BD913C00028600F /* ASCTitleBarController.m in Sources */,
-				FCAC6DF91C195FA6003D2457 /* ASCConstants.m in Sources */,
-				FC13B52A2080BBF500524968 /* NSImage+Extensions.m in Sources */,
-				FC6718121BD913C00028600F /* SFBPopover.m in Sources */,
-				FC8AA31B2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
-				FCC77C9B206CEE86001B7837 /* ASCTabViewCell.m in Sources */,
-				FC6718131BD913C00028600F /* ASCEventsController.mm in Sources */,
-				FCC77C67206CDBCE001B7837 /* NSString+Extensions.mm in Sources */,
-				FC8AA3162084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
-				FC6718151BD913C00028600F /* ASCMulticastDelegate.m in Sources */,
-				FCE7D167207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
-				FC6718161BD913C00028600F /* ASCDownloadController.mm in Sources */,
-				FCC77C92206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
-				FCC77C86206CEE5B001B7837 /* ASCButtonCell.m in Sources */,
-				FC6718181BD913C00028600F /* main.mm in Sources */,
-				FCE7D16D207D002700642010 /* NSArray+PureLayout.m in Sources */,
-				FCF2898221510C16002FD438 /* ASCExternalController.m in Sources */,
-				FCC77C7A206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
-				FC6718191BD913C00028600F /* ASCDownloadViewController.m in Sources */,
-				FCC77C95206CEE85001B7837 /* ASCTabsControl.m in Sources */,
-				FC67181A1BD913C00028600F /* ASCTitleWindow.m in Sources */,
-				FC67181C1BD913C00028600F /* ASCTitleBackground.m in Sources */,
-				FC67181D1BD913C00028600F /* AppDelegate.mm in Sources */,
-				FCC77C61206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
-				FC67181E1BD913C00028600F /* SFBPopoverWindowFrame.m in Sources */,
-				FCC77C6D206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
-				FCE7D16A207D002700642010 /* ALView+PureLayout.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCBC42641B9D650400405301 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1617,38 +1334,6 @@
 			name = EULA.html;
 			sourceTree = "<group>";
 		};
-		FC6515F51D1542C2009DBDCD /* EULA.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC6515F61D1542C2009DBDCD /* Base */,
-				FC6515F91D1542C2009DBDCD /* de */,
-				FC6515FB1D1542C2009DBDCD /* es */,
-				FC6515FD1D1542C2009DBDCD /* fr */,
-				FC6516001D1542C2009DBDCD /* ru */,
-				FC8B986A201612A00073D57C /* pt-BR */,
-				FC81D4C22035AE3D000FAA9D /* it */,
-				FCEC1A2F219EF1E800617DF3 /* pl */,
-				FC9EA192225B712E0093CADF /* zh-Hans-CN */,
-			);
-			name = EULA.html;
-			sourceTree = "<group>";
-		};
-		FC6515F71D1542C2009DBDCD /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FC6515F81D1542C2009DBDCD /* Base */,
-				FC6515FA1D1542C2009DBDCD /* de */,
-				FC6515FC1D1542C2009DBDCD /* es */,
-				FC6515FE1D1542C2009DBDCD /* fr */,
-				FC6516011D1542C2009DBDCD /* ru */,
-				FC8B986B201612A00073D57C /* pt-BR */,
-				FC81D4C32035AE3D000FAA9D /* it */,
-				FCEC1A30219EF1E800617DF3 /* pl */,
-				FC9EA193225B712E0093CADF /* zh-Hans-CN */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		FC6718441BD91B3A0028600F /* MoveApplication.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1743,78 +1428,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		FC67182B1BD913C00028600F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Alexander Yuzhin (K97E25SHXE)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/cef/mac",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					_MAC,
-					_MAS,
-					_PRODUCT_ONLYOFFICE,
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				OTHER_CODE_SIGN_FLAGS = "";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-headerpad_max_install_names",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.mas.ONLYOFFICE;
-				PRODUCT_NAME = ONLYOFFICE;
-				PROVISIONING_PROFILE = "";
-			};
-			name = Debug;
-		};
-		FC67182C1BD913C00028600F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Ascensio System SIA (2WH24U26GJ)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/cef/mac",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					_MAC,
-					_MAS,
-					_PRODUCT_ONLYOFFICE,
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/ONLYOFFICE/Resources/ONLYOFFICE-MAS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../core/build/lib/mac_64",
-				);
-				OTHER_CODE_SIGN_FLAGS = "";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-headerpad_max_install_names",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = asc.onlyoffice.mas.ONLYOFFICE;
-				PRODUCT_NAME = ONLYOFFICE;
-				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -2000,15 +1613,6 @@
 			buildConfigurations = (
 				FC5C4EEB1CF8618F008F5C11 /* Debug */,
 				FC5C4EEC1CF8618F008F5C11 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC67182A1BD913C00028600F /* Build configuration list for PBXNativeTarget "ONLYOFFICE-MAS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC67182B1BD913C00028600F /* Debug */,
-				FC67182C1BD913C00028600F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
