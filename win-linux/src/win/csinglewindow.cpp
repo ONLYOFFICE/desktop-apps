@@ -52,7 +52,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
 {
     // adjust window size
     QRect _window_rect = rect;
-    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+    m_dpiRatio = Utils::getScreenDpiRatio(_window_rect.topLeft());
 
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
@@ -75,7 +75,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     wcx.lpfnWndProc = CSingleWindow::WndProc;
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
-    wcx.lpszClassName = L"SingleWindowClass";
+    wcx.lpszClassName = L"ReporterWindowClass";
     wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
@@ -86,7 +86,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    m_hWnd = CreateWindow( L"SingleWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+    m_hWnd = CreateWindow( L"ReporterWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !m_hWnd )
         throw std::runtime_error("couldn't create window because of reasons");
@@ -102,7 +102,7 @@ CSingleWindow::CSingleWindow(const QRect& rect, const QString& title, QWidget * 
 }
 
 CSingleWindow::CSingleWindow(const QRect& rect)
-    : CSingleWindow(rect, QString("ONLYOFFICE Editor"), new QCefView(0))
+    : CSingleWindow(rect, QString("ONLYOFFICE Editor"), AscAppManager::createViewer(nullptr))
 {
 }
 
@@ -569,7 +569,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
     }
 
     if ( !view ) {
-        QCefView * pMainWidget = new QCefView(centralWidget);
+        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
         pMainWidget->setObjectName( "mainPanel" );
         pMainWidget->setHidden(false);
@@ -616,10 +616,8 @@ void CSingleWindow::pushButtonCloseClicked()
         AscAppManager::getInstance().DestroyCefView(
                 ((QCefView *)m_pMainView)->GetCefView()->GetId() );
 
-        m_pMainView = nullptr;
+//        m_pMainView = nullptr;
     }
-
-    AscAppManager::closeEditorWindow( size_t(this) );
 }
 
 void CSingleWindow::pushButtonMinimizeClicked()

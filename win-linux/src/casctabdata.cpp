@@ -33,17 +33,15 @@
 #include "casctabdata.h"
 
 CAscTabData::CAscTabData(const QString& t, CefType wt)
-    : _title(t), _is_changed(false), _is_closed(false)
+    : _title(t)
     , _is_local(false)
-    , _panel_id(-1)
     , _vtype(wt)
     , _url()
     , _typeContent(etUndefined)
 {}
 
 CAscTabData::CAscTabData(const QString& t, AscEditorType ct)
-    : _title(t), _is_changed(false), _is_closed(false)
-    , _panel_id(-1)
+    : _title(t)
     , _url()
     , _typeContent(ct)
 {
@@ -66,27 +64,23 @@ void CAscTabData::setTitle(const QString& t)
 
 QString CAscTabData::title(bool orig) const
 {
-    return !orig && _is_changed ? _title + "*": _title;
+    return !orig && _has_changes ? _title + "*": _title;
 }
 
 void CAscTabData::setChanged(bool s)
 {
-    _is_changed = s;
+    _has_changes = s;
+    s && !_is_changed && (_is_changed = true);
 }
 
-bool CAscTabData::changed() const
+bool CAscTabData::modified() const
 {
     return _is_changed;
 }
 
-void CAscTabData::setViewId(int id)
+bool CAscTabData::hasChanges() const
 {
-    _panel_id = id;
-}
-
-int CAscTabData::viewId() const
-{
-    return _panel_id;
+    return _has_changes;
 }
 
 void CAscTabData::close() {

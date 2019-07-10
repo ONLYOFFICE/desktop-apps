@@ -6,6 +6,19 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>5.2.3</title>
+            <pubDate>Tue, 05 Feb 2019 15:51:12 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.2.3/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.2.3/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-5.2.3.zip" sparkle:version="297" sparkle:shortVersionString="5.2.3" length="196152855" type="application/octet-stream" sparkle:dsaSignature="MCwCFDB31t+hnplmfc02HB/MWeFd+hfEAhR7z70g16RhXq68W0hBFy8/oA8oww=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE297-295.delta" sparkle:version="297" sparkle:shortVersionString="5.2.3" sparkle:deltaFrom="295" length="7344727" type="application/octet-stream" sparkle:dsaSignature="MCwCFGrr8WeCy2i29CQW/XH+g5mmYPINAhRZpoIAi5U8sFdzP3fA73jcFA/u+w=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE297-293.delta" sparkle:version="297" sparkle:shortVersionString="5.2.3" sparkle:deltaFrom="293" length="7373381" type="application/octet-stream" sparkle:dsaSignature="MCwCFG3PH7vpozuc9kEf9wHfhSCkaUXcAhQf+oyhKaDnwgRKEkkXb9Gq2lTqaw=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE297-286.delta" sparkle:version="297" sparkle:shortVersionString="5.2.3" sparkle:deltaFrom="286" length="7439972" type="application/octet-stream" sparkle:dsaSignature="MCwCFD8pZD6SYyBVpPWHTU+8pOPSbwSFAhQbKh37oOd8Z03vtdbtyoGkoAQAeg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>5.2.2</title>
             <pubDate>Fri, 25 Jan 2019 14:13:22 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>

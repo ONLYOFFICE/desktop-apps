@@ -86,7 +86,7 @@
 "AYu-sK-qS6.title" = "Hauptmenü";
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93"; */
-"BgM-ve-c93.title" = "	Links nach Rechts";
+"BgM-ve-c93.title" = "\tLinks nach Rechts";
 
 /* Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk"; */
 "bgn-CT-cEk.title" = "Farben Anzeigen";
@@ -227,7 +227,7 @@
 "jBQ-r6-VK2.title" = "Überhang";
 
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx"; */
-"jFq-tB-4Kx.title" = "	Rechts nach links";
+"jFq-tB-4Kx.title" = "\tRechts nach links";
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS"; */
 "jxT-CU-nIS.title" = "Format";
@@ -242,7 +242,7 @@
 "Kd2-mp-pUS.title" = "Alle anzeigen";
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU"; */
-"Lbh-J2-qVU.title" = "	Links nach Rechts";
+"Lbh-J2-qVU.title" = "\tLinks nach Rechts";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Alle nach vorne bringen";
@@ -263,7 +263,7 @@
 "NMo-om-nkz.title" = "Dienste";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
-"Nop-cj-93Q.title" = "	Standard";
+"Nop-cj-93Q.title" = "\tStandard";
 
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq"; */
 "o6e-r0-MWq.title" = "Doppelbuchstaben";
@@ -311,7 +311,7 @@
 "R4o-n2-Eq4.title" = "Vergrößern";
 
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC"; */
-"RB4-Sm-HuC.title" = "	Rechts nach links";
+"RB4-Sm-HuC.title" = "\tRechts nach links";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
 "rbD-Rh-wIN.title" = "Rechtschreibung während der Eingabe überprüfen";
@@ -431,7 +431,7 @@
 "YEy-JH-Tfz.title" = "Suchen und ersetzen...";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR"; */
-"YGs-j5-SAR.title" = "	Standard";
+"YGs-j5-SAR.title" = "\tStandard";
 
 /* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ"; */
 "Ynk-f8-cLZ.title" = "Sprachfunktion starten";

@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ASCExternalDelegate <NSObject>
 @optional
 - (NSString *)onApplicationName;
+- (NSString *)onApplicationNameShort;
 - (NSString *)onAppInfo:(NSString *)key;
 - (NSString *)onAppPreferredLanguage;
 - (NSString *)onCommercialInfo;

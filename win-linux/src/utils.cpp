@@ -46,6 +46,7 @@
 #include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
+#include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
 #include "cdpichecker.h"
@@ -169,7 +170,11 @@ QString Utils::systemLocationCode()
 
     return QString::fromWCharArray(_country_code);
 #else
-    return QLocale().name().split('_').at(1);
+    QStringList list = QLocale().name().split('_');
+    if (list.size() < 2)
+        return "EN";
+
+    return list.at(1);
 #endif
 }
 
@@ -177,7 +182,6 @@ void Utils::openUrl(const QString& url)
 {
 #ifdef __linux
     QUrl _url(url);
-    qputenv("LD_PRELOAD", "");
     if ( _url.scheme() == "mailto" ) {
         system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
@@ -256,7 +260,6 @@ void Utils::openFileLocation(const QString& path)
         }
     }
 
-    qputenv("LD_PRELOAD", "");
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
@@ -301,12 +304,29 @@ QString Utils::encodeJson(const QString& s)
     return QString(s).replace("\"", "\\\"");
 }
 
+wstring Utils::encodeJson(const wstring& s)
+{
+#if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 9
+    return QString::fromStdWString(s).replace("\"", "\\\"").toStdWString();
+#else
+    return std::regex_replace(wstring(s), std::wregex(L"\""), L"\\\"");
+#endif
+}
+
 unsigned Utils::getScreenDpiRatio(int scrnum)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
     int nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
     return (-1 == nScale) ? 1 : nScale;
+}
+
+unsigned Utils::getScreenDpiRatio(const QPoint& pt)
+{
+    QWidget _w;
+    _w.setGeometry(QRect(pt, QSize(10,10)));
+
+    return getScreenDpiRatioByHWND(_w.winId());
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
@@ -411,9 +431,9 @@ QByteArray Utils::readStylesheets(const QString& path)
     return _css;
 }
 
-QString Utils::replaceBackslash(QString& path)
+QString Utils::replaceBackslash(const QString& path)
 {
-    return path.replace(QRegularExpression("\\\\"), "/");
+    return QString(path).replace(QRegularExpression("\\\\"), "/");
 }
 
 bool Utils::setAppUserModelId(const QString& modelid)

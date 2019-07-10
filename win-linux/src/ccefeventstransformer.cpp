@@ -35,6 +35,7 @@
 #include "common/Types.h"
 //#include "regex"
 
+#include <QProcess>
 #include <QDebug>
 using namespace NSEditorApi;
 
@@ -123,14 +124,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
 
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 
-//    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD_START: deprecated
-    case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
-        NSEditorApi::CAscDownloadFileInfo * pData = (NSEditorApi::CAscDownloadFileInfo *)event->m_pData;
-
-        ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onDocumentDownload", Qt::QueuedConnection, Q_ARG(void *, pData));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
         NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)event->m_pData;
 
@@ -150,7 +143,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE:
         QMetaObject::invokeMethod(target, "onFullScreen", Qt::QueuedConnection,
-                        Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER), Q_ARG(int, event->get_SenderId()));
+                        Q_ARG(int, event->get_SenderId()), Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
         break;
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
         CAscLocalFileOpen * pData = (CAscLocalFileOpen*)event->m_pData;
@@ -184,17 +177,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onLocalFileSaveAs", Qt::QueuedConnection, Q_ARG(void *, pData));
         break;}
 
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE: {
-        static_cast<CAscLocalOpenFileDialog *>(event->m_pData)->put_Filter(L"image");}
-
-    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG:{
-        CAscLocalOpenFileDialog * pData = (CAscLocalOpenFileDialog *)event->m_pData;
-
-        ADDREFINTERFACE(pData);
-        QMetaObject::invokeMethod(target, "onLocalGetFile", Qt::QueuedConnection,
-                                    Q_ARG(int, event->m_nType), Q_ARG(void *, pData));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN: {
         CAscExecCommand * pData = (CAscExecCommand *)event->m_pData;
         QMetaObject::invokeMethod( target, "onPortalOpen", Qt::QueuedConnection,
@@ -206,8 +188,8 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         break;
 
     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
-        CAscExecCommand * pData = (CAscExecCommand *)event->m_pData;
-        std::wstring cmd = pData->get_Command();
+        CAscExecCommand * const pData = (CAscExecCommand *)event->m_pData;
+        const std::wstring& cmd = pData->get_Command();
 
         if (cmd.compare(L"portal:open") == 0) {
             QMetaObject::invokeMethod( target, "onPortalOpen", Qt::QueuedConnection,
@@ -225,13 +207,12 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onOutsideAuth", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
-        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
-                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-        } else
+//        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
+//            QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
+//                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+//        } else
         if (cmd.compare(L"portal:logout") == 0) {
-            QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection,
-                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+            QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection, Q_ARG(std::wstring, pData->get_Param()) );
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onLocalFilesCheck", Qt::QueuedConnection,
@@ -242,13 +223,14 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onLocalFileLocation", Qt::QueuedConnection,
+            QMetaObject::invokeMethod( target, "onFileLocation", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"doc:onready") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onDocumentReady", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()) );
         } else
-        if ( !(cmd.find(L"editor:request") == std::wstring::npos) ) {
+        if ( !(cmd.find(L"editor:event") == std::wstring::npos) ||
+                !(cmd.find(L"editor:request") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onEditorActionRequest", Qt::QueuedConnection,
                                        Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
@@ -256,13 +238,13 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
                             Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
+        if ( !(cmd.find(L"editor:config") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod( target, "onEditorConfig", Qt::QueuedConnection,
+                            Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()) );
+        } else
         if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
             bool isFragmented = pData->get_Param() == L"true" ? true : false;
             QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
-        } else
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {
-            if ( QString::fromStdWString(pData->get_Param()) == "check" )
-                QMetaObject::invokeMethod( target, "onCheckUpdates", Qt::QueuedConnection);
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);
@@ -275,15 +257,11 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                 } else
                 if (cmd.find(L"app:localoptions") != std::wstring::npos) {
                     QMetaObject::invokeMethod( target, "onLocalOptions", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-                } else
-                if (cmd.find(L"app:buynow") != std::wstring::npos) {
-                    QMetaObject::invokeMethod( target, "onBuyNow", Qt::QueuedConnection );
                 }
 //            }
         }
 
-        break;
-    }
+        break; }
     }
 
     RELEASEINTERFACE(event);

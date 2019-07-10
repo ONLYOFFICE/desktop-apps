@@ -1,18 +1,7 @@
 
 TARGET = DesktopEditors
 
-#CONFIG += build_for_centos6
-#CONFIG += core_build_deploy
-
 include(defaults.pri)
-
-core_build_deploy {
-    build_for_centos6 {
-        DESTDIR=$$PWD/../../core/build/linux_desktop/app/$$PLATFORM_BUILD/CentOS6
-    } else {
-        DESTDIR=$$PWD/../../core/build/linux_desktop/app/$$PLATFORM_BUILD
-    }
-}
 
 INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src
@@ -31,17 +20,21 @@ RC_FILE = $$PWD/version.rc
 
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 
-linux-g++ {
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lhunspell -looxmlsignature
-    DEFINES += LINUX _LINUX _LINUX_QT _GLIBCXX_USE_CXX11_ABI=0
+build_xp {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lascdocumentscore
+} else {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lascdocumentscore
+}
 
+message($$PLATFORM_BUILD)
+
+linux-g++ {
+    DEFINES += _GLIBCXX_USE_CXX11_ABI=0
     message($$PLATFORM_BUILD)
 }
 
-win32 {
-    CONFIG -= debug_and_release debug_and_release_target
-
-#    CONFIG += updmodule
+win32 {    
+    #CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
@@ -52,15 +45,8 @@ win32 {
     }
 
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lascdocumentscore
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug -lkernel
-
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD/debug
-    } else {
-        LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lascdocumentscore -lkernel
+        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     }
-
-    message($$PLATFORM_BUILD)
 }
 
 HEADERS += \

@@ -148,12 +148,13 @@ public:
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closeAllEditors();
-    void closePortal(const QString&, bool editors = false);
+    void closePortal(const wstring&, bool editors = false);
     void setStyleSheet(const QString&);
-    QWidget * releaseEditor(int);
 
     using QTabWidget::count;
     int  count(int type) const;
+    int  count(const wstring& portal);
+    bool hasForPortal(const QString&);
 
     void updateScaling(int);
 protected:
@@ -168,7 +169,8 @@ public:
     int         tabIndexByView(QString);
     int         tabIndexByTitle(QString t, CefType vt);
     int         tabIndexByTitle(QString t, AscEditorType vt);
-    int         tabIndexByUrl(QString);
+    int         tabIndexByUrl(const QString&);
+    int         tabIndexByUrl(const wstring&);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     QString     urlByView(int id);
@@ -203,7 +205,7 @@ public:
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
-    void applyDocumentSave(int, bool);
+    void cancelDocumentSaving(int index);
     void setDocumentWebOption(int, const QString&);
 
     int  openPortal(const QString& url, const QString& provider);

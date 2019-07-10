@@ -42,19 +42,33 @@
 #include <QLabel>
 #include <initializer_list>
 
+namespace CMessageOpts {
+    enum class moButtons {
+        mbYesDefNo,
+        mbYesNo,
+        mbYesNoCancel,
+        mbYesDefNoCancel,
+        mbOkCancel,
+        mbOkDefCancel
+    };
+}
+
 #if defined(_WIN32)
 class CMessage : public CWinWindow
 {
 public:
     CMessage(HWND);
+    CMessage(HWND, CMessageOpts::moButtons);
 #else
 class CMessage : public QDialog
 {
 public:
     explicit CMessage(QWidget *);
+             CMessage(QWidget *, CMessageOpts::moButtons);
 #endif
 
     void setButtons(std::initializer_list<QString>);
+    void setButtons(CMessageOpts::moButtons);
     void setIcon(int);
     void setText(const QString&);
     void applyForAll(const QString&, bool);

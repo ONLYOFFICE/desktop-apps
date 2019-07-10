@@ -15,6 +15,14 @@ QT_PLUGINS ?= $(QT_PATH)/plugins
 
 END2END_ENCRYPT ?= false
 
+UNAME_M := $(shell uname -m)
+ifeq ($(UNAME_M),x86_64)
+	ARCHITECTURE := 64
+endif
+ifneq ($(filter %86,$(UNAME_M)),)
+	ARCHITECTURE := 32
+endif
+
 ifeq ($(OS),Windows_NT)
 	PLATFORM := win
 	EXEC_EXT := .exe
@@ -22,7 +30,7 @@ ifeq ($(OS),Windows_NT)
 	SHARED_EXT := .dll
 	LIB_EXT := .lib
 	MAKE := nmake
-	DEST_DIR ?= ONLYOFFICE/DesktopEditors
+	DEST_DIR ?= ../build_tools/out/win_$(ARCHITECTURE)/ONLYOFFICE/DesktopEditors
 	QT_LIBS ?= $(QT_PATH)/bin
 else
 	UNAME_S := $(shell uname -s)
@@ -33,22 +41,12 @@ else
 		SHELL_EXT := .sh
 		LIB_EXT := .a
 		MAKE := make
-		DEST_DIR ?= /opt/onlyoffice/desktopeditors
+		DEST_DIR ?= ../build_tools/out/linux_$(ARCHITECTURE)/onlyoffice/desktopeditors
 		QT_LIBS ?= $(QT_PATH)/lib
 	endif
 endif
 
-UNAME_M := $(shell uname -m)
-ifeq ($(UNAME_M),x86_64)
-	ARCHITECTURE := 64
-endif
-ifneq ($(filter %86,$(UNAME_M)),)
-	ARCHITECTURE := 32
-endif
-
 include win-linux/package/windows/Makefile.mk
-
-QT_ICU ?= $(QT_LIBS)
 
 DEST_CONV_DIR = $(DEST_DIR)/converter
 DEST_EDITOR_DIR = $(DEST_DIR)/editors
@@ -124,7 +122,10 @@ clean:
 		fi \
 	done
 
-install: $(TARGETS)
+install:
+	mkdir -p $(DEST_DIR)
+
+install-target: $(TARGETS)
 	mkdir -p $(DEST_DIR)
 
 	$(INSTALL_PROGRAM) $(TARGETS) $(DEST_DIR)
@@ -141,6 +142,7 @@ endif
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ascdocumentscore$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)ooxmlsignature$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)hunspell$(SHARED_EXT) $(DEST_DIR)
+	$(INSTALL_FILE) $(CORE_LIB_DIR)/$(SHARED_PREFIX)videoplayer$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) ./LICENSE.txt $(DEST_DIR)
 	$(INSTALL_FILE) common/package/license/3dparty/3DPARTYLICENSE $(DEST_DIR)
 
@@ -159,9 +161,12 @@ ifeq ($(PLATFORM),linux)
 	$(INSTALL_FILE) $(QT_LIBS)/$(SHARED_PREFIX)Qt5X11Extras$(SHARED_EXT) $(DEST_DIR)
 	$(INSTALL_FILE) $(QT_LIBS)/$(SHARED_PREFIX)Qt5XcbQpa$(SHARED_EXT) $(DEST_DIR)
 
-	$(INSTALL_FILE) $(QT_ICU)/$(SHARED_PREFIX)icuuc$(SHARED_EXT) $(DEST_DIR)
-	$(INSTALL_FILE) $(QT_ICU)/$(SHARED_PREFIX)icudata$(SHARED_EXT) $(DEST_DIR)
-	$(INSTALL_FILE) $(QT_ICU)/$(SHARED_PREFIX)icui18n$(SHARED_EXT) $(DEST_DIR)
+ifdef QT_3RDPARTY_LIBS
+	$(INSTALL_FILE) $(QT_3RDPARTY_LIBS)/$(SHARED_PREFIX)icuuc$(SHARED_EXT) $(DEST_DIR)
+	$(INSTALL_FILE) $(QT_3RDPARTY_LIBS)/$(SHARED_PREFIX)icudata$(SHARED_EXT) $(DEST_DIR)
+	$(INSTALL_FILE) $(QT_3RDPARTY_LIBS)/$(SHARED_PREFIX)icui18n$(SHARED_EXT) $(DEST_DIR)
+	$(INSTALL_FILE) $(QT_3RDPARTY_LIBS)/$(SHARED_PREFIX)png*$(SHARED_EXT) $(DEST_DIR)
+endif
 endif
 
 	$(INSTALL_DIR) $(QT_PLUGINS)/bearer $(DEST_DIR)
@@ -195,7 +200,7 @@ endif
 	mv $(DEST_PLUGINS_DIR)/code			$(DEST_PLUGINS_DIR)/{BE5CBF95-C0AD-4842-B157-AC40FEDD9841}
 	mv $(DEST_PLUGINS_DIR)/macros		$(DEST_PLUGINS_DIR)/{E6978D28-0441-4BD7-8346-82FAD68BCA3B}
 	mv $(DEST_PLUGINS_DIR)/ocr			$(DEST_PLUGINS_DIR)/{440EBF13-9B19-4BD8-8621-05200E58140B}
-	mv $(DEST_PLUGINS_DIR)/photoeditor	$(DEST_PLUGINS_DIR)/{DA2BB87B-9F03-4160-8411-3AB4A5C71C39}
+	mv $(DEST_PLUGINS_DIR)/photoeditor	$(DEST_PLUGINS_DIR)/{07FD8DFA-DFE0-4089-AL24-0730933CC80A}
 	mv $(DEST_PLUGINS_DIR)/symboltable	$(DEST_PLUGINS_DIR)/{03C18A8D-8E01-444A-86EB-EDDFA7773157}
 	mv $(DEST_PLUGINS_DIR)/synonim		$(DEST_PLUGINS_DIR)/{BE5CBF95-C0AD-4842-B157-AC40FEDD9840}
 	mv $(DEST_PLUGINS_DIR)/translate	$(DEST_PLUGINS_DIR)/{7327FC95-16DA-41D9-9AF2-0E7F449F687D}

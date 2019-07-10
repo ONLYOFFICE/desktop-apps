@@ -33,12 +33,12 @@
 #ifndef CSINGLEWINDOW_H
 #define CSINGLEWINDOW_H
 
-#include <windows.h>
 #include <QRect>
 #include <QPushButton>
 
 #include "cwindowbase.h"
 #include "cwinpanel.h"
+#include "ctabpanel.h"
 
 class CSingleWindow
 {
@@ -99,6 +99,12 @@ public:
     void doClose();
 
     bool holdView(int id) const;
+
+    WId handle() const
+    {
+        return (WId)m_hWnd;
+    }
+
 };
 
 #endif // CSINGLEWINDOW_H

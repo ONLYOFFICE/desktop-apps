@@ -1,11 +1,14 @@
 #ifndef CLANGATER_H
 #define CLANGATER_H
 
+#include <QObject>
 #include <QString>
 #include <QJsonObject>
 
-class CLangater
+class CLangater : public QObject
 {
+    Q_OBJECT
+
 public:
     ~CLangater();
 
@@ -18,6 +21,9 @@ public:
     static void addTranslation(const QString& dir);
 
     static QJsonObject availableLangsToJson();
+
+signals:
+    void onLangChanged(const QString&);
 
 private:
     CLangater();

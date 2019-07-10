@@ -1,10 +1,13 @@
 #include "cmainwindowbase.h"
 #include "cwindowbase.h"
 #include "ctabbar.h"
+#include "clangater.h"
 
 CMainWindowBase::CMainWindowBase()
 {
-
+    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
+        mainPanel()->loadStartPage();
+    });
 }
 
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
@@ -56,9 +59,9 @@ bool CMainWindowBase::movedByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
-QWidget * CMainWindowBase::editorPanel(int index)
+QWidget * CMainWindowBase::getEditor(int index)
 {
-    return mainPanel()->tabWidget()->releaseEditor(index);
+    return mainPanel()->tabWidget()->panel(index);
 }
 
 bool CMainWindowBase::holdView(int id) const
@@ -69,6 +72,11 @@ bool CMainWindowBase::holdView(int id) const
 int CMainWindowBase::editorsCount() const
 {
     return mainPanel()->tabWidget()->count(cvwtEditor);
+}
+
+int CMainWindowBase::editorsCount(const wstring& portal) const
+{
+    return mainPanel()->tabWidget()->count(portal);
 }
 
 QString CMainWindowBase::documentName(int vid)

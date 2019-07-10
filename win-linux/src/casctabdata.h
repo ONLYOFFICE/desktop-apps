@@ -49,15 +49,14 @@ public:
 
     void    setTitle(const QString&);
     void    setChanged(bool);
-    void    setViewId(int);
     void    setLocal(bool);
     void    setUrl(const wstring&);
     void    setUrl(const QString&);
     void    close();
     void    reuse();
     QString title(bool orig = false) const;
-    bool    changed() const;
-    int     viewId() const;
+    bool    modified() const;
+    bool    hasChanges() const;
     bool    closed() const;
     bool    local() const;
     CefType viewType() const;
@@ -70,10 +69,10 @@ public:
     void            setContentType(AscEditorType);
 private:
     QString _title;
-    bool    _is_changed;
-    bool    _is_closed;
+    bool    _is_changed = false,
+            _has_changes = false;
+    bool    _is_closed = false;
     bool    _is_local;
-    int     _panel_id;
     CefType _vtype;
     wstring _url;
     bool    _event_load_supported = false;

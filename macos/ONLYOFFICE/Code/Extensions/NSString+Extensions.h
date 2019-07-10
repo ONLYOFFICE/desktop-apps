@@ -52,5 +52,7 @@
 - (NSString *)md5;
 - (NSDictionary *)dictionary;
 - (NSString *)encodeJson;
+- (NSString *)removeUrlQuery:(NSArray<NSString *> *)params;
+- (NSString *)virtualUrl;
 
 @end

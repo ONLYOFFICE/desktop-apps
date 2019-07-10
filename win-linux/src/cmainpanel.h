@@ -69,6 +69,7 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
+    bool closeAll();
     void loadStartPage();
     virtual void updateScaling(int);
 
@@ -88,16 +89,14 @@ private:
     void resizeEvent(QResizeEvent* event);
 //    bool eventFilter(QObject *obj, QEvent *event);
 
-    void doLogout(const QString&, bool);
     int  trySaveDocument(int);
     void RecalculatePlaces();
 
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
     void mainWindowChangeState(Qt::WindowState);
-    void mainWindowClose();
+    void mainWindowWantToClose();
     void mainPageReady();
-    void checkUpdates();
 
 public slots:
     void pushButtonMinimizeClicked();
@@ -118,7 +117,7 @@ public slots:
     void onDocumentName(void *);
     void onDocumentOptions(int id, QString);
     void onDocumentChanged(int id, bool changed);
-    void onDocumentSave(int id, bool cancel);
+    void onDocumentSave(int id, bool cancel = false);
     void onDocumentSaveInnerRequest(int id);
     void onDocumentDownload(void * info);
     void onDocumentLoadFinished(int);
@@ -127,11 +126,8 @@ public slots:
     void onDocumentFragmentedBuild(int, int);
 
     virtual void onDocumentPrint(void *);
-    void onDialogSave(std::wstring sName, uint id);
-    void onFullScreen(bool apply, int id = -1);
+    void onFullScreen(int id, bool apply);
     void onKeyDown(void *);
-
-    void onNeedCheckKeyboard();
 
     virtual void onLocalOptions(const QString&){}
     virtual void onLocalFileOpen(const QString&);
@@ -141,11 +137,9 @@ public slots:
     virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
-    void onLocalFileLocation(int, QString);
-    void onLocalGetFile(int eventtype, void *);
+    void onFileLocation(int, QString);
     void onPortalOpen(QString);
-    void onPortalLogin(int, QString);
-    void onPortalLogout(QString);
+    void onPortalLogout(std::wstring portal);
     void onPortalNew(QString);
     void onPortalCreate();
     void onOutsideAuth(QString);
@@ -153,12 +147,13 @@ public slots:
     void onEditorAllowedClose(int);
 
     void onFileChecked(const QString&, int, bool);
-    void onCheckUpdates();
 
 protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
     bool            m_isCustomWindow;
+
+    QString m_closeAct;
 
 private:
     std::wstring    m_sDownloadName;

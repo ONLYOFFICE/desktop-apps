@@ -10,7 +10,7 @@ using namespace NSEditorApi;
 
 CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
-    , m_pViewer(new QCefView(this))
+    , m_pViewer(AscAppManager::createViewer(this))
 {
 //    QGridLayout * _layout = new QGridLayout(this);
 //    setLayout(_layout);
@@ -164,6 +164,7 @@ void CTabPanel::applyLoader(const QString& cmd, const QString& args)
 
 void CTabPanel::showFullScreen()
 {
+    QWidget::setWindowTitle(data()->title());
     QWidget::showFullScreen();
     m_pViewer->setGeometry(QRect(0,0,width(),height()));
 }

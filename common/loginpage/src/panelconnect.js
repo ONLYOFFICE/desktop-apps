@@ -154,8 +154,13 @@
             this.$panelPortalList = this.$panel.find('#box-portals');
         },
         portaltemplate: function(info, edit) {
-            let _row = `<td class="row-cell cportal primary">${utils.skipUrlProtocol(info.portal)}</td>
-                        <td class="row-cell cuser minor"><span>${info.user}${info.email.length && (' (' + info.email + ')') || ''}</span></td>
+            let _row = `<td class="row-cell cicon">
+                            <svg class='icon'><use href='#${info.icon}'></svg>
+                        </td>
+                        <td class="row-cell">
+                            <p class="cportal primary">${utils.skipUrlProtocol(info.portal)}</p>
+                            <p class="cuser minor">${info.user}${info.email.length && (' (' + info.email + ')') || ''}</p>
+                        </td>
                         <td class="cell-tools">
                             <div class="hlayout">
                               <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
@@ -295,6 +300,15 @@
                     list: '.table-files.list'
                 });
 
+                function _create_icon_id(provider) {
+                    switch ( provider ) {
+                    case 'asc': return 'icon__asc';
+                    case 'ownc': return 'icon__ownc';
+                    case 'nextc': return 'icon__nextc';
+                    default: return 'icon__common';
+                    }
+                };
+
                 collection.events.changed.attach((collection, model, value) => {
                     if ( !!value ) {
                         if ( value.logged != undefined )
@@ -305,6 +319,7 @@
                             el.html(
                                 $(this.view.portaltemplate({
                                     portal: model.name,
+                                    icon: _create_icon_id(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
                         }
@@ -315,6 +330,7 @@
                     let $listPortals = collection.view.find('.table-files.list');
                     let $item = $(this.view.portaltemplate({
                         portal: model.name,
+                        icon: _create_icon_id(model.provider),
                         user: model.user,
                         email: model.email,
                         elid: model.uid

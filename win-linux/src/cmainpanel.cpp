@@ -204,7 +204,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
 
-    QCefView * pMainWidget = new QCefView(centralWidget);
+    QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
     pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
     pMainWidget->setObjectName( "mainPanel" );
     pMainWidget->setHidden(false);
@@ -303,54 +303,45 @@ void CMainPanel::pushButtonMaximizeClicked()
 
 void CMainPanel::pushButtonCloseClicked()
 {
-    // if close doesn't act
-    if (m_saveAction != 2 || m_saveAction != 3) {
-        int _index_, _answ_;
+    emit mainWindowWantToClose();
+}
 
-        while (true) {
-            // find a modified document
-            _index_ = m_pTabs->findModified();
-            if ( _index_ < 0 ) {
-                if ( (_index_ = m_pTabs->findProcessed()) < 0 ) {
-                    // no modified documents
-                    m_pTabs->closeAllEditors();
-                    QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
-                } else
-                if ( m_saveAction == 0 ) {
-                    qApp->processEvents();
-                    continue;
+bool CMainPanel::closeAll()
+{
+    if ( !m_closeAct.isEmpty() ) return false;
+
+    if ( m_pTabs->count() ) {
+        for (int i(m_pTabs->count()); !(--i < 0);) {
+            CTabPanel& _p = *m_pTabs->panel(i);
+            if ( _p.data()->modified() &&
+                    _p.data()->isViewType(cvwtEditor) )
+            {
+                if ( !_p.data()->closed() ) {
+                    int _answer = trySaveDocument(i);
+                    if ( _answer == MODAL_RESULT_NO ) {
+                        m_pTabs->editorCloseRequest(i);
+                        onDocumentSave(_p.cef()->GetId());
+                    } else
+                    if ( _answer == MODAL_RESULT_CANCEL ) {
+                        m_closeAct.clear();
+                        return false;
+                    }
                 }
-
-                break;
             } else {
-                if (m_mainWindowState == Qt::WindowMinimized)
-                    emit mainWindowChangeState(Qt::WindowNoState);
-
-                // attempt to save the modified document
-                _answ_ = trySaveDocument(_index_);
-
-                // deny saving
-                if ( _answ_ == MODAL_RESULT_NO ) {
-                    m_pTabs->closeEditorByIndex(_index_, false);
-                    continue;
-                } else
-                // saving in progress
-                if ( _answ_ == MODAL_RESULT_YES ) {
-                    m_saveAction = 2; // close portal
-                    m_savePortal = "";
-                    break;
-                } else
-                if ( _answ_ == MODAL_RESULT_CANCEL) {
-                    break;
-                }
+                m_pTabs->closeEditorByIndex(i);
             }
+
+            if ( m_closeAct.isEmpty() )
+                m_closeAct = "window";
         }
     }
+
+    return true;
 }
 
 void CMainPanel::onAppCloseRequest()
 {
-    onFullScreen(false);
+    onFullScreen(-1, false);
     pushButtonCloseClicked();
 }
 
@@ -449,9 +440,9 @@ void CMainPanel::onTabsCountChanged(int count, int i, int d)
 void CMainPanel::onEditorAllowedClose(int uid)
 {
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
-        if ( m_pTabs->count() ) {
-            m_pMainWidget->setProperty("removed", true);
-        }
+//        if ( m_pTabs->count() ) {
+//            m_pMainWidget->setProperty("removed", true);
+//        }
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
         if ( !(_index < 0) ) {
@@ -469,10 +460,6 @@ void CMainPanel::onEditorAllowedClose(int uid)
 
             onTabChanged(m_pTabs->currentIndex());
         }
-    }
-
-    if ( !m_pTabs->count() && m_pMainWidget->property("removed") == true ) {
-        QTimer::singleShot(0, this, [=]{emit mainWindowClose();});
     }
 }
 
@@ -497,15 +484,15 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
+    if ( !m_closeAct.isEmpty() ) return;
+
     if ( m_pTabs->isProcessed(index) ) {
         return;
-    } else
-    if ( !m_pTabs->isFragmented(index) ) {
-        if (trySaveDocument(index) == MODAL_RESULT_NO) {
-            m_pTabs->closeEditorByIndex(index, false);
-        }
     } else {
-        m_pTabs->editorCloseRequest(index);
+        if ( trySaveDocument(index) == MODAL_RESULT_NO ) {
+            m_pTabs->editorCloseRequest(index);
+            onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
+        }
     }
 }
 
@@ -517,8 +504,7 @@ int CMainPanel::trySaveDocument(int index)
     if ( m_pTabs->modifiedByIndex(index) ) {
         m_pTabs->setCurrentIndex(index);
 
-        CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-        mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
+        CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
         modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
 
         switch (modal_res) {
@@ -528,9 +514,7 @@ int CMainPanel::trySaveDocument(int index)
         case MODAL_RESULT_CUSTOM + 0:
         default:{
             m_pTabs->editorCloseRequest(index);
-
-            QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-            pView->GetCefView()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
+            m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
 
             modal_res = MODAL_RESULT_YES;
             break;}
@@ -540,87 +524,40 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onNeedCheckKeyboard()
+void CMainPanel::onPortalLogout(wstring portal)
 {
-    AscAppManager::getInstance().CheckKeyboard();
-}
+    if (!m_closeAct.isEmpty()) return;
 
-void CMainPanel::doLogout(const QString& portal, bool allow)
-{
-    wstring wp = portal.toStdWString();
-    wstring wcmd = L"portal:logout";
+    if ( m_pTabs->count() ) {
+        for (int i(m_pTabs->count()); !(--i < 0);) {
+            int _answer = MODAL_RESULT_NO;
 
-    if (allow) {
-        m_pTabs->closePortal(portal, true);
-        AscAppManager::getInstance().Logout(wp);
-    } else
-        wcmd.append(L":cancel");
+            CAscTabData& _doc = *m_pTabs->panel(i)->data();
+            if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
+                    _doc.url().find(portal) != wstring::npos)
+            {
+                if ( _doc.hasChanges() ) {
+                    _answer = trySaveDocument(i);
+                    if ( _answer == MODAL_RESULT_CANCEL) {
+                        m_closeAct.clear();
 
-    CAscExecCommandJS * pCommand = new CAscExecCommandJS;
-    pCommand->put_Command(wcmd);
-    pCommand->put_Param(wp);
+                        AscAppManager::cancelClose();
+                        return;
+                    }
+                }
 
-    CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-    pEvent->m_pData = pCommand;
-
-    ((QCefView *)m_pMainWidget)->GetCefView()->Apply(pEvent);
-    goStart();
-}
-
-void CMainPanel::onPortalLogout(QString portal)
-{
-    if (m_saveAction > 1) return;
-
-    int _index_, _answ_;
-    bool _allow = true;
-    while (true) {
-        _index_ = m_pTabs->findModified(portal);
-        if ( _index_ < 0 ) {
-            break;
-        } else {
-            _answ_ = trySaveDocument(_index_);
-
-            if ( _answ_ == MODAL_RESULT_NO ) {
-                m_pTabs->closeEditorByIndex(_index_, false);
-                continue;
-            } else
-            if ( _answ_ == MODAL_RESULT_YES ) {
-                m_saveAction = 1; // close portal
-                m_savePortal = portal;
-                return;
-            } else
-            if ( _answ_ == MODAL_RESULT_CANCEL ) {
-                _allow = false;
-                break;
+                if ( _answer != MODAL_RESULT_YES ) {
+                    m_pTabs->editorCloseRequest(i);
+                    onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                }
             }
         }
-    }
-
-    doLogout(portal, _allow);
-}
-
-void CMainPanel::onPortalLogin(int vid, QString info)
-{
-    int _i = m_pTabs->tabIndexByView(vid);
-    if ( !(_i < 0) && m_pTabs->panel(_i)->data()->contentType() == etPortal ) {
-        QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(info.toUtf8(), &jerror);
-
-        if ( jerror.error == QJsonParseError::NoError ) {
-            QJsonObject objRoot = jdoc.object();
-
-            objRoot["domain"] = QString::fromStdWString(m_pTabs->panel(_i)->data()->url());
-            jdoc.setObject(objRoot);
-
-            info = jdoc.toJson(QJsonDocument::Compact);
-        }
-
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "portal:login", Utils::encodeJson(info));
     }
 }
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
+//    qDebug() << "on document open: " << url;
     COpenOptions opts = {url};
     opts.id = id;
 
@@ -628,50 +565,6 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 
     if ( select )
         toggleButtonMain(false, true);
-}
-
-void CMainPanel::onLocalGetFile(int eventtype, void * d)
-{
-#ifdef _WIN32
-    CFileDialogWrapper dlg((HWND)parentWidget()->winId());
-#else
-    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-#endif
-
-    CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(d);
-    QString _filter = QString::fromStdWString(pData->get_Filter());
-    QStringList _list;
-    if ( _filter == "plugin" ) {
-        _list = pData->get_IsMultiselect() ? dlg.modalOpenPlugins(Utils::lastPath(LOCAL_PATH_OPEN)) :
-                            dlg.modalOpenPlugin(Utils::lastPath(LOCAL_PATH_OPEN), true);
-    } else
-    if ( _filter == "image" || _filter == "images" ) {
-        _list = pData->get_IsMultiselect() ? dlg.modalOpenImages(Utils::lastPath(LOCAL_PATH_OPEN)) :
-                            dlg.modalOpenImage(Utils::lastPath(LOCAL_PATH_OPEN), true);
-    } else
-    if ( _filter == "any" ) {
-        _list = dlg.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
-    }
-
-    if ( !_list.isEmpty() ) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_list.at(0)).absolutePath());
-    }
-
-    /* data consits id of cefview */
-
-    pData->put_IsMultiselect(true);
-    vector<wstring>& _files = pData->get_Files();
-    for ( const auto& f : _list ) {
-        _files.push_back( f.toStdWString() );
-    }
-
-    CAscMenuEvent * pEvent = new CAscMenuEvent(eventtype);
-    pEvent->m_pData = pData;
-
-    AscAppManager::getInstance().Apply(pEvent);
-
-    /* release would be made in the method Apply */
-//    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onLocalFileOpen(const QString& inpath)
@@ -727,9 +620,7 @@ void CMainPanel::onLocalFileRecent(void * d)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.type != etRecoveryFile && !_info.exists() ) {
-            CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-            mess.setButtons({tr("Yes")+":default", tr("No")});
-
+            CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
@@ -812,7 +703,7 @@ void CMainPanel::onLocalFileLocation(QString path)
     Utils::openFileLocation(path);
 }
 
-void CMainPanel::onLocalFileLocation(int uid, QString param)
+void CMainPanel::onFileLocation(int uid, QString param)
 {
     if ( param == "offline" ) {
         QString path = m_pTabs->urlByView(uid);
@@ -832,11 +723,13 @@ void CMainPanel::onLocalFileLocation(int uid, QString param)
             QString _domain = _re_match.captured(1);
             QString _folder = param;
 
-            if ( _folder.indexOf("?") > 0 )
-                _folder.append("&desktop=true");
-            else {
-                int pos = _folder.indexOf(QRegularExpression("#\\d+"));
-                !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+            if ( !_folder.contains("desktop=true") ) {
+                if ( _folder.contains("?") )
+                    _folder.append("&desktop=true");
+                else {
+                    int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                    !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
+                }
             }
 
             int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
@@ -956,26 +849,27 @@ void CMainPanel::onDocumentChanged(int id, bool changed)
 
 void CMainPanel::onDocumentSave(int id, bool cancel)
 {
-    m_pTabs->applyDocumentSave(id, cancel);
+    int _i = m_pTabs->tabIndexByView(id);
+    if ( !(_i < 0) ) {
+        if ( !cancel ) {
+            if ( m_pTabs->closedByIndex(_i) &&
+                    !m_pTabs->isProcessed(_i) &&
+                        !m_pTabs->isFragmented(_i) )
+                {
+                    m_pTabs->closeEditorByIndex(_i);
+                }
+        } else {
+            m_pTabs->cancelDocumentSaving(_i);
+            m_closeAct.clear();
 
-    if (!cancel && m_saveAction != 0) {
-        if (m_saveAction == 1) {
-            m_saveAction = 0;
-            onPortalLogout(m_savePortal);
-        } else
-        if (m_saveAction == 2) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
+            AscAppManager::cancelClose();
         }
-    } else {
-        m_saveAction = 0;
     }
 }
 
 void CMainPanel::onDocumentSaveInnerRequest(int id)
 {
-    CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-    mess.setButtons({tr("Yes")+":default", tr("No")});
+    CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
     int modal_res = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
 
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
@@ -998,52 +892,41 @@ void CMainPanel::onDocumentDownload(void * info)
 
     m_pWidgetDownload->downloadProcess(info);
 
-    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-    RELEASEINTERFACE(pData);
+//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
+//    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 {
-    int index = m_pTabs->tabIndexByView(id), _answ;
-    if ( isfragmented ) {
-        if ( !(index < 0) ) {
-            static bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
-            if ( _skip_user_warning ) {
-                QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-                pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
-                return;
-            } else {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-                mess.setButtons({tr("Yes")+":default", tr("No"), tr("Cancel")});
-                _answ = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
-                if ( _answ == MODAL_RESULT_CUSTOM + 0 ) {
-                    QCefView * pView = ((CTabPanel *)m_pTabs->widget(index))->view();
-                    pView->GetCefView()->Apply( new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD) );
+    int index = m_pTabs->tabIndexByView(id);
+    if ( !(index < 0) ) {
+            int _answer = MODAL_RESULT_NO;
+            if ( isfragmented ) {
+                static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
+                if ( _skip_user_warning ) {
+                    m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
-                } else
-                if ( _answ == MODAL_RESULT_CUSTOM + 1 ) {
-                } else
-                if ( _answ == MODAL_RESULT_CUSTOM + 2 ) {
-                    m_saveAction = 0;
-                    m_pTabs->applyDocumentSave(id, true);
-                    return;
+                } else {
+//                    CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
+//                    mess.setButtons(CMessageOpts::cmButtons::cmbYesDefNoCancel);
+//                    _answer = mess.warning(tr("%1 must be built. Continue?").arg(m_pTabs->titleByIndex(index)));
+//                    switch (_answer) {
+//                    case MODAL_RESULT_CUSTOM + 0:
+//                        m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
+//                        return;
+//                    case MODAL_RESULT_CUSTOM + 1: _answer == MODAL_RESULT_NO; break;
+//                    case MODAL_RESULT_CUSTOM + 2:
+//                    default:                      _answer = MODAL_RESULT_CANCEL; break;
+//                    }
                 }
+            } else {
+                onDocumentFragmentedBuild(id, 0);
             }
-        }
-    }
 
-    m_pTabs->applyDocumentSave(id, true);        // 'true' clears 'closed' doc status
-    _answ = trySaveDocument(index);
-    if ( _answ == MODAL_RESULT_NO ) {
-        m_pTabs->closeEditorByIndex(index, false);
-        if ( m_saveAction == 3 ) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
-        }
-    } else
-    if ( _answ == MODAL_RESULT_YES ) {
-        if ( m_saveAction == 3 )
-            m_saveAction = 2;
+            if ( _answer == MODAL_RESULT_CANCEL ) {
+                m_closeAct.clear();
+                AscAppManager::cancelClose();
+            }
     }
 }
 
@@ -1051,15 +934,11 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-        m_pTabs->closeEditorByIndex(index, false);
-
-        if ( m_saveAction == 3 ) {
-            m_saveAction = 0;
-            pushButtonCloseClicked();
-        }
+//        if ( !m_closeAct.isEmpty() )
+            m_pTabs->closeEditorByIndex(index, false);
     } else {
-//        int index = m_pTabs->tabIndexByView(id);
-        m_pTabs->applyDocumentSave(index, true);
+        m_pTabs->cancelDocumentSaving(index);
+        AscAppManager::cancelClose();
     }
 }
 
@@ -1080,7 +959,7 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 
                     QString _url = objRoot["url"].toString();
                     if ( !_url.isEmpty() )
-                        onLocalFileLocation(vid, _url);
+                        onFileLocation(vid, _url);
                     else _is_local = true;
                 }
             }
@@ -1228,30 +1107,6 @@ void CMainPanel::onDocumentPrint(void * opts)
     RELEASEINTERFACE(pData)
 }
 
-void CMainPanel::onDialogSave(std::wstring sName, uint id)
-{
-    GET_REGISTRY_USER(_reg_user);
-
-    QString savePath = Utils::lastPath(LOCAL_PATH_SAVE);
-    static bool saveInProcess = false;
-    if (!saveInProcess) {
-        saveInProcess = true;
-
-        if (sName.size()) {
-            QString fullPath = savePath + "/" + QString().fromStdWString(sName);
-            CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-
-            if ( dlg.modalSaveAs(fullPath) ) {
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
-            }
-
-            AscAppManager::getInstance().EndSaveDialog(fullPath.toStdWString(), id);
-        }
-
-        saveInProcess = false;
-    }
-}
-
 void CMainPanel::onLocalFileSaveAs(void * d)
 {
     CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
@@ -1276,9 +1131,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
 
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-                mess.setButtons({tr("OK")+":default", tr("Cancel")});
-
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbOkDefCancel);
                 _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
             }
 
@@ -1303,7 +1156,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onFullScreen(bool apply, int id)
+void CMainPanel::onFullScreen(int id, bool apply)
 {
     if ( apply ) {
         if ( m_mainWindowState != Qt::WindowFullScreen ) {
@@ -1508,11 +1361,6 @@ void CMainPanel::updateScaling(int dpiratio)
     }
 
     m_pTabs->setTabIcons(icons);
-}
-
-void CMainPanel::onCheckUpdates()
-{
-    emit checkUpdates();
 }
 
 void CMainPanel::setScreenScalingFactor(uchar s)

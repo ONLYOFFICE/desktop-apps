@@ -43,6 +43,7 @@ public:
 
     static void showSplash();
     static void hideSplash();
+    static uint startupDpiRatio();
 };
 
 #endif // CSPLASH_H

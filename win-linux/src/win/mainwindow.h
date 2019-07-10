@@ -76,7 +76,11 @@ public:
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
-    WId handle() const override;
+    HWND handle() const;
+
+#ifdef _UPDMODULE
+    static void checkUpdates();
+#endif
 
 private:
     void setScreenScalingFactor(uchar);
@@ -108,6 +112,8 @@ private:
     WindowBase::CWindowGeometry maximumSize;
 
     uchar m_dpiRatio;
+
+    RECT m_moveNormalRect{0};
 };
 
 #endif

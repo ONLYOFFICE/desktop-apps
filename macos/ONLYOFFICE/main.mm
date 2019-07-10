@@ -60,6 +60,8 @@ int main(int argc, const char * argv[]) {
 
     // disable sign support
     appManager->m_oSettings.sign_support = false;
+    appManager->m_oSettings.pass_support = true;
+    appManager->m_oSettings.protect_support = true;
 
     // setup common user directory
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
@@ -80,7 +82,7 @@ int main(int argc, const char * argv[]) {
     
     // setup editor fonts directory
     std::vector<std::wstring> fontsDirectories;
-    fontsDirectories.push_back([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/fonts"] stdwstring]);
+    fontsDirectories.push_back([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
     appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
     
     // setup localization
@@ -100,7 +102,8 @@ int main(int argc, const char * argv[]) {
     // setup doc sign
     [ASCDocSignController shared];
 
-    [worker Start:argc :argv];
+    //[worker Start:argc :argv];
+    [worker Start:argc argv:argv];
     int result = NSApplicationMain(argc, argv);
     [worker End];
     return result;

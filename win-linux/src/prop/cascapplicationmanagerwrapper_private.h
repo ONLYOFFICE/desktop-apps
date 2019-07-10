@@ -34,6 +34,7 @@
 #define CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
 
 #include "cascapplicationmanagerwrapper.h"
+#include "qcefview_media.h"
 
 class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
 {
@@ -48,6 +49,10 @@ public:
     void initializeApp() {}
     bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
     void applyStylesheets() {}
+    QCefView * createView(QWidget * parent)
+    {
+        return new QCefView_Media(parent);
+    }
 };
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

@@ -61,11 +61,9 @@ public:
     QStringList modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR, bool multi = false);
     QString     modalOpenSingle(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR);
 
-    QString     modalOpenImage(const QString&);
-    QStringList modalOpenImage(const QString&, bool list);
+    QStringList modalOpenImage(const QString&);
     QStringList modalOpenImages(const QString&);
-    QString     modalOpenPlugin(const QString&);
-    QStringList modalOpenPlugin(const QString&, bool list);
+    QStringList modalOpenPlugin(const QString&);
     QStringList modalOpenPlugins(const QString&);
     QStringList modalOpenAny(const QString&, bool multi = false);
 

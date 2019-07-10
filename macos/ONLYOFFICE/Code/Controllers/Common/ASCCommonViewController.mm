@@ -223,6 +223,11 @@
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorEvent:)
+                                                 name:CEFEventNameEditorEvent
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFEditorAppActionRequest:)
                                                  name:CEFEventNameEditorAppActionRequest
                                                object:nil];
@@ -619,12 +624,24 @@
 #pragma mark Internal
 
 - (ASCTabView *)tabWithParam:(NSString *)param value:(NSString *)value {
-    if (param && value && value.length > 0) {
+    if (param && value && [value isKindOfClass:[NSString class]] && value.length > 0) {
         for (ASCTabView * tab in self.tabsControl.tabs) {
-            NSString * tabValue = tab.params[param];
-            
-            if (tabValue && tabValue.length > 0 && [tabValue isEqualToString:value]) {
-                return tab;
+            if (tab.params[param] && [tab.params[param] isKindOfClass:[NSString class]]) {
+                NSString * localTabValue = [NSString stringWithString:tab.params[param]];
+                NSString * localValue = [NSString stringWithString:value];
+
+                if (NSString *provider = tab.params[@"provider"]) {
+                    if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                        localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
+                    }
+                }
+
+                localTabValue = [localTabValue removeUrlQuery:@[@"lang", @"desktop"]];
+                localValue = [localValue removeUrlQuery:@[@"lang", @"desktop"]];
+
+                if (localTabValue && localTabValue.length > 0 && [localTabValue isEqualToString:localValue]) {
+                    return tab;
+                }
             }
         }
     }
@@ -1254,23 +1271,33 @@
 
         if (NSString *viewId = json[@"viewId"]) {
             if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
-                if ([tab.params[@"isPortalPage"] boolValue]) {
-                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
-                        if (NSString *infoString = json[@"info"]) {
-                            if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
-                                if (NSString *originalUrl = [cefView originalUrl]) {
-                                    info[@"domain"] = [cefView originalUrl];
+                if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                    if (NSString *infoString = json[@"info"]) {
+                        if (NSMutableDictionary *info = [[infoString dictionary] mutableCopy]) {
+                            if (NSString *originalUrl = [cefView originalUrl]) {
+                                originalUrl = [[originalUrl stringByReplacingOccurrencesOfString:@"://" withString:@":////"]
+                                               stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
 
-                                    if (NSString * jsonString = [info jsonString]) {
-                                        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-                                        pCommand->put_Command(L"portal:login");
-                                        pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
-
-                                        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
-                                        pEvent->m_pData = pCommand;
-
-                                        [self.cefStartPageView apply:pEvent];
+                                // Hotfix virtual path
+                                if (NSString *provider = tab.params[@"provider"]) {
+                                    if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                                        originalUrl = [originalUrl stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                                     }
+                                }
+                                originalUrl = [originalUrl virtualUrl];
+
+                                if (NSString * jsonString = [info jsonString]) {
+                                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"portal:login");
+                                    pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+
+                                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                    pEvent->m_pData = pCommand;
+
+                                    [self.cefStartPageView apply:pEvent];
+
+                                    // Hotfix for SSO
+                                    tab.params[@"url"] = originalUrl;
                                 }
                             }
                         }
@@ -1290,11 +1317,13 @@
             
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
-            
+
+            NSString *logoutVirtualUrl = [url virtualUrl];
+
             for (ASCTabView * tab in self.tabsControl.tabs) {
-                NSString * tabUrl = tab.params[@"url"];
+                NSString * tabVirtualUrl = [tab.params[@"url"] virtualUrl];
                 
-                if (tabUrl && tabUrl.length > 0 && [tabUrl rangeOfString:url].location != NSNotFound) {
+                if (tabVirtualUrl && tabVirtualUrl.length > 0 && [tabVirtualUrl rangeOfString:logoutVirtualUrl].location != NSNotFound) {
                     [portalTabs addObject:tab];
                     
                     if (tab.changed) {
@@ -1399,11 +1428,13 @@
         NSString * portalUrl = json[@"portal"];
         NSString * providerUrl = json[@"provider"];
 
-        if (portalUrl && portalUrl) {
+        if (portalUrl && providerUrl) {
             ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
             tab.title       = portalUrl;
             tab.type        = ASCTabViewPortal;
-            tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl]} mutableCopy];
+            tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl],
+                                 @"provider": @"asc"
+                                 } mutableCopy];
 
             [self.tabsControl addTab:tab selected:YES];
         }
@@ -1494,6 +1525,25 @@
 
         if (NSString * viewId = json[@"viewId"]) {
             [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFEditorEvent:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSDictionary * data = json[@"data"];
+
+        if (viewId && data) {
+            NSString * action = data[@"action"];
+
+            if (action && [action isEqualToString:@"close"]) {
+                if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
+                    [self.tabsControl removeTab:tab selected:NO];
+                }
+            }
         }
     }
 }
@@ -1669,10 +1719,6 @@
 
                 if (provider && [provider length] > 0) {
                     [cefView setExternalCloud:provider];
-                }
-
-                if (provider) {
-                    tab.params[@"isPortalPage"] = @(YES);
                 }
             }
             case ASCTabActionOpenUrl: {

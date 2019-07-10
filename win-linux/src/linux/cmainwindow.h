@@ -56,7 +56,7 @@ public:
     QRect windowRect() const;
     bool isMaximized() const;
     void sendSertificate(int viewid);
-    WId handle() const override;
+    QWidget * handle() const;
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -69,6 +69,7 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
+    void setScreenScalingFactor(uchar factor);
 private:
     CMainPanelImpl *   m_pMainPanel;
     uchar m_dpiRatio = 1;

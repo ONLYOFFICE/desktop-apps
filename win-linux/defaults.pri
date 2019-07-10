@@ -15,6 +15,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fr.ts \
                 ./langs/pt_BR.ts \
                 ./langs/it_IT.ts \
+                ./langs/zh_CN.ts \
                 ./langs/pl.ts
 
 CORE_SRC_PATH = ../../core/DesktopEditor
@@ -24,6 +25,7 @@ CORE_3DPARTY_PATH = ../../core/Common/3dParty
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
+RCC_DIR = ./rcc
 
 INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
                 $$BASEEDITORS_PATH/lib/qcefview \
@@ -31,6 +33,7 @@ INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
 
 HEADERS += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.h \
     $$PWD/src/asctabwidget.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
@@ -57,7 +60,12 @@ HEADERS += \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/cdpichecker.h
+    $$PWD/src/cdpichecker.h \
+    $$PWD/src/csinglewindowbase.h \
+    $$PWD/src/ceditorwindow.h \
+    $$PWD/src/ccefeventsgate.h \
+    $$PWD/src/ceditorwindow_p.h \
+    $$PWD/src/ceditortools.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -65,6 +73,7 @@ HEADERS += \
 
 SOURCES += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
+    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -86,11 +95,27 @@ SOURCES += \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/cmainwindowbase.cpp \
-    $$PWD/src/ctabpanel.cpp
+    $$PWD/src/ctabpanel.cpp \
+    $$PWD/src/csinglewindowbase.cpp \
+    $$PWD/src/ceditorwindow.cpp \
+    $$PWD/src/ccefeventsgate.cpp \
+    $$PWD/src/ceditortools.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
 RESOURCES += $$PWD/resources.qrc
+
+isEqual(QT_MAJOR_VERSION, 5) {
+    lessThan(QT_MINOR_VERSION, 10) {
+        DEFINES += _QTVER_DOWNGRADE
+        message("QTVER_DOWNGRADE")
+    }
+}
+
+ENV_BUILD_NUMBER = $$(BUILD_NUMBER)
+!isEmpty(ENV_BUILD_NUMBER) {
+    DEFINES += VER_NUM_REVISION=$$ENV_BUILD_NUMBER
+}
 
 linux-g++ {
     CONFIG += app_linux
@@ -115,6 +140,37 @@ linux-g++-32 {
     PLATFORM_BUILD = linux_32
 }
 
+win32 {
+    CONFIG -= debug_and_release debug_and_release_target
+
+    contains(QMAKE_TARGET.arch, x86_64):{
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
+        PLATFORM_BUILD = win_64
+    } else {
+        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
+        PLATFORM_BUILD = win_32
+    }
+}
+
+CORE_LIB_PATH_PLATFORM=$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
+
+win32 {
+    CONFIG(debug, debug|release) {
+        CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH_PLATFORM/DEBUG
+        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
+    }
+}
+
+LIBS += -L$$CORE_LIB_PATH_PLATFORM -lPdfReader -lPdfWriter -lDjVuFile -lXpsFile -lHtmlRenderer -lUnicodeConverter -lhunspell -looxmlsignature -lkernel -lgraphics
+
+INCLUDEPATH += ../../core-ext/desktop-sdk-wrapper/additional
+QT += multimedia multimediawidgets
+build_xp {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lvideoplayer
+} else {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lvideoplayer
+}
+
 app_linux {
     QT += network x11extras
 
@@ -123,16 +179,17 @@ app_linux {
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
     LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
-    LIBS += -L$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD -lDjVuFile -lXpsFile -lPdfReader -lPdfWriter -lHtmlRenderer -lUnicodeConverter -lkernel -lgraphics
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
                 $$PWD/src/linux/csinglewindow.h \
+                $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
                 $$PWD/src/linux/csinglewindow.cpp \
+                $$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
     HEADERS += $$PWD/src/linux/cdialogopenssl.h
@@ -140,30 +197,14 @@ app_linux {
 
     DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gdk-2.0 gtkglext-1.0 atk cairo gtk+-unix-print-2.0
+    PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
+    LIBS += -lX11
 
-    build_for_centos6 {
-        app_linux_64 {
-            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux-x86-64.so.2
-        }
-        app_linux_32 {
-            QMAKE_LFLAGS += -Wl,--dynamic-linker=./ld-linux.so.2
-        }
-        message("build for centos6")
-    }
-
+    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
-
-isEqual(QT_MAJOR_VERSION, 5) {
-    lessThan(QT_MINOR_VERSION, 10) {
-        DEFINES += _QTVER_DOWNGRADE
-        message("QTVER_DOWNGRADE")
-    }
-}
-
 }
 
 
@@ -180,6 +221,7 @@ win32 {
                 $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
                 $$PWD/src/win/csinglewindow.h \
+                $$PWD/src/win/csinglewindowplatform.h \
                 $$PWD/src/win/cprintdialog.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
@@ -188,6 +230,7 @@ win32 {
                 $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/csinglewindow.cpp \
+                $$PWD/src/win/csinglewindowplatform.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \
@@ -219,14 +262,16 @@ win32 {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
+}
 
-    contains(QMAKE_TARGET.arch, x86_64):{
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        PLATFORM_BUILD = win_64
-    } else {
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        PLATFORM_BUILD = win_32
-    }
+TARGET = $$join(TARGET,,,_$$PLATFORM_BUILD)
+OBJECTS_DIR = $$join(OBJECTS_DIR,,./$$PLATFORM_BUILD/,)
+MOC_DIR = $$join(MOC_DIR,,./$$PLATFORM_BUILD/,)
+RCC_DIR = $$join(RCC_DIR,,./$$PLATFORM_BUILD/,)
 
-    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
+win32:build_xp {
+    TARGET = $$join(TARGET,,,_xp)
+    OBJECTS_DIR = $$replace(OBJECTS_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
+    MOC_DIR = $$replace(MOC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
+    RCC_DIR = $$replace(RCC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
 }

@@ -52,9 +52,10 @@ public:
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
     static unsigned getScreenDpiRatio(int);
+    static unsigned getScreenDpiRatio(const QPoint&);
     static unsigned getScreenDpiRatioByHWND(int);
     static unsigned getScreenDpiRatioByWidget(QWidget*);
-    static QString replaceBackslash(QString&);
+    static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
     static bool appArgsContains(const QString&);
@@ -66,6 +67,7 @@ public:
 
     static QString encodeJson(const QJsonObject&);
     static QString encodeJson(const QString&);
+    static wstring encodeJson(const wstring&);
 
 //    static QByteArray getAppStylesheets(int);
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);

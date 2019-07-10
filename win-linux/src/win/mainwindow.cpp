@@ -68,11 +68,14 @@ extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
+typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = NULL;
+
 
 CMainWindow::CMainWindow(QRect& rect) :
-    hWnd(0),
-    hInstance( GetModuleHandle(NULL) ),
-    borderless( false ),
+    hWnd(nullptr),
+    hInstance(GetModuleHandle(nullptr)),
+    borderless( true ),
     borderlessResizeable( true ),
     closed( false ),
     visible( false ),
@@ -80,7 +83,7 @@ CMainWindow::CMainWindow(QRect& rect) :
 {
     // adjust window size
     QRect _window_rect = rect;
-    m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
+    m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
@@ -133,17 +136,14 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
-    QObject::connect(mainpanel, &CMainPanel::mainWindowClose, bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
 
     m_pWinPanel->show();
 
-#ifdef _UPDMODULE
-    QObject::connect(mainpanel, &CMainPanelImpl::checkUpdates, []{
-        win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
-        win_sparkle_check_update_with_ui();
-    });
-#endif
+    HMODULE _lib = ::LoadLibrary(L"user32.dll");
+    dpi_adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+    FreeLibrary(_lib);
 }
 
 CMainWindow::~CMainWindow()
@@ -178,8 +178,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 
     switch ( message )
     {
-    case WM_HOTKEY:
-        qDebug() << "key down";
+    case WM_DPICHANGED:
+        qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
         break;
 
     case WM_KEYDOWN:
@@ -222,7 +222,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     // ALT + SPACE or F10 system menu
     case WM_SYSCOMMAND:
     {
-        if ( wParam == SC_KEYMENU )
+        if ( GET_SC_WPARAM(wParam) == SC_KEYMENU )
         {
 //            RECT winrect;
 //            GetWindowRect( hWnd, &winrect );
@@ -230,8 +230,9 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //            break;
             return 0;
         } else
-        if (wParam == SC_MAXIMIZE) {
+        if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
             qDebug() << "wm syscommand";
+            break;
         }
         else
         {
@@ -355,6 +356,10 @@ qDebug() << "WM_CLOSE";
                 window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
                 if ( IsWindowVisible(hWnd) ) {
+                    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+                    if ( dpi_ratio != window->m_dpiRatio )
+                        window->setScreenScalingFactor(dpi_ratio);
+
                     if ( wParam == SIZE_MAXIMIZED )
                         window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
                         window->m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
@@ -375,9 +380,22 @@ qDebug() << "WM_CLOSE";
             }
         }
 
-        break;
 #endif
+        break;
     }
+
+    case WM_ENTERSIZEMOVE: {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if ( GetWindowPlacement(hWnd, &wp) ) {
+            MONITORINFO info{sizeof(MONITORINFO)};
+            GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+
+            window->m_moveNormalRect.left   = abs(info.rcMonitor.left - wp.rcNormalPosition.left);
+            window->m_moveNormalRect.top    = abs(info.rcMonitor.top - wp.rcNormalPosition.top);
+            window->m_moveNormalRect.right  = abs(info.rcMonitor.left - wp.rcNormalPosition.right);
+            window->m_moveNormalRect.bottom = abs(info.rcMonitor.top - wp.rcNormalPosition.bottom);
+        }
+        break;}
 
     case WM_EXITSIZEMOVE: {
 //#define DEBUG_SCALING
@@ -464,7 +482,7 @@ qDebug() << "WM_CLOSE";
             int nArgs;
             LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
 
-            if (szArglist != NULL) {
+            if (szArglist != nullptr) {
                 QStringList _in_args;
                 for(int i(1); i < nArgs; i++) {
                     _in_args.append(QString::fromStdWString(szArglist[i]));
@@ -623,7 +641,9 @@ void CMainWindow::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        if ( dpi_adjustWindowRectEx != NULL ) {
+            dpi_adjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0, 96*m_dpiRatio);
+        } else AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -663,17 +683,36 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
         m_pMainPanel->setScreenScalingFactor(factor);
         setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 
-        RECT lpWindowRect;
-        GetWindowRect(hWnd, &lpWindowRect);
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if ( GetWindowPlacement(hWnd, &wp) ) {
+            RECT lpWindowRect;
+            GetWindowRect(hWnd, &lpWindowRect);
 
-        unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
-                _new_height = lpWindowRect.bottom - lpWindowRect.top;
+            unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
+                    _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
 
-        if ( increase )
-            _new_width *= 2, _new_height *= 2;  else
-            _new_width /= 2, _new_height /= 2;
+            if ( increase )
+                _new_width *= 2, _new_height *= 2;  else
+                _new_width /= 2, _new_height /= 2;
 
-        SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+            if ( wp.showCmd == SW_MAXIMIZE ) {
+                MONITORINFO info{sizeof(MONITORINFO)};
+                GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+
+                if ( increase )
+                    m_moveNormalRect.left *= 2, m_moveNormalRect.top *= 2;
+                else m_moveNormalRect.left /= 2, m_moveNormalRect.top /= 2;
+
+                wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left;
+                wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top;
+                wp.rcNormalPosition.right = wp.rcNormalPosition.left + _new_width;
+                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _new_height;
+
+                SetWindowPlacement(hWnd, &wp);
+            } else {
+                SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+            }
+        }
     }
 }
 
@@ -710,25 +749,31 @@ void CMainWindow::slot_mainPageReady()
 
     // skip updates for XP
     if ( osvi.dwMajorVersion > 5 ) {
-        QString _prod_name = WINDOW_NAME;
-
-        GET_REGISTRY_USER(_user)
-        if (!_user.contains("CheckForUpdates")) {
-            _user.setValue("CheckForUpdates", "1");
-        }
-
-        win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
-                                        _prod_name.toStdWString().c_str(),
-                                        QString(VER_FILEVERSION_STR).toStdWString().c_str());
-        win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
-        win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
-        win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
-        win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
-        win_sparkle_set_error_callback(&CMainWindow::updateError);
+        static bool _init = false;
+        if ( !_init ) {
+            _init = true;
 
-        win_sparkle_init();
+            QString _prod_name = WINDOW_NAME;
+
+            GET_REGISTRY_USER(_user)
+            if (!_user.contains("CheckForUpdates")) {
+                _user.setValue("CheckForUpdates", "1");
+            }
+
+            win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
+                                            _prod_name.toStdWString().c_str(),
+                                            QString(VER_FILEVERSION_STR).toStdWString().c_str());
+            win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+            win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
+
+            win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
+            win_sparkle_set_did_not_find_update_callback(&CMainWindow::updateNotFound);
+            win_sparkle_set_error_callback(&CMainWindow::updateError);
+
+            win_sparkle_init();
+        }
 
         AscAppManager::sendCommandTo(0, "updates", "on");
         CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
@@ -750,6 +795,11 @@ void CMainWindow::updateNotFound()
 void CMainWindow::updateError()
 {
     CLogger::log("updates error");
+}
+
+void CMainWindow::checkUpdates()
+{
+    win_sparkle_check_update_with_ui();
 }
 #endif
 
@@ -793,7 +843,7 @@ bool CMainWindow::isMaximized() const
     return _is_maximized;
 }
 
-WId CMainWindow::handle() const
+HWND CMainWindow::handle() const
 {
-    return (WId)hWnd;
+    return hWnd;
 }

@@ -186,6 +186,18 @@
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS): @{
                      @"description" : NSLocalizedString(@"XML Paper Specification", nil),
                      @"extension"   : @"xps"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT): @{
+                     @"description" : NSLocalizedString(@"OpenDocument Document Template", nil),
+                     @"extension"   : @"ott"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_PRESENTATION_OTP): @{
+                     @"description" : NSLocalizedString(@"OpenDocument Presentation Template", nil),
+                     @"extension"   : @"otp"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS): @{
+                     @"description" : NSLocalizedString(@"OpenDocument Spreadsheet Template", nil),
+                     @"extension"   : @"ots"
                      }
              };
 }

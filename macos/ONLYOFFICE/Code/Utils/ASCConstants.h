@@ -113,6 +113,7 @@ static NSString * const CEFEventNameSaveBeforSign           = @"CEF_saveBeforeSi
 static NSString * const CEFEventNameOpenSSLCertificate      = @"CEF_openSSLCertificate";
 static NSString * const CEFEventNameEditorDocumentReady     = @"CEF_editorDocumentReady";
 static NSString * const CEFEventNameEditorAppReady          = @"CEF_editorAppReady";
+static NSString * const CEFEventNameEditorEvent             = @"CEF_editorEvent";
 static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppActionRequest";
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
