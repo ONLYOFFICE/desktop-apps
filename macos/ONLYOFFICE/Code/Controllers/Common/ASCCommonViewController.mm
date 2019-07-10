@@ -223,6 +223,11 @@
                                                object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onCEFEditorEvent:)
+                                                 name:CEFEventNameEditorEvent
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onCEFEditorAppActionRequest:)
                                                  name:CEFEventNameEditorAppActionRequest
                                                object:nil];
@@ -1520,6 +1525,25 @@
 
         if (NSString * viewId = json[@"viewId"]) {
             [self hideHeaderPlaceholderWithIdentifier:viewId];
+        }
+    }
+}
+
+- (void)onCEFEditorEvent:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * viewId = json[@"viewId"];
+        NSDictionary * data = json[@"data"];
+
+        if (viewId && data) {
+            NSString * action = data[@"action"];
+
+            if (action && [action isEqualToString:@"close"]) {
+                if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
+                    [self.tabsControl removeTab:tab selected:NO];
+                }
+            }
         }
     }
 }

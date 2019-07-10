@@ -15,6 +15,14 @@ QT_PLUGINS ?= $(QT_PATH)/plugins
 
 END2END_ENCRYPT ?= false
 
+UNAME_M := $(shell uname -m)
+ifeq ($(UNAME_M),x86_64)
+	ARCHITECTURE := 64
+endif
+ifneq ($(filter %86,$(UNAME_M)),)
+	ARCHITECTURE := 32
+endif
+
 ifeq ($(OS),Windows_NT)
 	PLATFORM := win
 	EXEC_EXT := .exe
@@ -22,7 +30,7 @@ ifeq ($(OS),Windows_NT)
 	SHARED_EXT := .dll
 	LIB_EXT := .lib
 	MAKE := nmake
-	DEST_DIR ?= ONLYOFFICE/DesktopEditors
+	DEST_DIR ?= ../build_tools/out/win_$(ARCHITECTURE)/ONLYOFFICE/DesktopEditors
 	QT_LIBS ?= $(QT_PATH)/bin
 else
 	UNAME_S := $(shell uname -s)
@@ -33,17 +41,9 @@ else
 		SHELL_EXT := .sh
 		LIB_EXT := .a
 		MAKE := make
-		DEST_DIR ?= /opt/onlyoffice/desktopeditors
+		DEST_DIR ?= ../build_tools/out/linux_$(ARCHITECTURE)/onlyoffice/desktopeditors
 		QT_LIBS ?= $(QT_PATH)/lib
 	endif
-endif
-
-UNAME_M := $(shell uname -m)
-ifeq ($(UNAME_M),x86_64)
-	ARCHITECTURE := 64
-endif
-ifneq ($(filter %86,$(UNAME_M)),)
-	ARCHITECTURE := 32
 endif
 
 include win-linux/package/windows/Makefile.mk
@@ -122,7 +122,10 @@ clean:
 		fi \
 	done
 
-install: $(TARGETS)
+install:
+	mkdir -p $(DEST_DIR)
+
+install-target: $(TARGETS)
 	mkdir -p $(DEST_DIR)
 
 	$(INSTALL_PROGRAM) $(TARGETS) $(DEST_DIR)

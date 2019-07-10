@@ -36,6 +36,7 @@
 #include <QStylePainter>
 #include <QPushButton>
 #include <QHoverEvent>
+#include <QDesktopWidget>
 #include "canimatedicon.h"
 #include "utils.h"
 
@@ -230,12 +231,17 @@ void QTabBarPrivate::Tab::TabBarAnimation::updateState(QAbstractAnimation::State
 /*
  *    CTabBar descrition
 */
-
 CTabBar::CTabBar(QWidget * parent)
     : QTabBar(parent)
     , CScalingWrapper(parent)
 {
     setDrawBase(false);
+
+    if (Utils::getScreenDpiRatio(
+                QApplication::desktop()->screen(QApplication::desktop()->primaryScreen())->geometry().topLeft()) > 1)
+    {
+        setProperty("scroll", "var2");
+    }
 
     connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
 }
@@ -553,6 +559,12 @@ void CTabBar::paintEvent(QPaintEvent * event)
         p.drawPrimitive(QStyle::PE_IndicatorTabTearRight, cutTabRight);
     }
 #endif
+
+    if ( scaling() > 1 ) {
+        /* qtabbar scroller doesn't apply big width */
+        d->leftB->setGeometry(d->rightB->geometry().adjusted(0,0,-24,0));
+        d->leftB->raise();
+    }
 }
 
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)

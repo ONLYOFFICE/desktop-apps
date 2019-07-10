@@ -19,6 +19,7 @@ ICON18      ICON    DISCARDABLE "./res/pptx.ico"
 ICON19      ICON    DISCARDABLE "./res/xlsx.ico"
 
 #include <windows.h>
+# pragma code_page(65001)
 #include "src/version.h"
 
 VS_VERSION_INFO VERSIONINFO

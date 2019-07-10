@@ -32,6 +32,8 @@
 # endif
 #endif
 
+#include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
+
 
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
@@ -56,16 +58,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
                         this, &CAscApplicationManagerWrapper::onCoreEvent);
 
-#ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Init(nullptr);
-#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-#ifdef SUPPORT_EMBEDDED_MEDIA
     NSBaseVideoLibrary::Destroy();
-#endif
 
 //    CSingleWindow * _sw = nullptr;
 //    for (auto const& w : m_vecEditors) {
@@ -335,21 +333,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
-        if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
-            AscAppManager::getInstance().DestroyCefView(event->get_SenderId());
+        CAscTypeId * pData = static_cast<CAscTypeId *>(event->m_pData);
+
+        if ( m_reporterWindow && m_reporterWindow->holdView(pData->get_Id()) ) {
+            AscAppManager::getInstance().DestroyCefView(pData->get_Id());
         }
 
 //        RELEASEINTERFACE(event);
         return true; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
-    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: {
-        CAscReporterMessage * pData = (CAscReporterMessage *)event->m_pData;
-        CCefView * pView = GetViewById(pData->get_ReceiverId());
-        if ( pView ) {
-            pView->Apply(event);
-        }
-        return true; }
+    case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: return true;
+
     case ASC_MENU_EVENT_TYPE_UI_THREAD_MESSAGE: {
         event->AddRef();
         this->Apply(event);
@@ -389,10 +384,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( m_closeCount && --m_closeCount == 0 && !m_closeTarget.empty() ) {
             if ( m_closeTarget.find(L"http") != wstring::npos ) {
-                const wstring& portal = m_closeTarget;
-                Logout(portal);
+                Logout(m_closeTarget);
 
-                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", m_closeTarget);
+                m_closeTarget.clear();
             }
         }
 
@@ -468,7 +463,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
-#ifdef SUPPORT_EMBEDDED_MEDIA
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
         CCefView * _cef = GetViewById(event->get_SenderId());
@@ -484,7 +478,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;
     }
-#endif
 
     default: break;
     }
@@ -694,7 +687,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
             CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
 
             /* close all editors windows */
-            auto& it = m_vecEditors.begin();
+            vector<size_t>::const_iterator it = m_vecEditors.begin();
             while ( it != m_vecEditors.end() ) {
                 CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
 
@@ -723,7 +716,12 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
     APP_CAST(_app)
 
     if ( p ) {
-        vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
+#if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 9
+        vector<size_t>::iterator
+#else
+        vector<size_t>::const_iterator
+#endif
+        it = _app.m_vecEditors.begin();
         while ( it != _app.m_vecEditors.end() ) {
             if ( *it == p /*&& !_app.m_vecEditors.empty()*/ ) {
                 CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
@@ -980,8 +978,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 #ifdef Q_OS_WIN
 # ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
-        CMessage mess(topWindow()->hWnd);
-        mess.setButtons({tr("Yes"), tr("No") + ":default"});
+        CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
         return mess.confirm(QObject::tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
     }
 # endif
@@ -1118,7 +1115,7 @@ void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& nam
 #ifdef Q_OS_WIN
     HWND parent = GetActiveWindow();
 #else
-    QWidget * parent = nullptr;
+    QWidget * parent = topWindow();
 #endif
 
     if ( parent ) {
@@ -1147,7 +1144,7 @@ void CAscApplicationManagerWrapper::cancelClose()
 {
     APP_CAST(_app);
 
-    if ( _app.m_closeTarget.find(L"http") ) {
+    if ( _app.m_closeTarget.find(L"http") != wstring::npos ) {
         _app.sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout:cancel", _app.m_closeTarget);
     }
 

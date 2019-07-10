@@ -9,8 +9,20 @@
 #define iconsExe            'DesktopEditors.exe'
 #define licfile             'agpl-3.0'
 #define APPWND_CLASS_NAME   'DocEditorsWindowClass'
+#define VISEFFECTS_MANIFEST_NAME ChangeFileExt(iconsExe, 'VisualElementsManifest.xml')
 
-#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
+#ifndef SCRIPT_CUSTOM_FILES
+#  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
+#else
+#  ifdef _WIN_XP
+#    define xp_suffix  '_xp'
+#  else
+#    define xp_suffix
+#  endif
+#  define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
+#  define sAppVersion         GetFileVersion(AddBackslash(DEPLOY_PATH) + 'DesktopEditors\' + NAME_EXE_OUT)
+#endif
+
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
@@ -54,7 +66,7 @@ PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
-#ifdef ISPPCC_INVOKED
+#ifdef ENABLE_SIGNING
 SignTool                  =byparam $p
 #endif
 
@@ -520,6 +532,10 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
 
+Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
+Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
+Source: .\data\visual_elements_icon_71x71.png;                  DestDir: {app}\browser;   MinVersion: 6.3;
+
 #ifndef SCRIPT_CUSTOM_FILES
 Source: ..\..\deploy\{#os_arch}\3dparty\Qt\*;                   DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
@@ -591,26 +607,30 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 #else
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\DjVuFile.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\graphics.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\HtmlFile.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\kernel.dll;   DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\x2t.exe;      DestDir: {app}; Flags: signonce;
-Source: ..\..\..\ONLYOFFICE\DesktopEditors\converter\XpsFile.dll;  DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
+Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\WinSparkle.dll;         DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\DjVuFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\graphics.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\kernel.dll;       DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
 
 #ifdef _UPDMODULE
 Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
 #endif
+
+[InstallDelete]
+Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
 
 #endif
 

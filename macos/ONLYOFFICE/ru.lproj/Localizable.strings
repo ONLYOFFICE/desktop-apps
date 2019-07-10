@@ -98,6 +98,15 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не может открыть файл приватного ключа. Попробуйте открыть другой файл.";
 
 /* No comment provided by engineer. */
+"OpenDocument Document template" = "OpenOffice шаблон документ";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation template" = "OpenOffice шаблон презентации";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet template" = "OpenOffice шаблон таблицы";
+
+/* No comment provided by engineer. */
 "Opening" = "Открытие";
 
 /* No comment provided by engineer. */

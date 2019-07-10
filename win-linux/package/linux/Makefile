@@ -115,7 +115,7 @@ INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-BUILD_PATH := ../../../../core/build/linux_desktop/desktop$(DESKTOP_SUFFIX)/*
+BUILD_PATH := ../../../../build_tools/out/linux$(DESKTOP_SUFFIX)/$(COMPANY_NAME)/$(PRODUCT_NAME)/*
 
 TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz

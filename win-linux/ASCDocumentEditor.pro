@@ -20,7 +20,12 @@ RC_FILE = $$PWD/version.rc
 
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 
-LIBS += -L$$CORE_LIB_PATH_PLATFORM -lascdocumentscore
+build_xp {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lascdocumentscore
+} else {
+    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lascdocumentscore
+}
+
 message($$PLATFORM_BUILD)
 
 linux-g++ {

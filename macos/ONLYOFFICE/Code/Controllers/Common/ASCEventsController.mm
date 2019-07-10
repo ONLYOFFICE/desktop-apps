@@ -556,6 +556,13 @@ public:
                                                                               userInfo:@{
                                                                                          @"viewId": [NSString stringWithFormat:@"%d", senderId]
                                                                                          }];
+                        } else if (cmd.find(L"editor:event") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameEditorEvent
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                         @"viewId": [NSString stringWithFormat:@"%d", senderId],
+                                                                                         @"data": [[NSString stringWithstdwstring:param] dictionary]
+                                                                                         }];
                         } else if (cmd.find(L"editor:request") != std::wstring::npos) {
                             NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{@"viewId": [NSString stringWithFormat:@"%d", senderId]}];
                             [params addEntriesFromDictionary:[[NSString stringWithstdwstring:param] dictionary]];

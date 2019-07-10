@@ -112,6 +112,8 @@ private:
     WindowBase::CWindowGeometry maximumSize;
 
     uchar m_dpiRatio;
+
+    RECT m_moveNormalRect{0};
 };
 
 #endif

@@ -693,7 +693,7 @@ int CAscTabWidget::openPortal(const QString& url, const QString& provider)
     if (tabIndex < 0) {
         tabIndex = addPortal(url, "", provider);
     } else {
-        updatePortal(tabIndex, url);
+//        updatePortal(tabIndex, url);
     }
 
     return tabIndex;

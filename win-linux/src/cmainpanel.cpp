@@ -328,7 +328,6 @@ bool CMainPanel::closeAll()
                     }
                 }
             } else {
-                qDebug() << "close portal: id " << m_pTabs->panel(i)->cef()->GetId();
                 m_pTabs->closeEditorByIndex(i);
             }
 
@@ -440,7 +439,6 @@ void CMainPanel::onTabsCountChanged(int count, int i, int d)
 
 void CMainPanel::onEditorAllowedClose(int uid)
 {
-    qDebug() << "tab allowed to close: " << uid;
     if ( ((QCefView *)m_pMainWidget)->GetCefView()->GetId() == uid ) {
 //        if ( m_pTabs->count() ) {
 //            m_pMainWidget->setProperty("removed", true);
@@ -622,9 +620,7 @@ void CMainPanel::onLocalFileRecent(void * d)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.type != etRecoveryFile && !_info.exists() ) {
-            CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-            mess.setButtons({tr("Yes")+":default", tr("No")});
-
+            CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
@@ -873,8 +869,7 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
 
 void CMainPanel::onDocumentSaveInnerRequest(int id)
 {
-    CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-    mess.setButtons({tr("Yes")+":default", tr("No")});
+    CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
     int modal_res = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
 
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
@@ -897,21 +892,18 @@ void CMainPanel::onDocumentDownload(void * info)
 
     m_pWidgetDownload->downloadProcess(info);
 
-    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-    RELEASEINTERFACE(pData);
+//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
+//    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
 {
-    qDebug() << "on document fragmented: " << isfragmented;
-
     int index = m_pTabs->tabIndexByView(id);
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
                 static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
-                    qDebug() << "build document";
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
                 } else {
@@ -942,7 +934,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-        if ( !m_closeAct.isEmpty() )
+//        if ( !m_closeAct.isEmpty() )
             m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
@@ -1139,9 +1131,7 @@ void CMainPanel::onLocalFileSaveAs(void * d)
 
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE);
-                mess.setButtons({tr("OK")+":default", tr("Cancel")});
-
+                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbOkDefCancel);
                 _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
             }
 

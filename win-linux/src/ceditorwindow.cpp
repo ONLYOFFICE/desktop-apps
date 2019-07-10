@@ -400,9 +400,7 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
 
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(handle());
-                mess.setButtons({QObject::tr("OK")+":default", QObject::tr("Cancel")});
-
+                CMessage mess(handle(), CMessageOpts::moButtons::mbOkDefCancel);
                 _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QObject::tr("Some data will lost.<br>Continue?"));
             }
 
