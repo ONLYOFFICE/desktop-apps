@@ -55,6 +55,7 @@ public:
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;
     const QString& documentName() const;
+    bool closed() const;
 
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);

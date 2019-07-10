@@ -131,7 +131,9 @@ public:
                 AscAppManager::getInstance().DestroyCefView(m_panel->cef()->GetId());
                 window->hide();
             }
-        } else AscAppManager::cancelClose();
+        } else {
+            AscAppManager::cancelClose();
+        }
     }
 
     void onDocumentSaveInnerRequest(int) override
