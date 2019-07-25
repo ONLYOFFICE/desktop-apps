@@ -62,6 +62,7 @@ public:
     void doOpenLocalFiles(const vector<wstring> *);
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
+    void createLocalFile(const QString& name, int format);
     void setInputFiles(QStringList *);
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
@@ -132,7 +133,6 @@ public slots:
     virtual void onLocalOptions(const QString&){}
     virtual void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
-    virtual void onLocalFileCreate(int);
     void onLocalFileRecent(void *);
     virtual void onLocalFileSaveAs(void *);
     void onLocalFilesCheck(QString);

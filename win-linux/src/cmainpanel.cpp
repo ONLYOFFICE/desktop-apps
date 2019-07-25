@@ -642,32 +642,18 @@ void CMainPanel::onLocalFileRecent(void * d)
     }
 }
 
-void CMainPanel::onLocalFileCreate(int fformat)
+void CMainPanel::createLocalFile(const QString& name, int format)
 {
-    static short docx_count = 0;
-    static short xlsx_count = 0;
-    static short pptx_count = 0;
+    COpenOptions opts{name, etNewFile};
+    opts.format = format;
 
-    {
-        QString new_name;
-        switch (fformat) {
-        case etDocument: new_name  = tr("Document%1.docx").arg(++docx_count); break;
-        case etSpreadsheet: new_name  = tr("Book%1.xlsx").arg(++xlsx_count); break;
-        case etPresentation: new_name  = tr("Presentation%1.pptx").arg(++pptx_count); break;
-        default: new_name = "Document.asc"; break;
-        }
+    int tabIndex = m_pTabs->addEditor(opts);
 
-        COpenOptions opts = {new_name, etNewFile};
-        opts.format = fformat;
+    if ( !(tabIndex < 0) ) {
+        m_pTabs->updateIcons();
+        m_pTabs->setCurrentIndex(tabIndex);
 
-        int tabIndex = m_pTabs->addEditor(opts);
-
-        if (!(tabIndex < 0)) {
-            m_pTabs->updateIcons();
-            m_pTabs->setCurrentIndex(tabIndex);
-
-            toggleButtonMain(false, true);
-        }
+        toggleButtonMain(false, true);
     }
 }
 
@@ -769,13 +755,6 @@ void CMainPanel::doOpenLocalFiles(const QStringList& list)
     while (i.hasNext()) {
         QString n = i.next();
         if ( n.startsWith("--new:") ) {
-            QRegularExpression re("^--new:(word|cell|slide)");
-            QRegularExpressionMatch match = re.match(n);
-            if ( match.hasMatch() ) {
-                if ( match.captured(1) == "word" ) onLocalFileCreate(etDocument); else
-                if ( match.captured(1) == "cell" ) onLocalFileCreate(etSpreadsheet); else
-                if ( match.captured(1) == "slide" ) onLocalFileCreate(etPresentation);
-            }
         } else {
             COpenOptions opts = {n.toStdWString(), etLocalFile};
             doOpenLocalFile(opts);
@@ -829,7 +808,6 @@ void CMainPanel::onDocumentReady(int uid)
             emit mainPageReady();
 
             AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
-            doOpenLocalFiles();
         });
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);

@@ -121,7 +121,6 @@ CMainWindow::CMainWindow(const QRect& geometry)
     connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-    m_pMainPanel->setInputFiles(Utils::getInputFiles(g_cmdArgs));
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();

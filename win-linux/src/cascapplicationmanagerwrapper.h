@@ -151,6 +151,7 @@ public:
     static QString          getWindowStylesheets(uint);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
+    static QString          newFileName(int format);
 
     static ParentHandle     windowHandleFromId(int id);
 

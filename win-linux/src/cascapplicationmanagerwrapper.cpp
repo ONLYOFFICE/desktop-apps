@@ -40,6 +40,8 @@
 
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
+extern QStringList g_cmdArgs;
+
 using namespace NSEditorApi;
 using namespace std::placeholders;
 
@@ -485,6 +487,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true;
     }
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
+        CAscLocalFileCreate& pData = *(CAscLocalFileCreate *)event->m_pData;
+
+        int format = pData.get_Type();
+        topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(format), format);
+
+        return true;}
+
     default: break;
     }
 
@@ -546,6 +556,27 @@ void CAscApplicationManagerWrapper::startApp()
         }
     }
 #endif
+
+    QStringList * _files = Utils::getInputFiles(g_cmdArgs);
+    _window->mainPanel()->doOpenLocalFiles(*_files);
+    if ( getInstance().m_private->allowedCreateLocalFile() ) {
+        QRegularExpression re("^--new:(word|cell|slide)");
+        QStringListIterator i(*_files);
+        while (i.hasNext()) {
+            QString n = i.next();
+            if ( n.startsWith("--new:") ) {
+                QRegularExpressionMatch match = re.match(n);
+                if ( match.hasMatch() ) {
+                    int _format;
+                    if ( match.captured(1) == "word" ) _format = etDocument; else
+                    if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
+                    if ( match.captured(1) == "slide" ) _format = etPresentation;
+
+                    _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
+                }
+            }
+        }
+    }
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
     APP_CAST(_app);
@@ -1191,5 +1222,19 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
             _e->hide();
             AscAppManager::getInstance().closeQueue().leave(t);
         }
+    }
+}
+
+QString CAscApplicationManagerWrapper::newFileName(int format)
+{
+    static int docx_count = 0,
+                 xlsx_count = 0,
+                 pptx_count = 0;
+
+    switch ( format ) {
+    case etDocument:        return tr("Document%1.docx").arg(++docx_count);
+    case etSpreadsheet:     return tr("Book%1.xlsx").arg(++xlsx_count);
+    case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
+    default:                return "Document.asc";
     }
 }
