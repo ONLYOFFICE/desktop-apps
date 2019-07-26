@@ -42,6 +42,7 @@
 #include "ccefeventsgate.h"
 #include "ceditorwindow.h"
 #include "cwindowsqueue.h"
+#include "ceventdriver.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -94,8 +95,11 @@ private:
     wstring m_closeTarget;
 
     CWindowsQueue<sWinTag> * m_queueToClose;
+    CEventDriver m_eventDriver;
+
 public:
     CWindowsQueue<sWinTag>& closeQueue();
+    CEventDriver& commonEvents();
 
 private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);

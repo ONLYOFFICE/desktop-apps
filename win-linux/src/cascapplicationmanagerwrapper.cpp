@@ -1209,6 +1209,11 @@ CWindowsQueue<sWinTag>& CAscApplicationManagerWrapper::closeQueue()
     return *m_queueToClose;
 }
 
+CEventDriver& CAscApplicationManagerWrapper::commonEvents()
+{
+    return m_eventDriver;
+}
+
 void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
 {
     if ( t.type == 1 ) {
