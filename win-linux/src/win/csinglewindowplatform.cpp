@@ -37,6 +37,8 @@
 #include <windowsx.h>
 #include "cascapplicationmanagerwrapper.h"
 
+#include <functional>
+
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -72,6 +74,8 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
+
+    QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 CSingleWindowPlatform::~CSingleWindowPlatform()
@@ -109,6 +113,18 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         }
 
         return DefWindowProc( hWnd, message, wParam, lParam );
+    }
+
+    case WM_ACTIVATE: {
+        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd > 0 && window->m_modalHwnd != hWnd )
+        {
+            if ( LOWORD(wParam) != WA_INACTIVE ) {
+                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+                return 0;
+            }
+        }
+
+        break;
     }
 
     case WM_SETFOCUS: {
@@ -445,4 +461,10 @@ const QRect& CSingleWindowPlatform::geometry() const
 void CSingleWindowPlatform::activateWindow()
 {
     SetActiveWindow(m_hWnd);
+}
+
+void CSingleWindowPlatform::slot_modalDialog(bool status, size_t h)
+{
+    EnableWindow(m_hWnd, status ? FALSE : TRUE);
+    m_modalHwnd = (HWND)h;
 }

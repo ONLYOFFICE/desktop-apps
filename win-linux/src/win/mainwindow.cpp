@@ -137,6 +137,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
     QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     m_pWinPanel->show();
 
@@ -180,6 +181,19 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     case WM_DPICHANGED:
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
         break;
+
+    case WM_ACTIVATE: {
+        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd && window->m_modalHwnd != hWnd )
+        {
+            if ( LOWORD(wParam) != WA_INACTIVE )
+            {
+                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+                return 0;
+            }
+        }
+
+        break;
+    }
 
     case WM_KEYDOWN:
     {
@@ -248,7 +262,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //        str += "\n";
 //        OutputDebugStringA( str.toLocal8Bit().data() );
 
-        window->m_pMainPanel->focus();
+        if ( IsWindowEnabled(hWnd) )
+            window->m_pMainPanel->focus();
         break;
     }
 
@@ -733,6 +748,12 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 void CMainWindow::slot_windowClose()
 {
     AscAppManager::closeMainWindow( size_t(this) );
+}
+
+void CMainWindow::slot_modalDialog(bool status, size_t h)
+{
+    EnableWindow(hWnd, status ? FALSE : TRUE);
+    m_modalHwnd = (HWND)h;
 }
 
 void CMainWindow::slot_mainPageReady()

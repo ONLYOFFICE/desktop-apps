@@ -89,6 +89,7 @@ private:
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
+    void slot_modalDialog(bool, size_t);
 
 #ifdef _UPDMODULE
     static void updateFound();
@@ -112,6 +113,7 @@ private:
     WindowBase::CWindowGeometry maximumSize;
 
     uchar m_dpiRatio;
+    HWND m_modalHwnd;
 
     RECT m_moveNormalRect{0};
 };

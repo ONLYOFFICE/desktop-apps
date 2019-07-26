@@ -45,6 +45,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "linux/cx11decoration.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"
@@ -306,6 +307,8 @@ int CMessage::error(QWidget * p, const QString& m)
 void CMessage::modal()
 {
 #if defined(_WIN32)
+    CRunningEventHelper _event(&(CInAppEventModal((size_t)m_hParent)));
+
     m_centralWidget->adjustSize();
     m_centralWidget->show();
 
