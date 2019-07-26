@@ -416,7 +416,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::onScreenScalingFactor(uint f)
 {
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_WIDTH * f);
+    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f);
 
     RECT lpWindowRect;
     GetWindowRect(m_hWnd, &lpWindowRect);
