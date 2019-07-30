@@ -47,7 +47,7 @@ class CWindowsQueue
     std::vector<std::thread> m_threads;
     std::mutex m_mutex;
     std::vector<T> m_wintoclose;
-    std::atomic_bool m_queueLocked = false;
+    std::atomic_bool m_queueLocked{false};
 
     std::function<void(T)> m_callback;
 
