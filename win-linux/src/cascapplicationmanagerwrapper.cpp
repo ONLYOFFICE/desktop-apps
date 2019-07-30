@@ -558,21 +558,23 @@ void CAscApplicationManagerWrapper::startApp()
 #endif
 
     QStringList * _files = Utils::getInputFiles(g_cmdArgs);
-    _window->mainPanel()->doOpenLocalFiles(*_files);
-    if ( getInstance().m_private->allowedCreateLocalFile() ) {
-        QRegularExpression re("^--new:(word|cell|slide)");
-        QStringListIterator i(*_files);
-        while (i.hasNext()) {
-            QString n = i.next();
-            if ( n.startsWith("--new:") ) {
-                QRegularExpressionMatch match = re.match(n);
-                if ( match.hasMatch() ) {
-                    int _format;
-                    if ( match.captured(1) == "word" ) _format = etDocument; else
-                    if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
-                    if ( match.captured(1) == "slide" ) _format = etPresentation;
+    if ( _files ) {
+        _window->mainPanel()->doOpenLocalFiles(*_files);
+        if ( getInstance().m_private->allowedCreateLocalFile() ) {
+            QRegularExpression re("^--new:(word|cell|slide)");
+            QStringListIterator i(*_files);
+            while (i.hasNext()) {
+                QString n = i.next();
+                if ( n.startsWith("--new:") ) {
+                    QRegularExpressionMatch match = re.match(n);
+                    if ( match.hasMatch() ) {
+                        int _format;
+                        if ( match.captured(1) == "word" ) _format = etDocument; else
+                        if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
+                        if ( match.captured(1) == "slide" ) _format = etPresentation;
 
-                    _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
+                        _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
+                    }
                 }
             }
         }
@@ -589,7 +591,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->initializeApp();
 
 #ifdef _WIN32
-    CSplash::showSplash();
+//    CSplash::showSplash();
     QApplication::processEvents();
 #endif
 
