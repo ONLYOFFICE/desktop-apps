@@ -40,6 +40,7 @@
 #endif
 
 #include <QLabel>
+#include <QCoreApplication>
 #include <initializer_list>
 
 namespace CMessageOpts {
@@ -56,6 +57,8 @@ namespace CMessageOpts {
 #if defined(_WIN32)
 class CMessage : public CWinWindow
 {
+    Q_DECLARE_TR_FUNCTIONS(CMessage)
+
 public:
     CMessage(HWND);
     CMessage(HWND, CMessageOpts::moButtons);

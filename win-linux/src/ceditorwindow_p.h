@@ -139,7 +139,7 @@ public:
     void onDocumentSaveInnerRequest(int) override
     {
         CMessage mess(window->handle(), CMessageOpts::moButtons::mbYesDefNo);
-        int reply = mess.confirm(QObject::tr("Document must be saved to continue.<br>Save the document?"));
+        int reply = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
 
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
         pData->put_Value((reply == MODAL_RESULT_CUSTOM + 0) ? true : false);
@@ -339,7 +339,7 @@ public:
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
-                CMessage::info(window->handle(), QObject::tr("Document must be saved firstly."));
+                CMessage::info(window->handle(), tr("Document must be saved firstly."));
         } else {
             QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
             QRegularExpressionMatch _re_match = _re.match(param);

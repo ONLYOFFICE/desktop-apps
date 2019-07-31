@@ -1023,7 +1023,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 # ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
         CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-        return mess.confirm(QObject::tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
+        return mess.confirm(tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
     }
 # endif
 #endif
@@ -1039,7 +1039,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 
         if ( _has_opened_editors ) {
             CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-            if ( mess.confirm(QObject::tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
+            if ( mess.confirm(tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
                 return true;
             } else return false;
         }
