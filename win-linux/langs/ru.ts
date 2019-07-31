@@ -352,7 +352,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1286"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения? 123?</translation>
+        <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="602"/>
