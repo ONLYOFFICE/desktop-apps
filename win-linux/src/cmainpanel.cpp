@@ -570,7 +570,7 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 void CMainPanel::onLocalFileOpen(const QString& inpath)
 {
 #ifdef _WIN32
-    CFileDialogWrapper dlg((HWND)parentWidget()->winId());
+    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
 #else
     CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
 #endif
