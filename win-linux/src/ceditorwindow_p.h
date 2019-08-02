@@ -139,7 +139,7 @@ public:
     void onDocumentSaveInnerRequest(int) override
     {
         CMessage mess(window->handle(), CMessageOpts::moButtons::mbYesDefNo);
-        int reply = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
+        int reply = mess.confirm(CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"));
 
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
         pData->put_Value((reply == MODAL_RESULT_CUSTOM + 0) ? true : false);
@@ -192,7 +192,7 @@ public:
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
 #endif // _WIN32
 
-            dialog->setWindowTitle(tr("Print Document"));
+            dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
             dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
             if (!(currentpage < 0))
                 currentpage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
@@ -339,7 +339,7 @@ public:
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
-                CMessage::info(window->handle(), tr("Document must be saved firstly."));
+                CMessage::info(window->handle(), CEditorWindow::tr("Document must be saved firstly."));
         } else {
             QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
             QRegularExpressionMatch _re_match = _re.match(param);

@@ -38,12 +38,16 @@
 #else
 # include "win/csinglewindowplatform.h"
 #endif
+
 #include "ctabpanel.h"
 #include <memory>
+#include <QCoreApplication>
 
 class CEditorWindowPrivate;
 class CEditorWindow : public CSingleWindowPlatform
 {
+    Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
+
 public:
     CEditorWindow();
     CEditorWindow(const QRect& rect, CTabPanel* view);

@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="683"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1026"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1081"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>更新正在进行中。 取消更新并关闭应用程序？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1042"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1097"/>
         <source>Close all editors windows?</source>
         <translation>关闭所有编辑器窗口？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1242"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1296"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1243"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1297"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1244"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1298"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -114,7 +114,7 @@
     </message>
 </context>
 <context>
-    <name>CEditorWindowPrivate</name>
+    <name>CEditorWindow</name>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="142"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
@@ -129,6 +129,16 @@
         <location filename="../src/ceditorwindow_p.h" line="342"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="166"/>
+        <source>%1 has been changed. Save changes?</source>
+        <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="404"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
 </context>
 <context>
@@ -274,14 +284,6 @@
         <translation>另存为</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="vanished">是</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">否</translation>
-    </message>
-    <message>
         <location filename="../src/cfiledialog.cpp" line="191"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1%1已存在。&lt;br&gt;您要替换它吗？</translation>
@@ -353,26 +355,14 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1286"/>
+        <location filename="../src/cmainpanel.cpp" line="1285"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">是</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="153"/>
         <source>FILE</source>
         <translation>开始</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">否</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">取消</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="602"/>
@@ -391,48 +381,33 @@
         <translation>必须先保存文档。</translation>
     </message>
     <message>
-        <source>%1 must be built. Continue?</source>
-        <translation type="vanished">必须创建%1。继续？</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">确定</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="1113"/>
+        <location filename="../src/cmainpanel.cpp" line="1112"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1249"/>
+        <location filename="../src/cmainpanel.cpp" line="1248"/>
         <source>Sign Up</source>
         <translation>创建门户</translation>
     </message>
     <message>
-        <source>Document%1.docx</source>
-        <translation type="vanished">文档%1.docx</translation>
-    </message>
-    <message>
-        <source>Book%1.xlsx</source>
-        <translation type="vanished">工作簿%1.xlsx</translation>
-    </message>
-    <message>
-        <source>Presentation%1.pptx</source>
-        <translation type="vanished">演示文稿%1.pptx</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="851"/>
+        <location filename="../src/cmainpanel.cpp" line="850"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1009"/>
+        <location filename="../src/cmainpanel.cpp" line="1008"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>
 </context>
 <context>
     <name>CMessage</name>
+    <message>
+        <location filename="../src/cmessage.cpp" line="143"/>
+        <source>&amp;OK</source>
+        <translation>&amp;确定</translation>
+    </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
         <location filename="../src/cmessage.cpp" line="218"/>
@@ -485,48 +460,6 @@
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>打印中…</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <location filename="../src/cmessage.cpp" line="143"/>
-        <source>&amp;OK</source>
-        <translation>&amp;确定</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">是</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">否</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditorwindow.cpp" line="166"/>
-        <source>%1 has been changed. Save changes?</source>
-        <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">确定</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="vanished">取消</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditorwindow.cpp" line="404"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">必须先保存文档。</translation>
     </message>
 </context>
 </TS>

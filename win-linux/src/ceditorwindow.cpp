@@ -163,7 +163,7 @@ int CEditorWindow::closeWindow()
 
         CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-        _reply = mess.warning(QObject::tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
+        _reply = mess.warning(tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
 
         switch (_reply) {
         case MODAL_RESULT_CUSTOM + 1:
@@ -401,7 +401,7 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
                 CMessage mess(handle(), CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QObject::tr("Some data will lost.<br>Continue?"));
+                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
             }
 
             if ( _allowed ) {

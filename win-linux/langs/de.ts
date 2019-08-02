@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="683"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Presenter View</source>
         <translation>Referentenansicht</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1026"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1081"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Update ist im Gange. Möchten Sie das Update abbrechen und die Anwendung schließen?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1042"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1097"/>
         <source>Close all editors windows?</source>
         <translation>Alle Editorfenster schließen?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1242"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1296"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1243"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1297"/>
         <source>Book%1.xlsx</source>
         <translation>Buch%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1244"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1298"/>
         <source>Presentation%1.pptx</source>
         <translation>Präsentation%1.pptx</translation>
     </message>
@@ -114,7 +114,7 @@
     </message>
 </context>
 <context>
-    <name>CEditorWindowPrivate</name>
+    <name>CEditorWindow</name>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="142"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
@@ -129,6 +129,16 @@
         <location filename="../src/ceditorwindow_p.h" line="342"/>
         <source>Document must be saved firstly.</source>
         <translation>Das Dokument muss zuerst gespeichert werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="166"/>
+        <source>%1 has been changed. Save changes?</source>
+        <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="404"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
     </message>
 </context>
 <context>
@@ -350,7 +360,7 @@
         <translation>START</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1286"/>
+        <location filename="../src/cmainpanel.cpp" line="1285"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
     </message>
@@ -371,28 +381,33 @@
         <translation>Das Dokument muss zuerst gespeichert werden.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1113"/>
+        <location filename="../src/cmainpanel.cpp" line="1112"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1249"/>
+        <location filename="../src/cmainpanel.cpp" line="1248"/>
         <source>Sign Up</source>
         <translation>Cloud-Büro erstellen</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="851"/>
+        <location filename="../src/cmainpanel.cpp" line="850"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Das Dokument muss gespeichert werden, um fortzusetzen.&lt;br&gt;Möchten Sie das Dokument speichern?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1009"/>
+        <location filename="../src/cmainpanel.cpp" line="1008"/>
         <source>Print Document</source>
         <translation>Dokument drucken</translation>
     </message>
 </context>
 <context>
     <name>CMessage</name>
+    <message>
+        <location filename="../src/cmessage.cpp" line="143"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
         <location filename="../src/cmessage.cpp" line="218"/>
@@ -445,24 +460,6 @@
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>Drucken…</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <location filename="../src/cmessage.cpp" line="143"/>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditorwindow.cpp" line="166"/>
-        <source>%1 has been changed. Save changes?</source>
-        <translation>%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditorwindow.cpp" line="404"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
     </message>
 </context>
 </TS>

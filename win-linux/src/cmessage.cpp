@@ -140,7 +140,7 @@ CMessage::CMessage(QWidget * p)
     _h_layout2->setContentsMargins(15,10,15,10);
     _f_layout->setContentsMargins(10,0,0,0);
 
-    QPushButton * btn_ok = new QPushButton(QObject::tr("&OK"));
+    QPushButton * btn_ok = new QPushButton(tr("&OK"));
     btn_ok->setAutoDefault(true);
     m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
