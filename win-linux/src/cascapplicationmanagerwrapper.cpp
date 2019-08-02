@@ -1089,6 +1089,7 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
 
         if ( editor_win ) {
             tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
+            sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
             CMainWindow * main_win = topWindow();
             main_win->attachEditor(tabpanel);
@@ -1099,21 +1100,20 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
         _json_obj["status"] = "undocked";
 
         CMainWindow * const main_win = mainWindowFromViewId(id);
-        int index = main_win->mainPanel()->tabWidget()->tabIndexByView(id);
-        if ( !(index < 0) ) {
-            QRect r = main_win->windowRect();
-            tabpanel = qobject_cast<CTabPanel *>(main_win->getEditor(index));
+        if ( main_win ) {
+            int index = main_win->mainPanel()->tabWidget()->tabIndexByView(id);
+            if ( !(index < 0) ) {
+                QRect r = main_win->windowRect();
+                tabpanel = qobject_cast<CTabPanel *>(main_win->getEditor(index));
+                sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-            CEditorWindow * editor_win = new CEditorWindow(QRect(r.left() + 50, r.top() + 50, r.width(), r.height()), tabpanel);
-            editor_win->show(main_win->isMaximized());
+                CEditorWindow * editor_win = new CEditorWindow(QRect(r.left() + 150, r.top() + 50, r.width(), r.height()), tabpanel);
+                editor_win->show(main_win->isMaximized());
 
-            m_vecEditors.push_back( size_t(editor_win) );
-//            main_win->mainPanel()->tabWidget()->removeTab(index);
+                m_vecEditors.push_back( size_t(editor_win) );
+//                main_win->mainPanel()->tabWidget()->removeTab(index);
+            }
         }
-    }
-
-    if ( tabpanel ) {
-        sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
     }
 }
 
