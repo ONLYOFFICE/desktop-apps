@@ -39,6 +39,7 @@
 #include "defines.h"
 #include "utils.h"
 
+#include <QDir>
 #include <QDebug>
 
 using namespace NSEditorApi;
@@ -127,5 +128,25 @@ namespace CEditorTools
             event->AddRef();
             AscAppManager::getInstance().Apply(event);
         }
+    }
+
+    QString getlocalfile(const wstring& path, int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = AscAppManager::topWindow()->handle();
+
+        CFileDialogWrapper dlg(parent);
+
+        QString _path = QString::fromStdWString(path);
+        if ( _path.isEmpty() || QDir(_path).exists() )
+            _path = Utils::lastPath(LOCAL_PATH_OPEN);
+
+        if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
+            Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
+        }
+
+        return _path;
     }
 }

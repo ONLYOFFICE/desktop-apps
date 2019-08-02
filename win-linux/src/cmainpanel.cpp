@@ -567,25 +567,25 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
         toggleButtonMain(false, true);
 }
 
-void CMainPanel::onLocalFileOpen(const QString& inpath)
-{
-#ifdef _WIN32
-    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-#else
-    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-#endif
+//void CMainPanel::onLocalFileOpen(const QString& inpath)
+//{
+//#ifdef _WIN32
+//    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
+//#else
+//    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
+//#endif
 
-    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
-                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
+//    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
+//                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
 
-    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
-        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
+//    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
+//        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
 
-        COpenOptions opts = {"", etLocalFile, _path};
-        opts.wurl = _path.toStdWString();
-        doOpenLocalFile(opts);
-    }
-}
+//        COpenOptions opts = {"", etLocalFile, _path};
+//        opts.wurl = _path.toStdWString();
+//        doOpenLocalFile(opts);
+//    }
+//}
 
 void CMainPanel::doOpenLocalFile(COpenOptions& opts)
 {

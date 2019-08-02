@@ -118,6 +118,7 @@ private:
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
+    CEditorWindow * editorWindowFromUrl(const QString&) const;
 
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);

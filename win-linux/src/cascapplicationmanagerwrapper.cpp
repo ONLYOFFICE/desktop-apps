@@ -495,6 +495,47 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
+        CAscLocalOpenFileRecent_Recover * data = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
+        CCefView * view = GetViewByRecentId(data->get_Id());
+        if ( view ) {
+            CEditorWindow * editor = editorWindowFromViewId(view->GetId());
+
+            if ( editor ) {
+#ifdef Q_OS_WIN
+                SetForegroundWindow(editor->handle());
+#else
+                editor->activateWindow();
+#endif
+                return true;
+            }
+        }
+
+        break;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
+        CAscLocalFileOpen * pdata = static_cast<CAscLocalFileOpen *>(event->m_pData);
+        QString path = CEditorTools::getlocalfile(pdata->get_Directory());
+
+        if ( !path.isEmpty() ) {
+            CEditorWindow * editor = editorWindowFromUrl(path);
+            if ( editor ) {
+#ifdef Q_OS_WIN
+                SetForegroundWindow(editor->handle());
+#else
+                editor->activateWindow();
+#endif
+            } else {
+                CMainWindow * _w = mainWindowFromViewId(event->get_SenderId());
+                if ( _w ) {
+                    _w->mainPanel()->doOpenLocalFiles(QStringList{path});
+                }
+            }
+        }
+
+        return true;}
+
     default: break;
     }
 
@@ -810,6 +851,20 @@ CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) c
         _window = reinterpret_cast<CEditorWindow *>(w);
 
         if ( _window->holdView(uid) )
+            return _window;
+    }
+
+    return nullptr;
+}
+
+CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromUrl(const QString& url) const
+{
+    CEditorWindow * _window = nullptr;
+
+    for (auto const& w : m_vecEditors) {
+        _window = reinterpret_cast<CEditorWindow *>(w);
+
+        if ( _window->holdView(url.toStdWString()) )
             return _window;
     }
 
