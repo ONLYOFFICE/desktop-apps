@@ -58,7 +58,7 @@ public:
     int closeWindow();
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;
-    const QString& documentName() const;
+    QString documentName() const;
     bool closed() const;
 
 private:
