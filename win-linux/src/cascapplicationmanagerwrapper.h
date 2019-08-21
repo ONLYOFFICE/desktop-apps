@@ -88,7 +88,7 @@ private:
     vector<QString> m_vecStyles2x;
 
     map<int, CCefEventsGate *> m_receivers;
-    CSingleWindow * m_reporterWindow = nullptr;
+    map<int, CSingleWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;

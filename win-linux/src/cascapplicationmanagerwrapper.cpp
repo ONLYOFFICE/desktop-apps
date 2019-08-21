@@ -328,12 +328,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
-        CSingleWindow * pEditorWindow = createReporterWindow(event->m_pData, event->get_SenderId());
+        CSingleWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
 #ifdef __linux
-        pEditorWindow->show();
+        reporterWindow->show();
 #else
-        pEditorWindow->show(false);
-        pEditorWindow->toggleBorderless(false);
+        reporterWindow->show(false);
+        reporterWindow->toggleBorderless(false);
 #endif
 
 //        RELEASEINTERFACE(event);
@@ -343,7 +343,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         // close editor window
         CAscTypeId * pData = static_cast<CAscTypeId *>(event->m_pData);
 
-        if ( m_reporterWindow && m_reporterWindow->holdView(pData->get_Id()) ) {
+        if ( !m_winsReporter.empty() && m_winsReporter.find(pData->get_Id()) != m_winsReporter.end() ) {
             AscAppManager::getInstance().DestroyCefView(pData->get_Id());
         }
 
@@ -369,9 +369,16 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
         --m_countViews;
 
-        if ( m_reporterWindow && m_reporterWindow->holdView(event->get_SenderId()) ) {
-            delete m_reporterWindow, m_reporterWindow = nullptr;
-            return true;
+        if ( !m_winsReporter.empty() ) {
+            std::map<int, CSingleWindow *>::const_iterator switer = m_winsReporter.find(event->get_SenderId());
+
+            if (switer != m_winsReporter.end() ) {
+                CSingleWindow * reporterWindow = switer->second;
+                delete reporterWindow, reporterWindow = nullptr;
+                m_winsReporter.erase(switer);
+
+                return true;
+            }
         }
 
         if ( m_closeTarget.compare(L"app") == 0 ) {
@@ -721,14 +728,15 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         _windowRect.moveCenter(_scrRect.center());
     }
 
-    m_reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    CSingleWindow * reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
 
 //    QTimer::singleShot(5000, [=]{
 //        ::SetForegroundWindow((HWND)_window->handle());
 //        ::FlashWindow((HWND)_window->handle(), TRUE);
 //    });
 
-    return m_reporterWindow;
+    return reporterWindow;
 }
 
 void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
