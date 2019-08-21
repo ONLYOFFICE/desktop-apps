@@ -1356,7 +1356,7 @@ bool CMainPanel::holdUid(int uid) const
         CTabPanel *  _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
 
         if ( _widget ) {
-            _res_out = _widget->cef()->GetId();
+            _res_out = _widget->cef()->GetId() == uid;
         }
     }
 
