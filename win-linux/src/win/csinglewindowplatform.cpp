@@ -74,6 +74,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
+    m_winRect = rect;
 
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
 }
@@ -231,6 +232,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
         if ( dpi_ratio != window->m_dpiRatio )
             window->setScreenScalingFactor(dpi_ratio);
+
+        RECT lpWindowRect;
+        GetWindowRect(hWnd, &lpWindowRect);
+        window->m_winRect.setCoords(lpWindowRect.left, lpWindowRect.top, lpWindowRect.right, lpWindowRect.bottom);
 
         break;
     }
@@ -455,7 +460,7 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 const QRect& CSingleWindowPlatform::geometry() const
 {
-    return m_pMainPanel->geometry();
+    return m_winRect;
 }
 
 void CSingleWindowPlatform::activateWindow()

@@ -281,6 +281,7 @@ public:
 
             disconnect(cefConnection);
         } else {
+            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
             _fs_widget->clearMask();
             _fs_widget->setWindowIcon(Utils::appIcon());
@@ -304,9 +305,9 @@ public:
                 window->closeWindow();
             });
 
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+            _fs_widget->setWindowState(Qt::WindowFullScreen);                       // fullscreen widget clears that flag after changing geometry
 #else
 
 //            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);

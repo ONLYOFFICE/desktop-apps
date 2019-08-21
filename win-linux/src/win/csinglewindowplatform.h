@@ -70,6 +70,7 @@ protected:
     CWinPanel * m_pWinPanel;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
+    QRect m_winRect;
 
     void setMinimumSize(int width, int height);
     WindowBase::CWindowGeometry const& minimumSize() const;
