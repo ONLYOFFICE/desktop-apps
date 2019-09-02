@@ -717,6 +717,8 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         if ( _window ) {
             _doc_name = _window->documentName();
             _currentRect = _window->geometry();
+
+            _window->setReporterMode(true);
         }
     }
 
