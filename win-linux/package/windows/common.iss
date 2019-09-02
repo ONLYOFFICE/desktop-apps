@@ -191,6 +191,9 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
+#include "stringversion.iss"
+#include "msiproduct.iss"
+
 
 [Code]
 const
@@ -425,18 +428,30 @@ begin
     Result := HKEY_LOCAL_MACHINE;
 end;
 
-function checkVCRedist: Boolean;
+function checkVCRedist2013(): Boolean;
 var
-  isExists: Boolean;
+  upgradecode: String;
 begin
-  isExists := False;
 
-  if not IsWin64 or Is64BitInstallMode then
-    isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Microsoft\DevDiv\vc\Servicing\12.0\RuntimeMinimum')
+  if Is64BitInstallMode then
+	upgradecode := '{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}' //x64
   else
-    isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\Microsoft\DevDiv\vc\Servicing\12.0\RuntimeMinimum');
+    upgradecode := '{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}'; //x86
 
-  Result := isExists;
+  Result :=  msiproductupgrade(upgradecode, '12');
+end;
+
+function checkVCRedist2015(): Boolean;
+var
+  upgradecode: String;
+begin
+
+  if Is64BitInstallMode then
+	upgradecode := '{36F68A90-239C-34DF-B58C-64B30153CE35}' //x64
+  else
+    upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
+
+  Result :=  msiproductupgrade(upgradecode, '14');
 end;
 
 (*
@@ -530,7 +545,7 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 [Files]
 
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
-    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
+    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
 Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
