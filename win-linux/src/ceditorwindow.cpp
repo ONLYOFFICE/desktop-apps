@@ -51,6 +51,7 @@
 #include "ceditorwindow_p.h"
 
 QString g_css =
+        "#mainPanel{background-color:#aa5252;}"
         "#box-title-tools[editor=word]{background-color:#446995;}"
         "#box-title-tools[editor=cell]{background-color:#40865c;}"
         "#box-title-tools[editor=slide]{background-color:#aa5252;}"
@@ -202,7 +203,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     CSingleWindowBase::createMainPanel(parent, title, custom, panel);
 
     QWidget * mainPanel = new QWidget(parent);
-//    mainPanel->setObjectName("mainPanel");
+    mainPanel->setObjectName("mainPanel");
 
     QGridLayout * mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing(0);
@@ -357,6 +358,19 @@ void CEditorWindow::recalculatePlaces()
     m_pMainView->setMask(reg);
 
 //    m_pMainView->lower();
+}
+
+void CEditorWindow::setReporterMode(bool apply)
+{
+    if ( apply ) {
+        int windowW = m_pMainPanel->width(),
+            windowH = m_pMainPanel->height(),
+            captionH = TITLE_HEIGHT * m_dpiRatio;
+
+        QRegion reg(0, captionH, windowW, windowH - captionH);
+        m_pMainView->clearMask();
+        m_pMainView->setMask(reg);
+    }
 }
 
 CTabPanel * CEditorWindow::mainView() const

@@ -61,6 +61,7 @@ public:
     QString documentName() const;
     bool closed() const;
 
+    void setReporterMode(bool);
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
     QWidget * createMainPanel(QWidget * parent, CTabPanel* const panel);
