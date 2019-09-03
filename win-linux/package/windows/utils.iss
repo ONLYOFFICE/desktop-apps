@@ -1,4 +1,7 @@
 ﻿
+#include "stringversion.iss"
+#include "msiproduct.iss"
+
 [Code]
 
 procedure DirectoryCopy(SourcePath, DestPath: string);
@@ -74,4 +77,30 @@ begin
        break;
      end;
    end;
+end;
+
+function checkVCRedist2013(): Boolean;
+var
+  upgradecode: String;
+begin
+
+  if Is64BitInstallMode then
+    upgradecode := '{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}' //x64
+  else
+    upgradecode := '{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}'; //x86
+
+  Result :=  msiproductupgrade(upgradecode, '12');
+end;
+
+function checkVCRedist2015(): Boolean;
+var
+  upgradecode: String;
+begin
+
+  if Is64BitInstallMode then
+    upgradecode := '{36F68A90-239C-34DF-B58C-64B30153CE35}' //x64
+  else
+    upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
+
+  Result :=  msiproductupgrade(upgradecode, '14');
 end;

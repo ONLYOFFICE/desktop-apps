@@ -191,7 +191,6 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
-
 [Code]
 const
   SMTO_ABORTIFHUNG = 2;
@@ -425,20 +424,6 @@ begin
     Result := HKEY_LOCAL_MACHINE;
 end;
 
-function checkVCRedist: Boolean;
-var
-  isExists: Boolean;
-begin
-  isExists := False;
-
-  if not IsWin64 or Is64BitInstallMode then
-    isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Microsoft\DevDiv\vc\Servicing\12.0\RuntimeMinimum')
-  else
-    isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\Microsoft\DevDiv\vc\Servicing\12.0\RuntimeMinimum');
-
-  Result := isExists;
-end;
-
 (*
 procedure checkArchitectureVersion;
 //var
@@ -530,7 +515,7 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 [Files]
 
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
-    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
+    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
 Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
