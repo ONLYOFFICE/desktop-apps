@@ -51,6 +51,7 @@
 #include "ceditorwindow_p.h"
 
 QString g_css =
+        "#mainPanel{background-color:#aa5252;}"
         "#box-title-tools[editor=word]{background-color:#446995;}"
         "#box-title-tools[editor=cell]{background-color:#40865c;}"
         "#box-title-tools[editor=slide]{background-color:#aa5252;}"
@@ -163,7 +164,7 @@ int CEditorWindow::closeWindow()
 
         CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-        _reply = mess.warning(QObject::tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
+        _reply = mess.warning(tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
 
         switch (_reply) {
         case MODAL_RESULT_CUSTOM + 1:
@@ -174,11 +175,12 @@ int CEditorWindow::closeWindow()
             return MODAL_RESULT_CANCEL;
 
         case MODAL_RESULT_CUSTOM + 0:
-        default:{
+        default:
             panel->data()->close();
             panel->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
 
-            return MODAL_RESULT_NO;}
+            _reply = MODAL_RESULT_NO;
+            break;
         }
     }
 
@@ -187,7 +189,7 @@ int CEditorWindow::closeWindow()
         d_ptr.get()->onDocumentSave(panel->cef()->GetId());
     }
 
-    return MODAL_RESULT_YES;
+    return _reply;
 }
 
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, CTabPanel * const panel)
@@ -201,7 +203,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     CSingleWindowBase::createMainPanel(parent, title, custom, panel);
 
     QWidget * mainPanel = new QWidget(parent);
-//    mainPanel->setObjectName("mainPanel");
+    mainPanel->setObjectName("mainPanel");
 
     QGridLayout * mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing(0);
@@ -358,6 +360,19 @@ void CEditorWindow::recalculatePlaces()
 //    m_pMainView->lower();
 }
 
+void CEditorWindow::setReporterMode(bool apply)
+{
+    if ( apply ) {
+        int windowW = m_pMainPanel->width(),
+            windowH = m_pMainPanel->height(),
+            captionH = TITLE_HEIGHT * m_dpiRatio;
+
+        QRegion reg(0, captionH, windowW, windowH - captionH);
+        m_pMainView->clearMask();
+        m_pMainView->setMask(reg);
+    }
+}
+
 CTabPanel * CEditorWindow::mainView() const
 {
     return qobject_cast<CTabPanel *>(m_pMainView);
@@ -400,7 +415,7 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
             bool _allowed = true;
             if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
                 CMessage mess(handle(), CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QObject::tr("Some data will lost.<br>Continue?"));
+                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
             }
 
             if ( _allowed ) {
@@ -424,7 +439,12 @@ void CEditorWindow::onLocalFileSaveAs(void * d)
     RELEASEINTERFACE(pData);
 }
 
-const QString& CEditorWindow::documentName() const
+QString CEditorWindow::documentName() const
 {
     return d_ptr.get()->panel()->data()->title(true);
+}
+
+bool CEditorWindow::closed() const
+{
+    return d_ptr.get()->panel()->data()->closed();
 }

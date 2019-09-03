@@ -41,6 +41,8 @@
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
 #include "ceditorwindow.h"
+#include "cwindowsqueue.h"
+#include "ceventdriver.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -62,6 +64,15 @@ typedef QWidget* ParentHandle;
 
 using namespace std;
 
+struct sWinTag {
+    int     type;
+    size_t  handle;
+
+    bool operator==(const sWinTag& other) const
+    {
+        return other.handle == this->handle;
+    }
+};
 
 class CAscApplicationManagerWrapper;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -75,14 +86,20 @@ private:
     vector<size_t> m_vecEditors;
     vector<QString> m_vecStyles;
     vector<QString> m_vecStyles2x;
-    QMutex         m_oMutex;
 
     map<int, CCefEventsGate *> m_receivers;
-    CSingleWindow * m_reporterWindow = nullptr;
+    map<int, CSingleWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
     wstring m_closeTarget;
+
+    CWindowsQueue<sWinTag> * m_queueToClose;
+    CEventDriver m_eventDriver;
+
+public:
+    CWindowsQueue<sWinTag>& closeQueue();
+    CEventDriver& commonEvents();
 
 private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&);
@@ -101,6 +118,7 @@ private:
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
+    CEditorWindow * editorWindowFromUrl(const QString&) const;
 
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);
@@ -113,10 +131,11 @@ signals:
 public slots:
     void onCoreEvent(void *);
     void onDownloadSaveDialog(const std::wstring& name, uint id);
+    void onQueueCloseWindow(const sWinTag&);
 
 
 public:
-    static CAscApplicationManager & getInstance();
+    static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
     CSingleWindow * createReporterWindow(void *, int);
@@ -137,6 +156,7 @@ public:
     static QString          getWindowStylesheets(uint);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
+    static QString          newFileName(int format);
 
     static ParentHandle     windowHandleFromId(int id);
 

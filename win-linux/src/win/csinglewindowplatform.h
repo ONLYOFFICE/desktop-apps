@@ -62,6 +62,7 @@ public:
 
 protected:
     HWND m_hWnd;
+    HWND m_modalHwnd;
     COLORREF m_bgColor;
     bool m_borderless = true;
     bool m_visible = false;
@@ -69,6 +70,7 @@ protected:
     CWinPanel * m_pWinPanel;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
+    QRect m_winRect;
 
     void setMinimumSize(int width, int height);
     WindowBase::CWindowGeometry const& minimumSize() const;
@@ -83,6 +85,8 @@ protected:
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
     virtual void onScreenScalingFactor(uint f);
+
+    void slot_modalDialog(bool status, size_t h);
 
 private:
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

@@ -45,6 +45,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "linux/cx11decoration.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"
@@ -139,7 +140,7 @@ CMessage::CMessage(QWidget * p)
     _h_layout2->setContentsMargins(15,10,15,10);
     _f_layout->setContentsMargins(10,0,0,0);
 
-    QPushButton * btn_ok = new QPushButton(QObject::tr("&OK"));
+    QPushButton * btn_ok = new QPushButton(tr("&OK"));
     btn_ok->setAutoDefault(true);
     m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
@@ -213,12 +214,12 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 void CMessage::setButtons(CMessageOpts::moButtons btns)
 {
     switch (btns) {
-    case CMessageOpts::moButtons::mbYesDefNo:       setButtons({DEFAULT_BUTTON(QObject::tr("Yes")), QObject::tr("No")}); break;
-    case CMessageOpts::moButtons::mbYesNo:          setButtons({QObject::tr("Yes"), DEFAULT_BUTTON(QObject::tr("No"))}); break;
-    case CMessageOpts::moButtons::mbYesNoCancel:    setButtons({QObject::tr("Yes"), QObject::tr("No"), DEFAULT_BUTTON(QObject::tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(QObject::tr("Yes")), QObject::tr("No"), QObject::tr("Cancel")}); break;
-    case CMessageOpts::moButtons::mbOkCancel:       setButtons({QObject::tr("OK"), DEFAULT_BUTTON(QObject::tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(QObject::tr("OK")), QObject::tr("Cancel")}); break;
+    case CMessageOpts::moButtons::mbYesDefNo:       setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No")}); break;
+    case CMessageOpts::moButtons::mbYesNo:          setButtons({tr("Yes"), DEFAULT_BUTTON(tr("No"))}); break;
+    case CMessageOpts::moButtons::mbYesNoCancel:    setButtons({tr("Yes"), tr("No"), DEFAULT_BUTTON(tr("Cancel"))}); break;
+    case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
+    case CMessageOpts::moButtons::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
+    case CMessageOpts::moButtons::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
     default: break;
     }
 }
@@ -306,6 +307,8 @@ int CMessage::error(QWidget * p, const QString& m)
 void CMessage::modal()
 {
 #if defined(_WIN32)
+    CRunningEventHelper _event(&(CInAppEventModal((size_t)m_hParent)));
+
     m_centralWidget->adjustSize();
     m_centralWidget->show();
 

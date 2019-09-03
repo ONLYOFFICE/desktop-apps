@@ -30,57 +30,47 @@
  *
 */
 
-#ifndef CEDITORWINDOW_H
-#define CEDITORWINDOW_H
+#include "ceventdriver.h"
+#include "cascapplicationmanagerwrapper.h"
 
-#ifdef __linux__
-# include "linux/csinglewindowplatform.h"
-#else
-# include "win/csinglewindowplatform.h"
-#endif
+#include <QDebug>
 
-#include "ctabpanel.h"
-#include <memory>
-#include <QCoreApplication>
-
-class CEditorWindowPrivate;
-class CEditorWindow : public CSingleWindowPlatform
+CEventDriver::CEventDriver(QObject *parent)
+    : QObject(parent)
 {
-    Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
-public:
-    CEditorWindow();
-    CEditorWindow(const QRect& rect, CTabPanel* view);
-    ~CEditorWindow();
+}
 
-    bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
-    int closeWindow();
-    CTabPanel * mainView() const;
-    CTabPanel * releaseEditorView() const;
-    QString documentName() const;
-    bool closed() const;
+//void CEventDriver::signal(edEventType t)
+//{
+//    switch (t) {
+//    case edEventType::etModalOpen:
+//    case edEventType::etModalClose:
+////        emit onModalDialog(t == edEventType::etModalOpen);
+//        break;
+//    default: break;
+//    }
+//}
 
-    void setReporterMode(bool);
-private:
-    CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent, CTabPanel* const panel);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel) override;
-    void recalculatePlaces();
-    const QObject * receiver() override;
+void CEventDriver::signal(CInAppEventBase * e)
+{
+    switch (e->type()) {
+    case CInAppEventBase::CEventType::etModal: {
+        const CInAppEventModal & _e = static_cast<const CInAppEventModal &>(*e);
+        emit onModalDialog(!_e.finished(), _e.handle());
+        break; }
+    default: break;
+    }
+}
 
-protected:
-    void onCloseEvent() override;
-    void onMinimizeEvent() override;
-    void onMaximizeEvent() override;
-    void onSizeEvent(int) override;
-    void onScreenScalingFactor(uint) override;
+CRunningEventHelper::CRunningEventHelper(CInAppRunnigEvent * e)
+    : m_event(e)
+{
+    AscAppManager::getInstance().commonEvents().signal(m_event);
+}
 
-    void onLocalFileSaveAs(void *);
-
-private:
-    friend class CEditorWindowPrivate;
-    std::unique_ptr<CEditorWindowPrivate> d_ptr;
-};
-
-#endif // CEDITORWINDOW_H
+CRunningEventHelper::~CRunningEventHelper()
+{
+    m_event->setFinished(true);
+    AscAppManager::getInstance().commonEvents().signal(m_event);
+}

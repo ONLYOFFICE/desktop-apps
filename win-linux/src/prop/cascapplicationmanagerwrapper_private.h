@@ -53,6 +53,11 @@ public:
     {
         return new QCefView_Media(parent);
     }
+
+    bool allowedCreateLocalFile()
+    {
+        return true;
+    }
 };
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H

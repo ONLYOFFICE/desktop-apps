@@ -452,7 +452,7 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
         m_pMainPanel->setStyleSheet(css);
         /**/
 //            if ( m_isCustomWindow ) {
-                QSize small_btn_size(28*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+                QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
                 m_pButtonMinimize->setFixedSize(small_btn_size);
                 m_pButtonMaximize->setFixedSize(small_btn_size);
@@ -464,7 +464,7 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
 //            }
 
             QLayout * layoutBtns = m_boxTitleBtns->layout();
-            layoutBtns->setContentsMargins(0,0,4*m_dpiRatio,0);
+//            layoutBtns->setContentsMargins(0,0,0,0);
             layoutBtns->setSpacing(1*m_dpiRatio);
         /**/
         setMinimumSize(WINDOW_MIN_WIDTH * factor, WINDOW_MIN_HEIGHT * factor);

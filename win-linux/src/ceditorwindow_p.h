@@ -131,13 +131,15 @@ public:
                 AscAppManager::getInstance().DestroyCefView(m_panel->cef()->GetId());
                 window->hide();
             }
-        } else AscAppManager::cancelClose();
+        } else {
+            AscAppManager::cancelClose();
+        }
     }
 
     void onDocumentSaveInnerRequest(int) override
     {
         CMessage mess(window->handle(), CMessageOpts::moButtons::mbYesDefNo);
-        int reply = mess.confirm(QObject::tr("Document must be saved to continue.<br>Save the document?"));
+        int reply = mess.confirm(CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"));
 
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
         pData->put_Value((reply == MODAL_RESULT_CUSTOM + 0) ? true : false);
@@ -190,7 +192,7 @@ public:
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
 #endif // _WIN32
 
-            dialog->setWindowTitle(tr("Print Document"));
+            dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
             dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
             if (!(currentpage < 0))
                 currentpage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
@@ -279,6 +281,7 @@ public:
 
             disconnect(cefConnection);
         } else {
+            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
             _fs_widget->clearMask();
             _fs_widget->setWindowIcon(Utils::appIcon());
@@ -302,9 +305,9 @@ public:
                 window->closeWindow();
             });
 
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+            _fs_widget->setWindowState(Qt::WindowFullScreen);                       // fullscreen widget clears that flag after changing geometry
 #else
 
 //            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
@@ -337,7 +340,7 @@ public:
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
-                CMessage::info(window->handle(), QObject::tr("Document must be saved firstly."));
+                CMessage::info(window->handle(), CEditorWindow::tr("Document must be saved firstly."));
         } else {
             QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
             QRegularExpressionMatch _re_match = _re.match(param);

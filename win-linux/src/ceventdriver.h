@@ -30,57 +30,79 @@
  *
 */
 
-#ifndef CEDITORWINDOW_H
-#define CEDITORWINDOW_H
+#ifndef CEVENTDRIVER_H
+#define CEVENTDRIVER_H
 
-#ifdef __linux__
-# include "linux/csinglewindowplatform.h"
-#else
-# include "win/csinglewindowplatform.h"
-#endif
+#include <QObject>
 
-#include "ctabpanel.h"
-#include <memory>
-#include <QCoreApplication>
-
-class CEditorWindowPrivate;
-class CEditorWindow : public CSingleWindowPlatform
+class CInAppEventBase
 {
-    Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
-
 public:
-    CEditorWindow();
-    CEditorWindow(const QRect& rect, CTabPanel* view);
-    ~CEditorWindow();
+    enum class CEventType
+    {
+        etModal
+    };
 
-    bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
-    int closeWindow();
-    CTabPanel * mainView() const;
-    CTabPanel * releaseEditorView() const;
-    QString documentName() const;
-    bool closed() const;
+    CInAppEventBase(CEventType t)
+        : m_type(t)
+    {}
 
-    void setReporterMode(bool);
-private:
-    CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent, CTabPanel* const panel);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel) override;
-    void recalculatePlaces();
-    const QObject * receiver() override;
-
-protected:
-    void onCloseEvent() override;
-    void onMinimizeEvent() override;
-    void onMaximizeEvent() override;
-    void onSizeEvent(int) override;
-    void onScreenScalingFactor(uint) override;
-
-    void onLocalFileSaveAs(void *);
+    virtual ~CInAppEventBase(){}
+    virtual CEventType type() const { return m_type; }
 
 private:
-    friend class CEditorWindowPrivate;
-    std::unique_ptr<CEditorWindowPrivate> d_ptr;
+    CEventType m_type;
 };
 
-#endif // CEDITORWINDOW_H
+class CInAppRunnigEvent : public CInAppEventBase
+{
+public:
+    CInAppRunnigEvent(CEventType t) : CInAppEventBase(t) {}
+    virtual ~CInAppRunnigEvent(){}
+
+    bool finished() const { return m_finished; }
+    void setFinished(bool f) { m_finished = f; }
+private:
+    bool m_finished = false;
+};
+
+class CInAppEventModal : public CInAppRunnigEvent
+{
+    size_t m_handle;
+
+public:
+    CInAppEventModal(size_t h)
+        : CInAppRunnigEvent(CEventType::etModal)
+        , m_handle(h)
+    {}
+
+    size_t handle() const { return m_handle; }
+    void setHandle(size_t h) { m_handle = h; }
+};
+
+class CEventDriver : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit CEventDriver(QObject *parent = nullptr);
+
+//    void signal(edEventType);
+    void signal(CInAppEventBase *);
+signals:
+    void onModalDialog(bool status, size_t handle);
+
+public slots:
+};
+
+class CRunningEventHelper
+{
+public:
+    CRunningEventHelper(CInAppRunnigEvent *);
+    ~CRunningEventHelper();
+
+private:
+    CInAppRunnigEvent * m_event;
+};
+
+#endif // CEVENTDRIVER_H

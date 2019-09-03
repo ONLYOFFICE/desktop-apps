@@ -57,6 +57,7 @@ namespace CEditorTools
 
     void print(const sPrintConf&);
     void getlocalfile(void * data);
+    QString getlocalfile(const wstring& path, int parentid = -1);
 }
 
 #endif // CEDITORTOOLS_H

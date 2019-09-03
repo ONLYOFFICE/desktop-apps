@@ -35,6 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "cmessage.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #include "../Common/OfficeFileFormats.h"
 
@@ -143,6 +144,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
                                     fileName.left(fileName.lastIndexOf(".")) : fileName;
 
     HWND _mess_parent = QWinWidget::parentWindow();
+    CRunningEventHelper _event(&(CInAppEventModal((size_t)_mess_parent)));
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
     QWidget * _mess_parent = (QWidget *)parent();
@@ -185,12 +187,14 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 
             QFileInfo info(fileName);
             if ( info.exists() ) {
-                CMessage mess(_mess_parent);
-                mess.setButtons({tr("Yes"), tr("No")});
-
-                if ( MODAL_RESULT_CUSTOM + 1 == mess.warning(tr("%1 already exists.<br>Do you want to replace it?")
-                                                                                .arg(info.fileName())) )
-                                    continue;
+                CMessage mess(_mess_parent, CMessageOpts::moButtons::mbYesNo);
+                int _answ = mess.warning(tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()));
+                if ( MODAL_RESULT_CUSTOM + 1 == _answ ) {
+                    continue;
+                } else
+                if ( MODAL_RESULT_CUSTOM + 0 != _answ ) {
+                    fileName.clear();
+                }
             }
         }
 
@@ -229,9 +233,9 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
         _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
-                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.xml);;" +
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp);;" +
+                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml);;" +
+                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
                     tr("Web Page") + " (*.html *.htm *.mht);;" +
                     tr("Text files") + " (*.txt)";
     }
@@ -258,6 +262,8 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 
 #ifndef _WIN32
     CParentDisable oDisabler((QWidget *)parent());
+#else
+    CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
 #endif
 
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :

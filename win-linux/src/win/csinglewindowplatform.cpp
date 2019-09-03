@@ -37,6 +37,8 @@
 #include <windowsx.h>
 #include "cascapplicationmanagerwrapper.h"
 
+#include <functional>
+
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -72,6 +74,9 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
+    m_winRect = rect;
+
+    QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 CSingleWindowPlatform::~CSingleWindowPlatform()
@@ -111,6 +116,18 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         return DefWindowProc( hWnd, message, wParam, lParam );
     }
 
+    case WM_ACTIVATE: {
+        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd > 0 && window->m_modalHwnd != hWnd )
+        {
+            if ( LOWORD(wParam) != WA_INACTIVE ) {
+                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+                return 0;
+            }
+        }
+
+        break;
+    }
+
     case WM_SETFOCUS: {
 //        window->focusMainPanel();
         break;
@@ -129,7 +146,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         qDebug() << "wm_close";
         if ( window->m_pMainPanel )
             QTimer::singleShot(0, window->m_pMainPanel, [=]{
-                window->onCloseEvent();
+                AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(window)});
             });
         else return 1;
         }
@@ -215,6 +232,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
         if ( dpi_ratio != window->m_dpiRatio )
             window->setScreenScalingFactor(dpi_ratio);
+
+        RECT lpWindowRect;
+        GetWindowRect(hWnd, &lpWindowRect);
+        window->m_winRect.setCoords(lpWindowRect.left, lpWindowRect.top, lpWindowRect.right, lpWindowRect.bottom);
 
         break;
     }
@@ -400,7 +421,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::onScreenScalingFactor(uint f)
 {
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_WIDTH * f);
+    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f);
 
     RECT lpWindowRect;
     GetWindowRect(m_hWnd, &lpWindowRect);
@@ -439,10 +460,16 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 const QRect& CSingleWindowPlatform::geometry() const
 {
-    return m_pMainPanel->geometry();
+    return m_winRect;
 }
 
 void CSingleWindowPlatform::activateWindow()
 {
     SetActiveWindow(m_hWnd);
+}
+
+void CSingleWindowPlatform::slot_modalDialog(bool status, size_t h)
+{
+    EnableWindow(m_hWnd, status ? FALSE : TRUE);
+    m_modalHwnd = (HWND)h;
 }

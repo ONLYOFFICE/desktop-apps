@@ -65,7 +65,9 @@ HEADERS += \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
-    $$PWD/src/ceditortools.h
+    $$PWD/src/ceditortools.h \
+    $$PWD/src/cwindowsqueue.h \
+    $$PWD/src/ceventdriver.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -99,7 +101,8 @@ SOURCES += \
     $$PWD/src/csinglewindowbase.cpp \
     $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
-    $$PWD/src/ceditortools.cpp
+    $$PWD/src/ceditortools.cpp \
+    $$PWD/src/ceventdriver.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
