@@ -332,6 +332,9 @@ void CSingleWindowPlatform::show(bool maximized)
     ShowWindow(m_hWnd, maximized ? SW_MAXIMIZE : SW_SHOW);
 //    UpdateWindow(m_hWnd);
     m_visible = true;
+
+    if ( !maximized && GetCapture() != NULL )
+        captureMouse();
 }
 
 void CSingleWindowPlatform::hide()
@@ -472,4 +475,15 @@ void CSingleWindowPlatform::slot_modalDialog(bool status, size_t h)
 {
     EnableWindow(m_hWnd, status ? FALSE : TRUE);
     m_modalHwnd = (HWND)h;
+}
+
+void CSingleWindowPlatform::captureMouse()
+{
+    POINT cursor{0};
+    if ( GetCursorPos(&cursor) ) {
+        SetWindowPos(m_hWnd, 0, cursor.x - 300, cursor.y - 15, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+        ReleaseCapture();
+        PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
+    }
 }

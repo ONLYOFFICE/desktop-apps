@@ -27,7 +27,7 @@ public:
     }
 
 private:
-    QWidget * m_widget;
+    QWidget * m_widget = nullptr;
 };
 
 #endif // CTABUNDOCKEVENT_H

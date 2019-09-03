@@ -150,10 +150,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
         m_dragIndex = -1;
     });
-#if defined(__APP_MULTI_WINDOW)
+
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
         if ( m_dragIndex != index ) {
             CTabPanel * _panel = panel(index);
+
             if ( _panel->data()->viewType() == cvwtEditor ) {
                 CTabUndockEvent event(_panel);
                 QObject * obj = qobject_cast<QObject *>(
@@ -164,7 +165,6 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
             }
         }
     });
-#endif
 }
 
 CTabPanel * CAscTabWidget::panel(int index)

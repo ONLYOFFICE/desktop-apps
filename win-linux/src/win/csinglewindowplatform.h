@@ -86,6 +86,7 @@ protected:
     virtual void onMaximizeEvent();
     virtual void onScreenScalingFactor(uint f);
 
+    void captureMouse();
     void slot_modalDialog(bool status, size_t h);
 
 private:

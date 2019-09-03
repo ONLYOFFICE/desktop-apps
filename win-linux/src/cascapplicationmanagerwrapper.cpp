@@ -977,33 +977,24 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             e->accept();
 
             CTabPanel * _panel = static_cast<CTabPanel *>(e->panel());
-            QTimer::singleShot(0, this, [=]{
-                CMainWindow * _main_window = nullptr;
+            if ( _panel ) {
+                QJsonObject _json_obj{{"action", "undocking"},
+                                      {"status", "undocked"}};
 
-#ifdef _WIN32
-                CWinPanel * _wp = dynamic_cast<CWinPanel *>(_panel->window());
-                if ( _wp ) _main_window = _wp->parent();
-#else
-                _main_window = dynamic_cast<CMainWindow *>(_panel->window());
-#endif
+                sendCommandTo(_panel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-                if ( _main_window ) {
-                    QRect _win_rect = _main_window->windowRect();
-                    _win_rect.moveTo(QCursor::pos() - QPoint(BUTTON_MAIN_WIDTH + 50, 20));
-                    CMainWindow * window = createMainWindow(_win_rect);
+                SKIP_EVENTS_QUEUE([=]{
+                    CMainWindow * const main_win = topWindow();
+                    if ( main_win ) {
+                        QRect rect = main_win->windowRect();
 
-                    bool _is_maximized = _main_window->isMaximized();
-#ifdef Q_OS_WIN
-                    window->show(_is_maximized);
-                    window->toggleBorderless(_is_maximized);
-#else
-                    window->show();
-                    if ( _is_maximized )
-                        window->slot_windowChangeState(Qt::WindowMaximized);
-#endif
-                    window->attachEditor( _panel );
-                }
-            });
+                        CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _panel);
+                        editor_win->show(main_win->isMaximized());
+
+                        m_vecEditors.push_back( size_t(editor_win) );
+                    }
+                });
+            }
         }
 
         return true;
@@ -1171,13 +1162,9 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
             if ( !(index < 0) ) {
                 QRect r = main_win->windowRect();
                 tabpanel = qobject_cast<CTabPanel *>(main_win->getEditor(index));
-                sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-                CEditorWindow * editor_win = new CEditorWindow(QRect(r.left() + 150, r.top() + 50, r.width(), r.height()), tabpanel);
-                editor_win->show(main_win->isMaximized());
-
-                m_vecEditors.push_back( size_t(editor_win) );
-//                main_win->mainPanel()->tabWidget()->removeTab(index);
+                CTabUndockEvent event(tabpanel);
+                QApplication::sendEvent(this, &event);
             }
         }
     }
