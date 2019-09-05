@@ -1281,7 +1281,7 @@ void CMainPanel::setInputFiles(QStringList * list)
     m_inFiles = list;
 }
 
-QString CMainPanel::getSaveMessage()
+QString CMainPanel::getSaveMessage() const
 {
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }

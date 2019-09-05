@@ -174,7 +174,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     if ( !window )
         return DefWindowProc( hWnd, message, wParam, lParam );
 //static uint count=0;
-//qDebug() << "main window message: " << ++count << QString(" 0x%1").arg(QString::number(message,16));
+//qDebug() << "main window message: " << ++count << QString(" 0x%1").arg(message,4,16,QChar('0'));
 
     switch ( message )
     {
