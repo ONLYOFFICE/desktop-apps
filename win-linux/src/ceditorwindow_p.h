@@ -75,6 +75,7 @@ class CEditorWindowPrivate : public CCefEventsGate
 
 public:
     int titleLeftOffset = 168;
+    bool isReporterMode = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w)
@@ -273,6 +274,7 @@ public:
         if (!apply) {
             _break_demonstration();
 
+            isReporterMode = false;
             window->show(false);
 
             _fs_widget->showNormal();
