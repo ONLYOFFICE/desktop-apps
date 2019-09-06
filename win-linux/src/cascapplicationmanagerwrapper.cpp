@@ -319,6 +319,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
 
             return true;
+        } else
+        if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
+            if ( pData->get_Param() == L"offline" ) {}
+            else {
+                topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
+                return true;
+            }
         }
 
         break; }
