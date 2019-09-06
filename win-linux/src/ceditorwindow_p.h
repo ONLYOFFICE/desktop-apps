@@ -86,7 +86,7 @@ public:
 //        if ( id == window->holdView(id) )
 
         QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toLatin1(), &jerror);
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
