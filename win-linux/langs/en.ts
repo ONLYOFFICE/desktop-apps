@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="742"/>
         <source>Presenter View</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1081"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1100"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Update is underway. Cancel the update and close the application?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1097"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1116"/>
         <source>Close all editors windows?</source>
-        <translation>Close all editor windows?</translation>
+        <translation type="unfinished">All the editor windows will be closed. Do you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1296"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1297"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1317"/>
         <source>Book%1.xlsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1298"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1318"/>
         <source>Presentation%1.pptx</source>
         <translation></translation>
     </message>
@@ -126,17 +126,17 @@
         <translation>Print document</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="342"/>
+        <location filename="../src/ceditorwindow_p.h" line="343"/>
         <source>Document must be saved firstly.</source>
         <translation>The document must be saved first.</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="166"/>
+        <location filename="../src/ceditorwindow.cpp" line="169"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="404"/>
+        <location filename="../src/ceditorwindow.cpp" line="426"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</translation>
     </message>
@@ -355,7 +355,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1285"/>
+        <location filename="../src/cmainpanel.cpp" line="1286"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
     </message>
@@ -381,22 +381,22 @@
         <translation>The document must be saved first.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1112"/>
+        <location filename="../src/cmainpanel.cpp" line="1113"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1248"/>
+        <location filename="../src/cmainpanel.cpp" line="1249"/>
         <source>Sign Up</source>
         <translation>Create portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="850"/>
+        <location filename="../src/cmainpanel.cpp" line="851"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1008"/>
+        <location filename="../src/cmainpanel.cpp" line="1009"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
