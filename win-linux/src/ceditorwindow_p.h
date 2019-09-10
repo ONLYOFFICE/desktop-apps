@@ -199,7 +199,11 @@ public:
             dialog->setPrintRange(m_printData._print_range);
 
             int start = -1, finish = -1;
+#ifdef _WIN32
+            if ( wrapper.showModal() == QDialog::Accepted ) {
+#else
             if ( dialog->exec() == QDialog::Accepted ) {
+#endif
                 m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
                 m_printData._print_range = dialog->printRange();
 
