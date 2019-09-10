@@ -256,6 +256,7 @@ public:
 
     void onFullScreen(bool apply)
     {
+        if ( !apply ) isReporterMode = false;
         if ( apply == panel()->windowState().testFlag(Qt::WindowFullScreen) )
             return;
 
@@ -273,7 +274,6 @@ public:
         if (!apply) {
             _break_demonstration();
 
-            isReporterMode = false;
             window->show(false);
 
             _fs_widget->showNormal();
