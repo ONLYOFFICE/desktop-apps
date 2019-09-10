@@ -140,7 +140,7 @@ namespace CEditorTools
         CFileDialogWrapper dlg(parent);
 
         QString _path = QString::fromStdWString(path);
-        if ( _path.isEmpty() || QDir(_path).exists() )
+        if ( _path.isEmpty() || !QDir(_path).exists() )
             _path = Utils::lastPath(LOCAL_PATH_OPEN);
 
         if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
