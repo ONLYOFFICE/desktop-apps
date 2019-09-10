@@ -277,6 +277,7 @@ public:
             window->show(false);
 
             _fs_widget->showNormal();
+            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()+4);
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
 
