@@ -14,7 +14,7 @@ OnlyBelowVersion      =6.1
 
 [Files]
 Source: data\vcredist\vcredist_x86.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
-    AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x86.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
+    AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x86.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
 #ifndef SCRIPT_CUSTOM_FILES
 Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\win_32\x2t.exe;     DestDir: {app}\converter; Flags: ignoreversion;
