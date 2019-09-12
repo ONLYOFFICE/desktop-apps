@@ -301,6 +301,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
+#if defined(__APP_MULTI_WINDOW)
         if ( !(cmd.find(L"window:features") == wstring::npos) ) {
             const wstring& param = pData->get_Param();
             if ( param.compare(L"request") == 0 ) {
@@ -311,6 +312,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
             return true;
         } else
+#endif
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
 #ifdef _UPDMODULE
             if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
