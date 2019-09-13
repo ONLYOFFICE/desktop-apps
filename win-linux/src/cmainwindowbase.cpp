@@ -28,6 +28,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
 //        }
     }
 
+    captureMouse(_index);
     return _index;
 }
 
@@ -87,4 +88,9 @@ QString CMainWindowBase::documentName(int vid)
     }
 
     return "";
+}
+
+void CMainWindowBase::captureMouse(int)
+{
+    ReleaseCapture();
 }

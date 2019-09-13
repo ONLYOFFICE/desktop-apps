@@ -314,6 +314,17 @@ void CEditorWindow::onSizeEvent(int type)
     recalculatePlaces();
 }
 
+void CEditorWindow::onMoveEvent(const QRect& rect)
+{
+#ifdef Q_OS_WIN
+    POINT pt{0};
+    if ( ::GetCursorPos(&pt) ) {
+        AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
+    }
+#else
+#endif
+}
+
 void CEditorWindow::onScreenScalingFactor(uint newfactor)
 {
     CSingleWindowPlatform::onScreenScalingFactor(newfactor);

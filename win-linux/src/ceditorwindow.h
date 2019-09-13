@@ -75,6 +75,7 @@ protected:
     void onMaximizeEvent() override;
     void onSizeEvent(int) override;
     void onScreenScalingFactor(uint) override;
+    void onMoveEvent(const QRect&) override;
 
     void onLocalFileSaveAs(void *);
 

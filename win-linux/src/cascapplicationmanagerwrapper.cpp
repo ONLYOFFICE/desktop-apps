@@ -930,6 +930,39 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
     }
 }
 
+void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPoint& pt)
+{
+    APP_CAST(_app)
+
+    if ( _app.m_vecWindows.size() > 0 ) {
+        CMainWindow * _main_window = reinterpret_cast<CMainWindow *>(_app.m_vecWindows.at(0));
+
+        if ( _main_window && _main_window->pointInTabs(pt) ) {
+            CSingleWindowBase * editor_win = nullptr;
+            for (auto const& w : _app.m_vecEditors) {
+                CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(w);
+
+                if ( (size_t)_e->handle() == h ) {
+                    editor_win = _e;
+                    break;
+                }
+            }
+
+            if ( editor_win ) {
+                CTabPanel * tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
+                QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
+                sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
+
+                SKIP_EVENTS_QUEUE([=]{
+                    _main_window->attachEditor(tabpanel);
+
+                    closeEditorWindow(size_t(editor_win));
+                });
+            }
+        }
+    }
+}
+
 CMainWindow * CAscApplicationManagerWrapper::topWindow()
 {
     APP_CAST(_app);

@@ -147,6 +147,7 @@ public:
     static void             closeEditorWindow(const size_t);
 
     static void             processMainWindowMoving(const size_t, const QPoint&);
+    static void             editorWindowMoving(const size_t, const QPoint&);
     static uint             countMainWindow();
     static CMainWindow *    topWindow();
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");

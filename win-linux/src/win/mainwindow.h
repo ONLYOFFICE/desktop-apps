@@ -83,6 +83,7 @@ public:
 #endif
 
 private:
+    void captureMouse(int tabindex) override;
     void setScreenScalingFactor(uchar);
     void doClose();
 

@@ -70,6 +70,7 @@ protected:
     virtual void onCloseEvent();
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
+    virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onScreenScalingFactor(uint f) = 0;
 };

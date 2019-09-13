@@ -23,6 +23,7 @@ public:
     virtual QString documentName(int vid);
 //    virtual WId handle() const = 0;
 
+    virtual void captureMouse(int tab_index);
 protected:
 };
 

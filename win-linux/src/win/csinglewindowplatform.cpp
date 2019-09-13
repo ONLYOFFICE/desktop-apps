@@ -230,6 +230,12 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
         break;
 
+    case WM_MOVING: {
+        RECT rc = *(RECT*)lParam;
+        window->onMoveEvent(QRect(rc.left,rc.top,rc.right,rc.bottom));
+
+        return TRUE;}
+
     case WM_EXITSIZEMOVE: {
         uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 

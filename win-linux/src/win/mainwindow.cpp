@@ -868,3 +868,18 @@ HWND CMainWindow::handle() const
 {
     return hWnd;
 }
+void CMainWindow::captureMouse(int tabindex)
+{
+    CMainWindowBase::captureMouse(tabindex);
+
+    if ( !(tabindex < 0) &&
+            tabindex < mainPanel()->tabWidget()->count() )
+    {
+        QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
+        QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+
+        SetCursorPos(gpt.x(), gpt.y());
+                QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+                QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
+    }
+}
