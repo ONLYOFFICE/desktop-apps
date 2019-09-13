@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="742"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1081"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1100"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>更新正在进行中。 取消更新并关闭应用程序？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1097"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1116"/>
         <source>Close all editors windows?</source>
-        <translation>关闭所有编辑器窗口？</translation>
+        <translation>所有编辑器窗口都将关闭。 你想继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1296"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1297"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1317"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1298"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1318"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -126,17 +126,17 @@
         <translation>打印文件</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="342"/>
+        <location filename="../src/ceditorwindow_p.h" line="343"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="166"/>
+        <location filename="../src/ceditorwindow.cpp" line="169"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="404"/>
+        <location filename="../src/ceditorwindow.cpp" line="426"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
@@ -355,7 +355,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1285"/>
+        <location filename="../src/cmainpanel.cpp" line="1286"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
@@ -381,22 +381,22 @@
         <translation>必须先保存文档。</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1112"/>
+        <location filename="../src/cmainpanel.cpp" line="1113"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1248"/>
+        <location filename="../src/cmainpanel.cpp" line="1249"/>
         <source>Sign Up</source>
         <translation>创建门户</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="850"/>
+        <location filename="../src/cmainpanel.cpp" line="851"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1008"/>
+        <location filename="../src/cmainpanel.cpp" line="1009"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>

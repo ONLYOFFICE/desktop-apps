@@ -76,11 +76,14 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     m_pWinPanel = new CWinPanel(m_hWnd);
     m_winRect = rect;
 
-    QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
+    m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
+                                                bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 CSingleWindowPlatform::~CSingleWindowPlatform()
 {
+    QObject::disconnect(m_modalSlotConnection);
+
     m_closed = true;
     DestroyWindow(m_hWnd);
 

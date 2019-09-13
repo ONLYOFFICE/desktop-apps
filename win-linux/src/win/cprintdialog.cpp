@@ -31,6 +31,7 @@
 */
 
 #include "cprintdialog.h"
+#include "cascapplicationmanagerwrapper.h"
 
 CPrintDialogWinWrapper::CPrintDialogWinWrapper(QPrinter * printer, HWND wnd)
     : QWinWidget(wnd), m_pDlg(new QPrintDialog(printer, this))
@@ -45,6 +46,7 @@ CPrintDialogWinWrapper::~CPrintDialogWinWrapper()
 
 int CPrintDialogWinWrapper::showModal()
 {
+    CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
     return m_pDlg->exec();
 }
 

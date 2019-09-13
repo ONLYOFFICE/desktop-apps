@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="742"/>
         <source>Presenter View</source>
         <translation>Режим докладчика</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1081"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1100"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Выполняется обновление. Отменить обновление и закрыть приложение?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1097"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1116"/>
         <source>Close all editors windows?</source>
-        <translation>Закрыть все окна редактора?</translation>
+        <translation>Будут закрыты все окна редакторов. Продолжить?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1296"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Document%1.docx</source>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1297"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1317"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1298"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1318"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
@@ -110,7 +110,7 @@
     <message>
         <location filename="../src/cdownloadwidget.cpp" line="148"/>
         <source>Cancel</source>
-        <translation>Стоп</translation>
+        <translation>Отмена</translation>
     </message>
 </context>
 <context>
@@ -126,17 +126,17 @@
         <translation>Печать документа</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="342"/>
+        <location filename="../src/ceditorwindow_p.h" line="343"/>
         <source>Document must be saved firstly.</source>
         <translation>Сначала необходимо сохранить документ.</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="166"/>
+        <location filename="../src/ceditorwindow.cpp" line="169"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="404"/>
+        <location filename="../src/ceditorwindow.cpp" line="426"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&lt;br&gt;Вы действительно хотите продолжить?</translation>
     </message>
@@ -360,7 +360,7 @@
         <translation>СТАРТ</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1285"/>
+        <location filename="../src/cmainpanel.cpp" line="1286"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
     </message>
@@ -381,22 +381,22 @@
         <translation>Сначала необходимо сохранить документ.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1112"/>
+        <location filename="../src/cmainpanel.cpp" line="1113"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&lt;br&gt;Вы действительно хотите продолжить?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1248"/>
+        <location filename="../src/cmainpanel.cpp" line="1249"/>
         <source>Sign Up</source>
         <translation>Создать облачный офис</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="850"/>
+        <location filename="../src/cmainpanel.cpp" line="851"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Необходимо сохранить документ для продолжения.&lt;br&gt;Сохранить?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1008"/>
+        <location filename="../src/cmainpanel.cpp" line="1009"/>
         <source>Print Document</source>
         <translation>Печать документа</translation>
     </message>
@@ -430,7 +430,7 @@
         <location filename="../src/cmessage.cpp" line="221"/>
         <location filename="../src/cmessage.cpp" line="222"/>
         <source>Cancel</source>
-        <translation>Стоп</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="221"/>

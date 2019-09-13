@@ -1013,7 +1013,11 @@ void CMainPanel::onDocumentPrint(void * opts)
         dialog->setPrintRange(m_printData->_print_range);
 
         int start = -1, finish = -1;
+#ifdef _WIN32
+        int res = wrapper.showModal();
+#else
         int res = dialog->exec();
+#endif
         if (res == QDialog::Accepted) {
             m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
             m_printData->_print_range = dialog->printRange();
@@ -1281,7 +1285,7 @@ void CMainPanel::setInputFiles(QStringList * list)
     m_inFiles = list;
 }
 
-QString CMainPanel::getSaveMessage()
+QString CMainPanel::getSaveMessage() const
 {
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }
