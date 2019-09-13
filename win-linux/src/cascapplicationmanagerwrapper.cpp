@@ -293,10 +293,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"editor:event") == wstring::npos) ) {
             wstring action = pData->get_Param();
             if ( action.find(L"undocking") != wstring::npos ) {
-                int id = event->get_SenderId();
-                SKIP_EVENTS_QUEUE([=]{
-                    manageUndocking(id, action);
-                });
+//                int id = event->get_SenderId();
+//                SKIP_EVENTS_QUEUE([=]{
+//                    manageUndocking(id, action);
+//                });
 
                 return true;
             }
@@ -305,10 +305,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"window:features") == wstring::npos) ) {
             const wstring& param = pData->get_Param();
             if ( param.compare(L"request") == 0 ) {
-                QJsonObject _json_obj{{"canUndock", "true"}};
+//                QJsonObject _json_obj{{"canUndock", "true"}};
 
-                AscAppManager::sendCommandTo(AscAppManager::GetViewById(event->get_SenderId()),
-                                    L"window:features", Utils::encodeJson(_json_obj).toStdWString());
+//                AscAppManager::sendCommandTo(AscAppManager::GetViewById(event->get_SenderId()),
+//                                    L"window:features", Utils::encodeJson(_json_obj).toStdWString());
             }
             return true;
         } else

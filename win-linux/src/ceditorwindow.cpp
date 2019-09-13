@@ -120,14 +120,13 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
-    QObject::connect(d_ptr.get()->buttonDock(), &QPushButton::clicked, [=]{
-        if ( !d_ptr->isReporterMode ) {
-            CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
-
-            app.manageUndocking(
-                        qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId(), L"dock");
-        }
-    });
+//    QObject::connect(d_ptr.get()->buttonDock(), &QPushButton::clicked, [=]{
+//        if ( !d_ptr->isReporterMode ) {
+//            CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
+//            app.manageUndocking(
+//                    qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId(), L"dock");
+//        }
+//    });
 }
 
 CEditorWindow::CEditorWindow(const QRect& r, const QString& s, QWidget * w)
@@ -241,7 +240,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
     layoutBtns->addWidget(m_labelTitle);
     layoutBtns->addWidget(d_ptr.get()->iconUser());
-    layoutBtns->addWidget(d_ptr.get()->buttonDock());
+//    layoutBtns->addWidget(d_ptr.get()->buttonDock());
 
     if ( custom ) {
         layoutBtns->addWidget(m_buttonMinimize);
