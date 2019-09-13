@@ -14,9 +14,9 @@ public:
     virtual bool isMaximized() const = 0;
     virtual int attachEditor(QWidget *, int index = -1);
     virtual int attachEditor(QWidget *, const QPoint&);
-    virtual bool pointInTabs(const QPoint& pt);
+    virtual bool pointInTabs(const QPoint& pt) const;
     virtual bool movedByTab();
-    virtual QWidget * getEditor(int index);
+    virtual QWidget * editor(int index);
     virtual bool holdView(int id) const;
     virtual int editorsCount() const;
     virtual int editorsCount(const wstring& portal) const;

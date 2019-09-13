@@ -920,7 +920,7 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
                 if ( _window->pointInTabs(c) ) {
                     _source->hide();
                     _window->attachEditor(
-                            _source->getEditor(GET_CURRENT_PANEL), c );
+                            _source->editor(GET_CURRENT_PANEL), c );
 
                     closeMainWindow(s);
                     break;
@@ -981,24 +981,31 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(uint dpifactor)
 bool CAscApplicationManagerWrapper::event(QEvent *event)
 {
     if ( event->type() == CTabUndockEvent::type() ) {
-        CTabUndockEvent * e = static_cast<CTabUndockEvent *>(event);
-        if ( e->panel() ) {
-            e->accept();
+        CMainWindow * _main_window = topWindow();
+        if ( _main_window ) {
+            CTabUndockEvent * e = static_cast<CTabUndockEvent *>(event);
 
-            CTabPanel * _panel = static_cast<CTabPanel *>(e->panel());
-            if ( _panel ) {
+            CTabPanel * _editor = nullptr;
+            if ( e->panel() ) {
+                _editor = static_cast<CTabPanel *>(e->panel());
+            } else
+            if ( !(e->index() < 0) ) {
+                _editor = static_cast<CTabPanel *>(_main_window->editor(e->index()));
+            }
+
+            if ( _editor ) {
+                e->accept();
+
                 QJsonObject _json_obj{{"action", "undocking"},
                                       {"status", "undocked"}};
-
-                sendCommandTo(_panel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
+                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
                 SKIP_EVENTS_QUEUE([=]{
-                    CMainWindow * const main_win = topWindow();
-                    if ( main_win ) {
-                        QRect rect = main_win->windowRect();
+                    if ( _main_window ) {
+                        QRect rect = _main_window->windowRect();
 
-                        CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _panel);
-                        editor_win->show(main_win->isMaximized());
+                        CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _editor);
+                        editor_win->show(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
                     }
@@ -1170,7 +1177,7 @@ void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& 
             int index = main_win->mainPanel()->tabWidget()->tabIndexByView(id);
             if ( !(index < 0) ) {
                 QRect r = main_win->windowRect();
-                tabpanel = qobject_cast<CTabPanel *>(main_win->getEditor(index));
+                tabpanel = qobject_cast<CTabPanel *>(main_win->editor(index));
 
                 CTabUndockEvent event(tabpanel);
                 QApplication::sendEvent(this, &event);

@@ -45,7 +45,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     return attachEditor(panel, _index);
 }
 
-bool CMainWindowBase::pointInTabs(const QPoint& pt)
+bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 {
     QRect _rc_title(mainPanel()->geometry());
     _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
@@ -59,7 +59,7 @@ bool CMainWindowBase::movedByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
-QWidget * CMainWindowBase::getEditor(int index)
+QWidget * CMainWindowBase::editor(int index)
 {
     return mainPanel()->tabWidget()->panel(index);
 }

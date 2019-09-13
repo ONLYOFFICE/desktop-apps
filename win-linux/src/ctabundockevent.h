@@ -9,6 +9,13 @@
 class CTabUndockEvent : public QEvent
 {
 public:
+    CTabUndockEvent(int index)
+        : QEvent(CTabUndockEvent::type())
+        , m_index(index)
+    {
+        ignore();
+    }
+
     CTabUndockEvent(QWidget * panel)
         : QEvent(CTabUndockEvent::type())
         , m_widget(panel)
@@ -21,13 +28,19 @@ public:
         return static_cast<QEvent::Type>(QEvent::User + 1);
     }
 
-    QWidget * panel()
+    QWidget * panel() const
     {
         return m_widget;
     }
 
+    int index() const
+    {
+        return m_index;
+    }
+
 private:
     QWidget * m_widget = nullptr;
+    int m_index = -1;
 };
 
 #endif // CTABUNDOCKEVENT_H

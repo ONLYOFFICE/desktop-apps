@@ -156,11 +156,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
             CTabPanel * _panel = panel(index);
 
             if ( _panel->data()->viewType() == cvwtEditor ) {
-                CTabUndockEvent event(_panel);
+                CTabUndockEvent event(index);
                 QObject * obj = qobject_cast<QObject *>(
                                     static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
                 if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
-                        m_dragIndex = index;
+                    m_dragIndex = index;
                 }
             }
         }
