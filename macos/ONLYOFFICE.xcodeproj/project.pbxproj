@@ -1028,6 +1028,7 @@
 				FCBC42651B9D650400405301 /* Frameworks */,
 				FCBC42661B9D650400405301 /* Resources */,
 				FC257C5F1BAC1A60005D7E72 /* Rename symbols */,
+				FCEC22FD23338C3D0061FFDA /* Increment Build Number */,
 				FC8EFE021C2A86CE00BB2A43 /* Copy Frameworks */,
 			);
 			buildRules = (
@@ -1196,6 +1197,24 @@
 			shellPath = /bin/sh;
 			shellScript = "GenLocalized() {\n    rm $1/Localizable.strings\n    find -E . -regex '.*\\.(m|mm)' -exec echo {} \\; -exec genstrings -a -o $1 {} \\;\n}\n\ncd $(pwd)/ONLYOFFICE\n\nGenLocalized Base.lproj\nGenLocalized de.lproj\nGenLocalized fr.lproj\nGenLocalized ru.lproj\nGenLocalized es.lproj";
 			showEnvVarsInLog = 0;
+		};
+		FCEC22FD23338C3D0061FFDA /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nif [ $CONFIGURATION == Release ]; then\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
