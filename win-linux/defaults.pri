@@ -18,10 +18,10 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/zh_CN.ts \
                 ./langs/pl.ts
 
-CORE_SRC_PATH = ../../core/DesktopEditor
-BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
-CORE_LIB_PATH = ../../core/build
-CORE_3DPARTY_PATH = ../../core/Common/3dParty
+CORE_SRC_PATH = $$PWD/../../core/DesktopEditor
+BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
+CORE_LIB_PATH = $$PWD/../../core/build
+CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
@@ -157,12 +157,12 @@ win32 {
     }
 }
 
-CORE_LIB_PATH_PLATFORM=$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
+CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
 
 win32 {
     CONFIG(debug, debug|release) {
         CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH_PLATFORM/DEBUG
-        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
+        LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     }
 }
 
