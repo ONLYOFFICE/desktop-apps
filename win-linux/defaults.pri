@@ -205,9 +205,9 @@ app_linux {
     PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
     LIBS += -lX11
 
-    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
-    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
-    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
+    LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
+    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
+    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }
