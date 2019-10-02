@@ -121,10 +121,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
     QObject::connect(d_ptr.get()->buttonDock(), &QPushButton::clicked, [=]{
-        CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
+        if ( !d_ptr->isReporterMode ) {
+            CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
 
-        app.manageUndocking(
-                    qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId(), L"dock");
+            app.manageUndocking(
+                        qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId(), L"dock");
+        }
     });
 }
 
@@ -294,12 +296,16 @@ void CEditorWindow::onCloseEvent()
 
 void CEditorWindow::onMinimizeEvent()
 {
-    CSingleWindowPlatform::onMinimizeEvent();
+    if ( !d_ptr->isReporterMode ) {
+        CSingleWindowPlatform::onMinimizeEvent();
+    }
 }
 
 void CEditorWindow::onMaximizeEvent()
 {
-    CSingleWindowPlatform::onMaximizeEvent();
+    if ( !d_ptr->isReporterMode ) {
+        CSingleWindowPlatform::onMaximizeEvent();
+    }
 }
 
 void CEditorWindow::onSizeEvent(int type)
@@ -371,6 +377,8 @@ void CEditorWindow::setReporterMode(bool apply)
         m_pMainView->clearMask();
         m_pMainView->setMask(reg);
     }
+
+    d_ptr->isReporterMode = apply;
 }
 
 CTabPanel * CEditorWindow::mainView() const

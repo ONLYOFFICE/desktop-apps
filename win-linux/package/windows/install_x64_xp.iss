@@ -18,7 +18,7 @@ ArchitecturesInstallIn64BitMode=x64
 
 [Files]
 Source: data\vcredist\vcredist_x64.exe;       DestDir: {app}\; Flags: deleteafterinstall; \
-    AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x64.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist;
+    AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_x64.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
 #ifndef SCRIPT_CUSTOM_FILES
 Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\win_64\x2t.exe; DestDir: {app}\converter; Flags: ignoreversion;

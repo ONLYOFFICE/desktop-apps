@@ -75,6 +75,7 @@ class CEditorWindowPrivate : public CCefEventsGate
 
 public:
     int titleLeftOffset = 168;
+    bool isReporterMode = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w)
@@ -85,8 +86,7 @@ public:
 //        if ( id == window->holdView(id) )
 
         QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toLatin1(), &jerror);
-
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
@@ -199,7 +199,11 @@ public:
             dialog->setPrintRange(m_printData._print_range);
 
             int start = -1, finish = -1;
+#ifdef _WIN32
+            if ( wrapper.showModal() == QDialog::Accepted ) {
+#else
             if ( dialog->exec() == QDialog::Accepted ) {
+#endif
                 m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
                 m_printData._print_range = dialog->printRange();
 
@@ -256,6 +260,7 @@ public:
 
     void onFullScreen(bool apply)
     {
+        if ( !apply ) isReporterMode = false;
         if ( apply == panel()->windowState().testFlag(Qt::WindowFullScreen) )
             return;
 
@@ -276,6 +281,7 @@ public:
             window->show(false);
 
             _fs_widget->showNormal();
+            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()+4);
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
 
@@ -334,7 +340,6 @@ public:
 
     void onFileLocation(int, QString param)
     {
-//        if ( m_panel->data()->local() ) {
         if ( param == "offline" ) {
             const wstring& path = m_panel->data()->url();
             if (!path.empty()) {
@@ -342,36 +347,10 @@ public:
             } else
                 CMessage::info(window->handle(), CEditorWindow::tr("Document must be saved firstly."));
         } else {
-            QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
-            QRegularExpressionMatch _re_match = _re.match(param);
-
-            if ( _re_match.hasMatch() ) {
-                QString _domain = _re_match.captured(1);
-                QString _folder = param;
-
-                if ( !_folder.contains("desktop=true") ) {
-                    if ( _folder.contains("?") )
-                        _folder.append("&desktop=true");
-                    else {
-                        int pos = _folder.indexOf(QRegularExpression("#\\d+"));
-                        !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
-                    }
-                }
-
-                // emulate 'open portal' command
-                QJsonObject _json_obj{{"portal", _folder}};
-
-                CAscExecCommand * pData = new CAscExecCommand;
-                pData->put_Command(L"portal:open");
-                pData->put_Param(QString(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact)).toStdWString());
-
-                CAscCefMenuEvent * event = new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
-                event->m_nSenderId = 1; // id of 'start' page
-                event->m_pData = pData;
-
-                CAscApplicationManagerWrapper& app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
-                app.OnEvent(event);
-            }
+            /**
+            * portals open in tabbar in main window only
+            * processing is in app cntroller
+            */
         }
     }
 

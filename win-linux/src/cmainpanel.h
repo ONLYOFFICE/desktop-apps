@@ -81,7 +81,7 @@ public:
 
 protected:
     virtual void refreshAboutVersion() = 0;
-    virtual QString getSaveMessage();
+    virtual QString getSaveMessage() const;
 
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);

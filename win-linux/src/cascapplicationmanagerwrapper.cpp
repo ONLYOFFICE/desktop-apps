@@ -301,6 +301,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
+#if defined(__APP_MULTI_WINDOW)
         if ( !(cmd.find(L"window:features") == wstring::npos) ) {
             const wstring& param = pData->get_Param();
             if ( param.compare(L"request") == 0 ) {
@@ -311,6 +312,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
             return true;
         } else
+#endif
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
 #ifdef _UPDMODULE
             if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
@@ -319,6 +321,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
 
             return true;
+        } else
+        if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
+            if ( pData->get_Param() == L"offline" ) {}
+            else {
+                topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
+                return true;
+            }
         }
 
         break; }
@@ -1105,7 +1114,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 
         if ( _has_opened_editors ) {
             CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-            if ( mess.confirm(tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
+            if ( mess.warning(tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
                 return true;
             } else return false;
         }

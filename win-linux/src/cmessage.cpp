@@ -307,7 +307,8 @@ int CMessage::error(QWidget * p, const QString& m)
 void CMessage::modal()
 {
 #if defined(_WIN32)
-    CRunningEventHelper _event(&(CInAppEventModal((size_t)m_hParent)));
+    CInAppEventModal _event((size_t)m_hParent);
+    CRunningEventHelper _h(&_event);
 
     m_centralWidget->adjustSize();
     m_centralWidget->show();
