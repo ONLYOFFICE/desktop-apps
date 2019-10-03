@@ -54,13 +54,13 @@
         let _html = `<div ${args.id} class="action-panel ${args.action}">` +
                         '<div id="box-recent-folders">' +
                             '<div class="flexbox">'+
-                                `<h3 class="table-caption">${_lang.listRecentDirTitle}</h3>`+
+                                `<h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>`+
                                 '<div class="table-box flex-fill">'+
                                     `<table ${args.id} class="table-files list"></table>` +
-                                    `<h4 class="text-emptylist img-before-el">${_lang.textNoFiles}</h4>` +
+                                    `<h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>` +
                                 '</div>' +
                                 '<div id="box-open-acts" class="lst-tools">'+
-                                    `<button id="btn-openlocal">${_lang.btnBrowse}</button>` +
+                                    `<button id="btn-openlocal" l10n>${_lang.btnBrowse}</button>` +
                                 '</div>' +
                             '</div>'+
                         '</div>'+

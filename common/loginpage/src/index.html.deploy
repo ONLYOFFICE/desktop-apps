@@ -103,15 +103,15 @@
         <div id="placeholder">
             <div class="main-column col-left tool-menu">
               <div class="tool-quick-menu">
-                <h3 class="createnew">Create new</h3>
+                <h3 class="createnew" l10n>Create new</h3>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:docx">DOCUMENT</a>
+                  <a class="img-before-el" action="new:docx" l10n>DOCUMENT</a>
                 </li>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:xlsx">SPREADSHEET</a>
+                  <a class="img-before-el" action="new:xlsx" l10n>SPREADSHEET</a>
                 </li>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:pptx">PRESENTATION</a>
+                  <a class="img-before-el" action="new:pptx" l10n>PRESENTATION</a>
                 </li>
               </div>
               <li class="menu-item separator"></li>

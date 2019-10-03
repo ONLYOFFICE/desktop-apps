@@ -127,7 +127,7 @@
                                 <input type="checkbox" name="onoffswitch" class="onoffswitch__checkbox" id="sett-checkbox-encrypt">
                                 <label class="onoffswitch__label" for="sett-checkbox-encrypt"></label>
                             </div>
-                            <label class='sett__caption'>${_label}</label>
+                            <label class='sett__caption' l10n>${_label}</label>
                         </div>`;
 
             $('.action-panel.settings .settings-items').append(tpl);

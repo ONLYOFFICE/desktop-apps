@@ -5,9 +5,9 @@
 
 CMainWindowBase::CMainWindowBase()
 {
-    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
-        mainPanel()->loadStartPage();
-    });
+//    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
+//        mainPanel()->loadStartPage();
+//    });
 }
 
 int CMainWindowBase::attachEditor(QWidget * panel, int index)

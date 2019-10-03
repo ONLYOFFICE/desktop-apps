@@ -51,7 +51,7 @@
         var _itemcls = 'menu-item' + (args.itemcls?` ${args.itemcls}`:'');
 
         this.tplPage = args.tplPage || '<div class="center-panel">Hello, Word!</div>';
-        this.tplItem = args.tplItem || `<li class="${_itemcls}"><a ${_action}>${args.itemtext}</a></li>`;
+        this.tplItem = args.tplItem || `<li class="${_itemcls}"><a l10n ${_action}>${args.itemtext}</a></li>`;
         this.menuContainer = args.menu || '';
         this.panelContainer = args.field || '';
         this.opts = args;

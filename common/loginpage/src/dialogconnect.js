@@ -63,7 +63,7 @@ window.DialogConnect = function(params) {
                                     <span />
                                     <div>
                                         <img class="img-loader">
-                                        <button id="btn-next" class="btn primary">${utils.Lang.btnConnect}</button>
+                                        <button id="btn-next" l10n class="btn primary">${utils.Lang.btnConnect}</button>
                                     </div>
                                 </div>
                             </div>

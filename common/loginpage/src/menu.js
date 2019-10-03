@@ -51,7 +51,7 @@ Menu.prototype.init = function(parent) {
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
 
-    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem">%caption</a></li>',
+    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%caption</a></li>',
         _tpl_divider_ = '<li class="divider"></li>';
     this.items.forEach(function(item) {
         let $item;

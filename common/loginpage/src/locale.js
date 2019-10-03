@@ -655,7 +655,7 @@ l10n.es = {
     ,emptySlide3Title: 'Almacene en la nube'
     ,emptySlide3Text: 'Almacene sus documentos en la nube de ONLYOFFICE y acceda en cualquier momento y desde cualquier lugar.'
     ,settUserName: 'Nombre de Usuario'
-    ,settResetUserName: 'Reestablecer a valor predeterminado'
+    ,settResetUserName: 'Reestablecer a valor predeterminado'
     ,settOpenMode: 'Abrir documento en modo de vista previa'
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Lenguaje de interfaz'
@@ -901,7 +901,8 @@ l10n.zh_CN = {
 }
 
 function loadLocale(lang) {
-    if ( lang != 'en' ) {
+    // if ( lang != 'en' ) 
+    {
         for ( let i in l10n[lang] ) {
             utils.Lang[i] = l10n[lang][i];
         }
@@ -918,9 +919,48 @@ function translate(str, lang) {
     return !!l10n[_l] ? l10n[_l][str] : undefined;
 };
 
+function changelang(lang) {
+    let _applytohtml = l => {
+        let newtr = l10n[l];
+        let elems = Array.from(document.querySelectorAll('[l10n]'));
+
+        for (const [key, value] of Object.entries(utils.Lang)) {
+            elems.every(el => {
+                if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
+                    if ( el.innerHTML === value && !!newtr[key] ) {
+                        $(el).text(newtr[key]);
+                    }
+                }
+
+                return true;
+            });
+        }
+    }
+
+    if ( lang ) {
+        lang = correctLang(lang);
+
+        if ( l10n[lang] ) {
+            _applytohtml(lang);
+            loadLocale(lang);
+        } else {
+            let _code = /^\w{2}/.exec(lang)[0];
+
+            for (let l in l10n) {
+                if ( l.substring(0,2) == _code ) {
+                    _applytohtml(l);
+                    loadLocale(l);
+                    break;
+                }
+            }
+        }
+    }
+};
+
 +function mixLocale(lang) {
     utils.Lang = Object.assign({}, l10n.en);
     utils.Lang.tr = translate;
+    utils.Lang.change = changelang;
 
     if ( lang ) {
         lang = correctLang(lang);
