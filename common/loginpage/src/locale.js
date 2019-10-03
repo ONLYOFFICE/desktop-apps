@@ -906,6 +906,8 @@ function loadLocale(lang) {
         for ( let i in l10n[lang] ) {
             utils.Lang[i] = l10n[lang][i];
         }
+
+        utils.Lang.id = lang;
     }
 };
 
@@ -938,6 +940,7 @@ function changelang(lang) {
     }
 
     if ( lang ) {
+        let old = utils.Lang.id;
         lang = correctLang(lang);
 
         if ( l10n[lang] ) {
@@ -954,6 +957,8 @@ function changelang(lang) {
                 }
             }
         }
+
+        CommonEvents.fire('lang:changed', [old,lang]);
     }
 };
 

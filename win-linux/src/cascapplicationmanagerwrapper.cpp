@@ -433,11 +433,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 jdoc = QJsonDocument::fromJson(QString::fromStdWString(item.nameLocale).toUtf8(), &jerror);
 
                 if( jerror.error == QJsonParseError::NoError ) {
-                    QString _lang(CLangater::getCurrentLangCode());
-
-                    if ( jdoc.object().contains(_lang) || jdoc.object().contains((_lang = _lang.left(2))) ) {
-                        _json_obj["name"] = jdoc.object()[_lang].toString();
-                    }
+                    _json_obj["nameLocale"] = jdoc.object();
                 }
             }
 
