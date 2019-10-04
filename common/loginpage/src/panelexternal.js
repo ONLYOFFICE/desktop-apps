@@ -184,6 +184,10 @@
                     $('[l10n]',panel.$menuitem).html(namenext);
                 }
             }
+
+            let message = {event:'languageChanged', data: {new:langnext, old:langprev}};
+            let iframe = panel.$panel.find('iframe')[0].contentWindow;
+            iframe.postMessage(JSON.stringify(message), '*');
         };
 
         CommonEvents.on('lang:changed', (prev,next) => {
