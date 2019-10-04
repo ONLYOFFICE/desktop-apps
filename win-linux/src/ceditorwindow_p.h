@@ -43,10 +43,12 @@
 #include "cmessage.h"
 #include "qascprinter.h"
 #include "ceditortools.h"
+#include "csvgpushbutton.h"
 
 #include <QPrinterInfo>
 #include <QDesktopWidget>
 #include <QJsonDocument>
+#include <QJsonArray>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -73,18 +75,48 @@ class CEditorWindowPrivate : public CCefEventsGate
     QPushButton * btndock = nullptr;
     bool isPrinting = false;
 
+    QMap<QString, CSVGPushButton*> m_mapTitleButtons;
+
 public:
-    int titleLeftOffset = 168;
+    int titleLeftOffset = 0;
     bool isReporterMode = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w)
     {}
 
+    QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)
+    {
+        QString action = jsonobj["action"].toString();
+        CSVGPushButton * btn = new CSVGPushButton;
+        btn->setProperty("class", "normal");
+        btn->setProperty("act", "tool");
+        btn->setFixedSize(jsonobj["width"].toInt(40)*window->m_dpiRatio,jsonobj["height"].toInt(28)*window->m_dpiRatio);
+        btn->setDisabled(jsonobj["disabled"].toBool());
+        btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
+
+        m_mapTitleButtons[action] = btn;
+
+        connect(btn, &QPushButton::clicked, [=]{
+            QJsonObject _json_obj{{"action", action}};
+            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
+        });
+
+        if ( jsonobj.contains("icon") ) {
+            QString _si = jsonobj["icon"].toString();
+
+            if (!_si.isEmpty() && _si.contains(QRegularExpression("^svg://"))) {
+                btn->setIcon( QByteArray::fromBase64(_si.mid(6).toLocal8Bit()) );
+            }
+        }
+
+        btn->setToolTip(jsonobj["hint"].toString());
+        return btn;
+    }
+
     void onEditorConfig(int, std::wstring cfg)
     {
 //        if ( id == window->holdView(id) )
-
         QJsonParseError jerror;
         QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
@@ -94,13 +126,21 @@ public:
                 iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
             }
 
-            if ( objRoot.contains("extraleft") ) {
-                titleLeftOffset = objRoot["extraleft"].toInt();
+            if ( objRoot.contains("title") ) {
+                QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
 
-                int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 5)) * window->m_dpiRatio; // 5 right tool buttons: close, min, max, drop, user icon
-                QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
-                window->m_labelTitle->setStyleSheet(_label_styles);
+                QPushButton * _btn;
+                for (int i = _btns.size(); i --> 0; ) {
+                    _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
+                    qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
+
+                    titleLeftOffset += _btn->width();
+                }
             }
+
+            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 4)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
+            QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
+            window->m_labelTitle->setStyleSheet(_label_styles);
         }
     }
 
@@ -256,6 +296,11 @@ public:
 
         if ( btndock )
             btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+
+        for (auto btn: m_mapTitleButtons) {
+            btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+            btn->setIconSize(QSize(20,20) * f);
+        }
     }
 
     void onFullScreen(bool apply)
@@ -374,6 +419,20 @@ public:
         }
 
         return btndock;
+    }
+
+    void onWebTitleChanged(int, std::wstring json)
+    {
+        QJsonParseError jerror;
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+
+            QString action = objRoot["button"].toString();
+            if ( !action.isEmpty() && m_mapTitleButtons.contains(action) ) {
+                m_mapTitleButtons[action]->setDisabled(objRoot["disabled"].toBool(false));
+            }
+        }
     }
 };
 

@@ -55,6 +55,7 @@ public:
 
     bool holdView(int id) const override;
     bool holdView(const wstring& portal) const;
+    void show(bool maximaized, bool capturemouse = false);
     int closeWindow();
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;

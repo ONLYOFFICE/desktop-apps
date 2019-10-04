@@ -30,49 +30,56 @@
  *
 */
 
-#ifndef CCEFEVENTSGATE_H
-#define CCEFEVENTSGATE_H
+#include "csvgpushbutton.h"
 
-#include <QObject>
-#include "ctabpanel.h"
+#include <QtSvg>
+#include <QSvgRenderer>
+#include <QPainter>
+#include <QDebug>
 
-class CCefEventsGate : public QObject
+CSVGPushButton::CSVGPushButton(QWidget * parent)
+    : QPushButton(parent)
 {
-    Q_OBJECT
 
-public:
-    explicit CCefEventsGate(QObject *parent = nullptr);
+}
 
-    void init(CTabPanel * const);
-    CTabPanel * const panel()
-    {
-        return m_panel;
+void CSVGPushButton::setIcon(const QByteArray& svgstr)
+{
+    m_svglayout = svgstr;
+    updateIcon();
+}
+
+void CSVGPushButton::setIconSize(const QSize& size)
+{
+    QPushButton::setIconSize(size);
+    updateIcon();
+}
+
+void CSVGPushButton::setDisabled(bool status)
+{
+    QPushButton::setDisabled(status);
+    updateIcon();
+}
+
+void CSVGPushButton::updateIcon()
+{
+    if ( !m_svglayout.isEmpty() ) {
+        QSize size = iconSize();
+        QImage img(size, QImage::Format_ARGB32);
+        img.fill(Qt::transparent);
+        QPixmap pixmap = QPixmap::fromImage(img, Qt::NoFormatConversion);
+qDebug() << "update icon: " << size;
+        QPainter painter(&pixmap);
+        painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+        QSvgRenderer r(m_svglayout);
+        r.render(&painter, QRect(QPoint(0,0),size));
+
+        if ( !isEnabled() ) {
+            painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+            painter.fillRect(pixmap.rect(), QColor(255,255,255,150));
+            painter.end();
+        }
+
+        QPushButton::setIcon(QIcon(pixmap));
     }
-
-protected:
-    CTabPanel * m_panel = nullptr;
-
-public slots:
-    virtual void onPortalLogout(std::wstring portal) = 0;
-    virtual void onEditorConfig(int id, std::wstring cfg) = 0;
-    virtual void onDocumentName(void *);
-    virtual void onDocumentChanged(int id, bool changed);
-    virtual void onDocumentSave(int id, bool cancel = false);
-    virtual void onDocumentSaveInnerRequest(int id) = 0;
-    virtual void onDocumentFragmented(int id, bool needbuild) = 0;
-    virtual void onDocumentFragmentedBuild(int id, int error);
-    virtual void onDocumentPrint(void *);
-    virtual void onDocumentPrint(int current, uint count) = 0;
-    virtual void onDocumentLoadFinished(int);
-
-    virtual void onFileLocation(int id, QString path) = 0;
-    virtual void onLocalFileSaveAs(void *) = 0;
-
-    virtual void onEditorAllowedClose(int) = 0;
-    virtual void onKeyDown(void *);
-    virtual void onFullScreen(int id, bool apply) = 0;
-
-    virtual void onWebTitleChanged(int, std::wstring json) = 0;
-};
-
-#endif // CCEFEVENTSGATE_H
+}

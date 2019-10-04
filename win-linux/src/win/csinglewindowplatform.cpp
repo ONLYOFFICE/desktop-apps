@@ -120,14 +120,37 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_ACTIVATE: {
+        static bool is_mainwindow_prev;
+        is_mainwindow_prev = false;
         if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd > 0 && window->m_modalHwnd != hWnd )
         {
             if ( LOWORD(wParam) != WA_INACTIVE ) {
                 SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
                 return 0;
             }
-        }
+        } else {
+            if ( LOWORD(wParam) != WA_INACTIVE ) {
+                static HWND top_window;
+                top_window = NULL;
 
+                EnumWindows([](HWND hw, LPARAM lp){
+                    if (!IsWindowVisible(hw) || GetWindowTextLength(hw) == 0) {
+                        return TRUE;
+                    }
+
+                    if (hw == (HWND)lp) {
+                        top_window = hw;
+                    } else
+                    if ( top_window ) {
+                        top_window = NULL;
+                        if ( hw == AscAppManager::topWindow()->handle() )
+                            is_mainwindow_prev = true;
+                    }
+
+                    return TRUE;
+                }, (LPARAM)hWnd);
+            }
+        }
         break;
     }
 
@@ -341,9 +364,6 @@ void CSingleWindowPlatform::show(bool maximized)
     ShowWindow(m_hWnd, maximized ? SW_MAXIMIZE : SW_SHOW);
 //    UpdateWindow(m_hWnd);
     m_visible = true;
-
-    if ( !maximized && GetCapture() != NULL )
-        captureMouse();
 }
 
 void CSingleWindowPlatform::hide()

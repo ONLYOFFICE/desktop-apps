@@ -127,8 +127,6 @@ private:
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
-    int m_dragIndex = -1;
-
 
 signals:
 //    void sendAddEditor();

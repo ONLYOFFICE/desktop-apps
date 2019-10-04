@@ -145,6 +145,7 @@ public slots:
     void onOutsideAuth(QString);
 
     void onEditorAllowedClose(int);
+    void onWebTitleChanged(int, std::wstring json){}
 
     void onFileChecked(const QString&, int, bool);
 

@@ -879,7 +879,11 @@ void CMainWindow::captureMouse(int tabindex)
         QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
 
         SetCursorPos(gpt.x(), gpt.y());
+        SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
+            QTimer::singleShot(0,[=] {
                 QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
                 QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
+                mainPanel()->tabWidget()->tabBar()->grabMouse();
+            });
     }
 }

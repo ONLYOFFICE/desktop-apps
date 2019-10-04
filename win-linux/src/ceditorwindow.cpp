@@ -150,6 +150,14 @@ bool CEditorWindow::holdView(const wstring& portal) const
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
 }
 
+void CEditorWindow::show(bool maximaized, bool capturemouse)
+{
+    CSingleWindowPlatform::show(maximaized);
+
+    if ( !maximaized && capturemouse )
+        CSingleWindowPlatform::captureMouse();
+}
+
 int CEditorWindow::closeWindow()
 {
     d_ptr.get()->onFullScreen(false);
@@ -353,7 +361,7 @@ void CEditorWindow::recalculatePlaces()
 //    if ( contentH < 1 ) contentH = 1;
 
 //    int nCaptionR = 200;
-    int nCaptionL = d_ptr.get()->titleLeftOffset * m_dpiRatio;
+    int nCaptionL = 0 /*d_ptr.get()->titleLeftOffset * m_dpiRatio*/;
 
     QSize _s{TOOLBTN_WIDTH * 3, TOOLBTN_HEIGHT};
     _s *= m_dpiRatio;
@@ -368,7 +376,7 @@ void CEditorWindow::recalculatePlaces()
 //    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);
 
     QRegion reg(0, captionH, windowW, windowH - captionH);
-    reg = reg.united(QRect(0, 0, nCaptionL, captionH));
+//    reg = reg.united(QRect(0, 0, nCaptionL, captionH));
 //    reg = reg.united(QRect(windowW - nCaptionR, 0, nCaptionR, captionH));
     m_pMainView->clearMask();
     m_pMainView->setMask(reg);

@@ -68,8 +68,9 @@ public:
 
 protected:
     bool event(QEvent * e);
-    void mousePressEvent (QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
+    void mousePressEvent (QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent (QMouseEvent *) override;
     void paintEvent(QPaintEvent *);
     void tabInserted(int);
     void tabRemoved(int index);

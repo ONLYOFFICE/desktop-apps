@@ -322,6 +322,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( cmd.compare(L"title:changed") == 0 ) {
+            map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
+            if ( it != m_receivers.cend() ) {
+                QMetaObject::invokeMethod(it->second, "onWebTitleChanged", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
+                return true;
+            }
+        } else
         if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"offline" ) {}
             else {
@@ -1034,7 +1041,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         QRect rect = _main_window->windowRect();
 
                         CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _editor);
-                        editor_win->show(_main_window->isMaximized());
+                        editor_win->show(_main_window->isMaximized(), true);
 
                         m_vecEditors.push_back( size_t(editor_win) );
                     }
