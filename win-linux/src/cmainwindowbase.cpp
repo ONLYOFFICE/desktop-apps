@@ -92,5 +92,7 @@ QString CMainWindowBase::documentName(int vid)
 
 void CMainWindowBase::captureMouse(int)
 {
+#ifdef Q_OS_WIN
     ReleaseCapture();
+#endif
 }

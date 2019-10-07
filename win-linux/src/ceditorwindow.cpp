@@ -154,8 +154,10 @@ void CEditorWindow::show(bool maximaized, bool capturemouse)
 {
     CSingleWindowPlatform::show(maximaized);
 
+#ifdef Q_OS_WIN
     if ( !maximaized && capturemouse )
         CSingleWindowPlatform::captureMouse();
+#endif
 }
 
 int CEditorWindow::closeWindow()
