@@ -41,6 +41,7 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "clangater.h"
+#include "version.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -132,7 +133,11 @@ int main( int argc, char *argv[] )
     const int ac = argc;
     char ** const av = argv;
     for (int a(1); a < ac; ++a) {
-        if ( QString::fromLocal8Bit(av[a]) == "--help" ) {
+        if ( strcmp(av[a], "--version") == 0 ) {
+            qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
+            return 0;
+        } else
+        if ( strcmp(av[a], "--help") == 0 ) {
             CHelp::out();
             return 0;
         }
