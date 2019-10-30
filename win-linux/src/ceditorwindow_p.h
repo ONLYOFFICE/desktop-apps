@@ -428,9 +428,20 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            QString action = objRoot["button"].toString();
-            if ( !action.isEmpty() && m_mapTitleButtons.contains(action) ) {
-                m_mapTitleButtons[action]->setDisabled(objRoot["disabled"].toBool(false));
+            if (objRoot.contains("disabled")) {
+                QJsonObject _disabled = objRoot["disabled"].toObject();
+
+                if ( _disabled.contains("all") ) {
+                    bool _is_disabled = _disabled["all"].toBool();
+
+                    for (auto& btn: m_mapTitleButtons) {
+                        btn->setDisabled(_is_disabled);
+                    }
+                } else {
+                    for (const auto& k: _disabled.keys()) {
+                        m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                    }
+                }
             }
         }
     }

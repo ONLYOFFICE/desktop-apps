@@ -322,7 +322,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
-        if ( cmd.compare(L"title:changed") == 0 ) {
+        if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
                 QMetaObject::invokeMethod(it->second, "onWebTitleChanged", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
