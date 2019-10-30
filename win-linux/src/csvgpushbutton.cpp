@@ -51,7 +51,7 @@ void CSVGPushButton::setIcon(const QByteArray& svgstr)
 
 void CSVGPushButton::setIcon(const QString& path, const QString& node)
 {
-    m_svgnode = elem;
+    m_svgnode = node;
 
     QFile _f(path);
     if( _f.open(QIODevice::ReadOnly)) {
