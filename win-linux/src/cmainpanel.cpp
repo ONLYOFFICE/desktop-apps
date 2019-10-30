@@ -795,9 +795,9 @@ void CMainPanel::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onDocumentOptions(int id, QString opts)
+void CMainPanel::onWebAppsFeatures(int id, wstring opts)
 {
-    m_pTabs->setDocumentWebOption(id, opts);
+    m_pTabs->setEditorOptions(id, opts);
 }
 
 void CMainPanel::onDocumentReady(int uid)

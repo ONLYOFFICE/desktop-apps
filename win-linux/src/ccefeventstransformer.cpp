@@ -234,9 +234,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onEditorActionRequest", Qt::QueuedConnection,
                                        Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
-        if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onDocumentOptions", Qt::QueuedConnection,
-                            Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+        if ( !(cmd.find(L"webapps:features") == std::wstring::npos) ) {
+            QMetaObject::invokeMethod(target, "onWebAppsFeatures", Qt::QueuedConnection,
+                            Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
         } else
         if ( !(cmd.find(L"editor:config") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onEditorConfig", Qt::QueuedConnection,

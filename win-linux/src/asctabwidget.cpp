@@ -41,6 +41,7 @@
 #include <QDesktopWidget>
 #include <QFileInfo>
 #include <QTimer>
+#include <regex>
 
 #include "ctabbar.h"
 #include "ctabstyle.h"
@@ -832,14 +833,18 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     updateTabIcon(tabIndexByView(id));
 }
 
-void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
+void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 {
     int tabIndex = tabIndexByView(id);
-    if ( !(tabIndex < 0) )
-        if ( option == "loading" ) {
-            CAscTabData * doc = panel(tabIndex)->data();
-            doc->setEventLoadSupported(true);
+    if ( !(tabIndex < 0) ) {
+        if (std::regex_search(option, std::wregex(L"eventloading\":\\s?true"))) {
+            panel(tabIndex)->data()->setEventLoadSupported(true);
         }
+
+        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
+//            panel(tabIndex)->setWindowed(true);
+        }
+    }
 }
 
 /*
