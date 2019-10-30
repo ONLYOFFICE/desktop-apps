@@ -212,7 +212,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     if (res_open) {
         CAscTabData * data = new CAscTabData(opts.name);
         data->setUrl(opts.wurl);
-        data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
+        data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
@@ -747,7 +747,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     if (!(tabIndex < 0)) {
         CAscTabData * doc = panel(tabIndex)->data();
         doc->setTitle(name);
-        if ( doc->local() && !path.isEmpty() ) {
+        if ( doc->isLocal() && !path.isEmpty() ) {
             QString _path(path);
             doc->setUrl( Utils::replaceBackslash(_path) );
         }
@@ -937,7 +937,7 @@ bool CAscTabWidget::modifiedByIndex(int index)
 bool CAscTabWidget::isLocalByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        return panel(index)->data()->local();
+        return panel(index)->data()->isLocal();
     }
 
     return true;

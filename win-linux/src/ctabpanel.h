@@ -36,6 +36,9 @@ public:
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
+    bool prettyTitle() { return m_prettyTitle; }
+    void setPrettyTitle(bool v) { m_prettyTitle = v; }
+
 protected:
     void timerEvent(QTimerEvent *event);
     void paintEvent(QPaintEvent *event);
@@ -47,6 +50,7 @@ private:
 
     QSize m_startSize, m_lastSize;
     int m_idTimerResize = 0;
+    bool m_prettyTitle = false;
 signals:
 public slots:
     void showFullScreen();

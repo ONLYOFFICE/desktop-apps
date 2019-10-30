@@ -49,6 +49,22 @@ void CSVGPushButton::setIcon(const QByteArray& svgstr)
     updateIcon();
 }
 
+void CSVGPushButton::setIcon(const QString& path, const QString& node)
+{
+    m_svgnode = elem;
+
+    QFile _f(path);
+    if( _f.open(QIODevice::ReadOnly)) {
+        QTextStream in(&_f);
+
+        m_svglayout = in.readAll().toLocal8Bit();
+
+        _f.close();
+
+        updateIcon();
+    }
+}
+
 void CSVGPushButton::setIconSize(const QSize& size)
 {
     QPushButton::setIconSize(size);
@@ -64,15 +80,15 @@ void CSVGPushButton::setDisabled(bool status)
 void CSVGPushButton::updateIcon()
 {
     if ( !m_svglayout.isEmpty() ) {
-        QSize size = iconSize();
-        QImage img(size, QImage::Format_ARGB32);
+        QImage img(iconSize(), QImage::Format_ARGB32);
         img.fill(Qt::transparent);
         QPixmap pixmap = QPixmap::fromImage(img, Qt::NoFormatConversion);
-qDebug() << "update icon: " << size;
+
         QPainter painter(&pixmap);
         painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
         QSvgRenderer r(m_svglayout);
-        r.render(&painter, QRect(QPoint(0,0),size));
+        if ( m_svgnode.isEmpty() ) r.render(&painter);
+        else r.render(&painter, m_svgnode, r.boundsOnElement(m_svgnode));
 
         if ( !isEnabled() ) {
             painter.setCompositionMode(QPainter::CompositionMode_SourceIn);

@@ -41,11 +41,13 @@ public:
     CSVGPushButton(QWidget * parent = nullptr);
 
     void setIcon(const QByteArray&);
+    void setIcon(const QString& file, const QString& node = QString());
     void setIconSize(const QSize&);
     void setDisabled(bool);
 
 private:
     QByteArray m_svglayout;
+    QString m_svgnode;
 
     void updateIcon();
     using QPushButton::setDisabled;

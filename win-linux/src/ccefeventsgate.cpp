@@ -36,7 +36,7 @@ void CCefEventsGate::onDocumentName(void * data)
 
     CAscTabData * doc = m_panel->data();
     doc->setTitle(QString::fromStdWString(pData->get_Name()));
-    if ( doc->local() ) {
+    if ( doc->isLocal() ) {
         if ( pData->get_Url().empty() ) {
             doc->setUrl(Utils::replaceBackslash(QString::fromStdWString(pData->get_Path())));
         }
