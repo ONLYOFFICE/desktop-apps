@@ -67,6 +67,9 @@
         <file alias="close_active.png">res/icons/tabbar/tab_close_light.png</file>
         <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light_2x.png</file>
     </qresource>
+    <qresource prefix="/title/icons">
+        <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
+    </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>

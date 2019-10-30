@@ -102,14 +102,7 @@ public:
             AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
         });
 
-        if ( jsonobj.contains("icon") ) {
-            QString _si = jsonobj["icon"].toString();
-
-            if (!_si.isEmpty() && _si.contains(QRegularExpression("^svg://"))) {
-                btn->setIcon( QByteArray::fromBase64(_si.mid(6).toLocal8Bit()) );
-            }
-        }
-
+        btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
         btn->setToolTip(jsonobj["hint"].toString());
         return btn;
     }
