@@ -52,23 +52,26 @@
 
 QString g_css =
         "#mainPanel{background-color:#aa5252;}"
-        "#box-title-tools[editor=word]{background-color:#446995;}"
-        "#box-title-tools[editor=cell]{background-color:#40865c;}"
-        "#box-title-tools[editor=slide]{background-color:#aa5252;}"
-        "QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
+        "#box-title-tools{background-color:#f1f1f1;}"
+        "#box-title-tools[editor=word]{background-color:" TAB_COLOR_DOCUMENT ";}"
+        "#box-title-tools[editor=cell]{background-color:" TAB_COLOR_SPREADSHEET ";}"
+        "#box-title-tools[editor=slide]{background-color:" TAB_COLOR_PRESENTATION ";}"
+        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-        "QPushButton#toolButtonMinimize,QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
-        "QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
-        "QPushButton#toolButtonDock{background-origin:content; padding: 5px 12px 7px; background-image:url(:/dock.png);background-position:left top;}"
-        "#labelTitle{color:white;font-size:11px;padding-bottom:2px;}";
-
-QString g_css2x =
-        "QPushButton#toolButtonMinimize,QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
-        "#toolButtonMinimize,#toolButtonClose,#toolButtonMaximize{padding: 10px 24px 14px;}"
-        "QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
-        "QPushButton#toolButtonDock{background-image:url(:/dock_2x.png); padding: 10px 24px 14px;}"
-        "#labelTitle{font-size:24px;padding-bottom:5px;}";
+        "#labelTitle{color:#444;font-size:11px;padding-bottom:2px;}"
+        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
+        "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
+        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;padding-bottom:5px;}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
 
 
 CEditorWindow::CEditorWindow()
@@ -235,14 +238,19 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
     m_boxTitleBtns = new QWidget(mainPanel);
     m_boxTitleBtns->setObjectName("box-title-tools");
+    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
 
+        mainPanel->setProperty("window", "pretty");
     switch (qobject_cast<CTabPanel *>(panel)->data()->contentType()) {
     case etDocument: m_boxTitleBtns->setProperty("editor","word"); break;
     case etPresentation: m_boxTitleBtns->setProperty("editor","slide"); break;
     case etSpreadsheet: m_boxTitleBtns->setProperty("editor","cell"); break;
     }
 
-    mainPanel->setStyleSheet(m_dpiRatio > 1 ? g_css + g_css2x : g_css);
+    if ( m_dpiRatio > 1 )
+        mainPanel->setProperty("zoom", "2x");
+
+    mainPanel->setStyleSheet(g_css);
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     layoutBtns->setContentsMargins(0,0,0,0);
@@ -340,11 +348,14 @@ void CEditorWindow::onScreenScalingFactor(uint newfactor)
 
     d_ptr.get()->onScreenScalingFactor(newfactor);
 
+    m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
+
     QString css(AscAppManager::getWindowStylesheets(newfactor));
-    css += newfactor > 1 ? g_css + g_css2x : g_css;
+    css.append(g_css);
     m_pMainPanel->setStyleSheet(css);
 
-    m_boxTitleBtns->layout()->setSpacing(1*newfactor);
+    m_boxTitleBtns->layout()->setSpacing(1 * newfactor);
+    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * newfactor);
 
     m_dpiRatio = newfactor;
     adjustGeometry();
