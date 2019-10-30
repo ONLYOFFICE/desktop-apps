@@ -65,8 +65,8 @@ public:
     void setReporterMode(bool);
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent, CTabPanel* const panel);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel) override;
+    QWidget * createMainPanel(QWidget * parent);
+    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom) override;
     void recalculatePlaces();
     const QObject * receiver() override;
 

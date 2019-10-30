@@ -112,7 +112,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
     m_bgColor = RGB(color.red(), color.green(), color.blue());
 
-    m_pMainPanel = createMainPanel(m_pWinPanel, panel);
+    m_pMainPanel = createMainPanel(m_pWinPanel);
     m_pWinPanel->show();
 #endif
 
@@ -203,15 +203,15 @@ int CEditorWindow::closeWindow()
     return _reply;
 }
 
-QWidget * CEditorWindow::createMainPanel(QWidget * parent, CTabPanel * const panel)
+QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 {
-    return createMainPanel(parent, panel->data()->title(), true, panel);
+    return createMainPanel(parent, d_ptr->panel()->data()->title(), true);
 }
 
-QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel)
+QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title, bool custom)
 {
     // create min/max/close buttons
-    CSingleWindowBase::createMainPanel(parent, title, custom, panel);
+    CSingleWindowBase::createMainPanel(parent, title, custom);
 
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
@@ -271,7 +271,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 //        m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
-    if ( !panel ) {
+    if ( !d_ptr->panel() ) {
 //        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
 //        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
 //        pMainWidget->setObjectName( "mainPanel" );
@@ -279,7 +279,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
 //        m_pMainView = (QWidget *)pMainWidget;
     } else {
-        m_pMainView = panel;
+        m_pMainView = d_ptr->panel();
         m_pMainView->setParent(mainPanel);
 
         m_pMainView->setGeometry(mainPanel->geometry());

@@ -102,7 +102,7 @@ void CSingleWindowBase::setWindowTitle(const QString& title)
 
 //#include <QSvgRenderer>
 //#include <QPainter>
-QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget *)
+QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom)
 {
     if ( custom ) {
         m_labelTitle = new QLabel(title);
