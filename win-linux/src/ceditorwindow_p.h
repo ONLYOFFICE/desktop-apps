@@ -115,23 +115,27 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( objRoot.contains("user") ) {
-                iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
-            }
+            if ( canExtendTitle() ) {
+                if ( objRoot.contains("user") ) {
+                    iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
+                }
 
-            if ( objRoot.contains("title") ) {
-                QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                if ( objRoot.contains("title") ) {
+                    QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
 
-                QPushButton * _btn;
-                for (int i = _btns.size(); i --> 0; ) {
-                    _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
-                    qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
+                    QPushButton * _btn;
+                    for (int i = _btns.size(); i --> 0; ) {
+                        _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
+                        qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
 
-                    titleLeftOffset += _btn->width();
+                        titleLeftOffset += _btn->width();
+                    }
+
                 }
             }
 
-            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 4)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
+            int _btncount = iconuser ? 4 : 3;
+            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
             window->m_labelTitle->setStyleSheet(_label_styles);
         }
@@ -141,8 +145,10 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        window->setWindowTitle(m_panel->data()->title());
-        window->m_boxTitleBtns->repaint();
+        if ( canExtendTitle() ) {
+            window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
+        }
     }
 
     void onDocumentChanged(int id, bool state) override
@@ -150,8 +156,10 @@ public:
         if ( panel()->data()->hasChanges() != state ) {
             CCefEventsGate::onDocumentChanged(id, state);
 
-            window->setWindowTitle(m_panel->data()->title());
-            window->m_boxTitleBtns->repaint();
+            if ( canExtendTitle() ) {
+                window->setWindowTitle(m_panel->data()->title());
+                window->m_boxTitleBtns->repaint();
+            }
         }
     }
 
@@ -278,7 +286,8 @@ public:
 
     void onScreenScalingFactor(uint f)
     {
-        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 5)) * f; // 5 tool buttons: min+max+close+drop+usericon
+        int _btncount = iconuser ? 4 : 3;
+        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
         QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
         window->m_labelTitle->setStyleSheet(_label_styles);
 
@@ -437,6 +446,11 @@ public:
                 }
             }
         }
+    }
+
+    bool canExtendTitle()
+    {
+        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->prettyTitle();
     }
 };
 

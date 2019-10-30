@@ -106,17 +106,22 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         setMouseTracking(true);
     }
 #else
-    QColor color;
-    switch (panel->data()->contentType()) {
-    case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
-    case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
-    case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
-    }
 
-    m_bgColor = RGB(color.red(), color.green(), color.blue());
+    if ( d_ptr->canExtendTitle() ) {
+        QColor color;
+        switch (panel->data()->contentType()) {
+        case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
+        case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
+        case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
+        }
+
+        m_bgColor = RGB(color.red(), color.green(), color.blue());
+    }
 
     m_pMainPanel = createMainPanel(m_pWinPanel);
     m_pWinPanel->show();
+
+    recalculatePlaces();
 #endif
 
     QTimer::singleShot(0, [=]{m_pMainView->show();});
@@ -240,11 +245,16 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     m_boxTitleBtns->setObjectName("box-title-tools");
     m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
 
+    if ( !d_ptr->canExtendTitle() )
+        mainGridLayout->addWidget(m_boxTitleBtns);
+    else {
+        switch (d_ptr->panel()->data()->contentType()) {
+        case etDocument: m_boxTitleBtns->setProperty("editor","word"); break;
+        case etPresentation: m_boxTitleBtns->setProperty("editor","slide"); break;
+        case etSpreadsheet: m_boxTitleBtns->setProperty("editor","cell"); break;
+        }
+
         mainPanel->setProperty("window", "pretty");
-    switch (qobject_cast<CTabPanel *>(panel)->data()->contentType()) {
-    case etDocument: m_boxTitleBtns->setProperty("editor","word"); break;
-    case etPresentation: m_boxTitleBtns->setProperty("editor","slide"); break;
-    case etSpreadsheet: m_boxTitleBtns->setProperty("editor","cell"); break;
     }
 
     if ( m_dpiRatio > 1 )
@@ -257,8 +267,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     layoutBtns->setSpacing(1*m_dpiRatio);
 
     layoutBtns->addWidget(m_labelTitle);
-    layoutBtns->addWidget(d_ptr.get()->iconUser());
-//    layoutBtns->addWidget(d_ptr.get()->buttonDock());
+
+    if ( d_ptr->canExtendTitle() )
+        layoutBtns->addWidget(d_ptr.get()->iconUser());
+    else m_labelTitle->setText("ONLYOFFICE");
 
     if ( custom ) {
         layoutBtns->addWidget(m_buttonMinimize);
@@ -290,7 +302,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
         m_pMainView = d_ptr->panel();
         m_pMainView->setParent(mainPanel);
 
-        m_pMainView->setGeometry(mainPanel->geometry());
+//        m_pMainView->setGeometry(mainPanel->geometry());
 //        m_pMainView->show();
     }
 
@@ -376,25 +388,28 @@ void CEditorWindow::recalculatePlaces()
 //    int nCaptionR = 200;
     int nCaptionL = 0 /*d_ptr.get()->titleLeftOffset * m_dpiRatio*/;
 
-    QSize _s{TOOLBTN_WIDTH * 3, TOOLBTN_HEIGHT};
-    _s *= m_dpiRatio;
-//    m_boxTitleBtns->setFixedSize(_s.width(), _s.height());
+    if ( d_ptr->canExtendTitle() )
+    {
+//    QSize _s{TOOLBTN_WIDTH * 3, TOOLBTN_HEIGHT};
+//    _s *= m_dpiRatio;
+//    m_boxTitleBtns->setFixedWidth(_s.width());
 #ifdef Q_OS_WIN
-    m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, _s.height());
+    m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
     m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, _s.height());
 #endif
 //    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-//    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);
+//    m_pMainView->setGeometry(0, captionH, windowW, windowH - captionH);
 
-    QRegion reg(0, captionH, windowW, windowH - captionH);
+//    QRegion reg(0, captionH, windowW, windowH - captionH);
 //    reg = reg.united(QRect(0, 0, nCaptionL, captionH));
 //    reg = reg.united(QRect(windowW - nCaptionR, 0, nCaptionR, captionH));
-    m_pMainView->clearMask();
-    m_pMainView->setMask(reg);
+//    m_pMainView->clearMask();
+//    m_pMainView->setMask(reg);
 
-//    m_pMainView->lower();
+    m_pMainView->lower();
+    }
 }
 
 void CEditorWindow::setReporterMode(bool apply)
