@@ -91,7 +91,7 @@ public:
         CSVGPushButton * btn = new CSVGPushButton;
         btn->setProperty("class", "normal");
         btn->setProperty("act", "tool");
-        btn->setFixedSize(jsonobj["width"].toInt(40)*window->m_dpiRatio,jsonobj["height"].toInt(28)*window->m_dpiRatio);
+        btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
 
@@ -115,9 +115,14 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
+            int _user_width = 0;
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
                     iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
+                    iconuser->setText(objRoot["user"].toObject().value("name").toString());
+
+                    iconuser->adjustSize();
+                    _user_width = iconuser->width();
                 }
 
                 if ( objRoot.contains("title") ) {
@@ -134,10 +139,12 @@ public:
                 }
             }
 
-            int _btncount = iconuser ? 4 : 3;
+            int _btncount = /*iconuser ? 4 :*/ 3;
             int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
-            QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
-            window->m_labelTitle->setStyleSheet(_label_styles);
+            diffW -= _user_width;
+
+            diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
+                            window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
         }
     }
 
@@ -286,18 +293,23 @@ public:
 
     void onScreenScalingFactor(uint f)
     {
-        int _btncount = iconuser ? 4 : 3;
+        int _btncount = /*iconuser ? 4 :*/ 3;
         int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
-        QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
-        window->m_labelTitle->setStyleSheet(_label_styles);
 
         if ( iconuser ) {
-            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+//            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
+//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+
+            iconuser->setContentsMargins(0,0,0,2*f);
+            iconuser->adjustSize();
+            diffW -= iconuser->width();
         }
 
-        if ( btndock )
-            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+        diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*f) :
+                        window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*f);
+
+//        if ( btndock )
+//            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
 
         for (auto btn: m_mapTitleButtons) {
             btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
@@ -405,9 +417,10 @@ public:
     {
         if ( !iconuser ) {
             iconuser = new QLabel(window->m_boxTitleBtns);
-            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
-            iconuser->setAlignment(Qt::AlignCenter);
+            iconuser->setObjectName("iconuser");
+            iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
+//            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
+//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }
 
         return iconuser;

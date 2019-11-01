@@ -59,7 +59,8 @@ QString g_css =
         "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-        "#labelTitle{color:#444;font-size:11px;padding-bottom:2px;}"
+        "#labelTitle{color:#444;font-size:11px;}"
+        "#iconuser{color:#fff;font-size:11px;}"
         "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
@@ -68,7 +69,8 @@ QString g_css =
         "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
         "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
         "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
-        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;padding-bottom:5px;}"
+        "#mainPanel[zoom=\"2x\"] #iconuser,"
+        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
@@ -266,7 +268,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     layoutBtns->setContentsMargins(0,0,0,0);
     layoutBtns->setSpacing(1*m_dpiRatio);
 
+    layoutBtns->addStretch();
     layoutBtns->addWidget(m_labelTitle);
+    layoutBtns->addStretch();
 
     if ( d_ptr->canExtendTitle() )
         layoutBtns->addWidget(d_ptr.get()->iconUser());
@@ -358,8 +362,6 @@ void CEditorWindow::onScreenScalingFactor(uint newfactor)
 {
     CSingleWindowPlatform::onScreenScalingFactor(newfactor);
 
-    d_ptr.get()->onScreenScalingFactor(newfactor);
-
     m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
 
     QString css(AscAppManager::getWindowStylesheets(newfactor));
@@ -368,6 +370,8 @@ void CEditorWindow::onScreenScalingFactor(uint newfactor)
 
     m_boxTitleBtns->layout()->setSpacing(1 * newfactor);
     m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * newfactor);
+
+    d_ptr.get()->onScreenScalingFactor(newfactor);
 
     m_dpiRatio = newfactor;
     adjustGeometry();
