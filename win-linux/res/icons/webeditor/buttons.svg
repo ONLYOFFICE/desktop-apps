@@ -8,13 +8,13 @@
         <rect x="6" y="10" width="7" height="1"/>
         <rect x="6" y="12" width="7" height="1"/>
     </svg>
-    <svg id="svg-btn-save-coauth" width="20px" height="20px">
+    <svg id="svg-btn-coauth" width="20px" height="20px">
         <rect x="6" y="10" width="3" height="1" fill="#fff"/>
         <rect x="6" y="12" width="2" height="1" fill="#fff"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M16 12.9996C16 11.3427 14.6569 9.99957 13 9.99957C11.3431 9.99957 10 11.3427 10 12.9996C10 14.3058 10.8348 15.417 12 15.8289V16.8736C10.2748 16.4295 9 14.8634 9 12.9996C9 10.7904 10.7909 8.99957 13 8.99957C15.2091 8.99957 17 10.7904 17 12.9996C17 14.1945 16.476 15.2671 15.6453 16H17V17H14L14 16.8736V15.8289L14 14H15V15.2357C15.6137 14.6864 16 13.8881 16 12.9996Z" fill="#fff"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M8 15H4V4H6V7H12V4H12.5858L15 6.41421V8H16V6L13 3H4C3.44772 3 3 3.44772 3 4V15C3 15.5523 3.44772 16 4 16H8V15ZM10 4H11V6H10V4Z" fill="#fff"/>
     </svg>
-    <svg id="svg-btn-save-sync" width="20px" height="20px">
+    <svg id="svg-btn-sync" width="20px" height="20px">
         <rect x="6" y="10" width="3" height="1" fill="#fff"/>
         <rect x="6" y="12" width="3" height="1" fill="#fff"/>
         <rect x="10" y="10" width="9" height="7" rx="1" fill="#FFD114"/>

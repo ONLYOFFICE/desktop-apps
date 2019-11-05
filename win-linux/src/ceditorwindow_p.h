@@ -102,7 +102,10 @@ public:
             AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
         });
 
-        btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
+        if ( jsonobj.contains("icon") ) {
+            btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
+        } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
+
         btn->setToolTip(jsonobj["hint"].toString());
         return btn;
     }
@@ -456,6 +459,13 @@ public:
                     for (const auto& k: _disabled.keys()) {
                         m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
                     }
+                }
+            } else
+            if (objRoot.contains("icon:changed")) {
+                QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
+
+                for (const auto& b: _btns_changed.keys()) {
+                    m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
                 }
             }
         }
