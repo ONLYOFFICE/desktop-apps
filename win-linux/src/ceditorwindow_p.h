@@ -439,33 +439,39 @@ public:
         return btndock;
     }
 
+    void onWebAppsFeatures(int, std::wstring)
+    {
+    }
+
     void onWebTitleChanged(int, std::wstring json)
     {
-        QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
-        if( jerror.error == QJsonParseError::NoError ) {
-            QJsonObject objRoot = jdoc.object();
+        if ( !m_mapTitleButtons.isEmpty() ) {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
 
-            if (objRoot.contains("disabled")) {
-                QJsonObject _disabled = objRoot["disabled"].toObject();
+                if (objRoot.contains("disabled")) {
+                    QJsonObject _disabled = objRoot["disabled"].toObject();
 
-                if ( _disabled.contains("all") ) {
-                    bool _is_disabled = _disabled["all"].toBool();
+                    if ( _disabled.contains("all") ) {
+                        bool _is_disabled = _disabled["all"].toBool();
 
-                    for (auto& btn: m_mapTitleButtons) {
-                        btn->setDisabled(_is_disabled);
+                        for (auto& btn: m_mapTitleButtons) {
+                            btn->setDisabled(_is_disabled);
+                        }
+                    } else {
+                        for (const auto& k: _disabled.keys()) {
+                            m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                        }
                     }
-                } else {
-                    for (const auto& k: _disabled.keys()) {
-                        m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
-                    }
-                }
-            } else
-            if (objRoot.contains("icon:changed")) {
-                QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
+                } else
+                if (objRoot.contains("icon:changed")) {
+                    QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
 
-                for (const auto& b: _btns_changed.keys()) {
-                    m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                    for (const auto& b: _btns_changed.keys()) {
+                        m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                    }
                 }
             }
         }

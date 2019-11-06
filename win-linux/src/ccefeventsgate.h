@@ -73,6 +73,7 @@ public slots:
     virtual void onFullScreen(int id, bool apply) = 0;
 
     virtual void onWebTitleChanged(int, std::wstring json) = 0;
+    virtual void onWebAppsFeatures(int, std::wstring) = 0;
 };
 
 #endif // CCEFEVENTSGATE_H
