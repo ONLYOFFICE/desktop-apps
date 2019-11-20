@@ -89,7 +89,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
 #ifdef Q_OS_LINUX
     setObjectName("editorWindow");
-    m_pMainPanel = createMainPanel(this, panel);
+    m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
 
     QString background = "#editorWindow{background-color:";
@@ -401,7 +401,7 @@ void CEditorWindow::recalculatePlaces()
     m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
-    m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, _s.height());
+    m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, captionH);
 #endif
 //    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
 //    m_pMainView->setGeometry(0, captionH, windowW, windowH - captionH);
