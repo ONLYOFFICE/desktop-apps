@@ -153,7 +153,7 @@ clean:
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
 		$(URPMI_REPO)\
-		$(PROGRAM_PATH)/*\
+		$(PROGRAM_PATH)/*/\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz\
