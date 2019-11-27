@@ -174,6 +174,8 @@ tar-desktopeditor:
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
 
+	cp -rf common/onlyoffice/opt/onlyoffice/desktopeditors/* $(TAR_PROGRAM_PATH)
+
 qt-redist:
 	cp -r -L -t  $(PROGRAM_PATH)/ \
 		$(QT_PLUGINS)/bearer \
