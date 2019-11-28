@@ -181,12 +181,6 @@ public:
     }
 }
 
-- (void)setParentCef:(int)idx {
-    if (m_pCefView) {
-        m_pCefView->GetCefView()->SetParentCef(idx);
-    }
-}
-
 - (void)setExternalCloud:(NSString *)provider {
     if (m_pCefView) {
         m_pCefView->GetCefView()->SetExternalCloud([provider stdwstring]);
