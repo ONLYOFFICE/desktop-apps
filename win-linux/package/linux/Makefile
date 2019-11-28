@@ -153,6 +153,7 @@ clean:
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
 		$(URPMI_REPO)\
+		$(PROGRAM_PATH)/*/\
 		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz\
@@ -195,6 +196,9 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 deb-version: desktopeditor
+	#TODO: remove it gracefully
+	rm -frv deb/$(PACKAGE_NAME)/opt deb/$(PACKAGE_NAME)/usr
+
 	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
 
 	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
