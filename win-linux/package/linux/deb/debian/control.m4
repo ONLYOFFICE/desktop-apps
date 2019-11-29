@@ -1,17 +1,34 @@
-Package: {{PACKAGE_NAME}}
-Version: {{PACKAGE_VERSION}}
-Architecture: amd64
+Source: M4_PACKAGE_NAME
 Section: editors
-Maintainer: Ascensio System SIA <support@onlyoffice.com>
-#Source: ca-certificates-local
-#Build-Depends: debhelper (>= 8.0.0)
-Pre-Depends: dpkg (>= 1.14.0)
-#FullDepends: x11-common, curl | wget, fonts-dejavu | ttf-dejavu, fonts-opensymbol 
-Depends: x11-common, libasound2, curl | wget, libxss1, libatk1.0-0, libgtk2.0-0, libcairo2, libgconf-2-4, libstdc++6 (>=4.8), fonts-dejavu | ttf-dejavu, fonts-opensymbol, fonts-liberation, fonts-crosextra-carlito, xdg-utils
-Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
-#Standards-Version: 3.9.4
 Priority: optional
-Installed-Size: 183024
-Description: ONLYOFFICE DesktopEditors installation package
- ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from onlyoffice cloud portal on local computer without browser using.
+Maintainer: M4_PUBLISHER_NAME <M4_SUPPORT_MAIL>
+Build-Depends: debhelper (>= 8.0.0)
 
+Package: M4_PACKAGE_NAME
+#Standards-Version: 3.9.4
+Architecture: M4_DEB_ARCH
+Pre-Depends: dpkg (>= 1.14.0)
+Depends:
+ifelse(M4_PACKAGE_EDITION, full,
+` x11-common,
+  curl | wget,
+  fonts-dejavu | ttf-dejavu,
+  fonts-opensymbol'
+,
+` x11-common,
+  libasound2,
+  curl | wget,
+  libxss1,
+  libatk1.0-0,
+  libgtk2.0-0,
+  libcairo2,
+  libgconf-2-4,
+  libstdc++6 (>=4.8),
+  fonts-dejavu | ttf-dejavu,
+  fonts-opensymbol,
+  fonts-liberation,
+  fonts-crosextra-carlito,
+  xdg-utils')
+Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
+Description: M4_COMPANY_NAME M4_PRODUCT_NAME installation package
+ M4_COMPANY_NAME M4_PRODUCT_NAME is an application for editing office documents (text documents, spreadsheets and presentations) from M4_COMPANY_NAME cloud portal on local computer without browser using.

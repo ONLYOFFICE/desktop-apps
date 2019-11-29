@@ -5,7 +5,7 @@ set -e 		# fail on any error
 
 case "$1" in
 	purge)
-        rm -fr /home/*/.local/share/onlyoffice
+        rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX
 	;;
 
 	remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)

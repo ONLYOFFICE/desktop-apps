@@ -1,43 +1,55 @@
-COMPANY_NAME ?= onlyoffice
-PRODUCT_NAME ?= desktopeditors
+PWD := $(shell pwd)
+
+COMPANY_NAME ?= ONLYOFFICE
+PRODUCT_NAME ?= Desktop Editors
+PRODUCT_NAME_SHORT ?= $(subst $(empty) $(empty),,$(PRODUCT_NAME))
+
+COMPANY_NAME_LOW = $(shell echo $(COMPANY_NAME) | tr A-Z a-z)
+PRODUCT_NAME_LOW = $(shell echo $(PRODUCT_NAME_SHORT) | tr A-Z a-z)
+
+PUBLISHER_NAME ?= Ascensio System SIA
+PUBLISHER_URL ?= http://onlyoffice.com
+SUPPORT_URL ?= http://support.onlyoffice.com
+SUPPORT_MAIL ?= support@onlyoffice.com
+
 PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 PACKAGE_EDITION ?= cool
 S3_BUCKET ?= repo-doc-onlyoffice-com
 
-ifeq ($(COMPANY_NAME), onlyoffice)
-PACKAGE_NAME := $(COMPANY_NAME)-$(PRODUCT_NAME)
-else
-PACKAGE_NAME := $(COMPANY_NAME)
-endif
+BRANDING_DIR ?= $(PWD)/branding
 
+PACKAGE_NAME := $(COMPANY_NAME_LOW:%=%-)$(PRODUCT_NAME_LOW)
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
-UNAME_M ?= $(shell uname -m)
-ifeq ($(UNAME_M),x86_64)
-	RPM_ARCH = x86_64
-	DEB_ARCH = amd64
-	TAR_ARCH = x64
-	URPMI_ARCH = x86_64
-	APT_RPM_ARCH = x86_64
-	DESKTOP_SUFFIX = _64
-endif
-ifneq ($(filter %86,$(UNAME_M)),)
-	RPM_ARCH = i686
-	DEB_ARCH = i386
-	URPMI_ARCH = i586
-	APT_RPM_ARCH = i586
-	TAR_ARCH = x86
-	DESKTOP_SUFFIX = _32
+UNAME_P := $(shell uname -p)
+ifeq ($(UNAME_P),x86_64)
+	ARCHITECTURE := 64
+else ifneq ($(filter %86,$(UNAME_P)),)
+	ARCHITECTURE := 32
 endif
 
+ifeq ($(ARCHITECTURE),64)
+	DEB_ARCH = amd64
+	RPM_ARCH = x86_64
+	APT_RPM_ARCH = x86_64
+	URPMI_ARCH = x86_64
+	TAR_ARCH = x64
+else ifeq ($(ARCHITECTURE),32)
+	DEB_ARCH = i386
+	RPM_ARCH = i686
+	APT_RPM_ARCH = i586
+	URPMI_ARCH = i586
+	TAR_ARCH = x86
+endif
+
+DEB_BUILD_DIR = $(PWD)/deb
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
-DEB_BUILD_DIR = $(PWD)/
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 
+DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)/$(DEB_ARCH)
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 
@@ -94,20 +106,26 @@ endif
 
 OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
 
+DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
-DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
-PROGRAM_PATH := common/$(COMPANY_NAME)/opt/$(COMPANY_NAME)/$(PRODUCT_NAME)
+DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 
-ifeq ($(COMPANY_NAME), onlyoffice)
-START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/desktopeditors
-else
-START_SCRIPT := common/$(COMPANY_NAME)/usr/bin/$(COMPANY_NAME)
-endif
+PROGRAM_PATH := common/desktopeditors/home
+START_SCRIPT := common/desktopeditors/home/DesktopEditors
 
-DEB_DEPENDENCY += deb-version
+LINUX_DEPS += common/desktopeditors/bin/$(PACKAGE_NAME)
+LINUX_DEPS += common/desktopeditors/share/applications/$(PACKAGE_NAME).desktop
+
+DEB_DEPS += deb/debian/changelog
+DEB_DEPS += deb/debian/control
+DEB_DEPS += deb/debian/postinst
+DEB_DEPS += deb/debian/postrm
+DEB_DEPS += deb/debian/prerm
+DEB_DEPS += deb/debian/rules
+DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 
 TAR_DEPENDENCY += tar-desktopeditor
 
@@ -115,7 +133,7 @@ INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-BUILD_PATH := ../../../../build_tools/out/linux$(DESKTOP_SUFFIX)/$(COMPANY_NAME)/$(PRODUCT_NAME)/*
+BUILD_PATH := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
 
 TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
@@ -126,7 +144,21 @@ INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 
 PLATFORM := linux_64_static_stdlib
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditor tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
+M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
+M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
+M4_PARAMS += -D M4_PACKAGE_NAME="$(PACKAGE_NAME)"
+M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
+M4_PARAMS += -D M4_PACKAGE_EDITION="$(PACKAGE_EDITION)"
+M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX="$(DESKTOPEDITORS_PREFIX)"
+M4_PARAMS += -D M4_DEB_ARCH="$(DEB_ARCH)"
+M4_PARAMS += -D M4_RPM_ARCH="$(RPM_ARCH)"
+M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
+M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
+M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
+M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
+M4_PARAMS += -D M4_BRANDING_DIR="$(abspath $(BRANDING_DIR))"
+
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditors tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi tar 
 #installer
@@ -144,8 +176,15 @@ urpmi: $(URPMI)
 installer: $(INSTALLER)
 
 clean:
-	rm -rfv $(DEB_PACKAGE_DIR)/*.deb\
-		$(DEB_PACKAGE_DIR)/*.changes\
+	rm -rfv \
+		$(LINUX_DEPS) \
+		$(PROGRAM_PATH) \
+		$(DEB_DEPS) \
+		$(DEB_BUILD_DIR)/debian/.debhelper \
+		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME) \
+		$(DEB_BUILD_DIR)/debian/files \
+		$(DEB_BUILD_DIR)/debian/*.debhelper.log \
+		$(DEB_PACKAGE_DIR) \
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
 		$(URPMI_BUILD_DIR)\
@@ -158,7 +197,7 @@ clean:
 		*.tar.gz\
 		index.html
 
-desktopeditor:
+desktopeditors:
 	mkdir -p $(PROGRAM_PATH)
 	cp -rf $(BUILD_PATH) $(PROGRAM_PATH)
 
@@ -192,18 +231,10 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-deb-version: desktopeditor
-	cp -rfp common/$(COMPANY_NAME)/* deb/$(PACKAGE_NAME)/
-
-	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/post*
-	chmod 755 deb/$(PACKAGE_NAME)/DEBIAN/pre*
-	sed 's/{{PACKAGE_NAME}}/'$(PACKAGE_NAME)'/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
-	sed 's/{{PACKAGE_VERSION}}/'$(PACKAGE_VERSION)'/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
-
-ifeq ($(PACKAGE_EDITION), full)
-	sed '/^Depends.*/d'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
-	sed 's/^#Full\(Depends.*\)/\1/'  -i deb/$(PACKAGE_NAME)/DEBIAN/control
-endif
+$(DEB): desktopeditors $(LINUX_DEPS) $(DEB_DEPS)
+	cd deb && dpkg-buildpackage -b -uc -us
+	mkdir -p $(DEB_PACKAGE_DIR)
+	mv -f $(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).* $(DEB_PACKAGE_DIR)
 
 $(RPM): desktopeditor
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
@@ -215,9 +246,6 @@ $(RPM): desktopeditor
 		--define "_package_arch $(RPM_ARCH)" \
 		--define "_package_edition $(PACKAGE_EDITION)" \
 		$(PACKAGE_NAME).spec
-
-$(DEB): $(DEB_DEPENDENCY)
-	fakeroot dpkg-deb --build deb/$(PACKAGE_NAME) && mv deb/$(PACKAGE_NAME).deb $(DEB)
 
 $(APT_RPM): desktopeditor
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
@@ -319,6 +347,15 @@ M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACK
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
+
+deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
+	mv -f $< $@
+
+common/desktopeditors/bin/$(PACKAGE_NAME) : common/desktopeditors/bin/desktopeditors
+	mv -f $< $@
+
+common/desktopeditors/share/applications/$(PACKAGE_NAME).desktop : common/desktopeditors/share/applications/desktopeditors.desktop
+	mv -f $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
 #deploy-installer
