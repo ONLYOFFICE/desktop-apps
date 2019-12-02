@@ -201,6 +201,7 @@ desktopeditors:
 	mkdir -p $(DESKTOPEDITORS)/home
 	cp -rf $(SRC) $(DESKTOPEDITORS)/home
 
+	cp -rf $(BRANDING_DIR)/$(DESKTOPEDITORS)/home/* $(DESKTOPEDITORS)/home
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(DESKTOPEDITORS)/home/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(DESKTOPEDITORS)/home
 	
