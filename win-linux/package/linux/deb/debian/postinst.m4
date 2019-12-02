@@ -12,7 +12,7 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
 fi
 for icon in "/opt/M4_DESKTOPEDITORS_PREFIX/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "asc-de"
+  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "M4_PACKAGE_NAME"
 done
 
 UPDATE_MENUS="$(which update-menus 2> /dev/null || true)"

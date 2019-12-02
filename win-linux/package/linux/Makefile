@@ -114,7 +114,7 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rp
 DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 
 PROGRAM_PATH := common/desktopeditors/home
-START_SCRIPT := common/desktopeditors/home/DesktopEditors
+START_SCRIPT := $(PROGRAM_PATH)/DesktopEditors
 
 LINUX_DEPS += common/desktopeditors/bin/$(PACKAGE_NAME)
 LINUX_DEPS += common/desktopeditors/share/applications/$(PACKAGE_NAME).desktop
@@ -184,6 +184,7 @@ clean:
 		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME) \
 		$(DEB_BUILD_DIR)/debian/files \
 		$(DEB_BUILD_DIR)/debian/*.debhelper.log \
+		$(DEB_BUILD_DIR)/debian/*.substvars \
 		$(DEB_PACKAGE_DIR) \
 		$(RPM_BUILD_DIR)\
 		$(APT_RPM_BUILD_DIR)\
@@ -232,9 +233,9 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(DEB): desktopeditors $(LINUX_DEPS) $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b -uc -us
+	cd deb && dpkg-buildpackage -b --no-sign
 	mkdir -p $(DEB_PACKAGE_DIR)
-	mv -f $(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).* $(DEB_PACKAGE_DIR)
+	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
 $(RPM): desktopeditor
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
