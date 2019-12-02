@@ -8,6 +8,9 @@ win-linux/*.user
 win-linux/package/linux/index.html
 win-linux/package/windows/index.html
 
+win-linux/package/linux/deb/debian/.debhelper
+win-linux/package/linux/deb/debian/*.debhelper.log
+
 common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
 common/converter/*
