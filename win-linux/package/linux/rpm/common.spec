@@ -1,20 +1,3 @@
-Summary: Desktop editors for text, spreadsheet and presentation files
-Name: %{_package_name}
-Version: %{_product_version}
-Release: %{_build_number}
-License: AGPLv3
-Group: Applications/Office
-URL: http://onlyoffice.com/
-Vendor: Ascensio System SIA
-Packager: Ascensio System SIA <support@onlyoffice.com>
-BuildArch: %{_package_arch}
-AutoReq: no
-AutoProv: no
-
-%description
-ONLYOFFICE DesktopEditors installation package
- ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from onlyoffice cloud portal on local computer without browser using.
-
 %prep
 rm -rf "%{buildroot}"
 
@@ -22,17 +5,28 @@ rm -rf "%{buildroot}"
 
 %install
 
+DESKTOPEDITORS=%{_builddir}/../../../common/desktopeditors
+
+HOME_DIR=%{buildroot}/opt/%{_desktopeditors_prefix}
+BIN_DIR=%{buildroot}%{_bindir}
+DATA_DIR=%{buildroot}%{_datadir}
+
 #install desktopeditor files
-mkdir -p "%{buildroot}"
-cp -r ../../../common/onlyoffice/* "%{buildroot}/"
+mkdir -p "$HOME_DIR/"
+cp -r $DESKTOPEDITORS/home/* "$HOME_DIR/"
+
+#install documentbuilder bin
+mkdir -p "$BIN_DIR/" "$DATA_DIR/applications/"
+cp $DESKTOPEDITORS/bin/%{_package_name} "$BIN_DIR/"
+cp $DESKTOPEDITORS/share/applications/%{_package_name}.desktop "$DATA_DIR/applications/"
 
 %clean
 rm -rf "%{buildroot}"
 
 %files
-%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
-%attr(755, root, root) /usr/bin/*desktopeditors
-%attr(-, root, root) /usr/share/applications/*.desktop
+%attr(-, root, root) /opt/%{_desktopeditors_prefix}/*
+%attr(755, root, root) %{_bindir}/%{_package_name}
+%attr(-, root, root) %{_datadir}/applications/%{_package_name}.desktop
 %pre
 
 %post
@@ -46,9 +40,9 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
   echo "Error: Could not find xdg-icon-resource" >&2
   exit 1
 fi
-for icon in "/opt/onlyoffice/desktopeditors/asc-de-"*.png; do
+for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "asc-de"
+  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
 done
 
 UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
@@ -79,9 +73,9 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
   echo "Error: Could not find xdg-icon-resource" >&2
   exit 1
 fi
-for icon in "/opt/onlyoffice/desktopeditors/asc-de-"*.png; do
+for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "asc-de"
+  "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
 done
 
 UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
@@ -95,4 +89,3 @@ fi
 %postun
 
 set -e 		# fail on any error
-

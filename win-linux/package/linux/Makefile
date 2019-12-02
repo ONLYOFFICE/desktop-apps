@@ -126,6 +126,8 @@ DEB_DEPS += deb/debian/prerm
 DEB_DEPS += deb/debian/rules
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 
+RPM_DEPS += rpm/$(PACKAGE_NAME).spec
+
 TAR_DEPENDENCY += tar-desktopeditor
 
 INSTALLER_DEPENDENCY += desktopeditor
@@ -185,7 +187,8 @@ clean:
 		$(DEB_BUILD_DIR)/debian/*.debhelper.log \
 		$(DEB_BUILD_DIR)/debian/*.substvars \
 		$(DEB_PACKAGE_DIR) \
-		$(RPM_BUILD_DIR)\
+		$(RPM_DEPS) \
+		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR)\
 		$(URPMI_BUILD_DIR)\
 		$(DEB_REPO)\
@@ -201,7 +204,7 @@ desktopeditors:
 	mkdir -p $(DESKTOPEDITORS)/home
 	cp -rf $(SRC) $(DESKTOPEDITORS)/home
 
-	cp -rf $(BRANDING_DIR)/$(DESKTOPEDITORS)/home/* $(DESKTOPEDITORS)/home
+	cp -rf $(BRANDING_DIR)/* $(PWD)/
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(DESKTOPEDITORS)/home/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(DESKTOPEDITORS)/home
 	
@@ -237,21 +240,29 @@ $(DEB): desktopeditors $(LINUX_DEPS) $(DEB_DEPS)
 	mkdir -p $(DEB_PACKAGE_DIR)
 	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
-$(RPM): desktopeditor
+$(RPM): desktopeditors $(LINUX_DEPS) $(RPM_DEPS)
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
+		--define "_company_name $(COMPANY_NAME)" \
+		--define "_product_name $(PRODUCT_NAME)" \
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
-		--define "_package_arch $(RPM_ARCH)" \
 		--define "_package_edition $(PACKAGE_EDITION)" \
+		--define "_package_arch $(RPM_ARCH)" \
+		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
+		--define "_publisher_name $(PUBLISHER_NAME)" \
+		--define "_publisher_url $(PUBLISHER_URL)" \
+		--define "_support_mail $(SUPPORT_MAIL)" \
 		$(PACKAGE_NAME).spec
 
 $(APT_RPM): desktopeditor
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
+		--define "_company_name $(COMPANY_NAME)" \
+		--define "_product_name $(PRODUCT_NAME)" \
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
@@ -357,6 +368,9 @@ $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME) : $(DESKTOPEDITORS)/bin/desktopeditors
 
 $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop : $(DESKTOPEDITORS)/share/applications/desktopeditors.desktop
 	mv -f $< $@
+
+rpm/$(PACKAGE_NAME).spec : rpm/package.spec
+	cp -f $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
 #deploy-installer
