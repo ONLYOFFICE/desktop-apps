@@ -113,11 +113,10 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rp
 
 DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 
-PROGRAM_PATH := common/desktopeditors/home
-START_SCRIPT := $(PROGRAM_PATH)/DesktopEditors
+DESKTOPEDITORS := common/desktopeditors
 
-LINUX_DEPS += common/desktopeditors/bin/$(PACKAGE_NAME)
-LINUX_DEPS += common/desktopeditors/share/applications/$(PACKAGE_NAME).desktop
+LINUX_DEPS += $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME)
+LINUX_DEPS += $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop
 
 DEB_DEPS += deb/debian/changelog
 DEB_DEPS += deb/debian/control
@@ -133,7 +132,7 @@ INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-BUILD_PATH := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
+SRC := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
 
 TAR_PROGRAM_PATH := desktopeditors
 TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
@@ -178,7 +177,7 @@ installer: $(INSTALLER)
 clean:
 	rm -rfv \
 		$(LINUX_DEPS) \
-		$(PROGRAM_PATH) \
+		$(DESKTOPEDITORS)/home \
 		$(DEB_DEPS) \
 		$(DEB_BUILD_DIR)/debian/.debhelper \
 		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME) \
@@ -199,23 +198,23 @@ clean:
 		index.html
 
 desktopeditors:
-	mkdir -p $(PROGRAM_PATH)
-	cp -rf $(BUILD_PATH) $(PROGRAM_PATH)
+	mkdir -p $(DESKTOPEDITORS)/home
+	cp -rf $(SRC) $(DESKTOPEDITORS)/home
 
-	cp -rf ../../../common/package/license/agpl-3.0.htm $(PROGRAM_PATH)/LICENSE.htm
-	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(PROGRAM_PATH)
+	cp -rf ../../../common/package/license/agpl-3.0.htm $(DESKTOPEDITORS)/home/LICENSE.htm
+	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(DESKTOPEDITORS)/home
 	
-	chmod 755 $(START_SCRIPT)
+	chmod 755 $(DESKTOPEDITORS)/home/DesktopEditors
 	
 tar-desktopeditor:
 	mkdir -p $(TAR_PROGRAM_PATH)
-	cp -rf $(BUILD_PATH) $(TAR_PROGRAM_PATH)
+	cp -rf $(SRC) $(TAR_PROGRAM_PATH)
 
 	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
 
 qt-redist:
-	cp -r -L -t  $(PROGRAM_PATH)/ \
+	cp -r -L -t  $(DESKTOPEDITORS)/home/ \
 		$(QT_PLUGINS)/bearer \
 		$(QT_PLUGINS)/imageformats \
 		$(QT_PLUGINS)/platforms \
@@ -352,10 +351,10 @@ M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACK
 deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
 	mv -f $< $@
 
-common/desktopeditors/bin/$(PACKAGE_NAME) : common/desktopeditors/bin/desktopeditors
+$(DESKTOPEDITORS)/bin/$(PACKAGE_NAME) : $(DESKTOPEDITORS)/bin/desktopeditors
 	mv -f $< $@
 
-common/desktopeditors/share/applications/$(PACKAGE_NAME).desktop : common/desktopeditors/share/applications/desktopeditors.desktop
+$(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop : $(DESKTOPEDITORS)/share/applications/desktopeditors.desktop
 	mv -f $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
