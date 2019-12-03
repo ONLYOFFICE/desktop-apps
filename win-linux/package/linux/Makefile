@@ -130,6 +130,8 @@ RPM_DEPS += rpm/$(PACKAGE_NAME).spec
 
 APT_RPM_DEPS += apt-rpm/$(PACKAGE_NAME).spec
 
+URPMI_DEPS += urpmi/$(PACKAGE_NAME).spec
+
 TAR_DEPENDENCY += tar-desktopeditor
 
 INSTALLER_DEPENDENCY += desktopeditor
@@ -193,7 +195,8 @@ clean:
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_DEPS) \
 		$(APT_RPM_BUILD_DIR) \
-		$(URPMI_BUILD_DIR)\
+		$(URPMI_DEPS) \
+		$(URPMI_BUILD_DIR) \
 		$(DEB_REPO)\
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
@@ -277,15 +280,21 @@ $(APT_RPM): desktopeditors $(LINUX_DEPS) $(APT_RPM_DEPS)
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		$(PACKAGE_NAME).spec
 
-$(URPMI): desktopeditor
+$(URPMI): desktopeditors $(LINUX_DEPS) $(URPMI_DEPS)
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
+		--define "_company_name $(COMPANY_NAME)" \
+		--define "_product_name $(PRODUCT_NAME)" \
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
-		--define "_package_arch $(URPMI_ARCH)" \
 		--define "_package_edition $(PACKAGE_EDITION)" \
+		--define "_package_arch $(URPMI_ARCH)" \
+		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
+		--define "_publisher_name $(PUBLISHER_NAME)" \
+		--define "_publisher_url $(PUBLISHER_URL)" \
+		--define "_support_mail $(SUPPORT_MAIL)" \
 		$(PACKAGE_NAME).spec
 
 $(TAR): $(TAR_DEPENDENCY)
@@ -380,6 +389,9 @@ rpm/$(PACKAGE_NAME).spec : rpm/package.spec
 	cp -f $< $@
 
 apt-rpm/$(PACKAGE_NAME).spec : apt-rpm/package.spec
+	cp -f $< $@
+
+urpmi/$(PACKAGE_NAME).spec : urpmi/package.spec
 	cp -f $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
