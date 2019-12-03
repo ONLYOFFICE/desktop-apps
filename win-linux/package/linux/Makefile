@@ -126,12 +126,6 @@ DEB_DEPS += deb/debian/prerm
 DEB_DEPS += deb/debian/rules
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 
-RPM_DEPS += rpm/$(PACKAGE_NAME).spec
-
-APT_RPM_DEPS += apt-rpm/$(PACKAGE_NAME).spec
-
-URPMI_DEPS += urpmi/$(PACKAGE_NAME).spec
-
 TAR_DEPENDENCY += tar-desktopeditor
 
 INSTALLER_DEPENDENCY += desktopeditor
@@ -156,27 +150,26 @@ M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_PACKAGE_EDITION="$(PACKAGE_EDITION)"
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX="$(DESKTOPEDITORS_PREFIX)"
 M4_PARAMS += -D M4_DEB_ARCH="$(DEB_ARCH)"
-M4_PARAMS += -D M4_RPM_ARCH="$(RPM_ARCH)"
 M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
 M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
 M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
 M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 M4_PARAMS += -D M4_BRANDING_DIR="$(abspath $(BRANDING_DIR))"
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-rpm deploy-deb deploy-apt-rpm deploy-tar desktopeditors tar-desktopeditor rpm-version deb-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditors tar-desktopeditor deb-version rpm-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm urpmi tar 
+all: deb rpm apt-rpm urpmi tar 
 #installer
-
-rpm: $(RPM)
 
 deb: $(DEB)
 
-tar: $(TAR)
+rpm: $(RPM)
 
 apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
+
+tar: $(TAR)
 
 installer: $(INSTALLER)
 
@@ -191,11 +184,8 @@ clean:
 		$(DEB_BUILD_DIR)/debian/*.debhelper.log \
 		$(DEB_BUILD_DIR)/debian/*.substvars \
 		$(DEB_PACKAGE_DIR) \
-		$(RPM_DEPS) \
 		$(RPM_BUILD_DIR) \
-		$(APT_RPM_DEPS) \
 		$(APT_RPM_BUILD_DIR) \
-		$(URPMI_DEPS) \
 		$(URPMI_BUILD_DIR) \
 		$(DEB_REPO)\
 		$(RPM_REPO)\
@@ -246,7 +236,7 @@ $(DEB): desktopeditors $(LINUX_DEPS) $(DEB_DEPS)
 	mkdir -p $(DEB_PACKAGE_DIR)
 	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
-$(RPM): desktopeditors $(LINUX_DEPS) $(RPM_DEPS)
+$(RPM): desktopeditors $(LINUX_DEPS)
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
@@ -261,9 +251,9 @@ $(RPM): desktopeditors $(LINUX_DEPS) $(RPM_DEPS)
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
-		$(PACKAGE_NAME).spec
+		package.spec
 
-$(APT_RPM): desktopeditors $(LINUX_DEPS) $(APT_RPM_DEPS)
+$(APT_RPM): desktopeditors $(LINUX_DEPS)
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
@@ -278,9 +268,9 @@ $(APT_RPM): desktopeditors $(LINUX_DEPS) $(APT_RPM_DEPS)
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
-		$(PACKAGE_NAME).spec
+		package.spec
 
-$(URPMI): desktopeditors $(LINUX_DEPS) $(URPMI_DEPS)
+$(URPMI): desktopeditors $(LINUX_DEPS)
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
@@ -295,7 +285,7 @@ $(URPMI): desktopeditors $(LINUX_DEPS) $(URPMI_DEPS)
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
-		$(PACKAGE_NAME).spec
+		package.spec
 
 $(TAR): $(TAR_DEPENDENCY)
 	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
@@ -384,15 +374,6 @@ $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME) : $(DESKTOPEDITORS)/bin/desktopeditors
 
 $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop : $(DESKTOPEDITORS)/share/applications/desktopeditors.desktop
 	mv -f $< $@
-
-rpm/$(PACKAGE_NAME).spec : rpm/package.spec
-	cp -f $< $@
-
-apt-rpm/$(PACKAGE_NAME).spec : apt-rpm/package.spec
-	cp -f $< $@
-
-urpmi/$(PACKAGE_NAME).spec : urpmi/package.spec
-	cp -f $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
 #deploy-installer
