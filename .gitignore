@@ -8,8 +8,13 @@ win-linux/*.user
 win-linux/package/linux/index.html
 win-linux/package/windows/index.html
 
+win-linux/package/linux/common/desktopeditors/home
 win-linux/package/linux/deb/debian/.debhelper
 win-linux/package/linux/deb/debian/*.debhelper.log
+win-linux/package/linux/rpm/builddir
+win-linux/package/linux/apt-rpm/builddir
+win-linux/package/linux/urpmi/builddir
+win-linux/package/linux/tar
 
 common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
