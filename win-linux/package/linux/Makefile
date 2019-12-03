@@ -47,11 +47,13 @@ DEB_BUILD_DIR = $(PWD)/deb
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
+TAR_BUILD_DIR = $(PWD)/tar
 
 DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)/$(DEB_ARCH)
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
+TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 
 REPO_NAME := repo
 
@@ -110,6 +112,7 @@ DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
+TAR = $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
 DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 
@@ -126,16 +129,11 @@ DEB_DEPS += deb/debian/prerm
 DEB_DEPS += deb/debian/rules
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 
-TAR_DEPENDENCY += tar-desktopeditor
-
 INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
-
-TAR_PROGRAM_PATH := desktopeditors
-TAR := $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
 INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
@@ -156,7 +154,7 @@ M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
 M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 M4_PARAMS += -D M4_BRANDING_DIR="$(abspath $(BRANDING_DIR))"
 
-.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditors tar-desktopeditor deb-version rpm-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditors deb-version rpm-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
 
 all: deb rpm apt-rpm urpmi tar 
 #installer
@@ -187,11 +185,11 @@ clean:
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
+		$(TAR_BUILD_DIR) \
 		$(DEB_REPO)\
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
 		$(URPMI_REPO)\
-		$(TAR_PROGRAM_PATH)\
 		$(INSTALLER)\
 		*.tar.gz\
 		index.html
@@ -205,13 +203,6 @@ desktopeditors:
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(DESKTOPEDITORS)/home
 	
 	chmod 755 $(DESKTOPEDITORS)/home/DesktopEditors
-	
-tar-desktopeditor:
-	mkdir -p $(TAR_PROGRAM_PATH)
-	cp -rf $(SRC) $(TAR_PROGRAM_PATH)
-
-	cp -rf ../../../common/package/license/agpl-3.0.htm $(TAR_PROGRAM_PATH)/LICENSE.htm
-	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(TAR_PROGRAM_PATH)
 
 qt-redist:
 	cp -r -L -t  $(DESKTOPEDITORS)/home/ \
@@ -287,8 +278,13 @@ $(URPMI): desktopeditors $(LINUX_DEPS)
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(TAR): $(TAR_DEPENDENCY)
-	tar -czf $@ --owner=root --group=root  -C $(TAR_PROGRAM_PATH)/.. desktopeditors
+$(TAR): desktopeditors $(LINUX_DEPS)
+	cd tar && tar -czf $@ \
+		--owner=root --group=root \
+		--transform="s|home|"$(PACKAGE_NAME)"|" \
+		-C ../$(DESKTOPEDITORS) home
+	mkdir -p $(TAR_PACKAGE_DIR)
+	mv -f tar/$@ -t $(TAR_PACKAGE_DIR)
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
