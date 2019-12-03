@@ -119,6 +119,7 @@ DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 DESKTOPEDITORS := common/desktopeditors
 
 LINUX_DEPS += $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME)
+LINUX_DEPS += $(DESKTOPEDITORS)/bin/desktopeditors
 LINUX_DEPS += $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop
 
 DEB_DEPS += deb/debian/changelog
@@ -367,6 +368,7 @@ deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
 
 $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME) : $(DESKTOPEDITORS)/bin/desktopeditors
 	mv -f $< $@
+	ln -srf $@ $<
 
 $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop : $(DESKTOPEDITORS)/share/applications/desktopeditors.desktop
 	mv -f $< $@
