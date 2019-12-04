@@ -193,7 +193,7 @@ clean:
 		*.tar.gz\
 		index.html
 
-desktopeditor:
+desktopeditor: $(LINUX_DEPS)
 	mkdir -p $(DESKTOPEDITORS)/home
 	cp -rf $(SRC) $(DESKTOPEDITORS)/home
 
@@ -221,7 +221,7 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-$(RPM): desktopeditor $(LINUX_DEPS)
+$(RPM): desktopeditor
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
@@ -238,12 +238,12 @@ $(RPM): desktopeditor $(LINUX_DEPS)
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(DEB): desktopeditor $(LINUX_DEPS) $(DEB_DEPS)
+$(DEB): desktopeditor $(DEB_DEPS)
 	cd deb && dpkg-buildpackage -b --no-sign
 	mkdir -p $(DEB_PACKAGE_DIR)
 	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
-$(APT_RPM): desktopeditor $(LINUX_DEPS)
+$(APT_RPM): desktopeditor
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
@@ -260,7 +260,7 @@ $(APT_RPM): desktopeditor $(LINUX_DEPS)
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(URPMI): desktopeditor $(LINUX_DEPS)
+$(URPMI): desktopeditor
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
@@ -277,7 +277,7 @@ $(URPMI): desktopeditor $(LINUX_DEPS)
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(TAR): desktopeditor $(LINUX_DEPS)
+$(TAR): desktopeditor
 	cd tar && tar -czf $@ \
 		--owner=root --group=root \
 		--transform="s|home|"$(PACKAGE_NAME)"|" \
