@@ -22,35 +22,32 @@ BRANDING_DIR ?= $(PWD)/branding
 PACKAGE_NAME := $(COMPANY_NAME_LOW:%=%-)$(PRODUCT_NAME_LOW)
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
-UNAME_P := $(shell uname -p)
-ifeq ($(UNAME_P),x86_64)
-	ARCHITECTURE := 64
-else ifneq ($(filter %86,$(UNAME_P)),)
-	ARCHITECTURE := 32
-endif
-
-ifeq ($(ARCHITECTURE),64)
-	DEB_ARCH = amd64
+UNAME_M ?= $(shell uname -m)
+ifeq ($(UNAME_M),x86_64)
 	RPM_ARCH = x86_64
-	APT_RPM_ARCH = x86_64
-	URPMI_ARCH = x86_64
+	DEB_ARCH = amd64
 	TAR_ARCH = x64
-else ifeq ($(ARCHITECTURE),32)
-	DEB_ARCH = i386
+	URPMI_ARCH = x86_64
+	APT_RPM_ARCH = x86_64
+	ARCHITECTURE = 64
+endif
+ifneq ($(filter %86,$(UNAME_M)),)
 	RPM_ARCH = i686
-	APT_RPM_ARCH = i586
+	DEB_ARCH = i386
 	URPMI_ARCH = i586
+	APT_RPM_ARCH = i586
 	TAR_ARCH = x86
+	ARCHITECTURE = 32
 endif
 
-DEB_BUILD_DIR = $(PWD)/deb
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
+DEB_BUILD_DIR = $(PWD)/deb
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
-DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)/$(DEB_ARCH)
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
+DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)/$(DEB_ARCH)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
@@ -108,11 +105,10 @@ endif
 
 OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
 
-DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
-TAR = $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
+DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
 DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
 
@@ -136,6 +132,8 @@ USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
 
+TAR = $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
+
 INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
 #QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
@@ -155,20 +153,20 @@ M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
 M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 M4_PARAMS += -D M4_BRANDING_DIR="$(abspath $(BRANDING_DIR))"
 
-.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditors deb-version rpm-version apt-rpm-version urpmi-version qt-redist libstdc++-addon libc-addon
+.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: deb rpm apt-rpm urpmi tar 
 #installer
 
+rpm: $(RPM)
+
 deb: $(DEB)
 
-rpm: $(RPM)
+tar: $(TAR)
 
 apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
-
-tar: $(TAR)
 
 installer: $(INSTALLER)
 
@@ -195,7 +193,7 @@ clean:
 		*.tar.gz\
 		index.html
 
-desktopeditors:
+desktopeditor:
 	mkdir -p $(DESKTOPEDITORS)/home
 	cp -rf $(SRC) $(DESKTOPEDITORS)/home
 
@@ -223,12 +221,7 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-$(DEB): desktopeditors $(LINUX_DEPS) $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b --no-sign
-	mkdir -p $(DEB_PACKAGE_DIR)
-	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
-
-$(RPM): desktopeditors $(LINUX_DEPS)
+$(RPM): desktopeditor $(LINUX_DEPS)
 	cd rpm && setarch $(RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
@@ -237,15 +230,20 @@ $(RPM): desktopeditors $(LINUX_DEPS)
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_package_arch $(RPM_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(APT_RPM): desktopeditors $(LINUX_DEPS)
+$(DEB): desktopeditor $(LINUX_DEPS) $(DEB_DEPS)
+	cd deb && dpkg-buildpackage -b --no-sign
+	mkdir -p $(DEB_PACKAGE_DIR)
+	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
+
+$(APT_RPM): desktopeditor $(LINUX_DEPS)
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
@@ -254,15 +252,15 @@ $(APT_RPM): desktopeditors $(LINUX_DEPS)
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(URPMI): desktopeditors $(LINUX_DEPS)
+$(URPMI): desktopeditor $(LINUX_DEPS)
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
@@ -271,15 +269,15 @@ $(URPMI): desktopeditors $(LINUX_DEPS)
 		--define "_package_name $(PACKAGE_NAME)" \
 		--define "_product_version $(PRODUCT_VERSION)" \
 		--define "_build_number $(BUILD_NUMBER)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_package_arch $(URPMI_ARCH)" \
+		--define "_package_edition $(PACKAGE_EDITION)" \
 		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
 		--define "_publisher_name $(PUBLISHER_NAME)" \
 		--define "_publisher_url $(PUBLISHER_URL)" \
 		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
-$(TAR): desktopeditors $(LINUX_DEPS)
+$(TAR): desktopeditor $(LINUX_DEPS)
 	cd tar && tar -czf $@ \
 		--owner=root --group=root \
 		--transform="s|home|"$(PACKAGE_NAME)"|" \
