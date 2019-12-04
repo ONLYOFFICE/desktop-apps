@@ -6,6 +6,19 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>5.4.2</title>
+            <pubDate>Thu, 28 Nov 2019 11:25:00 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.4.2/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.4.2/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-5.4.2.zip" sparkle:version="367" sparkle:shortVersionString="5.4.2" length="203360285" type="application/octet-stream" sparkle:edSignature="+7hExUFLny9rMEyYamsQSodfTwZ61Cradn8eFaFiGfETuK5DJG4F5aquUxdNQIuVf0BDBxkBcQhamKJL/cD0BA==" sparkle:dsaSignature="MCwCFH2K1z0wSau0sYMvbYxX4XWtoqTCAhRuB5pHnE8seIu2jUuV4DdcxfYesw=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE367-330.delta" sparkle:version="367" sparkle:shortVersionString="5.4.2" sparkle:deltaFrom="330" length="12154127" type="application/octet-stream" sparkle:edSignature="5OxXp5yVb6kXAe2L4sm19F0uQ3o8Dp2ucytcW/m/4JV0JmNT7DW30+9Nb0Dekoqh20ueRkY9tyYb90jabpinCA==" sparkle:dsaSignature="MCwCFGtspIvvehee63FK41dTb/9KwE31AhQfJuZ3MVX+rDmx42WzE84k6+m3LA=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE367-312.delta" sparkle:version="367" sparkle:shortVersionString="5.4.2" sparkle:deltaFrom="312" length="21686141" type="application/octet-stream" sparkle:edSignature="VwXu9BN6dbkXyRW5ofbz1CkzTX6u7K6mB0lCWjT7oHM07r7um4L51ZbDKM7jof/J/P9dl/cUjIzAvEWHI0SwDA==" sparkle:dsaSignature="MCwCFFwVSEeGyprglXP/ZuB3k4Xf/RCtAhRxWvR2ulJOykIXzabyqK3dg6vjCA=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE367-311.delta" sparkle:version="367" sparkle:shortVersionString="5.4.2" sparkle:deltaFrom="311" length="21693352" type="application/octet-stream" sparkle:edSignature="zdzsCMgqyXYjuJxougkLhRjW+vCUqTEhV0ED6xrzkt56/OBctZwqrvb4qVlP/DGdOPqLh7tcIG9ZVTd8gpYvAA==" sparkle:dsaSignature="MC0CFCuNPtbYvXEsGfOGmINZjdtAhb4lAhUAgPozeqo6VgkH7oXWGeJMDR4aCh0="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>5.4.1</title>
             <pubDate>Wed, 25 Sep 2019 12:05:13 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
