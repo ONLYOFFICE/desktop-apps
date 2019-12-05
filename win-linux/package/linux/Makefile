@@ -180,6 +180,25 @@ M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
 M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
 M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 
+# RPM_PARAMS += --define "_topdir $(RPM_BUILD_DIR)"
+RPM_PARAMS += --define "_company_name $(COMPANY_NAME)"
+RPM_PARAMS += --define "_product_name $(PRODUCT_NAME)"
+RPM_PARAMS += --define "_package_name $(PACKAGE_NAME)"
+RPM_PARAMS += --define "_package_edition $(PACKAGE_EDITION)"
+RPM_PARAMS += --define "_product_version $(PRODUCT_VERSION)"
+RPM_PARAMS += --define "_build_number $(BUILD_NUMBER)"
+# RPM_PARAMS += --define "_package_arch $(RPM_ARCH)"
+RPM_PARAMS += --define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)"
+RPM_PARAMS += --define "_desktopeditors_exec $(DESKTOPEDITORS_EXEC)"
+ifeq ($(COMPANY_NAME), R7-Office)
+	RPM_PARAMS += --define "_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)"
+	RPM_PARAMS += --define "_imageviewer_exec $(IMAGEVIEWER_EXEC)"
+	RPM_PARAMS += --define "_videoplayer_exec $(VIDEOPLAYER_EXEC)"
+endif
+RPM_PARAMS += --define "_publisher_name $(PUBLISHER_NAME)"
+RPM_PARAMS += --define "_publisher_url $(PUBLISHER_URL)"
+RPM_PARAMS += --define "_support_mail $(SUPPORT_MAIL)"
+
 .PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: deb rpm apt-rpm urpmi tar 
@@ -251,20 +270,9 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(RPM): desktopeditor
-	cd rpm && setarch $(RPM_ARCH) rpmbuild \
-		-bb \
+	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb $(RPM_PARAMS) \
 		--define "_topdir $(RPM_BUILD_DIR)" \
-		--define "_company_name $(COMPANY_NAME)" \
-		--define "_product_name $(PRODUCT_NAME)" \
-		--define "_package_name $(PACKAGE_NAME)" \
-		--define "_product_version $(PRODUCT_VERSION)" \
-		--define "_build_number $(BUILD_NUMBER)" \
 		--define "_package_arch $(RPM_ARCH)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
-		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
-		--define "_publisher_name $(PUBLISHER_NAME)" \
-		--define "_publisher_url $(PUBLISHER_URL)" \
-		--define "_support_mail $(SUPPORT_MAIL)" \
 		package.spec
 
 $(DEB): desktopeditor $(DEB_DEPS)

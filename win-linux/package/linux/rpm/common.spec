@@ -21,29 +21,41 @@ rm -rf "%{buildroot}"
 %build
 
 %install
+COMMON=%{_builddir}/../../../common
 
-DESKTOPEDITORS=%{_builddir}/../../../common/desktopeditors
-
-HOME_DIR=%{buildroot}/opt/%{_desktopeditors_prefix}
+DESKTOPEDITORS_PREFIX=%{buildroot}/opt/%{_desktopeditors_prefix}
+%if %{_company_name} == "R7-Office"
+MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
+%endif
 BIN_DIR=%{buildroot}%{_bindir}
 DATA_DIR=%{buildroot}%{_datadir}
 
-#install desktopeditor files
-mkdir -p "$HOME_DIR/"
-cp -r $DESKTOPEDITORS/home/* "$HOME_DIR/"
-
-#install documentbuilder bin
-mkdir -p "$BIN_DIR/" "$DATA_DIR/applications/"
-cp $DESKTOPEDITORS/bin/%{_package_name} "$BIN_DIR/"
-cp $DESKTOPEDITORS/share/applications/%{_package_name}.desktop "$DATA_DIR/applications/"
+#install opt files
+mkdir -p $DESKTOPEDITORS_PREFIX
+cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX/
+#install bin files
+mkdir -p $BIN_DIR
+cp $COMMON/usr/bin/%{_desktopeditors_exec} $BIN_DIR/
+cp $COMMON/usr/bin/desktopeditors $BIN_DIR/
+#install desktop files
+mkdir -p $DATA_DIR/applications
+cp $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop $DATA_DIR/applications/
 
 %clean
 rm -rf "%{buildroot}"
 
 %files
-%attr(-, root, root) /opt/%{_desktopeditors_prefix}/*
-%attr(755, root, root) %{_bindir}/%{_package_name}
-%attr(-, root, root) %{_datadir}/applications/%{_package_name}.desktop
+%attr(-, root, root) /opt/*
+%attr(-, root, root) %{_datadir}/applications/*
+%attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
+%if %{_company_name} != "R7-Office"
+%attr(-, root, root) %{_bindir}/desktopeditors
+%else
+%attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
+%attr(755, root, root) %{_bindir}/%{_videoplayer_exec}
+%attr(-, root, root) %{_bindir}/%{_package_name}
+%endif
+
 %pre
 
 %post
