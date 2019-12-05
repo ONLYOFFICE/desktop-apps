@@ -19,7 +19,11 @@ S3_BUCKET ?= repo-doc-onlyoffice-com
 
 BRANDING_DIR ?= $(PWD)/branding
 
-PACKAGE_NAME := $(COMPANY_NAME_LOW:%=%-)$(PRODUCT_NAME_LOW)
+ifneq ($(COMPANY_NAME), R7-Office)
+	PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
+else
+	PACKAGE_NAME := $(COMPANY_NAME_LOW)
+endif
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
 UNAME_M ?= $(shell uname -m)
@@ -110,13 +114,28 @@ APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_AR
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
-DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW:%=%/)$(PRODUCT_NAME_LOW)
+ifneq ($(COMPANY_NAME), R7-Office)
+	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
+	DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
+else
+	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/desktopeditors
+	MEDIAVIEWER_PREFIX := $(COMPANY_NAME_LOW)/mediaviewer
+	DESKTOPEDITORS_EXEC := $(COMPANY_NAME_LOW)-desktopeditors
+	IMAGEVIEWER_EXEC := $(COMPANY_NAME_LOW)-imageviewer
+	VIDEOPLAYER_EXEC := $(COMPANY_NAME_LOW)-videoplayer
+endif
 
-DESKTOPEDITORS := common/desktopeditors
-
-LINUX_DEPS += $(DESKTOPEDITORS)/bin/$(PACKAGE_NAME)
-LINUX_DEPS += $(DESKTOPEDITORS)/bin/desktopeditors
-LINUX_DEPS += $(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop
+LINUX_DEPS += common/usr/bin/$(DESKTOPEDITORS_EXEC)
+LINUX_DEPS += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
+ifneq ($(COMPANY_NAME), R7-Office)
+	LINUX_DEPS += common/usr/bin/$(PRODUCT_NAME_LOW)
+else
+	LINUX_DEPS += common/usr/bin/$(COMPANY_NAME_LOW)
+	LINUX_DEPS += common/usr/bin/$(IMAGEVIEWER_EXEC)
+	LINUX_DEPS += common/usr/bin/$(VIDEOPLAYER_EXEC)
+	LINUX_DEPS += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
+	LINUX_DEPS += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
+endif
 
 DEB_DEPS += deb/debian/changelog
 DEB_DEPS += deb/debian/control
@@ -130,7 +149,10 @@ INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
-SRC := ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)/*
+SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
+ifeq ($(COMPANY_NAME), R7-Office)
+	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
+endif
 
 TAR = $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
@@ -146,12 +168,17 @@ M4_PARAMS += -D M4_PACKAGE_NAME="$(PACKAGE_NAME)"
 M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_PACKAGE_EDITION="$(PACKAGE_EDITION)"
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX="$(DESKTOPEDITORS_PREFIX)"
+M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC="$(DESKTOPEDITORS_EXEC)"
+ifeq ($(COMPANY_NAME), R7-Office)
+	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX="$(MEDIAVIEWER_PREFIX)"
+	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC="$(IMAGEVIEWER_EXEC)"
+	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC="$(VIDEOPLAYER_EXEC)"
+endif
 M4_PARAMS += -D M4_DEB_ARCH="$(DEB_ARCH)"
 M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
 M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
 M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
 M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
-M4_PARAMS += -D M4_BRANDING_DIR="$(abspath $(BRANDING_DIR))"
 
 .PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
@@ -172,8 +199,8 @@ installer: $(INSTALLER)
 
 clean:
 	rm -rfv \
+		common/opt \
 		$(LINUX_DEPS) \
-		$(DESKTOPEDITORS)/home \
 		$(DEB_DEPS) \
 		$(DEB_BUILD_DIR)/debian/.debhelper \
 		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME) \
@@ -194,17 +221,21 @@ clean:
 		index.html
 
 desktopeditor: $(LINUX_DEPS)
-	mkdir -p $(DESKTOPEDITORS)/home
-	cp -rf $(SRC) $(DESKTOPEDITORS)/home
+	mkdir -p common/opt
+	cp -rft common/opt $(SRC)
 
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
-	cp -rf ../../../common/package/license/agpl-3.0.htm $(DESKTOPEDITORS)/home/LICENSE.htm
-	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE $(DESKTOPEDITORS)/home
-	
-	chmod 755 $(DESKTOPEDITORS)/home/DesktopEditors
+	cp -rf ../../../common/package/license/agpl-3.0.htm common/opt/desktopeditors/LICENSE.htm
+	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
+
+	chmod 755 common/opt/desktopeditors/DesktopEditors
+ifeq ($(COMPANY_NAME), R7-Office)
+	chmod 755 common/opt/mediaviewer/ImageViewer
+	chmod 755 common/opt/mediaviewer/VideoPlayer
+endif
 
 qt-redist:
-	cp -r -L -t  $(DESKTOPEDITORS)/home/ \
+	cp -r -L -t common/opt/desktopeditors/ \
 		$(QT_PLUGINS)/bearer \
 		$(QT_PLUGINS)/imageformats \
 		$(QT_PLUGINS)/platforms \
@@ -358,18 +389,25 @@ M4_PARAMS += -D M4_RPM_URI="$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE
 M4_PARAMS += -D M4_TAR_URI="$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/$(notdir $(TAR))"
 M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(URPMI_ARCH)/$(notdir $(URPMI))"
 
+common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
+common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
+common/usr/bin/$(VIDEOPLAYER_EXEC) : common/usr/bin/videoplayer.m4
+common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/usr/share/applications/desktopeditors.desktop.m4
+common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/applications/imageviewer.desktop.m4
+common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4
+deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
+
+common/usr/bin/$(DESKTOPEDITORS_EXEC) common/usr/bin/$(IMAGEVIEWER_EXEC) common/usr/bin/$(VIDEOPLAYER_EXEC) common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop deb/debian/$(PACKAGE_NAME).install :
+	m4 $(M4_PARAMS)	$< > $@
+
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
 
-deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
-	mv -f $< $@
+common/usr/bin/$(PRODUCT_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
+common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 
-$(DESKTOPEDITORS)/bin/$(PACKAGE_NAME) : $(DESKTOPEDITORS)/bin/desktopeditors
-	mv -f $< $@
-	ln -srf $@ $<
-
-$(DESKTOPEDITORS)/share/applications/$(PACKAGE_NAME).desktop : $(DESKTOPEDITORS)/share/applications/desktopeditors.desktop
-	mv -f $< $@
+common/usr/bin/$(PRODUCT_NAME_LOW) common/usr/bin/$(COMPANY_NAME_LOW) :
+	ln -srf $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
 #deploy-installer
