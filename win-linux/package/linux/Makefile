@@ -128,7 +128,7 @@ endif
 LINUX_DEPS += common/usr/bin/$(DESKTOPEDITORS_EXEC)
 LINUX_DEPS += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
 ifneq ($(COMPANY_NAME), R7-Office)
-	LINUX_DEPS += common/usr/bin/$(PRODUCT_NAME_LOW)
+	LINUX_DEPS += common/usr/bin/desktopeditors
 else
 	LINUX_DEPS += common/usr/bin/$(COMPANY_NAME_LOW)
 	LINUX_DEPS += common/usr/bin/$(IMAGEVIEWER_EXEC)
@@ -203,10 +203,8 @@ clean:
 		$(LINUX_DEPS) \
 		$(DEB_DEPS) \
 		$(DEB_BUILD_DIR)/debian/.debhelper \
-		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME) \
 		$(DEB_BUILD_DIR)/debian/files \
-		$(DEB_BUILD_DIR)/debian/*.debhelper.log \
-		$(DEB_BUILD_DIR)/debian/*.substvars \
+		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME)* \
 		$(DEB_PACKAGE_DIR) \
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
@@ -395,7 +393,7 @@ common/usr/bin/$(VIDEOPLAYER_EXEC) : common/usr/bin/videoplayer.m4
 common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/usr/share/applications/desktopeditors.desktop.m4
 common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/applications/imageviewer.desktop.m4
 common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4
-deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install
+deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
 
 common/usr/bin/$(DESKTOPEDITORS_EXEC) common/usr/bin/$(IMAGEVIEWER_EXEC) common/usr/bin/$(VIDEOPLAYER_EXEC) common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop deb/debian/$(PACKAGE_NAME).install :
 	m4 $(M4_PARAMS)	$< > $@
@@ -403,10 +401,10 @@ common/usr/bin/$(DESKTOPEDITORS_EXEC) common/usr/bin/$(IMAGEVIEWER_EXEC) common/
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
 
-common/usr/bin/$(PRODUCT_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
+common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 
-common/usr/bin/$(PRODUCT_NAME_LOW) common/usr/bin/$(COMPANY_NAME_LOW) :
+common/usr/bin/desktopeditors common/usr/bin/$(COMPANY_NAME_LOW) :
 	ln -srf $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html

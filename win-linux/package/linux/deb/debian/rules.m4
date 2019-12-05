@@ -13,5 +13,12 @@ override_dh_installdocs:
 override_dh_installchangelogs:
 	dh_installchangelogs --no-act
 
+override_dh_fixperms:
+	dh_fixperms
+	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors
+	ifelse(M4_COMPANY_NAME, R7-Office,
+	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/ImageViewer
+	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer,)
+
 override_dh_shlibdeps:
 	dh_shlibdeps --no-act
