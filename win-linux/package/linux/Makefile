@@ -19,7 +19,7 @@ S3_BUCKET ?= repo-doc-onlyoffice-com
 
 BRANDING_DIR ?= $(PWD)/branding
 
-ifneq ($(COMPANY_NAME), R7-Office)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
 else
 	PACKAGE_NAME := $(COMPANY_NAME_LOW)
@@ -114,7 +114,7 @@ APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_AR
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 
-ifneq ($(COMPANY_NAME), R7-Office)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
 	DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
 else
@@ -127,7 +127,7 @@ endif
 
 LINUX_DEPS += common/usr/bin/$(DESKTOPEDITORS_EXEC)
 LINUX_DEPS += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
-ifneq ($(COMPANY_NAME), R7-Office)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	LINUX_DEPS += common/usr/bin/desktopeditors
 else
 	LINUX_DEPS += common/usr/bin/$(COMPANY_NAME_LOW)
@@ -150,11 +150,11 @@ INSTALLER_DEPENDENCY += desktopeditor
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
-ifeq ($(COMPANY_NAME), R7-Office)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
 endif
 
-TAR = $(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
+TAR := $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
 INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
@@ -164,44 +164,42 @@ PLATFORM := linux_64_static_stdlib
 
 M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
 M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
+M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
+M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
+M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
+M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 M4_PARAMS += -D M4_PACKAGE_NAME="$(PACKAGE_NAME)"
 M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_PACKAGE_EDITION="$(PACKAGE_EDITION)"
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX="$(DESKTOPEDITORS_PREFIX)"
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC="$(DESKTOPEDITORS_EXEC)"
-ifeq ($(COMPANY_NAME), R7-Office)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX="$(MEDIAVIEWER_PREFIX)"
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC="$(IMAGEVIEWER_EXEC)"
 	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC="$(VIDEOPLAYER_EXEC)"
 endif
 M4_PARAMS += -D M4_DEB_ARCH="$(DEB_ARCH)"
-M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
-M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
-M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
-M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
 
-# RPM_PARAMS += --define "_topdir $(RPM_BUILD_DIR)"
 RPM_PARAMS += --define "_company_name $(COMPANY_NAME)"
 RPM_PARAMS += --define "_product_name $(PRODUCT_NAME)"
+RPM_PARAMS += --define "_publisher_name $(PUBLISHER_NAME)"
+RPM_PARAMS += --define "_publisher_url $(PUBLISHER_URL)"
+RPM_PARAMS += --define "_support_mail $(SUPPORT_MAIL)"
 RPM_PARAMS += --define "_package_name $(PACKAGE_NAME)"
 RPM_PARAMS += --define "_package_edition $(PACKAGE_EDITION)"
 RPM_PARAMS += --define "_product_version $(PRODUCT_VERSION)"
 RPM_PARAMS += --define "_build_number $(BUILD_NUMBER)"
-# RPM_PARAMS += --define "_package_arch $(RPM_ARCH)"
 RPM_PARAMS += --define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)"
 RPM_PARAMS += --define "_desktopeditors_exec $(DESKTOPEDITORS_EXEC)"
-ifeq ($(COMPANY_NAME), R7-Office)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define "_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)"
 	RPM_PARAMS += --define "_imageviewer_exec $(IMAGEVIEWER_EXEC)"
 	RPM_PARAMS += --define "_videoplayer_exec $(VIDEOPLAYER_EXEC)"
 endif
-RPM_PARAMS += --define "_publisher_name $(PUBLISHER_NAME)"
-RPM_PARAMS += --define "_publisher_url $(PUBLISHER_URL)"
-RPM_PARAMS += --define "_support_mail $(SUPPORT_MAIL)"
 
-.PHONY: all clean deb rpm apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean rpm deb apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
-all: deb rpm apt-rpm urpmi tar 
+all: rpm deb apt-rpm urpmi tar 
 #installer
 
 rpm: $(RPM)
@@ -238,6 +236,7 @@ clean:
 		index.html
 
 desktopeditor: $(LINUX_DEPS)
+	rm -rfv common/opt
 	mkdir -p common/opt
 	cp -rft common/opt $(SRC)
 
@@ -246,7 +245,7 @@ desktopeditor: $(LINUX_DEPS)
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
-ifeq ($(COMPANY_NAME), R7-Office)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
 endif
@@ -270,9 +269,11 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(RPM): desktopeditor
-	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb $(RPM_PARAMS) \
+	cd rpm && setarch $(RPM_ARCH) rpmbuild \
+		-bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
+		$(RPM_PARAMS) \
 		package.spec
 
 $(DEB): desktopeditor $(DEB_DEPS)
@@ -284,43 +285,25 @@ $(APT_RPM): desktopeditor
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
-		--define "_company_name $(COMPANY_NAME)" \
-		--define "_product_name $(PRODUCT_NAME)" \
-		--define "_package_name $(PACKAGE_NAME)" \
-		--define "_product_version $(PRODUCT_VERSION)" \
-		--define "_build_number $(BUILD_NUMBER)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
-		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
-		--define "_publisher_name $(PUBLISHER_NAME)" \
-		--define "_publisher_url $(PUBLISHER_URL)" \
-		--define "_support_mail $(SUPPORT_MAIL)" \
+		$(RPM_PARAMS) \
 		package.spec
 
 $(URPMI): desktopeditor
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
 		-bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
-		--define "_company_name $(COMPANY_NAME)" \
-		--define "_product_name $(PRODUCT_NAME)" \
-		--define "_package_name $(PACKAGE_NAME)" \
-		--define "_product_version $(PRODUCT_VERSION)" \
-		--define "_build_number $(BUILD_NUMBER)" \
 		--define "_package_arch $(URPMI_ARCH)" \
-		--define "_package_edition $(PACKAGE_EDITION)" \
-		--define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)" \
-		--define "_publisher_name $(PUBLISHER_NAME)" \
-		--define "_publisher_url $(PUBLISHER_URL)" \
-		--define "_support_mail $(SUPPORT_MAIL)" \
+		$(RPM_PARAMS) \
 		package.spec
 
 $(TAR): desktopeditor
-	cd tar && tar -czf $@ \
-		--owner=root --group=root \
-		--transform="s|home|"$(PACKAGE_NAME)"|" \
-		-C ../$(DESKTOPEDITORS) home
 	mkdir -p $(TAR_PACKAGE_DIR)
-	mv -f tar/$@ -t $(TAR_PACKAGE_DIR)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors
+else
+	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors mediaviewer
+endif
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
@@ -403,7 +386,7 @@ common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/app
 common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4
 deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
 
-common/usr/bin/$(DESKTOPEDITORS_EXEC) common/usr/bin/$(IMAGEVIEWER_EXEC) common/usr/bin/$(VIDEOPLAYER_EXEC) common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop deb/debian/$(PACKAGE_NAME).install :
+$(DESKTOPEDITORS_EXEC:%=common/usr/bin/%) $(IMAGEVIEWER_EXEC:%=common/usr/bin/%) $(VIDEOPLAYER_EXEC:%=common/usr/bin/%) $(DESKTOPEDITORS_EXEC:%=common/usr/share/applications/%.desktop) $(IMAGEVIEWER_EXEC:%=common/usr/share/applications/%.desktop) $(VIDEOPLAYER_EXEC:%=common/usr/share/applications/%.desktop) deb/debian/$(PACKAGE_NAME).install :
 	m4 $(M4_PARAMS)	$< > $@
 
 % : %.m4
@@ -412,7 +395,7 @@ common/usr/bin/$(DESKTOPEDITORS_EXEC) common/usr/bin/$(IMAGEVIEWER_EXEC) common/
 common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 
-common/usr/bin/desktopeditors common/usr/bin/$(COMPANY_NAME_LOW) :
+common/usr/bin/desktopeditors $(COMPANY_NAME_LOW:%=common/usr/bin/%) :
 	ln -srf $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
