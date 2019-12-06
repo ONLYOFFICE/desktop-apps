@@ -8,7 +8,7 @@ win-linux/*.user
 win-linux/package/linux/index.html
 win-linux/package/windows/index.html
 
-win-linux/package/linux/common/desktopeditors/home
+win-linux/package/linux/common/opt
 win-linux/package/linux/deb/debian/.debhelper
 win-linux/package/linux/deb/debian/*.debhelper.log
 win-linux/package/linux/rpm/builddir
