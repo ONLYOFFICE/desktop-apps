@@ -5,9 +5,9 @@ set -e 		# fail on any error
 
 case "$1" in
 	purge)
-        rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX
+		rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX
 		ifelse(M4_COMPANY_NAME, ONLYOFFICE,,
-        rm -fr /home/*/.local/share/M4_MEDIAVIEWER_PREFIX)
+		rm -fr /home/*/.local/share/M4_MEDIAVIEWER_PREFIX)
 	;;
 
 	remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
