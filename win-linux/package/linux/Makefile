@@ -127,6 +127,7 @@ endif
 
 LINUX_DEPS += common/usr/bin/$(DESKTOPEDITORS_EXEC)
 LINUX_DEPS += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
+LINUX_DEPS += common/usr/share/applications/variables.m4
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	LINUX_DEPS += common/usr/bin/desktopeditors
 else
@@ -197,7 +198,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define "_videoplayer_exec $(VIDEOPLAYER_EXEC)"
 endif
 
-.PHONY: all clean rpm deb apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding rpm deb apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi tar 
 #installer
@@ -235,12 +236,14 @@ clean:
 		*.tar.gz\
 		index.html
 
-desktopeditor: $(LINUX_DEPS)
+branding: $(BRANDING_DIR)
+	cp -rf $(BRANDING_DIR)/* $(PWD)/
+
+desktopeditor: branding $(LINUX_DEPS)
 	rm -rfv common/opt
 	mkdir -p common/opt
 	cp -rft common/opt $(SRC)
 
-	cp -rf $(BRANDING_DIR)/* $(PWD)/
 	cp -rf ../../../common/package/license/agpl-3.0.htm common/opt/desktopeditors/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
 
@@ -387,7 +390,7 @@ common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/app
 deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
 
 $(DESKTOPEDITORS_EXEC:%=common/usr/bin/%) $(IMAGEVIEWER_EXEC:%=common/usr/bin/%) $(VIDEOPLAYER_EXEC:%=common/usr/bin/%) $(DESKTOPEDITORS_EXEC:%=common/usr/share/applications/%.desktop) $(IMAGEVIEWER_EXEC:%=common/usr/share/applications/%.desktop) $(VIDEOPLAYER_EXEC:%=common/usr/share/applications/%.desktop) deb/debian/$(PACKAGE_NAME).install :
-	m4 $(M4_PARAMS)	$< > $@
+	m4 -I'common/usr/share/applications' $(M4_PARAMS)	$< > $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
