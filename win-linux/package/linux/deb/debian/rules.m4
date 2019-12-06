@@ -16,9 +16,9 @@ override_dh_installchangelogs:
 override_dh_fixperms:
 	dh_fixperms
 	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors
-	ifelse(M4_COMPANY_NAME, R7-Office,
+	ifelse(M4_COMPANY_NAME, ONLYOFFICE,,
 	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/ImageViewer
-	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer,)
+	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer)
 
 override_dh_shlibdeps:
 	dh_shlibdeps --no-act

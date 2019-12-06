@@ -24,7 +24,7 @@ rm -rf "%{buildroot}"
 COMMON=%{_builddir}/../../../common
 
 DESKTOPEDITORS_PREFIX=%{buildroot}/opt/%{_desktopeditors_prefix}
-%if %{_company_name} == "R7-Office"
+%if %{_company_name} != "ONLYOFFICE"
 MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
 %endif
 BIN_DIR=%{buildroot}%{_bindir}
@@ -48,7 +48,7 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) /opt/*
 %attr(-, root, root) %{_datadir}/applications/*
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
-%if %{_company_name} != "R7-Office"
+%if %{_company_name} == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
 %else
 %attr(755, root, root) %{_bindir}/%{_imageviewer_exec}

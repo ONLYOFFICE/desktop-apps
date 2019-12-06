@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-ifelse(M4_COMPANY_NAME, R7-Office,
+ifelse(M4_COMPANY_NAME, ONLYOFFICE,
+Name=M4_COMPANY_NAME M4_PRODUCT_NAME,
 Name=R7-OFFICE. Professional (desktop version)
-Name[ru]=P7-Офис. Профессиональный (десктопная версия),
-Name=M4_COMPANY_NAME M4_PRODUCT_NAME)
+Name[ru]=P7-Офис. Профессиональный (десктопная версия))
 Type=Application
 GenericName=Document Editor
 GenericName[ru]=Редактор документов
