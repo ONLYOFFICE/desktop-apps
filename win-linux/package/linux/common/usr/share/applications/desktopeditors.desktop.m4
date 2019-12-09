@@ -3,21 +3,21 @@ include(variables.m4)dnl
 Version=1.0
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 Name=M4_COMPANY_NAME M4_PRODUCT_NAME,
-'Name=defn('DESKTOPEDITORS[Name[en]]')
-ifdef('DESKTOPEDITORS[Name[de]]',Name[de]=defn('DESKTOPEDITORS[Name[de]]'))dnl
-ifdef('DESKTOPEDITORS[Name[fr]]',Name[fr]=defn('DESKTOPEDITORS[Name[fr]]'))dnl
-ifdef('DESKTOPEDITORS[Name[es]]',Name[es]=defn('DESKTOPEDITORS[Name[es]]'))dnl
-ifdef('DESKTOPEDITORS[Name[ru]]',Name[ru]=defn('DESKTOPEDITORS[Name[ru]]'))dnl')
+Name=defn('DESKTOPEDITORS[Name[en]]')
+ifdef('DESKTOPEDITORS[Name[de]]',Name[de]=defn('DESKTOPEDITORS[Name[de]]'),'dnl')
+ifdef('DESKTOPEDITORS[Name[fr]]',Name[fr]=defn('DESKTOPEDITORS[Name[fr]]'),'dnl')
+ifdef('DESKTOPEDITORS[Name[es]]',Name[es]=defn('DESKTOPEDITORS[Name[es]]'),'dnl')
+ifdef('DESKTOPEDITORS[Name[ru]]',Name[ru]=defn('DESKTOPEDITORS[Name[ru]]'),'dnl'))
 GenericName=defn('DESKTOPEDITORS[GenericName[en]]')
-ifdef('DESKTOPEDITORS[GenericName[de]]',GenericName[de]=defn('DESKTOPEDITORS[GenericName[de]]'))dnl
-ifdef('DESKTOPEDITORS[GenericName[fr]]',GenericName[fr]=defn('DESKTOPEDITORS[GenericName[fr]]'))dnl
-ifdef('DESKTOPEDITORS[GenericName[es]]',GenericName[es]=defn('DESKTOPEDITORS[GenericName[es]]'))dnl
-ifdef('DESKTOPEDITORS[GenericName[ru]]',GenericName[ru]=defn('DESKTOPEDITORS[GenericName[ru]]'))dnl
+ifdef('DESKTOPEDITORS[GenericName[de]]',GenericName[de]=defn('DESKTOPEDITORS[GenericName[de]]'),'dnl')
+ifdef('DESKTOPEDITORS[GenericName[fr]]',GenericName[fr]=defn('DESKTOPEDITORS[GenericName[fr]]'),'dnl')
+ifdef('DESKTOPEDITORS[GenericName[es]]',GenericName[es]=defn('DESKTOPEDITORS[GenericName[es]]'),'dnl')
+ifdef('DESKTOPEDITORS[GenericName[ru]]',GenericName[ru]=defn('DESKTOPEDITORS[GenericName[ru]]'),'dnl')
 Comment=defn('DESKTOPEDITORS[Comment[en]]')
-ifdef('DESKTOPEDITORS[Comment[de]]',Comment[de]=defn('DESKTOPEDITORS[Comment[de]]'))dnl
-ifdef('DESKTOPEDITORS[Comment[fr]]',Comment[fr]=defn('DESKTOPEDITORS[Comment[fr]]'))dnl
-ifdef('DESKTOPEDITORS[Comment[es]]',Comment[es]=defn('DESKTOPEDITORS[Comment[es]]'))dnl
-ifdef('DESKTOPEDITORS[Comment[ru]]',Comment[ru]=defn('DESKTOPEDITORS[Comment[ru]]'))dnl
+ifdef('DESKTOPEDITORS[Comment[de]]',Comment[de]=defn('DESKTOPEDITORS[Comment[de]]'),'dnl')
+ifdef('DESKTOPEDITORS[Comment[fr]]',Comment[fr]=defn('DESKTOPEDITORS[Comment[fr]]'),'dnl')
+ifdef('DESKTOPEDITORS[Comment[es]]',Comment[es]=defn('DESKTOPEDITORS[Comment[es]]'),'dnl')
+ifdef('DESKTOPEDITORS[Comment[ru]]',Comment[ru]=defn('DESKTOPEDITORS[Comment[ru]]'),'dnl')
 Type=Application
 Exec=/usr/bin/M4_DESKTOPEDITORS_EXEC %F
 Terminal=false
@@ -29,24 +29,24 @@ Actions=NewDocument;NewSpreadsheet;NewPresentation;
 
 [Desktop Action NewDocument]
 Name=defn('NEWDOCUMENT[Name[en]]')
-ifdef('NEWDOCUMENT[Name[de]]',Name[de]=defn('NEWDOCUMENT[Name[de]]'))dnl
-ifdef('NEWDOCUMENT[Name[fr]]',Name[fr]=defn('NEWDOCUMENT[Name[fr]]'))dnl
-ifdef('NEWDOCUMENT[Name[es]]',Name[es]=defn('NEWDOCUMENT[Name[es]]'))dnl
-ifdef('NEWDOCUMENT[Name[ru]]',Name[ru]=defn('NEWDOCUMENT[Name[ru]]'))dnl
+ifdef('NEWDOCUMENT[Name[de]]',Name[de]=defn('NEWDOCUMENT[Name[de]]'),'dnl')
+ifdef('NEWDOCUMENT[Name[fr]]',Name[fr]=defn('NEWDOCUMENT[Name[fr]]'),'dnl')
+ifdef('NEWDOCUMENT[Name[es]]',Name[es]=defn('NEWDOCUMENT[Name[es]]'),'dnl')
+ifdef('NEWDOCUMENT[Name[ru]]',Name[ru]=defn('NEWDOCUMENT[Name[ru]]'),'dnl')
 Exec=/usr/bin/M4_DESKTOPEDITORS_EXEC --new:word
 
 [Desktop Action NewSpreadsheet]
 Name=defn('NEWSPREADSHEET[Name[en]]')
-ifdef('NEWSPREADSHEET[Name[de]]',Name[de]=defn('NEWSPREADSHEET[Name[de]]'))dnl
-ifdef('NEWSPREADSHEET[Name[fr]]',Name[fr]=defn('NEWSPREADSHEET[Name[fr]]'))dnl
-ifdef('NEWSPREADSHEET[Name[es]]',Name[es]=defn('NEWSPREADSHEET[Name[es]]'))dnl
-ifdef('NEWSPREADSHEET[Name[ru]]',Name[ru]=defn('NEWSPREADSHEET[Name[ru]]'))dnl
+ifdef('NEWSPREADSHEET[Name[de]]',Name[de]=defn('NEWSPREADSHEET[Name[de]]'),'dnl')
+ifdef('NEWSPREADSHEET[Name[fr]]',Name[fr]=defn('NEWSPREADSHEET[Name[fr]]'),'dnl')
+ifdef('NEWSPREADSHEET[Name[es]]',Name[es]=defn('NEWSPREADSHEET[Name[es]]'),'dnl')
+ifdef('NEWSPREADSHEET[Name[ru]]',Name[ru]=defn('NEWSPREADSHEET[Name[ru]]'),'dnl')
 Exec=/usr/bin/M4_DESKTOPEDITORS_EXEC --new:cell
 
 [Desktop Action NewPresentation]
 Name=defn('NEWPRESENTATION[Name[en]]')
-ifdef('NEWPRESENTATION[Name[de]]',Name[de]=defn('NEWPRESENTATION[Name[de]]'))dnl
-ifdef('NEWPRESENTATION[Name[fr]]',Name[fr]=defn('NEWPRESENTATION[Name[fr]]'))dnl
-ifdef('NEWPRESENTATION[Name[es]]',Name[es]=defn('NEWPRESENTATION[Name[es]]'))dnl
-ifdef('NEWPRESENTATION[Name[ru]]',Name[ru]=defn('NEWPRESENTATION[Name[ru]]'))dnl
+ifdef('NEWPRESENTATION[Name[de]]',Name[de]=defn('NEWPRESENTATION[Name[de]]'),'dnl')
+ifdef('NEWPRESENTATION[Name[fr]]',Name[fr]=defn('NEWPRESENTATION[Name[fr]]'),'dnl')
+ifdef('NEWPRESENTATION[Name[es]]',Name[es]=defn('NEWPRESENTATION[Name[es]]'),'dnl')
+ifdef('NEWPRESENTATION[Name[ru]]',Name[ru]=defn('NEWPRESENTATION[Name[ru]]'),'dnl')
 Exec=/usr/bin/M4_DESKTOPEDITORS_EXEC --new:slide
