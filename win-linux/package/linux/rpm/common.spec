@@ -4,16 +4,16 @@ Version: %{_product_version}
 Release: %{_build_number}
 License: AGPLv3
 Group: Applications/Office
-URL: http://onlyoffice.com/
-Vendor: Ascensio System SIA
-Packager: Ascensio System SIA <support@onlyoffice.com>
+URL: %{_publisher_url}
+Vendor: %{_publisher_name}
+Packager: %{_publisher_name} %{_support_mail}
 BuildArch: %{_package_arch}
 AutoReq: no
 AutoProv: no
 
 %description
-ONLYOFFICE DesktopEditors installation package
- ONLYOFFICE DesktopEditors is an application for editing office documents (text documents, spreadsheets and presentations) from onlyoffice cloud portal on local computer without browser using.
+%{_company_name} %{_product_name} installation package
+ %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
 
 %prep
 rm -rf "%{buildroot}"
@@ -21,18 +21,48 @@ rm -rf "%{buildroot}"
 %build
 
 %install
+COMMON=%{_builddir}/../../../common
 
-#install desktopeditor files
-mkdir -p "%{buildroot}"
-cp -r ../../../common/onlyoffice/* "%{buildroot}/"
+BIN_DIR=%{buildroot}%{_bindir}
+DATA_DIR=%{buildroot}%{_datadir}
+
+DESKTOPEDITORS_PREFIX=%{buildroot}/opt/%{_desktopeditors_prefix}
+mkdir -p $BIN_DIR $DATA_DIR/applications $DESKTOPEDITORS_PREFIX
+
+cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
+cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
+cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
+
+%if "%{_company_name}" == "ONLYOFFICE"
+ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
+%else
+MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
+mkdir -p $MEDIAVIEWER_PREFIX
+cp -r $COMMON/opt/mediaviewer/* $MEDIAVIEWER_PREFIX/
+cp -t $BIN_DIR \
+  $COMMON/usr/bin/%{_imageviewer_exec} \
+  $COMMON/usr/bin/%{_videoplayer_exec}
+cp -t $DATA_DIR/applications \
+  $COMMON/usr/share/applications/%{_imageviewer_exec}.desktop \
+  $COMMON/usr/share/applications/%{_videoplayer_exec}.desktop
+ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
+%endif
 
 %clean
 rm -rf "%{buildroot}"
 
 %files
-%attr(-, root, root) /opt/onlyoffice/desktopeditors/*
-%attr(755, root, root) /usr/bin/*desktopeditors
-%attr(-, root, root) /usr/share/applications/*.desktop
+%attr(-, root, root) /opt/*
+%attr(-, root, root) %{_datadir}/applications/*
+%attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
+%if "%{_company_name}" == "ONLYOFFICE"
+%attr(-, root, root) %{_bindir}/desktopeditors
+%else
+%attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
+%attr(755, root, root) %{_bindir}/%{_videoplayer_exec}
+%attr(-, root, root) %{_bindir}/%{_package_name}
+%endif
+
 %pre
 
 %post
@@ -46,9 +76,9 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
   echo "Error: Could not find xdg-icon-resource" >&2
   exit 1
 fi
-for icon in "/opt/onlyoffice/desktopeditors/asc-de-"*.png; do
+for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "asc-de"
+  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
 done
 
 UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
@@ -79,9 +109,9 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
   echo "Error: Could not find xdg-icon-resource" >&2
   exit 1
 fi
-for icon in "/opt/onlyoffice/desktopeditors/asc-de-"*.png; do
+for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "asc-de"
+  "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
 done
 
 UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
@@ -95,4 +125,3 @@ fi
 %postun
 
 set -e 		# fail on any error
-
