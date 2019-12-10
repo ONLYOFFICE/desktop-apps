@@ -33,7 +33,7 @@ cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
 cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
 
-%if %{_company_name} == "ONLYOFFICE"
+%if "%{_company_name}" == "ONLYOFFICE"
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
 %else
 MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
@@ -55,7 +55,7 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) /opt/*
 %attr(-, root, root) %{_datadir}/applications/*
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
-%if %{_company_name} == "ONLYOFFICE"
+%if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
 %else
 %attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
