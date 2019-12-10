@@ -125,18 +125,21 @@ else
 	VIDEOPLAYER_EXEC := $(COMPANY_NAME_LOW)-videoplayer
 endif
 
-LINUX_DEPS += common/usr/bin/$(DESKTOPEDITORS_EXEC)
-LINUX_DEPS += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
 LINUX_DEPS += common/usr/share/applications/variables.m4
+BIN_FILES += common/usr/bin/$(DESKTOPEDITORS_EXEC)
+DESKTOP_FILES += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	LINUX_DEPS += common/usr/bin/desktopeditors
+	SYMLINK += common/usr/bin/desktopeditors
 else
-	LINUX_DEPS += common/usr/bin/$(COMPANY_NAME_LOW)
-	LINUX_DEPS += common/usr/bin/$(IMAGEVIEWER_EXEC)
-	LINUX_DEPS += common/usr/bin/$(VIDEOPLAYER_EXEC)
-	LINUX_DEPS += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
-	LINUX_DEPS += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
+	BIN_FILES += common/usr/bin/$(IMAGEVIEWER_EXEC)
+	BIN_FILES += common/usr/bin/$(VIDEOPLAYER_EXEC)
+	DESKTOP_FILES += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
+	DESKTOP_FILES += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
+	SYMLINK += common/usr/bin/$(COMPANY_NAME_LOW)
 endif
+LINUX_DEPS += $(BIN_FILES)
+LINUX_DEPS += $(DESKTOP_FILES)
+LINUX_DEPS += $(SYMLINK)
 
 DEB_DEPS += deb/debian/changelog
 DEB_DEPS += deb/debian/control
@@ -163,39 +166,39 @@ INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 
 PLATFORM := linux_64_static_stdlib
 
-M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
-M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
-M4_PARAMS += -D M4_PUBLISHER_NAME="$(PUBLISHER_NAME)"
-M4_PARAMS += -D M4_PUBLISHER_URL="$(PUBLISHER_URL)"
-M4_PARAMS += -D M4_SUPPORT_MAIL="$(SUPPORT_MAIL)"
-M4_PARAMS += -D M4_SUPPORT_URL="$(SUPPORT_URL)"
-M4_PARAMS += -D M4_PACKAGE_NAME="$(PACKAGE_NAME)"
-M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
-M4_PARAMS += -D M4_PACKAGE_EDITION="$(PACKAGE_EDITION)"
-M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX="$(DESKTOPEDITORS_PREFIX)"
-M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC="$(DESKTOPEDITORS_EXEC)"
+M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
+M4_PARAMS += -D M4_PRODUCT_NAME='$(PRODUCT_NAME)'
+M4_PARAMS += -D M4_PUBLISHER_NAME='$(PUBLISHER_NAME)'
+M4_PARAMS += -D M4_PUBLISHER_URL='$(PUBLISHER_URL)'
+M4_PARAMS += -D M4_SUPPORT_MAIL='$(SUPPORT_MAIL)'
+M4_PARAMS += -D M4_SUPPORT_URL='$(SUPPORT_URL)'
+M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
+M4_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)'
+M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
+M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
+M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX="$(MEDIAVIEWER_PREFIX)"
-	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC="$(IMAGEVIEWER_EXEC)"
-	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC="$(VIDEOPLAYER_EXEC)"
+	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
+	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
+	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
 endif
-M4_PARAMS += -D M4_DEB_ARCH="$(DEB_ARCH)"
+M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
 
-RPM_PARAMS += --define "_company_name $(COMPANY_NAME)"
-RPM_PARAMS += --define "_product_name $(PRODUCT_NAME)"
-RPM_PARAMS += --define "_publisher_name $(PUBLISHER_NAME)"
-RPM_PARAMS += --define "_publisher_url $(PUBLISHER_URL)"
-RPM_PARAMS += --define "_support_mail $(SUPPORT_MAIL)"
-RPM_PARAMS += --define "_package_name $(PACKAGE_NAME)"
-RPM_PARAMS += --define "_package_edition $(PACKAGE_EDITION)"
-RPM_PARAMS += --define "_product_version $(PRODUCT_VERSION)"
-RPM_PARAMS += --define "_build_number $(BUILD_NUMBER)"
-RPM_PARAMS += --define "_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)"
-RPM_PARAMS += --define "_desktopeditors_exec $(DESKTOPEDITORS_EXEC)"
+RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
+RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
+RPM_PARAMS += --define '_publisher_name $(PUBLISHER_NAME)'
+RPM_PARAMS += --define '_publisher_url $(PUBLISHER_URL)'
+RPM_PARAMS += --define '_support_mail $(SUPPORT_MAIL)'
+RPM_PARAMS += --define '_package_name $(PACKAGE_NAME)'
+RPM_PARAMS += --define '_package_edition $(PACKAGE_EDITION)'
+RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
+RPM_PARAMS += --define '_build_number $(BUILD_NUMBER)'
+RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
+RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	RPM_PARAMS += --define "_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)"
-	RPM_PARAMS += --define "_imageviewer_exec $(IMAGEVIEWER_EXEC)"
-	RPM_PARAMS += --define "_videoplayer_exec $(VIDEOPLAYER_EXEC)"
+	RPM_PARAMS += --define '_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)'
+	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
+	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
 
 .PHONY: all clean branding rpm deb apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
@@ -228,6 +231,9 @@ clean:
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
 		$(TAR_BUILD_DIR) \
+		rpm/$(PACKAGE_NAME).spec \
+		apt-rpm/$(PACKAGE_NAME).spec \
+		urpmi/$(PACKAGE_NAME).spec \
 		$(DEB_REPO)\
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
@@ -271,9 +277,8 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-$(RPM): desktopeditor
-	cd rpm && setarch $(RPM_ARCH) rpmbuild \
-		-bb \
+$(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
+	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
 		$(RPM_PARAMS) \
@@ -284,17 +289,15 @@ $(DEB): desktopeditor $(DEB_DEPS)
 	mkdir -p $(DEB_PACKAGE_DIR)
 	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
-$(APT_RPM): desktopeditor
-	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild \
-		-bb \
+$(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
+	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
 		$(RPM_PARAMS) \
 		package.spec
 
-$(URPMI): desktopeditor
-	cd urpmi && setarch $(URPMI_ARCH) rpmbuild \
-		-bb \
+$(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
+	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_package_arch $(URPMI_ARCH)" \
 		$(RPM_PARAMS) \
@@ -387,19 +390,21 @@ common/usr/bin/$(VIDEOPLAYER_EXEC) : common/usr/bin/videoplayer.m4
 common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/usr/share/applications/desktopeditors.desktop.m4
 common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/applications/imageviewer.desktop.m4
 common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4
+common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
+common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
 
-$(DESKTOPEDITORS_EXEC:%=common/usr/bin/%) $(IMAGEVIEWER_EXEC:%=common/usr/bin/%) $(VIDEOPLAYER_EXEC:%=common/usr/bin/%) $(DESKTOPEDITORS_EXEC:%=common/usr/share/applications/%.desktop) $(IMAGEVIEWER_EXEC:%=common/usr/share/applications/%.desktop) $(VIDEOPLAYER_EXEC:%=common/usr/share/applications/%.desktop) deb/debian/$(PACKAGE_NAME).install :
-	m4 -I'common/usr/share/applications' $(M4_PARAMS)	$< > $@
+$(BIN_FILES) $(DESKTOP_FILES) deb/debian/$(PACKAGE_NAME).install :
+	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
+
+$(SYMLINK) :
+	ln -srf $< $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
 
-common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
-common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
-
-common/usr/bin/desktopeditors $(COMPANY_NAME_LOW:%=common/usr/bin/%) :
-	ln -srf $< $@
+%/$(PACKAGE_NAME).spec : %/package.spec 
+	cp $< $@
 
 deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
 #deploy-installer
