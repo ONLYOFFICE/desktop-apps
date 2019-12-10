@@ -246,7 +246,6 @@ branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
 
 desktopeditor: branding $(LINUX_DEPS)
-	rm -rfv common/opt
 	mkdir -p common/opt
 	cp -rft common/opt $(SRC)
 
