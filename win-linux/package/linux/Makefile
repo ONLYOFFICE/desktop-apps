@@ -51,7 +51,7 @@ URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)/$(DEB_ARCH)
+DEB_PACKAGE_DIR = $(PWD)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
@@ -226,7 +226,10 @@ clean:
 		$(DEB_BUILD_DIR)/debian/.debhelper \
 		$(DEB_BUILD_DIR)/debian/files \
 		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME)* \
-		$(DEB_PACKAGE_DIR) \
+		$(DEB_PACKAGE_DIR)/*.deb \
+		$(DEB_PACKAGE_DIR)/*.ddeb \
+		$(DEB_PACKAGE_DIR)/*.buildinfo \
+		$(DEB_PACKAGE_DIR)/*.changes \
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
@@ -285,8 +288,6 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 
 $(DEB): desktopeditor $(DEB_DEPS)
 	cd deb && dpkg-buildpackage -b -uc -us
-	mkdir -p $(DEB_PACKAGE_DIR)
-	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR) || true
 
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
