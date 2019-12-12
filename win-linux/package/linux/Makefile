@@ -286,7 +286,7 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 $(DEB): desktopeditor $(DEB_DEPS)
 	cd deb && dpkg-buildpackage -b -uc -us
 	mkdir -p $(DEB_PACKAGE_DIR)
-	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
+	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR) || true
 
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
