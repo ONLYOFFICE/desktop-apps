@@ -284,7 +284,7 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 		package.spec
 
 $(DEB): desktopeditor $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b --no-sign
+	cd deb && dpkg-buildpackage -b -uc -us
 	mkdir -p $(DEB_PACKAGE_DIR)
 	mv -f *.deb *.ddeb *.buildinfo *.changes -t $(DEB_PACKAGE_DIR)
 
