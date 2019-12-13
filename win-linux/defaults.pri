@@ -20,8 +20,12 @@ TRANSLATIONS = ./langs/en.ts \
 
 CORE_SRC_PATH = $$PWD/../../core/DesktopEditor
 BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
-CORE_LIB_PATH = $$PWD/../../core/build
 CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
+use_branding {
+    CORE_LIB_PATH = $$PWD/../../core/build/$$BRANDING_PATH_EXTENSION
+} else {
+    CORE_LIB_PATH = $$PWD/../../core/build
+}
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
