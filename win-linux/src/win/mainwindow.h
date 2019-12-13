@@ -80,6 +80,7 @@ public:
 
 #ifdef _UPDMODULE
     static void checkUpdates();
+    static void setAutocheckUpdatesInterval(const QString&);
 #endif
 
 private:

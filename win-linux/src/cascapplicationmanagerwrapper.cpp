@@ -1086,6 +1086,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( objRoot["docopenmode"].toString() == "view" )
             params.append(L"&mode=view");
 
+#ifdef _UPDMODULE
+        if ( objRoot.contains("checkupdatesrate") ) {
+            CMainWindow::setAutocheckUpdatesInterval(objRoot.value("checkupdatesrate").toString());
+        }
+#endif
+
         AscAppManager::getInstance().InitAdditionalEditorParams( params );
     } else {
         /* parse settings error */

@@ -79,6 +79,18 @@
                                         </section>
                                     </div>
                                     <!-- end section -->
+                                    <div class='settings-field' id="opts-checkupdate" style='display:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='never' l10n>${_lang.settOptCheckNever}</option>
+                                                    <option value='day' l10n>${_lang.settOptCheckDay}</option>
+                                                    <option value='week' l10n>${_lang.settOptCheckWeek}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                 </section>
                                 <div class="lst-tools">
                                     <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
@@ -131,6 +143,11 @@
                     utils.Lang.change(_new_settings.langid);
                 }
 
+                let $optsupdatesrate = $('#opts-checkupdate', $panel);
+                if ( $optsupdatesrate.is(':visible') ) {
+                    _new_settings.checkupdatesrate = $('select', $optsupdatesrate).val();
+                }
+
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
                 
@@ -163,6 +180,12 @@
             }
 
             $optsLang.toggleClass('notted', true);
+        };
+
+        function _on_autoupdate_change() {
+            if ( $btnApply.isdisabled() ) {
+                $btnApply.disable(false);
+            }
         };
 
         function _lock_createnew(lock) {
@@ -200,6 +223,18 @@
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
                         }
+                    }
+                } else
+                if (/updates/.test(cmd)) {
+                    let $settnode = $('#opts-checkupdate', $panel),
+                        $combo = $('select', $settnode);
+
+                    $combo.val(param);
+
+                    if ( !$settnode.is(':visible') ) {
+                        $settnode.show();
+                        $combo.selectpicker();
+                        $combo.on('change', _on_autoupdate_change.bind(this));
                     }
                 }
             }

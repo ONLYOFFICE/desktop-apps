@@ -108,6 +108,10 @@ l10n.en = {
     ,settLanguage: 'Interface language'
     ,settAfterRestart: 'Option will be applied after the app restart'
     ,settShowEncryptOpts: 'Test end-to-end encryption'
+    ,settCheckUpdates: 'Check updates automatically'
+    ,settOptCheckNever: 'Never'
+    ,settOptCheckDay: 'Every day'
+    ,settOptCheckWeek: 'Every week'
 }
 
 l10n.cs = {

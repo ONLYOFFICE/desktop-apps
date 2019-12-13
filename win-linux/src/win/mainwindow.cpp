@@ -798,6 +798,27 @@ void CMainWindow::slot_mainPageReady()
 
         AscAppManager::sendCommandTo(0, "updates", "on");
         CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+
+#define RATE_MS_DAY 3600*24
+#define RATE_MS_WEEK RATE_MS_DAY*7
+
+        wstring _wstr_rate{L"day"};
+        if ( !win_sparkle_get_automatic_check_for_updates() ) {
+            _wstr_rate = L"never";
+        } else {
+            int _rate{win_sparkle_get_update_check_interval()};
+            if ( !(_rate < RATE_MS_WEEK) ) {
+                if ( _rate != RATE_MS_WEEK )
+                    win_sparkle_set_update_check_interval(RATE_MS_WEEK);
+
+                _wstr_rate = L"week";
+            } else {
+                if ( _rate != RATE_MS_DAY )
+                    win_sparkle_set_update_check_interval(RATE_MS_DAY);
+            }
+        }
+
+        AscAppManager::sendCommandTo(0, L"settings:check.updates", _wstr_rate);
     }
 #endif
 }
@@ -821,6 +842,20 @@ void CMainWindow::updateError()
 void CMainWindow::checkUpdates()
 {
     win_sparkle_check_update_with_ui();
+}
+
+void CMainWindow::setAutocheckUpdatesInterval(const QString& s)
+{
+    if ( s == "never" )
+        win_sparkle_set_automatic_check_for_updates(0);
+    else {
+        win_sparkle_set_automatic_check_for_updates(1);
+
+        s == "week" ?
+            win_sparkle_set_update_check_interval(RATE_MS_WEEK):
+                win_sparkle_set_update_check_interval(RATE_MS_DAY);
+
+    }
 }
 #endif
 
