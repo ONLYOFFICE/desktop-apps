@@ -108,7 +108,7 @@ l10n.en = {
     ,settLanguage: 'Interface language'
     ,settAfterRestart: 'Option will be applied after the app restart'
     ,settShowEncryptOpts: 'Test end-to-end encryption'
-    ,settCheckUpdates: 'Check updates automatically'
+    ,settCheckUpdates: 'Check for updates automatically'
     ,settOptCheckNever: 'Never'
     ,settOptCheckDay: 'Every day'
     ,settOptCheckWeek: 'Every week'
@@ -349,6 +349,10 @@ l10n.ru = {
     ,settLanguage: 'Язык интерфейса'
     ,settAfterRestart: 'Настройка будет применена после перезагрузки приложения'
     ,settShowEncryptOpts: 'Тестирование сквозного шифрования'
+    ,settCheckUpdates: 'Проверять наличие обновлений автоматически'
+    ,settOptCheckNever: 'Никогда'
+    ,settOptCheckDay: 'Каждый день'
+    ,settOptCheckWeek: 'Каждую неделю'
 }
 
 l10n.de = {
@@ -428,6 +432,10 @@ l10n.de = {
     ,settLanguage: 'Sprache der Benutzeroberfläche'
     ,settAfterRestart: 'Die Option wird nach dem Neustart der App angewendet'
     ,settShowEncryptOpts: 'Ende-zu-Ende-Verschlüsselung testen'
+    ,settCheckUpdates: 'Automatisch nach Updates suchen'
+    ,settOptCheckNever: 'Niemals'
+    ,settOptCheckDay: 'Täglich'
+    ,settOptCheckWeek: 'Jede Woche'
 };
 
 l10n.it_IT = {
@@ -507,6 +515,10 @@ l10n.it_IT = {
     ,settLanguage: 'Linguaggio di interfaccia'
     ,settAfterRestart: 'L\'opzione sarà effettiva dal prossimo avvio'
     ,settShowEncryptOpts: 'Testare la crittografia end-to-end'
+    ,settCheckUpdates: 'Controlla gli aggiornamenti automaticamente'
+    ,settOptCheckNever: 'Mai'
+    ,settOptCheckDay: 'Ogni giorno'
+    ,settOptCheckWeek: 'Ogni settimana'
 };
 
 l10n.fr = {
@@ -586,6 +598,10 @@ l10n.fr = {
     ,settLanguage: 'Langue de l\'interface'
     ,settAfterRestart: 'L\'option sera appliquée après la réinitialisation d\'application'
     ,settShowEncryptOpts: 'Tester le chiffrement de bout en bout'
+    ,settCheckUpdates: 'Vérifier les mises à jour automatiquement'
+    ,settOptCheckNever: 'Jamais'
+    ,settOptCheckDay: 'Chaque jour'
+    ,settOptCheckWeek: 'Chaque semaine'
 };
 
 l10n.es = {
