@@ -1,57 +1,9 @@
-PWD := $(shell pwd)
 ISCC := iscc
-CURL := curl -L -o
-
-COMPANY_NAME ?= ONLYOFFICE
-PRODUCT_NAME ?= Desktop Editors
-# COMPANY_NAME ?= R7-Office
-PRODUCT_NAME_SHORT ?= $(subst $(x) $(x),,$(PRODUCT_NAME))
-
-COMPANY_NAME_LOW = $(shell echo $(COMPANY_NAME) | tr A-Z a-z)
-PRODUCT_NAME_LOW = $(shell echo $(PRODUCT_NAME_SHORT) | tr A-Z a-z)
-
-ifeq ($(UNAME_M),x86_64)
-	WIN_ARCH := x64
-	VCREDIST_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
-	WINSPARKLE_DLL := WinSparkle-0.7.0/x64/Release/WinSparkle.dll
-endif
-
-ifneq ($(filter %86,$(UNAME_M)),)
-	WIN_ARCH := x86
-	VCREDIST_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
-	WINSPARKLE_DLL := WinSparkle-0.7.0/Release/WinSparkle.dll
-endif
-
 ISCC_S_PARAM := //S
-
-PUBLISHER_NAME ?= Ascensio System SIA
-PUBLISHER_URL ?= http://onlyoffice.com
-SUPPORT_URL ?= http://support.onlyoffice.com
-SUPPORT_MAIL ?= support@onlyoffice.com
-# PUBLISHER_NAME ?= AO "NOVYE KOMMUNIKACIONNYE TEHNOLOGII"
-# PUBLISHER_URL ?= http://r7-office.ru
-# SUPPORT_URL ?= http://support.r7-office.ru
-# SUPPORT_MAIL ?= support@r7-office.ru
-
-PRODUCT_VERSION ?= 0.0.0
-BUILD_NUMBER ?= 0
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
-else
-	PACKAGE_NAME := $(COMPANY_NAME_LOW)
-endif
-PACKAGE_VERSION := $(PRODUCT_VERSION).$(BUILD_NUMBER)
-
-BRANDING_DIR ?= $(PWD)/branding
-
 SIGN_STR := "byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
 WIN_REPO_DIR := windows
-
-ifdef _WIN_XP
-	WIN_ARCH_SUFFIX := xp
-endif
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
@@ -65,6 +17,14 @@ WINSPARKLE := win-linux/windows/data/winsparkle/WinSparkle.dll
 WINSPARKLE_URL := https://github.com/ONLYOFFICE/winsparkle/releases/download/v0.7.0b/WinSparkle-0.7.0.zip
 WINSPARKLE_ARCH := WinSparkle-0.7.0.zip
 
+ifeq ($(WIN_ARCH),x64)
+	VCREDIST_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
+	WINSPARKLE_DLL := WinSparkle-0.7.0/x64/Release/WinSparkle.dll
+else ifeq ($(WIN_ARCH),x86)
+	VCREDIST_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
+	WINSPARKLE_DLL := WinSparkle-0.7.0/Release/WinSparkle.dll
+endif
+
 INDEX_HTML := win-linux/package/windows/index.html
 
 M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
@@ -77,6 +37,8 @@ M4_PARAMS += -D M4_SUPPORT_URL='$(SUPPORT_URL)'
 M4_PARAMS += -D M4_PACKAGE_NAME=$(PACKAGE_NAME)
 M4_PARAMS += -D M4_PACKAGE_VERSION=$(PACKAGE_VERSION)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
+M4_PARAMS += -D M4_WIN_XP_FLAG=$(_WIN_XP)
+M4_PARAMS += -D M4_BRANDING_DIR='$(abspath $(BRANDING_DIR))'
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST) $(WINSPARKLE)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
@@ -101,7 +63,7 @@ win-linux/package/windows/%.exe:
 		//DENABLE_SIGNING=1 \
 		//Qp \
 		$(ISCC_S_PARAM)$(SIGN_STR) \
-		install_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).iss
+		$(PACKAGE_NAME)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).iss
 	
 win-linux/package/windows/%.zip:
 	7z a -y $@ $(DEST_DIR)/*

@@ -7,8 +7,40 @@ INSTALL_FILE	= $(COPY_FILE) -av
 INSTALL_DIR		= $(COPY_DIR)
 INSTALL_PROGRAM	= install -m 755 -p
 
+COMPANY_NAME ?= ONLYOFFICE
+# COMPANY_NAME ?= R7-Office
+COMPANY_NAME_LOW = $(shell echo $(COMPANY_NAME) | tr A-Z a-z)
+PRODUCT_NAME ?= Desktop Editors
+PRODUCT_NAME_SHORT = $(subst $(x) $(x),,$(PRODUCT_NAME))
+PRODUCT_NAME_LOW = $(shell echo $(PRODUCT_NAME_SHORT) | tr A-Z a-z)
+
+PUBLISHER_NAME ?= Ascensio System SIA
+PUBLISHER_URL ?= http://onlyoffice.com
+SUPPORT_URL ?= http://support.onlyoffice.com
+SUPPORT_MAIL ?= support@onlyoffice.com
+# PUBLISHER_NAME ?= AO "NOVYE KOMMUNIKACIONNYE TEHNOLOGII"
+# PUBLISHER_URL ?= http://r7-office.ru
+# SUPPORT_URL ?= http://support.r7-office.ru
+# SUPPORT_MAIL ?= support@r7-office.ru
+
 PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
+else
+	PACKAGE_NAME := $(COMPANY_NAME_LOW)
+endif
+PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
+
+BRANDING_DIR ?= $(PWD)/win-linux/package/windows/branding
+
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	DESKTOP_EDITORS_PREFIX := $(COMPANY_NAME)/$(PRODUCT_NAME_SHORT)
+	DESKTOP_EDITORS_PREFIX_LOW := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
+else
+	DESKTOP_EDITORS_PREFIX := $(COMPANY_NAME_LOW)/DesktopEditors
+	DESKTOP_EDITORS_PREFIX_LOW := $(COMPANY_NAME_LOW)/desktopeditors
+endif
 
 QT_PATH ?= /opt/qt5
 QT_PLUGINS ?= $(QT_PATH)/plugins
@@ -18,9 +50,11 @@ END2END_ENCRYPT ?= false
 UNAME_M := $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
 	ARCHITECTURE := 64
+	WIN_ARCH := x64
 endif
 ifneq ($(filter %86,$(UNAME_M)),)
 	ARCHITECTURE := 32
+	WIN_ARCH := x86
 endif
 
 ifeq ($(OS),Windows_NT)
@@ -30,7 +64,10 @@ ifeq ($(OS),Windows_NT)
 	SHARED_EXT := .dll
 	LIB_EXT := .lib
 	MAKE := nmake
-	DEST_DIR ?= ../build_tools/out/win_$(ARCHITECTURE)/ONLYOFFICE/DesktopEditors
+	ifdef _WIN_XP
+		WIN_ARCH_SUFFIX := xp
+	endif
+	DEST_DIR ?= ../build_tools/out/win_$(ARCHITECTURE)$(WIN_ARCH_SUFFIX:%=_%)/$(DESKTOP_EDITORS_PREFIX)
 	QT_LIBS ?= $(QT_PATH)/bin
 else
 	UNAME_S := $(shell uname -s)
@@ -41,7 +78,7 @@ else
 		SHELL_EXT := .sh
 		LIB_EXT := .a
 		MAKE := make
-		DEST_DIR ?= ../build_tools/out/linux_$(ARCHITECTURE)/onlyoffice/desktopeditors
+		DEST_DIR ?= ../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOP_EDITORS_PREFIX_LOW)
 		QT_LIBS ?= $(QT_PATH)/lib
 	endif
 endif
