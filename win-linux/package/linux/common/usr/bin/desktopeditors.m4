@@ -6,6 +6,11 @@ TEMPLATE_DOCX="$TEMPLATE_DIR/New-Document.docx"
 TEMPLATE_XLSX="$TEMPLATE_DIR/New-Spreadsheet.xlsx"
 TEMPLATE_PPTX="$TEMPLATE_DIR/New-Presentation.pptx"
 
+if ! [ -e $TEMPLATE_DIR ]
+then
+  mkdir $TEMPLATE_DIR
+fi
+
 if ! [ -f $TEMPLATE_DOCX ]
 then
   cp $SOURCE_DOC_DIR/mm_new.docx $TEMPLATE_DOCX
