@@ -1,29 +1,86 @@
 #!/bin/sh
 
-TEMPLATE_DIR="$HOME/Templates"
-SOURCE_DOC_DIR="/opt/onlyoffice/desktopeditors/converter/empty"
-TEMPLATE_DOCX="$TEMPLATE_DIR/New-Document.docx"
-TEMPLATE_XLSX="$TEMPLATE_DIR/New-Spreadsheet.xlsx"
-TEMPLATE_PPTX="$TEMPLATE_DIR/New-Presentation.pptx"
+SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
+SOURCE_DOC_NAME="mm_new"
+NEW_DOCX_NAME="New Document"
+NEW_XLSX_NAME="New Spreadsheet"
+NEW_PPTX_NAME="New Presentation"
 
-if ! [ -e $TEMPLATE_DIR ]
+case $LANG in
+  cs*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/cs-CZ"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Nový dokument"
+    NEW_XLSX_NAME="Nový sešit"
+    NEW_PPTX_NAME="Nová prezentace"
+    ;;
+  de*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Neues Dokument"
+    NEW_XLSX_NAME="Neues Tabellendokument"
+    NEW_PPTX_NAME="Neue Präsentation"
+    ;;
+  es*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Documento nuevo"
+    NEW_XLSX_NAME="Hoja de cálculo nueva"
+    NEW_PPTX_NAME="Presentación nueva"
+    ;;
+  fr*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/fr-FR"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Nouveau document"
+    NEW_XLSX_NAME="Nouveau classeur"
+    NEW_PPTX_NAME="Nouvelle présentation"
+    ;;
+  it*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/it-IT"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Nuovo documento"
+    NEW_XLSX_NAME="Nuovo foglio di calcolo"
+    NEW_PPTX_NAME="Nuova presentazione"
+    ;;
+  pt*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/pt-BR"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Novo Documento"
+    NEW_XLSX_NAME="Nova planilha"
+    NEW_PPTX_NAME="Nova apresentação"
+    ;;
+  ru*)
+    SOURCE_DOC_DIR="$SOURCE_DOC_DIR/ru-RU"
+    SOURCE_DOC_NAME="new"
+    NEW_DOCX_NAME="Новый документ"
+    NEW_XLSX_NAME="Новая эл.таблица"
+    NEW_PPTX_NAME="Новая презентация"
+    ;;
+esac
+
+eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
+TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
+TEMPLATE_XLSX="$TEMPLATE_DIR/$NEW_XLSX_NAME.xlsx"
+TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
+
+mkdir $TEMPLATE_DIR
+
+if ! [ -f "$TEMPLATE_DOCX" ]
 then
-  mkdir $TEMPLATE_DIR
+  rm -f $TEMPLATE_DIR/*.docx
+  cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docx "$TEMPLATE_DOCX"
 fi
 
-if ! [ -f $TEMPLATE_DOCX ]
+if ! [ -f "$TEMPLATE_XLSX" ]
 then
-  cp $SOURCE_DOC_DIR/mm_new.docx $TEMPLATE_DOCX
+  rm -f $TEMPLATE_DIR/*.xlsx
+  cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.xlsx "$TEMPLATE_XLSX"
 fi
 
-if ! [ -f $TEMPLATE_XLSX ]
+if ! [ -f "$TEMPLATE_PPTX" ]
 then
-  cp $SOURCE_DOC_DIR/mm_new.xlsx $TEMPLATE_XLSX
-fi
-
-if ! [ -f $TEMPLATE_PPTX ]
-then
-  cp $SOURCE_DOC_DIR/mm_new.pptx $TEMPLATE_PPTX
+  rm -f $TEMPLATE_DIR/*.pptx
+  cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.pptx "$TEMPLATE_PPTX"
 fi
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
