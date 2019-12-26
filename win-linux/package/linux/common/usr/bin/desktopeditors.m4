@@ -1,10 +1,6 @@
 #!/bin/sh
 
 SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
-SOURCE_DOC_NAME="mm_new"
-NEW_DOCX_NAME="New Document"
-NEW_XLSX_NAME="New Spreadsheet"
-NEW_PPTX_NAME="New Presentation"
 
 case $LANG in
   cs*)
@@ -56,6 +52,12 @@ case $LANG in
     NEW_XLSX_NAME="Новая эл.таблица"
     NEW_PPTX_NAME="Новая презентация"
     ;;
+  *)
+    SOURCE_DOC_NAME="mm_new"
+    NEW_DOCX_NAME="New Document"
+    NEW_XLSX_NAME="New Spreadsheet"
+    NEW_PPTX_NAME="New Presentation"
+    ;;
 esac
 
 eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
@@ -65,21 +67,18 @@ TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
 
 mkdir $TEMPLATE_DIR
 
-if ! [ -f "$TEMPLATE_DOCX" ]
+if [ $(find $TEMPLATE_DIR -maxdepth 1 -type f -name '*.docx' | wc -l) -eq 0 ]
 then
-  rm -f $TEMPLATE_DIR/*.docx
   cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docx "$TEMPLATE_DOCX"
 fi
 
-if ! [ -f "$TEMPLATE_XLSX" ]
+if [ $(find $TEMPLATE_DIR -maxdepth 1 -type f -name '*.xlsx' | wc -l) -eq 0 ]
 then
-  rm -f $TEMPLATE_DIR/*.xlsx
   cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.xlsx "$TEMPLATE_XLSX"
 fi
 
-if ! [ -f "$TEMPLATE_PPTX" ]
+if [ $(find $TEMPLATE_DIR -maxdepth 1 -type f -name '*.pptx' | wc -l) -eq 0 ]
 then
-  rm -f $TEMPLATE_DIR/*.pptx
   cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.pptx "$TEMPLATE_PPTX"
 fi
 
