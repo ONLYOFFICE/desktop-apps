@@ -1,87 +1,185 @@
-﻿
-#define sAppName            'ONLYOFFICE Desktop Editors'
-#define APP_PATH            'ONLYOFFICE\DesktopEditors'
-#define APP_REG_PATH        'Software\ONLYOFFICE\DesktopEditors'
-#define APP_USER_MODEL_ID   'ASC.Documents.5'
-#define sAppIconName        'ONLYOFFICE Editors'
-#define NAME_EXE_IN         'DesktopEditors_'+os_arch+'.exe'
-#define NAME_EXE_OUT        'editors.exe'
-#define iconsExe            'DesktopEditors.exe'
-#define licfile             'agpl-3.0'
-#define APPWND_CLASS_NAME   'DocEditorsWindowClass'
-#define VISEFFECTS_MANIFEST_NAME ChangeFileExt(iconsExe, 'VisualElementsManifest.xml')
+﻿; Uncomment the line below to be able to compile the script from within the IDE.
+;#define COMPILE_FROM_IDE
 
-#ifndef SCRIPT_CUSTOM_FILES
-#  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
-#else
-#  ifdef _WIN_XP
-#    define xp_suffix  '_xp'
-#  else
-#    define xp_suffix
-#  endif
-#  define DEPLOY_PATH '..\..\..\..\build_tools\out\' + os_arch + xp_suffix + '\ONLYOFFICE'
-#  define sAppVersion         GetFileVersion(AddBackslash(DEPLOY_PATH) + 'DesktopEditors\' + NAME_EXE_OUT)
+#ifndef sBrandingFolder
+  #define sBrandingFolder           "..\..\..\branding"
+#endif
+#define sBrandingFile               str(sBrandingFolder + "\win-linux\package\windows\branding.iss")
+#if FileExists(sBrandingFile)
+  #include str(sBrandingFile)
 #endif
 
-#define sAppVerShort        Copy(sAppVersion, 0, 3)
+#ifndef sCompanyName
+  #define sCompanyName              "ONLYOFFICE"
+#endif
+#ifndef sIntCompanyName
+  #define sIntCompanyName           str(sCompanyName)
+#endif
+#ifndef sProductName
+  #define sProductName              "Desktop Editors"
+#endif
+#ifndef sIntProductName
+  #define sIntProductName           "DesktopEditors"
+#endif
+#ifndef sAppId
+  #define sAppId                    str(sIntCompanyName + " " + sIntProductName)
+#endif
+#ifndef sAppName
+  #define sAppName                  str(sCompanyName + " " + sProductName)
+#endif
+#ifndef sAppPublisher
+  #define sAppPublisher             "Ascensio System SIA"
+#endif
+#ifndef sAppPublisherURL
+  #define sAppPublisherURL          "https://www.onlyoffice.com/"
+#endif
+#ifndef sAppSupportURL
+  #define sAppSupportURL            "https://www.onlyoffice.com/support.aspx"
+#endif
+#ifndef sAppCopyright
+  #define sAppCopyright             str("Copyright (C) " + GetDateTimeString(yyyy,,) + " " + sAppPublisher)
+#endif
+#if str(_ARCH) == "64"
+  #define sWinArch                  "x64"
+  #define sPlatform                 "win_64"
+#elif str(_ARCH) == "32"
+  #define sWinArch                  "x86"
+  #define sPlatform                 "win_32"
+#endif
+#ifdef _WIN_XP
+  #define sWinArchSuffix            "_xp"
+#else
+  #define sWinArchSuffix
+#endif
+
+#ifndef sAppIconName
+  #define sAppIconName              "ONLYOFFICE Editors"
+#endif
+#ifndef iconsExe
+  #define iconsExe                  "DesktopEditors.exe"
+#endif
+#ifndef APP_PATH
+  #define APP_PATH                  str(sIntCompanyName + "\" + sIntProductName)
+#endif
+#ifndef APP_REG_PATH
+  #define APP_REG_PATH              str("Software\" + APP_PATH)
+#endif
+#ifndef APP_USER_MODEL_ID
+  #define APP_USER_MODEL_ID         "ASC.Documents.5"
+#endif
+#ifndef NAME_EXE_IN
+  #define NAME_EXE_IN               str(sIntProductName + "_" + sWinArch + ".exe")
+#endif
+#ifndef NAME_EXE_OUT
+  #define NAME_EXE_OUT              "editors.exe"
+#endif
+#if defined(_ONLY_RU)
+  #define LIC_FILE                  "eula_onlyoffice_ru"
+#elif defined(_R7)
+  #define LIC_FILE                  "eula_r7"
+#else
+  #define LIC_FILE                  "agpl-3.0"
+#endif
+
+#define APPWND_CLASS_NAME           "DocEditorsWindowClass"
+#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
+#define VC_REDIST_VER               str("vcredist_" + sWinArch + ".exe")
+
+#ifndef SCRIPT_CUSTOM_FILES
+  #define sAppVersion               GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
+#else
+  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + sWinArchSuffix + "\" + sIntCompanyName)
+  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
+#endif
+#define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
 #include "associate_page.iss"
 
 #define UNINSTALL_USE_CLEAR_PAGE
 #ifdef UNINSTALL_USE_CLEAR_PAGE
-# include "uninstall_page.iss"
+  #include "uninstall_page.iss"
 #endif
 
-
 [Setup]
+AppId                             = {#sAppId}
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
-VersionInfoVersion        ={#sAppVersion}
-
-AppPublisher              =Ascensio System SIA.
-AppPublisherURL           =http://www.onlyoffice.com/
-AppSupportURL             =http://www.onlyoffice.com/support.aspx
-AppCopyright              =Copyright (C) 2019 Ascensio System SIA.
-
-DefaultGroupName          =ONLYOFFICE
-WizardImageFile           = data\dialogpicture.bmp
-WizardSmallImageFile      = data\dialogicon.bmp
+AppPublisher              = {#sAppPublisher}
+AppPublisherURL           = {#sAppPublisherURL}
+AppSupportURL             = {#sAppSupportURL}
+AppCopyright              = {#sAppCopyright}
+AppMutex                  = {code:getAppMutex}
 
 ;UsePreviousAppDir         =no
 DirExistsWarning          =no
 DefaultDirName            ={pf}\{#APP_PATH}
 DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
-DEPCompatible             = no
-ASLRCompatible            = no
 DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
-UninstallDisplayIcon      = {app}\{#NAME_EXE_OUT}
-OutputDir                 =.\
-Compression               =lzma
+UninstallDisplayIcon      = {app}\app.ico
+DefaultGroupName          = {#sCompanyName}
 PrivilegesRequired        =admin
-AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
+
+#if str(_ARCH) == "64"
+ArchitecturesAllowed              = x64
+ArchitecturesInstallIn64BitMode   = x64
+#endif
+
+#if defined(_ONLY_RU) || defined(_R7)
+LanguageDetectionMethod           = none
+ShowLanguageDialog                = false
+#endif
+;UsePreviousLanguage               = no
+
+#ifndef _WIN_XP
+MinVersion                        = 6.1
+#else
+MinVersion                        = 5.0
+OnlyBelowVersion                  = 6.1
+#endif
+
+DEPCompatible                     = no
+ASLRCompatible                    = no
+OutputDir                         = .\
+Compression                       = lzma
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}{#sWinArchSuffix}
+OutputManifestFile                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}{#sWinArchSuffix}_Manifest.txt
+VersionInfoVersion                = {#sAppVersion}
+
 #ifdef ENABLE_SIGNING
 SignTool                  =byparam $p
 #endif
 
+SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico
+WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture.bmp
+WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon.bmp
+
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;    LicenseFile: ..\..\..\common\package\license\{#licfile}.rtf;
+#if defined(_ONLY_RU)
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;
+Name: en; MessagesFile: compiler:Default.isl;
+#elif defined(_R7)
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+#else
+Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+#endif
+Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
 
 
 [CustomMessages]
@@ -190,6 +288,29 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
+
+#ifdef MEDIAVIEWER_ADD_DEFAULT_APPS
+;======================================================================================================
+en.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;cs_CZ.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;sk.daImageViewerDescription=Viewer for photos and pictures of popular formats
+ru.daImageViewerDescription=Приложение для просмотра фотографий и изображений популярных форматов
+;de.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;fr.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;es.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;it_IT.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;pt_BR.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;======================================================================================================
+en.daVideoPlayerDescription=Player for multimedia files
+;cs_CZ.daVideoPlayerDescription=Player for multimedia files
+;sk.daVideoPlayerDescription=Player for multimedia files
+ru.daVideoPlayerDescription=Приложение для прослушивания музыки и просмотра видеороликов
+;de.daVideoPlayerDescription=Player for multimedia files
+;fr.daVideoPlayerDescription=Player for multimedia files
+;es.daVideoPlayerDescription=Player for multimedia files
+;it_IT.daVideoPlayerDescription=Player for multimedia files
+;pt_BR.daVideoPlayerDescription=Player for multimedia files
+#endif
 
 [Code]
 const
@@ -517,19 +638,19 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
     AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
-Source: .\data\VisualElementsManifest.xml;                      DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
-Source: .\data\visual_elements_icon_150x150.png;                DestDir: {app}\browser;   MinVersion: 6.3;
-Source: .\data\visual_elements_icon_71x71.png;                  DestDir: {app}\browser;   MinVersion: 6.3;
+Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
+Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
+Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
 #ifndef SCRIPT_CUSTOM_FILES
-Source: ..\..\deploy\{#os_arch}\3dparty\Qt\*;                   DestDir: {app}; Flags: ignoreversion recursesubdirs;
+Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
 Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#iconsExe};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
-Source: ..\..\..\common\package\license\{#licfile}.htm;         DestDir: {app}; DestName: LICENSE.htm;
+Source: ..\..\..\common\package\license\{#LIC_FILE}.htm;        DestDir: {app}; DestName: LICENSE.htm;
 Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
@@ -549,21 +670,21 @@ Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\c
 ;Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty\pt-BR;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-Source: ..\..\deploy\{#os_arch}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
 
-Source: ..\..\deploy\{#os_arch}\libs\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#os_arch}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#os_arch}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#os_arch}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
 #if defined _WIN_XP
-Source: ..\..\..\..\core\build\lib\{#os_arch}\xp\ascdocumentscore.dll;   DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll;   DestDir: {app}; Flags: ignoreversion;
 #else
-Source: ..\..\deploy\{#os_arch}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
 #endif
 
-Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#os_arch}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\Common\3dParty\icu\{#os_arch}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
-Source: ..\..\..\..\core\Common\3dParty\cef\{#os_arch}\build\*;           DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\Common\3dParty\icu\{#sPlatform}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\Common\3dParty\cef\{#sPlatform}\build\*;           DestDir: {app}; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
 
 #ifdef _ENCRYPT_MODULE
 Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\common\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
@@ -571,7 +692,7 @@ Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\engine\b
 #endif
 
 #ifdef _UPDMODULE
-Source: ..\..\3dparty\WinSparkle\{#os_arch}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
+Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
