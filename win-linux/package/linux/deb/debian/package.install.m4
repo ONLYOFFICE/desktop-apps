@@ -9,4 +9,8 @@ ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 ../common/usr/bin/M4_VIDEOPLAYER_EXEC /usr/bin/
 ../common/usr/share/applications/M4_IMAGEVIEWER_EXEC.desktop /usr/share/applications/
 ../common/usr/share/applications/M4_VIDEOPLAYER_EXEC.desktop /usr/share/applications/
+../common/usr/share/flyfm/templates/desktopeditors.docx.desktop /usr/share/flyfm/templates/
+../common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop /usr/share/flyfm/templates/
+../common/usr/share/flyfm/templates/desktopeditors.pptx.desktop /usr/share/flyfm/templates/
+../common/usr/share/flyfm/templates/.source/* /usr/share/flyfm/templates/.source/
 ../common/usr/bin/M4_PACKAGE_NAME /usr/bin/)

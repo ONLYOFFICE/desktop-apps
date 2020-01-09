@@ -135,6 +135,9 @@ else
 	BIN_FILES += common/usr/bin/$(VIDEOPLAYER_EXEC)
 	DESKTOP_FILES += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
 	DESKTOP_FILES += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
+	DESKTOP_FILES += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
+	DESKTOP_FILES += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
+	DESKTOP_FILES += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
 	SYMLINK += common/usr/bin/$(COMPANY_NAME_LOW)
 endif
 LINUX_DEPS += $(BIN_FILES)
@@ -259,6 +262,13 @@ desktopeditor: branding $(LINUX_DEPS)
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
+endif
+
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	mkdir common/usr/share/flyfm/templates/.source
+	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.docx common/usr/share/flyfm/templates/.source/new.docx
+	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.xlsx common/usr/share/flyfm/templates/.source/new.xlsx
+	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.pptx common/usr/share/flyfm/templates/.source/new.pptx
 endif
 
 qt-redist:
@@ -394,6 +404,9 @@ common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/app
 common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
+common/usr/share/flyfm/templates/desktopeditors.docx.desktop : common/usr/share/flyfm/templates/desktopeditors.docx.desktop.m4
+common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop : common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop.m4
+common/usr/share/flyfm/templates/desktopeditors.pptx.desktop : common/usr/share/flyfm/templates/desktopeditors.pptx.desktop.m4
 
 $(BIN_FILES) $(DESKTOP_FILES) deb/debian/$(PACKAGE_NAME).install :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
