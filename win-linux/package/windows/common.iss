@@ -21,11 +21,11 @@
 #ifndef sIntProductName
   #define sIntProductName           "DesktopEditors"
 #endif
-#ifndef sAppId
-  #define sAppId                    str(sIntCompanyName + " " + sIntProductName)
-#endif
 #ifndef sAppName
   #define sAppName                  str(sCompanyName + " " + sProductName)
+#endif
+#ifndef sAppId
+  #define sAppId                    str(sIntCompanyName + " " + sIntProductName)
 #endif
 #ifndef sAppPublisher
   #define sAppPublisher             "Ascensio System SIA"
@@ -38,6 +38,9 @@
 #endif
 #ifndef sAppCopyright
   #define sAppCopyright             str("Copyright (C) " + GetDateTimeString(yyyy,,) + " " + sAppPublisher)
+#endif
+#ifndef sAppComments
+  #define sAppComments              str(sCompanyName + " " + sProductName + " is an application for editing office documents (text documents, spreadsheets and presentations) from " + sCompanyName + " cloud portal on local computer without browser using.")
 #endif
 #if str(_ARCH) == "64"
   #define sWinArch                  "x64"
@@ -55,8 +58,8 @@
 #ifndef sAppIconName
   #define sAppIconName              "ONLYOFFICE Editors"
 #endif
-#ifndef iconsExe
-  #define iconsExe                  "DesktopEditors.exe"
+#ifndef MAIN_EXE
+  #define MAIN_EXE                  "DesktopEditors.exe"
 #endif
 #ifndef APP_PATH
   #define APP_PATH                  str(sIntCompanyName + "\" + sIntProductName)
@@ -76,13 +79,21 @@
 #if defined(_ONLY_RU)
   #define LIC_FILE                  "eula_onlyoffice_ru"
 #elif defined(_R7)
+  #define APP_MUTEX_NAME            "R70"
   #define LIC_FILE                  "eula_r7"
 #else
+  #define APP_MUTEX_NAME            "TEAMLAB"
   #define LIC_FILE                  "agpl-3.0"
 #endif
 
 #define APPWND_CLASS_NAME           "DocEditorsWindowClass"
-#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
+#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(MAIN_EXE, "VisualElementsManifest.xml")
+
+; UNUSED
+#define ROOT_DIR                    "..\..\..\.."
+#define REPO_ROOT_DIR               str(ROOT_DIR + "\desktop-app")
+#define CORE_BUILD_DIR              str(ROOT_DIR + "\core\build")
+;#define PATH_PREFIX                 str("win_" + sArch + "\build")
 #define VC_REDIST_VER               str("vcredist_" + sWinArch + ".exe")
 
 #ifndef SCRIPT_CUSTOM_FILES
@@ -92,6 +103,17 @@
   #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
+;#ifndef sAppVerShort
+;  #define sAppVerShort              "0.0.0"
+;#endif
+;#ifndef sAppBuildNumber
+;  #define sAppBuildNumber           "0"
+;#endif
+;#ifndef sAppVersion
+;  #define sAppVersion               str(sAppVerShort + "." + sAppBuildNumber)
+;#else
+;  
+;#endif
 
 #include "utils.iss"
 #include "associate_page.iss"
@@ -102,7 +124,7 @@
 #endif
 
 [Setup]
-AppId                             = {#sAppId}
+;AppId                             = {#sAppId}
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
@@ -110,6 +132,7 @@ AppPublisher              = {#sAppPublisher}
 AppPublisherURL           = {#sAppPublisherURL}
 AppSupportURL             = {#sAppSupportURL}
 AppCopyright              = {#sAppCopyright}
+AppComments                       = {#sAppComments}
 AppMutex                  = {code:getAppMutex}
 
 ;UsePreviousAppDir         =no
@@ -124,7 +147,7 @@ UninstallDisplayIcon      = {app}\app.ico
 DefaultGroupName          = {#sCompanyName}
 PrivilegesRequired        =admin
 ChangesEnvironment        =yes
-SetupMutex                =ASC
+SetupMutex                        = {#APP_MUTEX_NAME}
 
 #if str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
@@ -373,7 +396,7 @@ begin
     end;
 
     if RegQueryStringValue(regkey,
-        'SOFTWARE\ONLYOFFICE\DesktopEditors',
+        'SOFTWARE\{#APP_PATH}',
         'AppPath', path) then
     begin
       if FileExists(path + '\{#NAME_EXE_OUT}') then
@@ -496,7 +519,7 @@ begin
   end else
   if CurStep = ssDone then begin
     if not (gHWND = 0) then begin
-      ShellExec('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+      ShellExec('', ExpandConstant('{app}\{#MAIN_EXE}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
     WizardForm.CancelButton.Enabled := isInstalled;
@@ -518,7 +541,7 @@ var
   hWnd: Longint;
 begin
   if not CheckCommandlineParam('/update') then
-    Result := 'TEAMLAB'
+    Result := '{#APP_MUTEX_NAME}'
   else
     Result := 'UPDATE';
 end;
@@ -600,6 +623,13 @@ begin
   result := lang;
 end;
 
+#ifdef _R7
+function getMediaViewerPath(param: string): string;
+begin
+  result := ExpandFileName(ExpandConstant('{app}\{#sAppSubDir}'));
+end;
+#endif
+
 function libExists(const dllname: String) : boolean;
 begin
   Result := not FileExists(ExpandConstant('{sys}\'+dllname));
@@ -611,7 +641,6 @@ var
 begin
   if not RegQueryStringValue(GetHKLM(), 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', OrigPath)
   then begin
-    Result := True;
     Result := True;
     exit;
   end;
@@ -629,23 +658,52 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
+#ifdef _R7
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  commonCachePath, userCachePath: string;
+  paramStore: string;
+  ErrorCode: Integer;
+begin
+  if CurStep = ssPostInstall then begin
+    DoPostInstall();
+
+    paramStore := GetCommandlineParam('/uninst');
+    if (Length(paramStore) > 0) and (paramStore = 'full') then begin
+      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
+    end;
+
+  end else if CurStep = ssDone then begin
+    if not (gHWND = 0) then
+      ShellExec('', ExpandConstant('{app}\{#MAIN_EXE}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+  end else
+    WizardForm.CancelButton.Enabled := isInstalled;
+end;
+#endif
+
 [Dirs]
 Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
 
-Source: data\vcredist\{#VC_REDIST_VER};       DestDir: {app}\; Flags: deleteafterinstall; \
-    AfterInstall: installVCRedist(ExpandConstant('{app}\{#VC_REDIST_VER}'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
+#ifdef _MEDIAVIEWER
+Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2013;
+#endif
+Source: data\vcredist\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
+; Windows 8.1+ Tiles Customization
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
 #ifndef SCRIPT_CUSTOM_FILES
+;-----------------------------------
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#iconsExe};
+Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#MAIN_EXE};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
@@ -676,11 +734,10 @@ Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}
 Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-#if defined _WIN_XP
-Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll;   DestDir: {app}; Flags: ignoreversion;
-#else
-Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
-#endif
+; Windows Vista-
+Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
+; Windows 7+
+Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion; MinVersion: 0,6.1
 
 Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\Common\3dParty\icu\{#sPlatform}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
@@ -712,7 +769,18 @@ Source: ..\..\..\common\package\fonts\Carlito-Bold.ttf;        DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
+
+; Windows Vista-
+Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\{#sPlatform}\x2t.exe; DestDir: {app}\converter; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
+Source: ..\..\..\..\core\build\bin\{#sPlatform}\icudt.dll;     DestDir: {app}\converter; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
+Source: ..\..\..\..\core\build\bin\icu\{#sPlatform}\*;         DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib; OnlyBelowVersion: 0,6.1
+Source: ..\..\..\..\core\build\cef\winxp_{#_ARCH}\*;           DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs; OnlyBelowVersion: 0,6.1
+
+Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; Flags: ignoreversion recursesubdirs; OnlyBelowVersion: 0,6.1
+Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;  DestDir: {app}\; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
+;-----------------------------------
 #else
+;-----------------------------------
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
@@ -738,6 +806,7 @@ Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignore
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
 
+;-----------------------------------
 #endif
 
 [Tasks]
@@ -747,14 +816,14 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
-Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
+Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#MAIN_EXE}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
+Name: {group}\{#sAppIconName};         Filename: {app}\{#MAIN_EXE}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
+Filename: {app}\{#MAIN_EXE}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 
@@ -768,6 +837,9 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKCU; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
+#ifdef _MEDIAVIEWER
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: mediapath; ValueData: {code:getMediaViewerPath}; Flags: uninsdeletevalue;
+#endif
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
