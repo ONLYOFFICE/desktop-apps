@@ -32,7 +32,7 @@ else
 endif
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
-BRANDING_DIR ?= $(PWD)/win-linux/package/windows/branding
+BRANDING_DIR ?= $(PWD)/branding
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOP_EDITORS_PREFIX := $(COMPANY_NAME)/$(PRODUCT_NAME_SHORT)
