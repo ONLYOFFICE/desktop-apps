@@ -11,15 +11,15 @@ DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(WIN_ARCH)$(WI
 PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
 
-# VCREDIST2013 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
-VCREDIST := win-linux/package/windows/data/vcredist/vcredist_$(WIN_ARCH).exe
+VCREDIST2013 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
+VCREDIST2015 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
-# 	VCREDIST2013_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
-	VCREDIST_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
+ 	VCREDIST2013_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
+	VCREDIST2015_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
 else ifeq ($(WIN_ARCH),x86)
-# 	VCREDIST2013_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
-	VCREDIST_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
+ 	VCREDIST2013_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
+	VCREDIST2015_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
 endif
 
 INDEX_HTML := win-linux/package/windows/index.html
@@ -42,17 +42,28 @@ ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
 ifdef _WIN_XP
 	ISCC_PARAMS += //D_WIN_XP=1
 endif
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	ISCC_PARAMS += //D_ONLYOFFICE=1
+endif
 ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
 ISCC_PARAMS += //DENABLE_SIGNING=1
 ISCC_PARAMS += //DsBrandingFolder="$(abspath $(BRANDING_DIR))"
 ISCC_PARAMS += $(ISCC_S_PARAM)$(SIGN_STR)
 
-$(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+$(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST2015)
+else
+$(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST2013) $(VCREDIST2015)
+endif
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
 
-$(VCREDIST):
-	mkdir -p $(dir $(VCREDIST))
-	$(CURL) $(VCREDIST) $(VCREDIST_URL)
+$(VCREDIST2013):
+	mkdir -p $(dir $(VCREDIST2013))
+	$(CURL) $(VCREDIST2013) $(VCREDIST2013_URL)
+
+$(VCREDIST2015):
+	mkdir -p $(dir $(VCREDIST2015))
+	$(CURL) $(VCREDIST2015) $(VCREDIST2015_URL)
 
 $(DEST_DIR): install
 
@@ -66,7 +77,7 @@ package: $(PACKAGES)
 #zip: $(DESKTOP_EDITORS_ZIP)
 
 clean-package:
-	rm -f $(PACKAGES) $(VCREDIST) $(INDEX_HTML)
+	rm -f $(PACKAGES) $(VCREDIST2013) $(VCREDIST2015) $(INDEX_HTML)
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
