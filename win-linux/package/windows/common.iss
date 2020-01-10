@@ -49,11 +49,6 @@
   #define sWinArch                  "x86"
   #define sPlatform                 "win_32"
 #endif
-#ifdef _WIN_XP
-  #define sWinArchSuffix            "_xp"
-#else
-  #define sWinArchSuffix
-#endif
 
 #ifndef sAppIconName
   #define sAppIconName              "ONLYOFFICE Editors"
@@ -61,11 +56,12 @@
 #ifndef MAIN_EXE
   #define MAIN_EXE                  "DesktopEditors.exe"
 #endif
-#ifndef APP_PATH
-  #define APP_PATH                  str(sIntCompanyName + "\" + sIntProductName)
-#endif
-#ifndef APP_REG_PATH
-  #define APP_REG_PATH              str("Software\" + APP_PATH)
+#define APP_PATH                    str(sIntCompanyName + "\" + sIntProductName)
+#define APP_REG_PATH                str("Software\" + APP_PATH)
+#ifdef _MEDIAVIEWER
+  #define MEDIAVIEWER_APP_PATH      str(sIntCompanyName + "\MediaViewer")
+  #define IMAGEVIEWER_APP_REG_PATH  str("Software\" + sIntCompanyName + "\ImageViewer")
+  #define VIDEOPLAYER_APP_REG_PATH  str("Software\" + sIntCompanyName + "\VideoPlayer")
 #endif
 #ifndef APP_USER_MODEL_ID
   #define APP_USER_MODEL_ID         "ASC.Documents.5"
@@ -76,30 +72,24 @@
 #ifndef NAME_EXE_OUT
   #define NAME_EXE_OUT              "editors.exe"
 #endif
-#if defined(_ONLY_RU)
-  #define LIC_FILE                  "eula_onlyoffice_ru"
-#elif defined(_R7)
-  #define APP_MUTEX_NAME            "R70"
-  #define LIC_FILE                  "eula_r7"
-#else
-  #define APP_MUTEX_NAME            "TEAMLAB"
+#ifndef LIC_FILE
   #define LIC_FILE                  "agpl-3.0"
+#endif
+#ifndef APP_MUTEX_NAME
+  #define APP_MUTEX_NAME            "TEAMLAB"
 #endif
 
 #define APPWND_CLASS_NAME           "DocEditorsWindowClass"
 #define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(MAIN_EXE, "VisualElementsManifest.xml")
 
-; UNUSED
-#define ROOT_DIR                    "..\..\..\.."
-#define REPO_ROOT_DIR               str(ROOT_DIR + "\desktop-app")
-#define CORE_BUILD_DIR              str(ROOT_DIR + "\core\build")
-;#define PATH_PREFIX                 str("win_" + sArch + "\build")
-#define VC_REDIST_VER               str("vcredist_" + sWinArch + ".exe")
-
 #ifndef SCRIPT_CUSTOM_FILES
   #define sAppVersion               GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
 #else
-  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + sWinArchSuffix + "\" + sIntCompanyName)
+  #ifndef _WIN_XP
+    #define DEPLOY_PATH             str("..\..\..\..\build_tools\out\" + sPlatform + "\" + sIntCompanyName)
+  #else
+    #define DEPLOY_PATH             str("..\..\..\..\build_tools\out\" + sPlatform + "_xp\" + sIntCompanyName)
+  #endif
   #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
@@ -123,38 +113,48 @@
   #include "uninstall_page.iss"
 #endif
 
+#ifdef _MEDIAVIEWER
+  #include "..\..\..\..\core-ext\multimedia\packages\exe\base.iss"
+#endif
+
 [Setup]
-;AppId                             = {#sAppId}
+;AppId                     = {#sAppId}
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
+VersionInfoVersion        ={#sAppVersion}
+
 AppPublisher              = {#sAppPublisher}
 AppPublisherURL           = {#sAppPublisherURL}
 AppSupportURL             = {#sAppSupportURL}
 AppCopyright              = {#sAppCopyright}
-AppComments                       = {#sAppComments}
-AppMutex                  = {code:getAppMutex}
+AppComments               = {#sAppComments}
 
+DefaultGroupName          = {#sCompanyName}
 ;UsePreviousAppDir         =no
 DirExistsWarning          =no
 DefaultDirName            ={pf}\{#APP_PATH}
 DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
+DEPCompatible             = no
+ASLRCompatible            = no
 DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
-DefaultGroupName          = {#sCompanyName}
+OutputDir                 =.\
+Compression               =lzma
 PrivilegesRequired        =admin
+AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
-SetupMutex                        = {#APP_MUTEX_NAME}
+SetupMutex                = {#APP_MUTEX_NAME}
 
 #if str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
 #endif
 
-#if defined(_ONLY_RU) || defined(_R7)
+#ifndef _ONLYOFFICE
 LanguageDetectionMethod           = none
 ShowLanguageDialog                = false
 #endif
@@ -162,18 +162,12 @@ ShowLanguageDialog                = false
 
 #ifndef _WIN_XP
 MinVersion                        = 6.1
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}
 #else
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}_xp
 #endif
-
-DEPCompatible                     = no
-ASLRCompatible                    = no
-OutputDir                         = .\
-Compression                       = lzma
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}{#sWinArchSuffix}
-OutputManifestFile                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}{#sWinArchSuffix}_Manifest.txt
-VersionInfoVersion                = {#sAppVersion}
 
 #ifdef ENABLE_SIGNING
 SignTool                  =byparam $p
@@ -184,15 +178,12 @@ WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon.bmp
 
 [Languages]
-#if defined(_ONLY_RU)
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;
-Name: en; MessagesFile: compiler:Default.isl;
-#elif defined(_R7)
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+#ifdef _ONLYOFFICE
 Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
 #else
-Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
 Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
 #endif
 Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
 Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
@@ -312,7 +303,7 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
 
-#ifdef MEDIAVIEWER_ADD_DEFAULT_APPS
+#ifdef _MEDIAVIEWER
 ;======================================================================================================
 en.daImageViewerDescription=Viewer for photos and pictures of popular formats
 ;cs_CZ.daImageViewerDescription=Viewer for photos and pictures of popular formats
@@ -453,13 +444,13 @@ begin
 #endif
             then regValue := 'soft';
 
-    userPath := ExpandConstant('{localappdata}\ONLYOFFICE');
+    userPath := ExpandConstant('{localappdata}\{#sIntCompanyName}');
     if regValue = 'soft' then begin
-      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
-      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
+      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\{#sIntCompanyName}');
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\{#sIntCompanyName}');
 
       // remove all app and user cashed data except of folders 'recover' and 'sdkjs-plugins'
-      userPath := userPath + '\DesktopEditors';
+      userPath := userPath + '\{#sIntProductName}';
       DelTree(userPath + '\*', False, True, False);
 
       userPath := userPath + '\data';
@@ -480,8 +471,8 @@ begin
     end else
     if regValue = 'full' then begin
       DelTree(userPath, True, True, True);
-      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\ONLYOFFICE');
-      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\ONLYOFFICE');
+      RegDeleteKeyIncludingSubkeys(GetHKLM(), 'Software\{#sIntCompanyName}');
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\{#sIntCompanyName}');
     end;
 
     UnassociateExtensions();
@@ -623,10 +614,10 @@ begin
   result := lang;
 end;
 
-#ifdef _R7
+#ifdef _MEDIAVIEWER
 function getMediaViewerPath(param: string): string;
 begin
-  result := ExpandFileName(ExpandConstant('{app}\{#sAppSubDir}'));
+  result := ExpandFileName(ExpandConstant('{app}\..\MediaViewer'));
 end;
 #endif
 
@@ -658,29 +649,6 @@ begin
   SendTextMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, PAnsiChar(S), SMTO_ABORTIFHUNG, 5000, MsgResult);
 end;
 
-#ifdef _R7
-procedure CurStepChanged(CurStep: TSetupStep);
-var
-  commonCachePath, userCachePath: string;
-  paramStore: string;
-  ErrorCode: Integer;
-begin
-  if CurStep = ssPostInstall then begin
-    DoPostInstall();
-
-    paramStore := GetCommandlineParam('/uninst');
-    if (Length(paramStore) > 0) and (paramStore = 'full') then begin
-      RegWriteStringValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'uninstall', paramStore);
-    end;
-
-  end else if CurStep = ssDone then begin
-    if not (gHWND = 0) then
-      ShellExec('', ExpandConstant('{app}\{#MAIN_EXE}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
-  end else
-    WizardForm.CancelButton.Enabled := isInstalled;
-end;
-#endif
-
 [Dirs]
 Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
@@ -694,16 +662,14 @@ Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: dele
 Source: data\vcredist\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
 
-; Windows 8.1+ Tiles Customization
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
 #ifndef SCRIPT_CUSTOM_FILES
-;-----------------------------------
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#MAIN_EXE};
+Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#MAIN_EXE};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
@@ -734,10 +700,11 @@ Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}
 Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-; Windows Vista-
-Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
-; Windows 7+
-Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion; MinVersion: 0,6.1
+  #ifdef _WIN_XP
+Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
+  #else
+Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
+  #endif
 
 Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\Common\3dParty\icu\{#sPlatform}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
@@ -770,17 +737,16 @@ Source: ..\..\..\common\package\fonts\Carlito-BoldItalic.ttf;  DestDir: {app}\fo
 Source: ..\..\..\common\package\fonts\Carlito-Italic.ttf;      DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 Source: ..\..\..\common\package\fonts\Carlito-Regular.ttf;     DestDir: {app}\fonts; Flags: onlyifdoesntexist;
 
-; Windows Vista-
-Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\{#sPlatform}\x2t.exe; DestDir: {app}\converter; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
-Source: ..\..\..\..\core\build\bin\{#sPlatform}\icudt.dll;     DestDir: {app}\converter; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
-Source: ..\..\..\..\core\build\bin\icu\{#sPlatform}\*;         DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib; OnlyBelowVersion: 0,6.1
-Source: ..\..\..\..\core\build\cef\winxp_{#_ARCH}\*;           DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs; OnlyBelowVersion: 0,6.1
+  #ifdef _WIN_XP
+Source: ..\..\..\..\core\build\{#PATH_PREFIX}\bin\{#sPlatform}\x2t.exe; DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\{#sPlatform}\icudt.dll;     DestDir: {app}\converter; Flags: ignoreversion;
+Source: ..\..\..\..\core\build\bin\icu\{#sPlatform}\*;         DestDir: {app}\converter; Flags: ignoreversion; Excludes: *.lib;
 
-Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; Flags: ignoreversion recursesubdirs; OnlyBelowVersion: 0,6.1
-Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;  DestDir: {app}\; Flags: ignoreversion; OnlyBelowVersion: 0,6.1
-;-----------------------------------
+Source: ..\..\..\..\core\build\cef\winxp_{#_ARCH}\*;           DestDir: {app}\; Excludes: *.lib; Flags: ignoreversion recursesubdirs;
+Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; Flags: ignoreversion recursesubdirs;
+;Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;  DestDir: {app}\; Flags: ignoreversion;
+  #endif
 #else
-;-----------------------------------
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
@@ -799,14 +765,9 @@ Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {
 Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
 
-#ifdef _UPDMODULE
-Source: data\winsparkle\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
-#endif
-
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
 
-;-----------------------------------
 #endif
 
 [Tasks]
@@ -838,7 +799,7 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;   
 Root: HKCU; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
 #ifdef _MEDIAVIEWER
-Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: mediapath; ValueData: {code:getMediaViewerPath}; Flags: uninsdeletevalue;
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: mediapath;  ValueData: {code:getMediaViewerPath}; Flags: uninsdeletevalue;
 #endif
 
 [UninstallDelete]
