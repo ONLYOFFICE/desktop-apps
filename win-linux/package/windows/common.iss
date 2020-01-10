@@ -669,20 +669,26 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_7
 #ifndef SCRIPT_CUSTOM_FILES
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: .\data\projicons.exe;                                   DestDir: {app}; DestName: {#MAIN_EXE};
-Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
+Source: {#sBrandingFolder}\win-linux\package\windows\data\projicons.exe;  DestDir: {app}; DestName: {#MAIN_EXE};
+Source: ..\..\build\Release\{#NAME_EXE_IN};                               DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
-Source: ..\..\res\icons\desktopeditors.ico;                     DestDir: {app}; DestName: app.ico;
-Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
-Source: ..\..\..\common\package\license\{#LIC_FILE}.htm;        DestDir: {app}; DestName: LICENSE.htm;
-Source: ..\..\..\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
+Source: {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico;         DestDir: {app}; DestName: app.ico;
+Source: {#sBrandingFolder}\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
+Source: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.htm;        DestDir: {app}; DestName: LICENSE.htm;
+Source: {#sBrandingFolder}\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
+  #ifdef _ONLYOFFICE
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+  #else
+Source: ..\..\..\..\core\build\r7-jsdesktop\web-apps\*;         DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\r7-jsdesktop\sdkjs\*;            DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
+Source: ..\..\..\..\core\build\r7-jsdesktop\sdkjs-plugins\*;    DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+  #endif
 Source: ..\..\..\common\loginpage\addon\externalcloud.json;     DestDir: {app}\editors;               Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
 ;Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty\ru;
@@ -694,16 +700,31 @@ Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\c
 ;Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty\pt-BR;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
+  #ifdef _ONLYOFFICE
 Source: ..\..\deploy\{#sPlatform}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
 
 Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-  #ifdef _WIN_XP
+    #ifdef _WIN_XP
 Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
-  #else
+    #else
 Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
+    #endif
+  #else
+Source: ..\..\deploy\{#sPlatform}\r7\*; DestDir: {app}\converter; \
+  Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll,videoplayer.dll; Flags: ignoreversion;
+
+Source: ..\..\deploy\{#sPlatform}\r7\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\r7\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\r7\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\r7\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
+    #ifdef _WIN_XP
+Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
+    #else
+Source: ..\..\deploy\{#sPlatform}\r7\ascdocumentscore.dll;        DestDir: {app}; Flags: ignoreversion;
+    #endif
   #endif
 
 Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
@@ -717,6 +738,20 @@ Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\engine\b
 
 #ifdef _UPDMODULE
 Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
+#endif
+
+#ifdef _MEDIAVIEWER
+Source: ..\..\deploy\{#sPlatform}\r7\videoplayer.dll;                           DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\desktop-sdk-wrapper\plugins\*;                     DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\mediaservice\*;     DestDir: {app}\mediaservice; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\plugins\*;          DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\libvlc.dll;         DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\libvlccore.dll;     DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;      DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;   DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;  DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5Network.dll;     DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
