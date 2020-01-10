@@ -265,7 +265,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 endif
 
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	mkdir common/usr/share/flyfm/templates/.source
+	mkdir -p common/usr/share/flyfm/templates/.source
 	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.docx common/usr/share/flyfm/templates/.source/new.docx
 	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.xlsx common/usr/share/flyfm/templates/.source/new.xlsx
 	ln -sf /opt/$(COMPANY_NAME_LOW)/desktopeditors/converter/empty/ru-RU/new.pptx common/usr/share/flyfm/templates/.source/new.pptx
