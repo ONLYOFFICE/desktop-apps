@@ -136,6 +136,9 @@ else
 	DESKTOP_FILES += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
 	DESKTOP_FILES += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
 	SYMLINK += common/usr/bin/$(COMPANY_NAME_LOW)
+	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
+	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
+	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
 endif
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
@@ -149,9 +152,6 @@ DEB_DEPS += deb/debian/prerm
 DEB_DEPS += deb/debian/rules
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).links
-DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
-DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
-DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
 
 INSTALLER_DEPENDENCY += desktopeditor
 
