@@ -37,7 +37,7 @@
   #define sAppSupportURL            "https://www.onlyoffice.com/support.aspx"
 #endif
 #ifndef sAppCopyright
-  #define sAppCopyright             str("Copyright (C) " + GetDateTimeString(yyyy,,) + " " + sAppPublisher)
+  #define sAppCopyright             str("Copyright (C) " + GetDateTimeString('yyyy',,) + " " + sAppPublisher)
 #endif
 #ifndef sAppComments
   #define sAppComments              str(sCompanyName + " " + sProductName + " is an application for editing office documents (text documents, spreadsheets and presentations) from " + sCompanyName + " cloud portal on local computer without browser using.")
@@ -49,10 +49,30 @@
   #define sWinArch                  "x86"
   #define sPlatform                 "win_32"
 #endif
-
+#ifndef _WIN_XP
+  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + "\" + sIntCompanyName)
+#else
+  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + "_xp\" + sIntCompanyName)
+#endif
 #ifndef sAppIconName
   #define sAppIconName              "ONLYOFFICE Editors"
 #endif
+#ifndef SCRIPT_CUSTOM_FILES
+  #define sAppVersion               GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
+#else
+  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
+#endif
+#define sAppVerShort                Copy(sAppVersion, 0, 3)
+;#ifndef sAppVerShort
+;  #define sAppVerShort              "0.0.0"
+;#endif
+;#ifndef sAppBuildNumber
+;  #define sAppBuildNumber           "0"
+;#endif
+;#ifndef sAppVersion
+;  #define sAppVersion               str(sAppVerShort + "." + sAppBuildNumber)
+;#else
+
 #ifndef MAIN_EXE
   #define MAIN_EXE                  "DesktopEditors.exe"
 #endif
@@ -82,39 +102,13 @@
 #define APPWND_CLASS_NAME           "DocEditorsWindowClass"
 #define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(MAIN_EXE, "VisualElementsManifest.xml")
 
-#ifndef SCRIPT_CUSTOM_FILES
-  #define sAppVersion               GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
-#else
-  #ifndef _WIN_XP
-    #define DEPLOY_PATH             str("..\..\..\..\build_tools\out\" + sPlatform + "\" + sIntCompanyName)
-  #else
-    #define DEPLOY_PATH             str("..\..\..\..\build_tools\out\" + sPlatform + "_xp\" + sIntCompanyName)
-  #endif
-  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
-#endif
-#define sAppVerShort                Copy(sAppVersion, 0, 3)
-;#ifndef sAppVerShort
-;  #define sAppVerShort              "0.0.0"
-;#endif
-;#ifndef sAppBuildNumber
-;  #define sAppBuildNumber           "0"
-;#endif
-;#ifndef sAppVersion
-;  #define sAppVersion               str(sAppVerShort + "." + sAppBuildNumber)
-;#else
-;  
-;#endif
-
 #include "utils.iss"
 #include "associate_page.iss"
-
-#define UNINSTALL_USE_CLEAR_PAGE
 #ifdef UNINSTALL_USE_CLEAR_PAGE
   #include "uninstall_page.iss"
 #endif
-
 #ifdef _MEDIAVIEWER
-  #include "..\..\..\..\core-ext\multimedia\packages\exe\base.iss"
+  #include str(sBrandingFolder + "\..\multimedia\packages\exe\base.iss")
 #endif
 
 [Setup]
@@ -162,11 +156,11 @@ ShowLanguageDialog                = false
 
 #ifndef _WIN_XP
 MinVersion                        = 6.1
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArch}
 #else
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sWinArch}_xp
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArch}_xp
 #endif
 
 #ifdef ENABLE_SIGNING
@@ -657,16 +651,19 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 #ifdef _MEDIAVIEWER
 Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2013;
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+  Check: not checkVCRedist2013;
 #endif
-Source: data\vcredist\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); Check: not checkVCRedist2015;
+Source: data\vcredist\vcredist_2015_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+  Check: not checkVCRedist2015;
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
 #ifndef SCRIPT_CUSTOM_FILES
+
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\projicons.exe;  DestDir: {app}; DestName: {#MAIN_EXE};
@@ -685,9 +682,9 @@ Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\e
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
   #else
-Source: ..\..\..\..\core\build\r7-jsdesktop\web-apps\*;         DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\r7-jsdesktop\sdkjs\*;            DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
-Source: ..\..\..\..\core\build\r7-jsdesktop\sdkjs-plugins\*;    DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\core\build\jsdesktop\web-apps\*;      DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\core\build\jsdesktop\sdkjs\*;         DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\core\build\jsdesktop\sdkjs-plugins\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
   #endif
 Source: ..\..\..\common\loginpage\addon\externalcloud.json;     DestDir: {app}\editors;               Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
@@ -713,17 +710,17 @@ Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir
 Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
     #endif
   #else
-Source: ..\..\deploy\{#sPlatform}\r7\*; DestDir: {app}\converter; \
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\*; DestDir: {app}\converter; \
   Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll,videoplayer.dll; Flags: ignoreversion;
 
-Source: ..\..\deploy\{#sPlatform}\r7\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#sPlatform}\r7\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#sPlatform}\r7\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\deploy\{#sPlatform}\r7\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
     #ifdef _WIN_XP
 Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
     #else
-Source: ..\..\deploy\{#sPlatform}\r7\ascdocumentscore.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\ascdocumentscore.dll;        DestDir: {app}; Flags: ignoreversion;
     #endif
   #endif
 
@@ -741,17 +738,17 @@ Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir:
 #endif
 
 #ifdef _MEDIAVIEWER
-Source: ..\..\deploy\{#sPlatform}\r7\videoplayer.dll;                           DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\desktop-sdk-wrapper\plugins\*;                     DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\mediaservice\*;     DestDir: {app}\mediaservice; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\plugins\*;          DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\libvlc.dll;         DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\libvlccore.dll;     DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;      DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;   DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;  DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5Network.dll;     DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core-ext\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\videoplayer.dll;                   DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
@@ -781,7 +778,9 @@ Source: ..\..\..\..\core\build\cef\winxp_{#_ARCH}\*;           DestDir: {app}\; 
 Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; Flags: ignoreversion recursesubdirs;
 ;Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;  DestDir: {app}\; Flags: ignoreversion;
   #endif
+
 #else
+
 Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
 Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
