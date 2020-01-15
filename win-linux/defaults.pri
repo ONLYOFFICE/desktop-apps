@@ -1,5 +1,6 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += multimedia multimediawidgets
 QT  += svg
 
 TEMPLATE = app
@@ -18,22 +19,27 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/zh_CN.ts \
                 ./langs/pl.ts
 
-CORE_SRC_PATH = $$PWD/../../core/DesktopEditor
+CORE_ROOT_DIR = $$PWD/../../core
 BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
 CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
-use_branding {
-    CORE_LIB_PATH = $$PWD/../../core/build/$$BRANDING_PATH_EXTENSION
-} else {
-    CORE_LIB_PATH = $$PWD/../../core/build
-}
+
+CONFIG += core_no_dst
+include($$CORE_ROOT_DIR/Common/base.pri)
 
 OBJECTS_DIR = ./obj
 MOC_DIR = ./moc
 RCC_DIR = ./rcc
 
+!isEmpty(OO_BUILD_BRANDING) {
+    DESTDIR = ./$$OO_BUILD_BRANDING
+    build_xp:DESTDIR = $$DESTDIR/xp
+} else {
+    build_xp:DESTDIR = ./xp
+}
+
 INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
                 $$BASEEDITORS_PATH/lib/qcefview \
-                $$CORE_SRC_PATH
+                $$CORE_ROOT_DIR/DesktopEditor
 
 HEADERS += \
     $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
@@ -163,24 +169,16 @@ win32 {
     }
 }
 
-CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
 
 win32 {
     CONFIG(debug, debug|release) {
-        CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH_PLATFORM/DEBUG
         LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     }
 }
 
-LIBS += -L$$CORE_LIB_PATH_PLATFORM -lPdfReader -lPdfWriter -lDjVuFile -lXpsFile -lHtmlRenderer -lUnicodeConverter -lhunspell -looxmlsignature -lkernel -lgraphics
+ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer)
 
 INCLUDEPATH += ../../core-ext/desktop-sdk-wrapper/additional
-QT += multimedia multimediawidgets
-build_xp {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lvideoplayer
-} else {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lvideoplayer
-}
 
 app_linux {
     QT += network x11extras

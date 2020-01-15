@@ -21,9 +21,9 @@ RC_FILE = $$PWD/version.rc
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 
 build_xp {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lascdocumentscore
+    LIBS += -L$$CORE_BUILDS_LIBRARIES_PATH/xp -lascdocumentscore
 } else {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lascdocumentscore
+    LIBS += -L$$CORE_BUILDS_LIBRARIES_PATH -lascdocumentscore
 }
 
 message($$PLATFORM_BUILD)
