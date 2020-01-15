@@ -20,12 +20,6 @@ RC_FILE = $$PWD/version.rc
 
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 
-build_xp {
-    LIBS += -L$$CORE_BUILDS_LIBRARIES_PATH/xp -lascdocumentscore
-} else {
-    LIBS += -L$$CORE_BUILDS_LIBRARIES_PATH -lascdocumentscore
-}
-
 message($$PLATFORM_BUILD)
 
 linux-g++ {
@@ -47,10 +41,6 @@ win32 {
 
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
-    }
-
-    CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     }
 }
 
