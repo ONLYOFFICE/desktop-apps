@@ -1,19 +1,34 @@
 ﻿; Uncomment the line below to be able to compile the script from within the IDE.
 ;#define COMPILE_FROM_IDE
 
+#if str(_ARCH) == "64"
+  #define sWinArch                  "x64"
+  #define sPlatform                 "win_64"
+#elif str(_ARCH) == "32"
+  #define sWinArch                  "x86"
+  #define sPlatform                 "win_32"
+#endif
+#ifndef _WIN_XP
+  #define sWinArchFull              sWinArch
+  #define sPlatformFull             sPlatform
+#else
+  #define sWinArchFull              sWinArchFull + "_xp"
+  #define sPlatformFull             sPlatform + "_xp"
+#endif
+
 #ifndef sBrandingFolder
   #define sBrandingFolder           "..\..\..\branding"
 #endif
-#define sBrandingFile               str(sBrandingFolder + "\win-linux\package\windows\branding.iss")
+#define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
 #if FileExists(sBrandingFile)
-  #include str(sBrandingFile)
+  #include sBrandingFile
 #endif
 
 #ifndef sCompanyName
   #define sCompanyName              "ONLYOFFICE"
 #endif
 #ifndef sIntCompanyName
-  #define sIntCompanyName           str(sCompanyName)
+  #define sIntCompanyName           sCompanyName
 #endif
 #ifndef sProductName
   #define sProductName              "Desktop Editors"
@@ -22,10 +37,7 @@
   #define sIntProductName           "DesktopEditors"
 #endif
 #ifndef sAppName
-  #define sAppName                  str(sCompanyName + " " + sProductName)
-#endif
-#ifndef sAppId
-  #define sAppId                    str(sIntCompanyName + " " + sIntProductName)
+  #define sAppName                  sCompanyName + " " + sProductName
 #endif
 #ifndef sAppPublisher
   #define sAppPublisher             "Ascensio System SIA"
@@ -39,68 +51,50 @@
 #ifndef sAppCopyright
   #define sAppCopyright             str("Copyright (C) " + GetDateTimeString('yyyy',,) + " " + sAppPublisher)
 #endif
-#ifndef sAppComments
-  #define sAppComments              str(sCompanyName + " " + sProductName + " is an application for editing office documents (text documents, spreadsheets and presentations) from " + sCompanyName + " cloud portal on local computer without browser using.")
-#endif
-#if str(_ARCH) == "64"
-  #define sWinArch                  "x64"
-  #define sPlatform                 "win_64"
-#elif str(_ARCH) == "32"
-  #define sWinArch                  "x86"
-  #define sPlatform                 "win_32"
-#endif
-#ifndef _WIN_XP
-  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + "\" + sIntCompanyName)
-#else
-  #define DEPLOY_PATH               str("..\..\..\..\build_tools\out\" + sPlatform + "_xp\" + sIntCompanyName)
-#endif
 #ifndef sAppIconName
   #define sAppIconName              "ONLYOFFICE Editors"
 #endif
-#ifndef SCRIPT_CUSTOM_FILES
-  #define sAppVersion               GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
-#else
-  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + "DesktopEditors\" + NAME_EXE_OUT)
-#endif
-#define sAppVerShort                Copy(sAppVersion, 0, 3)
-;#ifndef sAppVerShort
-;  #define sAppVerShort              "0.0.0"
-;#endif
-;#ifndef sAppBuildNumber
-;  #define sAppBuildNumber           "0"
-;#endif
-;#ifndef sAppVersion
-;  #define sAppVersion               str(sAppVerShort + "." + sAppBuildNumber)
-;#else
 
-#ifndef MAIN_EXE
-  #define MAIN_EXE                  "DesktopEditors.exe"
-#endif
-#define APP_PATH                    str(sIntCompanyName + "\" + sIntProductName)
-#define APP_REG_PATH                str("Software\" + APP_PATH)
+#define APP_PATH                    sIntCompanyName + "\" + sIntProductName
+#define APP_REG_PATH                "Software\" + APP_PATH
 #ifdef _MEDIAVIEWER
-  #define MEDIAVIEWER_APP_PATH      str(sIntCompanyName + "\MediaViewer")
-  #define IMAGEVIEWER_APP_REG_PATH  str("Software\" + sIntCompanyName + "\ImageViewer")
-  #define VIDEOPLAYER_APP_REG_PATH  str("Software\" + sIntCompanyName + "\VideoPlayer")
+  #define IMAGEVIEWER_APP_REG_PATH  "Software\" + sIntCompanyName + "\ImageViewer"
+  #define VIDEOPLAYER_APP_REG_PATH  "Software\" + sIntCompanyName + "\VideoPlayer"
 #endif
+#define DEPLOY_PATH                 "..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH
 #ifndef APP_USER_MODEL_ID
   #define APP_USER_MODEL_ID         "ASC.Documents.5"
-#endif
-#ifndef NAME_EXE_IN
-  #define NAME_EXE_IN               str(sIntProductName + "_" + sWinArch + ".exe")
-#endif
-#ifndef NAME_EXE_OUT
-  #define NAME_EXE_OUT              "editors.exe"
-#endif
-#ifndef LIC_FILE
-  #define LIC_FILE                  "agpl-3.0"
 #endif
 #ifndef APP_MUTEX_NAME
   #define APP_MUTEX_NAME            "TEAMLAB"
 #endif
+#ifndef APPWND_CLASS_NAME
+  #define APPWND_CLASS_NAME         "DocEditorsWindowClass"
+#endif
 
-#define APPWND_CLASS_NAME           "DocEditorsWindowClass"
+#ifndef MAIN_EXE
+  #define MAIN_EXE                  "DesktopEditors.exe"
+#endif
+#ifndef NAME_EXE_IN
+  #define NAME_EXE_IN               "DesktopEditors_" + sWinArch + ".exe"
+#endif
+#ifndef NAME_EXE_OUT
+  #define NAME_EXE_OUT              "editors.exe"
+#endif
 #define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(MAIN_EXE, "VisualElementsManifest.xml")
+#ifndef LIC_FILE
+  #define LIC_FILE                  "agpl-3.0"
+#endif
+
+#ifndef SCRIPT_CUSTOM_FILES
+  ;#define sAppVersion              GetFileVersion(SourcePath + "\..\..\Build\Release\" + NAME_EXE_IN)
+  #ifndef sAppVersion
+    #define sAppVersion             "0.0.0.0"
+  #endif
+#else
+  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+#endif
+#define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
 #include "associate_page.iss"
@@ -108,11 +102,10 @@
   #include "uninstall_page.iss"
 #endif
 #ifdef _MEDIAVIEWER
-  #include str(sBrandingFolder + "\..\multimedia\packages\exe\base.iss")
+  #include sBrandingFolder + "\..\..\multimedia\packages\exe\base.iss"
 #endif
 
 [Setup]
-;AppId                     = {#sAppId}
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
@@ -122,7 +115,7 @@ AppPublisher              = {#sAppPublisher}
 AppPublisherURL           = {#sAppPublisherURL}
 AppSupportURL             = {#sAppSupportURL}
 AppCopyright              = {#sAppCopyright}
-AppComments               = {#sAppComments}
+AppComments               = {cm:defprogAppDescription}
 
 DefaultGroupName          = {#sCompanyName}
 ;UsePreviousAppDir         =no
@@ -156,11 +149,14 @@ ShowLanguageDialog                = false
 
 #ifndef _WIN_XP
 MinVersion                        = 6.1
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArch}
 #else
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArch}_xp
+#endif
+#ifdef _ONLYOFFICE
+OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArchFull}
+#else
+OutputBaseFileName                = {#sIntCompanyName}_{#sAppVersion}_{#sWinArchFull}
 #endif
 
 #ifdef ENABLE_SIGNING
@@ -173,21 +169,21 @@ WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows
 
 [Languages]
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: en; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 #else
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: en; MessagesFile: compiler:Default.isl;             LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: en; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 #endif
-Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;     LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: de; MessagesFile: compiler:Languages\German.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: fr; MessagesFile: compiler:Languages\French.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: es; MessagesFile: compiler:Languages\Spanish.isl;   LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: pl; MessagesFile: compiler:Languages\Polish.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;    LicenseFile: ..\..\..\common\package\license\{#LIC_FILE}.rtf;
+Name: cs_CZ; MessagesFile: compiler:Languages\Czech.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: de; MessagesFile: compiler:Languages\German.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: fr; MessagesFile: compiler:Languages\French.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: es; MessagesFile: compiler:Languages\Spanish.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: pl; MessagesFile: compiler:Languages\Polish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 
 [CustomMessages]
@@ -296,29 +292,6 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
-
-#ifdef _MEDIAVIEWER
-;======================================================================================================
-en.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;cs_CZ.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;sk.daImageViewerDescription=Viewer for photos and pictures of popular formats
-ru.daImageViewerDescription=Приложение для просмотра фотографий и изображений популярных форматов
-;de.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;fr.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;es.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;it_IT.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;pt_BR.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;======================================================================================================
-en.daVideoPlayerDescription=Player for multimedia files
-;cs_CZ.daVideoPlayerDescription=Player for multimedia files
-;sk.daVideoPlayerDescription=Player for multimedia files
-ru.daVideoPlayerDescription=Приложение для прослушивания музыки и просмотра видеороликов
-;de.daVideoPlayerDescription=Player for multimedia files
-;fr.daVideoPlayerDescription=Player for multimedia files
-;es.daVideoPlayerDescription=Player for multimedia files
-;it_IT.daVideoPlayerDescription=Player for multimedia files
-;pt_BR.daVideoPlayerDescription=Player for multimedia files
-#endif
 
 [Code]
 const
@@ -682,9 +655,9 @@ Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\e
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
   #else
-Source: {#sBrandingFolder}\..\core\build\jsdesktop\web-apps\*;      DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
-Source: {#sBrandingFolder}\..\core\build\jsdesktop\sdkjs\*;         DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
-Source: {#sBrandingFolder}\..\core\build\jsdesktop\sdkjs-plugins\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\web-apps\*;      DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\sdkjs\*;         DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
+Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\sdkjs-plugins\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
   #endif
 Source: ..\..\..\common\loginpage\addon\externalcloud.json;     DestDir: {app}\editors;               Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
@@ -739,16 +712,16 @@ Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir:
 
 #ifdef _MEDIAVIEWER
 Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\videoplayer.dll;                   DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
@@ -781,23 +754,26 @@ Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; 
 
 #else
 
-Source: {#DEPLOY_PATH}\DesktopEditors\*;                      DestDir: {app}; Flags: recursesubdirs;
-Source: {#DEPLOY_PATH}\DesktopEditors\*.exe;                  DestDir: {app}; Flags:  signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\hunspell.dll;           DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\WinSparkle.dll;         DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\DjVuFile.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\doctrenderer.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\graphics.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlFile.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\HtmlRenderer.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\kernel.dll;       DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfReader.dll;    DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\PdfWriter.dll;    DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\UnicodeConverter.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\DesktopEditors\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\*;                      DestDir: {app}; \
+  Excludes: "\*.exe,ascdocumentscore.dll,hunspell.dll,ooxmlsignature.dll,WinSparkle.dll, \
+    DjVuFile.dll,doctrenderer.dll,graphics.dll,HtmlFile.dll,HtmlRenderer.dll,kernel.dll, \
+    PdfReader.dll,PdfWriter.dll,UnicodeConverter.dll,x2t.exe,XpsFile.dll"; Flags: recursesubdirs;
+Source: {#DEPLOY_PATH}\*.exe;                  DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\hunspell.dll;           DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\WinSparkle.dll;         DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\DjVuFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\doctrenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\graphics.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\HtmlFile.dll;     DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\HtmlRenderer.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\kernel.dll;       DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\PdfReader.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\PdfWriter.dll;    DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\UnicodeConverter.dll; DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
