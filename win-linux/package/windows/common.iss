@@ -12,7 +12,7 @@
   #define sWinArchFull              sWinArch
   #define sPlatformFull             sPlatform
 #else
-  #define sWinArchFull              sWinArchFull + "_xp"
+  #define sWinArchFull              sWinArch + "_xp"
   #define sPlatformFull             sPlatform + "_xp"
 #endif
 
@@ -96,13 +96,13 @@
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
+#ifdef _MEDIAVIEWER
+  #include sBrandingFolder + "\..\..\multimedia\packages\exe\base.iss"
+#endif
 #include "utils.iss"
 #include "associate_page.iss"
 #ifdef UNINSTALL_USE_CLEAR_PAGE
   #include "uninstall_page.iss"
-#endif
-#ifdef _MEDIAVIEWER
-  #include sBrandingFolder + "\..\..\multimedia\packages\exe\base.iss"
 #endif
 
 [Setup]
@@ -292,6 +292,29 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
+
+#ifdef _MEDIAVIEWER
+;======================================================================================================
+en.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;cs_CZ.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;sk.daImageViewerDescription=Viewer for photos and pictures of popular formats
+ru.daImageViewerDescription=Приложение для просмотра фотографий и изображений популярных форматов
+;de.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;fr.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;es.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;it_IT.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;pt_BR.daImageViewerDescription=Viewer for photos and pictures of popular formats
+;======================================================================================================
+en.daVideoPlayerDescription=Player for multimedia files
+;cs_CZ.daVideoPlayerDescription=Player for multimedia files
+;sk.daVideoPlayerDescription=Player for multimedia files
+ru.daVideoPlayerDescription=Приложение для прослушивания музыки и просмотра видеороликов
+;de.daVideoPlayerDescription=Player for multimedia files
+;fr.daVideoPlayerDescription=Player for multimedia files
+;es.daVideoPlayerDescription=Player for multimedia files
+;it_IT.daVideoPlayerDescription=Player for multimedia files
+;pt_BR.daVideoPlayerDescription=Player for multimedia files
+#endif
 
 [Code]
 const
