@@ -22,6 +22,11 @@ else ifeq ($(WIN_ARCH),x86)
 	VCREDIST15_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
 endif
 
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+VCREDIST += $(VCREDIST13)
+endif
+VCREDIST += $(VCREDIST15)
+
 INDEX_HTML := win-linux/package/windows/index.html
 
 ISCC_PARAMS += //Qp
@@ -33,7 +38,7 @@ ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ISCC_PARAMS += $(ISCC_S_PARAM)$(SIGN_STR)
 
-$(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST13) $(VCREDIST15)
+$(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
 
 $(VCREDIST13):
@@ -56,7 +61,7 @@ package: $(PACKAGES)
 #zip: $(DESKTOP_EDITORS_ZIP)
 
 clean-package:
-	rm -f $(PACKAGES) $(VCREDIST13) $(VCREDIST15) $(INDEX_HTML)
+	rm -f $(PACKAGES) $(VCREDIST) $(INDEX_HTML)
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
