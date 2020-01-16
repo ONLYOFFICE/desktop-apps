@@ -82,6 +82,9 @@ static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoa
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";
 static NSString * const CEFOpenFileFilterPlugin             = @"plugin";
+static NSString * const CEFOpenFileFilterDocuments          = @"word";
+static NSString * const CEFOpenFileFilterSpreadsheet        = @"cell";
+static NSString * const CEFOpenFileFilterPresentation       = @"slide";
 
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
