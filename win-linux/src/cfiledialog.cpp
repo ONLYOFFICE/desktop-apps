@@ -310,6 +310,30 @@ QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
     return modalOpen(path, _filter, &_plugins_filter, true);
 }
 
+QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml);;");
+
+    return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;");
+
+    return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;");
+
+    return modalOpen(path, filter, nullptr, multi);
+}
+
 QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 {
     QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];

@@ -1228,6 +1228,12 @@
             allowedFileTypes = [ASCConstants images];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPlugin]) {
             allowedFileTypes = [ASCConstants plugins];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterDocuments]) {
+            allowedFileTypes = [ASCConstants documents];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterSpreadsheet]) {
+            allowedFileTypes = [ASCConstants spreadsheets];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterPresentation]) {
+            allowedFileTypes = [ASCConstants presentations];
         }
 
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];
