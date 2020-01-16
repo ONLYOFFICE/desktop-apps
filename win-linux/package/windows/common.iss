@@ -97,7 +97,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifdef _MEDIAVIEWER
-  #include sBrandingFolder + "\..\..\multimedia\packages\exe\base.iss"
+  #include "..\..\..\..\multimedia\packages\exe\base.iss"
 #endif
 #include "utils.iss"
 #include "associate_page.iss"
@@ -607,7 +607,7 @@ end;
 #ifdef _MEDIAVIEWER
 function getMediaViewerPath(param: string): string;
 begin
-  result := ExpandFileName(ExpandConstant('{app}\..\MediaViewer'));
+  result := ExpandFileName(ExpandConstant('{app}\{#sAppSubDir}'));
 end;
 #endif
 
@@ -662,26 +662,20 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_7
 
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: {#sBrandingFolder}\win-linux\package\windows\data\projicons.exe;  DestDir: {app}; DestName: {#MAIN_EXE};
-Source: ..\..\build\Release\{#NAME_EXE_IN};                               DestDir: {app}; DestName: {#NAME_EXE_OUT};
+Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#MAIN_EXE};
+Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
-Source: {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico;         DestDir: {app}; DestName: app.ico;
-Source: {#sBrandingFolder}\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
-Source: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.htm;        DestDir: {app}; DestName: LICENSE.htm;
-Source: {#sBrandingFolder}\common\package\license\3dparty\3DPARTYLICENSE; DestDir: {app};
+Source: {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico;          DestDir: {app};
+Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
+Source: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.htm;         DestDir: {app}; DestName: LICENSE.htm;
+Source: {#sBrandingFolder}\common\package\license\3dparty\3DPARTYLICENSE;  DestDir: {app};
 ;Source: data\webdata\cloud\*;                      DestDir: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: recursesubdirs;
 ;Source: ..\..\common\loginpage\deploy\*;           DestDir: {commonappdata}\{#APP_PATH}\webdata\local;
 Source: ..\..\..\..\dictionaries\*;                             DestDir: {app}\dictionaries; Flags: recursesubdirs;
 
-  #ifdef _ONLYOFFICE
 Source: ..\..\..\..\core\build\jsdesktop\web-apps\*;            DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs\*;               DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
 Source: ..\..\..\..\core\build\jsdesktop\sdkjs-plugins\*;       DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-  #else
-Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\web-apps\*;      DestDir: {app}\editors\web-apps;      Flags: recursesubdirs;
-Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\sdkjs\*;         DestDir: {app}\editors\sdkjs;         Flags: recursesubdirs;
-Source: {#sBrandingFolder}\..\..\core\build\jsdesktop\sdkjs-plugins\*; DestDir: {app}\editors\sdkjs-plugins; Flags: recursesubdirs;
-  #endif
 Source: ..\..\..\common\loginpage\addon\externalcloud.json;     DestDir: {app}\editors;               Flags: recursesubdirs;
 Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\converter\empty;       Flags: recursesubdirs;
 ;Source: ..\..\..\common\converter\empty\ru-RU\*.*;              DestDir: {app}\converter\empty\ru;
@@ -693,31 +687,16 @@ Source: ..\..\..\common\converter\empty\*;                      DestDir: {app}\c
 ;Source: ..\..\..\common\converter\empty\pt-BR\*.*;              DestDir: {app}\converter\empty\pt-BR;
 Source: ..\..\..\common\converter\DoctRenderer.config;          DestDir: {app}\converter;
 
-  #ifdef _ONLYOFFICE
 Source: ..\..\deploy\{#sPlatform}\libs\*; DestDir: {app}\converter; Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll; Flags: ignoreversion;
 
 Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-    #ifdef _WIN_XP
+  #ifdef _WIN_XP
 Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
-    #else
-Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
-    #endif
   #else
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\*; DestDir: {app}\converter; \
-  Excludes: *.lib,*.exp,*.exe,ascdocumentscore.dll,ooxmlsignature.dll,hunspell.dll,videoplayer.dll; Flags: ignoreversion;
-
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\HtmlFileInternal.exe;      DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-    #ifdef _WIN_XP
-Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
-    #else
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\ascdocumentscore.dll;        DestDir: {app}; Flags: ignoreversion;
-    #endif
+Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
   #endif
 
 Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
@@ -734,17 +713,17 @@ Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir:
 #endif
 
 #ifdef _MEDIAVIEWER
-Source: {#sBrandingFolder}\win-linux\deploy\{#sPlatform}\videoplayer.dll;                   DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: {#sBrandingFolder}\..\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\deploy\{#sPlatform}\videoplayer.dll;                                DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
+Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
@@ -777,26 +756,26 @@ Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; 
 
 #else
 
-Source: {#DEPLOY_PATH}\*;                      DestDir: {app}; \
+Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; \
   Excludes: "\*.exe,ascdocumentscore.dll,hunspell.dll,ooxmlsignature.dll,WinSparkle.dll, \
     DjVuFile.dll,doctrenderer.dll,graphics.dll,HtmlFile.dll,HtmlRenderer.dll,kernel.dll, \
     PdfReader.dll,PdfWriter.dll,UnicodeConverter.dll,x2t.exe,XpsFile.dll"; Flags: recursesubdirs;
-Source: {#DEPLOY_PATH}\*.exe;                  DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\ascdocumentscore.dll;   DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\hunspell.dll;           DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\ooxmlsignature.dll;     DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\WinSparkle.dll;         DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\DjVuFile.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\doctrenderer.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\graphics.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\HtmlFile.dll;     DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\HtmlRenderer.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\kernel.dll;       DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\PdfReader.dll;    DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\PdfWriter.dll;    DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\UnicodeConverter.dll; DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\x2t.exe;          DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\XpsFile.dll;      DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\ascdocumentscore.dll;            DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\ooxmlsignature.dll;              DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\WinSparkle.dll;                  DestDir: {app}; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\DjVuFile.dll;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\doctrenderer.dll;      DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\graphics.dll;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\HtmlFile.dll;          DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\HtmlRenderer.dll;      DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\kernel.dll;            DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\PdfReader.dll;         DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\PdfWriter.dll;         DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\UnicodeConverter.dll;  DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\x2t.exe;               DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\XpsFile.dll;           DestDir: {app}\converter; Flags: signonce;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
