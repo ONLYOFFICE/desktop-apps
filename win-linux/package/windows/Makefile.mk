@@ -1,6 +1,4 @@
 ISCC := iscc
-ISCC_S_PARAM := //S
-SIGN_STR := "byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
 WIN_REPO_DIR := windows
@@ -36,7 +34,10 @@ ifdef _WIN_XP
 endif
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
-ISCC_PARAMS += $(ISCC_S_PARAM)$(SIGN_STR)
+ifndef DISABLE_SIGNING
+ISCC_PARAMS += //DENABLE_SIGNING=1
+ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
+endif
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
