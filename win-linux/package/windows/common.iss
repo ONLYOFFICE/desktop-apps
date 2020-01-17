@@ -161,7 +161,7 @@ OutputBaseFileName                = {#sIntCompanyName}_{#sAppVersion}_{#sWinArch
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico
+SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopapps.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon.bmp
 
@@ -633,7 +633,7 @@ Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; 
 Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#iconsExe};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
-Source: {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico;          DestDir: {app};
+Source: {#sBrandingFolder}\win-linux\extras\projicons\res\icons\desktopeditors.ico;  DestDir: {app}; DestName: app.ico;
 Source: ..\..\..\common\loginpage\deploy\index.html;            DestDir: {app}; DestName: index.html;
 Source: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.htm;         DestDir: {app}; DestName: LICENSE.htm;
 Source: {#sBrandingFolder}\common\package\license\3dparty\3DPARTYLICENSE;  DestDir: {app};
