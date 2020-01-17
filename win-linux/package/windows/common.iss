@@ -73,8 +73,8 @@
   #define APPWND_CLASS_NAME         "DocEditorsWindowClass"
 #endif
 
-#ifndef MAIN_EXE
-  #define MAIN_EXE                  "DesktopEditors.exe"
+#ifndef iconsExe
+  #define iconsExe                  "DesktopEditors.exe"
 #endif
 #ifndef NAME_EXE_IN
   #define NAME_EXE_IN               "DesktopEditors_" + sWinArch + ".exe"
@@ -82,7 +82,7 @@
 #ifndef NAME_EXE_OUT
   #define NAME_EXE_OUT              "editors.exe"
 #endif
-#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(MAIN_EXE, "VisualElementsManifest.xml")
+#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
 #ifndef LIC_FILE
   #define LIC_FILE                  "agpl-3.0"
 #endif
@@ -100,7 +100,7 @@
 #include "utils.iss"
 #include "associate_page.iss"
 #ifdef UNINSTALL_USE_CLEAR_PAGE
-  #include "uninstall_page.iss"
+# include "uninstall_page.iss"
 #endif
 
 [Setup]
@@ -475,7 +475,7 @@ begin
   end else
   if CurStep = ssDone then begin
     if not (gHWND = 0) then begin
-      ShellExec('', ExpandConstant('{app}\{#MAIN_EXE}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+      ShellExec('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
     WizardForm.CancelButton.Enabled := isInstalled;
@@ -591,6 +591,7 @@ begin
   if not RegQueryStringValue(GetHKLM(), 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', OrigPath)
   then begin
     Result := True;
+    Result := True;
     exit;
   end;
   // look for the path with leading and trailing semicolon
@@ -629,7 +630,7 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_7
 
 Source: ..\..\deploy\{#sPlatform}\3dparty\Qt\*;                 DestDir: {app}; Flags: ignoreversion recursesubdirs;
 
-Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#MAIN_EXE};
+Source: data\projicons.exe;                                     DestDir: {app}; DestName: {#iconsExe};
 Source: ..\..\build\Release\{#NAME_EXE_IN};                     DestDir: {app}; DestName: {#NAME_EXE_OUT};
 
 Source: {#sBrandingFolder}\win-linux\extras\projicon\res\app.ico;          DestDir: {app};
@@ -709,10 +710,7 @@ Source: data\libs\qt\win{#_ARCH}\*;                            DestDir: {app}\; 
 
 #else
 
-Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; \
-  Excludes: "\*.exe,ascdocumentscore.dll,hunspell.dll,ooxmlsignature.dll,WinSparkle.dll, \
-    DjVuFile.dll,doctrenderer.dll,graphics.dll,HtmlFile.dll,HtmlRenderer.dll,kernel.dll, \
-    PdfReader.dll,PdfWriter.dll,UnicodeConverter.dll,x2t.exe,XpsFile.dll"; Flags: recursesubdirs;
+Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
 Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\ascdocumentscore.dll;            DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: signonce;
@@ -742,14 +740,14 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 
 [Icons]
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
-Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#MAIN_EXE}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
-Name: {group}\{#sAppIconName};         Filename: {app}\{#MAIN_EXE}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
+Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
+Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\{#MAIN_EXE}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
+Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 
