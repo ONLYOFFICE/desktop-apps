@@ -97,6 +97,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifdef _MEDIAVIEWER
+  #include "mediaviewer.iss"
   #include "..\..\..\..\multimedia\packages\exe\base.iss"
 #endif
 #include "utils.iss"
@@ -292,29 +293,6 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
-
-#ifdef _MEDIAVIEWER
-;======================================================================================================
-en.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;cs_CZ.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;sk.daImageViewerDescription=Viewer for photos and pictures of popular formats
-ru.daImageViewerDescription=Приложение для просмотра фотографий и изображений популярных форматов
-;de.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;fr.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;es.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;it_IT.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;pt_BR.daImageViewerDescription=Viewer for photos and pictures of popular formats
-;======================================================================================================
-en.daVideoPlayerDescription=Player for multimedia files
-;cs_CZ.daVideoPlayerDescription=Player for multimedia files
-;sk.daVideoPlayerDescription=Player for multimedia files
-ru.daVideoPlayerDescription=Приложение для прослушивания музыки и просмотра видеороликов
-;de.daVideoPlayerDescription=Player for multimedia files
-;fr.daVideoPlayerDescription=Player for multimedia files
-;es.daVideoPlayerDescription=Player for multimedia files
-;it_IT.daVideoPlayerDescription=Player for multimedia files
-;pt_BR.daVideoPlayerDescription=Player for multimedia files
-#endif
 
 [Code]
 const
@@ -604,13 +582,6 @@ begin
   result := lang;
 end;
 
-#ifdef _MEDIAVIEWER
-function getMediaViewerPath(param: string): string;
-begin
-  result := ExpandFileName(ExpandConstant('{app}\{#sAppSubDir}'));
-end;
-#endif
-
 function libExists(const dllname: String) : boolean;
 begin
   Result := not FileExists(ExpandConstant('{sys}\'+dllname));
@@ -644,12 +615,6 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-
-#ifdef _MEDIAVIEWER
-Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2013;
-#endif
 Source: data\vcredist\vcredist_2015_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2015;
@@ -710,20 +675,6 @@ Source: ..\..\..\..\desktop-sdk\ChromiumBasedEditors\plugins\encrypt\ui\engine\b
 
 #ifdef _UPDMODULE
 Source: ..\..\3dparty\WinSparkle\{#sPlatform}\WinSparkle.dll;           DestDir: {app}\; Flags: ignoreversion;
-#endif
-
-#ifdef _MEDIAVIEWER
-Source: ..\..\deploy\{#sPlatform}\videoplayer.dll;                                DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\desktop-sdk-wrapper\plugins\*;                           DestDir: {app}\editors\sdkjs-plugins; Flags: ignoreversion recursesubdirs;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\mediaservice\*;           DestDir: {app}\mediaservice; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\plugins\*;                DestDir: {app}\plugins; Flags: ignoreversion recursesubdirs;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\libvlc.dll;               DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\libvlccore.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtCore.dll;            DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\VLCQtWidgets.dll;         DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Multimedia.dll;        DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5Network.dll;           DestDir: {app}; Flags: ignoreversion;
-Source: ..\..\..\..\core\multimedia\deploy\{#sPlatform}\Qt5MultimediaWidgets.dll; DestDir: {app}; Flags: ignoreversion;
 #endif
 
 Source: ..\..\..\common\package\fonts\LICENSE.txt;                    DestDir: {app}\fonts;
@@ -810,9 +761,6 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKCU; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
-#ifdef _MEDIAVIEWER
-Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: mediapath;  ValueData: {code:getMediaViewerPath}; Flags: uninsdeletevalue;
-#endif
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
