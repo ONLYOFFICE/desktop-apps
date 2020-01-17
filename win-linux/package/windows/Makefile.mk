@@ -34,7 +34,7 @@ ifdef _WIN_XP
 endif
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
-ifndef DISABLE_SIGNING
+ifdef ENABLE_SIGNING
 ISCC_PARAMS += //DENABLE_SIGNING=1
 ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 endif
