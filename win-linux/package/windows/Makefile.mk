@@ -32,11 +32,14 @@ ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
 ifdef _WIN_XP
 	ISCC_PARAMS += //D_WIN_XP=1
 endif
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	ISCC_PARAMS += //D_ONLYOFFICE=1
+endif
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ifdef ENABLE_SIGNING
-ISCC_PARAMS += //DENABLE_SIGNING=1
-ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
+	ISCC_PARAMS += //DENABLE_SIGNING=1
+	ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 endif
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
