@@ -20,7 +20,7 @@ else ifeq ($(WIN_ARCH),x86)
 	VCREDIST15_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
 endif
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
