@@ -1,5 +1,4 @@
-﻿; Uncomment the line below to be able to compile the script from within the IDE.
-;#define COMPILE_FROM_IDE
+﻿;-- Common --
 
 #if str(_ARCH) == "64"
   #define sWinArch                  "x64"
@@ -55,13 +54,15 @@
   #define sAppIconName              "ONLYOFFICE Editors"
 #endif
 
-#define APP_PATH                    sIntCompanyName + "\" + sIntProductName
-#define APP_REG_PATH                "Software\" + APP_PATH
-#ifdef _MEDIAVIEWER
-  #define IMAGEVIEWER_APP_REG_PATH  "Software\" + sIntCompanyName + "\ImageViewer"
-  #define VIDEOPLAYER_APP_REG_PATH  "Software\" + sIntCompanyName + "\VideoPlayer"
+#ifndef APP_PATH
+  #define APP_PATH                  sIntCompanyName + "\" + sIntProductName
 #endif
-#define DEPLOY_PATH                 "..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH
+#ifndef APP_REG_PATH
+  #define APP_REG_PATH              "Software\" + APP_PATH
+#endif
+#ifndef DEPLOY_PATH
+  #define DEPLOY_PATH               "..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH
+#endif
 #ifndef APP_USER_MODEL_ID
   #define APP_USER_MODEL_ID         "ASC.Documents.5"
 #endif
@@ -96,10 +97,6 @@
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
-#ifdef _MEDIAVIEWER
-  #include "mediaviewer.iss"
-  #include "..\..\..\..\multimedia\packages\exe\base.iss"
-#endif
 #include "utils.iss"
 #include "associate_page.iss"
 #ifdef UNINSTALL_USE_CLEAR_PAGE
