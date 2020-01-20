@@ -88,17 +88,19 @@
 #endif
 
 #ifndef SCRIPT_CUSTOM_FILES
-  ;#define sAppVersion              GetFileVersion(SourcePath + "\..\..\Build\Release\" + NAME_EXE_IN)
+  ;#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
   #ifndef sAppVersion
     #define sAppVersion             "0.0.0.0"
   #endif
 #else
   #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
 #endif
-#define sAppVerShort                Copy(sAppVersion, 0, 3)
+#define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #include "utils.iss"
 #include "associate_page.iss"
+
+#define UNINSTALL_USE_CLEAR_PAGE
 #ifdef UNINSTALL_USE_CLEAR_PAGE
 # include "uninstall_page.iss"
 #endif
@@ -661,11 +663,11 @@ Source: ..\..\deploy\{#sPlatform}\libs\HtmlFileInternal.exe;      DestDir: {app}
 Source: ..\..\deploy\{#sPlatform}\libs\hunspell.dll;              DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\ooxmlsignature.dll;        DestDir: {app}; Flags: ignoreversion;
 Source: ..\..\deploy\{#sPlatform}\libs\x2t.exe;                   DestDir: {app}\converter; Flags: ignoreversion;
-  #ifdef _WIN_XP
+#ifdef _WIN_XP
 Source: ..\..\..\..\core\build\lib\{#sPlatform}\xp\ascdocumentscore.dll; DestDir: {app}; Flags: ignoreversion;
-  #else
+#else
 Source: ..\..\deploy\{#sPlatform}\libs\ascdocumentscore.dll;      DestDir: {app}; Flags: ignoreversion;
-  #endif
+#endif
 
 Source: ..\..\..\..\core\Common\3dParty\v8\v8\out.gn\{#sPlatform}\release\icudtl.dat; DestDir: {app}\converter; Flags: ignoreversion;
 Source: ..\..\..\..\core\Common\3dParty\icu\{#sPlatform}\build\icu*58.dll;  DestDir: {app}\converter; Flags: ignoreversion;
