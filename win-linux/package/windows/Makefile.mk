@@ -35,9 +35,11 @@ endif
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	ISCC_PARAMS += //D_ONLYOFFICE=1
 endif
+ISCC_PARAMS += //D_UPDMODULE=1
+ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
+ISCC_PARAMS += //DENABLE_SIGNING=1
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
-ISCC_PARAMS += //DENABLE_SIGNING=1
 ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
@@ -54,7 +56,7 @@ $(VCREDIST15):
 $(DEST_DIR): install
 
 win-linux/package/windows/%.exe:
-	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) package.iss
+	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) common.iss
 	
 win-linux/package/windows/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
