@@ -53,6 +53,8 @@
 #include "linux/csinglewindow.h"
 #endif
 
+#include "cappupdater.h"
+
 #define SEND_TO_ALL_START_PAGE nullptr
 
 #ifdef Q_OS_WIN
@@ -97,6 +99,7 @@ private:
     CWindowsQueue<sWinTag> * m_queueToClose;
     CEventDriver m_eventDriver;
 
+    std::shared_ptr<CAppUpdater> m_updater;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -165,6 +168,7 @@ public:
     static void             destroyViewer(QCefView * v);
 
     static void             cancelClose();
+    static void checkUpdates();
 
     void manageUndocking(int uid, const std::wstring& action);
     uint logoutCount(const wstring& portal) const;
