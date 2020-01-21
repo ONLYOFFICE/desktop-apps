@@ -146,7 +146,7 @@ void CAppUpdater::checkUpdates()
         m_toaster = std::make_shared<CThreadProc>();
 
 //        QObject::connect(m_toaster.get(), &CThreadProc::finished, m_toaster.get(), &CThreadProc::deleteLater);
-        QObject::connect(m_toaster.get(), &CThreadProc::complete, this, std::bind(&CAppUpdater::slot_complete, this, _1), Qt::QueuedConnection);
+        QObject::connect(m_toaster.get(), &CThreadProc::complete, this, std::bind(&CAppUpdater::slot_complete, this, _1, _2), Qt::QueuedConnection);
 //        QObject::connect(m_toaster.get(), &CThreadProc::complete, this, std::bind(&CAppUpdater::parse_app_cast, this, _1), Qt::QueuedConnection);
     }
 
