@@ -826,8 +826,6 @@ void CMainWindow::slot_mainPageReady()
 
 #if defined(_UPDMODULE)
 using namespace WinToastLib;
-#define TO_WSTR(str)            L ## str
-#define WSTR(str)               TO_WSTR(str)
 
 void CMainWindow::updateFound()
 {
