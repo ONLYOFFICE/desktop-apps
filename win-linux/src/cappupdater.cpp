@@ -92,14 +92,14 @@ namespace {
 
             std::shared_ptr<CFileDownloader> _downloader = std::make_shared<CFileDownloader>(m_url, false);
 
-            _downloader->SetEvent_OnComplete(bind(&CThreadProc::callback_download_complete, this, _1));
+//            _downloader->SetEvent_OnComplete(bind(&CThreadProc::callback_download_complete, this, _1));
 #ifdef Q_OS_WIN
             _downloader->SetFilePath(_wtmpnam(nullptr));
 #else
             string xml_tmpname = tmpnam(nullptr);
             _downloader->SetFilePath(NSFile::CUtf8Converter::GetUnicodeStringFromUTF8((BYTE*)xml_tmpname.c_str(), static_cast<long>(xml_tmpname.length())));
 #endif
-            _downloader->Start(0);
+//            _downloader->Start(0);
 
             m_ct.start();
             while (!m_ct.complete) {
@@ -164,7 +164,7 @@ void CAppUpdater::slot_complete(int e, const std::wstring& xmlname)
 
 void CAppUpdater::parse_app_cast(const std::wstring& xmlname)
 {
-    std::ifstream t{xmlname};
+    std::ifstream t{NSFile::CUtf8Converter::GetUtf8StringFromUnicode(xmlname)};
     std::string xmlcontent((std::istreambuf_iterator<char>(t)),
                         std::istreambuf_iterator<char>());
 
@@ -176,6 +176,7 @@ void CAppUpdater::parse_app_cast(const std::wstring& xmlname)
 #  define UPDATE_TARGET_OS "windows-x86"
 # endif
 #elif defined(Q_OS_LINUX)
+# define UPDATE_TARGET_OS "linux-64"
 #endif
 
         std::regex _regex{"sparkle:os=\"" UPDATE_TARGET_OS "\"\\ssparkle:version=\"((\\d{1,3})(?:.(\\d+))?(?:.(\\d+))?(?:.(\\d+))?)"};
