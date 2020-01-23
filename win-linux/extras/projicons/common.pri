@@ -10,8 +10,8 @@ CONFIG  -= debug_and_release debug_and_release_target
 TEMPLATE = app
 
 INCLUDEPATH += $$PWD/src
-HEADERS += src/version.h
-SOURCES += src/main.cpp
+HEADERS += $$PWD/src/version.h
+SOURCES += $$PWD/src/main.cpp
 
 CONFIG += core_no_dst
 include($$PWD/../../../../core/Common/base.pri)
