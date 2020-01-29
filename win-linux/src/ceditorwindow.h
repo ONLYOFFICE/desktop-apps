@@ -64,6 +64,9 @@ public:
 
     void setReporterMode(bool);
 private:
+    QString m_css;
+
+private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
     QWidget * createMainPanel(QWidget * parent);
     QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom) override;
