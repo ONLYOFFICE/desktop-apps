@@ -88,7 +88,7 @@
 #endif
 
 #ifndef SCRIPT_CUSTOM_FILES
-  ;#define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
+#  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
   #ifndef sAppVersion
     #define sAppVersion             "0.0.0.0"
   #endif
