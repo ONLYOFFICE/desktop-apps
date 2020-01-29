@@ -50,12 +50,9 @@
 
 #include "ceditorwindow_p.h"
 
-QString g_css =
-        "#mainPanel{background-color:#aa5252;}"
-        "#box-title-tools{background-color:#f1f1f1;}"
-        "#box-title-tools[editor=word]{background-color:" TAB_COLOR_DOCUMENT ";}"
-        "#box-title-tools[editor=cell]{background-color:" TAB_COLOR_SPREADSHEET ";}"
-        "#box-title-tools[editor=slide]{background-color:" TAB_COLOR_PRESENTATION ";}"
+const QString g_css =
+        "#mainPanel{background-color:%1;}"
+        "#box-title-tools{background-color:%1;}"
         "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
@@ -75,6 +72,14 @@ QString g_css =
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
 
+auto prepare_editor_css(int type) -> QString {
+    switch (type) {
+    default: return g_css.arg(WINDOW_BACKGROUND_COLOR);
+    case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
+    case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
+    case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    }
+}
 
 CEditorWindow::CEditorWindow()
     : CSingleWindowPlatform(QRect(100, 100, 900, 800), "Desktop Editor", nullptr)
@@ -86,21 +91,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
+    m_css = {prepare_editor_css(d_ptr->canExtendTitle() ? panel->data()->contentType() : etUndefined)};
 
 #ifdef Q_OS_LINUX
     setObjectName("editorWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
-
-    QString background = "#editorWindow{background-color:";
-    switch (panel->data()->contentType()) {
-    case etDocument: background.append(TAB_COLOR_DOCUMENT";}"); break;
-    case etPresentation: background.append(TAB_COLOR_PRESENTATION";}"); break;
-    case etSpreadsheet: background.append(TAB_COLOR_SPREADSHEET";}"); break;
-    default:break;
-    }
-
-    setStyleSheet(background);
 
     if ( !CX11Decoration::isDecorated() ) {
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
@@ -250,19 +246,13 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     if ( !d_ptr->canExtendTitle() )
         mainGridLayout->addWidget(m_boxTitleBtns);
     else {
-        switch (d_ptr->panel()->data()->contentType()) {
-        case etDocument: m_boxTitleBtns->setProperty("editor","word"); break;
-        case etPresentation: m_boxTitleBtns->setProperty("editor","slide"); break;
-        case etSpreadsheet: m_boxTitleBtns->setProperty("editor","cell"); break;
-        }
-
         mainPanel->setProperty("window", "pretty");
     }
 
     if ( m_dpiRatio > 1 )
         mainPanel->setProperty("zoom", "2x");
 
-    mainPanel->setStyleSheet(g_css);
+    mainPanel->setStyleSheet(m_css);
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     layoutBtns->setContentsMargins(0,0,0,0);
@@ -365,7 +355,7 @@ void CEditorWindow::onScreenScalingFactor(uint newfactor)
     m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
 
     QString css(AscAppManager::getWindowStylesheets(newfactor));
-    css.append(g_css);
+    css.append(m_css);
     m_pMainPanel->setStyleSheet(css);
 
     m_boxTitleBtns->layout()->setSpacing(1 * newfactor);
