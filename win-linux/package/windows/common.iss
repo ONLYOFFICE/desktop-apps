@@ -145,12 +145,6 @@ ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
 #endif
 
-#ifndef _ONLYOFFICE
-LanguageDetectionMethod           = none
-ShowLanguageDialog                = false
-#endif
-;UsePreviousLanguage               = no
-
 #ifndef _WIN_XP
 MinVersion                        = 6.1
 #else
@@ -615,11 +609,6 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-#ifndef _ONLYOFFICE
-Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2013;
-#endif
 Source: data\vcredist\vcredist_2015_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2015;
