@@ -97,6 +97,10 @@
 #endif
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
+#ifndef sOutputFileName
+  #define sOutputFileName           {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArchFull}
+#endif
+
 #include "utils.iss"
 #include "associate_page.iss"
 
@@ -153,11 +157,7 @@ MinVersion                        = 6.1
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
 #endif
-#ifdef _ONLYOFFICE
-OutputBaseFileName                = {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArchFull}
-#else
-OutputBaseFileName                = {#sIntCompanyName}_{#sAppVersion}_{#sWinArchFull}
-#endif
+OutputBaseFileName                = {#sOutputFileName}
 
 #ifdef ENABLE_SIGNING
 SignTool                  =byparam $p
