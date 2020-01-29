@@ -134,7 +134,7 @@ Compression               =lzma
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
-SetupMutex                = {#APP_MUTEX_NAME}
+SetupMutex                =ASC
 
 #if str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
