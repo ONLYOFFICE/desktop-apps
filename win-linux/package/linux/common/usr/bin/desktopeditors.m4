@@ -1,8 +1,6 @@
 #!/bin/sh
 
-check_templates() {
-  SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
-
+set_names() {
   case $LANG in
     cs*)
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/cs-CZ"
@@ -60,13 +58,24 @@ check_templates() {
       NEW_PPTX_NAME="New Presentation"
       ;;
   esac
+}
+
+check_templates() {
+  SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
+
+  ifelse(M4_COMPANY_NAME, ONLYOFFICE,
+  set_names,
+  SOURCE_DOC_NAME="new"
+  NEW_DOCX_NAME="Новый документ"
+  NEW_XLSX_NAME="Новая эл.таблица"
+  NEW_PPTX_NAME="Новая презентация")
 
   eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
   TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
   TEMPLATE_XLSX="$TEMPLATE_DIR/$NEW_XLSX_NAME.xlsx"
   TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
 
-  mkdir $TEMPLATE_DIR
+  mkdir -p $TEMPLATE_DIR
 
   if [ $(ls -A $TEMPLATE_DIR/*.docx 2>/dev/null | wc -l) -eq 0 ]
   then
