@@ -60,15 +60,19 @@ set_names() {
   esac
 }
 
+set_names_ru() {
+  SOURCE_DOC_NAME="new"
+  NEW_DOCX_NAME="Новый документ"
+  NEW_XLSX_NAME="Новая эл.таблица"
+  NEW_PPTX_NAME="Новая презентация"
+}
+
 check_templates() {
   SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
 
   ifelse(M4_COMPANY_NAME, ONLYOFFICE,
   set_names,
-  SOURCE_DOC_NAME="new"
-  NEW_DOCX_NAME="Новый документ"
-  NEW_XLSX_NAME="Новая эл.таблица"
-  NEW_PPTX_NAME="Новая презентация")
+  set_names_ru)
 
   eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
   TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
