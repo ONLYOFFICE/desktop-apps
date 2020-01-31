@@ -51,6 +51,7 @@ public:
     void dispatchMouseDown(QMouseEvent *);
     void dispatchMouseMove(QMouseEvent *);
     void dispatchMouseUp(QMouseEvent *);
+    void setCursorPos(int x, int y);
 
     void turnOn();
     void turnOff();

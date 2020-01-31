@@ -59,6 +59,8 @@ private:
     void resizeEvent(QResizeEvent *);
 
 protected:
+    void captureMouse();
+
     virtual void onSizeEvent(int type);
     virtual void onScreenScalingFactor(uint f);
 };

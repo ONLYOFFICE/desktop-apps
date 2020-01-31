@@ -160,10 +160,8 @@ void CEditorWindow::show(bool maximaized, bool capturemouse)
 {
     CSingleWindowPlatform::show(maximaized);
 
-#ifdef Q_OS_WIN
     if ( !maximaized && capturemouse )
         CSingleWindowPlatform::captureMouse();
-#endif
 }
 
 int CEditorWindow::closeWindow()
@@ -345,6 +343,7 @@ void CEditorWindow::onMoveEvent(const QRect& rect)
         AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
     }
 #else
+    AscAppManager::editorWindowMoving((size_t)handle(), QCursor::pos());
 #endif
 }
 
