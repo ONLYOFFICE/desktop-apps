@@ -394,3 +394,12 @@ void CX11Decoration::sendButtonRelease()
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
 }
+
+void CX11Decoration::setCursorPos(int x, int y)
+{
+    Display *xdisplay_= QX11Info::display();
+    Window root_window = DefaultRootWindow(xdisplay_);
+    XSelectInput(xdisplay_, root_window, KeyReleaseMask);
+    XWarpPointer(xdisplay_, None, root_window, 0, 0, 0, 0, x, y);
+    XFlush(xdisplay_);
+}
