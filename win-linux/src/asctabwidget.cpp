@@ -837,13 +837,15 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
-        if (std::regex_search(option, std::wregex(L"eventloading\":\\s?true"))) {
-            panel(tabIndex)->data()->setEventLoadSupported(true);
+        size_t _pos;
+        if ((_pos = option.find(L"eventloading\":")) != wstring::npos) {
+            if (option.find(L"true", _pos + 1) != wstring::npos)
+                panel(tabIndex)->data()->setEventLoadSupported(true);
         }
 
-        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
+//        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
 //            panel(tabIndex)->setWindowed(true);
-        }
+//        }
     }
 }
 
