@@ -838,7 +838,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
         size_t _pos;
-        if ((_pos = option.find(L"eventloading\":")) != wstring::npos) {
+        if ((_pos = option.find(L"eventloading:")) != wstring::npos) {
             if (option.find(L"true", _pos + 1) != wstring::npos)
                 panel(tabIndex)->data()->setEventLoadSupported(true);
         }
