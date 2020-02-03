@@ -853,9 +853,26 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
+    if (!m_pMainWidget->isHidden())
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget() && !this->currentWidget()->isHidden())
+                this->currentWidget()->hide();
+        }
+        return;
+    }
     int nIndex = !(index < 0) ? index : currentIndex();
     if (!(nIndex < 0 ))
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget()->isHidden())
+                this->currentWidget()->show();
+        }
+
         panel(nIndex)->cef()->focus();
+    }
 }
 
 void CAscTabWidget::activate(bool a)
