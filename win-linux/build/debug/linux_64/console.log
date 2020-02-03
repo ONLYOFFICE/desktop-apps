@@ -1,0 +1,40 @@
+Level: Debug
+Message: Main._createAppUI: 25.655029296875ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._showAppUI: 12.886962890625ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._initializeTarget: 17.678955078125ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._lateInitialization: 1.0478515625ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._createAppUI: 32.135986328125ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._showAppUI: 14.670166015625ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._initializeTarget: 17.402099609375ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------
+Level: Debug
+Message: Main._lateInitialization: 1.002197265625ms
+Source: chrome-devtools://devtools/shell.js
+Line: 7997
+-----------------------

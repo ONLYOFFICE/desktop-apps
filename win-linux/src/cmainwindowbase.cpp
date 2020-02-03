@@ -13,6 +13,14 @@ CMainWindowBase::CMainWindowBase()
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
+
+    if (!QCefView::IsSupportLayers())
+    {
+        CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+        if (_panel)
+            _panel->view()->SetCaptionMaskSize(0);
+    }
+
     int _index = _pMainPanel->tabWidget()->insertPanel(panel, index);
     if ( !(_index < 0) ) {
         _pMainPanel->toggleButtonMain(false);
