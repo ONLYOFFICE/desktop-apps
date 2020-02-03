@@ -952,11 +952,13 @@ void CMainPanel::loadStartPage()
 {
     GET_REGISTRY_USER(_reg_user);
 
+    QString data_path;
 #if defined(QT_DEBUG)
-    QString data_path = _reg_user.value("startpage").value<QString>();
-#else
-    QString data_path = qApp->applicationDirPath() + "/index.html";
+    data_path = _reg_user.value("startpage").value<QString>();
 #endif
+
+    if (data_path.isEmpty())
+        data_path = qApp->applicationDirPath() + "/index.html";
 
     QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
 
