@@ -31,8 +31,8 @@ contains(QMAKE_TARGET.arch, x86_64):{
     QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
 }
 
-core_release:DESTDIR = $$PWD/build
-core_debug:DESTDIR = $$PWD/build/debug
+core_release:DESTDIR = $$DESTDIR/build
+core_debug:DESTDIR = $$DESTDIR/build/debug
 
 !isEmpty(OO_BUILD_BRANDING) {
     DESTDIR = $$DESTDIR/$$OO_BUILD_BRANDING
