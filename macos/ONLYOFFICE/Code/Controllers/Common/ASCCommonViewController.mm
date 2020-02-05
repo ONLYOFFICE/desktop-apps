@@ -266,13 +266,13 @@
         
         self.tabsControl = windowController.titlebarController.tabsControl;
         
+        // Create CEF event listener
+        [ASCEventsController sharedInstance];
+        
         [self setupTabControl];
         [self createStartPage];
         [self loadStartPage];
         [self setupTouchBar];
-        
-        // Create CEF event listener
-        [ASCEventsController sharedInstance];
 
         // External handle
         if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onMainWindowLoaded:)]) {
