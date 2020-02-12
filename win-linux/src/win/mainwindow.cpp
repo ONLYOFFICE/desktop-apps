@@ -914,11 +914,17 @@ void CMainWindow::captureMouse(int tabindex)
         QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
 
         SetCursorPos(gpt.x(), gpt.y());
-        SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
-            QTimer::singleShot(0,[=] {
-                QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
-                QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
-                mainPanel()->tabWidget()->tabBar()->grabMouse();
-            });
+        //SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
+      
+        QWidget * _widget = mainPanel()->tabWidget()->tabBar();
+        QTimer::singleShot(0,[_widget,spt] {
+            INPUT _input{INPUT_MOUSE};
+            _input.mi.dwFlags = MOUSEEVENTF_ABSOLUTE|MOUSEEVENTF_LEFTDOWN;
+            SendInput(1, &_input, sizeof(INPUT));
+
+            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+            QCoreApplication::sendEvent(_widget, &event);
+            _widget->grabMouse();
+        });
     }
 }
