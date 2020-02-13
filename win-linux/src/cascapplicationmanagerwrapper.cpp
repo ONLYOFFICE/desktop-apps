@@ -65,11 +65,16 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
     NSBaseVideoLibrary::Init(nullptr);
+    m_externalLoop = nullptr;
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
     NSBaseVideoLibrary::Destroy();
+    if (m_externalLoop) {
+        delete m_externalLoop;
+        m_externalLoop = nullptr;
+    }
 
     delete m_queueToClose, m_queueToClose = nullptr;
 
@@ -1355,4 +1360,16 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                return "Document.asc";
     }
+}
+
+// external message loop
+bool CAscApplicationManagerWrapper::IsExternalEventLoop()
+{
+#if 1
+    return false;
+#else
+    m_externalLoop = new QExternalMessageLoop(this);
+    SetExternalMessageLoop(m_externalLoop);
+    return true;
+#endif
 }

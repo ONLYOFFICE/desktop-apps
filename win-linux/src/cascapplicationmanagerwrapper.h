@@ -34,6 +34,7 @@
 #define CASCAPPLICATIONMANAGERWRAPPER
 
 #include "applicationmanager.h"
+#include "qexternalmessageloop.h"
 #include <QObject>
 #include <QMutex>
 #include <vector>
@@ -97,6 +98,9 @@ private:
     CWindowsQueue<sWinTag> * m_queueToClose;
     CEventDriver m_eventDriver;
 
+    // external message loop
+    QExternalMessageLoop* m_externalLoop;
+
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -119,6 +123,9 @@ private:
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
+
+    // external message loop
+    virtual bool IsExternalEventLoop();
 
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);

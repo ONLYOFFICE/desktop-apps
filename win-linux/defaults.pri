@@ -28,12 +28,10 @@ include($$CORE_ROOT_DIR/Common/base.pri)
 
 INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/include \
-    $$BASEEDITORS_PATH/lib/qcefview \
+    $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor
 
 HEADERS += \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.h \
     $$PWD/src/asctabwidget.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
@@ -75,8 +73,6 @@ HEADERS += \
 #    src/casclabel.h
 
 SOURCES += \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -131,7 +127,7 @@ core_windows:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
 core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
 
 # core
-ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer, ascdocumentscore)
+ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
 core_linux {
     QT += network x11extras
