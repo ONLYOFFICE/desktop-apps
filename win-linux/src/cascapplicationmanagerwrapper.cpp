@@ -65,16 +65,11 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
     NSBaseVideoLibrary::Init(nullptr);
-    m_externalLoop = nullptr;
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
     NSBaseVideoLibrary::Destroy();
-    if (m_externalLoop) {
-        delete m_externalLoop;
-        m_externalLoop = nullptr;
-    }
 
     delete m_queueToClose, m_queueToClose = nullptr;
 
@@ -1363,13 +1358,8 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
 }
 
 // external message loop
-bool CAscApplicationManagerWrapper::IsExternalEventLoop()
+#include "qexternalmessageloop.h"
+IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalEventLoop()
 {
-#if 1
-    return false;
-#else
-    m_externalLoop = new QExternalMessageLoop(this);
-    SetExternalMessageLoop(m_externalLoop);
-    return true;
-#endif
+    return new QExternalMessageLoop(this);
 }
