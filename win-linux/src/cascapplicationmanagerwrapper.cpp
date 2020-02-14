@@ -1359,7 +1359,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
 
 // external message loop
 #include "qexternalmessageloop.h"
-IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalEventLoop()
+IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalMessageLoop()
 {
     return new QExternalMessageLoop(this);
 }

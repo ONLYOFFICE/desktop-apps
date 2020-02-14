@@ -120,7 +120,7 @@ private:
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
 
-    virtual IExternalMessageLoop* GetExternalEventLoop();
+    virtual IExternalMessageLoop* GetExternalMessageLoop();
 
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);
