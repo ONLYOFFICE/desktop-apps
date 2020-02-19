@@ -138,11 +138,13 @@ core_linux {
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
+                $$PWD/src/linux/gtk_addon.h \
                 $$PWD/src/linux/csinglewindow.h \
                 $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
+                $$PWD/src/linux/gtk_addon.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
                 $$PWD/src/linux/csinglewindow.cpp \
                 $$PWD/src/linux/csinglewindowplatform.cpp \
@@ -152,7 +154,7 @@ core_linux {
     SOURCES += $$PWD/src/linux/cdialogopenssl.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk
     LIBS += -lX11
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58

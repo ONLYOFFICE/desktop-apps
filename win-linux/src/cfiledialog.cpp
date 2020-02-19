@@ -42,6 +42,8 @@
 #include <QList>
 #include <QDebug>
 
+#include "qcefview.h"
+
 #if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
@@ -59,7 +61,17 @@ public:
     {
         if (parent)
         {
-            m_pChild = new QWidget(parent);
+            if (QCefView::IsSupportLayers())
+            {
+                m_pChild = new QWidget(parent);
+            }
+            else
+            {
+                QWindow* win = new QWindow((QWindow*)NULL);
+                win->setOpacity(1);
+                m_pChild = QWidget::createWindowContainer(win, parent);
+            }
+
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
             m_pChild->setAttribute(Qt::WA_NoSystemBackground);
