@@ -1,16 +1,9 @@
-﻿
-#define os_arch 'win_64'
-#define _WIN64
-#define PATH_PREFIX 'win_64\build'
-#define VC_REDIST_VER 'vcredist_x64.exe'
+; -- Desktop Editors x64 --
+
+#define _ARCH "64"
+
+#define _ONLYOFFICE
+#define _UPDMODULE
+#define SCRIPT_CUSTOM_FILES
 
 #include "common.iss"
-
-[Setup]
-OutputBaseFileName    =DesktopEditors_x64
-MinVersion              =6.1
-ArchitecturesAllowed    =x64
-ArchitecturesInstallIn64BitMode=x64
-;ShowUndisplayableLanguages = true
-;UsePreviousLanguage=no
-

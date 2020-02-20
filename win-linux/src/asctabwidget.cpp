@@ -837,13 +837,15 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
-        if (std::regex_search(option, std::wregex(L"eventloading\":\\s?true"))) {
-            panel(tabIndex)->data()->setEventLoadSupported(true);
+        size_t _pos;
+        if ((_pos = option.find(L"eventloading:")) != wstring::npos) {
+            if (option.find(L"true", _pos + 1) != wstring::npos)
+                panel(tabIndex)->data()->setEventLoadSupported(true);
         }
 
-        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
+//        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
 //            panel(tabIndex)->setWindowed(true);
-        }
+//        }
     }
 }
 
@@ -853,9 +855,26 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
+    if (!m_pMainWidget->isHidden())
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget() && !this->currentWidget()->isHidden())
+                this->currentWidget()->hide();
+        }
+        return;
+    }
     int nIndex = !(index < 0) ? index : currentIndex();
     if (!(nIndex < 0 ))
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget()->isHidden())
+                this->currentWidget()->show();
+        }
+
         panel(nIndex)->cef()->focus();
+    }
 }
 
 void CAscTabWidget::activate(bool a)

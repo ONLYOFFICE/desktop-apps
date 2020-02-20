@@ -90,14 +90,18 @@ CMainWindow::CMainWindow(QRect& rect) :
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-    if ( _screen_size.width() < _window_rect.width() + 120 ||
-            _screen_size.height() < _window_rect.height() + 120 )
-    {
-        _window_rect.setLeft(_screen_size.left()),
-        _window_rect.setTop(_screen_size.top());
+    if ( _screen_size.intersects(_window_rect) ) {
+        if ( _screen_size.width() < _window_rect.width() + 120 ||
+                _screen_size.height() < _window_rect.height() + 120 )
+        {
+            _window_rect.setLeft(_screen_size.left()),
+            _window_rect.setTop(_screen_size.top());
 
-        if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
-        if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+            if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
+            if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+        }
+    } else {
+        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
     }
 
     WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
@@ -937,11 +941,17 @@ void CMainWindow::captureMouse(int tabindex)
         QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
 
         SetCursorPos(gpt.x(), gpt.y());
-        SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
-            QTimer::singleShot(0,[=] {
-                QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
-                QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
-                mainPanel()->tabWidget()->tabBar()->grabMouse();
-            });
+        //SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
+      
+        QWidget * _widget = mainPanel()->tabWidget()->tabBar();
+        QTimer::singleShot(0,[_widget,spt] {
+            INPUT _input{INPUT_MOUSE};
+            _input.mi.dwFlags = MOUSEEVENTF_ABSOLUTE|MOUSEEVENTF_LEFTDOWN;
+            SendInput(1, &_input, sizeof(INPUT));
+
+            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+            QCoreApplication::sendEvent(_widget, &event);
+            _widget->grabMouse();
+        });
     }
 }

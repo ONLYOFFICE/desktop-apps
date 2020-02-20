@@ -30,74 +30,12 @@
  *
 */
 
-#ifndef CX11DECORATION_H
-#define CX11DECORATION_H
+#ifndef GTK_ADDON_H
+#define GTK_ADDON_H
 
-#include "qtextstream.h"
-
-#include <QWidget>
-#include <QMouseEvent>
-#include <QTimer>
-
-#define FORCE_LINUX_CUSTOMWINDOW_MARGINS
-
-class CX11Decoration
+namespace gtk_addon
 {
-public:
-    CX11Decoration(QWidget *);
-    ~CX11Decoration();
+    int devicePixelRatio();
+}
 
-    void setTitleWidget(QWidget *);
-    void dispatchMouseDown(QMouseEvent *);
-    void dispatchMouseMove(QMouseEvent *);
-    void dispatchMouseUp(QMouseEvent *);
-    void setCursorPos(int x, int y);
-
-    void turnOn();
-    void turnOff();
-    bool isDecorated();
-    void setMaximized(bool);
-    void raiseWindow();
-
-    static int devicePixelRatio();
-    static int customWindowBorderWith();
-
-    bool checkButtonState(Qt::MouseButton);
-    int m_nDirection;
-
-private:
-    QWidget * m_window;
-    QWidget * m_title;
-    QTimer * m_motionTimer;
-    ulong m_currentCursor;
-    bool m_decoration;
-    int m_nBorderSize;
-    bool m_bIsMaximized;
-
-    std::map<int, ulong> m_cursors;
-
-    void createCursors();
-    void freeCursors();
-    int  hitTest(int x, int y) const;
-    void checkCursor(QPoint & p);
-    void switchDecoration(bool);
-    void sendButtonRelease();
-};
-
-class CX11Caption : public QWidget
-{
-public:
-    Q_OBJECT
-
-signals:
-    void mouseDoubleClicked();
-
-public:
-    explicit CX11Caption(QWidget* parent);
-    virtual ~CX11Caption();
-
-    virtual void paintEvent(QPaintEvent *event);
-    virtual void mouseDoubleClickEvent(QMouseEvent *event);
-};
-
-#endif // CX11DECORATION_H
+#endif // GTK_ADDON_H

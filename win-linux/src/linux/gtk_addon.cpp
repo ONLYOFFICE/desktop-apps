@@ -30,62 +30,46 @@
  *
 */
 
-#ifndef CEDITORWINDOW_H
-#define CEDITORWINDOW_H
+#include "./gtk_addon.h"
+#include <gtk/gtk.h>
 
-#ifdef __linux__
-# include "linux/csinglewindowplatform.h"
-#else
-# include "win/csinglewindowplatform.h"
-#endif
-
-#include "ctabpanel.h"
-#include <memory>
-#include <QCoreApplication>
-
-class CEditorWindowPrivate;
-class CEditorWindow : public CSingleWindowPlatform
+namespace gtk_addon
 {
-    Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
+    int devicePixelRatio()
+    {
+        GdkScreen* screen = gdk_screen_get_default();
 
-public:
-    CEditorWindow();
-    CEditorWindow(const QRect& rect, CTabPanel* view);
-    ~CEditorWindow();
+        if (screen)
+        {
+            double dScale = gdk_screen_get_resolution(screen);
+            if (dScale < 1)
+                return 1;
 
-    bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
-    void show(bool maximaized, bool capturemouse = false);
-    int closeWindow();
-    CTabPanel * mainView() const;
-    CTabPanel * releaseEditorView() const;
-    QString documentName() const;
-    bool closed() const;
+            int wPx = gdk_screen_get_width(screen);
+            int hPx = gdk_screen_get_height(screen);
+            int wMm = gdk_screen_get_width_mm(screen);
+            int hMm = gdk_screen_get_height_mm(screen);
 
-    void setReporterMode(bool);
-private:
-    QString m_css;
+            if (wMm < 1)
+                wMm = 1;
+            if (hMm < 1)
+                hMm = 1;
 
-private:
-    CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom) override;
-    void recalculatePlaces();
-    const QObject * receiver() override;
+            int nDpiX = (int)(0.5 + wPx * 25.4 / wMm);
+            int nDpiY = (int)(0.5 + hPx * 25.4 / hMm);
+            int nDpi = (nDpiX + nDpiY) >> 1;
 
-protected:
-    void onCloseEvent() override;
-    void onMinimizeEvent() override;
-    void onMaximizeEvent() override;
-    void onSizeEvent(int) override;
-    void onScreenScalingFactor(uint) override;
-    void onMoveEvent(const QRect&) override;
+            if (nDpi < 10)
+                return 1;
 
-    void onLocalFileSaveAs(void *);
-
-private:
-    friend class CEditorWindowPrivate;
-    std::unique_ptr<CEditorWindowPrivate> d_ptr;
-};
-
-#endif // CEDITORWINDOW_H
+            dScale /= nDpi;
+            if (dScale < 1)
+                return 1;
+            else if (dScale > 2)
+                return 2;
+            else
+                return (int)(dScale + 0.49);
+        }
+        return 1;
+    }
+}

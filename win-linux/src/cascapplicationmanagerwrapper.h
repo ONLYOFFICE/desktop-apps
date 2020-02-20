@@ -123,6 +123,8 @@ private:
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
 
+    virtual IExternalMessageLoop* GetExternalMessageLoop();
+
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);
     static void unbindReceiver(int view_id);

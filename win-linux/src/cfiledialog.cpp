@@ -42,6 +42,8 @@
 #include <QList>
 #include <QDebug>
 
+#include "qcefview.h"
+
 #if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #else
@@ -59,7 +61,17 @@ public:
     {
         if (parent)
         {
-            m_pChild = new QWidget(parent);
+            if (QCefView::IsSupportLayers())
+            {
+                m_pChild = new QWidget(parent);
+            }
+            else
+            {
+                QWindow* win = new QWindow((QWindow*)NULL);
+                win->setOpacity(1);
+                m_pChild = QWidget::createWindowContainer(win, parent);
+            }
+
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
             m_pChild->setAttribute(Qt::WA_NoSystemBackground);
@@ -308,6 +320,30 @@ QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
     _filter.append(";;" + _plugins_filter);
 
     return modalOpen(path, _filter, &_plugins_filter, true);
+}
+
+QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml);;");
+
+    return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;");
+
+    return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool multi)
+{
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;");
+
+    return modalOpen(path, filter, nullptr, multi);
 }
 
 QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)

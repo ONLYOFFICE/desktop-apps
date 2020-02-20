@@ -1367,3 +1367,9 @@ void CAscApplicationManagerWrapper::checkUpdates()
 
     _app.m_updater->checkUpdates();
 }
+// external message loop
+#include "qexternalmessageloop.h"
+IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalMessageLoop()
+{
+    return new QExternalMessageLoop(this);
+}

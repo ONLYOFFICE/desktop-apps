@@ -1,5 +1,6 @@
 
 TARGET = DesktopEditors
+DESTDIR = $$PWD
 
 include(defaults.pri)
 
