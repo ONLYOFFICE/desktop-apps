@@ -375,6 +375,11 @@ void CEditorWindow::recalculatePlaces()
         windowH = m_pMainPanel->height(),
         captionH = TITLE_HEIGHT * m_dpiRatio;
 
+    if (!QCefView::IsSupportLayers())
+    {
+        d_ptr->panel()->view()->SetCaptionMaskSize(TITLE_HEIGHT * m_dpiRatio);
+    }
+
 //    int contentH = windowH - captionH;
 //    if ( contentH < 1 ) contentH = 1;
 

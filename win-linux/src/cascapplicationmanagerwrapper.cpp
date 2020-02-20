@@ -1356,3 +1356,10 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     default:                return "Document.asc";
     }
 }
+
+// external message loop
+#include "qexternalmessageloop.h"
+IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalMessageLoop()
+{
+    return new QExternalMessageLoop(this);
+}
