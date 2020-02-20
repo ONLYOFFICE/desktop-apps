@@ -73,6 +73,7 @@ HEADERS += \
 #    src/casclabel.h
 
 SOURCES += \
+    $$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
