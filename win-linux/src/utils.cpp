@@ -49,7 +49,7 @@
 #include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
-#include "cdpichecker.h"
+#include "qdpichecker.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -346,7 +346,7 @@ unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (!pDpiCheckerBase)
         return 1;
 
-    CDpiChecker * pDpiChecker = (CDpiChecker *)pDpiCheckerBase;
+    QDpiChecker * pDpiChecker = (QDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
     int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
