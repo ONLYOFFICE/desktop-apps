@@ -18,8 +18,11 @@
         <file>res/icons/menu-indicator-dark.png</file>
         <file>res/icons/menu-indicator_2x.png</file>
         <file>res/icons/radiobox.png</file>
+        <file alias="radiobox_2x.png">res/icons/radiobox@2x.png</file>
         <file>res/icons/checkbox.png</file>
+        <file alias="checkbox_2x.png">res/icons/checkbox@2x.png</file>
         <file>res/icons/arrow_down.png</file>
+        <file alias="arrow_down_2x.png">res/icons/arrow_down@2x.png</file>
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.png</file>
         <file>res/icons/splash_2x.png</file>
