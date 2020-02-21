@@ -33,7 +33,7 @@
 #ifndef CASCAPPLICATIONMANAGERWRAPPER
 #define CASCAPPLICATIONMANAGERWRAPPER
 
-#include "applicationmanager.h"
+#include "qascapplicationmanager.h"
 #include <QObject>
 #include <QMutex>
 #include <vector>
@@ -109,8 +109,6 @@ private:
     ~CAscApplicationManagerWrapper();
 
     void StartSaveDialog(const std::wstring& sName, unsigned int nId);
-    void OnNeedCheckKeyboard();
-    int  GetPlatformKeyboardLayout();
     bool processCommonEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const wstring& wstrjson);
@@ -119,8 +117,6 @@ private:
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
-
-    virtual IExternalMessageLoop* GetExternalMessageLoop();
 
 public:
     static void bindReceiver(int view_id, CCefEventsGate * const receiver);
@@ -177,9 +173,6 @@ public:
 private:
     class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
-
-protected:
-    virtual CAscDpiChecker* InitDpiChecker();
 };
 
 #endif // QASCAPPLICATIONMANAGER

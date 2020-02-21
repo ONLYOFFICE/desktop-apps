@@ -20,7 +20,6 @@
 #include "common/Types.h"
 #include "ctabundockevent.h"
 #include "clangater.h"
-#include "cdpichecker.h"
 #include "cmessage.h"
 #include "ceditortools.h"
 
@@ -104,14 +103,6 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 //    m_vecEditors.clear();
 }
 
-int CAscApplicationManagerWrapper::GetPlatformKeyboardLayout()
-{
-    if (this->IsPlatformKeyboardSupport())
-        return CAscApplicationManager::GetPlatformKeyboardLayout();
-
-    return -1;
-}
-
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
 {
     CAscSaveDialog * data = new CAscSaveDialog;
@@ -122,11 +113,6 @@ void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, u
     event->m_pData = data;
 
     OnEvent(event);
-}
-
-void CAscApplicationManagerWrapper::OnNeedCheckKeyboard()
-{
-    OnEvent(new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD));
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -1127,11 +1113,6 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         });
 }
 
-CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
-{
-    return new CDpiChecker();
-}
-
 bool CAscApplicationManagerWrapper::canAppClose()
 {
 #ifdef Q_OS_WIN
@@ -1355,11 +1336,4 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                return "Document.asc";
     }
-}
-
-// external message loop
-#include "qexternalmessageloop.h"
-IExternalMessageLoop* CAscApplicationManagerWrapper::GetExternalMessageLoop()
-{
-    return new QExternalMessageLoop(this);
 }
