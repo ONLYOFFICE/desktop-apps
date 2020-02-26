@@ -50,7 +50,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 }
 
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
-    : CAscApplicationManager()
+    : QAscApplicationManager()
     , CCefEventsTransformer(nullptr)
     , QObject(nullptr)
     , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private(this))
@@ -1017,6 +1017,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 
             if ( _editor ) {
                 e->accept();
+                sendCommandTo(_editor->cef(), L"element:show", L"title:hide");
 
                 QJsonObject _json_obj{{"action", "undocking"},
                                       {"status", "undocked"}};
