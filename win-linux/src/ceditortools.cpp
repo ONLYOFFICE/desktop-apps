@@ -116,6 +116,9 @@ namespace CEditorTools
             if ( _filter == "slide" ) {
                 _list = dialog.modalOpenPresentations(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
             } else
+            if ( _filter == "video" || _filter == "audio" ) {
+                _list = dialog.modalOpenMedia(_filter, Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
+            } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
             } else {
