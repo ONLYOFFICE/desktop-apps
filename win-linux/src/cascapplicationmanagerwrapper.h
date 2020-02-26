@@ -77,7 +77,7 @@ struct sWinTag {
 class CAscApplicationManagerWrapper;
 typedef CAscApplicationManagerWrapper AscAppManager;
 
-class CAscApplicationManagerWrapper : public QObject, public CAscApplicationManager, CCefEventsTransformer
+class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
 {
     Q_OBJECT
 
