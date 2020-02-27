@@ -36,6 +36,9 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <QWidget>
+#ifdef Q_OS_WIN
+# include <Windows.h>
+#endif
 
 using namespace std;
 
@@ -73,6 +76,11 @@ public:
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
     static QByteArray readStylesheets(std::vector<QString> *);
     static QByteArray readStylesheets(const QString&);
+
+#ifdef Q_OS_WIN
+    //TODO: move to window.base class
+    static void adjustWindowRect(HWND, int, LPRECT);
+#endif
 };
 
 #endif // UTILS_H

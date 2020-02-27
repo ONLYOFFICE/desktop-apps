@@ -64,6 +64,7 @@ protected:
     HWND m_hWnd;
     HWND m_modalHwnd;
     COLORREF m_bgColor;
+    RECT m_moveNormalRect{0};
     bool m_borderless = true;
     bool m_visible = false;
     bool m_closed = false;
