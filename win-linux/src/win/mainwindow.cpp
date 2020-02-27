@@ -660,9 +660,7 @@ void CMainWindow::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        if ( dpi_adjustWindowRectEx != NULL ) {
-            dpi_adjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0, 96*m_dpiRatio);
-        } else AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        Utils::adjustWindowRect(hWnd, m_dpiRatio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -704,9 +702,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
-            RECT lpWindowRect;
-            GetWindowRect(hWnd, &lpWindowRect);
-
             unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
                     _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
 
