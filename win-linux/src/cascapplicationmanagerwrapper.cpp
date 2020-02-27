@@ -1017,8 +1017,6 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 
             if ( _editor ) {
                 e->accept();
-                sendCommandTo(_editor->cef(), L"element:show", L"title:hide");
-
                 QJsonObject _json_obj{{"action", "undocking"},
                                       {"status", "undocked"}};
                 sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
