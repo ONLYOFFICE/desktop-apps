@@ -1226,9 +1226,13 @@
 
         if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterAudio]) {
+            allowedFileTypes = [ASCConstants audios];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterVideo]) {
+            allowedFileTypes = [ASCConstants videos];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPlugin]) {
             allowedFileTypes = [ASCConstants plugins];
-        } else if ([fileTypes isEqualToString:CEFOpenFileFilterDocuments]) {
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterDocument]) {
             allowedFileTypes = [ASCConstants documents];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterSpreadsheet]) {
             allowedFileTypes = [ASCConstants spreadsheets];
