@@ -55,7 +55,7 @@ public:
 
     bool holdView(int id) const override;
     bool holdView(const wstring& portal) const;
-    void show(bool maximaized, bool capturemouse = false);
+    void undock(bool maximized = false);
     int closeWindow();
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;
@@ -80,6 +80,7 @@ protected:
     void onSizeEvent(int) override;
     void onScreenScalingFactor(uint) override;
     void onMoveEvent(const QRect&) override;
+    void onExitSizeMove() override;
 
     void onLocalFileSaveAs(void *);
 

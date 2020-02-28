@@ -73,6 +73,7 @@ protected:
     virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onScreenScalingFactor(uint f) = 0;
+    virtual void onExitSizeMove();
 };
 
 #endif // CSINGLEWINDOWBASE_H

@@ -1026,7 +1026,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         QRect rect = _main_window->windowRect();
 
                         CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _editor);
-                        editor_win->show(_main_window->isMaximized(), true);
+                        editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
                     }
