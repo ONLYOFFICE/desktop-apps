@@ -156,12 +156,15 @@ bool CEditorWindow::holdView(const wstring& portal) const
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
 }
 
-void CEditorWindow::show(bool maximaized, bool capturemouse)
+void CEditorWindow::undock(bool maximized)
 {
-    CSingleWindowPlatform::show(maximaized);
+    if ( maximized ) {
+        m_restoreMaximized = true;
+        maximized = false;
+    }
 
-    if ( !maximaized && capturemouse )
-        CSingleWindowPlatform::captureMouse();
+    CSingleWindowPlatform::show(maximized);
+    CSingleWindowPlatform::captureMouse();
 }
 
 int CEditorWindow::closeWindow()
@@ -345,6 +348,16 @@ void CEditorWindow::onMoveEvent(const QRect& rect)
 #else
     AscAppManager::editorWindowMoving((size_t)handle(), QCursor::pos());
 #endif
+}
+
+void CEditorWindow::onExitSizeMove()
+{
+    CSingleWindowPlatform::onExitSizeMove();
+
+    if ( m_restoreMaximized ) {
+        m_restoreMaximized = false;
+        CSingleWindowPlatform::show(true);
+    }
 }
 
 void CEditorWindow::onScreenScalingFactor(uint newfactor)

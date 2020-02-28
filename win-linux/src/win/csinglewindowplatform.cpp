@@ -74,7 +74,6 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
-    m_winRect = rect;
 
     m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
                                                 bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
@@ -273,16 +272,8 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         break;}
 
     case WM_EXITSIZEMOVE: {
-        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-
-        if ( dpi_ratio != window->m_dpiRatio )
-            window->setScreenScalingFactor(dpi_ratio);
-
-        RECT lpWindowRect;
-        GetWindowRect(hWnd, &lpWindowRect);
-        window->m_winRect.setCoords(lpWindowRect.left, lpWindowRect.top, lpWindowRect.right, lpWindowRect.bottom);
-
-        break;
+        window->onExitSizeMove();
+        return 0;
     }
 
     case WM_NCACTIVATE:
@@ -409,6 +400,14 @@ void CSingleWindowPlatform::onSizeEvent(int type)
     }
 }
 
+void CSingleWindowPlatform::onExitSizeMove()
+{
+    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
+}
+
 void CSingleWindowPlatform::adjustGeometry()
 {
     RECT lpWindowRect, clientRect;
@@ -522,7 +521,10 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 const QRect& CSingleWindowPlatform::geometry() const
 {
-    return m_winRect;
+    RECT lpWindowRect;
+    GetWindowRect(m_hWnd, &lpWindowRect);
+
+    return QRect(QPoint(lpWindowRect.left, lpWindowRect.top), QPoint(lpWindowRect.right, lpWindowRect.bottom));
 }
 
 void CSingleWindowPlatform::activateWindow()

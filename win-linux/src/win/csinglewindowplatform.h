@@ -71,7 +71,6 @@ protected:
     CWinPanel * m_pWinPanel;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
-    QRect m_winRect;
     QMetaObject::Connection m_modalSlotConnection;
 
     void setMinimumSize(int width, int height);
@@ -81,6 +80,7 @@ protected:
     virtual void onSizeEvent(int);
     virtual void applyWindowState(Qt::WindowState);
     virtual void adjustGeometry();
+    virtual void onExitSizeMove();
 
 //    virtual void focusMainPanel();
 
