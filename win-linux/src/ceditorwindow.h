@@ -65,6 +65,7 @@ public:
     void setReporterMode(bool);
 private:
     QString m_css;
+    bool m_restoreMaximized = false;
 
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);

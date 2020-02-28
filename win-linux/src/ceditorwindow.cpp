@@ -158,6 +158,10 @@ bool CEditorWindow::holdView(const wstring& portal) const
 
 void CEditorWindow::undock(bool maximized)
 {
+    if ( maximized ) {
+        m_restoreMaximized = true;
+        maximized = false;
+    }
 
     CSingleWindowPlatform::show(maximized);
     CSingleWindowPlatform::captureMouse();
@@ -349,6 +353,11 @@ void CEditorWindow::onMoveEvent(const QRect& rect)
 void CEditorWindow::onExitSizeMove()
 {
     CSingleWindowPlatform::onExitSizeMove();
+
+    if ( m_restoreMaximized ) {
+        m_restoreMaximized = false;
+        CSingleWindowPlatform::show(true);
+    }
 }
 
 void CEditorWindow::onScreenScalingFactor(uint newfactor)
