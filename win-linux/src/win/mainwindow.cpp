@@ -911,6 +911,9 @@ void CMainWindow::captureMouse(int tabindex)
     {
         QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
         QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        gpt = m_pWinPanel->mapToGlobal(gpt);
+#endif
 
         SetCursorPos(gpt.x(), gpt.y());
         //SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
@@ -927,3 +930,13 @@ void CMainWindow::captureMouse(int tabindex)
         });
     }
 }
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+bool CMainWindow::pointInTabs(const QPoint& pt) const
+{
+    QRect _rc_title(mainPanel()->geometry());
+    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+
+    return _rc_title.contains(m_pWinPanel->mapFromGlobal(pt));
+}
+#endif
