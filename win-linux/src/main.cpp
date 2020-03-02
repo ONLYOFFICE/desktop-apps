@@ -105,14 +105,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
-    if (!CApplicationCEF::IsMainProcess(argc, argv))
-    {
-        unique_ptr<CApplicationCEF> application_cef(new CApplicationCEF);
-        unique_ptr<CAscApplicationManager> appmanager(AscAppManager::createInstance());
-
-        setup_paths(appmanager.get());
-        return application_cef->Init_CEF(appmanager.get(), argc, argv);
-    }
+    CApplicationCEF::Prepare(argc, argv);
 
 #ifdef _WIN32
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
