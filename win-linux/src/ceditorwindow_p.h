@@ -342,16 +342,15 @@ public:
 
             window->show(false);
 
-            _fs_widget->showNormal();
-            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()+4);
+//            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
+            _fs_widget->showNormal();
 
             disconnect(cefConnection);
         } else {
             QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
-            _fs_widget->clearMask();
             _fs_widget->setWindowIcon(Utils::appIcon());
             _fs_widget->setParent(nullptr);
             window->hide();
