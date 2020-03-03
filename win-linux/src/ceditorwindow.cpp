@@ -253,7 +253,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     if ( m_dpiRatio > 1 )
         mainPanel->setProperty("zoom", "2x");
 
-    mainPanel->setStyleSheet(m_css);
+    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(m_css);
+    mainPanel->setStyleSheet(css);
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     layoutBtns->setContentsMargins(0,0,0,0);
