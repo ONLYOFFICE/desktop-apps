@@ -98,7 +98,7 @@
 #define sAppVerShort        Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName           {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArchFull}
+  #define sOutputFileName           sIntCompanyName + '_' + sIntProductName + '_' + sAppVersion + '_' + sWinArchFull
 #endif
 
 #include "utils.iss"
