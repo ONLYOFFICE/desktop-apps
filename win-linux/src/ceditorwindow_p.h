@@ -136,14 +136,14 @@ public:
                         _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
                         qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
 
-                        titleLeftOffset += _btn->width();
+                        titleLeftOffset += 40/*_btn->width()*/;
                     }
 
                 }
             }
 
             int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
+            int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             diffW -= _user_width;
 
             diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
