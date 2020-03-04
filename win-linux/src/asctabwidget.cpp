@@ -145,12 +145,17 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
+    static int _dropedindex = -1;
     QObject::connect(this, &QTabWidget::currentChanged, [=](){
         updateIcons();
         setFocusedView();
+
+        _dropedindex = -1;
     });
 
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
+        if (index == _dropedindex) return;
+
         CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->viewType() == cvwtEditor ) {
@@ -158,7 +163,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
             QObject * obj = qobject_cast<QObject *>(
                         static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
-
+                _dropedindex = index;
             }
         }
     });

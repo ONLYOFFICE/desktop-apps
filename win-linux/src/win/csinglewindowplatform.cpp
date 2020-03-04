@@ -39,6 +39,8 @@
 
 #include <functional>
 
+#define CAPTURED_WINDOW_CURSOR_OFFSET_X     180
+#define CAPTURED_WINDOW_CURSOR_OFFSET_Y     15
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -536,13 +538,22 @@ void CSingleWindowPlatform::slot_modalDialog(bool status, size_t h)
 {
     EnableWindow(m_hWnd, status ? FALSE : TRUE);
     m_modalHwnd = (HWND)h;
+
+    qDebug() << "disable parent window" << status;
 }
 
 void CSingleWindowPlatform::captureMouse()
 {
-    POINT cursor{0};
+    POINT cursor{0,0};
     if ( GetCursorPos(&cursor) ) {
-        SetWindowPos(m_hWnd, 0, cursor.x - 300, cursor.y - 15, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+        QRect _g{geometry()};
+
+        int _window_offset_x;
+        if ( cursor.x - _g.x() < dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_X) ) _window_offset_x = dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_X);
+        else if ( cursor.x > _g.right() - dpiCorrectValue(150) ) _window_offset_x = _g.right() - dpiCorrectValue(150);
+        else _window_offset_x = cursor.x - _g.x();
+
+        SetWindowPos(m_hWnd, nullptr, cursor.x - _window_offset_x, cursor.y - dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_Y), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
         ReleaseCapture();
         PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));

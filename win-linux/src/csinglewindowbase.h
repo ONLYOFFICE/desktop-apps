@@ -74,6 +74,11 @@ protected:
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onScreenScalingFactor(uint f) = 0;
     virtual void onExitSizeMove();
+
+    inline int dpiCorrectValue(int v) const
+    {
+        return v * static_cast<int>(m_dpiRatio);
+    }
 };
 
 #endif // CSINGLEWINDOWBASE_H
