@@ -64,7 +64,6 @@ HEADERS += \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/cdpichecker.h \
     $$PWD/src/csinglewindowbase.h \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
@@ -80,6 +79,7 @@ HEADERS += \
 #    src/casclabel.h
 
 SOURCES += \
+    $$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \

@@ -113,7 +113,9 @@
         [self.appNameText setStringValue:locProductName];
         
         // Version
-        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@)", nil), [infoDictionary objectForKey:@"CFBundleShortVersionString"], [infoDictionary objectForKey:@"CFBundleVersion"]]];
+        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@)", nil),
+                                          [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+                                          [infoDictionary objectForKey:@"CFBundleVersion"]]];
         
         // Copyright
         [self.copyrightText setStringValue:locCopyright];

@@ -156,12 +156,15 @@ bool CEditorWindow::holdView(const wstring& portal) const
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
 }
 
-void CEditorWindow::show(bool maximaized, bool capturemouse)
+void CEditorWindow::undock(bool maximized)
 {
-    CSingleWindowPlatform::show(maximaized);
+    if ( maximized ) {
+        m_restoreMaximized = true;
+        maximized = false;
+    }
 
-    if ( !maximaized && capturemouse )
-        CSingleWindowPlatform::captureMouse();
+    CSingleWindowPlatform::show(maximized);
+    CSingleWindowPlatform::captureMouse();
 }
 
 int CEditorWindow::closeWindow()
@@ -250,7 +253,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     if ( m_dpiRatio > 1 )
         mainPanel->setProperty("zoom", "2x");
 
-    mainPanel->setStyleSheet(m_css);
+    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(m_css);
+    mainPanel->setStyleSheet(css);
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     layoutBtns->setContentsMargins(0,0,0,0);
@@ -345,6 +350,16 @@ void CEditorWindow::onMoveEvent(const QRect& rect)
 #else
     AscAppManager::editorWindowMoving((size_t)handle(), QCursor::pos());
 #endif
+}
+
+void CEditorWindow::onExitSizeMove()
+{
+    CSingleWindowPlatform::onExitSizeMove();
+
+    if ( m_restoreMaximized ) {
+        m_restoreMaximized = false;
+        CSingleWindowPlatform::show(true);
+    }
 }
 
 void CEditorWindow::onScreenScalingFactor(uint newfactor)

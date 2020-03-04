@@ -74,7 +74,6 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
-    m_winRect = rect;
 
     m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
                                                 bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
@@ -259,17 +258,22 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
         return TRUE;}
 
+    case WM_ENTERSIZEMOVE: {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if ( GetWindowPlacement(hWnd, &wp) ) {
+            MONITORINFO info{sizeof(MONITORINFO)};
+            GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+
+            window->m_moveNormalRect.left   = abs(info.rcMonitor.left - wp.rcNormalPosition.left);
+            window->m_moveNormalRect.top    = abs(info.rcMonitor.top - wp.rcNormalPosition.top);
+            window->m_moveNormalRect.right  = abs(info.rcMonitor.left - wp.rcNormalPosition.right);
+            window->m_moveNormalRect.bottom = abs(info.rcMonitor.top - wp.rcNormalPosition.bottom);
+        }
+        break;}
+
     case WM_EXITSIZEMOVE: {
-        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-
-        if ( dpi_ratio != window->m_dpiRatio )
-            window->setScreenScalingFactor(dpi_ratio);
-
-        RECT lpWindowRect;
-        GetWindowRect(hWnd, &lpWindowRect);
-        window->m_winRect.setCoords(lpWindowRect.left, lpWindowRect.top, lpWindowRect.right, lpWindowRect.bottom);
-
-        break;
+        window->onExitSizeMove();
+        return 0;
     }
 
     case WM_NCACTIVATE:
@@ -396,6 +400,14 @@ void CSingleWindowPlatform::onSizeEvent(int type)
     }
 }
 
+void CSingleWindowPlatform::onExitSizeMove()
+{
+    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
+}
+
 void CSingleWindowPlatform::adjustGeometry()
 {
     RECT lpWindowRect, clientRect;
@@ -413,7 +425,7 @@ void CSingleWindowPlatform::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        AdjustWindowRectEx(&wrect, (GetWindowStyle(m_hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        Utils::adjustWindowRect(m_hWnd, m_dpiRatio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -455,17 +467,34 @@ void CSingleWindowPlatform::onScreenScalingFactor(uint f)
 {
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f);
 
-    RECT lpWindowRect;
-    GetWindowRect(m_hWnd, &lpWindowRect);
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if ( GetWindowPlacement(m_hWnd, &wp) ) {
+        unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
+                _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
 
-    unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
-            _new_height = lpWindowRect.bottom - lpWindowRect.top;
+        bool _is_up = f > m_dpiRatio;
+        if ( _is_up )
+            _new_width *= 2, _new_height *= 2;
+        else _new_width /= 2, _new_height /= 2;
 
-    if ( f > m_dpiRatio )
-        _new_width *= 2, _new_height *= 2;
-    else _new_width /= 2, _new_height /= 2;
+        if ( wp.showCmd == SW_MAXIMIZE ) {
+            MONITORINFO info{sizeof(MONITORINFO)};
+            GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-    SetWindowPos(m_hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+            if ( _is_up )
+                m_moveNormalRect.left *= 2, m_moveNormalRect.top *= 2;
+            else m_moveNormalRect.left /= 2, m_moveNormalRect.top /= 2;
+
+            wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left;
+            wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top;
+            wp.rcNormalPosition.right = wp.rcNormalPosition.left + _new_width;
+            wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _new_height;
+
+            SetWindowPlacement(m_hWnd, &wp);
+        } else {
+            SetWindowPos(m_hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+        }
+    }
 }
 
 Qt::WindowState CSingleWindowPlatform::windowState()
@@ -492,7 +521,10 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 const QRect& CSingleWindowPlatform::geometry() const
 {
-    return m_winRect;
+    RECT lpWindowRect;
+    GetWindowRect(m_hWnd, &lpWindowRect);
+
+    return QRect(QPoint(lpWindowRect.left, lpWindowRect.top), QPoint(lpWindowRect.right, lpWindowRect.bottom));
 }
 
 void CSingleWindowPlatform::activateWindow()

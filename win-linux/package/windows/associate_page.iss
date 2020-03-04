@@ -381,6 +381,8 @@ begin
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
       createPage := True
     end
+  end else if Length(GetCommandlineParam('/FULLASSOCIATION')) > 0 then begin
+    createPage := True
   end;
 
   if createPage then begin

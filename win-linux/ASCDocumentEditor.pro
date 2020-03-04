@@ -12,7 +12,7 @@ HEADERS += \
     src/prop/version_p.h
 
 SOURCES += \
-    src/prop/csplash.cpp \
+    src/prop/csplash_p.cpp \
     src/prop/cmainpanelimpl.cpp \
     src/prop/cascapplicationmanagerwrapper_private.h \
     src/prop/utils.cpp

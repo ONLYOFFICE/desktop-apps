@@ -136,14 +136,14 @@ public:
                         _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
                         qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
 
-                        titleLeftOffset += _btn->width();
+                        titleLeftOffset += 40/*_btn->width()*/;
                     }
 
                 }
             }
 
             int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
+            int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             diffW -= _user_width;
 
             diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
@@ -342,16 +342,15 @@ public:
 
             window->show(false);
 
-            _fs_widget->showNormal();
-            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()+4);
+//            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
+            _fs_widget->showNormal();
 
             disconnect(cefConnection);
         } else {
             QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
-            _fs_widget->clearMask();
             _fs_widget->setWindowIcon(Utils::appIcon());
             _fs_widget->setParent(nullptr);
             window->hide();

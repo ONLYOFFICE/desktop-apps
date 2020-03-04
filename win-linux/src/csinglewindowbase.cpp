@@ -166,6 +166,11 @@ void CSingleWindowBase::onMaximizeEvent()
 
 }
 
+void CSingleWindowBase::onExitSizeMove()
+{
+
+}
+
 QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
 {
     QPushButton * btn = new QPushButton(parent);

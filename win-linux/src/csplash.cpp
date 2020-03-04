@@ -38,12 +38,13 @@
 #include <QSettings>
 #include <QStyle>
 #include "utils.h"
+#include "csplash_p.cpp"
 
 CSplash * _splash;
 
 auto screenAt(const QPoint& pt) -> QScreen * {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    return QApplication::screenAt(reg_user.value("position").toRect().topLeft());
+    return QApplication::screenAt(pt);
 #else
     QVarLengthArray<const QScreen *, 8> _cached_screens;
     for (const QScreen *screen : QApplication::screens()) {
@@ -93,7 +94,8 @@ void CSplash::showSplash()
 
         uchar _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
 
-        _splash->setPixmap(_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+//        _splash->setPixmap(_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
+        _splash->setPixmap(getSplashImage(_dpi_ratio));
         _splash->show(_scr_num);
     }
 }

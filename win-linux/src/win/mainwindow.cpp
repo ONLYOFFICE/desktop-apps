@@ -661,9 +661,7 @@ void CMainWindow::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        if ( dpi_adjustWindowRectEx != NULL ) {
-            dpi_adjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0, 96*m_dpiRatio);
-        } else AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        Utils::adjustWindowRect(hWnd, m_dpiRatio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -705,9 +703,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
-            RECT lpWindowRect;
-            GetWindowRect(hWnd, &lpWindowRect);
-
             unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
                     _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
 
@@ -939,6 +934,9 @@ void CMainWindow::captureMouse(int tabindex)
     {
         QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
         QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        gpt = m_pWinPanel->mapToGlobal(gpt);
+#endif
 
         SetCursorPos(gpt.x(), gpt.y());
         //SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
@@ -955,3 +953,13 @@ void CMainWindow::captureMouse(int tabindex)
         });
     }
 }
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+bool CMainWindow::pointInTabs(const QPoint& pt) const
+{
+    QRect _rc_title(mainPanel()->geometry());
+    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+
+    return _rc_title.contains(m_pWinPanel->mapFromGlobal(pt));
+}
+#endif

@@ -49,7 +49,7 @@
 #include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
-#include "cdpichecker.h"
+#include "qdpichecker.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -346,7 +346,7 @@ unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (!pDpiCheckerBase)
         return 1;
 
-    CDpiChecker * pDpiChecker = (CDpiChecker *)pDpiCheckerBase;
+    QDpiChecker * pDpiChecker = (QDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
     int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
@@ -482,3 +482,25 @@ bool Utils::appArgsContains(const QString& a)
 {
     return g_cmdArgs.contains(a);
 }
+
+#ifdef Q_OS_WIN
+#include <windowsx.h>
+void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
+{
+    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+
+    static AdjustWindowRectExForDpiW _adjustWindowRectEx = NULL;
+    static bool _is_read = false;
+    if ( !_is_read && !_adjustWindowRectEx ) {
+        HMODULE _lib = ::LoadLibrary(L"user32.dll");
+        _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+        FreeLibrary(_lib);
+
+        _is_read = true;
+    }
+
+    if ( _adjustWindowRectEx != NULL ) {
+        _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+    } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+}
+#endif

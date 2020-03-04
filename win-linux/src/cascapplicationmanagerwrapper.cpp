@@ -20,7 +20,6 @@
 #include "common/Types.h"
 #include "ctabundockevent.h"
 #include "clangater.h"
-#include "cdpichecker.h"
 #include "cmessage.h"
 #include "ceditortools.h"
 
@@ -51,7 +50,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 }
 
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
-    : CAscApplicationManager()
+    : QAscApplicationManager()
     , CCefEventsTransformer(nullptr)
     , QObject(nullptr)
     , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private(this))
@@ -104,14 +103,6 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 //    m_vecEditors.clear();
 }
 
-int CAscApplicationManagerWrapper::GetPlatformKeyboardLayout()
-{
-    if (this->IsPlatformKeyboardSupport())
-        return CAscApplicationManager::GetPlatformKeyboardLayout();
-
-    return -1;
-}
-
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
 {
     CAscSaveDialog * data = new CAscSaveDialog;
@@ -122,11 +113,6 @@ void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, u
     event->m_pData = data;
 
     OnEvent(event);
-}
-
-void CAscApplicationManagerWrapper::OnNeedCheckKeyboard()
-{
-    OnEvent(new CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_CHECK_KEYBOARD));
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -1031,7 +1017,6 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 
             if ( _editor ) {
                 e->accept();
-
                 QJsonObject _json_obj{{"action", "undocking"},
                                       {"status", "undocked"}};
                 sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
@@ -1041,7 +1026,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         QRect rect = _main_window->windowRect();
 
                         CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _editor);
-                        editor_win->show(_main_window->isMaximized(), true);
+                        editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
                     }
@@ -1125,11 +1110,6 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         QTimer::singleShot(0, [_send_cmd, _send_opts] {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
         });
-}
-
-CAscDpiChecker* CAscApplicationManagerWrapper::InitDpiChecker()
-{
-    return new CDpiChecker();
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()
