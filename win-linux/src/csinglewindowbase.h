@@ -47,7 +47,7 @@ public:
 
     virtual void setScreenScalingFactor(int);
     virtual bool holdView(int uid) const = 0;
-    virtual QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel);
+    virtual QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom);
     virtual const QObject * receiver() = 0;
 //    virtual Qt::WindowState windowState() = 0;
 //    virtual void setWindowState(Qt::WindowState) = 0;
@@ -70,8 +70,15 @@ protected:
     virtual void onCloseEvent();
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
+    virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onScreenScalingFactor(uint f) = 0;
+    virtual void onExitSizeMove();
+
+    inline int dpiCorrectValue(int v) const
+    {
+        return v * static_cast<int>(m_dpiRatio);
+    }
 };
 
 #endif // CSINGLEWINDOWBASE_H

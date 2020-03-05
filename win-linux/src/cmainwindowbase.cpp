@@ -5,14 +5,22 @@
 
 CMainWindowBase::CMainWindowBase()
 {
-    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
-        mainPanel()->loadStartPage();
-    });
+//    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
+//        mainPanel()->loadStartPage();
+//    });
 }
 
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
+
+    if (!QCefView::IsSupportLayers())
+    {
+        CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+        if (_panel)
+            _panel->view()->SetCaptionMaskSize(0);
+    }
+
     int _index = _pMainPanel->tabWidget()->insertPanel(panel, index);
     if ( !(_index < 0) ) {
         _pMainPanel->toggleButtonMain(false);
@@ -28,6 +36,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
 //        }
     }
 
+    captureMouse(_index);
     return _index;
 }
 
@@ -45,7 +54,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     return attachEditor(panel, _index);
 }
 
-bool CMainWindowBase::pointInTabs(const QPoint& pt)
+bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 {
     QRect _rc_title(mainPanel()->geometry());
     _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
@@ -59,7 +68,7 @@ bool CMainWindowBase::movedByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
-QWidget * CMainWindowBase::getEditor(int index)
+QWidget * CMainWindowBase::editor(int index)
 {
     return mainPanel()->tabWidget()->panel(index);
 }
@@ -87,4 +96,11 @@ QString CMainWindowBase::documentName(int vid)
     }
 
     return "";
+}
+
+void CMainWindowBase::captureMouse(int)
+{
+#ifdef Q_OS_WIN
+    ReleaseCapture();
+#endif
 }

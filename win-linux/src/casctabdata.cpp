@@ -132,12 +132,12 @@ void CAscTabData::setContentType(AscEditorType t)
     _typeContent = t;
 }
 
-void CAscTabData::setLocal(bool l)
+void CAscTabData::setIsLocal(bool l)
 {
     _is_local = l;
 }
 
-bool CAscTabData::local() const
+bool CAscTabData::isLocal() const
 {
     return _is_local;
 }

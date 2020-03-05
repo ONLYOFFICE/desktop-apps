@@ -68,8 +68,8 @@
         let _html = '<div class="flexbox">'+
                         '<div class="box-ver">' +
                           `<div class="img-el ver-logo ${_opts.logocls}"></div><p></p>`+
-                          `<div class="ver-version" style="user-select:text;">${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>${_opts.edition}<p></p>`+
-                          `<a class="ver-checkupdate link" href="#">${_lang.checkUpdates}</a><p />`+
+                          `<div class="ver-version">${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>${_opts.edition}<p></p>`+
+                          `<a class="ver-checkupdate link" href="#" l10n>${_lang.checkUpdates}</a><p />`+
                           `<div class="ver-copyright">${_opts.rights}</div>`+
                           `<a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>`+
                         '</div>'+

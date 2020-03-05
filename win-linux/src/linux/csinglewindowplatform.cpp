@@ -123,6 +123,9 @@ bool CSingleWindowPlatform::event(QEvent * event)
     if ( event->type() == QEvent::Move ) {
 //        if ( !_flg_motion )
 //            _flg_motion = true;
+
+        QMoveEvent * _e = static_cast<QMoveEvent *>(event);
+        onMoveEvent(QRect(_e->pos(), QSize(1,1)));
     }
 
     return QMainWindow::event(event);
@@ -164,4 +167,21 @@ void CSingleWindowPlatform::setWindowTitle(const QString& t)
 {
     CSingleWindowBase::setWindowTitle(t);
     QMainWindow::setWindowTitle(t);
+}
+
+void CSingleWindowPlatform::captureMouse()
+{
+    QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QApplication::sendEvent(AscAppManager::topWindow(), &_event);
+
+    setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
+
+    QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(300,15));
+    _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+//    QApplication::sendEvent(this, &_event1);
+    CX11Decoration::dispatchMouseDown(&_event);
+
+    _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+//    QApplication::sendEvent(this, &_event);
+    CX11Decoration::dispatchMouseMove(&_event);
 }

@@ -41,6 +41,7 @@
 #include <QDesktopWidget>
 #include <QFileInfo>
 #include <QTimer>
+#include <regex>
 
 #include "ctabbar.h"
 #include "ctabstyle.h"
@@ -144,27 +145,28 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
+    static int _dropedindex = -1;
     QObject::connect(this, &QTabWidget::currentChanged, [=](){
         updateIcons();
         setFocusedView();
 
-        m_dragIndex = -1;
+        _dropedindex = -1;
     });
-#if defined(__APP_MULTI_WINDOW)
+
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
-        if ( m_dragIndex != index ) {
-            CTabPanel * _panel = panel(index);
-            if ( _panel->data()->viewType() == cvwtEditor ) {
-                CTabUndockEvent event(_panel);
-                QObject * obj = qobject_cast<QObject *>(
-                                    static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
-                if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
-                        m_dragIndex = index;
-                }
+        if (index == _dropedindex) return;
+
+        CTabPanel * _panel = panel(index);
+
+        if ( _panel->data()->viewType() == cvwtEditor ) {
+            CTabUndockEvent event(index);
+            QObject * obj = qobject_cast<QObject *>(
+                        static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
+                _dropedindex = index;
             }
         }
     });
-#endif
 }
 
 CTabPanel * CAscTabWidget::panel(int index)
@@ -216,7 +218,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     if (res_open) {
         CAscTabData * data = new CAscTabData(opts.name);
         data->setUrl(opts.wurl);
-        data->setLocal( opts.type == etLocalFile || opts.type == etNewFile ||
+        data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
@@ -751,7 +753,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     if (!(tabIndex < 0)) {
         CAscTabData * doc = panel(tabIndex)->data();
         doc->setTitle(name);
-        if ( doc->local() && !path.isEmpty() ) {
+        if ( doc->isLocal() && !path.isEmpty() ) {
             QString _path(path);
             doc->setUrl( Utils::replaceBackslash(_path) );
         }
@@ -836,14 +838,20 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     updateTabIcon(tabIndexByView(id));
 }
 
-void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
+void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 {
     int tabIndex = tabIndexByView(id);
-    if ( !(tabIndex < 0) )
-        if ( option == "loading" ) {
-            CAscTabData * doc = panel(tabIndex)->data();
-            doc->setEventLoadSupported(true);
+    if ( !(tabIndex < 0) ) {
+        size_t _pos;
+        if ((_pos = option.find(L"eventloading:")) != wstring::npos) {
+            if (option.find(L"true", _pos + 1) != wstring::npos)
+                panel(tabIndex)->data()->setEventLoadSupported(true);
         }
+
+//        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
+//            panel(tabIndex)->setWindowed(true);
+//        }
+    }
 }
 
 /*
@@ -852,9 +860,26 @@ void CAscTabWidget::setDocumentWebOption(int id, const QString& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
+    if (!m_pMainWidget->isHidden())
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget() && !this->currentWidget()->isHidden())
+                this->currentWidget()->hide();
+        }
+        return;
+    }
     int nIndex = !(index < 0) ? index : currentIndex();
     if (!(nIndex < 0 ))
+    {
+        if (!QCefView::IsSupportLayers())
+        {
+            if (this->currentWidget()->isHidden())
+                this->currentWidget()->show();
+        }
+
         panel(nIndex)->cef()->focus();
+    }
 }
 
 void CAscTabWidget::activate(bool a)
@@ -941,7 +966,7 @@ bool CAscTabWidget::modifiedByIndex(int index)
 bool CAscTabWidget::isLocalByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        return panel(index)->data()->local();
+        return panel(index)->data()->isLocal();
     }
 
     return true;

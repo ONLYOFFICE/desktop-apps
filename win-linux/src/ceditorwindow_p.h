@@ -43,10 +43,12 @@
 #include "cmessage.h"
 #include "qascprinter.h"
 #include "ceditortools.h"
+#include "csvgpushbutton.h"
 
 #include <QPrinterInfo>
 #include <QDesktopWidget>
 #include <QJsonDocument>
+#include <QJsonArray>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -73,34 +75,79 @@ class CEditorWindowPrivate : public CCefEventsGate
     QPushButton * btndock = nullptr;
     bool isPrinting = false;
 
+    QMap<QString, CSVGPushButton*> m_mapTitleButtons;
+
 public:
-    int titleLeftOffset = 168;
+    int titleLeftOffset = 0;
     bool isReporterMode = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w)
     {}
 
+    QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)
+    {
+        QString action = jsonobj["action"].toString();
+        CSVGPushButton * btn = new CSVGPushButton;
+        btn->setProperty("class", "normal");
+        btn->setProperty("act", "tool");
+        btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+        btn->setDisabled(jsonobj["disabled"].toBool());
+        btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
+
+        m_mapTitleButtons[action] = btn;
+
+        connect(btn, &QPushButton::clicked, [=]{
+            QJsonObject _json_obj{{"action", action}};
+            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
+        });
+
+        if ( jsonobj.contains("icon") ) {
+            btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
+        } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
+
+        btn->setToolTip(jsonobj["hint"].toString());
+        return btn;
+    }
+
     void onEditorConfig(int, std::wstring cfg)
     {
 //        if ( id == window->holdView(id) )
-
         QJsonParseError jerror;
         QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( objRoot.contains("user") ) {
-                iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
+            int _user_width = 0;
+            if ( canExtendTitle() ) {
+                if ( objRoot.contains("user") ) {
+                    iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
+                    iconuser->setText(objRoot["user"].toObject().value("name").toString());
+
+                    iconuser->adjustSize();
+                    _user_width = iconuser->width();
+                }
+
+                if ( objRoot.contains("title") ) {
+                    QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+
+                    QPushButton * _btn;
+                    for (int i = _btns.size(); i --> 0; ) {
+                        _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
+                        qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
+
+                        titleLeftOffset += 40/*_btn->width()*/;
+                    }
+
+                }
             }
 
-            if ( objRoot.contains("extraleft") ) {
-                titleLeftOffset = objRoot["extraleft"].toInt();
+            int _btncount = /*iconuser ? 4 :*/ 3;
+            int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
+            diffW -= _user_width;
 
-                int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 5)) * window->m_dpiRatio; // 5 right tool buttons: close, min, max, drop, user icon
-                QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
-                window->m_labelTitle->setStyleSheet(_label_styles);
-            }
+            diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
+                            window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
         }
     }
 
@@ -108,8 +155,10 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        window->setWindowTitle(m_panel->data()->title());
-        window->m_boxTitleBtns->repaint();
+        if ( canExtendTitle() ) {
+            window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
+        }
     }
 
     void onDocumentChanged(int id, bool state) override
@@ -117,8 +166,10 @@ public:
         if ( panel()->data()->hasChanges() != state ) {
             CCefEventsGate::onDocumentChanged(id, state);
 
-            window->setWindowTitle(m_panel->data()->title());
-            window->m_boxTitleBtns->repaint();
+            if ( canExtendTitle() ) {
+                window->setWindowTitle(m_panel->data()->title());
+                window->m_boxTitleBtns->repaint();
+            }
         }
     }
 
@@ -245,17 +296,28 @@ public:
 
     void onScreenScalingFactor(uint f)
     {
-        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * 5)) * f; // 5 tool buttons: min+max+close+drop+usericon
-        QString _label_styles = diffW > 0 ? QString("padding:0 %1px 0 0;").arg(diffW) : QString("padding:0 0 0 %1px;").arg(abs(diffW));
-        window->m_labelTitle->setStyleSheet(_label_styles);
+        int _btncount = /*iconuser ? 4 :*/ 3;
+        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
 
         if ( iconuser ) {
-            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+//            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
+//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+
+            iconuser->setContentsMargins(0,0,0,2*f);
+            iconuser->adjustSize();
+            diffW -= iconuser->width();
         }
 
-        if ( btndock )
-            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+        diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*f) :
+                        window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*f);
+
+//        if ( btndock )
+//            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+
+        for (auto btn: m_mapTitleButtons) {
+            btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+            btn->setIconSize(QSize(20,20) * f);
+        }
     }
 
     void onFullScreen(bool apply)
@@ -280,16 +342,15 @@ public:
 
             window->show(false);
 
-            _fs_widget->showNormal();
-            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()+4);
+//            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
+            _fs_widget->showNormal();
 
             disconnect(cefConnection);
         } else {
             QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef _WIN32
-            _fs_widget->clearMask();
             _fs_widget->setWindowIcon(Utils::appIcon());
             _fs_widget->setParent(nullptr);
             window->hide();
@@ -358,9 +419,10 @@ public:
     {
         if ( !iconuser ) {
             iconuser = new QLabel(window->m_boxTitleBtns);
-            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
-            iconuser->setAlignment(Qt::AlignCenter);
+            iconuser->setObjectName("iconuser");
+            iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
+//            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
+//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }
 
         return iconuser;
@@ -374,6 +436,49 @@ public:
         }
 
         return btndock;
+    }
+
+    void onWebAppsFeatures(int, std::wstring)
+    {
+    }
+
+    void onWebTitleChanged(int, std::wstring json)
+    {
+        if ( !m_mapTitleButtons.isEmpty() ) {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+
+                if (objRoot.contains("disabled")) {
+                    QJsonObject _disabled = objRoot["disabled"].toObject();
+
+                    if ( _disabled.contains("all") ) {
+                        bool _is_disabled = _disabled["all"].toBool();
+
+                        for (auto& btn: m_mapTitleButtons) {
+                            btn->setDisabled(_is_disabled);
+                        }
+                    } else {
+                        for (const auto& k: _disabled.keys()) {
+                            m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                        }
+                    }
+                } else
+                if (objRoot.contains("icon:changed")) {
+                    QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
+
+                    for (const auto& b: _btns_changed.keys()) {
+                        m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                    }
+                }
+            }
+        }
+    }
+
+    bool canExtendTitle()
+    {
+        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->prettyTitle();
     }
 };
 

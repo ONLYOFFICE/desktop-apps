@@ -56,7 +56,7 @@
                       '<div class="flexbox">' +
                         '<div id="box-recovery" class="flex-item">' +
                           '<div class="flexbox">'+
-                            `<h3 class="table-caption">${_lang.listRecoveryTitle}</h3>`+
+                            `<h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>`+
                             '<div class="table-box flex-fill">'+
                               '<table id="tbl-filesrcv" class="table-files list"></table>'+
                             '</div>' +
@@ -65,10 +65,10 @@
                         '<div id="recovery-sep"></div>' +
                         '<div id="box-recent" class="flex-item flex-fill">' +
                           '<div class="flexbox">'+
-                            `<h3 class="table-caption">${_lang.listRecentFileTitle}</h3>`+
+                            `<h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>`+
                             '<div class="table-box flex-fill">'+
                               '<table class="table-files list"></table>'+
-                              '<h4 class="text-emptylist img-before-el">' + _lang.textNoFiles + '</h4>' +
+                              '<h4 class="text-emptylist img-before-el" l10n>' + _lang.textNoFiles + '</h4>' +
                             '</div>' +
                           '</div>' +
                         '</div>' +
@@ -217,7 +217,7 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
-                ppmenu.hideItem('files:explore', !model.islocal);
+                ppmenu.hideItem('files:explore', !model.islocal && !model.dir);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 

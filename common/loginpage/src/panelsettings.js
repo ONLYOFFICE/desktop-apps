@@ -54,17 +54,17 @@
         let _html = `<div ${args.id} class='action-panel ${args.action}'>
                         <div id='box-settings'>
                             <div class='flexbox'>
-                                <h3 class='table-caption'>${_lang.actSettings}</h3>
+                                <h3 class='table-caption' l10n>${_lang.actSettings}</h3>
                                 <section class='settings-items'>
                                     <div class='settings-field'>
-                                        <label class='sett__caption'>${_lang.settUserName}</label>
+                                        <label class='sett__caption' l10n>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
                                             <input type='text' class='tbox' spellcheck='false' maxlenght='30'>
-                                            <a class='link link--sizem link--gray' href='#'>${_lang.settResetUserName}</a>
+                                            <a class='link link--sizem link--gray' href='#' l10n>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
                                     <div class='settings-field settings-field-lang'>
-                                        <label class='sett__caption'>${_lang.settLanguage}</label>
+                                        <label class='sett__caption' l10n>${_lang.settLanguage}</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'></select>
@@ -75,14 +75,26 @@
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
                                             <input type="checkbox" name="onoffswitch" class="checkbox" id="sett-preview-mode">
-                                            <label for="sett-preview-mode" class='sett__caption'>${_lang.settOpenMode}</label>
+                                            <label for="sett-preview-mode" class='sett__caption' l10n>${_lang.settOpenMode}</label>
                                         </section>
                                     </div>
                                     <!-- end section -->
+                                    <div class='settings-field' id="opts-checkupdate" style='display:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='never' l10n>${_lang.settOptCheckNever}</option>
+                                                    <option value='day' l10n>${_lang.settOptCheckDay}</option>
+                                                    <option value='week' l10n>${_lang.settOptCheckWeek}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                 </section>
                                 <div class="lst-tools">
-                                    <button class="btn" id="sett-btn-apply">${_lang.setBtnApply}</button>
-                                    <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top'>i</strong> -->
+                                    <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                    <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
                             </div>
                         </div>
@@ -127,6 +139,13 @@
 
                 if ( $optsLang.is(':visible') ) {
                     _new_settings.langid = $optsLang.find('select').val();
+
+                    utils.Lang.change(_new_settings.langid);
+                }
+
+                let $optsupdatesrate = $('#opts-checkupdate', $panel);
+                if ( $optsupdatesrate.is(':visible') ) {
+                    _new_settings.checkupdatesrate = $('select', $optsupdatesrate).val();
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -161,6 +180,12 @@
             }
 
             $optsLang.toggleClass('notted', true);
+        };
+
+        function _on_autoupdate_change() {
+            if ( $btnApply.isdisabled() ) {
+                $btnApply.disable(false);
+            }
         };
 
         function _lock_createnew(lock) {
@@ -198,6 +223,18 @@
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
                         }
+                    }
+                } else
+                if (/updates/.test(cmd)) {
+                    let $settnode = $('#opts-checkupdate', $panel),
+                        $combo = $('select', $settnode);
+
+                    $combo.val(param);
+
+                    if ( !$settnode.is(':visible') ) {
+                        $settnode.show();
+                        $combo.selectpicker();
+                        $combo.on('change', _on_autoupdate_change.bind(this));
                     }
                 }
             }

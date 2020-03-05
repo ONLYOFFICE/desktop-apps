@@ -211,6 +211,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
     m_pMainWidget = (QWidget *)pMainWidget;
     m_pTabs->m_pMainButton = m_pButtonMain;
+    m_pTabs->m_pMainWidget = m_pMainWidget;
 
 //    m_pMainWidget->setVisible(false);
 
@@ -364,6 +365,7 @@ void CMainPanel::pushButtonMainClicked()
     if (m_pTabs->isActive()) {
         m_pTabs->activate(false);
         m_pMainWidget->setHidden(false);
+        m_pTabs->setFocusedView();
 
         ((QCefView *)m_pMainWidget)->GetCefView()->focus();
         onTabChanged(m_pTabs->currentIndex());
@@ -377,12 +379,11 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
             if ( state ) {
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
-
+                m_pTabs->setFocusedView();
                 ((QCefView *)m_pMainWidget)->GetCefView()->focus();
             } else {
                 m_pTabs->activate(true);
                 m_pMainWidget->setHidden(true);
-
                 m_pTabs->setFocusedView();
             }
 
@@ -795,9 +796,9 @@ void CMainPanel::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onDocumentOptions(int id, QString opts)
+void CMainPanel::onWebAppsFeatures(int id, wstring opts)
 {
-    m_pTabs->setDocumentWebOption(id, opts);
+    m_pTabs->setEditorOptions(id, opts);
 }
 
 void CMainPanel::onDocumentReady(int uid)
@@ -951,11 +952,13 @@ void CMainPanel::loadStartPage()
 {
     GET_REGISTRY_USER(_reg_user);
 
+    QString data_path;
 #if defined(QT_DEBUG)
-    QString data_path = _reg_user.value("startpage").value<QString>();
-#else
-    QString data_path = qApp->applicationDirPath() + "/index.html";
+    data_path = _reg_user.value("startpage").value<QString>();
 #endif
+
+    if (data_path.isEmpty())
+        data_path = qApp->applicationDirPath() + "/index.html";
 
     QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
 

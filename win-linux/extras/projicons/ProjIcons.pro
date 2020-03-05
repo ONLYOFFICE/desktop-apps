@@ -1,4 +1,5 @@
 
+DESTDIR = $$PWD
 include(common.pri)
 
 DEFINES += APP_ICON_PATH=\"./res/desktopeditors.ico\"

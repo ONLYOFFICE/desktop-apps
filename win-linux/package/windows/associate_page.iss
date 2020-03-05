@@ -241,6 +241,12 @@ Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open\command;   Valu
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open;           ValueType: string; ValueName: FriendlyAppName; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
 
 [Code]
+type
+  TKeyValue = record
+    Key: string;
+    Value: string;
+  end;
+  TArrayOfValues = array of TKeyValue;
 
 var
   OnAudioClick: Boolean;
@@ -375,6 +381,8 @@ begin
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
       createPage := True
     end
+  end else if Length(GetCommandlineParam('/FULLASSOCIATION')) > 0 then begin
+    createPage := True
   end;
 
   if createPage then begin
@@ -472,6 +480,77 @@ begin
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', '{#ASCC_REG_REGISTERED_APP_NAME}', '{#APP_REG_PATH}\Capabilities');
 end;
 
+function TryGetValue(const KeyValueList: TArrayOfValues; const Key: string; var Value: string): Boolean;
+var
+  I: Integer;
+begin
+  Result := False;
+  for I := 0 to GetArrayLength(KeyValueList) - 1 do
+    if KeyValueList[I].Key = Key then
+    begin
+      Result := True;
+      Value := KeyValueList[I].Value;
+      Exit;
+    end;
+end;
+
+procedure AddKeyValue(const destarray: TArrayOfValues; const key, value: string);
+var
+  Index: Integer;
+begin
+  Index := GetArrayLength(destarray);
+  SetArrayLength(destarray, Index + 1);
+
+  destarray[Index].Key := key;
+  destarray[Index].Value := value;
+end;
+
+procedure AddContextMenuNewItems;
+var
+  langs: TArrayOfValues;
+  args, regpath: String;
+  progpath: String;
+  argsArray: TArrayOfString;
+begin
+  AddKeyValue(langs, 'cs_CZ', 'cs-CZ:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'de',    'de-DE:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'es',    'es-ES:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'fr',    'fr-FR:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'it_IT', 'it-IT:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'pt_BR', 'pt-BR:new.docx:new.pptx:new.xlsx');
+  AddKeyValue(langs, 'ru',    'ru-RU:new.docx:new.pptx:new.xlsx');
+
+  if not TryGetValue(langs, ExpandConstant('{language}'), args) then
+    args := '.:mm_new.docx:mm_new.pptx:mm_new.xlsx';
+
+  Explode(argsArray, args, ':');
+
+  if argsArray[0] = '.' then
+    progpath := ExpandConstant('{app}\converter\empty')
+  else progpath := ExpandConstant('{app}\converter\empty\' + argsArray[0]);
+
+  regpath := ExpandConstant('Software\Classes\.docx\{#ASCC_REG_PREFIX}.Document.12\ShellNew');
+  if not RegKeyExists(HKEY_LOCAL_MACHINE, regpath) then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},7'));
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + argsArray[1]);
+  end;
+
+  regpath := ExpandConstant('Software\Classes\.pptx\{#ASCC_REG_PREFIX}.Show.12\ShellNew');
+  if not RegKeyExists(HKEY_LOCAL_MACHINE, regpath) then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},9'));
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + argsArray[2]);
+  end;
+
+  regpath := ExpandConstant('Software\Classes\.xlsx\{#ASCC_REG_PREFIX}.Sheet.12\ShellNew');
+  if not RegKeyExists(HKEY_LOCAL_MACHINE, regpath) then
+  begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},10'));
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + argsArray[3]);
+  end;
+end;
+
 procedure DoPostInstall();
 var
   i: Integer;
@@ -520,6 +599,7 @@ begin
     end;
 
   AddToDefaultPrograms;
+  AddContextMenuNewItems;
 end;
 
 {
@@ -566,4 +646,8 @@ begin
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, '{#APP_REG_PATH}\Capabilities');
   RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\RegisteredApplications', '{#ASCC_REG_REGISTERED_APP_NAME}');
   RegDeleteValue(HKEY_CLASSES_ROOT, 'Local Settings\Software\Microsoft\Windows\Shell\MuiCache', ExpandConstant('{app}\{#iconsExe}'));
+
+  RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.docx\{#ASCC_REG_PREFIX}.Document.12'));
+  RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.pptx\{#ASCC_REG_PREFIX}.Show.12'));
+  RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.xlsx\{#ASCC_REG_PREFIX}.Sheet.12'));
 end;

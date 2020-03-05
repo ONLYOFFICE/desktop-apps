@@ -89,14 +89,18 @@ CMainWindow::CMainWindow(QRect& rect) :
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-    if ( _screen_size.width() < _window_rect.width() + 120 ||
-            _screen_size.height() < _window_rect.height() + 120 )
-    {
-        _window_rect.setLeft(_screen_size.left()),
-        _window_rect.setTop(_screen_size.top());
+    if ( _screen_size.intersects(_window_rect) ) {
+        if ( _screen_size.width() < _window_rect.width() + 120 ||
+                _screen_size.height() < _window_rect.height() + 120 )
+        {
+            _window_rect.setLeft(_screen_size.left()),
+            _window_rect.setTop(_screen_size.top());
 
-        if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
-        if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+            if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
+            if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
+        }
+    } else {
+        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
     }
 
     WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
@@ -656,9 +660,7 @@ void CMainWindow::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        if ( dpi_adjustWindowRectEx != NULL ) {
-            dpi_adjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0, 96*m_dpiRatio);
-        } else AdjustWindowRectEx(&wrect, (GetWindowStyle(hWnd) & ~WS_DLGFRAME), FALSE, 0);
+        Utils::adjustWindowRect(hWnd, m_dpiRatio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -700,9 +702,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
-            RECT lpWindowRect;
-            GetWindowRect(hWnd, &lpWindowRect);
-
             unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
                     _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
 
@@ -798,6 +797,27 @@ void CMainWindow::slot_mainPageReady()
 
         AscAppManager::sendCommandTo(0, "updates", "on");
         CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+
+#define RATE_MS_DAY 3600*24
+#define RATE_MS_WEEK RATE_MS_DAY*7
+
+        wstring _wstr_rate{L"day"};
+        if ( !win_sparkle_get_automatic_check_for_updates() ) {
+            _wstr_rate = L"never";
+        } else {
+            int _rate{win_sparkle_get_update_check_interval()};
+            if ( !(_rate < RATE_MS_WEEK) ) {
+                if ( _rate != RATE_MS_WEEK )
+                    win_sparkle_set_update_check_interval(RATE_MS_WEEK);
+
+                _wstr_rate = L"week";
+            } else {
+                if ( _rate != RATE_MS_DAY )
+                    win_sparkle_set_update_check_interval(RATE_MS_DAY);
+            }
+        }
+
+        AscAppManager::sendCommandTo(0, L"settings:check.updates", _wstr_rate);
     }
 #endif
 }
@@ -821,6 +841,20 @@ void CMainWindow::updateError()
 void CMainWindow::checkUpdates()
 {
     win_sparkle_check_update_with_ui();
+}
+
+void CMainWindow::setAutocheckUpdatesInterval(const QString& s)
+{
+    if ( s == "never" )
+        win_sparkle_set_automatic_check_for_updates(0);
+    else {
+        win_sparkle_set_automatic_check_for_updates(1);
+
+        s == "week" ?
+            win_sparkle_set_update_check_interval(RATE_MS_WEEK):
+                win_sparkle_set_update_check_interval(RATE_MS_DAY);
+
+    }
 }
 #endif
 
@@ -868,3 +902,41 @@ HWND CMainWindow::handle() const
 {
     return hWnd;
 }
+void CMainWindow::captureMouse(int tabindex)
+{
+    CMainWindowBase::captureMouse(tabindex);
+
+    if ( !(tabindex < 0) &&
+            tabindex < mainPanel()->tabWidget()->count() )
+    {
+        QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
+        QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        gpt = m_pWinPanel->mapToGlobal(gpt);
+#endif
+
+        SetCursorPos(gpt.x(), gpt.y());
+        //SendMessage(hWnd, WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(gpt.x(), gpt.y()));
+      
+        QWidget * _widget = mainPanel()->tabWidget()->tabBar();
+        QTimer::singleShot(0,[_widget,spt] {
+            INPUT _input{INPUT_MOUSE};
+            _input.mi.dwFlags = MOUSEEVENTF_ABSOLUTE|MOUSEEVENTF_LEFTDOWN;
+            SendInput(1, &_input, sizeof(INPUT));
+
+            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+            QCoreApplication::sendEvent(_widget, &event);
+            _widget->grabMouse();
+        });
+    }
+}
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+bool CMainWindow::pointInTabs(const QPoint& pt) const
+{
+    QRect _rc_title(mainPanel()->geometry());
+    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+
+    return _rc_title.contains(m_pWinPanel->mapFromGlobal(pt));
+}
+#endif

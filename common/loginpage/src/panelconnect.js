@@ -58,22 +58,22 @@
         var _html_empty_panel1 =
                         `<div id="box-empty-portals" class="empty flex-center">
                             <section class="center-box">
-                              <h3 class="empty-title" style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
+                              <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
                               <div class='carousel'>
                                 <figure class='carousel__slidebox'>
                                     <div class='carousel__slide'>
-                                        <p class='carousel__slide__text title'>${_lang.emptySlide1Title}</p>
-                                        <p class='carousel__slide__text descr'>${_lang.emptySlide1Text}</p>
+                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide1Text}</p>
                                         <img class='carousel__slide__img'>
                                     </div>
                                     <div class='carousel__slide'>
-                                        <p class='carousel__slide__text title'>${_lang.emptySlide2Title}</p>
-                                        <p class='carousel__slide__text descr'>${_lang.emptySlide2Text}</p>
+                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide2Title}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide2Text}</p>
                                         <img class='carousel__slide__img'>
                                     </div>
                                     <div class='carousel__slide active'>
-                                        <p class='carousel__slide__text title'>${_lang.emptySlide3Title}</p>
-                                        <p class='carousel__slide__text descr'>${_lang.emptySlide3Text}</p>
+                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide3Title}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.emptySlide3Text}</p>
                                         <img class='carousel__slide__img'>
                                     </div>
                                 </figure>
@@ -83,9 +83,9 @@
                                 </nav>
                               </div>
                               <div class="tools-connect">
-                                <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
                                 <section class="link-connect">
-                                  <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                  <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
                                 </section>
                               </div>
                             </section>
@@ -94,8 +94,8 @@
         var _html_empty_panel =
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
-                                    <h3 class="empty-title" style="margin:0;">${_lang.portalEmptyTitle}</h3>
-                                    <h4 class='text-description' style='margin-bottom:50px;'>${_lang.portalEmptyDescr}</h4>
+                                    <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
+                                    <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
                                         <div>
                                             <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
@@ -111,11 +111,11 @@
                                             </button>
                                         </div>
                                     </section>
-                                    <h4 class='text-description separate-top' style='margin-bottom:8px;'>${_lang.portalEmptyAdv1}</h4>
+                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
-                                        <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                                        <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
                                         <section class="link-connect">
-                                            <label>${_lang.textHavePortal}</label><a class="login link" href="#">${_lang.btnConnect}</a>
+                                            <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
                                         </section>
                                     </div>
                                 </section>
@@ -125,10 +125,10 @@
                       ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
                       <div id="box-portals">
                         <div class="flexbox">
-                          <h3 class="table-caption">${_lang.portalListTitle}</h3>
+                          <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
                           <div class="table-box flex-fill"><table class="table-files list"></table></div>
                           <div class="lst-tools">
-                            <button id="btn-addportal" class="btn login">${_lang.btnAddPortal}</button>
+                            <button id="btn-addportal" class="btn login" l10n>${_lang.btnAddPortal}</button>
                           </div>
                         </div>
                       </div>

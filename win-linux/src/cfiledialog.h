@@ -66,6 +66,10 @@ public:
     QStringList modalOpenPlugin(const QString&);
     QStringList modalOpenPlugins(const QString&);
     QStringList modalOpenAny(const QString&, bool multi = false);
+    QStringList modalOpenDocuments(const QString&, bool multi = false);
+    QStringList modalOpenSpreadsheets(const QString&, bool multi = false);
+    QStringList modalOpenPresentations(const QString&, bool multi = false);
+    QStringList modalOpenMedia(const QString& type, const QString& path, bool multi = false);
 
     void    setFormats(std::vector<int>&);
     int     getFormat();

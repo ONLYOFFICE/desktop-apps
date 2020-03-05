@@ -1,5 +1,6 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
+QT  += multimedia multimediawidgets
 QT  += svg
 
 TEMPLATE = app
@@ -18,22 +19,19 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/zh_CN.ts \
                 ./langs/pl.ts
 
-CORE_SRC_PATH = ../../core/DesktopEditor
-BASEEDITORS_PATH = ../../desktop-sdk/ChromiumBasedEditors
-CORE_LIB_PATH = ../../core/build
-CORE_3DPARTY_PATH = ../../core/Common/3dParty
+CORE_ROOT_DIR = $$PWD/../../core
+BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors
+CORE_3DPARTY_PATH = $$PWD/../../core/Common/3dParty
 
-OBJECTS_DIR = ./obj
-MOC_DIR = ./moc
-RCC_DIR = ./rcc
+CONFIG += core_no_dst
+include($$CORE_ROOT_DIR/Common/base.pri)
 
-INCLUDEPATH += $$BASEEDITORS_PATH/lib/include \
-                $$BASEEDITORS_PATH/lib/qcefview \
-                $$CORE_SRC_PATH
+INCLUDEPATH += \
+    $$BASEEDITORS_PATH/lib/include \
+    $$BASEEDITORS_PATH/lib/qt_wrapper/include \
+    $$CORE_ROOT_DIR/DesktopEditor
 
 HEADERS += \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview.h \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.h \
     $$PWD/src/asctabwidget.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
@@ -60,22 +58,21 @@ HEADERS += \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/cdpichecker.h \
     $$PWD/src/csinglewindowbase.h \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
     $$PWD/src/ceditortools.h \
     $$PWD/src/cwindowsqueue.h \
-    $$PWD/src/ceventdriver.h
+    $$PWD/src/ceventdriver.h \
+    $$PWD/src/csvgpushbutton.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
 #    src/casclabel.h
 
 SOURCES += \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview.cpp \
-    $$BASEEDITORS_PATH/lib/qcefview/qcefview_media.cpp \
+    $$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -102,7 +99,8 @@ SOURCES += \
     $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
-    $$PWD/src/ceventdriver.cpp
+    $$PWD/src/ceventdriver.cpp \
+    $$PWD/src/csvgpushbutton.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -122,76 +120,31 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
                VER_PRODUCT_VERSION_COMMAS=$$replace(FULL_PRODUCT_VERSION, \., ",")
 }
 
-linux-g++ {
-    CONFIG += app_linux
-	linux-g++:contains(QMAKE_HOST.arch, x86_64): {
-		CONFIG += app_linux_64
-		PLATFORM_BUILD = linux_64
-	}
-	linux-g++:!contains(QMAKE_HOST.arch, x86_64): {
-		CONFIG += app_linux_32
-		PLATFORM_BUILD = linux_32
-	}
-}
+PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
-linux-g++-64 {
-    CONFIG += app_linux
-    CONFIG += app_linux_64
-    PLATFORM_BUILD = linux_64
-}
-linux-g++-32 {
-    CONFIG += app_linux
-    CONFIG += app_linux_32
-    PLATFORM_BUILD = linux_32
-}
+# cef
+core_windows:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
+core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
 
-win32 {
-    CONFIG -= debug_and_release debug_and_release_target
+# core
+ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
-    contains(QMAKE_TARGET.arch, x86_64):{
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
-        PLATFORM_BUILD = win_64
-    } else {
-        QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
-        PLATFORM_BUILD = win_32
-    }
-}
-
-CORE_LIB_PATH_PLATFORM=$$PWD/$$CORE_LIB_PATH/lib/$$PLATFORM_BUILD
-
-win32 {
-    CONFIG(debug, debug|release) {
-        CORE_LIB_PATH_PLATFORM=$$CORE_LIB_PATH_PLATFORM/DEBUG
-        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
-    }
-}
-
-LIBS += -L$$CORE_LIB_PATH_PLATFORM -lPdfReader -lPdfWriter -lDjVuFile -lXpsFile -lHtmlRenderer -lUnicodeConverter -lhunspell -looxmlsignature -lkernel -lgraphics
-
-INCLUDEPATH += ../../core-ext/desktop-sdk-wrapper/additional
-QT += multimedia multimediawidgets
-build_xp {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lvideoplayer
-} else {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lvideoplayer
-}
-
-app_linux {
+core_linux {
     QT += network x11extras
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
-
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
+                $$PWD/src/linux/gtk_addon.h \
                 $$PWD/src/linux/csinglewindow.h \
                 $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
+                $$PWD/src/linux/gtk_addon.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
                 $$PWD/src/linux/csinglewindow.cpp \
                 $$PWD/src/linux/csinglewindowplatform.cpp \
@@ -200,22 +153,17 @@ app_linux {
     HEADERS += $$PWD/src/linux/cdialogopenssl.h
     SOURCES += $$PWD/src/linux/cdialogopenssl.cpp
 
-    DEFINES += LINUX _LINUX
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gdk-2.0 atk cairo gtk+-unix-print-2.0
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk
     LIBS += -lX11
 
-    LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
-    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
-    LIBS += $$PWD/$$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
+    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
+    LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
 }
 
-
-win32 {
-    DEFINES += JAS_WIN_MSVC_BUILD WIN32
-    DEFINES += WIN32
+core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     RC_ICONS += ./res/icons/desktop_icons.ico
@@ -269,14 +217,18 @@ win32 {
 #            -lOpenGL32
 }
 
-TARGET = $$join(TARGET,,,_$$PLATFORM_BUILD)
-OBJECTS_DIR = $$join(OBJECTS_DIR,,./$$PLATFORM_BUILD/,)
-MOC_DIR = $$join(MOC_DIR,,./$$PLATFORM_BUILD/,)
-RCC_DIR = $$join(RCC_DIR,,./$$PLATFORM_BUILD/,)
+core_release:DESTDIR = $$DESTDIR/build
+core_debug:DESTDIR = $$DESTDIR/build/debug
 
-win32:build_xp {
-    TARGET = $$join(TARGET,,,_xp)
-    OBJECTS_DIR = $$replace(OBJECTS_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
-    MOC_DIR = $$replace(MOC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
-    RCC_DIR = $$replace(RCC_DIR, $$PLATFORM_BUILD/,$$PLATFORM_BUILD/xp/)
+!isEmpty(OO_BUILD_BRANDING) {
+    DESTDIR = $$DESTDIR/$$OO_BUILD_BRANDING
 }
+
+DESTDIR = $$DESTDIR/$$PLATFORM_BUILD
+build_xp {
+    DESTDIR = $$DESTDIR/xp
+}
+
+OBJECTS_DIR = $$DESTDIR/obj
+MOC_DIR = $$DESTDIR/moc
+RCC_DIR = $$DESTDIR/rcc

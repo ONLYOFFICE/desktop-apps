@@ -111,12 +111,13 @@ public slots:
     void onAppCloseRequest();
     void onEditorActionRequest(int, const QString&);
     void onTabsCountChanged(int, int, int);
+    void onWebAppsFeatures(int id, std::wstring);
 
     void onCloudDocumentOpen(std::wstring, int, bool);
     virtual void onDocumentReady(int);
     void onDocumentType(int id, int type);
     void onDocumentName(void *);
-    void onDocumentOptions(int id, QString);
+
     void onDocumentChanged(int id, bool changed);
     void onDocumentSave(int id, bool cancel = false);
     void onDocumentSaveInnerRequest(int id);
@@ -145,6 +146,7 @@ public slots:
     void onOutsideAuth(QString);
 
     void onEditorAllowedClose(int);
+    void onWebTitleChanged(int, std::wstring json){}
 
     void onFileChecked(const QString&, int, bool);
 

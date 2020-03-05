@@ -78,11 +78,18 @@ public:
     bool isMaximized() const;
     HWND handle() const;
 
+#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    // because of QTBUG-67211
+    bool pointInTabs(const QPoint& pt) const override;
+#endif
+
 #ifdef _UPDMODULE
     static void checkUpdates();
+    static void setAutocheckUpdatesInterval(const QString&);
 #endif
 
 private:
+    void captureMouse(int tabindex) override;
     void setScreenScalingFactor(uchar);
     void doClose();
 

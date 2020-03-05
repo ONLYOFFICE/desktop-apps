@@ -49,7 +49,7 @@ public:
 
     void    setTitle(const QString&);
     void    setChanged(bool);
-    void    setLocal(bool);
+    void    setIsLocal(bool);
     void    setUrl(const wstring&);
     void    setUrl(const QString&);
     void    close();
@@ -58,7 +58,7 @@ public:
     bool    modified() const;
     bool    hasChanges() const;
     bool    closed() const;
-    bool    local() const;
+    bool    isLocal() const;
     CefType viewType() const;
     wstring url() const;
     bool    isViewType(CefType) const;
