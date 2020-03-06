@@ -438,8 +438,9 @@ public:
         return btndock;
     }
 
-    void onWebAppsFeatures(int, std::wstring)
+    void onWebAppsFeatures(int, std::wstring f) override
     {
+        panel()->data()->setFeatures(f);
     }
 
     void onWebTitleChanged(int, std::wstring json)
@@ -478,7 +479,7 @@ public:
 
     bool canExtendTitle()
     {
-        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->prettyTitle();
+        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:");
     }
 };
 
