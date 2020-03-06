@@ -2,6 +2,7 @@
 #include "cwindowbase.h"
 #include "ctabbar.h"
 #include "clangater.h"
+#include <QApplication>
 
 CMainWindowBase::CMainWindowBase()
 {
@@ -36,7 +37,9 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
 //        }
     }
 
-    captureMouse(_index);
+    if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+        captureMouse(_index);
+
     return _index;
 }
 
