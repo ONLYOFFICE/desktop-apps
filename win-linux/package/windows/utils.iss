@@ -72,7 +72,7 @@ begin
    Result := false;
 
    for i:= 1 to ParamCount do begin
-     if inpn = Lowercase(ParamStr(i)) then begin
+     if Lowercase(inpn) = Lowercase(ParamStr(i)) then begin
        Result := true;
        break;
      end;

@@ -256,6 +256,7 @@ var
   ExtensionRegistryInfo: array of string;
   AChecked: Boolean;
   associatePage: TWizardPage;
+  isFullAssociation: Boolean;
 
 procedure Explode(var Dest: TArrayOfString; Text: String; Separator: String);
 var
@@ -381,8 +382,6 @@ begin
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
       createPage := True
     end
-  end else if Length(GetCommandlineParam('/FULLASSOCIATION')) > 0 then begin
-    createPage := True
   end;
 
   if createPage then begin
@@ -455,9 +454,10 @@ end;
 
 function isAssociateExtension(index: Integer): Boolean;
 begin
-  if ChlbAudio = nil then
-    Result := False
-  else
+  if ChlbAudio = nil then begin
+    if isFullAssociation then Result := True
+    else Result := False
+  end else
     Result := ChlbAudio.Checked[1] or (ChlbAudio.Checked[2] and ChlbAudio.Checked[index + 3]);
 end;
 
@@ -557,6 +557,11 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
 begin
+    isFullAssociation := CheckCommandlineParam('/FULLASSOCIATION');
+    if (associatePage = nil) and isFullAssociation then begin
+      initExtensions();
+    end;
+
     for  i := 0 to GetArrayLength(AudioExts) - 1 do
     begin     
       Explode(argsArray, ExtensionRegistryInfo[i],':');
@@ -572,7 +577,7 @@ begin
 
       ext := LowerCase(AudioExts[i]);
 
-      if (associatePage <> nil) and isAssociateExtension(i) then
+      if isAssociateExtension(i) then
       begin
         if not RegValueExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '') then begin
           RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', argsArray[0])
