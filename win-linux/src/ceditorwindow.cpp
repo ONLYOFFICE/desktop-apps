@@ -431,10 +431,6 @@ void CEditorWindow::setReporterMode(bool apply)
         int windowW = m_pMainPanel->width(),
             windowH = m_pMainPanel->height(),
             captionH = TITLE_HEIGHT * m_dpiRatio;
-
-        QRegion reg(0, captionH, windowW, windowH - captionH);
-        m_pMainView->clearMask();
-        m_pMainView->setMask(reg);
     }
 
     d_ptr->isReporterMode = apply;
