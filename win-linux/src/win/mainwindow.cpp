@@ -86,7 +86,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
-        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
+        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(1324, 800)*m_dpiRatio);
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.intersects(_window_rect) ) {
@@ -100,7 +100,7 @@ CMainWindow::CMainWindow(QRect& rect) :
             if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
         }
     } else {
-        _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
+        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(MAIN_WINDOW_MIN_WIDTH, MAIN_WINDOW_MIN_HEIGHT)*m_dpiRatio);
     }
 
     WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
