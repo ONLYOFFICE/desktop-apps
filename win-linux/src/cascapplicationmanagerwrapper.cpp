@@ -927,7 +927,7 @@ namespace Drop {
 //            QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
 //            CAscApplicationManagerWrapper::sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-            CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel);
+            CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
         }
     }
