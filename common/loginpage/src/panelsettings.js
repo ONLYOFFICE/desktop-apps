@@ -145,7 +145,10 @@
 
                 let $optsupdatesrate = $('#opts-checkupdate', $panel);
                 if ( $optsupdatesrate.is(':visible') ) {
-                    _new_settings.checkupdatesrate = $('select', $optsupdatesrate).val();
+                    let $combo = $('select', $optsupdatesrate);
+
+                    _new_settings.checkupdatesrate = $combo.val();
+                    $combo.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
