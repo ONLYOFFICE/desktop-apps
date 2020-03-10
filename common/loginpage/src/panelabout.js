@@ -117,7 +117,7 @@
                         });
                         this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
                     } else
-                    if (/updates/.test(cmd)) {
+                    if (/^updates:turn/.test(cmd)) {
                         this.updates = param == 'on';
 
                         if ( this.view ) {

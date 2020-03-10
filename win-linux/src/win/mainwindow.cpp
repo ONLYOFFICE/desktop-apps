@@ -795,7 +795,7 @@ void CMainWindow::slot_mainPageReady()
             win_sparkle_init();
         }
 
-        AscAppManager::sendCommandTo(0, "updates", "on");
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
         CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
 
 #define RATE_MS_DAY 3600*24
