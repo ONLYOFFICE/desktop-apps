@@ -949,7 +949,9 @@ namespace Drop {
                 if ( main_window->pointInTabs(current_cursor) ) {
                     if ( current_cursor == last_cursor_pos ) {
                         drop_timer->stop();
-                        callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
+
+                        if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+                            callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
                     } else {
                         last_cursor_pos = current_cursor;
                     }
