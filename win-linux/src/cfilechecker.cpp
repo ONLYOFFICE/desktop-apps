@@ -2,6 +2,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QStorageInfo>
+#include <QTextDocumentFragment>
 
 #include <QDebug>
 
@@ -19,7 +20,7 @@
 
 CFileInspector::CFileInspector(QObject *parent, const QString& name, int uid)
     : QThread(parent)
-    , m_file(name)
+    , m_file(QTextDocumentFragment::fromHtml(name).toPlainText())
     , m_uid(uid)
 {
 }
