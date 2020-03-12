@@ -126,6 +126,11 @@ bool CSingleWindowPlatform::event(QEvent * event)
 
         QMoveEvent * _e = static_cast<QMoveEvent *>(event);
         onMoveEvent(QRect(_e->pos(), QSize(1,1)));
+    } else
+    if ( event->type() == QEvent::Close ) {
+        onCloseEvent();
+        event->ignore();
+        return false;
     }
 
     return QMainWindow::event(event);
