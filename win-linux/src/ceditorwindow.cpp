@@ -410,7 +410,7 @@ void CEditorWindow::recalculatePlaces()
     m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
-    m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, captionH);
+    m_boxTitleBtns->setGeometry(cbw, cbw, windowW - cbw * 2, captionH);
 #endif
 //    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
 //    m_pMainView->setGeometry(0, captionH, windowW, windowH - captionH);
