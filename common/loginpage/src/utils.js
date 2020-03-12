@@ -194,6 +194,7 @@ utils.defines.FileFormat = {
     FILE_CROSSPLATFORM_SWF: FILE_CROSSPLATFORM + 0x0002,
     FILE_CROSSPLATFORM_DJVU: FILE_CROSSPLATFORM + 0x0003,
     FILE_CROSSPLATFORM_XPS: FILE_CROSSPLATFORM + 0x0004,
+    FILE_CROSSPLATFORM_PDFA: FILE_CROSSPLATFORM + 0x0009
 };
 
 utils.defines.DBLCLICK_LOCK_TIMEOUT = 800;
@@ -224,6 +225,7 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP:    return 'odp';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'pps';
 
+    case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:   return 'pdf';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU:  return 'djvu';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS:   return 'xps';
