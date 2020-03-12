@@ -64,10 +64,11 @@ protected:
     HWND m_hWnd;
     HWND m_modalHwnd;
     COLORREF m_bgColor;
-    RECT m_moveNormalRect{0};
+    QRect m_moveNormalRect;
     bool m_borderless = true;
     bool m_visible = false;
     bool m_closed = false;
+    bool m_skipSizing = false;
     CWinPanel * m_pWinPanel;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
@@ -80,13 +81,13 @@ protected:
     virtual void onSizeEvent(int);
     virtual void applyWindowState(Qt::WindowState);
     virtual void adjustGeometry();
-    virtual void onExitSizeMove();
+    virtual void setScreenScalingFactor(uint f) override;
 
 //    virtual void focusMainPanel();
 
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
-    virtual void onScreenScalingFactor(uint f);
+    virtual void onExitSizeMove() override;
 
     void captureMouse();
     void slot_modalDialog(bool status, size_t h);

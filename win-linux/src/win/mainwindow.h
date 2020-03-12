@@ -110,6 +110,7 @@ public:
 private:
     bool closed;
     bool visible;
+    bool skipsizing = false;
 
     bool borderless;
     bool borderlessResizeable;
@@ -122,7 +123,7 @@ private:
     uchar m_dpiRatio;
     HWND m_modalHwnd;
 
-    RECT m_moveNormalRect{0};
+    QRect m_moveNormalRect;
 };
 
 #endif

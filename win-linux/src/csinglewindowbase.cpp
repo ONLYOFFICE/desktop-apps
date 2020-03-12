@@ -78,7 +78,7 @@ CSingleWindowBase::CSingleWindowBase(QRect& rect)
     }
 }
 
-void CSingleWindowBase::setScreenScalingFactor(int f)
+void CSingleWindowBase::setScreenScalingFactor(uint f)
 {
     if ( m_dpiRatio != f ) {
         QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
@@ -87,7 +87,7 @@ void CSingleWindowBase::setScreenScalingFactor(int f)
         m_buttonMaximize->setFixedSize(small_btn_size);
         m_buttonClose->setFixedSize(small_btn_size);
 
-        onScreenScalingFactor(f);
+//        onScreenScalingFactor(f);
 
         m_dpiRatio = f;
     }

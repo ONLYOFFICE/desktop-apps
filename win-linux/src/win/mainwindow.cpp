@@ -370,7 +370,7 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_SIZE:
-        if ( !window->closed && window->m_pWinPanel) {
+        if ( !window->skipsizing && !window->closed && window->m_pWinPanel) {
             if (wParam == SIZE_MINIMIZED) {
                 window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
@@ -409,10 +409,8 @@ qDebug() << "WM_CLOSE";
             MONITORINFO info{sizeof(MONITORINFO)};
             GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-            window->m_moveNormalRect.left   = abs(info.rcMonitor.left - wp.rcNormalPosition.left);
-            window->m_moveNormalRect.top    = abs(info.rcMonitor.top - wp.rcNormalPosition.top);
-            window->m_moveNormalRect.right  = abs(info.rcMonitor.left - wp.rcNormalPosition.right);
-            window->m_moveNormalRect.bottom = abs(info.rcMonitor.top - wp.rcNormalPosition.bottom);
+            window->m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
+                                                QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
         }
         break;}
 
@@ -437,10 +435,10 @@ qDebug() << "WM_CLOSE";
 #else
         uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 #endif
-
-        if ( dpi_ratio != window->m_dpiRatio )
+        if ( dpi_ratio != window->m_dpiRatio ) {
             window->setScreenScalingFactor(dpi_ratio);
-
+            window->adjustGeometry();
+        }
         break;
     }
 
@@ -690,6 +688,8 @@ void CMainWindow::adjustGeometry()
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
+    skipsizing = true;
+
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
@@ -702,32 +702,31 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
-            unsigned _new_width = m_moveNormalRect.right - m_moveNormalRect.left,
-                    _new_height = m_moveNormalRect.bottom - m_moveNormalRect.top;
-
-            if ( increase )
-                _new_width *= 2, _new_height *= 2;  else
-                _new_width /= 2, _new_height /= 2;
-
             if ( wp.showCmd == SW_MAXIMIZE ) {
                 MONITORINFO info{sizeof(MONITORINFO)};
                 GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-                if ( increase )
-                    m_moveNormalRect.left *= 2, m_moveNormalRect.top *= 2;
-                else m_moveNormalRect.left /= 2, m_moveNormalRect.top /= 2;
+                m_moveNormalRect = increase ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
+                                                QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
 
-                wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left;
-                wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top;
-                wp.rcNormalPosition.right = wp.rcNormalPosition.left + _new_width;
-                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _new_height;
+                wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
+                wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
+                wp.rcNormalPosition.right = wp.rcNormalPosition.left + m_moveNormalRect.width();
+                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + m_moveNormalRect.height();
 
                 SetWindowPlacement(hWnd, &wp);
             } else {
-                SetWindowPos(hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
+                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
+                    dest_rect = increase ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
+                                                QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+
+                qDebug() << "set screen scaling1" << source_rect << dest_rect;
+                SetWindowPos(hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
         }
     }
+
+    skipsizing = false;
 }
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)

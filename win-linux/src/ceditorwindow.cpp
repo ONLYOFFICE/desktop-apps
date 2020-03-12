@@ -362,9 +362,9 @@ void CEditorWindow::onExitSizeMove()
     }
 }
 
-void CEditorWindow::onScreenScalingFactor(uint newfactor)
+void CEditorWindow::setScreenScalingFactor(uint newfactor)
 {
-    CSingleWindowPlatform::onScreenScalingFactor(newfactor);
+    CSingleWindowPlatform::setScreenScalingFactor(newfactor);
 
     m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
 
