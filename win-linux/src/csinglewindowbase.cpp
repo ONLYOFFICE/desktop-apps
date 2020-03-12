@@ -117,6 +117,7 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
             btn->setProperty("class", "normal");
             btn->setProperty("act", "tool");
             btn->setFixedSize(small_btn_size);
+            btn->setMouseTracking(true);
 
             return btn;
         };

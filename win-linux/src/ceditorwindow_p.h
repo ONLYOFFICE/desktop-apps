@@ -94,6 +94,7 @@ public:
         btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
+        btn->setMouseTracking(true);
 
         m_mapTitleButtons[action] = btn;
 
