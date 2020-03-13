@@ -61,6 +61,8 @@ private:
 protected:
     void captureMouse();
 
+    virtual void onMinimizeEvent() override;
+    virtual void onMaximizeEvent() override;
     virtual void onSizeEvent(int type);
     virtual void onScreenScalingFactor(uint f);
 };

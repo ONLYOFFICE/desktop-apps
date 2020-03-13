@@ -63,6 +63,18 @@ void CSingleWindowPlatform::resizeEvent(QResizeEvent *)
     onSizeEvent(0);
 }
 
+void CSingleWindowPlatform::onMinimizeEvent()
+{
+    CSingleWindowBase::onMinimizeEvent();
+    setWindowState(Qt::WindowMinimized);
+}
+
+void CSingleWindowPlatform::onMaximizeEvent()
+{
+    CSingleWindowBase::onMaximizeEvent();
+    setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
+}
+
 void CSingleWindowPlatform::onSizeEvent(int type)
 {
     if ( type == Qt::WindowMinimized ) {
@@ -151,9 +163,9 @@ void CSingleWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
 
 void CSingleWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
 {
-//    if ( m_boxTitle->underMouse() ) {
-//        m_btnMaximize->click();
-//    }
+    if ( m_boxTitleBtns->underMouse() ) {
+        onMaximizeEvent();
+    }
 }
 
 void CSingleWindowPlatform::onScreenScalingFactor(uint f)
