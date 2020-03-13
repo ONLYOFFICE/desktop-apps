@@ -108,6 +108,7 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
         m_labelTitle = new QLabel(title);
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        m_labelTitle->setMouseTracking(true);
 
         QSize small_btn_size(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 

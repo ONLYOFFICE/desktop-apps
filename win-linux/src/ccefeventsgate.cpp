@@ -77,3 +77,7 @@ void CCefEventsGate::onKeyDown(void *)
 void CCefEventsGate::onDocumentLoadFinished(int uid)
 {
 }
+
+void CCefEventsGate::onDocumentReady(int)
+{
+}

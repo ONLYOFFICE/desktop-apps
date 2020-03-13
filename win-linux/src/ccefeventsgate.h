@@ -64,6 +64,7 @@ public slots:
     virtual void onDocumentPrint(void *);
     virtual void onDocumentPrint(int current, uint count) = 0;
     virtual void onDocumentLoadFinished(int);
+    virtual void onDocumentReady(int);
 
     virtual void onFileLocation(int id, QString path) = 0;
     virtual void onLocalFileSaveAs(void *) = 0;
