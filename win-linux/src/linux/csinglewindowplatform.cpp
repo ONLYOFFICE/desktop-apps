@@ -47,7 +47,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
             reg_system.value("titlebar") == "custom" )
         CX11Decoration::turnOff();
 
-    CSingleWindowBase::setWindowTitle(title);
+    setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
