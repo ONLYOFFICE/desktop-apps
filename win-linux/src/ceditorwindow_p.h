@@ -366,7 +366,7 @@ public:
             window_orig_flags = _fs_widget->windowFlags();
             _fs_widget->setParent(nullptr);
             _fs_widget->setWindowFlags(Qt::FramelessWindowHint);
-            _fs_widget->show();
+            _fs_widget->showFullScreen();
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
 #endif
             _fs_widget->cef()->focus();
