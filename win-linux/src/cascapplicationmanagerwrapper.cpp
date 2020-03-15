@@ -929,6 +929,8 @@ namespace Drop {
 
             CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
+
+            AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
         }
     }
 
@@ -1090,9 +1092,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 
             if ( _editor ) {
                 e->accept();
-                QJsonObject _json_obj{{"action", "undocking"},
-                                      {"status", "undocked"}};
-                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
+//                QJsonObject _json_obj{{"action", "undocking"},
+//                                      {"status", "undocked"}};
+//                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
                 SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
@@ -1102,6 +1104,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
+                        sendCommandTo(_editor->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
                     }
                 });
             }
