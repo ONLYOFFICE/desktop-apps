@@ -230,6 +230,8 @@ public:
         if ( isPrinting ) return;
         isPrinting = true;
 
+        WindowUtils::CParentDisable locker(window);
+
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
             QAscPrinterContext * pContext = m_printData._printer_info.isNull() ?
