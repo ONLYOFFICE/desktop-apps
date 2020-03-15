@@ -154,7 +154,6 @@ void CAscTabData::setEventLoadSupported(bool value)
 
 void CAscTabData::setFeatures(const wstring& fs)
 {
-    qDebug() << "set features" << QString::fromStdWString(fs);
     _features = fs;
 }
 
