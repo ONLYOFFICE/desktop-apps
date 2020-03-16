@@ -986,7 +986,9 @@ void CMainPanel::onDocumentPrint(void * opts)
         printInProcess = true; else
         return;
 
+#ifdef Q_OS_LINUX
     WindowUtils::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
+#endif
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;
     CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());
