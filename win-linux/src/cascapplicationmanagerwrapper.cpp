@@ -1091,13 +1091,13 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             }
 
             if ( _editor ) {
-                _editor->setParent(nullptr);
+//                _editor->setParent(nullptr);
                 e->accept();
 //                QJsonObject _json_obj{{"action", "undocking"},
 //                                      {"status", "undocked"}};
 //                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-                SKIP_EVENTS_QUEUE([=]{
+//                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
                         QRect rect = _main_window->windowRect();
 
@@ -1107,7 +1107,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         m_vecEditors.push_back( size_t(editor_win) );
                         sendCommandTo(_editor->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
                     }
-                });
+//                });
             }
         }
 

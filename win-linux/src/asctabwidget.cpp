@@ -908,7 +908,8 @@ void CAscTabWidget::setFocusedView(int index)
                 this->currentWidget()->show();
         }
 
-        panel(nIndex)->cef()->focus();
+        if ( panel(nIndex) )
+            panel(nIndex)->cef()->focus();
     }
 }
 
@@ -1112,11 +1113,6 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
-//            if ( m_dataFullScreen->parent )
-//                m_dataFullScreen->parent->show();
-
-//            ((CTabPanel *)fsWidget)->showNormal();
-
             disconnect(cefConnection);
 
 #ifdef _LINUX
@@ -1126,13 +1122,6 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             int index = m_dataFullScreen->tabindex();
             fsWidget = m_dataFullScreen->widget();
             widget(index)->layout()->addWidget(fsWidget);
-
-//            CAscTabData * doc = ((CTabPanel *)fsWidget)->data();
-
-//            insertTab(index, fsWidget, doc->title());
-//            adjustTabsSize();
-//            tabBar()->setTabToolTip(index, doc->title());
-//            tabBar()->setCurrentIndex(index);
 
             RELEASEOBJECT(m_dataFullScreen)
 
