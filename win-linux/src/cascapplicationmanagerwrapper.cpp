@@ -1091,6 +1091,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             }
 
             if ( _editor ) {
+                _editor->setParent(nullptr);
                 e->accept();
 //                QJsonObject _json_obj{{"action", "undocking"},
 //                                      {"status", "undocked"}};

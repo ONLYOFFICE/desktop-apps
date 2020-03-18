@@ -276,7 +276,14 @@ void CTabBar::mouseMoveEvent(QMouseEvent * event)
         int offset = (event->pos() - d->dragStartPosition).manhattanLength();
         if (event->buttons() == Qt::LeftButton
                 && offset > QApplication::startDragDistance() && d->validIndex(d->pressedIndex)) {
-            if ( abs(event->pos().y() - d->dragStartPosition.y()) > 30 ) emit tabUndock(d->pressedIndex);
+            if ( abs(event->pos().y() - d->dragStartPosition.y()) > 30 ) {
+                bool isaccepted = false;
+                emit tabUndock(d->pressedIndex, &isaccepted);
+
+                if (isaccepted)
+                    interruptTabMoving(d->pressedIndex);
+                return;
+            }
 
             int dragDistance = (event->pos().x() - d->dragStartPosition.x());
 
@@ -862,4 +869,38 @@ int CTabBar::draggedTabIndex()
 QSize CTabBar::tabSizeHint(int index) const
 {
     return QTabBar::tabSizeHint(index);
+}
+
+void CTabBar::interruptTabMoving(int index)
+{
+    Q_D(QTabBar);
+
+#ifndef QT_NO_ANIMATION
+    for (const auto& t : d->tabList) {
+        if (t.animation &&
+                t.animation->state() == QAbstractAnimation::Running )
+            t.animation->stop();
+    }
+#endif //QT_NO_ANIMATION
+    bool cleanup = (d->pressedIndex == index) || (d->pressedIndex == -1) || !d->validIndex(index);
+    if (cleanup) {
+        if(d->movingTab)
+            d->movingTab->setVisible(false); // We might not get a mouse release
+
+        for (auto& t : d->tabList)
+            t.dragOffset = 0;
+
+        if (d->pressedIndex != -1 && d->movable) {
+            d->pressedIndex = -1;
+            d->dragInProgress = false;
+            d->dragStartPosition = QPoint();
+        }
+        d->layoutWidgets();
+    } else {
+        if (!d->validIndex(index))
+            return;
+        d->tabList[index].dragOffset = 0;
+    }
+
+    update();
 }

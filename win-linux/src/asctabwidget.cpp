@@ -118,6 +118,21 @@ COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
  *
 */
 
+auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * {
+    QWidget * panelwidget = new QWidget(parent);
+
+    panelwidget->setLayout(new QGridLayout);
+    panelwidget->layout()->setContentsMargins(0,0,0,0);
+    panelwidget->layout()->addWidget(panel ? panel : new CTabPanel);
+
+    return panelwidget;
+}
+
+auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
+    return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
+}
+
+
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , CScalingWrapper(parent)
@@ -153,7 +168,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
         _dropedindex = -1;
     });
 
-    QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
+    QObject::connect(tabs, &CTabBar::tabUndock, [=](int index, bool * accept){
         if (index == _dropedindex) return;
 
         const CTabPanel * _panel = panel(index);
@@ -164,6 +179,12 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
                         static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
                 _dropedindex = index;
+                *accept = true;
+
+                QTimer::singleShot(10,[=](){
+                    if ( widget(index) )
+                        widget(index)->deleteLater();
+                });
             }
         }
     });
@@ -171,7 +192,8 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
 
 CTabPanel * CAscTabWidget::panel(int index) const
 {
-    return static_cast<CTabPanel *>(widget(index));
+    QWidget * _w = widget(index);
+    return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
@@ -189,7 +211,9 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
             return -255;
     }
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
+
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsEditor();
@@ -222,7 +246,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
-        tab_index = addTab(pView, opts.name);
+        tab_index = addTab(panelwidget, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
         ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
@@ -331,7 +355,9 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
         }
     }
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
+
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
@@ -346,7 +372,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, pView, portal);
+    tab_index = insertTab(tab_index, panelwidget, portal);
     tabBar()->setTabToolTip(tab_index, _url);
     ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
@@ -362,7 +388,8 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     setProperty("empty", false);
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
@@ -386,7 +413,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, pView, _portal);
+    tab_index = insertTab(tab_index, panelwidget, _portal);
     tabBar()->setTabToolTip(tab_index, portal);
     ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
@@ -400,9 +427,11 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
     CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
     if ( _panel ) {
-        CAscTabData * tabdata = _panel->data();
+        const CAscTabData * tabdata = _panel->data();
 
-        tabindex = insertTab(index, panel, tabdata->title());
+        QWidget * panelwidget = createTabPanel(this, _panel);
+
+        tabindex = insertTab(index, panelwidget, tabdata->title());
         tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
     }
 
@@ -415,21 +444,21 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
 
     adjustTabsSize();
 
-    if (e) {
-        int w = e->size().width(),
-            h = e->size().height() - tabBar()->height();
+//    if (e) {
+//        int w = e->size().width(),
+//            h = e->size().height() - tabBar()->height();
 
-        CTabPanel * view = nullptr;
-        for (int i(count()); i > 0;) {
-            if (--i != currentIndex()) {
-                view = panel(i);
-                if (view) {
-//                    view->cef()->resizeEvent(w, h);
-                    view->resize(w,h);
-                }
-            }
-        }
-    }
+//        CTabPanel * view = nullptr;
+//        for (int i(count()); i > 0;) {
+//            if (--i != currentIndex()) {
+//                view = panel(i);
+//                if (view) {
+////                    view->cef()->resizeEvent(w, h);
+//                    view->resize(w,h);
+//                }
+//            }
+//        }
+//    }
 }
 
 void CAscTabWidget::tabInserted(int index)
@@ -567,7 +596,7 @@ void CAscTabWidget::editorCloseRequest(int index)
 int CAscTabWidget::tabIndexByView(int viewId)
 {
     for (int i(count()); i-- > 0; ) {
-        if (panel(i)->cef()->GetId() == viewId)
+        if (panel(i) && panel(i)->cef()->GetId() == viewId)
             return i;
     }
 
