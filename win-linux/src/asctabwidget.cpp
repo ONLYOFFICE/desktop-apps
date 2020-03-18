@@ -1112,21 +1112,27 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
-            if ( m_dataFullScreen->parent )
-                m_dataFullScreen->parent->show();
+//            if ( m_dataFullScreen->parent )
+//                m_dataFullScreen->parent->show();
 
-            fsWidget = m_dataFullScreen->widget();
-            ((CTabPanel *)fsWidget)->showNormal();
+//            ((CTabPanel *)fsWidget)->showNormal();
 
             disconnect(cefConnection);
 
-            int index = m_dataFullScreen->tabindex();
-            CAscTabData * doc = ((CTabPanel *)fsWidget)->data();
+#ifdef _LINUX
+            AscAppManager::topWindow()->show();
+#endif
 
-            insertTab(index, fsWidget, doc->title());
-            adjustTabsSize();
-            tabBar()->setTabToolTip(index, doc->title());
-            tabBar()->setCurrentIndex(index);
+            int index = m_dataFullScreen->tabindex();
+            fsWidget = m_dataFullScreen->widget();
+            widget(index)->layout()->addWidget(fsWidget);
+
+//            CAscTabData * doc = ((CTabPanel *)fsWidget)->data();
+
+//            insertTab(index, fsWidget, doc->title());
+//            adjustTabsSize();
+//            tabBar()->setTabToolTip(index, doc->title());
+//            tabBar()->setCurrentIndex(index);
 
             RELEASEOBJECT(m_dataFullScreen)
 
@@ -1134,27 +1140,19 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         }
     } else {
         int tabIndex = tabIndexByView(id);
-        if ( !(tabIndex < 0) ) {
-            fsWidget = widget(tabIndex);
-        } else {
+        if ( tabIndex < 0 )
             tabIndex = currentIndex();
-            fsWidget = currentWidget();
-        }
+        fsWidget = panel(tabIndex);
 
         if ( fsWidget ) {
             m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
-            removeTab(tabIndex);
-#ifdef _WIN32
             fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
+#ifdef _WIN32
 #else
-            m_dataFullScreen->parent = qobject_cast<QWidget *>(parent());
-            QWidget * grandpa = qobject_cast<QWidget *>(m_dataFullScreen->parent->parent());
-            if (grandpa) {
-                fsWidget->setParent(grandpa);
-                m_dataFullScreen->parent->hide();
-            }
+            fsWidget->setWindowFlags(Qt::FramelessWindowHint);
+            AscAppManager::topWindow()->hide();
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
             ((CTabPanel *)fsWidget)->cef()->focus();
@@ -1171,14 +1169,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 emit closeAppRequest();
             });
 
-            QPoint pt = mapToGlobal(pos());
-#ifdef _WIN32
-            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-#else
-
-            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
-            fsWidget->setGeometry(QRect(QPoint(0,0), _scr_rect.size()));
-#endif
+            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));
         }
     }
 }
