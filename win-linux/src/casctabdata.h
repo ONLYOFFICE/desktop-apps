@@ -68,7 +68,7 @@ public:
     wstring features() const;
     bool    hasFeature(const wstring&) const;
 
-    AscEditorType   contentType();
+    AscEditorType   contentType() const;
     void            setContentType(AscEditorType);
 private:
     QString _title;

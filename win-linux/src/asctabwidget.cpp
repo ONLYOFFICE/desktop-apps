@@ -156,7 +156,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
         if (index == _dropedindex) return;
 
-        CTabPanel * _panel = panel(index);
+        const CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
@@ -169,7 +169,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     });
 }
 
-CTabPanel * CAscTabWidget::panel(int index)
+CTabPanel * CAscTabWidget::panel(int index) const
 {
     return static_cast<CTabPanel *>(widget(index));
 }
@@ -239,7 +239,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
 void CAscTabWidget::closeEditor(int i, bool m, bool r)
 {
     if (!(i < 0) && i < count()) {
-        CTabPanel * view = (CTabPanel *)widget(i);
+        CTabPanel * view = panel(i);
         CAscTabData * doc = view->data();
 
         if (doc && (!m || !doc->hasChanges())) {
@@ -277,7 +277,7 @@ int CAscTabWidget::count(int type) const
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
-            if ( ((CTabPanel *)widget(i))->data()->viewType() == type )
+            if ( (panel(i))->data()->viewType() == type )
                 ++_out;
         }
         return _out;
@@ -576,7 +576,7 @@ int CAscTabWidget::tabIndexByView(int viewId)
 
 int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -589,7 +589,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 
 int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -606,7 +606,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 
 int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -628,7 +628,7 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
     if ( view ) {
         return tabIndexByView(view->GetId());
     } else {
-        CAscTabData * doc;
+        const CAscTabData * doc;
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
 
@@ -733,7 +733,7 @@ void CAscTabWidget::closePortal(const wstring& url, bool editors)
     closeEditorByIndex(tabIndexByUrl(url));
 
     if (editors) {
-        CAscTabData * doc;
+        const CAscTabData * doc;
         for (int i = tabBar()->count(); i-- > 0; ) {
             doc = panel(i)->data();
 
@@ -809,8 +809,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
             return;
         } else
         if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
-            CAscTabData * doc = panel(tabIndex)->data();
-            if ( !doc->eventLoadSupported() ) {
+            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
                 ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
                 panel(tabIndex)->applyLoader("hide");
             }
@@ -914,7 +913,7 @@ bool CAscTabWidget::isActive()
 int CAscTabWidget::modifiedCount()
 {
     int mod_count = 0;
-    CAscTabData * doc;
+    const CAscTabData * doc;
 
     for (int i = tabBar()->count(); i-- > 0; ) {
         doc = panel(i)->data();
@@ -937,7 +936,7 @@ int CAscTabWidget::viewByIndex(int index)
 QString CAscTabWidget::titleByIndex(int index, bool mod)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
+        const CAscTabData * doc = panel(index)->data();
         if (doc)
             return doc->title(mod);
     }
@@ -958,7 +957,7 @@ QString CAscTabWidget::urlByView(int id)
 bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
+        const CAscTabData * doc = panel(index)->data();
         return doc->hasChanges() && !doc->closed();
     }
 
@@ -976,8 +975,7 @@ bool CAscTabWidget::isLocalByIndex(int index)
 
 bool CAscTabWidget::closedByIndex(int index) {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
-        return doc->closed();
+        return panel(index)->data()->closed();
     }
 
     return true;
@@ -987,7 +985,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
 {
     QMap<int, QString> mapModified;
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; i++) {
         doc = panel(i)->data();
 
@@ -1005,7 +1003,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
 int CAscTabWidget::findModified(const QString& portalname)
 {
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -1024,15 +1022,15 @@ int CAscTabWidget::findModified(const QString& portalname)
 int CAscTabWidget::findFragmented(const QString& portalname)
 {
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
-    CTabPanel * panel;
+    const CAscTabData * doc;
+    const CTabPanel * cefpanel;
     for (int i(tabBar()->count()); i-- > 0; ) {
-        panel = (CTabPanel *)widget(i);
-        doc = panel->data();
+        cefpanel = panel(i);
+        doc = cefpanel->data();
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
-            if ( ((CCefViewEditor*)panel->cef())->CheckCloudCryptoNeedBuild() ) {
+            if ( ((CCefViewEditor*)cefpanel->cef())->CheckCloudCryptoNeedBuild() ) {
                 return i;
             }
         }
@@ -1043,22 +1041,22 @@ int CAscTabWidget::findFragmented(const QString& portalname)
 bool CAscTabWidget::isFragmented(int index)
 {
     if (!(index < 0) && index < count()) {
-        CTabPanel * panel = (CTabPanel *)widget(index);
-        CAscTabData * doc = panel->data();
-        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
+        const CTabPanel * cefpanel = panel(index);
+        const CAscTabData * doc = cefpanel->data();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)cefpanel->cef())->CheckCloudCryptoNeedBuild();
     }
     return false;
 }
 
 int CAscTabWidget::findProcessed() const
 {
-    CAscTabData * doc;
-    CTabPanel * panel;
+    const CAscTabData * doc;
+    const CTabPanel * cefpanel;
     for (int i(count()); i-- > 0; ) {
-        panel = (CTabPanel *)widget(i);
-        doc = panel->data();
+        cefpanel = panel(i);
+        doc = cefpanel->data();
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
-                ((CCefViewEditor *)panel->cef())->IsBuilding() )
+                ((CCefViewEditor *)cefpanel->cef())->IsBuilding() )
         {
             return i;
         }
@@ -1070,10 +1068,10 @@ int CAscTabWidget::findProcessed() const
 bool CAscTabWidget::isProcessed(int index) const
 {
     if (!(index < 0) && index < count()) {
-        CTabPanel * panel = static_cast<CTabPanel *>(widget(index));
-        CAscTabData * doc = panel->data();
+        const CTabPanel * cefpanel = panel(index);
+        const CAscTabData * doc = cefpanel->data();
 
-        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->IsBuilding();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)cefpanel->cef())->IsBuilding();
     }
 
     return false;

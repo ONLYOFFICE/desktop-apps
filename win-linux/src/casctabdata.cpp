@@ -122,7 +122,7 @@ bool CAscTabData::isViewType(CefType vt) const
     return vt == _vtype;
 }
 
-AscEditorType CAscTabData::contentType()
+AscEditorType CAscTabData::contentType() const
 {
     return _typeContent;
 }

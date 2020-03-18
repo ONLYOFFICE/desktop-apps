@@ -31,12 +31,12 @@ CTabPanel::~CTabPanel()
         delete m_pData, m_pData = nullptr;
 }
 
-QCefView * CTabPanel::view()
+QCefView * CTabPanel::view() const
 {
     return m_pViewer;
 }
 
-CCefView * CTabPanel::cef()
+CCefView * CTabPanel::cef() const
 {
     return m_pViewer->GetCefView();
 }
@@ -49,7 +49,7 @@ void CTabPanel::setView(QCefView * v)
     m_pViewer = v;
 }
 
-CAscTabData * CTabPanel::data()
+CAscTabData * CTabPanel::data() const
 {
     return m_pData;
 }

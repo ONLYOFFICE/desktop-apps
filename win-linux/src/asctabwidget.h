@@ -137,7 +137,7 @@ signals:
 public:
     CAscTabWidget(QWidget *parent = 0);
 
-    CTabPanel * panel(int);
+    CTabPanel * panel(int) const;
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
