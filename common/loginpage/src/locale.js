@@ -365,7 +365,7 @@ l10n.de = {
     btnLogin: 'Anmelden',
     btnBrowse: 'Durchsuchen',
     btnNext: 'Weiter',
-    portalEmptyTitle: 'Stellen Sie eine Verbindung zu Ihrer Cloud her',
+    portalEmptyTitle: 'Zu Ihrer Cloud verbinden',
     portalEmptyDescr: 'Speichern Sie Ihre Dokumente in der Cloud und greifen Sie jederzeit und von überall darauf zu. Teilen und arbeiten Sie an Dokumenten zusammen. Chatten Sie in Echtzeit im Dokument, fügen Sie Kommentare hinzu oder teilen Sie es zur Überprüfung.',
     portalEmptyAdv1: 'Haben Sie noch kein Cloud-Konto? Wechseln Sie zum Onlinemodus mit dem ONLYOFFICE Cloud Service und testen Sie die Möglichkeiten zur Zusammenarbeit  kostenlos.',
     portalListTitle: 'Angeschlosse Cloud',
@@ -417,7 +417,7 @@ l10n.de = {
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',
     licPanelTitle: 'Geben Sie den Produktschlüssel ein',
     licPanelDescr: 'Ihr Produktschlüssel wurde an die E-Mail-Adresse zugeschickt, die Sie beim Kauf angegeben haben.'
-    ,checkUpdates: 'Prüfen Sie Updates'
+    ,checkUpdates: 'Nach Updates suchen'
     ,strVersion: 'Version'
     ,emptySlide1Title: 'Freigabe & Zusammenarbeit'
     ,emptySlide1Text: 'Wählen Sie zwischen zwei Modis (Formal / Halbformal) für die Bearbeitung in Echtzeit, chatten und kommentieren Sie direkt im Dokument oder teilen Sie Ihre Dokumente zur Überprüfung.'
@@ -531,7 +531,7 @@ l10n.fr = {
     btnLogin: 'Connexion',
     btnBrowse: 'Parcourir',
     btnNext: 'Suivant',
-    portalEmptyTitle: 'Connectez  à votre Office dans les nuages',
+    portalEmptyTitle: 'Connecter au cloud',
     portalEmptyDescr: 'Stockez vos documents dans le cloud et  accédez-y partout, à tout moment. Сollaborez  à vos documents et partagez-les. Chattez  dans les document, ajoutez des commentaires ou partagez les document en mode révision.',
     portalEmptyAdv1: 'Vous n\'avez pas encore de compte Cloud ? Accéder en ligne avec ONLYOFFICE et essayez les capacités de gestion collaborative gratuitement.',
     portalListTitle: 'Cloud connectés',
