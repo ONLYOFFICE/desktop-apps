@@ -118,6 +118,21 @@ COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
  *
 */
 
+auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * {
+    QWidget * panelwidget = new QWidget(parent);
+
+    panelwidget->setLayout(new QGridLayout);
+    panelwidget->layout()->setContentsMargins(0,0,0,0);
+    panelwidget->layout()->addWidget(panel ? panel : new CTabPanel);
+
+    return panelwidget;
+}
+
+auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
+    return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
+}
+
+
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
     , CScalingWrapper(parent)
@@ -145,28 +160,40 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     setProperty("active", false);
     setProperty("empty", true);
 
+    static int _dropedindex = -1;
     QObject::connect(this, &QTabWidget::currentChanged, [=](){
         updateIcons();
         setFocusedView();
+
+        _dropedindex = -1;
     });
 
-    QObject::connect(tabs, &CTabBar::tabUndock, [=](int index){
-        CTabPanel * _panel = panel(index);
+    QObject::connect(tabs, &CTabBar::tabUndock, [=](int index, bool * accept){
+        if (index == _dropedindex) return;
+
+        const CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
             QObject * obj = qobject_cast<QObject *>(
                         static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
+                _dropedindex = index;
+                *accept = true;
 
+                QTimer::singleShot(10,[=](){
+                    if ( widget(index) )
+                        widget(index)->deleteLater();
+                });
             }
         }
     });
 }
 
-CTabPanel * CAscTabWidget::panel(int index)
+CTabPanel * CAscTabWidget::panel(int index) const
 {
-    return static_cast<CTabPanel *>(widget(index));
+    QWidget * _w = widget(index);
+    return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
 int CAscTabWidget::addEditor(COpenOptions& opts)
@@ -184,7 +211,9 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
             return -255;
     }
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
+
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsEditor();
@@ -217,7 +246,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
                        (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
-        tab_index = addTab(pView, opts.name);
+        tab_index = addTab(panelwidget, opts.name);
         tabBar()->setTabToolTip(tab_index, opts.name);
         ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
@@ -234,7 +263,7 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
 void CAscTabWidget::closeEditor(int i, bool m, bool r)
 {
     if (!(i < 0) && i < count()) {
-        CTabPanel * view = (CTabPanel *)widget(i);
+        CTabPanel * view = panel(i);
         CAscTabData * doc = view->data();
 
         if (doc && (!m || !doc->hasChanges())) {
@@ -272,7 +301,7 @@ int CAscTabWidget::count(int type) const
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
-            if ( ((CTabPanel *)widget(i))->data()->viewType() == type )
+            if ( (panel(i))->data()->viewType() == type )
                 ++_out;
         }
         return _out;
@@ -326,7 +355,9 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
         }
     }
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
+
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
@@ -341,7 +372,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, pView, portal);
+    tab_index = insertTab(tab_index, panelwidget, portal);
     tabBar()->setTabToolTip(tab_index, _url);
     ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
@@ -357,7 +388,8 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     setProperty("empty", false);
 
-    CTabPanel * pView = new CTabPanel(this);
+    QWidget * panelwidget = createTabPanel(this);
+    CTabPanel * pView = panelfromwidget(panelwidget);
     pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
@@ -381,7 +413,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, pView, _portal);
+    tab_index = insertTab(tab_index, panelwidget, _portal);
     tabBar()->setTabToolTip(tab_index, portal);
     ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
@@ -395,9 +427,11 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
     CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
     if ( _panel ) {
-        CAscTabData * tabdata = _panel->data();
+        const CAscTabData * tabdata = _panel->data();
 
-        tabindex = insertTab(index, panel, tabdata->title());
+        QWidget * panelwidget = createTabPanel(this, _panel);
+
+        tabindex = insertTab(index, panelwidget, tabdata->title());
         tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
     }
 
@@ -410,21 +444,21 @@ void CAscTabWidget::resizeEvent(QResizeEvent* e)
 
     adjustTabsSize();
 
-    if (e) {
-        int w = e->size().width(),
-            h = e->size().height() - tabBar()->height();
+//    if (e) {
+//        int w = e->size().width(),
+//            h = e->size().height() - tabBar()->height();
 
-        CTabPanel * view = nullptr;
-        for (int i(count()); i > 0;) {
-            if (--i != currentIndex()) {
-                view = panel(i);
-                if (view) {
-//                    view->cef()->resizeEvent(w, h);
-                    view->resize(w,h);
-                }
-            }
-        }
-    }
+//        CTabPanel * view = nullptr;
+//        for (int i(count()); i > 0;) {
+//            if (--i != currentIndex()) {
+//                view = panel(i);
+//                if (view) {
+////                    view->cef()->resizeEvent(w, h);
+//                    view->resize(w,h);
+//                }
+//            }
+//        }
+//    }
 }
 
 void CAscTabWidget::tabInserted(int index)
@@ -562,7 +596,7 @@ void CAscTabWidget::editorCloseRequest(int index)
 int CAscTabWidget::tabIndexByView(int viewId)
 {
     for (int i(count()); i-- > 0; ) {
-        if (panel(i)->cef()->GetId() == viewId)
+        if (panel(i) && panel(i)->cef()->GetId() == viewId)
             return i;
     }
 
@@ -571,7 +605,7 @@ int CAscTabWidget::tabIndexByView(int viewId)
 
 int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -584,7 +618,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, CefType vt)
 
 int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -601,7 +635,7 @@ int CAscTabWidget::tabIndexByTitle(QString t, AscEditorType et)
 
 int CAscTabWidget::tabIndexByEditorType(AscEditorType et)
 {
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -623,7 +657,7 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
     if ( view ) {
         return tabIndexByView(view->GetId());
     } else {
-        CAscTabData * doc;
+        const CAscTabData * doc;
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
 
@@ -728,7 +762,7 @@ void CAscTabWidget::closePortal(const wstring& url, bool editors)
     closeEditorByIndex(tabIndexByUrl(url));
 
     if (editors) {
-        CAscTabData * doc;
+        const CAscTabData * doc;
         for (int i = tabBar()->count(); i-- > 0; ) {
             doc = panel(i)->data();
 
@@ -804,8 +838,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
             return;
         } else
         if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
-            CAscTabData * doc = panel(tabIndex)->data();
-            if ( !doc->eventLoadSupported() ) {
+            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
                 ((CTabBar *)tabBar())->setTabLoading(tabIndex, false);
                 panel(tabIndex)->applyLoader("hide");
             }
@@ -837,6 +870,8 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
+        panel(tabIndex)->data()->setFeatures(option);
+
         size_t _pos;
         if ((_pos = option.find(L"eventloading:")) != wstring::npos) {
             if (option.find(L"true", _pos + 1) != wstring::npos)
@@ -873,7 +908,8 @@ void CAscTabWidget::setFocusedView(int index)
                 this->currentWidget()->show();
         }
 
-        panel(nIndex)->cef()->focus();
+        if ( panel(nIndex) )
+            panel(nIndex)->cef()->focus();
     }
 }
 
@@ -907,7 +943,7 @@ bool CAscTabWidget::isActive()
 int CAscTabWidget::modifiedCount()
 {
     int mod_count = 0;
-    CAscTabData * doc;
+    const CAscTabData * doc;
 
     for (int i = tabBar()->count(); i-- > 0; ) {
         doc = panel(i)->data();
@@ -930,7 +966,7 @@ int CAscTabWidget::viewByIndex(int index)
 QString CAscTabWidget::titleByIndex(int index, bool mod)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
+        const CAscTabData * doc = panel(index)->data();
         if (doc)
             return doc->title(mod);
     }
@@ -951,7 +987,7 @@ QString CAscTabWidget::urlByView(int id)
 bool CAscTabWidget::modifiedByIndex(int index)
 {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
+        const CAscTabData * doc = panel(index)->data();
         return doc->hasChanges() && !doc->closed();
     }
 
@@ -969,8 +1005,7 @@ bool CAscTabWidget::isLocalByIndex(int index)
 
 bool CAscTabWidget::closedByIndex(int index) {
     if (!(index < 0) && index < count()) {
-        CAscTabData * doc = panel(index)->data();
-        return doc->closed();
+        return panel(index)->data()->closed();
     }
 
     return true;
@@ -980,7 +1015,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
 {
     QMap<int, QString> mapModified;
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; i++) {
         doc = panel(i)->data();
 
@@ -998,7 +1033,7 @@ MapEditors CAscTabWidget::modified(const QString& portalname)
 int CAscTabWidget::findModified(const QString& portalname)
 {
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
+    const CAscTabData * doc;
     for (int i(tabBar()->count()); i-- > 0; ) {
         doc = panel(i)->data();
 
@@ -1017,15 +1052,15 @@ int CAscTabWidget::findModified(const QString& portalname)
 int CAscTabWidget::findFragmented(const QString& portalname)
 {
     wstring portal = portalname.toStdWString();
-    CAscTabData * doc;
-    CTabPanel * panel;
+    const CAscTabData * doc;
+    const CTabPanel * cefpanel;
     for (int i(tabBar()->count()); i-- > 0; ) {
-        panel = (CTabPanel *)widget(i);
-        doc = panel->data();
+        cefpanel = panel(i);
+        doc = cefpanel->data();
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
                 (portal.empty() || doc->url().find(portal) != wstring::npos) )
         {
-            if ( ((CCefViewEditor*)panel->cef())->CheckCloudCryptoNeedBuild() ) {
+            if ( ((CCefViewEditor*)cefpanel->cef())->CheckCloudCryptoNeedBuild() ) {
                 return i;
             }
         }
@@ -1036,22 +1071,22 @@ int CAscTabWidget::findFragmented(const QString& portalname)
 bool CAscTabWidget::isFragmented(int index)
 {
     if (!(index < 0) && index < count()) {
-        CTabPanel * panel = (CTabPanel *)widget(index);
-        CAscTabData * doc = panel->data();
-        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->CheckCloudCryptoNeedBuild();
+        const CTabPanel * cefpanel = panel(index);
+        const CAscTabData * doc = cefpanel->data();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)cefpanel->cef())->CheckCloudCryptoNeedBuild();
     }
     return false;
 }
 
 int CAscTabWidget::findProcessed() const
 {
-    CAscTabData * doc;
-    CTabPanel * panel;
+    const CAscTabData * doc;
+    const CTabPanel * cefpanel;
     for (int i(count()); i-- > 0; ) {
-        panel = (CTabPanel *)widget(i);
-        doc = panel->data();
+        cefpanel = panel(i);
+        doc = cefpanel->data();
         if ( !doc->closed() && doc->isViewType(cvwtEditor) &&
-                ((CCefViewEditor *)panel->cef())->IsBuilding() )
+                ((CCefViewEditor *)cefpanel->cef())->IsBuilding() )
         {
             return i;
         }
@@ -1063,10 +1098,10 @@ int CAscTabWidget::findProcessed() const
 bool CAscTabWidget::isProcessed(int index) const
 {
     if (!(index < 0) && index < count()) {
-        CTabPanel * panel = static_cast<CTabPanel *>(widget(index));
-        CAscTabData * doc = panel->data();
+        const CTabPanel * cefpanel = panel(index);
+        const CAscTabData * doc = cefpanel->data();
 
-        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)panel->cef())->IsBuilding();
+        return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)cefpanel->cef())->IsBuilding();
     }
 
     return false;
@@ -1078,21 +1113,15 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
-            if ( m_dataFullScreen->parent )
-                m_dataFullScreen->parent->show();
-
-            fsWidget = m_dataFullScreen->widget();
-            ((CTabPanel *)fsWidget)->showNormal();
-
             disconnect(cefConnection);
 
-            int index = m_dataFullScreen->tabindex();
-            CAscTabData * doc = ((CTabPanel *)fsWidget)->data();
+#ifdef _LINUX
+            AscAppManager::topWindow()->show();
+#endif
 
-            insertTab(index, fsWidget, doc->title());
-            adjustTabsSize();
-            tabBar()->setTabToolTip(index, doc->title());
-            tabBar()->setCurrentIndex(index);
+            int index = m_dataFullScreen->tabindex();
+            fsWidget = m_dataFullScreen->widget();
+            widget(index)->layout()->addWidget(fsWidget);
 
             RELEASEOBJECT(m_dataFullScreen)
 
@@ -1100,27 +1129,19 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         }
     } else {
         int tabIndex = tabIndexByView(id);
-        if ( !(tabIndex < 0) ) {
-            fsWidget = widget(tabIndex);
-        } else {
+        if ( tabIndex < 0 )
             tabIndex = currentIndex();
-            fsWidget = currentWidget();
-        }
+        fsWidget = panel(tabIndex);
 
         if ( fsWidget ) {
             m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
-            removeTab(tabIndex);
-#ifdef _WIN32
             fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
+#ifdef _WIN32
 #else
-            m_dataFullScreen->parent = qobject_cast<QWidget *>(parent());
-            QWidget * grandpa = qobject_cast<QWidget *>(m_dataFullScreen->parent->parent());
-            if (grandpa) {
-                fsWidget->setParent(grandpa);
-                m_dataFullScreen->parent->hide();
-            }
+            fsWidget->setWindowFlags(Qt::FramelessWindowHint);
+            AscAppManager::topWindow()->hide();
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
             ((CTabPanel *)fsWidget)->cef()->focus();
@@ -1137,14 +1158,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 emit closeAppRequest();
             });
 
-            QPoint pt = mapToGlobal(pos());
-#ifdef _WIN32
-            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-#else
-
-            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
-            fsWidget->setGeometry(QRect(QPoint(0,0), _scr_rect.size()));
-#endif
+            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));
         }
     }
 }

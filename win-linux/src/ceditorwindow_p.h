@@ -73,7 +73,9 @@ class CEditorWindowPrivate : public CCefEventsGate
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
-    bool isPrinting = false;
+    bool isPrinting = false,
+        isFullScreen = false;
+    Qt::WindowFlags window_orig_flags;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
 
@@ -94,6 +96,7 @@ public:
         btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
+        btn->setMouseTracking(true);
 
         m_mapTitleButtons[action] = btn;
 
@@ -227,6 +230,9 @@ public:
         if ( isPrinting ) return;
         isPrinting = true;
 
+#ifdef Q_OS_LINUX
+        WindowUtils::CParentDisable locker(window);
+#endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
             QAscPrinterContext * pContext = m_printData._printer_info.isNull() ?
@@ -323,8 +329,8 @@ public:
     void onFullScreen(bool apply)
     {
         if ( !apply ) isReporterMode = false;
-        if ( apply == panel()->windowState().testFlag(Qt::WindowFullScreen) )
-            return;
+        if ( apply == isFullScreen ) return;
+        isFullScreen = apply;
 
         auto _break_demonstration = [&] {
             CAscExecCommandJS * pCommand = new CAscExecCommandJS;
@@ -340,6 +346,9 @@ public:
         if (!apply) {
             _break_demonstration();
 
+#ifdef Q_OS_LINUX
+            _fs_widget->overrideWindowFlags(window_orig_flags);
+#endif
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
@@ -350,20 +359,21 @@ public:
             disconnect(cefConnection);
         } else {
             QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
-#ifdef _WIN32
             _fs_widget->setWindowIcon(Utils::appIcon());
+            _fs_widget->setWindowTitle(panel()->data()->title());
+
+#ifdef _WIN32
             _fs_widget->setParent(nullptr);
-            window->hide();
-#else
-//                m_dataFullScreen->parent = qobject_cast<QWidget *>(parent());
-//                QWidget * grandpa = qobject_cast<QWidget *>(m_dataFullScreen->parent->parent());
-//                if (grandpa) {
-//                    fsWidget->setParent(grandpa);
-//                    m_dataFullScreen->parent->hide();
-//                }
-#endif
             _fs_widget->showFullScreen();
+#else
+            window_orig_flags = _fs_widget->windowFlags();
+            _fs_widget->setParent(nullptr);
+            _fs_widget->setWindowFlags(Qt::FramelessWindowHint);
+            _fs_widget->showFullScreen();
+            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+#endif
             _fs_widget->cef()->focus();
+            window->hide();
 
             cefConnection = connect(_fs_widget->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
                 _break_demonstration();
@@ -375,10 +385,6 @@ public:
 #ifdef _WIN32
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
             _fs_widget->setWindowState(Qt::WindowFullScreen);                       // fullscreen widget clears that flag after changing geometry
-#else
-
-//            QRect _scr_rect = QApplication::desktop()->screenGeometry(pt);
-//            fsWidget->setGeometry(QRect(QPoint(0,0), _scr_rect.size()));
 #endif
         }
     }
@@ -438,8 +444,9 @@ public:
         return btndock;
     }
 
-    void onWebAppsFeatures(int, std::wstring)
+    void onWebAppsFeatures(int, std::wstring f) override
     {
+        panel()->data()->setFeatures(f);
     }
 
     void onWebTitleChanged(int, std::wstring json)
@@ -478,7 +485,7 @@ public:
 
     bool canExtendTitle()
     {
-        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->prettyTitle();
+        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:");
     }
 };
 

@@ -57,7 +57,7 @@ CSingleWindowBase::~CSingleWindowBase()
 //        m_pButtonMaximize->deleteLater();
 //        m_pButtonMaximize = nullptr;
 //    }
-    qDebug() << "destroy base single window";
+//    qDebug() << "destroy base single window";
 }
 
 CSingleWindowBase::CSingleWindowBase(QRect& rect)
@@ -78,7 +78,7 @@ CSingleWindowBase::CSingleWindowBase(QRect& rect)
     }
 }
 
-void CSingleWindowBase::setScreenScalingFactor(int f)
+void CSingleWindowBase::setScreenScalingFactor(uint f)
 {
     if ( m_dpiRatio != f ) {
         QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
@@ -87,7 +87,7 @@ void CSingleWindowBase::setScreenScalingFactor(int f)
         m_buttonMaximize->setFixedSize(small_btn_size);
         m_buttonClose->setFixedSize(small_btn_size);
 
-        onScreenScalingFactor(f);
+//        onScreenScalingFactor(f);
 
         m_dpiRatio = f;
     }
@@ -108,6 +108,7 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
         m_labelTitle = new QLabel(title);
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        m_labelTitle->setMouseTracking(true);
 
         QSize small_btn_size(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
@@ -117,6 +118,7 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
             btn->setProperty("class", "normal");
             btn->setProperty("act", "tool");
             btn->setFixedSize(small_btn_size);
+            btn->setMouseTracking(true);
 
             return btn;
         };

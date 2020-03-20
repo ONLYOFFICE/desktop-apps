@@ -64,8 +64,11 @@ public:
     bool    isViewType(CefType) const;
     bool    eventLoadSupported() const;
     void    setEventLoadSupported(bool);
+    void    setFeatures(const wstring&);
+    wstring features() const;
+    bool    hasFeature(const wstring&) const;
 
-    AscEditorType   contentType();
+    AscEditorType   contentType() const;
     void            setContentType(AscEditorType);
 private:
     QString _title;
@@ -76,6 +79,7 @@ private:
     CefType _vtype;
     wstring _url;
     bool    _event_load_supported = false;
+    wstring _features;
 
     AscEditorType _typeContent;
 };

@@ -504,3 +504,36 @@ void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
     } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
 }
 #endif
+
+#ifdef Q_OS_LINUX
+namespace WindowUtils {
+    CParentDisable::CParentDisable(QWidget* parent)
+    {
+        if (parent) {
+            if (QCefView::IsSupportLayers())
+            {
+                m_pChild = new QWidget(parent);
+            }
+            else
+            {
+                QWindow * win = new QWindow;
+                win->setOpacity(1);
+                m_pChild = QWidget::createWindowContainer(win, parent);
+            }
+
+            m_pChild->setMouseTracking(true);
+            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
+            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
+            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+            m_pChild->show();
+        }
+    }
+
+    CParentDisable::~CParentDisable()
+    {
+        if (m_pChild)
+            m_pChild->deleteLater();
+    }
+}
+#endif

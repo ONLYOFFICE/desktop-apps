@@ -83,5 +83,17 @@ public:
 #endif
 };
 
+#ifdef Q_OS_LINUX
+namespace WindowUtils {
+    class CParentDisable
+    {
+        QWidget* m_pChild = nullptr;
+    public:
+        CParentDisable(QWidget* parent);
+        ~CParentDisable();
+    };
+}
+#endif
+
 #endif // UTILS_H
 

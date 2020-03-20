@@ -47,7 +47,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
             reg_system.value("titlebar") == "custom" )
         CX11Decoration::turnOff();
 
-    CSingleWindowBase::setWindowTitle(title);
+    setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
@@ -61,6 +61,18 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
 void CSingleWindowPlatform::resizeEvent(QResizeEvent *)
 {
     onSizeEvent(0);
+}
+
+void CSingleWindowPlatform::onMinimizeEvent()
+{
+    CSingleWindowBase::onMinimizeEvent();
+    setWindowState(Qt::WindowMinimized);
+}
+
+void CSingleWindowPlatform::onMaximizeEvent()
+{
+    CSingleWindowBase::onMaximizeEvent();
+    setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
 }
 
 void CSingleWindowPlatform::onSizeEvent(int type)
@@ -86,9 +98,6 @@ void CSingleWindowPlatform::show(bool maximized)
 
 bool CSingleWindowPlatform::event(QEvent * event)
 {
-//    static bool _flg_motion = false;
-//    static bool _flg_left_button = false;
-
     if (event->type() == QEvent::WindowStateChange) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
@@ -108,24 +117,26 @@ bool CSingleWindowPlatform::event(QEvent * event)
         }
     } else
     if ( event->type() == QEvent::MouseButtonPress ) {
-//        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
+        flag_mouse_button_left = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
     } else
     if ( event->type() == QEvent::MouseButtonRelease ) {
-//        if ( _flg_left_button && _flg_motion ) {
-//            uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+        if ( flag_mouse_button_left && flag_mouse_motion ) {
+            onExitSizeMove();
+        }
 
-//            if ( dpi_ratio != m_dpiRatio )
-//                setScreenScalingFactor(dpi_ratio);
-//        }
-
-//        _flg_left_button = _flg_motion = false;
+        flag_mouse_button_left = flag_mouse_motion = false;
     } else
     if ( event->type() == QEvent::Move ) {
-//        if ( !_flg_motion )
-//            _flg_motion = true;
+        if ( !flag_mouse_motion )
+            flag_mouse_motion = true;
 
         QMoveEvent * _e = static_cast<QMoveEvent *>(event);
         onMoveEvent(QRect(_e->pos(), QSize(1,1)));
+    } else
+    if ( event->type() == QEvent::Close ) {
+        onCloseEvent();
+        event->ignore();
+        return false;
     }
 
     return QMainWindow::event(event);
@@ -146,9 +157,9 @@ void CSingleWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
 
 void CSingleWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
 {
-//    if ( m_boxTitle->underMouse() ) {
-//        m_btnMaximize->click();
-//    }
+    if ( m_boxTitleBtns->underMouse() ) {
+        onMaximizeEvent();
+    }
 }
 
 void CSingleWindowPlatform::onScreenScalingFactor(uint f)
@@ -161,6 +172,14 @@ void CSingleWindowPlatform::onScreenScalingFactor(uint f)
     } else _new_rect.setSize(_new_rect.size() / 2);
 
     setGeometry(_new_rect);
+}
+
+void CSingleWindowPlatform::onExitSizeMove()
+{
+    uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
 }
 
 void CSingleWindowPlatform::setWindowTitle(const QString& t)

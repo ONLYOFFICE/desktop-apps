@@ -362,9 +362,9 @@ void CEditorWindow::onExitSizeMove()
     }
 }
 
-void CEditorWindow::onScreenScalingFactor(uint newfactor)
+void CEditorWindow::setScreenScalingFactor(uint newfactor)
 {
-    CSingleWindowPlatform::onScreenScalingFactor(newfactor);
+    CSingleWindowPlatform::setScreenScalingFactor(newfactor);
 
     m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
 
@@ -410,7 +410,7 @@ void CEditorWindow::recalculatePlaces()
     m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
-    m_boxTitleBtns->setGeometry(nCaptionL, cbw, windowW - nCaptionL - cbw, captionH);
+    m_boxTitleBtns->setGeometry(cbw, cbw, windowW - cbw * 2, captionH);
 #endif
 //    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
 //    m_pMainView->setGeometry(0, captionH, windowW, windowH - captionH);
@@ -431,10 +431,6 @@ void CEditorWindow::setReporterMode(bool apply)
         int windowW = m_pMainPanel->width(),
             windowH = m_pMainPanel->height(),
             captionH = TITLE_HEIGHT * m_dpiRatio;
-
-        QRegion reg(0, captionH, windowW, windowH - captionH);
-        m_pMainView->clearMask();
-        m_pMainView->setMask(reg);
     }
 
     d_ptr->isReporterMode = apply;

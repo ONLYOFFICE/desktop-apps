@@ -379,8 +379,8 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
             if ( state ) {
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
-                m_pTabs->setFocusedView();
-                ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+//                m_pTabs->setFocusedView();
+//                ((QCefView *)m_pMainWidget)->GetCefView()->focus();
             } else {
                 m_pTabs->activate(true);
                 m_pMainWidget->setHidden(true);
@@ -985,6 +985,10 @@ void CMainPanel::onDocumentPrint(void * opts)
     if (!printInProcess)
         printInProcess = true; else
         return;
+
+#ifdef Q_OS_LINUX
+    WindowUtils::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
+#endif
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;
     CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());

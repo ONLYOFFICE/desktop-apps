@@ -131,7 +131,11 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 # cef
-core_windows:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -llibcef
+core_windows {
+    PLATFORM_BUILD_FULL = $$PLATFORM_BUILD
+    build_xp:PLATFORM_BUILD_FULL=$$join(PLATFORM_BUILD_FULL, PLATFORM_BUILD_FULL, "", "_xp")
+    LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD_FULL/build -llibcef
+}
 core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
 
 ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)

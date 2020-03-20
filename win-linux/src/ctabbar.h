@@ -79,6 +79,8 @@ protected:
 
     QSize tabSizeHint(int index) const;
 
+    void interruptTabMoving(int index);
+
 private slots:
     void onCloseButton();
     void onCurrentChanged(int);
@@ -92,7 +94,7 @@ private:
     QString m_activeColor = "none";
 
 signals:
-    void tabUndock(int);
+    void tabUndock(int, bool *);
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)

@@ -15,11 +15,11 @@ public:
     explicit CTabPanel(QWidget *parent = nullptr);
     ~CTabPanel();
 
-    QCefView * view();
-    CCefView * cef();
+    QCefView * view() const;
+    CCefView * cef() const;
     void setView(QCefView *);
 
-    CAscTabData * data();
+    CAscTabData * data() const;
     void setData(CAscTabData *);
 
     void initAsEditor();

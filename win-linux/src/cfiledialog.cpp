@@ -51,41 +51,6 @@ CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
 #if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
 #define FILEDIALOG_DONT_USE_MODAL
 #endif
-//
-class CParentDisable
-{
-private:
-    QWidget* m_pChild = nullptr;
-public:
-    CParentDisable(QWidget* parent)
-    {
-        if (parent)
-        {
-            if (QCefView::IsSupportLayers())
-            {
-                m_pChild = new QWidget(parent);
-            }
-            else
-            {
-                QWindow* win = new QWindow((QWindow*)NULL);
-                win->setOpacity(1);
-                m_pChild = QWidget::createWindowContainer(win, parent);
-            }
-
-            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
-            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
-            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
-            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-            m_pChild->show();
-        }
-    }
-    ~CParentDisable()
-    {
-        if (m_pChild)
-            m_pChild->deleteLater();
-    }
-};
-
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 #endif
 {
@@ -183,7 +148,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #endif
 
 #ifndef _WIN32
-    CParentDisable oDisabler((QWidget *)parent());
+    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     while (true) {
@@ -273,7 +238,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 #endif
 
 #ifndef _WIN32
-    CParentDisable oDisabler((QWidget *)parent());
+    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #else
     CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
 #endif

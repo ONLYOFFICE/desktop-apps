@@ -299,7 +299,7 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
         reg_user.setValue("position", saveGeometry());
         reg_user.setValue("windowstate", saveState());
 
-        showFullScreen();
+//        showFullScreen();
     } else {
         setWindowState(s);
 

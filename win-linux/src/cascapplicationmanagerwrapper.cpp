@@ -919,8 +919,82 @@ void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, cons
     }
 }
 
+namespace Drop {
+    const int drop_timeout = 300;
+    auto callback_to_attach(const CEditorWindow * editor) -> void {
+        if ( editor ) {
+            CTabPanel * tabpanel = editor->releaseEditorView();
+//            QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
+//            CAscApplicationManagerWrapper::sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
+
+            CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
+            CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
+
+            AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
+        }
+    }
+
+
+    size_t drop_handle;
+    auto validate_drop(size_t handle, const QPoint& pt) -> void {
+        CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
+        drop_handle = handle;
+
+        static QPoint last_cursor_pos;
+        static QTimer * drop_timer = nullptr;
+        if ( !drop_timer ) {
+            drop_timer = new QTimer;
+            QObject::connect(qApp, &QCoreApplication::aboutToQuit, drop_timer, &QTimer::deleteLater);
+            QObject::connect(drop_timer, &QTimer::timeout, []{
+                CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
+                QPoint current_cursor = QCursor::pos();
+                if ( main_window->pointInTabs(current_cursor) ) {
+                    if ( current_cursor == last_cursor_pos ) {
+                        drop_timer->stop();
+
+                        if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+                            callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
+                    } else {
+                        last_cursor_pos = current_cursor;
+                    }
+                } else {
+                    drop_timer->stop();
+                }
+            });
+        }
+
+        if ( main_window->pointInTabs(pt) ) {
+            if ( !drop_timer->isActive() )
+                drop_timer->start(drop_timeout);
+
+            last_cursor_pos = QCursor::pos();
+        } else
+        if ( drop_timer->isActive() )
+            drop_timer->stop();
+    }
+}
+
+const CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromHandle(size_t handle)
+{
+    APP_CAST(_app)
+
+    for (auto const& w : _app.m_vecEditors) {
+        CEditorWindow * e = reinterpret_cast<CEditorWindow *>(w);
+
+        if ( (size_t)e->handle() == handle ) {
+            return e;
+        }
+    }
+
+    return nullptr;
+}
+
+
 void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPoint& pt)
 {
+#if 1
+    Drop::validate_drop(h,pt);
+#else
     APP_CAST(_app)
 
     if ( _app.m_vecWindows.size() > 0 ) {
@@ -950,6 +1024,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
             }
         }
     }
+#endif
 }
 
 CMainWindow * CAscApplicationManagerWrapper::topWindow()
@@ -1016,21 +1091,23 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             }
 
             if ( _editor ) {
+//                _editor->setParent(nullptr);
                 e->accept();
-                QJsonObject _json_obj{{"action", "undocking"},
-                                      {"status", "undocked"}};
-                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
+//                QJsonObject _json_obj{{"action", "undocking"},
+//                                      {"status", "undocked"}};
+//                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
-                SKIP_EVENTS_QUEUE([=]{
+//                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
                         QRect rect = _main_window->windowRect();
 
-                        CEditorWindow * editor_win = new CEditorWindow(QRect(rect.left() + 150, rect.top() + 50, rect.width(), rect.height()), _editor);
+                        CEditorWindow * editor_win = new CEditorWindow(rect.translated(QPoint(50,50)), _editor);
                         editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
+                        sendCommandTo(_editor->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
                     }
-                });
+//                });
             }
         }
 

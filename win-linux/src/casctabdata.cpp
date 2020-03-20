@@ -122,7 +122,7 @@ bool CAscTabData::isViewType(CefType vt) const
     return vt == _vtype;
 }
 
-AscEditorType CAscTabData::contentType()
+AscEditorType CAscTabData::contentType() const
 {
     return _typeContent;
 }
@@ -150,4 +150,25 @@ bool CAscTabData::eventLoadSupported() const
 void CAscTabData::setEventLoadSupported(bool value)
 {
     _event_load_supported = value;
+}
+
+void CAscTabData::setFeatures(const wstring& fs)
+{
+    _features = fs;
+}
+
+wstring CAscTabData::features() const
+{
+    return _features;
+}
+
+bool CAscTabData::hasFeature(const wstring& f) const
+{
+    size_t _pos;
+    if ((_pos = _features.find(f)) != wstring::npos) {
+//        if (_features.find(L"true", _pos + 1) != wstring::npos)
+            return true;
+    }
+
+    return false;
 }
