@@ -62,6 +62,80 @@ typedef struct {
     unsigned long status;
 } MotifWmHints;
 
+namespace {
+    constexpr const char* atomsToCache[] = {
+        "_MOTIF_WM_HINTS",
+        "_NET_WM_MOVERESIZE",
+        "_NET_SUPPORTING_WM_CHECK",
+        "_NET_WM_NAME"
+    };
+
+    template <typename T, size_t N>
+    constexpr size_t size(const T (&array)[N]) noexcept {
+      return N;
+    }
+
+    constexpr int cacheCount = size(atomsToCache);
+
+    class X11AtomCache {
+    public:
+        static X11AtomCache& getInstance();
+
+    private:
+        X11AtomCache();
+        ~X11AtomCache() {}
+        X11AtomCache(const X11AtomCache&) = delete;
+        X11AtomCache& operator=(const X11AtomCache&) = delete;
+
+        Atom getAtom(const char*) const;
+
+        Display* xdisplay_;
+        mutable std::map<std::string, Atom> cached_atoms_;
+
+        friend Atom GetAtom(const char* name);
+    };
+
+    Atom GetAtom(const char* name) {
+      return X11AtomCache::getInstance().getAtom(name);
+    }
+
+    X11AtomCache& X11AtomCache::getInstance() {
+        static X11AtomCache _instance;
+        return _instance;
+    }
+
+    auto getXDisplay() -> Display * {
+        static Display* display = NULL;
+        if ( !display )
+              display = XOpenDisplay(NULL);
+//              display = QX11Info::display();
+
+        return display;
+    }
+
+    X11AtomCache::X11AtomCache() : xdisplay_(getXDisplay()) {
+      std::vector<Atom> cached_atoms(cacheCount);
+      XInternAtoms(xdisplay_, const_cast<char**>(atomsToCache), cacheCount, False, cached_atoms.data());
+
+      for (int i = 0; i < cacheCount; ++i)
+        cached_atoms_[atomsToCache[i]] = cached_atoms[i];
+    }
+
+    Atom X11AtomCache::getAtom(const char* name) const {
+      const auto it = cached_atoms_.find(name);
+      if (it != cached_atoms_.end())
+        return it->second;
+
+      Atom atom = XInternAtom(xdisplay_, name, False);
+      if (atom == None) {
+//        static int error_count = 0;
+//        ++error_count;
+      }
+      cached_atoms_.emplace(name, atom);
+      return atom;
+    }
+}
+
 CX11Decoration::CX11Decoration(QWidget * w)
     : m_window(w)
     , m_title(NULL)
@@ -229,7 +303,8 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
         event.xclient.type = ClientMessage;
         event.xclient.display = xdisplay_;
         event.xclient.window = m_window->winId();
-        event.xclient.message_type = XInternAtom(xdisplay_, "_NET_WM_MOVERESIZE", false);
+//        event.xclient.message_type = XInternAtom(xdisplay_, "_NET_WM_MOVERESIZE", false);
+        event.xclient.message_type = GetAtom("_NET_WM_MOVERESIZE");
         event.xclient.format = 32;
         event.xclient.data.l[0] = e->globalPos().x();
         event.xclient.data.l[1] = e->globalPos().y();
@@ -284,7 +359,8 @@ void CX11Decoration::switchDecoration(bool on)
         motif_hints.decorations = int(on);
 
         Display * _xdisplay = QX11Info::display();
-        Atom hint_atom = XInternAtom(_xdisplay, "_MOTIF_WM_HINTS", false);
+//        Atom hint_atom = XInternAtom(_xdisplay, "_MOTIF_WM_HINTS", false);
+        Atom hint_atom = GetAtom("_MOTIF_WM_HINTS");
         if ( hint_atom != None &&
                     XChangeProperty(_xdisplay, m_window->winId(),
                                hint_atom, hint_atom, 32, PropModeReplace,

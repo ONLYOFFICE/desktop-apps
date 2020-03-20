@@ -57,7 +57,7 @@ CSingleWindowBase::~CSingleWindowBase()
 //        m_pButtonMaximize->deleteLater();
 //        m_pButtonMaximize = nullptr;
 //    }
-    qDebug() << "destroy base single window";
+//    qDebug() << "destroy base single window";
 }
 
 CSingleWindowBase::CSingleWindowBase(QRect& rect)
