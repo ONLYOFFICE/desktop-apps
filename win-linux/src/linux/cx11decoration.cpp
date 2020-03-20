@@ -63,6 +63,32 @@ typedef struct {
 } MotifWmHints;
 
 namespace {
+    enum X11_WindowManagerName {
+        WM_OTHER,    // We were able to obtain the WM's name, but there is no corresponding entry in this enum.
+        WM_UNNAMED,  // Either there is no WM or there is no way to obtain the WM name.
+        WM_AWESOME,
+        WM_BLACKBOX,
+        WM_COMPIZ,
+        WM_ENLIGHTENMENT,
+        WM_FLUXBOX,
+        WM_I3,
+        WM_ICE_WM,
+        WM_ION3,
+        WM_KWIN,
+        WM_MATCHBOX,
+        WM_METACITY,
+        WM_MUFFIN,
+        WM_MUTTER,
+        WM_NOTION,
+        WM_OPENBOX,
+        WM_QTILE,
+        WM_RATPOISON,
+        WM_STUMPWM,
+        WM_WMII,
+        WM_XFWM4,
+        WM_XMONAD
+    };
+
     constexpr const char* atomsToCache[] = {
         "_MOTIF_WM_HINTS",
         "_NET_WM_MOVERESIZE",
@@ -134,6 +160,116 @@ namespace {
       cached_atoms_.emplace(name, atom);
       return atom;
     }
+
+    auto getX11RootWindow() -> XID {
+        return DefaultRootWindow(getXDisplay());
+    }
+
+    // Note: The caller should free the resulting value data.
+    bool get_property(XID window, const std::string& property_name, long max_length,
+                         Atom* type, int* format, unsigned long* num_items, unsigned char** property)
+    {
+        Atom property_atom = GetAtom(property_name.c_str());
+        unsigned long remaining_bytes = 0;
+        return XGetWindowProperty(getXDisplay(), window, property_atom,
+                                    0,           // offset into property data to read
+                                    max_length,  // max length to get
+                                    False,       // deleted
+                                    AnyPropertyType, type, format, num_items,
+                                    &remaining_bytes, property);
+    }
+
+    bool get_int_property(XID window, const std::string& property_name, int* value) {
+        Atom type = None;
+        int format = 0;  // size in bits of each item in 'property'
+        unsigned long num_items = 0;
+        unsigned char* property = nullptr;
+
+        int result = get_property(window, property_name, 1, &type, &format, &num_items, &property);
+        if (result == Success) {
+            if (format == 32 && num_items == 1) {
+                *value = static_cast<int>(*(reinterpret_cast<long*>(property)));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool get_string_property(XID window, const std::string& property_name, std::string* value) {
+        Atom type = None;
+        int format = 0;  // size in bits of each item in 'property'
+        unsigned long num_items = 0;
+        unsigned char* property = nullptr;
+
+        int result = get_property(window, property_name, 1024, &type, &format, &num_items, &property);
+        if (result == Success) {
+            if (format == 8) {
+                value->assign(reinterpret_cast<char*>(property), num_items);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    auto supports_ewmh() -> bool {
+        static bool supports_ewmh = false;
+        static bool supports_ewmh_cached = false;
+        if (!supports_ewmh_cached) {
+            supports_ewmh_cached = true;
+
+            int wm_window = 0u;
+            if (!get_int_property(getX11RootWindow(), "_NET_SUPPORTING_WM_CHECK", &wm_window)) {
+                supports_ewmh = false;
+                return false;
+            }
+
+            int wm_window_property = 0;
+            bool result = get_int_property(wm_window, "_NET_SUPPORTING_WM_CHECK", &wm_window_property);
+            supports_ewmh = result && wm_window_property == wm_window;
+        }
+
+        return supports_ewmh;
+    }
+
+    auto get_window_manager_name(std::string* wm_name) -> bool {
+        if ( supports_ewmh() ) {
+            int wm_window = 0;
+            if (get_int_property(getX11RootWindow(), "_NET_SUPPORTING_WM_CHECK", &wm_window)) {
+                return get_string_property(static_cast<XID>(wm_window), "_NET_WM_NAME", wm_name);
+            }
+        }
+
+        return false;
+    }
+
+    auto guess_window_manager() -> X11_WindowManagerName {
+        std::string name;
+        if (!get_window_manager_name(&name)) return WM_UNNAMED;
+        if (name == "awesome")            return WM_AWESOME;
+        if (name == "Blackbox")           return WM_BLACKBOX;
+        if (name == "Compiz" || name == "compiz") return WM_COMPIZ;
+        if (name == "e16" || name == "Enlightenment") return WM_ENLIGHTENMENT;
+        if (name == "Fluxbox")            return WM_FLUXBOX;
+        if (name == "i3")                 return WM_I3;
+//        if (base::StartsWith(name, "IceWM", base::CompareCase::SENSITIVE)) return WM_ICE_WM;
+        if (name == "ion3")               return WM_ION3;
+        if (name == "KWin")               return WM_KWIN;
+        if (name == "matchbox")           return WM_MATCHBOX;
+        if (name == "Metacity")           return WM_METACITY;
+        if (name == "Mutter (Muffin)")    return WM_MUFFIN;
+        if (name == "GNOME Shell")        return WM_MUTTER;  // GNOME Shell uses Mutter
+        if (name == "Mutter")             return WM_MUTTER;
+        if (name == "notion")             return WM_NOTION;
+        if (name == "Openbox")            return WM_OPENBOX;
+        if (name == "qtile")              return WM_QTILE;
+        if (name == "ratpoison")          return WM_RATPOISON;
+        if (name == "stumpwm")            return WM_STUMPWM;
+        if (name == "wmii")               return WM_WMII;
+        if (name == "Xfwm4")              return WM_XFWM4;
+        if (name == "xmonad")             return WM_XMONAD;
+        return X11_WindowManagerName::WM_OTHER;
+    }
+
 }
 
 CX11Decoration::CX11Decoration(QWidget * w)
@@ -147,6 +283,8 @@ CX11Decoration::CX11Decoration(QWidget * w)
 {
     createCursors();
     m_nDirection = -1;
+
+    need_to_check_motion = guess_window_manager() == WM_KWIN;
 }
 
 CX11Decoration::~CX11Decoration()
@@ -283,6 +421,10 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
 
         QObject::connect(m_motionTimer, &QTimer::timeout, [=]{
             if ( CX11Decoration::checkButtonState(Qt::LeftButton) ) {
+                if ( need_to_check_motion ) {
+                    QMoveEvent _e{QCursor::pos(), m_window->pos()};
+                    QApplication::sendEvent(m_window, &_e);
+                }
             } else {
                 m_motionTimer->stop();
                 sendButtonRelease();
