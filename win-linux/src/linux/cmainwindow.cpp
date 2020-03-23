@@ -354,7 +354,7 @@ CMainPanel * CMainWindow::mainPanel() const
 
 QRect CMainWindow::windowRect() const
 {
-    return geometry();
+    return normalGeometry();
 }
 
 bool CMainWindow::isMaximized() const
