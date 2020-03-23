@@ -52,6 +52,9 @@ const int k_NET_WM_MOVERESIZE_SIZE_BOTTOM =      5;
 const int k_NET_WM_MOVERESIZE_SIZE_BOTTOMLEFT =  6;
 const int k_NET_WM_MOVERESIZE_SIZE_LEFT =        7;
 const int k_NET_WM_MOVERESIZE_MOVE =             8;
+#define k_NET_WM_MOVERESIZE_SIZE_KEYBOARD     9   /* size via keyboard */
+#define k_NET_WM_MOVERESIZE_MOVE_KEYBOARD    10   /* move via keyboard */
+#define k_NET_WM_MOVERESIZE_CANCEL           11   /* cancel operation */
 
 #define MWM_HINTS_DECORATIONS   2
 typedef struct {
@@ -272,6 +275,42 @@ namespace {
 
 }
 
+auto release_main_cursor(XID id) -> void {
+    Display *display = XOpenDisplay(NULL);
+    if(display == NULL)
+    {
+//        std::cout<<"Cannot open display"<<std::endl;
+    }
+
+    QPoint pt{QCursor::pos()};
+    XWarpPointer(display, None, RootWindow(display, DefaultScreen(display)), 0, 0, 0, 0, pt.x(), pt.y());
+    XEvent event;
+
+    memset(&event, 0x00, sizeof(event));
+
+    event.type = ButtonPress;
+    event.xbutton.button = Button1;
+    event.xbutton.same_screen = True;
+    event.xbutton.root = RootWindow(display, DefaultScreen(display));
+    event.xbutton.window = id;
+    event.xbutton.subwindow = 0;
+    event.xbutton.x_root = pt.x();
+    event.xbutton.y_root = pt.y();
+    event.xbutton.x = pt.x();
+    event.xbutton.y = pt.y();
+    event.xbutton.state = 0;
+
+//    XSendEvent(display, PointerWindow, True, ButtonPressMask, &event);
+//    XFlush(display);
+//    usleep(100000);
+
+    event.type = ButtonRelease;
+    event.xbutton.state = 0x100;
+
+    XSendEvent(display, PointerWindow, True, ButtonReleaseMask, &event);
+    XFlush(display);
+}
+
 CX11Decoration::CX11Decoration(QWidget * w)
     : m_window(w)
     , m_title(NULL)
@@ -410,6 +449,29 @@ void CX11Decoration::dispatchMouseDown(QMouseEvent *e)
         m_nDirection = oTitleRect.contains(e->pos()) ?
                         k_NET_WM_MOVERESIZE_MOVE : hitTest(e->pos().x(), e->pos().y());
     }
+
+    QTimer::singleShot(100, [=]{
+        Display *dpy = getXDisplay();
+
+        XSetInputFocus(dpy, m_window->winId(), RevertToNone, CurrentTime);
+
+        long mask = ExposureMask | SubstructureNotifyMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | ButtonMotionMask;
+        XSelectInput(getXDisplay(), m_window->winId(),mask);
+//        XSelectInput(dpy, XDefaultRootWindow(dpy),mask);
+//        XFlush(dpy);
+
+        static int _c = 0;
+        XEvent _e;
+        while (XPending(dpy)) {
+//            XCheckMaskEvent()
+//        while (XCheckWindowEvent(dpy, XDefaultRootWindow(dpy), mask, &_e)) {
+//            qDebug() << ++_c << "before event";
+            XNextEvent(dpy, &_e);
+            qDebug() << ++_c << "event" << _e.type;
+        }
+
+        qDebug() << "no event";
+    });
 }
 
 void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
@@ -420,6 +482,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
         m_motionTimer = new QTimer;
 
         QObject::connect(m_motionTimer, &QTimer::timeout, [=]{
+            qDebug() << "motion timer:" << m_window->winId();
             if ( CX11Decoration::checkButtonState(Qt::LeftButton) ) {
                 if ( need_to_check_motion ) {
                     QMoveEvent _e{QCursor::pos(), m_window->pos()};
@@ -578,6 +641,8 @@ void CX11Decoration::sendButtonRelease()
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
+
+    qDebug() << "send button release to" << m_window->winId();
 }
 
 void CX11Decoration::setCursorPos(int x, int y)
@@ -587,4 +652,51 @@ void CX11Decoration::setCursorPos(int x, int y)
     XSelectInput(xdisplay_, root_window, KeyReleaseMask);
     XWarpPointer(xdisplay_, None, root_window, 0, 0, 0, 0, x, y);
     XFlush(xdisplay_);
+}
+
+void* x11_handle_events(void *void_ptr)
+{
+//    Renderer* renderer = static_cast<Renderer*>(void_ptr);
+//    renderer->stop = false;
+//    XEvent event;
+//    XWindowAttributes opengl_attrs;
+//    while(!renderer->stop)
+//    {
+//        XNextEvent(renderer->x_display, &event);
+//        switch(event.type)
+//        {
+//            case Expose:
+//            if (event.xexpose.window == renderer->child)
+//            {
+//                XRaiseWindow(renderer->x_display, renderer->win);
+//            }
+//            break;
+
+//            case FocusIn:
+//           if (event.xfocus.window == renderer->child)
+//            {
+//                XRaiseWindow(renderer->x_display, renderer->win);
+//            }
+//            break;
+
+//        }
+
+//        // Make sure both windows are in the same location
+//        XGetWindowAttributes(renderer->x_display, renderer->child, &opengl_attrs);
+//        XMoveWindow(renderer->x_display, renderer->win, opengl_attrs.x, opengl_attrs.y);
+//    }
+
+
+    pthread_exit(0);
+    return NULL;
+}
+
+void CX11Decoration::grabCursor()
+{
+    qDebug() << "grab pointer";
+//    Display * dpy = getXDisplay();
+    Display * dpy = QX11Info::display();
+    XSetInputFocus(dpy, m_title->winId(), RevertToNone, CurrentTime);
+
+//    int id = pthread_create(&x11loop, NULL, x11_handle_events, this);
 }

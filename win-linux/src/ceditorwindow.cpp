@@ -158,10 +158,14 @@ bool CEditorWindow::holdView(const wstring& portal) const
 
 void CEditorWindow::undock(bool maximized)
 {
+#ifdef Q_OS_LINUX
+    maximized = false;
+#else
     if ( maximized ) {
         m_restoreMaximized = true;
         maximized = false;
     }
+#endif
 
     CSingleWindowPlatform::show(maximized);
     CSingleWindowPlatform::captureMouse();
