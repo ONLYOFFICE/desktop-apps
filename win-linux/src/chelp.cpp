@@ -45,7 +45,7 @@ void CHelp::out()
     qWarning() << "keys:";
     qWarning() << "    --custom-title-bar turn off system title bar";
     qWarning() << "    --system-title-bar turn on system title bar";
-    qWarning() << "    --keeplang:en keep the language";
-    qWarning() << "    --lang:en apply the language for the current session";
-    qWarning() << "    --new:[doc|cell|slide] create new document/spreadsheet/presentation";
+    qWarning() << "    --keeplang=en keep the language";
+    qWarning() << "    --lang=en apply the language for the current session";
+    qWarning() << "    --new=[doc|cell|slide] create new document/spreadsheet/presentation";
 }

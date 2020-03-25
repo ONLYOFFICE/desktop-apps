@@ -41,6 +41,10 @@
 #endif
 
 using namespace std;
+namespace InputArgs {
+    auto contains(QString&) -> bool;
+    auto get_arg_value(const QString& param) -> QString;
+}
 
 class Utils {
 public:
