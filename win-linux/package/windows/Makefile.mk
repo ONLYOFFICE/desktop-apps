@@ -40,7 +40,9 @@ ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ISCC_PARAMS += //DsOutputFileName=$(notdir $(basename $@))
+ifdef ENABLE_SIGNING
 ISCC_PARAMS += //DENABLE_SIGNING=1
+endif
 ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
