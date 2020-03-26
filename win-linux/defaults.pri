@@ -105,6 +105,7 @@ SOURCES += \
 #    src/casclabel.cpp
 
 RESOURCES += $$PWD/resources.qrc
+DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
 isEqual(QT_MAJOR_VERSION, 5) {
     lessThan(QT_MINOR_VERSION, 10) {
