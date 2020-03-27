@@ -632,6 +632,9 @@
 
                 if (NSString *provider = tab.params[@"provider"]) {
                     if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                        if ([localTabValue isEqualToString:localValue]) {
+                            return tab;
+                        }
                         localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                     }
                 }
