@@ -121,10 +121,12 @@
         </div>
     </div>
 
+    <div class="injected-svg">
     <inline src="../res/img/logo_nextcloud.svg" />
     <inline src="../res/img/logo_onlyoffice.svg" />
     <inline src="../res/img/logo_owncloud.svg" />
     <inline src="../res/img/icon_portals.svg" />
+    </div>
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>
