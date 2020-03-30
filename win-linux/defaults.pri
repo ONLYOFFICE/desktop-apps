@@ -105,7 +105,6 @@ SOURCES += \
 #    src/casclabel.cpp
 
 RESOURCES += $$PWD/resources.qrc
-DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
 isEqual(QT_MAJOR_VERSION, 5) {
     lessThan(QT_MINOR_VERSION, 10) {
@@ -166,10 +165,12 @@ core_linux {
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
 
     DEFINES += DOCUMENTSCORE_OPENSSL_SUPPORT
+    DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 }
 
 core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
+    DEFINES += COPYRIGHT_YEAR=$$system("echo %Date:~10,4%")
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
