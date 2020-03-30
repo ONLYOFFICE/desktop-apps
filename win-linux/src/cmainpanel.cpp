@@ -727,6 +727,9 @@ void CMainPanel::onFileLocation(int uid, QString param)
             }
 
             if ( !(_tab_index < 0) ) {
+                if (m_mainWindowState == Qt::WindowMinimized)
+                    emit mainWindowChangeState(Qt::WindowNoState);
+
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(_tab_index);
             }
