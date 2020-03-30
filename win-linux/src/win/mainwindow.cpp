@@ -92,7 +92,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.intersects(_window_rect) ) {
         if ( _screen_size.width() < _window_rect.width() + 120 ||
-                _screen_size.height() < _window_rect.height() + 120 )
+                _screen_size.height() < _window_rect.height() )
         {
             _window_rect.setLeft(_screen_size.left()),
             _window_rect.setTop(_screen_size.top());
