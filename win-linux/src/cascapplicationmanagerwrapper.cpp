@@ -500,6 +500,25 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
+        CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
+        vector<wstring>& files = pData->get_Files();
+
+        CEditorWindow * _editor;
+        for (size_t i(files.size()); i --> 0;) {
+            _editor = editorWindowFromUrl(QString::fromStdWString(files[i]));
+
+            if ( _editor ) {
+                files.erase(files.begin() + i);
+#ifdef Q_OS_WIN
+                SetForegroundWindow(_editor->handle());
+#else
+                _editor->activateWindow();
+#endif
+            }
+        }
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
         CAscLocalOpenFileRecent_Recover * data = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
