@@ -1146,7 +1146,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             ((CTabPanel *)fsWidget)->showFullScreen();
             ((CTabPanel *)fsWidget)->cef()->focus();
 
-            cefConnection = connect(((CTabPanel *)fsWidget)->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
+            cefConnection = connect((CTabPanel *)fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
 

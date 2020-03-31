@@ -137,6 +137,11 @@ void CTabPanel::timerEvent(QTimerEvent *)
     }
 }
 
+void CTabPanel::closeEvent(QCloseEvent *event)
+{
+    emit closePanel(event);
+}
+
 void CTabPanel::resize(int w, int h)
 {
     if ( m_idTimerResize == 0 ) {

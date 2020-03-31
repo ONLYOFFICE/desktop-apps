@@ -375,7 +375,7 @@ public:
             _fs_widget->cef()->focus();
             window->hide();
 
-            cefConnection = connect(_fs_widget->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
+            cefConnection = connect(_fs_widget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 _break_demonstration();
 
                 e->ignore();
