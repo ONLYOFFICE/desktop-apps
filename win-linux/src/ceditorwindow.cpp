@@ -271,7 +271,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
     if ( d_ptr->canExtendTitle() )
         layoutBtns->addWidget(d_ptr.get()->iconUser());
-    else m_labelTitle->setText("ONLYOFFICE");
+    else m_labelTitle->setText(APP_TITLE);
 
     if ( custom ) {
         layoutBtns->addWidget(m_buttonMinimize);
