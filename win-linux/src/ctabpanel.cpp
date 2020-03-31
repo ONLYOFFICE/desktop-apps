@@ -5,6 +5,7 @@
 
 #include <QPainter>
 #include <QDebug>
+#include <QCloseEvent>
 
 using namespace NSEditorApi;
 
@@ -135,6 +136,16 @@ void CTabPanel::timerEvent(QTimerEvent *)
     } else {
         m_startSize = m_lastSize;
     }
+}
+
+void CTabPanel::closeEvent(QCloseEvent *event)
+{
+    if (this->isFullScreen())
+    {
+        event->ignore();
+        return;
+    }
+    QWidget::closeEvent(event);
 }
 
 void CTabPanel::resize(int w, int h)

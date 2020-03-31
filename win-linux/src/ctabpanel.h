@@ -39,6 +39,8 @@ public:
     bool prettyTitle() { return m_prettyTitle; }
     void setPrettyTitle(bool v) { m_prettyTitle = v; }
 
+    void closeEvent(QCloseEvent *event);
+
 protected:
     void timerEvent(QTimerEvent *event);
     void paintEvent(QPaintEvent *event);
