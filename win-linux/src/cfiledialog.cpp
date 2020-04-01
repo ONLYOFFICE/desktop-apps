@@ -255,18 +255,20 @@ QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& 
 
 QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 {
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
 
-    return modalOpen(path, filter, nullptr, false);
+    return modalOpen(path, filter, &selected, false);
 }
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 {
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;"));
+    filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
 
-    return modalOpen(path, filter,  nullptr, true);
+    return modalOpen(path, filter, &selected, true);
 }
 
 QStringList CFileDialogWrapper::modalOpenPlugin(const QString& path)
