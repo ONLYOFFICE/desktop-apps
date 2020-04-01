@@ -1155,7 +1155,8 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
 
                 e->ignore();
-                emit closeAppRequest();
+                emit tabCloseRequested(m_dataFullScreen->tabindex());
+//                emit closeAppRequest();
             });
 
             fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));

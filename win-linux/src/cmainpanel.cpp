@@ -487,6 +487,7 @@ void CMainPanel::onTabCloseRequest(int index)
 {
     if ( !m_closeAct.isEmpty() ) return;
 
+    onFullScreen(-1, false);
     if ( m_pTabs->isProcessed(index) ) {
         return;
     } else {
