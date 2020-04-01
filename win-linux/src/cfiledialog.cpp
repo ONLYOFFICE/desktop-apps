@@ -321,15 +321,16 @@ QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 
 QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QString& path, bool multi)
 {
-    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    QString selected;
     if ( type == "video" ) {
-        filter.prepend(tr("Video file") + " (*.webm *.mkv *.flv *.ogg *.avi *.mov *.wmv *.mp4 *.m4v *.mpg *.mp2 *.mpeg *.mpe *.mpv *.m2v *.m4v *.3gp *.3g2 *.f4v *.m2ts *.mts);;");
+        selected = tr("Video file") + " (*.webm *.mkv *.flv *.ogg *.avi *.mov *.wmv *.mp4 *.m4v *.mpg *.mp2 *.mpeg *.mpe *.mpv *.m2v *.m4v *.3gp *.3g2 *.f4v *.m2ts *.mts)";
     } else
     if ( type == "audio" ) {
-        filter.prepend(tr("Audio file") + " (*.flac *.mp3 *.ogg *.wav *.wma *.ape *.aac *.m4a *.alac);;");
+        selected = tr("Audio file") + " (*.flac *.mp3 *.ogg *.wav *.wma *.ape *.aac *.m4a *.alac)";
     }
 
-    return modalOpen(path, filter, nullptr, multi);
+    QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" + selected;
+    return modalOpen(path, filter, &selected, multi);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)
