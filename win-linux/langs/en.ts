@@ -352,7 +352,7 @@
         <location filename="../src/cfiledialog.cpp" line="260"/>
         <location filename="../src/cfiledialog.cpp" line="269"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="277"/>
