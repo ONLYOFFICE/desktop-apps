@@ -1155,7 +1155,8 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
 
                 e->ignore();
-                emit tabCloseRequested(m_dataFullScreen->tabindex());
+                // TODO: associate panel with reporter window and close both simultaneously
+                QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
 //                emit closeAppRequest();
             });
 
