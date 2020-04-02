@@ -355,7 +355,7 @@ public:
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
             _fs_widget->showNormal();
-            _fs_widget->view()->setFocusToCef();
+            _fs_widget->cef()->focus();
 
             disconnect(cefConnection);
         } else {
