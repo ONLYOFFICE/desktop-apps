@@ -47,6 +47,11 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
 {
     CMainPanel * _pMainPanel = mainPanel();
     QPoint _pt_local = _pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+#ifdef Q_OS_WIN
+# if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    _pt_local -= _pMainPanel->parentWidget()->mapToGlobal(_pMainPanel->geometry().topLeft());
+# endif
+#endif
     int _index = _pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
 
     if ( !(_index < 0) ) {
