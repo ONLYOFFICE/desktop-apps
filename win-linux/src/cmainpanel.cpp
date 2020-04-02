@@ -367,7 +367,7 @@ void CMainPanel::pushButtonMainClicked()
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
 
-        ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+        ((QCefView *)m_pMainWidget)->setFocusToCef();
         onTabChanged(m_pTabs->currentIndex());
     }
 }
@@ -380,7 +380,7 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
 //                m_pTabs->setFocusedView();
-//                ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+//                ((QCefView *)m_pMainWidget)->setFocusToCef();
             } else {
                 m_pTabs->activate(true);
                 m_pMainWidget->setHidden(true);
@@ -402,7 +402,7 @@ void CMainPanel::focus() {
     if (m_pTabs->isActive()) {
         m_pTabs->setFocusedView();
     } else {
-        ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+        ((QCefView *)m_pMainWidget)->setFocusToCef();
     }
 }
 

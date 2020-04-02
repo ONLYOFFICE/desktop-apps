@@ -909,7 +909,7 @@ void CAscTabWidget::setFocusedView(int index)
         }
 
         if ( panel(nIndex) )
-            panel(nIndex)->cef()->focus();
+            panel(nIndex)->view()->setFocusToCef();
     }
 }
 
@@ -1144,7 +1144,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             AscAppManager::topWindow()->hide();
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
-            ((CTabPanel *)fsWidget)->cef()->focus();
+            ((CTabPanel *)fsWidget)->view()->setFocusToCef();
 
             cefConnection = connect((CTabPanel *)fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;

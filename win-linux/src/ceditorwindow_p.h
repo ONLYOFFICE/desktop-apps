@@ -355,7 +355,7 @@ public:
             window->m_pMainPanel->layout()->addWidget(_fs_widget);
             window->recalculatePlaces();
             _fs_widget->showNormal();
-            _fs_widget->cef()->focus();
+            _fs_widget->view()->setFocusToCef();
 
             disconnect(cefConnection);
         } else {
@@ -373,7 +373,7 @@ public:
             _fs_widget->showFullScreen();
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
 #endif
-            _fs_widget->cef()->focus();
+            _fs_widget->view()->setFocusToCef();
             window->hide();
 
             cefConnection = connect(_fs_widget, &CTabPanel::closePanel, [=](QCloseEvent * e){
