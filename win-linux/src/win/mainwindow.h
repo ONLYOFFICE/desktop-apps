@@ -77,6 +77,7 @@ public:
     QRect windowRect() const;
     bool isMaximized() const;
     HWND handle() const;
+    void bringToTop() const override;
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211

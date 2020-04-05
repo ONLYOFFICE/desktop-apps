@@ -57,6 +57,7 @@ public:
     bool isMaximized() const;
     void sendSertificate(int viewid);
     QWidget * handle() const;
+    void bringToTop() const override;
 
 protected:
     void closeEvent(QCloseEvent *);
