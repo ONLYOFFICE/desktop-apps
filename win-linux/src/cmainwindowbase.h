@@ -12,6 +12,7 @@ public:
     virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const = 0;
     virtual bool isMaximized() const = 0;
+    virtual void bringToTop() const = 0;
     virtual int attachEditor(QWidget *, int index = -1);
     virtual int attachEditor(QWidget *, const QPoint&);
     virtual bool pointInTabs(const QPoint& pt) const;
