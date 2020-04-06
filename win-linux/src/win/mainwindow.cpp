@@ -943,5 +943,6 @@ bool CMainWindow::pointInTabs(const QPoint& pt) const
 void CMainWindow::bringToTop() const
 {
     SetForegroundWindow(handle());
+    SetFocus(handle());
     SetActiveWindow(handle());
 }
