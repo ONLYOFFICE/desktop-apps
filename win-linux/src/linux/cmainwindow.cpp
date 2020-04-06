@@ -407,5 +407,5 @@ void CMainWindow::captureMouse(int tabindex)
 
 void CMainWindow::bringToTop() const
 {
-    QApplication::setActiveWindow(this);
+    QApplication::setActiveWindow(const_cast<CMainWindow *>(this));
 }
