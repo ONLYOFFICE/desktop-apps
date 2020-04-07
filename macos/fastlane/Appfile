@@ -1,0 +1,3 @@
+app_identifier "com.onlyoffice.ONLYOFFICE" # The bundle identifier of your app
+apple_id ENV["APPLE_ID"] # Your Apple email address
+team_id ENV["TEAM_ID"] # Developer Portal Team ID

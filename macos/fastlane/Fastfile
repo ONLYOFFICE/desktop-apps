@@ -1,0 +1,66 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.3.1"
+
+fastlane_require 'dotenv'
+Dotenv.load '.env.secret'
+
+default_platform :mac
+
+platform :mac do
+  lane :release do
+    build = "build"
+    scheme = "ONLYOFFICE"
+    app = "#{build}/#{scheme}.app"
+
+    desc 'Cleanup'
+    sh("rm -rf ../#{build}")
+
+    desc 'Build for developer id and notarize'
+    gym(
+      scheme: scheme,
+      configuration: 'Release',
+      clean: true,
+      output_directory: build,
+      codesigning_identity: 'Developer ID Application',
+      export_method: 'developer-id',
+      skip_package_pkg: true
+    )
+
+    notarize(
+      package: app,
+      print_log: true,
+      verbose: true
+    )
+
+    version = get_version_number(
+        target: scheme
+    )
+
+    desc 'Prepare zip for delta update'
+    zip(
+      path: app,
+      output_path: "#{build}/#{scheme}-#{version}.zip"
+    )
+
+    desc 'Create DMG image'
+    sh("npm install appdmg")
+    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}.dmg")
+  end
+
+end
