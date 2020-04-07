@@ -532,6 +532,10 @@
                 });
         };
 
+        function _on_lang_changed(ol,nl) {
+            $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -575,6 +579,7 @@
                 });
 
                 window.CommonEvents.on('portal:create', _on_create_portal);
+                window.CommonEvents.on('lang:changed', _on_lang_changed);
 
                 return this;
             },
