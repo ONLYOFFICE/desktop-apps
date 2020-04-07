@@ -950,6 +950,7 @@ namespace Drop {
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
+            CAscApplicationManagerWrapper::topWindow()->bringToTop();
         }
     }
 
