@@ -9,8 +9,6 @@ extern QStringList g_cmdArgs;
 
 CLogger::CLogger(QObject *parent, QString fileName)
     : QObject(parent)
-    , m_showDate(true)
-    , m_file(0)
 {
     if ( !fileName.isEmpty() ) {
         m_file = new QFile(fileName);
