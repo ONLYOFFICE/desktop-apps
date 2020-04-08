@@ -38,6 +38,7 @@
 #include "cfiledialog.h"
 #include "defines.h"
 #include "utils.h"
+#include "cfilechecker.h"
 
 #include <QDir>
 #include <QDebug>
@@ -161,5 +162,53 @@ namespace CEditorTools
         }
 
         return _path;
+    }
+
+    auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
+    {
+        CTabPanel * panel = CTabPanel::createEditorPanel();
+        panel->setGeometry(rect);
+
+        bool result = true;
+        if (opts.type == etLocalFile) {
+//            pView->openLocalFile(opts.wurl, file_format);
+            result = false;
+        } else
+        if (opts.type == etRecoveryFile) {
+//            res_open = pView->openRecoverFile(opts.id);
+            result = false;
+        } else
+        if (opts.type == etRecentFile) {
+//            res_open = pView->openRecentFile(opts.id);
+            result = false;
+        } else
+        if (opts.type == etNewFile) {
+//            pView->createLocalFile(opts.format, opts.name.toStdWString());
+            result = false;
+        } else {
+            panel->cef()->load(opts.wurl);
+        }
+
+        if (result) {
+            CAscTabData * data = new CAscTabData(opts.name);
+            data->setUrl(opts.wurl);
+            data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
+                           (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+
+            if ( !data->isLocal() ) {
+                QRegularExpression re("ascdesktop:\\/\\/compare");
+                QRegularExpressionMatch match = re.match(QString::fromStdWString(data->url()));
+                if ( match.hasMatch() ) {
+                     data->setIsLocal(true);
+                }
+            }
+
+            panel->setData(data);
+
+        } else {
+            delete panel, panel = nullptr;
+        }
+
+        return panel;
     }
 }
