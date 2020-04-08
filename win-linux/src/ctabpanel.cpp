@@ -17,6 +17,8 @@ CTabPanel::CTabPanel(QWidget *parent)
 
 //    _layout->setMargin(0);
 //    _layout->addWidget(m_pViewer);
+
+    m_pViewer->SetBackgroundCefColor(244, 244, 244);
 }
 
 CTabPanel::~CTabPanel()
