@@ -568,6 +568,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CAscCreateTab& data = *static_cast<CAscCreateTab *>(event->m_pData);
             CTabPanel * _panel = CEditorTools::createEditorPanel(COpenOptions{data.get_Url()}, winrect.adjusted(4,4,-4,-4));
             _panel->data()->setContentType(editor->editorType());
+            _panel->data()->setUrl("");
 
             CEditorWindow * editor_win = new CEditorWindow(winrect, _panel);
             editor_win->show(editor->windowState() == Qt::WindowMaximized);
