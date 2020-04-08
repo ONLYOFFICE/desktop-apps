@@ -573,6 +573,7 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 
         if (match.hasMatch()) {
              _panel.setIsLocal(true);
+             _panel.setUrl("");
         }
     }
 }
