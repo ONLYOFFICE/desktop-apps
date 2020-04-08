@@ -8,6 +8,13 @@
 
 using namespace NSEditorApi;
 
+CTabPanel * CTabPanel::createEditorPanel(QWidget *parent)
+{
+    CTabPanel * panel = new CTabPanel(parent);
+    panel->initAsEditor();
+    return panel;
+}
+
 CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
     , m_pViewer(AscAppManager::createViewer(this))

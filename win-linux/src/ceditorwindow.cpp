@@ -515,3 +515,8 @@ bool CEditorWindow::closed() const
 {
     return d_ptr.get()->panel()->data()->closed();
 }
+
+AscEditorType CEditorWindow::editorType() const
+{
+    return d_ptr.get()->panel()->data()->contentType();
+}
