@@ -18,8 +18,8 @@ public:
     static void log(const QString&);
 
 private:
-    QFile * m_file;
-    bool m_showDate;
+    QFile * m_file = nullptr;
+    bool m_showDate = true;
 
 signals:
 
