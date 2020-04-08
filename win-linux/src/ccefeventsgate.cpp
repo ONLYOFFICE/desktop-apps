@@ -45,6 +45,11 @@ void CCefEventsGate::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
+void CCefEventsGate::onDocumentType(int id, int type)
+{
+    if (id) { type; }
+}
+
 void CCefEventsGate::onDocumentSave(int, bool cancel)
 {
     CAscTabData * doc = m_panel->data();

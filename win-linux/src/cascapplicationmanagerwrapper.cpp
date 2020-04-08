@@ -560,6 +560,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
+    case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
+        CCefView * pView = GetViewById(event->get_SenderId());
+        if (NULL != pView && pView->GetType() == cvwtEditor) {
+            CAscTabEditorType& data = *static_cast<CAscTabEditorType *>(event->m_pData);
+            ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(data.get_Type()));
+        }
+        break;
+    }
+
     default: break;
     }
 
