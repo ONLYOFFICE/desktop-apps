@@ -131,7 +131,8 @@ public:
                     _user_width = iconuser->width();
                 }
 
-                if ( objRoot.contains("title") ) {
+                // TODO: probably to check m_mapTitleButtons is not good, so need to change checking
+                if ( objRoot.contains("title") && m_mapTitleButtons.empty() ) {
                     QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
 
                     QPushButton * _btn;

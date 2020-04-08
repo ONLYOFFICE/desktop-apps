@@ -574,10 +574,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             editor_win->show(editor->windowState() == Qt::WindowMaximized);
 
             m_vecEditors.push_back( size_t(editor_win) );
-            QTimer::singleShot(500, [=]{
-                AscAppManager::sendCommandTo(_panel->cef(), L"editor:config", L"request");
-//                sendCommandTo(_panel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
-            });
+//            sendCommandTo(_panel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
             return true;
         }
         break;}
