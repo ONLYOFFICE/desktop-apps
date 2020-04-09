@@ -93,11 +93,6 @@ $(document).ready(function() {
             window.sdk.LocalFileRecents();
 
             window.sdk.execCommand('app:onready', '');
-
-            if ( !!localStorage.reload ) {
-                selectAction(localStorage.reload);
-                localStorage.removeItem('reload');
-            }
         } 
     }, 50);
 

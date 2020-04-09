@@ -49,7 +49,7 @@ public:
 
     void    setTitle(const QString&);
     void    setChanged(bool);
-    void    setLocal(bool);
+    void    setIsLocal(bool);
     void    setUrl(const wstring&);
     void    setUrl(const QString&);
     void    close();
@@ -58,14 +58,17 @@ public:
     bool    modified() const;
     bool    hasChanges() const;
     bool    closed() const;
-    bool    local() const;
+    bool    isLocal() const;
     CefType viewType() const;
     wstring url() const;
     bool    isViewType(CefType) const;
     bool    eventLoadSupported() const;
     void    setEventLoadSupported(bool);
+    void    setFeatures(const wstring&);
+    wstring features() const;
+    bool    hasFeature(const wstring&) const;
 
-    AscEditorType   contentType();
+    AscEditorType   contentType() const;
     void            setContentType(AscEditorType);
 private:
     QString _title;
@@ -76,6 +79,7 @@ private:
     CefType _vtype;
     wstring _url;
     bool    _event_load_supported = false;
+    wstring _features;
 
     AscEditorType _typeContent;
 };

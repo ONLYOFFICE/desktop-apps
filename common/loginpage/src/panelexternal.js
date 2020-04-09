@@ -79,6 +79,7 @@
 
             let _panel = new ViewCustomPanel({
                                 itemtext: item_name,
+                                l10n: {itemtext:opts.nameLocale},
                                 action: 'external-panel-' + panels.length,
                                 id: panel_id,
                                 url: panel_url
@@ -109,6 +110,9 @@
                 }
             });
 
+            if ( utils.Lang.id != 'en' )
+                _translatePanel(_panel, 'en', utils.Lang.id);
+
             panels.push(_panel);
 
             /**/
@@ -127,7 +131,7 @@
                                 <input type="checkbox" name="onoffswitch" class="onoffswitch__checkbox" id="sett-checkbox-encrypt">
                                 <label class="onoffswitch__label" for="sett-checkbox-encrypt"></label>
                             </div>
-                            <label class='sett__caption'>${_label}</label>
+                            <label class='sett__caption' l10n>${_label}</label>
                         </div>`;
 
             $('.action-panel.settings .settings-items').append(tpl);
@@ -156,6 +160,41 @@
             };
             sdk.on('on_native_message', _f_handle);
         };
+
+        function _translatePanel(panel, langprev, langnext) {
+            let predictTr = (arr, l) => {
+                if ( !arr[l] ) {
+                    for (let i in arr) {
+                        if ( i.replace('-','_') == l )
+                            return arr[i];
+                        else
+                        if ( i.substring(0,2) == l.substring(0,2) )
+                            return arr[i];
+                    }
+                }
+
+                return arr[l];
+            };
+
+            if ( panel.opts.l10n && panel.opts.l10n.itemtext ) {
+                let nameprev = predictTr(panel.opts.l10n.itemtext, langprev) || panel.opts.itemtext,
+                    namenext = predictTr(panel.opts.l10n.itemtext, langnext) || panel.opts.itemtext;
+
+                if ( nameprev != namenext ) {
+                    $('[l10n]',panel.$menuitem).html(namenext);
+                }
+            }
+
+            let message = {event:'uiLangChanged', data: {new:langnext, old:langprev}};
+            let iframe = panel.$panel.find('iframe')[0].contentWindow;
+            iframe.postMessage(JSON.stringify(message), '*');
+        };
+
+        CommonEvents.on('lang:changed', (prev,next) => {
+            for (let p of panels) {
+                _translatePanel(p, prev, next);
+            }
+        });
 
         return {
             init: function() {

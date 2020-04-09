@@ -33,7 +33,7 @@
 #ifndef CASCAPPLICATIONMANAGERWRAPPER
 #define CASCAPPLICATIONMANAGERWRAPPER
 
-#include "applicationmanager.h"
+#include "qascapplicationmanager.h"
 #include <QObject>
 #include <QMutex>
 #include <vector>
@@ -77,7 +77,7 @@ struct sWinTag {
 class CAscApplicationManagerWrapper;
 typedef CAscApplicationManagerWrapper AscAppManager;
 
-class CAscApplicationManagerWrapper : public QObject, public CAscApplicationManager, CCefEventsTransformer
+class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
 {
     Q_OBJECT
 
@@ -109,8 +109,6 @@ private:
     ~CAscApplicationManagerWrapper();
 
     void StartSaveDialog(const std::wstring& sName, unsigned int nId);
-    void OnNeedCheckKeyboard();
-    int  GetPlatformKeyboardLayout();
     bool processCommonEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const wstring& wstrjson);
@@ -147,8 +145,10 @@ public:
     static void             closeEditorWindow(const size_t);
 
     static void             processMainWindowMoving(const size_t, const QPoint&);
+    static void             editorWindowMoving(const size_t, const QPoint&);
     static uint             countMainWindow();
     static CMainWindow *    topWindow();
+    static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
 
@@ -174,9 +174,6 @@ public:
 private:
     class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
-
-protected:
-    virtual CAscDpiChecker* InitDpiChecker();
 };
 
 #endif // QASCAPPLICATIONMANAGER

@@ -2,17 +2,26 @@
 #include "cwindowbase.h"
 #include "ctabbar.h"
 #include "clangater.h"
+#include <QApplication>
 
 CMainWindowBase::CMainWindowBase()
 {
-    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
-        mainPanel()->loadStartPage();
-    });
+//    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, [=](const QString&) {
+//        mainPanel()->loadStartPage();
+//    });
 }
 
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
+
+    if (!QCefView::IsSupportLayers())
+    {
+        CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+        if (_panel)
+            _panel->view()->SetCaptionMaskSize(0);
+    }
+
     int _index = _pMainPanel->tabWidget()->insertPanel(panel, index);
     if ( !(_index < 0) ) {
         _pMainPanel->toggleButtonMain(false);
@@ -28,6 +37,9 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
 //        }
     }
 
+//    if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+//        captureMouse(_index);
+
     return _index;
 }
 
@@ -35,6 +47,11 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
 {
     CMainPanel * _pMainPanel = mainPanel();
     QPoint _pt_local = _pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+#ifdef Q_OS_WIN
+# if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    _pt_local -= _pMainPanel->parentWidget()->mapToGlobal(_pMainPanel->geometry().topLeft());
+# endif
+#endif
     int _index = _pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
 
     if ( !(_index < 0) ) {
@@ -45,10 +62,11 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     return attachEditor(panel, _index);
 }
 
-bool CMainWindowBase::pointInTabs(const QPoint& pt)
+bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 {
     QRect _rc_title(mainPanel()->geometry());
     _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+    _rc_title.moveTop(1);
 
     return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
 }
@@ -59,7 +77,7 @@ bool CMainWindowBase::movedByTab()
             ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
 }
 
-QWidget * CMainWindowBase::getEditor(int index)
+QWidget * CMainWindowBase::editor(int index)
 {
     return mainPanel()->tabWidget()->panel(index);
 }
@@ -87,4 +105,11 @@ QString CMainWindowBase::documentName(int vid)
     }
 
     return "";
+}
+
+void CMainWindowBase::captureMouse(int)
+{
+#ifdef Q_OS_WIN
+    ReleaseCapture();
+#endif
 }

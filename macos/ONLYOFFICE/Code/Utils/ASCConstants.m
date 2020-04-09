@@ -58,6 +58,14 @@
     return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico"];
 }
 
++ (NSArray *)videos {
+    return @[@"webm", @"mkv", @"flv", @"ogg", @"avi", @"mov", @"wmv", @"mp4", @"m4v", @"mpg", @"mp2", @"mpeg", @"mpe", @"mpv", @"m2v", @"m4v", @"3gp", @"3g2", @"f4v", @"m2ts", @"mts"];
+}
+
++ (NSArray *)audios {
+    return @[@"flac", @"mp3", @"ogg", @"wav", @"wma", @"ape", @"aac", @"m4a", @"alac"];
+}
+
 + (NSArray *)documents {
     return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx"];
 }

@@ -31,12 +31,12 @@ CTabPanel::~CTabPanel()
         delete m_pData, m_pData = nullptr;
 }
 
-QCefView * CTabPanel::view()
+QCefView * CTabPanel::view() const
 {
     return m_pViewer;
 }
 
-CCefView * CTabPanel::cef()
+CCefView * CTabPanel::cef() const
 {
     return m_pViewer->GetCefView();
 }
@@ -49,7 +49,7 @@ void CTabPanel::setView(QCefView * v)
     m_pViewer = v;
 }
 
-CAscTabData * CTabPanel::data()
+CAscTabData * CTabPanel::data() const
 {
     return m_pData;
 }
@@ -79,14 +79,12 @@ void CTabPanel::initAsEditor()
     m_pViewer->hide();
 #endif
 
-    m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);
-    cef()->resizeEvent(width(), height());
+    m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);    
 }
 
 void CTabPanel::initAsSimple()
 {
-    m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);
-    cef()->resizeEvent(width(), height());
+    m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);    
 }
 
 void CTabPanel::openLocalFile(const std::wstring& path, int format)
@@ -112,7 +110,6 @@ bool CTabPanel::openRecentFile(int id)
 void CTabPanel::resizeEvent(QResizeEvent *event)
 {
     m_pViewer->resize(event->size());
-    cef()->resizeEvent(event->size().width(), event->size().height());
 }
 
 void CTabPanel::showEvent(QShowEvent *)
@@ -131,13 +128,18 @@ void CTabPanel::paintEvent(QPaintEvent *)
 void CTabPanel::timerEvent(QTimerEvent *)
 {
      if ( m_startSize == m_lastSize ) {
-        cef()->resizeEvent(m_lastSize.width(), m_lastSize.height());
+        cef()->resizeEvent();
 
         QObject::killTimer(m_idTimerResize);
         m_idTimerResize = 0;
     } else {
         m_startSize = m_lastSize;
     }
+}
+
+void CTabPanel::closeEvent(QCloseEvent *event)
+{
+    emit closePanel(event);
 }
 
 void CTabPanel::resize(int w, int h)

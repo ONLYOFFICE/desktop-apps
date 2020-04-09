@@ -643,7 +643,7 @@ void CSingleWindow::pushButtonMaximizeClicked()
 
 void CSingleWindow::focusMainPanel()
 {
-    if ( m_pMainView ) ((QCefView *)m_pMainView)->GetCefView()->focus();
+    if ( m_pMainView ) ((QCefView *)m_pMainView)->setFocusToCef();
 }
 
 bool CSingleWindow::holdView(int id) const

@@ -36,8 +36,15 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <QWidget>
+#ifdef Q_OS_WIN
+# include <Windows.h>
+#endif
 
 using namespace std;
+namespace InputArgs {
+    auto contains(QString&) -> bool;
+    auto get_arg_value(const QString& param) -> QString;
+}
 
 class Utils {
 public:
@@ -73,7 +80,24 @@ public:
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
     static QByteArray readStylesheets(std::vector<QString> *);
     static QByteArray readStylesheets(const QString&);
+
+#ifdef Q_OS_WIN
+    //TODO: move to window.base class
+    static void adjustWindowRect(HWND, int, LPRECT);
+#endif
 };
+
+#ifdef Q_OS_LINUX
+namespace WindowUtils {
+    class CParentDisable
+    {
+        QWidget* m_pChild = nullptr;
+    public:
+        CParentDisable(QWidget* parent);
+        ~CParentDisable();
+    };
+}
+#endif
 
 #endif // UTILS_H
 

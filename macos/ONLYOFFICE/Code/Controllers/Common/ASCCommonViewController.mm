@@ -266,13 +266,13 @@
         
         self.tabsControl = windowController.titlebarController.tabsControl;
         
+        // Create CEF event listener
+        [ASCEventsController sharedInstance];
+        
         [self setupTabControl];
         [self createStartPage];
         [self loadStartPage];
         [self setupTouchBar];
-        
-        // Create CEF event listener
-        [ASCEventsController sharedInstance];
 
         // External handle
         if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onMainWindowLoaded:)]) {
@@ -632,6 +632,9 @@
 
                 if (NSString *provider = tab.params[@"provider"]) {
                     if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
+                        if ([localTabValue isEqualToString:localValue]) {
+                            return tab;
+                        }
                         localValue = [localValue stringByReplacingOccurrencesOfString:@"/products/files/" withString:@""];
                     }
                 }
@@ -1226,8 +1229,18 @@
 
         if ([fileTypes isEqualToString:CEFOpenFileFilterImage]) {
             allowedFileTypes = [ASCConstants images];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterAudio]) {
+            allowedFileTypes = [ASCConstants audios];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterVideo]) {
+            allowedFileTypes = [ASCConstants videos];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPlugin]) {
             allowedFileTypes = [ASCConstants plugins];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterDocument]) {
+            allowedFileTypes = [ASCConstants documents];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterSpreadsheet]) {
+            allowedFileTypes = [ASCConstants spreadsheets];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterPresentation]) {
+            allowedFileTypes = [ASCConstants presentations];
         }
 
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];

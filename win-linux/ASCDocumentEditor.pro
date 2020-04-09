@@ -1,5 +1,6 @@
 
 TARGET = DesktopEditors
+DESTDIR = $$PWD
 
 include(defaults.pri)
 
@@ -11,7 +12,7 @@ HEADERS += \
     src/prop/version_p.h
 
 SOURCES += \
-    src/prop/csplash.cpp \
+    src/prop/csplash_p.cpp \
     src/prop/cmainpanelimpl.cpp \
     src/prop/cascapplicationmanagerwrapper_private.h \
     src/prop/utils.cpp
@@ -19,12 +20,6 @@ SOURCES += \
 RC_FILE = $$PWD/version.rc
 
 DEFINES += __DONT_WRITE_IN_APP_TITLE
-
-build_xp {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM/xp -lascdocumentscore
-} else {
-    LIBS += -L$$CORE_LIB_PATH_PLATFORM -lascdocumentscore
-}
 
 message($$PLATFORM_BUILD)
 
@@ -42,10 +37,6 @@ win32 {
 
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
-    }
-
-    CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build
     }
 }
 

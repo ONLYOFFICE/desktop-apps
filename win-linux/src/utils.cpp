@@ -49,7 +49,7 @@
 #include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
-#include "cdpichecker.h"
+#include "qdpichecker.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -62,6 +62,25 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #include <QDebug>
 extern QStringList g_cmdArgs;
 
+namespace InputArgs {
+    auto contains(const QString& param) -> bool {
+        return g_cmdArgs.contains(param);
+    }
+
+    auto get_arg_value(const QString& param) -> QString {
+        QRegularExpression _re("^" + param + "[=|:]([\\w\\\":\\\\/]+)", QRegularExpression::CaseInsensitiveOption);
+
+        for (const auto& item: g_cmdArgs) {
+            QRegularExpressionMatch _match = _re.match(item);
+            if ( _match.hasMatch() )
+                return _match.captured(1);
+        }
+
+        return QString();
+    }
+}
+
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
@@ -73,7 +92,7 @@ QStringList * Utils::getInputFiles(const QStringList& inlist)
         while (i.hasNext()) {
             QString arg = i.next();
 
-            if ( arg.startsWith("--new:") )
+            if ( arg.startsWith("--new:") || arg.startsWith("--new=") )
                 _ret_files_list->append( arg );
             else {
                 QFileInfo info( arg );
@@ -148,7 +167,7 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
 #else
     POINT lt{leftTop.x(), leftTop.y()};
     MONITORINFO mi{sizeof(MONITORINFO)};
-    ::GetMonitorInfo(::MonitorFromPoint(lt, MONITOR_DEFAULTTONEAREST), &mi);
+    ::GetMonitorInfo(::MonitorFromPoint(lt, MONITOR_DEFAULTTOPRIMARY), &mi);
 
     return QRect(QPoint(mi.rcWork.left, mi.rcWork.top), QPoint(mi.rcWork.right, mi.rcWork.bottom));
 #endif
@@ -346,7 +365,7 @@ unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (!pDpiCheckerBase)
         return 1;
 
-    CDpiChecker * pDpiChecker = (CDpiChecker *)pDpiCheckerBase;
+    QDpiChecker * pDpiChecker = (QDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
     int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
@@ -482,3 +501,58 @@ bool Utils::appArgsContains(const QString& a)
 {
     return g_cmdArgs.contains(a);
 }
+
+#ifdef Q_OS_WIN
+#include <windowsx.h>
+void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
+{
+    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+
+    static AdjustWindowRectExForDpiW _adjustWindowRectEx = NULL;
+    static bool _is_read = false;
+    if ( !_is_read && !_adjustWindowRectEx ) {
+        HMODULE _lib = ::LoadLibrary(L"user32.dll");
+        _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+        FreeLibrary(_lib);
+
+        _is_read = true;
+    }
+
+    if ( _adjustWindowRectEx != NULL ) {
+        _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+    } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+}
+#endif
+
+#ifdef Q_OS_LINUX
+namespace WindowUtils {
+    CParentDisable::CParentDisable(QWidget* parent)
+    {
+        if (parent) {
+            if (QCefView::IsSupportLayers())
+            {
+                m_pChild = new QWidget(parent);
+            }
+            else
+            {
+                QWindow * win = new QWindow;
+                win->setOpacity(1);
+                m_pChild = QWidget::createWindowContainer(win, parent);
+            }
+
+            m_pChild->setMouseTracking(true);
+            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
+            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
+            m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+            m_pChild->show();
+        }
+    }
+
+    CParentDisable::~CParentDisable()
+    {
+        if (m_pChild)
+            m_pChild->deleteLater();
+    }
+}
+#endif

@@ -48,6 +48,9 @@ public:
     virtual void setWindowTitle(const QString &) override;
 
 private:
+    bool flag_mouse_button_left = false;
+    bool flag_mouse_motion = false;
+
     bool event(QEvent *event);
     using QMainWindow::setWindowTitle;
 
@@ -59,8 +62,13 @@ private:
     void resizeEvent(QResizeEvent *);
 
 protected:
+    void captureMouse();
+
+    virtual void onMinimizeEvent() override;
+    virtual void onMaximizeEvent() override;
     virtual void onSizeEvent(int type);
     virtual void onScreenScalingFactor(uint f);
+    virtual void onExitSizeMove() override;
 };
 
 #endif // CSINGLEWINDOWPLATFORM_H

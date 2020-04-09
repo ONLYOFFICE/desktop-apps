@@ -15,11 +15,11 @@ public:
     explicit CTabPanel(QWidget *parent = nullptr);
     ~CTabPanel();
 
-    QCefView * view();
-    CCefView * cef();
+    QCefView * view() const;
+    CCefView * cef() const;
     void setView(QCefView *);
 
-    CAscTabData * data();
+    CAscTabData * data() const;
     void setData(CAscTabData *);
 
     void initAsEditor();
@@ -36,9 +36,13 @@ public:
     void resizeEvent(QResizeEvent *event);
     void showEvent(QShowEvent *event);
 
+    bool prettyTitle() { return m_prettyTitle; }
+    void setPrettyTitle(bool v) { m_prettyTitle = v; }
+
 protected:
     void timerEvent(QTimerEvent *event);
     void paintEvent(QPaintEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 private:
     QCefView *      m_pViewer;
@@ -47,7 +51,10 @@ private:
 
     QSize m_startSize, m_lastSize;
     int m_idTimerResize = 0;
+    bool m_prettyTitle = false;
 signals:
+    void closePanel(QCloseEvent *event);
+
 public slots:
     void showFullScreen();
     void showNormal();

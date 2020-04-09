@@ -127,8 +127,6 @@ private:
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
-    int m_dragIndex = -1;
-
 
 signals:
 //    void sendAddEditor();
@@ -139,7 +137,7 @@ signals:
 public:
     CAscTabWidget(QWidget *parent = 0);
 
-    CTabPanel * panel(int);
+    CTabPanel * panel(int) const;
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(COpenOptions&);
@@ -206,7 +204,7 @@ public:
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
     void cancelDocumentSaving(int index);
-    void setDocumentWebOption(int, const QString&);
+    void setEditorOptions(int, const wstring&);
 
     int  openPortal(const QString& url, const QString& provider);
     bool updatePortal(int index,const QString& url);

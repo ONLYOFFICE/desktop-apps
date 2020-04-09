@@ -36,7 +36,7 @@
 #define rePortalName        "^https?:\\/\\/(.+)"
 #define reFileExtension     "\\.(\\w{1,10})$"
 #define reUserName          "([^\\.]+)\\.?([^\\.]+)?"
-#define reCmdLang           "--(keep)?lang:(\\w{2,5})"
+#define reCmdLang           "--(keep)?lang[:|=](\\w{2,5})"
 
 
 #define FILE_DOWNLOAD_START     3
@@ -104,7 +104,8 @@ typedef unsigned char BYTE;
 # define WINDOW_BACKGROUND_COLOR RGB(241, 241, 241)              // #f1f1f1
 # define TABBAR_BACKGROUND_COLOR QRgb(WINDOW_BACKGROUND_COLOR)
 #else
-# define TABBAR_BACKGROUND_COLOR "#f1f1f1"
+# define WINDOW_BACKGROUND_COLOR "#f1f1f1"
+# define TABBAR_BACKGROUND_COLOR WINDOW_BACKGROUND_COLOR
 #endif
 
 #define TAB_COLOR_PRESENTATION  "#aa5252"

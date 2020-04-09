@@ -192,3 +192,117 @@ QTabBar QToolButton[class=tab-close][state=active]{
 QTabBar QToolButton[class=tab-close]:hover{
     border-right:2px solid #fff; /* ??? pixmap offsets on hover for 2px ??? */
 }
+
+QPrintDialog QLabel {
+    font-size: 22px;
+}
+
+QPrintDialog QToolButton{
+    border-width: 1px;
+    border-radius:4px;
+    height: 44px;
+}
+
+QPrintDialog QLineEdit{
+    font-size: 22px;
+    border-width: 2px;
+    height: 44px;
+    border-radius:4px;
+}
+
+QPrintDialog QGroupBox {
+    border-width: 2px;
+    margin-top: 8ex;
+    border-radius:4px;
+    font-size: 22px;
+    padding:16px;
+}
+
+QPrintDialog QComboBox{
+    border-width: 2px;
+    font-size: 22px;
+    height: 44px;
+    border-radius:4px;
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border-width: 2px;
+    border-radius:4px;
+}
+
+QPrintDialog QRadioButton::indicator{
+    width:26px;
+    height:26px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 22px;
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/radiobox_2x.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/radiobox_2x.png) 26 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width:28px;
+    height:28px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/checkbox_2x.png) 28 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/checkbox_2x.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border-width: 2px;
+    border-radius:4px;
+    height:44px;
+    font-size:22px;
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 10px;
+    height: 6px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_2x.png) 6 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/arrow_down_2x.png) 6 0 0 10 repeat repeat;
+}
+
+QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_2x.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/arrow_down_2x.png) 0 0 0 10 repeat repeat;
+}
+
+QPrintDialog QTabWidget::pane{
+    border-width: 2px;
+    top: -2px;
+}
+QPrintDialog QTabBar::tab {
+    border-width: 2px;
+    padding: 0 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right:-2px;
+    font-size: 22px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 20px;
+}

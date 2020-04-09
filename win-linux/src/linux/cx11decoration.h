@@ -51,6 +51,7 @@ public:
     void dispatchMouseDown(QMouseEvent *);
     void dispatchMouseMove(QMouseEvent *);
     void dispatchMouseUp(QMouseEvent *);
+    void setCursorPos(int x, int y);
 
     void turnOn();
     void turnOff();
@@ -72,6 +73,7 @@ private:
     bool m_decoration;
     int m_nBorderSize;
     bool m_bIsMaximized;
+    bool need_to_check_motion = false;
 
     std::map<int, ulong> m_cursors;
 

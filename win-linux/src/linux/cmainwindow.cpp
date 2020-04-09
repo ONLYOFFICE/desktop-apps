@@ -299,7 +299,7 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
         reg_user.setValue("position", saveGeometry());
         reg_user.setValue("windowstate", saveState());
 
-        showFullScreen();
+//        showFullScreen();
     } else {
         setWindowState(s);
 
@@ -354,7 +354,7 @@ CMainPanel * CMainWindow::mainPanel() const
 
 QRect CMainWindow::windowRect() const
 {
-    return geometry();
+    return normalGeometry();
 }
 
 bool CMainWindow::isMaximized() const
@@ -381,4 +381,31 @@ void CMainWindow::sendSertificate(int viewid)
 QWidget * CMainWindow::handle() const
 {
     return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
+}
+
+void CMainWindow::captureMouse(int tabindex)
+{
+    CMainWindowBase::captureMouse(tabindex);
+
+    if ( !(tabindex < 0) &&
+            tabindex < mainPanel()->tabWidget()->count() )
+    {
+        QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
+        QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+
+//        CX11Decoration::setCursorPos(100, 100);
+
+//        QCursor::setPos(0, 0);
+        QTimer::singleShot(0,[=] {
+            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+            QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
+            mainPanel()->tabWidget()->tabBar()->grabMouse();
+//            mainPanel()->tabWidget()->grabMouse();
+        });
+    }
+}
+
+void CMainWindow::bringToTop() const
+{
+    QApplication::setActiveWindow(const_cast<CMainWindow *>(this));
 }

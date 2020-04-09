@@ -55,6 +55,7 @@ public:
 
     bool holdView(int id) const override;
     bool holdView(const wstring& portal) const;
+    void undock(bool maximized = false);
     int closeWindow();
     CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;
@@ -63,9 +64,13 @@ public:
 
     void setReporterMode(bool);
 private:
+    QString m_css;
+    bool m_restoreMaximized = false;
+
+private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent, CTabPanel* const panel);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * panel) override;
+    QWidget * createMainPanel(QWidget * parent);
+    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom) override;
     void recalculatePlaces();
     const QObject * receiver() override;
 
@@ -74,7 +79,10 @@ protected:
     void onMinimizeEvent() override;
     void onMaximizeEvent() override;
     void onSizeEvent(int) override;
-    void onScreenScalingFactor(uint) override;
+    void onMoveEvent(const QRect&) override;
+    void onExitSizeMove() override;
+
+    void setScreenScalingFactor(uint) override;
 
     void onLocalFileSaveAs(void *);
 

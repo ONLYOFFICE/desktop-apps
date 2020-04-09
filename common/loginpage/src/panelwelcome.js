@@ -53,14 +53,14 @@
         var _html = `<div class="action-panel ${args.action}">
                       <div class="flex-center">
                         <section class="center-box">
-                          <h3 style="margin-top:0;">${_lang.welWelcome}</h3>
-                          <h4 class="text-description">${_lang.welDescr}</h4>
+                          <h3 style="margin-top:0;" l10n>${_lang.welWelcome}</h3>
+                          <h4 class="text-description" l10n>${_lang.welDescr}</h4>
                           <img class="img-welcome">
                           <div class="tools-connect">
-                            <button class="btn primary newportal">${_lang.btnCreatePortal}</button>
+                            <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
                             <section class="link-connect">
-                              <label>${_lang.textHavePortal}</label>
-                              <a class="login link" href="#">${_lang.btnConnect}</a>
+                              <label l10n>${_lang.textHavePortal}</label>
+                              <a class="login link" href="#" l10n>${_lang.btnConnect}</a>
                             </section>
                           </div>
                         </section>

@@ -68,8 +68,9 @@ public:
 
 protected:
     bool event(QEvent * e);
-    void mousePressEvent (QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
+    void mousePressEvent (QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent (QMouseEvent *) override;
     void paintEvent(QPaintEvent *);
     void tabInserted(int);
     void tabRemoved(int index);
@@ -77,6 +78,8 @@ protected:
     void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
 
     QSize tabSizeHint(int index) const;
+
+    void interruptTabMoving(int index);
 
 private slots:
     void onCloseButton();
@@ -91,7 +94,7 @@ private:
     QString m_activeColor = "none";
 
 signals:
-    void tabUndock(int);
+    void tabUndock(int, bool *);
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)

@@ -410,7 +410,6 @@ QPrintDialog QToolButton{
 }
 
 QPrintDialog QLineEdit{
-    border:1px solid #444;
     font-weight: normal;
     font-size: 11px;
     color: #444;
