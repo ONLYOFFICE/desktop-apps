@@ -64,7 +64,12 @@ extern QStringList g_cmdArgs;
 
 namespace InputArgs {
     auto contains(const QString& param) -> bool {
-        return g_cmdArgs.contains(param);
+        auto iter = std::find_if(begin(g_cmdArgs), end(g_cmdArgs),
+            [&param](const QString& s) {
+                return s.startsWith(param);
+        });
+
+        return iter != end(g_cmdArgs);
     }
 
     auto get_arg_value(const QString& param) -> QString {
