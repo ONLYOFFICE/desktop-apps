@@ -973,7 +973,7 @@ namespace Drop {
             CTabPanel * tabpanel = editor->releaseEditorView();
 //            QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
 //            CAscApplicationManagerWrapper::sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
-qDebug() << "url" << tabpanel->data()->url();
+
             CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
