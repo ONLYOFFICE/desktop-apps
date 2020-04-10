@@ -554,7 +554,7 @@
                                 model.set('logged', false);
                                 if ( model.removed ) {
                                     PortalsStore.forget(param);
-                                    _update_portals.call(this);
+                                    $('#' + model.uid, this.view.$panelPortalLis).addClass('lost');
                                 }
                             } else
                                 delete model.removed;

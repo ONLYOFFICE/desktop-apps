@@ -281,9 +281,12 @@
                     window.sdk.LocalFileRemoveAllRecovers();
             } else
             if (/\:forget/.test(action)) {
-                menu.actionlist == 'recent' ?
-                    window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
-                    window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));
+                $('#' + data.uid, this.view.$panel).addClass('lost');
+                setTimeout(e => {
+                    menu.actionlist == 'recent' ?
+                        window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
+                        window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));}
+                , 300); // 300ms - duration of item's 'collapse' transition
             } else
             if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {

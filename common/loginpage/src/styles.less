@@ -398,23 +398,25 @@ li.menu-item {
         }
     }
 
-    .cportal, .cuser, .cemail {
-        /*width: 25%;*/
-        padding: 0;
-        margin: 0;
-    }
+    tr:not(.lost) {
+        .cportal, .cuser, .cemail {
+            /*width: 25%;*/
+            padding: 0;
+            margin: 0;
+        }
 
-    .cicon {
-        padding: 3px 0 0 0;
-        text-align: center;
-    }
+        .cicon {
+            padding: 3px 0 0 0;
+            text-align: center;
+        }
 
-    .cell-tools {
-        width: 45px;
-        padding: 0 8px 0 0;
-        overflow: visible;
-        .hlayout {
-            justify-content: flex-end;
+        .cell-tools {
+            width: 45px;
+            padding: 0 8px 0 0;
+            overflow: visible;
+            .hlayout {
+                justify-content: flex-end;
+            }
         }
     }
 
@@ -495,6 +497,25 @@ li.menu-item {
 
         .minor {
             opacity: 1;
+        }
+    }
+
+    tr {
+        height: 48px;
+        &.lost {
+            transition: height .2s linear;
+            height: 0;
+            opacity: 0;
+            line-height: 0;
+
+            td {
+                height: 0;
+                padding: 0;
+                border: 0 none;
+                > * {
+                    display: none;
+                }
+            }
         }
     }
 
