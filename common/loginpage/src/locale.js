@@ -675,7 +675,7 @@ l10n.es = {
     ,emptySlide3Title: 'Almacene en la nube'
     ,emptySlide3Text: 'Almacene sus documentos en la nube de ONLYOFFICE y acceda en cualquier momento y desde cualquier lugar.'
     ,settUserName: 'Nombre de Usuario'
-    ,settResetUserName: 'Reestablecer a valor predeterminado'
+    ,settResetUserName: 'Reestablecer por defecto'
     ,settOpenMode: 'Abrir documento en modo de vista previa'
     ,setBtnApply: 'Aplicar'
     ,settLanguage: 'Lenguaje de interfaz'
