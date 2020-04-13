@@ -230,8 +230,7 @@ pl.runOpenDefaultApps=Otwórz Domyślne aplikacje
 zh_CN.runOpenDefaultApps=打开默认应用
 
 [Run]
-Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \
-  Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
 
 [Registry]
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
