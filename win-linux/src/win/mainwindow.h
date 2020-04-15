@@ -99,6 +99,8 @@ private:
     void slot_mainPageReady();
     void slot_modalDialog(bool, size_t);
 
+    friend auto refresh_window_scaling_factor(CMainWindow * window) -> void;
+
 #ifdef _UPDMODULE
     static void updateFound();
     static void updateNotFound();

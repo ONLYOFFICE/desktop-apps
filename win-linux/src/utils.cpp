@@ -85,6 +85,15 @@ namespace InputArgs {
     }
 }
 
+namespace WindowHelper {
+    auto isLeftButtonPressed() -> bool {
+#if defined(Q_OS_WIN)
+        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+#else
+        return false;
+#endif
+    }
+}
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {

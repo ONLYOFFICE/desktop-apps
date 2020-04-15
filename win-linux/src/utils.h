@@ -46,6 +46,10 @@ namespace InputArgs {
     auto get_arg_value(const QString& param) -> QString;
 }
 
+namespace WindowHelper {
+    auto isLeftButtonPressed() -> bool;
+}
+
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);

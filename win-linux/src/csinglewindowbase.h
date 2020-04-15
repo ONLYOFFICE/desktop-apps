@@ -73,6 +73,7 @@ protected:
     virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onExitSizeMove();
+    virtual void onDpiChanged(int newfactor, int prevfactor);
 
     inline int dpiCorrectValue(int v) const
     {

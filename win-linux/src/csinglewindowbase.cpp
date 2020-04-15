@@ -189,6 +189,10 @@ void CSingleWindowBase::onExitSizeMove()
 
 }
 
+void CSingleWindowBase::onDpiChanged(int, int)
+{
+}
+
 QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
 {
     QPushButton * btn = new QPushButton(parent);

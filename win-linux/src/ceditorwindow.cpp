@@ -355,6 +355,23 @@ void CEditorWindow::onExitSizeMove()
     }
 }
 
+void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
+{
+    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
+
+    if ( !WindowHelper::isLeftButtonPressed() ) {
+        CSingleWindowBase::setScreenScalingFactor(newfactor);
+
+        m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
+        m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(newfactor) + m_css);
+
+        d_ptr.get()->onScreenScalingFactor(newfactor);
+
+        adjustGeometry();
+        recalculatePlaces();
+    }
+}
+
 void CEditorWindow::setScreenScalingFactor(uint newfactor)
 {
     CSingleWindowPlatform::setScreenScalingFactor(newfactor);

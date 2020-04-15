@@ -71,6 +71,38 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
 AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = NULL;
 
+auto refresh_window_scaling_factor(CMainWindow * window) -> void {
+    QString css{AscAppManager::getWindowStylesheets(window->m_dpiRatio)};
+
+    if ( !css.isEmpty() ) {
+        window->mainPanel()->setStyleSheet(css);
+        window->mainPanel()->setScreenScalingFactor(window->m_dpiRatio);
+    }
+}
+
+auto correctWindowMinimumSize(const CMainWindow&  window) {
+    WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+    if ( GetWindowPlacement(window.handle(), &wp) ) {
+        int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)window.handle());
+        QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
+        QRect windowRect{window.windowRect()};
+        if ( windowRect.width() < _min_windowsize.width() ||
+                windowRect.height() < _min_windowsize.height() )
+        {
+            if ( windowRect.width() < _min_windowsize.width() )
+                wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
+
+            if ( windowRect.height() < _min_windowsize.height() )
+                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
+
+            SetWindowPlacement(window.handle(), &wp);
+        }
+    }
+}
+
+auto correctWindowMinimumSize(const CMainWindow *  window) {
+    correctWindowMinimumSize(*window);
+}
 
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
@@ -182,6 +214,17 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     switch ( message )
     {
     case WM_DPICHANGED:
+        if ( !WindowHelper::isLeftButtonPressed() ) {
+            uint dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+            if ( dpi_ratio != window->m_dpiRatio ) {
+                window->m_dpiRatio = dpi_ratio;
+                refresh_window_scaling_factor(window);
+                window->adjustGeometry();
+
+            }
+        }
+
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
         break;
 
@@ -254,11 +297,15 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             break;
         } else
         if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
-            qDebug() << "wm syscommand";
+            qDebug() << "wm syscommand maximized";
             break;
         }
         else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
+            if ( !WindowHelper::isLeftButtonPressed() ) {
+                correctWindowMinimumSize(window);
+            }
+
             break;
         }
         else
@@ -389,9 +436,11 @@ qDebug() << "WM_CLOSE";
                 window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
                 if ( IsWindowVisible(hWnd) ) {
-                    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-                    if ( dpi_ratio != window->m_dpiRatio )
-                        window->setScreenScalingFactor(dpi_ratio);
+                    if ( WindowHelper::isLeftButtonPressed() ) {
+                        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+                        if ( dpi_ratio != window->m_dpiRatio )
+                            window->setScreenScalingFactor(dpi_ratio);
+                    }
 
                     if ( wParam == SIZE_MAXIMIZED )
                         window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
