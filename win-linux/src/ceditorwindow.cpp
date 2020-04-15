@@ -244,13 +244,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 //    centralWidget->setObjectName("centralWidget");
 //    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    m_boxTitleBtns = new QWidget(mainPanel);
-    m_boxTitleBtns->setObjectName("box-title-tools");
-    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
-
     if ( !d_ptr->canExtendTitle() )
         mainGridLayout->addWidget(m_boxTitleBtns);
     else {
+        m_boxTitleBtns->setParent(mainPanel);
         mainPanel->setProperty("window", "pretty");
     }
 
@@ -261,22 +258,14 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     css.append(m_css);
     mainPanel->setStyleSheet(css);
 
-    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    layoutBtns->setContentsMargins(0,0,0,0);
-    layoutBtns->setSpacing(1*m_dpiRatio);
-
-    layoutBtns->addStretch();
-    layoutBtns->addWidget(m_labelTitle);
-    layoutBtns->addStretch();
-
     if ( d_ptr->canExtendTitle() )
-        layoutBtns->addWidget(d_ptr.get()->iconUser());
+        m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
     else m_labelTitle->setText(APP_TITLE);
 
     if ( custom ) {
-        layoutBtns->addWidget(m_buttonMinimize);
-        layoutBtns->addWidget(m_buttonMaximize);
-        layoutBtns->addWidget(m_buttonClose);
+        m_boxTitleBtns->layout()->addWidget(m_buttonMinimize);
+        m_boxTitleBtns->layout()->addWidget(m_buttonMaximize);
+        m_boxTitleBtns->layout()->addWidget(m_buttonClose);
 
 //        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
@@ -376,12 +365,9 @@ void CEditorWindow::setScreenScalingFactor(uint newfactor)
     css.append(m_css);
     m_pMainPanel->setStyleSheet(css);
 
-    m_boxTitleBtns->layout()->setSpacing(1 * newfactor);
-    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * newfactor);
 
     d_ptr.get()->onScreenScalingFactor(newfactor);
 
-    m_dpiRatio = newfactor;
     adjustGeometry();
     recalculatePlaces();
 }

@@ -301,7 +301,7 @@ public:
         window->onLocalFileSaveAs(d);
     }
 
-    void onScreenScalingFactor(uint f)
+    void onScreenScalingFactor(int f)
     {
         int _btncount = /*iconuser ? 4 :*/ 3;
         int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon

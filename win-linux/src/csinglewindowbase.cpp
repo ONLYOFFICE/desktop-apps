@@ -35,6 +35,7 @@
 #include "cwindowbase.h"
 #include "ccefeventsgate.h"
 
+#include <QLayout>
 #include <QVariant>
 #include <QDebug>
 
@@ -87,6 +88,9 @@ void CSingleWindowBase::setScreenScalingFactor(uint f)
         m_buttonMaximize->setFixedSize(small_btn_size);
         m_buttonClose->setFixedSize(small_btn_size);
 
+        m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * f);
+        m_boxTitleBtns->layout()->setSpacing(1 * f);
+
 //        onScreenScalingFactor(f);
 
         m_dpiRatio = f;
@@ -104,11 +108,23 @@ void CSingleWindowBase::setWindowTitle(const QString& title)
 //#include <QPainter>
 QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom)
 {
+    m_boxTitleBtns = new QWidget;
+    m_boxTitleBtns->setObjectName("box-title-tools");
+    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
+
+    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+    layoutBtns->setContentsMargins(0,0,0,0);
+    layoutBtns->setSpacing(1 * m_dpiRatio);
+
     if ( custom ) {
         m_labelTitle = new QLabel(title);
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
         m_labelTitle->setMouseTracking(true);
+
+        layoutBtns->addStretch();
+        layoutBtns->addWidget(m_labelTitle);
+        layoutBtns->addStretch();
 
         QSize small_btn_size(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 

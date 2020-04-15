@@ -525,10 +525,10 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 QRect CSingleWindowPlatform::geometry() const
 {
-    RECT lpWindowRect;
-    GetWindowRect(m_hWnd, &lpWindowRect);
+    WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+    GetWindowPlacement(m_hWnd, &wp);
 
-    return QRect(QPoint(lpWindowRect.left, lpWindowRect.top), QPoint(lpWindowRect.right, lpWindowRect.bottom));
+    return QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top), QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
 }
 
 void CSingleWindowPlatform::activateWindow()
