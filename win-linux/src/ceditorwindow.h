@@ -61,6 +61,7 @@ public:
     CTabPanel * releaseEditorView() const;
     QString documentName() const;
     bool closed() const;
+    AscEditorType editorType() const;
 
     void setReporterMode(bool);
 private:

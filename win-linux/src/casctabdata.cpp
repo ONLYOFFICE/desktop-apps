@@ -109,7 +109,7 @@ void CAscTabData::setUrl(const wstring& u)
 
 void CAscTabData::setUrl(const QString& u)
 {
-    _url = u.toStdWString();
+    setUrl(u.toStdWString());
 }
 
 wstring CAscTabData::url() const

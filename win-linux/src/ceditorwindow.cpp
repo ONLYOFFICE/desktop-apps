@@ -158,10 +158,14 @@ bool CEditorWindow::holdView(const wstring& portal) const
 
 void CEditorWindow::undock(bool maximized)
 {
+#ifdef Q_OS_LINUX
+    maximized = false;
+#else
     if ( maximized ) {
         m_restoreMaximized = true;
         maximized = false;
     }
+#endif
 
     CSingleWindowPlatform::show(maximized);
     CSingleWindowPlatform::captureMouse();
@@ -267,7 +271,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 
     if ( d_ptr->canExtendTitle() )
         layoutBtns->addWidget(d_ptr.get()->iconUser());
-    else m_labelTitle->setText("ONLYOFFICE");
+    else m_labelTitle->setText(APP_TITLE);
 
     if ( custom ) {
         layoutBtns->addWidget(m_buttonMinimize);
@@ -510,4 +514,9 @@ QString CEditorWindow::documentName() const
 bool CEditorWindow::closed() const
 {
     return d_ptr.get()->panel()->data()->closed();
+}
+
+AscEditorType CEditorWindow::editorType() const
+{
+    return d_ptr.get()->panel()->data()->contentType();
 }

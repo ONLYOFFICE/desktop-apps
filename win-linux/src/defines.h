@@ -36,7 +36,7 @@
 #define rePortalName        "^https?:\\/\\/(.+)"
 #define reFileExtension     "\\.(\\w{1,10})$"
 #define reUserName          "([^\\.]+)\\.?([^\\.]+)?"
-#define reCmdLang           "--(keep)?lang:(\\w{2,5})"
+#define reCmdLang           "--(keep)?lang[:|=](\\w{2,5})"
 
 
 #define FILE_DOWNLOAD_START     3

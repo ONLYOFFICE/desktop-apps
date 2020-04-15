@@ -354,7 +354,7 @@ CMainPanel * CMainWindow::mainPanel() const
 
 QRect CMainWindow::windowRect() const
 {
-    return geometry();
+    return normalGeometry();
 }
 
 bool CMainWindow::isMaximized() const
@@ -403,4 +403,9 @@ void CMainWindow::captureMouse(int tabindex)
 //            mainPanel()->tabWidget()->grabMouse();
         });
     }
+}
+
+void CMainWindow::bringToTop() const
+{
+    QApplication::setActiveWindow(const_cast<CMainWindow *>(this));
 }

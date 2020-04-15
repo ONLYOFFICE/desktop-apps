@@ -15,6 +15,8 @@ public:
     explicit CTabPanel(QWidget *parent = nullptr);
     ~CTabPanel();
 
+    static CTabPanel * createEditorPanel(QWidget *parent = nullptr);
+
     QCefView * view() const;
     CCefView * cef() const;
     void setView(QCefView *);
@@ -42,6 +44,7 @@ public:
 protected:
     void timerEvent(QTimerEvent *event);
     void paintEvent(QPaintEvent *event);
+    void closeEvent(QCloseEvent *event);
 
 private:
     QCefView *      m_pViewer;
@@ -52,6 +55,8 @@ private:
     int m_idTimerResize = 0;
     bool m_prettyTitle = false;
 signals:
+    void closePanel(QCloseEvent *event);
+
 public slots:
     void showFullScreen();
     void showNormal();

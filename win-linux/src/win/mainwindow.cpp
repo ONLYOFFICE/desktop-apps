@@ -962,3 +962,10 @@ bool CMainWindow::pointInTabs(const QPoint& pt) const
     return _rc_title.contains(m_pWinPanel->mapFromGlobal(pt));
 }
 #endif
+
+void CMainWindow::bringToTop() const
+{
+    SetForegroundWindow(handle());
+    SetFocus(handle());
+    SetActiveWindow(handle());
+}

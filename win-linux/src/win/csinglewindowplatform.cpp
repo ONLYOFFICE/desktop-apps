@@ -520,7 +520,7 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
     SetWindowText(m_hWnd, title.toStdWString().c_str());
 }
 
-const QRect& CSingleWindowPlatform::geometry() const
+QRect CSingleWindowPlatform::geometry() const
 {
     RECT lpWindowRect;
     GetWindowRect(m_hWnd, &lpWindowRect);

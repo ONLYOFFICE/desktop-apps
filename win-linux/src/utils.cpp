@@ -62,6 +62,30 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #include <QDebug>
 extern QStringList g_cmdArgs;
 
+namespace InputArgs {
+    auto contains(const QString& param) -> bool {
+        auto iter = std::find_if(begin(g_cmdArgs), end(g_cmdArgs),
+            [&param](const QString& s) {
+                return s.startsWith(param);
+        });
+
+        return iter != end(g_cmdArgs);
+    }
+
+    auto get_arg_value(const QString& param) -> QString {
+        QRegularExpression _re("^" + param + "[=|:]([\\w\\\":\\\\/]+)", QRegularExpression::CaseInsensitiveOption);
+
+        for (const auto& item: g_cmdArgs) {
+            QRegularExpressionMatch _match = _re.match(item);
+            if ( _match.hasMatch() )
+                return _match.captured(1);
+        }
+
+        return QString();
+    }
+}
+
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
@@ -73,7 +97,7 @@ QStringList * Utils::getInputFiles(const QStringList& inlist)
         while (i.hasNext()) {
             QString arg = i.next();
 
-            if ( arg.startsWith("--new:") )
+            if ( arg.startsWith("--new:") || arg.startsWith("--new=") )
                 _ret_files_list->append( arg );
             else {
                 QFileInfo info( arg );

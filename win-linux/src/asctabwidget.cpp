@@ -214,7 +214,6 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     QWidget * panelwidget = createTabPanel(this);
     CTabPanel * pView = panelfromwidget(panelwidget);
 
-    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsEditor();
 
@@ -358,7 +357,6 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     QWidget * panelwidget = createTabPanel(this);
     CTabPanel * pView = panelfromwidget(panelwidget);
 
-    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
     pView->cef()->SetExternalCloud(provider.toStdWString());
@@ -390,7 +388,6 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     QWidget * panelwidget = createTabPanel(this);
     CTabPanel * pView = panelfromwidget(panelwidget);
-    pView->view()->SetBackgroundCefColor(244, 244, 244);
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
 
@@ -432,7 +429,8 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         QWidget * panelwidget = createTabPanel(this, _panel);
 
         tabindex = insertTab(index, panelwidget, tabdata->title());
-        tabBar()->setTabToolTip(tabindex, QString::fromStdWString(tabdata->url()));
+        tabBar()->setTabToolTip(tabindex, !tabdata->url().empty() ?
+                                QString::fromStdWString(tabdata->url()) : tabdata->title() );
     }
 
     return tabindex;
@@ -669,16 +667,16 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
     return -1;
 }
 
-void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool forcenew)
+int CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool forcenew)
 {
-    int tabIndex;
+    int tabIndex{-1};
     if (opts.id > 0 && !forcenew) {
         tabIndex = tabIndexByView(opts.id);
         if (!(tabIndex < 0))
             setCurrentIndex(tabIndex);
     } else {
         opts.name   = tr("Document");
-        opts.type   = etUndefined;
+//        opts.type   = etUndefined;
         tabIndex    = addEditor(opts);
 
         updateIcons();
@@ -686,6 +684,8 @@ void CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool forc
         if (select && !(tabIndex < 0))
             tabBar()->setCurrentIndex(tabIndex);
     }
+
+    return tabIndex;
 }
 
 int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select, bool forcenew)
@@ -847,10 +847,6 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         }
     }
 
-    CCefView * pView = AscAppManager::getInstance().GetViewById(id);
-    if (NULL != pView && pView->GetType() == cvwtEditor) {
-        ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(type));
-    }
 
     if ( !(tabIndex < 0) ) {
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
@@ -909,7 +905,7 @@ void CAscTabWidget::setFocusedView(int index)
         }
 
         if ( panel(nIndex) )
-            panel(nIndex)->cef()->focus();
+            panel(nIndex)->view()->setFocusToCef();
     }
 }
 
@@ -1144,9 +1140,9 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             AscAppManager::topWindow()->hide();
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
-            ((CTabPanel *)fsWidget)->cef()->focus();
+            ((CTabPanel *)fsWidget)->view()->setFocusToCef();
 
-            cefConnection = connect(((CTabPanel *)fsWidget)->view(), &QCefView::closeWidget, [=](QCloseEvent * e){
+            cefConnection = connect((CTabPanel *)fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
 
@@ -1155,7 +1151,9 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
 
                 e->ignore();
-                emit closeAppRequest();
+                // TODO: associate panel with reporter window and close both simultaneously
+                QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
+//                emit closeAppRequest();
             });
 
             fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));

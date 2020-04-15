@@ -500,6 +500,25 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;}
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
+        CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
+        vector<wstring>& files = pData->get_Files();
+
+        CEditorWindow * _editor;
+        for (size_t i(files.size()); i --> 0;) {
+            _editor = editorWindowFromUrl(QString::fromStdWString(files[i]));
+
+            if ( _editor ) {
+                files.erase(files.begin() + i);
+#ifdef Q_OS_WIN
+                SetForegroundWindow(_editor->handle());
+#else
+                _editor->activateWindow();
+#endif
+            }
+        }
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
         CAscLocalOpenFileRecent_Recover * data = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
@@ -540,6 +559,34 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 
         return true;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
+        CEditorWindow * editor = editorWindowFromViewId(event->get_SenderId());
+        if ( editor ) {
+            QRect winrect{editor->geometry().translated(QPoint(50, 50))};
+
+            CAscCreateTab& data = *static_cast<CAscCreateTab *>(event->m_pData);
+            CTabPanel * _panel = CEditorTools::createEditorPanel(COpenOptions{data.get_Url()}, winrect.adjusted(4,4,-4,-4));
+            _panel->data()->setContentType(editor->editorType());
+            _panel->data()->setUrl("");
+
+            CEditorWindow * editor_win = new CEditorWindow(winrect, _panel);
+            editor_win->show(editor->windowState() == Qt::WindowMaximized);
+
+            m_vecEditors.push_back( size_t(editor_win) );
+//            sendCommandTo(_panel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+            return true;
+        }
+        break;}
+
+    case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
+        CCefView * pView = GetViewById(event->get_SenderId());
+        if (NULL != pView && pView->GetType() == cvwtEditor) {
+            CAscTabEditorType& data = *static_cast<CAscTabEditorType *>(event->m_pData);
+            ((CCefViewEditor *)pView)->SetEditorType(AscEditorType(data.get_Type()));
+        }
+        break;
+    }
 
     default: break;
     }
@@ -931,6 +978,7 @@ namespace Drop {
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::encodeJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
+            CAscApplicationManagerWrapper::topWindow()->bringToTop();
         }
     }
 

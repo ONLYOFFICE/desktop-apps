@@ -367,7 +367,7 @@ void CMainPanel::pushButtonMainClicked()
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
 
-        ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+        ((QCefView *)m_pMainWidget)->setFocusToCef();
         onTabChanged(m_pTabs->currentIndex());
     }
 }
@@ -380,7 +380,7 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
 //                m_pTabs->setFocusedView();
-//                ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+//                ((QCefView *)m_pMainWidget)->setFocusToCef();
             } else {
                 m_pTabs->activate(true);
                 m_pMainWidget->setHidden(true);
@@ -402,7 +402,7 @@ void CMainPanel::focus() {
     if (m_pTabs->isActive()) {
         m_pTabs->setFocusedView();
     } else {
-        ((QCefView *)m_pMainWidget)->GetCefView()->focus();
+        ((QCefView *)m_pMainWidget)->setFocusToCef();
     }
 }
 
@@ -487,6 +487,7 @@ void CMainPanel::onTabCloseRequest(int index)
 {
     if ( !m_closeAct.isEmpty() ) return;
 
+    onFullScreen(-1, false);
     if ( m_pTabs->isProcessed(index) ) {
         return;
     } else {
@@ -558,14 +559,23 @@ void CMainPanel::onPortalLogout(wstring portal)
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
-//    qDebug() << "on document open: " << url;
     COpenOptions opts = {url};
     opts.id = id;
 
-    m_pTabs->openCloudDocument(opts, select, true);
+    int _index = m_pTabs->openCloudDocument(opts, select, true);
+    if ( !(_index < 0) ) {
+        if ( select )
+            toggleButtonMain(false, true);
 
-    if ( select )
-        toggleButtonMain(false, true);
+        CAscTabData& _panel = *(m_pTabs->panel(_index)->data());
+        QRegularExpression re("ascdesktop:\\/\\/compare");
+        QRegularExpressionMatch match = re.match(QString::fromStdWString(_panel.url()));
+
+        if (match.hasMatch()) {
+             _panel.setIsLocal(true);
+             _panel.setUrl("");
+        }
+    }
 }
 
 //void CMainPanel::onLocalFileOpen(const QString& inpath)

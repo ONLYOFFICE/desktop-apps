@@ -239,7 +239,7 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 #pragma mark -
-#pragma mark - CEF events handler
+#pragma mark CEF events handler
 
 - (void)onCEFChangedTabEditorType:(NSNotification *)notification {
     if (notification && notification.userInfo) {
@@ -314,7 +314,7 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 #pragma mark -
-#pragma mark - Actions
+#pragma mark Actions
 - (void)setupCustomPopover:(SFBPopover *)popover {
     popover.closesWhenPopoverResignsKey     = YES;
     popover.closesWhenApplicationBecomesInactive = YES;
@@ -383,7 +383,7 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 #pragma mark -
-#pragma mark - ASCTabsControl Delegate
+#pragma mark ASCTabsControl Delegate
 
 - (void)tabs:(ASCTabsControl *)control didResize:(CGRect)rect {
     [self doLayout];
@@ -422,7 +422,7 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 #pragma mark -
-#pragma mark - Navigation
+#pragma mark Navigation
 
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"ASCUserInfoSegueID"]) {

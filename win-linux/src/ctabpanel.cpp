@@ -8,6 +8,13 @@
 
 using namespace NSEditorApi;
 
+CTabPanel * CTabPanel::createEditorPanel(QWidget *parent)
+{
+    CTabPanel * panel = new CTabPanel(parent);
+    panel->initAsEditor();
+    return panel;
+}
+
 CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
     , m_pViewer(AscAppManager::createViewer(this))
@@ -17,6 +24,8 @@ CTabPanel::CTabPanel(QWidget *parent)
 
 //    _layout->setMargin(0);
 //    _layout->addWidget(m_pViewer);
+
+    m_pViewer->SetBackgroundCefColor(244, 244, 244);
 }
 
 CTabPanel::~CTabPanel()
@@ -135,6 +144,11 @@ void CTabPanel::timerEvent(QTimerEvent *)
     } else {
         m_startSize = m_lastSize;
     }
+}
+
+void CTabPanel::closeEvent(QCloseEvent *event)
+{
+    emit closePanel(event);
 }
 
 void CTabPanel::resize(int w, int h)

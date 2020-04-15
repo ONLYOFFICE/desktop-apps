@@ -47,6 +47,11 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
 {
     CMainPanel * _pMainPanel = mainPanel();
     QPoint _pt_local = _pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+#ifdef Q_OS_WIN
+# if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+    _pt_local -= _pMainPanel->parentWidget()->mapToGlobal(_pMainPanel->geometry().topLeft());
+# endif
+#endif
     int _index = _pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
 
     if ( !(_index < 0) ) {
@@ -61,6 +66,7 @@ bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 {
     QRect _rc_title(mainPanel()->geometry());
     _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
+    _rc_title.moveTop(1);
 
     return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
 }
