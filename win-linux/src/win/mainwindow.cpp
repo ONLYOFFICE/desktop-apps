@@ -135,7 +135,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->goStart();
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
-    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
@@ -247,8 +246,23 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //            break;
             return 0;
         } else
+        if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
+            window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            break;
+        } else
+        if ( GET_SC_WPARAM(wParam) == SC_MOVE ) {
+            break;
+        } else
         if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
             qDebug() << "wm syscommand";
+            break;
+        }
+        else
+        if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
+            break;
+        }
+        else
+        if (GET_SC_WPARAM(wParam) == SC_MINIMIZE) {
             break;
         }
         else
@@ -415,6 +429,7 @@ qDebug() << "WM_CLOSE";
         break;}
 
     case WM_EXITSIZEMOVE: {
+        window->setMinimumSize(0, 0);
 //#define DEBUG_SCALING
 #if defined(DEBUG_SCALING) && defined(_DEBUG)
         QRect windowRect;
@@ -698,7 +713,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         m_pMainPanel->setStyleSheet(css);
         m_pMainPanel->setScreenScalingFactor(factor);
-        setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {

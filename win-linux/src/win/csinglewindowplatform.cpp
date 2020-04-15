@@ -73,7 +73,6 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
         throw std::runtime_error("couldn't create window because of reasons");
 
     SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     m_pWinPanel = new CWinPanel(m_hWnd);
 
@@ -113,8 +112,12 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
     // ALT + SPACE or F10 system menu
     case WM_SYSCOMMAND: {
-        if ( wParam == SC_KEYMENU ) {
+        if (  GET_SC_WPARAM(wParam) == SC_KEYMENU ) {
             return 0;
+        } else
+        if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
+            window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            break;
         }
 
         return DefWindowProc( hWnd, message, wParam, lParam );
@@ -402,6 +405,7 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 
 void CSingleWindowPlatform::onExitSizeMove()
 {
+    setMinimumSize(0, 0);
     uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
 
     if ( dpi_ratio != m_dpiRatio )
@@ -469,7 +473,6 @@ void CSingleWindowPlatform::setScreenScalingFactor(uint f)
     bool _is_up = f > m_dpiRatio;
 
     CSingleWindowBase::setScreenScalingFactor(f);
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f);
 
     WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
     if ( GetWindowPlacement(m_hWnd, &wp) ) {
