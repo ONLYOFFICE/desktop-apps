@@ -559,14 +559,23 @@ void CMainPanel::onPortalLogout(wstring portal)
 
 void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
 {
-//    qDebug() << "on document open: " << url;
     COpenOptions opts = {url};
     opts.id = id;
 
-    m_pTabs->openCloudDocument(opts, select, true);
+    int _index = m_pTabs->openCloudDocument(opts, select, true);
+    if ( !(_index < 0) ) {
+        if ( select )
+            toggleButtonMain(false, true);
 
-    if ( select )
-        toggleButtonMain(false, true);
+        CAscTabData& _panel = *(m_pTabs->panel(_index)->data());
+        QRegularExpression re("ascdesktop:\\/\\/compare");
+        QRegularExpressionMatch match = re.match(QString::fromStdWString(_panel.url()));
+
+        if (match.hasMatch()) {
+             _panel.setIsLocal(true);
+             _panel.setUrl("");
+        }
+    }
 }
 
 //void CMainPanel::onLocalFileOpen(const QString& inpath)

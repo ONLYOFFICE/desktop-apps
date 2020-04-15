@@ -15,6 +15,8 @@ public:
     explicit CTabPanel(QWidget *parent = nullptr);
     ~CTabPanel();
 
+    static CTabPanel * createEditorPanel(QWidget *parent = nullptr);
+
     QCefView * view() const;
     CCefView * cef() const;
     void setView(QCefView *);

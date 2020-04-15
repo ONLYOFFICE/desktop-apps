@@ -42,7 +42,7 @@
 
 using namespace std;
 namespace InputArgs {
-    auto contains(QString&) -> bool;
+    auto contains(const QString&) -> bool;
     auto get_arg_value(const QString& param) -> QString;
 }
 

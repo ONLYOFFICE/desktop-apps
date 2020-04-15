@@ -37,12 +37,17 @@ void CCefEventsGate::onDocumentName(void * data)
     CAscTabData * doc = m_panel->data();
     doc->setTitle(QString::fromStdWString(pData->get_Name()));
     if ( doc->isLocal() ) {
-        if ( pData->get_Url().empty() ) {
+        if ( pData->get_Url().empty() && !pData->get_Path().empty() ) {
             doc->setUrl(Utils::replaceBackslash(QString::fromStdWString(pData->get_Path())));
         }
     }
 
     RELEASEINTERFACE(pData);
+}
+
+void CCefEventsGate::onDocumentType(int id, int type)
+{
+    if (id) { type; }
 }
 
 void CCefEventsGate::onDocumentSave(int, bool cancel)
