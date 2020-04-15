@@ -224,6 +224,7 @@ installer: $(INSTALLER)
 
 clean:
 	rm -rfv \
+		common/etc \
 		common/opt \
 		$(LINUX_DEPS) \
 		$(DEB_DEPS) \
@@ -261,8 +262,11 @@ desktopeditor: branding $(LINUX_DEPS)
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	mkdir -p common/etc/$(dir $(DESKTOPEDITORS_PREFIX))
+
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
+	chmod 777 common/etc/$(dir $(DESKTOPEDITORS_PREFIX))
 endif
 
 qt-redist:
