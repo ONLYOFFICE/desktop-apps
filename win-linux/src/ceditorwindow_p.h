@@ -213,6 +213,15 @@ public:
         }
     }
 
+    void onDocumentReady(int uid) override
+    {
+//        if (window->holdView(uid))
+            if ( panel()->data()->features().empty() ) {
+                panel()->data()->setFeatures(L"old version of editor");
+                extendableTitleToSimple();
+            }
+    }
+
     void onDocumentName(void * data) override
     {
         CCefEventsGate::onDocumentName(data);
@@ -545,7 +554,8 @@ public:
 
     bool canExtendTitle()
     {
-        return !viewerMode() && (panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:"));
+        if ( panel()->data()->features().empty() ) return true;
+        else  return !viewerMode() && (panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() -> bool {
