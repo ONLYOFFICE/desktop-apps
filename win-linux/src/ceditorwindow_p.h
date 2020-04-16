@@ -44,6 +44,7 @@
 #include "qascprinter.h"
 #include "ceditortools.h"
 #include "csvgpushbutton.h"
+#include "defines.h"
 
 #include <QPrinterInfo>
 #include <QDesktopWidget>
@@ -58,6 +59,37 @@
 
 
 using namespace NSEditorApi;
+
+const QString g_css =
+        "#mainPanel{background-color:%1;}"
+        "#box-title-tools{background-color:%1;}"
+        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
+        "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
+        "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
+        "#labelTitle{color:#444;font-size:11px;}"
+        "#iconuser{color:#fff;font-size:11px;}"
+        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
+        "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
+        "#mainPanel[zoom=\"2x\"] #iconuser,"
+        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
+
+auto prepare_editor_css(int type) -> QString {
+    switch (type) {
+    default: return g_css.arg(WINDOW_BACKGROUND_COLOR);
+    case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
+    case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
+    case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    }
+}
 
 class CEditorWindowPrivate : public CCefEventsGate
 {
@@ -114,6 +146,28 @@ public:
         return btn;
     }
 
+    auto extendableTitleToSimple() {
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+            _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+
+            window->m_css = {prepare_editor_css(etUndefined)};
+            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+            css.append(window->m_css);
+            window->m_pMainPanel->setProperty("window", "simple");
+            window->m_pMainPanel->setStyleSheet(css);
+
+            iconUser()->hide();
+            window->m_labelTitle->setText(APP_TITLE);
+
+#ifdef Q_OS_WIN
+            window->m_bgColor = WINDOW_BACKGROUND_COLOR;
+            InvalidateRect(window->m_hWnd,nullptr,TRUE);
+#endif
+            qDebug() << "extend title";
+        }
+    }
+
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
@@ -121,6 +175,9 @@ public:
         QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
+
+            if ( viewMode() )
+                extendableTitleToSimple();
 
             int _user_width = 0;
             if ( canExtendTitle() ) {
@@ -488,7 +545,11 @@ public:
 
     bool canExtendTitle()
     {
-        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:");
+        return !viewerMode() && (panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:"));
+    }
+
+    auto viewerMode() -> bool {
+        return panel()->data()->hasFeature(L"viewmode\":");
     }
 };
 
