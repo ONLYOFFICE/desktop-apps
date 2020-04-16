@@ -49,6 +49,7 @@
 #include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QJsonObject>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -113,7 +114,7 @@ public:
         return btn;
     }
 
-    void onEditorConfig(int, std::wstring cfg)
+    void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
         QJsonParseError jerror;
@@ -407,7 +408,7 @@ public:
         }
     }
 
-    void onFileLocation(int, QString param)
+    void onFileLocation(int, QString param) override
     {
         if ( param == "offline" ) {
             const wstring& path = m_panel->data()->url();
@@ -451,7 +452,7 @@ public:
         panel()->data()->setFeatures(f);
     }
 
-    void onWebTitleChanged(int, std::wstring json)
+    void onWebTitleChanged(int, std::wstring json) override
     {
         if ( !m_mapTitleButtons.isEmpty() ) {
             QJsonParseError jerror;

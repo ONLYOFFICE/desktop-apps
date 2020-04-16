@@ -806,6 +806,10 @@ void CMainPanel::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
+void CMainPanel::onEditorConfig(int, std::wstring cfg)
+{
+}
+
 void CMainPanel::onWebAppsFeatures(int id, wstring opts)
 {
     m_pTabs->setEditorOptions(id, opts);
