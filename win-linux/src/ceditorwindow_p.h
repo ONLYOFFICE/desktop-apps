@@ -176,7 +176,7 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( viewMode() )
+            if ( viewerMode() )
                 extendableTitleToSimple();
 
             int _user_width = 0;

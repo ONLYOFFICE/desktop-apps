@@ -376,7 +376,7 @@ void CEditorWindow::recalculatePlaces()
 //    int nCaptionR = 200;
     int nCaptionL = 0 /*d_ptr.get()->titleLeftOffset * m_dpiRatio*/;
 
-    if ( d_ptr->canExtendTitle() && !d_ptr->viewMode() )
+    if ( d_ptr->canExtendTitle() )
     {
 //    QSize _s{TOOLBTN_WIDTH * 3, TOOLBTN_HEIGHT};
 //    _s *= m_dpiRatio;
