@@ -263,11 +263,11 @@ desktopeditor: branding $(LINUX_DEPS)
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	mkdir -p common/etc/$(dir $(DESKTOPEDITORS_PREFIX))
+	mkdir -p common/etc/$(PACKAGE_NAME)
 
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
-	chmod 777 common/etc/$(dir $(DESKTOPEDITORS_PREFIX))
+	chmod 777 common/etc/$(PACKAGE_NAME)
 endif
 
 qt-redist:
