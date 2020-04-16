@@ -10,5 +10,4 @@ ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 ../common/usr/share/applications/M4_IMAGEVIEWER_EXEC.desktop /usr/share/applications/
 ../common/usr/share/applications/M4_VIDEOPLAYER_EXEC.desktop /usr/share/applications/
 ../common/usr/share/flyfm/templates/desktopeditors.*.desktop /usr/share/flyfm/templates/
-../common/usr/bin/M4_PACKAGE_NAME /usr/bin/
-../common/etc/* /etc/)
+../common/usr/bin/M4_PACKAGE_NAME /usr/bin/)
