@@ -37,6 +37,8 @@ cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_ex
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
 %else
 ETC_DIR=%{buildroot}%{_sysconfdir}
+mkdir -p $ETC_DIR/%{_package_name}
+
 MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
 mkdir -p $MEDIAVIEWER_PREFIX
 cp -r $COMMON/opt/mediaviewer/* $MEDIAVIEWER_PREFIX/
@@ -47,8 +49,6 @@ cp -t $DATA_DIR/applications \
   $COMMON/usr/share/applications/%{_imageviewer_exec}.desktop \
   $COMMON/usr/share/applications/%{_videoplayer_exec}.desktop
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
-mkdir -p $ETC_DIR
-cp -r $COMMON/etc/* $ETC_DIR/
 %endif
 
 %clean
