@@ -325,19 +325,8 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
 {
-    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
-
-    if ( !WindowHelper::isLeftButtonPressed() ) {
-        CSingleWindowBase::setScreenScalingFactor(newfactor);
-
-        m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
-        m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(newfactor) + m_css);
-
-        d_ptr.get()->onScreenScalingFactor(newfactor);
-
-        adjustGeometry();
-        recalculatePlaces();
-    }
+//    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
+    setScreenScalingFactor(newfactor);
 }
 
 void CEditorWindow::setScreenScalingFactor(int newfactor)

@@ -585,10 +585,10 @@ namespace WindowHelper {
             if ( windowRect.width() < _min_windowsize.width() ||
                     windowRect.height() < _min_windowsize.height() )
             {
-                if ( windowRect.width() < _min_windowsize.width() )
+//                if ( windowRect.width() < _min_windowsize.width() )
                     wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
 
-                if ( windowRect.height() < _min_windowsize.height() )
+//                if ( windowRect.height() < _min_windowsize.height() )
                     wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
 
                 SetWindowPlacement(handle, &wp);

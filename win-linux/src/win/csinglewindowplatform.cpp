@@ -488,36 +488,37 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::setScreenScalingFactor(int f)
 {
-    m_skipSizing = true;
     bool _is_up = f > m_dpiRatio;
-
     CSingleWindowBase::setScreenScalingFactor(f);
 
-    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-    if ( GetWindowPlacement(m_hWnd, &wp) ) {
-        if ( wp.showCmd == SW_MAXIMIZE ) {
-            MONITORINFO info{sizeof(MONITORINFO)};
-            GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+    if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
+        m_skipSizing = true;
 
-            m_moveNormalRect = _is_up ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
-                                            QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if ( GetWindowPlacement(m_hWnd, &wp) ) {
+            if ( wp.showCmd == SW_MAXIMIZE ) {
+                MONITORINFO info{sizeof(MONITORINFO)};
+                GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-            wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
-            wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
-            wp.rcNormalPosition.right = wp.rcNormalPosition.left + m_moveNormalRect.width();
-            wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + m_moveNormalRect.height();
+                m_moveNormalRect = _is_up ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
+                                                QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
 
-            SetWindowPlacement(m_hWnd, &wp);
-        } else {
-            QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
-                dest_rect = _is_up ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
-                                            QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+                wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
+                wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
+                wp.rcNormalPosition.right = wp.rcNormalPosition.left + m_moveNormalRect.width();
+                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + m_moveNormalRect.height();
 
-            SetWindowPos(m_hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
+                SetWindowPlacement(m_hWnd, &wp);
+            } else {
+                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
+                    dest_rect = _is_up ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
+                                                QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+
+                SetWindowPos(m_hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
+            }
         }
+        m_skipSizing = false;
     }
-
-    m_skipSizing = false;
 }
 
 Qt::WindowState CSingleWindowPlatform::windowState()
