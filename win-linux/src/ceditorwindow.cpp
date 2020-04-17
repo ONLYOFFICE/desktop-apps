@@ -340,7 +340,7 @@ void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
     }
 }
 
-void CEditorWindow::setScreenScalingFactor(uint newfactor)
+void CEditorWindow::setScreenScalingFactor(int newfactor)
 {
     CSingleWindowPlatform::setScreenScalingFactor(newfactor);
 

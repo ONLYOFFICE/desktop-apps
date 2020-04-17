@@ -79,7 +79,7 @@ CSingleWindowBase::CSingleWindowBase(QRect& rect)
     }
 }
 
-void CSingleWindowBase::setScreenScalingFactor(uint f)
+void CSingleWindowBase::setScreenScalingFactor(int f)
 {
     if ( m_dpiRatio != f ) {
         QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
