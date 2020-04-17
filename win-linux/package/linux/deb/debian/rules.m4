@@ -18,7 +18,8 @@ override_dh_fixperms:
 	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors
 	ifelse(M4_COMPANY_NAME, ONLYOFFICE,,
 	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/ImageViewer
-	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer)
+	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer
+	chmod 777 debian/M4_PACKAGE_NAME/etc/M4_PACKAGE_NAME)
 
 override_dh_shlibdeps:
 	dh_shlibdeps --no-act

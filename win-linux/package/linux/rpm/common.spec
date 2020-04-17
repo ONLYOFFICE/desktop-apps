@@ -36,6 +36,9 @@ cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_ex
 %if "%{_company_name}" == "ONLYOFFICE"
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
 %else
+ETC_DIR=%{buildroot}%{_sysconfdir}
+mkdir -p $ETC_DIR/%{_package_name}
+
 MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
 mkdir -p $MEDIAVIEWER_PREFIX
 cp -r $COMMON/opt/mediaviewer/* $MEDIAVIEWER_PREFIX/
@@ -61,6 +64,7 @@ rm -rf "%{buildroot}"
 %attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
 %attr(755, root, root) %{_bindir}/%{_videoplayer_exec}
 %attr(-, root, root) %{_bindir}/%{_package_name}
+%attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
 
 %pre
