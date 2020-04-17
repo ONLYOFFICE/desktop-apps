@@ -442,6 +442,8 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_ENTERSIZEMOVE: {
+        WindowHelper::correctWindowMinimumSize(window->handle());
+
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};
@@ -475,9 +477,16 @@ qDebug() << "WM_CLOSE";
         int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 #endif
         if ( dpi_ratio != window->m_dpiRatio ) {
-            window->setScreenScalingFactor(dpi_ratio);
+            if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
+                window->setScreenScalingFactor(dpi_ratio);
+            } else {
+                window->m_dpiRatio = dpi_ratio;
+                refresh_window_scaling_factor(window);
+            }
+
             window->adjustGeometry();
         }
+
         break;
     }
 

@@ -563,6 +563,17 @@ namespace WindowHelper {
         return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
     }
 
+    auto isWindowSystemDocked(HWND handle) -> bool {
+        RECT windowrect;
+        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
+            return wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left &&
+                        wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top;
+        }
+
+        return false;
+    }
+
     auto correctWindowMinimumSize(HWND handle) -> void {
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
         if ( GetWindowPlacement(handle, &wp) ) {

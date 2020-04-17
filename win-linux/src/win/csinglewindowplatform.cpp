@@ -279,6 +279,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         return TRUE;}
 
     case WM_ENTERSIZEMOVE: {
+        WindowHelper::correctWindowMinimumSize(hWnd);
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};
@@ -423,8 +424,11 @@ void CSingleWindowPlatform::onExitSizeMove()
     setMinimumSize(0, 0);
     int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
 
-    if ( dpi_ratio != m_dpiRatio )
-        setScreenScalingFactor(dpi_ratio);
+    if ( dpi_ratio != m_dpiRatio ) {
+        if ( WindowHelper::isWindowSystemDocked(m_hWnd) )
+            onDpiChanged(dpi_ratio, m_dpiRatio);
+        else setScreenScalingFactor(dpi_ratio);
+    }
 }
 
 void CSingleWindowPlatform::adjustGeometry()

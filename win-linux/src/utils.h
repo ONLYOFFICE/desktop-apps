@@ -98,6 +98,7 @@ namespace WindowHelper {
     };
 #else
     auto isLeftButtonPressed() -> bool;
+    auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) ->void;
 #endif
 }
