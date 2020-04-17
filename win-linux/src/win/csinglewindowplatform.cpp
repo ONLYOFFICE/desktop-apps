@@ -44,26 +44,6 @@
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
-auto correctWindowMinimumSize(const CSingleWindowPlatform& window) -> void {
-    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-    if ( GetWindowPlacement(window.handle(), &wp) ) {
-        int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)window.handle());
-        QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
-        QRect windowRect{window.geometry()};
-        if ( windowRect.width() < _min_windowsize.width() ||
-                windowRect.height() < _min_windowsize.height() )
-        {
-            if ( windowRect.width() < _min_windowsize.width() )
-                wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
-
-            if ( windowRect.height() < _min_windowsize.height() )
-                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
-
-            SetWindowPlacement(window.handle(), &wp);
-        }
-    }
-}
-
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
     , m_bgColor(WINDOW_BACKGROUND_COLOR)
@@ -149,9 +129,8 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
             break;
         } else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
-            if ( !WindowHelper::isLeftButtonPressed() ) {
-                correctWindowMinimumSize(*window);
-            }
+//            if ( !WindowHelper::isLeftButtonPressed() ) {
+                WindowHelper::correctWindowMinimumSize(hWnd);
 
             break;
         }
@@ -442,7 +421,7 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 void CSingleWindowPlatform::onExitSizeMove()
 {
     setMinimumSize(0, 0);
-    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+    int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
 
     if ( dpi_ratio != m_dpiRatio )
         setScreenScalingFactor(dpi_ratio);

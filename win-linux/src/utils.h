@@ -46,10 +46,6 @@ namespace InputArgs {
     auto get_arg_value(const QString& param) -> QString;
 }
 
-namespace WindowHelper {
-    auto isLeftButtonPressed() -> bool;
-}
-
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);
@@ -91,8 +87,8 @@ public:
 #endif
 };
 
+namespace WindowHelper {
 #ifdef Q_OS_LINUX
-namespace WindowUtils {
     class CParentDisable
     {
         QWidget* m_pChild = nullptr;
@@ -100,8 +96,11 @@ namespace WindowUtils {
         CParentDisable(QWidget* parent);
         ~CParentDisable();
     };
-}
+#else
+    auto isLeftButtonPressed() -> bool;
+    auto correctWindowMinimumSize(HWND handle) ->void;
 #endif
+}
 
 #endif // UTILS_H
 

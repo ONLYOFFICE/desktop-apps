@@ -299,7 +299,7 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowUtils::CParentDisable locker(window);
+        WindowHelper::CParentDisable locker(window);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;

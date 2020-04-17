@@ -148,7 +148,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #endif
 
 #ifndef _WIN32
-    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     while (true) {
@@ -238,7 +238,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 #endif
 
 #ifndef _WIN32
-    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #else
     CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
 #endif

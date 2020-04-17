@@ -91,7 +91,7 @@ public:
 
 private:
     void captureMouse(int tabindex) override;
-    void setScreenScalingFactor(uchar);
+    void setScreenScalingFactor(int);
     void doClose();
 
     void slot_windowChangeState(Qt::WindowState);
@@ -123,7 +123,7 @@ private:
     WindowBase::CWindowGeometry minimumSize;
     WindowBase::CWindowGeometry maximumSize;
 
-    uchar m_dpiRatio;
+    int m_dpiRatio;
     HWND m_modalHwnd;
 
     QRect m_moveNormalRect;

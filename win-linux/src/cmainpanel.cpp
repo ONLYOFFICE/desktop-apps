@@ -1001,7 +1001,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowUtils::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;

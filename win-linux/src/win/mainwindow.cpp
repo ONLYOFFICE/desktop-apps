@@ -80,30 +80,6 @@ auto refresh_window_scaling_factor(CMainWindow * window) -> void {
     }
 }
 
-auto correctWindowMinimumSize(const CMainWindow&  window) {
-    WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
-    if ( GetWindowPlacement(window.handle(), &wp) ) {
-        int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)window.handle());
-        QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
-        QRect windowRect{window.windowRect()};
-        if ( windowRect.width() < _min_windowsize.width() ||
-                windowRect.height() < _min_windowsize.height() )
-        {
-            if ( windowRect.width() < _min_windowsize.width() )
-                wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
-
-            if ( windowRect.height() < _min_windowsize.height() )
-                wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
-
-            SetWindowPlacement(window.handle(), &wp);
-        }
-    }
-}
-
-auto correctWindowMinimumSize(const CMainWindow *  window) {
-    correctWindowMinimumSize(*window);
-}
-
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
     hInstance(GetModuleHandle(nullptr)),
@@ -302,9 +278,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         }
         else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
-            if ( !WindowHelper::isLeftButtonPressed() ) {
-                correctWindowMinimumSize(window);
-            }
+//            if ( !WindowHelper::isLeftButtonPressed() )
+                WindowHelper::correctWindowMinimumSize(window->handle());
 
             break;
         }
@@ -497,7 +472,7 @@ qDebug() << "WM_CLOSE";
         int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
         uchar dpi_ratio = _scr_num;
 #else
-        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+        int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 #endif
         if ( dpi_ratio != window->m_dpiRatio ) {
             window->setScreenScalingFactor(dpi_ratio);
@@ -750,7 +725,7 @@ void CMainWindow::adjustGeometry()
     DeleteObject(hRgn);
 }
 
-void CMainWindow::setScreenScalingFactor(uchar factor)
+void CMainWindow::setScreenScalingFactor(int factor)
 {
     skipsizing = true;
 
@@ -783,7 +758,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
                     dest_rect = increase ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
                                                 QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
 
-                qDebug() << "set screen scaling1" << source_rect << dest_rect;
                 SetWindowPos(hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
         }

@@ -85,16 +85,6 @@ namespace InputArgs {
     }
 }
 
-namespace WindowHelper {
-    auto isLeftButtonPressed() -> bool {
-#if defined(Q_OS_WIN)
-        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
-#else
-        return false;
-#endif
-    }
-}
-
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
@@ -538,8 +528,8 @@ void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
 }
 #endif
 
+namespace WindowHelper {
 #ifdef Q_OS_LINUX
-namespace WindowUtils {
     CParentDisable::CParentDisable(QWidget* parent)
     {
         if (parent) {
@@ -568,5 +558,31 @@ namespace WindowUtils {
         if (m_pChild)
             m_pChild->deleteLater();
     }
-}
+#else
+    auto isLeftButtonPressed() -> bool {
+        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+    }
+
+    auto correctWindowMinimumSize(HWND handle) -> void {
+        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+        if ( GetWindowPlacement(handle, &wp) ) {
+            int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
+            QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
+            QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
+                                    QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
+
+            if ( windowRect.width() < _min_windowsize.width() ||
+                    windowRect.height() < _min_windowsize.height() )
+            {
+                if ( windowRect.width() < _min_windowsize.width() )
+                    wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
+
+                if ( windowRect.height() < _min_windowsize.height() )
+                    wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
+
+                SetWindowPlacement(handle, &wp);
+            }
+        }
+    }
 #endif
+}
