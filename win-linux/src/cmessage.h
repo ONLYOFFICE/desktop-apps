@@ -57,8 +57,6 @@ namespace CMessageOpts {
 #if defined(_WIN32)
 class CMessage : public CWinWindow
 {
-    Q_DECLARE_TR_FUNCTIONS(CMessage)
-
 public:
     CMessage(HWND);
     CMessage(HWND, CMessageOpts::moButtons);
@@ -105,6 +103,8 @@ private:
 
     void modal();
     void onScreenScaling();
+
+    Q_DECLARE_TR_FUNCTIONS(CMessage)
 };
 
 #endif // CMESSAGE_H
