@@ -146,7 +146,7 @@ public:
         return btn;
     }
 
-    auto extendableTitleToSimple() {
+    auto extendableTitleToSimple() -> void {
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
