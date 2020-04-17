@@ -5,9 +5,13 @@ WIN_REPO_DIR := windows
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
+DESKTOP_EDITORS_UPDATE += win-linux/package/windows/$(PACKAGE_NAME)_update_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 
 PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+PACKAGES += $(DESKTOP_EDITORS_UPDATE)
+endif
 
 VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
 VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
@@ -58,9 +62,12 @@ $(VCREDIST15):
 
 $(DEST_DIR): install
 
-win-linux/package/windows/%.exe:
+$(DESKTOP_EDITORS_EXE):
 	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) common.iss
-	
+
+$(DESKTOP_EDITORS_UPDATE): $(DESKTOP_EDITORS_EXE)
+	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) //DTARGET_NAME="$(notdir $<)" update_common.iss
+
 win-linux/package/windows/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
 	
@@ -81,6 +88,13 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read 
 
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	aws s3 cp \
+	$(DESKTOP_EDITORS_UPDATE) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	--acl public-read
+endif
+
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
@@ -90,6 +104,9 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
 M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	M4_PARAMS += -D M4_EXE_UPDATE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_UPDATE))"
+endif
 M4_PARAMS += -D M4_ZIP_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_ZIP))"
 
 % : %.m4
