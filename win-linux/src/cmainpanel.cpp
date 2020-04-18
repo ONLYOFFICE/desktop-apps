@@ -1021,7 +1021,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         printer->setFromTo(1, pagesCount);
 
 #ifdef _WIN32
-        CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
+        CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         QPrintDialog * dialog = wrapper.q_dialog();
 #else
         QPrintDialog * dialog =  new QPrintDialog(printer, this);

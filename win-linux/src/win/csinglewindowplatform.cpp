@@ -565,10 +565,11 @@ void CSingleWindowPlatform::activateWindow()
 
 void CSingleWindowPlatform::slot_modalDialog(bool status, HWND h)
 {
-    if ( !status && h == m_hWnd ) bringToTop();
+    if ( h != m_hWnd ) {
+        EnableWindow(m_hWnd, status ? FALSE : TRUE);
+        m_modalHwnd = h;
+    } else m_modalHwnd = nullptr;
 
-    EnableWindow(m_hWnd, status ? FALSE : TRUE);
-    m_modalHwnd = h;
 }
 
 void CSingleWindowPlatform::captureMouse()
