@@ -62,7 +62,7 @@ public:
 
 protected:
     HWND m_hWnd;
-    HWND m_modalHwnd;
+    HWND m_modalHwnd = nullptr;
     COLORREF m_bgColor;
     QRect m_moveNormalRect;
     bool m_borderless = true;
@@ -90,7 +90,7 @@ protected:
     virtual void onExitSizeMove() override;
 
     void captureMouse();
-    void slot_modalDialog(bool status, size_t h);
+    void slot_modalDialog(bool status, HWND h);
 
 private:
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

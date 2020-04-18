@@ -794,10 +794,10 @@ void CMainWindow::slot_windowClose()
     AscAppManager::closeMainWindow( size_t(this) );
 }
 
-void CMainWindow::slot_modalDialog(bool status, size_t h)
+void CMainWindow::slot_modalDialog(bool status, HWND h)
 {
     EnableWindow(hWnd, status ? FALSE : TRUE);
-    m_modalHwnd = (HWND)h;
+    m_modalHwnd = h;
 }
 
 void CMainWindow::slot_mainPageReady()

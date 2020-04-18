@@ -46,7 +46,9 @@ CPrintDialogWinWrapper::~CPrintDialogWinWrapper()
 
 int CPrintDialogWinWrapper::showModal()
 {
-    CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
+    CInAppEventModal _event(QWinWidget::parentWindow());
+    CRunningEventHelper _h(&_event);
+
     return m_pDlg->exec();
 }
 

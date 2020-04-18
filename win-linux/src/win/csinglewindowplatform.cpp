@@ -141,7 +141,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     case WM_ACTIVATE: {
         static bool is_mainwindow_prev;
         is_mainwindow_prev = false;
-        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd > 0 && window->m_modalHwnd != hWnd )
+        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd && window->m_modalHwnd != hWnd )
         {
             if ( LOWORD(wParam) != WA_INACTIVE ) {
                 SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
@@ -556,12 +556,11 @@ void CSingleWindowPlatform::activateWindow()
     SetActiveWindow(m_hWnd);
 }
 
-void CSingleWindowPlatform::slot_modalDialog(bool status, size_t h)
+void CSingleWindowPlatform::slot_modalDialog(bool status, HWND h)
 {
     EnableWindow(m_hWnd, status ? FALSE : TRUE);
-    m_modalHwnd = (HWND)h;
 
-    qDebug() << "disable parent window" << status;
+    m_modalHwnd = h;
 }
 
 void CSingleWindowPlatform::captureMouse()
