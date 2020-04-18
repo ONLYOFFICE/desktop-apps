@@ -796,6 +796,8 @@ void CMainWindow::slot_windowClose()
 
 void CMainWindow::slot_modalDialog(bool status, HWND h)
 {
+    if ( !status && h == hWnd ) bringToTop();
+
     EnableWindow(hWnd, status ? FALSE : TRUE);
     m_modalHwnd = h;
 }

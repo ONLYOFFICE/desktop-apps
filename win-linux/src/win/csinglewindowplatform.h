@@ -51,6 +51,7 @@ public:
     virtual void show(bool);
     virtual void hide();
     virtual bool visible();
+    virtual void bringToTop() override;
 
     virtual Qt::WindowState windowState();
     virtual void setWindowState(Qt::WindowState);

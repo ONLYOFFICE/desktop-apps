@@ -400,6 +400,13 @@ bool CSingleWindowPlatform::visible()
     return m_visible;
 }
 
+void CSingleWindowPlatform::bringToTop()
+{
+    SetForegroundWindow(m_hWnd);
+    SetFocus(m_hWnd);
+    SetActiveWindow(m_hWnd);
+}
+
 void CSingleWindowPlatform::applyWindowState(Qt::WindowState s)
 {
     m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
@@ -558,8 +565,9 @@ void CSingleWindowPlatform::activateWindow()
 
 void CSingleWindowPlatform::slot_modalDialog(bool status, HWND h)
 {
-    EnableWindow(m_hWnd, status ? FALSE : TRUE);
+    if ( !status && h == m_hWnd ) bringToTop();
 
+    EnableWindow(m_hWnd, status ? FALSE : TRUE);
     m_modalHwnd = h;
 }
 

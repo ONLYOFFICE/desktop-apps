@@ -53,6 +53,7 @@ public:
 //    virtual void setWindowState(Qt::WindowState) = 0;
     virtual void setWindowTitle(const QString&);
     virtual void adjustGeometry();
+    virtual void bringToTop() = 0;
 
 protected:
     int m_dpiRatio;
