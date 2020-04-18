@@ -595,5 +595,14 @@ namespace WindowHelper {
             }
         }
     }
+
+    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
+    {
+        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
+            SetActiveWindow(modalhandle);
+            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+        }
+    }
+
 #endif
 }

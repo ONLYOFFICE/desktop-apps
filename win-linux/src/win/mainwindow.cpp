@@ -205,13 +205,9 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         break;
 
     case WM_ACTIVATE: {
-        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd && window->m_modalHwnd != hWnd )
-        {
-            if ( LOWORD(wParam) != WA_INACTIVE )
-            {
-                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-                return 0;
-            }
+        if ( LOWORD(wParam) != WA_INACTIVE ) {
+            WindowHelper::correctModalOrder(hWnd, window->m_modalHwnd);
+            return 0;
         }
 
         break;

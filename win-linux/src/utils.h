@@ -99,7 +99,8 @@ namespace WindowHelper {
 #else
     auto isLeftButtonPressed() -> bool;
     auto isWindowSystemDocked(HWND handle) -> bool;
-    auto correctWindowMinimumSize(HWND handle) ->void;
+    auto correctWindowMinimumSize(HWND handle) -> void;
+    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
 #endif
 }
 
