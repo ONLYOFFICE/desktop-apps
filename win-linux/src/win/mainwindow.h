@@ -91,13 +91,15 @@ public:
 
 private:
     void captureMouse(int tabindex) override;
-    void setScreenScalingFactor(uchar);
+    void setScreenScalingFactor(int);
     void doClose();
 
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
-    void slot_modalDialog(bool, size_t);
+    void slot_modalDialog(bool, HWND);
+
+    friend auto refresh_window_scaling_factor(CMainWindow * window) -> void;
 
 #ifdef _UPDMODULE
     static void updateFound();
@@ -121,7 +123,7 @@ private:
     WindowBase::CWindowGeometry minimumSize;
     WindowBase::CWindowGeometry maximumSize;
 
-    uchar m_dpiRatio;
+    int m_dpiRatio;
     HWND m_modalHwnd;
 
     QRect m_moveNormalRect;

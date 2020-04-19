@@ -156,7 +156,7 @@ public:
     static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
 
     static void             sendEvent(int type, void * data);
-    static QString          getWindowStylesheets(uint);
+    static QString          getWindowStylesheets(int);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);

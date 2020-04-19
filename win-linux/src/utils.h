@@ -87,8 +87,8 @@ public:
 #endif
 };
 
+namespace WindowHelper {
 #ifdef Q_OS_LINUX
-namespace WindowUtils {
     class CParentDisable
     {
         QWidget* m_pChild = nullptr;
@@ -96,8 +96,13 @@ namespace WindowUtils {
         CParentDisable(QWidget* parent);
         ~CParentDisable();
     };
-}
+#else
+    auto isLeftButtonPressed() -> bool;
+    auto isWindowSystemDocked(HWND handle) -> bool;
+    auto correctWindowMinimumSize(HWND handle) -> void;
+    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
 #endif
+}
 
 #endif // UTILS_H
 

@@ -72,6 +72,14 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
 AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = NULL;
 
+auto refresh_window_scaling_factor(CMainWindow * window) -> void {
+    QString css{AscAppManager::getWindowStylesheets(window->m_dpiRatio)};
+
+    if ( !css.isEmpty() ) {
+        window->mainPanel()->setStyleSheet(css);
+        window->mainPanel()->setScreenScalingFactor(window->m_dpiRatio);
+    }
+}
 
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
@@ -136,7 +144,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->goStart();
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
-    setMinimumSize( MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio );
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
@@ -184,17 +191,24 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     switch ( message )
     {
     case WM_DPICHANGED:
+        if ( !WindowHelper::isLeftButtonPressed() ) {
+            uint dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+            if ( dpi_ratio != window->m_dpiRatio ) {
+                window->m_dpiRatio = dpi_ratio;
+                refresh_window_scaling_factor(window);
+                window->adjustGeometry();
+
+            }
+        }
+
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
         break;
 
     case WM_ACTIVATE: {
-        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd && window->m_modalHwnd != hWnd )
-        {
-            if ( LOWORD(wParam) != WA_INACTIVE )
-            {
-                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-                return 0;
-            }
+        if ( LOWORD(wParam) != WA_INACTIVE ) {
+            WindowHelper::correctModalOrder(hWnd, window->m_modalHwnd);
+            return 0;
         }
 
         break;
@@ -248,8 +262,26 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
 //            break;
             return 0;
         } else
+        if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
+            window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            break;
+        } else
+        if ( GET_SC_WPARAM(wParam) == SC_MOVE ) {
+            break;
+        } else
         if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
-            qDebug() << "wm syscommand";
+            qDebug() << "wm syscommand maximized";
+            break;
+        }
+        else
+        if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
+//            if ( !WindowHelper::isLeftButtonPressed() )
+                WindowHelper::correctWindowMinimumSize(window->handle());
+
+            break;
+        }
+        else
+        if (GET_SC_WPARAM(wParam) == SC_MINIMIZE) {
             break;
         }
         else
@@ -376,9 +408,11 @@ qDebug() << "WM_CLOSE";
                 window->m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
                 if ( IsWindowVisible(hWnd) ) {
-                    uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-                    if ( dpi_ratio != window->m_dpiRatio )
-                        window->setScreenScalingFactor(dpi_ratio);
+                    if ( WindowHelper::isLeftButtonPressed() ) {
+                        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+                        if ( dpi_ratio != window->m_dpiRatio )
+                            window->setScreenScalingFactor(dpi_ratio);
+                    }
 
                     if ( wParam == SIZE_MAXIMIZED )
                         window->m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
@@ -405,6 +439,8 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_ENTERSIZEMOVE: {
+        WindowHelper::correctWindowMinimumSize(window->handle());
+
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};
@@ -416,6 +452,7 @@ qDebug() << "WM_CLOSE";
         break;}
 
     case WM_EXITSIZEMOVE: {
+        window->setMinimumSize(0, 0);
 //#define DEBUG_SCALING
 #if defined(DEBUG_SCALING) && defined(_DEBUG)
         QRect windowRect;
@@ -434,12 +471,19 @@ qDebug() << "WM_CLOSE";
         int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
         uchar dpi_ratio = _scr_num;
 #else
-        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+        int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 #endif
         if ( dpi_ratio != window->m_dpiRatio ) {
-            window->setScreenScalingFactor(dpi_ratio);
+            if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
+                window->setScreenScalingFactor(dpi_ratio);
+            } else {
+                window->m_dpiRatio = dpi_ratio;
+                refresh_window_scaling_factor(window);
+            }
+
             window->adjustGeometry();
         }
+
         break;
     }
 
@@ -687,7 +731,7 @@ void CMainWindow::adjustGeometry()
     DeleteObject(hRgn);
 }
 
-void CMainWindow::setScreenScalingFactor(uchar factor)
+void CMainWindow::setScreenScalingFactor(int factor)
 {
     skipsizing = true;
 
@@ -699,7 +743,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
 
         m_pMainPanel->setStyleSheet(css);
         m_pMainPanel->setScreenScalingFactor(factor);
-        setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
@@ -721,7 +764,6 @@ void CMainWindow::setScreenScalingFactor(uchar factor)
                     dest_rect = increase ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
                                                 QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
 
-                qDebug() << "set screen scaling1" << source_rect << dest_rect;
                 SetWindowPos(hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
         }
@@ -749,10 +791,13 @@ void CMainWindow::slot_windowClose()
     AscAppManager::closeMainWindow( size_t(this) );
 }
 
-void CMainWindow::slot_modalDialog(bool status, size_t h)
+void CMainWindow::slot_modalDialog(bool status, HWND h)
 {
-    EnableWindow(hWnd, status ? FALSE : TRUE);
-    m_modalHwnd = (HWND)h;
+    if ( h != hWnd ) {
+        EnableWindow(hWnd, status ? FALSE : TRUE);
+        m_modalHwnd = h;
+    } else m_modalHwnd = nullptr;
+
 }
 
 void CMainWindow::slot_mainPageReady()
