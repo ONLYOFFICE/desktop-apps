@@ -28,14 +28,9 @@ include($$CORE_ROOT_DIR/Common/base.pri)
 
 INCLUDEPATH += \
     $$BASEEDITORS_PATH/lib/include \
-<<<<<<< HEAD
-    $$BASEEDITORS_PATH/lib/qcefview \
+    $$BASEEDITORS_PATH/lib/qt_wrapper/include \
     $$CORE_ROOT_DIR/DesktopEditor \
     $$CORE_ROOT_DIR/Common
-=======
-    $$BASEEDITORS_PATH/lib/qt_wrapper/include \
-    $$CORE_ROOT_DIR/DesktopEditor
->>>>>>> release/v5.5.0
 
 HEADERS += \
     $$PWD/src/asctabwidget.h \

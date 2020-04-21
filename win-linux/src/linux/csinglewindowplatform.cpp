@@ -96,6 +96,14 @@ void CSingleWindowPlatform::show(bool maximized)
         QMainWindow::setWindowState(Qt::WindowMaximized);
 }
 
+void CSingleWindowPlatform::bringToTop()
+{
+//    QMainWindow::show();
+    QMainWindow::raise();
+    QMainWindow::activateWindow();
+//    QApplication::setActiveWindow(this);
+}
+
 bool CSingleWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::WindowStateChange) {
