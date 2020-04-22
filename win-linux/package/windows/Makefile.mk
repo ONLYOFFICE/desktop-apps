@@ -9,9 +9,7 @@ DESKTOP_EDITORS_UPDATE += win-linux/package/windows/$(PACKAGE_NAME)_update_$(PAC
 
 PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
 PACKAGES += $(DESKTOP_EDITORS_UPDATE)
-endif
 
 VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
 VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
