@@ -31,7 +31,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName           str(sIntCompanyName + "_" + sIntProductName + "_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
 #endif
 
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"

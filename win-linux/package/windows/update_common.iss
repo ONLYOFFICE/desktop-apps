@@ -30,10 +30,10 @@
 #endif
 #define sAppVerShort                    Copy(sAppVersion, 0, 3)
 
-#define TARGET_NAME                     str(sIntCompanyName + "_" + sIntProductName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
+#define TARGET_NAME                     str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
 
 #ifndef sOutputFileName
-  #define sOutputFileName               str(sIntCompanyName + "_" + sIntProductName + "_update_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName               str(sPackageName + "_update_" + sAppVersion + "_" + sWinArchFull)
 #endif
 
 [Setup]
