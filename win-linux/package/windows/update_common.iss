@@ -22,11 +22,7 @@
 #include sBrandingFolder + "\win-linux\package\windows\variables.iss"
 
 #ifndef sAppVersion
-  #ifndef SCRIPT_CUSTOM_FILES
-    #define sAppVersion                 GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
-  #else
-    #define sAppVersion                 GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
-  #endif
+  #define sAppVersion                   GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
 #endif
 #define sAppVerShort                    Copy(sAppVersion, 0, 3)
 
