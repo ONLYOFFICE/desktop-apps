@@ -1,12 +1,40 @@
+; -- Update Common --
 
-#define sAppName          'ONLYOFFICE Desktop Editors'
-#define APP_PATH          'ONLYOFFICE\DesktopEditors'
-#define APP_REG_PATH      'Software\ONLYOFFICE\DesktopEditors'
+#if str(_ARCH) == "64"
+  #define sWinArch                      "x64"
+  #define sPlatform                     "win_64"
+#elif str(_ARCH) == "32"
+  #define sWinArch                      "x86"
+  #define sPlatform                     "win_32"
+#endif
+#ifndef _WIN_XP
+  #define sWinArchFull                  sWinArch
+  #define sPlatformFull                 sPlatform
+#else
+  #define sWinArchFull                  sWinArch + "_xp"
+  #define sPlatformFull                 sPlatform + "_xp"
+#endif
+
+#ifndef sBrandingFolder
+  #define sBrandingFolder               "..\..\.."
+#endif
+
+#include sBrandingFolder + "\win-linux\package\windows\variables.iss"
 
 #ifndef sAppVersion
-  #define sAppVersion     GetFileVersion(AddBackslash(SourcePath) + '..\' + TARGET_NAME)
+  #ifndef SCRIPT_CUSTOM_FILES
+    #define sAppVersion                 GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
+  #else
+    #define sAppVersion                 GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+  #endif
 #endif
-#define sAppVerShort      Copy(sAppVersion, 0, 3)
+#define sAppVerShort                    Copy(sAppVersion, 0, 3)
+
+#define TARGET_NAME                     str(sIntCompanyName + "_" + sIntProductName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
+
+#ifndef sOutputFileName
+  #define sOutputFileName               str(sIntCompanyName + "_" + sIntProductName + "_update_" + sAppVersion + "_" + sWinArchFull)
+#endif
 
 [Setup]
 AppName                   ={#sAppName}
@@ -14,10 +42,10 @@ AppVerName                ={#sAppName} {#sAppVerShort}
 AppVersion                ={#sAppVersion}
 VersionInfoVersion        ={#sAppVersion}
 
-AppPublisher              =Ascensio System SIA.
-AppPublisherURL           =http://www.onlyoffice.com/
-AppSupportURL             =http://www.onlyoffice.com/support.aspx
-AppCopyright              =Copyright (C) 2018 Ascensio System SIA.
+AppPublisher              ={#sAppPublisher}
+AppPublisherURL           ={#sAppPublisherURL}
+AppSupportURL             ={#sAppSupportURL}
+AppCopyright              ={#sAppCopyright}
 
 DisableDirPage            =true
 DisableFinishedPage       =true
