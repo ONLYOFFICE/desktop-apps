@@ -19,7 +19,7 @@
   #define sBrandingFolder           "..\..\.."
 #endif
 
-#include sBrandingFolder + "\win-linux\package\windows\variables.iss"
+#include sBrandingFolder + "\win-linux\package\windows\defines.iss"
 
 #ifndef sAppVersion
   #ifndef SCRIPT_CUSTOM_FILES

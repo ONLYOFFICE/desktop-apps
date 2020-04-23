@@ -1,4 +1,4 @@
-; -- ONLYOFFICE Desktop Editors Variables --
+; -- ONLYOFFICE Desktop Editors Defines --
 
 #define sCompanyName                    "ONLYOFFICE"
 #define sIntCompanyName                 sCompanyName

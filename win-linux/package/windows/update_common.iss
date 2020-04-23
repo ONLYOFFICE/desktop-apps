@@ -19,7 +19,7 @@
   #define sBrandingFolder               "..\..\.."
 #endif
 
-#include sBrandingFolder + "\win-linux\package\windows\variables.iss"
+#include sBrandingFolder + "\win-linux\package\windows\defines.iss"
 
 #ifndef sAppVersion
   #define sAppVersion                   GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
