@@ -228,7 +228,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
-    wstring user_name = Utils::systemUserName();
+    wstring user_name = Utils::appUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);

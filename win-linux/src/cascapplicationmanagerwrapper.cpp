@@ -1168,11 +1168,14 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
-    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wstrjson).toUtf8(), &jerror);
+    QByteArray stringdata = QString::fromStdWString(wstrjson).toUtf8();
+    QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
 
     if( jerror.error == QJsonParseError::NoError ) {
-        QJsonObject objRoot = jdoc.object();
+        GET_REGISTRY_USER(_reg_user)
+        _reg_user.setValue("appdata", stringdata.toBase64());
 
+        QJsonObject objRoot = jdoc.object();
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
@@ -1183,9 +1186,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             if ( _lang_id != l ) {
                 _lang_id = l;
 
-                GET_REGISTRY_USER(_reg_user)
                 _reg_user.setValue("locale", _lang_id);
-
                 CLangater::reloadTranslations(_lang_id);
             }
         }

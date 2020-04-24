@@ -501,6 +501,20 @@ wstring Utils::systemUserName()
 #endif
 }
 
+wstring Utils::appUserName()
+{
+    GET_REGISTRY_USER(_reg_user)
+
+    QString data = QByteArray::fromBase64(_reg_user.value("appdata").toByteArray());
+    if (!data.isEmpty()) {
+        QRegularExpression _re("username\\\":\\\"(.+?)\\\"");
+        QRegularExpressionMatch _match = _re.match(data);
+        if ( _match.hasMatch() )
+            return _match.captured(1).toStdWString();
+    }
+
+    return systemUserName();
+}
 
 #ifdef Q_OS_WIN
 #include <windowsx.h>

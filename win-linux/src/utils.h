@@ -53,6 +53,7 @@ public:
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
     static wstring systemUserName();
+    static wstring appUserName();
     static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);

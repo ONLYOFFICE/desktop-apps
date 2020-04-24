@@ -276,8 +276,8 @@
                     _lock_createnew(true);
                 }
 
-                if ( _user_name || _open_mode ) {
-                    sdk.command("settings:apply", JSON.stringify({username:_user_name, docopenmode: _open_mode}));
+                if ( _open_mode == 'view' ) {
+                    sdk.command("settings:apply", JSON.stringify({docopenmode: _open_mode}));
                 }
 
                 ($optsLang = $panel.find('.settings-field-lang')).hide();
