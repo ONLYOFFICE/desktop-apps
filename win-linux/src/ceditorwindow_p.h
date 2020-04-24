@@ -104,7 +104,7 @@ class CEditorWindowPrivate : public CCefEventsGate
     sPrintData m_printData;
 
     CEditorWindow * window = nullptr;
-    QLabel * iconuser = nullptr;
+    CElipsisLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
@@ -181,8 +181,9 @@ public:
             int _user_width = 0;
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
-                    iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
-                    iconuser->setText(objRoot["user"].toObject().value("name").toString());
+                    QString _user_name = objRoot["user"].toObject().value("name").toString();
+                    iconuser->setToolTip(_user_name);
+                    iconuser->setText(_user_name);
 
                     iconuser->adjustSize();
                     _user_width = iconuser->width();
@@ -376,7 +377,7 @@ public:
 //            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
 //            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
 
-            iconuser->setContentsMargins(0,0,0,2*f);
+            iconuser->setContentsMargins(12*f,0,12*f,2*f);
             iconuser->adjustSize();
             diffW -= iconuser->width();
         }
@@ -492,9 +493,10 @@ public:
     QLabel * iconUser()
     {
         if ( !iconuser ) {
-            iconuser = new QLabel(window->m_boxTitleBtns);
+            iconuser = new CElipsisLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
             iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
+            iconuser->setMaximumWidth(200 * window->m_dpiRatio);
 //            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
 //            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }

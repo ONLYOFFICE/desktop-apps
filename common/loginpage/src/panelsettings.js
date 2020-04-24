@@ -59,7 +59,7 @@
                                     <div class='settings-field'>
                                         <label class='sett__caption' l10n>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
-                                            <input type='text' class='tbox' spellcheck='false' maxlenght='30'>
+                                            <input type='text' class='tbox' spellcheck='false' maxlength='128'>
                                             <a class='link link--sizem link--gray' href='#' l10n>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
