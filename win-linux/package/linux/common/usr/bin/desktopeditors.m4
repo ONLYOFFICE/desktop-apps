@@ -68,6 +68,10 @@ set_names_ru() {
 }
 
 check_templates() {
+  if [ $1 != "--new-document-templates" ]; then
+    return 0
+  fi
+
   SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
 
   ifelse(M4_COMPANY_NAME, ONLYOFFICE,
@@ -97,7 +101,7 @@ check_templates() {
   fi
 }
 
-check_templates
+check_templates "$@"
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
