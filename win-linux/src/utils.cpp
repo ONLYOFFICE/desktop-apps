@@ -501,10 +501,6 @@ wstring Utils::systemUserName()
 #endif
 }
 
-bool Utils::appArgsContains(const QString& a)
-{
-    return g_cmdArgs.contains(a);
-}
 
 #ifdef Q_OS_WIN
 #include <windowsx.h>

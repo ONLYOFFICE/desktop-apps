@@ -72,7 +72,7 @@ void CMainPanelImpl::refreshAboutVersion()
     );
 
     AscAppManager::sendCommandTo( nullptr, "settings:init", Utils::encodeJson(_json_obj) );
-    if ( Utils::appArgsContains("--ascdesktop-reveal-app-config") )
+    if ( InputArgs::contains("--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 

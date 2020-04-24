@@ -164,7 +164,6 @@ public:
             window->m_bgColor = WINDOW_BACKGROUND_COLOR;
             InvalidateRect(window->m_hWnd,nullptr,TRUE);
 #endif
-            qDebug() << "extend title";
         }
     }
 
