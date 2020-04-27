@@ -41,6 +41,7 @@
 
 #define CAPTURED_WINDOW_CURSOR_OFFSET_X     180
 #define CAPTURED_WINDOW_CURSOR_OFFSET_Y     15
+#define EDITOR_WINDOW_MIN_WIDTH             700
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -125,7 +126,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
             return 0;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            if ( WindowHelper::isWindowSystemDocked(hWnd) )
+                window->setMinimumSize(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            else window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+
             break;
         } else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
