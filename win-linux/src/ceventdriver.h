@@ -34,6 +34,7 @@
 #define CEVENTDRIVER_H
 
 #include <QObject>
+#include <QWidget>
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
