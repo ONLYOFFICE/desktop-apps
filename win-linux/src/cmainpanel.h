@@ -117,6 +117,7 @@ public slots:
     virtual void onDocumentReady(int);
     void onDocumentType(int id, int type);
     void onDocumentName(void *);
+    void onEditorConfig(int, std::wstring cfg);
 
     void onDocumentChanged(int id, bool changed);
     void onDocumentSave(int id, bool cancel = false);

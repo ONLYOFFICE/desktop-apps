@@ -121,7 +121,8 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
                                     fileName.left(fileName.lastIndexOf(".")) : fileName;
 
     HWND _mess_parent = QWinWidget::parentWindow();
-    CRunningEventHelper _event(&(CInAppEventModal((size_t)_mess_parent)));
+    CInAppEventModal _event(_mess_parent);
+    CRunningEventHelper _h(&_event);
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
     QWidget * _mess_parent = (QWidget *)parent();
@@ -148,7 +149,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
 #endif
 
 #ifndef _WIN32
-    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     while (true) {
@@ -238,9 +239,10 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 #endif
 
 #ifndef _WIN32
-    WindowUtils::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 #else
-    CRunningEventHelper _event(&(CInAppEventModal((size_t)QWinWidget::parentWindow())));
+    CInAppEventModal event_(QWinWidget::parentWindow());
+    CRunningEventHelper h_(&event_);
 #endif
 
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :

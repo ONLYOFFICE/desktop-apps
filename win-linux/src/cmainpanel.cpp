@@ -806,6 +806,10 @@ void CMainPanel::onDocumentName(void * data)
     RELEASEINTERFACE(pData);
 }
 
+void CMainPanel::onEditorConfig(int, std::wstring cfg)
+{
+}
+
 void CMainPanel::onWebAppsFeatures(int id, wstring opts)
 {
     m_pTabs->setEditorOptions(id, opts);
@@ -997,7 +1001,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowUtils::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;
@@ -1017,7 +1021,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         printer->setFromTo(1, pagesCount);
 
 #ifdef _WIN32
-        CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
+        CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         QPrintDialog * dialog = wrapper.q_dialog();
 #else
         QPrintDialog * dialog =  new QPrintDialog(printer, this);
