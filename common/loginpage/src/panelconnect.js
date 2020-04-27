@@ -518,6 +518,12 @@
             carousel.$items = _$panel.find('.carousel__slide');
             let _activeindex = carousel.$items.filter('.active').index();
 
+            if ( !(navigator.userAgent.indexOf("Windows NT 5.") < 0) ||
+                    !(navigator.userAgent.indexOf("Windows NT 6.0") < 0) )
+            {
+                $('.carousel', _$panel).addClass('winxp');
+            }
+
             let _pre_index = _activeindex - 1,
                 _pro_index = _activeindex + 1;
 
