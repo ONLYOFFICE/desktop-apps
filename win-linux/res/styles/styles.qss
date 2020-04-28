@@ -399,7 +399,6 @@ QPushButton {
 
 QDialog QPushButton {
     min-width: 40px;
-    color:#444;
 }
 
 QPrintDialog QToolButton{
