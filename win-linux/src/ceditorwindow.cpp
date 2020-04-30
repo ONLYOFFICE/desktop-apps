@@ -137,7 +137,8 @@ void CEditorWindow::undock(bool maximized)
 #endif
 
     CSingleWindowPlatform::show(maximized);
-    CSingleWindowPlatform::captureMouse();
+    if ( isCustomWindowStyle() )
+        CSingleWindowPlatform::captureMouse();
 }
 
 int CEditorWindow::closeWindow()
@@ -185,13 +186,13 @@ int CEditorWindow::closeWindow()
 
 QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 {
-    return createMainPanel(parent, d_ptr->panel()->data()->title(), true);
+    return createMainPanel(parent, d_ptr->panel()->data()->title());
 }
 
-QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title, bool custom)
+QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 {
     // create min/max/close buttons
-    CSingleWindowBase::createMainPanel(parent, title, custom);
+    CSingleWindowPlatform::createMainPanel(parent, title);
 
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
@@ -201,7 +202,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
 #ifdef Q_OS_WIN
     mainGridLayout->setMargin(0);
 #else
-    int b = CX11Decoration::customWindowBorderWith() * m_dpiRatio;
+    int b = !isCustomWindowStyle() ? 0 : CX11Decoration::customWindowBorderWith() * m_dpiRatio;
     mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
 #endif
     mainPanel->setLayout(mainGridLayout);
@@ -220,16 +221,16 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     css.append(m_css);
     mainPanel->setStyleSheet(css);
 
-    if ( !d_ptr->canExtendTitle() ) {
-        mainGridLayout->addWidget(m_boxTitleBtns);
-        m_labelTitle->setText(APP_TITLE);
-    } else {
-        mainPanel->setProperty("window", "pretty");
-        m_boxTitleBtns->setParent(mainPanel);
-        m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
-    }
+    if ( isCustomWindowStyle() ) {
+        if ( !d_ptr->canExtendTitle() ) {
+            mainGridLayout->addWidget(m_boxTitleBtns);
+            m_labelTitle->setText(APP_TITLE);
+        } else {
+            mainPanel->setProperty("window", "pretty");
+            m_boxTitleBtns->setParent(mainPanel);
+            m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
+        }
 
-    if ( custom ) {
         m_boxTitleBtns->layout()->addWidget(m_buttonMinimize);
         m_boxTitleBtns->layout()->addWidget(m_buttonMaximize);
         m_boxTitleBtns->layout()->addWidget(m_buttonClose);
@@ -348,7 +349,7 @@ void CEditorWindow::setScreenScalingFactor(int newfactor)
 
 void CEditorWindow::recalculatePlaces()
 {
-    if ( !m_pMainView ) return;
+    if ( !m_pMainView || !isCustomWindowStyle() ) return;
 
     int windowW = m_pMainPanel->width(),
         windowH = m_pMainPanel->height(),

@@ -41,10 +41,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     , QMainWindow()
     , CX11Decoration(this)
 {
-    GET_REGISTRY_SYSTEM(reg_system)
-    GET_REGISTRY_USER(reg_user)
-    if (reg_user.value("titlebar") == "custom" ||
-            reg_system.value("titlebar") == "custom" )
+    if ( isCustomWindowStyle() )
         CX11Decoration::turnOff();
 
     setWindowTitle(title);
@@ -107,21 +104,23 @@ void CSingleWindowPlatform::bringToTop()
 bool CSingleWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::WindowStateChange) {
-        QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
+        if ( isCustomWindowStyle() ) {
+            QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
-        CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
+            CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
 
-        if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
-            layout()->setMargin(0);
+            if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
+                layout()->setMargin(0);
 
-            m_buttonMaximize->setProperty("class", "min");
-            m_buttonMaximize->style()->polish(m_buttonMaximize);
-        } else
-        if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-            layout()->setMargin(CX11Decoration::customWindowBorderWith());
+                m_buttonMaximize->setProperty("class", "min");
+                m_buttonMaximize->style()->polish(m_buttonMaximize);
+            } else
+            if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
+                layout()->setMargin(CX11Decoration::customWindowBorderWith());
 
-            m_buttonMaximize->setProperty("class", "normal");
-            m_buttonMaximize->style()->polish(m_buttonMaximize);
+                m_buttonMaximize->setProperty("class", "normal");
+                m_buttonMaximize->style()->polish(m_buttonMaximize);
+            }
         }
     } else
     if ( event->type() == QEvent::MouseButtonPress ) {
