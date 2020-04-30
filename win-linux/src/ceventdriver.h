@@ -39,6 +39,7 @@
 #include <Windows.h>
 using NativeHandle = HWND;
 #else
+#include <QWidget>
 using NativeHandle = WId;
 #endif
 
