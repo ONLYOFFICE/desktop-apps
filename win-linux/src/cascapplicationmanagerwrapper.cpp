@@ -1000,7 +1000,7 @@ namespace Drop {
                     if ( current_cursor == last_cursor_pos ) {
                         drop_timer->stop();
 
-                        if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
+                        if ( WindowHelper::isLeftButtonPressed() )
                             callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
                     } else {
                         last_cursor_pos = current_cursor;

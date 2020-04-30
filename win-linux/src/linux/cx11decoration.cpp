@@ -31,6 +31,7 @@
 */
 
 #include "cx11decoration.h"
+#include "utils.h"
 #include <QX11Info>
 #include <QApplication>
 
@@ -272,6 +273,27 @@ namespace {
 
 }
 
+namespace WindowHelper {
+    auto check_button_state(Qt::MouseButton b) -> bool {
+        Display * xdisplay_ = getXDisplay();
+        Window x_root_window_ = DefaultRootWindow(xdisplay_);
+
+        Window root_, child_;
+        int root_x, root_y, child_x, child_y;
+        uint mask;
+
+        Bool res = XQueryPointer(xdisplay_, x_root_window_, &root_, &child_,
+                                    &root_x, &root_y, &child_x, &child_y, &mask);
+
+        if ( res ) {
+            if ( b == Qt::LeftButton)
+                return mask & Button1MotionMask;
+        }
+
+        return false;
+    }
+}
+
 CX11Decoration::CX11Decoration(QWidget * w)
     : m_window(w)
     , m_title(NULL)
@@ -420,7 +442,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
         m_motionTimer = new QTimer;
 
         QObject::connect(m_motionTimer, &QTimer::timeout, [=]{
-            if ( CX11Decoration::checkButtonState(Qt::LeftButton) ) {
+            if ( WindowHelper::check_button_state(Qt::LeftButton) ) {
                 if ( need_to_check_motion ) {
                     QMoveEvent _e{QCursor::pos(), m_window->pos()};
                     QApplication::sendEvent(m_window, &_e);
@@ -537,26 +559,6 @@ int CX11Decoration::customWindowBorderWith()
 void CX11Decoration::raiseWindow()
 {
     XRaiseWindow(QX11Info::display(), m_window->winId());
-}
-
-bool CX11Decoration::checkButtonState(Qt::MouseButton b)
-{
-    Display * xdisplay_ = QX11Info::display();
-    Window x_root_window_ = DefaultRootWindow(xdisplay_);
-
-    Window root_, child_;
-    int root_x, root_y, child_x, child_y;
-    uint mask;
-
-    Bool res = XQueryPointer(xdisplay_, x_root_window_, &root_, &child_,
-                                &root_x, &root_y, &child_x, &child_y, &mask);
-
-    if ( res ) {
-        if ( b == Qt::LeftButton)
-            return mask & Button1MotionMask;
-    }
-
-    return false;
 }
 
 void CX11Decoration::sendButtonRelease()

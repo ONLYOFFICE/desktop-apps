@@ -558,11 +558,8 @@ namespace WindowHelper {
         if (m_pChild)
             m_pChild->deleteLater();
     }
-#else
-    auto isLeftButtonPressed() -> bool {
-        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
-    }
 
+#else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
@@ -605,4 +602,12 @@ namespace WindowHelper {
     }
 
 #endif
+
+    auto isLeftButtonPressed() -> bool {
+#ifdef Q_OS_LINUX
+        return check_button_state(Qt::LeftButton);
+#else
+        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+#endif
+    }
 }
