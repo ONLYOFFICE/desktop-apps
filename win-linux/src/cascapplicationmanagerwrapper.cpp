@@ -836,6 +836,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
             }
 
             /* close main window */
+            _w->bringToTop();
             if ( !_w->mainPanel()->closeAll() ) {
                 AscAppManager::cancelClose();
                 return;

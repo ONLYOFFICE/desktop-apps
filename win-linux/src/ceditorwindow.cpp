@@ -151,7 +151,7 @@ int CEditorWindow::closeWindow()
         if (windowState() == Qt::WindowMinimized)
             setWindowState(Qt::WindowNoState);
 
-        activateWindow();
+        bringToTop();
 
         CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
