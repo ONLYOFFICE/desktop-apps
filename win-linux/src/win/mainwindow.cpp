@@ -1008,9 +1008,27 @@ bool CMainWindow::pointInTabs(const QPoint& pt) const
 }
 #endif
 
+auto SetForegroundWindowInternal(HWND hWnd)
+{
+    AllocConsole();
+    auto hWndConsole = GetConsoleWindow();
+    SetWindowPos(hWndConsole, nullptr, 0, 0, 0, 0, SWP_NOACTIVATE);
+    FreeConsole();
+    SetForegroundWindow(hWnd);
+}
+
 void CMainWindow::bringToTop() const
 {
-    SetForegroundWindow(handle());
-    SetFocus(handle());
-    SetActiveWindow(handle());
+    if (IsIconic(hWnd)) {
+        ShowWindow(hWnd, SW_SHOWNORMAL);
+    }
+
+//    uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), nullptr);
+//    if ( foreThread != GetCurrentThreadId() ) {
+//        SetForegroundWindowInternal(handle());
+//    } else {
+        SetForegroundWindow(handle());
+        SetFocus(handle());
+        SetActiveWindow(handle());
+//    }
 }

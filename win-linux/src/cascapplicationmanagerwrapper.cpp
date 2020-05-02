@@ -1259,6 +1259,8 @@ bool CAscApplicationManagerWrapper::canAppClose()
                 }) != _app.m_vecEditors.end();
 
         if ( _has_opened_editors ) {
+            topWindow()->bringToTop();
+
             CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             if ( mess.warning(tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
                 return true;
