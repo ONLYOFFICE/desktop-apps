@@ -555,12 +555,6 @@ qDebug() << "WM_CLOSE";
 
                     if (_file_list->size()) {
                         window->mainPanel()->doOpenLocalFiles(*_file_list);
-
-                        if ( ::IsIconic(hWnd) ) {
-                            window->slot_windowChangeState( Qt::WindowNoState );
-                            ::SetForegroundWindow(hWnd);
-                            ::FlashWindow(hWnd, TRUE);
-                        }
                     }
 
                     delete _file_list;
@@ -569,6 +563,8 @@ qDebug() << "WM_CLOSE";
 
             ::SetFocus(hWnd);
             LocalFree(szArglist);
+
+            window->bringToTop();
         }
         break;}
     case UM_INSTALL_UPDATE:
