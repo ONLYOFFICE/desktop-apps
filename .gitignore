@@ -39,8 +39,15 @@ common/converter/*
 .DS_Store
 *.xcuserstate
 *.xcuserdatad
+*.xcscmblueprint
 .idea
+.env.secret
+dsa_priv.pem
+Gemfile.lock
+package-lock.json
+macos/build
+macos/fastlane/node_modules
+macos/fastlane/README.md
+macos/fastlane/report.xml
 macos/Vendor/ONLYOFFICE
 macos/Production/Production/ONLYOFFICE.app
-*.xcscmblueprint
-dsa_priv.pem
