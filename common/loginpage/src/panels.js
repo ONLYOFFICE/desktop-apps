@@ -198,7 +198,7 @@ window.sdk.on('on_native_message', function(cmd, param) {
 function openFile(type, params) {
     if (window.sdk) {
         if (type == OPEN_FILE_FOLDER) {
-            window.sdk.LocalFileOpen(params);
+            window.sdk.command("open:folder", params);
         } else {
             var _method = type == OPEN_FILE_RECOVERY ? 
                             'LocalFileOpenRecover' : 'LocalFileOpenRecent';

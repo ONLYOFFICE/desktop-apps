@@ -321,6 +321,23 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
                 return true;
             }
+        } else
+        if ( cmd.compare(L"open:folder") == 0 ) {
+            QString path = CEditorTools::getlocalfile(pData->get_Param());
+
+            if ( !path.isEmpty() ) {
+                CEditorWindow * editor = editorWindowFromUrl(path);
+                if ( editor ) {
+                    editor->bringToTop();
+                } else {
+                    CMainWindow * _w = mainWindowFromViewId(event->get_SenderId());
+                    if ( _w ) {
+                        _w->mainPanel()->doOpenLocalFiles(QStringList{path});
+                    }
+                }
+            }
+
+            return true;
         }
 
         break; }
