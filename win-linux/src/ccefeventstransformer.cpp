@@ -157,11 +157,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onLocalFilesOpen", Qt::QueuedConnection, Q_ARG(void *, pData));
         break; }
 
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
-        CAscLocalFileCreate * pData = (CAscLocalFileCreate *)event->m_pData;
-        QMetaObject::invokeMethod(target, "onLocalFileCreate", Qt::QueuedConnection, Q_ARG(int, pData->get_Type()));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
         CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)event->m_pData;

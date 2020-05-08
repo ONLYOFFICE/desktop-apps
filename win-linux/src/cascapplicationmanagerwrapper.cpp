@@ -338,6 +338,16 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
+        } else
+        if ( cmd.compare(L"create:new") == 0 ) {
+            wstring format = pData->get_Param();
+            int _f = format == L"word" ? etDocument :
+                        format == L"cell" ? etSpreadsheet :
+                        format == L"slide" ? etPresentation : etUndefined;
+
+            topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            return true;
+        }
         }
 
         break; }
@@ -509,14 +519,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true;
     }
 
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
-        CAscLocalFileCreate& pData = *(CAscLocalFileCreate *)event->m_pData;
-
-        int format = pData.get_Type();
-        topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(format), format);
-
-        return true;}
-
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
         CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
         vector<wstring>& files = pData->get_Files();
@@ -554,28 +556,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 
         break;}
-
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
-        CAscLocalFileOpen * pdata = static_cast<CAscLocalFileOpen *>(event->m_pData);
-        QString path = CEditorTools::getlocalfile(pdata->get_Directory());
-
-        if ( !path.isEmpty() ) {
-            CEditorWindow * editor = editorWindowFromUrl(path);
-            if ( editor ) {
-#ifdef Q_OS_WIN
-                SetForegroundWindow(editor->handle());
-#else
-                editor->activateWindow();
-#endif
-            } else {
-                CMainWindow * _w = mainWindowFromViewId(event->get_SenderId());
-                if ( _w ) {
-                    _w->mainPanel()->doOpenLocalFiles(QStringList{path});
-                }
-            }
-        }
-
-        return true;}
 
     case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
         CEditorWindow * editor = editorWindowFromViewId(event->get_SenderId());
