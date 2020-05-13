@@ -348,7 +348,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
         }
-        }
 
         break; }
 
