@@ -36,6 +36,7 @@
 #include "csinglewindowbase.h"
 #include <QMainWindow>
 #include "cx11decoration.h"
+#include <memory>
 
 class CSingleWindowPlatform : public CSingleWindowBase, public QMainWindow, public CX11Decoration
 {
@@ -62,6 +63,9 @@ private:
 
     void resizeEvent(QResizeEvent *);
 
+    class impl;
+    std::unique_ptr<impl> pimpl;
+
 protected:
     void captureMouse();
 
@@ -70,6 +74,9 @@ protected:
     virtual void onSizeEvent(int type);
     virtual void onScreenScalingFactor(uint f);
     virtual void onExitSizeMove() override;
+
+public slots:
+    void slot_modalDialog(bool status, WId h);
 };
 
 #endif // CSINGLEWINDOWPLATFORM_H

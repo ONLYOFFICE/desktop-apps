@@ -328,6 +328,9 @@ void CMessage::modal()
     CWinWindow::center();
     CWinWindow::modal();
 #else
+    CInAppEventModal _event(parentWidget()->winId());
+    CRunningEventHelper _h(&_event);
+
     exec();
 #endif
 }

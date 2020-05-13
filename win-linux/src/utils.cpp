@@ -542,6 +542,17 @@ namespace WindowHelper {
 #ifdef Q_OS_LINUX
     CParentDisable::CParentDisable(QWidget* parent)
     {
+        disable(parent);
+    }
+
+    CParentDisable::~CParentDisable()
+    {
+        if (m_pChild)
+            m_pChild->deleteLater();
+    }
+
+    void CParentDisable::disable(QWidget* parent)
+    {
         if (parent) {
             if (QCefView::IsSupportLayers())
             {
@@ -563,10 +574,12 @@ namespace WindowHelper {
         }
     }
 
-    CParentDisable::~CParentDisable()
+    void CParentDisable::enable()
     {
-        if (m_pChild)
+        if ( m_pChild ) {
             m_pChild->deleteLater();
+            m_pChild = nullptr;
+        }
     }
 #else
     auto isLeftButtonPressed() -> bool {

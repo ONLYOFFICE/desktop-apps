@@ -299,7 +299,8 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable locker(window);
+        CInAppEventModal _event(window->winId());
+        CRunningEventHelper _h(&_event);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;

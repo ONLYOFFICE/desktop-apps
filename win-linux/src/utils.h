@@ -93,8 +93,11 @@ namespace WindowHelper {
     {
         QWidget* m_pChild = nullptr;
     public:
-        CParentDisable(QWidget* parent);
+        CParentDisable(QWidget* parent = nullptr);
         ~CParentDisable();
+
+        void disable(QWidget* parent);
+        void enable();
     };
 #else
     auto isLeftButtonPressed() -> bool;

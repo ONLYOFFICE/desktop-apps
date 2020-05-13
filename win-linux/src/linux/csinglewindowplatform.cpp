@@ -36,10 +36,35 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 
+class CSingleWindowPlatform::impl {
+    CSingleWindowPlatform * m_owner = nullptr;
+    WindowHelper::CParentDisable * m_disabler = nullptr;
+public:
+    impl(CSingleWindowPlatform * owner)
+        : m_owner{owner}
+        , m_disabler{new WindowHelper::CParentDisable}
+    {}
+
+    ~impl()
+    {
+        delete m_disabler,
+        m_disabler = nullptr;
+    }
+
+    void lockParentUI(){
+        m_disabler->disable(m_owner);
+    }
+
+    void unlockParentUI() {
+        m_disabler->enable();
+    }
+};
+
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
     , QMainWindow()
     , CX11Decoration(this)
+    , pimpl{new impl(this)}
 {
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)
@@ -51,6 +76,8 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
+
+    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
 
 CSingleWindowPlatform::~CSingleWindowPlatform()
@@ -211,4 +238,9 @@ void CSingleWindowPlatform::captureMouse()
     _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
 //    QApplication::sendEvent(this, &_event);
     CX11Decoration::dispatchMouseMove(&_event);
+}
+
+void CSingleWindowPlatform::slot_modalDialog(bool status, WId)
+{
+    status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
 }
