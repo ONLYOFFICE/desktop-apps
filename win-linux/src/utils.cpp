@@ -590,8 +590,8 @@ namespace WindowHelper {
         RECT windowrect;
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
         if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
-            return wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left &&
-                        wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top;
+            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
+                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
         }
 
         return false;
