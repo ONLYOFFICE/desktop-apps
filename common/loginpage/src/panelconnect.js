@@ -413,7 +413,8 @@
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
-                            _write_portal_cookie(obj.domain);
+                            if (model.provider != 'asc')
+                                _write_portal_cookie(obj.domain);
 
                             if ( model.get('user') != obj.displayName ) {
                                 model.set('user', obj.displayName);
