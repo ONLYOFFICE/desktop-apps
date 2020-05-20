@@ -262,11 +262,11 @@
             }
         };
 
-        function _do_logout(info) {
+        function _do_logout(portal) {
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
 
-            window.sdk.execCommand("portal:logout", info);
+            window.sdk.execCommand("portal:logout", JSON.stringify({portal:portal}));
         };
 
         function _update_portals() {
@@ -405,7 +405,7 @@
                 sdk.setCookie(portal, _domain, _re[3] || '/', "asc_auth_key", utils.fn.uuid());
             };
 
-            let obj = JSON.parse(utils.fn.decodeHtml(info));
+            let obj = JSON.parse(info);
             if ( obj ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
@@ -469,7 +469,7 @@
                 if ( params.includes('\"portals\"\:') ) {
                     let opts;
                     try {
-                        opts = JSON.parse( utils.fn.decodeHtml(params) );
+                        opts = JSON.parse(params);
                     } catch (e) { /*delete opts;*/ }
 
                     if ( opts && opts.portals && opts.portals.auth_use_api ) {

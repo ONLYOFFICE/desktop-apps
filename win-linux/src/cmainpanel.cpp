@@ -526,31 +526,44 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onPortalLogout(wstring portal)
+void CMainPanel::onPortalLogout(wstring wjson)
 {
     if (!m_closeAct.isEmpty()) return;
 
     if ( m_pTabs->count() ) {
-        for (int i(m_pTabs->count()); !(--i < 0);) {
-            int _answer = MODAL_RESULT_NO;
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
 
-            CAscTabData& _doc = *m_pTabs->panel(i)->data();
-            if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
-                    _doc.url().find(portal) != wstring::npos)
-            {
-                if ( _doc.hasChanges() ) {
-                    _answer = trySaveDocument(i);
-                    if ( _answer == MODAL_RESULT_CANCEL) {
-                        m_closeAct.clear();
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString _portal = objRoot["portal"].toString(),
+                    _action;
 
-                        AscAppManager::cancelClose();
-                        return;
+            if ( objRoot.contains("onsuccess") )
+                _action = objRoot["onsuccess"].toString();
+
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                int _answer = MODAL_RESULT_NO;
+
+                CAscTabData& _doc = *m_pTabs->panel(i)->data();
+                if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
+                        QString::fromStdWString(_doc.url()).startsWith(_portal) != wstring::npos)
+                {
+                    if ( _doc.hasChanges() ) {
+                        _answer = trySaveDocument(i);
+                        if ( _answer == MODAL_RESULT_CANCEL) {
+                            m_closeAct.clear();
+
+                            AscAppManager::cancelClose();
+                            return;
+                        }
                     }
-                }
 
-                if ( _answer != MODAL_RESULT_YES ) {
-                    m_pTabs->editorCloseRequest(i);
-                    onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                    if ( _answer != MODAL_RESULT_YES ) {
+                        m_pTabs->editorCloseRequest(i);
+                        onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                    }
                 }
             }
         }
@@ -691,7 +704,7 @@ void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
         QJsonObject _json_obj{{QString::number(uid), exists}};
         QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", Utils::encodeJson(json));
+        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", json);
     }
 }
 

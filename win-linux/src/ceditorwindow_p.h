@@ -135,7 +135,7 @@ public:
 
         connect(btn, &QPushButton::clicked, [=]{
             QJsonObject _json_obj{{"action", action}};
-            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
+            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
         });
 
         if ( jsonobj.contains("icon") ) {
@@ -464,13 +464,19 @@ public:
         onFullScreen(apply);
     }
 
-    void onPortalLogout(wstring portal) override
+    void onPortalLogout(wstring wjson) override
     {
-        if ( m_panel && !portal.empty() ) {
-            if ( !m_panel->data()->closed() &&
-                    m_panel->data()->url().find(portal) != wstring::npos )
-            {
-                window->closeWindow();
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString portal = objRoot["portal"].toString();
+
+            if ( m_panel && !portal.isEmpty() ) {
+                if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
+                    window->closeWindow();
             }
         }
     }

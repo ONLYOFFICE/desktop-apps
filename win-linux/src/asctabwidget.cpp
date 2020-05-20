@@ -736,7 +736,9 @@ bool CAscTabWidget::updatePortal(int index,const QString& url)
         CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->contentType() == etPortal ) {
-            _panel->cef()->load(url.toStdWString());
+            if ( url.isEmpty() )
+                _panel->cef()->load(_panel->data()->url());
+            else _panel->cef()->load(url.toStdWString());
 
             return true;
         }

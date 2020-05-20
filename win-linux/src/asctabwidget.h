@@ -207,7 +207,7 @@ public:
     void setEditorOptions(int, const wstring&);
 
     int  openPortal(const QString& url, const QString& provider);
-    bool updatePortal(int index,const QString& url);
+    bool updatePortal(int index, const QString& url = QString());
     int  newPortal(const QString& url, const QString& name);
 
 public slots:

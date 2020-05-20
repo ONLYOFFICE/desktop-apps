@@ -72,9 +72,7 @@ public:
     static QString systemLocationCode();
     static QIcon appIcon();
 
-    static QString encodeJson(const QJsonObject&);
-    static QString encodeJson(const QString&);
-    static wstring encodeJson(const wstring&);
+    static QString stringifyJson(const QJsonObject&);
 
 //    static QByteArray getAppStylesheets(int);
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
