@@ -253,22 +253,20 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
-            QString json = QString::fromStdWString(pData->get_Param()),
-                    url;
+            const wstring& wjson = pData->get_Param();
+            wstring wportal;
 
             QRegularExpression re("portal\":\"(https?:\\/\\/[^\\s\"]+)");
-            QRegularExpressionMatch match = re.match(json);
+            QRegularExpressionMatch match = re.match(QString::fromStdWString(wjson));
             if ( match.hasMatch() )
-                url = match.captured(1);
+                wportal = match.captured(1).toStdWString();
 
-            if ( !url.isEmpty() ) {
-                const wstring& portal = url.toStdWString();
-                if ( (m_closeCount = logoutCount(portal)) > 0 ) {
-                    m_closeTarget = portal;
+            if ( !wportal.empty() ) {
+                if ( (m_closeCount = logoutCount(wportal)) > 0 ) {
+                    m_closeTarget = wjson;
                     broadcastEvent(event);
                 } else {
-                    Logout(portal);
-                    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
+                    Logout(wjson);
                 }
             }
 
@@ -438,8 +436,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( m_closeCount && --m_closeCount == 0 && !m_closeTarget.empty() ) {
             if ( m_closeTarget.find(L"http") != wstring::npos ) {
                 Logout(m_closeTarget);
-
-                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", m_closeTarget);
                 m_closeTarget.clear();
             }
         }
@@ -1360,6 +1356,37 @@ uint CAscApplicationManagerWrapper::logoutCount(const wstring& portal) const
     }
 
     return _count;
+}
+
+void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
+{
+    if ( !wjson.empty() ) {
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            const wstring& portal = objRoot["portal"].toString().toStdWString();
+
+            CAscApplicationManager::Logout(portal);
+            sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
+
+            int index = topWindow()->mainPanel()->tabWidget()->tabIndexByUrl(portal);
+            if ( !(index < 0) ) {
+                if ( objRoot.contains("onsuccess") &&
+                        objRoot["onsuccess"].toString() == "reload" )
+                {
+                    QString reload_url = QString::fromStdWString(portal);
+                    if ( objRoot.value("provider").toString() == "asc" )
+                        reload_url.append("/products/files/?desktop=true");
+
+                    topWindow()->mainPanel()->tabWidget()->updatePortal(index, reload_url);
+                } else
+                    topWindow()->mainPanel()->tabWidget()->closeEditorByIndex(index);
+            }
+        }
+    }
 }
 
 void CAscApplicationManagerWrapper::bindReceiver(int view_id, CCefEventsGate * const receiver)

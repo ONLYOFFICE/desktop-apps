@@ -184,11 +184,11 @@
                         _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
-                _do_logout.call(this, model.path);
+                _do_logout.call(this, model);
             } else
             if (/\:forget/.test(action)) {
                 model.removed = true;
-                _do_logout.call(this, model.path);
+                _do_logout.call(this, model);
             }
         };
 
@@ -262,11 +262,11 @@
             }
         };
 
-        function _do_logout(portal) {
+        function _do_logout(model) {
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
 
-            window.sdk.execCommand("portal:logout", JSON.stringify({portal:portal}));
+            window.sdk.execCommand('portal:logout', JSON.stringify({portal:model.path}));
         };
 
         function _update_portals() {
@@ -336,7 +336,7 @@
                         elid: model.uid
                     }));
                     
-                    $item.find('.logout').click(model.path, e => {
+                    $item.find('.logout').click(model, e => {
                         _do_logout(e.data);
 
                         e.stopPropagation && e.stopPropagation();

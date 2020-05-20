@@ -307,15 +307,19 @@ int CAscTabWidget::count(int type) const
     }
 }
 
-int CAscTabWidget::count(const wstring& portal)
+int CAscTabWidget::count(const wstring& portal, bool exclude)
 {
     if ( portal.empty() )
         return QTabWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
-            if ( panel(i)->data()->url().find(portal) != wstring::npos )
+            if ( panel(i)->data()->url().find(portal) != wstring::npos ) {
+                if ( exclude && panel(i)->data()->isViewType(cvwtSimple) )
+                    continue;
+
                 ++_out;
+            }
         }
         return _out;
     }

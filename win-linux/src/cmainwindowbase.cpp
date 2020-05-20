@@ -94,7 +94,7 @@ int CMainWindowBase::editorsCount() const
 
 int CMainWindowBase::editorsCount(const wstring& portal) const
 {
-    return mainPanel()->tabWidget()->count(portal);
+    return mainPanel()->tabWidget()->count(portal, true);
 }
 
 QString CMainWindowBase::documentName(int vid)

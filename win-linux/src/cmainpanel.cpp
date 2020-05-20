@@ -504,6 +504,7 @@ int CMainPanel::trySaveDocument(int index)
 
     int modal_res = MODAL_RESULT_NO;
     if ( m_pTabs->modifiedByIndex(index) ) {
+        toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
         CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
@@ -547,8 +548,8 @@ void CMainPanel::onPortalLogout(wstring wjson)
                 int _answer = MODAL_RESULT_NO;
 
                 CAscTabData& _doc = *m_pTabs->panel(i)->data();
-                if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
-                        QString::fromStdWString(_doc.url()).startsWith(_portal) != wstring::npos)
+                if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
+                        QString::fromStdWString(_doc.url()).startsWith(_portal) )
                 {
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);

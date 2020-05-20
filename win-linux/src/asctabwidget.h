@@ -151,7 +151,7 @@ public:
 
     using QTabWidget::count;
     int  count(int type) const;
-    int  count(const wstring& portal);
+    int  count(const wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
     void updateScaling(int);
