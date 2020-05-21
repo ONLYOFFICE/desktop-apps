@@ -1377,13 +1377,8 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
                 if ( objRoot.contains("onsuccess") &&
                         objRoot["onsuccess"].toString() == "reload" )
                 {
-                    QString reload_url = QString::fromStdWString(portal);
-                    if ( objRoot.value("provider").toString() == "asc" )
-                        reload_url.append("/products/files/?desktop=true");
-
-                    topWindow()->mainPanel()->tabWidget()->updatePortal(index, reload_url);
-                } else
-                    topWindow()->mainPanel()->tabWidget()->closeEditorByIndex(index);
+                    topWindow()->mainPanel()->tabWidget()->panel(index)->cef()->reload();
+                } else topWindow()->mainPanel()->tabWidget()->closeEditorByIndex(index);
             }
         }
     }
