@@ -256,7 +256,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             const wstring& wjson = pData->get_Param();
             wstring wportal;
 
-            QRegularExpression re("portal\":\"(https?:\\/\\/[^\\s\"]+)");
+            QRegularExpression re("domain\":\"(https?:\\/\\/[^\\s\"]+)");
             QRegularExpressionMatch match = re.match(QString::fromStdWString(wjson));
             if ( match.hasMatch() )
                 wportal = match.captured(1).toStdWString();
@@ -1367,7 +1367,7 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            const wstring& portal = objRoot["portal"].toString().toStdWString();
+            const wstring& portal = objRoot["domain"].toString().toStdWString();
 
             CAscApplicationManager::Logout(portal);
             sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);

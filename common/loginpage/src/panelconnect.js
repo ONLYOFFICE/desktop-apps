@@ -266,7 +266,7 @@
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
 
-            window.sdk.execCommand('portal:logout', JSON.stringify({portal:model.path}));
+            window.sdk.execCommand('portal:logout', JSON.stringify({domain:model.path}));
         };
 
         function _update_portals() {
