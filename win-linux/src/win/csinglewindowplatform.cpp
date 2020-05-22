@@ -456,7 +456,7 @@ void CSingleWindowPlatform::adjustGeometry()
              lTestH = 480;
 
         RECT wrect{0,0,lTestW,lTestH};
-        Utils::adjustWindowRect(m_hWnd, m_dpiRatio, &wrect);
+        WindowHelper::adjustWindowRect(m_hWnd, m_dpiRatio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;

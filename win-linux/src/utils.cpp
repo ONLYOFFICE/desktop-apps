@@ -52,6 +52,7 @@
 #include "qdpichecker.h"
 
 #ifdef _WIN32
+#include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
@@ -502,25 +503,6 @@ wstring Utils::appUserName()
 }
 
 #ifdef Q_OS_WIN
-#include <windowsx.h>
-void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
-{
-    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-
-    static AdjustWindowRectExForDpiW _adjustWindowRectEx = NULL;
-    static bool _is_read = false;
-    if ( !_is_read && !_adjustWindowRectEx ) {
-        HMODULE _lib = ::LoadLibrary(L"user32.dll");
-        _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
-        FreeLibrary(_lib);
-
-        _is_read = true;
-    }
-
-    if ( _adjustWindowRectEx != NULL ) {
-        _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
-    } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
-}
 #endif
 
 namespace WindowHelper {
@@ -612,5 +594,22 @@ namespace WindowHelper {
         }
     }
 
+    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+    auto adjustWindowRect(HWND handle, int dpiratio, LPRECT rect) -> void
+    {
+        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
+        static bool _is_read = false;
+        if ( !_is_read && !_adjustWindowRectEx ) {
+            HMODULE _lib = ::LoadLibrary(L"user32.dll");
+            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+            FreeLibrary(_lib);
+
+            _is_read = true;
+        }
+
+        if ( _adjustWindowRectEx ) {
+            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+    }
 #endif
 }

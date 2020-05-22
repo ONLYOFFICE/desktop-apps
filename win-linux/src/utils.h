@@ -78,11 +78,6 @@ public:
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
     static QByteArray readStylesheets(std::vector<QString> *);
     static QByteArray readStylesheets(const QString&);
-
-#ifdef Q_OS_WIN
-    //TODO: move to window.base class
-    static void adjustWindowRect(HWND, int, LPRECT);
-#endif
 };
 
 namespace WindowHelper {
@@ -102,6 +97,7 @@ namespace WindowHelper {
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
+    auto adjustWindowRect(HWND, int, LPRECT) -> void;
 #endif
 }
 
