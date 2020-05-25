@@ -35,11 +35,6 @@ win32 {
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
 
-        HEADERS += $$PWD/3dparty/WinToast/src/wintoastlib.h\
-                    $$PWD/src/win/cnotifications.h
-        SOURCES += $$PWD/3dparty/WinToast/src/wintoastlib.cpp \
-                    $$PWD/src/win/cnotifications.cpp
-
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
     }
