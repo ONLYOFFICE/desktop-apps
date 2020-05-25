@@ -68,6 +68,10 @@ set_names_ru() {
 }
 
 check_templates() {
+  if [ $1 != "--new-document-templates" ]; then
+    return 0
+  fi
+
   SOURCE_DOC_DIR="/opt/M4_DESKTOPEDITORS_PREFIX/converter/empty"
 
   ifelse(M4_COMPANY_NAME, ONLYOFFICE,
@@ -75,6 +79,11 @@ check_templates() {
   set_names_ru)
 
   eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
+  if [ $TEMPLATE_DIR = $HOME ]; then
+    echo "system template's folder isn't found"
+    return 0
+  fi
+  
   TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
   TEMPLATE_XLSX="$TEMPLATE_DIR/$NEW_XLSX_NAME.xlsx"
   TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
@@ -97,7 +106,7 @@ check_templates() {
   fi
 }
 
-check_templates
+check_templates "$@"
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,

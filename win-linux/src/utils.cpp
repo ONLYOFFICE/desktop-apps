@@ -548,11 +548,8 @@ namespace WindowHelper {
             m_pChild = nullptr;
         }
     }
-#else
-    auto isLeftButtonPressed() -> bool {
-        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
-    }
 
+#else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
@@ -612,4 +609,12 @@ namespace WindowHelper {
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
     }
 #endif
+
+    auto isLeftButtonPressed() -> bool {
+#ifdef Q_OS_LINUX
+        return check_button_state(Qt::LeftButton);
+#else
+        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+#endif
+    }
 }

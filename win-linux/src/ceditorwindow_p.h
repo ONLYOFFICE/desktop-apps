@@ -170,6 +170,8 @@ public:
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
+        if ( !window->isCustomWindowStyle() ) return;
+
         QJsonParseError jerror;
         QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
@@ -226,7 +228,7 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        if ( canExtendTitle() ) {
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
@@ -237,7 +239,7 @@ public:
         if ( panel()->data()->hasChanges() != state ) {
             CCefEventsGate::onDocumentChanged(id, state);
 
-            if ( canExtendTitle() ) {
+            if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
             }
@@ -371,27 +373,23 @@ public:
 
     void onScreenScalingFactor(int f)
     {
-        int _btncount = /*iconuser ? 4 :*/ 3;
-        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
+        if ( window->isCustomWindowStyle() ) {
+            int _btncount = /*iconuser ? 4 :*/ 3;
+            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
 
-        if ( iconuser ) {
-//            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+            if ( iconuser ) {
+                iconuser->setContentsMargins(12*f,0,12*f,2*f);
+                iconuser->adjustSize();
+                diffW -= iconuser->width();
+            }
 
-            iconuser->setContentsMargins(12*f,0,12*f,2*f);
-            iconuser->adjustSize();
-            diffW -= iconuser->width();
-        }
+            diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*f) :
+                            window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*f);
 
-        diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*f) :
-                        window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*f);
-
-//        if ( btndock )
-//            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
-
-        for (auto btn: m_mapTitleButtons) {
-            btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
-            btn->setIconSize(QSize(20,20) * f);
+            for (auto btn: m_mapTitleButtons) {
+                btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+                btn->setIconSize(QSize(20,20) * f);
+            }
         }
     }
 

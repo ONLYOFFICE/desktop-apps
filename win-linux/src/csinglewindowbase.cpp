@@ -34,10 +34,35 @@
 #include "utils.h"
 #include "cwindowbase.h"
 #include "ccefeventsgate.h"
+#include "defines.h"
 
 #include <QLayout>
 #include <QVariant>
+#include <QSettings>
 #include <QDebug>
+
+class CSingleWindowBase::impl {
+    bool is_custom_window_ = false;
+
+public:
+    impl() {
+#ifdef Q_OS_LINUX
+        GET_REGISTRY_SYSTEM(reg_system)
+        GET_REGISTRY_USER(reg_user)
+        if ( reg_user.value("titlebar") == "custom" ||
+                reg_system.value("titlebar") == "custom" )
+        {
+            is_custom_window_ = true;
+        }
+#else
+        is_custom_window_ = true;
+#endif
+    }
+
+    auto is_custom_window() -> bool {
+        return is_custom_window_;
+    }
+};
 
 auto ellipsis_text_(const QWidget * widget, const QString& str, Qt::TextElideMode mode = Qt::ElideRight) -> QString {
     QMargins _margins = widget->contentsMargins();
@@ -83,6 +108,7 @@ auto CElipsisLabel::setEllipsisMode(Qt::TextElideMode mode) -> void
 
 
 CSingleWindowBase::CSingleWindowBase()
+    : pimpl{new impl}
 {
 
 }
@@ -105,6 +131,7 @@ CSingleWindowBase::~CSingleWindowBase()
 }
 
 CSingleWindowBase::CSingleWindowBase(QRect& rect)
+    : CSingleWindowBase()
 {
     m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
     if ( rect.isEmpty() )
@@ -125,14 +152,16 @@ CSingleWindowBase::CSingleWindowBase(QRect& rect)
 void CSingleWindowBase::setScreenScalingFactor(int f)
 {
     if ( m_dpiRatio != f ) {
-        QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
+        if ( isCustomWindowStyle() ) {
+            QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
 
-        m_buttonMinimize->setFixedSize(small_btn_size);
-        m_buttonMaximize->setFixedSize(small_btn_size);
-        m_buttonClose->setFixedSize(small_btn_size);
+            m_buttonMinimize->setFixedSize(small_btn_size);
+            m_buttonMaximize->setFixedSize(small_btn_size);
+            m_buttonClose->setFixedSize(small_btn_size);
 
-        m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * f);
-        m_boxTitleBtns->layout()->setSpacing(1 * f);
+            m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * f);
+            m_boxTitleBtns->layout()->setSpacing(1 * f);
+        }
 
 //        onScreenScalingFactor(f);
 
@@ -149,17 +178,17 @@ void CSingleWindowBase::setWindowTitle(const QString& title)
 
 //#include <QSvgRenderer>
 //#include <QPainter>
-QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom)
+QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title)
 {
-    m_boxTitleBtns = new QWidget;
-    m_boxTitleBtns->setObjectName("box-title-tools");
-    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
+    if ( pimpl->is_custom_window() ) {
+        m_boxTitleBtns = new QWidget;
+        m_boxTitleBtns->setObjectName("box-title-tools");
+        m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
 
-    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    layoutBtns->setContentsMargins(0,0,0,0);
-    layoutBtns->setSpacing(1 * m_dpiRatio);
+        QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+        layoutBtns->setContentsMargins(0,0,0,0);
+        layoutBtns->setSpacing(1 * m_dpiRatio);
 
-    if ( custom ) {
         m_labelTitle = new CElipsisLabel(title);
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
@@ -250,4 +279,9 @@ QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
 void CSingleWindowBase::adjustGeometry()
 {
 
+}
+
+bool CSingleWindowBase::isCustomWindowStyle()
+{
+    return pimpl->is_custom_window();
 }

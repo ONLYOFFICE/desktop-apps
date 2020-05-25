@@ -92,13 +92,16 @@ namespace WindowHelper {
         void disable(QWidget* parent);
         void enable();
     };
+
+//    auto check_button_state(Qt::MouseButton b) -> bool;
 #else
-    auto isLeftButtonPressed() -> bool;
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
     auto adjustWindowRect(HWND, int, LPRECT) -> void;
 #endif
+
+    auto isLeftButtonPressed() -> bool;
 }
 
 #endif // UTILS_H

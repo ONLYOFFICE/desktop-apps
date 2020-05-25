@@ -36,6 +36,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
+#include <memory>
 
 class CElipsisLabel : public QLabel
 {
@@ -64,13 +65,14 @@ public:
 
     virtual void setScreenScalingFactor(int);
     virtual bool holdView(int uid) const = 0;
-    virtual QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom);
+    virtual QWidget * createMainPanel(QWidget * parent, const QString& title);
     virtual const QObject * receiver() = 0;
 //    virtual Qt::WindowState windowState() = 0;
 //    virtual void setWindowState(Qt::WindowState) = 0;
     virtual void setWindowTitle(const QString&);
     virtual void adjustGeometry();
     virtual void bringToTop() = 0;
+    virtual bool isCustomWindowStyle();
 
 protected:
     int m_dpiRatio;
@@ -97,6 +99,10 @@ protected:
     {
         return v * static_cast<int>(m_dpiRatio);
     }
+
+private:
+    class impl;
+    std::unique_ptr<impl> pimpl;
 };
 
 #endif // CSINGLEWINDOWBASE_H
