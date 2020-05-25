@@ -379,6 +379,7 @@ public:
 
             if ( iconuser ) {
                 iconuser->setContentsMargins(12*f,0,12*f,2*f);
+                iconuser->setMaximumWidth(200*f);
                 iconuser->adjustSize();
                 diffW -= iconuser->width();
             }
