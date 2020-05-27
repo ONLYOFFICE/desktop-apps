@@ -60,7 +60,6 @@
 
 #ifdef _UPDMODULE
   #include "3dparty/WinSparkle/include/winsparkle.h"
-  #include "win/cnotifications.h"
   #include "../version.h"
 #endif
 
@@ -864,31 +863,9 @@ void CMainWindow::slot_mainPageReady()
 }
 
 #if defined(_UPDMODULE)
-using namespace WinToastLib;
-
 void CMainWindow::updateFound()
 {
     CLogger::log("updates found");
-
-    if ( WinToast::isCompatible() ) {
-        WinToast::instance()->setAppName(WSTR(APP_SIMPLE_WINDOW_TITLE));
-        WinToast::instance()->setAppUserModelId(WSTR(APP_USER_MODEL_ID));
-        if ( !WinToast::instance()->initialize() ) {
-            CLogger::log("WinToast lib intialize error");
-        } else {
-            WinToastTemplate templ{WinToastTemplate::Text01};
-            templ.setTextField(QString("Application updates is found").toStdWString(), WinToastTemplate::FirstLine);
-//            templ.setTextField(QString("New version is found").toStdWString(), WinToastTemplate::SecondLine);
-//            templ.setAttributionText(L"Attribution text");
-
-            /** TODO: showing toast sends update window to back accordingly to main window
-             * it's need to check update whitout ui window and show info on page 'about' if toasts available */
-
-//            if ( !WinToast::instance()->showToast(templ, new NSEditorNotifications::CWinToastHandler) ) {
-//                CLogger::log("WinToast: could not launch your toast notification!");
-//            }
-        }
-    }
 }
 
 void CMainWindow::updateNotFound()
