@@ -322,6 +322,10 @@
                                     icon: _create_icon_id(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
+                        } else
+                        if ( value.removed != undefined ) {
+                            value.removed ? $('#' + model.uid, this.view.$panelPortalList).addClass('lost') :
+                                    $('#' + model.uid, this.view.$panelPortalList).removeClass('lost');
                         }
                     }
                 });
@@ -415,6 +419,16 @@
                             model.set('logged', true);
                             if (model.provider != 'asc')
                                 _write_portal_cookie(obj.domain);
+
+                            if ( model.get('removed') ) {
+                                model.set('removed', false);
+                                PortalsStore.keep({
+                                    portal: model.path,
+                                    provider: model.provider,
+                                    user: model.user,
+                                    email: model.email
+                                });
+                            }
 
                             if ( model.get('user') != obj.displayName ) {
                                 model.set('user', obj.displayName);
@@ -560,8 +574,8 @@
                             if (!res[1]) {
                                 model.set('logged', false);
                                 if ( model.removed ) {
+                                    model.set('removed', true);
                                     PortalsStore.forget(param);
-                                    $('#' + model.uid, this.view.$panelPortalLis).addClass('lost');
                                 }
                             } else
                                 delete model.removed;
