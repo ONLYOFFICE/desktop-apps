@@ -50,6 +50,7 @@
 #import "ASCDownloadViewController.h"
 #import "ASCDownloadController.h"
 #import "ASCMenuButtonCell.h"
+#import "ASCDocumentType.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 0;
@@ -250,11 +251,11 @@ static float kASCWindowMinTitleWidth = 0;
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
         if (tab) {
-            ASCTabViewType docType = ASCTabViewUnknownType;
+            ASCTabViewType docType = ASCTabViewTypeUnknown;
             switch (type) {
-                case 0: docType = ASCTabViewDocumentType;       break;
-                case 1: docType = ASCTabViewPresentationType;   break;
-                case 2: docType = ASCTabViewSpreadsheetType;    break;
+                case ASCDocumentTypeDocument     : docType = ASCTabViewTypeDocument; break;
+                case ASCDocumentTypeSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
+                case ASCDocumentTypePresentation : docType = ASCTabViewTypePresentation; break;
                     
                 default:
                     break;

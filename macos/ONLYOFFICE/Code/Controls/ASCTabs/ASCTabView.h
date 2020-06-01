@@ -40,17 +40,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ASCButton.h"
+#import "ASCTabViewType.h"
 
 @class ASCTabView;
-
-typedef NS_ENUM(NSUInteger, ASCTabViewType) {
-    ASCTabViewUnknownType,
-    ASCTabViewOpeningType,
-    ASCTabViewDocumentType,
-    ASCTabViewSpreadsheetType,
-    ASCTabViewPresentationType,
-    ASCTabViewPortal
-};
 
 @protocol ASCTabViewDelegate  <NSObject>
 @optional

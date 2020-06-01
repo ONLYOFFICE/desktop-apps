@@ -174,15 +174,15 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
 
     if (index != NSNotFound) {
         switch (tab.type) {
-            case ASCTabViewDocumentType:
+            case ASCTabViewTypeDocument:
                 isChange = self.tabs[index].type != ASCTabTouchBarTypeDocument;
                 self.tabs[index].type = ASCTabTouchBarTypeDocument;
                 break;
-            case ASCTabViewSpreadsheetType:
+            case ASCTabViewTypeSpreadsheet:
                 isChange = self.tabs[index].type != ASCTabTouchBarTypeSpreadsheet;
                 self.tabs[index].type = ASCTabTouchBarTypeSpreadsheet;
                 break;
-            case ASCTabViewPresentationType:
+            case ASCTabViewTypePresentation:
                 isChange = self.tabs[index].type != ASCTabTouchBarTypePresentation;
                 self.tabs[index].type = ASCTabTouchBarTypePresentation;
                 break;

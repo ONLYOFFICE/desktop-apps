@@ -151,6 +151,8 @@
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
+		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
+		FC035A5C2485625400AF820F /* ASCDocumentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocumentType.h; sourceTree = "<group>"; };
 		FC081E9B1C3257F600F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081E9D1C3257FF00F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081EAF1C3258A800F9881C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -165,6 +167,8 @@
 		FC081EBB1C3258B400F9881C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
+		FC0AB7A12484E39D000798FE /* ONLYOFFICE-Debug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = "ONLYOFFICE-Debug.entitlements"; path = "Resources/ONLYOFFICE/ONLYOFFICE-Debug.entitlements"; sourceTree = "<group>"; };
+		FC0AB7A22484E3AB000798FE /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ONLYOFFICE.entitlements; path = Resources/ONLYOFFICE/ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCPopoverLightView.h; sourceTree = "<group>"; };
 		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCPopoverLightView.m; sourceTree = "<group>"; };
 		FC13B5272080BBF500524968 /* NSImage+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extensions.h"; sourceTree = "<group>"; };
@@ -290,7 +294,6 @@
 		FC98AF0B1E94E16A00718A12 /* file-xls.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xls.icns"; sourceTree = "<group>"; };
 		FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsx.icns"; sourceTree = "<group>"; };
 		FC98AF0D1E94E16A00718A12 /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
-		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefView.h; sourceTree = "<group>"; };
 		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefView.mm; sourceTree = "<group>"; };
 		FC9EA18D225B712D0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -437,6 +440,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC035A5A24855E1900AF820F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				FC035A5B24855E8C00AF820F /* ASCTabViewType.h */,
+				FC035A5C2485625400AF820F /* ASCDocumentType.h */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		FC081E981C32575800F9881C /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,7 +762,8 @@
 		FCBC426A1B9D650400405301 /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
-				FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */,
+				FC0AB7A22484E3AB000798FE /* ONLYOFFICE.entitlements */,
+				FC0AB7A12484E39D000798FE /* ONLYOFFICE-Debug.entitlements */,
 				FC29CD421F979946003F4136 /* Storyboard */,
 				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
 				FCF289712150E65A002FD438 /* Code */,
@@ -899,6 +912,7 @@
 		FCF289712150E65A002FD438 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				FC035A5A24855E1900AF820F /* Enums */,
 				FCF289732150E737002FD438 /* Views */,
 				FCCC2FD421E5DD5800FB9209 /* TouchBar */,
 				FCF289722150E6A1002FD438 /* Controllers */,
@@ -1541,7 +1555,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/Resources/ONLYOFFICE/ONLYOFFICE.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1566,7 +1580,7 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.5.1;
+				MARKETING_VERSION = 5.5.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1583,7 +1597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "ONLYOFFICE/Resources/ONLYOFFICE/ONLYOFFICE-Debug.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application: Ascensio System SIA (2WH24U26GJ)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1608,7 +1622,7 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.5.1;
+				MARKETING_VERSION = 5.5.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
