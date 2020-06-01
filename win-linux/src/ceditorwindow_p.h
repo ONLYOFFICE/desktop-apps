@@ -419,7 +419,7 @@ public:
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
-            window->m_pMainPanel->layout()->addWidget(_fs_widget);
+            qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0);
             window->recalculatePlaces();
             _fs_widget->showNormal();
             _fs_widget->cef()->focus();
