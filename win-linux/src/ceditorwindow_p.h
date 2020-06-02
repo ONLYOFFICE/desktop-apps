@@ -234,6 +234,17 @@ public:
         }
     }
 
+    void onDocumentType(int, int type) override
+    {
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            window->m_css = prepare_editor_css(type);
+
+            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+            css.append(window->m_css);
+            window->m_pMainPanel->setStyleSheet(css);
+        }
+    }
+
     void onDocumentChanged(int id, bool state) override
     {
         if ( panel()->data()->hasChanges() != state ) {

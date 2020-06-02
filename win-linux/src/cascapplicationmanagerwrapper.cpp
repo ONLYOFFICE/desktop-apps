@@ -327,6 +327,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             if ( pData->get_Param() == L"offline" ) {}
             else {
                 topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
+#ifdef Q_OS_LINUX
+                topWindow()->bringToTop();
+#endif
                 return true;
             }
         } else
