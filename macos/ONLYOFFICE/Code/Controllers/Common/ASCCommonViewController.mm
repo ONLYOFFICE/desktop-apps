@@ -91,162 +91,45 @@
     [super viewDidLoad];
 
     _externalDelegate = [[ASCExternalController shared] delegate];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onWindowLoaded:)
-                                                 name:ASCEventNameMainWindowLoaded
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFCreateTab:)
-                                                 name:CEFEventNameCreateTab
-                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFChangedTabEditorName:)
-                                                 name:CEFEventNameTabEditorNameChanged
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFChangedTabEditorType:)
-                                                 name:CEFEventNameTabEditorType
-                                               object:nil];
+    void (^addObserverFor)(_Nullable NSNotificationName, SEL) = ^(_Nullable NSNotificationName name, SEL selector) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:selector
+                                                     name:name
+                                                   object:nil];
+    };
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSave:)
-                                                 name:CEFEventNameSave
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenUrl:)
-                                                 name:CEFEventNameOpenUrl
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFullscreen:)
-                                                 name:CEFEventNameFullscreen
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFKeyDown:)
-                                                 name:CEFEventNameKeyboardDown
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDownload:)
-                                                 name:CEFEventNameDownload
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFStartSave:)
-                                                 name:CEFEventNameStartSaveDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOnBeforePrintEnd:)
-                                                 name:CEFEventNamePrintDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOnOpenLocalFile:)
-                                                 name:CEFEventNameOpenLocalFile
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSaveLocalFile:)
-                                                 name:CEFEventNameSaveLocal
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenLocalImage:)
-                                                 name:CEFEventNameOpenImage
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenFileDialog:)
-                                                 name:CEFEventNameOpenFileDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalLogin:)
-                                                 name:CEFEventNamePortalLogin
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalLogout:)
-                                                 name:CEFEventNamePortalLogout
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalCreate:)
-                                                 name:CEFEventNamePortalCreate
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalNew:)
-                                                 name:CEFEventNamePortalNew
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalSSO:)
-                                                 name:CEFEventNamePortalSSO
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFileInFinder:)
-                                                 name:CEFEventNameFileInFinder
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFilesCheck:)
-                                                 name:CEFEventNameFilesCheck
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFStartPageReady:)
-                                                 name:CEFEventNameStartPageReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSaveBeforeSign:)
-                                                 name:CEFEventNameSaveBeforSign
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorDocumentReady:)
-                                                 name:CEFEventNameEditorDocumentReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorAppReady:)
-                                                 name:CEFEventNameEditorAppReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorEvent:)
-                                                 name:CEFEventNameEditorEvent
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorAppActionRequest:)
-                                                 name:CEFEventNameEditorAppActionRequest
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorOpenFolder:)
-                                                 name:CEFEventNameEditorOpenFolder
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDocumentFragmentBuild:)
-                                                 name:CEFEventNameDocumentFragmentBuild
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDocumentFragmented:)
-                                                 name:CEFEventNameDocumentFragmented
-                                               object:nil];
-
+    addObserverFor(ASCEventNameMainWindowLoaded, @selector(onWindowLoaded:));
+    addObserverFor(CEFEventNameCreateTab, @selector(onCEFCreateTab:));
+    addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
+    addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
+    addObserverFor(CEFEventNameSave, @selector(onCEFSave:));
+    addObserverFor(CEFEventNameOpenUrl, @selector(onCEFOpenUrl:));
+    addObserverFor(CEFEventNameFullscreen, @selector(onCEFFullscreen:));
+    addObserverFor(CEFEventNameKeyboardDown, @selector(onCEFKeyDown:));
+    addObserverFor(CEFEventNameDownload, @selector(onCEFDownload:));
+    addObserverFor(CEFEventNameStartSaveDialog, @selector(onCEFStartSave:));
+    addObserverFor(CEFEventNamePrintDialog, @selector(onCEFOnBeforePrintEnd:));
+    addObserverFor(CEFEventNameOpenLocalFile, @selector(onCEFOnOpenLocalFile:));
+    addObserverFor(CEFEventNameSaveLocal, @selector(onCEFSaveLocalFile:));
+    addObserverFor(CEFEventNameOpenImage, @selector(onCEFOpenLocalImage:));
+    addObserverFor(CEFEventNameOpenFileDialog, @selector(onCEFOpenFileDialog:));
+    addObserverFor(CEFEventNamePortalLogin, @selector(onCEFPortalLogin:));
+    addObserverFor(CEFEventNamePortalLogout, @selector(onCEFPortalLogout:));
+    addObserverFor(CEFEventNamePortalCreate, @selector(onCEFPortalCreate:));
+    addObserverFor(CEFEventNamePortalNew, @selector(onCEFPortalNew:));
+    addObserverFor(CEFEventNamePortalSSO, @selector(onCEFPortalSSO:));
+    addObserverFor(CEFEventNameFileInFinder, @selector(onCEFFileInFinder:));
+    addObserverFor(CEFEventNameFilesCheck, @selector(onCEFFilesCheck:));
+    addObserverFor(CEFEventNameStartPageReady, @selector(onCEFStartPageReady:));
+    addObserverFor(CEFEventNameSaveBeforSign, @selector(onCEFSaveBeforeSign:));
+    addObserverFor(CEFEventNameEditorDocumentReady, @selector(onCEFEditorDocumentReady:));
+    addObserverFor(CEFEventNameEditorAppReady, @selector(onCEFEditorAppReady:));
+    addObserverFor(CEFEventNameEditorEvent, @selector(onCEFEditorEvent:));
+    addObserverFor(CEFEventNameEditorAppActionRequest, @selector(onCEFEditorAppActionRequest:));
+    addObserverFor(CEFEventNameEditorOpenFolder, @selector(onCEFEditorOpenFolder:));
+    addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
+    addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
