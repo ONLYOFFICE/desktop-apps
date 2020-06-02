@@ -43,6 +43,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QJsonDocument>
+#include <QJsonObject>
 #include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
@@ -491,12 +492,16 @@ wstring Utils::appUserName()
 {
     GET_REGISTRY_USER(_reg_user)
 
-    QString data = QByteArray::fromBase64(_reg_user.value("appdata").toByteArray());
-    if (!data.isEmpty()) {
-        QRegularExpression _re("username\\\":\\\"(.+?)\\\"");
-        QRegularExpressionMatch _match = _re.match(data);
-        if ( _match.hasMatch() )
-            return _match.captured(1).toStdWString();
+    QJsonParseError jerror;
+    QByteArray data = QByteArray::fromBase64(_reg_user.value("appdata").toByteArray());
+    QJsonDocument jdoc = QJsonDocument::fromJson(data, &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        QJsonObject objRoot = jdoc.object();
+
+        if ( objRoot.contains("username") ) {
+            return objRoot["username"].toString().toStdWString();
+        }
     }
 
     return systemUserName();
