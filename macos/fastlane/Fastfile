@@ -37,7 +37,7 @@ platform :mac do
       configuration: 'Release',
       clean: true,
       output_directory: build,
-      codesigning_identity: 'Developer ID Application',
+      codesigning_identity: ENV["CODESIGNING_IDENTITY"],
       export_method: 'developer-id',
       skip_package_pkg: true
     )
