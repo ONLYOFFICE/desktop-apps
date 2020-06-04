@@ -108,7 +108,7 @@ class CEditorWindowPrivate : public CCefEventsGate
     QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
-    Qt::WindowFlags window_orig_flags;
+    QWidget * fs_parent = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
 
@@ -413,9 +413,6 @@ public:
         if (!apply) {
             _break_demonstration();
 
-#ifdef Q_OS_LINUX
-            _fs_widget->overrideWindowFlags(window_orig_flags);
-#endif
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
@@ -424,21 +421,26 @@ public:
             _fs_widget->showNormal();
             _fs_widget->cef()->focus();
 
+            if ( fs_parent )
+                delete fs_parent, fs_parent = nullptr;
+
             disconnect(cefConnection);
         } else {
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
-            _fs_widget->setWindowIcon(Utils::appIcon());
-            _fs_widget->setWindowTitle(panel()->data()->title());
+#ifdef Q_OS_LINUX
+            fs_parent = new QWidget;
+            fs_parent->setWindowIcon(Utils::appIcon());
+            fs_parent->setWindowTitle(panel()->data()->title());
+            fs_parent->showFullScreen();
 
-#ifdef _WIN32
-            _fs_widget->setParent(nullptr);
-            _fs_widget->showFullScreen();
-#else
-            window_orig_flags = _fs_widget->windowFlags();
-            _fs_widget->setParent(nullptr);
-            _fs_widget->setWindowFlags(Qt::FramelessWindowHint);
+            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
+            _fs_widget->setParent(fs_parent);
             _fs_widget->showFullScreen();
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
+#else
+            _fs_widget->setWindowIcon(Utils::appIcon());
+            _fs_widget->setWindowTitle(panel()->data()->title());
+            _fs_widget->setParent(nullptr);
+            _fs_widget->showFullScreen();
 #endif
             _fs_widget->view()->setFocusToCef();
             window->hide();

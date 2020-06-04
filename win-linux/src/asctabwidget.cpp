@@ -1125,6 +1125,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             fsWidget = m_dataFullScreen->widget();
             widget(index)->layout()->addWidget(fsWidget);
 
+            RELEASEOBJECT(m_dataFullScreen->parent)
             RELEASEOBJECT(m_dataFullScreen)
 
 //            updateGeometry();
@@ -1138,11 +1139,17 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         if ( fsWidget ) {
             m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
+            widget(tabIndex)->layout()->removeWidget(fsWidget);
+#ifdef _WIN32
             fsWidget->setWindowIcon(Utils::appIcon());
             fsWidget->setParent(nullptr);
-#ifdef _WIN32
 #else
-            fsWidget->setWindowFlags(Qt::FramelessWindowHint);
+            m_dataFullScreen->parent = new QWidget;
+            m_dataFullScreen->parent->setWindowIcon(Utils::appIcon());
+            m_dataFullScreen->parent->setWindowTitle(((CTabPanel *)fsWidget)->data()->title());
+            m_dataFullScreen->parent->showFullScreen();
+
+            fsWidget->setParent(m_dataFullScreen->parent);
             AscAppManager::topWindow()->hide();
 #endif
             ((CTabPanel *)fsWidget)->showFullScreen();
