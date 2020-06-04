@@ -426,13 +426,13 @@ public:
 
             disconnect(cefConnection);
         } else {
+            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
 #ifdef Q_OS_LINUX
             fs_parent = new QWidget;
             fs_parent->setWindowIcon(Utils::appIcon());
             fs_parent->setWindowTitle(panel()->data()->title());
             fs_parent->showFullScreen();
 
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
             _fs_widget->setParent(fs_parent);
             _fs_widget->showFullScreen();
             _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
