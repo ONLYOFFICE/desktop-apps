@@ -617,4 +617,26 @@ namespace WindowHelper {
         return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
 #endif
     }
+
+    auto constructFullscreenWidget(QWidget * panelwidget) -> QWidget *
+    {
+#if defined(_WIN32) && (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        QPoint pt = panelwidget->window()->mapToGlobal(panelwidget->pos());
+#else
+        QPoint pt = panelwidget->mapToGlobal(panelwidget->pos());
+#endif
+
+        CTabPanel * _panel = qobject_cast<CTabPanel *>(panelwidget);
+        QWidget * _parent = new QWidget;
+        _parent->setWindowIcon(Utils::appIcon());
+        _parent->setWindowTitle(_panel->data()->title());
+        _parent->showFullScreen();
+        _parent->setGeometry(QApplication::desktop()->screenGeometry(pt));
+
+        _panel->setParent(_parent);
+        _panel->show();
+        _panel->setGeometry(0,0,_parent->width(),_parent->height());
+
+        return _parent;
+    }
 }

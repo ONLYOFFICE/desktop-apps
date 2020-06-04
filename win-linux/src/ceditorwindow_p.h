@@ -426,22 +426,8 @@ public:
 
             disconnect(cefConnection);
         } else {
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
-#ifdef Q_OS_LINUX
-            fs_parent = new QWidget;
-            fs_parent->setWindowIcon(Utils::appIcon());
-            fs_parent->setWindowTitle(panel()->data()->title());
-            fs_parent->showFullScreen();
+            fs_parent = WindowHelper::constructFullscreenWidget(_fs_widget);
 
-            _fs_widget->setParent(fs_parent);
-            _fs_widget->showFullScreen();
-            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-#else
-            _fs_widget->setWindowIcon(Utils::appIcon());
-            _fs_widget->setWindowTitle(panel()->data()->title());
-            _fs_widget->setParent(nullptr);
-            _fs_widget->showFullScreen();
-#endif
             _fs_widget->view()->setFocusToCef();
             window->hide();
 
@@ -451,11 +437,6 @@ public:
                 e->ignore();
                 window->closeWindow();
             });
-
-#ifdef _WIN32
-            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-            _fs_widget->setWindowState(Qt::WindowFullScreen);                       // fullscreen widget clears that flag after changing geometry
-#endif
         }
     }
 

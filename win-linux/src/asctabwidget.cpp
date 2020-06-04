@@ -1111,7 +1111,7 @@ bool CAscTabWidget::isProcessed(int index) const
 
 void CAscTabWidget::setFullScreen(bool apply, int id)
 {
-    QWidget * fsWidget;
+    CTabPanel * fsWidget;
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
@@ -1122,7 +1122,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 #endif
 
             int index = m_dataFullScreen->tabindex();
-            fsWidget = m_dataFullScreen->widget();
+            fsWidget = qobject_cast<CTabPanel *>(m_dataFullScreen->widget());
             widget(index)->layout()->addWidget(fsWidget);
 
             RELEASEOBJECT(m_dataFullScreen->parent)
@@ -1139,37 +1139,23 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         if ( fsWidget ) {
             m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
-            widget(tabIndex)->layout()->removeWidget(fsWidget);
-#ifdef _WIN32
-            fsWidget->setWindowIcon(Utils::appIcon());
-            fsWidget->setParent(nullptr);
-#else
-            m_dataFullScreen->parent = new QWidget;
-            m_dataFullScreen->parent->setWindowIcon(Utils::appIcon());
-            m_dataFullScreen->parent->setWindowTitle(((CTabPanel *)fsWidget)->data()->title());
-            m_dataFullScreen->parent->showFullScreen();
-
-            fsWidget->setParent(m_dataFullScreen->parent);
+            m_dataFullScreen->parent = WindowHelper::constructFullscreenWidget(fsWidget);
+            fsWidget->view()->setFocusToCef();
             AscAppManager::topWindow()->hide();
-#endif
-            ((CTabPanel *)fsWidget)->showFullScreen();
-            ((CTabPanel *)fsWidget)->view()->setFocusToCef();
 
-            cefConnection = connect((CTabPanel *)fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
+            cefConnection = connect(fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
 
                 NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
                 pEvent->m_pData = pCommand;
-                ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
+                fsWidget->cef()->Apply(pEvent);
 
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
                 QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
 //                emit closeAppRequest();
             });
-
-            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));
         }
     }
 }
