@@ -433,8 +433,7 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         QWidget * panelwidget = createTabPanel(this, _panel);
 
         tabindex = insertTab(index, panelwidget, tabdata->title());
-        tabBar()->setTabToolTip(tabindex, !tabdata->url().empty() ?
-                                QString::fromStdWString(tabdata->url()) : tabdata->title() );
+        tabBar()->setTabToolTip(tabindex, tabdata->title() );
     }
 
     return tabindex;
