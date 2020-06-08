@@ -390,6 +390,11 @@ void CEditorWindow::recalculatePlaces()
     }
 }
 
+void CEditorWindow::focus()
+{
+    mainView()->view()->setFocusToCef();
+}
+
 void CEditorWindow::setReporterMode(bool apply)
 {
     if ( apply ) {

@@ -180,6 +180,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
     case WM_SETFOCUS: {
 //        window->focusMainPanel();
+        window->focus();
         break;
     }
 

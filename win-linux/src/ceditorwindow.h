@@ -53,6 +53,7 @@ public:
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 
+    void focus() override;
     bool holdView(int id) const override;
     bool holdView(const wstring& portal) const;
     void undock(bool maximized = false);
