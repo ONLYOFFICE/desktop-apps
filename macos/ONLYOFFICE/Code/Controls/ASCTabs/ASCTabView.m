@@ -102,23 +102,23 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     _uuid = [[NSUUID UUID] UUIDString];
     
     _icons = [NSMutableArray arrayWithArray:@[
-               // ASCTabViewUnknownType
+               // ASCTabViewTypeUnknown
                @{@"normal": @"", @"active": @""},
-               // ASCTabViewOpeningType
+               // ASCTabViewTypeOpening
                @{@"normal": @"tab-icon_opening", @"active": @"tab-icon_opening"},
-               // ASCTabViewDocumentType
+               // ASCTabViewTypeDocument
                @{@"normal": @"icon_tabs_de_inactive", @"active": @"icon_tabs_de_active"},
-               // ASCTabViewSpreadsheetType
+               // ASCTabViewTypeSpreadsheet
                @{@"normal": @"icon_tabs_se_inactive", @"active": @"icon_tabs_se_active"},
-               // ASCTabViewPresentationType
+               // ASCTabViewTypePresentation
                @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"},
-               // ASCTabViewPortal
+               // ASCTabViewTypePortal
                @{@"normal": @"icon_tab_portal_active", @"active": @"icon_tab_portal_active"}
                ]
     ];
 
     if ([NSApplication isDarkMode]) {
-        _icons[ASCTabViewPortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
+        _icons[ASCTabViewTypePortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
     }
 
     ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
@@ -201,7 +201,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 - (void)setType:(ASCTabViewType)type {
     _type = type;
     
-    if (type > ASCTabViewUnknownType && type < [_icons count]) {
+    if (type > ASCTabViewTypeUnknown && type < [_icons count]) {
         NSString * iconName = (self.state)
             ? _icons[type][@"active"]
             : _icons[type][@"normal"];
@@ -213,14 +213,14 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
     ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
 
-    if (type == ASCTabViewPortal) {
+    if (type == ASCTabViewTypePortal) {
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeColor = [NSColor colorNamed:@"tab-portal-activeColor"];
         } else {
             tabViewCell.activeColor = UIColorFromRGB(0xffffff);
         }
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
-    } else if (type == ASCTabViewDocumentType) {
+    } else if (type == ASCTabViewTypeDocument) {
         tabViewCell.activeColor = [NSColor brendDocumentEditor];
         tabViewCell.clickColor  = [NSColor brendDocumentEditor];
         if (@available(macOS 10.13, *)) {
@@ -228,7 +228,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
-    } else if (type == ASCTabViewSpreadsheetType) {
+    } else if (type == ASCTabViewTypeSpreadsheet) {
         tabViewCell.activeColor = [NSColor brendSpreadsheetEditor];
         tabViewCell.clickColor  = [NSColor brendSpreadsheetEditor];
         if (@available(macOS 10.13, *)) {
@@ -236,7 +236,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
-    } else if (type == ASCTabViewPresentationType) {
+    } else if (type == ASCTabViewTypePresentation) {
         tabViewCell.activeColor = [NSColor brendPresentationEditor];
         tabViewCell.clickColor  = [NSColor brendPresentationEditor];
         if (@available(macOS 10.13, *)) {

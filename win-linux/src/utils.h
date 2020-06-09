@@ -102,6 +102,7 @@ namespace WindowHelper {
 #endif
 
     auto isLeftButtonPressed() -> bool;
+    auto constructFullscreenWidget(QWidget * panel) -> QWidget *;
 }
 
 #endif // UTILS_H

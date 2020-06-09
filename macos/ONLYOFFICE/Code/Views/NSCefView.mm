@@ -198,6 +198,16 @@
     }
 }
 
+- (void)reload {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+        
+        if (editorView) {
+            editorView->reload();
+        }
+    }
+}
+
 - (BOOL)checkCloudCryptoNeedBuild {
     if (m_pCefView && m_pCefView->GetCefView()) {
         if (m_pCefView->GetCefView()->GetType() == cvwtEditor) {
