@@ -71,6 +71,7 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
 OutputDir                 =.\
 Compression               =lzma
 PrivilegesRequired        =admin
