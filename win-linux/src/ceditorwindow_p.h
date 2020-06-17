@@ -215,6 +215,13 @@ public:
         }
     }
 
+    void onEditorActionRequest(int, const QString& json) override
+    {
+        if ( json.contains(QRegExp("action\\\":\\\"close")) ) {
+            window->closeWindow();
+        }
+    }
+
     void onDocumentReady(int uid) override
     {
 //        if (window->holdView(uid))
