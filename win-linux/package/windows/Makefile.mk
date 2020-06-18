@@ -86,12 +86,10 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read 
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_UPDATE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
-endif
 
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
