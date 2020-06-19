@@ -73,7 +73,12 @@ package: $(PACKAGES)
 #zip: $(DESKTOP_EDITORS_ZIP)
 
 clean-package:
-	rm -f $(PACKAGES) $(VCREDIST) $(INDEX_HTML)
+	rm -fv \
+		$(dir $(DESKTOP_EDITORS_EXE))*.exe \
+		$(dir $(DESKTOP_EDITORS_ZIP))*.zip \
+		$(dir $(DESKTOP_EDITORS_UPDATE))*.exe \
+		$(VCREDIST) \
+		$(INDEX_HTML)
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
