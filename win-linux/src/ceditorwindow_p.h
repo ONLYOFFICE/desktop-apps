@@ -66,7 +66,13 @@ const QString g_css =
         "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-        "#labelTitle{color:#444;font-size:11px;}"
+#ifdef Q_OS_LINUX
+        "#box-title-tools QLabel{font-size:11px;font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;}"
+        "#labelTitle{color:#444;}"
+#else
+        "#box-title-tools QLabel{font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;font-weight:bold;}"
+        "#labelTitle{color:#444;font-size:12px;}"
+#endif
         "#iconuser{color:#fff;font-size:11px;}"
         "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
