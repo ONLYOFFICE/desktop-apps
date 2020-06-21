@@ -241,8 +241,8 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     if (res_open) {
         CAscTabData * data = new CAscTabData(opts.name);
         data->setUrl(opts.wurl);
-        data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
-                       (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+        data->setIsLocal(opts.type == etLocalFile || opts.type == etNewFile ||
+                       (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)));
 
         pView->setData(data);
         tab_index = addTab(panelwidget, opts.name);
@@ -891,7 +891,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
-    if (!m_pMainWidget->isHidden())
+    if (!isActive())
     {
         if (!QCefView::IsSupportLayers())
         {

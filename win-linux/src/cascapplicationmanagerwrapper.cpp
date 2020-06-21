@@ -22,6 +22,7 @@
 #include "clangater.h"
 #include "cmessage.h"
 #include "ceditortools.h"
+#include "cfilechecker.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -357,6 +358,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         format == L"slide" ? etPresentation : etUndefined;
 
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            return true;
+        } else
+        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+            CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         }
 
@@ -732,6 +737,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     QApplication::setFont( mainFont );
 
+    wstring wparams = QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
+    wstring user_name = Utils::appUserName();
+
+    wparams.replace(wparams.find(L"%3"), 2, user_name);
+    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 }
 
 CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)

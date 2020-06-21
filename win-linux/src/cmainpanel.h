@@ -137,7 +137,6 @@ public slots:
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
     virtual void onLocalFileSaveAs(void *);
-    void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
     void onFileLocation(int, QString);
     void onPortalOpen(QString);
@@ -149,8 +148,6 @@ public slots:
     void onEditorAllowedClose(int);
     void onWebTitleChanged(int, std::wstring json){}
 
-    void onFileChecked(const QString&, int, bool);
-
 protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
@@ -161,16 +158,16 @@ protected:
 private:
     std::wstring    m_sDownloadName;
 
-    QWidget*        m_pMainWidget;
+    QWidget*        m_pMainWidget = nullptr;
 
-    QPushButton*    m_pButtonMinimize;
-    QPushButton*    m_pButtonMaximize;
-    QPushButton*    m_pButtonClose;
+    QPushButton*    m_pButtonMinimize = nullptr;
+    QPushButton*    m_pButtonMaximize = nullptr;
+    QPushButton*    m_pButtonClose = nullptr;
     QPushButton*    m_pButtonProfile;
 
     QHBoxLayout *   m_layoutBtns;
     QWidget *       m_boxTitleBtns;
-    bool            m_isMaximized;
+    bool            m_isMaximized = false;
 
     CDownloadWidget *   m_pWidgetDownload = Q_NULLPTR;
 

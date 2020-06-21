@@ -93,9 +93,7 @@ public:
 
 CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
-      CScalingWrapper(dpi_ratio),
-        m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
-        m_isMaximized(false)
+      CScalingWrapper(dpi_ratio)
       , m_isCustomWindow(isCustomWindow)
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
@@ -103,7 +101,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -690,23 +687,6 @@ void CMainPanel::onLocalFilesOpen(void * data)
     doOpenLocalFiles(&vctFiles);
 
     RELEASEINTERFACE(pData);
-}
-
-void CMainPanel::onLocalFilesCheck(QString json)
-{
-    CExistanceController::check(json);
-}
-
-void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
-{
-    Q_UNUSED(name)
-
-    if ( !exists ) {
-        QJsonObject _json_obj{{QString::number(uid), exists}};
-        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
-
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", json);
-    }
 }
 
 void CMainPanel::onLocalFileLocation(QString path)
