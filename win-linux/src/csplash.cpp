@@ -32,13 +32,13 @@
 
 
 #include "csplash.h"
+#include "csplash_p.h"
 #include "defines.h"
 #include <QApplication>
 #include <QScreen>
 #include <QSettings>
 #include <QStyle>
 #include "utils.h"
-#include "csplash_p.cpp"
 
 CSplash * _splash;
 

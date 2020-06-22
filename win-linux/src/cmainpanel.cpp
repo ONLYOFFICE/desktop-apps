@@ -222,13 +222,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 //    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
 //    m_pTabs->updateIcons();
 
-    QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
-    wstring wparams = params.toStdWString();
-    wstring user_name = Utils::appUserName();
 
-    wparams.replace(wparams.find(L"%3"), 2, user_name);
-    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -647,7 +641,7 @@ void CMainPanel::onLocalFileRecent(void * d)
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
             if (modal_res == MODAL_RESULT_CUSTOM) {
-                AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "file:skip", QString::number(opts.id));
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
             return;
@@ -819,7 +813,7 @@ void CMainPanel::onDocumentReady(int uid)
             refreshAboutVersion();
             emit mainPageReady();
 
-            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
         });
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
