@@ -133,7 +133,6 @@ public slots:
     void onKeyDown(void *);
 
     virtual void onLocalOptions(const QString&){}
-//    virtual void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
     virtual void onLocalFileSaveAs(void *);

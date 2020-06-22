@@ -583,26 +583,6 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
     }
 }
 
-//void CMainPanel::onLocalFileOpen(const QString& inpath)
-//{
-//#ifdef _WIN32
-//    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-//#else
-//    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-//#endif
-
-//    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
-//                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
-
-//    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
-//        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
-
-//        COpenOptions opts = {"", etLocalFile, _path};
-//        opts.wurl = _path.toStdWString();
-//        doOpenLocalFile(opts);
-//    }
-//}
-
 void CMainPanel::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);
@@ -952,31 +932,6 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
         }
     }
 }
-
-//void CMainPanel::loadStartPage()
-//{
-//    GET_REGISTRY_USER(_reg_user);
-
-//    QString data_path;
-//#if defined(QT_DEBUG)
-//    data_path = _reg_user.value("startpage").value<QString>();
-//#endif
-
-//    if (data_path.isEmpty())
-//        data_path = qApp->applicationDirPath() + "/index.html";
-
-//    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
-
-//    QString _portal = _reg_user.value("portal").value<QString>();
-//    if (!_portal.isEmpty()) {
-//        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-//        additional.append(arg_portal);
-//    }
-
-
-//    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-//    ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
-//}
 
 void CMainPanel::goStart()
 {
