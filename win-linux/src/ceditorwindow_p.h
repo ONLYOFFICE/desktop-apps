@@ -240,9 +240,19 @@ public:
         }
     }
 
-    void onDocumentType(int, int type) override
+    void onDocumentType(int vid, int type) override
     {
+        CCefEventsGate::onDocumentType(vid, type);
+
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            QColor color;
+            switch (type) {
+            case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
+            case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
+            case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
+            }
+
+            window->m_bgColor = RGB(color.red(), color.green(), color.blue());
             window->m_css = prepare_editor_css(type);
 
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));

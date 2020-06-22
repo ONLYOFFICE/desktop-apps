@@ -167,7 +167,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
                     } else
                     if ( top_window ) {
                         top_window = NULL;
-                        if ( hw == AscAppManager::topWindow()->handle() )
+                        if ( AscAppManager::topWindow() && hw == AscAppManager::topWindow()->handle() )
                             is_mainwindow_prev = true;
                     }
 
@@ -179,8 +179,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_SETFOCUS: {
+        if ( !window->m_closed ) {
 //        window->focusMainPanel();
-        window->focus();
+            window->focus();
+        }
         break;
     }
 
