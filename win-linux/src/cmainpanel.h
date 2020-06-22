@@ -65,13 +65,13 @@ public:
     void createLocalFile(const QString& name, int format);
     void setInputFiles(QStringList *);
     void setScreenScalingFactor(uchar);
+    void attachStartPanel(QCefView * const);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
     bool closeAll();
-    void loadStartPage();
     virtual void updateScaling(int);
 
 #ifdef __linux

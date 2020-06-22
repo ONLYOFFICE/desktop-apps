@@ -200,29 +200,27 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
-
-    QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
-    pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-    pMainWidget->setObjectName( "mainPanel" );
-    pMainWidget->setHidden(false);
-
-    m_pMainWidget = (QWidget *)pMainWidget;
     m_pTabs->m_pMainButton = m_pButtonMain;
-    m_pTabs->m_pMainWidget = m_pMainWidget;
-
-//    m_pMainWidget->setVisible(false);
 
     mainGridLayout->addWidget( centralWidget );
 
     RecalculatePlaces();
-    loadStartPage();
 
 //    m_pTabs->addEditor("editor1 editor21", etDocument, L"https://testinfo.teamlab.info");
 //    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
 //    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
 //    m_pTabs->updateIcons();
+}
 
+void CMainPanel::attachStartPanel(QCefView * const view)
+{
+    m_pMainWidget = qobject_cast<QWidget *>(view);
 
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    view->setParent(centralwidget);
+
+    if ( !m_pTabs->isActive() )
+        view->show();
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -253,7 +251,9 @@ void CMainPanel::RecalculatePlaces()
 
     m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * dpi_ratio);
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
 
 #ifdef __linux
@@ -953,30 +953,30 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
     }
 }
 
-void CMainPanel::loadStartPage()
-{
-    GET_REGISTRY_USER(_reg_user);
+//void CMainPanel::loadStartPage()
+//{
+//    GET_REGISTRY_USER(_reg_user);
 
-    QString data_path;
-#if defined(QT_DEBUG)
-    data_path = _reg_user.value("startpage").value<QString>();
-#endif
+//    QString data_path;
+//#if defined(QT_DEBUG)
+//    data_path = _reg_user.value("startpage").value<QString>();
+//#endif
 
-    if (data_path.isEmpty())
-        data_path = qApp->applicationDirPath() + "/index.html";
+//    if (data_path.isEmpty())
+//        data_path = qApp->applicationDirPath() + "/index.html";
 
-    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
+//    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
 
-    QString _portal = _reg_user.value("portal").value<QString>();
-    if (!_portal.isEmpty()) {
-        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-        additional.append(arg_portal);
-    }
+//    QString _portal = _reg_user.value("portal").value<QString>();
+//    if (!_portal.isEmpty()) {
+//        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
+//        additional.append(arg_portal);
+//    }
 
 
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-    ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
-}
+//    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+//    ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
+//}
 
 void CMainPanel::goStart()
 {

@@ -167,33 +167,31 @@ namespace CEditorTools
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
     {
         CTabPanel * panel = CTabPanel::createEditorPanel();
-        panel->setGeometry(rect);
 
         bool result = true;
-        if (opts.type == etLocalFile) {
-//            pView->openLocalFile(opts.wurl, file_format);
-            result = false;
+        if ( opts.type == etLocalFile ) {
+            result = panel->openLocalFile(opts.wurl);
         } else
-        if (opts.type == etRecoveryFile) {
-//            res_open = pView->openRecoverFile(opts.id);
-            result = false;
+        if ( opts.type == etRecoveryFile ) {
+            result = panel->openRecoverFile(opts.id);
         } else
-        if (opts.type == etRecentFile) {
-//            res_open = pView->openRecentFile(opts.id);
-            result = false;
+        if ( opts.type == etRecentFile ) {
+            result = panel->openRecentFile(opts.id);
         } else
-        if (opts.type == etNewFile) {
-//            pView->createLocalFile(opts.format, opts.name.toStdWString());
-            result = false;
+        if ( opts.type == etNewFile ) {
+            panel->createLocalFile(opts.format, opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
 
-        if (result) {
+        if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
-            data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
-                           (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+            data->setIsLocal(opts.type == etLocalFile || opts.type == etNewFile ||
+                           (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)));
+
+            if ( opts.type == etNewFile )
+                data->setContentType(AscEditorType(opts.format));
 
             if ( !data->isLocal() ) {
                 QRegularExpression re("ascdesktop:\\/\\/compare");
@@ -204,7 +202,8 @@ namespace CEditorTools
             }
 
             panel->setData(data);
-
+            if ( !rect.isEmpty() )
+                panel->setGeometry(rect);
         } else {
             delete panel, panel = nullptr;
         }

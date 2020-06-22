@@ -2,6 +2,7 @@
 #include "ctabpanel.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
+#include "cefview.h"
 
 #include <QPainter>
 #include <QDebug>
@@ -99,6 +100,16 @@ void CTabPanel::initAsSimple()
 void CTabPanel::openLocalFile(const std::wstring& path, int format)
 {
     static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, format);
+}
+
+bool CTabPanel::openLocalFile(const std::wstring& path)
+{
+    int _format = CCefViewEditor::GetFileFormat(path);
+    if ( _format == 0 )
+        return false;
+
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, _format);
+    return true;
 }
 
 void CTabPanel::createLocalFile(int format, const std::wstring& name)

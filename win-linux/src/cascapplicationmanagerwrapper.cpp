@@ -1,6 +1,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
-#include "cascapplicationmanagerwrapper_private.h"
+//#include "src/cascapplicationmanagerwrapper_private.h"
+#include "cascapplicationmanagerwrapperintf.h"
 
 #include <QMutexLocker>
 #include <QTimer>
@@ -50,12 +51,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 }
 
-CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
-    : QAscApplicationManager()
+CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private * ptrprivate)
+    : QObject()
+    , QAscApplicationManager()
     , CCefEventsTransformer(nullptr)
-    , QObject(nullptr)
-    , m_private(new CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private(this))
     , m_queueToClose(new CWindowsQueue<sWinTag>)
+    , m_private(ptrprivate)
 {
     CAscApplicationManager::SetEventListener(this);
 
@@ -635,11 +636,13 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
 
 void CAscApplicationManagerWrapper::startApp()
 {
+    APP_CAST(_app);
     GET_REGISTRY_USER(reg_user)
 
     QRect _start_rect = reg_user.value("position").toRect();
     bool _is_maximized = reg_user.value("maximized", false).toBool();
 
+#if 0
     CMainWindow * _window = createMainWindow(_start_rect);
 
 #ifdef __linux
@@ -682,6 +685,41 @@ void CAscApplicationManagerWrapper::startApp()
             }
         }
     }
+#endif
+
+    /*
+     * create start page
+    */
+    _app.m_private->createStartPanel();
+
+    CMainWindow * _window = createMainWindow(_start_rect);
+    _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
+    _window->show(false);
+
+    /*
+     * create editor's window with empty document
+    */
+
+    COpenOptions opts{AscAppManager::newFileName(etDocument), etNewFile};
+    opts.format = etDocument;
+
+    CTabPanel * _panel = CEditorTools::createEditorPanel(opts);
+    if ( _panel ) {
+        CEditorWindow * editor_win = new CEditorWindow(_start_rect.translated(QPoint(50,50)), _panel);
+        editor_win->show(false);
+
+        AscAppManager::getInstance().m_vecEditors.push_back(size_t(editor_win));
+        sendCommandTo(_panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+    }
+
+    QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
+        if ( !exists ) {
+            QJsonObject _json_obj{{QString::number(uid), exists}};
+            QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"files:checked", json.toStdWString());
+        }
+    });
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
     APP_CAST(_app);

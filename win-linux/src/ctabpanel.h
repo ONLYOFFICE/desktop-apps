@@ -28,6 +28,7 @@ public:
     void initAsSimple();
 
     void openLocalFile(const std::wstring& sFilePath, int nFileFormat);
+    bool openLocalFile(const std::wstring& sFilePath);
     void createLocalFile(int nFileFormat, const std::wstring& sName = L"");
     bool openRecoverFile(int id);
     bool openRecentFile(int id);

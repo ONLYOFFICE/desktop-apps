@@ -59,7 +59,7 @@ namespace CEditorTools
     void getlocalfile(void * data);
     QString getlocalfile(const wstring& path, int parentid = -1);
 
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *;
+    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
 }
 
 #endif // CEDITORTOOLS_H
