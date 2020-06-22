@@ -77,6 +77,7 @@ struct sWinTag {
 };
 
 class CAscApplicationManagerWrapper;
+class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
 
 class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
@@ -177,8 +178,10 @@ public:
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:
-    class CAscApplicationManagerWrapper_Private;
+    friend class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
+
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 };
 
 #endif // QASCAPPLICATIONMANAGER

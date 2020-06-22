@@ -871,36 +871,38 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
-        CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-
         if ( m_countViews > 1 ) {
             m_closeTarget = L"app";
 
-            /* close all editors windows */
-            vector<size_t>::const_iterator it = m_vecEditors.begin();
-            while ( it != m_vecEditors.end() ) {
-                CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+            if ( !m_vecWindows.empty() ) {
+                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
 
-                int _r = _w->closeWindow();
-                if ( _r == MODAL_RESULT_CANCEL ) {
+                /* close all editors windows */
+                vector<size_t>::const_iterator it = m_vecEditors.begin();
+                while ( it != m_vecEditors.end() ) {
+                    CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+
+                    int _r = _w->closeWindow();
+                    if ( _r == MODAL_RESULT_CANCEL ) {
+                        AscAppManager::cancelClose();
+                        return;
+                    } else ++it;
+                }
+
+                /* close main window */
+                _w->bringToTop();
+                if ( !_w->mainPanel()->closeAll() ) {
                     AscAppManager::cancelClose();
                     return;
-                } else ++it;
-            }
+                }
 
-            /* close main window */
-            _w->bringToTop();
-            if ( !_w->mainPanel()->closeAll() ) {
-                AscAppManager::cancelClose();
-                return;
+                closeQueue().leave(sWinTag{1,size_t(_w)});
             }
         }
 
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
         }
-
-        closeQueue().leave(sWinTag{1,size_t(_w)});
     } else {
         cancelClose();
     }
@@ -928,6 +930,12 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
                 it = _app.m_vecEditors.erase(it);
                 break;
             } else ++it;
+        }
+
+        if ( _app.m_vecEditors.empty() && _app.m_vecWindows.empty() ) {
+            if ( _app.m_closeTarget.empty() ) {
+                QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
+            }
         }
     }
 }
@@ -1040,39 +1048,41 @@ namespace Drop {
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
         CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
-        drop_handle = handle;
+        if ( main_window ) {
+            drop_handle = handle;
 
-        static QPoint last_cursor_pos;
-        static QTimer * drop_timer = nullptr;
-        if ( !drop_timer ) {
-            drop_timer = new QTimer;
-            QObject::connect(qApp, &QCoreApplication::aboutToQuit, drop_timer, &QTimer::deleteLater);
-            QObject::connect(drop_timer, &QTimer::timeout, []{
-                CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
-                QPoint current_cursor = QCursor::pos();
-                if ( main_window->pointInTabs(current_cursor) ) {
-                    if ( current_cursor == last_cursor_pos ) {
-                        drop_timer->stop();
+            static QPoint last_cursor_pos;
+            static QTimer * drop_timer = nullptr;
+            if ( !drop_timer ) {
+                drop_timer = new QTimer;
+                QObject::connect(qApp, &QCoreApplication::aboutToQuit, drop_timer, &QTimer::deleteLater);
+                QObject::connect(drop_timer, &QTimer::timeout, []{
+                    CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
+                    QPoint current_cursor = QCursor::pos();
+                    if ( main_window->pointInTabs(current_cursor) ) {
+                        if ( current_cursor == last_cursor_pos ) {
+                            drop_timer->stop();
 
-                        if ( WindowHelper::isLeftButtonPressed() )
-                            callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
+                            if ( WindowHelper::isLeftButtonPressed() )
+                                callback_to_attach(CAscApplicationManagerWrapper::editorWindowFromHandle(drop_handle) );
+                        } else {
+                            last_cursor_pos = current_cursor;
+                        }
                     } else {
-                        last_cursor_pos = current_cursor;
+                        drop_timer->stop();
                     }
-                } else {
-                    drop_timer->stop();
-                }
-            });
+                });
+            }
+
+            if ( main_window->pointInTabs(pt) ) {
+                if ( !drop_timer->isActive() )
+                    drop_timer->start(drop_timeout);
+
+                last_cursor_pos = QCursor::pos();
+            } else
+            if ( drop_timer->isActive() )
+                drop_timer->stop();
         }
-
-        if ( main_window->pointInTabs(pt) ) {
-            if ( !drop_timer->isActive() )
-                drop_timer->start(drop_timeout);
-
-            last_cursor_pos = QCursor::pos();
-        } else
-        if ( drop_timer->isActive() )
-            drop_timer->stop();
     }
 }
 
