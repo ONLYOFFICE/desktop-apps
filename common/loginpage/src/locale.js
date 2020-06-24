@@ -112,6 +112,8 @@ l10n.en = {
     ,settOptCheckNever: 'Never'
     ,settOptCheckDay: 'Every day'
     ,settOptCheckWeek: 'Every week'
+    ,settScaling: 'Interface scaling'
+    ,settOptScalingAuto: 'Auto'
 }
 
 l10n.cs = {
@@ -353,6 +355,8 @@ l10n.ru = {
     ,settOptCheckNever: 'Никогда'
     ,settOptCheckDay: 'Каждый день'
     ,settOptCheckWeek: 'Каждую неделю'
+    ,settScaling: 'Масштабирование интерфейса'
+    ,settOptScalingAuto: 'Авто'
 }
 
 l10n.de = {

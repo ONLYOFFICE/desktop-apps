@@ -71,6 +71,18 @@
                                             </section>
                                         </div>
                                     </div>
+                                    <div class='settings-field' id='opts-ui-scaling' style='display:none'>
+                                        <label class='sett__caption' l10n>${_lang.settScaling}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='0' l10n>${_lang.settOptScalingAuto}</option>
+                                                    <option value='100'>100%</option>
+                                                    <option value='200'>200%</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                     <!-- temporary elements section -->
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -119,7 +131,8 @@
             $userName,
             $chOpenMode;
         let $panel;
-        let $optsLang;
+        let $optsLang,
+            $optsUIScaling;
 
         function _set_user_name(name) {
             let me = this;
@@ -149,6 +162,11 @@
 
                     _new_settings.checkupdatesrate = $combo.val();
                     $combo.selectpicker('refresh');
+                }
+
+                if ( $optsUIScaling ) {
+                    _new_settings.uiscaling = $optsUIScaling.val();
+                    $optsUIScaling.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -221,6 +239,14 @@
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+                        }
+
+                        if ( opts.uiscaling != undefined && !$optsUIScaling ) {
+                            ($optsUIScaling = ($('#opts-ui-scaling', $panel).show().find('select')))
+                            .val(opts.uiscaling)
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
                         }
                     }
                 } else

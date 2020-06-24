@@ -1197,6 +1197,17 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             }
         }
 
+        if ( objRoot.contains("uiscaling") ) {
+            wstring sets;
+            switch (objRoot["uiscaling"].toString().toInt()) {
+            case 100: sets = L"1"; break;
+            case 200: sets = L"2"; break;
+            default: sets = L"default";
+            }
+
+            setUserSettings(L"force-scale", sets);
+        }
+
         wstring params = QString("lang=%1&username=%3&location=%2")
                             .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 
@@ -1506,4 +1517,17 @@ void CAscApplicationManagerWrapper::checkUpdates()
     }
 
     _app.m_updater->checkUpdates();
+}
+
+wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    return pSettings->Get(name);
+//    delete pSettings;
+}
+
+void CAscApplicationManagerWrapper::setUserSettings(const wstring& name, const wstring& value)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    pSettings->Set(name, value);
 }

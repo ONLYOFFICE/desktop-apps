@@ -154,6 +154,8 @@ public:
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
+    static wstring          userSettings(const wstring& name);
+    static void             setUserSettings(const wstring& name, const wstring& value);
 
     static void             sendEvent(int type, void * data);
     static QString          getWindowStylesheets(int);
