@@ -1118,6 +1118,8 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 
 #ifdef _LINUX
             AscAppManager::topWindow()->show();
+#else
+            AscAppManager::topWindow()->show(false);
 #endif
 
             int index = m_dataFullScreen->tabindex();

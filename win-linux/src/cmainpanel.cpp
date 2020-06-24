@@ -1184,13 +1184,13 @@ void CMainPanel::onFullScreen(int id, bool apply)
             m_mainWindowState = Qt::WindowFullScreen;
 
             m_pTabs->setFullScreen(apply, id);
-            emit mainWindowChangeState(Qt::WindowFullScreen);
+//            emit mainWindowChangeState(Qt::WindowFullScreen);
         }
     } else
     if ( m_mainWindowState == Qt::WindowFullScreen ) {
         m_mainWindowState = m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState;
 
-        emit mainWindowChangeState(m_mainWindowState);
+//        emit mainWindowChangeState(m_mainWindowState);
         m_pTabs->setFullScreen(apply);
         toggleButtonMain(false);
     }
