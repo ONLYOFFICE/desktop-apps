@@ -156,11 +156,7 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
     GET_REGISTRY_USER(reg_user)
 
     if ( !inlist.isEmpty() ) {
-        QString _arg;
-        QStringListIterator i(inlist); i.next();
-        while (i.hasNext()) {
-            _arg = i.next();
-
+        for ( auto& _arg : inlist ) {
             if (_arg.contains("--system-title-bar")) {
                 reg_user.setValue("titlebar", "system");
             } else

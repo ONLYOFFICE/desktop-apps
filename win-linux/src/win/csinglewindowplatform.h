@@ -79,7 +79,7 @@ protected:
     WindowBase::CWindowGeometry const& minimumSize() const;
     WindowBase::CWindowGeometry const& maximumSize() const;
 
-    virtual void onSizeEvent(int);
+    virtual void onSizeEvent(int) override;
     virtual void applyWindowState(Qt::WindowState);
     virtual void adjustGeometry() override;
     virtual void setScreenScalingFactor(int f) override;

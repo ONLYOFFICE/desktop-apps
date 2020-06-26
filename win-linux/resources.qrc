@@ -72,6 +72,7 @@
     </qresource>
     <qresource prefix="/title/icons">
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
+        <file alias="secure.svg">res/icons/webeditor/secureicon.svg</file>
     </qresource>
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>

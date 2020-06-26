@@ -71,6 +71,7 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
 OutputDir                 =.\
 Compression               =lzma
 PrivilegesRequired        =admin
@@ -443,7 +444,7 @@ var
 begin
   if Length(LabelCaption) > 0 then WizardForm.StatusLabel.Caption := LabelCaption;
 
-  Params := '/quiet';
+  Params := '/quiet /norestart';
 
   ShellExec('', FileName, Params, '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
 
