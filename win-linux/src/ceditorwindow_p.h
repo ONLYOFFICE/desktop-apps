@@ -548,14 +548,16 @@ public:
         }
     }
 
-    bool canExtendTitle()
+    bool canExtendTitle() const
     {
-        if ( panel()->data()->features().empty() ) return true;
-        else  return !viewerMode() && (panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons\":"));
+        if ( m_panel->data()->features().empty() ) return true;
+        else  return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
-    auto viewerMode() -> bool {
-        return panel()->data()->hasFeature(L"viewmode\":true");
+    auto viewerMode() const -> bool {
+        return m_panel->data()->hasFeature(L"viewmode\":true");
+    }
+
     }
 };
 

@@ -429,6 +429,8 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 
         adjustGeometry();
     }
+
+    CSingleWindowBase::onSizeEvent(type);
 }
 
 void CSingleWindowPlatform::onExitSizeMove()
