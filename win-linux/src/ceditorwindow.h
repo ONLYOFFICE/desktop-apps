@@ -85,6 +85,7 @@ protected:
     void onDpiChanged(int,int) override;
 
     void setScreenScalingFactor(int) override;
+    int calcTitleCaptionWidth() override;
 
     void onLocalFileSaveAs(void *);
 
