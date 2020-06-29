@@ -46,6 +46,7 @@ public:
 
     auto setText(const QString&) -> void;
     auto setEllipsisMode(Qt::TextElideMode) -> void;
+    auto updateText() -> void;
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
@@ -90,10 +91,13 @@ protected:
     virtual void onCloseEvent();
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
+    virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onExitSizeMove();
     virtual void onDpiChanged(int newfactor, int prevfactor);
+    virtual int calcTitleCaptionWidth();
+    virtual void updateTitleCaption();
 
     inline int dpiCorrectValue(int v) const
     {

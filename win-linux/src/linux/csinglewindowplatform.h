@@ -71,7 +71,7 @@ protected:
 
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
-    virtual void onSizeEvent(int type);
+    virtual void onSizeEvent(int type) override;
     virtual void onScreenScalingFactor(uint f);
     virtual void onExitSizeMove() override;
 

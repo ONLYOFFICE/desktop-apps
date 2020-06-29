@@ -235,6 +235,8 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         m_boxTitleBtns->layout()->addWidget(m_buttonMaximize);
         m_boxTitleBtns->layout()->addWidget(m_buttonClose);
 
+        d_ptr->customizeTitleLabel();
+
 //        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
 //        QWidget * _lb = new QWidget;
@@ -345,6 +347,7 @@ void CEditorWindow::setScreenScalingFactor(int newfactor)
 
     adjustGeometry();
     recalculatePlaces();
+    updateTitleCaption();
 }
 
 void CEditorWindow::recalculatePlaces()
@@ -480,4 +483,10 @@ bool CEditorWindow::closed() const
 AscEditorType CEditorWindow::editorType() const
 {
     return d_ptr.get()->panel()->data()->contentType();
+}
+
+int CEditorWindow::calcTitleCaptionWidth()
+{
+    int base_width = CSingleWindowPlatform::calcTitleCaptionWidth();
+    return d_ptr->calcTitleLabelWidth(base_width);
 }

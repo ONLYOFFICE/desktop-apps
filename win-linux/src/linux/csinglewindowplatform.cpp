@@ -101,6 +101,8 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::onSizeEvent(int type)
 {
+    CSingleWindowBase::onSizeEvent(type);
+
     if ( type == Qt::WindowMinimized ) {
 //        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
 //        m_buttonMaximize->style()->polish(m_buttonMaximize);
