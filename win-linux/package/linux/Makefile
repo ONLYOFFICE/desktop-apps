@@ -175,6 +175,8 @@ DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).dirs
 DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).install
 DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).links
 
+ASTRA_KEYS_DIR ?= ./keys
+
 INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
@@ -207,7 +209,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
 	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
-	M4_PARAMS += -D M4_ASTRA_KEYS_DIR='$(ASTRA_KEYS_DIR)'
+	M4_PARAMS += -D M4_ASTRA_KEYS_DIR='$(abspath $(ASTRA_KEYS_DIR))'
 endif
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
 
@@ -228,7 +230,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
 
-.PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-deb-astra deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi tar 
 #installer
@@ -368,6 +370,16 @@ deploy-deb: $(DEB)
 	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
 	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
 
+deploy-deb-astra: $(DEB_ASTRA)
+	rm -rfv $(DEB_ASTRA_REPO)
+	mkdir -p $(DEB_ASTRA_REPO)
+
+	cp -rv $(DEB_ASTRA) $(DEB_ASTRA_REPO);
+	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(DEB_ASTRA_REPO)/Packages.gz
+
+	aws s3 sync $(DEB_ASTRA_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+
 deploy-apt-rpm: $(APT_RPM)
 	rm -rfv $(APT_RPM_REPO)
 	mkdir -p $(APT_RPM_REPO)
@@ -414,6 +426,7 @@ deploy-installer: $(INSTALLER)
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_APT_RPM_URI="$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(APT_RPM_ARCH)/$(notdir $(APT_RPM))"
 M4_PARAMS += -D M4_DEB_URI="$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB))"
+M4_PARAMS += -D M4_DEB_ASTRA_URI="$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB_ASTRA))"
 M4_PARAMS += -D M4_RPM_URI="$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(RPM_ARCH)/$(notdir $(RPM))"
 M4_PARAMS += -D M4_TAR_URI="$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/$(notdir $(TAR))"
 M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(URPMI_ARCH)/$(notdir $(URPMI))"
@@ -455,5 +468,10 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+DEPLOY_TARGETS += deploy-deb-astra
+endif
+
+deploy: $(DEPLOY_TARGETS)
 #deploy-installer
