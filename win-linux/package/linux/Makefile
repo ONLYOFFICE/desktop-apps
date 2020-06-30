@@ -46,12 +46,14 @@ endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 DEB_BUILD_DIR = $(PWD)/deb
+DEB_ASTRA_BUILD_DIR = $(PWD)/deb-astra
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 DEB_PACKAGE_DIR = $(PWD)
+DEB_ASTRA_PACKAGE_DIR = $(PWD)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
@@ -59,6 +61,7 @@ TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 REPO_NAME := repo
 
 DEB_REPO := $(PWD)/$(REPO_NAME)
+DEB_ASTRA_REPO := $(PWD)/astra-$(REPO_NAME)
 RPM_REPO := $(PWD)/rpm-$(REPO_NAME)
 APT_RPM_REPO := $(PWD)/apt-rpm-$(REPO_NAME)
 URPMI_REPO := $(PWD)/urpmi-$(REPO_NAME)
@@ -80,6 +83,10 @@ else
 DEB_REPO_OS_VER := precise
 endif
 DEB_REPO_DIR = $(DEB_REPO_OS_NAME)/$(DEB_REPO_OS_VER)
+
+DEB_ASTRA_REPO_OS_NAME := astralinux
+DEB_ASTRA_REPO_OS_VER := smolensk
+DEB_ASTRA_REPO_DIR = $(DEB_ASTRA_REPO_OS_NAME)/$(DEB_ASTRA_REPO_OS_VER)
 
 ALT_REPO_OS_NAME = ALTLinux
 
@@ -113,6 +120,7 @@ RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
+DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -154,6 +162,21 @@ DEB_DEPS += deb/debian/$(PACKAGE_NAME).dirs
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/debian/$(PACKAGE_NAME).links
 
+DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
+DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
+DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
+DEB_ASTRA_DEPS += deb-astra/debian/changelog
+DEB_ASTRA_DEPS += deb-astra/debian/control
+DEB_ASTRA_DEPS += deb-astra/debian/postinst
+DEB_ASTRA_DEPS += deb-astra/debian/postrm
+DEB_ASTRA_DEPS += deb-astra/debian/prerm
+DEB_ASTRA_DEPS += deb-astra/debian/rules
+DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).dirs
+DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).install
+DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).links
+
+ASTRA_KEYS_DIR ?= ./keys
+
 INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
@@ -186,6 +209,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
 	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
+	M4_PARAMS += -D M4_ASTRA_KEYS_DIR='$(abspath $(ASTRA_KEYS_DIR))'
 endif
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
 
@@ -206,7 +230,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
 
-.PHONY: all clean branding rpm deb apt-rpm tar deploy deploy-deb deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-deb-astra deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi tar 
 #installer
@@ -214,6 +238,8 @@ all: rpm deb apt-rpm urpmi tar
 rpm: $(RPM)
 
 deb: $(DEB)
+
+deb-astra: $(DEB_ASTRA)
 
 tar: $(TAR)
 
@@ -236,6 +262,7 @@ clean:
 		$(DEB_PACKAGE_DIR)/*.ddeb \
 		$(DEB_PACKAGE_DIR)/*.buildinfo \
 		$(DEB_PACKAGE_DIR)/*.changes \
+		$(DEB_ASTRA_BUILD_DIR) \
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
@@ -244,6 +271,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		$(DEB_REPO)\
+		$(DEB_ASTRA_REPO)\
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
 		$(URPMI_REPO)\
@@ -295,6 +323,9 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 $(DEB): desktopeditor $(DEB_DEPS)
 	cd deb && dpkg-buildpackage -b -uc -us
 
+$(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
+	cd deb-astra && dpkg-buildpackage -b -uc -us
+
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
@@ -339,6 +370,16 @@ deploy-deb: $(DEB)
 
 	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
 	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+
+deploy-deb-astra: $(DEB_ASTRA)
+	rm -rfv $(DEB_ASTRA_REPO)
+	mkdir -p $(DEB_ASTRA_REPO)
+
+	cp -rv $(DEB_ASTRA) $(DEB_ASTRA_REPO);
+	dpkg-scanpackages -m $(DEB_ASTRA_REPO) /dev/null | gzip -9c > $(DEB_ASTRA_REPO)/Packages.gz
+
+	aws s3 sync $(DEB_ASTRA_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
 
 deploy-apt-rpm: $(APT_RPM)
 	rm -rfv $(APT_RPM_REPO)
@@ -386,6 +427,7 @@ deploy-installer: $(INSTALLER)
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_APT_RPM_URI="$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(APT_RPM_ARCH)/$(notdir $(APT_RPM))"
 M4_PARAMS += -D M4_DEB_URI="$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB))"
+M4_PARAMS += -D M4_DEB_ASTRA_URI="$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB_ASTRA))"
 M4_PARAMS += -D M4_RPM_URI="$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(RPM_ARCH)/$(notdir $(RPM))"
 M4_PARAMS += -D M4_TAR_URI="$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/$(notdir $(TAR))"
 M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(URPMI_ARCH)/$(notdir $(URPMI))"
@@ -406,6 +448,18 @@ deb/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4
 $(BIN_FILES) $(DESKTOP_FILES) deb/debian/$(PACKAGE_NAME).dirs deb/debian/$(PACKAGE_NAME).install deb/debian/$(PACKAGE_NAME).links :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
 
+deb-astra/debian/changelog : deb/debian/changelog.m4
+deb-astra/debian/control : deb/debian/control.m4
+deb-astra/debian/$(PACKAGE_NAME).dirs : deb/debian/package.dirs.m4
+deb-astra/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
+deb-astra/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4
+deb-astra/debian/postinst : deb/debian/postinst.m4
+deb-astra/debian/postrm : deb/debian/postrm.m4
+deb-astra/debian/prerm : deb/debian/prerm.m4
+
+deb-astra/debian/changelog deb-astra/debian/control deb-astra/debian/$(PACKAGE_NAME).dirs deb-astra/debian/$(PACKAGE_NAME).install deb-astra/debian/$(PACKAGE_NAME).links deb-astra/debian/postinst deb-astra/debian/postrm deb-astra/debian/prerm :
+	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
+
 $(SYMLINK) :
 	ln -srf $< $@
 
@@ -415,5 +469,10 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-deploy: deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+DEPLOY_TARGETS += deploy-deb-astra
+endif
+
+deploy: $(DEPLOY_TARGETS)
 #deploy-installer
