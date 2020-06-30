@@ -61,7 +61,7 @@ TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 REPO_NAME := repo
 
 DEB_REPO := $(PWD)/$(REPO_NAME)
-DEB_ASTRA_REPO := $(PWD)/$(REPO_NAME)
+DEB_ASTRA_REPO := $(PWD)/astra-$(REPO_NAME)
 RPM_REPO := $(PWD)/rpm-$(REPO_NAME)
 APT_RPM_REPO := $(PWD)/apt-rpm-$(REPO_NAME)
 URPMI_REPO := $(PWD)/urpmi-$(REPO_NAME)
@@ -271,6 +271,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		$(DEB_REPO)\
+		$(DEB_ASTRA_REPO)\
 		$(RPM_REPO)\
 		$(APT_RPM_REPO)\
 		$(URPMI_REPO)\
@@ -375,7 +376,7 @@ deploy-deb-astra: $(DEB_ASTRA)
 	mkdir -p $(DEB_ASTRA_REPO)
 
 	cp -rv $(DEB_ASTRA) $(DEB_ASTRA_REPO);
-	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(DEB_ASTRA_REPO)/Packages.gz
+	dpkg-scanpackages -m $(DEB_ASTRA_REPO) /dev/null | gzip -9c > $(DEB_ASTRA_REPO)/Packages.gz
 
 	aws s3 sync $(DEB_ASTRA_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
 	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
