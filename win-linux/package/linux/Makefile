@@ -175,8 +175,6 @@ DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).dirs
 DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).install
 DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).links
 
-ASTRA_KEYS_DIR ?= ./keys
-
 INSTALLER_DEPENDENCY += desktopeditor
 
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
@@ -209,9 +207,11 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
 	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
-	M4_PARAMS += -D M4_ASTRA_KEYS_DIR='$(abspath $(ASTRA_KEYS_DIR))'
 endif
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
+ifdef ASTRALINUX_KEYS_DIR
+	M4_PARAMS += -D M4_ASTRALINUX_KEYS_DIR='$(abspath $(ASTRALINUX_KEYS_DIR))'
+endif
 
 RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
 RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
