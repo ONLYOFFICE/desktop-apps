@@ -347,7 +347,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     QString args, _url = url;
     if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
-        args.append("/products/files/?desktop=true");
+        args.append("/Products/Files/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
@@ -402,7 +402,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
         pView->cef()->SetExternalCloud(service.toStdWString());
 
         QString _postfix;
-        if (service == "asc") _postfix = "/products/files/?desktop=true";
+        if (service == "asc") _postfix = "/Products/Files/?desktop=true";
         pView->cef()->load((portal + _postfix).toStdWString());
     }
 
