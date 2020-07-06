@@ -137,7 +137,6 @@ public slots:
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
     virtual void onLocalFileSaveAs(void *);
-    void onLocalFilesCheck(QString);
     void onLocalFileLocation(QString);
     void onFileLocation(int, QString);
     void onPortalOpen(QString);
@@ -149,7 +148,6 @@ public slots:
     void onEditorAllowedClose(int);
     void onWebTitleChanged(int, std::wstring json){}
 
-    void onFileChecked(const QString&, int, bool);
 
 protected:
     CAscTabWidget * m_pTabs;

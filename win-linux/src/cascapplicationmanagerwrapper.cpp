@@ -22,6 +22,7 @@
 #include "clangater.h"
 #include "cmessage.h"
 #include "ceditortools.h"
+#include "cfilechecker.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -58,8 +59,8 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 {
     CAscApplicationManager::SetEventListener(this);
 
-    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
-                        this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
 
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
@@ -357,6 +358,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         format == L"slide" ? etPresentation : etUndefined;
 
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            return true;
+        } else
+        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+            CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         }
 
@@ -1530,4 +1535,16 @@ void CAscApplicationManagerWrapper::setUserSettings(const wstring& name, const w
 {
     unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
     pSettings->Set(name, value);
+}
+
+void CAscApplicationManagerWrapper::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
+
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
+        sendCommandTo(SEND_TO_ALL_START_PAGE, "files:checked", json);
+    }
 }

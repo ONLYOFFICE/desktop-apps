@@ -133,6 +133,7 @@ public slots:
     void onCoreEvent(void *);
     void onDownloadSaveDialog(const std::wstring& name, uint id);
     void onQueueCloseWindow(const sWinTag&);
+    void onFileChecked(const QString&, int, bool);
 
 
 public:

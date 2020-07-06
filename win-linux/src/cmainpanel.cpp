@@ -56,7 +56,6 @@
 #include "utils.h"
 #include "version.h"
 #include "cmessage.h"
-#include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../Common/OfficeFileFormats.h"
@@ -103,7 +102,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -692,22 +690,9 @@ void CMainPanel::onLocalFilesOpen(void * data)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onLocalFilesCheck(QString json)
-{
-    CExistanceController::check(json);
-}
 
-void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
-{
-    Q_UNUSED(name)
 
-    if ( !exists ) {
-        QJsonObject _json_obj{{QString::number(uid), exists}};
-        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", json);
-    }
-}
 
 void CMainPanel::onLocalFileLocation(QString path)
 {
