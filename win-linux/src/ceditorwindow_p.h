@@ -597,7 +597,7 @@ public:
         return basewidth;
     }
 
-    auto customizeTitleLabel() {
+    auto customizeTitleLabel() -> void {
         window->m_boxTitleBtns->layout()->removeWidget(window->m_labelTitle);
 
         boxtitlelabel = new QWidget;
