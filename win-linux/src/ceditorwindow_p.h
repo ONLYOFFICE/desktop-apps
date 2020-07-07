@@ -71,7 +71,8 @@ const QString g_css =
         "#labelTitle{color:#444;}"
 #else
         "#box-title-tools QLabel{font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;font-weight:bold;}"
-        "#labelTitle{color:#444;font-size:12px;}"
+        "#labelTitle{color:#444;}"
+        "#mainPanel[window=pretty] #labelTitle{font-size:12px;}"
 #endif
         "#iconuser{color:#fff;font-size:11px;}"
         "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
@@ -94,6 +95,15 @@ auto prepare_editor_css(int type) -> QString {
     case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
     case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
     case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    }
+}
+
+auto editor_color(int type) -> QColor {
+    switch (type) {
+    case etDocument: return QColor(TAB_COLOR_DOCUMENT);
+    case etPresentation: return QColor(TAB_COLOR_PRESENTATION);
+    case etSpreadsheet: return QColor(TAB_COLOR_SPREADSHEET);
+    default: return QRgb(WINDOW_BACKGROUND_COLOR);
     }
 }
 
@@ -251,14 +261,21 @@ public:
         }
     }
 
-    void onDocumentType(int, int type) override
+    void onDocumentType(int id, int type) override
     {
+        CCefEventsGate::onDocumentType(id, type);
+
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_css = prepare_editor_css(type);
 
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
+            window->m_pMainPanel->setProperty("window", "pretty");
             window->m_pMainPanel->setStyleSheet(css);
+
+#ifdef Q_OS_WIN
+            window->setWindowBackgroundColor(editor_color(type));
+#endif
         }
     }
 
