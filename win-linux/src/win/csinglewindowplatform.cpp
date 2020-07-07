@@ -558,6 +558,12 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
     SetWindowText(m_hWnd, title.toStdWString().c_str());
 }
 
+void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
+{
+    m_bgColor = RGB(color.red(), color.green(), color.blue());
+    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
 QRect CSingleWindowPlatform::geometry() const
 {
     WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);

@@ -56,6 +56,7 @@ public:
     virtual Qt::WindowState windowState();
     virtual void setWindowState(Qt::WindowState);
     virtual void setWindowTitle(const QString&) override;
+    virtual void setWindowBackgroundColor(const QColor&);
     virtual QRect geometry() const;
     virtual void activateWindow();
 
