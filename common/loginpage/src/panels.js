@@ -195,15 +195,24 @@ window.sdk.on('on_native_message', function(cmd, param) {
     console.log(cmd, param);
 });
 
-function openFile(type, params) {
+function openFile(from, model) {
     if (window.sdk) {
-        if (type == OPEN_FILE_FOLDER) {
+        if (from == OPEN_FILE_FOLDER) {
             window.sdk.command("open:folder", params);
         } else {
-            var _method = type == OPEN_FILE_RECOVERY ? 
-                            'LocalFileOpenRecover' : 'LocalFileOpenRecent';
+            const params = {
+                    id: model.fileid,
+                    path: model.path,
+                    type: model.type
+                };
 
-            window.sdk[_method](parseInt(params));
+            if ( from == OPEN_FILE_RECOVERY ) {
+                window.sdk.LocalFileOpenRecover(parseInt(params.id));
+                window.sdk.command("open:recovery", JSON.stringify(params));
+            } else {
+                window.sdk.LocalFileOpenRecent(parseInt(params.id));
+                window.sdk.command("open:recent", JSON.stringify(params));
+            }
         }
     } 
 }

@@ -101,7 +101,7 @@ function Collection(attributes) {
 };
 
 Collection.prototype.add = function(item) {    
-    item.changed.attach(this.on_item_changed);
+    item.events.changed.attach(this.on_item_changed);
 
     this.items.push(item);
     this.events.inserted.notify(item);
@@ -133,12 +133,20 @@ Collection.prototype.size = function() {
     return this.items.length;
 };
 
+Collection.prototype.stringify = function() {
+    let narray = this.items.map(s => {
+        const {events, ...y} = s;
+        return y;
+    });
+    return JSON.stringify(narray);
+};
+
 function Model(attributes) {
     var attr = attributes || {};
 
     this.prefix = attr.prefix || 'asc-gen';
     this.uid = this.prefix + ++nCounter;
-    this.changed = new ModelEvent(this);
+    this.events = {changed: new ModelEvent(this)};
 };
 
 Model.prototype.set = function(key, value, opts) {
@@ -148,7 +156,7 @@ Model.prototype.set = function(key, value, opts) {
     args[key] = value;
 
     if ( !opts || opts.silent !== true )
-        this.changed.notify(args);
+        this.events.changed.notify(args);
 };
 
 Model.prototype.get = function(key) {
