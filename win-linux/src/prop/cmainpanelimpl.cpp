@@ -46,6 +46,7 @@
 CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
+    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
 }
 
 void CMainPanelImpl::refreshAboutVersion()
