@@ -215,8 +215,8 @@ public:
             int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             diffW -= _user_width;
 
-//            diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-//                            window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
+            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
+                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
         }
     }
 
