@@ -387,11 +387,13 @@
                 if (model) {
                     model.set('logged', false)
 
-                    let _is_logged = obj[i].length > 0;
-                    if ( _is_logged ) {
-                        (new DialogConnect).portalexists(model.path, model.provider)
-                            .then( data => { data.status == 'success' && model.set('logged', true); } );
-                    }
+                    const _is_logged = obj[i].length > 0;
+                    (new DialogConnect).portalexists(model.path, model.provider)
+                            .then(data => {
+                                data.status == 'success' && _is_logged && model.set('logged', true); 
+                            }, error => {
+                                $('#' + model.uid, this.view.$panelPortalList).toggleClass('unavail', true);
+                            });
                 }
             };
         };
