@@ -198,7 +198,7 @@ window.sdk.on('on_native_message', function(cmd, param) {
 function openFile(from, model) {
     if (window.sdk) {
         if (from == OPEN_FILE_FOLDER) {
-            window.sdk.command("open:folder", params);
+            window.sdk.command("open:folder", model);
         } else {
             const params = {
                     id: model.fileid,
