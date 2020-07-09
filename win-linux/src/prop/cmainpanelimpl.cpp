@@ -51,7 +51,7 @@ CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale
 
 void CMainPanelImpl::refreshAboutVersion()
 {
-    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" draggable=\"false\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
 
     QJsonObject _json_obj;
     _json_obj["version"]    = VER_FILEVERSION_STR;

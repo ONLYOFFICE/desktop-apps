@@ -60,7 +60,7 @@
                                         <label class='sett__caption' l10n>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
                                             <input type='text' class='tbox' spellcheck='false' maxlength='128'>
-                                            <a class='link link--sizem link--gray' href='#' l10n>${_lang.settResetUserName}</a>
+                                            <a class='link link--sizem link--gray' draggable='false' href='#' l10n>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
                                     <div class='settings-field settings-field-lang'>
