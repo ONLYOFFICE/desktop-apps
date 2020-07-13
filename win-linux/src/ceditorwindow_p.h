@@ -103,7 +103,11 @@ auto editor_color(int type) -> QColor {
     case etDocument: return QColor(TAB_COLOR_DOCUMENT);
     case etPresentation: return QColor(TAB_COLOR_PRESENTATION);
     case etSpreadsheet: return QColor(TAB_COLOR_SPREADSHEET);
+#ifdef Q_OS_WIN
     default: return QRgb(WINDOW_BACKGROUND_COLOR);
+#else
+    default: return QColor(WINDOW_BACKGROUND_COLOR);
+#endif
     }
 }
 
@@ -631,7 +635,7 @@ public:
         return basewidth;
     }
 
-    auto customizeTitleLabel() {
+    auto customizeTitleLabel() -> void {
         window->m_boxTitleBtns->layout()->removeWidget(window->m_labelTitle);
 
         boxtitlelabel = new QWidget;
