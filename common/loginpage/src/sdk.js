@@ -39,6 +39,7 @@
                     , 'on_native_message'
                     , 'on_check_auth'
                     , 'onChangeCryptoMode'
+                    , 'onfeaturesavailable'
                 ];
 
     let subscribers = {
@@ -129,6 +130,10 @@
             notifySubscribers('publish', e, arguments)
         };
     };
+
+    // until sdk has no that native method
+    if ( !sdk.GetLocalFeatures ) 
+        sdk.GetLocalFeatures = a => false;
 
     window.sdk = sdk;
 }();

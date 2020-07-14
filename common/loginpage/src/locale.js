@@ -114,6 +114,7 @@ l10n.en = {
     ,settOptCheckWeek: 'Every week'
     ,settScaling: 'Interface scaling'
     ,settOptScalingAuto: 'Auto'
+    ,aboutProFeaturesAvailable: 'With access to pro features'
 }
 
 l10n.cs = {

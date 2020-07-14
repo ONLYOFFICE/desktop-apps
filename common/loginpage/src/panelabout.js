@@ -65,14 +65,16 @@
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
         var _lang = utils.Lang;
-        let _html = '<div class="flexbox">'+
-                        '<div class="box-ver">' +
-                          `<div class="img-el ver-logo ${_opts.logocls}"></div><p></p>`+
-                          `<div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>${_opts.edition}<p></p>`+
-                          `<a class="ver-checkupdate link" draggable='false' href="#" l10n>${_lang.checkUpdates}</a><p />`+
-                          `<div class="ver-copyright">${_opts.rights}</div>`+
-                          `<a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>`+
-                        '</div>'+
+        let _html = `<div class="flexbox">
+                        <div class="box-ver">
+                            <div class="img-el ver-logo ${_opts.logocls}"></div><p></p>
+                            <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
+                            <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
+                            ${_opts.edition}<p></p>
+                            <a class="ver-checkupdate link" draggable='false' href="#" l10n>${_lang.checkUpdates}</a><p />
+                            <div class="ver-copyright">${_opts.rights}</div>
+                            <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
+                        </div>`+
                         // '<div class="box-license flex-fill">'+
                         //   '<iframe id="framelicense" src="license.htm"></iframe>'+
                         // '</div>'+
@@ -87,7 +89,18 @@
 
     window.ControllerAbout = ControllerAbout;
 
-    utils.fn.extend(ControllerAbout.prototype, {
+    utils.fn.extend(ControllerAbout.prototype, (function() {
+        let _on_features_avalable = function (params) {
+            let _label = $('#id-features-available', this.view.$panel);
+            if ( _label )
+                if ( !!params )
+                    _label.show();
+                else _label.hide();
+
+            sdk.execCommand('extra:features', JSON.stringify({available:!!params}));
+        };
+
+        return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
 
@@ -116,6 +129,9 @@
                             window.sdk.execCommand('update', 'check');
                         });
                         this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
+
+                        if ( sdk.GetLocalFeatures() )
+                            _on_features_avalable.call(this, true);
                     } else
                     if (/^updates:turn/.test(cmd)) {
                         this.updates = param == 'on';
@@ -126,9 +142,15 @@
                     }
                 });
 
+                if ( utils.brandCheck('onfeaturesavailable') )
+                    sdk.on('onfeaturesavailable', _on_features_avalable.bind(this));
+                else sdk.GetLocalFeatures = e => false;
+
                 return this;
-            }
-    });
+            },
+            onfeaturesavailable: _on_features_avalable
+        }
+    })());
 }();
 
 /*
