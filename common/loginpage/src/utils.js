@@ -355,4 +355,4 @@ function getUrlParams() {
 }
 
 utils.inParams = getUrlParams();
-utils.brandCheck = opts => false;
+utils.brandCheck = opts => true;

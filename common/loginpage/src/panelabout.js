@@ -97,7 +97,7 @@
                     _label.show();
                 else _label.hide();
 
-            sdk.execCommand('extra:features', JSON.stringify({available:!!params}));
+            sdk.execCommand('extra:features', JSON.stringify({available:params}));
         };
 
         return {
@@ -130,8 +130,8 @@
                         });
                         this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
 
-                        if ( sdk.GetLocalFeatures() )
-                            _on_features_avalable.call(this, true);
+                        const _f = sdk.GetLocalFeatures();
+                        if ( !!_f ) _on_features_avalable.call(this, _f);
                     } else
                     if (/^updates:turn/.test(cmd)) {
                         this.updates = param == 'on';
