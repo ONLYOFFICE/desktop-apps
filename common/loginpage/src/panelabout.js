@@ -97,6 +97,7 @@
                     _label.show();
                 else _label.hide();
 
+            if ( !Array.isArray(params) ) params = [];
             sdk.execCommand('extra:features', JSON.stringify({available:params}));
         };
 
