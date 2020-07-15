@@ -131,9 +131,5 @@
         };
     };
 
-    // until sdk has no that native method
-    if ( !sdk.GetLocalFeatures ) 
-        sdk.GetLocalFeatures = a => false;
-
     window.sdk = sdk;
 }();
