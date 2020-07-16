@@ -91,11 +91,13 @@
 
     utils.fn.extend(ControllerAbout.prototype, (function() {
         let _on_features_avalable = function (params) {
-            let _label = $('#id-features-available', this.view.$panel);
-            if ( _label )
-                if ( !!params )
-                    _label.show();
-                else _label.hide();
+            if ( !!this.view ) {
+                let _label = $('#id-features-available', this.view.$panel);
+                if ( _label )
+                    if ( !!params )
+                        _label.show();
+                    else _label.hide();
+            }
 
             if ( !Array.isArray(params) ) params = [];
             sdk.execCommand('extra:features', JSON.stringify({available:params}));
@@ -131,8 +133,8 @@
                         });
                         this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
 
-                        const _f = sdk.GetLocalFeatures();
-                        if ( !!_f ) _on_features_avalable.call(this, _f);
+                        if ( !!_features && _features.length )
+                            _on_features_avalable.call(this, _features);
                     } else
                     if (/^updates:turn/.test(cmd)) {
                         this.updates = param == 'on';
@@ -143,9 +145,13 @@
                     }
                 });
 
-                if ( utils.brandCheck('onfeaturesavailable') )
+                let _features;
+                if ( utils.brandCheck('onfeaturesavailable') ) {
+                    _features = sdk.GetLocalFeatures();
+                    if ( !!_features && _features.length ) _on_features_avalable.call(this, _features);
+
                     sdk.on('onfeaturesavailable', _on_features_avalable.bind(this));
-                else sdk.GetLocalFeatures = e => false;
+                } else sdk.GetLocalFeatures = e => false;
 
                 return this;
             },
