@@ -98,13 +98,13 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не может открыть файл приватного ключа. Попробуйте открыть другой файл.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document template" = "OpenOffice шаблон документ";
+"OpenDocument Document Template" = "Шаблон Документа OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation template" = "OpenOffice шаблон презентации";
+"OpenDocument Presentation Template" = "Шаблон Презентации OpenDocument";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet template" = "OpenOffice шаблон таблицы";
+"OpenDocument Spreadsheet Template" = "Шаблон Таблицы OpenDocument";
 
 /* No comment provided by engineer. */
 "Opening" = "Открытие";
@@ -186,6 +186,9 @@
 
 /* No comment provided by engineer. */
 "Web Page" = "Веб страница";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "С доступом к профессиональным функциям";
 
 /* No comment provided by engineer. */
 "Word 97-2003 Document" = "Документ Word 97-2003";
