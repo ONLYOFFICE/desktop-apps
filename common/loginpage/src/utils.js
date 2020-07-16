@@ -261,7 +261,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
             path = _f_.path.slice(0, fn.length - name.length - 1);
 
             _files_arr.push({
-                id: _f_.id,
+                fileid: _f_.id,
                 type: utils.parseFileFormat(_f_.type),
                 name: name,
                 descr: path,

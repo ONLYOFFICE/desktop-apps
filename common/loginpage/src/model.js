@@ -179,13 +179,10 @@ PortalModel.prototype.constructor = PortalModel;
 
 function FileModel(attributes) {
     Model.prototype.constructor.call(this);
+    Object.assign(this, attributes);
 
     this.name   = attributes.name || '';
     this.descr  = attributes.descr || '';
-    this.path   = attributes.path;
-    this.date   = attributes.date;
-    this.type   = attributes.type;
-    this.fileid = attributes.id;
     this.exist  = true;
     this.islocal = !/^https?:\/\//.test(this.path)
 };

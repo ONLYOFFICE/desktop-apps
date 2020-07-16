@@ -642,7 +642,7 @@ void CMainPanel::onLocalFileRecent(void * d)
     bool forcenew = false;
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
-        if ( opts.type != etRecoveryFile && !_info.exists() ) {
+        if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
             CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));

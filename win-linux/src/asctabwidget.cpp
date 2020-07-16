@@ -78,39 +78,39 @@ public:
 */
 
 COpenOptions::COpenOptions() :
-    type(etUndefined), id(-1)
+    srctype(etUndefined), id(-1)
 {}
 
 COpenOptions::COpenOptions(wstring _url_) :
     COpenOptions(_url_, etUndefined, -1)
 {}
 
-COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_) :
-    COpenOptions(_url_, _type_, -1)
+COpenOptions::COpenOptions(wstring _url_, AscEditorType _srctype_) :
+    COpenOptions(_url_, _srctype_, -1)
 {}
 
-COpenOptions::COpenOptions(wstring _url_, AscEditorType _type_, int _id_) :
-    COpenOptions(QString(), _type_, QString::fromStdWString(_url_), _id_)
+COpenOptions::COpenOptions(wstring _url_, AscEditorType _srctype_, int _id_) :
+    COpenOptions(QString(), _srctype_, QString::fromStdWString(_url_), _id_)
 {}
 
-COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_) :
-    COpenOptions(_name_, _type_, _url_, -1)
+COpenOptions::COpenOptions(QString _name_, AscEditorType _srctype_, QString _url_) :
+    COpenOptions(_name_, _srctype_, _url_, -1)
 {}
 
-COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_) :
+COpenOptions::COpenOptions(QString _name_, AscEditorType _srctype_, QString _url_, int _id_) :
     name(_name_)
-  , type(_type_)
+  , srctype(_srctype_)
   , url(Utils::replaceBackslash(_url_))
   , id(_id_)
   , wurl(url.toStdWString())
 {}
 
-COpenOptions::COpenOptions(QString _name_, AscEditorType _type_, std::wstring _url_, int _id_) :
-    COpenOptions(_name_, _type_, QString::fromStdWString(_url_), _id_)
+COpenOptions::COpenOptions(QString _name_, AscEditorType _srctype_, std::wstring _url_, int _id_) :
+    COpenOptions(_name_, _srctype_, QString::fromStdWString(_url_), _id_)
 {}
 
-COpenOptions::COpenOptions(QString _name_, AscEditorType _type_) :
-    COpenOptions(_name_, _type_, "")
+COpenOptions::COpenOptions(QString _name_, AscEditorType _srctype_) :
+    COpenOptions(_name_, _srctype_, "")
 {}
 
 /*
@@ -196,15 +196,15 @@ CTabPanel * CAscTabWidget::panel(int index) const
     return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
-int CAscTabWidget::addEditor(COpenOptions& opts)
+int CAscTabWidget::addEditor(const COpenOptions& opts)
 {
-    if ( opts.url.isEmpty() && opts.type != etNewFile )
+    if ( opts.url.isEmpty() && opts.srctype != etNewFile )
         return -1;
 
     setProperty("empty", false);
 
     int file_format = 0;
-    if (opts.type == etLocalFile) {
+    if (opts.srctype == etLocalFile) {
         file_format = CCefViewEditor::GetFileFormat(opts.wurl);
         if (file_format == 0)
             /* TODO: show error for file format */
@@ -219,19 +219,16 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
 
     int tab_index = -1;
     bool res_open = true;
-    if (opts.type == etLocalFile) {
+    if (opts.srctype == etLocalFile) {
         pView->openLocalFile(opts.wurl, file_format);
-//        opts.type = etUndefined;
     } else
-    if (opts.type == etRecoveryFile) {
+    if (opts.srctype == etRecoveryFile) {
         res_open = pView->openRecoverFile(opts.id);
-//        opts.type = etUndefined;
     } else
-    if (opts.type == etRecentFile) {
+    if (opts.srctype == etRecentFile) {
         res_open = pView->openRecentFile(opts.id);
-//        opts.type = etUndefined;
     } else
-    if (opts.type == etNewFile) {
+    if (opts.srctype == etNewFile) {
         pView->createLocalFile(opts.format, opts.name.toStdWString());
 //        opts.type = AscEditorType(opts.format);
     } else {
@@ -241,8 +238,8 @@ int CAscTabWidget::addEditor(COpenOptions& opts)
     if (res_open) {
         CAscTabData * data = new CAscTabData(opts.name);
         data->setUrl(opts.wurl);
-        data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
-                       (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+        data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
+                       (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         pView->setData(data);
         tab_index = addTab(panelwidget, opts.name);
@@ -691,21 +688,22 @@ int CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool force
     return tabIndex;
 }
 
-int CAscTabWidget::openLocalDocument(COpenOptions& opts, bool select, bool forcenew)
+int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, bool forcenew)
 {
     int tabIndex = -1;
-    if ( !forcenew && opts.type != etRecoveryFile ) {
-        CCefView * view = AscAppManager::getInstance().GetViewByRecentId( opts.id );
+    if ( !forcenew && options.srctype != etRecoveryFile ) {
+        CCefView * view = AscAppManager::getInstance().GetViewByRecentId( options.id );
         if ( view ) {
             tabIndex = tabIndexByView(view->GetId());
         } else {
-            tabIndex = tabIndexByUrl(opts.wurl);
+            tabIndex = tabIndexByUrl(options.wurl);
         }
     }
 
     if (tabIndex < 0){
-        opts.name = QFileInfo(opts.url).fileName();
-        tabIndex = addEditor(opts);
+        COpenOptions _opts{options};
+        _opts.name = QFileInfo(options.url).fileName();
+        tabIndex = addEditor(_opts);
 
         if (!(tabIndex < 0))
             updateIcons();
