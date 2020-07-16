@@ -54,6 +54,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
+#include "OfficeFileFormats.h"
 
 #include "private/qtabbar_p.h"
 
@@ -132,6 +133,21 @@ auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
     return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
 }
 
+auto editoTypeFromFormat(int format) -> AscEditorType {
+    if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
+            format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
+                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
+        return etDocument;
+    else
+    if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
+        return etPresentation;
+    else
+    if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
+        return etSpreadsheet;
+    }
+
+    return etUndefined;
+}
 
 CAscTabWidget::CAscTabWidget(QWidget *parent)
     : QTabWidget(parent)
@@ -229,8 +245,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         res_open = pView->openRecentFile(opts.id);
     } else
     if (opts.srctype == etNewFile) {
-        pView->createLocalFile(opts.format, opts.name.toStdWString());
-//        opts.type = AscEditorType(opts.format);
+        pView->createLocalFile(editoTypeFromFormat(opts.format), opts.name.toStdWString());
     } else {
         pView->cef()->load(opts.wurl);
     }
@@ -240,6 +255,8 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setUrl(opts.wurl);
         data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
                        (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+
+        data->setContentType(editoTypeFromFormat(opts.format));
 
         pView->setData(data);
         tab_index = addTab(panelwidget, opts.name);
@@ -547,6 +564,11 @@ void CAscTabWidget::updateTabIcon(int index)
                 tab_theme = CTabBar::Light;
             } else {
                 tab_type = pEditor->GetEditorType();
+                switch ( tab_type ) {
+                case etPresentation: case etSpreadsheet: case etDocument: break;
+                default: tab_type = panel(index)->data()->contentType(); break;
+                }
+
                 switch ( tab_type ) {
                 case etPresentation: tab_color = TAB_COLOR_PRESENTATION; break;
                 case etSpreadsheet: tab_color = TAB_COLOR_SPREADSHEET; break;

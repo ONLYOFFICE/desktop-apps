@@ -262,7 +262,8 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 
             _files_arr.push({
                 fileid: _f_.id,
-                type: utils.parseFileFormat(_f_.type),
+                type: _f_.type,
+                format: utils.parseFileFormat(_f_.type),
                 name: name,
                 descr: path,
                 date: _f_.modifyed
