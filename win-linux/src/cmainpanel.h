@@ -136,6 +136,7 @@ public slots:
 //    virtual void onLocalFileOpen(const QString&);
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
+    void onLocalFileRecent(const COpenOptions&);
     virtual void onLocalFileSaveAs(void *);
     void onLocalFileLocation(QString);
     void onFileLocation(int, QString);

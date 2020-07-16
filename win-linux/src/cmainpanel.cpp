@@ -636,6 +636,11 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     RELEASEINTERFACE(pData);
 
+    onLocalFileRecent(opts);
+}
+
+void CMainPanel::onLocalFileRecent(const COpenOptions& opts)
+{
     QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 

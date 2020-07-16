@@ -158,7 +158,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
+    /*case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:*/ {
         CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
 
         ADDREFINTERFACE(pData);

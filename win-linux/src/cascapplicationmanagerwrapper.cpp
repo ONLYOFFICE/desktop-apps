@@ -351,6 +351,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( cmd.compare(L"open:recent") == 0 ) {
+            QJsonObject objRoot = Utils::parseJson(pData->get_Param());
+            if ( !objRoot.isEmpty() ) {
+                objRoot["type"].toString();
+
+                COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                topWindow()->mainPanel()->onLocalFileRecent(opts);
+            }
+
+            return true;
+        } else
         if ( cmd.compare(L"create:new") == 0 ) {
             wstring format = pData->get_Param();
             int _f = format == L"word" ? etDocument :
