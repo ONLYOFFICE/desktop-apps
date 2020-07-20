@@ -112,6 +112,7 @@ l10n.en = {
     ,settOptCheckNever: 'Never'
     ,settOptCheckDay: 'Every day'
     ,settOptCheckWeek: 'Every week'
+    ,aboutProFeaturesAvailable: 'With access to pro features'
 }
 
 l10n.cs = {

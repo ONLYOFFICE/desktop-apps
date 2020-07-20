@@ -39,6 +39,7 @@
                     , 'on_native_message'
                     , 'on_check_auth'
                     , 'onChangeCryptoMode'
+                    , 'onfeaturesavailable'
                 ];
 
     let subscribers = {
