@@ -257,10 +257,11 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
                        (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
         data->setContentType(editoTypeFromFormat(opts.format));
+        data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);
-        tab_index = addTab(panelwidget, opts.name);
-        tabBar()->setTabToolTip(tab_index, opts.name);
+        tab_index = addTab(panelwidget, data->title());
+        tabBar()->setTabToolTip(tab_index, data->title());
         ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
         //TODO: test for safe remove
@@ -813,7 +814,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
         }
 
         tabBar()->setTabText(tabIndex, doc->title());
-        tabBar()->setTabToolTip(tabIndex, path.isEmpty() ? name : path);
+        tabBar()->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);
     }
 }
 
