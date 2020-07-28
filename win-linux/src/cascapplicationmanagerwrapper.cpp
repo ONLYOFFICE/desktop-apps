@@ -23,6 +23,7 @@
 #include "cmessage.h"
 #include "ceditortools.h"
 #include "cfilechecker.h"
+#include "OfficeFileFormats.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -351,11 +352,23 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( cmd.compare(L"open:recent") == 0 ) {
+            QJsonObject objRoot = Utils::parseJson(pData->get_Param());
+            if ( !objRoot.isEmpty() ) {
+                objRoot["type"].toString();
+
+                COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                opts.format = objRoot["type"].toInt();
+                topWindow()->mainPanel()->onLocalFileRecent(opts);
+            }
+
+            return true;
+        } else
         if ( cmd.compare(L"create:new") == 0 ) {
             wstring format = pData->get_Param();
-            int _f = format == L"word" ? etDocument :
-                        format == L"cell" ? etSpreadsheet :
-                        format == L"slide" ? etPresentation : etUndefined;
+            int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                        format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                        format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
@@ -1506,10 +1519,10 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
                  pptx_count = 0;
 
     switch ( format ) {
-    case etDocument:        return tr("Document%1.docx").arg(++docx_count);
-    case etSpreadsheet:     return tr("Book%1.xlsx").arg(++xlsx_count);
-    case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
-    default:                return "Document.asc";
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX:     return tr("Book%1.xlsx").arg(++xlsx_count);
+    case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
+    default:                                         return "Document.asc";
     }
 }
 

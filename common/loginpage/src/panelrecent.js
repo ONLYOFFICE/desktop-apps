@@ -98,7 +98,7 @@
 
             var _tpl = `<tr${id}>
                           <td class="row-cell cicon">
-                            <span class="icon ${info.type=='folder'?'img-before-el':'img-format'} ${info.type}" />
+                            <span class="icon ${info.type=='folder'?'img-before-el folder':`img-format ${info.format}`}" />
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>

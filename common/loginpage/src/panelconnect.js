@@ -134,6 +134,16 @@
                       </div>
                     </div>`;
 
+        config.portals.checklist.forEach(item => {
+            if ( !!item.icon && !!item.icon.providerbutton ) {
+                const _re = new RegExp(`data-cprov='${item.id}'[\\s\\S]+?(?=<svg)(<svg.+<\/svg>)`);
+                const _match = _re.exec(_html);
+                if ( _match && !!_match[1] ) {
+                    _html = _html.replace(_match[1], `<img class='icon' src='${item.icon.providerbutton}'></img>`);
+                }
+            }
+        });
+
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
@@ -155,7 +165,7 @@
         },
         portaltemplate: function(info, edit) {
             let _row = `<td class="row-cell cicon">
-                            <svg class='icon'><use href='#${info.icon}'></svg>
+                            <svg class='icon'><use href='#${info.iconid}'></svg>
                         </td>
                         <td class="row-cell">
                             <p class="cportal primary">${utils.skipUrlProtocol(info.portal)}</p>
@@ -166,6 +176,11 @@
                               <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
                             </span>
                         </td>`;
+
+            if ( !!info.iconsrc ) {
+                _row = _row.replace(/<svg.+<\/svg>/, `<img class='icon' src='${info.iconsrc}'></img>`);
+            }
+
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         }
     });
@@ -309,6 +324,11 @@
                     }
                 };
 
+                function _get_icon_scr(provider) {
+                    let _model = config.portals.checklist.find(e => {return e.id == provider;})
+                    return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
+                };
+
                 collection.events.changed.attach((collection, model, value) => {
                     if ( !!value ) {
                         if ( value.logged != undefined )
@@ -319,7 +339,8 @@
                             el.html(
                                 $(this.view.portaltemplate({
                                     portal: model.name,
-                                    icon: _create_icon_id(model.provider),
+                                    iconid: _create_icon_id(model.provider),
+                                    iconsrc: _get_icon_scr(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
                         } else
@@ -334,7 +355,8 @@
                     let $listPortals = collection.view.find('.table-files.list');
                     let $item = $(this.view.portaltemplate({
                         portal: model.name,
-                        icon: _create_icon_id(model.provider),
+                        iconid: _create_icon_id(model.provider),
+                        iconsrc: _get_icon_scr(model.provider),
                         user: model.user,
                         email: model.email,
                         elid: model.uid
