@@ -50,6 +50,7 @@
 - (void)setExternalCloud:(NSString *)provider;
 - (void)internalClean;
 - (void)focus;
+- (void)reload;
 - (BOOL)checkCloudCryptoNeedBuild;
 - (BOOL)checkBuilding;
 - (NSString *)originalUrl;

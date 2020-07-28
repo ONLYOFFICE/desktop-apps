@@ -112,6 +112,8 @@ typedef unsigned char BYTE;
 #define TAB_COLOR_SPREADSHEET   "#40865c"
 #define TAB_COLOR_DOCUMENT      "#446995"
 
+#define TO_WSTR(str)            L ## str
+#define WSTR(str)               TO_WSTR(str)
 
 #include "defines_p.h"
 

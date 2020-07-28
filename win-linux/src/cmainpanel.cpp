@@ -228,7 +228,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QString params = QString("lang=%1&username=%3&location=%2")
                         .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
     wstring wparams = params.toStdWString();
-    wstring user_name = Utils::systemUserName();
+    wstring user_name = Utils::appUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
@@ -504,6 +504,7 @@ int CMainPanel::trySaveDocument(int index)
 
     int modal_res = MODAL_RESULT_NO;
     if ( m_pTabs->modifiedByIndex(index) ) {
+        toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
         CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
@@ -526,31 +527,44 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onPortalLogout(wstring portal)
+void CMainPanel::onPortalLogout(wstring wjson)
 {
     if (!m_closeAct.isEmpty()) return;
 
     if ( m_pTabs->count() ) {
-        for (int i(m_pTabs->count()); !(--i < 0);) {
-            int _answer = MODAL_RESULT_NO;
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
 
-            CAscTabData& _doc = *m_pTabs->panel(i)->data();
-            if (/*_doc.isViewType(cvwtEditor) &&*/ !_doc.closed() &&
-                    _doc.url().find(portal) != wstring::npos)
-            {
-                if ( _doc.hasChanges() ) {
-                    _answer = trySaveDocument(i);
-                    if ( _answer == MODAL_RESULT_CANCEL) {
-                        m_closeAct.clear();
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString _portal = objRoot["portal"].toString(),
+                    _action;
 
-                        AscAppManager::cancelClose();
-                        return;
+            if ( objRoot.contains("onsuccess") )
+                _action = objRoot["onsuccess"].toString();
+
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                int _answer = MODAL_RESULT_NO;
+
+                CAscTabData& _doc = *m_pTabs->panel(i)->data();
+                if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
+                        QString::fromStdWString(_doc.url()).startsWith(_portal) )
+                {
+                    if ( _doc.hasChanges() ) {
+                        _answer = trySaveDocument(i);
+                        if ( _answer == MODAL_RESULT_CANCEL) {
+                            m_closeAct.clear();
+
+                            AscAppManager::cancelClose();
+                            return;
+                        }
                     }
-                }
 
-                if ( _answer != MODAL_RESULT_YES ) {
-                    m_pTabs->editorCloseRequest(i);
-                    onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                    if ( _answer != MODAL_RESULT_YES ) {
+                        m_pTabs->editorCloseRequest(i);
+                        onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                    }
                 }
             }
         }
@@ -691,7 +705,7 @@ void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
         QJsonObject _json_obj{{QString::number(uid), exists}};
         QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", Utils::encodeJson(json));
+        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", json);
     }
 }
 
@@ -737,6 +751,9 @@ void CMainPanel::onFileLocation(int uid, QString param)
             }
 
             if ( !(_tab_index < 0) ) {
+                if (m_mainWindowState == Qt::WindowMinimized)
+                    emit mainWindowChangeState(Qt::WindowNoState);
+
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(_tab_index);
             }
@@ -804,6 +821,10 @@ void CMainPanel::onDocumentName(void * data)
     onTabChanged(m_pTabs->currentIndex());
 
     RELEASEINTERFACE(pData);
+}
+
+void CMainPanel::onEditorConfig(int, std::wstring cfg)
+{
 }
 
 void CMainPanel::onWebAppsFeatures(int id, wstring opts)
@@ -891,7 +912,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
-                static const bool _skip_user_warning = !Utils::appArgsContains("--warning-doc-fragmented");
+                static const bool _skip_user_warning = !InputArgs::contains("--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
@@ -997,7 +1018,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowUtils::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
 #endif
 
     CAscPrintEnd * pData = (CAscPrintEnd *)opts;
@@ -1017,7 +1038,7 @@ void CMainPanel::onDocumentPrint(void * opts)
         printer->setFromTo(1, pagesCount);
 
 #ifdef _WIN32
-        CPrintDialogWinWrapper wrapper(printer, (HWND)parentWidget()->winId());
+        CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         QPrintDialog * dialog = wrapper.q_dialog();
 #else
         QPrintDialog * dialog =  new QPrintDialog(printer, this);

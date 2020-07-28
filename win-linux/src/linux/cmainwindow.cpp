@@ -119,6 +119,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
 
     connect(m_pMainPanel, &CMainPanel::mainWindowChangeState, this, &CMainWindow::slot_windowChangeState);
     connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
+    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
 
     SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
@@ -155,11 +156,7 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
     GET_REGISTRY_USER(reg_user)
 
     if ( !inlist.isEmpty() ) {
-        QString _arg;
-        QStringListIterator i(inlist); i.next();
-        while (i.hasNext()) {
-            _arg = i.next();
-
+        for ( auto& _arg : inlist ) {
             if (_arg.contains("--system-title-bar")) {
                 reg_user.setValue("titlebar", "system");
             } else
@@ -324,6 +321,15 @@ void CMainWindow::slot_windowClose()
     }
 
     AscAppManager::closeMainWindow( (size_t)this );
+}
+
+void CMainWindow::slot_modalDialog(bool status, WId h)
+{
+    static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
+
+    if ( status ) {
+        _disabler->disable(this);
+    } else _disabler->enable();
 }
 
 void CMainWindow::setScreenScalingFactor(uchar factor)

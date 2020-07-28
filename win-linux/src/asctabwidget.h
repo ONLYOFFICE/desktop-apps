@@ -151,7 +151,7 @@ public:
 
     using QTabWidget::count;
     int  count(int type) const;
-    int  count(const wstring& portal);
+    int  count(const wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
     void updateScaling(int);
@@ -207,7 +207,7 @@ public:
     void setEditorOptions(int, const wstring&);
 
     int  openPortal(const QString& url, const QString& provider);
-    bool updatePortal(int index,const QString& url);
+    bool updatePortal(int index, const QString& url = QString());
     int  newPortal(const QString& url, const QString& name);
 
 public slots:

@@ -23,11 +23,6 @@ DEFINES += __DONT_WRITE_IN_APP_TITLE
 
 message($$PLATFORM_BUILD)
 
-linux-g++ {
-    DEFINES += _GLIBCXX_USE_CXX11_ABI=0
-    message($$PLATFORM_BUILD)
-}
-
 win32 {    
     #CONFIG += updmodule
     updmodule {

@@ -154,15 +154,15 @@ function onNewFileClick(e) {
     if (me.click_lock===true) return;
     me.click_lock = true;
 
-    var t = -1;
+    var t;
     switch (e.currentTarget.attributes['action'].value) {
-    case 'new:docx': t = 0; break;
-    case 'new:xlsx': t = 2; break;
-    case 'new:pptx': t = 1; break;
+    case 'new:docx': t = 'word'; break;
+    case 'new:xlsx': t = 'cell'; break;
+    case 'new:pptx': t = 'slide'; break;
     default: break;
     }
 
-    createFile(t);
+    if ( !!t ) window.sdk.command("create:new", t);
 
     setTimeout(function(){
         me.click_lock = false;
@@ -198,19 +198,13 @@ window.sdk.on('on_native_message', function(cmd, param) {
 function openFile(type, params) {
     if (window.sdk) {
         if (type == OPEN_FILE_FOLDER) {
-            window.sdk.LocalFileOpen(params);
+            window.sdk.command("open:folder", params);
         } else {
             var _method = type == OPEN_FILE_RECOVERY ? 
                             'LocalFileOpenRecover' : 'LocalFileOpenRecent';
 
             window.sdk[_method](parseInt(params));
         }
-    } 
-}
-
-function createFile(type) {
-    if (window.sdk) {
-        window.sdk["LocalFileCreate"](type);
     } 
 }
 

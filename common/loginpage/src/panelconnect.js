@@ -184,11 +184,11 @@
                         _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
-                _do_logout.call(this, model.path);
+                _do_logout.call(this, model);
             } else
             if (/\:forget/.test(action)) {
                 model.removed = true;
-                _do_logout.call(this, model.path);
+                _do_logout.call(this, model);
             }
         };
 
@@ -262,11 +262,11 @@
             }
         };
 
-        function _do_logout(info) {
+        function _do_logout(model) {
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
 
-            window.sdk.execCommand("portal:logout", info);
+            window.sdk.execCommand('portal:logout', JSON.stringify({domain:model.path}));
         };
 
         function _update_portals() {
@@ -322,6 +322,10 @@
                                     icon: _create_icon_id(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
+                        } else
+                        if ( value.removed != undefined ) {
+                            value.removed ? $('#' + model.uid, this.view.$panelPortalList).addClass('lost') :
+                                    $('#' + model.uid, this.view.$panelPortalList).removeClass('lost');
                         }
                     }
                 });
@@ -336,7 +340,7 @@
                         elid: model.uid
                     }));
                     
-                    $item.find('.logout').click(model.path, e => {
+                    $item.find('.logout').click(model, e => {
                         _do_logout(e.data);
 
                         e.stopPropagation && e.stopPropagation();
@@ -405,7 +409,7 @@
                 sdk.setCookie(portal, _domain, _re[3] || '/', "asc_auth_key", utils.fn.uuid());
             };
 
-            let obj = JSON.parse(utils.fn.decodeHtml(info));
+            let obj = JSON.parse(info);
             if ( obj ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
@@ -413,7 +417,18 @@
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
-                            _write_portal_cookie(obj.domain);
+                            if (model.provider != 'asc')
+                                _write_portal_cookie(obj.domain);
+
+                            if ( model.get('removed') ) {
+                                model.set('removed', false);
+                                PortalsStore.keep({
+                                    portal: model.path,
+                                    provider: model.provider,
+                                    user: model.user,
+                                    email: model.email
+                                });
+                            }
 
                             if ( model.get('user') != obj.displayName ) {
                                 model.set('user', obj.displayName);
@@ -468,7 +483,7 @@
                 if ( params.includes('\"portals\"\:') ) {
                     let opts;
                     try {
-                        opts = JSON.parse( utils.fn.decodeHtml(params) );
+                        opts = JSON.parse(params);
                     } catch (e) { /*delete opts;*/ }
 
                     if ( opts && opts.portals && opts.portals.auth_use_api ) {
@@ -518,6 +533,12 @@
             carousel.$items = _$panel.find('.carousel__slide');
             let _activeindex = carousel.$items.filter('.active').index();
 
+            if ( !(navigator.userAgent.indexOf("Windows NT 5.") < 0) ||
+                    !(navigator.userAgent.indexOf("Windows NT 6.0") < 0) )
+            {
+                $('.carousel', _$panel).addClass('winxp');
+            }
+
             let _pre_index = _activeindex - 1,
                 _pro_index = _activeindex + 1;
 
@@ -530,6 +551,10 @@
                 .on('click', e => {
                     _scrollCarousel(e.target.getAttribute('value'));
                 });
+        };
+
+        function _on_lang_changed(ol,nl) {
+            $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
         };
 
         return {
@@ -549,8 +574,8 @@
                             if (!res[1]) {
                                 model.set('logged', false);
                                 if ( model.removed ) {
+                                    model.set('removed', true);
                                     PortalsStore.forget(param);
-                                    _update_portals.call(this);
                                 }
                             } else
                                 delete model.removed;
@@ -575,6 +600,7 @@
                 });
 
                 window.CommonEvents.on('portal:create', _on_create_portal);
+                window.CommonEvents.on('lang:changed', _on_lang_changed);
 
                 return this;
             },

@@ -41,7 +41,6 @@
 #include <QJsonDocument>
 #include <QFile>
 
-#define HTML_QUOTE "\\u005c&quot;" // \" symbols
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
 CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
@@ -51,17 +50,16 @@ CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale
 
 void CMainPanelImpl::refreshAboutVersion()
 {
-    QString _license = "Licensed under &lt;a class=" HTML_QUOTE "link" HTML_QUOTE " onclick=" HTML_QUOTE "window.open('" URL_AGPL "')" HTML_QUOTE
-                            " href=" HTML_QUOTE "#" HTML_QUOTE "&gt;GNU AGPL v3&lt;/a&gt;";
+    QString _license = "Licensed under &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
 
     QJsonObject _json_obj;
     _json_obj["version"]    = VER_FILEVERSION_STR;
-    _json_obj["edition"]    = "%1";
+    _json_obj["edition"]    = _license;
     _json_obj["appname"]    = WINDOW_NAME;
     _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
 
-    AscAppManager::sendCommandTo( nullptr, "app:version", Utils::encodeJson(_json_obj).arg(_license) );
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "app:version", Utils::stringifyJson(_json_obj));
 
     _json_obj.empty();
     _json_obj.insert("locale",
@@ -71,8 +69,8 @@ void CMainPanelImpl::refreshAboutVersion()
         })
     );
 
-    AscAppManager::sendCommandTo( nullptr, "settings:init", Utils::encodeJson(_json_obj) );
-    if ( Utils::appArgsContains("--ascdesktop-reveal-app-config") )
+    AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
+    if ( InputArgs::contains("--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 

@@ -55,12 +55,16 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_CLOSE: {
         HWND pwnd = GetWindow(hWnd, GW_OWNER);
-        if (pwnd) EnableWindow(pwnd, TRUE);
-        break;
-    }
+        if (pwnd) {
+            EnableWindow(pwnd, TRUE);
+            SetFocus(pwnd);
+        }
+
+        DestroyWindow(hWnd);
+        return 0; }
     case WM_DESTROY:
         PostQuitMessage(0);
-        break;
+        return 0;
     default:
         break;
     }

@@ -51,7 +51,6 @@
 - (NSString *)stringByAppendingUrlQuery:(NSString *)query;
 - (NSString *)md5;
 - (NSDictionary *)dictionary;
-- (NSString *)encodeJson;
 - (NSString *)removeUrlQuery:(NSArray<NSString *> *)params;
 - (NSString *)virtualUrl;
 

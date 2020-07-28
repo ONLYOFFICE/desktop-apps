@@ -71,7 +71,7 @@ private:
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
     QWidget * createMainPanel(QWidget * parent);
-    QWidget * createMainPanel(QWidget * parent, const QString& title, bool custom) override;
+    QWidget * createMainPanel(QWidget * parent, const QString& title) override;
     void recalculatePlaces();
     const QObject * receiver() override;
 
@@ -82,8 +82,10 @@ protected:
     void onSizeEvent(int) override;
     void onMoveEvent(const QRect&) override;
     void onExitSizeMove() override;
+    void onDpiChanged(int,int) override;
 
-    void setScreenScalingFactor(uint) override;
+    void setScreenScalingFactor(int) override;
+    int calcTitleCaptionWidth() override;
 
     void onLocalFileSaveAs(void *);
 

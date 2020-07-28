@@ -307,7 +307,7 @@ int CMessage::error(QWidget * p, const QString& m)
 void CMessage::modal()
 {
 #if defined(_WIN32)
-    CInAppEventModal _event((size_t)m_hParent);
+    CInAppEventModal _event(m_hParent);
     CRunningEventHelper _h(&_event);
 
     m_centralWidget->adjustSize();
@@ -328,6 +328,9 @@ void CMessage::modal()
     CWinWindow::center();
     CWinWindow::modal();
 #else
+    CInAppEventModal _event(parentWidget()->winId());
+    CRunningEventHelper _h(&_event);
+
     exec();
 #endif
 }

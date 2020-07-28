@@ -53,6 +53,8 @@
 #include "linux/csinglewindow.h"
 #endif
 
+#include "cappupdater.h"
+
 #define SEND_TO_ALL_START_PAGE nullptr
 
 #ifdef Q_OS_WIN
@@ -97,6 +99,7 @@ private:
     CWindowsQueue<sWinTag> * m_queueToClose;
     CEventDriver m_eventDriver;
 
+    std::shared_ptr<CAppUpdater> m_updater;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -153,7 +156,7 @@ public:
     static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
 
     static void             sendEvent(int type, void * data);
-    static QString          getWindowStylesheets(uint);
+    static QString          getWindowStylesheets(int);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
@@ -164,9 +167,11 @@ public:
     static void             destroyViewer(QCefView * v);
 
     static void             cancelClose();
+    static void checkUpdates();
 
     void manageUndocking(int uid, const std::wstring& action);
     uint logoutCount(const wstring& portal) const;
+    void Logout(const wstring& portal);
     void launchAppClose();
 
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);

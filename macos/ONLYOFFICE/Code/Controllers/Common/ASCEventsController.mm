@@ -39,13 +39,15 @@
 //
 
 #import "ASCEventsController.h"
-#import "mac_application.h"
 #import "ASCConstants.h"
+#import "ASCDocumentType.h"
+#import "ASCExternalController.h"
+#import "ASCPresentationReporter.h"
+#import "ASCSharedSettings.h"
+#import "NSDictionary+Extensions.h"
 #import "NSString+Extensions.h"
 #import "OfficeFileFormats.h"
-#import "ASCPresentationReporter.h"
-#import "ASCExternalController.h"
-#import "NSDictionary+Extensions.h"
+#import "mac_application.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -242,17 +244,6 @@ public:
                         break;
                     }
                         
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
-                        NSEditorApi::CAscLocalFileOpen * pData = (NSEditorApi::CAscLocalFileOpen *)pEvent->m_pData;
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile
-                                                                            object:nil
-                                                                          userInfo:@{
-                                                                                     @"directory": [NSString stringWithstdwstring:pData->get_Directory()]
-                                                                                     }];
-                        break;
-                    }
-                        
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
                         NSEditorApi::CAscLocalOpenFiles * pData = (NSEditorApi::CAscLocalOpenFiles *)pEvent->m_pData;
                         
@@ -269,19 +260,7 @@ public:
                         }
                         break;
                     }
-                        
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
-                        NSEditorApi::CAscLocalFileCreate * pData = (NSEditorApi::CAscLocalFileCreate *)pEvent->m_pData;
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                                            object:nil
-                                                                          userInfo:@{
-                                                                                     @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                                     @"type"    : @(pData->get_Type()),
-                                                                                     @"active"  : @(YES)
-                                                                                     }];
-                        break;
-                    }
+
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
                         NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
@@ -440,7 +419,7 @@ public:
                                 if (NSString * jsonString = [json jsonString]) {
                                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                     pCommand->put_Command(L"panel:external");
-                                    pCommand->put_Param([[jsonString encodeJson] stdwstring]);
+                                    pCommand->put_Param([jsonString stdwstring]);
 
                                     NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                                     pEvent->m_pData = pCommand;
@@ -472,6 +451,9 @@ public:
                         std::wstring cmd = pData->get_Command();
                         std::wstring param = pData->get_Param();
 
+#ifdef DEBUG
+                        NSLog(@"[Start page] Command: \"%@\", params: \"%@\"", [NSString stringWithstdwstring:cmd], [NSString stringWithstdwstring:param]);
+#endif
 
                         if (cmd.compare(L"portal:open") == 0 || cmd.find(L"auth:outer") != std::wstring::npos) {
                             NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary];
@@ -515,9 +497,7 @@ public:
                         } else if (cmd.compare(L"portal:logout") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalLogout
                                                                                 object:nil
-                                                                              userInfo:@{
-                                                                                         @"url": [NSString stringWithstdwstring:param],
-                                                                                         }];
+                                                                              userInfo:[[NSString stringWithstdwstring:param] dictionary]];
                         } else if (cmd.compare(L"portal:create") == 0) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNamePortalCreate
                                                                                 object:nil
@@ -630,6 +610,41 @@ public:
                                                                                           @"viewId": [NSString stringWithFormat:@"%d", senderId],
                                                                                           @"isFragmented": @(isFragmented)
                                                                                           }];
+                        } else if (cmd.find(L"create:new") != std::wstring::npos) {
+                            /// Create local files
+                            
+                            NSString * nsParam = (NSString *)[NSString stringWithstdwstring:param];
+                            ASCDocumentType docType = ASCDocumentTypeUnknown;
+                            
+                            if ([nsParam isEqualToString:@"word"]) {
+                                docType = ASCDocumentTypeDocument;
+                            } else if ([nsParam isEqualToString:@"cell"]) {
+                                docType = ASCDocumentTypeSpreadsheet;
+                            } else if ([nsParam isEqualToString:@"slide"]) {
+                                docType = ASCDocumentTypePresentation;
+                            }
+                            
+                            if (docType != ASCDocumentTypeUnknown) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                      @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                                      @"type"    : @(docType),
+                                                                                      @"active"  : @(YES)
+                                                                                  }];
+                            }
+                        } else if (cmd.find(L"open:folder") != std::wstring::npos) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile
+                                                                                object:nil
+                                                                              userInfo:@{
+                                                                                  @"directory": [NSString stringWithstdwstring:param]
+                                                                              }];
+                        } else if (cmd.find(L"extra:features") != std::wstring::npos) {
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                if (NSArray * available = json[@"available"]) {
+                                    [[ASCSharedSettings sharedInstance] setSetting:@([available count] > 0) forKey:kSettingsHasExtraFeatures];
+                                }
+                            }
                         }
                         
                         break;

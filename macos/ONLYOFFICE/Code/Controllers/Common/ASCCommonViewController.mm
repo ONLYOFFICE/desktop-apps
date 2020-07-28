@@ -91,162 +91,45 @@
     [super viewDidLoad];
 
     _externalDelegate = [[ASCExternalController shared] delegate];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onWindowLoaded:)
-                                                 name:ASCEventNameMainWindowLoaded
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFCreateTab:)
-                                                 name:CEFEventNameCreateTab
-                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFChangedTabEditorName:)
-                                                 name:CEFEventNameTabEditorNameChanged
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFChangedTabEditorType:)
-                                                 name:CEFEventNameTabEditorType
-                                               object:nil];
+    void (^addObserverFor)(_Nullable NSNotificationName, SEL) = ^(_Nullable NSNotificationName name, SEL selector) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:selector
+                                                     name:name
+                                                   object:nil];
+    };
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSave:)
-                                                 name:CEFEventNameSave
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenUrl:)
-                                                 name:CEFEventNameOpenUrl
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFullscreen:)
-                                                 name:CEFEventNameFullscreen
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFKeyDown:)
-                                                 name:CEFEventNameKeyboardDown
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDownload:)
-                                                 name:CEFEventNameDownload
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFStartSave:)
-                                                 name:CEFEventNameStartSaveDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOnBeforePrintEnd:)
-                                                 name:CEFEventNamePrintDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOnOpenLocalFile:)
-                                                 name:CEFEventNameOpenLocalFile
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSaveLocalFile:)
-                                                 name:CEFEventNameSaveLocal
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenLocalImage:)
-                                                 name:CEFEventNameOpenImage
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFOpenFileDialog:)
-                                                 name:CEFEventNameOpenFileDialog
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalLogin:)
-                                                 name:CEFEventNamePortalLogin
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalLogout:)
-                                                 name:CEFEventNamePortalLogout
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalCreate:)
-                                                 name:CEFEventNamePortalCreate
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalNew:)
-                                                 name:CEFEventNamePortalNew
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFPortalSSO:)
-                                                 name:CEFEventNamePortalSSO
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFileInFinder:)
-                                                 name:CEFEventNameFileInFinder
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFFilesCheck:)
-                                                 name:CEFEventNameFilesCheck
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFStartPageReady:)
-                                                 name:CEFEventNameStartPageReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFSaveBeforeSign:)
-                                                 name:CEFEventNameSaveBeforSign
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorDocumentReady:)
-                                                 name:CEFEventNameEditorDocumentReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorAppReady:)
-                                                 name:CEFEventNameEditorAppReady
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorEvent:)
-                                                 name:CEFEventNameEditorEvent
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorAppActionRequest:)
-                                                 name:CEFEventNameEditorAppActionRequest
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFEditorOpenFolder:)
-                                                 name:CEFEventNameEditorOpenFolder
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDocumentFragmentBuild:)
-                                                 name:CEFEventNameDocumentFragmentBuild
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onCEFDocumentFragmented:)
-                                                 name:CEFEventNameDocumentFragmented
-                                               object:nil];
-
+    addObserverFor(ASCEventNameMainWindowLoaded, @selector(onWindowLoaded:));
+    addObserverFor(CEFEventNameCreateTab, @selector(onCEFCreateTab:));
+    addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
+    addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
+    addObserverFor(CEFEventNameSave, @selector(onCEFSave:));
+    addObserverFor(CEFEventNameOpenUrl, @selector(onCEFOpenUrl:));
+    addObserverFor(CEFEventNameFullscreen, @selector(onCEFFullscreen:));
+    addObserverFor(CEFEventNameKeyboardDown, @selector(onCEFKeyDown:));
+    addObserverFor(CEFEventNameDownload, @selector(onCEFDownload:));
+    addObserverFor(CEFEventNameStartSaveDialog, @selector(onCEFStartSave:));
+    addObserverFor(CEFEventNamePrintDialog, @selector(onCEFOnBeforePrintEnd:));
+    addObserverFor(CEFEventNameOpenLocalFile, @selector(onCEFOnOpenLocalFile:));
+    addObserverFor(CEFEventNameSaveLocal, @selector(onCEFSaveLocalFile:));
+    addObserverFor(CEFEventNameOpenImage, @selector(onCEFOpenLocalImage:));
+    addObserverFor(CEFEventNameOpenFileDialog, @selector(onCEFOpenFileDialog:));
+    addObserverFor(CEFEventNamePortalLogin, @selector(onCEFPortalLogin:));
+    addObserverFor(CEFEventNamePortalLogout, @selector(onCEFPortalLogout:));
+    addObserverFor(CEFEventNamePortalCreate, @selector(onCEFPortalCreate:));
+    addObserverFor(CEFEventNamePortalNew, @selector(onCEFPortalNew:));
+    addObserverFor(CEFEventNamePortalSSO, @selector(onCEFPortalSSO:));
+    addObserverFor(CEFEventNameFileInFinder, @selector(onCEFFileInFinder:));
+    addObserverFor(CEFEventNameFilesCheck, @selector(onCEFFilesCheck:));
+    addObserverFor(CEFEventNameStartPageReady, @selector(onCEFStartPageReady:));
+    addObserverFor(CEFEventNameSaveBeforSign, @selector(onCEFSaveBeforeSign:));
+    addObserverFor(CEFEventNameEditorDocumentReady, @selector(onCEFEditorDocumentReady:));
+    addObserverFor(CEFEventNameEditorAppReady, @selector(onCEFEditorAppReady:));
+    addObserverFor(CEFEventNameEditorEvent, @selector(onCEFEditorEvent:));
+    addObserverFor(CEFEventNameEditorAppActionRequest, @selector(onCEFEditorAppActionRequest:));
+    addObserverFor(CEFEventNameEditorOpenFolder, @selector(onCEFEditorOpenFolder:));
+    addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
+    addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -349,7 +232,7 @@
     } else {
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = title;
-        tab.type        = ASCTabViewPortal;
+        tab.type        = ASCTabViewTypePortal;
         tab.params      = [@{@"url" : [urlPage string]} mutableCopy];
         
         [self.tabsControl addTab:tab selected:YES];
@@ -363,7 +246,7 @@
 
         // Search opened tab of a portal
         for (ASCTabView * tab in self.tabsControl.tabs) {
-            if (tab.type == ASCTabViewPortal) {
+            if (tab.type == ASCTabViewTypePortal) {
                 if (NSString * portalUrlString = tab.params[@"url"]) {
                     if (NSURL * portalURL = [NSURL URLWithString:portalUrlString]) {
                         NSString * portalHost = [portalURL host];
@@ -770,13 +653,13 @@
     NSColor * headerColor = nil;
 
     switch (type) {
-        case ASCTabViewDocumentType:
+        case ASCTabViewTypeDocument:
             headerColor = [NSColor brendDocumentEditor];
             break;
-        case ASCTabViewSpreadsheetType:
+        case ASCTabViewTypeSpreadsheet:
             headerColor = [NSColor brendSpreadsheetEditor];
             break;
-        case ASCTabViewPresentationType:
+        case ASCTabViewTypePresentation:
             headerColor = [NSColor brendPresentationEditor];
             break;
         default:
@@ -884,7 +767,7 @@
         
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
-        tab.type        = ASCTabViewOpeningType;
+        tab.type        = ASCTabViewTypeOpening;
         tab.params      = [params mutableCopy];
 
         ASCTabView * existTab = [self tabWithParam:@"url" value:params[@"url"]];
@@ -944,13 +827,13 @@
 
             switch (type) {
                 case CEFDocumentDocument:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewDocumentType];
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypeDocument];
                     break;
                 case CEFDocumentSpreadsheet:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewSpreadsheetType];
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypeSpreadsheet];
                     break;
                 case CEFDocumentPresentation:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewPresentationType];
+                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypePresentation];
                     break;
                 default:
                     break;
@@ -1302,7 +1185,7 @@
                                 if (NSString * jsonString = [info jsonString]) {
                                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                                     pCommand->put_Command(L"portal:login");
-                                    pCommand->put_Param([[jsonString stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"] stdwstring]); // ¯\_(ツ)_/¯
+                                    pCommand->put_Param([jsonString stdwstring]);
 
                                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                                     pEvent->m_pData = pCommand;
@@ -1323,11 +1206,13 @@
     
 - (void)onCEFPortalLogout:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSString * url = notification.userInfo[@"url"];
-        
+        id json = notification.userInfo;
+        NSString * url = json[@"domain"];
+        BOOL isReload = [@"reload" isEqualToString:json[@"onsuccess"]];
+
         if (url) {
             self.shouldLogoutPortal = YES;
-            
+
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
 
@@ -1335,19 +1220,25 @@
 
             for (ASCTabView * tab in self.tabsControl.tabs) {
                 NSString * tabVirtualUrl = [tab.params[@"url"] virtualUrl];
-                
+
                 if (tabVirtualUrl && tabVirtualUrl.length > 0 && [tabVirtualUrl rangeOfString:logoutVirtualUrl].location != NSNotFound) {
                     [portalTabs addObject:tab];
-                    
+
                     if (tab.changed) {
                         unsaved++;
                     }
                 }
             }
             
-            if (unsaved > 0) {
+            if (isReload) {
+                for (ASCTabView * tab in portalTabs) {
+                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                        [cefView reload];
+                    }
+                }
+            } else if (unsaved > 0) {
                 NSString * productName = [ASCHelper appName];
-                
+
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
@@ -1355,12 +1246,12 @@
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
                 [alert setAlertStyle:NSInformationalAlertStyle];
-                
+
                 NSInteger result = [alert runModal];
-                
+
                 if (result == NSAlertFirstButtonReturn) {
                     // "Review Changes..." clicked
-                    
+
                     for (ASCTabView * tab in portalTabs) {
                         if (tab.changed) {
                             [self tabs:self.tabsControl willRemovedTab:tab];
@@ -1381,23 +1272,23 @@
                 for (ASCTabView * tab in portalTabs) {
                     [self.tabsControl removeTab:tab selected:NO];
                 }
-                
+
                 [self.tabView selectTabViewItemWithIdentifier:rootTabId];
             }
         }
-        
+
         if (self.shouldLogoutPortal) {
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-            
+
             appManager->Logout([url stdwstring]);
-            
+
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"portal:logout");
             pCommand->put_Param([url stdwstring]);
-            
+
             NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
             pEvent->m_pData = pCommand;
-            
+
             [self.cefStartPageView apply:pEvent];
         }
     }
@@ -1444,7 +1335,7 @@
         if (portalUrl && providerUrl) {
             ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
             tab.title       = portalUrl;
-            tab.type        = ASCTabViewPortal;
+            tab.type        = ASCTabViewTypePortal;
             tab.params      = [@{@"url" : [NSString stringWithFormat:@"sso:%@", providerUrl],
                                  @"provider": @"asc"
                                  } mutableCopy];
@@ -1472,7 +1363,7 @@
                 if (NSString * jsonString = [checkedList jsonString]) {
                     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                     pCommand->put_Command(L"files:checked");
-                    pCommand->put_Param([[jsonString encodeJson] stdwstring]);
+                    pCommand->put_Param([jsonString stdwstring]);
 
                     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
@@ -1721,7 +1612,7 @@
         
         switch (action) {
             case ASCTabActionOpenPortal: {
-                tab.type = ASCTabViewPortal;
+                tab.type = ASCTabViewTypePortal;
                 
                 NSString * newTitle = [[NSURL URLWithString:tab.params[@"url"]] host];
                 NSString * provider = tab.params[@"provider"];

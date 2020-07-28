@@ -52,6 +52,7 @@
 #include "qdpichecker.h"
 
 #ifdef _WIN32
+#include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
@@ -84,7 +85,6 @@ namespace InputArgs {
         return QString();
     }
 }
-
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
@@ -317,24 +317,9 @@ QString Utils::getPortalName(const QString& url)
     return url;
 }
 
-QString Utils::encodeJson(const QJsonObject& obj)
+QString Utils::stringifyJson(const QJsonObject& obj)
 {
-    return Utils::encodeJson(
-                QJsonDocument(obj).toJson(QJsonDocument::Compact) );
-}
-
-QString Utils::encodeJson(const QString& s)
-{
-    return QString(s).replace("\"", "\\\"");
-}
-
-wstring Utils::encodeJson(const wstring& s)
-{
-#if defined(__GNUC__) && __GNUC__ <= 4 && __GNUC_MINOR__ < 9
-    return QString::fromStdWString(s).replace("\"", "\\\"").toStdWString();
-#else
-    return std::regex_replace(wstring(s), std::wregex(L"\""), L"\\\"");
-#endif
+    return QJsonDocument(obj).toJson(QJsonDocument::Compact);
 }
 
 unsigned Utils::getScreenDpiRatio(int scrnum)
@@ -502,36 +487,38 @@ wstring Utils::systemUserName()
 #endif
 }
 
-bool Utils::appArgsContains(const QString& a)
+wstring Utils::appUserName()
 {
-    return g_cmdArgs.contains(a);
+    GET_REGISTRY_USER(_reg_user)
+
+    QString data = QByteArray::fromBase64(_reg_user.value("appdata").toByteArray());
+    if (!data.isEmpty()) {
+        QRegularExpression _re("username\\\":\\\"(.+?)\\\"");
+        QRegularExpressionMatch _match = _re.match(data);
+        if ( _match.hasMatch() )
+            return _match.captured(1).toStdWString();
+    }
+
+    return systemUserName();
 }
 
 #ifdef Q_OS_WIN
-#include <windowsx.h>
-void Utils::adjustWindowRect(HWND handle, int dpiratio, LPRECT rect)
-{
-    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-
-    static AdjustWindowRectExForDpiW _adjustWindowRectEx = NULL;
-    static bool _is_read = false;
-    if ( !_is_read && !_adjustWindowRectEx ) {
-        HMODULE _lib = ::LoadLibrary(L"user32.dll");
-        _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
-        FreeLibrary(_lib);
-
-        _is_read = true;
-    }
-
-    if ( _adjustWindowRectEx != NULL ) {
-        _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
-    } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
-}
 #endif
 
+namespace WindowHelper {
 #ifdef Q_OS_LINUX
-namespace WindowUtils {
     CParentDisable::CParentDisable(QWidget* parent)
+    {
+        disable(parent);
+    }
+
+    CParentDisable::~CParentDisable()
+    {
+        if (m_pChild)
+            m_pChild->deleteLater();
+    }
+
+    void CParentDisable::disable(QWidget* parent)
     {
         if (parent) {
             if (QCefView::IsSupportLayers())
@@ -554,10 +541,102 @@ namespace WindowUtils {
         }
     }
 
-    CParentDisable::~CParentDisable()
+    void CParentDisable::enable()
     {
-        if (m_pChild)
+        if ( m_pChild ) {
             m_pChild->deleteLater();
+            m_pChild = nullptr;
+        }
+    }
+
+#else
+    auto isWindowSystemDocked(HWND handle) -> bool {
+        RECT windowrect;
+        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
+            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
+                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
+        }
+
+        return false;
+    }
+
+    auto correctWindowMinimumSize(HWND handle) -> void {
+        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+        if ( GetWindowPlacement(handle, &wp) ) {
+            int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
+            QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
+            QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
+                                    QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
+
+            if ( windowRect.width() < _min_windowsize.width() ||
+                    windowRect.height() < _min_windowsize.height() )
+            {
+//                if ( windowRect.width() < _min_windowsize.width() )
+                    wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
+
+//                if ( windowRect.height() < _min_windowsize.height() )
+                    wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
+
+                SetWindowPlacement(handle, &wp);
+            }
+        }
+    }
+
+    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
+    {
+        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
+            SetActiveWindow(modalhandle);
+            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+        }
+    }
+
+    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+    auto adjustWindowRect(HWND handle, int dpiratio, LPRECT rect) -> void
+    {
+        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
+        static bool _is_read = false;
+        if ( !_is_read && !_adjustWindowRectEx ) {
+            HMODULE _lib = ::LoadLibrary(L"user32.dll");
+            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+            FreeLibrary(_lib);
+
+            _is_read = true;
+        }
+
+        if ( _adjustWindowRectEx ) {
+            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+    }
+#endif
+
+    auto isLeftButtonPressed() -> bool {
+#ifdef Q_OS_LINUX
+        return check_button_state(Qt::LeftButton);
+#else
+        return (::GetKeyState(VK_LBUTTON) & 0x8000) != 0;
+#endif
+    }
+
+    auto constructFullscreenWidget(QWidget * panelwidget) -> QWidget *
+    {
+#if defined(_WIN32) && (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        QPoint pt = panelwidget->window()->mapToGlobal(panelwidget->pos());
+#else
+        QPoint pt = panelwidget->mapToGlobal(panelwidget->pos());
+#endif
+
+        CTabPanel * _panel = qobject_cast<CTabPanel *>(panelwidget);
+        QWidget * _parent = new QWidget;
+        _parent->setWindowIcon(Utils::appIcon());
+        _parent->setWindowTitle(_panel->data()->title());
+        _parent->showFullScreen();
+        _parent->setGeometry(QApplication::desktop()->screenGeometry(pt));
+
+        _panel->setParent(_parent);
+        _panel->show();
+        _panel->setGeometry(0,0,_parent->width(),_parent->height());
+
+        return _parent;
     }
 }
-#endif

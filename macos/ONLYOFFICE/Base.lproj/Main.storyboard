@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -707,9 +707,9 @@
                     <window key="window" title="ONLYOFFICE" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="ASCTitleWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <rect key="contentRect" x="0.0" y="0.0" width="1200" height="700"/>
+                        <rect key="contentRect" x="0.0" y="0.0" width="1200" height="640"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-                        <value key="minSize" type="size" width="1200" height="700"/>
+                        <value key="minSize" type="size" width="1200" height="640"/>
                         <toolbar key="toolbar" implicitIdentifier="5B77B499-B428-4B61-B444-4B21C8952CC3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="labelOnly" sizeMode="regular" id="K5R-RO-aDh">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
@@ -988,12 +988,12 @@
         <scene sceneID="D2C-Q5-vEd">
             <objects>
                 <viewController id="kIG-b2-o2F" customClass="ASCAboutController" sceneMemberID="viewController">
-                    <view key="view" id="M7b-J9-CpP">
-                        <rect key="frame" x="0.0" y="0.0" width="370" height="342"/>
+                    <view key="view" misplaced="YES" id="M7b-J9-CpP">
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="441"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nJK-5u-n8s">
-                                <rect key="frame" x="121" y="179" width="128" height="128"/>
+                                <rect key="frame" x="121" y="192" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="dEW-XJ-Jn6"/>
                                     <constraint firstAttribute="width" constant="128" id="zR5-B9-9GB"/>
@@ -1001,10 +1001,10 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="s9m-Up-o6o"/>
                             </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="7" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1U7-SY-dnp">
-                                <rect key="frame" x="10" y="51" width="350" height="93"/>
+                                <rect key="frame" x="10" y="51" width="350" height="106"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="may-f5-Bdx">
-                                        <rect key="frame" x="137" y="69" width="76" height="24"/>
+                                        <rect key="frame" x="137" y="82" width="76" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Ewd-qx-XMR"/>
                                         </constraints>
@@ -1015,16 +1015,24 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h7L-a1-hnH">
-                                        <rect key="frame" x="148" y="42" width="54" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="gaR-eS-cJx"/>
-                                        </constraints>
+                                        <rect key="frame" x="148" y="59" width="54" height="16"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version" id="ZbA-hc-8PE">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Wbn-Bd-NjR">
+                                        <rect key="frame" x="94" y="42" width="163" height="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="fU4-pJ-UDA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="LFo-Vk-Lup">
                                         <rect key="frame" x="128" y="0.0" width="94" height="35"/>
                                         <constraints>
@@ -1044,8 +1052,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>

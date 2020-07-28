@@ -307,15 +307,19 @@ int CAscTabWidget::count(int type) const
     }
 }
 
-int CAscTabWidget::count(const wstring& portal)
+int CAscTabWidget::count(const wstring& portal, bool exclude)
 {
     if ( portal.empty() )
         return QTabWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
-            if ( panel(i)->data()->url().find(portal) != wstring::npos )
+            if ( panel(i)->data()->url().find(portal) != wstring::npos ) {
+                if ( exclude && panel(i)->data()->isViewType(cvwtSimple) )
+                    continue;
+
                 ++_out;
+            }
         }
         return _out;
     }
@@ -343,7 +347,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     QString args, _url = url;
     if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
-        args.append("/products/files/?desktop=true");
+        args.append("/Products/Files/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
@@ -398,7 +402,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
         pView->cef()->SetExternalCloud(service.toStdWString());
 
         QString _postfix;
-        if (service == "asc") _postfix = "/products/files/?desktop=true";
+        if (service == "asc") _postfix = "/Products/Files/?desktop=true";
         pView->cef()->load((portal + _postfix).toStdWString());
     }
 
@@ -736,7 +740,9 @@ bool CAscTabWidget::updatePortal(int index,const QString& url)
         CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->contentType() == etPortal ) {
-            _panel->cef()->load(url.toStdWString());
+            if ( url.isEmpty() )
+                _panel->cef()->load(_panel->data()->url());
+            else _panel->cef()->load(url.toStdWString());
 
             return true;
         }
@@ -1105,7 +1111,7 @@ bool CAscTabWidget::isProcessed(int index) const
 
 void CAscTabWidget::setFullScreen(bool apply, int id)
 {
-    QWidget * fsWidget;
+    CTabPanel * fsWidget;
     static QMetaObject::Connection cefConnection;
     if (!apply) {
         if (m_dataFullScreen) {
@@ -1116,9 +1122,10 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 #endif
 
             int index = m_dataFullScreen->tabindex();
-            fsWidget = m_dataFullScreen->widget();
+            fsWidget = qobject_cast<CTabPanel *>(m_dataFullScreen->widget());
             widget(index)->layout()->addWidget(fsWidget);
 
+            RELEASEOBJECT(m_dataFullScreen->parent)
             RELEASEOBJECT(m_dataFullScreen)
 
 //            updateGeometry();
@@ -1132,31 +1139,23 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         if ( fsWidget ) {
             m_dataFullScreen = new CFullScreenData(tabIndex, fsWidget);
 
-            fsWidget->setWindowIcon(Utils::appIcon());
-            fsWidget->setParent(nullptr);
-#ifdef _WIN32
-#else
-            fsWidget->setWindowFlags(Qt::FramelessWindowHint);
+            m_dataFullScreen->parent = WindowHelper::constructFullscreenWidget(fsWidget);
+            fsWidget->view()->setFocusToCef();
             AscAppManager::topWindow()->hide();
-#endif
-            ((CTabPanel *)fsWidget)->showFullScreen();
-            ((CTabPanel *)fsWidget)->view()->setFocusToCef();
 
-            cefConnection = connect((CTabPanel *)fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
+            cefConnection = connect(fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
 
                 NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
                 pEvent->m_pData = pCommand;
-                ((CTabPanel *)fsWidget)->cef()->Apply(pEvent);
+                fsWidget->cef()->Apply(pEvent);
 
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
                 QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
 //                emit closeAppRequest();
             });
-
-            fsWidget->setGeometry(QApplication::desktop()->screenGeometry(mapToGlobal(pos())));
         }
     }
 }

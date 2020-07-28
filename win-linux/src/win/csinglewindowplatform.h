@@ -51,6 +51,7 @@ public:
     virtual void show(bool);
     virtual void hide();
     virtual bool visible();
+    virtual void bringToTop() override;
 
     virtual Qt::WindowState windowState();
     virtual void setWindowState(Qt::WindowState);
@@ -62,7 +63,7 @@ public:
 
 protected:
     HWND m_hWnd;
-    HWND m_modalHwnd;
+    HWND m_modalHwnd = nullptr;
     COLORREF m_bgColor;
     QRect m_moveNormalRect;
     bool m_borderless = true;
@@ -78,19 +79,19 @@ protected:
     WindowBase::CWindowGeometry const& minimumSize() const;
     WindowBase::CWindowGeometry const& maximumSize() const;
 
-    virtual void onSizeEvent(int);
+    virtual void onSizeEvent(int) override;
     virtual void applyWindowState(Qt::WindowState);
-    virtual void adjustGeometry();
-    virtual void setScreenScalingFactor(uint f) override;
+    virtual void adjustGeometry() override;
+    virtual void setScreenScalingFactor(int f) override;
 
 //    virtual void focusMainPanel();
 
-    virtual void onMinimizeEvent();
-    virtual void onMaximizeEvent();
+    virtual void onMinimizeEvent() override;
+    virtual void onMaximizeEvent() override;
     virtual void onExitSizeMove() override;
 
     void captureMouse();
-    void slot_modalDialog(bool status, size_t h);
+    void slot_modalDialog(bool status, HWND h);
 
 private:
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

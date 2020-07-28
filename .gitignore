@@ -16,6 +16,7 @@ win-linux/package/linux/deb/debian/*.debhelper.log
 win-linux/package/linux/deb/debian/changelog
 win-linux/package/linux/deb/debian/control
 win-linux/package/linux/deb/debian/files
+win-linux/package/linux/deb/debian/*.dirs
 win-linux/package/linux/deb/debian/*.install
 win-linux/package/linux/deb/debian/*.links
 win-linux/package/linux/deb/debian/*.substvars
@@ -38,8 +39,14 @@ common/converter/*
 .DS_Store
 *.xcuserstate
 *.xcuserdatad
-.idea
-macos/Vendor/ONLYOFFICE
-macos/Production/Production/ONLYOFFICE.app
 *.xcscmblueprint
+.idea
+.env.secret
 dsa_priv.pem
+Gemfile.lock
+package-lock.json
+macos/build
+macos/fastlane/node_modules
+macos/fastlane/README.md
+macos/fastlane/report.xml
+macos/Vendor/ONLYOFFICE

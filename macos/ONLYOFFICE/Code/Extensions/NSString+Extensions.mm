@@ -114,10 +114,6 @@
     return json;
 }
 
-- (NSString *)encodeJson {
-    return [self stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]; // ¯\_(ツ)_/¯
-}
-
 - (NSString *)removeUrlQuery:(NSArray<NSString *> *)params {
     if (NSURLComponents *components = [NSURLComponents componentsWithString:self]) {
         NSMutableArray<NSURLQueryItem *> *newQueryItems = [[components queryItems] mutableCopy];

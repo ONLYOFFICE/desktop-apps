@@ -157,11 +157,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onLocalFilesOpen", Qt::QueuedConnection, Q_ARG(void *, pData));
         break; }
 
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_CREATE: {
-        CAscLocalFileCreate * pData = (CAscLocalFileCreate *)event->m_pData;
-        QMetaObject::invokeMethod(target, "onLocalFileCreate", Qt::QueuedConnection, Q_ARG(int, pData->get_Type()));
-        break;}
-
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
         CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
@@ -207,10 +202,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
             QMetaObject::invokeMethod( target, "onOutsideAuth", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
-//        if ( !(cmd.find(L"portal:login") == std::wstring::npos) ) {
-//            QMetaObject::invokeMethod( target, "onPortalLogin", Qt::QueuedConnection,
-//                    Q_ARG(int, event->get_SenderId()), Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-//        } else
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection, Q_ARG(std::wstring, pData->get_Param()) );
         } else

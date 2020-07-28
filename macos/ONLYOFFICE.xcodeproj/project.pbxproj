@@ -151,6 +151,8 @@
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
+		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
+		FC035A5C2485625400AF820F /* ASCDocumentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocumentType.h; sourceTree = "<group>"; };
 		FC081E9B1C3257F600F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081E9D1C3257FF00F9881C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC081EAF1C3258A800F9881C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		FC081EBB1C3258B400F9881C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
+		FC0AB7A22484E3AB000798FE /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ONLYOFFICE.entitlements; path = Resources/ONLYOFFICE/ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC1127571BBAAC8000AA3648 /* ASCPopoverLightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCPopoverLightView.h; sourceTree = "<group>"; };
 		FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCPopoverLightView.m; sourceTree = "<group>"; };
 		FC13B5272080BBF500524968 /* NSImage+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+Extensions.h"; sourceTree = "<group>"; };
@@ -290,7 +293,6 @@
 		FC98AF0B1E94E16A00718A12 /* file-xls.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xls.icns"; sourceTree = "<group>"; };
 		FC98AF0C1E94E16A00718A12 /* file-xlsx.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsx.icns"; sourceTree = "<group>"; };
 		FC98AF0D1E94E16A00718A12 /* file-xps.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xps.icns"; sourceTree = "<group>"; };
-		FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ONLYOFFICE.entitlements; sourceTree = "<group>"; };
 		FC98BAD41BAC43B400747944 /* NSCefView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCefView.h; sourceTree = "<group>"; };
 		FC98BAD51BAC43B400747944 /* NSCefView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSCefView.mm; sourceTree = "<group>"; };
 		FC9EA18D225B712D0093CADF /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -437,6 +439,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC035A5A24855E1900AF820F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				FC035A5B24855E8C00AF820F /* ASCTabViewType.h */,
+				FC035A5C2485625400AF820F /* ASCDocumentType.h */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		FC081E981C32575800F9881C /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,7 +761,7 @@
 		FCBC426A1B9D650400405301 /* ONLYOFFICE */ = {
 			isa = PBXGroup;
 			children = (
-				FC98BAD21BAC35BA00747944 /* ONLYOFFICE.entitlements */,
+				FC0AB7A22484E3AB000798FE /* ONLYOFFICE.entitlements */,
 				FC29CD421F979946003F4136 /* Storyboard */,
 				FC5A2CFE1BABEF42001ACEB1 /* SDK */,
 				FCF289712150E65A002FD438 /* Code */,
@@ -899,6 +910,7 @@
 		FCF289712150E65A002FD438 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				FC035A5A24855E1900AF820F /* Enums */,
 				FCF289732150E737002FD438 /* Views */,
 				FCCC2FD421E5DD5800FB9209 /* TouchBar */,
 				FCF289722150E6A1002FD438 /* Controllers */,
@@ -1159,7 +1171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/\"\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/editors_helper.app/\"\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/editors_helper (GPU).app/\"\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/editors_helper (Renderer).app/\"\n\ncodesign --verbose --force --deep -o runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force -o runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${TARGET_NAME}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${TARGET_NAME}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -1541,7 +1553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/Resources/ONLYOFFICE/ONLYOFFICE.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1566,7 +1578,7 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.5.1;
+				MARKETING_VERSION = 5.6;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1583,7 +1595,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/ONLYOFFICE.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ONLYOFFICE/Resources/ONLYOFFICE/ONLYOFFICE.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Ascensio System SIA (2WH24U26GJ)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1608,7 +1620,7 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.5.1;
+				MARKETING_VERSION = 5.6;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -1,24 +1,4 @@
 ﻿
-#if !defined(ASSC_APP_NAME)
-# define ASSC_APP_NAME 'ONLYOFFICE'
-#endif
-
-#if !defined(ASCC_REG_PREFIX)
-# define ASCC_REG_PREFIX 'ASC'
-#endif
-
-#if !defined(ASCC_REG_REGISTERED_APP_NAME)
-# define ASCC_REG_REGISTERED_APP_NAME 'ONLYOFFICE Editors'
-#endif
-
-#if !defined(ASSOC_PROG_ID)
-# define ASSOC_PROG_ID 'ASC.Editors'
-#endif
-
-#if !defined(ASSOC_APP_FRIENDLY_NAME)
-# define ASSOC_APP_FRIENDLY_NAME 'ONLYOFFICE Editors'
-#endif
-
 [Setup]
 ChangesAssociations=true
 
@@ -230,8 +210,7 @@ pl.runOpenDefaultApps=Otwórz Domyślne aplikacje
 zh_CN.runOpenDefaultApps=打开默认应用
 
 [Run]
-Filename: control.exe; Description: {cm:runOpenDefaultApps}; Parameters: /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=DesktopEditors; \
-  Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
+Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
 
 [Registry]
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey

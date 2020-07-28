@@ -36,21 +36,45 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 
+class CSingleWindowPlatform::impl {
+    CSingleWindowPlatform * m_owner = nullptr;
+    WindowHelper::CParentDisable * m_disabler = nullptr;
+public:
+    impl(CSingleWindowPlatform * owner)
+        : m_owner{owner}
+        , m_disabler{new WindowHelper::CParentDisable}
+    {}
+
+    ~impl()
+    {
+        delete m_disabler,
+        m_disabler = nullptr;
+    }
+
+    void lockParentUI(){
+        m_disabler->disable(m_owner);
+    }
+
+    void unlockParentUI() {
+        m_disabler->enable();
+    }
+};
+
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
     , QMainWindow()
     , CX11Decoration(this)
+    , pimpl{new impl(this)}
 {
-    GET_REGISTRY_SYSTEM(reg_system)
-    GET_REGISTRY_USER(reg_user)
-    if (reg_user.value("titlebar") == "custom" ||
-            reg_system.value("titlebar") == "custom" )
+    if ( isCustomWindowStyle() )
         CX11Decoration::turnOff();
 
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
+
+    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
 
 CSingleWindowPlatform::~CSingleWindowPlatform()
@@ -77,6 +101,8 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::onSizeEvent(int type)
 {
+    CSingleWindowBase::onSizeEvent(type);
+
     if ( type == Qt::WindowMinimized ) {
 //        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
 //        m_buttonMaximize->style()->polish(m_buttonMaximize);
@@ -96,24 +122,34 @@ void CSingleWindowPlatform::show(bool maximized)
         QMainWindow::setWindowState(Qt::WindowMaximized);
 }
 
+void CSingleWindowPlatform::bringToTop()
+{
+//    QMainWindow::show();
+    QMainWindow::raise();
+    QMainWindow::activateWindow();
+//    QApplication::setActiveWindow(this);
+}
+
 bool CSingleWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::WindowStateChange) {
-        QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
+        if ( isCustomWindowStyle() ) {
+            QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
-        CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
+            CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
 
-        if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
-            layout()->setMargin(0);
+            if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
+                layout()->setMargin(0);
 
-            m_buttonMaximize->setProperty("class", "min");
-            m_buttonMaximize->style()->polish(m_buttonMaximize);
-        } else
-        if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-            layout()->setMargin(CX11Decoration::customWindowBorderWith());
+                m_buttonMaximize->setProperty("class", "min");
+                m_buttonMaximize->style()->polish(m_buttonMaximize);
+            } else
+            if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
+                layout()->setMargin(CX11Decoration::customWindowBorderWith());
 
-            m_buttonMaximize->setProperty("class", "normal");
-            m_buttonMaximize->style()->polish(m_buttonMaximize);
+                m_buttonMaximize->setProperty("class", "normal");
+                m_buttonMaximize->style()->polish(m_buttonMaximize);
+            }
         }
     } else
     if ( event->type() == QEvent::MouseButtonPress ) {
@@ -203,4 +239,9 @@ void CSingleWindowPlatform::captureMouse()
     _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
 //    QApplication::sendEvent(this, &_event);
     CX11Decoration::dispatchMouseMove(&_event);
+}
+
+void CSingleWindowPlatform::slot_modalDialog(bool status, WId)
+{
+    status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
 }

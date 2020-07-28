@@ -44,11 +44,13 @@
 #include "qascprinter.h"
 #include "ceditortools.h"
 #include "csvgpushbutton.h"
+#include "defines.h"
 
 #include <QPrinterInfo>
 #include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QJsonObject>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -57,6 +59,37 @@
 
 
 using namespace NSEditorApi;
+
+const QString g_css =
+        "#mainPanel{background-color:%1;}"
+        "#box-title-tools{background-color:%1;}"
+        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
+        "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
+        "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
+        "#labelTitle{color:#444;font-size:11px;}"
+        "#iconuser{color:#fff;font-size:11px;}"
+        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
+        "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
+        "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
+        "#mainPanel[zoom=\"2x\"] #iconuser,"
+        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
+
+auto prepare_editor_css(int type) -> QString {
+    switch (type) {
+    default: return g_css.arg(WINDOW_BACKGROUND_COLOR);
+    case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
+    case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
+    case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    }
+}
 
 class CEditorWindowPrivate : public CCefEventsGate
 {
@@ -71,11 +104,13 @@ class CEditorWindowPrivate : public CCefEventsGate
     sPrintData m_printData;
 
     CEditorWindow * window = nullptr;
-    QLabel * iconuser = nullptr;
+    CElipsisLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
-    Qt::WindowFlags window_orig_flags;
+    QWidget * fs_parent = nullptr;
+    QLabel * iconcrypted = nullptr;
+    QWidget * boxtitlelabel = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
 
@@ -102,7 +137,7 @@ public:
 
         connect(btn, &QPushButton::clicked, [=]{
             QJsonObject _json_obj{{"action", action}};
-            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::encodeJson(_json_obj).toStdWString());
+            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
         });
 
         if ( jsonobj.contains("icon") ) {
@@ -113,19 +148,46 @@ public:
         return btn;
     }
 
-    void onEditorConfig(int, std::wstring cfg)
+    auto extendableTitleToSimple() -> void {
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+            _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+
+            window->m_css = {prepare_editor_css(etUndefined)};
+            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+            css.append(window->m_css);
+            window->m_pMainPanel->setProperty("window", "simple");
+            window->m_pMainPanel->setStyleSheet(css);
+
+            iconUser()->hide();
+            window->m_labelTitle->setText(APP_TITLE);
+
+#ifdef Q_OS_WIN
+            window->m_bgColor = WINDOW_BACKGROUND_COLOR;
+            InvalidateRect(window->m_hWnd,nullptr,TRUE);
+#endif
+        }
+    }
+
+    void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
+        if ( !window->isCustomWindowStyle() ) return;
+
         QJsonParseError jerror;
         QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
+            if ( viewerMode() )
+                extendableTitleToSimple();
+
             int _user_width = 0;
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
-                    iconuser->setToolTip(objRoot["user"].toObject().value("name").toString());
-                    iconuser->setText(objRoot["user"].toObject().value("name").toString());
+                    QString _user_name = objRoot["user"].toObject().value("name").toString();
+                    iconuser->setToolTip(_user_name);
+                    iconuser->setText(_user_name);
 
                     iconuser->adjustSize();
                     _user_width = iconuser->width();
@@ -144,22 +206,41 @@ public:
                     }
 
                 }
+
+                // update title caption for elipsis
+                window->updateTitleCaption();
             }
 
             int _btncount = /*iconuser ? 4 :*/ 3;
             int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             diffW -= _user_width;
 
-            diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-                            window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
+            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
+                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
         }
+    }
+
+    void onEditorActionRequest(int, const QString& json) override
+    {
+        if ( json.contains(QRegExp("action\\\":\\\"close")) ) {
+            window->closeWindow();
+        }
+    }
+
+    void onDocumentReady(int uid) override
+    {
+//        if (window->holdView(uid))
+            if ( panel()->data()->features().empty() ) {
+                panel()->data()->setFeatures(L"old version of editor");
+                extendableTitleToSimple();
+            }
     }
 
     void onDocumentName(void * data) override
     {
         CCefEventsGate::onDocumentName(data);
 
-        if ( canExtendTitle() ) {
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
@@ -170,7 +251,7 @@ public:
         if ( panel()->data()->hasChanges() != state ) {
             CCefEventsGate::onDocumentChanged(id, state);
 
-            if ( canExtendTitle() ) {
+            if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
             }
@@ -232,7 +313,8 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowUtils::CParentDisable locker(window);
+        CInAppEventModal _event(window->winId());
+        CRunningEventHelper _h(&_event);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -301,29 +383,30 @@ public:
         window->onLocalFileSaveAs(d);
     }
 
-    void onScreenScalingFactor(uint f)
+    void onScreenScalingFactor(int f)
     {
-        int _btncount = /*iconuser ? 4 :*/ 3;
-        int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
+        if ( window->isCustomWindowStyle() ) {
+            int _btncount = /*iconuser ? 4 :*/ 3;
+            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
 
-        if ( iconuser ) {
-//            iconuser->setPixmap(f > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*f, 16*f));
+            if ( iconuser ) {
+                iconuser->setMaximumWidth(200 * f);
+                iconuser->setContentsMargins(12*f,0,12*f,2*f);
+                iconuser->adjustSize();
+                diffW -= iconuser->width();
+            }
 
-            iconuser->setContentsMargins(0,0,0,2*f);
-            iconuser->adjustSize();
-            diffW -= iconuser->width();
-        }
+            if ( iconcrypted ) {
+                iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
+            }
 
-        diffW > 0 ? window->m_labelTitle->setContentsMargins(0, 0, diffW, 2*f) :
-                        window->m_labelTitle->setContentsMargins(-diffW, 0, 0, 2*f);
+            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*f) :
+                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*f);
 
-//        if ( btndock )
-//            btndock->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
-
-        for (auto btn: m_mapTitleButtons) {
-            btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
-            btn->setIconSize(QSize(20,20) * f);
+            for (auto btn: m_mapTitleButtons) {
+                btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+                btn->setIconSize(QSize(20,20) * f);
+            }
         }
     }
 
@@ -347,33 +430,21 @@ public:
         if (!apply) {
             _break_demonstration();
 
-#ifdef Q_OS_LINUX
-            _fs_widget->overrideWindowFlags(window_orig_flags);
-#endif
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
-            window->m_pMainPanel->layout()->addWidget(_fs_widget);
+            qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0);
             window->recalculatePlaces();
             _fs_widget->showNormal();
             _fs_widget->cef()->focus();
 
+            if ( fs_parent )
+                delete fs_parent, fs_parent = nullptr;
+
             disconnect(cefConnection);
         } else {
-            QPoint pt = _fs_widget->mapToGlobal(_fs_widget->pos());
-            _fs_widget->setWindowIcon(Utils::appIcon());
-            _fs_widget->setWindowTitle(panel()->data()->title());
+            fs_parent = WindowHelper::constructFullscreenWidget(_fs_widget);
 
-#ifdef _WIN32
-            _fs_widget->setParent(nullptr);
-            _fs_widget->showFullScreen();
-#else
-            window_orig_flags = _fs_widget->windowFlags();
-            _fs_widget->setParent(nullptr);
-            _fs_widget->setWindowFlags(Qt::FramelessWindowHint);
-            _fs_widget->showFullScreen();
-            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-#endif
             _fs_widget->view()->setFocusToCef();
             window->hide();
 
@@ -383,11 +454,6 @@ public:
                 e->ignore();
                 window->closeWindow();
             });
-
-#ifdef _WIN32
-            _fs_widget->setGeometry(QApplication::desktop()->screenGeometry(pt));
-            _fs_widget->setWindowState(Qt::WindowFullScreen);                       // fullscreen widget clears that flag after changing geometry
-#endif
         }
     }
 
@@ -396,18 +462,24 @@ public:
         onFullScreen(apply);
     }
 
-    void onPortalLogout(wstring portal) override
+    void onPortalLogout(wstring wjson) override
     {
-        if ( m_panel && !portal.empty() ) {
-            if ( !m_panel->data()->closed() &&
-                    m_panel->data()->url().find(portal) != wstring::npos )
-            {
-                window->closeWindow();
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString portal = objRoot["portal"].toString();
+
+            if ( m_panel && !portal.isEmpty() ) {
+                if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
+                    window->closeWindow();
             }
         }
     }
 
-    void onFileLocation(int, QString param)
+    void onFileLocation(int, QString param) override
     {
         if ( param == "offline" ) {
             const wstring& path = m_panel->data()->url();
@@ -426,14 +498,27 @@ public:
     QLabel * iconUser()
     {
         if ( !iconuser ) {
-            iconuser = new QLabel(window->m_boxTitleBtns);
+            iconuser = new CElipsisLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
             iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
+            iconuser->setMaximumWidth(200 * window->m_dpiRatio);
 //            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
 //            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }
 
         return iconuser;
+    }
+
+    QLabel * iconCrypted()
+    {
+        if ( !iconcrypted ) {
+            iconcrypted = new QLabel(window->m_boxTitleBtns);
+            iconcrypted->setObjectName("iconcrypted");
+
+            iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
+        }
+
+        return iconcrypted;
     }
 
     QPushButton * buttonDock()
@@ -449,9 +534,13 @@ public:
     void onWebAppsFeatures(int, std::wstring f) override
     {
         panel()->data()->setFeatures(f);
+
+        if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
+            qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
+        }
     }
 
-    void onWebTitleChanged(int, std::wstring json)
+    void onWebTitleChanged(int, std::wstring json) override
     {
         if ( !m_mapTitleButtons.isEmpty() ) {
             QJsonParseError jerror;
@@ -485,9 +574,43 @@ public:
         }
     }
 
-    bool canExtendTitle()
+    bool canExtendTitle() const
     {
-        return /* !panel()->isReadonly() && */ panel()->data()->isLocal() || panel()->data()->hasFeature(L"titlebuttons:");
+        if ( m_panel->data()->features().empty() ) return true;
+        else  return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
+    }
+
+    auto viewerMode() const -> bool {
+        return m_panel->data()->hasFeature(L"viewmode\":true");
+    }
+
+    auto calcTitleLabelWidth(int basewidth) const -> int {
+        if ( iconuser )
+            basewidth -= iconuser->width();
+
+        basewidth -= boxtitlelabel->contentsMargins().left() + boxtitlelabel->contentsMargins().right();
+        if ( iconcrypted )
+            basewidth -= iconcrypted->width();
+
+        basewidth -= m_mapTitleButtons.count() * (TOOLBTN_WIDTH + 1) * window->m_dpiRatio;
+
+        return basewidth;
+    }
+
+    auto customizeTitleLabel() -> void {
+        window->m_boxTitleBtns->layout()->removeWidget(window->m_labelTitle);
+
+        boxtitlelabel = new QWidget;
+        boxtitlelabel->setLayout(new QHBoxLayout);
+        boxtitlelabel->layout()->setSpacing(0);
+        boxtitlelabel->layout()->setMargin(0);
+
+        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
+            boxtitlelabel->layout()->addWidget(iconCrypted());
+        }
+
+        boxtitlelabel->layout()->addWidget(window->m_labelTitle);
+        qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout())->insertWidget(1, boxtitlelabel);
     }
 };
 

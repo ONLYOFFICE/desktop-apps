@@ -1,4 +1,4 @@
-﻿;-- Common --
+﻿; -- Installer Common --
 
 #if str(_ARCH) == "64"
   #define sWinArch                  "x64"
@@ -18,87 +18,25 @@
 #ifndef sBrandingFolder
   #define sBrandingFolder           "..\..\.."
 #endif
+
+#include sBrandingFolder + "\win-linux\package\windows\defines.iss"
+
+#ifndef sAppVersion
+  #ifndef SCRIPT_CUSTOM_FILES
+    #define sAppVersion             GetFileVersion(AddBackslash(SourcePath) + "..\..\Build\Release\" + NAME_EXE_IN)
+  #else
+    #define sAppVersion             GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+  #endif
+#endif
+#define sAppVerShort                Copy(sAppVersion, 0, 3)
+
+#ifndef sOutputFileName
+  #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
+#endif
+
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
 #if FileExists(sBrandingFile)
   #include sBrandingFile
-#endif
-
-#ifndef sCompanyName
-  #define sCompanyName              "ONLYOFFICE"
-#endif
-#ifndef sIntCompanyName
-  #define sIntCompanyName           sCompanyName
-#endif
-#ifndef sProductName
-  #define sProductName              "Desktop Editors"
-#endif
-#ifndef sIntProductName
-  #define sIntProductName           "DesktopEditors"
-#endif
-#ifndef sAppName
-  #define sAppName                  sCompanyName + " " + sProductName
-#endif
-#ifndef sAppPublisher
-  #define sAppPublisher             "Ascensio System SIA"
-#endif
-#ifndef sAppPublisherURL
-  #define sAppPublisherURL          "https://www.onlyoffice.com/"
-#endif
-#ifndef sAppSupportURL
-  #define sAppSupportURL            "https://www.onlyoffice.com/support.aspx"
-#endif
-#ifndef sAppCopyright
-  #define sAppCopyright             str("Copyright (C) " + GetDateTimeString('yyyy',,) + " " + sAppPublisher)
-#endif
-#ifndef sAppIconName
-  #define sAppIconName              "ONLYOFFICE Editors"
-#endif
-
-#ifndef APP_PATH
-  #define APP_PATH                  sIntCompanyName + "\" + sIntProductName
-#endif
-#ifndef APP_REG_PATH
-  #define APP_REG_PATH              "Software\" + APP_PATH
-#endif
-#ifndef DEPLOY_PATH
-  #define DEPLOY_PATH               "..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH
-#endif
-#ifndef APP_USER_MODEL_ID
-  #define APP_USER_MODEL_ID         "ASC.Documents.5"
-#endif
-#ifndef APP_MUTEX_NAME
-  #define APP_MUTEX_NAME            "TEAMLAB"
-#endif
-#ifndef APPWND_CLASS_NAME
-  #define APPWND_CLASS_NAME         "DocEditorsWindowClass"
-#endif
-
-#ifndef iconsExe
-  #define iconsExe                  "DesktopEditors.exe"
-#endif
-#ifndef NAME_EXE_IN
-  #define NAME_EXE_IN               "DesktopEditors_" + sWinArch + ".exe"
-#endif
-#ifndef NAME_EXE_OUT
-  #define NAME_EXE_OUT              "editors.exe"
-#endif
-#define VISEFFECTS_MANIFEST_NAME    ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
-#ifndef LIC_FILE
-  #define LIC_FILE                  "agpl-3.0"
-#endif
-
-#ifndef SCRIPT_CUSTOM_FILES
-#  define sAppVersion         GetFileVersion(AddBackslash(SourcePath) + '..\..\Build\Release\' + NAME_EXE_IN)
-  #ifndef sAppVersion
-    #define sAppVersion             "0.0.0.0"
-  #endif
-#else
-  #define sAppVersion               GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
-#endif
-#define sAppVerShort        Copy(sAppVersion, 0, 3)
-
-#ifndef sOutputFileName
-  #define sOutputFileName           {#sIntCompanyName}_{#sIntProductName}_{#sAppVersion}_{#sWinArchFull}
 #endif
 
 #include "utils.iss"
@@ -133,6 +71,7 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
+UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
 OutputDir                 =.\
 Compression               =lzma
 PrivilegesRequired        =admin
@@ -505,7 +444,7 @@ var
 begin
   if Length(LabelCaption) > 0 then WizardForm.StatusLabel.Caption := LabelCaption;
 
-  Params := '/quiet';
+  Params := '/quiet /norestart';
 
   ShellExec('', FileName, Params, '', SW_SHOW, ewWaitUntilTerminated, ErrorCode);
 
