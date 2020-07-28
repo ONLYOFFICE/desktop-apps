@@ -73,6 +73,7 @@ public:
     virtual void setWindowTitle(const QString&);
     virtual void adjustGeometry();
     virtual void bringToTop() = 0;
+    virtual void focus() = 0;
     virtual bool isCustomWindowStyle();
 
 protected:

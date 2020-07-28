@@ -201,6 +201,9 @@ bool CMainWindow::event(QEvent * event)
         } else
         if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
             ((CMainPanel *)m_pMainPanel)->applyMainWindowState(Qt::WindowNoState);
+        } else
+        if (this->windowState() == Qt::WindowMinimized) {
+            ((CMainPanel *)m_pMainPanel)->applyMainWindowState(Qt::WindowMinimized);
         }
     } else
     if ( event->type() == QEvent::MouseButtonPress ) {

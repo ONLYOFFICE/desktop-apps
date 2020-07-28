@@ -46,11 +46,12 @@
 CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
+    QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
 }
 
 void CMainPanelImpl::refreshAboutVersion()
 {
-    QString _license = "Licensed under &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
+    QString _license = tr("Licensed under") + " &lt;a class=\"link\" onclick=\"window.open('" URL_AGPL "')\" draggable=\"false\" href=\"#\"&gt;GNU AGPL v3&lt;/a&gt;";
 
     QJsonObject _json_obj;
     _json_obj["version"]    = VER_FILEVERSION_STR;
@@ -68,6 +69,9 @@ void CMainPanelImpl::refreshAboutVersion()
             {"langs", CLangater::availableLangsToJson()}
         })
     );
+
+    wstring _force_value = AscAppManager::userSettings(L"force-scale");
+    _json_obj["uiscaling"] = _force_value == L"1" ? 100 : _force_value == L"200" ? 200 : 0;
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains("--ascdesktop-reveal-app-config") )

@@ -60,7 +60,7 @@
                                         <label class='sett__caption' l10n>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
                                             <input type='text' class='tbox' spellcheck='false' maxlength='128'>
-                                            <a class='link link--sizem link--gray' href='#' l10n>${_lang.settResetUserName}</a>
+                                            <a class='link link--sizem link--gray' draggable='false' href='#' l10n>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
                                     <div class='settings-field settings-field-lang'>
@@ -68,6 +68,18 @@
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'></select>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class='settings-field' id='opts-ui-scaling' style='display:none'>
+                                        <label class='sett__caption' l10n>${_lang.settScaling}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='0' l10n>${_lang.settOptScalingAuto}</option>
+                                                    <option value='100'>100%</option>
+                                                    <option value='200'>200%</option>
+                                                </select>
                                             </section>
                                         </div>
                                     </div>
@@ -119,7 +131,8 @@
             $userName,
             $chOpenMode;
         let $panel;
-        let $optsLang;
+        let $optsLang,
+            $optsUIScaling;
 
         function _set_user_name(name) {
             let me = this;
@@ -149,6 +162,11 @@
 
                     _new_settings.checkupdatesrate = $combo.val();
                     $combo.selectpicker('refresh');
+                }
+
+                if ( $optsUIScaling ) {
+                    _new_settings.uiscaling = $optsUIScaling.val();
+                    $optsUIScaling.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -221,6 +239,14 @@
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+                        }
+
+                        if ( opts.uiscaling != undefined && !$optsUIScaling ) {
+                            ($optsUIScaling = ($('#opts-ui-scaling', $panel).show().find('select')))
+                            .val(opts.uiscaling)
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
                         }
                     }
                 } else
