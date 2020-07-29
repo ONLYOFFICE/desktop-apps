@@ -358,6 +358,7 @@ l10n.ru = {
     ,settOptCheckWeek: 'Каждую неделю'
     ,settScaling: 'Масштабирование интерфейса'
     ,settOptScalingAuto: 'Авто'
+    ,aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
 
 l10n.de = {
@@ -441,6 +442,7 @@ l10n.de = {
     ,settOptCheckNever: 'Niemals'
     ,settOptCheckDay: 'Täglich'
     ,settOptCheckWeek: 'Jede Woche'
+    ,aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
 };
 
 l10n.it_IT = {
@@ -524,6 +526,7 @@ l10n.it_IT = {
     ,settOptCheckNever: 'Mai'
     ,settOptCheckDay: 'Ogni giorno'
     ,settOptCheckWeek: 'Ogni settimana'
+    ,aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
 };
 
 l10n.fr = {
@@ -607,6 +610,7 @@ l10n.fr = {
     ,settOptCheckNever: 'Jamais'
     ,settOptCheckDay: 'Chaque jour'
     ,settOptCheckWeek: 'Chaque semaine'
+    ,aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
 };
 
 l10n.es = {
@@ -686,6 +690,7 @@ l10n.es = {
     ,settLanguage: 'Lenguaje de interfaz'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
     ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
+    ,aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
 };
 
 l10n.pt_BR = {
@@ -765,6 +770,7 @@ l10n.pt_BR = {
     ,settLanguage: 'Idioma de Interface'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
     ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
+    ,aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
 
 l10n.pl = {
