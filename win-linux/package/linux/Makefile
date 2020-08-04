@@ -456,6 +456,7 @@ deb-astra/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4 branding
 deb-astra/debian/postinst : deb/debian/postinst.m4 branding
 deb-astra/debian/postrm : deb/debian/postrm.m4 branding
 deb-astra/debian/prerm : deb/debian/prerm.m4 branding
+deb-astra/debian/rules.m4 : branding
 
 deb-astra/debian/changelog deb-astra/debian/control deb-astra/debian/$(PACKAGE_NAME).dirs deb-astra/debian/$(PACKAGE_NAME).install deb-astra/debian/$(PACKAGE_NAME).links deb-astra/debian/postinst deb-astra/debian/postrm deb-astra/debian/prerm :
 	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
