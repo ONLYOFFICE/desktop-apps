@@ -222,8 +222,11 @@ void Utils::openUrl(const QString& url)
 void Utils::openFileLocation(const QString& path)
 {
 #if defined(Q_OS_WIN)
-    QStringList args{"/select,", QDir::toNativeSeparators(path)};
-    QProcess::startDetached("explorer", args);
+    ITEMIDLIST * idl = ILCreateFromPath(QDir::toNativeSeparators(path).toStdWString().c_str());
+    if ( idl ) {
+        SHOpenFolderAndSelectItems(idl, 0, 0, 0);
+        ILFree(const_cast<LPITEMIDLIST>(idl));
+    }
 #else
     static QString _file_browser;
     static QString _arg_select = "--no-desktop";
