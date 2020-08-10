@@ -36,6 +36,8 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 
+#define EDITOR_WINDOW_MIN_WIDTH     920
+
 class CSingleWindowPlatform::impl {
     CSingleWindowPlatform * m_owner = nullptr;
     WindowHelper::CParentDisable * m_disabler = nullptr;
@@ -72,7 +74,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
+    setMinimumSize(EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
