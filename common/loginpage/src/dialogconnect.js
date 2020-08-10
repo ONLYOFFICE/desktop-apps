@@ -113,7 +113,9 @@ window.DialogConnect = function(params) {
         }
 
         var re_wrong_symb = /([\s\r\n\t\\]|%(?!\d{2}))/;
-        if (!portal.length || re_wrong_symb.test(portal)) {
+        if (!portal.length || re_wrong_symb.test(portal) ||
+                !/^(https?:\/\/)?([^@\/\s]{1,63})\/[^\s]*/.test(portal+'/') )
+        {
             _set_error(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
@@ -205,9 +207,16 @@ window.DialogConnect = function(params) {
                 timeout: 10000,
                 headers: _info.check.headers,
                 complete: function(e, status) {
-                    status == 'success' ?
-                        resolve({status:status, response:e}) :
+                    if ( status == 'success' ) {
+                        if ( provider == 'asc' && !!e.responseJSON )
+                            resolve({status:status, response:e});
+                        else {
+                            e.status = 404;
+                            reject({status:'error', response:e});
+                        }
+                    } else {
                         reject({status:status, response:e});
+                    }
                 },
                 error: function(e, status, error) {
                     reject({status:status, response:e});
