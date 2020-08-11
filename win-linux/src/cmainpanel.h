@@ -67,6 +67,7 @@ public:
     void setScreenScalingFactor(uchar);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
+    int  tabCloseRequest(int index = -1);
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 

@@ -50,6 +50,7 @@ public:
     enum class CEventType
     {
         etModal
+        ,etEditorClosed
     };
 
     CInAppEventBase(CEventType t)
@@ -100,6 +101,7 @@ public:
     void signal(CInAppEventBase *);
 signals:
     void onModalDialog(bool status, NativeHandle handle);
+    void onEditorClosed();
 
 public slots:
 };

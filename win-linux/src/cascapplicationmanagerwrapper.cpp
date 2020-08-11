@@ -62,6 +62,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
+    QObject::connect(&commonEvents(), &CEventDriver::onEditorClosed, this, &CAscApplicationManagerWrapper::onEditorWidgetClosed);
 
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
@@ -423,6 +424,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 #endif
         return true; }
+    case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
+        CAscDocumentOnSaveData * pData = reinterpret_cast<CAscDocumentOnSaveData *>(event->m_pData);
+
+        if (pData->get_IsCancel()) {
+            AscAppManager::cancelClose();
+        }
+        break; }
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
         --m_countViews;
 
@@ -440,7 +448,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         if ( m_closeTarget.compare(L"app") == 0 ) {
             switch ( m_countViews ) {
-            case 1: DestroyCefView(-1); break;
+//            case 1: DestroyCefView(-1); break;
             case 0: {
                 CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
                 if ( _w ) {
@@ -450,6 +458,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
 
                 m_vecWindows.clear();
+                break;
             }
             default: break;
             }
@@ -841,36 +850,29 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
-        CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-
         if ( m_countViews > 1 ) {
             m_closeTarget = L"app";
 
             /* close all editors windows */
-            vector<size_t>::const_iterator it = m_vecEditors.begin();
-            while ( it != m_vecEditors.end() ) {
-                CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+            if ( !m_vecEditors.empty() ) {
+                vector<size_t>::const_iterator it = m_vecEditors.begin();
+                if ( it != m_vecEditors.end() ) {
+                    CEditorWindow * _editor = reinterpret_cast<CEditorWindow *>(*it);
 
-                int _r = _w->closeWindow();
-                if ( _r == MODAL_RESULT_CANCEL ) {
+                    if ( _editor && _editor->closeWindow() == MODAL_RESULT_CANCEL )
+                        AscAppManager::cancelClose();
+                }
+            } else {
+                if ( AscAppManager::topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                     AscAppManager::cancelClose();
-                    return;
-                } else ++it;
             }
-
-            /* close main window */
-            _w->bringToTop();
-            if ( !_w->mainPanel()->closeAll() ) {
-                AscAppManager::cancelClose();
-                return;
-            }
-        }
-
+        } else
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
-        }
 
-        closeQueue().leave(sWinTag{1,size_t(_w)});
+            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
+            closeQueue().leave(sWinTag{1,size_t(_w)});
+        }
     } else {
         cancelClose();
     }
@@ -1559,5 +1561,12 @@ void CAscApplicationManagerWrapper::onFileChecked(const QString& name, int uid, 
         QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
         sendCommandTo(SEND_TO_ALL_START_PAGE, "files:checked", json);
+    }
+}
+
+void CAscApplicationManagerWrapper::onEditorWidgetClosed()
+{
+    if ( m_closeTarget == L"app" ) {
+        launchAppClose();
     }
 }

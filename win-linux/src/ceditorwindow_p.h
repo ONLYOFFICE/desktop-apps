@@ -413,6 +413,9 @@ public:
     void onEditorAllowedClose(int) override
     {
         AscAppManager::closeEditorWindow(size_t(window));
+
+        CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+        AscAppManager::getInstance().commonEvents().signal(&_event);
     }
 
     void onLocalFileSaveAs(void * d) override

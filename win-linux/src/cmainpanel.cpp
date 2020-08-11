@@ -458,6 +458,9 @@ void CMainPanel::onEditorAllowedClose(int uid)
             }
 
             onTabChanged(m_pTabs->currentIndex());
+
+            CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+            AscAppManager::getInstance().commonEvents().signal(&_event);
         }
     }
 }
@@ -494,6 +497,39 @@ void CMainPanel::onTabCloseRequest(int index)
             onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
         }
     }
+}
+
+int CMainPanel::tabCloseRequest(int index)
+{
+    if ( m_pTabs->count() ) {
+        if ( index == -1 ) {
+            if ( !m_pTabs->closedByIndex(m_pTabs->currentIndex()) )
+                index = m_pTabs->currentIndex();
+            else {
+                for (int i(0); i < m_pTabs->count(); ++i) {
+                    if ( !m_pTabs->closedByIndex(i) ) {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if ( !(index < 0) && index < m_pTabs->count() ) {
+        onFullScreen(-1, false);
+        if ( !m_pTabs->isProcessed(index) ) {
+            int _result = trySaveDocument(index);
+            if ( _result == MODAL_RESULT_NO ) {
+                m_pTabs->editorCloseRequest(index);
+                onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
+            }
+
+            return _result;
+        }
+    }
+
+    return MODAL_RESULT_CUSTOM;
 }
 
 int CMainPanel::trySaveDocument(int index)
