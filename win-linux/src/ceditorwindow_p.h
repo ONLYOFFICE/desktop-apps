@@ -511,7 +511,7 @@ public:
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString portal = objRoot["portal"].toString();
+            QString portal = objRoot["domain"].toString();
 
             if ( m_panel && !portal.isEmpty() ) {
                 if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
