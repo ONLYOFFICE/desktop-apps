@@ -71,7 +71,6 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
-    bool closeAll();
     void loadStartPage();
     virtual void updateScaling(int);
 
@@ -155,8 +154,6 @@ protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
     bool            m_isCustomWindow;
-
-    QString m_closeAct;
 
 private:
     std::wstring    m_sDownloadName;

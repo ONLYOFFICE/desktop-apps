@@ -145,7 +145,6 @@ public:
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
-    void closeAllEditors();
     void closePortal(const wstring&, bool editors = false);
     void setStyleSheet(const QString&);
 

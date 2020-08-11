@@ -301,13 +301,6 @@ void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
     closeEditor(index, checkmodified, true);
 }
 
-void CAscTabWidget::closeAllEditors()
-{
-    for (int i = tabBar()->count(); i-- > 0; ) {
-        closeEditor(i, false, false);
-    }
-}
-
 int CAscTabWidget::count(int type) const
 {
     if ( type < 0 )

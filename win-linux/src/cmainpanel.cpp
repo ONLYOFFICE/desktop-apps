@@ -305,39 +305,6 @@ void CMainPanel::pushButtonCloseClicked()
     emit mainWindowWantToClose();
 }
 
-bool CMainPanel::closeAll()
-{
-    if ( !m_closeAct.isEmpty() ) return false;
-
-    if ( m_pTabs->count() ) {
-        for (int i(m_pTabs->count()); !(--i < 0);) {
-            CTabPanel& _p = *m_pTabs->panel(i);
-            if ( _p.data()->modified() &&
-                    _p.data()->isViewType(cvwtEditor) )
-            {
-                if ( !_p.data()->closed() ) {
-                    int _answer = trySaveDocument(i);
-                    if ( _answer == MODAL_RESULT_NO ) {
-                        m_pTabs->editorCloseRequest(i);
-                        onDocumentSave(_p.cef()->GetId());
-                    } else
-                    if ( _answer == MODAL_RESULT_CANCEL ) {
-                        m_closeAct.clear();
-                        return false;
-                    }
-                }
-            } else {
-                m_pTabs->closeEditorByIndex(i);
-            }
-
-            if ( m_closeAct.isEmpty() )
-                m_closeAct = "window";
-        }
-    }
-
-    return true;
-}
-
 void CMainPanel::onAppCloseRequest()
 {
     onFullScreen(-1, false);
@@ -486,8 +453,6 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if ( !m_closeAct.isEmpty() ) return;
-
     onFullScreen(-1, false);
     if ( m_pTabs->isProcessed(index) ) {
         return;
@@ -563,8 +528,6 @@ int CMainPanel::trySaveDocument(int index)
 
 void CMainPanel::onPortalLogout(wstring wjson)
 {
-    if (!m_closeAct.isEmpty()) return;
-
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -588,8 +551,6 @@ void CMainPanel::onPortalLogout(wstring wjson)
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);
                         if ( _answer == MODAL_RESULT_CANCEL) {
-                            m_closeAct.clear();
-
                             AscAppManager::cancelClose();
                             return;
                         }
@@ -896,9 +857,8 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
                 }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
-            m_closeAct.clear();
 
-            AscAppManager::cancelClose();
+//            AscAppManager::cancelClose();
         }
     }
 }
@@ -960,7 +920,6 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
             }
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
-                m_closeAct.clear();
                 AscAppManager::cancelClose();
             }
     }
@@ -970,8 +929,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-//        if ( !m_closeAct.isEmpty() )
-            m_pTabs->closeEditorByIndex(index, false);
+        m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
         AscAppManager::cancelClose();
