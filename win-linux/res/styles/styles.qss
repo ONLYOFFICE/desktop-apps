@@ -111,10 +111,10 @@ QPushButton#toolButtonMain {
     border-right: 1px solid #a5a5a5;
 }
 
-QPushButton#toolButtonMain[theme=light] {
-    border: 1px solid #b6b6b6;
-    border-bottom: 0 none;
-}
+/*QPushButton#toolButtonMain[theme=light] {*/
+/*    border: 1px solid #b6b6b6;*/
+/*    border-bottom: 0 none;*/
+/*}*/
 
 QPushButton#toolButtonMain[class=active],
     QPushButton#toolButtonMain[class=active]:hover
@@ -138,12 +138,12 @@ QPushButton#toolButtonMain[class=normal]:hover {
     background: #cecece;
 }
 
-QPushButton#toolButtonMain[class=normal][theme=light],
-    QPushButton#toolButtonMain[class=normal][theme=light]:hover
-{
-    border: 0 none;
-    border-bottom: 1px solid #b6b6b6;
-}
+/*QPushButton#toolButtonMain[class=normal][theme=light],*/
+    /*QPushButton#toolButtonMain[class=normal][theme=light]:hover*/
+/*{*/
+    /*border: 0 none;*/
+    /*border-bottom: 1px solid #b6b6b6;*/
+/*}*/
 
 QPushButton::menu-indicator {
     /*border: 1px solid white;*/
