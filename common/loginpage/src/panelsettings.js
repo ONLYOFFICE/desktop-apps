@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                        <label class='sett__caption' l10n>${_lang.settScaling}</label>
+                                        <label class='sett__caption' l10n>${_lang.settScaling} *</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'>
@@ -108,7 +108,9 @@
                                     <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
+                                <div class="spacer" />
                             </div>
+                            <p class="sett__caption" style="text-align:left;margin-block-start:0.5em;">* - ${_lang.settAfterRestart}</p>
                         </div>
                     </div>`;
 
