@@ -250,6 +250,7 @@
         function _init_ppmenu() {
             ppmenu = new Menu({
                 id: 'pp-menu-files',
+                bottomlimitoffset: 10,
                 items: [{
                     caption: utils.Lang.menuFileOpen,
                     action: 'files:open'
@@ -345,6 +346,11 @@
                     }
 
                     console.log('portal authorized');
+                });
+
+                $('#box-recent .table-box').scroll(e => {
+                    if ( Menu.opened )
+                        Menu.closeAll();
                 });
 
                 return this;
