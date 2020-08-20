@@ -791,8 +791,12 @@ void CMainWindow::slot_modalDialog(bool status, HWND h)
     if ( h != hWnd ) {
         EnableWindow(hWnd, status ? FALSE : TRUE);
         m_modalHwnd = h;
-    } else m_modalHwnd = nullptr;
+    } else {
+        m_modalHwnd = nullptr;
 
+        if ( !status && IsWindowEnabled(hWnd) )
+            m_pMainPanel->focus();
+    }
 }
 
 void CMainWindow::slot_mainPageReady()
