@@ -200,7 +200,11 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
         _btn = new QPushButton(reFocus.cap(1));
         if ( !reFocus.cap(2).isEmpty() ) {
+#ifdef Q_OS_WIN
             _btn->setAutoDefault(true);
+#else
+            _btn->setDefault(true);
+#endif
         }
 
         m_boxButtons->layout()->addWidget(_btn);
@@ -314,8 +318,10 @@ void CMessage::modal()
     m_centralWidget->show();
 
     QList<QPushButton *> l = m_boxButtons->findChildren<QPushButton *>();
+    HWND _focused_handle = nullptr;
     foreach (QPushButton * b, l) {
         if (l.size() == 1 || b->autoDefault() || b->isDefault()) {
+            _focused_handle = (HWND)b->winId();
             QTimer::singleShot(200, m_centralWidget, [b]{
                 b->setFocus();
             });
@@ -326,7 +332,7 @@ void CMessage::modal()
 
     CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
     CWinWindow::center();
-    CWinWindow::modal();
+    CWinWindow::modal(_focused_handle);
 #else
     CInAppEventModal _event(parentWidget()->winId());
     CRunningEventHelper _h(&_event);
