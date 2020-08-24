@@ -114,12 +114,16 @@ CWinWindow::CWinWindow(HWND parent, const QString& title)
         throw std::runtime_error("Couldn't register window class");
 }
 
-void CWinWindow::modal()
+void CWinWindow::modal(HWND fh)
 {
-    EnableWindow(m_hParent, FALSE);
-
     ShowWindow(m_hSelf, SW_SHOW);
     UpdateWindow(m_hSelf);
+    SetFocus(m_hSelf);
+
+    if ( fh )
+        SetFocus(fh);
+
+    EnableWindow(m_hParent, FALSE);
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
