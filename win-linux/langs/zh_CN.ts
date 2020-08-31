@@ -4,32 +4,32 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="732"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1198"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1282"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>更新正在进行中。 取消更新并关闭应用程序？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1214"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1300"/>
         <source>Close all editors windows?</source>
         <translation>所有编辑器窗口都将关闭。 你想继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1410"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1522"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1411"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1523"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1412"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1524"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -37,7 +37,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="680"/>
+        <location filename="../src/asctabwidget.cpp" line="701"/>
         <source>Document</source>
         <translation>文档</translation>
     </message>
@@ -116,27 +116,27 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="196"/>
+        <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="252"/>
+        <location filename="../src/ceditorwindow_p.h" line="372"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="415"/>
+        <location filename="../src/ceditorwindow_p.h" line="527"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="185"/>
+        <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="481"/>
+        <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
@@ -279,94 +279,94 @@
         <translation>XPS文件 (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="132"/>
+        <location filename="../src/cfiledialog.cpp" line="133"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="168"/>
+        <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1%1已存在。&lt;br&gt;您要替换它吗？</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="194"/>
+        <location filename="../src/cfiledialog.cpp" line="195"/>
         <source>Word Document</source>
         <translation>Word文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="197"/>
+        <location filename="../src/cfiledialog.cpp" line="198"/>
         <source>Excel Workbook</source>
         <translation>Excel工作簿</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="200"/>
+        <location filename="../src/cfiledialog.cpp" line="201"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint演示文稿</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="203"/>
+        <location filename="../src/cfiledialog.cpp" line="204"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 文件 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="213"/>
-        <location filename="../src/cfiledialog.cpp" line="295"/>
+        <location filename="../src/cfiledialog.cpp" line="214"/>
+        <location filename="../src/cfiledialog.cpp" line="297"/>
         <source>Text documents</source>
         <translation>文本文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="214"/>
-        <location filename="../src/cfiledialog.cpp" line="303"/>
+        <location filename="../src/cfiledialog.cpp" line="215"/>
+        <location filename="../src/cfiledialog.cpp" line="305"/>
         <source>Spreadsheets</source>
         <translation>电子表格</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="215"/>
-        <location filename="../src/cfiledialog.cpp" line="311"/>
+        <location filename="../src/cfiledialog.cpp" line="216"/>
+        <location filename="../src/cfiledialog.cpp" line="313"/>
         <source>Presentations</source>
         <translation>演示文稿</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="216"/>
+        <location filename="../src/cfiledialog.cpp" line="217"/>
         <source>Web Page</source>
         <translation>网页</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="217"/>
+        <location filename="../src/cfiledialog.cpp" line="218"/>
         <source>Text files</source>
         <translation>文本文件</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="246"/>
-        <location filename="../src/cfiledialog.cpp" line="247"/>
+        <location filename="../src/cfiledialog.cpp" line="248"/>
+        <location filename="../src/cfiledialog.cpp" line="249"/>
         <source>Open Document</source>
         <translation>打开文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="258"/>
-        <location filename="../src/cfiledialog.cpp" line="267"/>
+        <location filename="../src/cfiledialog.cpp" line="260"/>
+        <location filename="../src/cfiledialog.cpp" line="269"/>
         <source>All Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="260"/>
-        <location filename="../src/cfiledialog.cpp" line="269"/>
+        <location filename="../src/cfiledialog.cpp" line="262"/>
+        <location filename="../src/cfiledialog.cpp" line="271"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="277"/>
-        <location filename="../src/cfiledialog.cpp" line="286"/>
+        <location filename="../src/cfiledialog.cpp" line="279"/>
+        <location filename="../src/cfiledialog.cpp" line="288"/>
         <source>Plugin file (*.plugin)</source>
         <translation>插件文件（*.plugin）</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="326"/>
+        <location filename="../src/cfiledialog.cpp" line="328"/>
         <source>Video file</source>
         <translation>視訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="329"/>
+        <location filename="../src/cfiledialog.cpp" line="333"/>
         <source>Audio file</source>
         <translation>音訊檔案</translation>
     </message>
@@ -374,48 +374,48 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1300"/>
+        <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="153"/>
+        <location filename="../src/cmainpanel.cpp" line="151"/>
         <source>FILE</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="603"/>
-        <location filename="../src/cmainpanel.cpp" line="642"/>
+        <location filename="../src/cmainpanel.cpp" line="625"/>
+        <location filename="../src/cmainpanel.cpp" line="669"/>
         <source>File format not supported.</source>
         <translation>不支持该文件格式</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="626"/>
+        <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="703"/>
+        <location filename="../src/cmainpanel.cpp" line="717"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1127"/>
+        <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1263"/>
+        <location filename="../src/cmainpanel.cpp" line="1281"/>
         <source>Sign Up</source>
         <translation>创建门户</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="855"/>
+        <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1019"/>
+        <location filename="../src/cmainpanel.cpp" line="1037"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>
@@ -423,7 +423,7 @@
 <context>
     <name>CMainPanelImpl</name>
     <message>
-        <location filename="../src/prop/cmainpanelimpl.cpp" line="53"/>
+        <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
         <translation type="unfinished"></translation>
     </message>
