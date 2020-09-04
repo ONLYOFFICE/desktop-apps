@@ -325,7 +325,7 @@
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => {return e.id == provider;})
+                    let _model = config.portals.checklist.find(e => {return e.provider == provider;})
                     return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
                 };
 
@@ -473,9 +473,9 @@
 
                 let _p;
                 !obj.provider && (obj.provider = 'asc');
-                if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
+                if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
-                    obj.provider = _p.id;
+                    obj.provider = _p.provider;
 
                 let info = {
                     portal: obj.domain,

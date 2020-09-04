@@ -196,7 +196,7 @@ window.DialogConnect = function(params) {
 
     function _require_portal_info(portal, provider) {
         !provider && (provider = 'asc');
-        let _info = config.portals.checklist.find(i => i.id == provider);
+        let _info = config.portals.checklist.find(i => i.provider == provider);
         var _url = portal + _info.check.url;
 
         return new Promise((resolve, reject) => {
@@ -239,12 +239,12 @@ window.DialogConnect = function(params) {
 
             let $combo = $el.find('select');
             let _clouds = config.portals.checklist;
-            if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
+            if ( _clouds.length == 1 && _clouds[0].provider == 'asc' ) {
                 $combo.append(`<option value='asc'>onlyoffice</option>`);
                 $combo.parents('.select-field').hide();
             } else {
                 for (let c of _clouds) {
-                    $combo.append(`<option value='${c.id}'>${c.name}</option>`);
+                    $combo.append(`<option value='${c.provider}'>${c.name}</option>`);
                 }
                 $combo.val(params.provider);
 
