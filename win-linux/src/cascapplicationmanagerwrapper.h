@@ -173,7 +173,6 @@ public:
     static void             cancelClose();
     static void checkUpdates();
 
-    void manageUndocking(int uid, const std::wstring& action);
     uint logoutCount(const wstring& portal) const;
     void Logout(const wstring& portal);
     void launchAppClose();

@@ -287,29 +287,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
-        if ( !(cmd.find(L"editor:event") == wstring::npos) ) {
-            wstring action = pData->get_Param();
-            if ( action.find(L"undocking") != wstring::npos ) {
-//                int id = event->get_SenderId();
-//                SKIP_EVENTS_QUEUE([=]{
-//                    manageUndocking(id, action);
-//                });
-
-                return true;
-            }
-        } else
-#if defined(__APP_MULTI_WINDOW)
-        if ( !(cmd.find(L"window:features") == wstring::npos) ) {
-            const wstring& param = pData->get_Param();
-            if ( param.compare(L"request") == 0 ) {
-//                QJsonObject _json_obj{{"canUndock", "true"}};
-
-//                AscAppManager::sendCommandTo(AscAppManager::GetViewById(event->get_SenderId()),
-//                                    L"window:features", Utils::encodeJson(_json_obj).toStdWString());
-            }
-            return true;
-        } else
-#endif
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
 #ifdef _UPDMODULE
             if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
@@ -997,8 +974,6 @@ namespace Drop {
     auto callback_to_attach(const CEditorWindow * editor) -> void {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
-//            QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
-//            CAscApplicationManagerWrapper::sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
             CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
@@ -1086,10 +1061,6 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
             }
 
             if ( editor_win ) {
-                CTabPanel * tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
-                QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
-                sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
-
                 SKIP_EVENTS_QUEUE([=]{
                     _main_window->attachEditor(tabpanel);
 
@@ -1167,10 +1138,6 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             if ( _editor ) {
 //                _editor->setParent(nullptr);
                 e->accept();
-//                QJsonObject _json_obj{{"action", "undocking"},
-//                                      {"status", "undocked"}};
-//                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
-
 //                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
                         QRect rect = _main_window->windowRect();
@@ -1325,52 +1292,6 @@ void CAscApplicationManagerWrapper::destroyViewer(int id)
 void CAscApplicationManagerWrapper::destroyViewer(QCefView * v)
 {
     destroyViewer(v->GetCefView()->GetId());
-}
-
-void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& action)
-{
-    CTabPanel * tabpanel = nullptr;
-    QJsonObject _json_obj;
-    _json_obj["action"] = "undocking";
-
-
-    if ( action.find(L"undock") == wstring::npos ) {
-        _json_obj["status"] = "docked";
-
-        CSingleWindowBase * editor_win = nullptr;
-        for (auto const& w : m_vecEditors) {
-            CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(w);
-
-            if ( _w->holdView(id) ) {
-                editor_win = _w;
-                break;
-            }
-        }
-
-        if ( editor_win ) {
-            tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
-            sendCommandTo(tabpanel->cef(), L"window:status", Utils::stringifyJson(_json_obj).toStdWString());
-
-            CMainWindow * main_win = topWindow();
-            main_win->attachEditor(tabpanel);
-
-            closeEditorWindow(size_t(editor_win));
-        }
-    } else {
-        _json_obj["status"] = "undocked";
-
-        CMainWindow * const main_win = mainWindowFromViewId(id);
-        if ( main_win ) {
-            int index = main_win->mainPanel()->tabWidget()->tabIndexByView(id);
-            if ( !(index < 0) ) {
-                QRect r = main_win->windowRect();
-                tabpanel = qobject_cast<CTabPanel *>(main_win->editor(index));
-
-                CTabUndockEvent event(tabpanel);
-                QApplication::sendEvent(this, &event);
-            }
-        }
-    }
 }
 
 uint CAscApplicationManagerWrapper::logoutCount(const wstring& portal) const
