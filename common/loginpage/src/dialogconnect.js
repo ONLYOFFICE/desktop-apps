@@ -208,9 +208,10 @@ window.DialogConnect = function(params) {
                 headers: _info.check.headers,
                 complete: function(e, status) {
                     if ( status == 'success' ) {
-                        if ( provider == 'asc' && !!e.responseJSON )
+                        try {
+                            JSON.parse(e.responseText)
                             resolve({status:status, response:e});
-                        else {
+                        } catch (err) {
                             e.status = 404;
                             reject({status:'error', response:e});
                         }
