@@ -96,6 +96,13 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(1324, 800)*m_dpiRatio);
 
+    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+    if ( _window_rect.width() < _window_min_size.width() )
+        _window_rect.setWidth(_window_min_size.width());
+
+    if ( _window_rect.height() < _window_min_size.height() )
+        _window_rect.setHeight(_window_min_size.height());
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.intersects(_window_rect) ) {
         if ( _screen_size.width() < _window_rect.width() ||
