@@ -6,6 +6,18 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>5.6</title>
+            <pubDate>Fri, 24 Jul 2020 18:50:08 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.6/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/5.6/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-5.6.zip" sparkle:version="403" sparkle:shortVersionString="5.6" length="223780980" type="application/octet-stream" sparkle:edSignature="ogDyRiUG59O5pw4FJHXjejFBq+zK/+lHLlsTBbrVypXPYEJ7sMTom4cRrCyWPaXOUaX42LynXbGIFfg3BihjDg==" sparkle:dsaSignature="MCwCFH/eBvz8zonAl5hadstYMaYJ+pPIAhQKyHtkZEzNW21yr+sz0mgkos/INQ=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE403-377.delta" sparkle:version="403" sparkle:shortVersionString="5.6" sparkle:deltaFrom="377" length="14202016" type="application/octet-stream" sparkle:edSignature="PvXaiSmcCG6FGzkMEUpreV1dOGSRViQJEprVIX8J8r6fo8bFGqTyRBbJ4edaAAHibXifD/9JIEHTP86tDPWGAg==" sparkle:dsaSignature="MCwCFGgFePpE/Iucx9ywMS1q/wqVTYJvAhQC6PlWyRbD1fbpuh+3C5LJb2qCEg=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE403-367.delta" sparkle:version="403" sparkle:shortVersionString="5.6" sparkle:deltaFrom="367" length="96448829" type="application/octet-stream" sparkle:edSignature="ieNFDZ7xzMvpgpIdfGFCYguNlqb5jIn1JXFjv03k+IC4U8zhZGrGY14khpexoP7bIdq8y2j7rVrzQGaPj1LTCw==" sparkle:dsaSignature="MCwCFEGV9ryJK8sI7BZ4tVlvOi52r//bAhRb2cZq9F71ycq5dCJhItRA22XyEA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>5.5.1</title>
             <pubDate>Wed, 01 Apr 2020 15:00:32 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
