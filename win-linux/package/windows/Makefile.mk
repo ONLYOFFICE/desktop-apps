@@ -38,7 +38,6 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	ISCC_PARAMS += //D_ONLYOFFICE=1
 endif
 ISCC_PARAMS += //D_UPDMODULE=1
-ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ISCC_PARAMS += //DsOutputFileName=$(notdir $(basename $@))
