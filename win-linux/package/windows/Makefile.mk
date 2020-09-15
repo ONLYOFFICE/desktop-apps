@@ -83,7 +83,7 @@ clean-package:
 		$(VCREDIST) \
 		$(INDEX_HTML)
 
-deploy: $(PACKAGES) $(APPCAST) $(CHANGES_INT) $(CHANGES_RU) $(INDEX_HTML)
+deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_EXE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
@@ -105,15 +105,19 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
 
+ifneq (,$(wildcard $(CHANGES_INT)))
 	aws s3 cp \
 	$(CHANGES_INT) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
 	--acl public-read
+endif
 
+ifneq (,$(wildcard $(CHANGES_RU)))
 	aws s3 cp \
 	$(CHANGES_RU) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
 	--acl public-read
+endif
 endif
 
 #	aws s3 sync \
