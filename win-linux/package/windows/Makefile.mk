@@ -81,6 +81,7 @@ clean-package:
 		$(dir $(DESKTOP_EDITORS_ZIP))*.zip \
 		$(dir $(DESKTOP_EDITORS_UPDATE))*.exe \
 		$(VCREDIST) \
+		$(APPCAST) \
 		$(INDEX_HTML)
 
 deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
