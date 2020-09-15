@@ -503,6 +503,10 @@
     return cefView;
 }
 
+- (ASCTabView *)tabViewWithId:(int)viewId {
+    return [self.tabsControl tabWithUUID:[NSString stringWithFormat:@"%d", viewId]];
+}
+
 #pragma mark -
 #pragma mark Internal
 

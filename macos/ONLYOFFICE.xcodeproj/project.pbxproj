@@ -1081,10 +1081,9 @@
 			};
 			buildConfigurationList = FCBC42631B9D650400405301 /* Build configuration list for PBXProject "ONLYOFFICE" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ru,

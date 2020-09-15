@@ -351,7 +351,7 @@ public:
                     }
 
                     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
-                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
+                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData from:senderId];
                         break;
                     }
 
