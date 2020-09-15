@@ -27,6 +27,7 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
+APPCAST := win-linux/package/windows/appcast.xml
 INDEX_HTML := win-linux/package/windows/index.html
 
 ISCC_PARAMS += //Qp
@@ -80,7 +81,7 @@ clean-package:
 		$(VCREDIST) \
 		$(INDEX_HTML)
 
-deploy: $(PACKAGES) $(INDEX_HTML)
+deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_EXE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
@@ -102,6 +103,9 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 #	--acl public-read \
 #	--delete
 
+M4_PARAMS += -D M4_PRODUCT_VERSION="$(PRODUCT_VERSION)"
+M4_PARAMS += -D M4_BUILD_NUMBER="$(BUILD_NUMBER)"
+M4_PARAMS += -D M4_UPDATE_DATE="$(shell date --utc +%b\ %e\ %H:%M\ %Z\ %Y)"
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
 M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
