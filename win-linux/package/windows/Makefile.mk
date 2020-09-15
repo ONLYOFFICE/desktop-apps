@@ -28,6 +28,8 @@ endif
 VCREDIST += $(VCREDIST15)
 
 APPCAST := win-linux/package/windows/appcast.xml
+CHANGES_INT := win-linux/package/windows/changes/$(PRODUCT_VERSION)/changes.html
+CHANGES_RU := win-linux/package/windows/changes/$(PRODUCT_VERSION)/changes_ru.html
 INDEX_HTML := win-linux/package/windows/index.html
 
 ISCC_PARAMS += //Qp
@@ -81,7 +83,7 @@ clean-package:
 		$(VCREDIST) \
 		$(INDEX_HTML)
 
-deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
+deploy: $(PACKAGES) $(APPCAST) $(CHANGES_INT) $(CHANGES_RU) $(INDEX_HTML)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_EXE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
@@ -96,6 +98,23 @@ deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
 	$(DESKTOP_EDITORS_UPDATE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
+
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	aws s3 cp \
+	$(APPCAST) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	--acl public-read
+
+	aws s3 cp \
+	$(CHANGES_INT) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
+	--acl public-read
+
+	aws s3 cp \
+	$(CHANGES_RU) \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
+	--acl public-read
+endif
 
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
