@@ -70,6 +70,8 @@ int main( int argc, char *argv[] )
 #ifdef _WIN32
     Core_SetProcessDpiAwareness();
     Utils::setAppUserModelId(APP_USER_MODEL_ID);
+#else
+    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
 #endif
 
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
