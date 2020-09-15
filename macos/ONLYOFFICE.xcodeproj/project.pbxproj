@@ -63,7 +63,6 @@
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
 		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FC94247A1CB7C92100C78A27 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = FC9424791CB7C92000C78A27 /* dsa_pub.pem */; };
 		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
 		FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
@@ -273,7 +272,6 @@
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
 		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCReplacePresentationAnimator.mm; sourceTree = "<group>"; };
 		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
-		FC9424791CB7C92000C78A27 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ONLYOFFICE/update/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 		FC981B3B1C744D39006F669C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FC98AEFC1E94E16A00718A12 /* file-csv.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-csv.icns"; sourceTree = "<group>"; };
 		FC98AEFD1E94E16A00718A12 /* file-djvu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-djvu.icns"; sourceTree = "<group>"; };
@@ -701,7 +699,6 @@
 			isa = PBXGroup;
 			children = (
 				BE6251B922BD089100656116 /* dictionaries */,
-				FC9424791CB7C92000C78A27 /* dsa_pub.pem */,
 				FC081E981C32575800F9881C /* ONLYOFFICE */,
 				FC081E9A1C3257A800F9881C /* ONLYOFFICE-MAS */,
 				FC081EBC1C325E8400F9881C /* file-formats */,
@@ -1146,7 +1143,6 @@
 				FC081EAE1C3258A800F9881C /* InfoPlist.strings in Resources */,
 				FC98AF321E94E16A00718A12 /* file-pptx.icns in Resources */,
 				FC98AF381E94E16A00718A12 /* file-txt.icns in Resources */,
-				FC94247A1CB7C92100C78A27 /* dsa_pub.pem in Resources */,
 				FCBC42791B9D650500405301 /* Main.storyboard in Resources */,
 				FC65A6421F33356300BD0F7E /* Info.plist in Resources */,
 			);
