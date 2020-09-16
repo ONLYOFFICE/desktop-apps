@@ -27,9 +27,9 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
-APPCAST := win-linux/package/windows/appcast.xml
-CHANGES_INT := win-linux/package/windows/changes/$(PRODUCT_VERSION)/changes.html
-CHANGES_RU := win-linux/package/windows/changes/$(PRODUCT_VERSION)/changes_ru.html
+APPCAST := win-linux/package/windows/update/appcast.xml
+CHANGES_INT := win-linux/package/windows/update/changes/$(PRODUCT_VERSION)/changes.html
+CHANGES_RU := win-linux/package/windows/update/changes/$(PRODUCT_VERSION)/changes_ru.html
 INDEX_HTML := win-linux/package/windows/index.html
 
 ISCC_PARAMS += //Qp
@@ -103,20 +103,20 @@ deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	aws s3 cp \
 	$(APPCAST) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/ \
 	--acl public-read
 
 ifneq (,$(wildcard $(CHANGES_INT)))
 	aws s3 cp \
 	$(CHANGES_INT) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
 	--acl public-read
 endif
 
 ifneq (,$(wildcard $(CHANGES_RU)))
 	aws s3 cp \
 	$(CHANGES_RU) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/changes/ \
+	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
 	--acl public-read
 endif
 endif
