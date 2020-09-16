@@ -147,7 +147,7 @@ bool CSingleWindowPlatform::event(QEvent * event)
                 m_buttonMaximize->style()->polish(m_buttonMaximize);
             } else
             if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-                layout()->setMargin(CX11Decoration::customWindowBorderWith());
+                layout()->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
 
                 m_buttonMaximize->setProperty("class", "normal");
                 m_buttonMaximize->style()->polish(m_buttonMaximize);

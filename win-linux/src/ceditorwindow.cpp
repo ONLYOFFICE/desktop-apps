@@ -322,6 +322,8 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
 {
+    CX11Decoration::onDpiChanged(newfactor);
+
 //    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }

@@ -344,6 +344,7 @@ void CMainWindow::slot_modalDialog(bool status, WId h)
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
+    CX11Decoration::onDpiChanged(factor);
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {

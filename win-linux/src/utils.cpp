@@ -339,7 +339,11 @@ unsigned Utils::getScreenDpiRatio(const QPoint& pt)
     QWidget _w;
     _w.setGeometry(QRect(pt, QSize(10,10)));
 
+#ifdef Q_OS_LINUX
+    return getScreenDpiRatioByWidget(&_w);
+#else
     return getScreenDpiRatioByHWND(_w.winId());
+#endif
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
