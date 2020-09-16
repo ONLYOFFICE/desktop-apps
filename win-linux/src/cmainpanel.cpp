@@ -182,7 +182,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         layoutBtns->addWidget(m_pButtonClose);
 
 #ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
@@ -350,7 +350,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
     if ( m_isCustomWindow ) {
 #ifdef __linux__
-        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith());
+        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith() * scaling());
 #endif
 
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
