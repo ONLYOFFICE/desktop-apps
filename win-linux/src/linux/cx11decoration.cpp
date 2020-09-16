@@ -546,10 +546,6 @@ void CX11Decoration::setMaximized(bool bVal)
     m_bIsMaximized = bVal;
 }
 
-int CX11Decoration::devicePixelRatio()
-{
-    return gtk_addon::devicePixelRatio();
-}
 
 int CX11Decoration::customWindowBorderWith()
 {

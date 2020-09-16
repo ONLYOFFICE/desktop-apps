@@ -63,7 +63,6 @@ public:
     void setMaximized(bool);
     void raiseWindow();
 
-    static int devicePixelRatio();
     static int customWindowBorderWith();
 
     int m_nDirection;
