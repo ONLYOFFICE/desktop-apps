@@ -6,6 +6,7 @@
             "url":"/api/2.0/capabilities.json"
         },
         "editorPage" : "/products/files/doceditor.aspx",
+        "startPage": "/Products/Files/",
         "cryptoSupport" : "true"
     },
     {
@@ -15,14 +16,14 @@
             "url": "status.php"
         },
         "editorPage" : "/apps/onlyoffice/",
-        "installLink" : "https://marketplace.owncloud.com/apps/onlyoffice",
+        "startPage": "/",
         "cryptoSupport" : "true"
     },
     {
         "provider": "nextc",
         "name" : "Nextcloud",
         "editorPage" : "/apps/onlyoffice/",
-        "installLink" : "https://apps.nextloud.com/apps/onlyoffice",
+        "startPage": "/",
         "check": {
             "url": "status.php",
             "headers": {

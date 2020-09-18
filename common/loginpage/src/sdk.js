@@ -79,6 +79,8 @@
                     c.check.url = '/'.concat(c.check.url);
                 if ( !c.provider && !!c.id )
                     c.provider = c.id;
+                if ( !c.startPage )
+                    c.startPage = '/';
             }
         } else {
             _clouds = [{ provider: "asc",

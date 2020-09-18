@@ -141,7 +141,7 @@ public:
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(const COpenOptions&);
-    int  addPortal(const QString& url, const QString& name, const QString& provider);
+    int  addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage = QString());
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
@@ -205,7 +205,7 @@ public:
     void cancelDocumentSaving(int index);
     void setEditorOptions(int, const wstring&);
 
-    int  openPortal(const QString& url, const QString& provider);
+    int  openPortal(const QString& url, const QString& provider, const QString& entrypage);
     bool updatePortal(int index, const QString& url = QString());
     int  newPortal(const QString& url, const QString& name);
 

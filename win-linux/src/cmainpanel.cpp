@@ -1231,9 +1231,10 @@ void CMainPanel::onPortalOpen(QString json)
     if(jerror.error == QJsonParseError::NoError) {
         QJsonObject objRoot = jdoc.object();
 
-        QString _portal = objRoot["portal"].toString();
+        QString _portal = objRoot["portal"].toString(),
+                _entry = objRoot["entrypage"].toString();
         if ( !_portal.isEmpty() ) {
-            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"));
+            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"), _entry);
             if ( !(res < 0) ) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);

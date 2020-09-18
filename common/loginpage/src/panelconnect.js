@@ -373,8 +373,11 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
+                    let _pm = config.portals.checklist.find(e => e.provider == model.provider),
+                        _portal_start_page = '/';
+                    if ( _pm ) _portal_start_page = _pm.startPage;
                     // !model.logged ? _do_connect.call(this, model) :
-                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
+                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path, entrypage:_portal_start_page}));
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{

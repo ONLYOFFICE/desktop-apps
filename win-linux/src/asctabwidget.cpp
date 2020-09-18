@@ -347,7 +347,7 @@ bool CAscTabWidget::hasForPortal(const QString& portal)
     return false;
 }
 
-int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider)
+int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage)
 {
     if ( url.isEmpty() ) return -1;
 
@@ -355,7 +355,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     QString args, _url = url;
     if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
-        args.append("/Products/Files/?desktop=true");
+        args.append("/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
@@ -372,7 +372,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
     pView->cef()->SetExternalCloud(provider.toStdWString());
-    pView->cef()->load((_url + args).toStdWString());
+    pView->cef()->load((_url + entrypage + args).toStdWString());
 
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
@@ -733,13 +733,13 @@ int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, b
     return tabIndex;
 }
 
-int CAscTabWidget::openPortal(const QString& url, const QString& provider)
+int CAscTabWidget::openPortal(const QString& url, const QString& provider, const QString& entrypage)
 {
     QString portal_name = Utils::getPortalName(url);
 
     int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url, "", provider);
+        tabIndex = addPortal(url, "", provider, entrypage);
     } else {
 //        updatePortal(tabIndex, url);
     }
