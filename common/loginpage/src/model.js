@@ -134,11 +134,12 @@ Collection.prototype.size = function() {
 };
 
 Collection.prototype.stringify = function() {
-    let narray = this.items.map(s => {
-        const {events, ...y} = s;
-        return y;
-    });
-    return JSON.stringify(narray);
+//    let narray = this.items.map(s => {
+//        const {events, ...y} = s;     ancient version of chromium has no full support for 'spread' operator
+//        return y;
+//    });
+//    return JSON.stringify(narray);
+    return '';
 };
 
 function Model(attributes) {
