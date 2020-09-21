@@ -684,10 +684,10 @@ void CAscApplicationManagerWrapper::startApp()
                 if ( n.startsWith("--new:") ) {
                     QRegularExpressionMatch match = re.match(n);
                     if ( match.hasMatch() ) {
-                        int _format;
-                        if ( match.captured(1) == "word" ) _format = etDocument; else
-                        if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
-                        if ( match.captured(1) == "slide" ) _format = etPresentation;
+                        int _format = AVS_OFFICESTUDIO_FILE_UNKNOWN;
+                        if ( match.captured(1) == "word" ) _format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX; else
+                        if ( match.captured(1) == "cell" ) _format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX; else
+                        if ( match.captured(1) == "slide" ) _format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX;
 
                         _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
                     }
