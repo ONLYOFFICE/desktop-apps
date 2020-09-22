@@ -143,9 +143,15 @@
             $btnApply.disable(false);
         };
 
+        const _validate_user_name = name => {
+            return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+        };
+
         function _on_btn_apply(e) {
             let _user_new_name = $userName.val();
-            if ( _user_new_name && _user_new_name.length ) {
+            if ( _user_new_name && _user_new_name.length &&
+                    _validate_user_name(_user_new_name) ) 
+            {
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
