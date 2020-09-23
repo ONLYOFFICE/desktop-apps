@@ -148,9 +148,10 @@ window.DialogConnect = function(params) {
                         provider:provider
                     });
                 } else {
-                    if ( obj.response.status == 404 )
+                    // if ( obj.response.status == 404 || obj.status == 'timeout' ) {
                         _set_error(utils.Lang.errLoginPortal, '#auth-portal');
-                    else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    // } else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    console.log(`get portal info status: ${obj.status}, ${!!obj.response ? obj.response.statusText:'no response'}`);
                 }
             }
 
