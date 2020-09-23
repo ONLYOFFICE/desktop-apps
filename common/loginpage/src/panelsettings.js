@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="spacer" />
                             </div>
-                            <p class="sett__caption" style="text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
+                            <p id="caption-restart" class="sett__caption" style="display:none;text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
                         </div>
                     </div>`;
 
@@ -255,6 +255,8 @@
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
+
+                            $('#caption-restart', $panel).show();
                         }
                     }
                 } else
