@@ -42,7 +42,7 @@ changequote({{,}})dnl
 <body>
     <div class="version">
         <h1>M4_COMPANY_NAME M4_PRODUCT_NAME M4_PRODUCT_VERSION<span class="releasedate"> - M4_RELEASE_DATE</span></h1>
-include(update/changes/M4_PRODUCT_VERSION/M4_L10N.html)
+include(win-linux/package/windows/update/changes/M4_PRODUCT_VERSION/M4_L10N.html)
         <div style="margin:0 0 20px 0;"><a href="defn({{CHANGES[Url]}})" target="_blank">defn({{CHANGES[More[M4_L10N]]}})</a></div>
     </div>
 </body>
