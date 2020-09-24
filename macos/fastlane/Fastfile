@@ -79,6 +79,9 @@ platform :mac do
       tag: "macos/v#{version_number}-#{build_number}",
       build_number: build_number
     )
+
+    # push changes
+    push_to_git_remote
   end
 
 end
