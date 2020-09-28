@@ -144,7 +144,14 @@
         };
 
         const _validate_user_name = name => {
-            return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+            // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+
+            /* @winxpsupport
+            *  we use chrome ver 49 on win xp,
+            *  that version has no support for unicode in regexp
+            */
+            if (/windows nt 5/i.test(navigator.appVersion)) return true;
+            else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"\\.\\- ]+$', 'iu')).test(name)
         };
 
         function _on_btn_apply(e) {
