@@ -27,9 +27,10 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
+BUILD_TIMESTAMP = $(shell date +%s)
 APPCAST := win-linux/package/windows/update/appcast.xml
-CHANGES_EN := win-linux/package/windows/update/changes/changes.html
-CHANGES_RU := win-linux/package/windows/update/changes/changes_ru.html
+CHANGES_EN := win-linux/package/windows/update/changes.html
+CHANGES_RU := win-linux/package/windows/update/changes_ru.html
 INDEX_HTML := win-linux/package/windows/index.html
 
 ISCC_PARAMS += //Qp
@@ -86,7 +87,7 @@ clean-package:
 		$(CHANGES_RU) \
 		$(INDEX_HTML)
 
-deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
+deploy: $(PACKAGES) $(APPCAST) $(CHANGES_EN) $(CHANGES_RU) $(INDEX_HTML)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_EXE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
@@ -102,26 +103,20 @@ deploy: $(PACKAGES) $(APPCAST) $(INDEX_HTML)
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	aws s3 cp \
-	$(APPCAST) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/ \
-	--acl public-read
+		$(APPCAST) \
+		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/ \
+		--acl public-read
 
-# ifneq (,$(wildcard $(CHANGES_EN)))
-# 	aws s3 cp \
-# 	$(CHANGES_EN) \
-# 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
-# 	--acl public-read
-# endif
+	aws s3 cp \
+		$(CHANGES_EN) \
+		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
+		--acl public-read
 
-# ifneq (,$(wildcard $(CHANGES_RU)))
-# 	aws s3 cp \
-# 	$(CHANGES_RU) \
-# 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
-# 	--acl public-read
-# endif
-endif
+	aws s3 cp \
+		$(CHANGES_RU) \
+		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
+		--acl public-read
 
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
@@ -131,11 +126,8 @@ endif
 
 M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
 M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
-M4_PARAMS += -D M4_PRODUCT_VERSION="$(PRODUCT_VERSION)"
-M4_PARAMS += -D M4_BUILD_NUMBER="$(BUILD_NUMBER)"
-M4_PARAMS += -D M4_ANCHOR_VERSION="$(subst .,,$(PRODUCT_VERSION))"
-M4_PARAMS += -D M4_RELEASE_DATE="$(shell date --utc +%b\ %e\ %Y)"
-M4_PARAMS += -D M4_UPDATE_DATE="$(shell date --utc +%b\ %e\ %H:%M\ %Z\ %Y)"
+M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
+M4_PARAMS += -D M4_BUILD_TIMESTAMP="$(shell date +%s)"
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
 M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
@@ -146,7 +138,7 @@ $(CHANGES_EN): L10N=en
 $(CHANGES_RU): L10N=ru
 
 $(CHANGES_EN) $(CHANGES_RU): $(BRANDING_DIR)/win-linux/package/windows/update/changes.html.m4
-	m4 $(M4_PARAMS) -D M4_L10N="$(L10N)" $< > $@
+	m4 $(M4_PARAMS) -D L10N="$(L10N)" $< > $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
