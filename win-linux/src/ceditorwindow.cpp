@@ -75,14 +75,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 #else
 
     if ( d_ptr->canExtendTitle() ) {
-        QColor color;
-        switch (panel->data()->contentType()) {
-        case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
-        case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
-        case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
-        }
-
-        m_bgColor = RGB(color.red(), color.green(), color.blue());
+        setWindowBackgroundColor(editor_color(panel->data()->contentType()));
     }
 
     m_pMainPanel = createMainPanel(m_pWinPanel);
@@ -226,7 +219,8 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             mainGridLayout->addWidget(m_boxTitleBtns);
             m_labelTitle->setText(APP_TITLE);
         } else {
-            mainPanel->setProperty("window", "pretty");
+            if (d_ptr->panel()->data()->contentType() != etUndefined)
+                mainPanel->setProperty("window", "pretty");
             m_boxTitleBtns->setParent(mainPanel);
             m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
         }
@@ -328,6 +322,10 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
 {
+#ifdef Q_OS_LINUX
+    CX11Decoration::onDpiChanged(newfactor);
+#endif
+
 //    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }
@@ -391,6 +389,11 @@ void CEditorWindow::recalculatePlaces()
 
     m_pMainView->lower();
     }
+}
+
+void CEditorWindow::focus()
+{
+    mainView()->view()->setFocusToCef();
 }
 
 void CEditorWindow::setReporterMode(bool apply)

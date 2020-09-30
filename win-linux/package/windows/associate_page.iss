@@ -490,6 +490,7 @@ var
   args, regpath: String;
   progpath: String;
   argsArray: TArrayOfString;
+  version: TWindowsVersion;
 begin
   AddKeyValue(langs, 'cs_CZ', 'cs-CZ:new.docx:new.pptx:new.xlsx');
   AddKeyValue(langs, 'de',    'de-DE:new.docx:new.pptx:new.xlsx');
@@ -527,6 +528,13 @@ begin
   begin
     RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},10'));
     RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + argsArray[3]);
+  end;
+
+  GetWindowsVersionEx(version);
+  if (version.Major = 10) and CheckCommandlineParam('/FORCEADDMENUNEW') then begin
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', '{#ASCC_REG_PREFIX}.Document.12')
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', '{#ASCC_REG_PREFIX}.Sheet.12')
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', '{#ASCC_REG_PREFIX}.Show.12')
   end;
 end;
 

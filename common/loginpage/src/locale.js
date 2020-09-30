@@ -112,6 +112,8 @@ l10n.en = {
     ,settOptCheckNever: 'Never'
     ,settOptCheckDay: 'Every day'
     ,settOptCheckWeek: 'Every week'
+    ,settScaling: 'Interface scaling'
+    ,settOptScalingAuto: 'Auto'
     ,aboutProFeaturesAvailable: 'With access to pro features'
 }
 
@@ -354,6 +356,9 @@ l10n.ru = {
     ,settOptCheckNever: 'Никогда'
     ,settOptCheckDay: 'Каждый день'
     ,settOptCheckWeek: 'Каждую неделю'
+    ,settScaling: 'Масштабирование интерфейса'
+    ,settOptScalingAuto: 'Авто'
+    ,aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
 
 l10n.de = {
@@ -437,6 +442,7 @@ l10n.de = {
     ,settOptCheckNever: 'Niemals'
     ,settOptCheckDay: 'Täglich'
     ,settOptCheckWeek: 'Jede Woche'
+    ,aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
 };
 
 l10n.it_IT = {
@@ -520,6 +526,7 @@ l10n.it_IT = {
     ,settOptCheckNever: 'Mai'
     ,settOptCheckDay: 'Ogni giorno'
     ,settOptCheckWeek: 'Ogni settimana'
+    ,aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
 };
 
 l10n.fr = {
@@ -603,6 +610,7 @@ l10n.fr = {
     ,settOptCheckNever: 'Jamais'
     ,settOptCheckDay: 'Chaque jour'
     ,settOptCheckWeek: 'Chaque semaine'
+    ,aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
 };
 
 l10n.es = {
@@ -682,6 +690,7 @@ l10n.es = {
     ,settLanguage: 'Lenguaje de interfaz'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
     ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
+    ,aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
 };
 
 l10n.pt_BR = {
@@ -761,6 +770,7 @@ l10n.pt_BR = {
     ,settLanguage: 'Idioma de Interface'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
     ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
+    ,aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
 
 l10n.pl = {
@@ -944,19 +954,25 @@ function translate(str, lang) {
 
 function changelang(lang) {
     let _applytohtml = l => {
-        let newtr = l10n[l];
+        let newtr = Object.assign({}, l10n.en, l10n[l]);
         let elems = Array.from(document.querySelectorAll('[l10n]'));
 
         for (const [key, value] of Object.entries(utils.Lang)) {
-            elems.every(el => {
-                if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
-                    if ( el.innerHTML === value && !!newtr[key] ) {
-                        $(el).text(newtr[key]);
+            if ( !!newtr[key] ) {
+                let _i = -1;
+                elems.every( (el, index) => {
+                    if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
+                        if ( (el.innerHTML === value || el.innerHTML === l10n.en[key]) ) {
+                            $(el).text(newtr[key]);
+                            _i = index;
+                        }
                     }
-                }
 
-                return true;
-            });
+                    return true;
+                })
+
+                if ( !(_i < 0) ) elems.splice(_i, 1);
+            }
         }
     }
 

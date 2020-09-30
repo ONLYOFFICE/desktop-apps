@@ -22,6 +22,8 @@
 #include "clangater.h"
 #include "cmessage.h"
 #include "ceditortools.h"
+#include "cfilechecker.h"
+#include "OfficeFileFormats.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -58,8 +60,8 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
 {
     CAscApplicationManager::SetEventListener(this);
 
-    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
-                        this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
 
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
@@ -273,6 +275,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
+#ifdef Q_OS_WIN
+        if ( cmd.find(L"app:onready") != std::wstring::npos ) {
+            OSVERSIONINFO osvi;
+            ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+            osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+            GetVersionEx(&osvi);
+
+            if ( !(osvi.dwMajorVersion > 5) )
+                sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
+        } else
+#endif
         if ( cmd.compare(0, 8, L"settings") == 0 ) {
             if ( cmd.rfind(L"apply") != wstring::npos ) {
                 applySettings(pData->get_Param());
@@ -327,6 +340,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             if ( pData->get_Param() == L"offline" ) {}
             else {
                 topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
+#ifdef Q_OS_LINUX
+                topWindow()->bringToTop();
+#endif
                 return true;
             }
         } else
@@ -347,13 +363,29 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( cmd.compare(L"open:recent") == 0 ) {
+            QJsonObject objRoot = Utils::parseJson(pData->get_Param());
+            if ( !objRoot.isEmpty() ) {
+                objRoot["type"].toString();
+
+                COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                opts.format = objRoot["type"].toInt();
+                topWindow()->mainPanel()->onLocalFileRecent(opts);
+            }
+
+            return true;
+        } else
         if ( cmd.compare(L"create:new") == 0 ) {
             wstring format = pData->get_Param();
-            int _f = format == L"word" ? etDocument :
-                        format == L"cell" ? etSpreadsheet :
-                        format == L"slide" ? etPresentation : etUndefined;
+            int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                        format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                        format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            return true;
+        } else
+        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+            CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         }
 
@@ -663,10 +695,10 @@ void CAscApplicationManagerWrapper::startApp()
                 if ( n.startsWith("--new:") ) {
                     QRegularExpressionMatch match = re.match(n);
                     if ( match.hasMatch() ) {
-                        int _format;
-                        if ( match.captured(1) == "word" ) _format = etDocument; else
-                        if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
-                        if ( match.captured(1) == "slide" ) _format = etPresentation;
+                        int _format = AVS_OFFICESTUDIO_FILE_UNKNOWN;
+                        if ( match.captured(1) == "word" ) _format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX; else
+                        if ( match.captured(1) == "cell" ) _format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX; else
+                        if ( match.captured(1) == "slide" ) _format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX;
 
                         _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
                     }
@@ -1194,6 +1226,17 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             }
         }
 
+        if ( objRoot.contains("uiscaling") ) {
+            wstring sets;
+            switch (objRoot["uiscaling"].toString().toInt()) {
+            case 100: sets = L"1"; break;
+            case 200: sets = L"2"; break;
+            default: sets = L"default";
+            }
+
+            setUserSettings(L"force-scale", sets);
+        }
+
         wstring params = QString("lang=%1&username=%3&location=%2")
                             .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 
@@ -1487,10 +1530,10 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
                  pptx_count = 0;
 
     switch ( format ) {
-    case etDocument:        return tr("Document%1.docx").arg(++docx_count);
-    case etSpreadsheet:     return tr("Book%1.xlsx").arg(++xlsx_count);
-    case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
-    default:                return "Document.asc";
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX:     return tr("Book%1.xlsx").arg(++xlsx_count);
+    case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
+    default:                                         return "Document.asc";
     }
 }
 
@@ -1503,4 +1546,29 @@ void CAscApplicationManagerWrapper::checkUpdates()
     }
 
     _app.m_updater->checkUpdates();
+}
+
+wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    return pSettings->Get(name);
+//    delete pSettings;
+}
+
+void CAscApplicationManagerWrapper::setUserSettings(const wstring& name, const wstring& value)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    pSettings->Set(name, value);
+}
+
+void CAscApplicationManagerWrapper::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
+
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
+        sendCommandTo(SEND_TO_ALL_START_PAGE, "files:checked", json);
+    }
 }

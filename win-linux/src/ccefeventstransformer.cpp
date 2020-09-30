@@ -158,7 +158,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
-    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN: {
+    /*case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:*/ {
         CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
 
         ADDREFINTERFACE(pData);
@@ -208,6 +208,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             QMetaObject::invokeMethod( target, "onLocalFilesCheck", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
+//        } else
+//        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
+//            QMetaObject::invokeMethod( target, "onLocalFilesCheck", Qt::QueuedConnection,
+//                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
         } else
         if ( !(cmd.find(L"files:explore") == std::wstring::npos) ) {
                 QMetaObject::invokeMethod( target, "onLocalFileLocation", Qt::QueuedConnection,

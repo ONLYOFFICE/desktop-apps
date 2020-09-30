@@ -2,9 +2,6 @@
 "%@ Help" = "Справка %@";
 
 /* No comment provided by engineer. */
-"%@ Reporter Window" = "%@ окно докладчика";
-
-/* No comment provided by engineer. */
 "About %@" = "О программе %@";
 
 /* No comment provided by engineer. */
@@ -144,6 +141,9 @@
 
 /* No comment provided by engineer. */
 "Presentation template" = "Шаблон презентаци";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Режим докладчика";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Выйти %@";

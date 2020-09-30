@@ -56,7 +56,6 @@
 #include "utils.h"
 #include "version.h"
 #include "cmessage.h"
-#include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../Common/OfficeFileFormats.h"
@@ -103,7 +102,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CMainPanel::onFileChecked);
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -184,12 +182,12 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         layoutBtns->addWidget(m_pButtonClose);
 
 #ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
     } else {
-        m_pButtonMain->setProperty("theme", "light");
+//        m_pButtonMain->setProperty("theme", "light");
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -352,7 +350,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
     if ( m_isCustomWindow ) {
 #ifdef __linux__
-        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith());
+        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith() * scaling());
 #endif
 
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
@@ -638,13 +636,18 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     RELEASEINTERFACE(pData);
 
+    onLocalFileRecent(opts);
+}
+
+void CMainPanel::onLocalFileRecent(const COpenOptions& opts)
+{
     QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
-        if ( opts.type != etRecoveryFile && !_info.exists() ) {
+        if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
             CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
@@ -692,22 +695,9 @@ void CMainPanel::onLocalFilesOpen(void * data)
     RELEASEINTERFACE(pData);
 }
 
-void CMainPanel::onLocalFilesCheck(QString json)
-{
-    CExistanceController::check(json);
-}
 
-void CMainPanel::onFileChecked(const QString& name, int uid, bool exists)
-{
-    Q_UNUSED(name)
 
-    if ( !exists ) {
-        QJsonObject _json_obj{{QString::number(uid), exists}};
-        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
 
-        AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "files:checked", json);
-    }
-}
 
 void CMainPanel::onLocalFileLocation(QString path)
 {
@@ -1184,13 +1174,13 @@ void CMainPanel::onFullScreen(int id, bool apply)
             m_mainWindowState = Qt::WindowFullScreen;
 
             m_pTabs->setFullScreen(apply, id);
-            emit mainWindowChangeState(Qt::WindowFullScreen);
+//            emit mainWindowChangeState(Qt::WindowFullScreen);
         }
     } else
     if ( m_mainWindowState == Qt::WindowFullScreen ) {
         m_mainWindowState = m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState;
 
-        emit mainWindowChangeState(m_mainWindowState);
+//        emit mainWindowChangeState(m_mainWindowState);
         m_pTabs->setFullScreen(apply);
         toggleButtonMain(false);
     }

@@ -47,6 +47,8 @@
 - (BOOL)shouldCloseMainWindow;
 
 - (NSCefView *)cefViewWithTab:(ASCTabView *)tab;
+- (ASCTabView *)tabViewWithId:(int)viewId;
+
 - (void)openAcknowledgments;
 - (void)openEULA;
 - (void)openPreferences;

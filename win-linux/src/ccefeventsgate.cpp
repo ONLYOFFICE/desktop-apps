@@ -47,7 +47,8 @@ void CCefEventsGate::onDocumentName(void * data)
 
 void CCefEventsGate::onDocumentType(int id, int type)
 {
-    if (id) { type; }
+    if ( m_panel->cef()->GetId() == id )
+        m_panel->data()->setContentType(AscEditorType(type));
 }
 
 void CCefEventsGate::onDocumentSave(int, bool cancel)

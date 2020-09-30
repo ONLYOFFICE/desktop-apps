@@ -34,9 +34,12 @@
 #define CMAINPANELIMPL_H
 
 #include "cmainpanel.h"
+#include <QCoreApplication>
 
 class CMainPanelImpl : public CMainPanel
 {
+    Q_DECLARE_TR_FUNCTIONS(CMainPanelImpl)
+
 public:
     CMainPanelImpl(QWidget *, bool, uchar);
 

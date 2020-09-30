@@ -170,19 +170,19 @@ namespace CEditorTools
         panel->setGeometry(rect);
 
         bool result = true;
-        if (opts.type == etLocalFile) {
+        if (opts.srctype == etLocalFile) {
 //            pView->openLocalFile(opts.wurl, file_format);
             result = false;
         } else
-        if (opts.type == etRecoveryFile) {
+        if (opts.srctype == etRecoveryFile) {
 //            res_open = pView->openRecoverFile(opts.id);
             result = false;
         } else
-        if (opts.type == etRecentFile) {
+        if (opts.srctype == etRecentFile) {
 //            res_open = pView->openRecentFile(opts.id);
             result = false;
         } else
-        if (opts.type == etNewFile) {
+        if (opts.srctype == etNewFile) {
 //            pView->createLocalFile(opts.format, opts.name.toStdWString());
             result = false;
         } else {
@@ -192,8 +192,8 @@ namespace CEditorTools
         if (result) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
-            data->setIsLocal( opts.type == etLocalFile || opts.type == etNewFile ||
-                           (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+            data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
+                           (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
             if ( !data->isLocal() ) {
                 QRegularExpression re("ascdesktop:\\/\\/compare");

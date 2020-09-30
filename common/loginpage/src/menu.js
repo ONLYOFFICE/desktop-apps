@@ -33,6 +33,7 @@
 'use strict';
 
 var Menu = function(args) {
+    this.config = Object.assign({}, args);
     this.id = args.id;
     this.items = args.items;
 
@@ -97,6 +98,8 @@ Menu.prototype.show = function(pos, data) {
 
     let _top = $dd.height() + pos.top,
         _blimit = $(document).height();
+    if (!!this.config.bottomlimitoffset)
+        _blimit -= this.config.bottomlimitoffset;
     if (!!_top && _top > _blimit) {
         pos.top -= (_top - _blimit + 4);
     }

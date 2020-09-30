@@ -42,7 +42,7 @@
 @interface ASCPresentationReporter : NSObject
 + (instancetype)sharedInstance;
 
-- (void)create:(void *)data;
+- (void)create:(void *)data from:(int)senderId;
 - (void)destroy;
 - (void)apply:(void *)event;
 @end

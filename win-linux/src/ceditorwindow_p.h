@@ -66,7 +66,14 @@ const QString g_css =
         "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-        "#labelTitle{color:#444;font-size:11px;}"
+#ifdef Q_OS_LINUX
+        "#box-title-tools QLabel{font-size:11px;font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;}"
+        "#labelTitle{color:#444;}"
+#else
+        "#box-title-tools QLabel{font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;font-weight:bold;}"
+        "#labelTitle{color:#444;}"
+        "#mainPanel[window=pretty] #labelTitle{font-size:12px;}"
+#endif
         "#iconuser{color:#fff;font-size:11px;}"
         "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
@@ -88,6 +95,19 @@ auto prepare_editor_css(int type) -> QString {
     case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
     case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
     case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    }
+}
+
+auto editor_color(int type) -> QColor {
+    switch (type) {
+    case etDocument: return QColor(TAB_COLOR_DOCUMENT);
+    case etPresentation: return QColor(TAB_COLOR_PRESENTATION);
+    case etSpreadsheet: return QColor(TAB_COLOR_SPREADSHEET);
+#ifdef Q_OS_WIN
+    default: return QRgb(WINDOW_BACKGROUND_COLOR);
+#else
+    default: return QColor(WINDOW_BACKGROUND_COLOR);
+#endif
     }
 }
 
@@ -163,8 +183,7 @@ public:
             window->m_labelTitle->setText(APP_TITLE);
 
 #ifdef Q_OS_WIN
-            window->m_bgColor = WINDOW_BACKGROUND_COLOR;
-            InvalidateRect(window->m_hWnd,nullptr,TRUE);
+            window->setWindowBackgroundColor(QRgb(WINDOW_BACKGROUND_COLOR));
 #endif
         }
     }
@@ -243,6 +262,24 @@ public:
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
+        }
+    }
+
+    void onDocumentType(int id, int type) override
+    {
+        CCefEventsGate::onDocumentType(id, type);
+
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            window->m_css = prepare_editor_css(type);
+
+            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+            css.append(window->m_css);
+            window->m_pMainPanel->setProperty("window", "pretty");
+            window->m_pMainPanel->setStyleSheet(css);
+
+#ifdef Q_OS_WIN
+            window->setWindowBackgroundColor(editor_color(type));
+#endif
         }
     }
 
@@ -392,6 +429,7 @@ public:
             if ( iconuser ) {
                 iconuser->setMaximumWidth(200 * f);
                 iconuser->setContentsMargins(12*f,0,12*f,2*f);
+                iconuser->setMaximumWidth(200*f);
                 iconuser->adjustSize();
                 diffW -= iconuser->width();
             }
