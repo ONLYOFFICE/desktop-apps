@@ -954,19 +954,25 @@ function translate(str, lang) {
 
 function changelang(lang) {
     let _applytohtml = l => {
-        let newtr = l10n[l];
+        let newtr = Object.assign({}, l10n.en, l10n[l]);
         let elems = Array.from(document.querySelectorAll('[l10n]'));
 
         for (const [key, value] of Object.entries(utils.Lang)) {
-            elems.every(el => {
-                if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
-                    if ( el.innerHTML === value && !!newtr[key] ) {
-                        $(el).text(newtr[key]);
+            if ( !!newtr[key] ) {
+                let _i = -1;
+                elems.every( (el, index) => {
+                    if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
+                        if ( (el.innerHTML === value || el.innerHTML === l10n.en[key]) ) {
+                            $(el).text(newtr[key]);
+                            _i = index;
+                        }
                     }
-                }
 
-                return true;
-            });
+                    return true;
+                })
+
+                if ( !(_i < 0) ) elems.splice(_i, 1);
+            }
         }
     }
 

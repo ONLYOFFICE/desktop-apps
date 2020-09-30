@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                        <label class='sett__caption' l10n>${_lang.settScaling}</label>
+                                        <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'>
@@ -108,7 +108,9 @@
                                     <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
+                                <div class="spacer" />
                             </div>
+                            <p id="caption-restart" class="sett__caption" style="display:none;text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
                         </div>
                     </div>`;
 
@@ -141,9 +143,15 @@
             $btnApply.disable(false);
         };
 
+        const _validate_user_name = name => {
+            return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+        };
+
         function _on_btn_apply(e) {
             let _user_new_name = $userName.val();
-            if ( _user_new_name && _user_new_name.length ) {
+            if ( _user_new_name && _user_new_name.length &&
+                    _validate_user_name(_user_new_name) ) 
+            {
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
@@ -247,6 +255,8 @@
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
+
+                            $('#caption-restart', $panel).show();
                         }
                     }
                 } else

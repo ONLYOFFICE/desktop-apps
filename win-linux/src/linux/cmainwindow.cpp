@@ -83,6 +83,13 @@ CMainWindow::CMainWindow(const QRect& geometry)
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
+    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+    if ( _window_rect.width() < _window_min_size.width() )
+        _window_rect.setWidth(_window_min_size.width());
+
+    if ( _window_rect.height() < _window_min_size.height() )
+        _window_rect.setHeight(_window_min_size.height());
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
             _screen_size.height() < _window_rect.height() + 120 )
@@ -337,6 +344,7 @@ void CMainWindow::slot_modalDialog(bool status, WId h)
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
+    CX11Decoration::onDpiChanged(factor);
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {

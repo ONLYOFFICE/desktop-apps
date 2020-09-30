@@ -322,6 +322,10 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
 {
+#ifdef Q_OS_LINUX
+    CX11Decoration::onDpiChanged(newfactor);
+#endif
+
 //    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }

@@ -68,7 +68,7 @@ set_names_ru() {
 }
 
 check_templates() {
-  if [ $1 != "--new-document-templates" ]; then
+  if [ "$1" != "--new-document-templates" ]; then
     return 0
   fi
 

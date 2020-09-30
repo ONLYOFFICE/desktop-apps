@@ -42,7 +42,7 @@ public:
     CWinWindow(HWND, const QString&);
     virtual ~CWinWindow(){}
 
-    virtual void modal();
+    virtual void modal(HWND f = nullptr);
     virtual void close();
     void setSize(int w, int h);
     void center();
