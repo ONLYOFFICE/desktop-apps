@@ -140,8 +140,8 @@ M4_PARAMS += -D M4_CHANGES_RU_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VER
 $(CHANGES_EN): L10N=en
 $(CHANGES_RU): L10N=ru
 
-$(CHANGES_EN) $(CHANGES_RU): $(BRANDING_DIR)/win-linux/package/windows/update/changes.html.m4
-	m4 $(M4_PARAMS) -D L10N="$(L10N)" $< > $@
+$(CHANGES_EN) $(CHANGES_RU):
+	m4 $(M4_PARAMS) -D L10N="$(L10N)" $(BRANDING_DIR)/win-linux/package/windows/update/changes.html.m4 > $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
