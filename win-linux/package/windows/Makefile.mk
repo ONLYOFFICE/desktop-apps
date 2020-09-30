@@ -137,6 +137,9 @@ M4_PARAMS += -D M4_APPCAST_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSIO
 M4_PARAMS += -D M4_CHANGES_EN_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes.html"
 M4_PARAMS += -D M4_CHANGES_RU_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes_ru.html"
 
+$(APPCAST):
+	m4 $(M4_PARAMS) $(BRANDING_DIR)/win-linux/package/windows/update/appcast.xml.m4 > $@
+
 $(CHANGES_EN): L10N=en
 $(CHANGES_RU): L10N=ru
 
