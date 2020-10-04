@@ -78,29 +78,29 @@ check_templates() {
   set_names,
   set_names_ru)
 
-  eval TEMPLATE_DIR=$(grep XDG_TEMPLATES_DIR $HOME/.config/user-dirs.dirs | cut -d \" -f2)
-  if [ $TEMPLATE_DIR = $HOME ]; then
+  TEMPLATE_DIR="$(grep "XDG_TEMPLATES_DIR" "$HOME/.config/user-dirs.dirs" | cut -d \" -f2)"
+  if [ "$TEMPLATE_DIR" = "$HOME" ]; then
     echo "system template's folder isn't found"
     return 0
   fi
-  
+
   TEMPLATE_DOCX="$TEMPLATE_DIR/$NEW_DOCX_NAME.docx"
   TEMPLATE_XLSX="$TEMPLATE_DIR/$NEW_XLSX_NAME.xlsx"
   TEMPLATE_PPTX="$TEMPLATE_DIR/$NEW_PPTX_NAME.pptx"
 
-  mkdir -p $TEMPLATE_DIR
+  mkdir -p "$TEMPLATE_DIR"
 
-  if [ $(ls -A $TEMPLATE_DIR/*.docx 2>/dev/null | wc -l) -eq 0 ]
+  if [ "$(ls -A "$TEMPLATE_DIR"/*.docx 2>/dev/null | wc -l)" -eq 0 ]
   then
     cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docx "$TEMPLATE_DOCX"
   fi
 
-  if [ $(ls -A $TEMPLATE_DIR/*.xlsx 2>/dev/null | wc -l) -eq 0 ]
+  if [ "$(ls -A "$TEMPLATE_DIR"/*.xlsx 2>/dev/null | wc -l)" -eq 0 ]
   then
     cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.xlsx "$TEMPLATE_XLSX"
   fi
 
-  if [ $(ls -A $TEMPLATE_DIR/*.pptx 2>/dev/null | wc -l) -eq 0 ]
+  if [ "$(ls -A "$TEMPLATE_DIR"/*.pptx 2>/dev/null | wc -l)" -eq 0 ]
   then
     cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.pptx "$TEMPLATE_PPTX"
   fi
@@ -110,8 +110,8 @@ check_templates "$@"
 
 DIR=/opt/M4_DESKTOPEDITORS_PREFIX
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-export LD_LIBRARY_PATH=$DIR:$LD_LIBRARY_PATH,
+export LD_LIBRARY_PATH="$DIR:$LD_LIBRARY_PATH",
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
-export LD_LIBRARY_PATH=$DIR:$DIR/converter:$DIR_MV:$LD_LIBRARY_PATH
-export VLC_PLUGIN_PATH=$DIR_MV/plugins)
-exec $DIR/DesktopEditors "$@"
+export LD_LIBRARY_PATH="$DIR:$DIR/converter:$DIR_MV:$LD_LIBRARY_PATH"
+export VLC_PLUGIN_PATH="$DIR_MV/plugins")
+exec "$DIR/DesktopEditors" "$@"
