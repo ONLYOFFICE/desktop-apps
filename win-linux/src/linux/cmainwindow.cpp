@@ -195,7 +195,7 @@ bool CMainWindow::event(QEvent * event)
     static bool _flg_motion = false;
     static bool _flg_left_button = false;
 
-    if (event->type() == QEvent::WindowStateChange) {
+    if (event->type() == QEvent::WindowStateChange && this->isVisible()) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
         CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
