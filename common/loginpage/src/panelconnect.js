@@ -55,7 +55,7 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html_empty_panel1 =
+        var _html_empty_panel_with_carousel =
                         `<div id="box-empty-portals" class="empty flex-center">
                             <section class="center-box">
                               <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
@@ -91,7 +91,7 @@
                             </section>
                         </div>`;
 
-        var _html_empty_panel =
+        var _html_empty_panel_with_providers =
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
@@ -103,10 +103,10 @@
                                             </button>
                                         </div>
                                         <div style='font-size:0;'>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextc'>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextcloud'>
                                                 <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
                                             </button>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='ownc'>
+                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='owncloud'>
                                                 <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
                                             </button>
                                         </div>
@@ -122,7 +122,7 @@
                             </div>`;
 
         var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
+                      ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
                       <div id="box-portals">
                         <div class="flexbox">
                           <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
@@ -318,8 +318,8 @@
                 function _create_icon_id(provider) {
                     switch ( provider ) {
                     case 'asc': return 'icon__asc';
-                    case 'ownc': return 'icon__ownc';
-                    case 'nextc': return 'icon__nextc';
+                    case 'owncloud': return 'icon__ownc';
+                    case 'nextcloud': return 'icon__nextc';
                     default: return 'icon__common';
                     }
                 };

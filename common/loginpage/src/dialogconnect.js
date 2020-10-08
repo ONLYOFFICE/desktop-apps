@@ -132,7 +132,7 @@ window.DialogConnect = function(params) {
         portal = portal.replace(/\/+$/i, '');
 
         /* skip odd url parts for owncloud */       
-        if ( provider == 'ownc' || provider == 'nextc' ) {
+        if ( provider == 'owncloud' || provider == 'nextcloud' ) {
             portal.endsWith('/index.php/login') && (portal = portal.slice(0,-16));
         }
 
