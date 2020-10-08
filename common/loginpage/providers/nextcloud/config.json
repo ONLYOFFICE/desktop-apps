@@ -1,0 +1,16 @@
+{
+    "provider": "nextcloud",
+    "name": "Nextcloud",
+    "check": {
+        "url": "status.php",
+        "headers": {
+            "OCS-APIREQUEST":"true"
+        }
+    },
+    "editorPage" : "/apps/onlyoffice/",
+    "cryptoSupport" : "true",
+    "icons": {
+        "connectionlist": "./assets/listicon.svg",
+        "buttonlogo": "./assets/buttonlogo.svg"
+    }
+}
