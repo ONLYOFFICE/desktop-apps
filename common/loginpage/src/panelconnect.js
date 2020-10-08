@@ -38,6 +38,7 @@
 +function(){ 'use strict'
     window.config = { portals: {}};
     window.config.portals.checklist = sdk.externalClouds();
+    window.relpath = '.';
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
@@ -102,7 +103,7 @@
                                                 <svg class='icon'><use xlink:href='#logo__asc'></svg>
                                             </button>
                                         </div>
-                                        <div style='font-size:0;'>
+                                        <div id="box-providers-buttons" style='font-size:0;'>
                                             <button class="btn btn--big btn--light btn--svg login" data-cprov='nextcloud'>
                                                 <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
                                             </button>
@@ -134,15 +135,21 @@
                       </div>
                     </div>`;
 
-        config.portals.checklist.forEach(item => {
-            if ( !!item.icon && !!item.icon.providerbutton ) {
-                const _re = new RegExp(`data-cprov='${item.id}'[\\s\\S]+?(?=<svg)(<svg.+<\/svg>)`);
-                const _match = _re.exec(_html);
-                if ( _match && !!_match[1] ) {
-                    _html = _html.replace(_match[1], `<img class='icon' src='${item.icon.providerbutton}'></img>`);
+        if ( config.portals.checklist.length ) {
+            const provider_button_template = (provider, iconpath) =>
+                                                `<button class="btn btn--big btn--light btn--svg login" data-cprov='${provider}'>
+                                                    <img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>
+                                                </button>`;
+
+            let $box = $('<div />');
+            config.portals.checklist.forEach(item => {
+                if ( !!item.icons && !!item.icons.providerbutton ) {
+                    $box.append(provider_button_template(item.provider,item.icons.providerbutton));
                 }
-            }
-        });
+            });
+
+            (_html = $(_html)).find('#box-providers-buttons').append($box.children());
+        }
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -325,8 +332,8 @@
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => {return e.provider == provider;})
-                    return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
+                    let _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons ? `${relpath}/providers/${_model.provider}/${_model.icons.connectionlist}` : undefined;
                 };
 
                 collection.events.changed.attach((collection, model, value) => {
