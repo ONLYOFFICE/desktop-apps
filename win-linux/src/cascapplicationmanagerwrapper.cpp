@@ -747,6 +747,35 @@ void CAscApplicationManagerWrapper::initializeApp()
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     QApplication::setFont( mainFont );
 
+#ifdef Q_OS_LINUX
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    connect(app, &SingleApplication::showUp, [=](QString args){
+        QStringList * _list = Utils::getInputFiles(args.split(";"));
+
+        // remove app's self name from start arguments
+        if ( !_list->isEmpty() ) _list->removeFirst();
+        if ( !_list->isEmpty() ) topWindow()->mainPanel()->doOpenLocalFiles(*_list);
+
+        delete _list, _list = NULL;
+
+        QRegularExpression re("--new:(word|cell|slide)");
+        QRegularExpressionMatchIterator mi = re.globalMatch(args);
+        while (mi.hasNext()) {
+            QRegularExpressionMatch m = mi.next();
+            QString sf = m.captured(1);
+
+            int f = sf == "word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                        sf == "cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                        sf == "slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+            topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(f), f);
+        }
+
+        QTimer::singleShot(0, []{
+            AscAppManager::topWindow()->bringToTop();
+        });
+    });
+#endif
 }
 
 CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)

@@ -128,30 +128,9 @@ CMainWindow::CMainWindow(const QRect& geometry)
     connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
 
-    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
-
-    auto _detachevent = [=] {
-        CX11Decoration::raiseWindow();
-        setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    };
-
-    connect(app, &SingleApplication::showUp, [=](QString args){
-        QStringList * _list = Utils::getInputFiles(args.split(";"));
-
-        // remove app's self name from start arguments
-        if ( !_list->isEmpty() ) _list->removeFirst();
-
-        if ( !_list->isEmpty() ) {
-            m_pMainPanel->doOpenLocalFiles(*_list);
-        }
-
-        delete _list, _list = NULL;
-
-        QTimer::singleShot(0, _detachevent);
-    });
 }
 
 CMainWindow::~CMainWindow()
