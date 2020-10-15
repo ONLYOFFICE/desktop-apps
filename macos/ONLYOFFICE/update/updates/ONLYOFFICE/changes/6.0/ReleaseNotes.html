@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        body {
+            background:white;
+            color: #000000;
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: #000000;
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: #f4f4f4;
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: #dcdcdc solid 0.5px;
+        }
+        .releasedate {
+            color: #888;
+            font-weight: lighter;
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 6.0<span class="releasedate"> - October 15, 2020</span></h1>
+        <h2>Fixes</h2>
+        <h4>All Editors</h4>
+        <ul>
+            <li>Added the AutoFit settings for shapes.</li>
+            <li>Added the ability to insert special characters. Hotkeys have been implemented in the Document Editor only.</li>
+            <li>Added the <code>Ctrl + 0</code> hotkey to reset zoom to 100%. A sequence fits a slide to workview in the Presentation Editor (Bug 45106).</li>
+            <li>Changed a behaviour of hiding icons in tabs when reducing editor windows. They are hiding as needed now.</li>
+            <li>Added the autorun settings for macros. If the <b>Show Notification</b> option is selected, a user will be notified about macros existence.</li>
+            <li>Added the ability to select an image from the document manager for watermarks, shapes and slides fill (Bug 42913).</li>
+            <li>Added the <b>AutoCorrect</b> list (Bug 44659) (<a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/335">DocumentServer issue #335</a>).</li>
+            <li>Redesigned the color selection component.</li>
+            <li>Added the ability to change a position and size of chart elements (a title, an area, a legend and data labels).</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Added the ability to insert date and time (Bug 36585).</li>
+            <li>Added the ability to print the selection in the view mode (Bug 44338).</li>
+            <li>Added the ability to convert equations from old formats (Bug 44511), (<a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/780">DocumentServer issue #780</a>).</li>
+            <li>Changed a placeholder for content controls.</li>
+            <li>Redone the algorithm of justifying a paragraph with condensing spaces (Bug 40851, Bug 44960, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/956">DocumentServer issue #956</a>).</li>
+            <li>Fixed an issue with an incorrect type of quotes for many localizations (Bug 45790, Bug 45591, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/406">DocumentServer issue #406</a>, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/406">DocumentServer issue #898</a>).</li>
+            <li>Fixed an issue with ignoring the menu key when calling the context menu (Bug 45692, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/937">DocumentServer issue #937</a>).</li>
+            <li>Fixed an issue with replacing Chinese characters by digits in numbered lists (Bug 44723, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/734">DocumentServer issue #734</a>).</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Added full support of pivot tables (inserting and editing).</li>
+            <li>Added the autofilter settings in pivot tables (by labels, by values, additional sort parameters).</li>
+            <li>Added support of opening all conditions existing in a file for data bar conditional formatting.</li>
+            <li>Added support of opening all gradients existing in a file for data bar conditional formatting.</li>
+            <li>Added the <code>Shift+F3</code> hotkey for a function insertion.</li>
+            <li>Added full support of slicers for formatted tables (Bug 30397).</li>
+            <li>Added the special paste settings (Bug 42544).</li>
+            <li>Added the ability to move a sheet from one workbook to another.</li>
+            <li>Added the ability to insert an internal link to a named range (Bug 44821).</li>
+            <li>Added the ability to print titles (Bug 43869, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/714">DocumentServer issue #714</a>).</li>
+            <li>Added a component for cells selection.</li>
+            <li>Added the <code>Ctrl+Shift+=</code> and <code>Ctrl+Shift+-</code> hotkeys for displaying the <b>Insert Cells</b> or <b>Delete Cells</b> dialogues (Bug 36285, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/282">DocumentServer issue #282</a>).</li>
+            <li>Added the status bar settings.</li>
+            <li>Added the ability to remove duplicate values. Also available for formatted tables.</li>
+            <li>Added the <code>Ctrl+;</code> and <code>Ctrl+Shift+;</code> hotkeys for date and time insertion (Bug 42876).</li>
+            <li>Added the ability to insert function via the <b>Function Arguments</b> dialogue.</li>
+            <li>Added the ability to get a hyperlink to an internal range and open the workbook with linking to it.</li>
+            <li>Added the <b>Wrap Text</b> and <b>Shrink to Fit</b> settings in the right toolbar.</li>
+            <li>Added the <b>Vertical Text</b> option in the text orientation settings.</li>
+            <li>Combined the bulleted and numbered list settings. Added the ability to create lists from the <b>List Settings</b> dialogue.</li>
+            <li>Added the delimiter settings for the <b>Special Paste</b> and <b>Text to Columns</b> dialogues.</li>
+            <li>Added the ability to change the function in the <b>Total Row</b> for formatted tables.</li>
+            <li>Added the ability to select the column or row of a formatted table or the whole table by one mouse click.</li>
+            <li>Changed the cursor type for the column or row selection.</li>
+            <li>Added the <code>LINEST</code> function (Bug 45534).</li>
+            <li>Fixed an issue with calculating <code>INDEX</code> function if the row or column parameter is set to zero or omitted (Bug 45388, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/955">DocumentServer issue #955</a>).</li>
+            <li>Fixed an issue with calculating <code>FORMULATEXT</code> function if it uses an array formula (Bug 45387, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/391">DocumentServer issue #391</a>).</li>
+            <li>Fixed an issue with calculating <code>DATE</code> formula, if the month argument is set to zero or omitted (Bug 45533, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/404">DocumentServer issue #404</a>).</li>
+            <li>Fixed an issue with calculating <code>HYPERLINK</code> function in French localization (Bug 45690, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/913">DocumentServer issue #913</a>).</li>
+            <li>Fixed an issue with splitting pasted multiple lines of text to a few cells if it was copied from Microsoft Excel (Bug 15652, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/750">DocumentServer issue #750</a>).</li>
+            <li>Fixed an issue with replacing data in cells by hash characters with vertical layout (Bug 42134, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/618">DocumentServer issue #618</a>, <a target="_blank" href="https://github.com/ONLYOFFICE/DocumentServer/issues/253">DocumentServer issue #253</a>).</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Changed the interface for an internal link.</li>
+            <li>Added the ability to print the selection in the view mode (Bug 44338).</li>
+            <li>Combined the bulleted and numbered list settings. Added the ability to create lists from the <b>List Settings</b> dialogue.</li>
+        </ul>
+        <p>and lots other fixes in all editors</p>
+    </div>
+</body>
+</html>

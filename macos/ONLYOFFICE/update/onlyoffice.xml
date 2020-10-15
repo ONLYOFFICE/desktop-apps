@@ -6,6 +6,18 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>6.0</title>
+            <pubDate>Mon, 28 Sep 2020 14:52:57 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/6.0/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-6.0.zip" sparkle:version="412" sparkle:shortVersionString="6.0" length="257402646" type="application/octet-stream" sparkle:edSignature="yRdL2Fig2a5TWRxyBv8EobfUAVIMWu1v2/CS/Yw5sh2oPU82+ASOZnYeT87G5ymTv+0cP6/dNuU8xWbuH/b8Bw==" sparkle:dsaSignature="MCwCFFAsujFDW/JEYZRkG9HGXAEKx/qkAhRurYrlvDMkUAP1O4sLpOPOWrVIXQ=="/>
+            <sparkle:deltas>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE412-405.delta" sparkle:version="412" sparkle:shortVersionString="6.0" sparkle:deltaFrom="405" length="48738426" type="application/octet-stream" sparkle:edSignature="faZ8E3ixmBWnWoTLYYtYDP2Nv2ddHP6FwlVipZXkGY0Bn4Im8NIO578pGF0cvR3Qtp3R3Wj4pXwKPmxzxer6Cw==" sparkle:dsaSignature="MCwCFBEgMKl8A31Pl0irWz+wCRowRww6AhRbwX4ike9Y03vLQyhV6xq0p9oMlw=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE412-403.delta" sparkle:version="412" sparkle:shortVersionString="6.0" sparkle:deltaFrom="403" length="49183650" type="application/octet-stream" sparkle:edSignature="9Dqv+3sqjmFMYOP9bnG626AbrOJw4Kdh5oAbWY+BppHzH8R0dXs7KAjHVBrifyaF3X2JmuLXuaEUDzdfNJb7Cw==" sparkle:dsaSignature="MCwCFGCeivztuGoM7ape8GvuVM6+u94kAhRiERtg2au8YsBwHphfQn3sw5z35A=="/>
+                <enclosure url="http://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE412-377.delta" sparkle:version="412" sparkle:shortVersionString="6.0" sparkle:deltaFrom="377" length="54164900" type="application/octet-stream" sparkle:edSignature="ZBXC46Pix+plsq/byE45yGTybAkksaLSd7DF6s9hcAV1h9uEGERO5bfObrXLxDnZvdQlsRSsttdobbF8Ya1oCQ==" sparkle:dsaSignature="MCwCFAqHYcbRceInzxWZJsSydSypFIuNAhR2y982W6XOSWB97+gb2VUwvvuxjg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>5.6.4</title>
             <pubDate>Tue, 01 Sep 2020 12:50:59 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
