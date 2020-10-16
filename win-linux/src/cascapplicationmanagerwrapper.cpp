@@ -710,7 +710,7 @@ void CAscApplicationManagerWrapper::startApp()
      * create editor's window with empty document
     */
 
-    COpenOptions opts{AscAppManager::newFileName(etDocument), etNewFile};
+    COpenOptions opts{AscAppManager::newFileName(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX), etNewFile};
     opts.format = etDocument;
 
     CTabPanel * _panel = CEditorTools::createEditorPanel(opts);
