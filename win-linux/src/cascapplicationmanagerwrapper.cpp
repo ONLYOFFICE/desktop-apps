@@ -24,6 +24,7 @@
 #include "cmessage.h"
 #include "ceditortools.h"
 #include "cfilechecker.h"
+#include "OfficeFileFormats.h"
 
 #ifdef _WIN32
 #include "csplash.h"
@@ -60,8 +61,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 {
     CAscApplicationManager::SetEventListener(this);
 
-    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent,
-                        this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
+    QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
+    QObject::connect(&commonEvents(), &CEventDriver::onEditorClosed, this, &CAscApplicationManagerWrapper::onEditorWidgetClosed);
 
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
@@ -275,6 +277,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
+#ifdef Q_OS_WIN
+        if ( cmd.find(L"app:onready") != std::wstring::npos ) {
+            OSVERSIONINFO osvi;
+            ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+            osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+            GetVersionEx(&osvi);
+
+            if ( !(osvi.dwMajorVersion > 5) )
+                sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
+        } else
+#endif
         if ( cmd.compare(0, 8, L"settings") == 0 ) {
             if ( cmd.rfind(L"apply") != wstring::npos ) {
                 applySettings(pData->get_Param());
@@ -286,29 +299,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
-        if ( !(cmd.find(L"editor:event") == wstring::npos) ) {
-            wstring action = pData->get_Param();
-            if ( action.find(L"undocking") != wstring::npos ) {
-//                int id = event->get_SenderId();
-//                SKIP_EVENTS_QUEUE([=]{
-//                    manageUndocking(id, action);
-//                });
-
-                return true;
-            }
-        } else
-#if defined(__APP_MULTI_WINDOW)
-        if ( !(cmd.find(L"window:features") == wstring::npos) ) {
-            const wstring& param = pData->get_Param();
-            if ( param.compare(L"request") == 0 ) {
-//                QJsonObject _json_obj{{"canUndock", "true"}};
-
-//                AscAppManager::sendCommandTo(AscAppManager::GetViewById(event->get_SenderId()),
-//                                    L"window:features", Utils::encodeJson(_json_obj).toStdWString());
-            }
-            return true;
-        } else
-#endif
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {
 #ifdef _UPDMODULE
             if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
@@ -352,11 +342,23 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             return true;
         } else
+        if ( cmd.compare(L"open:recent") == 0 ) {
+            QJsonObject objRoot = Utils::parseJson(pData->get_Param());
+            if ( !objRoot.isEmpty() ) {
+                objRoot["type"].toString();
+
+                COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                opts.format = objRoot["type"].toInt();
+                topWindow()->mainPanel()->onLocalFileRecent(opts);
+            }
+
+            return true;
+        } else
         if ( cmd.compare(L"create:new") == 0 ) {
             wstring format = pData->get_Param();
-            int _f = format == L"word" ? etDocument :
-                        format == L"cell" ? etSpreadsheet :
-                        format == L"slide" ? etPresentation : etUndefined;
+            int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                        format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                        format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
             topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
@@ -411,6 +413,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 #endif
         return true; }
+    case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
+        CAscDocumentOnSaveData * pData = reinterpret_cast<CAscDocumentOnSaveData *>(event->m_pData);
+
+        if (pData->get_IsCancel()) {
+            AscAppManager::cancelClose();
+        }
+        break; }
     case ASC_MENU_EVENT_TYPE_CEF_DESTROYWINDOW: {
         --m_countViews;
 
@@ -428,7 +437,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         if ( m_closeTarget.compare(L"app") == 0 ) {
             switch ( m_countViews ) {
-            case 1: DestroyCefView(-1); break;
+//            case 1: DestroyCefView(-1); break;
             case 0: {
                 CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
                 if ( _w ) {
@@ -438,6 +447,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
 
                 m_vecWindows.clear();
+                break;
             }
             default: break;
             }
@@ -674,10 +684,10 @@ void CAscApplicationManagerWrapper::startApp()
                 if ( n.startsWith("--new:") ) {
                     QRegularExpressionMatch match = re.match(n);
                     if ( match.hasMatch() ) {
-                        int _format;
-                        if ( match.captured(1) == "word" ) _format = etDocument; else
-                        if ( match.captured(1) == "cell" ) _format = etSpreadsheet; else
-                        if ( match.captured(1) == "slide" ) _format = etPresentation;
+                        int _format = AVS_OFFICESTUDIO_FILE_UNKNOWN;
+                        if ( match.captured(1) == "word" ) _format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX; else
+                        if ( match.captured(1) == "cell" ) _format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX; else
+                        if ( match.captured(1) == "slide" ) _format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX;
 
                         _window->mainPanel()->createLocalFile(AscAppManager::newFileName(_format), _format);
                     }
@@ -734,6 +744,34 @@ void CAscApplicationManagerWrapper::initializeApp()
 #ifdef _WIN32
 //    CSplash::showSplash();
     QApplication::processEvents();
+#elif //defined(Q_OS_LINUX)
+    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+    connect(app, &SingleApplication::showUp, [=](QString args){
+        QStringList * _list = Utils::getInputFiles(args.split(";"));
+
+        // remove app's self name from start arguments
+        if ( !_list->isEmpty() ) _list->removeFirst();
+        if ( !_list->isEmpty() ) topWindow()->mainPanel()->doOpenLocalFiles(*_list);
+
+        delete _list, _list = NULL;
+
+        QRegularExpression re("--new:(word|cell|slide)");
+        QRegularExpressionMatchIterator mi = re.globalMatch(args);
+        while (mi.hasNext()) {
+            QRegularExpressionMatch m = mi.next();
+            QString sf = m.captured(1);
+
+            int f = sf == "word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                        sf == "cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                        sf == "slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+            topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(f), f);
+        }
+
+        QTimer::singleShot(0, []{
+            AscAppManager::topWindow()->bringToTop();
+        });
+    });
 #endif
 
     /* prevent drawing of focus rectangle on a button */
@@ -779,7 +817,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     wstring user_name = Utils::appUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
-    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
+    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);   
 }
 
 CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
@@ -874,34 +912,25 @@ void CAscApplicationManagerWrapper::launchAppClose()
         if ( m_countViews > 1 ) {
             m_closeTarget = L"app";
 
-            if ( !m_vecWindows.empty() ) {
-                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-
-                /* close all editors windows */
+            /* close all editors windows */
+            if ( !m_vecEditors.empty() ) {
                 vector<size_t>::const_iterator it = m_vecEditors.begin();
-                while ( it != m_vecEditors.end() ) {
-                    CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
+                if ( it != m_vecEditors.end() ) {
+                    CEditorWindow * _editor = reinterpret_cast<CEditorWindow *>(*it);
 
-                    int _r = _w->closeWindow();
-                    if ( _r == MODAL_RESULT_CANCEL ) {
+                    if ( _editor && _editor->closeWindow() == MODAL_RESULT_CANCEL )
                         AscAppManager::cancelClose();
-                        return;
-                    } else ++it;
                 }
-
-                /* close main window */
-                _w->bringToTop();
-                if ( !_w->mainPanel()->closeAll() ) {
+            } else {
+                if ( AscAppManager::topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                     AscAppManager::cancelClose();
-                    return;
-                }
-
-                closeQueue().leave(sWinTag{1,size_t(_w)});
             }
-        }
-
+        } else
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
+
+            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
+            closeQueue().leave(sWinTag{1,size_t(_w)});
         }
     } else {
         cancelClose();
@@ -1033,8 +1062,6 @@ namespace Drop {
     auto callback_to_attach(const CEditorWindow * editor) -> void {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
-//            QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
-//            CAscApplicationManagerWrapper::sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
 
             CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
@@ -1124,10 +1151,6 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
             }
 
             if ( editor_win ) {
-                CTabPanel * tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
-                QJsonObject _json_obj{{"action", "undocking"},{"status", "docked"}};
-                sendCommandTo(tabpanel->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
-
                 SKIP_EVENTS_QUEUE([=]{
                     _main_window->attachEditor(tabpanel);
 
@@ -1205,10 +1228,6 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
             if ( _editor ) {
 //                _editor->setParent(nullptr);
                 e->accept();
-//                QJsonObject _json_obj{{"action", "undocking"},
-//                                      {"status", "undocked"}};
-//                sendCommandTo(_editor->cef(), L"window:status", Utils::encodeJson(_json_obj).toStdWString());
-
 //                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
                         QRect rect = _main_window->windowRect();
@@ -1253,6 +1272,17 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _reg_user.setValue("locale", _lang_id);
                 CLangater::reloadTranslations(_lang_id);
             }
+        }
+
+        if ( objRoot.contains("uiscaling") ) {
+            wstring sets;
+            switch (objRoot["uiscaling"].toString().toInt()) {
+            case 100: sets = L"1"; break;
+            case 200: sets = L"2"; break;
+            default: sets = L"default";
+            }
+
+            setUserSettings(L"force-scale", sets);
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")
@@ -1352,52 +1382,6 @@ void CAscApplicationManagerWrapper::destroyViewer(int id)
 void CAscApplicationManagerWrapper::destroyViewer(QCefView * v)
 {
     destroyViewer(v->GetCefView()->GetId());
-}
-
-void CAscApplicationManagerWrapper::manageUndocking(int id, const std::wstring& action)
-{
-    CTabPanel * tabpanel = nullptr;
-    QJsonObject _json_obj;
-    _json_obj["action"] = "undocking";
-
-
-    if ( action.find(L"undock") == wstring::npos ) {
-        _json_obj["status"] = "docked";
-
-        CSingleWindowBase * editor_win = nullptr;
-        for (auto const& w : m_vecEditors) {
-            CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(w);
-
-            if ( _w->holdView(id) ) {
-                editor_win = _w;
-                break;
-            }
-        }
-
-        if ( editor_win ) {
-            tabpanel = static_cast<CEditorWindow *>(editor_win)->releaseEditorView();
-            sendCommandTo(tabpanel->cef(), L"window:status", Utils::stringifyJson(_json_obj).toStdWString());
-
-            CMainWindow * main_win = topWindow();
-            main_win->attachEditor(tabpanel);
-
-            closeEditorWindow(size_t(editor_win));
-        }
-    } else {
-        _json_obj["status"] = "undocked";
-
-        CMainWindow * const main_win = mainWindowFromViewId(id);
-        if ( main_win ) {
-            int index = main_win->mainPanel()->tabWidget()->tabIndexByView(id);
-            if ( !(index < 0) ) {
-                QRect r = main_win->windowRect();
-                tabpanel = qobject_cast<CTabPanel *>(main_win->editor(index));
-
-                CTabUndockEvent event(tabpanel);
-                QApplication::sendEvent(this, &event);
-            }
-        }
-    }
 }
 
 uint CAscApplicationManagerWrapper::logoutCount(const wstring& portal) const
@@ -1548,10 +1532,10 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
                  pptx_count = 0;
 
     switch ( format ) {
-    case etDocument:        return tr("Document%1.docx").arg(++docx_count);
-    case etSpreadsheet:     return tr("Book%1.xlsx").arg(++xlsx_count);
-    case etPresentation:    return tr("Presentation%1.pptx").arg(++pptx_count);
-    default:                return "Document.asc";
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX:     return tr("Book%1.xlsx").arg(++xlsx_count);
+    case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
+    default:                                         return "Document.asc";
     }
 }
 
@@ -1564,4 +1548,36 @@ void CAscApplicationManagerWrapper::checkUpdates()
     }
 
     _app.m_updater->checkUpdates();
+}
+
+wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    return pSettings->Get(name);
+//    delete pSettings;
+}
+
+void CAscApplicationManagerWrapper::setUserSettings(const wstring& name, const wstring& value)
+{
+    unique_ptr<CUserSettings> pSettings{AscAppManager::getInstance().GetUserSettings()};
+    pSettings->Set(name, value);
+}
+
+void CAscApplicationManagerWrapper::onFileChecked(const QString& name, int uid, bool exists)
+{
+    Q_UNUSED(name)
+
+    if ( !exists ) {
+        QJsonObject _json_obj{{QString::number(uid), exists}};
+        QString json = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+
+        sendCommandTo(SEND_TO_ALL_START_PAGE, "files:checked", json);
+    }
+}
+
+void CAscApplicationManagerWrapper::onEditorWidgetClosed()
+{
+    if ( m_closeTarget == L"app" ) {
+        launchAppClose();
+    }
 }

@@ -83,6 +83,13 @@ CMainWindow::CMainWindow(const QRect& geometry)
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
+    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+    if ( _window_rect.width() < _window_min_size.width() )
+        _window_rect.setWidth(_window_min_size.width());
+
+    if ( _window_rect.height() < _window_min_size.height() )
+        _window_rect.setHeight(_window_min_size.height());
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
             _screen_size.height() < _window_rect.height() + 120 )
@@ -121,30 +128,9 @@ CMainWindow::CMainWindow(const QRect& geometry)
     connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
 
-    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
-
-    auto _detachevent = [=] {
-        CX11Decoration::raiseWindow();
-        setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    };
-
-    connect(app, &SingleApplication::showUp, [=](QString args){
-        QStringList * _list = Utils::getInputFiles(args.split(";"));
-
-        // remove app's self name from start arguments
-        if ( !_list->isEmpty() ) _list->removeFirst();
-
-        if ( !_list->isEmpty() ) {
-            m_pMainPanel->doOpenLocalFiles(*_list);
-        }
-
-        delete _list, _list = NULL;
-
-        QTimer::singleShot(0, _detachevent);
-    });
 }
 
 CMainWindow::~CMainWindow()
@@ -156,11 +142,7 @@ void CMainWindow::parseInputArgs(const QStringList& inlist)
     GET_REGISTRY_USER(reg_user)
 
     if ( !inlist.isEmpty() ) {
-        QString _arg;
-        QStringListIterator i(inlist); i.next();
-        while (i.hasNext()) {
-            _arg = i.next();
-
+        for ( auto& _arg : inlist ) {
             if (_arg.contains("--system-title-bar")) {
                 reg_user.setValue("titlebar", "system");
             } else
@@ -341,6 +323,7 @@ void CMainWindow::slot_modalDialog(bool status, WId h)
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
+    CX11Decoration::onDpiChanged(factor);
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {

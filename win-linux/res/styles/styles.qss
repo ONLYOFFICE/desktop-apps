@@ -111,10 +111,10 @@ QPushButton#toolButtonMain {
     border-right: 1px solid #a5a5a5;
 }
 
-QPushButton#toolButtonMain[theme=light] {
-    border: 1px solid #b6b6b6;
-    border-bottom: 0 none;
-}
+/*QPushButton#toolButtonMain[theme=light] {*/
+/*    border: 1px solid #b6b6b6;*/
+/*    border-bottom: 0 none;*/
+/*}*/
 
 QPushButton#toolButtonMain[class=active],
     QPushButton#toolButtonMain[class=active]:hover
@@ -138,12 +138,12 @@ QPushButton#toolButtonMain[class=normal]:hover {
     background: #cecece;
 }
 
-QPushButton#toolButtonMain[class=normal][theme=light],
-    QPushButton#toolButtonMain[class=normal][theme=light]:hover
-{
-    border: 0 none;
-    border-bottom: 1px solid #b6b6b6;
-}
+/*QPushButton#toolButtonMain[class=normal][theme=light],*/
+    /*QPushButton#toolButtonMain[class=normal][theme=light]:hover*/
+/*{*/
+    /*border: 0 none;*/
+    /*border-bottom: 1px solid #b6b6b6;*/
+/*}*/
 
 QPushButton::menu-indicator {
     /*border: 1px solid white;*/
@@ -374,17 +374,17 @@ CDownloadWidget[hdpi] QLabel#labelName {
 /* end of download widget */
 
 QPrintDialog, QPrintPropertiesDialog {
-    background-color:#fff;
+    /*background-color:#fff;*/
     font-family: 'Helvetica Neue',Arial;
-    color: #444;
+    /*color: #444;*/
 }
 
 QPrintDialog QWidget {
-    selection-background-color: #cbced1;
+    /*selection-background-color: rgba(0,0,0,0.4);*/
 }
 
 QPrintDialog QLabel {
-    color:#444;
+    /*color:#444;*/
     font-size: 11px;
     font-weight: bold;
 }
@@ -411,7 +411,7 @@ QPrintDialog QToolButton{
 QPrintDialog QLineEdit{
     font-weight: normal;
     font-size: 11px;
-    color: #444;
+    /*color: #444;*/
     border: 1px solid #cbcbcb;
     height: 22px;
     border-radius:2px;
@@ -435,7 +435,7 @@ QPrintDialog QComboBox{
     font-size: 11px;
     height: 22px;
     border-radius:2px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 
     /*selection-background-color: red;*/
     show-decoration-selected: 1;
@@ -453,14 +453,14 @@ QPrintDialog QComboBox::drop-down{
 
 QPrintDialog QComboBox:!editable:on {
     /*background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #D3D3D3, stop:0.4 #D8D8D8, stop:0.5 #DDDDDD, stop:1.0 #E1E1E1);*/
-    background:#cbced1;
+    /*background:#cbced1;*/
 }
 
 QPrintDialog QComboBox QAbstractItemView {
     border: 1px solid #cbcbcb;
     border-radius:2px;
-    background-color: #fff;
-    selection-background-color: rgb(170, 170, 255);
+    /*background-color: #fff;*/
+    /*selection-background-color: rgba(255, 255, 255, 0.5);*/
 }
 
 QPrintDialog QRadioButton::indicator{
@@ -470,7 +470,7 @@ QPrintDialog QRadioButton::indicator{
 
 QPrintDialog QRadioButton, QPrintDialog QCheckBox {
     font-size: 11px;
-    color: 444;
+    /*color: 444;*/
 }
 
 QPrintDialog QRadioButton::indicator::unchecked{
@@ -499,7 +499,7 @@ QSpinBox, QDoubleSpinBox, QTimeEdit {
     border-radius:2px;
     height:22px;
     font-size: 11px;
-    background-color:#fff;
+    /*background-color:#fff;*/
 }
 
 QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
@@ -531,13 +531,13 @@ QPrintDialog *::up-button, QPrintDialog  *::down-button {
 }
 
 QPrintDialog QTabWidget::pane{
-    background-color: white;
-    border: 1px solid #cbcbcb;
-    position:absolute;
-    top: -1px;
+    /*background-color: white;*/
+    /*border: 1px solid #cbcbcb;*/
+    /*position:absolute;*/
+    /*top: -1px;*/
 }
 QPrintDialog QTabBar::tab {
-    background-color:#fff;
+    /*background-color:#fff;*/
     border: 1px solid #cbcbcb;
     padding: 0 10px;
     border-top-left-radius: 2px;
@@ -558,11 +558,11 @@ QPrintDialog QTabBar::tab:selected {
 }
 
 QPrintDialog QTabBar::tab:selected {
-    background-color:white;
-    border-bottom-color: white;
+    background-color:rgba(255,255,255,0.3);
+    /*border-bottom-color: transparent;*/
 }
 
 QPrintDialog QTabBar::tab:!selected {
     /*margin-top: 2px;*/
-    color:#444;
+    /*color:#444;*/
 }

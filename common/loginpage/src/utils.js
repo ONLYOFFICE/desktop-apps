@@ -261,8 +261,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
             path = _f_.path.slice(0, fn.length - name.length - 1);
 
             _files_arr.push({
-                id: _f_.id,
-                type: utils.parseFileFormat(_f_.type),
+                fileid: _f_.id,
+                type: _f_.type,
+                format: utils.parseFileFormat(_f_.type),
                 name: name,
                 descr: path,
                 date: _f_.modifyed
@@ -355,3 +356,4 @@ function getUrlParams() {
 }
 
 utils.inParams = getUrlParams();
+utils.brandCheck = opts => true;

@@ -432,6 +432,8 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 
         adjustGeometry();
     }
+
+    CSingleWindowBase::onSizeEvent(type);
 }
 
 void CSingleWindowPlatform::onExitSizeMove()
@@ -556,6 +558,12 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 {
     CSingleWindowBase::setWindowTitle(title);
     SetWindowText(m_hWnd, title.toStdWString().c_str());
+}
+
+void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
+{
+    m_bgColor = RGB(color.red(), color.green(), color.blue());
+    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
 QRect CSingleWindowPlatform::geometry() const

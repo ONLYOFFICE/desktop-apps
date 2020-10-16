@@ -169,16 +169,16 @@ namespace CEditorTools
         CTabPanel * panel = CTabPanel::createEditorPanel();
 
         bool result = true;
-        if ( opts.type == etLocalFile ) {
+        if (opts.srctype == etLocalFile) {
             result = panel->openLocalFile(opts.wurl);
         } else
-        if ( opts.type == etRecoveryFile ) {
+        if (opts.srctype == etRecoveryFile) {
             result = panel->openRecoverFile(opts.id);
         } else
-        if ( opts.type == etRecentFile ) {
+        if (opts.srctype == etRecentFile) {
             result = panel->openRecentFile(opts.id);
         } else
-        if ( opts.type == etNewFile ) {
+        if (opts.srctype == etNewFile) {
             panel->createLocalFile(opts.format, opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
@@ -187,10 +187,10 @@ namespace CEditorTools
         if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
-            data->setIsLocal(opts.type == etLocalFile || opts.type == etNewFile ||
-                           (opts.type == etRecentFile && !CExistanceController::isFileRemote(opts.url)));
+            data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
+                           (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
-            if ( opts.type == etNewFile )
+            if ( opts.srctype == etNewFile )
                 data->setContentType(AscEditorType(opts.format));
 
             if ( !data->isLocal() ) {

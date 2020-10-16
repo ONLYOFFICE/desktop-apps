@@ -55,6 +55,7 @@ protected:
 public slots:
     virtual void onPortalLogout(std::wstring portal) = 0;
     virtual void onEditorConfig(int id, std::wstring cfg) = 0;
+    virtual void onEditorActionRequest(int, const QString&) = 0;
     virtual void onDocumentName(void *);
     virtual void onDocumentChanged(int id, bool changed);
     virtual void onDocumentSave(int id, bool cancel = false);

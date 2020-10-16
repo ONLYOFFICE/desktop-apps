@@ -39,14 +39,15 @@
 //
 
 #import "ASCEventsController.h"
-#import "mac_application.h"
 #import "ASCConstants.h"
+#import "ASCDocumentType.h"
+#import "ASCExternalController.h"
+#import "ASCPresentationReporter.h"
+#import "ASCSharedSettings.h"
+#import "NSDictionary+Extensions.h"
 #import "NSString+Extensions.h"
 #import "OfficeFileFormats.h"
-#import "ASCPresentationReporter.h"
-#import "ASCExternalController.h"
-#import "NSDictionary+Extensions.h"
-#import "ASCDocumentType.h"
+#import "mac_application.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -350,7 +351,7 @@ public:
                     }
 
                     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {                        
-                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData];
+                        [[ASCPresentationReporter sharedInstance] create:pEvent->m_pData from:senderId];
                         break;
                     }
 
@@ -450,6 +451,9 @@ public:
                         std::wstring cmd = pData->get_Command();
                         std::wstring param = pData->get_Param();
 
+#ifdef DEBUG
+                        NSLog(@"[Start page] Command: \"%@\", params: \"%@\"", [NSString stringWithstdwstring:cmd], [NSString stringWithstdwstring:param]);
+#endif
 
                         if (cmd.compare(L"portal:open") == 0 || cmd.find(L"auth:outer") != std::wstring::npos) {
                             NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary];
@@ -635,6 +639,12 @@ public:
                                                                               userInfo:@{
                                                                                   @"directory": [NSString stringWithstdwstring:param]
                                                                               }];
+                        } else if (cmd.find(L"extra:features") != std::wstring::npos) {
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                if (NSArray * available = json[@"available"]) {
+                                    [[ASCSharedSettings sharedInstance] setSetting:@([available count] > 0) forKey:kSettingsHasExtraFeatures];
+                                }
+                            }
                         }
                         
                         break;

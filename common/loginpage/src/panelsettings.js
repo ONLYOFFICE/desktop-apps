@@ -60,7 +60,7 @@
                                         <label class='sett__caption' l10n>${_lang.settUserName}</label>
                                         <div class='hbox sett--label-lift-top' id='sett-box-user'>
                                             <input type='text' class='tbox' spellcheck='false' maxlength='128'>
-                                            <a class='link link--sizem link--gray' href='#' l10n>${_lang.settResetUserName}</a>
+                                            <a class='link link--sizem link--gray' draggable='false' href='#' l10n>${_lang.settResetUserName}</a>
                                         </div>
                                     </div>
                                     <div class='settings-field settings-field-lang'>
@@ -68,6 +68,18 @@
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'></select>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class='settings-field' id='opts-ui-scaling' style='display:none'>
+                                        <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='0' l10n>${_lang.settOptScalingAuto}</option>
+                                                    <option value='100'>100%</option>
+                                                    <option value='200'>200%</option>
+                                                </select>
                                             </section>
                                         </div>
                                     </div>
@@ -96,7 +108,9 @@
                                     <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
+                                <div class="spacer" />
                             </div>
+                            <p id="caption-restart" class="sett__caption" style="display:none;text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
                         </div>
                     </div>`;
 
@@ -119,7 +133,8 @@
             $userName,
             $chOpenMode;
         let $panel;
-        let $optsLang;
+        let $optsLang,
+            $optsUIScaling;
 
         function _set_user_name(name) {
             let me = this;
@@ -128,9 +143,15 @@
             $btnApply.disable(false);
         };
 
+        const _validate_user_name = name => {
+            return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
+        };
+
         function _on_btn_apply(e) {
             let _user_new_name = $userName.val();
-            if ( _user_new_name && _user_new_name.length ) {
+            if ( _user_new_name && _user_new_name.length &&
+                    _validate_user_name(_user_new_name) ) 
+            {
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
@@ -149,6 +170,11 @@
 
                     _new_settings.checkupdatesrate = $combo.val();
                     $combo.selectpicker('refresh');
+                }
+
+                if ( $optsUIScaling ) {
+                    _new_settings.uiscaling = $optsUIScaling.val();
+                    $optsUIScaling.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -221,6 +247,16 @@
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+                        }
+
+                        if ( opts.uiscaling != undefined && !$optsUIScaling ) {
+                            ($optsUIScaling = ($('#opts-ui-scaling', $panel).show().find('select')))
+                            .val(opts.uiscaling)
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
+
+                            $('#caption-restart', $panel).show();
                         }
                     }
                 } else

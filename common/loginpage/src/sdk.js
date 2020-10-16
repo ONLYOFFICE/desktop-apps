@@ -39,6 +39,7 @@
                     , 'on_native_message'
                     , 'on_check_auth'
                     , 'onChangeCryptoMode'
+                    , 'onfeaturesavailable'
                 ];
 
     let subscribers = {
@@ -76,9 +77,13 @@
                 (!c.check || !c.check.url) && (c.check = {url:''});
                 if ( !c.check.url.startsWith('/') )
                     c.check.url = '/'.concat(c.check.url);
+                if ( !c.provider && !!c.id )
+                    c.provider = c.id;
+                if ( !c.startPage )
+                    c.startPage = '/';
             }
         } else {
-            _clouds = [{ id: "asc",
+            _clouds = [{ provider: "asc",
                             name: "ONLYOFFICE",
                             check: {url:"/api/2.0/capabilities.json"} }];
         }

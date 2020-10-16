@@ -38,7 +38,6 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	ISCC_PARAMS += //D_ONLYOFFICE=1
 endif
 ISCC_PARAMS += //D_UPDMODULE=1
-ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ISCC_PARAMS += //DsOutputFileName=$(notdir $(basename $@))
@@ -73,7 +72,12 @@ package: $(PACKAGES)
 #zip: $(DESKTOP_EDITORS_ZIP)
 
 clean-package:
-	rm -f $(PACKAGES) $(VCREDIST) $(INDEX_HTML)
+	rm -fv \
+		$(dir $(DESKTOP_EDITORS_EXE))*.exe \
+		$(dir $(DESKTOP_EDITORS_ZIP))*.zip \
+		$(dir $(DESKTOP_EDITORS_UPDATE))*.exe \
+		$(VCREDIST) \
+		$(INDEX_HTML)
 
 deploy: $(PACKAGES) $(INDEX_HTML)
 	aws s3 cp \
@@ -86,12 +90,10 @@ deploy: $(PACKAGES) $(INDEX_HTML)
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read 
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	aws s3 cp \
 	$(DESKTOP_EDITORS_UPDATE) \
 	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
 	--acl public-read
-endif
 
 #	aws s3 sync \
 #	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \

@@ -78,6 +78,7 @@ public:
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
     static QByteArray readStylesheets(std::vector<QString> *);
     static QByteArray readStylesheets(const QString&);
+    static QJsonObject parseJson(const wstring&);
 };
 
 namespace WindowHelper {

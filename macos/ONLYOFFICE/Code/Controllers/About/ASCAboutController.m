@@ -39,9 +39,12 @@
 //
 
 #import "ASCAboutController.h"
+
 #import <WebKit/WebKit.h>
+
 #import "ASCConstants.h"
 #import "ASCExternalController.h"
+#import "ASCSharedSettings.h"
 
 @interface ASCAboutController ()
 @property (weak) IBOutlet NSTextField *appNameText;
@@ -116,6 +119,13 @@
         [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@)", nil),
                                           [infoDictionary objectForKey:@"CFBundleShortVersionString"],
                                           [infoDictionary objectForKey:@"CFBundleVersion"]]];
+        
+        // If has extra features
+        if ([[[ASCSharedSettings sharedInstance] settingByKey:kSettingsHasExtraFeatures] boolValue]) {
+            [self.versionText setStringValue:[NSString stringWithFormat:@"%@\n%@",
+                                              self.versionText.stringValue,
+                                              NSLocalizedString(@"With access to pro features", nil)]];
+        }
         
         // Copyright
         [self.copyrightText setStringValue:locCopyright];

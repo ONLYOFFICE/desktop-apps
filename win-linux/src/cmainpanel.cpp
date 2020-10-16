@@ -56,7 +56,6 @@
 #include "utils.h"
 #include "version.h"
 #include "cmessage.h"
-#include "cfilechecker.h"
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../Common/OfficeFileFormats.h"
@@ -181,12 +180,12 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         layoutBtns->addWidget(m_pButtonClose);
 
 #ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
     } else {
-        m_pButtonMain->setProperty("theme", "light");
+//        m_pButtonMain->setProperty("theme", "light");
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -298,39 +297,6 @@ void CMainPanel::pushButtonCloseClicked()
     emit mainWindowWantToClose();
 }
 
-bool CMainPanel::closeAll()
-{
-    if ( !m_closeAct.isEmpty() ) return false;
-
-    if ( m_pTabs->count() ) {
-        for (int i(m_pTabs->count()); !(--i < 0);) {
-            CTabPanel& _p = *m_pTabs->panel(i);
-            if ( _p.data()->modified() &&
-                    _p.data()->isViewType(cvwtEditor) )
-            {
-                if ( !_p.data()->closed() ) {
-                    int _answer = trySaveDocument(i);
-                    if ( _answer == MODAL_RESULT_NO ) {
-                        m_pTabs->editorCloseRequest(i);
-                        onDocumentSave(_p.cef()->GetId());
-                    } else
-                    if ( _answer == MODAL_RESULT_CANCEL ) {
-                        m_closeAct.clear();
-                        return false;
-                    }
-                }
-            } else {
-                m_pTabs->closeEditorByIndex(i);
-            }
-
-            if ( m_closeAct.isEmpty() )
-                m_closeAct = "window";
-        }
-    }
-
-    return true;
-}
-
 void CMainPanel::onAppCloseRequest()
 {
     onFullScreen(-1, false);
@@ -343,7 +309,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
     if ( m_isCustomWindow ) {
 #ifdef __linux__
-        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith());
+        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith() * scaling());
 #endif
 
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
@@ -451,6 +417,9 @@ void CMainPanel::onEditorAllowedClose(int uid)
             }
 
             onTabChanged(m_pTabs->currentIndex());
+
+            CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+            AscAppManager::getInstance().commonEvents().signal(&_event);
         }
     }
 }
@@ -476,8 +445,6 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if ( !m_closeAct.isEmpty() ) return;
-
     onFullScreen(-1, false);
     if ( m_pTabs->isProcessed(index) ) {
         return;
@@ -487,6 +454,39 @@ void CMainPanel::onTabCloseRequest(int index)
             onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
         }
     }
+}
+
+int CMainPanel::tabCloseRequest(int index)
+{
+    if ( m_pTabs->count() ) {
+        if ( index == -1 ) {
+            if ( !m_pTabs->closedByIndex(m_pTabs->currentIndex()) )
+                index = m_pTabs->currentIndex();
+            else {
+                for (int i(0); i < m_pTabs->count(); ++i) {
+                    if ( !m_pTabs->closedByIndex(i) ) {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if ( !(index < 0) && index < m_pTabs->count() ) {
+        onFullScreen(-1, false);
+        if ( !m_pTabs->isProcessed(index) ) {
+            int _result = trySaveDocument(index);
+            if ( _result == MODAL_RESULT_NO ) {
+                m_pTabs->editorCloseRequest(index);
+                onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
+            }
+
+            return _result;
+        }
+    }
+
+    return MODAL_RESULT_CUSTOM;
 }
 
 int CMainPanel::trySaveDocument(int index)
@@ -520,8 +520,6 @@ int CMainPanel::trySaveDocument(int index)
 
 void CMainPanel::onPortalLogout(wstring wjson)
 {
-    if (!m_closeAct.isEmpty()) return;
-
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -545,8 +543,6 @@ void CMainPanel::onPortalLogout(wstring wjson)
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);
                         if ( _answer == MODAL_RESULT_CANCEL) {
-                            m_closeAct.clear();
-
                             AscAppManager::cancelClose();
                             return;
                         }
@@ -609,13 +605,18 @@ void CMainPanel::onLocalFileRecent(void * d)
 
     RELEASEINTERFACE(pData);
 
+    onLocalFileRecent(opts);
+}
+
+void CMainPanel::onLocalFileRecent(const COpenOptions& opts)
+{
     QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
-        if ( opts.type != etRecoveryFile && !_info.exists() ) {
+        if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
             CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
             int modal_res = mess.warning(
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
@@ -824,9 +825,8 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
                 }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
-            m_closeAct.clear();
 
-            AscAppManager::cancelClose();
+//            AscAppManager::cancelClose();
         }
     }
 }
@@ -888,7 +888,6 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
             }
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
-                m_closeAct.clear();
                 AscAppManager::cancelClose();
             }
     }
@@ -898,8 +897,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-//        if ( !m_closeAct.isEmpty() )
-            m_pTabs->closeEditorByIndex(index, false);
+        m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
         AscAppManager::cancelClose();
@@ -1113,13 +1111,13 @@ void CMainPanel::onFullScreen(int id, bool apply)
             m_mainWindowState = Qt::WindowFullScreen;
 
             m_pTabs->setFullScreen(apply, id);
-            emit mainWindowChangeState(Qt::WindowFullScreen);
+//            emit mainWindowChangeState(Qt::WindowFullScreen);
         }
     } else
     if ( m_mainWindowState == Qt::WindowFullScreen ) {
         m_mainWindowState = m_isMaximized ? Qt::WindowMaximized : Qt::WindowNoState;
 
-        emit mainWindowChangeState(m_mainWindowState);
+//        emit mainWindowChangeState(m_mainWindowState);
         m_pTabs->setFullScreen(apply);
         toggleButtonMain(false);
     }
@@ -1176,9 +1174,10 @@ void CMainPanel::onPortalOpen(QString json)
     if(jerror.error == QJsonParseError::NoError) {
         QJsonObject objRoot = jdoc.object();
 
-        QString _portal = objRoot["portal"].toString();
+        QString _portal = objRoot["portal"].toString(),
+                _entry = objRoot["entrypage"].toString();
         if ( !_portal.isEmpty() ) {
-            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"));
+            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"), _entry);
             if ( !(res < 0) ) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);

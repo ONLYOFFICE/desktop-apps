@@ -68,10 +68,10 @@ public:
     void attachStartPanel(QCefView * const);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
+    int  tabCloseRequest(int index = -1);
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
-    bool closeAll();
     virtual void updateScaling(int);
 
 #ifdef __linux
@@ -135,6 +135,7 @@ public slots:
     virtual void onLocalOptions(const QString&){}
     void onLocalFilesOpen(void *);
     void onLocalFileRecent(void *);
+    void onLocalFileRecent(const COpenOptions&);
     virtual void onLocalFileSaveAs(void *);
     void onLocalFileLocation(QString);
     void onFileLocation(int, QString);
@@ -151,8 +152,6 @@ protected:
     CAscTabWidget * m_pTabs;
     QPushButton*    m_pButtonMain;
     bool            m_isCustomWindow;
-
-    QString m_closeAct;
 
 private:
     std::wstring    m_sDownloadName;

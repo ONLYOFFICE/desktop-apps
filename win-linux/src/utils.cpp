@@ -222,8 +222,11 @@ void Utils::openUrl(const QString& url)
 void Utils::openFileLocation(const QString& path)
 {
 #if defined(Q_OS_WIN)
-    QStringList args{"/select,", QDir::toNativeSeparators(path)};
-    QProcess::startDetached("explorer", args);
+    ITEMIDLIST * idl = ILCreateFromPath(QDir::toNativeSeparators(path).toStdWString().c_str());
+    if ( idl ) {
+        SHOpenFolderAndSelectItems(idl, 0, 0, 0);
+        ILFree(const_cast<LPITEMIDLIST>(idl));
+    }
 #else
     static QString _file_browser;
     static QString _arg_select = "--no-desktop";
@@ -336,7 +339,11 @@ unsigned Utils::getScreenDpiRatio(const QPoint& pt)
     QWidget _w;
     _w.setGeometry(QRect(pt, QSize(10,10)));
 
+#ifdef Q_OS_LINUX
+    return getScreenDpiRatioByWidget(&_w);
+#else
     return getScreenDpiRatioByHWND(_w.winId());
+#endif
 }
 
 unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
@@ -439,6 +446,19 @@ QByteArray Utils::readStylesheets(const QString& path)
     }
 
     return _css;
+}
+
+QJsonObject Utils::parseJson(const wstring& wjson)
+{
+    QJsonParseError jerror;
+    QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+    QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+    if( jerror.error == QJsonParseError::NoError ) {
+        return jdoc.object();
+    }
+
+    return QJsonObject();
 }
 
 QString Utils::replaceBackslash(const QString& path)

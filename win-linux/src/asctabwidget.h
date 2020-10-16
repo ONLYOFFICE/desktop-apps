@@ -67,9 +67,9 @@ struct COpenOptions {
     COpenOptions(QString _name_, AscEditorType _type_, wstring _url_, int _id_);
 
     QString name;
-    AscEditorType type;
+    AscEditorType srctype;
     QString url;
-    int id, format;
+    int id, format = 0;
     std::wstring wurl;
 };
 
@@ -139,12 +139,11 @@ public:
     CTabPanel * panel(int) const;
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
-    int  addEditor(COpenOptions&);
-    int  addPortal(const QString& url, const QString& name, const QString& provider);
+    int  addEditor(const COpenOptions&);
+    int  addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage = QString());
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
-    void closeAllEditors();
     void closePortal(const wstring&, bool editors = false);
     void setStyleSheet(const QString&);
 
@@ -196,7 +195,7 @@ public:
     QWidget * fullScreenWidget();
 
     int  openCloudDocument(COpenOptions&, bool, bool forcenew = false);
-    int  openLocalDocument(COpenOptions&, bool, bool forcenew = false);
+    int  openLocalDocument(const COpenOptions&, bool, bool forcenew = false);
 //    void changeDocumentType(int, int);
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
@@ -205,7 +204,7 @@ public:
     void cancelDocumentSaving(int index);
     void setEditorOptions(int, const wstring&);
 
-    int  openPortal(const QString& url, const QString& provider);
+    int  openPortal(const QString& url, const QString& provider, const QString& entrypage);
     bool updatePortal(int index, const QString& url = QString());
     int  newPortal(const QString& url, const QString& name);
 

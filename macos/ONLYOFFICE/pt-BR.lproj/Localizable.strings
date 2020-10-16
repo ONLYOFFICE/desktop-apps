@@ -2,9 +2,6 @@
 "%@ Help" = "Ajuda do %@";
 
 /* No comment provided by engineer. */
-"%@ Reporter Window" = "Janela de Relatório %@";
-
-/* No comment provided by engineer. */
 "About %@" = "Sobre o %@";
 
 /* No comment provided by engineer. */
@@ -165,6 +162,9 @@
 
 /* No comment provided by engineer. */
 "Web Page" = "Página Web";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Com acesso a recursos profissionais";
 
 /* No comment provided by engineer. */
 "Word 97-2003 Document" = "Documento do Word 97-2003";

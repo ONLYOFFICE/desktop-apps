@@ -421,6 +421,14 @@
     </message>
 </context>
 <context>
+    <name>CMainPanelImpl</name>
+    <message>
+        <location filename="../src/prop/cmainpanelimpl.cpp" line="53"/>
+        <source>Licensed under</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CMessage</name>
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>

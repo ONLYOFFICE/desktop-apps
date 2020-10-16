@@ -87,6 +87,8 @@ CElipsisLabel::CElipsisLabel(const QString &text, QWidget *parent)
 
 void CElipsisLabel::resizeEvent(QResizeEvent *event)
 {
+    QLabel::resizeEvent(event);
+
     if ( event->size().width() != event->oldSize().width() ) {
         QString elt = ellipsis_text_(this, orig_text, elide_mode);
         QLabel::setText(elt);
@@ -104,6 +106,14 @@ auto CElipsisLabel::setText(const QString& text) -> void
 auto CElipsisLabel::setEllipsisMode(Qt::TextElideMode mode) -> void
 {
     elide_mode = mode;
+}
+
+auto CElipsisLabel::updateText() -> void
+{
+    QString elt = ellipsis_text_(this, orig_text, elide_mode);
+    if ( elt != text() ) {
+        QLabel::setText(elt);
+    }
 }
 
 
@@ -176,6 +186,15 @@ void CSingleWindowBase::setWindowTitle(const QString& title)
     }
 }
 
+int CSingleWindowBase::calcTitleCaptionWidth()
+{
+    if ( pimpl->is_custom_window() ) {
+        return m_boxTitleBtns->width() - (m_buttonMaximize->width() * 3);
+    }
+
+    return 0;
+}
+
 //#include <QSvgRenderer>
 //#include <QPainter>
 QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& title)
@@ -191,13 +210,13 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
 
         m_labelTitle = new CElipsisLabel(title);
         m_labelTitle->setObjectName("labelTitle");
-        m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
+        m_labelTitle->setMaximumWidth(100);
 
-//        layoutBtns->addStretch();
-        layoutBtns->addWidget(m_labelTitle, 1);
-//        layoutBtns->addStretch();
+        layoutBtns->addStretch();
+        layoutBtns->addWidget(m_labelTitle, 0);
+        layoutBtns->addStretch();
 
         QSize small_btn_size(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
@@ -223,7 +242,6 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
         // Close
         m_buttonClose = _creatToolButton("toolButtonClose", parent);
         QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
-
 
 //        m_pButtonMaximize = new QPushButton(parent);
 //        m_pButtonMaximize->setFixedSize(small_btn_size);
@@ -257,6 +275,11 @@ void CSingleWindowBase::onMaximizeEvent()
 
 }
 
+void CSingleWindowBase::onSizeEvent(int)
+{
+    updateTitleCaption();
+}
+
 void CSingleWindowBase::onExitSizeMove()
 {
 
@@ -278,10 +301,20 @@ QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
 
 void CSingleWindowBase::adjustGeometry()
 {
-
 }
 
 bool CSingleWindowBase::isCustomWindowStyle()
 {
     return pimpl->is_custom_window();
+}
+
+void CSingleWindowBase::updateTitleCaption()
+{
+    if ( m_labelTitle ) {
+        int _width = calcTitleCaptionWidth();
+        if ( !(_width < 0) ) {
+            m_labelTitle->setMaximumWidth(_width);
+            m_labelTitle->updateText();
+        }
+    }
 }
