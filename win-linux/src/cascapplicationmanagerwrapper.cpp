@@ -702,9 +702,9 @@ void CAscApplicationManagerWrapper::startApp()
     */
     _app.m_private->createStartPanel();
 
-    CMainWindow * _window = createMainWindow(_start_rect);
-    _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-    _window->show(false);
+//    CMainWindow * _window = createMainWindow(_start_rect);
+//    _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
+//    _window->show(false);
 
     /*
      * create editor's window with empty document
