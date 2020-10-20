@@ -74,7 +74,7 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["uiscaling"] = _force_value == L"1" ? 100 : _force_value == L"2" ? 200 : 0;
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
-    if ( InputArgs::contains("--ascdesktop-reveal-app-config") )
+    if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 

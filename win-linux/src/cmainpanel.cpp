@@ -866,7 +866,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
-                static const bool _skip_user_warning = !InputArgs::contains("--warning-doc-fragmented");
+                static const bool _skip_user_warning = !InputArgs::contains(L"--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;

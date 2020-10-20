@@ -51,6 +51,7 @@
 
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
+#include "common/File.h"
 
 #ifdef _WIN32
 #include <windowsx.h>
@@ -62,28 +63,50 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #endif
 
 #include <QDebug>
-extern QStringList g_cmdArgs;
+//extern QStringList g_cmdArgs;
 
 namespace InputArgs {
-    auto contains(const QString& param) -> bool {
-        auto iter = std::find_if(begin(g_cmdArgs), end(g_cmdArgs),
-            [&param](const QString& s) {
-                return s.startsWith(param);
-        });
+    std::vector<wstring> in_args;
 
-        return iter != end(g_cmdArgs);
+    auto init(int argc, char** const argv) -> void {
+        for (int c(1); c < argc; ++c) {
+            in_args.push_back(UTF8_TO_U(string(argv[c])));
+        }
     }
 
-    auto get_arg_value(const QString& param) -> QString {
-        QRegularExpression _re("^" + param + "[=|:]([\\w\\\":\\\\/]+)", QRegularExpression::CaseInsensitiveOption);
+    auto init(wchar_t const * wargvl) -> void {
+#ifdef Q_OS_WIN
+        int argc;
+        LPWSTR * argv = CommandLineToArgvW(wargvl, &argc);
 
-        for (const auto& item: g_cmdArgs) {
-            QRegularExpressionMatch _match = _re.match(item);
-            if ( _match.hasMatch() )
-                return _match.captured(1);
+        if (argv != nullptr) {
+            for(int i(1); i < argc; ++i) {
+                in_args.push_back(argv[i]);
+            }
         }
 
-        return QString();
+        LocalFree(argv);
+#endif
+    }
+
+
+    auto contains(const wstring& param) -> bool {
+        auto iter = std::find_if(std::begin(in_args), std::end(in_args),
+            [&param](const wstring& s) {
+                return s.find(param) != wstring::npos;
+        });
+
+        return iter != end(in_args);
+    }
+
+    auto get_arg_value(const wstring& param) -> wstring {
+        for (const auto& item: in_args) {
+            if ( item.find(param) != wstring::npos ) {
+                return item.substr(param.size() + 1); // substring after '=' or ':' symbol
+            }
+        }
+
+        return L"";
     }
 }
 

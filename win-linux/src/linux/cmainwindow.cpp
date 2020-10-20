@@ -47,8 +47,6 @@
 # include "cdialogopenssl.h"
 #endif
 
-extern QStringList g_cmdArgs;
-
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , CX11Decoration(this)
@@ -60,12 +58,19 @@ CMainWindow::CMainWindow(QWidget *parent)
 CMainWindow::CMainWindow(const QRect& geometry)
     : CMainWindow(nullptr)
 {
-    parseInputArgs(g_cmdArgs);
-
     setWindowIcon(Utils::appIcon());
     setObjectName("MainWindow");
 
     GET_REGISTRY_USER(reg_user)
+
+    if ( InputArgs::contains(L"--system-title-bar") )
+        reg_user.setValue("titlebar", "system");
+    else
+    if ( InputArgs::contains(L"--custom-title-bar") )
+        reg_user.setValue("titlebar", "custom");
+
+    if ( !reg_user.contains("titlebar") )
+        reg_user.setValue("titlebar", "custom");
 
     QString _title_style = reg_user.value("titlebar").toString();
     if ( _title_style.isEmpty() ) {
@@ -137,23 +142,8 @@ CMainWindow::~CMainWindow()
 {
 }
 
-void CMainWindow::parseInputArgs(const QStringList& inlist)
+void CMainWindow::parseInputArgs()
 {
-    GET_REGISTRY_USER(reg_user)
-
-    if ( !inlist.isEmpty() ) {
-        for ( auto& _arg : inlist ) {
-            if (_arg.contains("--system-title-bar")) {
-                reg_user.setValue("titlebar", "system");
-            } else
-            if (_arg.contains("--custom-title-bar")) {
-                reg_user.setValue("titlebar", "custom");
-            }
-        }
-    }
-
-    if ( !reg_user.contains("titlebar") )
-        reg_user.setValue("titlebar", "custom");
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)

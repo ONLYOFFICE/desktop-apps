@@ -42,8 +42,10 @@
 
 using namespace std;
 namespace InputArgs {
-    auto contains(const QString&) -> bool;
-    auto get_arg_value(const QString& param) -> QString;
+    auto init(int argc, char** const argv) -> void;
+    auto init(wchar_t const * argv) -> void;
+    auto contains(const wstring&) -> bool;
+    auto get_arg_value(const wstring& param) -> wstring;
 }
 
 class Utils {

@@ -64,7 +64,6 @@
 #endif
 
 using namespace std::placeholders;
-extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 

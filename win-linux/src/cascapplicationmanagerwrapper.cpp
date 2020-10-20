@@ -42,8 +42,6 @@
 
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
-extern QStringList g_cmdArgs;
-
 using namespace NSEditorApi;
 using namespace std::placeholders;
 

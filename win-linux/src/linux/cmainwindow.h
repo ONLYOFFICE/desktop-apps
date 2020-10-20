@@ -51,7 +51,6 @@ public:
     explicit CMainWindow(const QRect&);
     ~CMainWindow();
 
-    void parseInputArgs(const QStringList&);
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;

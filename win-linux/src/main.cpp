@@ -63,7 +63,6 @@
 #include <QTextCodec>
 #include <iostream>
 
-QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
 {
@@ -110,6 +109,8 @@ int main( int argc, char *argv[] )
     CApplicationCEF::Prepare(argc, argv);
 
 #ifdef _WIN32
+    WCHAR * cm_line = GetCommandLine();
+
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
@@ -124,18 +125,19 @@ int main( int argc, char *argv[] )
             return 0;
         }
     }
+
+    InputArgs::init(cm_line);
+#else
+    InputArgs::init(argc, argv);
 #endif
-    const int ac = argc;
-    char ** const av = argv;
-    for (int a(1); a < ac; ++a) {
-        if ( strcmp(av[a], "--version") == 0 ) {
-            qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
-            return 0;
-        } else
-        if ( strcmp(av[a], "--help") == 0 ) {
-            CHelp::out();
-            return 0;
-        }
+
+    if ( InputArgs::contains(L"--version") ) {
+        qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
+        return 0;
+    } else
+    if ( InputArgs::contains(L"--help") ) {
+        CHelp::out();
+        return 0;
     }
 
 #ifdef __linux__
@@ -145,8 +147,6 @@ int main( int argc, char *argv[] )
 #endif
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
-
-    g_cmdArgs = QApplication::arguments().mid(1);
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();
