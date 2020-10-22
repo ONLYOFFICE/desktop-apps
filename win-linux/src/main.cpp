@@ -114,9 +114,11 @@ int main( int argc, char *argv[] )
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
-        if (hwnd != NULL) {
-            WCHAR * cm_line = GetCommandLine();
+        if ( hwnd == NULL ) {
+            hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, NULL);
+        }
 
+        if (hwnd != NULL) {
             COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
             MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
             MyCDS.lpData = cm_line;

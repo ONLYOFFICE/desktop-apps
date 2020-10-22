@@ -67,7 +67,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     if ( FAILED(RegisterClassEx(&wcx)) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    m_hWnd = CreateWindow(L"SingleWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+    m_hWnd = CreateWindow(WINDOW_EDITOR_CLASS_NAME, title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                                 rect.x(), rect.y(), rect.width(), rect.height(), 0, 0, hInstance, nullptr);
 
     if ( !m_hWnd )
@@ -349,6 +349,27 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 //        CAscApplicationManagerWrapper::getInstance().CloseApplication();
 
         break;
+
+    case WM_COPYDATA: {
+        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
+        if (pcds->dwData == 1) {
+            int nArgs;
+            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
+
+            if (szArglist != nullptr) {
+                std::vector<std::wstring> v_inargs;
+                for(int i(1); i < nArgs; i++) {
+                    v_inargs.push_back(szArglist[i]);
+                }
+
+                if ( !v_inargs.empty() ) {
+                    AscAppManager::handleInputCmd(v_inargs);
+                }
+            }
+
+            LocalFree(szArglist);
+        }
+        break;}
 
     case WM_WINDOWPOSCHANGING: { break; }
     default: break;
