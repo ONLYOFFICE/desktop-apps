@@ -39,6 +39,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
+#include "OfficeFileFormats.h"
 
 #include <QDir>
 #include <QDebug>
@@ -134,7 +135,7 @@ namespace CEditorTools
 
             /* data consits id of cefview */
             pData->put_IsMultiselect(true);
-            vector<wstring>& _files = pData->get_Files();
+            std::vector<std::wstring>& _files = pData->get_Files();
             for ( const auto& f : _list ) {
                 _files.push_back(f.toStdWString());
             }
@@ -144,7 +145,7 @@ namespace CEditorTools
         }
     }
 
-    QString getlocalfile(const wstring& path, int parentid)
+    QString getlocalfile(const std::wstring& path, int parentid)
     {
         ParentHandle parent;
         if ( !(parentid < 0) )

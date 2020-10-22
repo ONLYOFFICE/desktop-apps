@@ -59,7 +59,7 @@ public:
     void goStart();
     void focus();
     virtual void doOpenLocalFile(COpenOptions&);
-    void doOpenLocalFiles(const vector<wstring> *);
+    void doOpenLocalFiles(const std::vector<std::wstring> *);
     void doOpenLocalFiles(const QStringList&);
     void doOpenLocalFiles();
     void createLocalFile(const QString& name, int format);

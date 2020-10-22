@@ -58,6 +58,7 @@
 
 #include "private/qtabbar_p.h"
 
+using namespace std;
 /*
  *
  *  Tab data

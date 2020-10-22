@@ -518,7 +518,7 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onPortalLogout(wstring wjson)
+void CMainPanel::onPortalLogout(std::wstring wjson)
 {
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
@@ -657,7 +657,7 @@ void CMainPanel::createLocalFile(const QString& name, int format)
 void CMainPanel::onLocalFilesOpen(void * data)
 {
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
-    vector<wstring> vctFiles = pData->get_Files();
+    std::vector<std::wstring> vctFiles = pData->get_Files();
 
     doOpenLocalFiles(&vctFiles);
 
@@ -716,11 +716,11 @@ void CMainPanel::onFileLocation(int uid, QString param)
     }
 }
 
-void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
+void CMainPanel::doOpenLocalFiles(const std::vector<std::wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
 
-    for (wstring wstr : (*vec)) {
+    for (const auto& wstr : (*vec)) {
         COpenOptions opts = {wstr, etLocalFile};
         doOpenLocalFile(opts);
     }
@@ -782,7 +782,7 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 {
 }
 
-void CMainPanel::onWebAppsFeatures(int id, wstring opts)
+void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
     m_pTabs->setEditorOptions(id, opts);
 }

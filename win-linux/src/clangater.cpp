@@ -137,9 +137,9 @@ void CLangater::init()
     GET_REGISTRY_USER(reg_user)
     GET_REGISTRY_SYSTEM(reg_system)
 
-    QString _lang = QString::fromStdWString(InputArgs::get_arg_value(L"--keeplang"));
+    QString _lang = QString::fromStdWString(InputArgs::argument_value(L"--keeplang"));
     if ( _lang.isEmpty() ) {
-        _lang = QString::fromStdWString(InputArgs::get_arg_value(L"--lang"));
+        _lang = QString::fromStdWString(InputArgs::argument_value(L"--lang"));
     } else reg_user.setValue("locale", _lang);
 
     if ( _lang.isEmpty() )

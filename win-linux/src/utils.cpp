@@ -66,11 +66,11 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 //extern QStringList g_cmdArgs;
 
 namespace InputArgs {
-    std::vector<wstring> in_args;
+    std::vector<std::wstring> in_args;
 
     auto init(int argc, char** const argv) -> void {
         for (int c(1); c < argc; ++c) {
-            in_args.push_back(UTF8_TO_U(string(argv[c])));
+            in_args.push_back(UTF8_TO_U(std::string(argv[c])));
         }
     }
 
@@ -90,18 +90,18 @@ namespace InputArgs {
     }
 
 
-    auto contains(const wstring& param) -> bool {
+    auto contains(const std::wstring& param) -> bool {
         auto iter = std::find_if(std::begin(in_args), std::end(in_args),
-            [&param](const wstring& s) {
-                return s.find(param) != wstring::npos;
+            [&param](const std::wstring& s) {
+                return s.find(param) != std::wstring::npos;
         });
 
         return iter != end(in_args);
     }
 
-    auto get_arg_value(const wstring& param) -> wstring {
+    auto argument_value(const std::wstring& param) -> std::wstring {
         for (const auto& item: in_args) {
-            if ( item.find(param) != wstring::npos ) {
+            if ( item.find(param) != std::wstring::npos ) {
                 return item.substr(param.size() + 1); // substring after '=' or ':' symbol
             }
         }
@@ -471,7 +471,7 @@ QByteArray Utils::readStylesheets(const QString& path)
     return _css;
 }
 
-QJsonObject Utils::parseJson(const wstring& wjson)
+QJsonObject Utils::parseJson(const std::wstring& wjson)
 {
     QJsonParseError jerror;
     QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -510,14 +510,14 @@ bool Utils::setAppUserModelId(const QString& modelid)
     return _result;
 }
 
-wstring Utils::systemUserName()
+std::wstring Utils::systemUserName()
 {
 #ifdef Q_OS_WIN
     WCHAR _env_name[UNLEN + 1]{0};
     DWORD _size = UNLEN + 1;
 
     return GetUserName(_env_name, &_size) ?
-                            wstring(_env_name) : L"Unknown.User";
+                            std::wstring(_env_name) : L"Unknown.User";
 #else
     QString _env_name = qgetenv("USER");
     if ( _env_name.isEmpty() ) {
@@ -531,7 +531,7 @@ wstring Utils::systemUserName()
 #endif
 }
 
-wstring Utils::appUserName()
+std::wstring Utils::appUserName()
 {
     GET_REGISTRY_USER(_reg_user)
 

@@ -81,7 +81,7 @@ namespace {
 
     private:
         sTick m_ct;
-        wstring m_url;
+        std::wstring m_url;
 
         void run() override
         {

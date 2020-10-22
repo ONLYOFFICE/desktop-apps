@@ -152,8 +152,8 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
-    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
-    QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, std::bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     m_pWinPanel->show();

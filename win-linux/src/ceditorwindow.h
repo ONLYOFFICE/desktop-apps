@@ -55,7 +55,7 @@ public:
 
     void focus() override;
     bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
+    bool holdView(const std::wstring& portal) const;
     void undock(bool maximized = false);
     int closeWindow();
     CTabPanel * mainView() const;

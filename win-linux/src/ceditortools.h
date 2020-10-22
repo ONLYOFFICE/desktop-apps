@@ -57,7 +57,7 @@ namespace CEditorTools
 
     void print(const sPrintConf&);
     void getlocalfile(void * data);
-    QString getlocalfile(const wstring& path, int parentid = -1);
+    QString getlocalfile(const std::wstring& path, int parentid = -1);
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
 }

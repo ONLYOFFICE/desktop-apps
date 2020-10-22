@@ -43,6 +43,7 @@
 #define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, callback)
 
 using namespace NSEditorApi;
+using namespace std;
 using namespace std::placeholders;
 
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
