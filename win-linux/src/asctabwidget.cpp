@@ -51,6 +51,7 @@
 #include "utils.h"
 #include "cfilechecker.h"
 #include "canimatedicon.h"
+#include "ceditortools.h"
 
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
@@ -59,6 +60,7 @@
 #include "private/qtabbar_p.h"
 
 using namespace std;
+
 /*
  *
  *  Tab data
@@ -132,22 +134,6 @@ auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * 
 
 auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
     return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
-}
-
-auto editoTypeFromFormat(int format) -> AscEditorType {
-    if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
-            format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
-                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
-        return etDocument;
-    else
-    if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
-        return etPresentation;
-    else
-    if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
-        return etSpreadsheet;
-    }
-
-    return etUndefined;
 }
 
 CAscTabWidget::CAscTabWidget(QWidget *parent)
@@ -246,7 +232,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         res_open = pView->openRecentFile(opts.id);
     } else
     if (opts.srctype == etNewFile) {
-        pView->createLocalFile(editoTypeFromFormat(opts.format), opts.name.toStdWString());
+        pView->createLocalFile(CEditorTools::editorTypeFromFormat(opts.format), opts.name.toStdWString());
     } else {
         pView->cef()->load(opts.wurl);
     }
@@ -257,7 +243,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
                        (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
-        data->setContentType(editoTypeFromFormat(opts.format));
+        data->setContentType(CEditorTools::editorTypeFromFormat(opts.format));
         data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);

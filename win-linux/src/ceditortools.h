@@ -60,6 +60,7 @@ namespace CEditorTools
     QString getlocalfile(const std::wstring& path, int parentid = -1);
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
+    auto editorTypeFromFormat(int format) -> AscEditorType;
 }
 
 #endif // CEDITORTOOLS_H

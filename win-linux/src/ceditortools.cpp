@@ -180,7 +180,7 @@ namespace CEditorTools
             result = panel->openRecentFile(opts.id);
         } else
         if (opts.srctype == etNewFile) {
-            panel->createLocalFile(opts.format, opts.name.toStdWString());
+            panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
@@ -210,5 +210,21 @@ namespace CEditorTools
         }
 
         return panel;
+    }
+
+    auto editorTypeFromFormat(int format) -> AscEditorType {
+        if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
+                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
+                    format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
+            return etDocument;
+        else
+        if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
+            return etPresentation;
+        else
+        if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
+            return etSpreadsheet;
+        }
+
+        return etUndefined;
     }
 }
