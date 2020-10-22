@@ -1,0 +1,10 @@
+{
+    "id": "owncloud",
+    "name" : "ownCloud",
+    "check" : {
+        "url": "status.php"
+    },
+    "editorPage" : "/apps/onlyoffice/",
+    "startPage": "/",
+    "cryptoSupport" : "true"
+}
