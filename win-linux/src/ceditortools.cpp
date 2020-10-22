@@ -171,7 +171,15 @@ namespace CEditorTools
 
         bool result = true;
         if (opts.srctype == etLocalFile) {
-            result = panel->openLocalFile(opts.wurl);
+            std::wstring params{InputArgs::webapps_params()};
+            if ( opts.mode == COpenOptions::eOpenMode::review ) {
+                params = L"&mode=review";
+            } else
+            if ( opts.mode == COpenOptions::eOpenMode::view ) {
+                params = L"&mode=view";
+            }
+
+            result = panel->openLocalFile(opts.wurl, params);
         } else
         if (opts.srctype == etRecoveryFile) {
             result = panel->openRecoverFile(opts.id);

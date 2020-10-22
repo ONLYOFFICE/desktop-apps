@@ -108,6 +108,19 @@ namespace InputArgs {
 
         return L"";
     }
+
+    auto arguments() -> const std::vector<std::wstring>& {
+        return in_args;
+    }
+
+    std::wstring web_apps_params;
+    auto webapps_params() -> const std::wstring& {
+        return web_apps_params;
+    }
+
+    auto set_webapps_params(const std::wstring& params) -> void {
+        web_apps_params = params;
+    }
 }
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)

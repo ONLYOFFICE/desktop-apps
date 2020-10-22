@@ -70,6 +70,9 @@ struct COpenOptions {
     QString url;
     int id, format = 0;
     std::wstring wurl;
+
+    enum class eOpenMode {edit, view, review};
+    eOpenMode mode = eOpenMode::edit;
 };
 
 class CAscTabWidget : public QTabWidget, public CScalingWrapper

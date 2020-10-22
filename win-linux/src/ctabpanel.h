@@ -27,8 +27,8 @@ public:
     void initAsEditor();
     void initAsSimple();
 
-    void openLocalFile(const std::wstring& sFilePath, int nFileFormat);
-    bool openLocalFile(const std::wstring& sFilePath);
+    void openLocalFile(const std::wstring& sFilePath, int nFileFormat, const std::wstring& params);
+    bool openLocalFile(const std::wstring& sFilePath, const std::wstring& params);
     void createLocalFile(int nFileFormat, const std::wstring& sName = L"");
     bool openRecoverFile(int id);
     bool openRecentFile(int id);

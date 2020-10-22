@@ -223,7 +223,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
     int tab_index = -1;
     bool res_open = true;
     if (opts.srctype == etLocalFile) {
-        pView->openLocalFile(opts.wurl, file_format);
+        pView->openLocalFile(opts.wurl, file_format, L"");
     } else
     if (opts.srctype == etRecoveryFile) {
         res_open = pView->openRecoverFile(opts.id);

@@ -643,6 +643,84 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
     return new CAscApplicationManagerWrapper;
 }
 
+auto make_options_to_create_new(const wstring& line) -> COpenOptions {
+    COpenOptions opts;
+    opts.srctype = etNewFile;
+
+    opts.format = AVS_OFFICESTUDIO_FILE_UNKNOWN;
+    if ( line.rfind(L"cell") != wstring::npos ) opts.format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX; else
+    if ( line.rfind(L"slide") != wstring::npos ) opts.format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX; else
+    /*if ( line.rfind(L"word") != wstring::npos )*/ opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
+
+    opts.name = AscAppManager::newFileName(opts.format);
+    return opts;
+}
+
+void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& vargs)
+{
+    const wstring prefix = L"--";
+    const size_t prefix_size =  prefix.size();
+
+    auto check_param = [&prefix_size] (const wstring& line, const wstring& param, size_t& c) {
+        if ( line.find(param, prefix_size) != wstring::npos ) {
+            c = prefix_size + param.size();
+            return true;
+        }
+
+        return false;
+    };
+
+    bool in_new_window = true;
+    for (const auto& arg: vargs) {
+        COpenOptions open_opts;
+        open_opts.srctype = etLocalFile;
+
+        size_t p = arg.find(prefix);
+        if ( p == 0 ) {
+            size_t c;
+            if ( check_param(arg, L"review", c) ) {
+                open_opts.mode = COpenOptions::eOpenMode::review;
+                open_opts.wurl = arg.substr(++c);
+            } else
+            if ( check_param(arg, L"view", c) ) {
+                open_opts.mode = COpenOptions::eOpenMode::view;
+                open_opts.wurl = arg.substr(++c);
+            } else
+            if ( check_param(arg, L"new", c) ) {
+                open_opts = make_options_to_create_new(arg);
+            } else continue;
+
+//            if ( check_param(arg, L"single-window", c) )
+//                in_new_window = true;
+        } else {
+            open_opts.wurl = arg;
+        }
+
+        CTabPanel * panel = nullptr;
+        struct _stat64i32 buffer;
+        if (open_opts.srctype == etNewFile ||
+                _wstat(open_opts.wurl.c_str(), &buffer) == 0)
+        {
+            // it's a file. create editor
+
+            panel = CEditorTools::createEditorPanel(open_opts);
+            if ( panel ) {
+                if ( in_new_window ) {
+                    QRect start_rect{100,100,1200,900};
+
+                    CEditorWindow * editor_win = new CEditorWindow(start_rect.translated(QPoint(50,50)), panel);
+                    editor_win->show(false);
+
+                    AscAppManager::getInstance().m_vecEditors.push_back(size_t(editor_win));
+                    sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+                } else {
+
+                }
+            }
+        }
+    }
+}
+
 void CAscApplicationManagerWrapper::startApp()
 {
     APP_CAST(_app);
@@ -699,7 +777,7 @@ void CAscApplicationManagerWrapper::startApp()
     /*
      * create start page
     */
-    _app.m_private->createStartPanel();
+//    _app.m_private->createStartPanel();
 
 //    CMainWindow * _window = createMainWindow(_start_rect);
 //    _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
@@ -720,6 +798,8 @@ void CAscApplicationManagerWrapper::startApp()
         AscAppManager::getInstance().m_vecEditors.push_back(size_t(editor_win));
         sendCommandTo(_panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
     }
+
+    handleInputCmd(InputArgs::arguments());
 
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
         if ( !exists ) {
@@ -816,7 +896,9 @@ void CAscApplicationManagerWrapper::initializeApp()
     wstring user_name = Utils::appUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
-    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);   
+    InputArgs::set_webapps_params(wparams);
+
+    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 }
 
 CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
@@ -928,8 +1010,10 @@ void CAscApplicationManagerWrapper::launchAppClose()
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
 
-            CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-            closeQueue().leave(sWinTag{1,size_t(_w)});
+            if ( !m_vecWindows.empty() ) {
+                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
+                closeQueue().leave(sWinTag{1,size_t(_w)});
+            }
         }
     } else {
         cancelClose();
@@ -1296,6 +1380,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 #endif
 
+        InputArgs::set_webapps_params(params);
         AscAppManager::getInstance().InitAdditionalEditorParams( params );
     } else {
         /* parse settings error */

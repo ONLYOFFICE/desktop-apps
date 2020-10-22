@@ -45,6 +45,10 @@ namespace InputArgs {
     auto init(wchar_t const * argv) -> void;
     auto contains(const std::wstring&) -> bool;
     auto argument_value(const std::wstring& param) -> std::wstring;
+    auto arguments() -> const std::vector<std::wstring>&;
+
+    auto webapps_params() -> const std::wstring&;
+    auto set_webapps_params(const std::wstring&) -> void;
 }
 
 class Utils {

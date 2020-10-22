@@ -97,18 +97,18 @@ void CTabPanel::initAsSimple()
     m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);    
 }
 
-void CTabPanel::openLocalFile(const std::wstring& path, int format)
+void CTabPanel::openLocalFile(const std::wstring& path, int format, const std::wstring& params)
 {
-    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, format);
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, format, params);
 }
 
-bool CTabPanel::openLocalFile(const std::wstring& path)
+bool CTabPanel::openLocalFile(const std::wstring& path, const std::wstring& params)
 {
     int _format = CCefViewEditor::GetFileFormat(path);
     if ( _format == 0 )
         return false;
 
-    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, _format);
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenLocalFile(path, _format, params);
     return true;
 }
 
