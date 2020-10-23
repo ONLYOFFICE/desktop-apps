@@ -70,6 +70,12 @@ $(document).ready(function() {
         hideAction('connect');
     }
 
+    if (!window.config.portals.checklist) {
+        $('.tools-connect').hide();
+        hideAction('connect');
+        console.log('There are no cloud providers');
+    }
+
     if (!utils.inParams.waitingloader)
         setLoaderVisible(false);
 
@@ -131,8 +137,8 @@ function selectAction(action) {
 
 function hideAction(action, hide) {
     var mitem = $('.tool-menu a[action='+action+']').parent();
-    mitem.removeClass('extra')[hide===true?'hide':'show']();
-    $('.action-panel.' + action)[hide===true?'hide':'show']();
+    mitem.removeClass('extra')[hide===false?'show':'hide']();
+    $('.action-panel.' + action)[hide===false?'show':'hide']();
 };
 
 function setLoaderVisible(isvisible, timeout) {
