@@ -83,9 +83,7 @@
                     c.startPage = '/';
             }
         } else {
-            _clouds = [{ provider: "asc",
-                            name: "ONLYOFFICE",
-                            check: {url:"/api/2.0/capabilities.json"} }];
+            // _clouds = [{ provider: "asc",name: "ONLYOFFICE",check: {url:"/api/2.0/capabilities.json"} }];
         }
 
         return _clouds;
