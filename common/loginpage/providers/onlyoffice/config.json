@@ -1,0 +1,14 @@
+{
+    "provider": "asc",
+    "name" : "ONLYOFFICE",
+    "check" : {
+        "url":"/api/2.0/capabilities.json"
+    },
+    "editorPage" : "/products/files/doceditor.aspx",
+    "startPage": "/Products/Files/",
+    "cryptoSupport" : "true",
+    "icons": {
+        "connectionlist": "./assets/listicon.svg",
+        "buttonlogo": "./assets/buttonlogo.svg"
+    }
+}

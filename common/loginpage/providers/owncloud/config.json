@@ -6,5 +6,9 @@
     },
     "editorPage" : "/apps/onlyoffice/",
     "startPage": "/",
-    "cryptoSupport" : "true"
+    "cryptoSupport" : "true",
+    "icons": {
+        "connectionlist": "./assets/listicon.svg",
+        "buttonlogo": "./assets/buttonlogo.svg"
+    }
 }
