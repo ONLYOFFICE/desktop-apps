@@ -110,9 +110,10 @@ int main( int argc, char *argv[] )
 
 #ifdef _WIN32
     WCHAR * cm_line = GetCommandLine();
+    InputArgs::init(cm_line);
 
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
-    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+    if (!InputArgs::contains(L"--independent-app") && GetLastError() == ERROR_ALREADY_EXISTS) {
         HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
         if ( hwnd == nullptr ) {
             hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
@@ -127,8 +128,6 @@ int main( int argc, char *argv[] )
             return 0;
         }
     }
-
-    InputArgs::init(cm_line);
 #else
     InputArgs::init(argc, argv);
 #endif
