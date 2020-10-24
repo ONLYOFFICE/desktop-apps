@@ -13,6 +13,7 @@
 #include <QProcess>
 #include <algorithm>
 #include <functional>
+#include <io.h>
 
 #include "cstyletweaks.h"
 #include "defines.h"
@@ -643,79 +644,128 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
     return new CAscApplicationManagerWrapper;
 }
 
-auto make_options_to_create_new(const wstring& line) -> COpenOptions {
-    COpenOptions opts;
-    opts.srctype = etNewFile;
+auto prepareMainWindow() -> CMainWindow * {
+    APP_CAST(_app);
+    GET_REGISTRY_USER(reg_user);
 
-    opts.format = AVS_OFFICESTUDIO_FILE_UNKNOWN;
-    if ( line.rfind(L"cell") != wstring::npos ) opts.format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX; else
-    if ( line.rfind(L"slide") != wstring::npos ) opts.format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX; else
-    /*if ( line.rfind(L"word") != wstring::npos )*/ opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
+    QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
+    _startPanel->Create(&_app, cvwtSimple);
+    _startPanel->setObjectName("mainPanel");
 
-    opts.name = AscAppManager::newFileName(opts.format);
-    return opts;
+    QString data_path;
+#if defined(QT_DEBUG)
+    data_path = reg_user.value("startpage").value<QString>();
+#endif
+
+    if ( data_path.isEmpty() )
+        data_path = qApp->applicationDirPath() + "/index.html";
+
+    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
+    QString _portal = reg_user.value("portal").value<QString>();
+    if (!_portal.isEmpty()) {
+        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
+        additional.append(arg_portal);
+    }
+
+    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+    _startPanel->GetCefView()->load(start_path);
+
+    QRect _start_rect = reg_user.value("position").toRect();
+    CMainWindow * _window = new CMainWindow(_start_rect);
+    _window->mainPanel()->attachStartPanel(_startPanel);
+
+    return _window;
 }
 
 void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& vargs)
 {
+    APP_CAST(_app);
+
     const wstring prefix = L"--";
     const size_t prefix_size =  prefix.size();
 
-    auto check_param = [&prefix_size] (const wstring& line, const wstring& param, size_t& c) {
-        if ( line.find(param, prefix_size) != wstring::npos ) {
-            c = prefix_size + param.size();
+    auto check_param = [&prefix_size] (const wstring& line, const wstring& param) {
+        if ( line.find(param, prefix_size) != wstring::npos )
             return true;
-        }
 
         return false;
     };
 
-    bool in_new_window = true;
+    auto check_params = [&prefix_size] (const wstring& line, const std::vector<std::wstring>& params) {
+        for (size_t i(0); i < params.size(); ++i)
+            if (line.find(params[i], prefix_size) != wstring::npos) {
+                return int(i);
+            }
+
+        return -1;
+    };
+
+    std::vector<std::wstring> arg_check_list{L"review",L"view",L"edit"};
+    bool open_in_new_window = false;
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
-        open_opts.srctype = etLocalFile;
+        open_opts.srctype = etUndefined;
 
-        size_t p = arg.find(prefix);
+        const size_t p = arg.find(prefix);
         if ( p == 0 ) {
-            size_t c;
-            if ( check_param(arg, L"review", c) ) {
-                open_opts.mode = COpenOptions::eOpenMode::review;
+            auto i = check_params(arg, arg_check_list);
+            if ( !(i < 0) ) {
+                auto c = prefix_size + arg_check_list[size_t(i)].size();
                 open_opts.wurl = arg.substr(++c);
-            } else
-            if ( check_param(arg, L"view", c) ) {
-                open_opts.mode = COpenOptions::eOpenMode::view;
-                open_opts.wurl = arg.substr(++c);
-            } else
-            if ( check_param(arg, L"new", c) ) {
-                open_opts = make_options_to_create_new(arg);
+
+                open_opts.mode = i == 0 ? COpenOptions::eOpenMode::review :
+                                    i == 1 ? COpenOptions::eOpenMode::view : COpenOptions::eOpenMode::edit;
+            }else
+            if ( check_param(arg, L"new" ) ) {
+                open_opts.srctype = etNewFile;
+                open_opts.format = arg.rfind(L"cell") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                                    arg.rfind(L"slide") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                            /*if ( line.rfind(L"word") != wstring::npos )*/ open_opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
+
+                open_opts.name = AscAppManager::newFileName(open_opts.format);
             } else continue;
 
-//            if ( check_param(arg, L"single-window", c) )
+//            if ( check_param(arg, L"single-window") )
 //                in_new_window = true;
         } else {
             open_opts.wurl = arg;
         }
 
-        CTabPanel * panel = nullptr;
-        struct _stat64i32 buffer;
-        if (open_opts.srctype == etNewFile ||
-                _wstat(open_opts.wurl.c_str(), &buffer) == 0)
-        {
-            // it's a file. create editor
-
-            panel = CEditorTools::createEditorPanel(open_opts);
-            if ( panel ) {
-                if ( in_new_window ) {
-                    QRect start_rect{100,100,1200,900};
-
-                    CEditorWindow * editor_win = new CEditorWindow(start_rect.translated(QPoint(50,50)), panel);
-                    editor_win->show(false);
-
-                    AscAppManager::getInstance().m_vecEditors.push_back(size_t(editor_win));
-                    sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+        if (open_opts.srctype == etUndefined) {
+            if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
+#ifdef Q_OS_WIN
+                if (_waccess(open_opts.wurl.c_str(), 0) == 0) {
+#else
+                if (access(U_TO_UTF8(open_opts.wurl).c_str(), F_OK) == 0) {
+#endif
+                    open_opts.srctype = etLocalFile;
                 } else {
-
+                    /* file doesn't exists */
+                    open_opts.srctype = etNewFile;
+                    open_opts.format = open_opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
+                    open_opts.name = AscAppManager::newFileName(open_opts.format);
                 }
+            }
+        }
+
+        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
+        if ( panel ) {
+            if ( open_in_new_window ) {
+                CEditorWindow * editor_win = new CEditorWindow(QRect(), panel);
+                editor_win->show(false);
+
+                _app.m_vecEditors.push_back(size_t(editor_win));
+                sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+            } else {
+                if (_app.m_vecWindows.empty()) {
+                    CMainWindow * _window = prepareMainWindow();
+                    _app.m_vecWindows.push_back(size_t(_window));
+
+                    GET_REGISTRY_USER(reg_user);
+                    _window->show(reg_user.value("maximized", false).toBool());
+                }
+
+                _app.topWindow()->attachEditor(panel);
             }
         }
     }
@@ -726,7 +776,7 @@ void CAscApplicationManagerWrapper::startApp()
     APP_CAST(_app);
     GET_REGISTRY_USER(reg_user)
 
-    QRect _start_rect = reg_user.value("position").toRect();
+//    QRect _start_rect = reg_user.value("position").toRect();
     bool _is_maximized = reg_user.value("maximized", false).toBool();
 
 #if 0
@@ -774,32 +824,18 @@ void CAscApplicationManagerWrapper::startApp()
     }
 #endif
 
-    /*
-     * create start page
-    */
-//    _app.m_private->createStartPanel();
-
-//    CMainWindow * _window = createMainWindow(_start_rect);
-//    _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-//    _window->show(false);
-
-    /*
-     * create editor's window with empty document
-    */
-
-    COpenOptions opts{AscAppManager::newFileName(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX), etNewFile};
-    opts.format = etDocument;
-
-    CTabPanel * _panel = CEditorTools::createEditorPanel(opts);
-    if ( _panel ) {
-        CEditorWindow * editor_win = new CEditorWindow(_start_rect.translated(QPoint(50,50)), _panel);
-        editor_win->show(false);
-
-        AscAppManager::getInstance().m_vecEditors.push_back(size_t(editor_win));
-        sendCommandTo(_panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
-    }
-
     handleInputCmd(InputArgs::arguments());
+    if ( _app.m_vecEditors.empty() && _app.m_vecWindows.empty() ) {
+//        _app.m_private->createStartPanel();
+
+//        CMainWindow * _window = createMainWindow(_start_rect);
+//        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
+//        _window->show(_is_maximized);
+
+        CMainWindow * _window = prepareMainWindow();
+        _window->show(_is_maximized);
+        _app.m_vecWindows.push_back(size_t(_window));
+    }
 
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
         if ( !exists ) {
