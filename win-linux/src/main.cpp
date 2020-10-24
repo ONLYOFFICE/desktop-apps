@@ -114,8 +114,8 @@ int main( int argc, char *argv[] )
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
-        if ( hwnd == NULL ) {
-            hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, NULL);
+        if ( hwnd == nullptr ) {
+            hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
         }
 
         if (hwnd != NULL) {
