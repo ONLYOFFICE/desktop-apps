@@ -41,6 +41,11 @@ void CFileInspector::run()
         emit examined(m_file, m_uid, result);
 }
 
+bool CFileInspector::isLocalFile(const QString& path)
+{
+    return QUrl::fromUserInput(path).isLocalFile();
+}
+
 /**/
 
 CExistanceController::CExistanceController()
@@ -154,5 +159,5 @@ bool CExistanceController::isFileRemote(const QString& path)
             return true;
     }
 
-    return false;
+    return !QUrl::fromUserInput(path).isLocalFile();
 }

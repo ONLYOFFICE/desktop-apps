@@ -12,6 +12,8 @@ class CFileInspector : public QThread
 public:
     CFileInspector(QObject *parent, const QString&, int);
 
+    static bool isLocalFile(const QString& path);
+
 signals:
     void examined(const QString&, int, int);
 
