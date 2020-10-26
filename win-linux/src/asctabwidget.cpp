@@ -1118,7 +1118,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             disconnect(cefConnection);
 
 #ifdef _LINUX
-            AscAppManager::topWindow()->show();
+            AscAppManager::topWindow()->show(false);
 #else
             AscAppManager::topWindow()->show(false);
 #endif

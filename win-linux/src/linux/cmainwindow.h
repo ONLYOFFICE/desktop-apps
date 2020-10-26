@@ -57,6 +57,7 @@ public:
     void sendSertificate(int viewid);
     QWidget * handle() const;
     void bringToTop() const override;
+    void show(bool maximized);
 
 protected:
     void closeEvent(QCloseEvent *);
