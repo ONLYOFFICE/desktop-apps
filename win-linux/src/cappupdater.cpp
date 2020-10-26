@@ -96,7 +96,7 @@ namespace {
 #ifdef Q_OS_WIN
             _downloader->SetFilePath(_wtmpnam(nullptr));
 #else
-            string xml_tmpname = tmpnam(nullptr);
+            std::string xml_tmpname = tmpnam(nullptr);
             _downloader->SetFilePath(NSFile::CUtf8Converter::GetUnicodeStringFromUTF8((BYTE*)xml_tmpname.c_str(), static_cast<long>(xml_tmpname.length())));
 #endif
 //            _downloader->Start(0);

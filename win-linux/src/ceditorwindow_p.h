@@ -270,14 +270,6 @@ public:
         CCefEventsGate::onDocumentType(id, type);
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            QColor color;
-            switch (type) {
-            case etDocument: color = QColor(TAB_COLOR_DOCUMENT); break;
-            case etPresentation: color = QColor(TAB_COLOR_PRESENTATION); break;
-            case etSpreadsheet: color = QColor(TAB_COLOR_SPREADSHEET); break;
-            }
-
-            window->m_bgColor = RGB(color.red(), color.green(), color.blue());
             window->m_css = prepare_editor_css(type);
 
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));

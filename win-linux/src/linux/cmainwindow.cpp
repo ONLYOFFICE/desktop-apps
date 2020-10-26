@@ -142,10 +142,6 @@ CMainWindow::~CMainWindow()
 {
 }
 
-void CMainWindow::parseInputArgs()
-{
-}
-
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
     ((CMainPanel *)m_pMainPanel)->pushButtonCloseClicked();

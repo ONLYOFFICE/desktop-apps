@@ -152,9 +152,10 @@ void CLangater::init()
 
     if ( _lang.isEmpty() ) {
         if ( APP_DEFAULT_SYSTEM_LOCALE ) {
+            QRegularExpression _re;
             QString _env_name = qgetenv("LANG");
             _re.setPattern("^(\\w{2,5})\\.?");
-            _re_match = _re.match(_env_name);
+            QRegularExpressionMatch _re_match = _re.match(_env_name);
 
             if ( _re_match.hasMatch() ) {
                 _lang = _re_match.captured(1);

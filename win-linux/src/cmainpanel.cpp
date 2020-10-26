@@ -203,17 +203,15 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
     mainGridLayout->addWidget( centralWidget );
 
-    RecalculatePlaces();
-
-//    m_pTabs->addEditor("editor1 editor21", etDocument, L"https://testinfo.teamlab.info");
-//    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
-//    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
-//    m_pTabs->updateIcons();
+//    RecalculatePlaces();
 }
 
 void CMainPanel::attachStartPanel(QCefView * const view)
 {
     m_pMainWidget = qobject_cast<QWidget *>(view);
+#ifdef __linux
+    view->setMouseTracking(m_pButtonMain->hasMouseTracking());
+#endif
 
     QWidget * centralwidget = layout()->itemAt(0)->widget();
     view->setParent(centralwidget);
@@ -274,7 +272,9 @@ void CMainPanel::setMouseTracking(bool enable)
     m_pButtonClose->setMouseTracking(enable);
     m_pButtonMinimize->setMouseTracking(enable);
     m_pButtonMaximize->setMouseTracking(enable);
-    m_pMainWidget->setMouseTracking(enable);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setMouseTracking(enable);
 }
 #endif
 

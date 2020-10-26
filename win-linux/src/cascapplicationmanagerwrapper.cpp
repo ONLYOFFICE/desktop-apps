@@ -845,10 +845,6 @@ void CAscApplicationManagerWrapper::startApp()
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"files:checked", json.toStdWString());
         }
     });
-
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-    APP_CAST(_app);
-#endif
 }
 
 void CAscApplicationManagerWrapper::initializeApp()
