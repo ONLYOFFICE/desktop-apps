@@ -113,7 +113,7 @@ int main( int argc, char *argv[] )
     InputArgs::init(cm_line);
 
     HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
-    if (!InputArgs::contains(L"--independent-app") && GetLastError() == ERROR_ALREADY_EXISTS) {
+    if (!InputArgs::contains(L"--single-window-app") && GetLastError() == ERROR_ALREADY_EXISTS) {
         HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
         if ( hwnd == nullptr ) {
             hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
