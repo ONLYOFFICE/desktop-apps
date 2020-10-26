@@ -13,13 +13,13 @@
 #include <QProcess>
 #include <algorithm>
 #include <functional>
-#include <io.h>
 
 #include "cstyletweaks.h"
 #include "defines.h"
 #include "cfiledialog.h"
 #include "utils.h"
 #include "common/Types.h"
+#include "common/File.h"
 #include "ctabundockevent.h"
 #include "clangater.h"
 #include "cmessage.h"
@@ -28,11 +28,14 @@
 #include "OfficeFileFormats.h"
 
 #ifdef _WIN32
-#include "csplash.h"
+# include <io.h>
+# include "csplash.h"
 
 # ifdef _UPDMODULE
    #include "3dparty/WinSparkle/include/winsparkle.h"
 # endif
+#else
+# include <unistd.h>
 #endif
 
 #include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
@@ -857,34 +860,25 @@ void CAscApplicationManagerWrapper::initializeApp()
 #ifdef _WIN32
 //    CSplash::showSplash();
     QApplication::processEvents();
-#elif //defined(Q_OS_LINUX)
-    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-    connect(app, &SingleApplication::showUp, [=](QString args){
-        QStringList * _list = Utils::getInputFiles(args.split(";"));
+#else //defined(Q_OS_LINUX)
+    if ( !InputArgs::contains(L"--single-window-app") ) {
+        SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
+        connect(app, &SingleApplication::showUp, [](QString args){
+            std::vector<std::wstring> vec_inargs;
+            QStringListIterator iter(args.split(";")); iter.next();
+            while ( iter.hasNext() ) {
+                vec_inargs.push_back(iter.next().toStdWString());
+            }
 
-        // remove app's self name from start arguments
-        if ( !_list->isEmpty() ) _list->removeFirst();
-        if ( !_list->isEmpty() ) topWindow()->mainPanel()->doOpenLocalFiles(*_list);
+            if ( !vec_inargs.empty() ) {
+                handleInputCmd(vec_inargs);
+            }
 
-        delete _list, _list = NULL;
-
-        QRegularExpression re("--new:(word|cell|slide)");
-        QRegularExpressionMatchIterator mi = re.globalMatch(args);
-        while (mi.hasNext()) {
-            QRegularExpressionMatch m = mi.next();
-            QString sf = m.captured(1);
-
-            int f = sf == "word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
-                        sf == "cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
-                        sf == "slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
-
-            topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(f), f);
-        }
-
-        QTimer::singleShot(0, []{
-            AscAppManager::topWindow()->bringToTop();
+//            QTimer::singleShot(0, []{
+                topWindow()->bringToTop();
+//            });
         });
-    });
+    }
 #endif
 
     /* prevent drawing of focus rectangle on a button */
