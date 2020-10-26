@@ -648,9 +648,12 @@ auto prepareMainWindow() -> CMainWindow * {
     APP_CAST(_app);
     GET_REGISTRY_USER(reg_user);
 
+    QRect _start_rect = reg_user.value("position").toRect();
+
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("mainPanel");
+    _startPanel->resize(_start_rect.width(), _start_rect.height());
 
     QString data_path;
 #if defined(QT_DEBUG)
@@ -670,7 +673,6 @@ auto prepareMainWindow() -> CMainWindow * {
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
-    QRect _start_rect = reg_user.value("position").toRect();
     CMainWindow * _window = new CMainWindow(_start_rect);
     _window->mainPanel()->attachStartPanel(_startPanel);
 
