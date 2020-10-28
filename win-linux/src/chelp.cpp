@@ -51,4 +51,5 @@ void CHelp::out()
     qWarning() << "    --review=path/to/file to open document in review mode in separate window";
     qWarning() << "    --view=path/to/file to open document in view mode in separate window";
     qWarning() << "    --single-window-app document will be opened in independed process";
+    qWarning() << "    --force-use-tab document will be opend in new tab instead of new separate window";
 }
