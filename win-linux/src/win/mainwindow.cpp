@@ -64,7 +64,6 @@
 #endif
 
 using namespace std::placeholders;
-extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -94,7 +93,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
-        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(1324, 800)*m_dpiRatio);
+        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 
     QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
     if ( _window_rect.width() < _window_min_size.width() )
@@ -153,8 +152,8 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
-    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
-    QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, std::bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     m_pWinPanel->show();

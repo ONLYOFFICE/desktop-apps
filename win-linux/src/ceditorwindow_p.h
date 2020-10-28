@@ -503,7 +503,7 @@ public:
         onFullScreen(apply);
     }
 
-    void onPortalLogout(wstring wjson) override
+    void onPortalLogout(std::wstring wjson) override
     {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -523,7 +523,7 @@ public:
     void onFileLocation(int, QString param) override
     {
         if ( param == "offline" ) {
-            const wstring& path = m_panel->data()->url();
+            const std::wstring& path = m_panel->data()->url();
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else

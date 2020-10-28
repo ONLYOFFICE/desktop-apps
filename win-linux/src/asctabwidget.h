@@ -51,26 +51,28 @@
 #define etPortal        AscEditorType(250)
 #define etNewPortal     AscEditorType(249)
 
-using namespace std;
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
 
 
 struct COpenOptions {
     COpenOptions();
-    COpenOptions(wstring _url_);
-    COpenOptions(wstring _url_, AscEditorType _type_);
-    COpenOptions(wstring _url_, AscEditorType _type_, int _id_);
+    COpenOptions(std::wstring _url_);
+    COpenOptions(std::wstring _url_, AscEditorType _type_);
+    COpenOptions(std::wstring _url_, AscEditorType _type_, int _id_);
     COpenOptions(QString _name_, AscEditorType _type_);
     COpenOptions(QString _name_, AscEditorType _type_, QString _url_);
     COpenOptions(QString _name_, AscEditorType _type_, QString _url_, int _id_);
-    COpenOptions(QString _name_, AscEditorType _type_, wstring _url_, int _id_);
+    COpenOptions(QString _name_, AscEditorType _type_, std::wstring _url_, int _id_);
 
     QString name;
     AscEditorType srctype;
     QString url;
     int id, format = 0;
     std::wstring wurl;
+
+    enum class eOpenMode {edit, view, review};
+    eOpenMode mode = eOpenMode::edit;
 };
 
 class CAscTabWidget : public QTabWidget, public CScalingWrapper
@@ -116,7 +118,6 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
     typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
 
 public:
-    QWidget* m_pMainWidget;
     QPushButton* m_pMainButton;
 
 private:
@@ -145,12 +146,12 @@ public:
     int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
-    void closePortal(const wstring&, bool editors = false);
+    void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
 
     using QTabWidget::count;
     int  count(int type) const;
-    int  count(const wstring& portal, bool exclude = false);
+    int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
     void updateScaling(int);
@@ -167,7 +168,7 @@ public:
     int         tabIndexByTitle(QString t, CefType vt);
     int         tabIndexByTitle(QString t, AscEditorType vt);
     int         tabIndexByUrl(const QString&);
-    int         tabIndexByUrl(const wstring&);
+    int         tabIndexByUrl(const std::wstring&);
     int         tabIndexByEditorType(AscEditorType vt);
     QString     titleByIndex(int, bool original = true);
     QString     urlByView(int id);
@@ -203,7 +204,7 @@ public:
     void applyDocumentChanging(int id, bool iscontentchanged);
     void applyCustomTheme(bool iscustom);
     void cancelDocumentSaving(int index);
-    void setEditorOptions(int, const wstring&);
+    void setEditorOptions(int, const std::wstring&);
 
     int  openPortal(const QString& url, const QString& provider, const QString& entrypage);
     bool updatePortal(int index, const QString& url = QString());

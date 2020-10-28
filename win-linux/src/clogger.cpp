@@ -5,8 +5,6 @@
 #include <QDebug>
 #include <QMessageBox>
 
-extern QStringList g_cmdArgs;
-
 CLogger::CLogger(QObject *parent, QString fileName)
     : QObject(parent)
 {
@@ -42,12 +40,8 @@ void CLogger::write(const QString &value)
 
 void CLogger::log(const QString& str)
 {
-    static int _enabled = 0;
-    if ( _enabled == 0 && !g_cmdArgs.isEmpty() ) {
-        _enabled = g_cmdArgs.indexOf("--log");
-    }
-
-    if ( !(_enabled < 0) ) {
+    static const bool _enabled = InputArgs::contains(L"--log");
+    if ( _enabled ) {
         QString _file_name = Utils::getAppCommonPath() + "/app.log";
         std::unique_ptr<CLogger> _logger(new CLogger(0, _file_name));
 

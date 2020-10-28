@@ -113,9 +113,9 @@ bool CEditorWindow::holdView(int id) const
     return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
 }
 
-bool CEditorWindow::holdView(const wstring& portal) const
+bool CEditorWindow::holdView(const std::wstring& portal) const
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
+    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
 }
 
 void CEditorWindow::undock(bool maximized)

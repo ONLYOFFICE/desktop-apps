@@ -92,9 +92,7 @@ public:
 
 CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     : QWidget(parent),
-      CScalingWrapper(dpi_ratio),
-        m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
-        m_isMaximized(false)
+      CScalingWrapper(dpi_ratio)
       , m_isCustomWindow(isCustomWindow)
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
@@ -201,35 +199,25 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
     m_pTabs->applyCustomTheme(isCustomWindow);
-
-    QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
-    pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-    pMainWidget->setObjectName( "mainPanel" );
-    pMainWidget->setHidden(false);
-
-    m_pMainWidget = (QWidget *)pMainWidget;
     m_pTabs->m_pMainButton = m_pButtonMain;
-    m_pTabs->m_pMainWidget = m_pMainWidget;
-
-//    m_pMainWidget->setVisible(false);
 
     mainGridLayout->addWidget( centralWidget );
 
-    RecalculatePlaces();
-    loadStartPage();
+//    RecalculatePlaces();
+}
 
-//    m_pTabs->addEditor("editor1 editor21", etDocument, L"https://testinfo.teamlab.info");
-//    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
-//    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
-//    m_pTabs->updateIcons();
+void CMainPanel::attachStartPanel(QCefView * const view)
+{
+    m_pMainWidget = qobject_cast<QWidget *>(view);
+#ifdef __linux
+    view->setMouseTracking(m_pButtonMain->hasMouseTracking());
+#endif
 
-    QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
-    wstring wparams = params.toStdWString();
-    wstring user_name = Utils::appUserName();
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    view->setParent(centralwidget);
 
-    wparams.replace(wparams.find(L"%3"), 2, user_name);
-    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
+    if ( !m_pTabs->isActive() )
+        view->show();
 }
 
 void CMainPanel::RecalculatePlaces()
@@ -260,7 +248,9 @@ void CMainPanel::RecalculatePlaces()
 
     m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * dpi_ratio);
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
 
 #ifdef __linux
@@ -282,7 +272,9 @@ void CMainPanel::setMouseTracking(bool enable)
     m_pButtonClose->setMouseTracking(enable);
     m_pButtonMinimize->setMouseTracking(enable);
     m_pButtonMaximize->setMouseTracking(enable);
-    m_pMainWidget->setMouseTracking(enable);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setMouseTracking(enable);
 }
 #endif
 
@@ -526,7 +518,7 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onPortalLogout(wstring wjson)
+void CMainPanel::onPortalLogout(std::wstring wjson)
 {
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
@@ -587,26 +579,6 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
     }
 }
 
-//void CMainPanel::onLocalFileOpen(const QString& inpath)
-//{
-//#ifdef _WIN32
-//    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-//#else
-//    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-//#endif
-
-//    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
-//                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
-
-//    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
-//        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
-
-//        COpenOptions opts = {"", etLocalFile, _path};
-//        opts.wurl = _path.toStdWString();
-//        doOpenLocalFile(opts);
-//    }
-//}
-
 void CMainPanel::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);
@@ -650,7 +622,7 @@ void CMainPanel::onLocalFileRecent(const COpenOptions& opts)
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
             if (modal_res == MODAL_RESULT_CUSTOM) {
-                AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "file:skip", QString::number(opts.id));
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
             return;
@@ -685,16 +657,12 @@ void CMainPanel::createLocalFile(const QString& name, int format)
 void CMainPanel::onLocalFilesOpen(void * data)
 {
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
-    vector<wstring> vctFiles = pData->get_Files();
+    std::vector<std::wstring> vctFiles = pData->get_Files();
 
     doOpenLocalFiles(&vctFiles);
 
     RELEASEINTERFACE(pData);
 }
-
-
-
-
 
 void CMainPanel::onLocalFileLocation(QString path)
 {
@@ -748,11 +716,11 @@ void CMainPanel::onFileLocation(int uid, QString param)
     }
 }
 
-void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
+void CMainPanel::doOpenLocalFiles(const std::vector<std::wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
 
-    for (wstring wstr : (*vec)) {
+    for (const auto& wstr : (*vec)) {
         COpenOptions opts = {wstr, etLocalFile};
         doOpenLocalFile(opts);
     }
@@ -814,7 +782,7 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 {
 }
 
-void CMainPanel::onWebAppsFeatures(int id, wstring opts)
+void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
     m_pTabs->setEditorOptions(id, opts);
 }
@@ -826,7 +794,7 @@ void CMainPanel::onDocumentReady(int uid)
             refreshAboutVersion();
             emit mainPageReady();
 
-            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
         });
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
@@ -898,7 +866,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
-                static const bool _skip_user_warning = !InputArgs::contains("--warning-doc-fragmented");
+                static const bool _skip_user_warning = !InputArgs::contains(L"--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
@@ -961,31 +929,6 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
             if (  _is_local  ) toggleButtonMain(true);
         }
     }
-}
-
-void CMainPanel::loadStartPage()
-{
-    GET_REGISTRY_USER(_reg_user);
-
-    QString data_path;
-#if defined(QT_DEBUG)
-    data_path = _reg_user.value("startpage").value<QString>();
-#endif
-
-    if (data_path.isEmpty())
-        data_path = qApp->applicationDirPath() + "/index.html";
-
-    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
-
-    QString _portal = _reg_user.value("portal").value<QString>();
-    if (!_portal.isEmpty()) {
-        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-        additional.append(arg_portal);
-    }
-
-
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-    ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
 }
 
 void CMainPanel::goStart()
