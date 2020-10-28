@@ -686,27 +686,22 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 {
     APP_CAST(_app);
 
-    const wstring prefix = L"--";
-    const size_t prefix_size =  prefix.size();
-
-    auto check_param = [&prefix_size] (const wstring& line, const wstring& param) {
-        if ( line.find(param, prefix_size) != wstring::npos )
-            return true;
-
-        return false;
+    auto check_param = [] (const wstring& line, const wstring& param) {
+        return line.find(param) == 0;
     };
 
-    auto check_params = [&prefix_size] (const wstring& line, const std::vector<std::wstring>& params) {
-        for (size_t i(0); i < params.size(); ++i)
-            if (line.find(params[i], prefix_size) != wstring::npos) {
+    auto check_params = [] (const wstring& line, const std::vector<std::wstring>& params) {
+        for (size_t i(0); i < params.size(); ++i) {
+            if (line.find(params[i]) == 0)
                 return int(i);
-            }
+        }
 
         return -1;
     };
 
-    std::vector<std::wstring> arg_check_list{L"review",L"view",L"edit"};
     bool open_in_new_window = true;
+    const wstring prefix{L"--"};
+    std::vector<std::wstring> arg_check_list{L"--review",L"--view",L"--edit"};
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.srctype = etUndefined;
@@ -715,13 +710,14 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         if ( p == 0 ) {
             auto i = check_params(arg, arg_check_list);
             if ( !(i < 0) ) {
-                auto c = prefix_size + arg_check_list[size_t(i)].size();
-                open_opts.wurl = arg.substr(++c);
+                auto c = arg_check_list[size_t(i)].size();
+                if ( !(c < 0) )
+                    open_opts.wurl = arg.substr(++c);
 
                 open_opts.mode = i == 0 ? COpenOptions::eOpenMode::review :
                                     i == 1 ? COpenOptions::eOpenMode::view : COpenOptions::eOpenMode::edit;
             }else
-            if ( check_param(arg, L"new" ) ) {
+            if ( check_param(arg, L"--new" ) ) {
                 open_opts.srctype = etNewFile;
                 open_opts.format = arg.rfind(L"cell") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                     arg.rfind(L"slide") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
