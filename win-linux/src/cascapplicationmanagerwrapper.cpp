@@ -704,6 +704,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
+        open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
         open_opts.srctype = etUndefined;
 
         const size_t p = arg.find(prefix);
@@ -739,6 +740,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 #else
                 if (access(U_TO_UTF8(open_opts.wurl).c_str(), F_OK) == 0) {
 #endif
+                    auto c = open_opts.wurl.rfind(QString(QDir::separator()).toStdWString());
+                    if ( c != std::wstring::npos )
+                        open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++c));
+
                     open_opts.srctype = etLocalFile;
                 } else {
                     /* file doesn't exists */
