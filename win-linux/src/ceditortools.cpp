@@ -173,10 +173,10 @@ namespace CEditorTools
         if (opts.srctype == etLocalFile) {
             std::wstring params{InputArgs::webapps_params()};
             if ( opts.mode == COpenOptions::eOpenMode::review ) {
-                params = L"&mode=review";
+                params.append(L"&mode=review");
             } else
             if ( opts.mode == COpenOptions::eOpenMode::view ) {
-                params = L"&mode=view";
+                params.append(L"&mode=view");
             }
 
             result = panel->openLocalFile(opts.wurl, params);
