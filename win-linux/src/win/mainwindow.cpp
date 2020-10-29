@@ -851,7 +851,7 @@ void CMainWindow::slot_mainPageReady()
 #define RATE_MS_DAY 3600*24
 #define RATE_MS_WEEK RATE_MS_DAY*7
 
-        wstring _wstr_rate{L"day"};
+        std::wstring _wstr_rate{L"day"};
         if ( !win_sparkle_get_automatic_check_for_updates() ) {
             _wstr_rate = L"never";
         } else {
