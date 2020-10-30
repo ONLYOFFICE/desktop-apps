@@ -145,6 +145,7 @@ public:
     static void             startApp();
     static void             initializeApp();
     static CMainWindow *    createMainWindow(QRect&);
+    static void             gotoMainWindow();
     static void             handleInputCmd(const std::vector<std::wstring>&);
     static void             closeMainWindow(const size_t);
     static void             closeEditorWindow(const size_t);

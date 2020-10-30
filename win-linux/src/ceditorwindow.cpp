@@ -285,6 +285,11 @@ void CEditorWindow::onMinimizeEvent()
     }
 }
 
+void CEditorWindow::onClickButtonHome()
+{
+    AscAppManager::gotoMainWindow();
+}
+
 void CEditorWindow::onMaximizeEvent()
 {
     if ( !d_ptr->isReporterMode ) {
@@ -298,10 +303,10 @@ void CEditorWindow::onSizeEvent(int type)
     recalculatePlaces();
 }
 
-void CEditorWindow::onMoveEvent(const QRect& rect)
+void CEditorWindow::onMoveEvent(const QRect&)
 {
 #ifdef Q_OS_WIN
-    POINT pt{0};
+    POINT pt{0,0};
     if ( ::GetCursorPos(&pt) ) {
         AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
     }

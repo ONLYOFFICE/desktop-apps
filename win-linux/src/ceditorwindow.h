@@ -90,6 +90,9 @@ protected:
 
     void onLocalFileSaveAs(void *);
 
+private slots:
+    void onClickButtonHome();
+
 private:
     friend class CEditorWindowPrivate;
     std::unique_ptr<CEditorWindowPrivate> d_ptr;
