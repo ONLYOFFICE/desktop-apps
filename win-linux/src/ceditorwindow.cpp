@@ -285,6 +285,11 @@ void CEditorWindow::onMinimizeEvent()
     }
 }
 
+void CEditorWindow::onClickButtonHome()
+{
+    AscAppManager::gotoMainWindow();
+}
+
 void CEditorWindow::onMaximizeEvent()
 {
     if ( !d_ptr->isReporterMode ) {

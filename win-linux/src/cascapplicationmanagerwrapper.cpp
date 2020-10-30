@@ -658,6 +658,9 @@ auto prepareMainWindow() -> CMainWindow * {
     _startPanel->setObjectName("mainPanel");
     _startPanel->resize(_start_rect.width(), _start_rect.height());
 
+    CMainWindow * _window = new CMainWindow(_start_rect);
+    _window->mainPanel()->attachStartPanel(_startPanel);
+
     QString data_path;
 #if defined(QT_DEBUG)
     data_path = reg_user.value("startpage").value<QString>();
@@ -675,9 +678,6 @@ auto prepareMainWindow() -> CMainWindow * {
 
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
-
-    CMainWindow * _window = new CMainWindow(_start_rect);
-    _window->mainPanel()->attachStartPanel(_startPanel);
 
     return _window;
 }
@@ -988,6 +988,24 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     return reporterWindow;
 }
 
+void CAscApplicationManagerWrapper::gotoMainWindow()
+{
+    APP_CAST(_app)
+
+    if ( _app.m_vecWindows.empty() ) {
+        GET_REGISTRY_USER(reg_user)
+
+        CMainWindow * _window = prepareMainWindow();
+        _app.m_vecWindows.push_back(size_t(_window));
+
+        _window->show(reg_user.value("maximized", false).toBool());
+    }
+
+    if ( !topWindow()->isVisible() )
+        topWindow()->show(topWindow()->isMaximized());
+    topWindow()->bringToTop();
+}
+
 void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 {
     APP_CAST(_app)
@@ -1073,9 +1091,15 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
             } else ++it;
         }
 
-        if ( _app.m_vecEditors.empty() && _app.m_vecWindows.empty() ) {
-            if ( _app.m_closeTarget.empty() ) {
-                QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
+        if ( _app.m_vecEditors.empty() ) {
+            if ( !_app.m_vecWindows.empty() && !topWindow()->isVisible() ) {
+                topWindow()->show(topWindow()->isMaximized());
+            }
+
+            if ( _app.m_vecWindows.empty() ) {
+                if ( _app.m_closeTarget.empty() ) {
+                    QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
+                }
             }
         }
     }
@@ -1469,9 +1493,14 @@ bool CAscApplicationManagerWrapper::canAppClose()
             topWindow()->bringToTop();
 
             CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-            if ( mess.warning(tr("Close all editors windows?")) == MODAL_RESULT_CUSTOM + 0 ) {
-                return true;
-            } else return false;
+            mess.setButtons({"Yes", "No", "Hide main window"});
+            switch (mess.warning(tr("Close all editors windows?"))) {
+            case MODAL_RESULT_CUSTOM + 0: return true;
+            case MODAL_RESULT_CUSTOM + 2:
+                topWindow()->hide();
+                return false;
+            default: return false;
+            }
         }
     }
 
