@@ -43,7 +43,7 @@ class CCefEventsGate : public QObject
 public:
     explicit CCefEventsGate(QObject *parent = nullptr);
 
-    void init(CTabPanel * const);
+    virtual void init(CTabPanel * const);
     CTabPanel * const panel()
     {
         return m_panel;

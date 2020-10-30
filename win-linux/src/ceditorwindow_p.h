@@ -444,7 +444,7 @@ public:
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*f) :
                             boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*f);
 
-            for (auto btn: m_mapTitleButtons) {
+            for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
                 btn->setIconSize(QSize(20,20) * f);
             }
@@ -600,7 +600,8 @@ public:
                         }
                     } else {
                         for (const auto& k: _disabled.keys()) {
-                            m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                            if ( m_mapTitleButtons.contains(k) )
+                                m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
                         }
                     }
                 } else
@@ -608,7 +609,8 @@ public:
                     QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
 
                     for (const auto& b: _btns_changed.keys()) {
-                        m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                        if ( m_mapTitleButtons.contains(b) )
+                            m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
                     }
                 }
             }
