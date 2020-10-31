@@ -461,6 +461,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 m_closeTarget.clear();
             }
         }
+        else
+        if ( m_closeTarget.find(L"main") != wstring::npos ) {
+            if ( !m_vecEditors.empty() && topWindow()->mainPanel()->tabWidget()->count() == 0 ) {
+                m_closeTarget.clear();
+                topWindow()->hide();
+            }
+        }
 
         break;
     }
@@ -1028,6 +1035,26 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
 //        }
     } else
     if ( _size == 1 && _app.m_vecWindows[0] == p ) {
+        if ( !_app.m_vecEditors.empty() ) {
+            CMessage m(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+            m.setButtons({"Close all", "Current only", "Cancel"});
+            switch (m.warning(tr("Do you want to close all editor windows?"))) {
+            case MODAL_RESULT_CUSTOM + 0: break;
+            case MODAL_RESULT_CUSTOM + 1:
+                if ( topWindow()->mainPanel()->tabWidget()->count() ) {
+                    _app.m_closeTarget = L"main";
+                    QTimer::singleShot(0, []{
+                        if ( topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+                            AscAppManager::cancelClose();
+                    });
+                } else {
+                    topWindow()->hide();
+                }
+                return;
+            default: return;
+            }
+        }
+
         if ( _app.m_closeTarget.empty() ) {
             QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
         }
@@ -1092,11 +1119,7 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
         }
 
         if ( _app.m_vecEditors.empty() ) {
-            if ( !_app.m_vecWindows.empty() && !topWindow()->isVisible() ) {
-                topWindow()->show(topWindow()->isMaximized());
-            }
-
-            if ( _app.m_vecWindows.empty() ) {
+            if ( _app.m_vecWindows.empty() || !topWindow()->isVisible() ) {
                 if ( _app.m_closeTarget.empty() ) {
                     QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
                 }
@@ -1483,25 +1506,25 @@ bool CAscApplicationManagerWrapper::canAppClose()
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
-        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
-                [](size_t h){
-                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
-                    return _e && !_e->closed();
-                }) != _app.m_vecEditors.end();
+//        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
+//                [](size_t h){
+//                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
+//                    return _e && !_e->closed();
+//                }) != _app.m_vecEditors.end();
 
-        if ( _has_opened_editors ) {
-            topWindow()->bringToTop();
+//        if ( _has_opened_editors ) {
+//            topWindow()->bringToTop();
 
-            CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-            mess.setButtons({"Yes", "No", "Hide main window"});
-            switch (mess.warning(tr("Close all editors windows?"))) {
-            case MODAL_RESULT_CUSTOM + 0: return true;
-            case MODAL_RESULT_CUSTOM + 2:
-                topWindow()->hide();
-                return false;
-            default: return false;
-            }
-        }
+//            CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+////            mess.setButtons({"Yes", "No", "Hide main window"});
+//            switch (mess.warning(tr("Close all editors windows?"))) {
+//            case MODAL_RESULT_CUSTOM + 0: return true;
+//            case MODAL_RESULT_CUSTOM + 2:
+//                topWindow()->hide();
+//                return false;
+//            default: return false;
+//            }
+//        }
     }
 
     return true;
@@ -1721,5 +1744,13 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
 {
     if ( m_closeTarget == L"app" ) {
         launchAppClose();
+    } else
+    if ( m_closeTarget == L"main" ) {
+        if ( topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+            AscAppManager::cancelClose();
+        else {
+            m_closeTarget.clear();
+            topWindow()->hide();
+        }
     }
 }
