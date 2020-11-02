@@ -44,7 +44,6 @@ public:
     CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
         : m_appmanager(*manager)
     {
-        manager->m_oSettings.sign_support = false;
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
@@ -60,6 +59,11 @@ public:
     bool allowedCreateLocalFile()
     {
         return true;
+    }
+
+    virtual void init()
+    {
+        m_appmanager.m_oSettings.sign_support = false;
     }
 
     auto createStartPanel() -> void {
