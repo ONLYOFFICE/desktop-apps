@@ -88,6 +88,19 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
+    auto mainWindow() -> CMainWindow * const {
+        return m_appmanager.m_vecEditors.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecEditors[0]);
+    }
+
+    auto extendStylesheets(const std::vector<QString>& veccss) {
+        if ( !veccss.empty() ) {
+            m_appmanager.m_vecStyles.push_back(veccss[0]);
+
+            if ( veccss.size() > 1 )
+                m_appmanager.m_vecStyles2x.push_back(veccss[1]);
+        }
+    }
+
 public:
     CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
