@@ -112,20 +112,22 @@ int main( int argc, char *argv[] )
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 
-    HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
-    if (!InputArgs::contains(L"--single-window-app") && GetLastError() == ERROR_ALREADY_EXISTS) {
-        HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
-        if ( hwnd == nullptr ) {
-            hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
-        }
+    HANDLE hMutex = nullptr;
+    if ( !InputArgs::contains(L"--single-window-app") ) {
+        hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
+        if ( GetLastError() == ERROR_ALREADY_EXISTS ) {
+            HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
+            if ( hwnd == nullptr )
+                hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
 
-        if (hwnd != NULL) {
-            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
-            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
-            MyCDS.lpData = cm_line;
+            if (hwnd != NULL) {
+                COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
+                MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
+                MyCDS.lpData = cm_line;
 
-            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
-            return 0;
+                SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
+                return 0;
+            }
         }
     }
 #else
