@@ -550,19 +550,13 @@ qDebug() << "WM_CLOSE";
             LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
 
             if (szArglist != nullptr) {
-                QStringList _in_args;
+                std::vector<std::wstring> _v_inargs;
                 for(int i(1); i < nArgs; i++) {
-                    _in_args.append(QString::fromStdWString(szArglist[i]));
+                    _v_inargs.push_back(szArglist[i]);
                 }
 
-                if ( _in_args.size() ) {
-                    QStringList * _file_list = Utils::getInputFiles(_in_args);
-
-                    if (_file_list->size()) {
-                        window->mainPanel()->doOpenLocalFiles(*_file_list);
-                    }
-
-                    delete _file_list;
+                if ( !_v_inargs.empty() ) {
+                    AscAppManager::handleInputCmd(_v_inargs);
                 }
             }
 
