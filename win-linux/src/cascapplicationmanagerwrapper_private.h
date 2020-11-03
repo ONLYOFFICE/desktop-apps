@@ -96,7 +96,7 @@ public:
         return m_appmanager.m_vecEditors.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecEditors[0]);
     }
 
-    auto extendStylesheets(const std::vector<QString>& veccss) {
+    auto extendStylesheets(const std::vector<QString>& veccss) -> void {
         if ( !veccss.empty() ) {
             m_appmanager.m_vecStyles.push_back(veccss[0]);
 
