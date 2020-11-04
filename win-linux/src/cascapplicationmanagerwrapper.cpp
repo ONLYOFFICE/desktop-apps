@@ -30,6 +30,7 @@
 #ifdef _WIN32
 # include <io.h>
 # include "csplash.h"
+# include <VersionHelpers.h>
 
 # ifdef _UPDMODULE
    #include "3dparty/WinSparkle/include/winsparkle.h"
@@ -227,12 +228,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
 #ifdef Q_OS_WIN
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
-            OSVERSIONINFO osvi;
-            ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
-            osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-            GetVersionEx(&osvi);
-
-            if ( !(osvi.dwMajorVersion > 5) )
+            if ( !IsWindowsVistaOrGreater() )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
         } else
 #endif
