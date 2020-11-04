@@ -150,7 +150,7 @@ namespace CEditorTools
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::topWindow()->handle();
+        else parent = AscAppManager::mainWindow()->handle();
 
         CFileDialogWrapper dlg(parent);
 

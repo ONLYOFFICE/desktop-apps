@@ -321,9 +321,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"offline" ) {}
             else {
-                topWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
+                mainWindow()->mainPanel()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
 #ifdef Q_OS_LINUX
-                topWindow()->bringToTop();
+                mainWindow()->bringToTop();
 #endif
                 return true;
             }
@@ -352,7 +352,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
                 opts.format = objRoot["type"].toInt();
-                topWindow()->mainPanel()->onLocalFileRecent(opts);
+                mainWindow()->mainPanel()->onLocalFileRecent(opts);
             }
 
             return true;
@@ -363,7 +363,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                         format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
-            topWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
@@ -463,9 +463,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
         else
         if ( m_closeTarget.find(L"main") != wstring::npos ) {
-            if ( !m_vecEditors.empty() && topWindow()->mainPanel()->tabWidget()->count() == 0 ) {
+            if ( !m_vecEditors.empty() && mainWindow()->mainPanel()->tabWidget()->count() == 0 ) {
                 m_closeTarget.clear();
-                topWindow()->hide();
+                mainWindow()->hide();
             }
         }
 
@@ -517,7 +517,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true;}
 
     case ASC_MENU_EVENT_TYPE_CEF_DOWNLOAD: {
-        CMainWindow * mw = topWindow();
+        CMainWindow * mw = mainWindow();
         if ( mw ) mw->mainPanel()->onDocumentDownload(event->m_pData);
         return true;}
 
@@ -781,7 +781,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _window->show(reg_user.value("maximized", false).toBool());
                 }
 
-                _app.topWindow()->attachEditor(panel);
+                _app.mainWindow()->attachEditor(panel);
             }
         }
     }
@@ -886,7 +886,7 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
 
 //            QTimer::singleShot(0, []{
-                topWindow()->bringToTop();
+                mainWindow()->bringToTop();
 //            });
         });
     }
@@ -1039,19 +1039,19 @@ void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
     } else
     if ( _size == 1 && _app.m_vecWindows[0] == p ) {
         if ( !_app.m_vecEditors.empty() ) {
-            CMessage m(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+            CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
             switch (m.warning(tr("Do you want to close all editor windows?"))) {
             case MODAL_RESULT_CUSTOM + 0: break;
             case MODAL_RESULT_CUSTOM + 1:
-                if ( topWindow()->mainPanel()->tabWidget()->count() ) {
+                if ( mainWindow()->mainPanel()->tabWidget()->count() ) {
                     _app.m_closeTarget = L"main";
                     QTimer::singleShot(0, []{
-                        if ( topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+                        if ( mainWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                             AscAppManager::cancelClose();
                     });
                 } else {
-                    topWindow()->hide();
+                    mainWindow()->hide();
                 }
                 return;
             default: return;
@@ -1080,7 +1080,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
                         AscAppManager::cancelClose();
                 }
             } else {
-                if ( AscAppManager::topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+                if ( AscAppManager::mainWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                     AscAppManager::cancelClose();
             }
         } else
@@ -1225,18 +1225,18 @@ namespace Drop {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
 
-            CAscApplicationManagerWrapper::topWindow()->attachEditor(tabpanel, QCursor::pos());
+            CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
-            CAscApplicationManagerWrapper::topWindow()->bringToTop();
+            CAscApplicationManagerWrapper::mainWindow()->bringToTop();
         }
     }
 
 
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
-        CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
+        CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
         if ( main_window ) {
             drop_handle = handle;
 
@@ -1246,7 +1246,7 @@ namespace Drop {
                 drop_timer = new QTimer;
                 QObject::connect(qApp, &QCoreApplication::aboutToQuit, drop_timer, &QTimer::deleteLater);
                 QObject::connect(drop_timer, &QTimer::timeout, []{
-                    CMainWindow * main_window = CAscApplicationManagerWrapper::topWindow();
+                    CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
                     QPoint current_cursor = QCursor::pos();
                     if ( main_window->pointInTabs(current_cursor) ) {
                         if ( current_cursor == last_cursor_pos ) {
@@ -1324,7 +1324,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
 #endif
 }
 
-CMainWindow * CAscApplicationManagerWrapper::topWindow()
+CMainWindow * CAscApplicationManagerWrapper::mainWindow()
 {
     APP_CAST(_app);
 
@@ -1375,7 +1375,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(int dpifactor)
 bool CAscApplicationManagerWrapper::event(QEvent *event)
 {
     if ( event->type() == CTabUndockEvent::type() ) {
-        CMainWindow * _main_window = topWindow();
+        CMainWindow * _main_window = mainWindow();
         if ( _main_window ) {
             CTabUndockEvent * e = static_cast<CTabUndockEvent *>(event);
 
@@ -1500,7 +1500,7 @@ bool CAscApplicationManagerWrapper::canAppClose()
 #ifdef Q_OS_WIN
 # ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
-        CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+        CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
         return mess.confirm(tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
     }
 # endif
@@ -1516,14 +1516,14 @@ bool CAscApplicationManagerWrapper::canAppClose()
 //                }) != _app.m_vecEditors.end();
 
 //        if ( _has_opened_editors ) {
-//            topWindow()->bringToTop();
+//            mainWindow()->bringToTop();
 
-//            CMessage mess(topWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
 ////            mess.setButtons({"Yes", "No", "Hide main window"});
 //            switch (mess.warning(tr("Close all editors windows?"))) {
 //            case MODAL_RESULT_CUSTOM + 0: return true;
 //            case MODAL_RESULT_CUSTOM + 2:
-//                topWindow()->hide();
+//                mainWindow()->hide();
 //                return false;
 //            default: return false;
 //            }
@@ -1585,13 +1585,13 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
             CAscApplicationManager::Logout(portal);
             sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
 
-            int index = topWindow()->mainPanel()->tabWidget()->tabIndexByUrl(portal);
+            int index = mainWindow()->mainPanel()->tabWidget()->tabIndexByUrl(portal);
             if ( !(index < 0) ) {
                 if ( objRoot.contains("onsuccess") &&
                         objRoot["onsuccess"].toString() == "reload" )
                 {
-                    topWindow()->mainPanel()->tabWidget()->panel(index)->cef()->reload();
-                } else topWindow()->mainPanel()->tabWidget()->closeEditorByIndex(index);
+                    mainWindow()->mainPanel()->tabWidget()->panel(index)->cef()->reload();
+                } else mainWindow()->mainPanel()->tabWidget()->closeEditorByIndex(index);
             }
         }
     }
@@ -1628,7 +1628,7 @@ void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& nam
 #ifdef Q_OS_WIN
     HWND parent = GetActiveWindow();
 #else
-    QWidget * parent = topWindow();
+    QWidget * parent = mainWindow();
 #endif
 
     if ( parent ) {
@@ -1749,11 +1749,11 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
         launchAppClose();
     } else
     if ( m_closeTarget == L"main" ) {
-        if ( topWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
+        if ( mainWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
             AscAppManager::cancelClose();
         else {
             m_closeTarget.clear();
-            topWindow()->hide();
+            mainWindow()->hide();
         }
     }
 }

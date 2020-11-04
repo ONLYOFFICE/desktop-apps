@@ -167,7 +167,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
                     } else
                     if ( top_window ) {
                         top_window = NULL;
-                        if ( AscAppManager::topWindow() && hw == AscAppManager::topWindow()->handle() )
+                        if ( AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle() )
                             is_mainwindow_prev = true;
                     }
 
