@@ -744,10 +744,13 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
 #ifdef Q_OS_WIN
                 if (_waccess(open_opts.wurl.c_str(), 0) == 0) {
+                    auto c = open_opts.wurl.rfind(L"\\");
+                    if ( c == std::wstring::npos )
+                        c = open_opts.wurl.rfind(L"/");
 #else
                 if (access(U_TO_UTF8(open_opts.wurl).c_str(), F_OK) == 0) {
-#endif
                     auto c = open_opts.wurl.rfind(QString(QDir::separator()).toStdWString());
+#endif
                     if ( c != std::wstring::npos )
                         open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++c));
 
