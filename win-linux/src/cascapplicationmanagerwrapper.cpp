@@ -93,20 +93,14 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 //    }
 
 
-    CMainWindow * _window = nullptr;
-    for (auto const& w : m_vecWindows) {
-        _window = reinterpret_cast<CMainWindow *>(w);
-
-        if ( _window ) {
+    if ( m_pMainWindow ) {
 #ifdef _WIN32
-            delete _window, _window = NULL;
+        delete m_pMainWindow, m_pMainWindow= nullptr;
 #else
-            _window->deleteLater();
+        _window->deleteLater();
 #endif
-        }
     }
 
-    m_vecWindows.clear();
 //    m_vecEditors.clear();
 }
 
@@ -144,9 +138,6 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
         return;
     }
 
-    CMainWindow * _window, * _target = nullptr, * _dest = nullptr;
-    int _uid = _event->get_SenderId();
-
 #if 0
     if ( _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN ) {
         CAscLocalFileOpen * pData = (CAscLocalFileOpen*)_event->m_pData;
@@ -177,57 +168,11 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
     }
 #endif
 
-    for (auto const& w : m_vecWindows) {
-        _window = reinterpret_cast<CMainWindow *>(w);
-
-        if ( _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN ||
-                _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN )
-        {
-            CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)_event->m_pData;
-            QString path = QString::fromStdWString(pData->get_Path());
-
-            if ( _window->mainPanel()->holdUrl(path, etLocalFile) ) {
-                _target = _window;
-                break;
-            }
-        } else
-        if ( _event->m_nType == ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN ) {
-            CAscExecCommand * pData = (CAscExecCommand *)_event->m_pData;
-            QString json = QString::fromStdWString(pData->get_Param()),
-                    url;
-
-            QRegularExpression re("portal[\":]+([^\"]+)");
-            QRegularExpressionMatch match = re.match(json);
-            if ( match.hasMatch() ) url = match.captured(1);
-
-            if ( !url.isEmpty() && _window->mainPanel()->holdUrl(url, etPortal) ) {
-                _target = _window;
-                break;
-            }
-        }
-
-        if ( _window->holdView(_uid) ) {
-            _dest = _window;
-        }
-    }
-
-    if ( _target )
-        _window = _target; else
-        _window = _dest;
-
-    if ( _window ) {
-        if ( (_event->m_nType == ASC_MENU_EVENT_TYPE_PAGE_GOT_FOCUS) && (countMainWindow() > 1) ) {
-#ifdef __linux
-            QApplication::setActiveWindow(_window);
-#else
-            ::SetForegroundWindow(_window->hWnd);
-#endif
-        }
-
-        CCefEventsTransformer::OnEvent(_window->mainPanel(), _event);
+    if ( m_pMainWindow && m_pMainWindow->holdView(_event->get_SenderId()) ) {
+        CCefEventsTransformer::OnEvent(m_pMainWindow->mainPanel(), _event);
     } else {
 /**/
-        map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(_uid);
+        map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(_event->get_SenderId());
         if ( it != m_receivers.cend() ) {
             CCefEventsTransformer::OnEvent(it->second, _event);
             return;
@@ -442,14 +387,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             switch ( m_countViews ) {
 //            case 1: DestroyCefView(-1); break;
             case 0: {
-                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows.at(0));
-                if ( _w ) {
-                    _w->hide();
+                if ( m_pMainWindow ) {
+                    m_pMainWindow->hide();
 
-                    delete _w, _w = nullptr;
+                    delete m_pMainWindow, m_pMainWindow = nullptr;
                 }
 
-                m_vecWindows.clear();
                 break;
             }
             default: break;
@@ -627,12 +570,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
 void CAscApplicationManagerWrapper::broadcastEvent(NSEditorApi::CAscCefMenuEvent * event)
 {
-    CMainWindow * _window;
-    for ( auto const& w : m_vecWindows ) {
-        _window = reinterpret_cast<CMainWindow *>(w);
-
+    if ( m_pMainWindow ) {
         ADDREFINTERFACE(event);
-        CCefEventsTransformer::OnEvent(_window->mainPanel(), event);
+        CCefEventsTransformer::OnEvent(m_pMainWindow->mainPanel(), event);
     }
 
     for (const auto& it: m_receivers) {
@@ -773,12 +713,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
             } else {
-                if (_app.m_vecWindows.empty()) {
-                    CMainWindow * _window = prepareMainWindow();
-                    _app.m_vecWindows.push_back(size_t(_window));
+                if ( !_app.m_pMainWindow ) {
+                    _app.m_pMainWindow = prepareMainWindow();
 
                     GET_REGISTRY_USER(reg_user);
-                    _window->show(reg_user.value("maximized", false).toBool());
+                    _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
                 _app.mainWindow()->attachEditor(panel);
@@ -841,16 +780,15 @@ void CAscApplicationManagerWrapper::startApp()
 #endif
 
     handleInputCmd(InputArgs::arguments());
-    if ( _app.m_vecEditors.empty() && _app.m_vecWindows.empty() ) {
+    if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
 //        _app.m_private->createStartPanel();
 
 //        CMainWindow * _window = createMainWindow(_start_rect);
 //        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
 //        _window->show(_is_maximized);
 
-        CMainWindow * _window = prepareMainWindow();
-        _window->show(_is_maximized);
-        _app.m_vecWindows.push_back(size_t(_window));
+        _app.m_pMainWindow = prepareMainWindow();
+        _app.m_pMainWindow->show(_is_maximized);
     }
 
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
@@ -940,16 +878,6 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 }
 
-CMainWindow * CAscApplicationManagerWrapper::createMainWindow(QRect& rect)
-{
-    APP_CAST(_app)
-
-    CMainWindow * _window = new CMainWindow(rect);
-    _app.m_vecWindows.push_back( size_t(_window) );
-
-    return _window;
-}
-
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
 {
 //    QMutexLocker locker( &m_oMutex );
@@ -1002,42 +930,23 @@ void CAscApplicationManagerWrapper::gotoMainWindow()
 {
     APP_CAST(_app)
 
-    if ( _app.m_vecWindows.empty() ) {
+    if ( !_app.m_pMainWindow ) {
         GET_REGISTRY_USER(reg_user)
 
-        CMainWindow * _window = prepareMainWindow();
-        _app.m_vecWindows.push_back(size_t(_window));
-
-        _window->show(reg_user.value("maximized", false).toBool());
+        _app.m_pMainWindow = prepareMainWindow();
+        _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
     }
 
-    if ( !topWindow()->isVisible() )
-        topWindow()->show(topWindow()->isMaximized());
-    topWindow()->bringToTop();
+    if ( !_app.m_pMainWindow->isVisible() )
+        _app.m_pMainWindow->show(mainWindow()->isMaximized());
+    _app.m_pMainWindow->bringToTop();
 }
 
-void CAscApplicationManagerWrapper::closeMainWindow(const size_t p)
+void CAscApplicationManagerWrapper::closeMainWindow()
 {
     APP_CAST(_app)
 
-    size_t _size = _app.m_vecWindows.size();
-
-    if ( _size > 1 ) {
-//        vector<size_t>::iterator it = _app.m_vecWindows.begin();
-//        while ( it != _app.m_vecWindows.end() ) {
-//            if ( *it == p && _app.m_vecWindows.size() ) {
-//                CMainWindow * _w = reinterpret_cast<CMainWindow*>(*it);
-
-//                delete _w, _w = nullptr;
-
-//                _app.m_vecWindows.erase(it);
-//                break;
-//            }
-
-//            ++it;
-//        }
-    } else
-    if ( _size == 1 && _app.m_vecWindows[0] == p ) {
+    if ( _app.m_pMainWindow ) {
         if ( !_app.m_vecEditors.empty() ) {
             CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
@@ -1087,9 +996,8 @@ void CAscApplicationManagerWrapper::launchAppClose()
         if ( !(m_countViews > 1) ) {
             DestroyCefView(-1);
 
-            if ( !m_vecWindows.empty() ) {
-                CMainWindow * _w = reinterpret_cast<CMainWindow *>(m_vecWindows[0]);
-                closeQueue().leave(sWinTag{1,size_t(_w)});
+            if ( m_pMainWindow ) {
+                closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
             }
         }
     } else {
@@ -1122,7 +1030,7 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
         }
 
         if ( _app.m_vecEditors.empty() ) {
-            if ( _app.m_vecWindows.empty() || !topWindow()->isVisible() ) {
+            if ( !_app.m_pMainWindow || !_app.m_pMainWindow->isVisible() ) {
                 if ( _app.m_closeTarget.empty() ) {
                     QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
                 }
@@ -1131,25 +1039,9 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
     }
 }
 
-uint CAscApplicationManagerWrapper::countMainWindow()
-{
-    APP_CAST(_app)
-
-    return _app.m_vecWindows.size();
-}
-
 CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
 {
-    CMainWindow * _window = nullptr;
-
-    for (auto const& w : m_vecWindows) {
-        _window = reinterpret_cast<CMainWindow *>(w);
-
-        if ( _window->holdView(uid) )
-            return _window;
-    }
-
-    return nullptr;
+    return m_pMainWindow && m_pMainWindow->holdView(uid) ? m_pMainWindow : nullptr;
 }
 
 CEditorWindow * CAscApplicationManagerWrapper::editorWindowFromViewId(int uid) const
@@ -1192,31 +1084,6 @@ ParentHandle CAscApplicationManagerWrapper::windowHandleFromId(int id)
     }
 
     return nullptr;
-}
-
-void CAscApplicationManagerWrapper::processMainWindowMoving(const size_t s, const QPoint& c)
-{
-#define GET_CURRENT_PANEL -1
-    APP_CAST(_app);
-
-    if ( _app.m_vecWindows.size() > 1 ) {
-        CMainWindow * _window = nullptr,
-                    * _source = reinterpret_cast<CMainWindow *>(s);
-        for (auto const& w : _app.m_vecWindows) {
-            if ( w != s ) {
-                _window = reinterpret_cast<CMainWindow *>(w);
-
-                if ( _window->pointInTabs(c) ) {
-                    _source->hide();
-                    _window->attachEditor(
-                            _source->editor(GET_CURRENT_PANEL), c );
-
-                    closeMainWindow(s);
-                    break;
-                }
-            }
-        }
-    }
 }
 
 namespace Drop {
@@ -1327,10 +1194,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
 CMainWindow * CAscApplicationManagerWrapper::mainWindow()
 {
     APP_CAST(_app);
-
-    if ( _app.m_vecWindows.size() > 0 )
-        return reinterpret_cast<CMainWindow *>(_app.m_vecWindows.at(0));
-    else return nullptr;
+    return _app.m_pMainWindow;
 }
 
 void CAscApplicationManagerWrapper::sendCommandTo(QCefView * target, const QString& cmd, const QString& args)
@@ -1478,14 +1342,8 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
     if ( opts == L"has:opened" ) {
         _send_cmd = L"settings:hasopened";
 
-        CMainWindow * _window = nullptr;
-        for (auto const& w : m_vecWindows) {
-            _window = reinterpret_cast<CMainWindow *>(w);
-
-            if ( _window && _window->editorsCount() ) {
-                _send_opts = L"has";
-                break;
-            }
+        if ( m_pMainWindow && m_pMainWindow->editorsCount() ) {
+            _send_opts = L"has";
         }
     }
 
@@ -1554,12 +1412,7 @@ void CAscApplicationManagerWrapper::destroyViewer(QCefView * v)
 
 uint CAscApplicationManagerWrapper::logoutCount(const wstring& portal) const
 {
-    uint _count = 0;
-    CMainWindow * _window;
-    for (auto const& w : m_vecWindows ) {
-        _window = reinterpret_cast<CMainWindow *>(w);
-        _count += _window->editorsCount(portal);
-    }
+    uint _count = m_pMainWindow ? m_pMainWindow->editorsCount(portal) : 0;
 
     CEditorWindow * _editor;
     for (auto const& e : m_vecEditors ) {
@@ -1680,7 +1533,7 @@ CEventDriver& CAscApplicationManagerWrapper::commonEvents()
 void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
 {
     if ( t.type == 1 ) {
-        closeMainWindow(t.handle);
+        closeMainWindow();
     } else {
         CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
         int res = _e->closeWindow();

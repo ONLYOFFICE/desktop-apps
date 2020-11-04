@@ -773,7 +773,7 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 
 void CMainWindow::slot_windowClose()
 {
-    AscAppManager::closeMainWindow( size_t(this) );
+    AscAppManager::closeMainWindow();
 }
 
 void CMainWindow::slot_modalDialog(bool status, HWND h)
