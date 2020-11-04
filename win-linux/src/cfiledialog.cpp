@@ -49,6 +49,7 @@
 #endif
 #include <string>
 
+using namespace std;
 
 #ifdef Q_OS_WIN
 using VectorShellItems = vector<IShellItem *>;

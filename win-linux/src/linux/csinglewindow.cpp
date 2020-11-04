@@ -141,7 +141,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
         });
 
         QPushButton * _btn_close = _creatToolButton("toolButtonClose");
-        QObject::connect(_btn_close, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
+        QObject::connect(_btn_close, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
 
         m_boxTitle->layout()->addWidget(_btn_minimize);
         m_boxTitle->layout()->addWidget(m_btnMaximize);

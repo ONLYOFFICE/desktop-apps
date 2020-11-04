@@ -130,7 +130,8 @@ class CEditorWindowPrivate : public CCefEventsGate
         isFullScreen = false;
     QWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
-    QWidget * boxtitlelabel = nullptr;
+    QWidget * boxtitlelabel = nullptr,
+            * leftboxbuttons = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
 
@@ -139,8 +140,35 @@ public:
     bool isReporterMode = false;
 
 public:
-    CEditorWindowPrivate(CEditorWindow * w) : window(w)
-    {}
+    CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
+    ~CEditorWindowPrivate() override {
+         if ( leftboxbuttons )
+             leftboxbuttons->deleteLater();
+    }
+
+    void init(CTabPanel * const p) override {
+        CCefEventsGate::init(p);
+
+        leftboxbuttons = new QWidget;
+        leftboxbuttons->setLayout(new QHBoxLayout);
+        leftboxbuttons->layout()->setSpacing(0);
+        leftboxbuttons->layout()->setMargin(0);
+
+        if ( !InputArgs::contains(L"--single-window-app") ) {
+            CSVGPushButton * btnHome = new CSVGPushButton;
+            btnHome->setProperty("class", "normal");
+            btnHome->setProperty("act", "tool");
+            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
+            btnHome->setMouseTracking(true);
+            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
+            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            m_mapTitleButtons["home"] = btnHome;
+
+            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
+            leftboxbuttons->layout()->addWidget(btnHome);
+        }
+    }
 
     QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)
     {
@@ -156,8 +184,11 @@ public:
         m_mapTitleButtons[action] = btn;
 
         connect(btn, &QPushButton::clicked, [=]{
-            QJsonObject _json_obj{{"action", action}};
-            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+            if ( action == "home" ) {
+            } else {
+                QJsonObject _json_obj{{"action", action}};
+                AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+            }
         });
 
         if ( jsonobj.contains("icon") ) {
@@ -212,18 +243,20 @@ public:
                     _user_width = iconuser->width();
                 }
 
-                // TODO: probably to check m_mapTitleButtons is not good, so need to change checking
-                if ( objRoot.contains("title") && m_mapTitleButtons.empty() ) {
+                if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
                     QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                    QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
 
-                    QPushButton * _btn;
-                    for (int i = _btns.size(); i --> 0; ) {
-                        _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
-                        qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
+                    for (const auto jv: _btns) {
+                        const QJsonObject obj = jv.toObject();
+                        if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
+                            leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
 
                         titleLeftOffset += 40/*_btn->width()*/;
                     }
 
+                    if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+                        _layout->insertWidget(0, leftboxbuttons);
                 }
 
                 // update title caption for elipsis
@@ -444,7 +477,7 @@ public:
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*f) :
                             boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*f);
 
-            for (auto btn: m_mapTitleButtons) {
+            for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
                 btn->setIconSize(QSize(20,20) * f);
             }
@@ -503,7 +536,7 @@ public:
         onFullScreen(apply);
     }
 
-    void onPortalLogout(wstring wjson) override
+    void onPortalLogout(std::wstring wjson) override
     {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -523,7 +556,7 @@ public:
     void onFileLocation(int, QString param) override
     {
         if ( param == "offline" ) {
-            const wstring& path = m_panel->data()->url();
+            const std::wstring& path = m_panel->data()->url();
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
@@ -600,7 +633,8 @@ public:
                         }
                     } else {
                         for (const auto& k: _disabled.keys()) {
-                            m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                            if ( m_mapTitleButtons.contains(k) )
+                                m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
                         }
                     }
                 } else
@@ -608,7 +642,8 @@ public:
                     QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
 
                     for (const auto& b: _btns_changed.keys()) {
-                        m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                        if ( m_mapTitleButtons.contains(b) )
+                            m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
                     }
                 }
             }

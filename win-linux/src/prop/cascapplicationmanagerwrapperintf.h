@@ -30,34 +30,16 @@
  *
 */
 
-#ifndef CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
-#define CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
+#ifndef CASCAPPLICATIONMANAGERWRAPPER_P_H
+#define CASCAPPLICATIONMANAGERWRAPPER_P_H
 
 #include "cascapplicationmanagerwrapper.h"
-#include "qcefview_media.h"
+#include "cascapplicationmanagerwrapper_private.h"
 
-class CAscApplicationManagerWrapper::CAscApplicationManagerWrapper_Private
+CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()
+    : CAscApplicationManagerWrapper(new CAscApplicationManagerWrapper_Private(this))
 {
-public:
-    CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
-    {
-        manager->m_oSettings.sign_support = false;
-    }
+}
 
-    ~CAscApplicationManagerWrapper_Private() {}
-
-    void initializeApp() {}
-    bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
-    void applyStylesheets() {}
-    QCefView * createView(QWidget * parent)
-    {
-        return new QCefView_Media(parent);
-    }
-
-    bool allowedCreateLocalFile()
-    {
-        return true;
-    }
-};
 
 #endif // CASCAPPLICATIONMANAGERWRAPPER_PRIVATE_H
