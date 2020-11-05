@@ -428,56 +428,6 @@ const QObject * CEditorWindow::receiver()
     return d_ptr.get();
 }
 
-void CEditorWindow::onLocalFileSaveAs(void * d)
-{
-    CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
-
-    QFileInfo info(QString::fromStdWString(pData->get_Path()));
-    if ( !info.fileName().isEmpty() ) {
-        bool _keep_path = false;
-        QString _full_path;
-
-        if ( info.exists() ) _full_path = info.absoluteFilePath();
-        else _full_path = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
-
-        CFileDialogWrapper dlg(handle());
-        dlg.setFormats(pData->get_SupportFormats());
-
-        CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
-        pSaveData->put_Id(pData->get_Id());
-        pSaveData->put_Path(L"");
-
-        if ( dlg.modalSaveAs(_full_path) ) {
-            if ( _keep_path )
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
-
-            bool _allowed = true;
-            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(handle(), CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
-            }
-
-            if ( _allowed ) {
-                pSaveData->put_Path(_full_path.toStdWString());
-                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
-
-                pSaveData->put_FileType(format > -1 ? format : 0);
-            }
-        }
-
-        CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-        pEvent->m_pData = pSaveData;
-
-        AscAppManager::getInstance().Apply(pEvent);
-
-//        RELEASEINTERFACE(pData)
-//        RELEASEINTERFACE(pEvent)
-    }
-
-    RELEASEINTERFACE(pData);
-}
-
 QString CEditorWindow::documentName() const
 {
     return d_ptr.get()->panel()->data()->title(true);

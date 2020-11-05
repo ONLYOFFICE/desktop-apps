@@ -34,12 +34,12 @@
 #include "qascprinter.h"
 #include "cprintprogress.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "applicationmanager_events.h"
 #include "cfiledialog.h"
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
+#include "cmessage.h"
 
 #include <QDir>
 #include <QDebug>
@@ -234,5 +234,57 @@ namespace CEditorTools
         }
 
         return etUndefined;
+    }
+
+    auto processLocalFileSaveAs(const CAscCefMenuEvent * event) -> void {
+        CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(event->m_pData);
+
+        QFileInfo info(QString::fromStdWString(pData->get_Path()));
+        if ( !info.fileName().isEmpty() ) {
+            bool _keep_path = false;
+            QString _full_path;
+            if ( info.exists() )
+                _full_path = info.absoluteFilePath();
+            else _full_path = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(),
+                    _keep_path = true;
+
+            ParentHandle _parent = AscAppManager::windowHandleFromId(event->m_nSenderId);
+            CFileDialogWrapper dlg(_parent);
+            dlg.setFormats(pData->get_SupportFormats());
+
+            CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
+            pSaveData->put_Id(pData->get_Id());
+            pSaveData->put_Path(L"");
+
+            if ( dlg.modalSaveAs(_full_path) ) {
+                if ( _keep_path )
+                    Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
+
+                bool _allowed = true;
+                switch ( dlg.getFormat() ) {
+                case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
+                    CMessage mess(_parent, CMessageOpts::moButtons::mbOkDefCancel);
+                    _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"));
+                    break; }
+                default: break;
+                }
+
+                if ( _allowed ) {
+                    pSaveData->put_Path(_full_path.toStdWString());
+                    int format = dlg.getFormat() > 0 ? dlg.getFormat() :
+                            AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+
+                    pSaveData->put_FileType(format > -1 ? format : 0);
+                }
+            }
+
+            CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
+            pEvent->m_pData = pSaveData;
+
+            AscAppManager::getInstance().Apply(pEvent);
+
+    //        RELEASEINTERFACE(pData)
+    //        RELEASEINTERFACE(pEvent)
+        }
     }
 }

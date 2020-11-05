@@ -558,6 +558,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         break;
     }
 
+    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
+        CEditorTools::processLocalFileSaveAs(event);
+        return true; }
+
     default: break;
     }
 

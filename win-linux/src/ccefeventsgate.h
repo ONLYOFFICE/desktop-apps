@@ -69,7 +69,7 @@ public slots:
     virtual void onDocumentType(int id, int type);
 
     virtual void onFileLocation(int id, QString path) = 0;
-    virtual void onLocalFileSaveAs(void *) = 0;
+    virtual void onLocalFileSaveAs(void *);
 
     virtual void onEditorAllowedClose(int) = 0;
     virtual void onKeyDown(void *);

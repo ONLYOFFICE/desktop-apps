@@ -61,6 +61,7 @@ namespace CEditorTools
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
     auto editorTypeFromFormat(int format) -> AscEditorType;
+    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
 }
 
 #endif // CEDITORTOOLS_H
