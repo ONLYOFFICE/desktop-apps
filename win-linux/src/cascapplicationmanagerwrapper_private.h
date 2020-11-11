@@ -48,9 +48,9 @@ public:
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
-    void initializeApp() {}
-    bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
-    void applyStylesheets() {}
+    virtual void initializeApp() {}
+    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
+    virtual void applyStylesheets() {}
     virtual QCefView * createView(QWidget * parent)
     {
         return new QCefView_Media(parent);
@@ -93,7 +93,7 @@ public:
     }
 
     auto mainWindow() -> CMainWindow * const {
-        return m_appmanager.m_vecEditors.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecEditors[0]);
+        return m_appmanager.m_vecWindows.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecWindows[0]);
     }
 
     auto extendStylesheets(const std::vector<QString>& veccss) -> void {
