@@ -62,6 +62,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
 {
+    m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
