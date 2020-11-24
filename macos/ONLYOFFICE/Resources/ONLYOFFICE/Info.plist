@@ -14,7 +14,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-docx</string>
 			<key>CFBundleTypeName</key>
-			<string>Office Open XML Document</string>
+			<string>Microsoft Word document (.docx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -78,7 +78,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-xlsx</string>
 			<key>CFBundleTypeName</key>
-			<string>Office Open XML Spreadsheet</string>
+			<string>Microsoft Excel Workbook (.xlsx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -94,7 +94,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-pptx</string>
 			<key>CFBundleTypeName</key>
-			<string>Office Open XML Presentation</string>
+			<string>PowerPoint Presentation (.pptx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -110,9 +110,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-odt</string>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice Document</string>
+			<string>OpenDocument Text</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.text</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -123,9 +127,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-html</string>
 			<key>CFBundleTypeName</key>
-			<string>Web Page</string>
+			<string>HTML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.html</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -135,9 +143,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-odp</string>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice Presentation</string>
+			<string>OpenDocument Presentation (.odp)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.presentation</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -147,9 +159,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-pps</string>
 			<key>CFBundleTypeName</key>
-			<string>PowerPoint Slide Show</string>
+			<string>PowerPoint 97-2003 Show (.pps)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.powerpoint.pps</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -159,9 +175,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-ods</string>
 			<key>CFBundleTypeName</key>
-			<string>OpenOffice Spreadsheet</string>
+			<string>OpenDocument Spreadsheet</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.spreadsheet</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -171,9 +191,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-csv</string>
 			<key>CFBundleTypeName</key>
-			<string>Comma-Separated Values</string>
+			<string>CSV Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.comma-separated-values-text</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -186,6 +210,8 @@
 			<string>DjVu File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -197,7 +223,6 @@
 			<key>CFBundleTypeName</key>
 			<string>XML Paper Specification</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -207,9 +232,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-doc</string>
 			<key>CFBundleTypeName</key>
-			<string>Word 97-2003 Document</string>
+			<string>Microsoft Word 97 - 2004 document (.doc)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.word.doc</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -219,9 +248,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-xls</string>
 			<key>CFBundleTypeName</key>
-			<string>Excel 97-2003 Spreadsheet</string>
+			<string>Microsoft Excel 97-2004 Workbook (.xls)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.excel.xls</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -231,9 +264,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-ppt</string>
 			<key>CFBundleTypeName</key>
-			<string>PowerPoint 97-2003 Presentation</string>
+			<string>PowerPoint 97-2003 Presentation (.ppt)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.powerpoint.ppt</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -243,9 +280,13 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-ppsx</string>
 			<key>CFBundleTypeName</key>
-			<string>PowerPoint Slide Show</string>
+			<string>PowerPoint Show (.ppsx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.slideshow</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -253,9 +294,13 @@
 				<string>dotx</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Document template</string>
+			<string>Microsoft Word template (.dotx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.wordprocessingml.template</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -263,9 +308,13 @@
 				<string>xltx</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Spreadsheet template</string>
+			<string>Microsoft Excel Template (.xltx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.spreadsheetml.template</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -273,9 +322,13 @@
 				<string>potx</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Presentation template</string>
+			<string>PowerPoint Template (.potx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.template</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -283,9 +336,13 @@
 				<string>epub</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Electronic Publication</string>
+			<string>Electronic Publication (EPUB)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.idpf.epub-container</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -293,9 +350,13 @@
 				<string>mht</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>MHT File</string>
+			<string>Microsoft Word MHTML document (.mht)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.word.mhtml</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -306,6 +367,8 @@
 			<string>FictionBook File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
