@@ -198,32 +198,36 @@ window.DialogConnect = function(params) {
     function _require_portal_info(portal, provider) {
         !provider && (provider = 'asc');
         let _info = config.portals.checklist.find(i => i.provider == provider);
-        var _url = portal + _info.check.url;
+        const _url = _info ? portal + _info.check.url : undefined;
 
         return new Promise((resolve, reject) => {
-            $.ajax({
-                url: _url,
-                crossOrigin: true,
-                crossDomain: true,
-                timeout: 10000,
-                headers: _info.check.headers,
-                complete: function(e, status) {
-                    if ( status == 'success' ) {
-                        try {
-                            JSON.parse(e.responseText)
-                            resolve({status:status, response:e});
-                        } catch (err) {
-                            e.status = 404;
-                            reject({status:'error', response:e});
+            if ( !_url )
+                reject({status:'error', response: {statusText:`provider ${provider} is not found`}});
+            else {
+                $.ajax({
+                    url: _url,
+                    crossOrigin: true,
+                    crossDomain: true,
+                    timeout: 10000,
+                    headers: _info.check.headers,
+                    complete: function(e, status) {
+                        if ( status == 'success' ) {
+                            try {
+                                JSON.parse(e.responseText)
+                                resolve({status:status, response:e});
+                            } catch (err) {
+                                e.status = 404;
+                                reject({status:'error', response:e});
+                            }
+                        } else {
+                            reject({status:status, response:e});
                         }
-                    } else {
+                    },
+                    error: function(e, status, error) {
                         reject({status:status, response:e});
                     }
-                },
-                error: function(e, status, error) {
-                    reject({status:status, response:e});
-                }
-            });
+                });
+            }
         });
     };
 

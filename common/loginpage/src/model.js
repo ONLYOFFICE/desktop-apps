@@ -167,12 +167,20 @@ Model.prototype.get = function(key) {
 function PortalModel(attributes) {
     Model.prototype.constructor.call(this, {prefix: 'asc-portal-'});
 
+    let _back_compat_provider = p => {
+        switch (p) {
+        case 'asc': return 'onlyoffice';
+        case 'ownc': return 'owncloud';
+        default: return p;
+        }
+    };
+
     this.name   = attributes.portal && utils.skipUrlProtocol(attributes.portal);
     this.path   = attributes.portal || '';
     this.logged = false;
     this.user   = attributes.user || '';
     this.email  = attributes.email || '';
-    this.provider = attributes.provider || 'asc';
+    this.provider = _back_compat_provider(attributes.provider) || 'onlyoffice';
 };
 
 PortalModel.prototype = Object.create(Model.prototype); /*new Model();*/

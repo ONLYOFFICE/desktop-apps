@@ -98,19 +98,8 @@
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
                                     <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
-                                        <div>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
-                                                <svg class='icon'><use xlink:href='#logo__asc'></svg>
-                                            </button>
-                                        </div>
-                                        <div id="box-providers-buttons" style='font-size:0;'>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextcloud'>
-                                                <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
-                                            </button>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='owncloud'>
-                                                <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
-                                            </button>
-                                        </div>
+                                        <div id='box-providers-premium-button' />
+                                        <div id="box-providers-buttons" style='font-size:0;' />
                                     </section>
                                     <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
@@ -141,14 +130,18 @@
                                                     <img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>
                                                 </button>`;
 
+            _html = $(_html);
             let $box = $('<div />');
             config.portals.checklist.forEach(item => {
-                if ( !!item.icons && !!item.icons.providerbutton ) {
-                    $box.append(provider_button_template(item.provider,item.icons.providerbutton));
+                if ( !!item.icons && !!item.icons.buttonlogo ) {
+                    const btn = provider_button_template(item.provider,item.icons.buttonlogo);
+
+                    item.provider != 'onlyoffice' ? $box.append(btn) :
+                            _html.find('#box-providers-premium-button').append(btn);
                 }
             });
 
-            (_html = $(_html)).find('#box-providers-buttons').append($box.children());
+            _html.find('#box-providers-buttons').append($box.children());
         }
 
         args.tplPage = _html;
