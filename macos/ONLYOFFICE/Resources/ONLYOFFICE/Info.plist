@@ -223,6 +223,7 @@
 			<key>CFBundleTypeName</key>
 			<string>XML Paper Specification</string>
 			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
