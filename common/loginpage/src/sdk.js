@@ -84,6 +84,7 @@
             }
         } else {
             // _clouds = [{ provider: "asc",name: "ONLYOFFICE",check: {url:"/api/2.0/capabilities.json"} }];
+            _clouds = [];
         }
 
         return _clouds;
