@@ -51,7 +51,7 @@ public:
     HINSTANCE               hInstance;
 
     explicit CMainWindow(QRect&);
-    ~CMainWindow();
+    ~CMainWindow() override;
     static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
     void hide();

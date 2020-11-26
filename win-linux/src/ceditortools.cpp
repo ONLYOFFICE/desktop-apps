@@ -34,11 +34,12 @@
 #include "qascprinter.h"
 #include "cprintprogress.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "applicationmanager_events.h"
 #include "cfiledialog.h"
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
+#include "OfficeFileFormats.h"
+#include "cmessage.h"
 
 #include <QDir>
 #include <QDebug>
@@ -134,7 +135,7 @@ namespace CEditorTools
 
             /* data consits id of cefview */
             pData->put_IsMultiselect(true);
-            vector<wstring>& _files = pData->get_Files();
+            std::vector<std::wstring>& _files = pData->get_Files();
             for ( const auto& f : _list ) {
                 _files.push_back(f.toStdWString());
             }
@@ -144,12 +145,12 @@ namespace CEditorTools
         }
     }
 
-    QString getlocalfile(const wstring& path, int parentid)
+    QString getlocalfile(const std::wstring& path, int parentid)
     {
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::topWindow()->handle();
+        else parent = AscAppManager::mainWindow()->handle();
 
         CFileDialogWrapper dlg(parent);
 
@@ -167,33 +168,39 @@ namespace CEditorTools
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
     {
         CTabPanel * panel = CTabPanel::createEditorPanel();
-        panel->setGeometry(rect);
 
         bool result = true;
         if (opts.srctype == etLocalFile) {
-//            pView->openLocalFile(opts.wurl, file_format);
-            result = false;
+            std::wstring params{InputArgs::webapps_params()};
+            if ( opts.mode == COpenOptions::eOpenMode::review ) {
+                params.append(L"&mode=review");
+            } else
+            if ( opts.mode == COpenOptions::eOpenMode::view ) {
+                params.append(L"&mode=view");
+            }
+
+            result = panel->openLocalFile(opts.wurl, params);
         } else
         if (opts.srctype == etRecoveryFile) {
-//            res_open = pView->openRecoverFile(opts.id);
-            result = false;
+            result = panel->openRecoverFile(opts.id);
         } else
         if (opts.srctype == etRecentFile) {
-//            res_open = pView->openRecentFile(opts.id);
-            result = false;
+            result = panel->openRecentFile(opts.id);
         } else
         if (opts.srctype == etNewFile) {
-//            pView->createLocalFile(opts.format, opts.name.toStdWString());
-            result = false;
+            panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
 
-        if (result) {
+        if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
             data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
                            (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
+
+            if ( opts.srctype == etNewFile )
+                data->setContentType(AscEditorType(opts.format));
 
             if ( !data->isLocal() ) {
                 QRegularExpression re("ascdesktop:\\/\\/compare");
@@ -204,11 +211,81 @@ namespace CEditorTools
             }
 
             panel->setData(data);
-
+            if ( !rect.isEmpty() )
+                panel->setGeometry(rect);
         } else {
             delete panel, panel = nullptr;
         }
 
         return panel;
+    }
+
+    auto editorTypeFromFormat(int format) -> AscEditorType {
+        if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
+                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
+                    format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
+            return etDocument;
+        else
+        if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
+            return etPresentation;
+        else
+        if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
+            return etSpreadsheet;
+        }
+
+        return etUndefined;
+    }
+
+    auto processLocalFileSaveAs(const CAscCefMenuEvent * event) -> void {
+        CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(event->m_pData);
+
+        QFileInfo info(QString::fromStdWString(pData->get_Path()));
+        if ( !info.fileName().isEmpty() ) {
+            bool _keep_path = false;
+            QString _full_path;
+            if ( info.exists() )
+                _full_path = info.absoluteFilePath();
+            else _full_path = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(),
+                    _keep_path = true;
+
+            ParentHandle _parent = AscAppManager::windowHandleFromId(event->m_nSenderId);
+            CFileDialogWrapper dlg(_parent);
+            dlg.setFormats(pData->get_SupportFormats());
+
+            CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
+            pSaveData->put_Id(pData->get_Id());
+            pSaveData->put_Path(L"");
+
+            if ( dlg.modalSaveAs(_full_path) ) {
+                if ( _keep_path )
+                    Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
+
+                bool _allowed = true;
+                switch ( dlg.getFormat() ) {
+                case AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT:
+                case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
+                    CMessage mess(_parent, CMessageOpts::moButtons::mbOkDefCancel);
+                    _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"));
+                    break; }
+                default: break;
+                }
+
+                if ( _allowed ) {
+                    pSaveData->put_Path(_full_path.toStdWString());
+                    int format = dlg.getFormat() > 0 ? dlg.getFormat() :
+                            AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
+
+                    pSaveData->put_FileType(format > -1 ? format : 0);
+                }
+            }
+
+            CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
+            pEvent->m_pData = pSaveData;
+
+            AscAppManager::getInstance().Apply(pEvent);
+
+    //        RELEASEINTERFACE(pData)
+    //        RELEASEINTERFACE(pEvent)
+        }
     }
 }

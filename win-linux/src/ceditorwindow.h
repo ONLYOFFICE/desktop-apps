@@ -55,7 +55,7 @@ public:
 
     void focus() override;
     bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
+    bool holdView(const std::wstring& portal) const;
     void undock(bool maximized = false);
     int closeWindow();
     CTabPanel * mainView() const;
@@ -88,7 +88,8 @@ protected:
     void setScreenScalingFactor(int) override;
     int calcTitleCaptionWidth() override;
 
-    void onLocalFileSaveAs(void *);
+private slots:
+    void onClickButtonHome();
 
 private:
     friend class CEditorWindowPrivate;

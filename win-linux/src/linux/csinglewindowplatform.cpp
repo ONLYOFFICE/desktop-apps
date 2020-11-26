@@ -36,6 +36,8 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 
+#define EDITOR_WINDOW_MIN_WIDTH     920
+
 class CSingleWindowPlatform::impl {
     CSingleWindowPlatform * m_owner = nullptr;
     WindowHelper::CParentDisable * m_disabler = nullptr;
@@ -72,7 +74,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
+    setMinimumSize(EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
 
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
@@ -145,7 +147,7 @@ bool CSingleWindowPlatform::event(QEvent * event)
                 m_buttonMaximize->style()->polish(m_buttonMaximize);
             } else
             if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-                layout()->setMargin(CX11Decoration::customWindowBorderWith());
+                layout()->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
 
                 m_buttonMaximize->setProperty("class", "normal");
                 m_buttonMaximize->style()->polish(m_buttonMaximize);
@@ -227,7 +229,7 @@ void CSingleWindowPlatform::setWindowTitle(const QString& t)
 void CSingleWindowPlatform::captureMouse()
 {
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent(AscAppManager::topWindow(), &_event);
+    QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
 
     setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
 

@@ -118,6 +118,7 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>html</string>
+				<string>htm</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>file-html</string>
@@ -276,6 +277,36 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>epub</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Electronic Publication</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mht</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MHT File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>fb2</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>FictionBook File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -290,11 +321,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.6.4</string>
+	<string>6.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>406</string>
+	<string>421</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -312,8 +343,6 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://download.onlyoffice.com/install/desktop/editors/mac/onlyoffice.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 	<key>SUPublicEDKey</key>
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>

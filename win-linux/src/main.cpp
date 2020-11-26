@@ -63,13 +63,14 @@
 #include <QTextCodec>
 #include <iostream>
 
-QStringList g_cmdArgs;
 
 int main( int argc, char *argv[] )
 {
 #ifdef _WIN32
     Core_SetProcessDpiAwareness();
     Utils::setAppUserModelId(APP_USER_MODEL_ID);
+#else
+    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
 #endif
 
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
@@ -95,7 +96,7 @@ int main( int argc, char *argv[] )
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
         }
 
-        wstring app_path = NSFile::GetProcessDirectory();
+        std::wstring app_path = NSFile::GetProcessDirectory();
         manager->m_oSettings.spell_dictionaries_path    = app_path + L"/dictionaries";
         manager->m_oSettings.file_converter_path        = app_path + L"/converter";
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
@@ -108,32 +109,38 @@ int main( int argc, char *argv[] )
     CApplicationCEF::Prepare(argc, argv);
 
 #ifdef _WIN32
-    HANDLE hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
-    if (GetLastError() == ERROR_ALREADY_EXISTS) {
-        HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
-        if (hwnd != NULL) {
-            WCHAR * cm_line = GetCommandLine();
+    WCHAR * cm_line = GetCommandLine();
+    InputArgs::init(cm_line);
 
-            COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
-            MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
-            MyCDS.lpData = cm_line;
+    HANDLE hMutex = nullptr;
+    if ( !InputArgs::contains(L"--single-window-app") ) {
+        hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)QString(APP_MUTEX_NAME).data());
+        if ( GetLastError() == ERROR_ALREADY_EXISTS ) {
+            HWND hwnd = FindWindow(WINDOW_CLASS_NAME, NULL);
+            if ( hwnd == nullptr )
+                hwnd = FindWindow(WINDOW_EDITOR_CLASS_NAME, nullptr);
 
-            SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
-            return 0;
+            if (hwnd != NULL) {
+                COPYDATASTRUCT MyCDS = {1}; // 1 - will be used like id
+                MyCDS.cbData = sizeof(WCHAR) * (wcslen(cm_line) + 1);
+                MyCDS.lpData = cm_line;
+
+                SendMessage(hwnd, WM_COPYDATA, WPARAM(0), LPARAM((LPVOID)&MyCDS));
+                return 0;
+            }
         }
     }
+#else
+    InputArgs::init(argc, argv);
 #endif
-    const int ac = argc;
-    char ** const av = argv;
-    for (int a(1); a < ac; ++a) {
-        if ( strcmp(av[a], "--version") == 0 ) {
-            qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
-            return 0;
-        } else
-        if ( strcmp(av[a], "--help") == 0 ) {
-            CHelp::out();
-            return 0;
-        }
+
+    if ( InputArgs::contains(L"--version") ) {
+        qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
+        return 0;
+    } else
+    if ( InputArgs::contains(L"--help") ) {
+        CHelp::out();
+        return 0;
     }
 
 #ifdef __linux__
@@ -143,8 +150,6 @@ int main( int argc, char *argv[] )
 #endif
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
-
-    g_cmdArgs = QApplication::arguments().mid(1);
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();

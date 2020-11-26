@@ -141,7 +141,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
         });
 
         QPushButton * _btn_close = _creatToolButton("toolButtonClose");
-        QObject::connect(_btn_close, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
+        QObject::connect(_btn_close, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
 
         m_boxTitle->layout()->addWidget(_btn_minimize);
         m_boxTitle->layout()->addWidget(m_btnMaximize);
@@ -229,7 +229,7 @@ bool CSingleWindow::event(QEvent * event)
             m_btnMaximize->style()->polish(m_btnMaximize);
         } else
         if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-            layout()->setMargin(CX11Decoration::customWindowBorderWith());
+            layout()->setMargin(CX11Decoration::customWindowBorderWith() * dpi_ratio);
 
             m_btnMaximize->setProperty("class", "normal");
             m_btnMaximize->style()->polish(m_btnMaximize);

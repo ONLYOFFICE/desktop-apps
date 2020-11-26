@@ -113,9 +113,9 @@ bool CEditorWindow::holdView(int id) const
     return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
 }
 
-bool CEditorWindow::holdView(const wstring& portal) const
+bool CEditorWindow::holdView(const std::wstring& portal) const
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != wstring::npos;
+    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
 }
 
 void CEditorWindow::undock(bool maximized)
@@ -285,6 +285,11 @@ void CEditorWindow::onMinimizeEvent()
     }
 }
 
+void CEditorWindow::onClickButtonHome()
+{
+    AscAppManager::gotoMainWindow();
+}
+
 void CEditorWindow::onMaximizeEvent()
 {
     if ( !d_ptr->isReporterMode ) {
@@ -298,10 +303,10 @@ void CEditorWindow::onSizeEvent(int type)
     recalculatePlaces();
 }
 
-void CEditorWindow::onMoveEvent(const QRect& rect)
+void CEditorWindow::onMoveEvent(const QRect&)
 {
 #ifdef Q_OS_WIN
-    POINT pt{0};
+    POINT pt{0,0};
     if ( ::GetCursorPos(&pt) ) {
         AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
     }
@@ -322,6 +327,10 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
 {
+#ifdef Q_OS_LINUX
+    CX11Decoration::onDpiChanged(newfactor);
+#endif
+
 //    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }
@@ -417,56 +426,6 @@ CTabPanel * CEditorWindow::releaseEditorView() const
 const QObject * CEditorWindow::receiver()
 {
     return d_ptr.get();
-}
-
-void CEditorWindow::onLocalFileSaveAs(void * d)
-{
-    CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
-
-    QFileInfo info(QString::fromStdWString(pData->get_Path()));
-    if ( !info.fileName().isEmpty() ) {
-        bool _keep_path = false;
-        QString _full_path;
-
-        if ( info.exists() ) _full_path = info.absoluteFilePath();
-        else _full_path = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
-
-        CFileDialogWrapper dlg(handle());
-        dlg.setFormats(pData->get_SupportFormats());
-
-        CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
-        pSaveData->put_Id(pData->get_Id());
-        pSaveData->put_Path(L"");
-
-        if ( dlg.modalSaveAs(_full_path) ) {
-            if ( _keep_path )
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
-
-            bool _allowed = true;
-            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(handle(), CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
-            }
-
-            if ( _allowed ) {
-                pSaveData->put_Path(_full_path.toStdWString());
-                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
-
-                pSaveData->put_FileType(format > -1 ? format : 0);
-            }
-        }
-
-        CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-        pEvent->m_pData = pSaveData;
-
-        AscAppManager::getInstance().Apply(pEvent);
-
-//        RELEASEINTERFACE(pData)
-//        RELEASEINTERFACE(pEvent)
-    }
-
-    RELEASEINTERFACE(pData);
 }
 
 QString CEditorWindow::documentName() const

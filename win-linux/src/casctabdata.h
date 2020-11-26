@@ -38,7 +38,6 @@
 #include "qcefview.h"
 
 typedef CefViewWrapperType CefType;
-using namespace std;
 
 struct CAscTabData
 {
@@ -50,7 +49,7 @@ public:
     void    setTitle(const QString&);
     void    setChanged(bool);
     void    setIsLocal(bool);
-    void    setUrl(const wstring&);
+    void    setUrl(const std::wstring&);
     void    setUrl(const QString&);
     void    close();
     void    reuse();
@@ -60,13 +59,13 @@ public:
     bool    closed() const;
     bool    isLocal() const;
     CefType viewType() const;
-    wstring url() const;
+    std::wstring url() const;
     bool    isViewType(CefType) const;
     bool    eventLoadSupported() const;
     void    setEventLoadSupported(bool);
-    void    setFeatures(const wstring&);
-    wstring features() const;
-    bool    hasFeature(const wstring&) const;
+    void    setFeatures(const std::wstring&);
+    std::wstring features() const;
+    bool    hasFeature(const std::wstring&) const;
 
     AscEditorType   contentType() const;
     void            setContentType(AscEditorType);
@@ -77,9 +76,9 @@ private:
     bool    _is_closed = false;
     bool    _is_local;
     CefType _vtype;
-    wstring _url;
+    std::wstring _url;
     bool    _event_load_supported = false;
-    wstring _features;
+    std::wstring _features;
 
     AscEditorType _typeContent;
 };

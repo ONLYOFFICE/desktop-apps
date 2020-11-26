@@ -1,6 +1,7 @@
 #include "clangater.h"
 #include "defines.h"
 #include "defines_p.h"
+#include "utils.h"
 
 #include <QApplication>
 #include <QFile>
@@ -13,7 +14,6 @@
 
 #include <QDebug>
 
-extern QStringList g_cmdArgs;
 
 class CLangater::CLangaterIntf
 {
@@ -137,18 +137,10 @@ void CLangater::init()
     GET_REGISTRY_USER(reg_user)
     GET_REGISTRY_SYSTEM(reg_system)
 
-    QString _lang,
-            _cmd_args = g_cmdArgs.join(',');
-
-    QRegularExpression _re(reCmdLang);
-    QRegularExpressionMatch _re_match = _re.match(_cmd_args);
-    if ( _re_match.hasMatch() ) {
-        _lang = _re_match.captured(2);
-
-        if ( !_re_match.captured(1).isEmpty() && !_lang.isEmpty() ) {
-            reg_user.setValue("locale", _lang);
-        }
-    }
+    QString _lang = QString::fromStdWString(InputArgs::argument_value(L"--keeplang"));
+    if ( _lang.isEmpty() ) {
+        _lang = QString::fromStdWString(InputArgs::argument_value(L"--lang"));
+    } else reg_user.setValue("locale", _lang);
 
     if ( _lang.isEmpty() )
         _lang = reg_user.value("locale").value<QString>();
@@ -160,9 +152,10 @@ void CLangater::init()
 
     if ( _lang.isEmpty() ) {
         if ( APP_DEFAULT_SYSTEM_LOCALE ) {
+            QRegularExpression _re;
             QString _env_name = qgetenv("LANG");
             _re.setPattern("^(\\w{2,5})\\.?");
-            _re_match = _re.match(_env_name);
+            QRegularExpressionMatch _re_match = _re.match(_env_name);
 
             if ( _re_match.hasMatch() ) {
                 _lang = _re_match.captured(1);

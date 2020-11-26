@@ -47,8 +47,6 @@
 # include "cdialogopenssl.h"
 #endif
 
-extern QStringList g_cmdArgs;
-
 CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , CX11Decoration(this)
@@ -60,12 +58,19 @@ CMainWindow::CMainWindow(QWidget *parent)
 CMainWindow::CMainWindow(const QRect& geometry)
     : CMainWindow(nullptr)
 {
-    parseInputArgs(g_cmdArgs);
-
     setWindowIcon(Utils::appIcon());
     setObjectName("MainWindow");
 
     GET_REGISTRY_USER(reg_user)
+
+    if ( InputArgs::contains(L"--system-title-bar") )
+        reg_user.setValue("titlebar", "system");
+    else
+    if ( InputArgs::contains(L"--custom-title-bar") )
+        reg_user.setValue("titlebar", "custom");
+
+    if ( !reg_user.contains("titlebar") )
+        reg_user.setValue("titlebar", "custom");
 
     QString _title_style = reg_user.value("titlebar").toString();
     if ( _title_style.isEmpty() ) {
@@ -83,6 +88,13 @@ CMainWindow::CMainWindow(const QRect& geometry)
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
+    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+    if ( _window_rect.width() < _window_min_size.width() )
+        _window_rect.setWidth(_window_min_size.width());
+
+    if ( _window_rect.height() < _window_min_size.height() )
+        _window_rect.setHeight(_window_min_size.height());
+
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
             _screen_size.height() < _window_rect.height() + 120 )
@@ -95,7 +107,7 @@ CMainWindow::CMainWindow(const QRect& geometry)
     }
 
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH*m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT*m_dpiRatio);
-    resize(_window_rect.width(), _window_rect.height());
+    setGeometry(_window_rect);
 
     m_pMainPanel = new CMainPanelImpl(this, !CX11Decoration::isDecorated(), m_dpiRatio);
     setCentralWidget(m_pMainPanel);
@@ -112,8 +124,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
         setPalette(_palette);
     }
 
-    restoreGeometry(reg_user.value("position").toByteArray());
-    restoreState(reg_user.value("windowstate").toByteArray());
+//    restoreGeometry(reg_user.value("position").toByteArray());
+//    restoreState(reg_user.value("windowstate").toByteArray());
 
     QMetaObject::connectSlotsByName(this);
 
@@ -121,53 +133,13 @@ CMainWindow::CMainWindow(const QRect& geometry)
     connect(m_pMainPanel, &CMainPanel::mainWindowWantToClose, this, &CMainWindow::slot_windowClose);
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
 
-    SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
-
-    auto _detachevent = [=] {
-        CX11Decoration::raiseWindow();
-        setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-    };
-
-    connect(app, &SingleApplication::showUp, [=](QString args){
-        QStringList * _list = Utils::getInputFiles(args.split(";"));
-
-        // remove app's self name from start arguments
-        if ( !_list->isEmpty() ) _list->removeFirst();
-
-        if ( !_list->isEmpty() ) {
-            m_pMainPanel->doOpenLocalFiles(*_list);
-        }
-
-        delete _list, _list = NULL;
-
-        QTimer::singleShot(0, _detachevent);
-    });
 }
 
 CMainWindow::~CMainWindow()
 {
-}
-
-void CMainWindow::parseInputArgs(const QStringList& inlist)
-{
-    GET_REGISTRY_USER(reg_user)
-
-    if ( !inlist.isEmpty() ) {
-        for ( auto& _arg : inlist ) {
-            if (_arg.contains("--system-title-bar")) {
-                reg_user.setValue("titlebar", "system");
-            } else
-            if (_arg.contains("--custom-title-bar")) {
-                reg_user.setValue("titlebar", "custom");
-            }
-        }
-    }
-
-    if ( !reg_user.contains("titlebar") )
-        reg_user.setValue("titlebar", "custom");
 }
 
 void CMainWindow::closeEvent(QCloseEvent * e)
@@ -188,7 +160,7 @@ bool CMainWindow::event(QEvent * event)
     static bool _flg_motion = false;
     static bool _flg_left_button = false;
 
-    if (event->type() == QEvent::WindowStateChange) {
+    if (event->type() == QEvent::WindowStateChange && this->isVisible()) {
         QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
 
         CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
@@ -296,8 +268,9 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 {
     if (s == Qt::WindowFullScreen) {
         GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", saveGeometry());
-        reg_user.setValue("windowstate", saveState());
+        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
+//        reg_user.setValue("windowstate", saveState());
 
 //        showFullScreen();
     } else {
@@ -319,11 +292,12 @@ void CMainWindow::slot_windowClose()
 {
     if (windowState() != Qt::WindowFullScreen) {
         GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", saveGeometry());
-        reg_user.setValue("windowstate", saveState());
+        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
+//        reg_user.setValue("windowstate", saveState());
     }
 
-    AscAppManager::closeMainWindow( (size_t)this );
+    AscAppManager::closeMainWindow();
 }
 
 void CMainWindow::slot_modalDialog(bool status, WId h)
@@ -337,6 +311,7 @@ void CMainWindow::slot_modalDialog(bool status, WId h)
 
 void CMainWindow::setScreenScalingFactor(uchar factor)
 {
+    CX11Decoration::onDpiChanged(factor);
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
@@ -417,4 +392,12 @@ void CMainWindow::captureMouse(int tabindex)
 void CMainWindow::bringToTop() const
 {
     QApplication::setActiveWindow(const_cast<CMainWindow *>(this));
+}
+
+void CMainWindow::show(bool maximized)
+{
+    QMainWindow::show();
+
+    if ( maximized )
+        slot_windowChangeState(Qt::WindowMaximized);
 }

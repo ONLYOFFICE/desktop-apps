@@ -503,6 +503,10 @@
     return cefView;
 }
 
+- (ASCTabView *)tabViewWithId:(int)viewId {
+    return [self.tabsControl tabWithUUID:[NSString stringWithFormat:@"%d", viewId]];
+}
+
 #pragma mark -
 #pragma mark Internal
 
@@ -1081,18 +1085,21 @@
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
             
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+            
+            NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
+            imageInfo->put_Id((int)fileId);
+            
             if (result == NSFileHandlingPanelOKButton) {
-                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                
-                NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
-                imageInfo->put_Id((int)fileId);
                 imageInfo->put_Path([[[openPanel URL] path] stdwstring]);
-                
-                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
-                pEvent->m_pData = imageInfo;
-                
-                appManager->Apply(pEvent);
+            } else {
+                imageInfo->put_Path(L"");
             }
+            
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_ADDIMAGE);
+            pEvent->m_pData = imageInfo;
+            
+            appManager->Apply(pEvent);
         }];
     }
 }
@@ -1140,23 +1147,26 @@
         [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
             [openPanel orderOut:self];
 
+            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+            NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
+            imageInfo->put_Id((int)fileId);
+            imageInfo->put_Filter([fileTypes stdwstring]);
+            
             if (result == NSFileHandlingPanelOKButton) {
-                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
-                NSEditorApi::CAscLocalOpenFileDialog * imageInfo = new NSEditorApi::CAscLocalOpenFileDialog();
-                imageInfo->put_Id((int)fileId);
-                imageInfo->put_Filter([fileTypes stdwstring]);
                 imageInfo->put_Path([[[openPanel URL] path] stdwstring]);
-                
-                if (isMulti) {
-                    imageInfo->put_IsMultiselect(true);
-                }
-
-                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
-                pEvent->m_pData = imageInfo;
-
-                appManager->Apply(pEvent);
+            } else {
+                imageInfo->put_Path(L"");
             }
+            
+            if (isMulti) {
+                imageInfo->put_IsMultiselect(true);
+            }
+
+            NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG);
+            pEvent->m_pData = imageInfo;
+
+            appManager->Apply(pEvent);
         }];
     }
 }

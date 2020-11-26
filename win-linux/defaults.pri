@@ -42,6 +42,7 @@ HEADERS += \
     $$PWD/src/cprintprogress.h \
     $$PWD/src/ccefeventstransformer.h \
     $$PWD/src/cascapplicationmanagerwrapper.h \
+    $$PWD/src/cascapplicationmanagerwrapper_private.h \
     $$PWD/src/ctabbar.h \
     $$PWD/src/casctabdata.h \
     $$PWD/src/utils.h \

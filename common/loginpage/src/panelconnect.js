@@ -201,9 +201,9 @@
         function _on_context_menu(menu, action, data) {
             var model = data;
             if (/\:open/.test(action)) {
-                model.logged ?
-                    window.sdk.execCommand("portal:open", JSON.stringify({portal: model.path, provider:model.provider})) :
-                        _do_connect(model);
+                // model.logged ?
+                    sdk.command("portal:open", JSON.stringify({portal: model.path, provider:model.provider}));
+                        // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model);

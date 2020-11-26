@@ -8,6 +8,7 @@ class CMainWindowBase
 {
 public:
     CMainWindowBase();
+    virtual ~CMainWindowBase();
 
     virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const = 0;
@@ -16,11 +17,11 @@ public:
     virtual int attachEditor(QWidget *, int index = -1);
     virtual int attachEditor(QWidget *, const QPoint&);
     virtual bool pointInTabs(const QPoint& pt) const;
-    virtual bool movedByTab();
+//    virtual bool movedByTab();
     virtual QWidget * editor(int index);
     virtual bool holdView(int id) const;
     virtual int editorsCount() const;
-    virtual int editorsCount(const wstring& portal) const;
+    virtual int editorsCount(const std::wstring& portal) const;
     virtual QString documentName(int vid);
 //    virtual WId handle() const = 0;
 

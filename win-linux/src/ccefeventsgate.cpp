@@ -87,3 +87,7 @@ void CCefEventsGate::onDocumentLoadFinished(int uid)
 void CCefEventsGate::onDocumentReady(int)
 {
 }
+
+void CCefEventsGate::onLocalFileSaveAs(void *)
+{
+}

@@ -81,7 +81,7 @@ namespace {
 
     private:
         sTick m_ct;
-        wstring m_url;
+        std::wstring m_url;
 
         void run() override
         {
@@ -96,7 +96,7 @@ namespace {
 #ifdef Q_OS_WIN
             _downloader->SetFilePath(_wtmpnam(nullptr));
 #else
-            string xml_tmpname = tmpnam(nullptr);
+            std::string xml_tmpname = tmpnam(nullptr);
             _downloader->SetFilePath(NSFile::CUtf8Converter::GetUnicodeStringFromUTF8((BYTE*)xml_tmpname.c_str(), static_cast<long>(xml_tmpname.length())));
 #endif
 //            _downloader->Start(0);
@@ -185,7 +185,7 @@ void CAppUpdater::parse_app_cast(const std::wstring& xmlname)
             if ( _match[1].str().compare(VER_FILEVERSION_STR) > 0 ) {
                 qDebug() << "bigger version. need to update";
 
-//                CMessage mess(AscAppManager::topWindow()->handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
+//                CMessage mess(AscAppManager::mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //                mess.warning("Update found");
 //                        win_sparkle_check_update_with_ui_and_install()
 //                _re_package_url = "sparkle:os=\"windows-x64[\w\W]+url=\"(https?\:\/\/[^\"]+)";
