@@ -25,54 +25,6 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>rtf</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-rtf</string>
-			<key>CFBundleTypeName</key>
-			<string>Text</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.text</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>txt</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-txt</string>
-			<key>CFBundleTypeName</key>
-			<string>Plain Text</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.plain-text</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>pdf</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-pdf</string>
-			<key>CFBundleTypeName</key>
-			<string>PDF</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.adobe.pdf</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
 				<string>xlsx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -85,145 +37,6 @@
 			<array>
 				<string>org.openxmlformats.spreadsheetml.sheet</string>
 			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>pptx</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-pptx</string>
-			<key>CFBundleTypeName</key>
-			<string>PowerPoint Presentation (.pptx)</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.openxmlformats.presentationml.presentation</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>odt</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-odt</string>
-			<key>CFBundleTypeName</key>
-			<string>OpenDocument Text</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.oasis-open.opendocument.text</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>html</string>
-				<string>htm</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-html</string>
-			<key>CFBundleTypeName</key>
-			<string>HTML document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.html</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>odp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-odp</string>
-			<key>CFBundleTypeName</key>
-			<string>OpenDocument Presentation (.odp)</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.oasis-open.opendocument.presentation</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>pps</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-pps</string>
-			<key>CFBundleTypeName</key>
-			<string>PowerPoint 97-2003 Show (.pps)</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.microsoft.powerpoint.pps</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>ods</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-ods</string>
-			<key>CFBundleTypeName</key>
-			<string>OpenDocument Spreadsheet</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.oasis-open.opendocument.spreadsheet</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>csv</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-csv</string>
-			<key>CFBundleTypeName</key>
-			<string>CSV Document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.comma-separated-values-text</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>djvu</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-djvu</string>
-			<key>CFBundleTypeName</key>
-			<string>DjVu File</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>xps</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>file-xps</string>
-			<key>CFBundleTypeName</key>
-			<string>XML Paper Specification</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -276,6 +89,134 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>odt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-odt</string>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ods</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-ods</string>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Spreadsheet</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.spreadsheet</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>odp</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-odp</string>
+			<key>CFBundleTypeName</key>
+			<string>OpenDocument Presentation (.odp)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.presentation</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rtf</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-rtf</string>
+			<key>CFBundleTypeName</key>
+			<string>Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>txt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-txt</string>
+			<key>CFBundleTypeName</key>
+			<string>Plain Text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pdf</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-pdf</string>
+			<key>CFBundleTypeName</key>
+			<string>PDF</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.pdf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>htm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-htm</string>
+			<key>CFBundleTypeName</key>
+			<string>HTM document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.html</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>html</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-html</string>
+			<key>CFBundleTypeName</key>
+			<string>HTML document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.html</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>ppsx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -287,6 +228,22 @@
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.openxmlformats.presentationml.slideshow</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pps</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-pps</string>
+			<key>CFBundleTypeName</key>
+			<string>PowerPoint 97-2003 Show (.pps)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.powerpoint.pps</string>
 			</array>
 		</dict>
 		<dict>
@@ -320,22 +277,152 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>potx</string>
+				<string>pptx</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-pptx</string>
 			<key>CFBundleTypeName</key>
-			<string>PowerPoint Template (.potx)</string>
+			<string>PowerPoint Presentation (.pptx)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.openxmlformats.presentationml.template</string>
+				<string>org.openxmlformats.presentationml.presentation</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ott</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-ott</string>
+			<key>CFBundleTypeName</key>
+			<string>Open Document text template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.text-template</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ots</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-ots</string>
+			<key>CFBundleTypeName</key>
+			<string>Open Document spreadsheet template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.spreadsheet-template</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>otp</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-otp</string>
+			<key>CFBundleTypeName</key>
+			<string>Open Document presentation template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.oasis-open.opendocument.presentation-template</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>fodt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-fodt</string>
+			<key>CFBundleTypeName</key>
+			<string>Float Open Document text</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>fods</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-fods</string>
+			<key>CFBundleTypeName</key>
+			<string>Float Open Document spreadsheet</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>csv</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-csv</string>
+			<key>CFBundleTypeName</key>
+			<string>CSV Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.comma-separated-values-text</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>djvu</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-djvu</string>
+			<key>CFBundleTypeName</key>
+			<string>DjVu File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xml</string>
+			<key>CFBundleTypeName</key>
+			<string>XML Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xps</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xps</string>
+			<key>CFBundleTypeName</key>
+			<string>XML Paper Specification</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>epub</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-epub</string>
 			<key>CFBundleTypeName</key>
 			<string>Electronic Publication (EPUB)</string>
 			<key>CFBundleTypeRole</key>
@@ -350,6 +437,8 @@
 			<array>
 				<string>mht</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-mht</string>
 			<key>CFBundleTypeName</key>
 			<string>Microsoft Word MHTML document (.mht)</string>
 			<key>CFBundleTypeRole</key>
@@ -364,6 +453,8 @@
 			<array>
 				<string>fb2</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-fb2</string>
 			<key>CFBundleTypeName</key>
 			<string>FictionBook File</string>
 			<key>CFBundleTypeRole</key>
