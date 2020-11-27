@@ -1,5 +1,5 @@
 {
-    "provider": "asc",
+    "provider": "onlyoffice",
     "name" : "ONLYOFFICE",
     "check" : {
         "url":"/api/2.0/capabilities.json"

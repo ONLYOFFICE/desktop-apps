@@ -317,6 +317,7 @@
 
                 function _create_icon_id(provider) {
                     switch ( provider ) {
+                    case 'onlyoffice':
                     case 'asc': return 'icon__asc';
                     case 'owncloud': return 'icon__ownc';
                     case 'nextcloud': return 'icon__nextc';
@@ -444,7 +445,7 @@
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
-                            if (model.provider != 'asc')
+                            if (model.provider != 'onlyoffice')
                                 _write_portal_cookie(obj.domain);
 
                             if ( model.get('removed') ) {
@@ -475,7 +476,7 @@
 
 
                 let _p;
-                !obj.provider && (obj.provider = 'asc');
+                !obj.provider && (obj.provider = 'onlyoffice');
                 if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
                     obj.provider = _p.provider;
@@ -491,7 +492,7 @@
                         (info.portal = info.portal.slice(0,-1));
 
                 PortalsStore.keep(info);
-                if ( obj.provider != 'asc' ) {
+                if ( obj.provider != 'onlyoffice' ) {
                     // sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
                     _write_portal_cookie(info.portal);
 
