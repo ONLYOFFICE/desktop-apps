@@ -67,7 +67,7 @@
 }
 
 + (NSArray *)documents {
-    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx"];
+    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"htm", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx", @"fb2"];
 }
 
 + (NSArray *)spreadsheets {
@@ -206,8 +206,24 @@
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS): @{
                      @"description" : NSLocalizedString(@"OpenDocument Spreadsheet Template", nil),
                      @"extension"   : @"ots"
-                     }
-             };
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML): @{
+                     @"description" : NSLocalizedString(@"HTML File", nil),
+                     @"extension"   : @"html"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT): @{
+                     @"description" : NSLocalizedString(@"MHT File", nil),
+                     @"extension"   : @"mht"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
+                     @"description" : NSLocalizedString(@"Electronic Publication", nil),
+                     @"extension"   : @"epub"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
+                     @"description" : NSLocalizedString(@"FictionBook File", nil),
+                     @"extension"   : @"fb2"
+             }
+    };
 }
 
 @end

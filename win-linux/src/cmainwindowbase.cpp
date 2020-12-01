@@ -97,7 +97,7 @@ int CMainWindowBase::editorsCount() const
     return mainPanel()->tabWidget()->count(cvwtEditor);
 }
 
-int CMainWindowBase::editorsCount(const wstring& portal) const
+int CMainWindowBase::editorsCount(const std::wstring& portal) const
 {
     return mainPanel()->tabWidget()->count(portal, true);
 }

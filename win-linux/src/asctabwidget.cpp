@@ -51,12 +51,15 @@
 #include "utils.h"
 #include "cfilechecker.h"
 #include "canimatedicon.h"
+#include "ceditortools.h"
 
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
 #include "OfficeFileFormats.h"
 
 #include "private/qtabbar_p.h"
+
+using namespace std;
 
 /*
  *
@@ -131,22 +134,6 @@ auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * 
 
 auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
     return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
-}
-
-auto editoTypeFromFormat(int format) -> AscEditorType {
-    if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
-            format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
-                format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
-        return etDocument;
-    else
-    if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
-        return etPresentation;
-    else
-    if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
-        return etSpreadsheet;
-    }
-
-    return etUndefined;
 }
 
 CAscTabWidget::CAscTabWidget(QWidget *parent)
@@ -236,7 +223,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
     int tab_index = -1;
     bool res_open = true;
     if (opts.srctype == etLocalFile) {
-        pView->openLocalFile(opts.wurl, file_format);
+        pView->openLocalFile(opts.wurl, file_format, L"");
     } else
     if (opts.srctype == etRecoveryFile) {
         res_open = pView->openRecoverFile(opts.id);
@@ -245,7 +232,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         res_open = pView->openRecentFile(opts.id);
     } else
     if (opts.srctype == etNewFile) {
-        pView->createLocalFile(editoTypeFromFormat(opts.format), opts.name.toStdWString());
+        pView->createLocalFile(CEditorTools::editorTypeFromFormat(opts.format), opts.name.toStdWString());
     } else {
         pView->cef()->load(opts.wurl);
     }
@@ -256,7 +243,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
                        (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
-        data->setContentType(editoTypeFromFormat(opts.format));
+        data->setContentType(CEditorTools::editorTypeFromFormat(opts.format));
         data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);
@@ -299,13 +286,6 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
 void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
 {
     closeEditor(index, checkmodified, true);
-}
-
-void CAscTabWidget::closeAllEditors()
-{
-    for (int i = tabBar()->count(); i-- > 0; ) {
-        closeEditor(i, false, false);
-    }
 }
 
 int CAscTabWidget::count(int type) const
@@ -354,7 +334,7 @@ bool CAscTabWidget::hasForPortal(const QString& portal)
     return false;
 }
 
-int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider)
+int CAscTabWidget::addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage)
 {
     if ( url.isEmpty() ) return -1;
 
@@ -362,7 +342,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     QString args, _url = url;
     if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
-        args.append("/Products/Files/?desktop=true");
+        args.append("/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(url);
@@ -379,7 +359,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     pView->setGeometry(0,0, size().width(), size().height() - tabBar()->height());
     pView->initAsSimple();
     pView->cef()->SetExternalCloud(provider.toStdWString());
-    pView->cef()->load((_url + args).toStdWString());
+    pView->cef()->load((_url + entrypage + args).toStdWString());
 
     QString portal = name.isEmpty() ? Utils::getPortalName(url) : name;
 
@@ -740,13 +720,13 @@ int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, b
     return tabIndex;
 }
 
-int CAscTabWidget::openPortal(const QString& url, const QString& provider)
+int CAscTabWidget::openPortal(const QString& url, const QString& provider, const QString& entrypage)
 {
     QString portal_name = Utils::getPortalName(url);
 
     int tabIndex = tabIndexByTitle(portal_name, etPortal);
     if (tabIndex < 0) {
-        tabIndex = addPortal(url, "", provider);
+        tabIndex = addPortal(url, "", provider, entrypage);
     } else {
 //        updatePortal(tabIndex, url);
     }
@@ -912,7 +892,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
-    if (!m_pMainWidget->isHidden())
+    if (!isActive())
     {
         if (!QCefView::IsSupportLayers())
         {
@@ -1138,7 +1118,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             disconnect(cefConnection);
 
 #ifdef _LINUX
-            AscAppManager::topWindow()->show();
+            AscAppManager::topWindow()->show(false);
 #else
             AscAppManager::topWindow()->show(false);
 #endif

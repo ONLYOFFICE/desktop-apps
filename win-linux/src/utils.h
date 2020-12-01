@@ -40,10 +40,15 @@
 # include <Windows.h>
 #endif
 
-using namespace std;
 namespace InputArgs {
-    auto contains(const QString&) -> bool;
-    auto get_arg_value(const QString& param) -> QString;
+    auto init(int argc, char** const argv) -> void;
+    auto init(wchar_t const * argv) -> void;
+    auto contains(const std::wstring&) -> bool;
+    auto argument_value(const std::wstring& param) -> std::wstring;
+    auto arguments() -> const std::vector<std::wstring>&;
+
+    auto webapps_params() -> const std::wstring&;
+    auto set_webapps_params(const std::wstring&) -> void;
 }
 
 class Utils {
@@ -52,8 +57,8 @@ public:
     static QString lastPath(int type);
     static void keepLastPath(int type, const QString&);
     static QString getUserPath();
-    static wstring systemUserName();
-    static wstring appUserName();
+    static std::wstring systemUserName();
+    static std::wstring appUserName();
     static QString getAppCommonPath();
     static QRect getScreenGeometry(const QPoint&);
     static void openUrl(const QString&);
@@ -78,7 +83,7 @@ public:
     static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
     static QByteArray readStylesheets(std::vector<QString> *);
     static QByteArray readStylesheets(const QString&);
-    static QJsonObject parseJson(const wstring&);
+    static QJsonObject parseJson(const std::wstring&);
 };
 
 namespace WindowHelper {

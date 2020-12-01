@@ -194,9 +194,9 @@
         function _on_context_menu(menu, action, data) {
             var model = data;
             if (/\:open/.test(action)) {
-                model.logged ?
-                    window.sdk.execCommand("portal:open", JSON.stringify({portal: model.path, provider:model.provider})) :
-                        _do_connect(model);
+                // model.logged ?
+                    sdk.command("portal:open", JSON.stringify({portal: model.path, provider:model.provider}));
+                        // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model);
@@ -325,7 +325,7 @@
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => {return e.id == provider;})
+                    let _model = config.portals.checklist.find(e => {return e.provider == provider;})
                     return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
                 };
 
@@ -373,8 +373,11 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
+                    let _pm = config.portals.checklist.find(e => e.provider == model.provider),
+                        _portal_start_page = '/';
+                    if ( _pm ) _portal_start_page = _pm.startPage;
                     // !model.logged ? _do_connect.call(this, model) :
-                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
+                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path, entrypage:_portal_start_page}));
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -473,9 +476,9 @@
 
                 let _p;
                 !obj.provider && (obj.provider = 'asc');
-                if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
+                if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
-                    obj.provider = _p.id;
+                    obj.provider = _p.provider;
 
                 let info = {
                     portal: obj.domain,

@@ -113,7 +113,9 @@ window.DialogConnect = function(params) {
         }
 
         var re_wrong_symb = /([\s\r\n\t\\]|%(?!\d{2}))/;
-        if (!portal.length || re_wrong_symb.test(portal)) {
+        if (!portal.length || re_wrong_symb.test(portal) ||
+                !/^(https?:\/\/)?([^@\/\s]{1,63})\/[^\s]*/.test(portal+'/') )
+        {
             _set_error(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
@@ -146,9 +148,10 @@ window.DialogConnect = function(params) {
                         provider:provider
                     });
                 } else {
-                    if ( obj.response.status == 404 )
+                    // if ( obj.response.status == 404 || obj.status == 'timeout' ) {
                         _set_error(utils.Lang.errLoginPortal, '#auth-portal');
-                    else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    // } else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    console.log(`get portal info status: ${obj.status}, ${!!obj.response ? obj.response.statusText:'no response'}`);
                 }
             }
 
@@ -194,7 +197,7 @@ window.DialogConnect = function(params) {
 
     function _require_portal_info(portal, provider) {
         !provider && (provider = 'asc');
-        let _info = config.portals.checklist.find(i => i.id == provider);
+        let _info = config.portals.checklist.find(i => i.provider == provider);
         var _url = portal + _info.check.url;
 
         return new Promise((resolve, reject) => {
@@ -205,9 +208,17 @@ window.DialogConnect = function(params) {
                 timeout: 10000,
                 headers: _info.check.headers,
                 complete: function(e, status) {
-                    status == 'success' ?
-                        resolve({status:status, response:e}) :
+                    if ( status == 'success' ) {
+                        try {
+                            JSON.parse(e.responseText)
+                            resolve({status:status, response:e});
+                        } catch (err) {
+                            e.status = 404;
+                            reject({status:'error', response:e});
+                        }
+                    } else {
                         reject({status:status, response:e});
+                    }
                 },
                 error: function(e, status, error) {
                     reject({status:status, response:e});
@@ -230,12 +241,12 @@ window.DialogConnect = function(params) {
 
             let $combo = $el.find('select');
             let _clouds = config.portals.checklist;
-            if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
+            if ( _clouds.length == 1 && _clouds[0].provider == 'asc' ) {
                 $combo.append(`<option value='asc'>onlyoffice</option>`);
                 $combo.parents('.select-field').hide();
             } else {
                 for (let c of _clouds) {
-                    $combo.append(`<option value='${c.id}'>${c.name}</option>`);
+                    $combo.append(`<option value='${c.provider}'>${c.name}</option>`);
                 }
                 $combo.val(params.provider);
 

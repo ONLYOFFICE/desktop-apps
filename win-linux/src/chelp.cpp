@@ -40,12 +40,16 @@ CHelp::CHelp()
 
 void CHelp::out()
 {
-    qWarning() << "Desktop editors for onlyoffice portal.";
+    qWarning() << "Desktop editors for cloud portal.";
     qWarning() << "";
     qWarning() << "keys:";
-    qWarning() << "    --custom-title-bar turn off system title bar";
-    qWarning() << "    --system-title-bar turn on system title bar";
-    qWarning() << "    --keeplang=en keep the language";
-    qWarning() << "    --lang=en apply the language for the current session";
-    qWarning() << "    --new=[doc|cell|slide] create new document/spreadsheet/presentation";
+    qWarning() << "    --custom-title-bar turns off system title bar";
+    qWarning() << "    --system-title-bar turns on system title bar";
+    qWarning() << "    --keeplang=en keeps the language";
+    qWarning() << "    --lang=en applies the language for the current session";
+    qWarning() << "    --new=[doc|cell|slide] creates new document/spreadsheet/presentation";
+    qWarning() << "    --review=path/to/file to open document in review mode in separate window";
+    qWarning() << "    --view=path/to/file to open document in view mode in separate window";
+    qWarning() << "    --single-window-app document will be opened in independed process";
+    qWarning() << "    --force-use-tab document will be opend in new tab instead of new separate window";
 }

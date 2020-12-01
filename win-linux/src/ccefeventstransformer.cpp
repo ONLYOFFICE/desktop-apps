@@ -145,11 +145,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         QMetaObject::invokeMethod(target, "onFullScreen", Qt::QueuedConnection,
                         Q_ARG(int, event->get_SenderId()), Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
         break;
-//    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_OPEN: {
-//        CAscLocalFileOpen * pData = (CAscLocalFileOpen*)event->m_pData;
-//        QMetaObject::invokeMethod( target, "onLocalFileOpen", Qt::QueuedConnection,
-//                                   Q_ARG(QString, QString().fromStdWString(pData->get_Directory())) );
-//        break;}
+
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
         CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
         ADDREFINTERFACE(pData);
@@ -205,14 +201,10 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if (cmd.compare(L"portal:logout") == 0) {
             QMetaObject::invokeMethod( target, "onPortalLogout", Qt::QueuedConnection, Q_ARG(std::wstring, pData->get_Param()) );
         } else
-        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onLocalFilesCheck", Qt::QueuedConnection,
-                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
 //        } else
 //        if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
 //            QMetaObject::invokeMethod( target, "onLocalFilesCheck", Qt::QueuedConnection,
 //                    Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );
-        } else
         if ( !(cmd.find(L"files:explore") == std::wstring::npos) ) {
                 QMetaObject::invokeMethod( target, "onLocalFileLocation", Qt::QueuedConnection,
                     Q_ARG(QString, QString::fromStdWString(pData->get_Param())) );

@@ -32,6 +32,8 @@
 
 #include "casctabdata.h"
 
+using namespace std;
+
 CAscTabData::CAscTabData(const QString& t, CefType wt)
     : _title(t)
     , _is_local(false)

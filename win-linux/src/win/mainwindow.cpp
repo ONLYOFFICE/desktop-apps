@@ -64,7 +64,6 @@
 #endif
 
 using namespace std::placeholders;
-extern QStringList g_cmdArgs;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
@@ -94,7 +93,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
-        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(1324, 800)*m_dpiRatio);
+        _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 
     QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
     if ( _window_rect.width() < _window_min_size.width() )
@@ -153,8 +152,8 @@ CMainWindow::CMainWindow(QRect& rect) :
 
     CMainPanel * mainpanel = m_pMainPanel;
     QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::slot_windowChangeState, this, _1));
-    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, bind(&CMainWindow::slot_windowClose, this));
-    QObject::connect(mainpanel, &CMainPanel::mainPageReady, bind(&CMainWindow::slot_mainPageReady, this));
+    QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, std::bind(&CMainWindow::slot_windowClose, this));
+    QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     m_pWinPanel->show();
@@ -551,19 +550,13 @@ qDebug() << "WM_CLOSE";
             LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
 
             if (szArglist != nullptr) {
-                QStringList _in_args;
+                std::vector<std::wstring> _v_inargs;
                 for(int i(1); i < nArgs; i++) {
-                    _in_args.append(QString::fromStdWString(szArglist[i]));
+                    _v_inargs.push_back(szArglist[i]);
                 }
 
-                if ( _in_args.size() ) {
-                    QStringList * _file_list = Utils::getInputFiles(_in_args);
-
-                    if (_file_list->size()) {
-                        window->mainPanel()->doOpenLocalFiles(*_file_list);
-                    }
-
-                    delete _file_list;
+                if ( !_v_inargs.empty() ) {
+                    AscAppManager::handleInputCmd(_v_inargs);
                 }
             }
 
@@ -852,7 +845,7 @@ void CMainWindow::slot_mainPageReady()
 #define RATE_MS_DAY 3600*24
 #define RATE_MS_WEEK RATE_MS_DAY*7
 
-        wstring _wstr_rate{L"day"};
+        std::wstring _wstr_rate{L"day"};
         if ( !win_sparkle_get_automatic_check_for_updates() ) {
             _wstr_rate = L"never";
         } else {

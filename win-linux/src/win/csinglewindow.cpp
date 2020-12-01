@@ -529,15 +529,15 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
 
         // Minimize
         m_pButtonMinimize = _creatToolButton("toolButtonMinimize", centralWidget);
-        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMinimizeClicked, this));
+        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonMinimizeClicked, this));
 
         // Maximize
         m_pButtonMaximize = _creatToolButton("toolButtonMaximize", centralWidget);
-        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMaximizeClicked, this));
+        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonMaximizeClicked, this));
 
         // Close
         m_pButtonClose = _creatToolButton("toolButtonClose", centralWidget);
-        QObject::connect(m_pButtonClose, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
+        QObject::connect(m_pButtonClose, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
 
         layoutBtns->addWidget(m_pButtonMinimize);
         layoutBtns->addWidget(m_pButtonMaximize);
