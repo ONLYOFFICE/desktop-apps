@@ -89,11 +89,13 @@
 }
 
 - (void)initialize {
-    NSToolbar * customToolbar = [NSToolbar new];
-    customToolbar.showsBaselineSeparator = false;
-    self.titlebarAppearsTransparent = true;
-    self.titleVisibility = NSWindowTitleHidden;
-    self.toolbar = customToolbar;
+    if (@available(macOS 11, *)) {
+        NSToolbar * customToolbar = [NSToolbar new];
+        customToolbar.showsBaselineSeparator = false;
+        self.titlebarAppearsTransparent = true;
+        self.titleVisibility = NSWindowTitleHidden;
+        self.toolbar = customToolbar;
+    }
 }
 
 @end
