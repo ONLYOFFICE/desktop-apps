@@ -38,7 +38,7 @@
 +function(){ 'use strict'
     window.config = { portals: {}};
     window.config.portals.checklist = sdk.externalClouds();
-    window.relpath = '.';
+    window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
