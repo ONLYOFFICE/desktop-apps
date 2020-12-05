@@ -37,6 +37,7 @@
 #include "qcefview_media.h"
 #include "defines.h"
 #include "clangater.h"
+#include "cappeventfilter.h"
 
 class CAscApplicationManagerWrapper_Private
 {
@@ -44,6 +45,9 @@ public:
     CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
         : m_appmanager(*manager)
     {
+#ifdef Q_OS_WIN
+        qApp->installEventFilter(new CAppEventFilter(this));
+#endif
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
@@ -105,6 +109,21 @@ public:
         }
     }
 
+    auto handleAppKeyPress(QKeyEvent * e) -> bool
+    {
+        if (e->key() == Qt::Key_O && (QApplication::keyboardModifiers() & Qt::ControlModifier)) {
+            NSEditorApi::CAscCefMenuEvent * ns_event = new NSEditorApi::CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
+            NSEditorApi::CAscExecCommand * pData = new NSEditorApi::CAscExecCommand;
+            pData->put_Command(L"open:folder");
+
+            ns_event->m_pData = pData;
+            m_appmanager.OnEvent(ns_event);
+
+            return true;
+        }
+
+        return false;
+    }
 public:
     CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
