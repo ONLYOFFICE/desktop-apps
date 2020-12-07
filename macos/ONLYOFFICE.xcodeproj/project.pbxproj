@@ -1559,6 +1559,7 @@
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = 2WH24U26GJ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
@@ -1602,6 +1603,7 @@
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = 2WH24U26GJ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				EXCLUDED_ARCHS = arm64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
