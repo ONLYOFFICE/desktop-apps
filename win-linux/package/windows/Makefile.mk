@@ -1,6 +1,7 @@
 ISCC := iscc
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
+REPO_BRANCH ?= develop
 WIN_REPO_DIR := windows
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
@@ -10,8 +11,6 @@ DESKTOP_EDITORS_UPDATE += win-linux/package/windows/$(PACKAGE_NAME)_update_$(PAC
 PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
 PACKAGES += $(DESKTOP_EDITORS_UPDATE)
-
-REPO_BRANCH := develop
 
 EXE_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_EXE))
 ZIP_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_ZIP))
