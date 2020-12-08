@@ -795,6 +795,7 @@ void CMainPanel::onDocumentReady(int uid)
             emit mainPageReady();
 
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
+            focus(); // TODO: move to app manager
         });
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);

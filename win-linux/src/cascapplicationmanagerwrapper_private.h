@@ -52,9 +52,9 @@ public:
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
-    void initializeApp() {}
-    bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
-    void applyStylesheets() {}
+    virtual void initializeApp() {}
+    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
+    virtual void applyStylesheets() {}
     virtual QCefView * createView(QWidget * parent)
     {
         return new QCefView_Media(parent);
@@ -94,10 +94,6 @@ public:
 
         std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
         m_pStartPanel->GetCefView()->load(start_path);
-    }
-
-    auto mainWindow() -> CMainWindow * const {
-        return m_appmanager.m_vecEditors.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecEditors[0]);
     }
 
     auto extendStylesheets(const std::vector<QString>& veccss) -> void {

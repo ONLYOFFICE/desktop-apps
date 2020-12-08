@@ -14,7 +14,9 @@
 
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
 #define APP_REG_PATH                    str("Software\" + APP_PATH)
-#define DEPLOY_PATH                     str("..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH)
+#ifndef DEPLOY_PATH
+  #define DEPLOY_PATH                   str("..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH)
+#endif
 #define APP_USER_MODEL_ID               "ASC.Documents.5"
 #define APP_MUTEX_NAME                  "TEAMLAB"
 #define APPWND_CLASS_NAME               "DocEditorsWindowClass"
