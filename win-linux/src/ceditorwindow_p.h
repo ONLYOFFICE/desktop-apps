@@ -154,7 +154,7 @@ public:
         leftboxbuttons->layout()->setSpacing(0);
         leftboxbuttons->layout()->setMargin(0);
 
-        if ( !InputArgs::contains(L"--single-window-app") ) {
+        if ( false && !InputArgs::contains(L"--single-window-app") ) {
             CSVGPushButton * btnHome = new CSVGPushButton;
             btnHome->setProperty("class", "normal");
             btnHome->setProperty("act", "tool");

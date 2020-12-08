@@ -63,6 +63,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
 {
+    m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
     QObject::connect(this, &CAscApplicationManagerWrapper::coreEvent, this, &CAscApplicationManagerWrapper::onCoreEvent);
@@ -660,7 +661,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     const wstring prefix{L"--"};
     std::vector<std::wstring> arg_check_list{L"--review",L"--view",L"--edit"};
-    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+//    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-window") != std::end(vargs);
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
@@ -959,7 +961,7 @@ void CAscApplicationManagerWrapper::closeMainWindow()
     APP_CAST(_app)
 
     if ( _app.m_pMainWindow ) {
-        if ( !_app.m_vecEditors.empty() ) {
+        if ( false && !_app.m_vecEditors.empty() ) {
             CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
             switch (m.warning(tr("Do you want to close all editor windows?"))) {
@@ -1379,25 +1381,25 @@ bool CAscApplicationManagerWrapper::canAppClose()
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
-//        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
-//                [](size_t h){
-//                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
-//                    return _e && !_e->closed();
-//                }) != _app.m_vecEditors.end();
+        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
+                [](size_t h){
+                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
+                    return _e && !_e->closed();
+                }) != _app.m_vecEditors.end();
 
-//        if ( _has_opened_editors ) {
-//            mainWindow()->bringToTop();
+        if ( _has_opened_editors ) {
+            mainWindow()->bringToTop();
 
-//            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-////            mess.setButtons({"Yes", "No", "Hide main window"});
-//            switch (mess.warning(tr("Close all editors windows?"))) {
-//            case MODAL_RESULT_CUSTOM + 0: return true;
-//            case MODAL_RESULT_CUSTOM + 2:
-//                mainWindow()->hide();
-//                return false;
-//            default: return false;
-//            }
-//        }
+            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//            mess.setButtons({"Yes", "No", "Hide main window"});
+            switch (mess.warning(tr("Close all editors windows?"))) {
+            case MODAL_RESULT_CUSTOM + 0: return true;
+            case MODAL_RESULT_CUSTOM + 2:
+                mainWindow()->hide();
+                return false;
+            default: return false;
+            }
+        }
     }
 
     return true;
