@@ -2,7 +2,7 @@
 #define CAPPEVENTFILTER_H
 
 #include <QObject>
-#include <memory>
+
 
 class CAscApplicationManagerWrapper_Private;
 class CAppEventFilter : public QObject
@@ -16,7 +16,7 @@ public:
 protected:
     bool eventFilter(QObject *, QEvent *);
 
-    std::unique_ptr<CAscApplicationManagerWrapper_Private> app_private;
+    CAscApplicationManagerWrapper_Private * app_private = nullptr;
 
 signals:
 public slots:
