@@ -11,6 +11,12 @@ PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
 PACKAGES += $(DESKTOP_EDITORS_UPDATE)
 
+REPO_BRANCH := develop
+
+EXE_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_EXE))
+ZIP_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_ZIP))
+EXE_UPDATE_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_UPDATE))
+
 VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
 VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
 
@@ -87,20 +93,14 @@ clean-package:
 		$(INDEX_HTML)
 
 deploy: $(PACKAGES) $(APPCAST) $(CHANGES_EN) $(CHANGES_RU) $(INDEX_HTML)
-	aws s3 cp \
-	$(DESKTOP_EDITORS_EXE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_EXE) s3://$(S3_BUCKET)/$(EXE_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_ZIP) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_ZIP) s3://$(S3_BUCKET)/$(ZIP_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_UPDATE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_UPDATE) s3://$(S3_BUCKET)/$(EXE_UPDATE_URI)
 
 	aws s3 cp \
 		$(APPCAST) \
@@ -129,9 +129,9 @@ M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_BUILD_TIMESTAMP="$(shell date +%s)"
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
-M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
-M4_PARAMS += -D M4_EXE_UPDATE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_UPDATE))"
-M4_PARAMS += -D M4_ZIP_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_ZIP))"
+M4_PARAMS += -D M4_EXE_URI="$(EXE_URI)"
+M4_PARAMS += -D M4_EXE_UPDATE_URI="$(EXE_UPDATE_URI)"
+M4_PARAMS += -D M4_ZIP_URI="$(ZIP_URI)"
 M4_PARAMS += -D M4_APPCAST_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/appcast.xml"
 M4_PARAMS += -D M4_CHANGES_EN_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes.html"
 M4_PARAMS += -D M4_CHANGES_RU_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes_ru.html"
