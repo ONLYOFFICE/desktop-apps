@@ -709,7 +709,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     const wstring prefix{L"--"};
     std::vector<std::wstring> arg_check_list{L"--review",L"--view",L"--edit"};
-    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+//    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-window") != std::end(vargs);
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
