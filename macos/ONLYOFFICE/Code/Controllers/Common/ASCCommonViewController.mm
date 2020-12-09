@@ -1131,6 +1131,10 @@
             allowedFileTypes = [ASCConstants spreadsheets];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPresentation]) {
             allowedFileTypes = [ASCConstants presentations];
+        } else {
+            // filters come in view "*.docx *.pptx *.xlsx"
+            NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];
+            allowedFileTypes = [filters componentsSeparatedByString:@" "];
         }
 
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];
