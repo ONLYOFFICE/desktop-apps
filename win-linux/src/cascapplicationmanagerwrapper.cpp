@@ -1381,25 +1381,25 @@ bool CAscApplicationManagerWrapper::canAppClose()
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
-//        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
-//                [](size_t h){
-//                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
-//                    return _e && !_e->closed();
-//                }) != _app.m_vecEditors.end();
+        bool _has_opened_editors = std::find_if(_app.m_vecEditors.begin(), _app.m_vecEditors.end(),
+                [](size_t h){
+                    CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(h);
+                    return _e && !_e->closed();
+                }) != _app.m_vecEditors.end();
 
-//        if ( _has_opened_editors ) {
-//            mainWindow()->bringToTop();
+        if ( _has_opened_editors ) {
+            mainWindow()->bringToTop();
 
-//            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-////            mess.setButtons({"Yes", "No", "Hide main window"});
-//            switch (mess.warning(tr("Close all editors windows?"))) {
-//            case MODAL_RESULT_CUSTOM + 0: return true;
-//            case MODAL_RESULT_CUSTOM + 2:
-//                mainWindow()->hide();
-//                return false;
-//            default: return false;
-//            }
-//        }
+            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//            mess.setButtons({"Yes", "No", "Hide main window"});
+            switch (mess.warning(tr("Close all editors windows?"))) {
+            case MODAL_RESULT_CUSTOM + 0: return true;
+            case MODAL_RESULT_CUSTOM + 2:
+                mainWindow()->hide();
+                return false;
+            default: return false;
+            }
+        }
     }
 
     return true;
