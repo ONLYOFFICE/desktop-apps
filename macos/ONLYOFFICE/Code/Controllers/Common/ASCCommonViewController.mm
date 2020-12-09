@@ -100,6 +100,7 @@
     };
     
     addObserverFor(ASCEventNameMainWindowLoaded, @selector(onWindowLoaded:));
+    addObserverFor(ASCEventNameOpenAppLinks, @selector(onOpenAppLink));
     addObserverFor(CEFEventNameCreateTab, @selector(onCEFCreateTab:));
     addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
     addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
@@ -335,6 +336,24 @@
     pEvent->m_pData = pCommand;
 
     [self.cefStartPageView apply:pEvent];
+}
+
+- (void)onOpenAppLink {
+    if (NSArray<NSURL *> * links = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsOpenAppLinks]) {
+        [links enumerateObjectsUsingBlock:^(NSURL * _Nonnull link, NSUInteger idx, BOOL * _Nonnull stop) {
+            ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+            tab.type        = ASCTabViewTypeOpening;
+            tab.params      = [@{
+                @"action": @(ASCTabActionOpenUrl),
+                @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
+                @"url": link.absoluteString
+            } mutableCopy];
+
+            [self.tabsControl addTab:tab selected:YES];
+        }];
+        
+        [[ASCSharedSettings sharedInstance] setSetting:nil forKey:kSettingsOpenAppLinks];
+    }
 }
 
 #pragma mark -
@@ -1427,6 +1446,8 @@
     pEvent->m_pData = pCommand;
     
     [self.cefStartPageView apply:pEvent];
+    
+    [self onOpenAppLink];
 }
 
 - (void)onCEFEditorDocumentReady:(NSNotification *)notification {
