@@ -7,6 +7,10 @@ DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSI
 DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
 DESKTOP_EDITORS_UPDATE += win-linux/package/windows/$(PACKAGE_NAME)_update_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 
+PACKAGES += $(DESKTOP_EDITORS_EXE)
+PACKAGES += $(DESKTOP_EDITORS_ZIP)
+PACKAGES += $(DESKTOP_EDITORS_UPDATE)
+
 VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
 VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
 
@@ -75,7 +79,7 @@ $(DESKTOP_EDITORS_UPDATE): $(DESKTOP_EDITORS_EXE)
 win-linux/package/windows/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
 	
-package: $(DESKTOP_EDITORS_EXE) $(DESKTOP_EDITORS_UPDATE) $(DESKTOP_EDITORS_ZIP)
+package: $(PACKAGES)
 #zip: $(DESKTOP_EDITORS_ZIP)
 
 clean-package:
