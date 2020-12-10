@@ -1,7 +1,7 @@
 ISCC := iscc
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
-REPO_BRANCH ?= develop
+RELEASE_BRANCH ?= unstable
 WIN_REPO_DIR := windows
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
@@ -12,9 +12,9 @@ PACKAGES += $(DESKTOP_EDITORS_EXE)
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
 PACKAGES += $(DESKTOP_EDITORS_UPDATE)
 
-EXE_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_EXE))
-ZIP_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_ZIP))
-EXE_UPDATE_URI := packages/exe/$(REPO_BRANCH)/$(notdir $(DESKTOP_EDITORS_UPDATE))
+EXE_URI := packages/exe/$(RELEASE_BRANCH)/$(notdir $(DESKTOP_EDITORS_EXE))
+ZIP_URI := packages/exe/$(RELEASE_BRANCH)/$(notdir $(DESKTOP_EDITORS_ZIP))
+EXE_UPDATE_URI := packages/exe/$(RELEASE_BRANCH)/$(notdir $(DESKTOP_EDITORS_UPDATE))
 
 VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
 VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe

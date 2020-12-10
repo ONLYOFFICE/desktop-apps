@@ -16,7 +16,7 @@ PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 PACKAGE_EDITION ?= cool
 S3_BUCKET ?= repo-doc-onlyoffice-com
-REPO_BRANCH ?= develop
+RELEASE_BRANCH ?= unstable
 
 BRANDING_DIR ?= $(PWD)/branding
 
@@ -65,12 +65,12 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rp
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 
-RPM_URI = packages/rpm/$(REPO_BRANCH)/$(notdir $(RPM))
-APT_RPM_URI = packages/apt-rpm/$(REPO_BRANCH)/$(notdir $(APT_RPM))
-URPMI_URI = packages/urpmi/$(REPO_BRANCH)/$(notdir $(URPMI))
-DEB_URI = packages/deb/$(REPO_BRANCH)/$(notdir $(DEB))
-DEB_ASTRA_URI = packages/deb-astra/$(REPO_BRANCH)/$(notdir $(DEB_ASTRA))
-TAR_URI = packages/tar/$(REPO_BRANCH)/$(notdir $(TAR))
+RPM_URI = packages/rpm/$(RELEASE_BRANCH)/$(notdir $(RPM))
+APT_RPM_URI = packages/apt-rpm/$(RELEASE_BRANCH)/$(notdir $(APT_RPM))
+URPMI_URI = packages/urpmi/$(RELEASE_BRANCH)/$(notdir $(URPMI))
+DEB_URI = packages/deb/$(RELEASE_BRANCH)/$(notdir $(DEB))
+DEB_ASTRA_URI = packages/deb-astra/$(RELEASE_BRANCH)/$(notdir $(DEB_ASTRA))
+TAR_URI = packages/tar/$(RELEASE_BRANCH)/$(notdir $(TAR))
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
