@@ -377,7 +377,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 CCefView * _view = GetViewByUrl(_url);
                 int _id = _view ? _view->GetId() : -1;
                 if ( _url.rfind(L"http://",0) == 0 || _url.rfind(L"https://",0) == 0 ) {
-                    mainWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
+                    topWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
                 } else {
                     /* open local file */
                 }
