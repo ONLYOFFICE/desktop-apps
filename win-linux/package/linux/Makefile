@@ -65,12 +65,12 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rp
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 
-RPM_URI = packages/rpm/$(RELEASE_BRANCH)/$(notdir $(RPM))
-APT_RPM_URI = packages/apt-rpm/$(RELEASE_BRANCH)/$(notdir $(APT_RPM))
-URPMI_URI = packages/urpmi/$(RELEASE_BRANCH)/$(notdir $(URPMI))
-DEB_URI = packages/deb/$(RELEASE_BRANCH)/$(notdir $(DEB))
-DEB_ASTRA_URI = packages/deb-astra/$(RELEASE_BRANCH)/$(notdir $(DEB_ASTRA))
-TAR_URI = packages/tar/$(RELEASE_BRANCH)/$(notdir $(TAR))
+RPM_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/centos/$(notdir $(RPM))
+APT_RPM_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/altlinux/$(notdir $(APT_RPM))
+URPMI_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/rosa/$(notdir $(URPMI))
+DEB_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/ubuntu/$(notdir $(DEB))
+DEB_ASTRA_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/astra/$(notdir $(DEB_ASTRA))
+TAR_URI = packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/linux/$(notdir $(TAR))
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
