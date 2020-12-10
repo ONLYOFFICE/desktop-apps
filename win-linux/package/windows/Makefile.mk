@@ -29,12 +29,12 @@ CHANGES_EN := win-linux/package/windows/update/changes.html
 CHANGES_RU := win-linux/package/windows/update/changes_ru.html
 INDEX_HTML := win-linux/package/windows/index.html
 
-EXE_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
-ZIP_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
-EXE_UPDATE_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_UPDATE))
-APPCAST_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/update/appcast_$(PACKAGE_VERSION).xml
-CHANGES_EN_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/update/changes_$(PACKAGE_VERSION).html
-CHANGES_RU_URI := packages/$(COMPANY_NAME_LOW)-$(RELEASE_BRANCH)/windows/update/changes_ru_$(PACKAGE_VERSION).html
+EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
+ZIP_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
+EXE_UPDATE_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_UPDATE))
+APPCAST_URI    := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/appcast_$(PACKAGE_VERSION).xml
+CHANGES_EN_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_$(PACKAGE_VERSION).html
+CHANGES_RU_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_ru_$(PACKAGE_VERSION).html
 
 ISCC_PARAMS += //Qp
 ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
