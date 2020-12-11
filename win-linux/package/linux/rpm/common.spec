@@ -90,6 +90,8 @@ if [ -x "$UPDATE_MENUS" ]; then
   update-menus
 fi
 
+xdg-mime default onlyoffice-desktopeditors.desktop x-scheme-handler/oo-office
+
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
