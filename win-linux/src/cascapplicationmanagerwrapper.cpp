@@ -776,7 +776,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     open_opts.name = AscAppManager::newFileName(open_opts.format);
                 }
             } else
-            if ( check_params(open_opts.wurl, {L"http://",L"https://",L"oo-office://"}) < 0 )
+            if ( check_params(open_opts.wurl, {L"http://",L"https://",L"oo-office:"}) < 0 )
                 continue;
         }
 
