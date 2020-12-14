@@ -20,7 +20,11 @@ if [ -x "$UPDATE_MENUS" ]; then
   update-menus
 fi
 
-xdg-mime default onlyoffice-desktopeditors.desktop x-scheme-handler/oo-office
+MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
+if [ ! -f "$MIMEAPPS_LIST" ]; then
+  echo "[Default Applications]" >"$MIMEAPPS_LIST"
+fi
+echo "x-scheme-handler/oo-office=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
