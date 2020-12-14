@@ -894,7 +894,9 @@ void CAscApplicationManagerWrapper::initializeApp()
             std::vector<std::wstring> vec_inargs;
             QStringListIterator iter(args.split(";")); iter.next();
             while ( iter.hasNext() ) {
-                vec_inargs.push_back(iter.next().toStdWString());
+                QString arg = iter.next();
+                if ( !arg.isEmpty() )
+                    vec_inargs.push_back(arg.toStdWString());
             }
 
             if ( !vec_inargs.empty() ) {
