@@ -93,6 +93,8 @@ fi
 MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
 if [ ! -f "$MIMEAPPS_LIST" ]; then
   echo "[Default Applications]" >"$MIMEAPPS_LIST"
+else
+  sed -i '/x-scheme-handler\/oo-office/d' "$MIMEAPPS_LIST"
 fi
 echo "x-scheme-handler/oo-office=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
 
