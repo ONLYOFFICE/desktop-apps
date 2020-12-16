@@ -1,7 +1,7 @@
 ISCC := iscc
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
-WIN_REPO_DIR := windows
+RELEASE_BRANCH ?= unstable
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
@@ -32,6 +32,13 @@ APPCAST := win-linux/package/windows/update/appcast.xml
 CHANGES_EN := win-linux/package/windows/update/changes.html
 CHANGES_RU := win-linux/package/windows/update/changes_ru.html
 INDEX_HTML := win-linux/package/windows/index.html
+
+EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
+ZIP_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
+EXE_UPDATE_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_UPDATE))
+APPCAST_URI    := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/appcast_$(PACKAGE_VERSION).xml
+CHANGES_EN_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_$(PACKAGE_VERSION).html
+CHANGES_RU_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_ru_$(PACKAGE_VERSION).html
 
 ISCC_PARAMS += //Qp
 ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
@@ -87,42 +94,29 @@ clean-package:
 		$(CHANGES_RU) \
 		$(INDEX_HTML)
 
-deploy: $(PACKAGES) $(APPCAST) $(CHANGES_EN) $(CHANGES_RU) $(INDEX_HTML)
-	aws s3 cp \
-	$(DESKTOP_EDITORS_EXE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+deploy-exe: $(DESKTOP_EDITORS_EXE)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_EXE) s3://$(S3_BUCKET)/$(EXE_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_ZIP) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+deploy-exe-update: $(DESKTOP_EDITORS_UPDATE)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_UPDATE) s3://$(S3_BUCKET)/$(EXE_UPDATE_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_UPDATE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
+deploy-zip: $(DESKTOP_EDITORS_ZIP)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_ZIP) s3://$(S3_BUCKET)/$(ZIP_URI)
 
-	aws s3 cp \
-		$(APPCAST) \
-		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/ \
-		--acl public-read
+deploy-appcast: $(APPCAST) $(CHANGES_EN) $(CHANGES_RU)
+	aws s3 cp --no-progress --acl public-read \
+		$(APPCAST) s3://$(S3_BUCKET)/$(APPCAST_URI)
 
-	aws s3 cp \
-		$(CHANGES_EN) \
-		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
-		--acl public-read
+	aws s3 cp --no-progress --acl public-read \
+		$(CHANGES_EN) s3://$(S3_BUCKET)/$(CHANGES_EN_URI)
 
-	aws s3 cp \
-		$(CHANGES_RU) \
-		s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/ \
-		--acl public-read
+	aws s3 cp --no-progress --acl public-read \
+		$(CHANGES_RU) s3://$(S3_BUCKET)/$(CHANGES_RU_URI)
 
-#	aws s3 sync \
-#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
-#	--acl public-read \
-#	--delete
+deploy: deploy-exe deploy-exe-update deploy-zip deploy-appcast $(INDEX_HTML)
 
 M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
 M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
@@ -130,12 +124,12 @@ M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_BUILD_TIMESTAMP="$(shell date +%s)"
 M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
 M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
-M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
-M4_PARAMS += -D M4_EXE_UPDATE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_UPDATE))"
-M4_PARAMS += -D M4_ZIP_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_ZIP))"
-M4_PARAMS += -D M4_APPCAST_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/appcast.xml"
-M4_PARAMS += -D M4_CHANGES_EN_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes.html"
-M4_PARAMS += -D M4_CHANGES_RU_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/update/changes/changes_ru.html"
+M4_PARAMS += -D M4_EXE_URI=$(EXE_URI)
+M4_PARAMS += -D M4_EXE_UPDATE_URI=$(EXE_UPDATE_URI)
+M4_PARAMS += -D M4_ZIP_URI=$(ZIP_URI)
+M4_PARAMS += -D M4_APPCAST_URI=$(APPCAST_URI)
+M4_PARAMS += -D M4_CHANGES_EN_URI=$(CHANGES_EN_URI)
+M4_PARAMS += -D M4_CHANGES_RU_URI=$(CHANGES_RU_URI)
 
 $(APPCAST):
 	m4 $(M4_PARAMS) $(BRANDING_DIR)/win-linux/package/windows/update/appcast.xml.m4 > $@
