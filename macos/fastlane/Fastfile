@@ -81,10 +81,8 @@ platform :mac do
     push_to_git_remote
   end
 
-end
-
-platform :mac_x86 do
-  lane :release do
+  # x86 only
+  lane :release_x86 do
     build = "build"
     scheme = "ONLYOFFICE-x86"
     appName = "ONLYOFFICE"
