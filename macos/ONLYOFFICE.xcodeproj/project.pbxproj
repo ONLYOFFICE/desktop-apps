@@ -1618,7 +1618,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
@@ -1662,7 +1662,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
