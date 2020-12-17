@@ -314,7 +314,7 @@ deploy-apt-rpm: $(APT_RPM)
 
 deploy-urpmi: $(URPMI)
 	aws s3 cp --no-progress --acl public-read \
-		$(URPMI_RPM) s3://$(S3_BUCKET)/$(URPMI_URI)
+		$(URPMI) s3://$(S3_BUCKET)/$(URPMI_URI)
 
 deploy-tar: $(TAR)
 	aws s3 cp --no-progress --acl public-read \
