@@ -72,6 +72,8 @@ DEB_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/ubuntu/$(notdir $(DEB))
 DEB_ASTRA_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/astra/$(notdir $(DEB_ASTRA))
 TAR_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/linux/$(notdir $(TAR))
 
+DEPLOY_JSON = deploy.json
+
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
 	DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
@@ -222,7 +224,7 @@ clean:
 		urpmi/$(PACKAGE_NAME).spec \
 		$(INSTALLER)\
 		*.tar.gz\
-		index.html
+		$(DEPLOY_JSON)
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
@@ -323,14 +325,6 @@ deploy-tar: $(TAR)
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://$(S3_BUCKET)/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/ --acl public-read       
 
-M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
-M4_PARAMS += -D M4_APT_RPM_URI=$(APT_RPM_URI)
-M4_PARAMS += -D M4_DEB_URI=$(DEB_URI)
-M4_PARAMS += -D M4_DEB_ASTRA_URI=$(DEB_ASTRA_URI)
-M4_PARAMS += -D M4_RPM_URI=$(RPM_URI)
-M4_PARAMS += -D M4_TAR_URI=$(TAR_URI)
-M4_PARAMS += -D M4_URPMI_URI=$(URPMI_URI)
-
 common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
 common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
 common/usr/bin/$(VIDEOPLAYER_EXEC) : common/usr/bin/videoplayer.m4
@@ -369,10 +363,44 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 DEPLOY_TARGETS += deploy-deb-astra
 endif
 
-deploy: $(DEPLOY_TARGETS)
+$(DEPLOY_JSON):
+	echo '{}' > $@
+	cat <<< $$(jq '. + { \
+		product: "$(PRODUCT_NAME_LOW)", \
+		version: "$(PRODUCT_VERSION)", \
+		build: "$(BUILD_NUMBER)" \
+		}' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "ubuntu", \
+		title: "Debian 8 9 10, Ubuntu 14 16 18 20 and derivatives", \
+		path: "$(DEB_URI)" }]' $@) > $@
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	cat <<< $$(jq '.items += [{ \
+		platform: "astralinux", \
+		title: "Astra Linux Smolenks 1.6", \
+		path: "$(DEB_ASTRA_URI)" }]' $@) > $@
+endif
+	cat <<< $$(jq '.items += [{ \
+		platform: "centos", \
+		title: "Centos 7, Redhat 7, Fedora latest and derivatives", \
+		path: "$(RPM_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "altlinux", \
+		title: "Altlinux p8 p9", \
+		path: "$(APT_RPM_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "rosa", \
+		title: "Rosa p8", \
+		path: "$(APT_URPMI_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "linux", \
+		title: "Linux portable", \
+		path: "$(TAR_URI)" }]' $@) > $@
+
+deploy: $(DEPLOY_TARGETS) $(DEPLOY_JSON)
 #deploy-installer
