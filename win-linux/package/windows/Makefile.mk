@@ -92,7 +92,7 @@ clean-package:
 		$(APPCAST) \
 		$(CHANGES_EN) \
 		$(CHANGES_RU) \
-		$(INDEX_HTML)
+		$(DEPLOY_JSON)
 
 deploy-exe: $(DESKTOP_EDITORS_EXE)
 	aws s3 cp --no-progress --acl public-read \
