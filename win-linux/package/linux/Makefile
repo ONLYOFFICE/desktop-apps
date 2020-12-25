@@ -363,11 +363,6 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-DEPLOY_TARGETS += deploy-deb-astra
-endif
-
 $(DEPLOY_JSON):
 	echo '{}' > $@
 	cat <<< $$(jq '. + { \
@@ -401,6 +396,11 @@ endif
 		platform: "linux", \
 		title: "Linux portable", \
 		path: "$(TAR_URI)" }]' $@) > $@
+
+DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+DEPLOY_TARGETS += deploy-deb-astra
+endif
 
 deploy: $(DEPLOY_TARGETS) $(DEPLOY_JSON)
 #deploy-installer
