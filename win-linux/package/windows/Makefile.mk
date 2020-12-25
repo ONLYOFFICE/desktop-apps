@@ -31,7 +31,7 @@ BUILD_TIMESTAMP = $(shell date +%s)
 APPCAST := win-linux/package/windows/update/appcast.xml
 CHANGES_EN := win-linux/package/windows/update/changes.html
 CHANGES_RU := win-linux/package/windows/update/changes_ru.html
-INDEX_HTML := win-linux/package/windows/index.html
+DEPLOY_JSON := win-linux/package/windows/deploy.json
 
 EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
 ZIP_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
@@ -116,20 +116,72 @@ deploy-appcast: $(APPCAST) $(CHANGES_EN) $(CHANGES_RU)
 	aws s3 cp --no-progress --acl public-read \
 		$(CHANGES_RU) s3://$(S3_BUCKET)/$(CHANGES_RU_URI)
 
-deploy: deploy-exe deploy-exe-update deploy-zip deploy-appcast $(INDEX_HTML)
+$(DEPLOY_JSON):
+	echo '{}' > $@
+	cat <<< $$(jq '. + { \
+		product:  "$(PRODUCT_NAME_LOW)", \
+		version:  "$(PRODUCT_VERSION)", \
+		build:    "$(BUILD_NUMBER)" \
+		}' $@) > $@
+ifndef _WIN_XP
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows $(WIN_ARCH)", \
+		path:     "$(EXE_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows $(WIN_ARCH) update", \
+		path:     "$(EXE_UPDATE_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows $(WIN_ARCH) portable", \
+		path:     "$(ZIP_URI)" }]' $@) > $@
+else
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows XP $(WIN_ARCH)", \
+		path:     "$(EXE_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows XP $(WIN_ARCH) update", \
+		path:     "$(EXE_UPDATE_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "windows", \
+		title:    "Windows XP $(WIN_ARCH) portable", \
+		path:     "$(ZIP_URI)" }]' $@) > $@
+endif
+ifndef _WIN_XP
+ifeq ($(WIN_ARCH), x64)
+	cat <<< $$(jq '.items += [{ \
+		platform: "appcast", \
+		title:    "Appcast", \
+		path:     "$(APPCAST_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "appcast", \
+		title:    "Changes EN", \
+		path:     "$(CHANGES_EN_URI)" }]' $@) > $@
+	cat <<< $$(jq '.items += [{ \
+		platform: "appcast", \
+		title:    "Changes RU", \
+		path:     "$(CHANGES_RU_URI)" }]' $@) > $@
+endif
+endif
+
+DEPLOY += deploy-exe
+DEPLOY += deploy-exe-update
+DEPLOY += deploy-zip
+ifndef _WIN_XP
+	ifeq ($(WIN_ARCH), x64)
+DEPLOY += deploy-appcast
+	endif
+endif
+
+deploy: $(DEPLOY) $(DEPLOY_JSON)
 
 M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
 M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
 M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
 M4_PARAMS += -D M4_BUILD_TIMESTAMP="$(shell date +%s)"
-M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
-M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
-M4_PARAMS += -D M4_EXE_URI=$(EXE_URI)
-M4_PARAMS += -D M4_EXE_UPDATE_URI=$(EXE_UPDATE_URI)
-M4_PARAMS += -D M4_ZIP_URI=$(ZIP_URI)
-M4_PARAMS += -D M4_APPCAST_URI=$(APPCAST_URI)
-M4_PARAMS += -D M4_CHANGES_EN_URI=$(CHANGES_EN_URI)
-M4_PARAMS += -D M4_CHANGES_RU_URI=$(CHANGES_RU_URI)
 
 $(APPCAST):
 	m4 $(M4_PARAMS) $(BRANDING_DIR)/win-linux/package/windows/update/appcast.xml.m4 > $@
