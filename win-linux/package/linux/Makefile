@@ -391,7 +391,7 @@ endif
 	cat <<< $$(jq '.items += [{ \
 		platform: "rosa", \
 		title: "Rosa p8", \
-		path: "$(APT_URPMI_URI)" }]' $@) > $@
+		path: "$(URPMI_URI)" }]' $@) > $@
 	cat <<< $$(jq '.items += [{ \
 		platform: "linux", \
 		title: "Linux portable", \
