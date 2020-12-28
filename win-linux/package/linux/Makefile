@@ -363,39 +363,48 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
+comma := ,
+json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
+
 $(DEPLOY_JSON):
 	echo '{}' > $@
-	cat <<< $$(jq '. + { \
-		product: "$(PRODUCT_NAME_LOW)", \
-		version: "$(PRODUCT_VERSION)", \
-		build: "$(BUILD_NUMBER)" \
-		}' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "ubuntu", \
-		title: "Debian 8 9 10, Ubuntu 14 16 18 20 and derivatives", \
-		path: "$(DEB_URI)" }]' $@) > $@
+	$(call json_edit, $@, '. + { \
+		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
+		version:  "$(PRODUCT_VERSION)"$(comma) \
+		build:    "$(BUILD_NUMBER)" \
+	}')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "ubuntu"$(comma) \
+		title:    "Debian 8 9 10$(comma) Ubuntu 14 16 18 20 and derivatives"$(comma) \
+		path:     "$(DEB_URI)" \
+	}]')
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	cat <<< $$(jq '.items += [{ \
-		platform: "astralinux", \
-		title: "Astra Linux Smolenks 1.6", \
-		path: "$(DEB_ASTRA_URI)" }]' $@) > $@
+	$(call json_edit, $@, '.items += [{ \
+		platform: "astralinux"$(comma) \
+		title:    "Astra Linux Smolenks 1.6"$(comma) \
+		path:     "$(DEB_ASTRA_URI)" \
+	}]')
 endif
-	cat <<< $$(jq '.items += [{ \
-		platform: "centos", \
-		title: "Centos 7, Redhat 7, Fedora latest and derivatives", \
-		path: "$(RPM_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "altlinux", \
-		title: "Altlinux p8 p9", \
-		path: "$(APT_RPM_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "rosa", \
-		title: "Rosa p8", \
-		path: "$(URPMI_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "linux", \
-		title: "Linux portable", \
-		path: "$(TAR_URI)" }]' $@) > $@
+	$(call json_edit, $@, '.items += [{ \
+		platform: "centos"$(comma) \
+		title:    "Centos 7$(comma) Redhat 7$(comma) Fedora latest and derivatives"$(comma) \
+		path:     "$(RPM_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "altlinux"$(comma) \
+		title:    "Altlinux p8 p9"$(comma) \
+		path:     "$(APT_RPM_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "rosa"$(comma) \
+		title:    "Rosa p8"$(comma) \
+		path:     "$(URPMI_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "linux"$(comma) \
+		title:    "Linux portable"$(comma) \
+		path:     "$(TAR_URI)" \
+	}]')
 
 DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
