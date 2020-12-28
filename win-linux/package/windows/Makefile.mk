@@ -116,54 +116,66 @@ deploy-appcast: $(APPCAST) $(CHANGES_EN) $(CHANGES_RU)
 	aws s3 cp --no-progress --acl public-read \
 		$(CHANGES_RU) s3://$(S3_BUCKET)/$(CHANGES_RU_URI)
 
+comma := ,
+json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
+
 $(DEPLOY_JSON):
 	echo '{}' > $@
-	cat <<< $$(jq '. + { \
-		product:  "$(PRODUCT_NAME_LOW)", \
-		version:  "$(PRODUCT_VERSION)", \
+	$(call json_edit, $@, '. + { \
+		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
+		version:  "$(PRODUCT_VERSION)"$(comma) \
 		build:    "$(BUILD_NUMBER)" \
-		}' $@) > $@
+	}')
 ifndef _WIN_XP
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows $(WIN_ARCH)", \
-		path:     "$(EXE_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows $(WIN_ARCH) update", \
-		path:     "$(EXE_UPDATE_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows $(WIN_ARCH) portable", \
-		path:     "$(ZIP_URI)" }]' $@) > $@
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH)"$(comma) \
+		path:     "$(EXE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH) update"$(comma) \
+		path:     "$(EXE_UPDATE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH) portable"$(comma) \
+		path:     "$(ZIP_URI)" \
+	}]')
 else
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows XP $(WIN_ARCH)", \
-		path:     "$(EXE_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows XP $(WIN_ARCH) update", \
-		path:     "$(EXE_UPDATE_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "windows", \
-		title:    "Windows XP $(WIN_ARCH) portable", \
-		path:     "$(ZIP_URI)" }]' $@) > $@
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH)"$(comma) \
+		path:     "$(EXE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH) update"$(comma) \
+		path:     "$(EXE_UPDATE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH) portable"$(comma) \
+		path:     "$(ZIP_URI)" \
+	}]')
 endif
 ifndef _WIN_XP
 ifeq ($(WIN_ARCH), x64)
-	cat <<< $$(jq '.items += [{ \
-		platform: "appcast", \
-		title:    "Appcast", \
-		path:     "$(APPCAST_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "appcast", \
-		title:    "Changes EN", \
-		path:     "$(CHANGES_EN_URI)" }]' $@) > $@
-	cat <<< $$(jq '.items += [{ \
-		platform: "appcast", \
-		title:    "Changes RU", \
-		path:     "$(CHANGES_RU_URI)" }]' $@) > $@
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Appcast"$(comma) \
+		path:     "$(APPCAST_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Changes EN"$(comma) \
+		path:     "$(CHANGES_EN_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Changes RU"$(comma) \
+		path:     "$(CHANGES_RU_URI)" \
+	}]')
 endif
 endif
 
