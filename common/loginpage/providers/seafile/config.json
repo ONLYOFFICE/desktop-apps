@@ -1,5 +1,5 @@
 {
-    "id": "seafile",
+    "provider": "seafile",
     "name" : "Seafile",
     "check" : {
         "url": "/api2/server-info/"

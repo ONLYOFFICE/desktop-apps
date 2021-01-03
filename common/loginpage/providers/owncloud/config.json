@@ -1,5 +1,5 @@
 {
-    "id": "owncloud",
+    "provider": "owncloud",
     "name" : "ownCloud",
     "check" : {
         "url": "status.php"
