@@ -1425,7 +1425,33 @@
     
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
+    pEvent->AddRef();
     
+    [self.cefStartPageView apply:pEvent];
+
+    //NSLog(@"current locale: %@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]);
+    NSDictionary * json_langs = @{
+        @"locale": @{
+            @"current": @"en-EN",
+            @"langs": @{
+                @"en-EN": @"English",
+                @"ru-RU": @"Русский",
+                @"de-DE": @"Deutsch",
+                @"fr-FR": @"Français",
+                @"es-ES": @"Español",
+                @"sk-SK": @"Slovenčina",
+                @"cs-CZ": @"Čeština",
+                @"it-IT": @"Italiano",
+                @"pt-BR": @"Português Brasileiro",
+                @"pl-PL": @"Polski",
+                @"zh-CN": @"中文"
+            }
+        }
+    };
+    pCommand->put_Command(L"settings:init");
+    pCommand->put_Param([[json_langs jsonString] stdwstring]);
+
+    pEvent->m_pData = pCommand;
     [self.cefStartPageView apply:pEvent];
 }
 

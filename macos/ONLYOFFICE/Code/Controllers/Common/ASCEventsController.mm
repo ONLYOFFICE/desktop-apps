@@ -582,6 +582,10 @@ public:
                                 } else {
                                     [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
                                 }
+                                
+                                if (NSString * langId = json[@"langid"]) {
+                                    NSLog(@"new lang: %@", langId);
+                                }
 
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
