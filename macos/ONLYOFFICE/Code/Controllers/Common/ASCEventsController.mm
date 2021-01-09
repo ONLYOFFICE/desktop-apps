@@ -584,7 +584,8 @@ public:
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
-                                    NSLog(@"new lang: %@", langId);
+                                    [[NSUserDefaults standardUserDefaults] setObject:langId forKey:ASCUserUILanguage];
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
                                 }
 
                                 if (NSString * userName = json[@"username"]) {
