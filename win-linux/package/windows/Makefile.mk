@@ -56,7 +56,7 @@ ISCC_PARAMS += //DDEPLOY_PATH="$(shell cygpath -a -w $(DEST_DIR))"
 ifdef ENABLE_SIGNING
 ISCC_PARAMS += //DENABLE_SIGNING=1
 endif
-ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
+ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.digicert.com \$$f"
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
