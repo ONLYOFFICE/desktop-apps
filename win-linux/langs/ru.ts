@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Неправильный пароль сертификата.&lt;br&gt;Пожалуйста, введите пароль еще раз</translation>
+        <translation>Неправильный пароль сертификата.&amp;lt;br&amp;gt;Пожалуйста, введите пароль еще раз</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Необходимо сохранить документ для продолжения.&lt;br&gt;Сохранить?</translation>
+        <translation>Необходимо сохранить документ для продолжения.&amp;lt;br&amp;gt;Сохранить?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&lt;br&gt;Вы действительно хотите продолжить?</translation>
+        <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&amp;lt;br&amp;gt;Вы действительно хотите продолжить?</translation>
     </message>
 </context>
 <context>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 уже существует.&lt;br&gt;Хотите его перезаписать?</translation>
+        <translation>%1 уже существует.&amp;lt;br&amp;gt;Хотите его перезаписать?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>Файл %1 был изменен.&lt;br&gt;Вы хотите сохранить изменения?</translation>
+        <translation>Файл %1 был изменен.&amp;lt;br&amp;gt;Вы хотите сохранить изменения?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="625"/>
@@ -392,7 +392,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 недоступен. Возможно, он был переименован, перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
+        <translation>%1 недоступен. Возможно, он был переименован, перемещен или удален.&amp;lt;br&amp;gt;Хотите удалить его из списка?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&lt;br&gt;Вы действительно хотите продолжить?</translation>
+        <translation>Если Вы продолжите сохранение в этот формат, весь функционал, кроме текста, будет потерян.&amp;lt;br&amp;gt;Вы действительно хотите продолжить?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Необходимо сохранить документ для продолжения.&lt;br&gt;Сохранить?</translation>
+        <translation>Необходимо сохранить документ для продолжения.&amp;lt;br&amp;gt;Сохранить?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Отмена</translation>
+        <translation>&amp;amp;Отмена</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

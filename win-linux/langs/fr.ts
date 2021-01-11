@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Mot de passe de certificat incorrect.&lt;br&gt;Veuillez l’entrer à nouveau</translation>
+        <translation>Mot de passe de certificat incorrect.&amp;lt;br&amp;gt;Veuillez l’entrer à nouveau</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
+        <translation>Le document doit être enregistré pour continuer.&amp;lt;br&amp;gt;Enregistrer le document ?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
+        <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&amp;lt;br&amp;gt;Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
 </context>
 <context>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 existe déjà.&lt;br&gt;Voulez-vous le replacer ?</translation>
+        <translation>%1 existe déjà.&amp;lt;br&amp;gt;Voulez-vous le replacer ?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -346,7 +346,7 @@
         <location filename="../src/cfiledialog.cpp" line="260"/>
         <location filename="../src/cfiledialog.cpp" line="269"/>
         <source>All Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Toutes les images</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="262"/>
@@ -381,18 +381,18 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
+        <translation>%1 a été modifié.&amp;lt;br&amp;gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="625"/>
         <location filename="../src/cmainpanel.cpp" line="669"/>
         <source>File format not supported.</source>
-        <translation>Format de fichier non pris en charge</translation>
+        <translation>Format de fichier non pris en charge.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
+        <translation>%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&amp;lt;br&amp;gt;Voulez-vous supprimer le fichier de la liste ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
+        <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&amp;lt;br&amp;gt;Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
+        <translation>Le document doit être enregistré pour continuer.&amp;lt;br&amp;gt;Enregistrer le document ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuler</translation>
+        <translation>&amp;amp;Annuler</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>
