@@ -197,7 +197,10 @@ l10n.bg = {
     settCheckUpdates: 'Проверявай за актуализации автоматично',
     settOptCheckNever: 'Никога',
     settOptCheckDay: 'Всеки ден',
-    settOptCheckWeek: 'Всяка седмица'
+    settOptCheckWeek: 'Всяка седмица',
+    settScaling: 'Мащабиране на интерфейса',
+    settOptScalingAuto: 'Автоматичен',
+    aboutProFeaturesAvailable: 'С достъп до професионални функции'
 }
 
 l10n.ca = {
@@ -280,7 +283,10 @@ l10n.ca = {
     settCheckUpdates: 'Comproveu les actualitzacions automàticament',
     settOptCheckNever: 'Mai',
     settOptCheckDay: 'Cada dia',
-    settOptCheckWeek: 'Cada setmana'
+    settOptCheckWeek: 'Cada setmana',
+    settScaling: 'Escala d\'interfície',
+    settOptScalingAuto: 'Automàtic',
+    aboutProFeaturesAvailable: 'Amb accés a funcions professionals'
 }
 
 l10n.cs = {
@@ -363,7 +369,10 @@ l10n.cs = {
     settCheckUpdates: 'Zkontrolovat aktualizace automaticky',
     settOptCheckNever: 'Never',
     settOptCheckDay: 'Každý den',
-    settOptCheckWeek: 'Každý týden'
+    settOptCheckWeek: 'Každý týden',
+    settScaling: 'Škálování rozhraní',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'S přístupem k profesionálním funkcím'
 }
 
 l10n.da = {
@@ -446,7 +455,10 @@ l10n.da = {
     settCheckUpdates: 'Tjek for opdateringer automatisk',
     settOptCheckNever: 'Aldrig',
     settOptCheckDay: 'Hver dag',
-    settOptCheckWeek: 'Hver uge'
+    settOptCheckWeek: 'Hver uge',
+    settScaling: 'Interface skalering',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Med adgang til pro-funktioner'
 }
 
 l10n.et = {
@@ -529,7 +541,10 @@ l10n.et = {
     settCheckUpdates: 'Kontrolli uusi uuendusi automaatselt',
     settOptCheckNever: 'Mitte kunagi',
     settOptCheckDay: 'Iga päev',
-    settOptCheckWeek: 'Iga nädal'
+    settOptCheckWeek: 'Iga nädal',
+    settScaling: 'Liidese skaleerimine',
+    settOptScalingAuto: 'Automaatne',
+    aboutProFeaturesAvailable: 'Juurdepääs pro funktsioonidele'
 }
 
 l10n.fi = {
@@ -1193,7 +1208,10 @@ l10n.ja = {
     settCheckUpdates: '自動的に更新プログラムを確認',
     settOptCheckNever: 'しない',
     settOptCheckDay: '毎日',
-    settOptCheckWeek: '毎週'
+    settOptCheckWeek: '毎週',
+    settScaling: 'インターフェイスのスケーリング',
+    settOptScalingAuto: '自動',
+    aboutProFeaturesAvailable: 'プロ機能へのアクセス付き'
 }
 
 l10n.ko = {
@@ -1276,7 +1294,10 @@ l10n.ko = {
     settCheckUpdates: '자동 업데이트 확인',
     settOptCheckNever: '절대 안함',
     settOptCheckDay: '매일',
-    settOptCheckWeek: '매주'
+    settOptCheckWeek: '매주',
+    settScaling: '인터페이스 스케일링',
+    settOptScalingAuto: '자동',
+    aboutProFeaturesAvailable: '프로 기능 액세스로 할 수 있는 것'
 }
 
 l10n.lt = {
@@ -1293,7 +1314,7 @@ l10n.lt = {
     portalEmptyDescr: 'Išsaugokite savo dokumentus "cloud\'e" ir gaukite prieigą prie jų bet kada, bet kur. Dalinkites bei kolaboruokite su jais. Bendraukite savo dokumentuose, rašykite komentarus arba pasidalinkite juos peržiūrai.',
     portalEmptyAdv1: 'Dar neturite "cloud" anketos? Užsisakykite Online ONLYOFFICE Cloud Paslaugos paketą <br />ir išbandykite šias bendradarbiavimo galimybes nemokamai.',
     portalListTitle: 'Sujungti "clouds"',
-    textNoFiles: 'Nėra failų',
+    textFiles: 'Nėra failų',
     listRecoveryTitle: 'Atstatyti failus',
     listRecentFileTitle: 'Naujausi failai',
     listRecentDirTitle: 'Naujausi aplankai',
@@ -1774,6 +1795,8 @@ l10n.de = {
     settOptCheckNever: 'Niemals',
     settOptCheckDay: 'Täglich',
     settOptCheckWeek: 'Jede Woche',
+    settScaling: 'Skalierung der Benutzeroberfläche',
+    settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
 };
 
@@ -1858,6 +1881,8 @@ l10n.it_IT = {
     settOptCheckNever: 'Mai',
     settOptCheckDay: 'Ogni giorno',
     settOptCheckWeek: 'Ogni settimana',
+    settScaling: 'Ridimensionamento interfaccia',
+    settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
 };
 
@@ -1942,7 +1967,9 @@ l10n.fr = {
     settOptCheckNever: 'Jamais',
     settOptCheckDay: 'Chaque jour',
     settOptCheckWeek: 'Chaque semaine',
-    aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
+    settScaling: 'Dimensionnement de l\'interface',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Avec l\'accès aux fonctionnalités avancées'
 };
 
 l10n.es = {
@@ -2021,8 +2048,10 @@ l10n.es = {
     setBtnApply: 'Aplicar',
     settLanguage: 'Lenguaje de interfaz',
     settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación',
-    settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo,
-    aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
+    settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo',
+    settScaling: "Escalado de interfaz",
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Con acceso a las funciones profesionales'
 };
 
 l10n.pl = {
@@ -2105,7 +2134,10 @@ l10n.pl = {
     settCheckUpdates: 'Sprawdzaj dostępność aktualizacji automatycznie',
     settOptCheckNever: 'Nigdy',
     settOptCheckDay: 'Codziennie',
-    settOptCheckWeek: 'Co tydzień'
+    settOptCheckWeek: 'Co tydzień',
+    settScaling: 'Skalowanie interfejsu',
+    settOptScalingAuto: 'Automatycznie',
+    aboutProFeaturesAvailable: 'Z dostępem do funkcji pro'
 }
 
 l10n.pt_BR = {
@@ -2186,7 +2218,9 @@ l10n.pt_BR = {
     settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo',
     settShowEncryptOpts: 'Teste a criptografia de ponta a ponta',
     settCheckUpdates: 'Verificar atualizações automaticamente',
-    aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
+    settScaling: 'Escalação da interface',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Com acesso a recursos pro'
 }
 
 l10n.pt_PT = {
@@ -2352,7 +2386,10 @@ l10n.ro = {
     settCheckUpdates: 'Verificare automată a actualizărilor',
     settOptCheckNever: 'Niciodată',
     settOptCheckDay: 'Zilnic',
-    settOptCheckWeek: 'Săptămânal'
+    settOptCheckWeek: 'Săptămânal',
+    settScaling: 'Scalare a interfeţei',
+    settOptScalingAuto: 'Automat',
+    aboutProFeaturesAvailable: 'Cu acces la caracteristicile pro'
 }
 
 l10n.sk = {
@@ -2937,12 +2974,12 @@ l10n.zh_HK = {
     welDescr: '以離線方式在文件上工作，或將套件連線至您的雲端：ONLYOFFICE, ownCloud, Nextcloud',
     btnConnect: '立即連線',
     textHavePortal: '已有使用中的雲端？',
-    btnCreatePortal: '建立 ONLYOFFICE 雲端’,
+    btnCreatePortal: '建立 ONLYOFFICE 雲端',
     btnAddPortal: '加入雲端',
-    btnLogin: '登入’,
+    btnLogin: '登入',
     btnBrowse: '瀏覽',
-    btnNext: '下一個’,
-    portalEmptyTitle: '連線至您的雲端’,
+    btnNext: '下一個',
+    portalEmptyTitle: '連線至您的雲端',
     portalEmptyDescr: '將您的文件儲存至雲端，並隨時、隨處輕鬆存取文件。您可在共用文件上共同作業、聊天、新增註解，或共用待檢閱的文件。',
     portalEmptyAdv1: '還沒有雲端帳號嗎？與 ONLYOFFICE 雲端服務一起上線 <br />免費試用多種共同作業功能',
     portalListTitle: '已連線的雲端',
@@ -2950,23 +2987,23 @@ l10n.zh_HK = {
     listRecoveryTitle:'復原檔案',
     listRecentFileTitle:'最近使用過的檔案',
     listRecentDirTitle:'最近使用過的資料夾',
-    menuFileOpen: '開啟’,
-    menuFileExplore: '在資料夾中顯示’,
-    menuRemoveModel: '從清單移除’,
-    menuClear: '清除’,
-    menuLogout: '登出’,
-    textMyComputer: '我的電腦’,
-    textThrough: '透過’,
-    linkForgotPass: '忘記密碼了嗎？’,
-    linkCreatePortal: '建立 ONLYOFFICE 雲端’,
-    linkResend: '重新寄送驗證碼’,
-    linkChangePhone: '更改電話號碼’,
+    menuFileOpen: '開啟',
+    menuFileExplore: '在資料夾中顯示',
+    menuRemoveModel: '從清單移除',
+    menuClear: '清除',
+    menuLogout: '登出',
+    textMyComputer: '我的電腦',
+    textThrough: '透過',
+    linkForgotPass: '忘記密碼了嗎？',
+    linkCreatePortal: '建立 ONLYOFFICE 雲端',
+    linkResend: '重新寄送驗證碼',
+    linkChangePhone: '更改電話號碼',
     loginTitleStart: '連線至雲端 office',
     loginTitleConnectTo: '登入 $1',
-    loginTitleAssignPhone: '輸入手機號碼’,
-    loginTitleApplyCode: '確認電話號碼’,
-    errLogin: '電子信箱或密碼錯誤’,
-    errLoginPortal: '請檢查雲端 office 網址’,
+    loginTitleAssignPhone: '輸入手機號碼',
+    loginTitleApplyCode: '確認電話號碼',
+    errLogin: '電子信箱或密碼錯誤',
+    errLoginPortal: '請檢查雲端 office 網址',
     errLoginEmail: '請檢查電子信箱',
     errLoginServer: '登入時伺服器回應不正確',
     errLoginAuth: '使用者資訊查詢錯誤',
@@ -3012,7 +3049,10 @@ l10n.zh_HK = {
     settCheckUpdates: '自動檢查更新',
     settOptCheckNever: '永不',
     settOptCheckDay: '每天',
-    settOptCheckWeek: '每週'
+    settOptCheckWeek: '每週',
+    settScaling: '接口缩放',
+    settOptScalingAuto: '自动',
+    aboutProFeaturesAvailable: '可以访问pro功能'
 }
 
 function loadLocale(lang) {
