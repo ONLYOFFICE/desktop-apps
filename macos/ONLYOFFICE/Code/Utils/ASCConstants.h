@@ -74,6 +74,7 @@ static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
+static NSString * const ASCUserNameApp                      = @"asc_user_name_app";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
