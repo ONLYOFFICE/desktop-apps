@@ -111,6 +111,7 @@ Name: en; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrand
 Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ca; MessagesFile: compiler:Languages\Catalan.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: cs; MessagesFile: compiler:Languages\Czech.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: el; MessagesFile: compiler:Languages\Greek.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: et; MessagesFile: compiler:Languages\Estonian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: fi; MessagesFile: compiler:Languages\Finnish.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -136,6 +137,7 @@ en.Launch =Launch %1
 bg.Launch =Пускане %1
 ca.Launch =Llança %1
 cs.Launch =Spuštění %1
+el.Launch =Εκκίνηση %
 et.Launch =Käivita %1
 fi.Launch =Käynnistys %1
 lt.Launch =Paleisti %1
@@ -161,6 +163,7 @@ en.CreateDesktopIcon =Create %1 &desktop icon
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
 ca.CreateDesktopIcon =Crea una icona d'escriptori per a %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
+el.CreateDesktopIcon =Δημιουργία %1 &εικονίδιο επιφάνειας εργασίας
 et.CreateDesktopIcon =Loo %1 & töölaua ikoon
 fi.CreateDesktopIcon =Luo %1 &työpöydän kuvake
 lt.CreateDesktopIcon =Sukurti %1 &darbalaukio piktogramą
@@ -186,6 +189,7 @@ en.InstallAdditionalComponents =Installing additional system components. Please 
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
 bg.InstallAdditionalComponents =Инсталиране на допълнителни системни компоненти. Моля, изчакайте...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
+el.InstallAdditionalComponents =Εγκατάσταση πρόσθετων στοιχείων συστήματος. Παρακαλούμε περιμένετε...
 et.InstallAdditionalComponents =Laeb alla süsteemi lisa komponente. Palun oota...
 fi.InstallAdditionalComponents =Asennetaan valinnaisia systemin osia. Ole hyvä ja odota...
 lt.InstallAdditionalComponents =Diegiami papildomi sistemos komponentai. Prašome palaukti...
@@ -211,6 +215,7 @@ en.AdditionalTasks =Tasks:
 bg.AdditionalTasks =Задачи:
 ca.AdditionalTasks =Tasques:
 cs.AdditionalTasks =Úkoly:
+el.AdditionalTasks =Εργασίες:
 et.AdditionalTasks =Ülesanded:
 fi.AdditionalTasks =Tasks:
 lt.AdditionalTasks =Užduotys:
@@ -236,6 +241,7 @@ en.Uninstall =Uninstall
 bg.AdditionalTasks =Деинсталиране
 ca.AdditionalTasks =Desinstal·lar
 cs.Uninstall =Odinstalovat
+el.Uninstall =Απεγκατάσταση
 et.Uninstall =Lae maha
 fi.Uninstall =Poista asennus
 lt.Uninstall =Išinstaliuoti
@@ -261,6 +267,7 @@ en.WarningWrongArchitecture =You are trying to install the %1-bit application ve
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
 ca.WarningWrongArchitecture =Estau provant a instal·lar la versió de l'aplicació %1-bit amb la versió %2-bit instal·lada. Si us plau, desintaleu primer la versió anterior o descarregeu la versió correcta per a la instal·lació.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
+el.WarningWrongArchitecture =Προσπαθείτε να εγκαταστήσετε την έκδοση εφαρμογής %1-bit έναντι της εγκατεστημένης έκδοσης %2-bit. Παρακαλούμε απεγκαταστήστε πρώτα την προηγούμενη έκδοση ή κατεβάστε τη σωστή έκδοση για εγκατάσταση.
 et.WarningWrongArchitecture =Sa proovid alla laadida %1-bit rakenduse versiooni, mitte %2-bit versiooni, mis on juba alla laetud. Palun lae maha eelnev versioon enne või lae alla õige versioon.
 fi.WarningWrongArchitecture =Yrität asentaa %1-bittistä versiota %2-bittisen version päälle. Ole hyvä ja poista aiemman asennettu versio ensin tai lataa oikea versio asennettavaksi.
 lt.WarningWrongArchitecture =Jūs bandote įdiegti %1-bitų programos versiją vietoj %2-bitų instaliuotos versijos. Pirmiausia pašalinkite ankstesnę versiją arba atsisiųskitė tinkamą versiją diegimui.
@@ -287,6 +294,7 @@ en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be
 bg.UpdateAppRunning=Настройката установи, че %1 в момента работи.%n%nТова ще бъде затворено автоматично. Щракнете върху OK, за да продължите, или Отказ, за да излезете.
 ca.UpdateAppRunning=La configuració ha detectat que actualment s'està executant %1.%n%n Es tancarà automàticament. Feu clic a D'acord per continuar o Cancel·la per sortir.
 cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
+el.UpdateAppRunning=Η εγκατάσταση έχει εντοπίσει ότι το %1 εκτελείται αυτήν τη στιγμή. Κάντε κλικ στο Εντάξει για συνέχεια ή στο Άκυρο για έξοδο.
 et.UpdateAppRunning=Süsteem on tuvastanud, et %1 töötab praegu. See suletakse automaatselt. Vajuta OK, et jätkata või Tühista, et katkestada.
 fi.UpdateAppRunning=Asennus havaitsi, että %1 on käynnissä.%n%nSe suljetaan automaattisesti. Klikkaa OK jatkaaksesi tai Peruuta poistuaksesi asennuksesta.
 lt.UpdateAppRunning=Sąranka nustatė, kad šiuo metu veikia %1.%n%nTai bus uždaroma automatiškai. Spustelkite GERAI jei norite tęsti, arba Atšaukti, jei norite išeiti.
@@ -312,6 +320,7 @@ en.WarningClearAppData =Do you want to clear the user settings and application c
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
 ca.WarningClearAppData =Voleu esborrar la configuració de l'usuari i les dades de la memòria cau de l'aplicació?
 cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
+el.WarningClearAppData =Θέλετε να διαγράψετε τις ρυθμίσεις χρήστη και τα δεδομένα cache της εφαρμογής;
 et.WarningClearAppData =Kas sa tahad puhastada kasutaja seaded ja rakenduse salvestatud andmed?
 fi.WarningClearAppData =Haluatko poistaa käyttäjä asetukset ja sovelluksen välimuistin?
 lt.WarningClearAppData =Ar norite išvalyti vartotojo nustatymus ir programos talpyklos duomenis?
