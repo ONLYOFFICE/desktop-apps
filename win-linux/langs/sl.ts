@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Napačno geslo certifikata.&amp;lt;br&amp;gt;Poskusi znova</translation>
+        <translation>Napačno geslo certifikata.&lt;br&gt;Poskusi znova</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&amp;lt;br&amp;gt;Ste prepričani, da želite nadaljevati?</translation>
+        <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokument mora biti shranjen pred nadaljevanjem.&amp;lt;br&amp;gt;Želiš shraniti dokument?</translation>
+        <translation>Dokument mora biti shranjen pred nadaljevanjem.&lt;br&gt;Želiš shraniti dokument?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 že obstaja.&amp;lt;br&amp;gt;Jo želite zamenjati?</translation>
+        <translation>%1 že obstaja.&lt;br&gt;Jo želite zamenjati?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 ni na voljo. Lahko je bil preimenovan, premaknjen ali izbrisan.&amp;lt;br&amp;gt;Ali želite, da ga izbrišemo iz seznama?</translation>
+        <translation>%1 ni na voljo. Lahko je bil preimenovan, premaknjen ali izbrisan.&lt;br&gt;Ali želite, da ga izbrišemo iz seznama?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokument mora biti pred nadaljevanjem shranjen.&amp;lt;br&amp;gt;Želite shraniti dokument?</translation>
+        <translation>Dokument mora biti pred nadaljevanjem shranjen.&lt;br&gt;Želite shraniti dokument?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&amp;lt;br&amp;gt;Ste prepričani, da želite nadaljevati?</translation>
+        <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 je bil spremenjen.&amp;lt;br&amp;gt;Želite shraniti spremembe?</translation>
+        <translation>%1 je bil spremenjen.&lt;br&gt;Želite shraniti spremembe?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;V redu</translation>
+        <translation>&amp;V redu</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Prekliči</translation>
+        <translation>&amp;Prekliči</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

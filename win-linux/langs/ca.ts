@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Contrasenya incorrecta del certificat.&amp;lt;br&amp;gt;Si us plau, introduïu de nou</translation>
+        <translation>Contrasenya incorrecta del certificat.&lt;br&gt;Si us plau, introduïu de nou</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&amp;lt;br&amp;gt;Estàs segur que vols continuar?</translation>
+        <translation>Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&lt;br&gt;Estàs segur que vols continuar?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>El document s&apos;ha de desar per a continuar.&amp;lt;br&amp;gt;Desar el document?</translation>
+        <translation>El document s&apos;ha de desar per a continuar.&lt;br&gt;Desar el document?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>Ja existeix %1.&amp;lt;br&amp;gt;Voleu substituir-lo?</translation>
+        <translation>Ja existeix %1.&lt;br&gt;Voleu substituir-lo?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&amp;amp;Voleu eliminar el fitxer de la llista?</translation>
+        <translation>%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&amp;Voleu eliminar el fitxer de la llista?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>El document s&apos;ha de guardar per continuar.&amp;amp;Guardar el document?</translation>
+        <translation>El document s&apos;ha de guardar per continuar.&amp;Guardar el document?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&amp;amp;Estàs segur que vols continuar?</translation>
+        <translation>Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&amp;Estàs segur que vols continuar?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 ha estat modificat.&amp;amp;Voleu desar els canvis?</translation>
+        <translation>%1 ha estat modificat.&amp;Voleu desar els canvis?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;D&apos;accord</translation>
+        <translation>&amp;D&apos;accord</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Cancel·lar</translation>
+        <translation>&amp;Cancel·lar</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

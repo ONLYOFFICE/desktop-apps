@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Nepareiza sertifikāta parole.&amp;lt;br&amp;gt;Lūdzu, ievadiet vēlreiz</translation>
+        <translation>Nepareiza sertifikāta parole.&lt;br&gt;Lūdzu, ievadiet vēlreiz</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 tika izmainīts.&amp;lt;br&amp;gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
+        <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Ja jūs turpināsiet saglabāt šajā formātā, visas iezīmes zudīs, izņemot tekstu.&amp;lt;br&amp;gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
+        <translation>Ja jūs turpināsiet saglabāt šajā formātā, visas iezīmes zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation> Dokuments jāsaglabā, lai turpinātu.&amp;lt;br&amp;gt;Saglabāt dokumentu?</translation>
+        <translation> Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 jau pastāv.&amp;lt;br&amp;gt;Vai jūs vēlaties to aizstāt?</translation>
+        <translation>%1 jau pastāv.&lt;br&gt;Vai jūs vēlaties to aizstāt?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 nav pieejams. Tas varētu būt pārdēvēts, pārvietots vai izdzēsts.&amp;lt;br&amp;gt;Vai jūs vēlaties izņemt failu no saraksta?</translation>
+        <translation>%1 nav pieejams. Tas varētu būt pārdēvēts, pārvietots vai izdzēsts.&lt;br&gt;Vai jūs vēlaties izņemt failu no saraksta?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokuments jāsaglabā, lai turpinātu.&amp;lt;br&amp;gt;Saglabāt dokumentu?</translation>
+        <translation>Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&amp;lt;br&amp;gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
+        <translation>Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 tika izmainīts.&amp;lt;br&amp;gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
+        <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;Labi</translation>
+        <translation>&amp;Labi</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Atcelt</translation>
+        <translation>&amp;Atcelt</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

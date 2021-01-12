@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Nem megfelelő tanúsítványjelszó.&amp;lt;br&amp;gt;Kérjük, adja meg újra a jelszót</translation>
+        <translation>Nem megfelelő tanúsítványjelszó.&lt;br&gt;Kérjük, adja meg újra a jelszót</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&amp;lt;br&amp;gt;Biztos, hogy folytatja?</translation>
+        <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>A folytatáshoz mentenie kell a dokumentumot.&amp;lt;br&amp;gt;Menti a dokumentumot?</translation>
+        <translation>A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 már létezik.&amp;lt;br&amp;gt;Lecseréli?</translation>
+        <translation>%1 már létezik.&lt;br&gt;Lecseréli?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&amp;lt;br&amp;gt;Eltávolítja a fájlt a listáról?</translation>
+        <translation>%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&lt;br&gt;Eltávolítja a fájlt a listáról?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>A folytatáshoz mentenie kell a dokumentumot.&amp;lt;br&amp;gt;Menti a dokumentumot?</translation>
+        <translation>A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&amp;lt;br&amp;gt;Biztos, hogy folytatja?</translation>
+        <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 módosítva lett.&amp;lt;br&amp;gt;Menti a módosításokat?</translation>
+        <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Mégse</translation>
+        <translation>&amp;Mégse</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

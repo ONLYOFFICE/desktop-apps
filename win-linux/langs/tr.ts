@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Yanlış sertifika şifresi.&amp;lt;br&amp;gt;Lütfen yeniden deneyin</translation>
+        <translation>Yanlış sertifika şifresi.&lt;br&gt;Lütfen yeniden deneyin</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Bu formatta kaydetmeye devam ederseniz, metin haricindeki tüm özellikler kaybedilecektir.&amp;lt;br&amp;gt;;Devam etmek istediğinize emin misiniz?</translation>
+        <translation>Bu formatta kaydetmeye devam ederseniz, metin haricindeki tüm özellikler kaybedilecektir.&lt;br&gt;;Devam etmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Devam edebilmek için belgenin kaydedilmesi gerekli.&amp;lt;br&amp;gt;Belgeyi kaydet?</translation>
+        <translation>Devam edebilmek için belgenin kaydedilmesi gerekli.&lt;br&gt;Belgeyi kaydet?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 zaten var.&amp;lt;br&amp;gt;Üzerine yazmak istiyor musunuz?</translation>
+        <translation>%1 zaten var.&lt;br&gt;Üzerine yazmak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 mevcut değil. Yeniden isimlendirilmiş, taşınmış veya silimiş olabilir.&amp;lt;br&amp;gt;Dosyayı listeden kaldırmak istediğinize emin misiniz?</translation>
+        <translation>%1 mevcut değil. Yeniden isimlendirilmiş, taşınmış veya silimiş olabilir.&lt;br&gt;Dosyayı listeden kaldırmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Devam etmek için belge kaydedilmelidir.&amp;lt;br&amp;gt;Belgeyi kaydet?</translation>
+        <translation>Devam etmek için belge kaydedilmelidir.&lt;br&gt;Belgeyi kaydet?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Bu formatta kaydetmeye devam ederseniz, metin haricindeki tüm özellikler kaybedilecektir.&amp;lt;br&amp;gt;Devam etmek istediğinize emin misiniz?</translation>
+        <translation>Bu formatta kaydetmeye devam ederseniz, metin haricindeki tüm özellikler kaybedilecektir.&lt;br&gt;Devam etmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 değiştirildi.&amp;lt;br&amp;gt;Değişiklikleri kaydetmek istiyor musunuz?</translation>
+        <translation>%1 değiştirildi.&lt;br&gt;Değişiklikleri kaydetmek istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;Tamam</translation>
+        <translation>&amp;Tamam</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;İptal</translation>
+        <translation>&amp;İptal</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>
