@@ -444,7 +444,7 @@
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
-        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert setAlertStyle:NSAlertStyleInformational];
         
         NSInteger result = [alert runModal];
         
@@ -1541,7 +1541,7 @@
                         [alert addButtonWithTitle:@"OK"];
                         [alert setMessageText:NSLocalizedString(@"Cannot open folder of the file location.", nil)];
                         [alert setInformativeText:NSLocalizedString(@"To open the file location, it must be saved.", nil)];
-                        [alert setAlertStyle:NSWarningAlertStyle];
+                        [alert setAlertStyle:NSAlertStyleWarning];
 
                         [alert runModalSheet];
                     }
@@ -1584,7 +1584,7 @@
                 [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
-                [alert setAlertStyle:NSInformationalAlertStyle];
+                [alert setAlertStyle:NSAlertStyleInformational];
 
                 NSInteger returnCode = [alert runModalSheet];
 
@@ -1605,7 +1605,6 @@
                 }
             }
 
-            self.shouldTerminateApp = YES;
             [self.tabsControl removeTab:tab selected:YES];
         }
     }
