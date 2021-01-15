@@ -464,7 +464,7 @@ public:
                                 NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
-                                if ([provider isEqualToString:@"asc"]) {
+                                if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
                                     urlPage = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", portal, @"products/files/"]];
                                 }
 
