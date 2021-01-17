@@ -455,7 +455,9 @@
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
                 if (tab.changed) {
-                    [self tabs:self.tabsControl willRemovedTab:tab];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self tabs:self.tabsControl willRemovedTab:tab];
+                    });
                 } else {
                     [self.tabsControl removeTab:tab selected:NO];
                 }
