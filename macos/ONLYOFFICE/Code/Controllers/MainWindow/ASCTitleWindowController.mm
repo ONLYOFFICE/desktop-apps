@@ -70,8 +70,10 @@
 
 //    BOOL isCommandKey = ([event modifierFlags] & NSCommandKeyMask) != 0;
 
-    if (event != nil && ((event.type != NSLeftMouseUp) || event.window == nil)) {
-        if (![controller shouldCloseMainWindow]) return NO;
+    if (event != nil && ((event.type != NSEventTypeLeftMouseUp) || event.window == nil)) {
+        if (![controller shouldCloseMainWindow]) {
+            return NO;
+        }
     }
     
     return [controller shouldTerminateApplication];
@@ -79,7 +81,7 @@
 
 - (float)defaultTitleBarHeight {
     NSRect frame = NSMakeRect(0, 0, 800, 600);
-    NSRect contentRect = [NSWindow contentRectForFrameRect:frame styleMask: NSTitledWindowMask];
+    NSRect contentRect = [NSWindow contentRectForFrameRect:frame styleMask: NSWindowStyleMaskTitled];
     return NSHeight(frame) - NSHeight(contentRect);
 }
 
