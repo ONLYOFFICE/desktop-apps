@@ -43,6 +43,7 @@
 static NSString * const kSettingsCurrentTab         = @"asc.onlyoffice.currentTab";
 static NSString * const kSettingsLastOpenDirectory  = @"asc.onlyoffice.lastOpenDirectory";
 static NSString * const kSettingsHasExtraFeatures   = @"asc.onlyoffice.hasExtraFeatures";
+static NSString * const kSettingsOpenAppLinks       = @"asc.onlyoffice.openAppLinks";
 
 @interface ASCSharedSettings : NSObject
 + (instancetype)sharedInstance;

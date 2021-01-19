@@ -67,6 +67,9 @@ static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
 static NSString * const kHelpUrl                            = @"kHelpUrl";
 static NSString * const kRegistrationPortalUrl              = @"kRegistrationPortalUrl";
 
+// Custom schemes
+static NSString * const kSchemeApp                          = @"oo-office";
+
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
 
@@ -79,6 +82,7 @@ static NSString * const ASCUserNameApp                      = @"asc_user_name_ap
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
+static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";

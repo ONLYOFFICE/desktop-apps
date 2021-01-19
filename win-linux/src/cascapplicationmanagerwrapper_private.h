@@ -63,7 +63,6 @@ public:
 
     virtual void init()
     {
-        m_appmanager.m_oSettings.sign_support = false;
     }
 
     auto createStartPanel() -> void {

@@ -100,6 +100,7 @@
     };
     
     addObserverFor(ASCEventNameMainWindowLoaded, @selector(onWindowLoaded:));
+    addObserverFor(ASCEventNameOpenAppLinks, @selector(onOpenAppLink));
     addObserverFor(CEFEventNameCreateTab, @selector(onCEFCreateTab:));
     addObserverFor(CEFEventNameTabEditorNameChanged, @selector(onCEFChangedTabEditorName:));
     addObserverFor(CEFEventNameTabEditorType, @selector(onCEFChangedTabEditorType:));
@@ -337,6 +338,24 @@
     [self.cefStartPageView apply:pEvent];
 }
 
+- (void)onOpenAppLink {
+    if (NSArray<NSURL *> * links = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsOpenAppLinks]) {
+        [links enumerateObjectsUsingBlock:^(NSURL * _Nonnull link, NSUInteger idx, BOOL * _Nonnull stop) {
+            ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
+            tab.type        = ASCTabViewTypeOpening;
+            tab.params      = [@{
+                @"action": @(ASCTabActionOpenUrl),
+                @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
+                @"url": link.absoluteString
+            } mutableCopy];
+
+            [self.tabsControl addTab:tab selected:YES];
+        }];
+        
+        [[ASCSharedSettings sharedInstance] setSetting:nil forKey:kSettingsOpenAppLinks];
+    }
+}
+
 #pragma mark -
 #pragma mark TouchBar
 
@@ -425,7 +444,7 @@
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
-        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert setAlertStyle:NSAlertStyleInformational];
         
         NSInteger result = [alert runModal];
         
@@ -436,7 +455,9 @@
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
                 if (tab.changed) {
-                    [self tabs:self.tabsControl willRemovedTab:tab];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self tabs:self.tabsControl willRemovedTab:tab];
+                    });
                 } else {
                     [self.tabsControl removeTab:tab selected:NO];
                 }
@@ -1431,6 +1452,8 @@
     pEvent->m_pData = pCommand;
     
     [self.cefStartPageView apply:pEvent];
+    
+    [self onOpenAppLink];
 }
 
 - (void)onCEFEditorDocumentReady:(NSNotification *)notification {
@@ -1524,7 +1547,7 @@
                         [alert addButtonWithTitle:@"OK"];
                         [alert setMessageText:NSLocalizedString(@"Cannot open folder of the file location.", nil)];
                         [alert setInformativeText:NSLocalizedString(@"To open the file location, it must be saved.", nil)];
-                        [alert setAlertStyle:NSWarningAlertStyle];
+                        [alert setAlertStyle:NSAlertStyleWarning];
 
                         [alert runModalSheet];
                     }
@@ -1567,7 +1590,7 @@
                 [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
-                [alert setAlertStyle:NSInformationalAlertStyle];
+                [alert setAlertStyle:NSAlertStyleInformational];
 
                 NSInteger returnCode = [alert runModalSheet];
 
@@ -1588,7 +1611,6 @@
                 }
             }
 
-            self.shouldTerminateApp = YES;
             [self.tabsControl removeTab:tab selected:YES];
         }
     }

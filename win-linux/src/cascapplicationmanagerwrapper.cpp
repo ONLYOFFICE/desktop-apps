@@ -715,7 +715,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     open_opts.format = open_opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
                     open_opts.name = AscAppManager::newFileName(open_opts.format);
                 }
-            }
+            } else
+            if ( check_params(open_opts.wurl, {L"http://",L"https://",L"oo-office:"}) < 0 )
+                continue;
         }
 
         CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
@@ -830,7 +832,9 @@ void CAscApplicationManagerWrapper::initializeApp()
             std::vector<std::wstring> vec_inargs;
             QStringListIterator iter(args.split(";")); iter.next();
             while ( iter.hasNext() ) {
-                vec_inargs.push_back(iter.next().toStdWString());
+                QString arg = iter.next();
+                if ( !arg.isEmpty() )
+                    vec_inargs.push_back(arg.toStdWString());
             }
 
             if ( !vec_inargs.empty() ) {

@@ -92,6 +92,47 @@
 //    }];
 }
 
+/// If your delegate implements this method, AppKit does not call the application(_:openFile:)
+/// or application(_:openFiles:) methods.
+- (void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls {
+
+    /// Handle links
+    
+    NSMutableArray<NSURL *> * appLinks = @[].mutableCopy;
+    
+    [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.scheme isEqualToString:kSchemeApp]) {
+            [appLinks addObject:obj];
+        }
+    }];
+    
+    if (appLinks.count > 0) {
+        if (NSArray<NSURL *> * storedAppLinks = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsOpenAppLinks]) {
+            NSMutableArray * extendArrayLinks = [storedAppLinks mutableCopy];
+            [extendArrayLinks addObjectsFromArray:appLinks];
+            [[ASCSharedSettings sharedInstance] setSetting:extendArrayLinks forKey:kSettingsOpenAppLinks];
+        } else {
+            [[ASCSharedSettings sharedInstance] setSetting:appLinks forKey:kSettingsOpenAppLinks];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameOpenAppLinks
+                                                            object:[[ASCSharedSettings sharedInstance] settingByKey:kSettingsOpenAppLinks]
+                                                          userInfo:nil];
+    }
+    
+    /// Handle files
+    
+    NSMutableArray<NSString *> * fileNames = @[].mutableCopy;
+    
+    for (NSURL * url in urls) {
+        if ([url isFileURL]) {
+            [fileNames addObject:[url path]];
+        }
+    }
+    
+    [self application:application openFiles:fileNames];
+}
+
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
     return YES;
 }

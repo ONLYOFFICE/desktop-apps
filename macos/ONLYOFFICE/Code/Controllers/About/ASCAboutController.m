@@ -120,6 +120,10 @@
                                           [infoDictionary objectForKey:@"CFBundleShortVersionString"],
                                           [infoDictionary objectForKey:@"CFBundleVersion"]]];
         
+#if _X86_ONLY
+        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
+#endif
+        
         // If has extra features
         if ([[[ASCSharedSettings sharedInstance] settingByKey:kSettingsHasExtraFeatures] boolValue]) {
             [self.versionText setStringValue:[NSString stringWithFormat:@"%@\n%@",
