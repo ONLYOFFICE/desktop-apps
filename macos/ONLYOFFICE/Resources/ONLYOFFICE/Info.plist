@@ -389,8 +389,6 @@
 			<string>DjVu File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -459,8 +457,6 @@
 			<string>FictionBook File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
