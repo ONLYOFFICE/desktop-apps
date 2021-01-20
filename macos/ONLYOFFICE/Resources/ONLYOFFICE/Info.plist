@@ -441,10 +441,6 @@
 			<string>Microsoft Word MHTML document (.mht)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.microsoft.word.mhtml</string>
-			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
