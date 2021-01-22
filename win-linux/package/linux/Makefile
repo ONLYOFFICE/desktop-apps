@@ -181,6 +181,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
+RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
 .PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-deb-astra deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
