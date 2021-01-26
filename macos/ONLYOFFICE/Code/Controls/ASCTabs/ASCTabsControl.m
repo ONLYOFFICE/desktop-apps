@@ -167,12 +167,12 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self addSubview:self.scrollView];
     
     void (^initScrollButton)(NSButton *) = ^ (NSButton *button) {
-        [button setBezelStyle:NSThickSquareBezelStyle];
+        [button setBezelStyle:NSBezelStyleRegularSquare];
         [button setTitle:@""];
         [button setBordered:YES];
         [button setTarget:self];
         [button setBordered:NO];
-        [button.cell sendActionOn:NSLeftMouseDownMask | NSPeriodicMask];
+        [button.cell sendActionOn:NSEventMaskLeftMouseDown | NSEventMaskPeriodic];
         [button setAutoresizingMask:NSViewMinXMargin];
         
         [self addSubview:button];
@@ -228,7 +228,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         tab.target      = self;
         tab.action      = @selector(handleSelectTab:);
         
-        [tab sendActionOn:NSLeftMouseDownMask];
+        [tab sendActionOn:NSEventMaskLeftMouseDown];
         
         [self.tabsView addSubview:tab];
     }
@@ -247,7 +247,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
 - (ASCTabView *)selectedTab {
     for (ASCTabView * tab in self.tabs) {
-        if (tab.state == NSOnState) {
+        if (tab.state == NSControlStateValueOn) {
             return tab;
         }
     }
@@ -444,8 +444,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 - (void)handleSelectTab:(ASCTabView *)selectedTab {
+    BOOL needForceSelect = selectedTab.state != NSControlStateValueOn;
+    
     for (ASCTabView * tab in self.tabs) {
-        [tab setState:(tab == selectedTab) ? NSOnState : NSOffState];
+        [tab setState:(tab == selectedTab) ? NSControlStateValueOn : NSControlStateValueOff];
     }
     
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -453,7 +455,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 //        [selectedTab.superview scrollRectToVisible:[selectedTab bounds]];
     } completionHandler:nil];
     
-    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didSelectTab:)]) {
+    if (!needForceSelect && _delegate && [_delegate respondsToSelector:@selector(tabs:didSelectTab:)]) {
         [_delegate tabs:self didSelectTab:selectedTab];
     }
     
@@ -463,9 +465,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         // On double click...
     } else {
         // watch for a drag event and initiate dragging if a drag is found...
-        if ([self.window nextEventMatchingMask:NSLeftMouseUpMask | NSLeftMouseDraggedMask
-                                     untilDate:[NSDate distantFuture]
-                                        inMode:NSEventTrackingRunLoopMode dequeue:NO].type == NSLeftMouseDragged) {
+        if ([self.window nextEventMatchingMask:NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged
+                                     untilDate:[NSDate distantFuture] inMode:NSEventTrackingRunLoopMode dequeue:NO].type == NSEventTypeLeftMouseDragged) {
             [self reorderTab:selectedTab withEvent:currentEvent];
             return; // no autoscroll
         }
@@ -475,6 +476,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         [context setAllowsImplicitAnimation:YES];
         [selectedTab.superview scrollRectToVisible:selectedTab.frame];
+        [self layoutSubtreeIfNeeded];
     } completionHandler:nil];
     
     [self invalidateRestorableState];
@@ -482,7 +484,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 
 - (void)selectTab:(ASCTabView *)selectedTab {
     for (ASCTabView * tab in self.tabs) {
-        [tab setState:(tab == selectedTab) ? NSOnState : NSOffState];
+        [tab setState:(tab == selectedTab) ? NSControlStateValueOn : NSControlStateValueOff];
     }
     
     if (selectedTab) {
@@ -529,14 +531,15 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     CGPoint prevPoint = dragPoint;
     
     while (1) {
-        event = [self.window nextEventMatchingMask:NSLeftMouseDraggedMask | NSLeftMouseUpMask];
+        event = [self.window nextEventMatchingMask:NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp];
         
         CGFloat scrollPosition = [[self.scrollView contentView] documentVisibleRect].origin.x;
         
-        if (event.type == NSLeftMouseUp) {
+        if (event.type == NSEventTypeLeftMouseUp) {
             [[NSAnimationContext currentContext] setCompletionHandler:^{
                 [draggingTab removeFromSuperview];
                 [tab setHidden:NO];
+                [tab setState:NSControlStateValueOn];
 
                 // Calculate indexes
                 NSString * uuidTab = tab.uuid;
@@ -622,7 +625,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         tab.delegate    = self;
         tab.target      = self;
         tab.action      = @selector(handleSelectTab:);
-        [tab sendActionOn:NSLeftMouseDownMask];
+        [tab sendActionOn:NSEventMaskLeftMouseDown];
         
         [self.tabsView addSubview:tab];
         
