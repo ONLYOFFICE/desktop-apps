@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>憑證密碼錯誤&amp;lt;br&amp;gt;請再輸入一次</translation>
+        <translation>憑證密碼錯誤&lt;br&gt;請再輸入一次</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 已經被修改。&amp;lt;br&amp;gt;您要儲存變更嗎？</translation>
+        <translation>%1 已經被修改。&lt;br&gt;您要儲存變更嗎？</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>如您繼續以此格式儲存，除了文字以外的所有功能都將會遺失。&amp;lt;br&amp;gt;您確定要繼續嗎？</translation>
+        <translation>如您繼續以此格式儲存，除了文字以外的所有功能都將會遺失。&lt;br&gt;您確定要繼續嗎？</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>必須先儲存文件才能繼續。&amp;lt;br&amp;gt;儲存文件？</translation>
+        <translation>必須先儲存文件才能繼續。&lt;br&gt;儲存文件？</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 已經存在。&amp;lt;br&amp;gt;您要取代它嗎？</translation>
+        <translation>%1 已經存在。&lt;br&gt;您要取代它嗎？</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 無法使用。它可能已被重新命名、移動或刪除。&amp;lt;br&amp;gt;您要從清單中移除檔案嗎？</translation>
+        <translation>%1 無法使用。它可能已被重新命名、移動或刪除。&lt;br&gt;您要從清單中移除檔案嗎？</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>必須先儲存文件才能繼續。&amp;lt;br&amp;gt;儲存文件？</translation>
+        <translation>必須先儲存文件才能繼續。&lt;br&gt;儲存文件？</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>如您繼續以此格式儲存，除了文字以外的所有功能都將會遺失。&amp;lt;br&amp;gt;您確定要繼續嗎？</translation>
+        <translation>如您繼續以此格式儲存，除了文字以外的所有功能都將會遺失。&lt;br&gt;您確定要繼續嗎？</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 已經被修改。&amp;lt;br&amp;gt;您要儲存變更嗎？</translation>
+        <translation>%1 已經被修改。&lt;br&gt;您要儲存變更嗎？</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;好</translation>
+        <translation>&amp;好</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;取消</translation>
+        <translation>&amp;取消</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

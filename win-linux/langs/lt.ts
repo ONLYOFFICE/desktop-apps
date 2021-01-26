@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Neteisingas pažymėjimo slaptažodis.&amp;lt;br&amp;gt;Bandykite dar kartą</translation>
+        <translation>Neteisingas pažymėjimo slaptažodis.&lt;br&gt;Bandykite dar kartą</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&amp;lt;br&amp;gt;Ar norite tęsti?</translation>
+        <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&amp;lt;br&amp;gt;Išsaugoti dokumentą?</translation>
+        <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 jau egzistuoja.&amp;lt;br&amp;gt;Ar norite jį pakeisti?</translation>
+        <translation>%1 jau egzistuoja.&lt;br&gt;Ar norite jį pakeisti?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&amp;lt;br&amp;gt;Ar norite panaikinti failą iš sąrašo?</translation>
+        <translation>%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&amp;lt;br&amp;gt;Išsaugoti dokumentą?</translation>
+        <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&amp;lt;br&amp;gt;Ar norite tęsti?</translation>
+        <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 buvo pakeistas.&amp;lt;br&amp;gt;Ar norite išsaugoti pakeitimus?</translation>
+        <translation>%1 buvo pakeistas.&lt;br&gt;Ar norite išsaugoti pakeitimus?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;GERAI</translation>
+        <translation>&amp;GERAI</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Atšaukti</translation>
+        <translation>&amp;Atšaukti</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

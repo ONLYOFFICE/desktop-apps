@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Nesprávne heslo certifikátu.&amp;lt;br&amp;gt;Zadajte znova</translation>
+        <translation>Nesprávne heslo certifikátu.&lt;br&gt;Zadajte znova</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,7 +118,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokument musí byť uložený, aby ste mohli pokračovať.&amp;lt;br&amp;gt;Uložiť dokument?</translation>
+        <translation>Dokument musí byť uložený, aby ste mohli pokračovať.&lt;br&gt;Uložiť dokument?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&amp;lt;br&amp;gt;Ste si istý, že chcete pokračovať?</translation>
+        <translation>Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
 </context>
 <context>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 už existuje.&amp;lt;br&amp;gt;Chcete ho nahradiť?</translation>
+        <translation>%1 už existuje.&lt;br&gt;Chcete ho nahradiť?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -381,7 +381,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 bol upravený.&amp;lt;br&amp;gt;Chcete zmeny zachovať?</translation>
+        <translation>%1 bol upravený.&lt;br&gt;Chcete zmeny zachovať?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="625"/>
@@ -392,7 +392,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 neexistuje.&amp;lt;br&amp;gt;Odstrániť súbor zo zoznamu?</translation>
+        <translation>%1 neexistuje.&lt;br&gt;Odstrániť súbor zo zoznamu?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&amp;lt;br&amp;gt;Ste si istý, že chcete pokračovať?</translation>
+        <translation>Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -412,7 +412,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokument musí byť uložený, aby ste mohli pokračovať.&amp;lt;br&amp;gt;Uložiť dokument?</translation>
+        <translation>Dokument musí byť uložený, aby ste mohli pokračovať.&lt;br&gt;Uložiť dokument?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Zrušiť</translation>
+        <translation>&amp;Zrušiť</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

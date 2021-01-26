@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Լիցենզիայի ծածկագիրը սխալ է&amp;lt;br&amp;gt;Խնդրում ենք կրկին մուտքագրել։</translation>
+        <translation>Լիցենզիայի ծածկագիրը սխալ է&lt;br&gt;Խնդրում ենք կրկին մուտքագրել։</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր գործառույթները, բացի տեքստից, կկորչեն։&amp;lt;br&amp;gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
+        <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր գործառույթները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&amp;lt;br&amp;gt;Պահպանե՞լ փաստաթուղթը։</translation>
+        <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 արդեն գոյություն ունի։&amp;lt;br&amp;gt;Ցանկանու՞մ եք փոխարինել այն։</translation>
+        <translation>%1 արդեն գոյություն ունի։&lt;br&gt;Ցանկանու՞մ եք փոխարինել այն։</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&amp;lt;br&amp;gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
+        <translation>%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&lt;br&gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Շարունակելու համար փաստաթուղթը պետք է պահպանվի։&amp;lt;br&amp;gt;Պահպանե՞լ փաստաթուղթը։</translation>
+        <translation>Շարունակելու համար փաստաթուղթը պետք է պահպանվի։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր ֆունկցիաները, բացի տեքստից, կկորչեն։&amp;lt;br&amp;gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
+        <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր ֆունկցիաները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 փոփոխվել է&amp;lt;br&amp;gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
+        <translation>%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;Լավ</translation>
+        <translation>&amp;Լավ</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Չեղարկել</translation>
+        <translation>&amp;Չեղարկել</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

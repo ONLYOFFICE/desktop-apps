@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Mật khẩu chứng nhận bị sai.&amp;lt;br&amp;gt;Vui lòng nhập lại</translation>
+        <translation>Mật khẩu chứng nhận bị sai.&lt;br&gt;Vui lòng nhập lại</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 đã được chỉnh sửa.&amp;lt;br&amp;gt;Bạn có muốn lưu thay đổi không?</translation>
+        <translation>%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&amp;lt;br&amp;gt;Bạn có chắc muốn tiếp tục không?</translation>
+        <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&lt;br&gt;Bạn có chắc muốn tiếp tục không?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Phải lưu tài liệu để tiếp tục.&amp;lt;br&amp;gt;Lưu tài liệu?</translation>
+        <translation>Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 đã tồn tại.&amp;lt;br&amp;gt;Bạn có muốn thay thế nó?</translation>
+        <translation>%1 đã tồn tại.&lt;br&gt;Bạn có muốn thay thế nó?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>Không có %1. Có thể nó đã được đổi tên, chuyển đi hay xóa.&amp;lt;br&amp;gt;Bạn có muốn xóa tập tin này khỏi danh sách không?</translation>
+        <translation>Không có %1. Có thể nó đã được đổi tên, chuyển đi hay xóa.&lt;br&gt;Bạn có muốn xóa tập tin này khỏi danh sách không?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Phải lưu tài liệu để tiếp tục.&amp;lt;br&amp;gt;Lưu tài liệu?</translation>
+        <translation>Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&amp;lt;br&amp;gt;Bạn có chắc muốn tiếp tục không?</translation>
+        <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&lt;br&gt;Bạn có chắc muốn tiếp tục không?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 đã được chỉnh sửa.&amp;lt;br&amp;gt;Bạn có muốn lưu thay đổi không??</translation>
+        <translation>%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không??</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Hủy</translation>
+        <translation>&amp;Hủy</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Väärä sertifikaatin salasana.&amp;lt;br&amp;gt;Syötä uudelleen</translation>
+        <translation>Väärä sertifikaatin salasana.&lt;br&gt;Syötä uudelleen</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>%1 on muokattu.&amp;lt;br&amp;gt;Haluatko tallentaa muutokset?</translation>
+        <translation>%1 on muokattu.&lt;br&gt;Haluatko tallentaa muutokset?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään. &amp;lt;br&amp;gt;Oletko varma, että haluat jatkaa?</translation>
+        <translation>Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään. &lt;br&gt;Oletko varma, että haluat jatkaa?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokumentti on tallennettava ennen jatkamista.&amp;lt;br&amp;gt;Tallennetaanko dokumentti?</translation>
+        <translation>Dokumentti on tallennettava ennen jatkamista.&lt;br&gt;Tallennetaanko dokumentti?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 on jo olemassa.&amp;lt;br&amp;gt;Haluatko korvata sen?</translation>
+        <translation>%1 on jo olemassa.&lt;br&gt;Haluatko korvata sen?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 ei ole saatavilla. Se voi olla nimetty uudelleen, siirretty tai poistettu.&amp;lt;br&amp;gt;Haluatko poistaa tiedoston listalta?</translation>
+        <translation>%1 ei ole saatavilla. Se voi olla nimetty uudelleen, siirretty tai poistettu.&lt;br&gt;Haluatko poistaa tiedoston listalta?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokumentti tulee tallentaa ennen jatkamista. &amp;lt;br&amp;gt;Tallennetaanko dokumentti?</translation>
+        <translation>Dokumentti tulee tallentaa ennen jatkamista. &lt;br&gt;Tallennetaanko dokumentti?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään.&amp;lt;br&amp;gt; Oletko varma, että haluat jatkaa?</translation>
+        <translation>Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään.&lt;br&gt; Oletko varma, että haluat jatkaa?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 on muokattu.&amp;lt;br&amp;gt;Haluatko tallentaa muutokset?</translation>
+        <translation>%1 on muokattu.&lt;br&gt;Haluatko tallentaa muutokset?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Peruuta</translation>
+        <translation>&amp;Peruuta</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Pasfhocal mícheart teastas.&amp;lt;br&amp;gt;Cuir isteach arís é</translation>
+        <translation>Pasfhocal mícheart teastas.&lt;br&gt;Cuir isteach arís é</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -118,17 +118,17 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>Mionathraíodh %1.&amp;lt;br&amp;gt;Ar mhaith leat na hathruithe a shábháil?</translation>
+        <translation>Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&amp;lt;br&amp;gt; An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
+        <translation>Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&lt;br&gt; An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Caithfear an doiciméad a shábháil chun leanúint ar aghaidh.&amp;lt;br&amp;gt;Sábháil an doiciméad?</translation>
+        <translation>Caithfear an doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 ann cheana.&amp;lt;br&amp;gt;Ar mhaith leat ceann eile a chur ina ionad?</translation>
+        <translation>%1 ann cheana.&lt;br&gt;Ar mhaith leat ceann eile a chur ina ionad?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&amp;lt;br&amp;gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
+        <translation>Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Caithfear doiciméad a shábháil chun leanúint ar aghaidh.&amp;lt;br&amp;gt;Sábháil an doiciméad?</translation>
+        <translation>Caithfear doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&amp;lt;br&amp;gt;An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
+        <translation>Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&lt;br&gt;An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>Mionathraíodh %1.&amp;lt;br&amp;gt;Ar mhaith leat na hathruithe a shábháil?</translation>
+        <translation>Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Cealaigh</translation>
+        <translation>&amp;Cealaigh</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

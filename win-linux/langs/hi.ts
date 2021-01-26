@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>गलत सर्टिफिकेट पासवर्ड।&amp;lt;br&amp;gt;कृपया एक बार फिर दर्ज करें</translation>
+        <translation>गलत सर्टिफिकेट पासवर्ड।&lt;br&gt;कृपया एक बार फिर दर्ज करें</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>यदि आप इसी प्रारूप में सहेजना जारी रखेंगे तो टेक्स्ट के आलावा सभी विशेषताएँ लुप्त हो जाएँगी।&amp;lt;br&amp;gt;क्या आप सुनिश्चित तौर पर जारी रखना चाहते हैं?</translation>
+        <translation>यदि आप इसी प्रारूप में सहेजना जारी रखेंगे तो टेक्स्ट के आलावा सभी विशेषताएँ लुप्त हो जाएँगी।&lt;br&gt;क्या आप सुनिश्चित तौर पर जारी रखना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&amp;lt;br&amp;gt;दस्तावेज़ को सहेजें?</translation>
+        <translation>जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&lt;br&gt;दस्तावेज़ को सहेजें?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 पहले से मौजूद है।&amp;lt;br&amp;gt;क्या आप इसे प्रतिस्थापित करना चाहते हैं?</translation>
+        <translation>%1 पहले से मौजूद है।&lt;br&gt;क्या आप इसे प्रतिस्थापित करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&amp;lt;br&amp;gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
+        <translation>%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&amp;lt;br&amp;gt;दस्तावेज़ को सहेजें?</translation>
+        <translation>जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&lt;br&gt;दस्तावेज़ को सहेजें?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>यदि आप इसी प्रारूप में सहेजना जारी रखेंगे तो टेक्स्ट के आलावा सभी विशेषताएँ लुप्त हो जाएँगी।&amp;lt;br&amp;gt;क्या आप सुनिश्चित तौर पर जारी रखना चाहते हैं?</translation>
+        <translation>यदि आप इसी प्रारूप में सहेजना जारी रखेंगे तो टेक्स्ट के आलावा सभी विशेषताएँ लुप्त हो जाएँगी।&lt;br&gt;क्या आप सुनिश्चित तौर पर जारी रखना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 को संशोधित कर लिया गया है। &amp;lt;br&amp;gt;क्या आप बदलावों को सहेजना चाहते हैं?</translation>
+        <translation>%1 को संशोधित कर लिया गया है। &lt;br&gt;क्या आप बदलावों को सहेजना चाहते हैं?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;ठीक है</translation>
+        <translation>&amp;ठीक है</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;रद्द करें</translation>
+        <translation>&amp;रद्द करें</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>

@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Verkeerd certificaat wachtwoord.&amp;lt;br&amp;gt;Voer nogmaals in</translation>
+        <translation>Verkeerd certificaat wachtwoord.&lt;br&gt;Voer nogmaals in</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
@@ -123,12 +123,12 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="448"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&amp;lt;br&amp;gt;Weet u zeker dat u wilt doorgaan?</translation>
+        <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>The Document moet worden opgeslagen om verder te kunnen gaan.&amp;lt;br&amp;gt;Document opslaan?</translation>
+        <translation>The Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 bestaat al.&amp;lt;br&amp;gt;Wilt u het vervangen?</translation>
+        <translation>%1 bestaat al.&lt;br&gt;Wilt u het vervangen?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 is niet beschikbaar. Het is misschien hernoemd, verplaatst of verwijderd.&amp;lt;br&amp;gt;Wilt u het bestand van de lijst verwijderen??</translation>
+        <translation>%1 is niet beschikbaar. Het is misschien hernoemd, verplaatst of verwijderd.&lt;br&gt;Wilt u het bestand van de lijst verwijderen??</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
@@ -397,7 +397,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="873"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Document moet worden opgeslagen om verder te kunnen gaan.&amp;lt;br&amp;gt;Document opslaan?</translation>
+        <translation>Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1037"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&amp;lt;br&amp;gt;Weet u zeker dat u wilt doorgaan?</translation>
+        <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1318"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 is aangepast.&amp;lt;br&amp;gt;Wilt u de veranderingen opslaan?</translation>
+        <translation>%1 is aangepast.&lt;br&gt;Wilt u de veranderingen opslaan?</translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;amp;Annuleren</translation>
+        <translation>&amp;Annuleren</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>
