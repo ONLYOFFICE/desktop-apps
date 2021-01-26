@@ -541,7 +541,10 @@ l10n.el = {
     settCheckUpdates: 'Αυτόματος έλεγχος για ενημερώσεις',
     settOptCheckNever: 'Ποτέ',
     settOptCheckDay: 'Καθημερινά',
-    settOptCheckWeek: 'Εβδομαδιαία'
+    settOptCheckWeek: 'Εβδομαδιαία',
+    settScaling: 'Κλιμάκωση διεπαφής',
+    settOptScalingAuto: 'Αυτόματο',
+    aboutProFeaturesAvailable: 'Με πρόσβαση σε επαγγελματικά χαρακτηριστικά'
 }
 
 l10n.et = {
@@ -710,7 +713,10 @@ l10n.fi = {
     settCheckUpdates: 'Tarkista päivitykset automaattisesti',
     settOptCheckNever: 'Ei koskaan',
     settOptCheckDay: 'Päivittäin',
-    settOptCheckWeek: 'Kerran viikossa'
+    settOptCheckWeek: 'Kerran viikossa',
+    settScaling: 'Käyttöliittymän skaalaus',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Pääsy pro-ominaisuuksiin'
 }
 
 l10n.ga = {
@@ -793,7 +799,10 @@ l10n.ga = {
     settCheckUpdates: 'Seiceáil le haghaidh nuashonruithe go huathoibríoch',
     settOptCheckNever: 'Riamh',
     settOptCheckDay: 'Gach lá',
-    settOptCheckWeek: 'Gach seachtain'
+    settOptCheckWeek: 'Gach seachtain',
+    settScaling: 'Scálú comhéadain',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Le rochtain ar ghnéithe pro'
 }
 
 l10n.hi = {
@@ -876,7 +885,10 @@ l10n.hi = {
     settCheckUpdates: 'अपडेट की स्वतः जाँच करें',
     settOptCheckNever: 'कभी नहीं',
     settOptCheckDay: 'प्रतिदिन',
-    settOptCheckWeek: 'प्रति सप्ताह'
+    settOptCheckWeek: 'प्रति सप्ताह',
+    settScaling: 'इंटरफ़ेस स्केलिंग',
+    settOptScalingAuto: 'स्वतः',
+    aboutProFeaturesAvailable: 'प्रो सुविधाओं की पहुँच के साथ'
 }
 
 l10n.hr = {
@@ -959,7 +971,10 @@ l10n.hr = {
     settCheckUpdates: 'Automatski provjerite ima li ažuriranja',
     settOptCheckNever: 'Nikada',
     settOptCheckDay: 'Svaki dan',
-    settOptCheckWeek: 'Svaki tjedan'
+    settOptCheckWeek: 'Svaki tjedan',
+    settScaling: 'Skaliranje sučelja',
+    settOptScalingAuto: 'Automatski',
+    aboutProFeaturesAvailable: 'S pristupom profesionalnim značajkama'
 }
 
 l10n.hu = {
@@ -1125,7 +1140,10 @@ l10n.hy = {
     settCheckUpdates: 'Ավտոմատ կերպով ստուգել թարմացումները',
     settOptCheckNever: 'Երբեք',
     settOptCheckDay: 'Ամեն օր',
-    settOptCheckWeek: 'Ամեն շաբաթ'
+    settOptCheckWeek: 'Ամեն շաբաթ',
+    settScaling: 'Ինտերֆեյսի մասշտաբավորում',
+    settOptScalingAuto: 'Ավտոմատ',
+    aboutProFeaturesAvailable: 'Պրոֆեսիոնալ գործառույթների հասանելիությամ'
 }
 
 l10n.in = {
@@ -1208,7 +1226,10 @@ l10n.in = {
     settCheckUpdates: 'Periksa pembaruan secara otomatis',
     settOptCheckNever: 'Tidak pernah',
     settOptCheckDay: 'Setiap hari',
-    settOptCheckWeek: 'Setiap minggu'
+    settOptCheckWeek: 'Setiap minggu',
+    settScaling: 'Penskalaan antarmuka',
+    settOptScalingAuto: 'Otomatis',
+    aboutProFeaturesAvailable: 'Dengan akses ke fitur pro'
 }
 
 l10n.ja = {
@@ -1546,7 +1567,10 @@ l10n.lv = {
     settCheckUpdates: 'Automātiski pārbaudīt atjauninājumus',
     settOptCheckNever: 'Nekad',
     settOptCheckDay: 'Katru dienu',
-    settOptCheckWeek: 'Katru nedēļu'
+    settOptCheckWeek: 'Katru nedēļu',
+    settScaling: 'Interfeisa mērogošana',
+    settOptScalingAuto: 'Automātiski',
+    aboutProFeaturesAvailable: 'Ar piekļuvi profesionālajām funkcijām'
 }
 
 l10n.nl = {
@@ -2386,7 +2410,10 @@ l10n.pt_PT = {
     settCheckUpdates: 'Procurar atualizações automaticamente',
     settOptCheckNever: 'Nunca',
     settOptCheckDay: 'Todos os dias',
-    settOptCheckWeek: 'Todas as semanas'
+    settOptCheckWeek: 'Todas as semanas',
+    settScaling: 'Escala da interface',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
 
 l10n.ro = {
@@ -2555,7 +2582,10 @@ l10n.sk = {
     settCheckUpdates: 'Vyhľadávať aktualizácie automaticky',
     settOptCheckNever: 'Nikdy',
     settOptCheckDay: 'Každý deň',
-    settOptCheckWeek: 'Každý týždeň'
+    settOptCheckWeek: 'Každý týždeň',
+    settScaling: 'Zmena mierky rozhrania',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'S prístupom k profesionálnym funkciám'
 }
 
 l10n.sl = {
@@ -2638,7 +2668,10 @@ l10n.sl = {
     settCheckUpdates: 'Samodejno preverjanje posodobitev',
     settOptCheckNever: 'Nikoli',
     settOptCheckDay: 'Vsak dan',
-    settOptCheckWeek: 'Vsak teden'
+    settOptCheckWeek: 'Vsak teden',
+    settScaling: 'Skaliranje vmesnika',
+    settOptScalingAuto: 'Samodejno',
+    aboutProFeaturesAvailable: 'Z dostopom do pro možnosti'
 }
 
 l10n.sv = {
@@ -2721,7 +2754,10 @@ l10n.sv = {
     settCheckUpdates: 'Sök efter uppdateringar automatiskt',
     settOptCheckNever: 'Aldrig',
     settOptCheckDay: 'Varje dag',
-    settOptCheckWeek: 'Varje vecka'
+    settOptCheckWeek: 'Varje vecka',
+    settScaling: 'Gränssnittsskalning',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Med tillgång till professionella funktioner'
 }
 
 l10n.tr = {
@@ -2804,7 +2840,10 @@ l10n.tr = {
     settCheckUpdates: 'Güncellemeleri otomatik olarak kontrol et',
     settOptCheckNever: 'Asla',
     settOptCheckDay: 'Her gün',
-    settOptCheckWeek: 'Her hafta'
+    settOptCheckWeek: 'Her hafta',
+    settScaling: 'Arayüz ölçeklendirme',
+    settOptScalingAuto: 'Otomatik',
+    aboutProFeaturesAvailable: 'Pro özelliklere erişim ile'
 }
 
 l10n.uk = {
@@ -2887,7 +2926,10 @@ l10n.uk = {
     settCheckUpdates: 'Автоматично перевіряти наявність оновлень',
     settOptCheckNever: 'Ніколи',
     settOptCheckDay: 'Щодня',
-    settOptCheckWeek: 'Щотижня'
+    settOptCheckWeek: 'Щотижня',
+    settScaling: 'Масштабування інтерфейсу',
+    settOptScalingAuto: 'Автоматично',
+    aboutProFeaturesAvailable: 'З доступом до професійних можливостей'
 }
 
 l10n.vi = {
