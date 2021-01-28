@@ -20,5 +20,13 @@ if [ -x "$UPDATE_MENUS" ]; then
   update-menus
 fi
 
+MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
+if [ ! -f "$MIMEAPPS_LIST" ]; then
+  echo "[Default Applications]" >"$MIMEAPPS_LIST"
+fi
+if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/oo-office | wc -l) -eq "0" ]; then
+  echo "x-scheme-handler/oo-office=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
+fi
+
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true

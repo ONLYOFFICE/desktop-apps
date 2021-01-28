@@ -464,7 +464,7 @@ public:
                                 NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
-                                if ([provider isEqualToString:@"asc"]) {
+                                if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
                                     urlPage = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", portal, @"products/files/"]];
                                 }
 
@@ -586,9 +586,12 @@ public:
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
                                         [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                        [[NSUserDefaults standardUserDefaults] setObject:NSFullUserName() forKey:ASCUserNameApp];
                                     } else {
                                         [params addObject:[NSString stringWithFormat:@"username=%@", userName]];
+                                        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ASCUserNameApp];
                                     }
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
                                 } else {
                                     [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
                                 }
@@ -645,8 +648,25 @@ public:
                                     [[ASCSharedSettings sharedInstance] setSetting:@([available count] > 0) forKey:kSettingsHasExtraFeatures];
                                 }
                             }
+                        } else if (cmd.find(L"open:document") != std::wstring::npos) {
+                            if (!param.empty()) {
+                                if (param.rfind(L"https://",0) == 0 || param.rfind(L"http://",0) == 0) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    CCefView * pCefView = appManager->GetViewByUrl(param);
+                                    int viewId = pCefView ? pCefView->GetId() : -1;
+
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                        object:nil
+                                                                                      userInfo:@{
+                                                                                             @"action"  : @(ASCTabActionOpenUrl),
+                                                                                             @"viewId"  : [NSString stringWithFormat:@"%d", viewId],
+                                                                                             @"url"     : [NSString stringWithstdwstring:param],
+                                                                                             @"active"  : @(true)
+                                                                                             }];
+                                }
+                            }
                         }
-                        
+
                         break;
                     }
 

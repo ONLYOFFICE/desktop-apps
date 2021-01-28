@@ -85,6 +85,7 @@ public:
         wstring title;
         wstring filter,
                 startFilter;
+        wstring folder;
         bool multiSelect = false;
     };
 
@@ -151,6 +152,16 @@ public:
                 delete [] specOpenTypes;
 
                 pDialog->SetFileTypeIndex(typeIndex);
+
+                if ( !args.folder.empty() ) {
+                    IShellItem * pItem = nullptr;
+                    hr = SHCreateItemFromParsingName(args.folder.c_str(), nullptr, IID_PPV_ARGS(&pItem));
+
+                    if (SUCCEEDED(hr)) {
+                        pDialog->SetFolder(pItem);
+                        pItem->Release();
+                    }
+                }
 
                 DWORD dwFlags;
                 hr = pDialog->GetOptions(&dwFlags);
@@ -402,6 +413,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     args.filter = _filter_.toStdWString();
     args.startFilter = _sel_filter.toStdWString();
     args.multiSelect = multi;
+    args.folder = path.toStdWString();
 
     bool isSupportNative = false;
     QStringList retFiles = CFileDialogHelper::nativeOpenDialog(args, isSupportNative);

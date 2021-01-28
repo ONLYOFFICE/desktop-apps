@@ -34,7 +34,7 @@ window.DialogConnect = function(params) {
     "use strict";
 
     !params && (params = {});
-    !params.provider && (params.provider = 'asc');
+    !params.provider && (params.provider = 'onlyoffice');
 
     let $el, $title, $body;
     var _events = { close: params.onclose };
@@ -132,7 +132,7 @@ window.DialogConnect = function(params) {
         portal = portal.replace(/\/+$/i, '');
 
         /* skip odd url parts for owncloud */       
-        if ( provider == 'ownc' || provider == 'nextc' ) {
+        if ( provider == 'owncloud' || provider == 'nextcloud' ) {
             portal.endsWith('/index.php/login') && (portal = portal.slice(0,-16));
         }
 
@@ -196,34 +196,38 @@ window.DialogConnect = function(params) {
     };
 
     function _require_portal_info(portal, provider) {
-        !provider && (provider = 'asc');
+        !provider && (provider = 'onlyoffice');
         let _info = config.portals.checklist.find(i => i.provider == provider);
-        var _url = portal + _info.check.url;
+        const _url = _info ? portal + _info.check.url : undefined;
 
         return new Promise((resolve, reject) => {
-            $.ajax({
-                url: _url,
-                crossOrigin: true,
-                crossDomain: true,
-                timeout: 10000,
-                headers: _info.check.headers,
-                complete: function(e, status) {
-                    if ( status == 'success' ) {
-                        try {
-                            JSON.parse(e.responseText)
-                            resolve({status:status, response:e});
-                        } catch (err) {
-                            e.status = 404;
-                            reject({status:'error', response:e});
+            if ( !_url )
+                reject({status:'error', response: {statusText:`provider ${provider} is not found`}});
+            else {
+                $.ajax({
+                    url: _url,
+                    crossOrigin: true,
+                    crossDomain: true,
+                    timeout: 10000,
+                    headers: _info.check.headers,
+                    complete: function(e, status) {
+                        if ( status == 'success' ) {
+                            try {
+                                JSON.parse(e.responseText)
+                                resolve({status:status, response:e});
+                            } catch (err) {
+                                e.status = 404;
+                                reject({status:'error', response:e});
+                            }
+                        } else {
+                            reject({status:status, response:e});
                         }
-                    } else {
+                    },
+                    error: function(e, status, error) {
                         reject({status:status, response:e});
                     }
-                },
-                error: function(e, status, error) {
-                    reject({status:status, response:e});
-                }
-            });
+                });
+            }
         });
     };
 
@@ -241,8 +245,8 @@ window.DialogConnect = function(params) {
 
             let $combo = $el.find('select');
             let _clouds = config.portals.checklist;
-            if ( _clouds.length == 1 && _clouds[0].provider == 'asc' ) {
-                $combo.append(`<option value='asc'>onlyoffice</option>`);
+            if ( _clouds.length == 1 && _clouds[0].provider == 'onlyoffice' ) {
+                $combo.append(`<option value='onlyoffice'>onlyoffice</option>`);
                 $combo.parents('.select-field').hide();
             } else {
                 for (let c of _clouds) {
@@ -250,9 +254,9 @@ window.DialogConnect = function(params) {
                 }
                 $combo.val(params.provider);
 
-                let $newportal = $el.find('.newportal').disable(!(params.provider=='asc'));
+                let $newportal = $el.find('.newportal').disable(!(params.provider=='onlyoffice'));
                 $combo.on('change', e => {
-                    $newportal.disable(!(e.target.value=='asc'));
+                    $newportal.disable(!(e.target.value=='onlyoffice'));
                     _clear_error();
                 });
 

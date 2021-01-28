@@ -38,6 +38,7 @@
 +function(){ 'use strict'
     window.config = { portals: {}};
     window.config.portals.checklist = sdk.externalClouds();
+    window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
@@ -55,7 +56,7 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html_empty_panel1 =
+        var _html_empty_panel_with_carousel =
                         `<div id="box-empty-portals" class="empty flex-center">
                             <section class="center-box">
                               <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
@@ -91,25 +92,14 @@
                             </section>
                         </div>`;
 
-        var _html_empty_panel =
+        var _html_empty_panel_with_providers =
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
                                     <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
-                                        <div>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
-                                                <svg class='icon'><use xlink:href='#logo__asc'></svg>
-                                            </button>
-                                        </div>
-                                        <div style='font-size:0;'>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextc'>
-                                                <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
-                                            </button>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='ownc'>
-                                                <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
-                                            </button>
-                                        </div>
+                                        <div id='box-providers-premium-button' />
+                                        <div id="box-providers-buttons" style='font-size:0;' />
                                     </section>
                                     <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
@@ -122,7 +112,7 @@
                             </div>`;
 
         var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
+                      ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
                       <div id="box-portals">
                         <div class="flexbox">
                           <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
@@ -134,15 +124,25 @@
                       </div>
                     </div>`;
 
-        config.portals.checklist.forEach(item => {
-            if ( !!item.icon && !!item.icon.providerbutton ) {
-                const _re = new RegExp(`data-cprov='${item.id}'[\\s\\S]+?(?=<svg)(<svg.+<\/svg>)`);
-                const _match = _re.exec(_html);
-                if ( _match && !!_match[1] ) {
-                    _html = _html.replace(_match[1], `<img class='icon' src='${item.icon.providerbutton}'></img>`);
+        if ( config.portals.checklist.length ) {
+            const provider_button_template = (provider, iconpath) =>
+                                                `<button class="btn btn--big btn--light btn--svg login" data-cprov='${provider}'>
+                                                    <img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>
+                                                </button>`;
+
+            _html = $(_html);
+            let $box = $('<div />');
+            config.portals.checklist.forEach(item => {
+                if ( !!item.icons && !!item.icons.buttonlogo ) {
+                    const btn = provider_button_template(item.provider,item.icons.buttonlogo);
+
+                    item.provider != 'onlyoffice' ? $box.append(btn) :
+                            _html.find('#box-providers-premium-button').append(btn);
                 }
-            }
-        });
+            });
+
+            _html.find('#box-providers-buttons').append($box.children());
+        }
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -317,16 +317,17 @@
 
                 function _create_icon_id(provider) {
                     switch ( provider ) {
+                    case 'onlyoffice':
                     case 'asc': return 'icon__asc';
-                    case 'ownc': return 'icon__ownc';
-                    case 'nextc': return 'icon__nextc';
+                    case 'owncloud': return 'icon__ownc';
+                    case 'nextcloud': return 'icon__nextc';
                     default: return 'icon__common';
                     }
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => {return e.provider == provider;})
-                    return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
+                    let _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons ? `${relpath}/providers/${_model.provider}/${_model.icons.connectionlist}` : undefined;
                 };
 
                 collection.events.changed.attach((collection, model, value) => {
@@ -447,7 +448,7 @@
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
-                            if (model.provider != 'asc')
+                            if (model.provider != 'onlyoffice')
                                 _write_portal_cookie(obj.domain);
 
                             if ( model.get('removed') ) {
@@ -478,7 +479,7 @@
 
 
                 let _p;
-                !obj.provider && (obj.provider = 'asc');
+                !obj.provider && (obj.provider = 'onlyoffice');
                 if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
                     obj.provider = _p.provider;
@@ -494,7 +495,7 @@
                         (info.portal = info.portal.slice(0,-1));
 
                 PortalsStore.keep(info);
-                if ( obj.provider != 'asc' ) {
+                if ( obj.provider != 'onlyoffice' ) {
                     // sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
                     _write_portal_cookie(info.portal);
 

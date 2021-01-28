@@ -42,6 +42,7 @@
 #include "mac_application.h"
 #include "ASCApplicationManager.h"
 #import "NSString+Extensions.h"
+#import "ASCConstants.h"
 #import "ASCHelper.h"
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
@@ -90,7 +91,11 @@ int main(int argc, const char * argv[]) {
     [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
     
     // setup username
-    NSString * fullName = NSFullUserName();
+    NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];
+    
+    if (fullName == nil) {
+        fullName = NSFullUserName();
+    }
     
     if (fullName) {
         [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];

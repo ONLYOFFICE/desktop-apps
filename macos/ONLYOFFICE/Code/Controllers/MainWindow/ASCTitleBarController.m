@@ -162,7 +162,7 @@ static float kASCWindowMinTitleWidth = 0;
     [self.tabsControl.multicastDelegate addDelegate:self];
     
     [self.userProfileButton setHidden:YES];
-    [self.portalButton setState:NSOnState];
+    [self.portalButton setState:NSControlStateValueOn];
     
     [self.tabsControl removeAllConstraints];
 
@@ -279,7 +279,7 @@ static float kASCWindowMinTitleWidth = 0;
             [tab setToolTip:name];
 
             [self.tabsControl updateTab:tab];
-//            if ([tab state] == NSOnState) {
+//            if ([tab state] == NSControlStateValueOn) {
 //                [self.tabsControl reloadTab:tab];
 //            }
         }
@@ -298,7 +298,7 @@ static float kASCWindowMinTitleWidth = 0;
             tab.changed = changed;
 
             [self.tabsControl updateTab:tab];
-//            if ([tab state] == NSOnState) {
+//            if ([tab state] == NSControlStateValueOn) {
 //                [self.tabsControl reloadTab:tab];
 //            }
         }
@@ -392,13 +392,13 @@ static float kASCWindowMinTitleWidth = 0;
 
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {  
     if (tab) {
-        [self.portalButton setState:NSOffState];
+        [self.portalButton setState:NSControlStateValueOff];
     } else {
-        [self.portalButton setState:NSOnState];
+        [self.portalButton setState:NSControlStateValueOn];
     }
 
     if ([NSApplication isDarkMode]) {
-        [self.portalButton setImage:(self.portalButton.state == NSOnState)
+        [self.portalButton setImage:(self.portalButton.state == NSControlStateValueOn)
          ? [NSImage imageNamed:@"logo-tab-dark"]
          : [NSImage imageNamed:@"logo-tab-light"]
         ];
