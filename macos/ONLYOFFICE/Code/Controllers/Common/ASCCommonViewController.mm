@@ -83,6 +83,7 @@
 @property (strong) IBOutlet NSView *headerView;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @property (nonatomic) ASCTouchBarController *touchBarController;
+@property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
 @end
 
 @implementation ASCCommonViewController
@@ -90,6 +91,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tabsWithChanges = @[].mutableCopy;
+    
     _externalDelegate = [[ASCExternalController shared] delegate];
     
     void (^addObserverFor)(_Nullable NSNotificationName, SEL) = ^(_Nullable NSNotificationName name, SEL selector) {
@@ -455,13 +458,13 @@
             NSArray * tabs = [NSArray arrayWithArray:self.tabsControl.tabs];
             for (ASCTabView * tab in tabs) {
                 if (tab.changed) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self tabs:self.tabsControl willRemovedTab:tab];
-                    });
+                    [self.tabsWithChanges addObject:tab];
                 } else {
                     [self.tabsControl removeTab:tab selected:NO];
                 }
             }
+            
+            [self safeCloseTabsWithChanges];
         } else if (result == NSAlertSecondButtonReturn) {
             // "Cancel" clicked
             return NO;
@@ -643,7 +646,7 @@
         [alert addButtonWithTitle:NSLocalizedString(@"OK", nil)];
         [alert setMessageText:NSLocalizedString(@"File can not be open.", nil)];
         [alert setInformativeText:[NSString stringWithFormat:NSLocalizedString(@"File \"%@\" can not be open or not exist.", nil), path]];
-        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert setAlertStyle:NSAlertStyleCritical];
         [alert beginSheetModalForWindow:[NSApp mainWindow]  completionHandler:^(NSModalResponse returnCode) {
             if (tab) {
                 [self.tabsControl removeTab:tab];
@@ -759,7 +762,7 @@
         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
         [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
-        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert setAlertStyle:NSAlertStyleWarning];
 
         [self.tabsControl selectTab:tab];
 
@@ -780,6 +783,14 @@
             self.shouldTerminateApp = NO;
             self.shouldLogoutPortal = NO;
         }
+    }
+}
+
+- (void)safeCloseTabsWithChanges {
+    if ([[self tabsWithChanges] count] > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self tabs:self.tabsControl willRemovedTab:[self.tabsWithChanges firstObject]];
+        });
     }
 }
 
@@ -1280,7 +1291,7 @@
                 [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
-                [alert setAlertStyle:NSInformationalAlertStyle];
+                [alert setAlertStyle:NSAlertStyleInformational];
 
                 NSInteger result = [alert runModal];
 
@@ -1289,11 +1300,13 @@
 
                     for (ASCTabView * tab in portalTabs) {
                         if (tab.changed) {
-                            [self tabs:self.tabsControl willRemovedTab:tab];
+                            [self.tabsWithChanges addObject:tab];
                         } else {
                             [self.tabsControl removeTab:tab selected:NO];
                         }
                     }
+                    
+                    [self safeCloseTabsWithChanges];
                 } else if (result == NSAlertSecondButtonReturn) {
                     return;
                 } else {
@@ -1776,6 +1789,13 @@
     }
     
     [self.tabView removeTabViewItem:[self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]]];
+    
+    if ([self.tabsWithChanges containsObject:tab]) {
+        [self.tabsWithChanges removeObject:tab];
+    }
+    if (self.tabsWithChanges.count > 0) {
+        [self safeCloseTabsWithChanges];
+    }
     
     if (self.shouldTerminateApp && self.tabsControl.tabs.count < 1) {
         [NSApp terminate:nil];

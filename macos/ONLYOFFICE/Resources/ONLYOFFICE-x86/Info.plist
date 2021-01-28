@@ -389,8 +389,6 @@
 			<string>DjVu File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -443,10 +441,6 @@
 			<string>Microsoft Word MHTML document (.mht)</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.microsoft.word.mhtml</string>
-			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -459,8 +453,6 @@
 			<string>FictionBook File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array/>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -491,7 +483,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>455</string>
+	<string>460</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
