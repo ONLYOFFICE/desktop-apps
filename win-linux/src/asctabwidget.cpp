@@ -341,7 +341,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     setProperty("empty", false);
 
     QString args, _url = url;
-    if ( provider == "asc" && !_url.contains(QRegularExpression("desktop=true")) )
+    if ( provider == "onlyoffice" && !_url.contains(QRegularExpression("desktop=true")) )
         args.append("/?desktop=true");
     else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\?]+)(\\?[^\\s]+)?", QRegularExpression::CaseInsensitiveOption);
@@ -397,7 +397,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
         pView->cef()->SetExternalCloud(service.toStdWString());
 
         QString _postfix;
-        if (service == "asc") _postfix = "/Products/Files/?desktop=true";
+        if (service == "onlyoffice") _postfix = "/Products/Files/?desktop=true";
         pView->cef()->load((portal + _postfix).toStdWString());
     }
 
@@ -755,7 +755,7 @@ int CAscTabWidget::newPortal(const QString& url, const QString& name)
 {
     int tabIndex = tabIndexByEditorType(etNewPortal);
     if ( tabIndex < 0 ) {
-        if ( !((tabIndex = addPortal(url, name, "asc")) < 0) ) {
+        if ( !((tabIndex = addPortal(url, name, "onlyoffice")) < 0) ) {
             panel(tabIndex)->data()->setContentType(etNewPortal);
         }
     }

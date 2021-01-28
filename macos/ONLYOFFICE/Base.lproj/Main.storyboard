@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -707,9 +706,9 @@
                     <window key="window" title="ONLYOFFICE" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="ASCTitleWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <rect key="contentRect" x="0.0" y="0.0" width="1200" height="640"/>
+                        <rect key="contentRect" x="0.0" y="0.0" width="1024" height="540"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-                        <value key="minSize" type="size" width="1200" height="640"/>
+                        <value key="minSize" type="size" width="1024" height="540"/>
                         <toolbar key="toolbar" implicitIdentifier="5B77B499-B428-4B61-B444-4B21C8952CC3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="labelOnly" sizeMode="regular" id="K5R-RO-aDh">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
@@ -752,7 +751,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="JHj-Lo-Sh5"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Portal:" id="zwS-9G-S0N">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -763,7 +762,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Or6-Gu-L5B"/>
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="none" usesSingleLineMode="YES" id="9i7-kj-42B">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -775,7 +774,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="mfK-Go-vrc"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Email:" id="Zsi-3o-ASl">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -787,7 +786,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="Iew-ae-tXr"/>
                                 </constraints>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="none" usesSingleLineMode="YES" id="Rkd-xb-FRJ">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -847,18 +846,18 @@
         <scene sceneID="FSG-kQ-eIr">
             <objects>
                 <viewController storyboardIdentifier="ASCDownloadListControllerId" id="e6o-1y-Hxy" customClass="ASCDownloadViewController" sceneMemberID="viewController">
-                    <view key="view" id="dEW-yf-Hlp">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="208"/>
+                    <view key="view" misplaced="YES" id="dEW-yf-Hlp">
+                        <rect key="frame" x="0.0" y="0.0" width="246" height="208"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="THf-tA-SkY">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
+                                <rect key="frame" x="0.0" y="0.0" width="258" height="209"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mlF-13-wpo">
-                                    <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="258" height="209"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" floatsGroupRows="NO" id="jbW-uy-rCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="209"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="302" height="209"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
@@ -876,11 +875,11 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="ASCDownloadTableViewCellId" id="s9V-B9-Wgx" customClass="ASCDownloadCellView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="270" height="70"/>
+                                                            <rect key="frame" x="10" y="0.0" width="282" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="koZ-Kw-Xop">
-                                                                    <rect key="frame" x="18" y="38" width="234" height="17"/>
+                                                                    <rect key="frame" x="18" y="38" width="246" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="QE6-qb-Pl8"/>
                                                                     </constraints>
@@ -891,13 +890,13 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <progressIndicator wantsLayer="YES" maxValue="100" doubleValue="45" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Ye0-dv-VyU">
-                                                                    <rect key="frame" x="20" y="13" width="158" height="20"/>
+                                                                    <rect key="frame" x="20" y="13" width="170" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="18" id="2ik-42-C9t"/>
                                                                     </constraints>
                                                                 </progressIndicator>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="23V-xr-uT3">
-                                                                    <rect key="frame" x="188" y="16" width="75" height="16"/>
+                                                                    <rect key="frame" x="200" y="16" width="75" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="75" id="3w1-7a-QHz"/>
                                                                         <constraint firstAttribute="height" constant="16" id="ABZ-aU-h1I"/>
@@ -1004,7 +1003,7 @@
                                 <rect key="frame" x="10" y="51" width="350" height="106"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="may-f5-Bdx">
-                                        <rect key="frame" x="137" y="82" width="76" height="24"/>
+                                        <rect key="frame" x="138" y="82" width="75" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Ewd-qx-XMR"/>
                                         </constraints>
@@ -1108,7 +1107,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <webView translatesAutoresizingMaskIntoConstraints="NO" id="rxD-dJ-5nd">
-                                <rect key="frame" x="10" y="61" width="780" height="420"/>
+                                <rect key="frame" x="10" y="60" width="780" height="421"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="780" id="5L3-pz-emb"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="420" id="CFF-ti-tZ6"/>
@@ -1118,7 +1117,7 @@
                                 </webPreferences>
                             </webView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVj-pl-yO9">
-                                <rect key="frame" x="363" y="13" width="75" height="32"/>
+                                <rect key="frame" x="366" y="13" width="69" height="32"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Riu-oE-8dj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1425,7 +1424,7 @@ DQ
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3X-hR-EHh">
                                 <rect key="frame" x="1065" y="0.0" width="30" height="38"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
+                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-zR-QDB">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" animates="YES" image="progress_download_icon" id="yAE-gi-Nvm"/>

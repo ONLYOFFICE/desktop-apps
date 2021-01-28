@@ -464,7 +464,7 @@ public:
                                 NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
-                                if ([provider isEqualToString:@"asc"]) {
+                                if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
                                     urlPage = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", portal, @"products/files/"]];
                                 }
 
@@ -586,9 +586,12 @@ public:
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
                                         [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                        [[NSUserDefaults standardUserDefaults] setObject:NSFullUserName() forKey:ASCUserNameApp];
                                     } else {
                                         [params addObject:[NSString stringWithFormat:@"username=%@", userName]];
+                                        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ASCUserNameApp];
                                     }
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
                                 } else {
                                     [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
                                 }
