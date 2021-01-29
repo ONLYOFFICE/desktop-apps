@@ -230,7 +230,7 @@ h4 {
     background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x) no-repeat;
 }
 
-.img-format::before {
+.img-format {
     background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@2x.png') 2x) no-repeat;
 }
 
@@ -537,74 +537,72 @@ li.menu-item {
     }
 
     .icon {
-        &::before {
-            content: '';
-            float: left;
-            width: 24px;
-            height: 30px;
-            /*margin: 3px 0 0 -55px;*/
-        }
+        float: left;
+        width: 24px;
+        height: 30px;
+        position: relative;
 
-        &.docx::before {
+        &.docx {
             .format-from-index(0);
         }
 
-        &.doc::before {
+        &.doc {
             .format-from-index(1);
         }
 
-        &.odt::before {
+        &.odt {
             .format-from-index(2);
         }
 
-        &.rtf::before {
+        &.rtf {
             .format-from-index(3);
         }
 
-        &.txt::before {
+        &.txt {
             .format-from-index(4);
         }
 
-        &.htm::before {
+        &.htm {
             .format-from-index(5);
         }
 
-        &.xlsx::before {
+        &.xlsx {
             .format-from-index(6);
         }
-        &.xls::before {
+
+        &.xls {
             .format-from-index(7);
         }
-        &.ods::before {
+        &.ods {
             .format-from-index(8);
         }
-        &.csv::before {
+        &.csv {
             .format-from-index(9);
         }
 
-        &.pptx::before {
+        &.pptx {
             .format-from-index(10);
         }
-        &.ppt::before {
+        &.ppt {
             .format-from-index(11);
         }
-        &.odp::before {
+        &.odp {
             .format-from-index(12);
         }
-        &.pps::before {
+        &.pps {
             .format-from-index(13);
         }
-        &.pdf::before {
+        &.pdf {
             .format-from-index(14);
         }
-        &.djvu::before {
+        &.djvu {
             .format-from-index(15);
         }
-        &.xps::before {
+        &.xps {
             .format-from-index(16);
         }
 
-        &.folder::before {
+        &.folder {
             background-position: -58px -48px;
         }
     }
