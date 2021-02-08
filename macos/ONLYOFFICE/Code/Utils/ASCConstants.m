@@ -59,7 +59,8 @@
 }
 
 + (NSArray *)videos {
-    return @[@"webm", @"mkv", @"flv", @"ogg", @"avi", @"mov", @"wmv", @"mp4", @"m4v", @"mpg", @"mp2", @"mpeg", @"mpe", @"mpv", @"m2v", @"m4v", @"3gp", @"3g2", @"f4v", @"m2ts", @"mts"];
+    return @[@"webm", @"mkv", @"flv", @"ogg", @"avi", @"mov", @"wmv", @"mp4", @"m4v", @"mpg", @"mp2", @"mpeg",
+             @"mpe", @"mpv", @"m2v", @"m4v", @"3gp", @"3g2", @"f4v", @"m2ts", @"mts"];
 }
 
 + (NSArray *)audios {
@@ -67,15 +68,16 @@
 }
 
 + (NSArray *)documents {
-    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"htm", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx", @"fb2"];
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx"];
+    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt"];
 }
 
 + (NSArray *)plugins {
