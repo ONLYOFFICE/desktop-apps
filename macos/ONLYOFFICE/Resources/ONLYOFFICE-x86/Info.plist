@@ -277,6 +277,20 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>potx</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PowerPoint Template (.potx)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.template</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>pptx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
