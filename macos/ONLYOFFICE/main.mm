@@ -59,11 +59,6 @@ int main(int argc, const char * argv[]) {
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
 
-    // disable sign support
-    appManager->m_oSettings.sign_support = false;
-    appManager->m_oSettings.pass_support = true;
-    appManager->m_oSettings.protect_support = true;
-
     // setup common user directory
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
     
