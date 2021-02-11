@@ -55,8 +55,7 @@
     [[NSApp mainWindow] setNextResponder:self];
     [self setNextResponder:aNextResponder];
     
-//    _item = [[ASCCertificateQLPreview alloc] init:fileUrl];
-    _item = [[ASCCertificateQLPreview alloc] init:[fileUrl path] rename:true];
+    _item = [[ASCCertificateQLPreview alloc] init:fileUrl];
     _panel = [QLPreviewPanel sharedPreviewPanel];
     
     NSTimer * timer = [NSTimer scheduledTimerWithTimeInterval:0
