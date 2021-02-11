@@ -371,7 +371,7 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (IBAction)onTestButton:(NSButton *)sender {
-    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:@"Document-Sign" bundle:[NSBundle mainBundle]];
+    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:StoryboardNameSign bundle:[NSBundle mainBundle]];
 
     if (storyboard) {
         NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];

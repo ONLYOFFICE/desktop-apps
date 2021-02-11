@@ -42,6 +42,7 @@
 #import "mac_application.h"
 #import "NSView+Extensions.h"
 #import "PureLayout.h"
+#import "ASCConstants.h"
 #import "ASCHelper.h"
 #import "ASCCommonViewController.h"
 
@@ -68,7 +69,7 @@
     self = [super init];
     
     if (self) {
-        _storyboard = [NSStoryboard storyboardWithName:@"Presentation-Reporter" bundle:[NSBundle mainBundle]];
+        _storyboard = [NSStoryboard storyboardWithName:StoryboardNameReporter bundle:[NSBundle mainBundle]];
         _isDisplay = false;
     }
     

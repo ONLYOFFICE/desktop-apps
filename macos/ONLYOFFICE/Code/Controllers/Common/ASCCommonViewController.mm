@@ -65,6 +65,8 @@
 #import "NSWindow+Extensions.h"
 #import "ASCExternalController.h"
 #import "ASCTouchBarController.h"
+#import "ASCCertificatePreviewController.h"
+#import "ASCCertificateQLPreviewController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -134,6 +136,7 @@
     addObserverFor(CEFEventNameEditorOpenFolder, @selector(onCEFEditorOpenFolder:));
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
+    addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -1625,6 +1628,23 @@
             }
 
             [self.tabsControl removeTab:tab selected:YES];
+        }
+    }
+}
+
+- (void)onCEFCertificatePreview:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * text = json[@"text"];
+        NSString * path = json[@"path"];
+        
+        if (path && path.length > 0) {
+            ASCCertificateQLPreviewController * controller = [ASCCertificateQLPreviewController new];
+            [controller previewBy:[NSURL fileURLWithPath:path]];
+        } else if (text && text.length > 0) {
+            ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:self];
+            [previewController presentTextInfo:text];
         }
     }
 }
