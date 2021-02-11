@@ -82,10 +82,6 @@
 
 #pragma mark - QLPreviewPanelDelegate
 
-- (BOOL)previewPanel:(QLPreviewPanel *)panel handleEvent:(NSEvent *)event {
-    return true;
-}
-
 - (BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel {
     return true;
 }
@@ -93,11 +89,15 @@
 - (void)beginPreviewPanelControl:(QLPreviewPanel *)panel {
     _panel.dataSource = self;
     _panel.delegate = self;
+    
+    [[NSApp mainWindow] setNextResponder:[self nextResponder]];
 }
 
 - (void)endPreviewPanelControl:(QLPreviewPanel *)panel {
     _panel.dataSource = nil;
     _panel.delegate = nil;
+    
+    [[NSApp mainWindow] setNextResponder:[self nextResponder]];
     
     [self.item cleanup];
 }
