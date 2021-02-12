@@ -125,16 +125,18 @@
                     </div>`;
 
         if ( config.portals.checklist.length ) {
-            const provider_button_template = (provider, iconpath) =>
-                                                `<button class="btn btn--big btn--light btn--svg login" data-cprov='${provider}'>
-                                                    <img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>
+            const provider_button_template = (provider, name, iconpath) => {
+                                                const button_el = `<img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>`;
+                                                return `<button class="btn btn--big btn--light btn--svg login" data-cprov='${provider}'>
+                                                    ${!!iconpath ? button_el : name}
                                                 </button>`;
+                                            }
 
             _html = $(_html);
             let $box = $('<div />');
             config.portals.checklist.forEach(item => {
-                if ( !!item.icons && !!item.icons.buttonlogo ) {
-                    const btn = provider_button_template(item.provider,item.icons.buttonlogo);
+                if ( !!item.icons && !!item.icons.buttonLogo ) {
+                    const btn = provider_button_template(item.provider, item.name, item.icons.buttonLogo);
 
                     item.provider != 'onlyoffice' ? $box.append(btn) :
                             _html.find('#box-providers-premium-button').append(btn);
@@ -326,8 +328,9 @@
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => (e.provider == provider))
-                    return !!_model && !!_model.icons ? `${relpath}/providers/${_model.provider}/${_model.icons.connectionlist}` : undefined;
+                    const _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons && !!_model.icons.connectionsList ?
+                                `${relpath}/providers/${_model.provider}/${_model.icons.connectionsList}` : undefined;
                 };
 
                 collection.events.changed.attach((collection, model, value) => {
