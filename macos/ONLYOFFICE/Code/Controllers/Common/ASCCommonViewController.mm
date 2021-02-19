@@ -446,7 +446,7 @@
         
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
@@ -762,7 +762,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
         [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
         [alert setAlertStyle:NSAlertStyleWarning];
@@ -1290,7 +1290,7 @@
 
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
                 [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
@@ -1440,10 +1440,10 @@
 
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+    [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
     [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
     [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSAlertStyleWarning];
 
     NSInteger returnCode = [alert runModalSheet];
 
@@ -1604,7 +1604,7 @@
                 NSAlert * alert = [NSAlert new];
                 [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
                 [alert setAlertStyle:NSAlertStyleInformational];
 
