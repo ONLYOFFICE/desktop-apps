@@ -308,6 +308,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
         } else
+        if ( !(cmd.find(L"theme:changed") == std::wstring::npos) ) {
+            return true;
+        } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
