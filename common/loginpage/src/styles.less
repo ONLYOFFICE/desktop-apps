@@ -176,6 +176,7 @@ h4 {
             padding: 5px 20px 5px 0;
             a {
                 padding: 0;
+                display: flex;
             }
         }
 
@@ -185,26 +186,19 @@ h4 {
             .icon {
                 width: 36px;
                 height: 48px;
+                display: block;
+                margin-right: 19px;
             }
-
-            /*&::before {*/
-                /*content: '';*/
-                /*float: left;*/
-                /*width: 36px;*/
-                /*height: 48px;*/
-                /*margin-right: 19px;*/
-            /*}*/
         }
 
         a[action='new:xlsx'] {
-            &::before {
-            /*.icon {*/
+            .icon {
                 background-position-x:-36px;
             }
         }
 
         a[action='new:pptx'] {
-            &::before {
+            .icon {
                 background-position-x:-72px;
             }
         }
@@ -597,6 +591,7 @@ li.menu-item {
         }
 
         &.folder {
+            height: 24px;
             background-position: -58px -48px;
         }
     }

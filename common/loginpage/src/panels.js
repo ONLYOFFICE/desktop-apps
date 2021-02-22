@@ -48,9 +48,9 @@ $(document).ready(function() {
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"]').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"]').text(utils.Lang.newPptx);
+    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
+    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
+    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
 
 
     if (!localStorage.welcome) {
