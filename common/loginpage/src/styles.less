@@ -1,22 +1,5 @@
 @border-radius: 3px;
 
-@color-gray-2: #ebebeb;
-@color-gray-3: #cbcbcb;
-@color-gray-5: #ccc;
-@color-gray-6: #c3c3c3;
-@color-gray-4: #a5a5a5;
-@color-gray-light: #999;
-@color-gray: #666666;
-@color-gray-dark: #333;
-@color-gray-8: #444;
-@color-gray-9: #f5f5f5;
-
-@color-blue-2: #5b9bea;
-@color-blue-3: #5293e2;
-@color-blue-light: #3a83db;
-
-@color-header: #3d4a6b;
-
 @img-path: '../res/img';
 
 @col-width: 287px;
@@ -24,8 +7,9 @@
 @import '../vendor/bootstrap/variables';
 @import '../vendor/bootstrap/dropdowns';
 @import (inline) '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
-@import 'component';
-@import 'window';
+@import 'css/colors';
+@import 'css/component';
+@import 'css/window';
 @import 'css/loader';
 
 * {
@@ -91,14 +75,14 @@ h4 {
 .col-right {
     width: @col-width;
     float: right;
-    border-left: 1px solid @color-gray-light;
+    border-left: @scaled-one-px solid @color-gray-light;
 }
 
 .col-left {
     min-width: @col-width;
     max-width: @col-width;
     float: left;
-    border-right: 1px solid @color-gray-3;
+    border-right: @scaled-one-px solid @color-gray-3;
 
     @media screen and (max-width: 1000px) {
         /*width: 32%;*/
@@ -178,7 +162,7 @@ h4 {
 }
 
 .tool-quick-menu {
-    border-bottom: 1px solid @color-gray-3;
+    border-bottom: @scaled-one-px solid @color-gray-3;
     padding: 0 0 30px 27px;
 
     h3 {
@@ -196,17 +180,23 @@ h4 {
         a {
             line-height: 48px;
 
-            &::before {
-                content: '';
-                float: left;
+            .icon {
                 width: 36px;
                 height: 48px;
-                margin-right: 19px;
             }
+
+            /*&::before {*/
+                /*content: '';*/
+                /*float: left;*/
+                /*width: 36px;*/
+                /*height: 48px;*/
+                /*margin-right: 19px;*/
+            /*}*/
         }
 
         a[action='new:xlsx'] {
             &::before {
+            /*.icon {*/
                 background-position-x:-36px;
             }
         }
@@ -226,12 +216,12 @@ h4 {
     }
 }
 
-.img-el, .img-before-el::before {
-    background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@2x.png') 2x) no-repeat;
+.img-el, .img-before-el {
+    background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@2x.png') 2x) no-repeat;
 }
 
 .img-format {
-    background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@2x.png') 2x) no-repeat;
+    background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@1.5x.png') 1.5x, data-uri('formats@2x.png') 2x) no-repeat;
 }
 
 li.menu-item {
@@ -264,7 +254,7 @@ li.menu-item {
 
     > li.menu-item {
         &:not(.separator):not(:last-of-type) {
-            border-bottom: 1px solid @color-gray-3;
+            border-bottom: @scaled-one-px solid @color-gray-3;
         }
     }
 
@@ -295,7 +285,9 @@ li.menu-item {
 
     > li.menu-item.separator {
         flex-grow: 1;
-        box-shadow: inset 0 -1px 0 0 @color-gray-3;
+
+        @minus-one-px: calc(-1px / var(--pixel-ratio, 1));
+        box-shadow: inset 0 @minus-one-px 0 0 @color-gray-3;
     }
 }
 
@@ -481,7 +473,7 @@ li.menu-item {
     td, th {
         text-align: left;
         border: 0 none;
-        border-bottom: 1px solid @color-gray-3;
+        border-bottom: @scaled-one-px solid @color-gray-3;
         font-weight: normal;
 
         overflow: hidden;
@@ -653,7 +645,7 @@ li.menu-item {
     text-align: left;
 
     &~.table-box {
-        border-top: 1px solid @color-gray-3;
+        border-top: @scaled-one-px solid @color-gray-3;
     }
 }
 
