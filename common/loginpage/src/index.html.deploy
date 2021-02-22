@@ -94,6 +94,7 @@
     </style>
 </head>
 <body>
+    <script type="text/javascript" replace="yes" src="./htmlutils.js"></script>
     <div id="wrap">
         <div id="loading-mask" class="loadmask">
             <div id="stage" class="loader-page">

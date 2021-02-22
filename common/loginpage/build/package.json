@@ -7,12 +7,12 @@
     "lodash": "^4.0.0",
     "grunt": "1.0.2",
     "grunt-text-replace": "0.4.0",
-    "grunt-contrib-less": "^1.1.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-htmlmin": "^0.6.0",
+    "grunt-contrib-less": "^3.0.0",
     "grunt-inline": "0.3.4"
   }
 }
