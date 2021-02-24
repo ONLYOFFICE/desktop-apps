@@ -226,6 +226,10 @@ core_windows {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
+
+    build_xp {
+        DEFINES += __OS_WIN_XP
+    }
 }
 
 core_release:DESTDIR = $$DESTDIR/build
