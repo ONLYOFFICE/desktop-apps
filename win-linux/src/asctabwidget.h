@@ -126,6 +126,7 @@ private:
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle;
+    bool m_isDarkTheme = false;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
 
@@ -148,6 +149,7 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
+    void applyUITheme(const std::wstring&);
 
     using QTabWidget::count;
     int  count(int type) const;

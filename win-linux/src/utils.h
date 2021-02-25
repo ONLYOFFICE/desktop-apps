@@ -49,6 +49,7 @@ namespace InputArgs {
 
     auto webapps_params() -> const std::wstring&;
     auto set_webapps_params(const std::wstring&) -> void;
+    auto change_webapps_param(const std::wstring& from, const std::wstring& to) -> const std::wstring&;
 }
 
 class Utils {

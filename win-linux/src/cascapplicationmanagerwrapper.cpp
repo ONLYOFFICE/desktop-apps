@@ -309,6 +309,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( !(cmd.find(L"theme:changed") == std::wstring::npos) ) {
+            applyTheme(pData->get_Param());
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
@@ -897,6 +898,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
+    AscAppManager::getInstance().applyTheme(theme(), true);
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1346,6 +1348,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         InputArgs::set_webapps_params(params);
         AscAppManager::getInstance().InitAdditionalEditorParams( params );
+
+        if ( objRoot.contains("uitheme") ) {
+            applyTheme(objRoot["uitheme"].toString().toStdWString());
+        }
     } else {
         /* parse settings error */
     }
@@ -1372,6 +1378,31 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         QTimer::singleShot(0, [_send_cmd, _send_opts] {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
         });
+}
+
+void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
+{
+    GET_REGISTRY_USER(_reg_user);
+
+    QString new_theme = QString::fromStdWString(theme),
+            old_theme = _reg_user.value("UITheme", "theme-light").toString();
+    if ( force || new_theme != old_theme ) {
+        _reg_user.setValue("UITheme", new_theme);
+
+        if ( mainWindow() )
+            mainWindow()->applyTheme(theme);
+
+        std::wstring params{InputArgs::change_webapps_param(QString("&uitheme=" + old_theme).toStdWString(),
+                                            QString("&uitheme=" + new_theme).toStdWString()) };
+        AscAppManager::getInstance().InitAdditionalEditorParams(params);
+
+    }
+}
+
+std::wstring CAscApplicationManagerWrapper::theme()
+{
+    GET_REGISTRY_USER(_reg_user);
+    return _reg_user.value("UITheme", "theme-light").toString().toStdWString();
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()

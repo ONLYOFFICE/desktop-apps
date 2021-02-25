@@ -68,7 +68,7 @@ using namespace std::placeholders;
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = NULL;
+AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = nullptr;
 
 auto refresh_window_scaling_factor(CMainWindow * window) -> void {
     QString css{AscAppManager::getWindowStylesheets(window->m_dpiRatio)};
@@ -147,6 +147,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
+    m_pMainPanel->applyTheme(AscAppManager::theme());
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
 
@@ -998,4 +999,9 @@ void CMainWindow::bringToTop() const
         SetFocus(handle());
         SetActiveWindow(handle());
 //    }
+}
+
+void CMainWindow::applyTheme(const std::wstring& theme)
+{
+    m_pMainPanel->applyTheme(theme);
 }

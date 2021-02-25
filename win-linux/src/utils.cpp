@@ -121,6 +121,18 @@ namespace InputArgs {
     auto set_webapps_params(const std::wstring& params) -> void {
         web_apps_params = params;
     }
+
+    auto change_webapps_param(const std::wstring& from, const std::wstring& to) -> const std::wstring& {
+        size_t start_pos = web_apps_params.find(from);
+        if( start_pos != std::string::npos ) {
+            web_apps_params.replace(start_pos, from.length(), to);
+        } else
+        if ( true /*append*/ ) {
+            web_apps_params.append(to);
+        }
+
+        return web_apps_params;
+    }
 }
 
 QStringList * Utils::getInputFiles(const QStringList& inlist)
@@ -563,8 +575,6 @@ std::wstring Utils::appUserName()
     return systemUserName();
 }
 
-#ifdef Q_OS_WIN
-#endif
 
 namespace WindowHelper {
 #ifdef Q_OS_LINUX

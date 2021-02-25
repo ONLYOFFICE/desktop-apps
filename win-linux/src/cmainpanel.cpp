@@ -1201,6 +1201,18 @@ void CMainPanel::onOutsideAuth(QString json)
     }
 }
 
+void CMainPanel::applyTheme(const std::wstring& theme)
+{
+    for (int i(m_pTabs->count()); !(--i < 0);) {
+        CAscTabData& _doc = *m_pTabs->panel(i)->data();
+        if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
+            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+        }
+    }
+
+    m_pTabs->applyUITheme(theme);
+}
+
 void CMainPanel::setInputFiles(QStringList * list)
 {
     RELEASEOBJECT(m_inFiles)

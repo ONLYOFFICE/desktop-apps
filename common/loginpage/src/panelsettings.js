@@ -78,6 +78,7 @@
                                                 <select class='combobox'>
                                                     <option value='0' l10n>${_lang.settOptScalingAuto}</option>
                                                     <option value='100'>100%</option>
+                                                    <option value='150'>150%</option>
                                                     <option value='200'>200%</option>
                                                 </select>
                                             </section>
@@ -99,6 +100,17 @@
                                                     <option value='never' l10n>${_lang.settOptCheckNever}</option>
                                                     <option value='day' l10n>${_lang.settOptCheckDay}</option>
                                                     <option value='week' l10n>${_lang.settOptCheckWeek}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <div class='settings-field' id="opts-ui-theme" style='display:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settUITheme}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
+                                                    <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
                                                 </select>
                                             </section>
                                         </div>
@@ -134,7 +146,8 @@
             $chOpenMode;
         let $panel;
         let $optsLang,
-            $optsUIScaling;
+            $optsUIScaling,
+            $optsUITheme;
 
         function _set_user_name(name) {
             let me = this;
@@ -182,6 +195,11 @@
                 if ( $optsUIScaling ) {
                     _new_settings.uiscaling = $optsUIScaling.val();
                     $optsUIScaling.selectpicker('refresh');
+                }
+
+                if ( $optsUITheme ) {
+                    _new_settings.uitheme = $optsUITheme.val();
+                    $optsUITheme.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -264,6 +282,16 @@
                             });
 
                             $('#caption-restart', $panel).show();
+                        }
+
+                        if ( !!opts.uitheme ) {
+                            opts.uitheme == 'canuse' && (opts.uitheme = 'light');
+                            ($optsUITheme = ($('#opts-ui-theme', $panel).show().find('select')))
+                            .val(opts.uitheme)
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
+
                         }
                     }
                 } else

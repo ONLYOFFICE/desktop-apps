@@ -114,6 +114,9 @@ l10n.en = {
     ,settOptCheckWeek: 'Every week'
     ,settScaling: 'Interface scaling'
     ,settOptScalingAuto: 'Auto'
+    ,settUITheme: 'UI Theme'
+    ,settOptThemeLight: 'Light'
+    ,settOptThemeDark: 'Dark'
     ,aboutProFeaturesAvailable: 'With access to pro features'
 }
 

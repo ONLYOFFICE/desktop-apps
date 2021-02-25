@@ -570,6 +570,9 @@ void CAscTabWidget::updateTabIcon(int index)
 
             if ( !isActive() )
                 tab_color = "none";
+            else
+            if ( m_isDarkTheme )
+                tab_color = "#2a2a2a";
 
             if ( index == currentIndex() ) {
                 ((CTabBar *)tabBar())->setActiveTabColor(tab_color);
@@ -1227,4 +1230,9 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
             m_tabIconSize.setHeight(ri.cap(2).toInt());
         }
     }
+}
+
+void CAscTabWidget::applyUITheme(const std::wstring& theme)
+{
+    m_isDarkTheme = theme == L"theme-dark";
 }

@@ -115,6 +115,7 @@ private:
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
+    void applyTheme(const std::wstring&, bool force = false);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
@@ -162,6 +163,7 @@ public:
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
+    static std::wstring     theme();
 
     static ParentHandle     windowHandleFromId(int id);
 
