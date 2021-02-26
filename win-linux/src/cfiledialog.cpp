@@ -227,6 +227,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]   = tr("HTML File (*.html)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]    = tr("MHT File (*.mht)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
