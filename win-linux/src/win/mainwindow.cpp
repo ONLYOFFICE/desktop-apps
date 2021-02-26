@@ -1003,5 +1003,5 @@ void CMainWindow::bringToTop() const
 
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
-    m_pMainPanel->applyTheme(theme);
+    CMainWindowBase::applyTheme(name);
 }

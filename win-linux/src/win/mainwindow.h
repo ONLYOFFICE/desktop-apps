@@ -72,7 +72,7 @@ public:
     int getMaximumWidth();
     void removeMaximumSize();
     void adjustGeometry();
-    void applyTheme(const std::wstring&);
+    void applyTheme(const std::wstring&) override;
 
     CMainPanel * mainPanel() const;
     QRect windowRect() const;

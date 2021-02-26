@@ -24,6 +24,7 @@ public:
     virtual int editorsCount(const std::wstring& portal) const;
     virtual QString documentName(int vid);
 //    virtual WId handle() const = 0;
+    virtual void applyTheme(const std::wstring&);
 
     virtual void captureMouse(int tab_index);
 protected:
