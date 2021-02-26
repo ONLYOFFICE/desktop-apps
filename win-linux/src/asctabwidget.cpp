@@ -245,6 +245,8 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
 
         data->setContentType(CEditorTools::editorTypeFromFormat(opts.format));
         data->setChanged(opts.srctype == etRecoveryFile);
+        if ( m_isDarkTheme )
+            data->setFeatures(L"{\"default\":{\"uithemes\":true}}");
 
         pView->setData(data);
         tab_index = addTab(panelwidget, data->title());
@@ -571,7 +573,7 @@ void CAscTabWidget::updateTabIcon(int index)
             if ( !isActive() )
                 tab_color = "none";
             else
-            if ( m_isDarkTheme )
+            if ( m_isDarkTheme && panel(index)->data()->hasFeature(L"uithemes") )
                 tab_color = "#2a2a2a";
 
             if ( index == currentIndex() ) {
@@ -876,6 +878,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
         panel(tabIndex)->data()->setFeatures(option);
+        updateTabIcon(tabIndex);
 
         size_t _pos;
         if ((_pos = option.find(L"eventloading:")) != wstring::npos) {
