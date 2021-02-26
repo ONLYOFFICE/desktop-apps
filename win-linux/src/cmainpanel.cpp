@@ -198,7 +198,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
 
     m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
-    m_pTabs->applyCustomTheme(isCustomWindow);
+    m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
 
     mainGridLayout->addWidget( centralWidget );

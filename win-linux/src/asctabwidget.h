@@ -204,7 +204,7 @@ public:
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
-    void applyCustomTheme(bool iscustom);
+    void setCustomWindowParams(bool iscustom);
     void cancelDocumentSaving(int index);
     void setEditorOptions(int, const std::wstring&);
 

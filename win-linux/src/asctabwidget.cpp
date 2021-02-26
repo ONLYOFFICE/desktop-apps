@@ -514,7 +514,7 @@ void CAscTabWidget::adjustTabsSize()
 #endif
 }
 
-void CAscTabWidget::applyCustomTheme(bool iscustom)
+void CAscTabWidget::setCustomWindowParams(bool iscustom)
 {
     m_isCustomStyle = iscustom;
     m_widthParams.tools_width = (iscustom ? 50 : 0) * scaling();
