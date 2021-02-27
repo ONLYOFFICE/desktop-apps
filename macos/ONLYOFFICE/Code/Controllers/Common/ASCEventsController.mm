@@ -445,6 +445,19 @@ public:
 
                         break;
                     }
+                        
+                    case ASC_MENU_EVENT_TYPE_WINDOW_SHOW_CERTIFICATE: {
+                        NSEditorApi::CAscX509CertificateData * pData = dynamic_cast<NSEditorApi::CAscX509CertificateData *>(pEvent->m_pData);
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCertificatePreview
+                                                                            object:nil
+                                                                          userInfo:@{
+                                                                                     @"text": [NSString stringWithstdwstring:pData->get_Data()],
+                                                                                     @"path": [NSString stringWithstdwstring:pData->get_FilePath()]
+                                                                                     }];
+
+                        break;
+                    }
 
                     case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
                         NSEditorApi::CAscExecCommand * pData = (NSEditorApi::CAscExecCommand *)pEvent->m_pData;

@@ -37,6 +37,10 @@
 # endif
 #else
 # include <unistd.h>
+
+# ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+#  include "linux/cdialogcertificateinfo.h"
+# endif
 #endif
 
 #include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
@@ -366,6 +370,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         this->Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_WINDOW_SHOW_CERTIFICATE: {
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+        CAscX509CertificateData * pData = reinterpret_cast<CAscX509CertificateData *>(event->m_pData);
+
+        CDialogCertificateInfo _dialog(mainWindow(), pData->get_Data());
+        _dialog.exec();
+#endif
+        return true;
+    }
     case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
         CMainWindow * _window = mainWindowFromViewId(event->get_SenderId());

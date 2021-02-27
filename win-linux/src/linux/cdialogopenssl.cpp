@@ -242,10 +242,9 @@ bool CDialogOpenSsl::checkCertificate()
             m_private->_btnKeyFile->setDisabled(false);
             m_private->_txtKeyPath->setFocus();
         } else {
-            _result = NSOpenSSL::LoadKey( m_private->_txtKeyPass->text().toStdWString(),
+            _result = NSOpenSSL::LoadKey( m_private->_txtKeyPath->text().toStdWString(),
                                             m_private->_txtKeyPass->text().toStdString() );
 
-            _result = OPEN_SSL_WARNING_PASS;
             switch ( _result ) {
             case OPEN_SSL_WARNING_ERR:
                 CMessage::info(this, tr("Key is not supported"));
@@ -256,7 +255,6 @@ bool CDialogOpenSsl::checkCertificate()
                 CMessage::info(this, tr("Enter key password"));
                 break;
             case OPEN_SSL_WARNING_OK:
-//                "Strange... it's an unreal situation";
                 _result = OPEN_SSL_WARNING_ALL_OK;
                 break;
             case OPEN_SSL_WARNING_ALL_OK:

@@ -151,6 +151,16 @@
 		FC148B1F215CEF900054FF91 /* NSApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC148B1E215CEF900054FF91 /* NSApplication+Extensions.m */; };
 		FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC25A1A61C2E844800063A42 /* ASCTabViewController.m */; };
 		FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */; };
+		FC2C438D25D4326F003A39C4 /* ASCCertificatePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C438C25D4326F003A39C4 /* ASCCertificatePreviewController.m */; };
+		FC2C438E25D4326F003A39C4 /* ASCCertificatePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C438C25D4326F003A39C4 /* ASCCertificatePreviewController.m */; };
+		FC2C439525D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C439425D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m */; };
+		FC2C439625D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C439425D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m */; };
+		FC2C43A125D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43A025D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m */; };
+		FC2C43A225D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43A025D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m */; };
+		FC2C43A825D46813003A39C4 /* ASCCertificateQLPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43A725D46813003A39C4 /* ASCCertificateQLPreview.m */; };
+		FC2C43A925D46813003A39C4 /* ASCCertificateQLPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43A725D46813003A39C4 /* ASCCertificateQLPreview.m */; };
+		FC2C43B025D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43AF25D46D66003A39C4 /* ASCCertificateQLPreviewController.m */; };
+		FC2C43B125D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC2C43AF25D46D66003A39C4 /* ASCCertificateQLPreviewController.m */; };
 		FC3B777B1BB28CE900DB9705 /* login in Resources */ = {isa = PBXBuildFile; fileRef = FC3B777A1BB28CE900DB9705 /* login */; };
 		FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
@@ -323,6 +333,16 @@
 		FC25A1A61C2E844800063A42 /* ASCTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTabViewController.m; sourceTree = "<group>"; };
 		FC2A34D4208610F0001B5784 /* ASCDocSignController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocSignController.h; sourceTree = "<group>"; };
 		FC2A34D5208610F0001B5784 /* ASCDocSignController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCDocSignController.mm; sourceTree = "<group>"; };
+		FC2C438B25D4326F003A39C4 /* ASCCertificatePreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCCertificatePreviewController.h; sourceTree = "<group>"; };
+		FC2C438C25D4326F003A39C4 /* ASCCertificatePreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCCertificatePreviewController.m; sourceTree = "<group>"; };
+		FC2C439325D4356E003A39C4 /* ASCCertificatePreviewTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCCertificatePreviewTextViewController.h; sourceTree = "<group>"; };
+		FC2C439425D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCCertificatePreviewTextViewController.m; sourceTree = "<group>"; };
+		FC2C439F25D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCCertificatePreviewTextWindowController.h; sourceTree = "<group>"; };
+		FC2C43A025D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCCertificatePreviewTextWindowController.m; sourceTree = "<group>"; };
+		FC2C43A625D46813003A39C4 /* ASCCertificateQLPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCCertificateQLPreview.h; sourceTree = "<group>"; };
+		FC2C43A725D46813003A39C4 /* ASCCertificateQLPreview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCCertificateQLPreview.m; sourceTree = "<group>"; };
+		FC2C43AE25D46D66003A39C4 /* ASCCertificateQLPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCCertificateQLPreviewController.h; sourceTree = "<group>"; };
+		FC2C43AF25D46D66003A39C4 /* ASCCertificateQLPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCCertificateQLPreviewController.m; sourceTree = "<group>"; };
 		FC3B777A1BB28CE900DB9705 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; name = login; path = Vendor/ONLYOFFICE/login; sourceTree = SOURCE_ROOT; };
 		FC3B77831BB2A94300DB9705 /* ASCEventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEventsController.h; sourceTree = "<group>"; };
 		FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEventsController.mm; sourceTree = "<group>"; };
@@ -673,6 +693,23 @@
 				FCDDD606208F3C25008AF573 /* Document-Sign.storyboard */,
 			);
 			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		FC2C438A25D43247003A39C4 /* CertificatePreview */ = {
+			isa = PBXGroup;
+			children = (
+				FC2C438B25D4326F003A39C4 /* ASCCertificatePreviewController.h */,
+				FC2C438C25D4326F003A39C4 /* ASCCertificatePreviewController.m */,
+				FC2C439325D4356E003A39C4 /* ASCCertificatePreviewTextViewController.h */,
+				FC2C439425D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m */,
+				FC2C439F25D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.h */,
+				FC2C43A025D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m */,
+				FC2C43A625D46813003A39C4 /* ASCCertificateQLPreview.h */,
+				FC2C43A725D46813003A39C4 /* ASCCertificateQLPreview.m */,
+				FC2C43AE25D46D66003A39C4 /* ASCCertificateQLPreviewController.h */,
+				FC2C43AF25D46D66003A39C4 /* ASCCertificateQLPreviewController.m */,
+			);
+			path = CertificatePreview;
 			sourceTree = "<group>";
 		};
 		FC3BFDF91BBE83AB0040C904 /* SFBPopover */ = {
@@ -1103,6 +1140,7 @@
 				FCF289782150E95F002FD438 /* About */,
 				FCF289792150E999002FD438 /* Download */,
 				FCF289772150E929002FD438 /* PresentationReporter */,
+				FC2C438A25D43247003A39C4 /* CertificatePreview */,
 				FC8AA3122084C4F100549F2D /* DocumentSignature */,
 				FCF2897A2150E9BF002FD438 /* UserInfo */,
 			);
@@ -1574,9 +1612,11 @@
 				FC0BD698258B63F700C47F95 /* NSColor+Extensions.m in Sources */,
 				FC0BD699258B63F700C47F95 /* ALView+PureLayout.m in Sources */,
 				FC0BD69A258B63F700C47F95 /* NSImage+Extensions.m in Sources */,
+				FC2C43A225D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FC0BD69B258B63F700C47F95 /* ASCTouchBarController.m in Sources */,
 				FC0BD69C258B63F700C47F95 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FC0BD69D258B63F700C47F95 /* AnalyticsHelper.m in Sources */,
+				FC2C43B125D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FC0BD69E258B63F700C47F95 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FC0BD69F258B63F700C47F95 /* ASCTabsScrubberSelectionView.m in Sources */,
 				FC0BD6A0258B63F700C47F95 /* ASCDocumentSignatureController.m in Sources */,
@@ -1595,9 +1635,12 @@
 				FC0BD6AD258B63F700C47F95 /* ASCTabCloseButtonCell.m in Sources */,
 				FC0BD6AE258B63F700C47F95 /* ASCTabTouchBarItem.m in Sources */,
 				FC0BD6AF258B63F700C47F95 /* ASCTabViewController.m in Sources */,
+				FC2C439625D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */,
 				FC0BD6B0258B63F700C47F95 /* ASCPresentationReporter.mm in Sources */,
+				FC2C43A925D46813003A39C4 /* ASCCertificateQLPreview.m in Sources */,
 				FC0BD6B1258B63F700C47F95 /* main.mm in Sources */,
 				FC0BD6B2258B63F700C47F95 /* KSNavigationController.mm in Sources */,
+				FC2C438E25D4326F003A39C4 /* ASCCertificatePreviewController.m in Sources */,
 				FC0BD6B3258B63F700C47F95 /* ASCDocumentSignatureStepController.mm in Sources */,
 				FC0BD6B4258B63F700C47F95 /* ASCButton.m in Sources */,
 				FC0BD6B5258B63F700C47F95 /* ASCDocSignController.mm in Sources */,
@@ -1641,9 +1684,11 @@
 				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
 				FCE7D169207D002700642010 /* ALView+PureLayout.m in Sources */,
 				FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */,
+				FC2C43A125D45DAD003A39C4 /* ASCCertificatePreviewTextWindowController.m in Sources */,
 				FCCC2FE621E5E1CA00FB9209 /* ASCTouchBarController.m in Sources */,
 				FCC77C6C206CE28F001B7837 /* NSLayoutConstraint+Extensions.m in Sources */,
 				FCFE61E51CAD02D4000D2418 /* AnalyticsHelper.m in Sources */,
+				FC2C43B025D46D66003A39C4 /* ASCCertificateQLPreviewController.m in Sources */,
 				FCE7D166207D002700642010 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				FCCC2FE221E5E10D00FB9209 /* ASCTabsScrubberSelectionView.m in Sources */,
 				FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */,
@@ -1662,9 +1707,12 @@
 				FCC77C91206CEE85001B7837 /* ASCTabCloseButtonCell.m in Sources */,
 				FCCC2FE121E5E10D00FB9209 /* ASCTabTouchBarItem.m in Sources */,
 				FC25A1A71C2E844800063A42 /* ASCTabViewController.m in Sources */,
+				FC2C439525D4356E003A39C4 /* ASCCertificatePreviewTextViewController.m in Sources */,
 				FC54A2941F94BCE00086F4FE /* ASCPresentationReporter.mm in Sources */,
+				FC2C43A825D46813003A39C4 /* ASCCertificateQLPreview.m in Sources */,
 				FCBC42711B9D650400405301 /* main.mm in Sources */,
 				FC8AA30E2084BFE700549F2D /* KSNavigationController.mm in Sources */,
+				FC2C438D25D4326F003A39C4 /* ASCCertificatePreviewController.m in Sources */,
 				FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */,
 				FCC77C82206CEE5B001B7837 /* ASCButton.m in Sources */,
 				FC2A34D6208610F0001B5784 /* ASCDocSignController.mm in Sources */,

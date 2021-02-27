@@ -1,14 +1,14 @@
 {
-    "id": "owncloud",
-    "name" : "ownCloud",
-    "check" : {
+    "provider": "owncloud",
+    "name": "ownCloud",
+    "check": {
         "url": "status.php"
     },
-    "editorPage" : "/apps/onlyoffice/",
+    "editorPage": "/apps/onlyoffice/",
     "startPage": "/",
-    "cryptoSupport" : "true",
+    "cryptoSupport": "true",
     "icons": {
-        "connectionlist": "./assets/listicon.svg",
-        "buttonlogo": "./assets/buttonlogo.svg"
+        "connectionsList": "./assets/listicon.svg",
+        "buttonLogo": "./assets/buttonlogo.svg"
     }
 }

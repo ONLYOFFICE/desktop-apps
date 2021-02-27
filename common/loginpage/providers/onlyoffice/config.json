@@ -8,7 +8,7 @@
     "startPage": "/Products/Files/",
     "cryptoSupport" : "true",
     "icons": {
-        "connectionlist": "./assets/listicon.svg",
-        "buttonlogo": "./assets/buttonlogo.svg"
+        "connectionsList": "./assets/listicon.svg",
+        "buttonLogo": "./assets/buttonlogo.svg"
     }
 }

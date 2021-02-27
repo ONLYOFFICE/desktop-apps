@@ -65,6 +65,8 @@
 #import "NSWindow+Extensions.h"
 #import "ASCExternalController.h"
 #import "ASCTouchBarController.h"
+#import "ASCCertificatePreviewController.h"
+#import "ASCCertificateQLPreviewController.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -134,6 +136,7 @@
     addObserverFor(CEFEventNameEditorOpenFolder, @selector(onCEFEditorOpenFolder:));
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
+    addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -443,7 +446,7 @@
         
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
         [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
@@ -759,7 +762,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
         [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+        [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
         [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
         [alert setAlertStyle:NSAlertStyleWarning];
@@ -1163,6 +1166,10 @@
             allowedFileTypes = [ASCConstants spreadsheets];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPresentation]) {
             allowedFileTypes = [ASCConstants presentations];
+        } else {
+            // filters come in view "*.docx *.pptx *.xlsx"
+            NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];
+            allowedFileTypes = [filters componentsSeparatedByString:@" "];
         }
 
         NSOpenPanel * openPanel = [NSOpenPanel openPanel];
@@ -1283,7 +1290,7 @@
 
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
                 [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
                 [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
@@ -1433,10 +1440,10 @@
 
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
-    [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+    [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
     [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
     [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
-    [alert setAlertStyle:NSWarningAlertStyle];
+    [alert setAlertStyle:NSAlertStyleWarning];
 
     NSInteger returnCode = [alert runModalSheet];
 
@@ -1597,7 +1604,7 @@
                 NSAlert * alert = [NSAlert new];
                 [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
                 [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
+                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
                 [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
                 [alert setAlertStyle:NSAlertStyleInformational];
 
@@ -1621,6 +1628,23 @@
             }
 
             [self.tabsControl removeTab:tab selected:YES];
+        }
+    }
+}
+
+- (void)onCEFCertificatePreview:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        id json = notification.userInfo;
+
+        NSString * text = json[@"text"];
+        NSString * path = json[@"path"];
+        
+        if (path && path.length > 0) {
+            ASCCertificateQLPreviewController * controller = [ASCCertificateQLPreviewController new];
+            [controller previewBy:[NSURL fileURLWithPath:path]];
+        } else if (text && text.length > 0) {
+            ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:self];
+            [previewController presentTextInfo:text];
         }
     }
 }

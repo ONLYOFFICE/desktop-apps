@@ -152,6 +152,7 @@ core_linux {
                 $$PWD/src/linux/csinglewindow.h \
                 $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
+
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/gtk_addon.cpp \
@@ -160,8 +161,10 @@ core_linux {
                 $$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
-    HEADERS += $$PWD/src/linux/cdialogopenssl.h
-    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp
+    HEADERS += $$PWD/src/linux/cdialogopenssl.h \
+                $$PWD/src/linux/cdialogcertificateinfo.h
+    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp \
+                $$PWD/src/linux/cdialogcertificateinfo.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk
@@ -225,6 +228,10 @@ core_windows {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
+
+    build_xp {
+        DEFINES += __OS_WIN_XP
+    }
 }
 
 core_release:DESTDIR = $$DESTDIR/build

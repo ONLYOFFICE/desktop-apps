@@ -82,9 +82,6 @@
                 if ( !c.startPage )
                     c.startPage = '/';
             }
-            
-            // skip Seaile before provider will release connect features in ver 8.0
-            _clouds = _clouds.filter(item => item.provider != "seafile");
         } else {
             // _clouds = [{ provider: "asc",name: "ONLYOFFICE",check: {url:"/api/2.0/capabilities.json"} }];
             _clouds = [];
