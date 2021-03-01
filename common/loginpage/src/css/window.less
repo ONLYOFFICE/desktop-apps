@@ -13,11 +13,11 @@ dialog {
     }
 
     padding: 0;
-    background: #fff;
+    background: @background-normal;
     z-index: 2;
     border-radius: 5px;
-    box-shadow: 0 2px 6px @color-gray;
-    border: 1px solid @color-gray-2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid @border-tabbar;
 
     &::backdrop {
         background-color: rgba(255,255,255,0.4);
@@ -25,13 +25,13 @@ dialog {
 
     .title {
         height: @title-height;
-        border-bottom: 1px solid @color-gray-2;
+        border-bottom: 1px solid @border-tabbar;
         display: flex;
-        color: @color-gray-dark;
+        color: @text-normal;
         align-items: center;
         justify-content: flex-end;
         padding: 5px 24px;
-        background: @color-gray-2;
+        background: @background-tabbar;
 
         .caption {
             flex-grow:1;
@@ -54,7 +54,6 @@ dialog {
     .tool.close {
         width:14px;
         height:14px;
-        /*border: 1px solid @color-gray-2;*/
         cursor: pointer;
         float: right;
         margin-left: 10px;
@@ -68,8 +67,8 @@ dialog {
             top: 50%;
             left: 0;
             margin-top: -1px;
-            background: #3a3a3a;
-            opacity: .8;
+            background: @icon-normal;
+            opacity: .7;
 
             transition: transform .3s opacity .2s;
         }
@@ -120,31 +119,6 @@ dialog {
         top: -7px;
         font-size: 12px;
     }
-}
-
-.tbox {
-    color: @color-gray-dark;
-    border: 1px solid @color-gray-3;
-    width: 100%;
-    outline: 0;
-    background: #fff;
-    font-size: 14px;
-    padding: 0 15px;
-
-    height: 36px;
-    border-radius: 3px;
-
-    &.error {
-        border-color: #e3a8a7;
-    }
-
-    &:disabled {
-        opacity:0.7;
-    }
-}
-
-::-webkit-input-placeholder {
-   color: @color-gray-light;
 }
 
 .dlg-login {

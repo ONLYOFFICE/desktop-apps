@@ -50,6 +50,7 @@ button {
     /*min-width: 1088px;*/
     min-height: 625px;
     display: flex;
+    background-color: @background-normal;
 
     /*@media(min-width: 1200) {}*/
 }
@@ -57,13 +58,13 @@ button {
 h3, caption {
     font-weight: 100;
     font-size: 24px;
-    color: @color-header;
+    color: @text-normal;
 }
 
 h4 {
     font-weight: 100;
     font-size: 18px;
-    color: @color-gray-light;
+    color: @text-secondary;
 }
 
 .main-column {
@@ -84,7 +85,7 @@ h4 {
     min-width: @col-width;
     max-width: @col-width;
     float: left;
-    border-right: @scaled-one-px solid @color-gray-3;
+    border-right: @scaled-one-px solid @border-tabbar;
 
     @media screen and (max-width: 1000px) {
         /*width: 32%;*/
@@ -109,34 +110,26 @@ h4 {
     }
 }
 
-/*
-.text {
-    color: @color-gray-dark;
-    font-size: 18px;
-    font-weight: 600;
-}
-*/
-
 .text-sub {
     color: @color-gray;
     font-size: 12px;
 }
 
 .link {
-    color: @color-blue-light;
+    color: @text-link;
 
     &:focus {
         outline: 0 none;
     }
 
     &[disabled] {
-        opacity: 0.4;
+        opacity: @disabled-element-opacity;
         cursor: default;
         pointer-events: none;
     }
 
     &.link--gray {
-        color: @color-gray-4;
+        color: @text-secondary;
     }
 
     &.link--sizem {
@@ -164,7 +157,7 @@ h4 {
 }
 
 .tool-quick-menu {
-    border-bottom: @scaled-one-px solid @color-gray-3;
+    border-bottom: @scaled-one-px solid @border-divider;
     padding: 0 0 30px 27px;
 
     h3 {
@@ -214,6 +207,10 @@ h4 {
 
 .img-el, .img-before-el {
     background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@2x.png') 2x) no-repeat;
+
+    &.theme-inverted {
+        filter: @theme-inverted-image-filter;
+    }
 }
 
 .img-format {
@@ -231,7 +228,7 @@ li.menu-item {
     a {
         display: block;
         text-decoration: none;
-        color: @color-gray-8;
+        color: @text-normal;
         font-size: 14px;
         padding: 0 27px;
         cursor: pointer;
@@ -243,31 +240,27 @@ li.menu-item {
     display: flex;
     flex-direction: column;
 
-    background-color: #fff;
+    /*background-color: #fff;*/
     &:not(.view--modal) {
         z-index: 1;
     }
 
     > li.menu-item {
         &:not(.separator):not(:last-of-type) {
-            border-bottom: @scaled-one-px solid @color-gray-3;
+            border-bottom: @scaled-one-px solid @border-divider;
         }
     }
 
     > li.menu-item:not(.separator) {
-        background-color: #fff;
+        /*background-color: #fff;*/
         transition: background-color 300ms ease-out;
 
         &:hover {
-            background-color: @color-gray-2;
+            background-color: @highlight-button-hover;
         }
 
         &.selected {
-            background: @color-gray-9;
-
-            &:hover {
-                background-color: @color-gray-2;
-            }
+            background: @highlight-button-pressed;
         }
 
         a {
@@ -283,7 +276,7 @@ li.menu-item {
         flex-grow: 1;
 
         @minus-one-px: calc(-1px / var(--pixel-ratio, 1));
-        box-shadow: inset 0 @minus-one-px 0 0 @color-gray-3;
+        box-shadow: inset 0 @minus-one-px 0 0 @border-divider;
     }
 }
 
@@ -320,7 +313,7 @@ li.menu-item {
         &[data-cprov] {
             width: 160px;
             margin: 0 20px 20px 0;
-            color: @color-gray-dark;
+            color: @text-normal;
 
             img.icon {
                 height: 100%;
@@ -425,11 +418,17 @@ li.menu-item {
         width: 23px;
         height: 23px;
         padding: 0;
+        opacity: .8;
         background-color: transparent;
-        background-position: -82px -48px;
+
+        .icon {
+            width: 23px;
+            height: 23px;
+            background-position: -82px -48px;
+        }
 
         &:hover {
-            background-position-x: -106px;
+            opacity: 1;
         }
     }
 
@@ -470,7 +469,7 @@ li.menu-item {
     td, th {
         text-align: left;
         border: 0 none;
-        border-bottom: @scaled-one-px solid @color-gray-3;
+        border-bottom: @scaled-one-px solid @border-divider;
         font-weight: normal;
 
         overflow: hidden;
@@ -484,11 +483,11 @@ li.menu-item {
 
     &.list tr {
         cursor: pointer;
-        background-color: #fff;
+        background-color: @background-normal;
         transition: background-color 300ms ease-out;
 
         &:hover {
-            background-color: @color-gray-2;
+            background-color: @highlight-button-hover;
         }
     }
 
@@ -629,12 +628,13 @@ li.menu-item {
 
     .primary {
         font-size: 15px;
-        color: @color-gray-dark;
+        color: @text-normal;
     }
 
     .minor {
         font-size: 11px;
-        opacity: 0.7;
+        /*opacity: 0.7;*/
+        color: @text-secondary;
     }
 }
 
@@ -643,7 +643,7 @@ li.menu-item {
     text-align: left;
 
     &~.table-box {
-        border-top: @scaled-one-px solid @color-gray-3;
+        border-top: @scaled-one-px solid @border-divider;
     }
 }
 
@@ -653,6 +653,10 @@ li.menu-item {
 
     &:not(.empty) .text-emptylist {
         display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: @background-normal;
     }
 }
 
@@ -696,6 +700,7 @@ li.menu-item {
 
     .link-connect {
         font-size: 14px;
+        color: @text-normal;
 
         a {
             margin: 0 0 0 10px;
@@ -788,6 +793,7 @@ li.menu-item {
     text-align: left;
     font-size: 13px;
     user-select: text;
+    color: @text-normal;
 
     .row-copyright {
         margin-bottom: 0;
@@ -987,7 +993,7 @@ li.menu-item {
 **/
 
 .sett__caption {
-    color: @color-gray-8;
+    color: @text-normal;
     font-size: 14px;
 
     &[disabled] {

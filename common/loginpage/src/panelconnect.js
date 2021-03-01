@@ -175,7 +175,9 @@
                         </td>
                         <td class="cell-tools">
                             <div class="hlayout">
-                              <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
+                                <button class="btn-quick logout" tooltip="${utils.Lang.menuLogout}">
+                                    <i class="icon img-el theme-inverted" />
+                                </button>
                             </span>
                         </td>`;
 

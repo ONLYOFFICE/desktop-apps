@@ -4,45 +4,43 @@
 button {
     /*width: 135px;*/
     height: 36px;
-    color: #fff;
+    color: @text-inverse;
     font-size: 14px;
     outline: 0;
     border: none 0;
     cursor: pointer;
     border-radius: @border-radius;
-    background-color: @color-gray-4;
+    background-color: @background-primary-dialog-button;
     padding: 0 36px;
 
-    &.primary {
-        background-color: @color-blue-light;
-
-        &:hover {
-            background-color: @color-blue-3;
-        }
-
-        &:active {
-            background-color: @color-blue-2;
-        }
-
-        &:disabled {
-            background-color: @color-blue-light;
-            color: #a7cff8;
-        }
-    }
-
-    &:hover {
-        background-color: @color-gray-6;
+    &:hover:not(:disabled) {
+        background-color: @highlight-primary-dialog-button-hover;
     }
 
     &:active {
-        background-color: @color-gray-5;
+        background-color: @highlight-primary-dialog-button-hover;
     }
 
     &:disabled {
-        background-color: @color-gray-4;
         cursor: default;
         opacity: .5;
-        color: @color-gray-2;
+    }
+
+    &.primary {
+        background-color: @background-accent-button;
+
+        &:hover {
+            background-color: @highlight-accent-button-hover;
+        }
+
+        &:active {
+            background-color: @highlight-accent-button-pressed;
+        }
+
+        &:disabled {
+            /*background-color: @color-blue-light;*/
+            color: #a7cff8;
+        }
     }
 
     .btn-quick {
@@ -54,17 +52,17 @@ button {
     }
 
     &.btn--light {
-        border: 1px solid @color-gray-3;
-        background-color: #fff;
+        border: 1px solid @border-regular-control;
+        background-color: @background-normal;
 
         &:hover {
-            border-color: @color-gray-2;
-            background-color: @color-gray-2;
+            border-color: @highlight-button-hover;
+            background-color: @highlight-button-hover;
         }
 
         &:active {
-            border-color: @color-gray-5;
-            background-color: @color-gray-5;
+            border-color: @highlight-button-pressed;
+            background-color: @highlight-button-pressed;
         }
     }
 
@@ -222,9 +220,9 @@ input[type="radio"] {
         content : attr(tooltip);
         opacity : 0;
 
-        color: #444;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        background: #fff;
+        color: @text-normal;
+        border: 1px solid @border-regular-control;
+        background: @background-normal;
         border-radius: 4px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
         padding: 5px 12px;
@@ -253,7 +251,7 @@ input[type="radio"] {
     width: 200px;
 
     &:hover:after {
-        border-color: @color-gray;
+        /*border-color: @color-gray;*/
     }
 
     .dropdown.bootstrap-select:not([class=combo-box]) {
@@ -261,13 +259,18 @@ input[type="radio"] {
     }
 
     .btn {
-        background-color: #fff;
-        border: 1px solid @color-gray-3;
-        color: @color-gray-dark;
+        background-color: @background-normal;
+        border: 1px solid @border-regular-control;
+        color: @text-normal;
         padding-left: 15px;
+
+        &:hover {
+            background-color: @background-normal;
+        }
 
         &:focus {
             outline: 0 none !important;
+            border-color: @border-control-focus;
         }
 
         .filter-option {
@@ -280,7 +283,7 @@ input[type="radio"] {
 .bootstrap-select {
     .dropdown-toggle { 
         .caret {
-            border: solid @color-gray-light;
+            border: solid @icon-normal;
             border-width: 2px 2px 0 0;
             width: 10px;
             height: 10px;
@@ -304,28 +307,73 @@ input[type="radio"] {
 *
 */
 .dropdown-menu {
+    background-color: @background-normal;
+
     li > a {
         cursor: pointer;
         font-size: 13px;
-        color: @color-gray;
+        color: @text-normal;
 
         &:hover, &:focus {
             outline: none;
-            background-color: @color-gray-2;
+            color: @text-normal-pressed;
+            background-color: @highlight-button-hover;
         }
     }
 
     > .active > a {
-        background-color: @color-gray-4;
+        background-color: @highlight-button-hover;
 
         &:hover, &:focus {
-            background-color: @color-gray-4;
+            background-color: @highlight-button-hover;
         }
     }
 
     > .disabled > a {
+        color: @text-normal;
+        opacity: @disabled-element-opacity;
+
         &:hover {
             cursor: default;
         }
     }
+}
+
+/*
+*     text input
+*
+*/
+
+.tbox {
+    color: @text-normal;
+    border: 1px solid @border-regular-control;
+    width: 100%;
+    outline: 0;
+    background: @background-normal;
+    font-size: 14px;
+    padding: 0 15px;
+
+    height: 36px;
+    border-radius: 3px;
+
+    &.error {
+        border-color: #e3a8a7;
+    }
+
+    &:disabled {
+        opacity:0.7;
+    }
+
+    &:focus {
+        border-color: @border-control-focus;
+    }
+
+    &::selection{
+        background: @highlight-text-select;
+        color: @text-inverse;
+    }
+}
+
+::-webkit-input-placeholder {
+   color: @text-tertiary;
 }
