@@ -88,8 +88,6 @@ protected:
     void setScreenScalingFactor(int) override;
     int calcTitleCaptionWidth() override;
 
-    void onLocalFileSaveAs(void *);
-
 private slots:
     void onClickButtonHome();
 

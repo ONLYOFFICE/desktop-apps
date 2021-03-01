@@ -93,7 +93,7 @@
         _cefId = [cefId integerValue];
     }
 
-    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:@"Document-Sign" bundle:[NSBundle mainBundle]];
+    NSStoryboard * storyboard = [NSStoryboard storyboardWithName:StoryboardNameSign bundle:[NSBundle mainBundle]];
 
     if (storyboard) {
         NSWindowController * windowController = [storyboard instantiateControllerWithIdentifier:@"DocSignWindowController"];

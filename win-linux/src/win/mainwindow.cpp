@@ -430,16 +430,6 @@ qDebug() << "WM_CLOSE";
         break;
 
     case WM_MOVING: {
-#if defined(__APP_MULTI_WINDOW)
-        if ( window->movedByTab() ) {
-            POINT pt{0};
-
-            if ( GetCursorPos(&pt) ) {
-                AscAppManager::processMainWindowMoving(size_t(window), QPoint(pt.x, pt.y));
-            }
-        }
-
-#endif
         break;
     }
 
@@ -783,7 +773,7 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 
 void CMainWindow::slot_windowClose()
 {
-    AscAppManager::closeMainWindow( size_t(this) );
+    AscAppManager::closeMainWindow();
 }
 
 void CMainWindow::slot_modalDialog(bool status, HWND h)

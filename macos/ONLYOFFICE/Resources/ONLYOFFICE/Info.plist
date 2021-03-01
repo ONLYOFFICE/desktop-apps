@@ -277,6 +277,20 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>potx</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PowerPoint Template (.potx)</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.openxmlformats.presentationml.template</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>pptx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -468,7 +482,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.1.1</string>
+	<string>6.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -483,7 +497,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>460</string>
+	<string>480</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>

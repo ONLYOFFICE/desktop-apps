@@ -91,10 +91,6 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
-    auto mainWindow() -> CMainWindow * const {
-        return m_appmanager.m_vecWindows.empty() ? nullptr : reinterpret_cast<CMainWindow * const>(m_appmanager.m_vecWindows[0]);
-    }
-
     auto extendStylesheets(const std::vector<QString>& veccss) -> void {
         if ( !veccss.empty() ) {
             m_appmanager.m_vecStyles.push_back(veccss[0]);

@@ -73,6 +73,11 @@ static NSString * const kSchemeApp                          = @"oo-office";
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
 
+// Storyboard
+static NSString * const StoryboardNameMain                  = @"Main";
+static NSString * const StoryboardNameReporter              = @"Presentation-Reporter";
+static NSString * const StoryboardNameSign                  = @"Document-Sign";
+
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
@@ -128,6 +133,7 @@ static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppAct
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
+static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
 
 @interface ASCConstants : NSObject
 

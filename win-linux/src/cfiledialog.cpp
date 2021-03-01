@@ -122,7 +122,7 @@ public:
     static auto nativeOpenDialog(const CFileDialogOpenArguments& args, bool& isSupport) -> QStringList {
         QStringList out;
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
         isSupport = false;
         HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
         if ( SUCCEEDED(hr) ) {

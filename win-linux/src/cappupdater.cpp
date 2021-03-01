@@ -185,7 +185,7 @@ void CAppUpdater::parse_app_cast(const std::wstring& xmlname)
             if ( _match[1].str().compare(VER_FILEVERSION_STR) > 0 ) {
                 qDebug() << "bigger version. need to update";
 
-//                CMessage mess(AscAppManager::topWindow()->handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
+//                CMessage mess(AscAppManager::mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
 //                mess.warning("Update found");
 //                        win_sparkle_check_update_with_ui_and_install()
 //                _re_package_url = "sparkle:os=\"windows-x64[\w\W]+url=\"(https?\:\/\/[^\"]+)";

@@ -1057,51 +1057,6 @@ void CMainPanel::onDocumentPrint(void * opts)
 
 void CMainPanel::onLocalFileSaveAs(void * d)
 {
-    CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
-
-    QFileInfo info( QString::fromStdWString(pData->get_Path()) );
-    if ( !info.fileName().isEmpty() ) {
-        bool _keep_path = false;
-        QString fullPath;
-        if ( info.exists() ) fullPath = info.absoluteFilePath();
-        else fullPath = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
-
-        CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-        dlg.setFormats(pData->get_SupportFormats());
-
-        CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
-        pSaveData->put_Id(pData->get_Id());
-        pSaveData->put_Path(L"");
-
-        if ( dlg.modalSaveAs(fullPath) ) {
-            if ( _keep_path )
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
-
-            bool _allowed = true;
-            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
-            }
-
-            if ( _allowed ) {
-                pSaveData->put_Path(fullPath.toStdWString());
-                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
-
-                pSaveData->put_FileType(format > -1 ? format : 0);
-            }
-        }
-
-        CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-        pEvent->m_pData = pSaveData;
-
-        AscAppManager::getInstance().Apply(pEvent);
-
-//        RELEASEINTERFACE(pData)
-//        RELEASEINTERFACE(pEvent)
-    }
-
-    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onFullScreen(int id, bool apply)

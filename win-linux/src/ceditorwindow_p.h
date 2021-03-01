@@ -451,11 +451,6 @@ public:
         AscAppManager::getInstance().commonEvents().signal(&_event);
     }
 
-    void onLocalFileSaveAs(void * d) override
-    {
-        window->onLocalFileSaveAs(d);
-    }
-
     void onScreenScalingFactor(int f)
     {
         if ( window->isCustomWindowStyle() ) {

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * (c) Copyright Ascensio System SIA 2010-2021
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,40 +28,61 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+//
+//  ASCCertificateQLPreview.m
+//  ONLYOFFICE
+//
+//  Created by Alexander Yuzhin on 10.02.2021.
+//  Copyright © 2021 Ascensio System SIA. All rights reserved.
+//
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
+#import "ASCCertificateQLPreview.h"
 
-namespace CEditorTools
-{
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, ParentHandle p)
-            : view(v)
-            , context(c)
-            , pagetstart(s)
-            , pagestop(b)
-            , parent(p)
-        {}
+@interface ASCCertificateQLPreview()
+@property (nonatomic) NSURL * originalUrl;
+@end
 
-        CCefView * view;
-        QAscPrinterContext * context;
-        int pagetstart,
-            pagestop;
-        ParentHandle parent;
-    };
+@implementation ASCCertificateQLPreview
 
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
-
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
+- (instancetype)init:(NSURL *)url {
+    self = [super init];
+    if (self) {
+        _fileUrl = url;
+    }
+    return self;
 }
 
-#endif // CEDITORTOOLS_H
+- (instancetype)init:(NSString *)path rename:(BOOL)rename {
+    self = [super init];
+    if (self) {
+        if (rename) {
+            NSString * linkPath = [path stringByAppendingString:@".cer"];
+            if ([[NSFileManager defaultManager] linkItemAtPath:path toPath:linkPath error:nil]) {
+                _originalUrl = [NSURL fileURLWithPath:path];
+                _fileUrl = [NSURL fileURLWithPath:linkPath];
+            }
+        } else {
+            _fileUrl = [NSURL fileURLWithPath:path];
+        }
+    }
+    return self;
+}
+
+- (NSURL *)previewItemURL {
+    return _fileUrl;
+}
+
+- (NSString *)previewItemTitle {
+    return NSLocalizedString(@"Signature Details", nil);
+}
+
+- (void)cleanup {
+    [[NSFileManager defaultManager] removeItemAtURL:_fileUrl error:nil];
+    if (_originalUrl) {
+        [[NSFileManager defaultManager] removeItemAtURL:_originalUrl error:nil];
+    }
+}
+
+@end

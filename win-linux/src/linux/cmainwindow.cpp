@@ -297,7 +297,7 @@ void CMainWindow::slot_windowClose()
 //        reg_user.setValue("windowstate", saveState());
     }
 
-    AscAppManager::closeMainWindow( (size_t)this );
+    AscAppManager::closeMainWindow();
 }
 
 void CMainWindow::slot_modalDialog(bool status, WId h)

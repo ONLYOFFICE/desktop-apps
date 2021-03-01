@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * (c) Copyright Ascensio System SIA 2010-2021
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,40 +28,30 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+//
+//  ASCCertificatePreviewTextWindowController.m
+//  ONLYOFFICE
+//
+//  Created by Alexander Yuzhin on 10.02.2021.
+//  Copyright © 2021 Ascensio System SIA. All rights reserved.
+//
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
+#import "ASCCertificatePreviewTextWindowController.h"
 
-namespace CEditorTools
-{
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, ParentHandle p)
-            : view(v)
-            , context(c)
-            , pagetstart(s)
-            , pagestop(b)
-            , parent(p)
-        {}
+@interface ASCCertificatePreviewTextWindowController () <NSWindowDelegate>
 
-        CCefView * view;
-        QAscPrinterContext * context;
-        int pagetstart,
-            pagestop;
-        ParentHandle parent;
-    };
+@end
 
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
+@implementation ASCCertificatePreviewTextWindowController
 
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
+- (void)windowDidLoad {
+    [super windowDidLoad];
 }
 
-#endif // CEDITORTOOLS_H
+- (void)windowWillClose:(NSNotification *)notification {
+    [NSApp stopModal];
+}
+
+@end

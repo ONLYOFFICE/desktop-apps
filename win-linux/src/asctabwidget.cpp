@@ -1118,9 +1118,9 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             disconnect(cefConnection);
 
 #ifdef _LINUX
-            AscAppManager::topWindow()->show(false);
+            AscAppManager::mainWindow()->show(false);
 #else
-            AscAppManager::topWindow()->show(false);
+            AscAppManager::mainWindow()->show(false);
 #endif
 
             int index = m_dataFullScreen->tabindex();
@@ -1143,7 +1143,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 
             m_dataFullScreen->parent = WindowHelper::constructFullscreenWidget(fsWidget);
             fsWidget->view()->setFocusToCef();
-            AscAppManager::topWindow()->hide();
+            AscAppManager::mainWindow()->hide();
 
             cefConnection = connect(fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;

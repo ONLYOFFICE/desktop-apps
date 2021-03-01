@@ -1,13 +1,13 @@
 {
-    "id": "seafile",
-    "name" : "Seafile",
-    "check" : {
+    "provider": "seafile",
+    "name": "Seafile",
+    "check": {
         "url": "/api2/server-info/"
     },
-    "editorPage" : "regex:\/lib\/(?:[\w-]{32,})\/file\/",
-    "cryptoSupport" : "true",
+    "editorPage": "regex:\/lib\/(?:[\w-]{32,})\/file\/",
+    "cryptoSupport": "true",
     "icons": {
-        "connectionlist": "./assets/listicon.svg",
-        "buttonlogo": "./assets/buttonlogo.svg"
+        "connectionsList": "./assets/listicon.svg",
+        "buttonLogo": "./assets/buttonlogo.svg"
     }
 }

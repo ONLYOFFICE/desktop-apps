@@ -83,7 +83,6 @@ class CAscApplicationManagerWrapper : public QObject, public QAscApplicationMana
     Q_OBJECT
 
 private:
-    std::vector<size_t> m_vecWindows;
     std::vector<size_t> m_vecEditors;
     std::vector<QString> m_vecStyles;
     std::vector<QString> m_vecStyles2x;
@@ -97,6 +96,7 @@ private:
 
     CWindowsQueue<sWinTag> * m_queueToClose;
     CEventDriver m_eventDriver;
+    CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CAppUpdater> m_updater;
 public:
@@ -144,16 +144,13 @@ public:
 
     static void             startApp();
     static void             initializeApp();
-    static CMainWindow *    createMainWindow(QRect&);
     static void             gotoMainWindow();
     static void             handleInputCmd(const std::vector<std::wstring>&);
-    static void             closeMainWindow(const size_t);
+    static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);
 
-    static void             processMainWindowMoving(const size_t, const QPoint&);
     static void             editorWindowMoving(const size_t, const QPoint&);
-    static uint             countMainWindow();
-    static CMainWindow *    topWindow();
+    static CMainWindow *    mainWindow();
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");

@@ -229,7 +229,7 @@ void CSingleWindowPlatform::setWindowTitle(const QString& t)
 void CSingleWindowPlatform::captureMouse()
 {
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent(AscAppManager::topWindow(), &_event);
+    QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
 
     setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
 
