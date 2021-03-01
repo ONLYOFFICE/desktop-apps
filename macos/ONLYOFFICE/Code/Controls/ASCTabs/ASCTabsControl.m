@@ -338,6 +338,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 - (void)updateAuxiliaryButtons {
     NSClipView *contentView = self.scrollView.contentView;
     
+    if (NSWidth(contentView.bounds) < 1) {
+        return;
+    }
+    
     BOOL isDocumentClipped = (contentView.subviews.count > 0) && (NSMaxX([contentView.subviews[0] frame]) > NSWidth(contentView.bounds));
     BOOL needUpdateView = ([self.scrollLeftButton isHidden] == isDocumentClipped);
     
