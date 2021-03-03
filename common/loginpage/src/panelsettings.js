@@ -117,7 +117,7 @@
                                     </div>
                                 </section>
                                 <div class="lst-tools">
-                                    <button class="btn" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                    <button class="btn btn--primary" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
                                 <div class="spacer" />

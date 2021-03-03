@@ -57,7 +57,7 @@
                           <h4 class="text-description" l10n>${_lang.welDescr}</h4>
                           <img class="img-welcome">
                           <div class="tools-connect">
-                            <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
+                            <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                             <section class="link-connect">
                               <label l10n>${_lang.textHavePortal}</label>
                               <a class="login link" href="#" l10n>${_lang.btnConnect}</a>
