@@ -84,7 +84,7 @@
                                 </nav>
                               </div>
                               <div class="tools-connect">
-                                <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
+                                <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                 <section class="link-connect">
                                   <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
                                 </section>
@@ -103,7 +103,7 @@
                                     </section>
                                     <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
-                                        <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
+                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                         <section class="link-connect">
                                             <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
                                         </section>
@@ -118,7 +118,7 @@
                           <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
                           <div class="table-box flex-fill"><table class="table-files list"></table></div>
                           <div class="lst-tools">
-                            <button id="btn-addportal" class="btn login" l10n>${_lang.btnAddPortal}</button>
+                            <button id="btn-addportal" class="btn btn--primary login" l10n>${_lang.btnAddPortal}</button>
                           </div>
                         </div>
                       </div>
@@ -127,7 +127,7 @@
         if ( config.portals.checklist.length ) {
             const provider_button_template = (provider, name, iconpath) => {
                                                 const button_el = `<img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>`;
-                                                return `<button class="btn btn--big btn--light btn--svg login" data-cprov='${provider}'>
+                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
                                                     ${!!iconpath ? button_el : name}
                                                 </button>`;
                                             }

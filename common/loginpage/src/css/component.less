@@ -10,36 +10,51 @@ button {
     border: none 0;
     cursor: pointer;
     border-radius: @border-radius;
-    background-color: @background-primary-dialog-button;
     padding: 0 36px;
-
-    &:hover:not(:disabled) {
-        background-color: @highlight-primary-dialog-button-hover;
-    }
-
-    &:active {
-        background-color: @highlight-primary-dialog-button-hover;
-    }
 
     &:disabled {
         cursor: default;
         opacity: .5;
     }
 
-    &.primary {
-        background-color: @background-accent-button;
+    &.btn {
+        border: 1px solid @border-regular-control;
+        background-color: @background-button;
 
-        &:hover {
-            background-color: @highlight-accent-button-hover;
+        &:hover:not(:disabled) {
+            border-color: @highlight-button-hover;
+            background-color: @highlight-button-hover;
         }
 
         &:active {
-            background-color: @highlight-accent-button-pressed;
+            border-color: @highlight-button-pressed;
+            background-color: @highlight-button-pressed;
         }
 
-        &:disabled {
-            /*background-color: @color-blue-light;*/
-            color: #a7cff8;
+        &.btn--landing {
+            background-color: @background-accent-button;
+            border: 0 none;
+
+            &:hover {
+                background-color: @highlight-accent-button-hover;
+            }
+
+            &:active {
+                background-color: @highlight-accent-button-pressed;
+            }
+        }
+
+        &.btn--primary {
+            background-color: @background-primary-button;
+            border: 0 none;
+
+            &:hover:not(:disabled) {
+                background-color: @highlight-primary-button-hover;
+            }
+
+            &:active {
+                background-color: @highlight-primary-button-pressed;
+            }
         }
     }
 
@@ -49,21 +64,6 @@ button {
 
     &.btn--big {
         height: 50px;
-    }
-
-    &.btn--light {
-        border: 1px solid @border-regular-control;
-        background-color: @background-normal;
-
-        &:hover {
-            border-color: @highlight-button-hover;
-            background-color: @highlight-button-hover;
-        }
-
-        &:active {
-            border-color: @highlight-button-pressed;
-            background-color: @highlight-button-pressed;
-        }
     }
 
     &.btn--svg {
