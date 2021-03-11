@@ -156,6 +156,15 @@
             $btnApply.disable(false);
         };
 
+        function _apply_theme(name) {
+            if ( !$("body").hasClass(name) ) {
+                let _cls = document.body.className.replace(/theme-\w+/,'');
+                document.body.className = `${_cls} ${name}`;
+
+                localStorage.setItem('ui-theme', name);
+            }
+        };
+
         const _validate_user_name = name => {
             // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
 
@@ -200,6 +209,8 @@
                 if ( $optsUITheme ) {
                     _new_settings.uitheme = $optsUITheme.val();
                     $optsUITheme.selectpicker('refresh');
+
+                    _apply_theme(_new_settings.uitheme);
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
