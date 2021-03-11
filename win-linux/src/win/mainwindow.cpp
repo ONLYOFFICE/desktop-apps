@@ -124,7 +124,8 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = WINDOW_CLASS_NAME;
-    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+//    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -147,7 +148,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
-    m_pMainPanel->applyTheme(AscAppManager::theme());
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
 
@@ -495,9 +495,9 @@ qDebug() << "WM_CLOSE";
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+        ::SetDCPenColor(hDC, AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder));
 
-        HBRUSH hBrush = ::CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
@@ -1004,4 +1004,6 @@ void CMainWindow::bringToTop() const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CMainWindowBase::applyTheme(theme);
+
+    RedrawWindow(hWnd, nullptr, nullptr, RDW_INVALIDATE);
 }

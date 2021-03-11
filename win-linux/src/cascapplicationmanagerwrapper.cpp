@@ -77,6 +77,8 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
     NSBaseVideoLibrary::Init(nullptr);
+
+    m_themes = std::make_shared<CThemes>();
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
@@ -911,7 +913,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
-    AscAppManager::getInstance().applyTheme(theme(), true);
+    AscAppManager::getInstance().applyTheme(themes().current(), true);
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1340,6 +1342,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             wstring sets;
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
+            case 150: sets = L"1.5"; break;
             case 200: sets = L"2"; break;
             default: sets = L"default";
             }
@@ -1395,27 +1398,22 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
 
 void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 {
-    GET_REGISTRY_USER(_reg_user);
+    APP_CAST(_app);
 
-    QString new_theme = QString::fromStdWString(theme),
-            old_theme = _reg_user.value("UITheme", "theme-light").toString();
-    if ( force || new_theme != old_theme ) {
-        _reg_user.setValue("UITheme", new_theme);
-
-        if ( mainWindow() )
-            mainWindow()->applyTheme(theme);
-
-        std::wstring params{InputArgs::change_webapps_param(QString("&uitheme=" + old_theme).toStdWString(),
-                                            QString("&uitheme=" + new_theme).toStdWString()) };
+    if ( !_app.m_themes->isCurrent(theme) ) {
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current(), L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
+        // TODO: remove
+        if ( mainWindow() ) mainWindow()->applyTheme(theme);
+
+        _app.m_themes->setCurrent(theme);
     }
 }
 
-std::wstring CAscApplicationManagerWrapper::theme()
+CThemes& CAscApplicationManagerWrapper::themes()
 {
-    GET_REGISTRY_USER(_reg_user);
-    return _reg_user.value("UITheme", "theme-light").toString().toStdWString();
+    return *(AscAppManager::getInstance().m_themes);
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()

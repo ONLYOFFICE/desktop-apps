@@ -54,6 +54,7 @@
 #endif
 
 #include "cappupdater.h"
+#include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
@@ -99,6 +100,7 @@ private:
     CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CAppUpdater> m_updater;
+    std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -163,7 +165,7 @@ public:
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
-    static std::wstring     theme();
+    static CThemes &        themes();
 
     static ParentHandle     windowHandleFromId(int id);
 

@@ -71,8 +71,8 @@ public:
     int  tabCloseRequest(int index = -1);
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
-    void applyTheme(const std::wstring&);
 
+    virtual void applyTheme(const std::wstring&);
     virtual void updateScaling(int);
 
 #ifdef __linux

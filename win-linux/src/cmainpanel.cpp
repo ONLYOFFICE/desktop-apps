@@ -100,6 +100,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -115,6 +116,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
     m_pTabs->activate(false);
+    m_pTabs->applyUITheme(AscAppManager::themes().current());
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
@@ -152,7 +154,8 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
-        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
+//        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
+        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);
@@ -197,7 +200,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     }
 
     m_pTabs->setAutoFillBackground(true);
-    m_pTabs->setPalette(palette);
+//    m_pTabs->setPalette(palette);
     m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
 
@@ -1203,12 +1206,24 @@ void CMainPanel::onOutsideAuth(QString json)
 
 void CMainPanel::applyTheme(const std::wstring& theme)
 {
+    this->setProperty("uitheme", QString::fromStdWString(theme));
+
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
             AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
         }
     }
+
+//    m_pTabs->style()->polish(m_pTabs);
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if ( m_pButtonMinimize ) {
+        m_pButtonMinimize->style()->polish(m_pButtonMinimize);
+        m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+        m_pButtonClose->style()->polish(m_pButtonClose);
+    }
+    style()->polish(this);
+    update();
 
     m_pTabs->applyUITheme(theme);
 }

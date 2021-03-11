@@ -183,6 +183,54 @@ QPushButton#toolButtonDownload::menu-indicator {
     left: -4px;
 }
 
+/**************************/
+/* dark theme definitions */
+/**************************/
+
+#mainPanel[uitheme=theme-dark] #centralWidget {
+    background-color: #f00;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {
+    border-right-color: #505050;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=active] {
+    background: #333;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=normal] {
+    background: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=normal]:hover {
+    background: #555;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize {
+    background-image:url(:/max_light.png);
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize,
+    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonClose
+{
+    background-image:url(:/minclose_light.png);
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:hover,
+    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize:hover
+{
+    background-color: #555;
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:pressed,
+    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize:pressed
+{
+    background-color: #606060;
+}
+
+/**************************/
+
 QTabBar {
     font-size: 11px;
 }

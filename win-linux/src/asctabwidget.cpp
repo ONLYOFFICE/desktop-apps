@@ -1219,10 +1219,10 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
     };
 
     QRegExp r("QTabBar::tab-label\\s?\\{\\s?active:\\s?([^;]{4,7});normal:\\s?([^;]{4,7})");
-    if (!(r.indexIn(stylesheet) < 0)) {
-        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Active, _string_to_color(r.cap(1)) );
-        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Inactive, _string_to_color(r.cap(2)) );
-    }
+//    if (!(r.indexIn(stylesheet) < 0)) {
+//        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Active, _string_to_color(r.cap(1)) );
+//        ((CTabBar *)tabBar())->setTabTextColor(QPalette::Inactive, _string_to_color(r.cap(2)) );
+//    }
 
     r.setPattern("QTabBar::tab-icon\\s*\\{([^\\}]+)");
     if ( !(r.indexIn(stylesheet) < 0) ) {
@@ -1237,5 +1237,21 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 
 void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
-    m_isDarkTheme = theme == L"theme-dark";
+    m_isDarkTheme = theme == NSThemeDark::theme_id;
+qDebug() << "set pallete" << QString::fromStdWString(theme) << AscAppManager::themes().color(theme, CThemes::ColorRole::ecrWindowBackground).red();
+
+    CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
+    QPalette _palette{palette()};
+    _palette.setColor(QPalette::Background, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrWindowBackground));
+//    setPalette(_palette);
+    style()->polish(this);
+
+    _palette.setColor(QPalette::Background, QColor("#0ff"));
+//    _tabbar.setPalette(_palette);
+
+    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
+    _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextNormal));
+    _tabbar.style()->polish(&_tabbar);
+
+    update();
 }

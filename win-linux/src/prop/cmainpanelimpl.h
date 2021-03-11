@@ -43,10 +43,12 @@ class CMainPanelImpl : public CMainPanel
 public:
     CMainPanelImpl(QWidget *, bool, uchar);
 
-    void updateScaling(int);
-    void onLocalOptions(const QString&);
+    void updateScaling(int) override;
+    void applyTheme(const std::wstring&) override;
+
+    void onLocalOptions(const QString&) override;
 private:
-    void refreshAboutVersion();
+    void refreshAboutVersion() override;
 };
 
 #endif // CMAINPANELIMPL_H

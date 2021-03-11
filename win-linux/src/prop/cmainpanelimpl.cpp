@@ -74,6 +74,8 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["uiscaling"] = _force_value == L"1" ? 100 : _force_value == L"2" ? 200 : 0;
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::theme());
 
+    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
@@ -84,6 +86,17 @@ void CMainPanelImpl::updateScaling(int dpiratio)
     CMainPanel::updateScaling(dpiratio);
 
     QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
+
+void CMainPanelImpl::applyTheme(const std::wstring& theme)
+{
+    CMainPanel::applyTheme(theme);
+
+    int dpiratio = scaling();
+    std::wstring prefix{AscAppManager::themes().value(theme, CThemes::ColorRole::ecrLogoColor)};
+    QString logo_name = QString(":/logo_%1%2.png")
+            .arg(QString::fromStdWString(prefix))
+            .arg(dpiratio > 1 ? dpiratio > 1.5 ? "@2x" : "@1.5x" : "");
+    QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
     m_pButtonMain->setIcon(QIcon(pixmap));
     m_pButtonMain->setIconSize(pixmap.size());
