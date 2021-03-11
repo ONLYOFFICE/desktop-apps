@@ -806,6 +806,8 @@ void CMainWindow::slot_mainPageReady()
     if ( osvi.dwMajorVersion > 5 ) {
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
+        const std::wstring argname{L"--updates-appcast-url"};
+        QString _appcast_url = !InputArgs::contains(argname) ? URL_APPCAST_UPDATES : QString::fromStdWString(InputArgs::argument_value(argname));
         static bool _init = false;
         if ( !_init ) {
             _init = true;
@@ -820,7 +822,7 @@ void CMainWindow::slot_mainPageReady()
             win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
                                             _prod_name.toStdWString().c_str(),
                                             QString(VER_FILEVERSION_STR).toStdWString().c_str());
-            win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+            win_sparkle_set_appcast_url(_appcast_url.toStdString());
             win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
 
             win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
@@ -831,7 +833,7 @@ void CMainWindow::slot_mainPageReady()
         }
 
         AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+        CLogger::log("updates is on: " + _appcast_url);
 
 #define RATE_MS_DAY 3600*24
 #define RATE_MS_WEEK RATE_MS_DAY*7
