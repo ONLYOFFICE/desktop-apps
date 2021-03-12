@@ -822,7 +822,7 @@ void CMainWindow::slot_mainPageReady()
             win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
                                             _prod_name.toStdWString().c_str(),
                                             QString(VER_FILEVERSION_STR).toStdWString().c_str());
-            win_sparkle_set_appcast_url(_appcast_url.toStdString());
+            win_sparkle_set_appcast_url(_appcast_url.toStdString().c_str());
             win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
 
             win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
