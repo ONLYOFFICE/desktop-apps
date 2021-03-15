@@ -381,7 +381,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     return tab_index;
 }
 
-int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, const QString& service)
+int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, const QString& service, const QString& entrypage)
 {
     if ( service.isEmpty() || !type.contains(QRegularExpression("sso|outer")) ) return -1;
 
@@ -399,8 +399,8 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
         pView->cef()->SetExternalCloud(service.toStdWString());
 
         QString _postfix;
-        if (service == "onlyoffice") _postfix = "/Products/Files/?desktop=true";
-        pView->cef()->load((portal + _postfix).toStdWString());
+        if (service == "onlyoffice") _postfix = "/?desktop=true";
+        pView->cef()->load((portal + entrypage + _postfix).toStdWString());
     }
 
     QString _portal = portal.isEmpty() ? Utils::getPortalName(service) : Utils::getPortalName(portal);
@@ -556,9 +556,9 @@ void CAscTabWidget::updateTabIcon(int index)
                 tab_theme = m_isDarkTheme ? CTabBar::DarkTab : CTabBar::LightTab;
             } else {
                 switch ( tab_type ) {
-                case etPresentation: active_tab_color = QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabActiveSlide)); break;
-                case etSpreadsheet: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabActiveCell)); break;
-                case etDocument: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabActiveWord)); break;
+                case etPresentation: active_tab_color = QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSlideActive)); break;
+                case etSpreadsheet: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabCellActive)); break;
+                case etDocument: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabWordActive)); break;
                 case etPortal:
                     active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSimpleActiveBackground));
                     tab_theme = CTabBar::LightTab;

@@ -144,7 +144,7 @@ public:
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(const COpenOptions&);
     int  addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage = QString());
-    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
+    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service, const QString& entrypage = QString());
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);

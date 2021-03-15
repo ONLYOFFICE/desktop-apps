@@ -1192,8 +1192,8 @@ void CMainPanel::onOutsideAuth(QString json)
         QString _domain = objRoot["portal"].toString();
         int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
         if ( _tab_index < 0 ) {
-            QString _sso_service = objRoot["provider"].toString();
-            _tab_index = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
+            _tab_index = m_pTabs->addOAuthPortal(_domain,
+                                objRoot["type"].toString(), objRoot["provider"].toString(), objRoot["entrypage"].toString());
         }
 
         if ( !(_tab_index < 0) ) {
