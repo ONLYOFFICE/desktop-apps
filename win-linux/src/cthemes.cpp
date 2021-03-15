@@ -60,25 +60,7 @@ auto CThemes::color(ColorRole r) -> QColor
 
 auto CThemes::color(const std::wstring& theme, ColorRole r) -> QColor
 {
-    if ( theme == NSThemeDark::theme_id ) {
-        switch (r) {
-        case ColorRole::ecrWindowBackground: return QColor(QSTRING_FROM_WSTR(NSThemeDark::color_window_background));
-        case ColorRole::ecrWindowBorder: return QColor(QSTRING_FROM_WSTR(NSThemeDark::color_window_border));
-        case ColorRole::ecrTextNormal: return QColor(QSTRING_FROM_WSTR(NSThemeDark::color_text_normal));
-        case ColorRole::ecrTextPressed: return QColor(QSTRING_FROM_WSTR(NSThemeDark::color_text_normal_pressed));
-        }
-qDebug() << "return green";
-        return QColor(Qt::green);
-    } else {
-        switch (r) {
-        case ColorRole::ecrWindowBackground: return QColor(QSTRING_FROM_WSTR(NSThemeLight::color_window_background));
-        case ColorRole::ecrWindowBorder: return QColor(QSTRING_FROM_WSTR(NSThemeLight::color_window_border));
-        case ColorRole::ecrTextNormal: return QColor(QSTRING_FROM_WSTR(NSThemeLight::color_text_normal));
-        case ColorRole::ecrTextPressed: return QColor(QSTRING_FROM_WSTR(NSThemeLight::color_text_normal_pressed));
-        }
-
-        return QColor(Qt::yellow);
-    }
+    return QColor(QSTRING_FROM_WSTR(value(theme, r)));
 }
 
 #ifdef Q_OS_WIN
@@ -95,27 +77,25 @@ auto CThemes::colorRef(ColorRole role) -> COLORREF
 
 auto CThemes::value(ColorRole r) -> std::wstring
 {
-    if ( m_priv->current == NSThemeDark::theme_id ) {
-        switch (r) {
-        case ColorRole::ecrLogoColor: return NSThemeDark::color_logo;
-        }
-    } else {
-        switch (r) {
-        case ColorRole::ecrLogoColor: return NSThemeLight::color_logo;
-        }
-    }
-
-    return L"";
+    return value(m_priv->current, r);
 }
 
 auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
 {
     if ( theme == NSThemeDark::theme_id ) {
         switch (r) {
+        case ColorRole::ecrWindowBackground: return NSThemeDark::color_window_background;
+        case ColorRole::ecrWindowBorder: return NSThemeDark::color_window_border;
+        case ColorRole::ecrTextNormal: return NSThemeDark::color_text_normal;
+        case ColorRole::ecrTextPressed: return NSThemeDark::color_text_normal_pressed;
         case ColorRole::ecrLogoColor: return NSThemeDark::color_logo;
         }
     } else {
         switch (r) {
+        case ColorRole::ecrWindowBackground: return NSThemeLight::color_window_background;
+        case ColorRole::ecrWindowBorder: return NSThemeLight::color_window_border;
+        case ColorRole::ecrTextNormal: return NSThemeLight::color_text_normal;
+        case ColorRole::ecrTextPressed: return NSThemeLight::color_text_normal_pressed;
         case ColorRole::ecrLogoColor: return NSThemeLight::color_logo;
         }
     }
