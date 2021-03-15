@@ -89,6 +89,11 @@ auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
         case ColorRole::ecrTextNormal: return NSThemeDark::color_text_normal;
         case ColorRole::ecrTextPressed: return NSThemeDark::color_text_normal_pressed;
         case ColorRole::ecrLogoColor: return NSThemeDark::color_logo;
+        case ColorRole::ecrTabWordActive: return NSThemeDark::color_brand_word;
+        case ColorRole::ecrTabCellActive: return NSThemeDark::color_brand_cell;
+        case ColorRole::ecrTabSlideActive: return NSThemeDark::color_brand_slide;
+        case ColorRole::ecrTabSimpleActiveBackground: return NSThemeDark::color_tab_simple_active_background;
+        case ColorRole::ecrTabSimpleActiveText: return NSThemeDark::color_tab_simple_active_text;
         }
     } else {
         switch (r) {
@@ -97,6 +102,11 @@ auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
         case ColorRole::ecrTextNormal: return NSThemeLight::color_text_normal;
         case ColorRole::ecrTextPressed: return NSThemeLight::color_text_normal_pressed;
         case ColorRole::ecrLogoColor: return NSThemeLight::color_logo;
+        case ColorRole::ecrTabWordActive: return NSThemeLight::color_brand_word;
+        case ColorRole::ecrTabCellActive: return NSThemeLight::color_brand_cell;
+        case ColorRole::ecrTabSlideActive: return NSThemeLight::color_brand_slide;
+        case ColorRole::ecrTabSimpleActiveBackground: return NSThemeLight::color_tab_simple_active_background;
+        case ColorRole::ecrTabSimpleActiveText: return NSThemeLight::color_tab_simple_active_text;
         }
     }
 

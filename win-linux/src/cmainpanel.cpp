@@ -154,8 +154,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
-//        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
-        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
+//        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);
@@ -200,7 +199,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     }
 
 //    m_pTabs->setAutoFillBackground(true);
-//    m_pTabs->setPalette(palette);
+    m_pTabs->setPalette(palette);
     m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
 

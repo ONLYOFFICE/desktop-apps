@@ -10,6 +10,10 @@
 namespace NSThemeLight {
     static const std::wstring theme_id = L"theme-light";
 
+    static const std::wstring color_brand_word = L"#446995";
+    static const std::wstring color_brand_slide = L"#aa5252";
+    static const std::wstring color_brand_cell = L"#40865c";
+
     static const std::wstring color_window_background = L"#f1f1f1";
     static const std::wstring color_window_border = L"#888";
 
@@ -17,6 +21,8 @@ namespace NSThemeLight {
     static const std::wstring color_text_normal_pressed = L"#fff";
 
     static const std::wstring color_tab_active_background = L"#fff";
+    static const std::wstring color_tab_simple_active_background = L"#fff";
+    static const std::wstring color_tab_simple_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#a5a5a5";
 
     static const std::wstring color_logo = L"dark";
@@ -24,6 +30,10 @@ namespace NSThemeLight {
 
 namespace NSThemeDark {
     static const std::wstring theme_id = L"theme-dark";
+
+    static const std::wstring color_brand_word = L"#2a2a2a";
+    static const std::wstring color_brand_slide = L"#2a2a2a";
+    static const std::wstring color_brand_cell = L"#2a2a2a";
 
     static const std::wstring color_window_background = L"#404040";
     static const std::wstring color_window_border = L"#2a2a2a";
@@ -35,6 +45,8 @@ namespace NSThemeDark {
     static const std::wstring color_tool_button_pressed_background = L"#606060";
 
     static const std::wstring color_tab_active_background = L"#333";
+    static const std::wstring color_tab_simple_active_background = L"#fff";
+    static const std::wstring color_tab_simple_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#505050";
 
     static const std::wstring color_logo = L"light";
@@ -49,6 +61,11 @@ public:
         , ecrTextNormal
         , ecrTextPressed
         , ecrLogoColor
+        , ecrTabWordActive
+        , ecrTabCellActive
+        , ecrTabSlideActive
+        , ecrTabSimpleActiveBackground
+        , ecrTabSimpleActiveText
     };
 public:
     CThemes();
