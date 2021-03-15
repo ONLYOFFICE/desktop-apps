@@ -189,7 +189,7 @@ public:
 
     void adjustTabsSize();
     void activate(bool);
-    bool isActive();
+    bool isActiveWidget();
 
     void setTabIcons(CTabIconSet&);
     void updateIcons();

@@ -219,7 +219,7 @@ void CMainPanel::attachStartPanel(QCefView * const view)
     QWidget * centralwidget = layout()->itemAt(0)->widget();
     view->setParent(centralwidget);
 
-    if ( !m_pTabs->isActive() )
+    if ( !m_pTabs->isActiveWidget() )
         view->show();
 }
 
@@ -322,7 +322,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
 void CMainPanel::pushButtonMainClicked()
 {
-    if (m_pTabs->isActive()) {
+    if ( m_pTabs->isActiveWidget() ) {
         m_pTabs->activate(false);
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
@@ -335,7 +335,7 @@ void CMainPanel::pushButtonMainClicked()
 void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 {
     auto _toggle = [=] (bool state) {
-        if (m_pTabs->isActive() == state) {
+        if (m_pTabs->isActiveWidget() == state) {
             if ( state ) {
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
@@ -359,7 +359,7 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 }
 
 void CMainPanel::focus() {
-    if (m_pTabs->isActive()) {
+    if (m_pTabs->isActiveWidget()) {
         m_pTabs->setFocusedView();
     } else {
         ((QCefView *)m_pMainWidget)->setFocusToCef();
@@ -376,7 +376,7 @@ void CMainPanel::onTabClicked(int index)
 {
     Q_UNUSED(index)
 
-    if (!m_pTabs->isActive()) {
+    if (!m_pTabs->isActiveWidget()) {
         toggleButtonMain(false);
     }
 }
@@ -1095,7 +1095,7 @@ void CMainPanel::onKeyDown(void * eventData)
     switch (key) {
     case 'W':
     case VK_F4:
-        if (_is_ctrl && m_pTabs->isActive()) {
+        if ( _is_ctrl && m_pTabs->isActiveWidget() ) {
             onTabCloseRequest(m_pTabs->currentIndex());
         }
         break;
@@ -1105,11 +1105,11 @@ void CMainPanel::onKeyDown(void * eventData)
                 int _new_index = 0;
 
                 if ( _is_shift ) {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index = m_pTabs->currentIndex() - 1; else
                         _new_index = m_pTabs->count() - 1;
                 } else {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index =  m_pTabs->currentIndex() + 1;
                 }
 

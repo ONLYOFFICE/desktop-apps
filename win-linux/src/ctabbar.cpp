@@ -586,7 +586,7 @@ void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index,
     tabRect.adjust(-1, 0, 0, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
-    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::Light ) {
+    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::LightTab ) {
         p->setPen(QColor("#a5a5a5"));
         p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
         p->drawLine(tabRect.bottomRight(), tabRect.topRight());
@@ -724,7 +724,7 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
 
     CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
     QWidget * b = TAB_BTNCLOSE(index);
-    if ( theme == TabTheme::Light ) {
+    if ( theme == TabTheme::LightTab ) {
         if ( i ) {
             i->setSvgElement("dark");
         }
@@ -755,7 +755,7 @@ void CTabBar::changeTabTheme(int index, TabTheme theme)
     if ( tabData(index).isNull() ) {
         CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
         QWidget * b = TAB_BTNCLOSE(index);
-        if ( theme == TabTheme::Light ) {
+        if ( theme == TabTheme::LightTab ) {
             if ( i && i->isStarted() ) {
                 i->setSvgElement("dark");
             }

@@ -373,7 +373,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     tab_index = insertTab(tab_index, panelwidget, portal);
     tabBar()->setTabToolTip(tab_index, _url);
-    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::LightTab);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
 //    updateTabIcon(tabIndexByView(id));
@@ -413,7 +413,7 @@ int  CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, c
 
     tab_index = insertTab(tab_index, panelwidget, _portal);
     tabBar()->setTabToolTip(tab_index, portal);
-    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::Light);
+    ((CTabBar *)tabBar())->setTabTheme(tab_index, CTabBar::LightTab);
     ((CTabBar *)tabBar())->tabStartLoading(tab_index);
 
     return tab_index;
@@ -536,7 +536,7 @@ void CAscTabWidget::updateTabIcon(int index)
         CCefViewEditor * pEditor = (CCefViewEditor *)panel(index)->cef();
 
         if (pEditor) {
-            bool is_active = isActive() && index == currentIndex();
+            bool is_active = isActiveWidget() && index == currentIndex();
             int tab_type = etUndefined;
             QString tab_color = "none";
             CTabBar::TabTheme tab_theme = is_active ? CTabBar::Dark : CTabBar::Light;
@@ -898,7 +898,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
 void CAscTabWidget::setFocusedView(int index)
 {
-    if (!isActive())
+    if ( !isActiveWidget() )
     {
         if (!QCefView::IsSupportLayers())
         {
@@ -943,7 +943,7 @@ void CAscTabWidget::activate(bool a)
     tabBar()->repaint();
 }
 
-bool CAscTabWidget::isActive()
+bool CAscTabWidget::isActiveWidget()
 {
     return property("active").toBool();
 }
