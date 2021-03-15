@@ -188,7 +188,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 /**************************/
 
 #mainPanel[uitheme=theme-dark] #centralWidget {
-    background-color: #f00;
+    background-color: #404040;
 }
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {

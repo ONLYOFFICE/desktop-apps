@@ -1238,20 +1238,10 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
     m_isDarkTheme = theme == NSThemeDark::theme_id;
-qDebug() << "set pallete" << QString::fromStdWString(theme) << AscAppManager::themes().color(theme, CThemes::ColorRole::ecrWindowBackground).red();
 
     CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
-    QPalette _palette{palette()};
-    _palette.setColor(QPalette::Background, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrWindowBackground));
-//    setPalette(_palette);
-    style()->polish(this);
-
-    _palette.setColor(QPalette::Background, QColor("#0ff"));
-//    _tabbar.setPalette(_palette);
-
     _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
     _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextNormal));
     _tabbar.style()->polish(&_tabbar);
-
-    update();
+    style()->polish(this);
 }

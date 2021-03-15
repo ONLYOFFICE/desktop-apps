@@ -199,7 +199,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         label->setFixedHeight(0);
     }
 
-    m_pTabs->setAutoFillBackground(true);
+//    m_pTabs->setAutoFillBackground(true);
 //    m_pTabs->setPalette(palette);
     m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
@@ -1222,10 +1222,14 @@ void CMainPanel::applyTheme(const std::wstring& theme)
         m_pButtonMaximize->style()->polish(m_pButtonMaximize);
         m_pButtonClose->style()->polish(m_pButtonClose);
     }
-    style()->polish(this);
-    update();
 
     m_pTabs->applyUITheme(theme);
+
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    centralwidget->style()->polish(centralwidget);
+    style()->polish(this);
+
+    update();
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
