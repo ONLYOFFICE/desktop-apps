@@ -394,9 +394,7 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
 }
 
 - (void)tabs:(ASCTabsControl *)control didReorderTab:(ASCTabView *)tab from:(NSInteger)oldIndex to:(NSInteger)newIndex {
-    id object = [self.tabs objectAtIndex:oldIndex];
-    [self.tabs removeObjectAtIndex:oldIndex];
-    [self.tabs insertObject:object atIndex:newIndex];
+    [self.tabs exchangeObjectAtIndex:oldIndex withObjectAtIndex:newIndex];
 
     //    [[self.tabsScrubber animator] moveItemAtIndex:oldIndex toIndex:newIndex]; // TODO: Don't call redraw for old index, check in new SDK
     
