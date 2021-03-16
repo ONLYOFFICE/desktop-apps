@@ -399,9 +399,13 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
     [self.tabs insertObject:object atIndex:newIndex];
 
     //    [[self.tabsScrubber animator] moveItemAtIndex:oldIndex toIndex:newIndex]; // TODO: Don't call redraw for old index, check in new SDK
-    [self.tabsScrubber reloadData];
-    [self.tabsScrubber setSelectedIndex:newIndex];
-    [self.tabsScrubber scrollItemAtIndex:newIndex toAlignment:NSScrubberAlignmentNone];
+    
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakSelf.tabsScrubber reloadData];
+        [weakSelf.tabsScrubber setSelectedIndex:newIndex];
+        [weakSelf.tabsScrubber scrollItemAtIndex:newIndex toAlignment:NSScrubberAlignmentNone];
+    });
 }
 
 @end
