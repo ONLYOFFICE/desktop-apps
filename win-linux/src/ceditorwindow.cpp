@@ -60,7 +60,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
-    m_css = {prepare_editor_css(d_ptr->canExtendTitle() ? panel->data()->contentType() : etUndefined)};
 
 #ifdef Q_OS_LINUX
     setObjectName("editorWindow");
@@ -74,9 +73,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     }
 #else
 
-    if ( d_ptr->canExtendTitle() ) {
-        setWindowBackgroundColor(editor_color(panel->data()->contentType()));
-    }
+    applyTheme(AscAppManager::themes().current());
 
     m_pMainPanel = createMainPanel(m_pWinPanel);
     m_pWinPanel->show();
@@ -447,4 +444,9 @@ int CEditorWindow::calcTitleCaptionWidth()
 {
     int base_width = CSingleWindowPlatform::calcTitleCaptionWidth();
     return d_ptr->calcTitleLabelWidth(base_width);
+}
+
+void CEditorWindow::applyTheme(const std::wstring& theme)
+{
+    d_ptr->changeTheme(theme);
 }

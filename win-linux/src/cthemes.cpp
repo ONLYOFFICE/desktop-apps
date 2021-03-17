@@ -66,10 +66,8 @@ auto CThemes::color(const std::wstring& theme, ColorRole r) -> QColor
 #ifdef Q_OS_WIN
 auto CThemes::colorRef(ColorRole role) -> COLORREF
 {
-    QColor c{color(role)};
-
     int r, g, b;
-    c.getRgb(&r, &g, &b);
+    color(role).getRgb(&r, &g, &b);
 
     return RGB(r,g,b);
 }

@@ -1407,7 +1407,14 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
 
+        CEditorWindow * _editor = nullptr;
+        for ( auto const& e : m_vecEditors ) {
+            _editor = reinterpret_cast<CEditorWindow *>(e);
+            _editor->applyTheme(theme);
+        }
+
         _app.m_themes->setCurrent(theme);
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }
 

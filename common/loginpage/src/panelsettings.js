@@ -296,7 +296,7 @@
                         }
 
                         if ( !!opts.uitheme ) {
-                            opts.uitheme == 'canuse' && (opts.uitheme = 'light');
+                            opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
                             ($optsUITheme = ($('#opts-ui-theme', $panel).show().find('select')))
                             .val(opts.uitheme)
                             .selectpicker().on('change', e => {
@@ -318,6 +318,14 @@
                         $combo.on('change', _on_autoupdate_change.bind(this));
                     }
                 }
+            } else
+            if (/uitheme:changed/.test(cmd)) {
+                if ( !!$optsUITheme ) {
+                    $optsUITheme.val(param)
+                    $optsUITheme.selectpicker('refresh');
+                }
+
+                _apply_theme(param);
             }
         };
 
