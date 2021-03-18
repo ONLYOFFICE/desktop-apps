@@ -448,6 +448,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 - (void)handleSelectTab:(ASCTabView *)selectedTab {
+    if (selectedTab.isDragging) {
+        return;
+    }
+    
     BOOL needForceSelect = selectedTab.state != NSControlStateValueOn;
     
     for (ASCTabView * tab in self.tabs) {
@@ -528,6 +532,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     NSPoint dragPoint = [self.tabsView convertPoint:event.locationInWindow fromView:nil];
     
     ASCTabView * draggingTab = [tab copy];
+    draggingTab.isDragging = true;
 
     [self addSubview:draggingTab];
     [tab setHidden:YES];
@@ -563,11 +568,13 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
                     return NO;
                 }];
 
-                self.tabs = orderedTabs;
-
-                if (oldIndex != newIndex && oldIndex != NSNotFound && newIndex != NSNotFound) {
-                    if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:from:to:)]) {
-                        [_delegate tabs:self didReorderTab:tab from:oldIndex to:newIndex];
+                if (orderedTabs.count == self.tabs.count) {
+                    self.tabs = orderedTabs;
+                    
+                    if (oldIndex != newIndex && oldIndex != NSNotFound && newIndex != NSNotFound) {
+                        if (_delegate && [_delegate respondsToSelector:@selector(tabs:didReorderTab:from:to:)]) {
+                            [_delegate tabs:self didReorderTab:tab from:oldIndex to:newIndex];
+                        }
                     }
                 }
             }];

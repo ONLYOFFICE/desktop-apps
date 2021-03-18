@@ -56,6 +56,7 @@
 @property (nonatomic) NSMutableDictionary *params;
 @property (nonatomic) BOOL changed;
 @property (nonatomic) BOOL isProcessing;
+@property (nonatomic) BOOL isDragging;
 
 @property (nonatomic, assign) id <ASCTabViewDelegate> delegate;
 @end
