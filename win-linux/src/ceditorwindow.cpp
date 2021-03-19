@@ -70,6 +70,8 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
+
+        applyTheme(AscAppManager::themes().current());
     }
 #else
 
@@ -209,7 +211,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
     css.append(m_css);
-    mainPanel->setStyleSheet(css);
 
     if ( isCustomWindowStyle() ) {
         if ( !d_ptr->canExtendTitle() ) {
