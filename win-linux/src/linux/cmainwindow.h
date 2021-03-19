@@ -58,6 +58,7 @@ public:
     QWidget * handle() const;
     void bringToTop() const override;
     void show(bool maximized);
+    void applyTheme(const std::wstring&) override;
 
 protected:
     void closeEvent(QCloseEvent *);

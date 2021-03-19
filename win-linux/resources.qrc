@@ -26,8 +26,11 @@
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.png</file>
         <file>res/icons/splash_2x.png</file>
-        <file alias="logo.png">res/icons/logo.png</file>
-        <file alias="logo@2x.png">res/icons/logo_2x.png</file>
+        <file alias="logo_dark.png">res/icons/logo_dark.png</file>
+        <file alias="logo_dark@2x.png">res/icons/logo_dark_2x.png</file>
+        <file alias="logo_light.png">res/icons/logo_light.png</file>
+        <file alias="logo_light@1.5x.png">res/icons/logo_light_1.5x.png</file>
+        <file alias="logo_light@2x.png">res/icons/logo_light_2x.png</file>
         <file alias="max_light.png">res/icons/maximize_light.png</file>
         <file alias="max_light_2x.png">res/icons/maximize_light@2x.png</file>
         <file alias="minclose_light.png">res/icons/minimize-close_light.png</file>

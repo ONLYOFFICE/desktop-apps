@@ -64,6 +64,7 @@ public:
     bool closed() const;
     AscEditorType editorType() const;
 
+    void applyTheme(const std::wstring&);
     void setReporterMode(bool);
 private:
     QString m_css;

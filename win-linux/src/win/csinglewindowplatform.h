@@ -57,6 +57,7 @@ public:
     virtual void setWindowState(Qt::WindowState);
     virtual void setWindowTitle(const QString&) override;
     virtual void setWindowBackgroundColor(const QColor&);
+    virtual void setWindowColors(const QColor& background, const QColor& border);
     virtual QRect geometry() const;
     virtual void activateWindow();
 
@@ -65,7 +66,8 @@ public:
 protected:
     HWND m_hWnd;
     HWND m_modalHwnd = nullptr;
-    COLORREF m_bgColor;
+    COLORREF m_bgColor = 0;
+    COLORREF m_borderColor = 0;
     QRect m_moveNormalRect;
     bool m_borderless = true;
     bool m_visible = false;

@@ -100,6 +100,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -115,6 +116,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
     m_pTabs->activate(false);
+    m_pTabs->applyUITheme(AscAppManager::themes().current());
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
@@ -152,7 +154,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
-        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
+//        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
 
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);
@@ -196,7 +198,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         label->setFixedHeight(0);
     }
 
-    m_pTabs->setAutoFillBackground(true);
+//    m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
     m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
@@ -216,7 +218,7 @@ void CMainPanel::attachStartPanel(QCefView * const view)
     QWidget * centralwidget = layout()->itemAt(0)->widget();
     view->setParent(centralwidget);
 
-    if ( !m_pTabs->isActive() )
+    if ( !m_pTabs->isActiveWidget() )
         view->show();
 }
 
@@ -319,7 +321,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
 void CMainPanel::pushButtonMainClicked()
 {
-    if (m_pTabs->isActive()) {
+    if ( m_pTabs->isActiveWidget() ) {
         m_pTabs->activate(false);
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
@@ -332,7 +334,7 @@ void CMainPanel::pushButtonMainClicked()
 void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 {
     auto _toggle = [=] (bool state) {
-        if (m_pTabs->isActive() == state) {
+        if (m_pTabs->isActiveWidget() == state) {
             if ( state ) {
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
@@ -356,7 +358,7 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 }
 
 void CMainPanel::focus() {
-    if (m_pTabs->isActive()) {
+    if (m_pTabs->isActiveWidget()) {
         m_pTabs->setFocusedView();
     } else {
         ((QCefView *)m_pMainWidget)->setFocusToCef();
@@ -373,7 +375,7 @@ void CMainPanel::onTabClicked(int index)
 {
     Q_UNUSED(index)
 
-    if (!m_pTabs->isActive()) {
+    if (!m_pTabs->isActiveWidget()) {
         toggleButtonMain(false);
     }
 }
@@ -1092,7 +1094,7 @@ void CMainPanel::onKeyDown(void * eventData)
     switch (key) {
     case 'W':
     case VK_F4:
-        if (_is_ctrl && m_pTabs->isActive()) {
+        if ( _is_ctrl && m_pTabs->isActiveWidget() ) {
             onTabCloseRequest(m_pTabs->currentIndex());
         }
         break;
@@ -1102,11 +1104,11 @@ void CMainPanel::onKeyDown(void * eventData)
                 int _new_index = 0;
 
                 if ( _is_shift ) {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index = m_pTabs->currentIndex() - 1; else
                         _new_index = m_pTabs->count() - 1;
                 } else {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index =  m_pTabs->currentIndex() + 1;
                 }
 
@@ -1190,8 +1192,8 @@ void CMainPanel::onOutsideAuth(QString json)
         QString _domain = objRoot["portal"].toString();
         int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
         if ( _tab_index < 0 ) {
-            QString _sso_service = objRoot["provider"].toString();
-            _tab_index = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
+            _tab_index = m_pTabs->addOAuthPortal(_domain,
+                                objRoot["type"].toString(), objRoot["provider"].toString(), objRoot["entrypage"].toString());
         }
 
         if ( !(_tab_index < 0) ) {
@@ -1203,6 +1205,8 @@ void CMainPanel::onOutsideAuth(QString json)
 
 void CMainPanel::applyTheme(const std::wstring& theme)
 {
+    this->setProperty("uitheme", QString::fromStdWString(theme));
+
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
@@ -1210,7 +1214,21 @@ void CMainPanel::applyTheme(const std::wstring& theme)
         }
     }
 
+//    m_pTabs->style()->polish(m_pTabs);
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if ( m_pButtonMinimize ) {
+        m_pButtonMinimize->style()->polish(m_pButtonMinimize);
+        m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+        m_pButtonClose->style()->polish(m_pButtonClose);
+    }
+
     m_pTabs->applyUITheme(theme);
+
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    centralwidget->style()->polish(centralwidget);
+    style()->polish(this);
+
+    update();
 }
 
 void CMainPanel::setInputFiles(QStringList * list)

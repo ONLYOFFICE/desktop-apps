@@ -60,7 +60,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
-    m_css = {prepare_editor_css(d_ptr->canExtendTitle() ? panel->data()->contentType() : etUndefined)};
 
 #ifdef Q_OS_LINUX
     setObjectName("editorWindow");
@@ -71,12 +70,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
+
+        applyTheme(AscAppManager::themes().current());
     }
 #else
 
-    if ( d_ptr->canExtendTitle() ) {
-        setWindowBackgroundColor(editor_color(panel->data()->contentType()));
-    }
+    applyTheme(AscAppManager::themes().current());
 
     m_pMainPanel = createMainPanel(m_pWinPanel);
     m_pWinPanel->show();
@@ -212,7 +211,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
     css.append(m_css);
-    mainPanel->setStyleSheet(css);
 
     if ( isCustomWindowStyle() ) {
         if ( !d_ptr->canExtendTitle() ) {
@@ -447,4 +445,9 @@ int CEditorWindow::calcTitleCaptionWidth()
 {
     int base_width = CSingleWindowPlatform::calcTitleCaptionWidth();
     return d_ptr->calcTitleLabelWidth(base_width);
+}
+
+void CEditorWindow::applyTheme(const std::wstring& theme)
+{
+    d_ptr->changeTheme(theme);
 }

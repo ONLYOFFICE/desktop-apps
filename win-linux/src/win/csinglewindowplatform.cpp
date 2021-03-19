@@ -47,7 +47,8 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
-    , m_bgColor(WINDOW_BACKGROUND_COLOR)
+    , m_bgColor(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground))
+    , m_borderColor(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder))
 {
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
@@ -313,7 +314,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+        ::SetDCPenColor(hDC, window->m_borderColor);
 
         HBRUSH hBrush = ::CreateSolidBrush(window->m_bgColor);
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
@@ -583,7 +584,22 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
 {
-    m_bgColor = RGB(color.red(), color.green(), color.blue());
+    int r, g, b;
+    color.getRgb(&r, &g, &b);
+
+    m_bgColor = RGB(r, g, b);
+    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void CSingleWindowPlatform::setWindowColors(const QColor& background, const QColor& border)
+{
+    int r, g, b;
+    border.getRgb(&r, &g, &b);
+    m_borderColor = RGB(r, g, b);
+
+    background.getRgb(&r, &g, &b);
+    m_bgColor = RGB(r, g, b);
+
     RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 

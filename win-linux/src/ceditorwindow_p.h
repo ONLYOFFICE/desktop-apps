@@ -89,25 +89,28 @@ const QString g_css =
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
 
-auto prepare_editor_css(int type) -> QString {
+auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
+    std::wstring c;
     switch (type) {
-    default: return g_css.arg(WINDOW_BACKGROUND_COLOR);
-    case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
-    case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
-    case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    default: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground); break;
+    case etDocument: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive); break;
+    case etPresentation: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive); break;
+    case etSpreadsheet: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive); break;
     }
+
+    return g_css.arg(QString::fromStdWString(c));
 }
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return QColor(TAB_COLOR_DOCUMENT);
-    case etPresentation: return QColor(TAB_COLOR_PRESENTATION);
-    case etSpreadsheet: return QColor(TAB_COLOR_SPREADSHEET);
-#ifdef Q_OS_WIN
-    default: return QRgb(WINDOW_BACKGROUND_COLOR);
-#else
-    default: return QColor(WINDOW_BACKGROUND_COLOR);
-#endif
+    case etDocument: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabWordActive);
+    case etPresentation: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabSlideActive);
+    case etSpreadsheet: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabCellActive);
+//#ifdef Q_OS_WIN
+    default: return AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground);
+//#else
+//    default: return QColor(WINDOW_BACKGROUND_COLOR);
+//#endif
     }
 }
 
@@ -204,7 +207,7 @@ public:
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
 
-            window->m_css = {prepare_editor_css(etUndefined)};
+            window->m_css = {prepare_editor_css(etUndefined, AscAppManager::themes().current())};
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
             window->m_pMainPanel->setProperty("window", "simple");
@@ -303,15 +306,43 @@ public:
         CCefEventsGate::onDocumentType(id, type);
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->m_css = prepare_editor_css(type);
-
-            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
-            css.append(window->m_css);
             window->m_pMainPanel->setProperty("window", "pretty");
-            window->m_pMainPanel->setStyleSheet(css);
+            changeTheme(AscAppManager::themes().current());
+        }
+    }
+
+    void changeTheme(const std::wstring& theme)
+    {
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            window->m_css = prepare_editor_css(panel()->data()->contentType(), theme);
+
+            if ( window->m_pMainPanel ) {
+                QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+                css.append(window->m_css);
+                window->m_pMainPanel->setStyleSheet(css);
+            }
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(editor_color(type));
+            std::wstring background, border;
+            switch (panel()->data()->contentType()) {
+            case etDocument:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive);
+                border = background;
+                break;
+            case etPresentation:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive);
+                border = background;
+                break;
+            case etSpreadsheet:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive);
+                border = background;
+                break;
+            default:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground);
+                border = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBorder);
+            }
+
+            window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
 #endif
         }
     }

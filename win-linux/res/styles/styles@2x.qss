@@ -66,6 +66,22 @@ QPushButton#toolButtonDownload::menu-indicator {
     left: -8px;
 }
 
+/**************************/
+/* dark theme definitions */
+/**************************/
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize {
+    background-image:url(:/max_light_2x.png);
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize,
+    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonClose
+{
+    background-image:url(:/minclose_light_2x.png);
+}
+
+/**************************/
+
 QTabBar {
     font-size: 20px;
 }

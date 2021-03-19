@@ -657,6 +657,18 @@ li.menu-item {
 
     &::-webkit-scrollbar-track {
         background-color: @background-normal;
+
+        &:hover {
+            background-color: @highlight-scroll-track-hover;
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: @background-scroll-thumb;
+
+        &:hover {
+            background-color: @highlight-scroll-thumb-hover;
+        }
     }
 }
 

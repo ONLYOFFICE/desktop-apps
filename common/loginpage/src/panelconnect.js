@@ -218,6 +218,10 @@
                 onclose: opts => {
                     if ( opts ) {
                         opts.type = 'outer';
+
+                        const _pm = config.portals.checklist.find(e => e.provider == opts.provider);
+                        opts.entrypage = !_pm ? '/' : _pm.startPage;
+
                         sdk.execCommand("auth:outer", JSON.stringify(opts));
                     }
 
