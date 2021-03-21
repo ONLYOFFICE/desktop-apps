@@ -209,7 +209,11 @@
         
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
-        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]]; // Use onlyoffice iso ¯\_(ツ)_/¯
+
+        NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
+        if ( !ui_lang ) ui_lang = [NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]; // Use onlyoffice iso ¯\_(ツ)_/¯
+
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: ui_lang];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
         if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
@@ -1461,12 +1465,41 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-    pCommand->put_Command(L"app:ready");
+    NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
+    if ( !ui_lang )
+        ui_lang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
+    NSLog(@"user locale: %@", ui_lang);
+    NSDictionary * json_langs = @{
+        @"locale": @{
+            @"current": ui_lang,
+            @"langs": @{
+                @"en": @"English",
+                @"ru": @"Русский",
+                @"de": @"Deutsch",
+                @"fr": @"Français",
+                @"es": @"Español",
+                @"it": @"Italiano",
+                @"pl": @"Polski",
+                @"pt-BR": @"Português Brasileiro",
+                @"zh-CN": @"中文"
+            }
+        }
+    };
+
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"settings:init");
+    pCommand->put_Param([[json_langs jsonString] stdwstring]);
+
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
-    
+    pEvent->AddRef();
+
+    [self.cefStartPageView apply:pEvent];
+
+    pCommand->put_Command(L"app:ready");
+    pCommand->put_Param(L"");
+
     [self.cefStartPageView apply:pEvent];
     
     [self onOpenAppLink];

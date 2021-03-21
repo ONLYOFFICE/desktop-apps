@@ -83,6 +83,7 @@ static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalU
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
 static NSString * const ASCUserNameApp                      = @"asc_user_name_app";
+static NSString * const ASCUserUILanguage                   = @"asc_user_ui_lang";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
