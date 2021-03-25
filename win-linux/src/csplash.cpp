@@ -92,7 +92,7 @@ void CSplash::showSplash()
             }
         }
 
-        uchar _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
+        double _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
 
 //        _splash->setPixmap(_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
         _splash->setPixmap(getSplashImage(_dpi_ratio));

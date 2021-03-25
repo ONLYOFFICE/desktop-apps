@@ -27,8 +27,7 @@
         <file>res/icons/arrow_down.png</file>
         <file alias="arrow_down_2x.png">res/icons/arrow_down@2x.png</file>
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
-        <file>res/icons/splash.png</file>
-        <file>res/icons/splash_2x.png</file>
+        <file>res/icons/splash.svg</file>
         <file alias="logo_dark.png">res/icons/logo_dark.png</file>
         <file alias="logo_dark@1.5x.png">res/icons/logo_dark_1.5x.png</file>
         <file alias="logo_dark@2x.png">res/icons/logo_dark_2x.png</file>
