@@ -95,7 +95,7 @@ void CMainPanelImpl::updateScaling(double dpiratio)
     std::wstring prefix{AscAppManager::themes().value(CThemes::ColorRole::ecrLogoColor)};
     QString logo_name = QString(":/logo_%1%2.png")
             .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1 ? dpiratio > 1.5 ? "@2x" : "@1.5x" : "");
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
 //    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
     QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
@@ -107,11 +107,11 @@ void CMainPanelImpl::applyTheme(const std::wstring& theme)
 {
     CMainPanel::applyTheme(theme);
 
-    int dpiratio = scaling();
+    double dpiratio = scaling();
     std::wstring prefix{AscAppManager::themes().value(theme, CThemes::ColorRole::ecrLogoColor)};
     QString logo_name = QString(":/logo_%1%2.png")
             .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1 ? dpiratio > 1.5 ? "@2x" : "@1.5x" : "");
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
     QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
     m_pButtonMain->setIcon(QIcon(pixmap));

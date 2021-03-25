@@ -78,6 +78,7 @@ struct sWinTag {
 enum class CScalingFactor
 {
     SCALING_FACTOR_1,
+    SCALING_FACTOR_1_5,
     SCALING_FACTOR_2,
 };
 

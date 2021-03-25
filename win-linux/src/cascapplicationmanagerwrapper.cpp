@@ -895,6 +895,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     }
 
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
 
     _app.m_private->applyStylesheets();
@@ -1273,6 +1274,9 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
     if ( !(dpifactor < 2) )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
+    else
+    if ( !(dpifactor < 1.5) )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_5);
     else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
 }
 

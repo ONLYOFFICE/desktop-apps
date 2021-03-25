@@ -379,7 +379,7 @@ double Utils::getScreenDpiRatio(int scrnum)
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
     double nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-    return (-1 == nScale) ? 1 : nScale;
+    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
 }
 
 double Utils::getScreenDpiRatio(const QPoint& pt)
@@ -399,7 +399,7 @@ double Utils::getScreenDpiRatioByHWND(int hwnd)
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
     double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
-    return (-1 == nScale) ? 1 : nScale;
+    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
 }
 
 double Utils::getScreenDpiRatioByWidget(QWidget* wid)
@@ -419,8 +419,8 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (nRet >= 0) {
         double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
 
-        // пока только 1 или 2
-        return (dDpiApp > 1.9) ? 2 : 1;
+        // пока только 1, 1.5 или 2
+        return dDpiApp > 1.5 ? 2 : dDpiApp > 1 ? 1.5 : 1;
     }
 
     return wid->devicePixelRatio();
