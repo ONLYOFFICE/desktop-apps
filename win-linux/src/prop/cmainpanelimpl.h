@@ -41,9 +41,9 @@ class CMainPanelImpl : public CMainPanel
     Q_DECLARE_TR_FUNCTIONS(CMainPanelImpl)
 
 public:
-    CMainPanelImpl(QWidget *, bool, uchar);
+    CMainPanelImpl(QWidget *, bool, double);
 
-    void updateScaling(int) override;
+    void updateScaling(double) override;
     void applyTheme(const std::wstring&) override;
 
     void onLocalOptions(const QString&) override;

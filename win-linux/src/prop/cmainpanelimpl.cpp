@@ -43,7 +43,7 @@
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, double scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
     QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
@@ -71,7 +71,6 @@ void CMainPanelImpl::refreshAboutVersion()
     );
 
     std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
-    qDebug() << "scaling" << QString::fromStdWString(_force_value);
     if ( _force_value == L"1" )
         _json_obj["uiscaling"] = 100;
     else
@@ -89,7 +88,7 @@ void CMainPanelImpl::refreshAboutVersion()
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
-void CMainPanelImpl::updateScaling(int dpiratio)
+void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 

@@ -65,10 +65,10 @@ public:
     static void openUrl(const QString&);
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
-    static unsigned getScreenDpiRatio(int);
-    static unsigned getScreenDpiRatio(const QPoint&);
-    static unsigned getScreenDpiRatioByHWND(int);
-    static unsigned getScreenDpiRatioByWidget(QWidget*);
+    static double getScreenDpiRatio(int);
+    static double getScreenDpiRatio(const QPoint&);
+    static double getScreenDpiRatioByHWND(int);
+    static double getScreenDpiRatioByWidget(QWidget*);
     static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
@@ -105,7 +105,7 @@ namespace WindowHelper {
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
-    auto adjustWindowRect(HWND, int, LPRECT) -> void;
+    auto adjustWindowRect(HWND, double, LPRECT) -> void;
 #endif
 
     auto isLeftButtonPressed() -> bool;

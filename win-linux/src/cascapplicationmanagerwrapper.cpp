@@ -1268,7 +1268,7 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 //    delete pEvent;
 }
 
-QString CAscApplicationManagerWrapper::getWindowStylesheets(int dpifactor)
+QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
     APP_CAST(_app);
     return Utils::readStylesheets(&_app.m_vecStyles, &_app.m_vecStyles2x, dpifactor);

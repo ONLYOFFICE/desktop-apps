@@ -32,6 +32,6 @@
 
 #include <QPixmap>
 
-auto getSplashImage(int ratio) -> QPixmap {
+auto getSplashImage(double ratio) -> QPixmap {
     return ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png");
 }

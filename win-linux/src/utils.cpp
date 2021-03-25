@@ -374,15 +374,15 @@ QString Utils::stringifyJson(const QJsonObject& obj)
     return QJsonDocument(obj).toJson(QJsonDocument::Compact);
 }
 
-unsigned Utils::getScreenDpiRatio(int scrnum)
+double Utils::getScreenDpiRatio(int scrnum)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
-    int nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+    double nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
     return (-1 == nScale) ? 1 : nScale;
 }
 
-unsigned Utils::getScreenDpiRatio(const QPoint& pt)
+double Utils::getScreenDpiRatio(const QPoint& pt)
 {
     QWidget _w;
     _w.setGeometry(QRect(pt, QSize(10,10)));
@@ -394,15 +394,15 @@ unsigned Utils::getScreenDpiRatio(const QPoint& pt)
 #endif
 }
 
-unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
+double Utils::getScreenDpiRatioByHWND(int hwnd)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
-    int nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
+    double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
     return (-1 == nScale) ? 1 : nScale;
 }
 
-unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
+double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 {
     if (!wid)
         return 1;
@@ -663,7 +663,7 @@ namespace WindowHelper {
     }
 
     typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-    auto adjustWindowRect(HWND handle, int dpiratio, LPRECT rect) -> void
+    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
     {
         static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
         static bool _is_read = false;

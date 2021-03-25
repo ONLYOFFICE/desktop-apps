@@ -56,7 +56,7 @@ public:
     void tabStartLoading(int, const QString& theme = QString());
     void activate(bool);
 
-    void updateScaling(int);
+    void updateScaling(double) override;
     int draggedTabIndex();
 
     enum TabTheme {

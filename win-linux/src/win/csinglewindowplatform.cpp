@@ -525,7 +525,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
     ShowWindow(m_hWnd, IsZoomed(m_hWnd) ? SW_RESTORE : SW_MAXIMIZE);
 }
 
-void CSingleWindowPlatform::setScreenScalingFactor(int f)
+void CSingleWindowPlatform::setScreenScalingFactor(double f)
 {
     bool _is_up = f > m_dpiRatio;
     CSingleWindowBase::setScreenScalingFactor(f);

@@ -110,7 +110,7 @@ void CSplash::hideSplash()
     }
 }
 
-uint CSplash::startupDpiRatio()
+double CSplash::startupDpiRatio()
 {
     if (_splash) {
         return Utils::getScreenDpiRatioByHWND(_splash->winId());
@@ -128,6 +128,4 @@ uint CSplash::startupDpiRatio()
 
         return Utils::getScreenDpiRatioByHWND(splash.winId());
     }
-
-    return 1;
 }

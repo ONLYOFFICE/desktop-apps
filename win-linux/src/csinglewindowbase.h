@@ -64,7 +64,7 @@ public:
 
     virtual ~CSingleWindowBase();
 
-    virtual void setScreenScalingFactor(int);
+    virtual void setScreenScalingFactor(double);
     virtual bool holdView(int uid) const = 0;
     virtual QWidget * createMainPanel(QWidget * parent, const QString& title);
     virtual const QObject * receiver() = 0;
@@ -77,7 +77,7 @@ public:
     virtual bool isCustomWindowStyle();
 
 protected:
-    int m_dpiRatio;
+    double m_dpiRatio = 1;
 
     QWidget * m_boxTitleBtns = nullptr;
     QWidget * m_pMainPanel = nullptr;

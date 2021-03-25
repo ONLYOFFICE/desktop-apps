@@ -519,8 +519,8 @@ void CAscTabWidget::adjustTabsSize()
 void CAscTabWidget::setCustomWindowParams(bool iscustom)
 {
     m_isCustomStyle = iscustom;
-    m_widthParams.tools_width = (iscustom ? 50 : 0) * scaling();
-    m_widthParams.title_width = (iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * scaling();
+    m_widthParams.tools_width = int((iscustom ? 50 : 0) * scaling());
+    m_widthParams.title_width = int((iscustom ? WINDOW_TITLE_MIN_WIDTH : 0) * scaling());
 }
 
 void CAscTabWidget::updateIcons()
@@ -1179,19 +1179,19 @@ QWidget * CAscTabWidget::fullScreenWidget()
     return m_dataFullScreen ? m_dataFullScreen->widget() : nullptr;
 }
 
-void CAscTabWidget::updateScaling(int f)
+void CAscTabWidget::updateScaling(double f)
 {
     CScalingWrapper::updateScaling(f);
 
-    int dpi_ratio = scaling();
+    double dpi_ratio = scaling();
 
     setIconSize(m_tabIconSize * dpi_ratio);
     updateIcons();
 
     (m_widthParams = size_params(m_defWidthParams)).apply_scale(dpi_ratio);
     if ( m_isCustomStyle )
-        m_widthParams.tools_width = 50 * dpi_ratio,
-        m_widthParams.title_width = WINDOW_TITLE_MIN_WIDTH * dpi_ratio;
+        m_widthParams.tools_width = int(50 * dpi_ratio),
+        m_widthParams.title_width = int(WINDOW_TITLE_MIN_WIDTH * dpi_ratio);
     else
         m_widthParams.tools_width = m_widthParams.title_width = 0;
 

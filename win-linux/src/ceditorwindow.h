@@ -86,7 +86,7 @@ protected:
     void onExitSizeMove() override;
     void onDpiChanged(int,int) override;
 
-    void setScreenScalingFactor(int) override;
+    void setScreenScalingFactor(double) override;
     int calcTitleCaptionWidth() override;
 
 private slots:
