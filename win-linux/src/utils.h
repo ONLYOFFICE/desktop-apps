@@ -80,9 +80,7 @@ public:
 
     static QString stringifyJson(const QJsonObject&);
 
-//    static QByteArray getAppStylesheets(int);
-    static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
-    static QByteArray readStylesheets(std::vector<QString> *);
+    static QByteArray readStylesheets(std::vector<std::string> const *);
     static QByteArray readStylesheets(const QString&);
     static QJsonObject parseJson(const std::wstring&);
 };

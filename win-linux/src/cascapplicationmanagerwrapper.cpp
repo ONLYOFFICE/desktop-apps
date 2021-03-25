@@ -894,8 +894,9 @@ void CAscApplicationManagerWrapper::initializeApp()
         }
     }
 
-    _app.m_vecStyles.push_back(":styles/res/styles/styles.qss");
-    _app.m_vecStyles2x.push_back(":styles@2x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
+
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
@@ -1270,8 +1271,20 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
+    if ( !(dpifactor < 2) )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
+    else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
+}
+
+QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor factor)
+{
     APP_CAST(_app);
-    return Utils::readStylesheets(&_app.m_vecStyles, &_app.m_vecStyles2x, dpifactor);
+
+    QByteArray _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    if ( factor != CScalingFactor::SCALING_FACTOR_1 )
+        _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
+
+    return _out;
 }
 
 bool CAscApplicationManagerWrapper::event(QEvent *event)
@@ -1679,4 +1692,12 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
             mainWindow()->hide();
         }
     }
+}
+
+void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::string& path)
+{
+    if ( m_mapStyles.find(f) == m_mapStyles.end() ) {
+        m_mapStyles[f] = {path};
+    } else m_mapStyles[f].push_back(path);
+
 }

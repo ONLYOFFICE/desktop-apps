@@ -124,7 +124,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, -1));
 
-    QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
 #ifdef __linux__

@@ -75,6 +75,12 @@ struct sWinTag {
     }
 };
 
+enum class CScalingFactor
+{
+    SCALING_FACTOR_1,
+    SCALING_FACTOR_2,
+};
+
 class CAscApplicationManagerWrapper;
 class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -82,11 +88,13 @@ typedef CAscApplicationManagerWrapper AscAppManager;
 class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
 {
     Q_OBJECT
+protected:
+    void addStylesheets(CScalingFactor, const std::string&);
 
 private:
     std::vector<size_t> m_vecEditors;
-    std::vector<QString> m_vecStyles;
-    std::vector<QString> m_vecStyles2x;
+
+    std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
     std::map<int, CSingleWindow *> m_winsReporter;
@@ -161,7 +169,8 @@ public:
     static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 
     static void             sendEvent(int type, void * data);
-    static QString          getWindowStylesheets(int);
+    static QString          getWindowStylesheets(double);
+    static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
