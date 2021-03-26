@@ -84,7 +84,7 @@ protected:
     void onSizeEvent(int) override;
     void onMoveEvent(const QRect&) override;
     void onExitSizeMove() override;
-    void onDpiChanged(int,int) override;
+    void onDpiChanged(double,double) override;
 
     void setScreenScalingFactor(double) override;
     int calcTitleCaptionWidth() override;

@@ -285,7 +285,7 @@ void CSingleWindowBase::onExitSizeMove()
 
 }
 
-void CSingleWindowBase::onDpiChanged(int, int)
+void CSingleWindowBase::onDpiChanged(double, double)
 {
 }
 
@@ -294,7 +294,7 @@ QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
     QPushButton * btn = new QPushButton(parent);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
-    btn->setFixedSize(QSize(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio));
+    btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio)));
 
     return btn;
 }

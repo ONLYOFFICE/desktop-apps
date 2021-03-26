@@ -96,13 +96,13 @@ protected:
     virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onExitSizeMove();
-    virtual void onDpiChanged(int newfactor, int prevfactor);
+    virtual void onDpiChanged(double newfactor, double prevfactor);
     virtual int calcTitleCaptionWidth();
     virtual void updateTitleCaption();
 
     inline int dpiCorrectValue(int v) const
     {
-        return v * static_cast<int>(m_dpiRatio);
+        return int(v * m_dpiRatio);
     }
 
 private:

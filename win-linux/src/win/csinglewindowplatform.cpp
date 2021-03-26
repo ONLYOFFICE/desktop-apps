@@ -106,10 +106,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     switch ( message ) {
     case WM_DPICHANGED:
         if ( !WindowHelper::isLeftButtonPressed() ) {
-            uint dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
             if ( dpi_ratio != window->m_dpiRatio ) {
-                window->onDpiChanged(static_cast<int>(dpi_ratio), static_cast<int>(window->m_dpiRatio));
+                window->onDpiChanged(dpi_ratio, window->m_dpiRatio);
             }
         }
         break;
@@ -128,8 +128,8 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
             if ( WindowHelper::isWindowSystemDocked(hWnd) )
-                window->setMinimumSize(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
-            else window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+                window->setMinimumSize(int(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
+            else window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
 
             break;
         } else
@@ -461,7 +461,7 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 void CSingleWindowPlatform::onExitSizeMove()
 {
     setMinimumSize(0, 0);
-    int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+    double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
 
     if ( dpi_ratio != m_dpiRatio ) {
         if ( WindowHelper::isWindowSystemDocked(m_hWnd) )
@@ -500,7 +500,7 @@ void CSingleWindowPlatform::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio;
+        border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,
