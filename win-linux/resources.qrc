@@ -7,7 +7,8 @@
         <file>res/icons/tab_close_hover.png</file>
         <file>res/icons/tab_close_hover_2x.png</file>
         <file>res/icons/message_icons.png</file>
-        <file>res/icons/message_icons_2x.png</file>
+        <file alias="message_icons_1.5x.png">res/icons/message_icons@1.5x.png</file>
+        <file alias="message_icons_2x.png">res/icons/message_icons@2x.png</file>
         <file>res/icons/downloading.gif</file>
         <file>res/icons/downloading_2x.gif</file>
         <file>res/icons/minimize-close.png</file>
