@@ -72,10 +72,10 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
-    void setScreenScalingFactor(uchar factor);
+    void setScreenScalingFactor(double factor);
 private:
     CMainPanelImpl *   m_pMainPanel;
-    uchar m_dpiRatio = 1;
+    double m_dpiRatio = 1;
 
 signals:
 public slots:

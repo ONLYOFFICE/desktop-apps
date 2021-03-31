@@ -87,11 +87,11 @@ public:
 #ifdef Q_OS_WIN
         , dpiRatio(Utils::getScreenDpiRatioByHWND(int(parent->handle())))
 #else
-        , m_dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
+        , dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
 #endif
     {}
 
-    auto addButton(QPushButton * b) {
+    auto addButton(QPushButton * b) -> void {
         buttons.push_back(b);
     }
 
@@ -103,7 +103,7 @@ public:
         return buttons.back();
     }
 
-    auto clearButtons() {
+    auto clearButtons() -> void {
         buttons.clear();
     }
 
@@ -139,7 +139,6 @@ CMessage::CMessage(QWidget * p)
 #if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
     m_centralWidget = new QWinWidget(_hwnd);
-    m_centralWidget->setObjectName("messageBody");
     m_centralWidget->installEventFilter(
                 new CMessageEventsFilter(this, m_centralWidget) );
 #else
@@ -150,6 +149,7 @@ CMessage::CMessage(QWidget * p)
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
+    m_centralWidget->setObjectName("messageBody");
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;

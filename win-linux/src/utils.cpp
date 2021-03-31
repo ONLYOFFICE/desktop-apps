@@ -407,20 +407,13 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
     if (!wid)
         return 1;
 
-    CAscDpiChecker* pDpiCheckerBase = CAscApplicationManager::GetDpiChecker();
-    if (!pDpiCheckerBase)
-        return 1;
-
-    QDpiChecker * pDpiChecker = (QDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
-    int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
+    double dpiApp = AscAppManager::getInstance().GetMonitorScaleByWindow(wid->winId(), nDpiX, nDpiY);
 
-    if (nRet >= 0) {
-        double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
-
+    if ( dpiApp >= 0 ) {
         // пока только 1, 1.5 или 2
-        return dDpiApp > 1.5 ? 2 : dDpiApp > 1 ? 1.5 : 1;
+        return dpiApp > 1.5 ? 2 : dpiApp > 1 ? 1.5 : 1;
     }
 
     return wid->devicePixelRatio();

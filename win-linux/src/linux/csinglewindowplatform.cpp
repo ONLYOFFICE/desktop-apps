@@ -200,7 +200,7 @@ void CSingleWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
-void CSingleWindowPlatform::onScreenScalingFactor(uint f)
+void CSingleWindowPlatform::onScreenScalingFactor(double f)
 {
     setMinimumSize(MAIN_WINDOW_MIN_WIDTH*f, MAIN_WINDOW_MIN_HEIGHT*f);
 
@@ -214,7 +214,7 @@ void CSingleWindowPlatform::onScreenScalingFactor(uint f)
 
 void CSingleWindowPlatform::onExitSizeMove()
 {
-    uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
 
     if ( dpi_ratio != m_dpiRatio )
         setScreenScalingFactor(dpi_ratio);

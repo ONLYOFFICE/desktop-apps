@@ -62,6 +62,9 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     d_ptr.get()->init(panel);
 
 #ifdef Q_OS_LINUX
+    if ( !CX11Decoration::isDecorated() )
+        applyTheme(AscAppManager::themes().current());
+
     setObjectName("editorWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
@@ -70,8 +73,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
-
-        applyTheme(AscAppManager::themes().current());
     }
 #else
 

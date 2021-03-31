@@ -45,7 +45,7 @@ public:
 
     bool holdView(int id) const;
     QWidget * createMainPanel(bool, const QString&, QWidget *);
-    void setScreenScalingFactor(uchar factor);
+    void setScreenScalingFactor(double factor);
 
     const QWidget * handle() const;
 
@@ -62,7 +62,7 @@ private:
     QWidget * m_boxTitle;
     QPushButton * m_btnMaximize;
 
-    uchar m_dpiRatio;
+    double m_dpiRatio;
 
 signals:
 
