@@ -409,7 +409,7 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
-    double dpiApp = AscAppManager::getInstance().GetMonitorScaleByWindow(wid->winId(), nDpiX, nDpiY);
+    double dpiApp = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)wid->winId(), nDpiX, nDpiY);
 
     if ( dpiApp >= 0 ) {
         // пока только 1, 1.5 или 2
