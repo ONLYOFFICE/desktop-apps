@@ -119,6 +119,12 @@ public:
 
         return false;
     }
+
+protected:
+    auto mainWindow() {
+        return m_appmanager.m_pMainWindow;
+    }
+
 public:
     CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
