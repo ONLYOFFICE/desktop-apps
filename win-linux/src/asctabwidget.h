@@ -104,7 +104,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
         int tools_width;
         int custom_offset;
 
-        void apply_scale(int dpi) {
+        void apply_scale(double dpi) {
             tab.max     *= dpi;
             tab.min     *= dpi;
             tabs_span   *= dpi;
@@ -156,7 +156,7 @@ public:
     int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
-    void updateScaling(int);
+    void updateScaling(double) override;
 protected:
     void resizeEvent(QResizeEvent* e);
     void tabInserted(int index);

@@ -62,6 +62,9 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     d_ptr.get()->init(panel);
 
 #ifdef Q_OS_LINUX
+    if ( !CX11Decoration::isDecorated() )
+        applyTheme(AscAppManager::themes().current());
+
     setObjectName("editorWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
@@ -70,8 +73,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
-
-        applyTheme(AscAppManager::themes().current());
     }
 #else
 
@@ -206,11 +207,13 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //    centralWidget->setObjectName("centralWidget");
 //    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    if ( m_dpiRatio > 1 )
+    if ( m_dpiRatio > 1.55 )
         mainPanel->setProperty("zoom", "2x");
+    else
+    if ( m_dpiRatio > 1 )
+        mainPanel->setProperty("zoom", "1.5x");
 
-    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
-    css.append(m_css);
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 
     if ( isCustomWindowStyle() ) {
         if ( !d_ptr->canExtendTitle() ) {
@@ -323,7 +326,7 @@ void CEditorWindow::onExitSizeMove()
     }
 }
 
-void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
+void CEditorWindow::onDpiChanged(double newfactor, double prevfactor)
 {
 #ifdef Q_OS_LINUX
     CX11Decoration::onDpiChanged(newfactor);
@@ -333,7 +336,7 @@ void CEditorWindow::onDpiChanged(int newfactor, int prevfactor)
     setScreenScalingFactor(newfactor);
 }
 
-void CEditorWindow::setScreenScalingFactor(int newfactor)
+void CEditorWindow::setScreenScalingFactor(double newfactor)
 {
     CSingleWindowPlatform::setScreenScalingFactor(newfactor);
 
@@ -357,11 +360,11 @@ void CEditorWindow::recalculatePlaces()
 
     int windowW = m_pMainPanel->width(),
         windowH = m_pMainPanel->height(),
-        captionH = TITLE_HEIGHT * m_dpiRatio;
+        captionH = int(TITLE_HEIGHT * m_dpiRatio);
 
     if (!QCefView::IsSupportLayers())
     {
-        d_ptr->panel()->view()->SetCaptionMaskSize(TITLE_HEIGHT * m_dpiRatio);
+        d_ptr->panel()->view()->SetCaptionMaskSize(int(TITLE_HEIGHT * m_dpiRatio));
     }
 
 //    int contentH = windowH - captionH;
@@ -402,9 +405,6 @@ void CEditorWindow::focus()
 void CEditorWindow::setReporterMode(bool apply)
 {
     if ( apply ) {
-        int windowW = m_pMainPanel->width(),
-            windowH = m_pMainPanel->height(),
-            captionH = TITLE_HEIGHT * m_dpiRatio;
     }
 
     d_ptr->isReporterMode = apply;

@@ -7,33 +7,42 @@
         <file>res/icons/tab_close_hover.png</file>
         <file>res/icons/tab_close_hover_2x.png</file>
         <file>res/icons/message_icons.png</file>
-        <file>res/icons/message_icons_2x.png</file>
+        <file alias="message_icons_1.5x.png">res/icons/message_icons@1.5x.png</file>
+        <file alias="message_icons_2x.png">res/icons/message_icons@2x.png</file>
         <file>res/icons/downloading.gif</file>
         <file>res/icons/downloading_2x.gif</file>
         <file>res/icons/minimize-close.png</file>
-        <file>res/icons/minimize-close_2x.png</file>
+        <file alias="minimize-close_1.5x.png">res/icons/minimize-close@1.5x.png</file>
+        <file alias="minimize-close_2x.png">res/icons/minimize-close@2x.png</file>
         <file>res/icons/maximize.png</file>
-        <file>res/icons/maximize_2x.png</file>
+        <file alias="maximize_1.5x.png">res/icons/maximize@1.5x.png</file>
+        <file alias="maximize_2x.png">res/icons/maximize@2x.png</file>
         <file>res/icons/menu-indicator.png</file>
         <file>res/icons/menu-indicator-dark.png</file>
-        <file>res/icons/menu-indicator_2x.png</file>
+        <file alias="menu-indicator_1.5x.png">res/icons/menu-indicator@1.5x.png</file>
+        <file alias="menu-indicator_2x.png">res/icons/menu-indicator@2x.png</file>
         <file>res/icons/radiobox.png</file>
+        <file alias="radiobox_1.5x.png">res/icons/radiobox@1.5x.png</file>
         <file alias="radiobox_2x.png">res/icons/radiobox@2x.png</file>
         <file>res/icons/checkbox.png</file>
+        <file alias="checkbox_1.5x.png">res/icons/checkbox@1.5x.png</file>
         <file alias="checkbox_2x.png">res/icons/checkbox@2x.png</file>
         <file>res/icons/arrow_down.png</file>
+        <file alias="arrow_down_1.5x.png">res/icons/arrow_down@1.5x.png</file>
         <file alias="arrow_down_2x.png">res/icons/arrow_down@2x.png</file>
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
-        <file>res/icons/splash.png</file>
-        <file>res/icons/splash_2x.png</file>
+        <file>res/icons/splash.svg</file>
         <file alias="logo_dark.png">res/icons/logo_dark.png</file>
+        <file alias="logo_dark@1.5x.png">res/icons/logo_dark_1.5x.png</file>
         <file alias="logo_dark@2x.png">res/icons/logo_dark_2x.png</file>
         <file alias="logo_light.png">res/icons/logo_light.png</file>
         <file alias="logo_light@1.5x.png">res/icons/logo_light_1.5x.png</file>
         <file alias="logo_light@2x.png">res/icons/logo_light_2x.png</file>
         <file alias="max_light.png">res/icons/maximize_light.png</file>
+        <file alias="max_light_1.5x.png">res/icons/maximize_light@1.5x.png</file>
         <file alias="max_light_2x.png">res/icons/maximize_light@2x.png</file>
         <file alias="minclose_light.png">res/icons/minimize-close_light.png</file>
+        <file alias="minclose_light_1.5x.png">res/icons/minimize-close_light@1.5x.png</file>
         <file alias="minclose_light_2x.png">res/icons/minimize-close_light@2x.png</file>
         <file alias="dock.png">res/icons/dock.png</file>
         <file alias="dock_2x.png">res/icons/dock@2x.png</file>
@@ -42,20 +51,28 @@
     </qresource>
     <qresource prefix="/tabbar/icons">
         <file alias="scrolltab_lp.png">res/icons/tabbar/changetab_left_active.png</file>
+        <file alias="scrolltab_lp_1.5x.png">res/icons/tabbar/changetab_left_active@1.5x.png</file>
         <file alias="scrolltab_lp_2x.png">res/icons/tabbar/changetab_left_active@2x.png</file>
         <file alias="scrolltab_ld.png">res/icons/tabbar/changetab_left_disabled.png</file>
+        <file alias="scrolltab_ld_1.5x.png">res/icons/tabbar/changetab_left_disabled@1.5x.png</file>
         <file alias="scrolltab_ld_2x.png">res/icons/tabbar/changetab_left_disabled@2x.png</file>
         <file alias="scrolltab_lh.png">res/icons/tabbar/changetab_left_hover.png</file>
+        <file alias="scrolltab_lh_1.5x.png">res/icons/tabbar/changetab_left_hover@1.5x.png</file>
         <file alias="scrolltab_lh_2x.png">res/icons/tabbar/changetab_left_hover@2x.png</file>
         <file alias="scrolltab_ln.png">res/icons/tabbar/changetab_left_normal.png</file>
+        <file alias="scrolltab_ln_1.5x.png">res/icons/tabbar/changetab_left_normal@1.5x.png</file>
         <file alias="scrolltab_ln_2x.png">res/icons/tabbar/changetab_left_normal@2x.png</file>
         <file alias="scrolltab_rp.png">res/icons/tabbar/changetab_right_active.png</file>
+        <file alias="scrolltab_rp_1.5x.png">res/icons/tabbar/changetab_right_active@1.5x.png</file>
         <file alias="scrolltab_rp_2x.png">res/icons/tabbar/changetab_right_active@2x.png</file>
         <file alias="scrolltab_rd.png">res/icons/tabbar/changetab_right_disabled.png</file>
+        <file alias="scrolltab_rd_1.5x.png">res/icons/tabbar/changetab_right_disabled@1.5x.png</file>
         <file alias="scrolltab_rd_2x.png">res/icons/tabbar/changetab_right_disabled@2x.png</file>
         <file alias="scrolltab_rh.png">res/icons/tabbar/changetab_right_hover.png</file>
+        <file alias="scrolltab_rh_1.5x.png">res/icons/tabbar/changetab_right_hover@1.5x.png</file>
         <file alias="scrolltab_rh_2x.png">res/icons/tabbar/changetab_right_hover@2x.png</file>
         <file alias="scrolltab_rn.png">res/icons/tabbar/changetab_right_normal.png</file>
+        <file alias="scrolltab_rn_1.5x.png">res/icons/tabbar/changetab_right_normal@1.5x.png</file>
         <file alias="scrolltab_rn_2x.png">res/icons/tabbar/changetab_right_normal@2x.png</file>
         <file alias="de.png">res/icons/tabbar/tabicon_de_normal.png</file>
         <file alias="de@2x.png">res/icons/tabbar/tabicon_de_normal_2x.png</file>
@@ -69,9 +86,11 @@
         <file alias="newdoc@2x.png">res/icons/tabbar/tabicon_undefined_2x.png</file>
         <file alias="loader.svg">res/icons/tabbar/loading.svg</file>
         <file alias="close_normal.png">res/icons/tabbar/tab_close_dark.png</file>
-        <file alias="close_normal_2x.png">res/icons/tabbar/tab_close_dark_2x.png</file>
+        <file alias="close_normal_1.5x.png">res/icons/tabbar/tab_close_dark@1.5x.png</file>
+        <file alias="close_normal_2x.png">res/icons/tabbar/tab_close_dark@2x.png</file>
         <file alias="close_active.png">res/icons/tabbar/tab_close_light.png</file>
-        <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light_2x.png</file>
+        <file alias="close_active_1.5x.png">res/icons/tabbar/tab_close_light@1.5x.png</file>
+        <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light@2x.png</file>
     </qresource>
     <qresource prefix="/title/icons">
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
@@ -80,6 +99,9 @@
     <qresource prefix="/styles">
         <file>res/styles/styles.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>
+    </qresource>
+    <qresource prefix="/styles@1.5x">
+        <file alias="styles.qss">res/styles/styles@1.5x.qss</file>
     </qresource>
     <qresource prefix="/styles@2x">
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
@@ -101,6 +123,7 @@
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
+        <file alias="tabbar@1.5x.qss">res/styles/tabbar@1.5x.qss</file>
         <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
         <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
     </qresource>

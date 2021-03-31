@@ -81,6 +81,13 @@ const QString g_css =
         "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
         "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"1.5x\"] #toolButtonMinimize,#mainPanel[zoom=\"15x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"1.5x\"] #toolButtonMaximize{padding: 8px 18px 11px;}"
+        "#mainPanel[zoom=\"1.5x\"] #iconuser,"
+        "#mainPanel[zoom=\"1.5x\"] #labelTitle{font-size:18px;}"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.5x.png);}"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.5x.png);}"
         "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
         "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
         "#mainPanel[zoom=\"2x\"] #iconuser,"
@@ -482,16 +489,16 @@ public:
         AscAppManager::getInstance().commonEvents().signal(&_event);
     }
 
-    void onScreenScalingFactor(int f)
+    void onScreenScalingFactor(double f)
     {
         if ( window->isCustomWindowStyle() ) {
             int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
+            int diffW = int((titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f); // 4 tool buttons: min+max+close+usericon
 
             if ( iconuser ) {
-                iconuser->setMaximumWidth(200 * f);
-                iconuser->setContentsMargins(12*f,0,12*f,2*f);
-                iconuser->setMaximumWidth(200*f);
+                iconuser->setMaximumWidth(int(200 * f));
+                iconuser->setContentsMargins(int(12*f),0,int(12*f),int(2*f));
+                iconuser->setMaximumWidth(int(200*f));
                 iconuser->adjustSize();
                 diffW -= iconuser->width();
             }
@@ -500,11 +507,11 @@ public:
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
             }
 
-            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*f) :
-                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*f);
+            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
+                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, int(2*f));
 
             for (const auto& btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
         }
@@ -600,8 +607,8 @@ public:
         if ( !iconuser ) {
             iconuser = new CElipsisLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
-            iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
-            iconuser->setMaximumWidth(200 * window->m_dpiRatio);
+            iconuser->setContentsMargins(0,0,0,int(2 * window->m_dpiRatio));
+            iconuser->setMaximumWidth(int(200 * window->m_dpiRatio));
 //            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
 //            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }

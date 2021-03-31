@@ -162,6 +162,7 @@
                 document.body.className = `${_cls} ${name}`;
 
                 localStorage.setItem('ui-theme', name);
+                CommonEvents.fire('theme:changed', [name]);
             }
         };
 

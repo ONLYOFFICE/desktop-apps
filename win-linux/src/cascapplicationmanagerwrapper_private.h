@@ -95,15 +95,6 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
-    auto extendStylesheets(const std::vector<QString>& veccss) -> void {
-        if ( !veccss.empty() ) {
-            m_appmanager.m_vecStyles.push_back(veccss[0]);
-
-            if ( veccss.size() > 1 )
-                m_appmanager.m_vecStyles2x.push_back(veccss[1]);
-        }
-    }
-
     auto handleAppKeyPress(QKeyEvent * e) -> bool
     {
         if (e->key() == Qt::Key_O && (QApplication::keyboardModifiers() & Qt::ControlModifier)) {

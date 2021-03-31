@@ -43,7 +43,7 @@
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, double scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
     QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
@@ -71,7 +71,6 @@ void CMainPanelImpl::refreshAboutVersion()
     );
 
     std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
-    qDebug() << "scaling" << QString::fromStdWString(_force_value);
     if ( _force_value == L"1" )
         _json_obj["uiscaling"] = 100;
     else
@@ -89,14 +88,14 @@ void CMainPanelImpl::refreshAboutVersion()
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
-void CMainPanelImpl::updateScaling(int dpiratio)
+void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
     std::wstring prefix{AscAppManager::themes().value(CThemes::ColorRole::ecrLogoColor)};
     QString logo_name = QString(":/logo_%1%2.png")
             .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1 ? dpiratio > 1.5 ? "@2x" : "@1.5x" : "");
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
 //    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
     QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
@@ -108,11 +107,11 @@ void CMainPanelImpl::applyTheme(const std::wstring& theme)
 {
     CMainPanel::applyTheme(theme);
 
-    int dpiratio = scaling();
+    double dpiratio = scaling();
     std::wstring prefix{AscAppManager::themes().value(theme, CThemes::ColorRole::ecrLogoColor)};
     QString logo_name = QString(":/logo_%1%2.png")
             .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1 ? dpiratio > 1.5 ? "@2x" : "@1.5x" : "");
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
     QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
     m_pButtonMain->setIcon(QIcon(pixmap));

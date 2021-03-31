@@ -85,7 +85,7 @@ protected:
     virtual void onSizeEvent(int) override;
     virtual void applyWindowState(Qt::WindowState);
     virtual void adjustGeometry() override;
-    virtual void setScreenScalingFactor(int f) override;
+    virtual void setScreenScalingFactor(double f) override;
 
 //    virtual void focusMainPanel();
 

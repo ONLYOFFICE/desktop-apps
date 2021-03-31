@@ -7,16 +7,17 @@ class CScalingWrapper
 {
 public:
     explicit CScalingWrapper(QWidget *);
-    explicit CScalingWrapper(int);
+    explicit CScalingWrapper(double);
+    virtual ~CScalingWrapper() {}
 
-    virtual void updateScaling(int f);
-    int scaling() const;
+    virtual void updateScaling(double f);
+    double scaling() const;
 
-    static void updateChildScaling(const QObject * parent, int factor);
-    static int parentScalingFactor(const QObject * parent);
+    static void updateChildScaling(const QObject * parent, double factor);
+    static double parentScalingFactor(const QObject * parent);
 
 private:
-    int m_scaleFactor = 1;
+    double m_scaleFactor = 1;
 };
 
 #endif // CSCALINGWRAPPER_H

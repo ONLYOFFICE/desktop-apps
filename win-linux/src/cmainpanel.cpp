@@ -90,7 +90,7 @@ public:
     QPrintDialog::PrintRange _print_range;
 };
 
-CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
+CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     : QWidget(parent),
       CScalingWrapper(dpi_ratio)
       , m_isCustomWindow(isCustomWindow)
@@ -124,7 +124,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, -1));
 
-    QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
 #ifdef __linux__
@@ -143,8 +142,8 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-    layoutBtns->setContentsMargins(0,0,4*dpi_ratio,0);
-    layoutBtns->setSpacing(1*dpi_ratio);
+    layoutBtns->setContentsMargins(0,0,int(4*dpi_ratio),0);
+    layoutBtns->setSpacing(int(1*dpi_ratio));
     layoutBtns->addWidget(label);
 
     // Main
@@ -156,7 +155,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     if (isCustomWindow) {
 //        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
 
-        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
+        auto _creatToolButton = [](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);
             btn->setObjectName(name);
             btn->setProperty("class", "normal");
@@ -225,7 +224,6 @@ void CMainPanel::attachStartPanel(QCefView * const view)
 void CMainPanel::RecalculatePlaces()
 {
     int cbw = 0;
-    int dpi_ratio = scaling();
 
 #ifdef __linux
     QWidget * cw = findChild<QWidget *>("centralWidget");
@@ -235,8 +233,8 @@ void CMainPanel::RecalculatePlaces()
     int windowW = width(),
         windowH = height(),
 #endif
-        captionH = TITLE_HEIGHT * dpi_ratio,
-        btnMainWidth = BUTTON_MAIN_WIDTH * dpi_ratio;
+        captionH = int(TITLE_HEIGHT * scaling()),
+        btnMainWidth = int(BUTTON_MAIN_WIDTH * scaling());
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 
@@ -248,7 +246,7 @@ void CMainPanel::RecalculatePlaces()
     if (contentH < 1)
         contentH = 1;
 
-    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * dpi_ratio);
+    m_boxTitleBtns->setFixedSize(docCaptionW, int(TOOLBTN_HEIGHT * scaling()));
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
 
     if ( m_pMainWidget )
@@ -1242,25 +1240,25 @@ QString CMainPanel::getSaveMessage() const
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
-void CMainPanel::updateScaling(int dpiratio)
+void CMainPanel::updateScaling(double dpiratio)
 {
     CScalingWrapper::updateScaling(dpiratio);
 
     QLayout * layoutBtns = m_boxTitleBtns->layout();
-    layoutBtns->setSpacing(1 * dpiratio);
+    layoutBtns->setSpacing(int(1 * dpiratio));
 
     if ( m_isCustomWindow ) {
         layoutBtns->setContentsMargins(0,0,0,0);
 
-        QSize small_btn_size(40*dpiratio, TOOLBTN_HEIGHT*dpiratio);
+        QSize small_btn_size(int(40*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
 
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * dpiratio, TITLE_HEIGHT * dpiratio);
+    m_pButtonMain->setGeometry(0, 0, int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
 
-    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = dpiratio > 1.55 ? ":/sep-styles/tabbar@2x" : dpiratio > 1.1 ? ":/sep-styles/tabbar@1.5x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
         _tabs_stylesheets += ".qss";
     } else {
@@ -1297,7 +1295,7 @@ void CMainPanel::updateScaling(int dpiratio)
     m_pTabs->setTabIcons(icons);
 }
 
-void CMainPanel::setScreenScalingFactor(uchar s)
+void CMainPanel::setScreenScalingFactor(double s)
 {
     updateScaling(s);
     CScalingWrapper::updateChildScaling(this, s);

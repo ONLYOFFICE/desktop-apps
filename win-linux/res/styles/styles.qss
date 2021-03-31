@@ -162,17 +162,17 @@ QPushButton::menu-indicator:hover {
     border-image: url(:/res/icons/menu-indicator.png) 0 10 0 0 repeat repeat;
 }
 
-QPushButton[theme=dark]::menu-indicator {
-    border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 0 repeat repeat;
-}
+/*QPushButton[theme=dark]::menu-indicator {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 0 repeat repeat;*/
+/*}*/
 
-QPushButton[theme=dark]::menu-indicator:disabled {
-    border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 10 repeat repeat;
-}
+/*QPushButton[theme=dark]::menu-indicator:disabled {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 10 repeat repeat;*/
+/*}*/
 
-QPushButton[theme=dark]::menu-indicator:hover {
-    border-image: url(:/res/icons/menu-indicator-dark.png) 0 10 0 0 repeat repeat;
-}
+/*QPushButton[theme=dark]::menu-indicator:hover {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 10 0 0 repeat repeat;*/
+/*}*/
 
 QPushButton#toolButtonDownload {
     /*background-repeat: no-repeat;*/

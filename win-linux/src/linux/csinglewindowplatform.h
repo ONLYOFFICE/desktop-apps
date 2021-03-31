@@ -72,7 +72,7 @@ protected:
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
     virtual void onSizeEvent(int type) override;
-    virtual void onScreenScalingFactor(uint f);
+    virtual void onScreenScalingFactor(double f);
     virtual void onExitSizeMove() override;
 
 public slots:

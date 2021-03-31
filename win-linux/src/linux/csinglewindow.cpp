@@ -240,7 +240,7 @@ bool CSingleWindow::event(QEvent * event)
     } else
     if ( event->type() == QEvent::MouseButtonRelease ) {
         if ( _flg_left_button && _flg_motion ) {
-            uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+            double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
 
             if ( dpi_ratio != m_dpiRatio )
                 setScreenScalingFactor(dpi_ratio);
@@ -256,7 +256,7 @@ bool CSingleWindow::event(QEvent * event)
     return QMainWindow::event(event);
 }
 
-void CSingleWindow::setScreenScalingFactor(uchar factor)
+void CSingleWindow::setScreenScalingFactor(double factor)
 {
     QString css(AscAppManager::getWindowStylesheets(factor));
 

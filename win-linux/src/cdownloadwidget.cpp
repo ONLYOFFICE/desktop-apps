@@ -307,7 +307,7 @@ void CDownloadWidget::resizeEvent(QResizeEvent * e)
 //    qDebug() << "resize: " << e->size();
 }
 
-void CDownloadWidget::applyScaling(int factor)
+void CDownloadWidget::applyScaling(double factor)
 {
     if ( factor > 1 ) {
         setProperty("hdpi", true);
@@ -318,10 +318,10 @@ void CDownloadWidget::applyScaling(int factor)
     }
 
     layout()->setContentsMargins(m_defMargins * factor);
-    layout()->setSpacing(m_defSpacing * factor);
+    layout()->setSpacing(int(m_defSpacing * factor));
 
     m_pToolButton->setScaling(factor);
-    setMaximumWidth(DOWNLOAD_WIDGET_MAX_WIDTH * factor);
+    setMaximumWidth(int(DOWNLOAD_WIDGET_MAX_WIDTH * factor));
 
     for (int i(0); i < layout()->count(); ++i) {
         QWidget * _d_item = layout()->itemAt(i)->widget();
@@ -345,7 +345,7 @@ void CDownloadWidget::applyScaling(int factor)
     QPixmap::grabWidget(m_pToolButton->menu());
 }
 
-void CDownloadWidget::updateScaling(int f)
+void CDownloadWidget::updateScaling(double f)
 {
     CScalingWrapper::updateScaling(f);
     applyScaling(scaling());

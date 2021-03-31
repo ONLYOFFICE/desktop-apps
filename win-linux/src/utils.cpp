@@ -374,15 +374,15 @@ QString Utils::stringifyJson(const QJsonObject& obj)
     return QJsonDocument(obj).toJson(QJsonDocument::Compact);
 }
 
-unsigned Utils::getScreenDpiRatio(int scrnum)
+double Utils::getScreenDpiRatio(int scrnum)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
-    int nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-    return (-1 == nScale) ? 1 : nScale;
+    double nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
+    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
 }
 
-unsigned Utils::getScreenDpiRatio(const QPoint& pt)
+double Utils::getScreenDpiRatio(const QPoint& pt)
 {
     QWidget _w;
     _w.setGeometry(QRect(pt, QSize(10,10)));
@@ -394,33 +394,26 @@ unsigned Utils::getScreenDpiRatio(const QPoint& pt)
 #endif
 }
 
-unsigned Utils::getScreenDpiRatioByHWND(int hwnd)
+double Utils::getScreenDpiRatioByHWND(int hwnd)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
-    int nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
-    return (-1 == nScale) ? 1 : nScale;
+    double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
+    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
 }
 
-unsigned Utils::getScreenDpiRatioByWidget(QWidget* wid)
+double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 {
     if (!wid)
         return 1;
 
-    CAscDpiChecker* pDpiCheckerBase = CAscApplicationManager::GetDpiChecker();
-    if (!pDpiCheckerBase)
-        return 1;
-
-    QDpiChecker * pDpiChecker = (QDpiChecker *)pDpiCheckerBase;
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
-    int nRet = pDpiChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
+    double dpiApp = AscAppManager::getInstance().GetMonitorScaleByWindow(wid->winId(), nDpiX, nDpiY);
 
-    if (nRet >= 0) {
-        double dDpiApp = pDpiChecker->GetScale(nDpiX, nDpiY);
-
-        // пока только 1 или 2
-        return (dDpiApp > 1.9) ? 2 : 1;
+    if ( dpiApp >= 0 ) {
+        // пока только 1, 1.5 или 2
+        return dpiApp > 1.5 ? 2 : dpiApp > 1 ? 1.5 : 1;
     }
 
     return wid->devicePixelRatio();
@@ -454,24 +447,13 @@ QByteArray Utils::getAppStylesheets(int scale)
 }
 */
 
-QByteArray Utils::readStylesheets(std::vector<QString> * list, std::vector<QString> * list2x, int scale)
+QByteArray Utils::readStylesheets(std::vector<std::string> const * list)
 {
-    QByteArray _out = readStylesheets(list);
-
-    if ( scale > 1 ) {
-        _out.append( readStylesheets(list2x) );
-    }
-
-    return _out;
-}
-
-QByteArray Utils::readStylesheets(std::vector<QString> * list)
-{
-    auto read_styles = [](const std::vector<QString> * inl) {
+    auto read_styles = [](std::vector<std::string> const * inl) {
         QByteArray _css;
         QFile file;
         for ( auto &path : *inl ) {
-            file.setFileName(path);
+            file.setFileName(path.c_str());
             if ( file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
                 _css.append(file.readAll());
                 file.close();
@@ -663,7 +645,7 @@ namespace WindowHelper {
     }
 
     typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-    auto adjustWindowRect(HWND handle, int dpiratio, LPRECT rect) -> void
+    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
     {
         static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
         static bool _is_read = false;
