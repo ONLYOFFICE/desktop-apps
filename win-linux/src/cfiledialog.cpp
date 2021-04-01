@@ -46,15 +46,14 @@
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
-# include <QOperatingSystemVersion>
 #endif
 #include <string>
 
 using namespace std;
 
 #ifdef Q_OS_WIN
-//static DWORD win_ver_major{0};
-static const int win_ver_major = QOperatingSystemVersion::current().majorVersion();
+static DWORD win_ver_major{0};
+//static const int win_ver_major = QOperatingSystemVersion::current().majorVersion();
 using VectorShellItems = vector<IShellItem *>;
 
 auto itemsFromItemArray(IShellItemArray * items)
@@ -418,15 +417,15 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     args.multiSelect = multi;
     args.folder = path.toStdWString();
 
-//    if ( win_ver_major == 0 ) {
-//        OSVERSIONINFO osvi;
+    if ( win_ver_major == 0 ) {
+        OSVERSIONINFO osvi;
 
-//        ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
-//        osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+        ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+        osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
-//        GetVersionEx(&osvi);
-//        win_ver_major = osvi.dwMajorVersion;
-//    }
+        GetVersionEx(&osvi);
+        win_ver_major = osvi.dwMajorVersion;
+    }
 
     // Win XP doesn't support IFileOpenDialog
     if ( win_ver_major > 5 ) {
