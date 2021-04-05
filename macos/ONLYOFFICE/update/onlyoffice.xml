@@ -6,6 +6,18 @@
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
+            <title>6.2</title>
+            <pubDate>Wed, 17 Mar 2021 15:10:33 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.12</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/6.2/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/6.2/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE-6.2.zip" sparkle:version="492" sparkle:shortVersionString="6.2" length="371021494" type="application/octet-stream" sparkle:edSignature="pfdmHz6cFFEcd+BLKOqmzobpjOBX+okLkzFOok69R3EFny2bmvtbGjp7EJnlGmBxVUkH+T0FZ6GLKUxWxEbbBQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE492-443.delta" sparkle:version="492" sparkle:shortVersionString="6.2" sparkle:deltaFrom="443" length="52992307" type="application/octet-stream" sparkle:edSignature="y/nITilA0IJuvBxocYGdAvdVGuw+56UmNJkgQDqDDbG/Zu9ZkMDI9bJziDdweSV2WA22s9qyXU+dfCgtBacoAg=="/>
+                <enclosure url="https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/ONLYOFFICE492-423.delta" sparkle:version="492" sparkle:shortVersionString="6.2" sparkle:deltaFrom="423" length="187870379" type="application/octet-stream" sparkle:edSignature="xgVuZz93x+FDuz1il0HqgLT5InBZSwZwETX+081kgXsui3hO0qhVXWsfRDRVC8LCpxIuFBst/H4Z3Zst2lofBg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>6.1</title>
             <pubDate>Sun, 06 Dec 2020 17:46:25 +0300</pubDate>
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
