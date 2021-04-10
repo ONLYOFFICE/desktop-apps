@@ -30,7 +30,16 @@ CThemes::CThemes()
     : m_priv(new CThemes::CThemesPrivate(this))
 {
     GET_REGISTRY_USER(_reg_user);
+#ifdef Q_OS_WIN
+    if ( _reg_user.contains(REGISTRY_THEME_KEY) )
+        m_priv->current = _reg_user.value(REGISTRY_THEME_KEY, QString::fromStdWString(NSThemeLight::theme_id)).toString().toStdWString();
+    else {
+        QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+        m_priv->current = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? NSThemeDark::theme_id : NSThemeLight::theme_id;
+    }
+#else
     m_priv->current = _reg_user.value(REGISTRY_THEME_KEY, QString::fromStdWString(NSThemeLight::theme_id)).toString().toStdWString();
+#endif
 }
 
 auto CThemes::current() -> std::wstring
