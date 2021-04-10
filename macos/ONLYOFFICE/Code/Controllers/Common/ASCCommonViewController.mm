@@ -1465,14 +1465,13 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
-    if ( !ui_lang )
-        ui_lang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
+    if ( !uiLang )
+        uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
-    NSLog(@"user locale: %@", ui_lang);
     NSDictionary * json_langs = @{
         @"locale": @{
-            @"current": ui_lang,
+            @"current": uiLang,
             @"langs": @{
                 @"en": @"English",
                 @"ru": @"Русский",

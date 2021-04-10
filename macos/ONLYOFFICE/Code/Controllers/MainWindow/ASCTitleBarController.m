@@ -397,7 +397,7 @@ static float kASCWindowMinTitleWidth = 0;
         [self.portalButton setState:NSControlStateValueOn];
     }
 
-    if ([NSApplication isDarkMode]) {
+    if ([NSApplication isSystemDarkMode]) {
         [self.portalButton setImage:(self.portalButton.state == NSControlStateValueOn)
          ? [NSImage imageNamed:@"logo-tab-dark"]
          : [NSImage imageNamed:@"logo-tab-light"]
