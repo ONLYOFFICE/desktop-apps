@@ -689,13 +689,13 @@
 
     switch (type) {
         case ASCTabViewTypeDocument:
-            headerColor = [NSColor brendDocumentEditor];
+            headerColor = [NSColor themedDocumentEditor];
             break;
         case ASCTabViewTypeSpreadsheet:
-            headerColor = [NSColor brendSpreadsheetEditor];
+            headerColor = [NSColor themedSpreadsheetEditor];
             break;
         case ASCTabViewTypePresentation:
-            headerColor = [NSColor brendPresentationEditor];
+            headerColor = [NSColor themedPresentationEditor];
             break;
         default:
             break;

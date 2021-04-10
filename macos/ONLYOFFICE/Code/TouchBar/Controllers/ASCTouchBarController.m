@@ -256,17 +256,17 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
     else if ([identifier isEqualToString:kNewItemsItemIdentifier]) {
         NSArray * creationButtons = @[
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"document"]
-                                                               color:[NSColor brendDocumentEditor]
+                                                               color:[NSColor themedDocumentEditor]
                                                                title:NSLocalizedStringWithDefaultValue(@"new-document", @"Localizable", [NSBundle mainBundle], @"New Document", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-document", @"Localizable", [NSBundle mainBundle], @"New Document", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]
-                                                               color:[NSColor brendSpreadsheetEditor]
+                                                               color:[NSColor themedSpreadsheetEditor]
                                                                title:NSLocalizedStringWithDefaultValue(@"new-spreadsheet", @"Localizable", [NSBundle mainBundle], @"New Spreadsheet", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-spreadsheet", @"Localizable", [NSBundle mainBundle], @"New Spreadsheet", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]
-                                                               color:[NSColor brendPresentationEditor]
+                                                               color:[NSColor themedPresentationEditor]
                                                                title:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)],

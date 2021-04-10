@@ -619,6 +619,18 @@ public:
                                     }
                                 }
 
+                                if (NSString * uiTheme = json[@"uitheme"]) {
+                                    if ( [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] != uiTheme ) {
+                                        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
+
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+                                                                                            object:nil
+                                                                                          userInfo: @{@"uitheme": uiTheme}];
+                                    }
+
+                                    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+                                }
+
                                 std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
                                 CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                                 appManager->InitAdditionalEditorParams(wLocale);
