@@ -1469,8 +1469,10 @@
     if ( !uiLang )
         uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+
     NSDictionary * json_langs = @{
-        @"locale": @{
+        @"locale_skip": @{
             @"current": uiLang,
             @"langs": @{
                 @"en": @"English",
@@ -1483,7 +1485,8 @@
                 @"pt-BR": @"Português Brasileiro",
                 @"zh-CN": @"中文"
             }
-        }
+        },
+        @"uitheme": uiTheme
     };
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;

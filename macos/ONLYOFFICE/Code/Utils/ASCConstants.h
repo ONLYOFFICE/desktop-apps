@@ -67,6 +67,10 @@ static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
 static NSString * const kHelpUrl                            = @"kHelpUrl";
 static NSString * const kRegistrationPortalUrl              = @"kRegistrationPortalUrl";
 
+// UI Theme id
+static NSString * const uiThemeLight                      = @"theme-light";
+static NSString * const uiThemeDark                       = @"theme-dark";
+
 // Custom schemes
 static NSString * const kSchemeApp                          = @"oo-office";
 
@@ -84,6 +88,7 @@ static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
 static NSString * const ASCUserNameApp                      = @"asc_user_name_app";
 static NSString * const ASCUserUILanguage                   = @"asc_user_ui_lang";
+static NSString * const ASCUserUITheme                      = @"asc_user_ui_theme";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";

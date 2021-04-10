@@ -46,6 +46,7 @@
 #import "ASCHelper.h"
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
+#import "NSApplication+Extensions.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -96,6 +97,15 @@ int main(int argc, const char * argv[]) {
         [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];
     }
     
+    // setup ui theme
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    if ( !uiTheme ) {
+        uiTheme = [NSApplication isSystemDarkMode] ? uiThemeDark : uiThemeLight;
+        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
+    }
+
+    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
 
