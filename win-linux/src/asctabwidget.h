@@ -192,6 +192,7 @@ public:
     bool isActiveWidget();
 
     void setTabIcons(CTabIconSet&);
+    void reloadTabIcons();
     void updateIcons();
     void updateTabIcon(int);
     void setFocusedView(int index = -1);

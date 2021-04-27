@@ -559,6 +559,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 case etPresentation: active_tab_color = QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSlideActive)); break;
                 case etSpreadsheet: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabCellActive)); break;
                 case etDocument: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabWordActive)); break;
+                case etNewPortal:
                 case etPortal:
                     active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSimpleActiveBackground));
                     tab_theme = CTabBar::LightTab;
@@ -581,7 +582,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 tabbar.setActiveTabColor(active_tab_color);
 //                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
 
-                if ( tab_type == etPortal || tab_type == etUndefined )
+                if ( tab_type == etPortal || tab_type == etNewPortal || tab_type == etUndefined )
                     tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTabSimpleActiveText));
                 else tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTextPressed));
 
@@ -593,6 +594,42 @@ void CAscTabWidget::updateTabIcon(int index)
 void CAscTabWidget::setTabIcons(CTabIconSet& icons)
 {
     m_mapTabIcons = icons;
+}
+
+void CAscTabWidget::reloadTabIcons()
+{
+    double dpi_ratio = scaling();
+
+    m_mapTabIcons.clear();
+    if ( dpi_ratio > 1.5 ) {
+        m_mapTabIcons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe@2x.png", ":/tabbar/icons/pe@2x.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")}
+        });
+
+        m_isDarkTheme ?
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
+                            {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}}) :
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
+                             {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}});
+    } else
+    if ( dpi_ratio > 1 ) {
+    } else {
+        m_mapTabIcons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de.png", ":/tabbar/icons/de.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe.png", ":/tabbar/icons/pe.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")}
+        });
+
+        m_isDarkTheme ?
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light.png", ":/tabbar/icons/portal.png")},
+                            {etNewPortal, std::make_pair(":/tabbar/icons/portal_light.png", ":/tabbar/icons/portal.png")}}) :
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")},
+                             {etNewPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")}});
+    }
 }
 
 /*
@@ -1245,6 +1282,7 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
     m_isDarkTheme = theme == NSThemeDark::theme_id;
 
+    reloadTabIcons();
     updateIcons();
 
     CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
