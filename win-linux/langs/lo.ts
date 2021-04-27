@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ro">
+<TS version="2.1" language="lo">
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
         <source>Presenter View</source>
-        <translation>Vizualizarea prezentator</translation>
+        <translation>ມຸມມອງຜູ້ນຳສະເໜີ</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1282"/>
         <source>Update is running. Break update and close the app?</source>
-        <translation>Actualizarea în curs de desfãºurare. Doriți sã anulați actualizarea și sã închideți aplicația?</translation>
+        <translation>ການປັບປຸງ ກຳ ລັງ ດຳ ເນີນຢູ່. ຍົກເລີກການປັບປຸງແລະປິດໃບສະ ໝັກ ບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1300"/>
         <source>Close all editors windows?</source>
-        <translation>Toate ferestrele vor fi închise Doriți sã continuați?</translation>
+        <translation>ບັນນາທິການທັງ ໝົດ ຈະຖືກປິດ. ທ່ານຕ້ອງການ ດຳ ເນີນການຕໍ່ບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1522"/>
         <source>Document%1.docx</source>
-        <translation>Document%1.docx</translation>
+        <translation>ເອກະສານ%1.docx</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1523"/>
         <source>Book%1.xlsx</source>
-        <translation>Registru%1.xlsx</translation>
+        <translation>ປື້ມ%1.xlsx%</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1524"/>
         <source>Presentation%1.pptx</source>
-        <translation>Prezentare%1.pptx</translation>
+        <translation>ການນຳສະເໜີ%1.pptx</translation>
     </message>
 </context>
 <context>
@@ -39,7 +39,7 @@
     <message>
         <location filename="../src/asctabwidget.cpp" line="701"/>
         <source>Document</source>
-        <translation>Deschidere...</translation>
+        <translation>ກຳລັງເປີດ</translation>
     </message>
 </context>
 <context>
@@ -47,62 +47,62 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
-        <translation>Selecta&apos;i un certificat</translation>
+        <translation>ເລືອກໃບຢັ້ງຢືນ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>selectați fișierul de certificat...</translation>
+        <translation>ກຳລັງເລືອກເອກະສານໃບຢັ້ງຢືນ...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>Certifacate password:</source>
-        <translation>Parola pentru certificatul:</translation>
+        <translation>ໃບຢັ້ງຢືນລະຫັດຜ່ານ:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>selectați fișierul cheie...</translation>
+        <translation>ລືອກໄຟລ໌ທີ່ສຳຄັນ...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
-        <translation>Parola pentru cheie:</translation>
+        <translation>ລະຫັດຜ່ານທີ່ສຳຄັນ:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
         <source>Enter certificate path</source>
-        <translation>Introduceți calea certificatului</translation>
+        <translation>ໃສ່ເສັ້ນທາງໃບຢັ້ງຢືນ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
         <source>Certificate is not supported</source>
-        <translation>Certificatul nu este acceptat</translation>
+        <translation>ໃບຢັ້ງຢືນບໍ່ໄດ້ຮັບການສະໜັບສະໜູນ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
         <source>Enter certificate password</source>
-        <translation>Introduceți parola pentru certificatul</translation>
+        <translation>ໃສ່ລະຫັດຜ່ານໃບຢັ້ງຢືນ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Parolã pentru certificatul incorectã.&lt;br&gt;Introduceți parola încã o datã</translation>
+        <translation>ລະຫັດຜ່ານໃບຢັ້ງຢືນທີ່ບໍ່ຖືກຕ້ອງ.&lt;br&gt;ກະລຸນາໃສ່ອີກຄັ້ງ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
         <source>Enter valid private key</source>
-        <translation>Introduceți cheia privatã validã</translation>
+        <translation>ໃສ່ລະຫັດສ່ວນຕົວທີ່ຖືກຕ້ອງ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="251"/>
         <source>Key is not supported</source>
-        <translation>Cheia nu este acceptatã</translation>
+        <translation>ກຸນແຈບໍ່ໄດ້ຮັບຮັບຮອງ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="256"/>
         <source>Enter key password</source>
-        <translation>Introduceți parola pentru cheia</translation>
+        <translation>ໃສ່ລະຫັດຜ່ານ</translation>
     </message>
 </context>
 <context>
@@ -110,35 +110,35 @@
     <message>
         <location filename="../src/cdownloadwidget.cpp" line="148"/>
         <source>Cancel</source>
-        <translation>Revocare</translation>
+        <translation>ຍົກເລີກ</translation>
     </message>
 </context>
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="152"/>
-        <source>%1 has been changed. Save changes?</source>
-        <translation>%1 a fost modificat.&lt;br&gt;Dori?i sã salvați modificãrile?</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditorwindow.cpp" line="448"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Dacã salvați în acest format de fișier, este posibil ca unele dintre caracteristici sã se piardã, cu excepția textului.&lt;br&gt;Sunteți sigur cã doriți sã continuați?</translation>
-    </message>
-    <message>
         <location filename="../src/ceditorwindow_p.h" line="315"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Este necesar sã salvați documentul înainte de a putea continua .&lt;br&gt;Doriți sã salvați documentul?</translation>
+        <translation>ເອກະສານຕ້ອງຖືກບັນທຶກເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ່?</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="372"/>
         <source>Print Document</source>
-        <translation>Imprimare document</translation>
+        <translation>ພິມເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="527"/>
         <source>Document must be saved firstly.</source>
-        <translation>Mai întâi, salvați documentul.</translation>
+        <translation>ເອກະສານຕ້ອງໄດ້ເກັບໄວ້ກ່ອນ.</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="152"/>
+        <source>%1 has been changed. Save changes?</source>
+        <translation>%1 ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການບັນທຶກການປ່ຽນແປງບໍ່?</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="448"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
 </context>
 <context>
@@ -146,207 +146,207 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="57"/>
         <source>All files (*.*)</source>
-        <translation>Toate fișierele (*.*)</translation>
+        <translation>ຟາຍທັງ ໝົດ (*.*)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="59"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Document DOCX (*.docx)</translation>
+        <translation>ເອກະສານ DOCX (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="60"/>
         <source>Document template (*.dotx)</source>
-        <translation>Șablon document (*.dotx)</translation>
+        <translation>ແບບແຜນເອກະສານ (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="61"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Document DOC (*.doc)</translation>
+        <translation>ເອກະສານ DOC (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="62"/>
         <source>ODT Document (*.odt)</source>
-        <translation>Document ODT (*.odt)</translation>
+        <translation>ເອກະສານ ODT (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="63"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translation>Șablon document OpenDocument (*.ott)</translation>
+        <translation>ແບບເປີດເອກະສານ (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="64"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Fișier RTF (*.rtf)</translation>
+        <translation>ເອກະສານ RTF (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="65"/>
         <source>TXT File (*.txt)</source>
-        <translation>Fișier TXT (*.txt)</translation>
+        <translation>ເອກະສານ TXT (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="66"/>
         <source>HTML File (*.html)</source>
-        <translation>Fișier HTML (*.html)</translation>
+        <translation>ເອກະສານ HTML (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="67"/>
         <source>MHT File (*.mht)</source>
-        <translation>Fișier MHT (*.mht)</translation>
+        <translation>ເອກະສານ MHT (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="68"/>
         <source>EPUB File (*.epub)</source>
-        <translation>Fișier EPUB (*.epub)</translation>
+        <translation>ເອກະສານ EPUB (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="70"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Fișier PPTX (*.pptx)</translation>
+        <translation>ເອກະສານ PPTX (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="71"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Fișier PPT (*.ppt)</translation>
+        <translation>ເອກະສານ PPT  (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="72"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Șablon prezentare (*.potx)</translation>
+        <translation>່ແບບການນຳສະເໜີ (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="73"/>
         <source>ODP File (*.odp)</source>
-        <translation>Fișier ODP (*.odp)</translation>
+        <translation>ເອກະສານ ODP (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="74"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>Șablon prezentare OpenDocument (*.otp)</translation>
+        <translation>ແບບການນຳສະເໜີ (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="75"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Fișier PPSX (*.ppsx)</translation>
+        <translation>ແຟ້ມເອກະສານ PPSX (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="77"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Fișier XLSX (*.xlsx)</translation>
+        <translation>ເອກະສານ XLSX (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="78"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Șablon foaie de calcul (*.xltx)</translation>
+        <translation>ແບບສະເປຣດຊີດ (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="79"/>
         <source>XLS File (*.xls)</source>
-        <translation>Fișier XLS (*.xls)</translation>
+        <translation>ເອກະສານ XLS  (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="80"/>
         <source>ODS File (*.ods)</source>
-        <translation>Fișier ODS (*.ods)</translation>
+        <translation>ເອກະສານ ODS  (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="81"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>Șablon foaie de calcul OpenDocument (*.ots)</translation>
+        <translation>ເເບບເປີດຕາຕະລາງ (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="82"/>
         <source>CSV File (*.csv)</source>
-        <translation>Fișier CSV (*.csv)</translation>
+        <translation>ເອກະສານ CSV  (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="84"/>
         <source>PDF File (*.pdf)</source>
-        <translation>Fișier PDF (*.pdf)</translation>
+        <translation>ເອກະສານ PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="85"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Fișier PDFA (*.pdf)</translation>
+        <translation>ເອກະສານ(*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="86"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>Fișier DJVU (*.djvu)</translation>
+        <translation>ເອກະສານDJVU  (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="87"/>
         <source>XPS File (*.xps)</source>
-        <translation>Fișier XPS (*.xps)</translation>
+        <translation>ເອກະສານ XPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="133"/>
         <source>Save As</source>
-        <translation>Salvare ca</translation>
+        <translation>ບັນທຶກເປັນ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="169"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 există deja.&lt;br&gt;Înlocuiți?</translation>
+        <translation>%1 ມີຢູ່ແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການປ່ຽນແທນມັນບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="195"/>
         <source>Word Document</source>
-        <translation>Document Word</translation>
+        <translation>ເອກະສານ Word</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="198"/>
         <source>Excel Workbook</source>
-        <translation>Foaie de calcul Excel</translation>
+        <translation>ຕ່ຕະລາງ Excel</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="201"/>
         <source>PowerPoint Presentation</source>
-        <translation>Prezentare PowerPoint</translation>
+        <translation>ການນຳສະ ເໜີ PowerPoint</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="204"/>
         <source>%1 File (*.%2)</source>
-        <translation>Fișier %1 (*.%2)</translation>
+        <translation>%1 ເອກະສານ (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="214"/>
         <location filename="../src/cfiledialog.cpp" line="297"/>
         <source>Text documents</source>
-        <translation>Documente text</translation>
+        <translation>ຂໍ້ຄວາມເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="215"/>
         <location filename="../src/cfiledialog.cpp" line="305"/>
         <source>Spreadsheets</source>
-        <translation>Foi de calcul</translation>
+        <translation>ຕາຕະລາງ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="216"/>
         <location filename="../src/cfiledialog.cpp" line="313"/>
         <source>Presentations</source>
-        <translation>Prezentări</translation>
+        <translation>ການນຳສະເໜີ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="217"/>
         <source>Web Page</source>
-        <translation>Pagină web</translation>
+        <translation>ໜ້າເວບ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="218"/>
         <source>Text files</source>
-        <translation>Fișiere text</translation>
+        <translation>ແຟ້ມຂໍ້ຄວາມ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <location filename="../src/cfiledialog.cpp" line="249"/>
         <source>Open Document</source>
-        <translation>Deschideți document</translation>
+        <translation>ເປີດເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="260"/>
         <location filename="../src/cfiledialog.cpp" line="269"/>
         <source>All Images</source>
-        <translation>Toate imaginile</translation>
+        <translation>ຮູບພາບທັງ ໝົດ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="262"/>
@@ -358,66 +358,66 @@
         <location filename="../src/cfiledialog.cpp" line="279"/>
         <location filename="../src/cfiledialog.cpp" line="288"/>
         <source>Plugin file (*.plugin)</source>
-        <translation>Fișier plugin (*.plugin)</translation>
+        <translation>ສຽບຟາຍ (*.plugin)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="328"/>
         <source>Video file</source>
-        <translation>Fișier video</translation>
+        <translation>ໄຟລ໌ວິດີໂອ</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="333"/>
         <source>Audio file</source>
-        <translation>Fișier audio</translation>
+        <translation>ໄຟລ໌ສຽງ</translation>
     </message>
 </context>
 <context>
     <name>CMainPanel</name>
     <message>
+        <location filename="../src/cmainpanel.cpp" line="1318"/>
+        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <translation>%1 ໄດ້ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະບັນທຶກການປ່ຽນແປງ?</translation>
+    </message>
+    <message>
         <location filename="../src/cmainpanel.cpp" line="151"/>
         <source>FILE</source>
-        <translation>START</translation>
+        <translation>ເລີ່ມຕົ້ນ</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="625"/>
         <location filename="../src/cmainpanel.cpp" line="669"/>
         <source>File format not supported.</source>
-        <translation>Formatul fișierului nu este compatibil.</translation>
+        <translation>ຮູບແບບເອກະສານບໍ່ຮອງຮັບ.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="653"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 nu este disponibil. Îl puteți redenumi, deplasa sau șterge.&lt;br&gt;Doriți sã-l eliminați din lista?</translation>
+        <translation>ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="717"/>
         <source>Document must be saved firstly.</source>
-        <translation>Mai întâi, salvați documentul.</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="873"/>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Este necesar sã salvați documentul înainte de a putea continua.&lt;br&gt;Doriți sã salvați documentul?</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="1037"/>
-        <source>Print Document</source>
-        <translation>Imprimare document</translation>
+        <translation>ເອກະສານຕ້ອງໄດ້ເກັບໄວ້ກ່ອນ.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Dacã salvați în acest format de fișier, este posibil ca unele dintre caracteristici sã se piardã, cu excepția textului.&lt;br&gt;Sunteți sigur cã doriți sã continuați?</translation>
+        <translation>ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1281"/>
         <source>Sign Up</source>
-        <translation>Crearea unui portal</translation>
+        <translation>ສ້າງຈຸດເຊື່ອມຕໍ່</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1318"/>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 a fost modificat.&lt;br&gt;Doriți sã salvați modificãrile?</translation>
+        <location filename="../src/cmainpanel.cpp" line="873"/>
+        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
+        <translation>ຕ້ອງເກັບເອກະສານໄວ້ເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ?</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="1037"/>
+        <source>Print Document</source>
+        <translation>ພິມເອກະສານ</translation>
     </message>
 </context>
 <context>
@@ -425,7 +425,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation>Licențiat sub</translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="143"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;ຕົກລົງ</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -441,7 +441,7 @@
         <location filename="../src/cmessage.cpp" line="219"/>
         <location filename="../src/cmessage.cpp" line="220"/>
         <source>Yes</source>
-        <translation>Da</translation>
+        <translation>ແມ່ນແລ້ວ</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="217"/>
@@ -449,7 +449,7 @@
         <location filename="../src/cmessage.cpp" line="219"/>
         <location filename="../src/cmessage.cpp" line="220"/>
         <source>No</source>
-        <translation>Nu</translation>
+        <translation>ບໍ່</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="219"/>
@@ -457,13 +457,13 @@
         <location filename="../src/cmessage.cpp" line="221"/>
         <location filename="../src/cmessage.cpp" line="222"/>
         <source>Cancel</source>
-        <translation>Revocare</translation>
+        <translation>ຍົກເລີກ</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="221"/>
         <location filename="../src/cmessage.cpp" line="222"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>ບໍ່</translation>
     </message>
 </context>
 <context>
@@ -471,22 +471,22 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="112"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation>Imprimare document: pagina %1 din %2</translation>
+        <translation>ເອກະສານການພິມ: ໜ້າ%1 ຂອງ%2:</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="114"/>
         <source>Document is preparing</source>
-        <translation>Pregãtirea documentului</translation>
+        <translation>ການກະກຽມເອກະສານ</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Revocare</translation>
+        <translation>&amp;ຍົກເລີກ</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
-        <translation>Imprimare...</translation>
+        <translation>ກຳລັງພິມ...</translation>
     </message>
 </context>
 </TS>
