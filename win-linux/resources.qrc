@@ -81,7 +81,11 @@
         <file alias="se.png">res/icons/tabbar/tabicon_se_normal.png</file>
         <file alias="se@2x.png">res/icons/tabbar/tabicon_se_normal_2x.png</file>
         <file alias="portal.png">res/icons/tabbar/portal.png</file>
+        <file alias="portal@1.5x.png">res/icons/tabbar/portal@1.5x.png</file>
         <file alias="portal@2x.png">res/icons/tabbar/portal@2x.png</file>
+        <file alias="portal_light.png">res/icons/tabbar/portal_light.png</file>
+        <file alias="portal_light@1.5x.png">res/icons/tabbar/portal_light@1.5x.png</file>
+        <file alias="portal_light@2x.png">res/icons/tabbar/portal_light@2x.png</file>
         <file alias="newdoc.png">res/icons/tabbar/tabicon_undefined.png</file>
         <file alias="newdoc@2x.png">res/icons/tabbar/tabicon_undefined_2x.png</file>
         <file alias="loader.svg">res/icons/tabbar/loading.svg</file>
