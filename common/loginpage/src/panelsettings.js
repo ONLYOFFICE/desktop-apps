@@ -304,6 +304,7 @@
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
 
+                            _apply_theme(opts.uitheme);
                         }
                     }
                 } else
