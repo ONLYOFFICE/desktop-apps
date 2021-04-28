@@ -92,6 +92,9 @@ public:
     {}
 
     auto addButton(QPushButton * b) -> void {
+        if ( !defaultButton )
+            defaultButton = b;
+
         buttons.push_back(b);
     }
 
@@ -104,6 +107,7 @@ public:
     }
 
     auto clearButtons() -> void {
+        defaultButton = nullptr;
         buttons.clear();
     }
 
@@ -373,14 +377,17 @@ void CMessage::modal()
     m_centralWidget->adjustSize();
     m_centralWidget->show();
 
-    HWND _focused_handle = (HWND)m_priv->defaultButton->winId();
-    QTimer::singleShot(100, m_centralWidget, [&]{
-        for (auto * btn: m_priv->buttons) {
-            btn->setAutoDefault(true);
-        }
+    HWND _focused_handle = nullptr;
+    if ( m_priv->defaultButton ) {
+        _focused_handle = (HWND)m_priv->defaultButton->winId();
+        QTimer::singleShot(100, m_centralWidget, [&]{
+            for (auto * btn: m_priv->buttons) {
+                btn->setAutoDefault(true);
+            }
 
-        m_priv->defaultButton->setFocus();
-    });
+            m_priv->defaultButton->setFocus();
+        });
+    }
 
     CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
     CWinWindow::center();
