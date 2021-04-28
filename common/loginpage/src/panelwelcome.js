@@ -85,7 +85,7 @@
             baseController.prototype.init.apply(this, arguments);
 
             const is_dark_theme = localStorage.getItem('ui-theme') == 'theme-dark';
-            const img = `<svg class='img-welcome'><use xlink:href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
+            const img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
             this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
             return this;
