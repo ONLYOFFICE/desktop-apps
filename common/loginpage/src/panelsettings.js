@@ -53,7 +53,7 @@
 
         let _html = `<div ${args.id} class='action-panel ${args.action}'>
                         <div id='box-settings'>
-                            <div class='flexbox'>
+                            <div class='flexbox content-box'>
                                 <h3 class='table-caption' l10n>${_lang.actSettings}</h3>
                                 <section class='settings-items'>
                                     <div class='settings-field'>
