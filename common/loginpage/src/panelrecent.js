@@ -160,7 +160,6 @@
             collectionRecents.empty();
 
             var files = utils.fn.parseRecent(params);
-            files = [];
             for (let item of files) {
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
