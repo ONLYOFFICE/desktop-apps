@@ -616,6 +616,18 @@ void CAscTabWidget::reloadTabIcons()
                              {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}});
     } else
     if ( dpi_ratio > 1 ) {
+        m_mapTabIcons.insert({
+            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@1.5x.png", ":/tabbar/icons/newdoc@1.5x.png")},
+            {etDocument, std::make_pair(":/tabbar/icons/de@1.5x.png", ":/tabbar/icons/de@1.5x.png")},
+            {etPresentation, std::make_pair(":/tabbar/icons/pe@1.5x.png", ":/tabbar/icons/pe@1.5x.png")},
+            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.5x.png", ":/tabbar/icons/se@1.5x.png")}
+        });
+
+        m_isDarkTheme ?
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
+                            {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}}) :
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
+                             {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}});
     } else {
         m_mapTabIcons.insert({
             {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},

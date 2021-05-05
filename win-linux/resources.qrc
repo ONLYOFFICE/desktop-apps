@@ -75,10 +75,13 @@
         <file alias="scrolltab_rn_1.5x.png">res/icons/tabbar/changetab_right_normal@1.5x.png</file>
         <file alias="scrolltab_rn_2x.png">res/icons/tabbar/changetab_right_normal@2x.png</file>
         <file alias="de.png">res/icons/tabbar/tabicon_de_normal.png</file>
+        <file alias="de@1.5x.png">res/icons/tabbar/tabicon_de_normal_1.5x.png</file>
         <file alias="de@2x.png">res/icons/tabbar/tabicon_de_normal_2x.png</file>
         <file alias="pe.png">res/icons/tabbar/tabicon_pe_normal.png</file>
+        <file alias="pe@1.5x.png">res/icons/tabbar/tabicon_pe_normal_1.5x.png</file>
         <file alias="pe@2x.png">res/icons/tabbar/tabicon_pe_normal_2x.png</file>
         <file alias="se.png">res/icons/tabbar/tabicon_se_normal.png</file>
+        <file alias="se@1.5x.png">res/icons/tabbar/tabicon_se_normal_1.5x.png</file>
         <file alias="se@2x.png">res/icons/tabbar/tabicon_se_normal_2x.png</file>
         <file alias="portal.png">res/icons/tabbar/portal.png</file>
         <file alias="portal@1.5x.png">res/icons/tabbar/portal@1.5x.png</file>
