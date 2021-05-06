@@ -23,7 +23,7 @@ Dotenv.load '.env.secret'
 default_platform :mac
 
 platform :mac do
-  lane :release do
+  lane :release do |options|
     build = "build"
     scheme = "ONLYOFFICE"
     app = "#{build}/#{scheme}.app"
@@ -65,6 +65,10 @@ platform :mac do
     sh("npm install appdmg")
     sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}.dmg")
 
+    if options[:skip_git_bump]
+      next
+    end
+
     desc 'Creates a bump version commit'
     commit_version_bump(
       message: "[macos] Version bumped to v#{version_number}(#{build_number})",
@@ -82,7 +86,7 @@ platform :mac do
   end
 
   # x86 only
-  lane :release_x86 do
+  lane :release_x86 do |options|
     build = "build"
     scheme = "ONLYOFFICE-x86"
     appName = "ONLYOFFICE"
@@ -124,6 +128,10 @@ platform :mac do
     desc 'Create DMG image'
     sh("npm install appdmg")
     sh("npx appdmg resources/appdmg.json ../#{build}/#{appName}.dmg")
+
+    if options[:skip_git_bump]
+      next
+    end
 
     desc 'Creates a bump version commit'
     commit_version_bump(
