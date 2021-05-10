@@ -1422,6 +1422,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
     APP_CAST(_app);
 
     if ( !_app.m_themes->isCurrent(theme) ) {
+        _app.m_themes->setCurrent(theme);
+
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current(), L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
@@ -1434,7 +1436,6 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             _editor->applyTheme(theme);
         }
 
-        _app.m_themes->setCurrent(theme);
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
     }
 }
