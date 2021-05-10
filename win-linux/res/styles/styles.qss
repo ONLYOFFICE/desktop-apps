@@ -234,7 +234,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 }
 
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton::left-arrow,
-    #mainPanel[uitheme=theme-dark] QTabBar QToolButton::right-arrow,
+    #mainPanel[uitheme=theme-dark] QTabBar QToolButton::right-arrow
 {
     background-color: #606060;
 }
