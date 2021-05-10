@@ -655,6 +655,10 @@ auto prepareMainWindow() -> CMainWindow * {
         additional.append(arg_portal);
     }
 
+#if defined(__OS_WIN_XP)
+    additional.append("&osver=winxp");
+#endif
+
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
