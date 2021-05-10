@@ -191,6 +191,10 @@ QPushButton#toolButtonDownload::menu-indicator {
     background-color: #404040;
 }
 
+#mainPanel[uitheme=theme-dark] #labelAppTitle {
+    color: #d9d9d9;
+}
+
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {
     border-right-color: #505050;
 }
