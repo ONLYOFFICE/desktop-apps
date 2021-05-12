@@ -8,6 +8,7 @@
 @import '../vendor/bootstrap/dropdowns';
 @import (inline) '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
 @import 'css/colors';
+@import 'css/colors_classic';
 @import 'css/colors_dark';
 @import 'css/variables';
 @import 'css/component';
@@ -207,7 +208,9 @@ h4 {
 
 .img-el, .img-before-el:before {
     background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@2x.png') 2x) no-repeat;
+}
 
+.img-el {
     &.theme-inverted {
         filter: @theme-inverted-image-filter;
     }
