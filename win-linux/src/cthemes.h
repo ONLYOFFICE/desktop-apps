@@ -28,6 +28,27 @@ namespace NSThemeLight {
     static const std::wstring color_logo = L"dark";
 }
 
+namespace NSThemeClassicLight {
+    static const std::wstring theme_id = L"theme-classic-light";
+
+    static const std::wstring color_brand_word = L"#446995";
+    static const std::wstring color_brand_slide = L"#aa5252";
+    static const std::wstring color_brand_cell = L"#40865c";
+
+    static const std::wstring color_window_background = L"#f1f1f1";
+    static const std::wstring color_window_border = L"#888";
+
+    static const std::wstring color_text_normal = L"#444";
+    static const std::wstring color_text_normal_pressed = L"#fff";
+
+    static const std::wstring color_tab_active_background = L"#fff";
+    static const std::wstring color_tab_simple_active_background = L"#fff";
+    static const std::wstring color_tab_simple_active_text = L"#444";
+    static const std::wstring color_tab_divider = L"#a5a5a5";
+
+    static const std::wstring color_logo = L"dark";
+}
+
 namespace NSThemeDark {
     static const std::wstring theme_id = L"theme-dark";
 

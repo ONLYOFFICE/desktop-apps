@@ -116,6 +116,7 @@ l10n.en = {
     ,settOptScalingAuto: 'Auto'
     ,settUITheme: 'Interface theme'
     ,settOptThemeLight: 'Light'
+    ,settOptThemeClassicLight: 'Light Classic'
     ,settOptThemeDark: 'Dark'
     ,aboutProFeaturesAvailable: 'With access to pro features'
 }
@@ -363,6 +364,7 @@ l10n.ru = {
     ,settOptScalingAuto: 'Авто'
     ,settUITheme: 'Тема интерфейса'
     ,settOptThemeLight: 'Светлая'
+    ,settOptThemeClassicLight: 'Светлая классическая'
     ,settOptThemeDark: 'Темная'
     ,aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
@@ -450,6 +452,7 @@ l10n.de = {
     ,settOptCheckWeek: 'Jede Woche'
     ,settUITheme: 'Thema der Benutzeroberfläche'
     ,settOptThemeLight: 'Hell'
+    ,settOptThemeClassicLight: 'Klassisch Hell'
     ,settOptThemeDark: 'Dunkel'
     ,aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
 };
@@ -537,6 +540,7 @@ l10n.it_IT = {
     ,settOptCheckWeek: 'Ogni settimana'
     ,settUITheme: 'Tema dell\'interfaccia'
     ,settOptThemeLight: 'Chiaro'
+    ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Scuro'
     ,aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
 };
@@ -624,6 +628,7 @@ l10n.fr = {
     ,settOptCheckWeek: 'Chaque semaine'
     ,settUITheme: 'Thème d’interface'
     ,settOptThemeLight: 'Clair'
+    ,settOptThemeClassicLight: 'Clair classique'
     ,settOptThemeDark: 'Sombre'
     ,aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
 };
@@ -707,6 +712,7 @@ l10n.es = {
     ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
     ,settUITheme: 'Tema de interfaz'
     ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clásico'
     ,settOptThemeDark: 'Oscuro'
     ,aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
 };
@@ -790,6 +796,7 @@ l10n.pt_BR = {
     ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
     ,settUITheme: 'Tema de interface'
     ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
     ,aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
