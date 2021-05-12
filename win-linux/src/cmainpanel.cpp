@@ -784,6 +784,11 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 
 void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
+    // TODO: remove in release 6.5, theme id is sended on webapp:entry event
+    int index = m_pTabs->tabIndexByView(id);
+    if ( !(index < 0) )
+        AscAppManager::sendCommandTo(m_pTabs->panel(index)->cef(), L"uitheme:changed", AscAppManager::themes().current());
+
     m_pTabs->setEditorOptions(id, opts);
 }
 

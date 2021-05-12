@@ -352,6 +352,8 @@ public:
             window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
 #endif
         }
+
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
     }
 
     void onDocumentChanged(int id, bool state) override

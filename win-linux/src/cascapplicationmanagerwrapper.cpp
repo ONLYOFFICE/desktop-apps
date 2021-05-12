@@ -208,6 +208,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CAscExecCommand * const pData = static_cast<CAscExecCommand * const>(event->m_pData);
         std::wstring const & cmd = pData->get_Command();
 
+        if ( !(cmd.find(L"webapps:entry") == std::wstring::npos) ) {
+            CCefView * ptr = GetViewById(event->get_SenderId());
+            if ( ptr )
+                AscAppManager::sendCommandTo(ptr, L"uitheme:changed", themes().current());
+            return true;
+        } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
             return true;
