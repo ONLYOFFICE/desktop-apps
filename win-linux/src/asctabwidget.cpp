@@ -610,8 +610,8 @@ void CAscTabWidget::reloadTabIcons()
         });
 
         m_isDarkTheme ?
-            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
-                            {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}}) :
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@2x.png", ":/tabbar/icons/portal@2x.png")},
+                            {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@2x.png", ":/tabbar/icons/portal@2x.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
                              {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}});
     } else
@@ -624,8 +624,8 @@ void CAscTabWidget::reloadTabIcons()
         });
 
         m_isDarkTheme ?
-            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
-                            {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}}) :
+            m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
+                            {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
                              {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}});
     } else {
