@@ -61,6 +61,12 @@
 
 using namespace std;
 
+const QString g_dark_theme_stylesheet = "#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}"
+    "#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:selected {background-color: #404040;}"
+    "#mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}"
+    "#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}";
+
+
 /*
  *
  *  Tab data
@@ -1249,7 +1255,7 @@ void CAscTabWidget::updateScaling(double f)
 
 void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 {
-    QTabWidget::setStyleSheet(stylesheet);
+    QTabWidget::setStyleSheet(stylesheet + g_dark_theme_stylesheet);
 
     auto _string_to_color = [](const QString& str) -> QColor {
         int r = -1, g = -1, b = -1;

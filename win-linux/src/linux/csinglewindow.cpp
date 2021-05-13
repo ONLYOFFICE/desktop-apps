@@ -169,7 +169,8 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
 
     view->setObjectName("mainView");
     QRect _cef_rect{0,0,width(),height()};
-    _cef_rect.setTopLeft(QPoint(_layout->margin() * m_dpiRatio * 2, (TOOLBTN_HEIGHT + _layout->margin() * 2) * m_dpiRatio));
+    int _toolbar_height = custom ? TOOLBTN_HEIGHT : 0;
+    _cef_rect.setTopLeft(QPoint(_layout->margin() * m_dpiRatio * 2, (_toolbar_height + _layout->margin() * 2) * m_dpiRatio));
     _cef_rect.translate(-_layout->margin() * m_dpiRatio, -_layout->margin() * m_dpiRatio);
     view->setGeometry(_cef_rect);
     _layout->addWidget(view, 1);
