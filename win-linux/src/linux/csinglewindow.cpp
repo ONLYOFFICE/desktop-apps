@@ -113,11 +113,11 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
         m_boxTitle->layout()->setContentsMargins(40*3,0,0,0);
         m_boxTitle->layout()->setSpacing(1*m_dpiRatio);
 
-        QLabel * label = new QLabel(title);
-        label->setObjectName("labelAppTitle");
-        label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-        label->setMouseTracking(true);
-        m_boxTitle->layout()->addWidget(label);
+        m_labelTitle = new QLabel(title);
+        m_labelTitle->setObjectName("labelAppTitle");
+        m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        m_labelTitle->setMouseTracking(true);
+        m_boxTitle->layout()->addWidget(m_labelTitle);
 
         QSize small_btn_size(40 * m_dpiRatio, TOOLBTN_HEIGHT * m_dpiRatio);
 
@@ -132,20 +132,20 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
             return btn;
         };
 
-        QPushButton * _btn_minimize = _creatToolButton("toolButtonMinimize");
-        connect(_btn_minimize, &QPushButton::clicked, [=]{ setWindowState(Qt::WindowMinimized); });
+        m_btnMinimize = _creatToolButton("toolButtonMinimize");
+        connect(m_btnMinimize, &QPushButton::clicked, [=]{ setWindowState(Qt::WindowMinimized); });
 
         m_btnMaximize = _creatToolButton("toolButtonMaximize");
         QObject::connect(m_btnMaximize, &QPushButton::clicked, [=]{
             setWindowState(windowState() == Qt::WindowMaximized ? Qt::WindowNoState : Qt::WindowMaximized);
         });
 
-        QPushButton * _btn_close = _creatToolButton("toolButtonClose");
-        QObject::connect(_btn_close, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
+        m_btnClose = _creatToolButton("toolButtonClose");
+        QObject::connect(m_btnClose, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
 
-        m_boxTitle->layout()->addWidget(_btn_minimize);
+        m_boxTitle->layout()->addWidget(m_btnMinimize);
         m_boxTitle->layout()->addWidget(m_btnMaximize);
-        m_boxTitle->layout()->addWidget(_btn_close);
+        m_boxTitle->layout()->addWidget(m_btnClose);
 
         _layout->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
 
@@ -274,6 +274,22 @@ void CSingleWindow::setScreenScalingFactor(double factor)
 
         setGeometry(_new_rect);
     }
+}
+
+void CSingleWindow::applyTheme(const std::wstring& themeid)
+{
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(themeid));
+
+    if ( m_boxTitle ) {
+        m_labelTitle->style()->polish(m_labelTitle);
+        m_btnMinimize->style()->polish(m_btnMinimize);
+        m_btnMaximize->style()->polish(m_btnMaximize);
+        m_btnClose->style()->polish(m_btnClose);
+        m_boxTitle->style()->polish(m_boxTitle);
+    }
+
+    m_pMainPanel->style()->polish(m_pMainPanel);
+    update();
 }
 
 const QWidget * CSingleWindow::handle() const
