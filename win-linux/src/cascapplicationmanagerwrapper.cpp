@@ -1436,6 +1436,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
 
+        for ( auto const& r : m_winsReporter ) {
+            r.second->applyTheme(theme);
+        }
+
+
         CEditorWindow * _editor = nullptr;
         for ( auto const& e : m_vecEditors ) {
             _editor = reinterpret_cast<CEditorWindow *>(e);
