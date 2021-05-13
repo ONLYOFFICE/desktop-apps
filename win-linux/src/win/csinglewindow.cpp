@@ -441,6 +441,25 @@ void CSingleWindow::adjustGeometry()
     DeleteObject(hRgn);
 }
 
+void CSingleWindow::applyTheme(const std::wstring& themeid)
+{
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(themeid));
+
+    m_pLabelTitle->style()->polish(m_pLabelTitle);
+
+    m_pButtonMinimize->style()->polish(m_pButtonMinimize);
+    m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+    m_pButtonClose->style()->polish(m_pButtonClose);
+    m_boxTitleBtns->style()->polish(m_boxTitleBtns);
+
+    QWidget * centralwidget = m_pMainPanel->layout()->itemAt(0)->widget();
+    centralwidget->style()->polish(centralwidget);
+
+    m_pMainPanel->style()->polish(m_pMainPanel);
+
+    RedrawWindow(m_hWnd, nullptr, nullptr, RDW_INVALIDATE);
+}
+
 void CSingleWindow::setScreenScalingFactor(uchar factor)
 {
     QString css(AscAppManager::getWindowStylesheets(factor));
@@ -508,15 +527,15 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel(title);
-    label->setObjectName("labelAppTitle");
-    label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+    m_pLabelTitle = new QLabel(title);
+    m_pLabelTitle->setObjectName("labelAppTitle");
+    m_pLabelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
     layoutBtns->setContentsMargins(0,0,0,0);
     QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
     layoutBtns->setSpacing(1*m_dpiRatio);
-    layoutBtns->addWidget(label);
+    layoutBtns->addWidget(m_pLabelTitle);
 
     if ( custom ) {
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
@@ -566,7 +585,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
         gradient.setColorAt(0, QColor("#eee"));
         gradient.setColorAt(1, QColor("#e4e4e4"));
 
-        label->setFixedHeight(0);
+        m_pLabelTitle->setFixedHeight(0);
         m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
