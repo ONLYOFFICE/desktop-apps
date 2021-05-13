@@ -187,7 +187,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 /* dark theme definitions */
 /**************************/
 
-#mainPanel[uitheme=theme-dark] #centralWidget {
+#mainPanel[uitheme=theme-dark], #mainPanel[uitheme=theme-dark] #centralWidget {
     background-color: #404040;
 }
 
