@@ -210,8 +210,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         if ( !(cmd.find(L"webapps:entry") == std::wstring::npos) ) {
             CCefView * ptr = GetViewById(event->get_SenderId());
-            if ( ptr )
-                AscAppManager::sendCommandTo(ptr, L"uitheme:changed", themes().current());
+            if ( ptr ) {
+#ifdef __OS_WIN_XP
+                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
+#else
+                sendCommandTo(ptr, L"uitheme:changed", themes().current());
+#endif
+            }
             return true;
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
