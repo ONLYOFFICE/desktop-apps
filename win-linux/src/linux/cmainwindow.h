@@ -59,6 +59,7 @@ public:
     void bringToTop() const override;
     void show(bool maximized);
     void applyTheme(const std::wstring&) override;
+    void updateScaling() override;
 
 protected:
     void closeEvent(QCloseEvent *);

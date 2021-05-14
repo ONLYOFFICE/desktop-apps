@@ -183,10 +183,7 @@ bool CMainWindow::event(QEvent * event)
     } else
     if ( event->type() == QEvent::MouseButtonRelease ) {
         if ( _flg_left_button && _flg_motion ) {
-            double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
-
-            if ( dpi_ratio != m_dpiRatio )
-                setScreenScalingFactor(dpi_ratio);
+            updateScaling();
         }
 
         _flg_left_button = _flg_motion = false;
@@ -315,19 +312,18 @@ void CMainWindow::setScreenScalingFactor(double factor)
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
-        QRect _new_rect = geometry();
-        bool increase = factor > m_dpiRatio;
-        m_dpiRatio = factor;
-
         m_pMainPanel->setStyleSheet(css);
         m_pMainPanel->setScreenScalingFactor(factor);
         setMinimumSize( MAIN_WINDOW_MIN_WIDTH*factor, MAIN_WINDOW_MIN_HEIGHT*factor );
 
-        if ( increase ) {
-            _new_rect.setSize(_new_rect.size() * 2);
-        } else _new_rect.setSize(_new_rect.size() / 2);
+        QRect _src_rect = geometry();
+        double change_factor = factor / m_dpiRatio;
+        m_dpiRatio = factor;
 
-        setGeometry(_new_rect);
+        int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+        QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+
+        setGeometry(dest_rect);
     }
 }
 
@@ -413,4 +409,12 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         setAutoFillBackground(true);
         setPalette(_palette);
     }
+}
+
+void CMainWindow::updateScaling()
+{
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
 }

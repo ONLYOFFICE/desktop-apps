@@ -726,7 +726,6 @@ void CMainWindow::setScreenScalingFactor(double factor)
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
-        bool increase = factor > m_dpiRatio;
         double change_factor = factor / m_dpiRatio;
         m_dpiRatio = factor;
 
