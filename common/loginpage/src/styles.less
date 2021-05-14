@@ -824,9 +824,22 @@ li.menu-item {
     }
 
     .ver-logo {
-        width: 142px;
-        height: 28px;
-        background-position-y: -126px;
+        width: 245px;
+        height: 45px;
+
+        .theme-type-dark & {
+            #idx-ver-logo--light {
+                display: none;
+            }
+
+            #idx-ver-logo--dark {
+                display: block;
+            }
+        }
+
+        #idx-ver-logo--dark {
+            display: none;
+        }
     }
 }
 

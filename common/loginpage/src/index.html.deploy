@@ -140,6 +140,7 @@
     <inline src="../res/img/connect3_dark.svg" />
     <inline src="../res/img/welcome.svg" />
     <inline src="../res/img/welcome_dark.svg" />
+    <inline src="../res/img/logo.svg" />
     </div>
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>

@@ -159,8 +159,9 @@
 
         function _apply_theme(name) {
             if ( !$("body").hasClass(name) ) {
-                let _cls = document.body.className.replace(/theme-\w+/,'');
-                document.body.className = `${_cls} ${name}`;
+                const _type = name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
+                const _cls = document.body.className.replace(/theme-[\w-]+/gi,'');
+                document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
                 localStorage.setItem('ui-theme', name);
                 CommonEvents.fire('theme:changed', [name]);
