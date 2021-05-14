@@ -135,6 +135,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
+    m_moveNormalRect = _window_rect;
     hWnd = CreateWindow( WINDOW_CLASS_NAME, QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
@@ -466,9 +467,7 @@ qDebug() << "WM_CLOSE";
 
         int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
         uchar dpi_ratio = _scr_num;
-#else
-        double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-#endif
+
         if ( dpi_ratio != window->m_dpiRatio ) {
             if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
                 window->setScreenScalingFactor(dpi_ratio);
@@ -479,6 +478,9 @@ qDebug() << "WM_CLOSE";
 
             window->adjustGeometry();
         }
+#else
+        window->updateScaling();
+#endif
 
         break;
     }
@@ -725,6 +727,7 @@ void CMainWindow::setScreenScalingFactor(double factor)
 
     if ( !css.isEmpty() ) {
         bool increase = factor > m_dpiRatio;
+        double change_factor = factor / m_dpiRatio;
         m_dpiRatio = factor;
 
         m_pMainPanel->setStyleSheet(css);
@@ -736,8 +739,8 @@ void CMainWindow::setScreenScalingFactor(double factor)
                 MONITORINFO info{sizeof(MONITORINFO)};
                 GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-                m_moveNormalRect = increase ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
-                                                QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
+                int dest_width_change = int(m_moveNormalRect.width() * (1 - change_factor));
+                m_moveNormalRect = QRect{m_moveNormalRect.translated(dest_width_change/2,0).topLeft(), m_moveNormalRect.size() * change_factor};
 
                 wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
                 wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
@@ -746,9 +749,9 @@ void CMainWindow::setScreenScalingFactor(double factor)
 
                 SetWindowPlacement(hWnd, &wp);
             } else {
-                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
-                    dest_rect = increase ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
-                                                QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
+                int dest_width_change = int(source_rect.width() * (1 - change_factor));
+                QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
 
                 SetWindowPos(hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
@@ -1008,4 +1011,20 @@ void CMainWindow::applyTheme(const std::wstring& theme)
     CMainWindowBase::applyTheme(theme);
 
     RedrawWindow(hWnd, nullptr, nullptr, RDW_INVALIDATE);
+}
+
+void CMainWindow::updateScaling()
+{
+    double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+    if ( dpi_ratio != m_dpiRatio ) {
+        if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
+            setScreenScalingFactor(dpi_ratio);
+        } else {
+            m_dpiRatio = dpi_ratio;
+            refresh_window_scaling_factor(this);
+        }
+
+        adjustGeometry();
+    }
 }
