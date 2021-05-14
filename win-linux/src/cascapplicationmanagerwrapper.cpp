@@ -1375,6 +1375,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             }
 
             setUserSettings(L"force-scale", sets);
+            m_pMainWindow->updateScaling();
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")

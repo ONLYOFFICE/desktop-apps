@@ -73,6 +73,7 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
     void applyTheme(const std::wstring&) override;
+    void updateScaling() override;
 
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
