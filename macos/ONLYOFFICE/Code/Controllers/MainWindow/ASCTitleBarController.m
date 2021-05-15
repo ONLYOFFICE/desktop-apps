@@ -429,20 +429,16 @@ static float kASCWindowMinTitleWidth = 0;
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {  
     if (tab) {
         [self.portalButton setState:NSControlStateValueOff];
+
+        if ( [NSApplication isSystemDarkMode] )
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     } else {
         [self.portalButton setState:NSControlStateValueOn];
-    }
 
-    if ([NSApplication isUIThemeDark]) {
-        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
-    } else
-    if ([NSApplication isSystemDarkMode]) {
-        [self.portalButton setImage:(self.portalButton.state == NSControlStateValueOn)
-         ? [NSImage imageNamed:@"logo-tab-dark"]
-         : [NSImage imageNamed:@"logo-tab-light"]
-        ];
-    } else {
-        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+        if ( [NSApplication isUIThemeDark] )
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     }
 }
 
