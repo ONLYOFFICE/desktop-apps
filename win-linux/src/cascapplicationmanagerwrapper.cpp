@@ -212,7 +212,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CCefView * ptr = GetViewById(event->get_SenderId());
             if ( ptr ) {
 #ifdef __OS_WIN_XP
-                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
+                // because issue in web-apps it's need to send false to hide themes in editors
+//                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
+                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", false}}).toStdWString());
 #else
                 sendCommandTo(ptr, L"uitheme:changed", themes().current());
 #endif
