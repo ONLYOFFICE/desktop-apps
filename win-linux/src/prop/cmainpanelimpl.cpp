@@ -81,7 +81,9 @@ void CMainPanelImpl::refreshAboutVersion()
         _json_obj["uiscaling"] = 200;
     else _json_obj["uiscaling"] = 0;
 
+#ifndef __OS_WIN_XP
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+#endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
