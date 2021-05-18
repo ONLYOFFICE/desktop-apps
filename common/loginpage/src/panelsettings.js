@@ -160,7 +160,7 @@
         function _apply_theme(name) {
             if ( !$("body").hasClass(name) ) {
                 const _type = name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
-                const _cls = document.body.className.replace(/theme-[\w-]+/gi,'');
+                const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
                 localStorage.setItem('ui-theme', name);
