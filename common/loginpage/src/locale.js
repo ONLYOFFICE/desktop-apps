@@ -116,7 +116,7 @@ l10n.en = {
     ,settOptScalingAuto: 'Auto'
     ,settUITheme: 'Interface theme'
     ,settOptThemeLight: 'Light'
-    ,settOptThemeClassicLight: 'Light Classic'
+    ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Dark'
     ,aboutProFeaturesAvailable: 'With access to pro features'
 }
