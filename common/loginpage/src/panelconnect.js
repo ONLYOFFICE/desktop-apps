@@ -40,6 +40,15 @@
     window.config.portals.checklist = sdk.externalClouds();
     window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
 
+    if ( window.config.portals.checklist ) {
+        let _providers = {};
+        window.config.portals.checklist.forEach(item => {
+            _providers[item.provider] = item;
+        });
+
+        window.config.portals.providers = _providers;
+    }
+
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
         args.action = 
@@ -205,7 +214,12 @@
             var model = data;
             if (/\:open/.test(action)) {
                 // model.logged ?
-                    sdk.command("portal:open", JSON.stringify({portal: model.path, provider:model.provider}));
+                    const _entrypage = !window.config.portals.providers[model.provider] ? '/' :
+                                            window.config.portals.providers[model.provider].startPage;
+                    sdk.command("portal:open", JSON.stringify({
+                        portal: model.path,
+                        provider: model.provider,
+                        entrypage: _entrypage}));
                         // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
