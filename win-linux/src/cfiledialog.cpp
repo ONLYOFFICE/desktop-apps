@@ -52,6 +52,8 @@
 using namespace std;
 
 #ifdef Q_OS_WIN
+static DWORD win_ver_major{0};
+//static const int win_ver_major = QOperatingSystemVersion::current().majorVersion();
 using VectorShellItems = vector<IShellItem *>;
 
 auto itemsFromItemArray(IShellItemArray * items)
@@ -119,11 +121,10 @@ public:
         return v;
     }
 
-    static auto nativeOpenDialog(const CFileDialogOpenArguments& args, bool& isSupport) -> QStringList {
+    static auto nativeOpenDialog(const CFileDialogOpenArguments& args) -> QStringList {
         QStringList out;
 
 #if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
-        isSupport = false;
         HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
         if ( SUCCEEDED(hr) ) {
             IFileOpenDialog * pDialog = nullptr;
@@ -132,7 +133,6 @@ public:
             hr = CoCreateInstance(CLSID_FileOpenDialog, nullptr, CLSCTX_INPROC_SERVER, IID_IFileOpenDialog, reinterpret_cast<void**>(&pDialog));
 
             if (SUCCEEDED(hr)) {
-                isSupport = true;
                 hr = pDialog->SetTitle(args.title.c_str());
 
                 specvector filters{stringToFilters(args.filter)};
@@ -228,6 +228,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]   = tr("HTML File (*.html)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]    = tr("MHT File (*.mht)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
@@ -415,13 +417,23 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     args.multiSelect = multi;
     args.folder = path.toStdWString();
 
-    bool isSupportNative = false;
-    QStringList retFiles = CFileDialogHelper::nativeOpenDialog(args, isSupportNative);
-    if (isSupportNative)
-        return retFiles;
+    if ( win_ver_major == 0 ) {
+        OSVERSIONINFO osvi;
 
-    return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
-                QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
+        ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+        osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+        GetVersionEx(&osvi);
+        win_ver_major = osvi.dwMajorVersion;
+    }
+
+    // Win XP doesn't support IFileOpenDialog
+    if ( win_ver_major > 5 ) {
+        return CFileDialogHelper::nativeOpenDialog(args);
+    } else {
+        return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
+                    QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
+    }
 #endif
 }
 

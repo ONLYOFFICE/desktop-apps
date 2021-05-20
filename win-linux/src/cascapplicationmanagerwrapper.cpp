@@ -77,6 +77,8 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
 
     NSBaseVideoLibrary::Init(nullptr);
+
+    m_themes = std::make_shared<CThemes>();
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
@@ -206,6 +208,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CAscExecCommand * const pData = static_cast<CAscExecCommand * const>(event->m_pData);
         std::wstring const & cmd = pData->get_Command();
 
+        if ( !(cmd.find(L"webapps:entry") == std::wstring::npos) ) {
+            CCefView * ptr = GetViewById(event->get_SenderId());
+            if ( ptr ) {
+#ifdef __OS_WIN_XP
+                // because issue in web-apps it's need to send false to hide themes in editors
+//                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
+                sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", false}}).toStdWString());
+#else
+                sendCommandTo(ptr, L"uitheme:changed", themes().current());
+#endif
+            }
+            return true;
+        } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
             return true;
@@ -310,6 +325,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
             mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
+            return true;
+        } else
+        if ( !(cmd.find(L"theme:changed") == std::wstring::npos) ) {
+            applyTheme(pData->get_Param());
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
@@ -649,6 +668,10 @@ auto prepareMainWindow() -> CMainWindow * {
         additional.append(arg_portal);
     }
 
+#if defined(__OS_WIN_XP)
+    additional.append("&osver=winxp");
+#endif
+
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
 
@@ -888,8 +911,10 @@ void CAscApplicationManagerWrapper::initializeApp()
         }
     }
 
-    _app.m_vecStyles.push_back(":styles/res/styles/styles.qss");
-    _app.m_vecStyles2x.push_back(":styles@2x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
+
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
@@ -907,6 +932,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
+    AscAppManager::getInstance().applyTheme(themes().current(), true);
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1261,10 +1287,25 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 //    delete pEvent;
 }
 
-QString CAscApplicationManagerWrapper::getWindowStylesheets(int dpifactor)
+QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
+{
+    if ( !(dpifactor < 2) )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
+    else
+    if ( !(dpifactor < 1.5) )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_5);
+    else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
+}
+
+QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor factor)
 {
     APP_CAST(_app);
-    return Utils::readStylesheets(&_app.m_vecStyles, &_app.m_vecStyles2x, dpifactor);
+
+    QByteArray _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    if ( factor != CScalingFactor::SCALING_FACTOR_1 )
+        _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
+
+    return _out;
 }
 
 bool CAscApplicationManagerWrapper::event(QEvent *event)
@@ -1335,11 +1376,13 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             wstring sets;
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
+            case 150: sets = L"1.5"; break;
             case 200: sets = L"2"; break;
             default: sets = L"default";
             }
 
             setUserSettings(L"force-scale", sets);
+            m_pMainWindow->updateScaling();
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")
@@ -1356,6 +1399,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         InputArgs::set_webapps_params(params);
         AscAppManager::getInstance().InitAdditionalEditorParams( params );
+
+        if ( objRoot.contains("uitheme") ) {
+            applyTheme(objRoot["uitheme"].toString().toStdWString());
+        }
     } else {
         /* parse settings error */
     }
@@ -1382,6 +1429,39 @@ void CAscApplicationManagerWrapper::sendSettings(const wstring& opts)
         QTimer::singleShot(0, [_send_cmd, _send_opts] {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, _send_cmd, _send_opts);
         });
+}
+
+void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
+{
+    APP_CAST(_app);
+
+    if ( !_app.m_themes->isCurrent(theme) ) {
+        _app.m_themes->setCurrent(theme);
+
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current(), L"&uitheme=" + theme)};
+        AscAppManager::getInstance().InitAdditionalEditorParams(params);
+
+        // TODO: remove
+        if ( mainWindow() ) mainWindow()->applyTheme(theme);
+
+        for ( auto const& r : m_winsReporter ) {
+            r.second->applyTheme(theme);
+        }
+
+
+        CEditorWindow * _editor = nullptr;
+        for ( auto const& e : m_vecEditors ) {
+            _editor = reinterpret_cast<CEditorWindow *>(e);
+            _editor->applyTheme(theme);
+        }
+
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
+    }
+}
+
+CThemes& CAscApplicationManagerWrapper::themes()
+{
+    return *(AscAppManager::getInstance().m_themes);
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()
@@ -1640,4 +1720,12 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
             mainWindow()->hide();
         }
     }
+}
+
+void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::string& path)
+{
+    if ( m_mapStyles.find(f) == m_mapStyles.end() ) {
+        m_mapStyles[f] = {path};
+    } else m_mapStyles[f].push_back(path);
+
 }

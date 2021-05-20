@@ -1,0 +1,221 @@
+
+@title-height: 40px;
+
+dialog {
+    top: 50%;
+    visibility: hidden;
+    overflow: hidden;
+    transform: scale(0.8) translateY(-50%);
+    transition: all 200ms;
+    &.scaled {
+        visibility: visible;
+        transform: scale(1) translateY(-50%);
+    }
+
+    padding: 0;
+    background: @background-normal;
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 1px solid @border-tabbar;
+
+    &::backdrop {
+        background-color: rgba(255,255,255,0.4);
+    }
+
+    .title {
+        height: @title-height;
+        border-bottom: 1px solid @border-tabbar;
+        display: flex;
+        color: @text-normal;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 5px 24px;
+        background: @background-tabbar;
+
+        .caption {
+            flex-grow:1;
+            text-align: left;
+            font-size: 18px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .body {
+        /*position: absolute;*/
+        width: 100%;
+        top: @title-height;
+        bottom: 0;
+        padding: 20px 30px 30px;
+    }
+
+    .tool.close {
+        width:14px;
+        height:14px;
+        cursor: pointer;
+        float: right;
+        margin-left: 10px;
+
+        position: relative;
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+            background: @icon-normal;
+            opacity: .7;
+
+            transition: transform .3s opacity .2s;
+        }
+
+        &:before {
+            transform: rotate(45deg);
+        }
+
+        &:after {
+            transform: rotate(-45deg);
+        }
+
+        &:hover {
+            transform: scale(1.1);
+
+            &:before {
+                opacity: 1;
+                /*transform: rotate(135deg);*/
+            }
+
+            &:after {
+                opacity: 1;
+                /*transform: rotate(45deg);*/
+            }
+        }
+    }
+
+    .separator {
+        border-top: 1px solid @color-gray-3;
+        margin: 24px 0;
+    }
+
+    .dlg--option {
+        margin: 12px 0;
+
+        &.first {
+            margin-top: 0;
+        }
+    }
+
+    .error-box {
+        /*height: 22px;*/
+        position: relative;
+    }
+
+    .msg-error {
+        position: absolute;
+        top: -7px;
+        font-size: 12px;
+    }
+}
+
+.dlg-login {
+    #btn-login, #btn-next {
+        margin-left: 30px;
+    }    
+
+    .logo {
+        margin: 10px 0 6px;
+    }
+
+    .next {
+        display: none;
+    }
+
+    #btn-login-sso {
+        width: 100%;
+    }
+
+    #box-btn-login-sso {
+        position: relative;
+        padding-top: 12px;
+
+        .separator {
+            margin-bottom: 10px;
+            margin-top: 35px;
+        }
+
+        .separator-label {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 0 12px;
+            font-size: 12px;
+            color: @color-gray-4;
+        }
+    }
+
+    .combined {
+        margin-right: 15px;
+    }
+
+    .notice {
+        margin: 0 0 12px;
+        line-height: 18px;
+    }
+
+    .timer {
+        margin-left: 10px;
+        color: #999;
+    }
+
+    .box-cmp-select, select {
+        width: 100%;
+    }
+}
+
+.dlg-connect-to {
+    .box-cmp-select {
+        width: 100%;
+    }
+}
+
+.lr-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 36px;
+
+    &.bt-align {
+        align-items: flex-end;
+    }
+}
+
+#box-btn-login {
+    margin-top: 12px;
+}
+
+#box-lbl-error {
+    min-height: 25px;
+}
+
+.logo {
+    width: 150px;
+    height: 28px;
+    /*background: data-uri('sprite.png') no-repeat 0 -198px;*/
+}
+
+.msg-error {
+    color: #e82110;
+    margin: 0;
+    display: none;
+}
+
+.img-loader {
+    content: data-uri('loader_16.gif');
+    display: none;
+}

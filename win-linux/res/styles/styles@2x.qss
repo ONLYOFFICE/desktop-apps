@@ -14,11 +14,11 @@ QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
 }
 
 QPushButton#toolButtonMaximize {
-    background-image:url(:/res/icons/maximize_2x.png);
+    background-image:url(:/maximize_2x.png);
 }
 
 QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
-    background-image:url(:/res/icons/minimize-close_2x.png);
+    background-image:url(:/minimize-close_2x.png);
 }
 
 QPushButton#toolButtonMain {
@@ -40,31 +40,47 @@ QPushButton#toolButtonMain[class=normal],
 QPushButton::menu-indicator {
     width: 20px;
     height: 20px;
-    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 0 repeat repeat;
+    border-image: url(:/menu-indicator_2x.png) 0 0 0 0 repeat repeat;
     left: -4px;
     top: -2px;
 }
 
 QPushButton::menu-indicator:disabled {
-    border-image: url(:/res/icons/menu-indicator_2x.png) 0 0 0 20 repeat repeat;
+    border-image: url(:/menu-indicator_2x.png) 0 0 0 20 repeat repeat;
 }
 
 QPushButton::menu-indicator:hover {
-    border-image: url(:/res/icons/menu-indicator_2x.png) 0 20 0 0 repeat repeat;
+    border-image: url(:/menu-indicator_2x.png) 0 20 0 0 repeat repeat;
 }
 
-QPushButton[theme=dark]::menu-indicator:disabled {
-    border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;
-}
+/*QPushButton[theme=dark]::menu-indicator:disabled {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;*/
+/*}*/
 
-QPushButton[theme=dark]::menu-indicator:hover {
-    border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;
-}
+/*QPushButton[theme=dark]::menu-indicator:hover {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;*/
+/*}*/
 
 QPushButton#toolButtonDownload::menu-indicator {
     top: -20px;
     left: -8px;
 }
+
+/**************************/
+/* dark theme definitions */
+/**************************/
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize {
+    background-image:url(:/max_light_2x.png);
+}
+
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize,
+    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonClose
+{
+    background-image:url(:/minclose_light_2x.png);
+}
+
+/**************************/
 
 QTabBar {
     font-size: 20px;

@@ -13,19 +13,36 @@ QLabel[class=msg-icon][type=msg-info] {
 QLabel[class=msg-icon][type=msg-confirm] {
     background-position: top right;
 }
-#messageBody[hdpi] QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons_2x.png");
+#messageBody[scaling="1.25x"] QLabel[class=msg-icon] {
+    /*background-image: url(":/message_icons_1.25x.png");*/
+}
+#messageBody[scaling="1.5x"] QLabel[class=msg-icon] {
+    background-image: url(":/message_icons_1.5x.png");
+}
+#messageBody[scaling="1.75x"] QLabel[class=msg-icon] {
+    /*background-image: url(":/message_icons_1.75x.png");*/
+}
+#messageBody[scaling="2x"] QLabel[class=msg-icon] {
+    background-image: url(":/message_icons_2x.png");
 }
 #messageBody QLabel[class=msg-report] {
     font-size: 11px;
 }
-#messageBody[hdpi] QLabel[class=msg-report] {
+#messageBody[scaling="1.5x"] QLabel[class=msg-report] {
+    font-size: 17px;
+}
+#messageBody[scaling="2x"] QLabel[class=msg-report] {
     font-size: 22px;
 }
-#messageBody[hdpi] QPushButton {
+#messageBody[scaling="2x"] QPushButton {
     /* border: 2px solid #cbcbcb; */
     /* border-radius:4px; */
     padding:0 40px;
     height: 44px;
     font-size: 22px;
+}
+#messageBody[scaling="1.5x"] QPushButton {
+    padding:0 30px;
+    height: 33px;
+    font-size: 17px;
 }

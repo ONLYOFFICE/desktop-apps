@@ -104,7 +104,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
         int tools_width;
         int custom_offset;
 
-        void apply_scale(int dpi) {
+        void apply_scale(double dpi) {
             tab.max     *= dpi;
             tab.min     *= dpi;
             tabs_span   *= dpi;
@@ -126,6 +126,7 @@ private:
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle;
+    bool m_isDarkTheme = false;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
 
@@ -143,18 +144,19 @@ public:
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(const COpenOptions&);
     int  addPortal(const QString& url, const QString& name, const QString& provider, const QString& entrypage = QString());
-    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service);
+    int  addOAuthPortal(const QString& portal, const QString& type, const QString& service, const QString& entrypage = QString());
     int  insertPanel(QWidget *, int);
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
+    void applyUITheme(const std::wstring&);
 
     using QTabWidget::count;
     int  count(int type) const;
     int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
-    void updateScaling(int);
+    void updateScaling(double) override;
 protected:
     void resizeEvent(QResizeEvent* e);
     void tabInserted(int index);
@@ -187,9 +189,10 @@ public:
 
     void adjustTabsSize();
     void activate(bool);
-    bool isActive();
+    bool isActiveWidget();
 
     void setTabIcons(CTabIconSet&);
+    void reloadTabIcons();
     void updateIcons();
     void updateTabIcon(int);
     void setFocusedView(int index = -1);
@@ -202,7 +205,7 @@ public:
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
-    void applyCustomTheme(bool iscustom);
+    void setCustomWindowParams(bool iscustom);
     void cancelDocumentSaving(int index);
     void setEditorOptions(int, const std::wstring&);
 

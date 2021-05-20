@@ -54,6 +54,7 @@
 #endif
 
 #include "cappupdater.h"
+#include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
@@ -74,6 +75,13 @@ struct sWinTag {
     }
 };
 
+enum class CScalingFactor
+{
+    SCALING_FACTOR_1,
+    SCALING_FACTOR_1_5,
+    SCALING_FACTOR_2,
+};
+
 class CAscApplicationManagerWrapper;
 class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
@@ -81,11 +89,13 @@ typedef CAscApplicationManagerWrapper AscAppManager;
 class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
 {
     Q_OBJECT
+protected:
+    void addStylesheets(CScalingFactor, const std::string&);
 
 private:
     std::vector<size_t> m_vecEditors;
-    std::vector<QString> m_vecStyles;
-    std::vector<QString> m_vecStyles2x;
+
+    std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
     std::map<int, CSingleWindow *> m_winsReporter;
@@ -99,6 +109,7 @@ private:
     CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CAppUpdater> m_updater;
+    std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -115,6 +126,7 @@ private:
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
+    void applyTheme(const std::wstring&, bool force = false);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
@@ -158,10 +170,12 @@ public:
     static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 
     static void             sendEvent(int type, void * data);
-    static QString          getWindowStylesheets(int);
+    static QString          getWindowStylesheets(double);
+    static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
+    static CThemes &        themes();
 
     static ParentHandle     windowHandleFromId(int id);
 

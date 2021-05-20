@@ -52,7 +52,7 @@ class CMainPanel : public QWidget, public CScalingWrapper
     Q_OBJECT
 
 public:
-    explicit CMainPanel(QWidget *parent, bool isCustomWindow, uchar scale);
+    explicit CMainPanel(QWidget *parent, bool isCustomWindow, double scale);
 
     void applyMainWindowState(Qt::WindowState);
 
@@ -64,7 +64,7 @@ public:
     void doOpenLocalFiles();
     void createLocalFile(const QString& name, int format);
     void setInputFiles(QStringList *);
-    void setScreenScalingFactor(uchar);
+    void setScreenScalingFactor(double);
     void attachStartPanel(QCefView * const);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
@@ -72,7 +72,8 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
 
-    virtual void updateScaling(int);
+    virtual void applyTheme(const std::wstring&);
+    virtual void updateScaling(double);
 
 #ifdef __linux
     QWidget * getTitleWidget();

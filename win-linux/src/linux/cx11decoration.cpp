@@ -548,7 +548,7 @@ void CX11Decoration::setMaximized(bool bVal)
     m_bIsMaximized = bVal;
 }
 
-void CX11Decoration::onDpiChanged(int f)
+void CX11Decoration::onDpiChanged(double f)
 {
     dpi_ratio = f;
     m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;

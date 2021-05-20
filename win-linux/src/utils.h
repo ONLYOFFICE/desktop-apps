@@ -49,6 +49,7 @@ namespace InputArgs {
 
     auto webapps_params() -> const std::wstring&;
     auto set_webapps_params(const std::wstring&) -> void;
+    auto change_webapps_param(const std::wstring& from, const std::wstring& to) -> const std::wstring&;
 }
 
 class Utils {
@@ -64,10 +65,10 @@ public:
     static void openUrl(const QString&);
     static void openFileLocation(const QString&);
     static QString getPortalName(const QString&);
-    static unsigned getScreenDpiRatio(int);
-    static unsigned getScreenDpiRatio(const QPoint&);
-    static unsigned getScreenDpiRatioByHWND(int);
-    static unsigned getScreenDpiRatioByWidget(QWidget*);
+    static double getScreenDpiRatio(int);
+    static double getScreenDpiRatio(const QPoint&);
+    static double getScreenDpiRatioByHWND(int);
+    static double getScreenDpiRatioByWidget(QWidget*);
     static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
@@ -79,9 +80,7 @@ public:
 
     static QString stringifyJson(const QJsonObject&);
 
-//    static QByteArray getAppStylesheets(int);
-    static QByteArray readStylesheets(std::vector<QString> *, std::vector<QString> *, int);
-    static QByteArray readStylesheets(std::vector<QString> *);
+    static QByteArray readStylesheets(std::vector<std::string> const *);
     static QByteArray readStylesheets(const QString&);
     static QJsonObject parseJson(const std::wstring&);
 };
@@ -104,7 +103,7 @@ namespace WindowHelper {
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
-    auto adjustWindowRect(HWND, int, LPRECT) -> void;
+    auto adjustWindowRect(HWND, double, LPRECT) -> void;
 #endif
 
     auto isLeftButtonPressed() -> bool;

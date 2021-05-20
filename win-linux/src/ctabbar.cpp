@@ -362,9 +362,8 @@ void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionT
         p->setPen(QPen(t.palette.foreground().color()));
     }
 
-    int _factor = scaling();
-    QPoint _lt = QPoint(15, 0) * _factor;
-    QPoint _rb = QPoint(-22, -2) * _factor;
+    QPoint _lt = QPoint(15, 0) * scaling();
+    QPoint _rb = QPoint(-22, -2) * scaling();
 
     QRect trect(t.rect.topLeft() + QPoint(t.iconSize.width(), 0) + _lt,
                     t.rect.bottomRight() + _rb);
@@ -586,7 +585,7 @@ void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index,
     tabRect.adjust(-1, 0, 0, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
-    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::Light ) {
+    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::LightTab ) {
         p->setPen(QColor("#a5a5a5"));
         p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
         p->drawLine(tabRect.bottomRight(), tabRect.topRight());
@@ -673,12 +672,12 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
         QSize _iconSize = iconSize();
         QRect _tabRect = tabRect(index);
         int _top = (_tabRect.height() - _iconSize.height()) / 2;
-        int dpi_ratio = scaling();
+        double dpi_ratio = scaling();
 
         ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
-        int top_offset = dpi_ratio > 1 ? 4 : 1;
+        int top_offset = dpi_ratio < 2 ? dpi_ratio < 1.5 ? 1 : 2 : 4;
         i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
-        i->setFixedSize(_iconSize.width() + (8 * dpi_ratio), iconSize().height() + (4 * dpi_ratio));
+        i->setFixedSize(_iconSize.width() + int(8 * dpi_ratio), iconSize().height() + int(4 * dpi_ratio));
 
         update(_tabRect);
     }
@@ -724,7 +723,7 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
 
     CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
     QWidget * b = TAB_BTNCLOSE(index);
-    if ( theme == TabTheme::Light ) {
+    if ( theme == TabTheme::LightTab ) {
         if ( i ) {
             i->setSvgElement("dark");
         }
@@ -755,7 +754,7 @@ void CTabBar::changeTabTheme(int index, TabTheme theme)
     if ( tabData(index).isNull() ) {
         CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
         QWidget * b = TAB_BTNCLOSE(index);
-        if ( theme == TabTheme::Light ) {
+        if ( theme == TabTheme::LightTab ) {
             if ( i && i->isStarted() ) {
                 i->setSvgElement("dark");
             }
@@ -801,7 +800,7 @@ void CTabBar::activate(bool a)
     }
 }
 
-void CTabBar::updateScaling(int f)
+void CTabBar::updateScaling(double f)
 {
     CScalingWrapper::updateScaling(f);
 

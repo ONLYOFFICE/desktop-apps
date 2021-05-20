@@ -114,6 +114,10 @@ l10n.en = {
     ,settOptCheckWeek: 'Every week'
     ,settScaling: 'Interface scaling'
     ,settOptScalingAuto: 'Auto'
+    ,settUITheme: 'Interface theme'
+    ,settOptThemeLight: 'Light'
+    ,settOptThemeClassicLight: 'Classic Light'
+    ,settOptThemeDark: 'Dark'
     ,aboutProFeaturesAvailable: 'With access to pro features'
 }
 
@@ -358,6 +362,10 @@ l10n.ru = {
     ,settOptCheckWeek: 'Каждую неделю'
     ,settScaling: 'Масштабирование интерфейса'
     ,settOptScalingAuto: 'Авто'
+    ,settUITheme: 'Тема интерфейса'
+    ,settOptThemeLight: 'Светлая'
+    ,settOptThemeClassicLight: 'Светлая классическая'
+    ,settOptThemeDark: 'Темная'
     ,aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
 
@@ -442,6 +450,10 @@ l10n.de = {
     ,settOptCheckNever: 'Niemals'
     ,settOptCheckDay: 'Täglich'
     ,settOptCheckWeek: 'Jede Woche'
+    ,settUITheme: 'Thema der Benutzeroberfläche'
+    ,settOptThemeLight: 'Hell'
+    ,settOptThemeClassicLight: 'Klassisch Hell'
+    ,settOptThemeDark: 'Dunkel'
     ,aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
 };
 
@@ -526,6 +538,10 @@ l10n.it_IT = {
     ,settOptCheckNever: 'Mai'
     ,settOptCheckDay: 'Ogni giorno'
     ,settOptCheckWeek: 'Ogni settimana'
+    ,settUITheme: 'Tema dell\'interfaccia'
+    ,settOptThemeLight: 'Chiaro'
+    ,settOptThemeClassicLight: 'Classic Light'
+    ,settOptThemeDark: 'Scuro'
     ,aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
 };
 
@@ -610,6 +626,10 @@ l10n.fr = {
     ,settOptCheckNever: 'Jamais'
     ,settOptCheckDay: 'Chaque jour'
     ,settOptCheckWeek: 'Chaque semaine'
+    ,settUITheme: 'Thème d’interface'
+    ,settOptThemeLight: 'Clair'
+    ,settOptThemeClassicLight: 'Clair classique'
+    ,settOptThemeDark: 'Sombre'
     ,aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
 };
 
@@ -690,6 +710,10 @@ l10n.es = {
     ,settLanguage: 'Lenguaje de interfaz'
     ,settAfterRestart: 'Opción se aplicará después de reiniciar la aplicación'
     ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
+    ,settUITheme: 'Tema de interfaz'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clásico'
+    ,settOptThemeDark: 'Oscuro'
     ,aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
 };
 
@@ -770,6 +794,10 @@ l10n.pt_BR = {
     ,settLanguage: 'Idioma de Interface'
     ,settAfterRestart: 'Opção será aplicada após a reinicialização do aplicativo'
     ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
+    ,settUITheme: 'Tema de interface'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clássico'
+    ,settOptThemeDark: 'Escuro'
     ,aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
 

@@ -43,7 +43,7 @@
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, double scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
     QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
@@ -71,18 +71,50 @@ void CMainPanelImpl::refreshAboutVersion()
     );
 
     std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
-    _json_obj["uiscaling"] = _force_value == L"1" ? 100 : _force_value == L"2" ? 200 : 0;
+    if ( _force_value == L"1" )
+        _json_obj["uiscaling"] = 100;
+    else
+    if ( _force_value == L"1.5" )
+        _json_obj["uiscaling"] = 150;
+    else
+    if ( _force_value == L"2" )
+        _json_obj["uiscaling"] = 200;
+    else _json_obj["uiscaling"] = 0;
+
+#ifndef __OS_WIN_XP
+    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+#endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
-void CMainPanelImpl::updateScaling(int dpiratio)
+void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
+    std::wstring prefix{AscAppManager::themes().value(CThemes::ColorRole::ecrLogoColor)};
+    QString logo_name = QString(":/logo_%1%2.png")
+            .arg(QString::fromStdWString(prefix))
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
+//    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
+    QPixmap pixmap(logo_name);
+    m_pButtonMain->setText(QString());
+    m_pButtonMain->setIcon(QIcon(pixmap));
+    m_pButtonMain->setIconSize(pixmap.size());
+}
+
+void CMainPanelImpl::applyTheme(const std::wstring& theme)
+{
+    CMainPanel::applyTheme(theme);
+
+    double dpiratio = scaling();
+    std::wstring prefix{AscAppManager::themes().value(theme, CThemes::ColorRole::ecrLogoColor)};
+    QString logo_name = QString(":/logo_%1%2.png")
+            .arg(QString::fromStdWString(prefix))
+            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
+    QPixmap pixmap(logo_name);
     m_pButtonMain->setText(QString());
     m_pButtonMain->setIcon(QIcon(pixmap));
     m_pButtonMain->setIconSize(pixmap.size());

@@ -37,6 +37,7 @@
 #include "qcefview_media.h"
 #include "defines.h"
 #include "clangater.h"
+#include "cappeventfilter.h"
 
 class CAscApplicationManagerWrapper_Private
 {
@@ -44,6 +45,9 @@ public:
     CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
         : m_appmanager(*manager)
     {
+#ifdef Q_OS_WIN
+        qApp->installEventFilter(new CAppEventFilter(this));
+#endif
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
@@ -91,17 +95,24 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
-    auto extendStylesheets(const std::vector<QString>& veccss) -> void {
-        if ( !veccss.empty() ) {
-            m_appmanager.m_vecStyles.push_back(veccss[0]);
+    auto handleAppKeyPress(QKeyEvent * e) -> bool
+    {
+        if (e->key() == Qt::Key_O && (QApplication::keyboardModifiers() & Qt::ControlModifier)) {
+            NSEditorApi::CAscCefMenuEvent * ns_event = new NSEditorApi::CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
+            NSEditorApi::CAscExecCommand * pData = new NSEditorApi::CAscExecCommand;
+            pData->put_Command(L"open:folder");
 
-            if ( veccss.size() > 1 )
-                m_appmanager.m_vecStyles2x.push_back(veccss[1]);
+            ns_event->m_pData = pData;
+            m_appmanager.OnEvent(ns_event);
+
+            return true;
         }
-    }
 
+        return false;
+    }
+    
 protected:
-    auto mainWindow() {
+    auto mainWindow() -> CMainWindow * {
         return m_appmanager.m_pMainWindow;
     }
 

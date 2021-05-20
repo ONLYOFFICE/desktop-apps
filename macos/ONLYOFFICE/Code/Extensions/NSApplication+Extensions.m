@@ -39,10 +39,11 @@
 //
 
 #import "NSApplication+Extensions.h"
+#import "ASCConstants.h"
 
 @implementation NSApplication (Extensions)
 
-+ (BOOL) isDarkMode {
++ (BOOL) isSystemDarkMode {
     if (@available(macOS 10.14, *)) {
         NSString * appleInterfaceStyle = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
 
@@ -52,6 +53,10 @@
     }
 
     return false;
+}
+
++ (BOOL)isUIThemeDark {
+    return [uiThemeDark isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]];
 }
 
 @end

@@ -80,6 +80,44 @@ private:
     CMessage * m_mess;
 };
 
+class CMessagePrivateIntf {
+public:
+    explicit CMessagePrivateIntf(CMessage * parent)
+        : m_mess(parent)
+#ifdef Q_OS_WIN
+        , dpiRatio(Utils::getScreenDpiRatioByHWND(int(parent->handle())))
+#else
+        , dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
+#endif
+    {}
+
+    auto addButton(QPushButton * b) -> void {
+        if ( !defaultButton )
+            defaultButton = b;
+
+        buttons.push_back(b);
+    }
+
+    auto firstButton() -> QPushButton * {
+        return buttons.front();
+    }
+
+    auto lastButton() -> QPushButton * {
+        return buttons.back();
+    }
+
+    auto clearButtons() -> void {
+        defaultButton = nullptr;
+        buttons.clear();
+    }
+
+    CMessage * m_mess = nullptr;
+    std::vector<QPushButton *> buttons;
+    QPushButton * defaultButton = nullptr;
+    double dpiRatio = 1;
+    QMetaObject::Connection focusConnection;
+};
+
 #if defined(Q_OS_WIN)
 CMessage::CMessage(HWND p, CMessageOpts::moButtons b)
 #else
@@ -93,15 +131,14 @@ CMessage::CMessage(QWidget * p, CMessageOpts::moButtons b)
 #if defined(_WIN32)
 CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
-    , m_dpiRatio(Utils::getScreenDpiRatioByHWND(int(p)))
 #else
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
-    , m_dpiRatio(Utils::getScreenDpiRatioByWidget(p))
 #endif
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
     , m_modalresult(MODAL_RESULT_CANCEL)
+    , m_priv(new CMessagePrivateIntf(this))
 {
 #if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
@@ -116,6 +153,7 @@ CMessage::CMessage(QWidget * p)
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
+    m_centralWidget->setObjectName("messageBody");
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -123,30 +161,34 @@ CMessage::CMessage(QWidget * p)
     _c_layout->addLayout(_h_layout2, 1);
     _c_layout->addLayout(_h_layout1, 0);
 
+    const int _body_margin = int(12 * m_priv->dpiRatio);
+    _c_layout->setContentsMargins(_body_margin,_body_margin,_body_margin,_body_margin);
+
     m_typeIcon->setProperty("class", "msg-icon");
-    m_typeIcon->setFixedSize(MSG_ICON_WIDTH*m_dpiRatio, MSG_ICON_HEIGHT*m_dpiRatio);
+    m_typeIcon->setFixedSize(int(MSG_ICON_WIDTH*m_priv->dpiRatio), int(MSG_ICON_HEIGHT*m_priv->dpiRatio));
     _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
 
 //    m_message->setWordWrap(true);
     m_message->setProperty("class", "msg-report");
-    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(8*m_dpiRatio));
+    m_message->setStyleSheet(QString("margin-bottom: %1px;").arg(int(8*m_priv->dpiRatio)));
 
     QFormLayout * _f_layout = new QFormLayout;
     _f_layout->addWidget(m_message);
     _f_layout->setSpacing(0);
-    _f_layout->setContentsMargins(10*m_dpiRatio,0,5*m_dpiRatio,0);
+    _f_layout->setContentsMargins(int(10*m_priv->dpiRatio),0,int(5*m_priv->dpiRatio),0);
     _h_layout2->addLayout(_f_layout, 1);
-
-    _h_layout2->setContentsMargins(15,10,15,10);
-    _f_layout->setContentsMargins(10,0,0,0);
+    _h_layout2->setContentsMargins(0,0,0,0);
 
     QPushButton * btn_ok = new QPushButton(tr("&OK"));
     btn_ok->setAutoDefault(true);
     m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
     m_boxButtons->layout()->addWidget(btn_ok);
-    m_boxButtons->layout()->setContentsMargins(0,8*m_dpiRatio,0,0);
+    m_boxButtons->layout()->setContentsMargins(0,int(10*m_priv->dpiRatio),0,0);
+    m_boxButtons->layout()->setSpacing(int(8*m_priv->dpiRatio));
     _h_layout1->addWidget(m_boxButtons, 0, Qt::AlignCenter);
+
+    m_priv->addButton(btn_ok);
 
     QObject::connect(btn_ok, &QPushButton::clicked,
         [=] {
@@ -160,18 +202,32 @@ CMessage::CMessage(QWidget * p)
     );
 
     m_centralWidget->setLayout(_c_layout);
-    m_centralWidget->setMinimumWidth(350*m_dpiRatio);
+    m_centralWidget->setMinimumWidth(int(350*m_priv->dpiRatio));
 //    m_centralWidget->setWindowTitle(APP_TITLE);
     m_centralWidget->move(0, 0);
 
     QString _styles(Utils::readStylesheets(":/styles/message.qss"));
-    _styles.append(QString("QPushButton{min-width:%1px;}").arg(40*m_dpiRatio));
+    _styles.append(QString("QPushButton{min-width:%1px;}").arg(int(40*m_priv->dpiRatio)));
     m_centralWidget->setStyleSheet( _styles );
 
-    m_centralWidget->setObjectName("messageBody");
-    if ( m_dpiRatio > 1 ) {
-        m_centralWidget->setProperty("hdpi", true);
+    if ( m_priv->dpiRatio > 1.55 ) {
+        m_centralWidget->setProperty("scaling", "2x");
+    } else
+    if ( m_priv->dpiRatio > 1 ) {
+        m_centralWidget->setProperty("scaling", "1.5x");
     }
+
+    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget *, QWidget *to){
+        if ( !to ) {
+            m_priv->firstButton()->setFocus(Qt::FocusReason::TabFocusReason);
+        } else {
+        }
+    });
+}
+
+CMessage::~CMessage()
+{
+    QObject::disconnect(m_priv->focusConnection);
 }
 
 void CMessage::setButtons(std::initializer_list<QString> btns)
@@ -185,6 +241,7 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
         delete item;
     }
+    m_priv->clearButtons();
 
     auto _fn_click = [=](int num) {
         m_modalresult = MODAL_RESULT_CUSTOM + num;
@@ -201,7 +258,8 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         _btn = new QPushButton(reFocus.cap(1));
         if ( !reFocus.cap(2).isEmpty() ) {
 #ifdef Q_OS_WIN
-            _btn->setAutoDefault(true);
+            _btn->setDefault(true);
+            m_priv->defaultButton = _btn;
 #else
             _btn->setDefault(true);
 #endif
@@ -209,10 +267,12 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
         m_boxButtons->layout()->addWidget(_btn);
         QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num++));
+
+        m_priv->addButton(_btn);
     }
 
     if (_btn_num > 2)
-        m_centralWidget->setMinimumWidth(400*m_dpiRatio);
+        m_centralWidget->setMinimumWidth(int(400*m_priv->dpiRatio));
 }
 
 void CMessage::setButtons(CMessageOpts::moButtons btns)
@@ -317,17 +377,16 @@ void CMessage::modal()
     m_centralWidget->adjustSize();
     m_centralWidget->show();
 
-    QList<QPushButton *> l = m_boxButtons->findChildren<QPushButton *>();
     HWND _focused_handle = nullptr;
-    foreach (QPushButton * b, l) {
-        if (l.size() == 1 || b->autoDefault() || b->isDefault()) {
-            _focused_handle = (HWND)b->winId();
-            QTimer::singleShot(200, m_centralWidget, [b]{
-                b->setFocus();
-            });
+    if ( m_priv->defaultButton ) {
+        _focused_handle = (HWND)m_priv->defaultButton->winId();
+        QTimer::singleShot(100, m_centralWidget, [&]{
+            for (auto * btn: m_priv->buttons) {
+                btn->setAutoDefault(true);
+            }
 
-            break;
-        }
+            m_priv->defaultButton->setFocus();
+        });
     }
 
     CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
@@ -363,7 +422,7 @@ void CMessage::applyForAll(const QString& str, bool checked)
     QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
     QCheckBox * chbox = new QCheckBox(str);
     chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + m_typeIcon->width() * m_dpiRatio + 15 * m_dpiRatio));
+    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + int(m_typeIcon->width() * m_priv->dpiRatio) + int(15 * m_priv->dpiRatio)));
     chbox->setChecked(checked);
     layout->insertWidget(1, chbox, 0);
 }
@@ -377,8 +436,8 @@ bool CMessage::isForAll()
 void CMessage::onScreenScaling()
 {
 #if defined(_WIN32)
-    uchar f = Utils::getScreenDpiRatioByHWND( int(CWinWindow::handle()) );
-    if ( m_dpiRatio != f ) {
+    double f = Utils::getScreenDpiRatioByHWND( int(CWinWindow::handle()) );
+    if ( m_priv->dpiRatio != f ) {
         /* change scaling factor for elements */
     }
 #endif

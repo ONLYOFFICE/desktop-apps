@@ -13,3 +13,4 @@ QTabBar::tab-icon{width:15;height:15;}
 
 QTabWidget[active=false] QTabBar::tab:selected {background-color: #f1f1f1;}
 QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #cecece;}
+

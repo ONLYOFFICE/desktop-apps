@@ -56,28 +56,28 @@ public:
     void tabStartLoading(int, const QString& theme = QString());
     void activate(bool);
 
-    void updateScaling(int);
+    void updateScaling(double) override;
     int draggedTabIndex();
 
     enum TabTheme {
-        Light,
-        Dark
+        LightTab,
+        DarkTab
     };
     void changeTabTheme(int, TabTheme);
     void setTabTheme(int, TabTheme);
 
 protected:
-    bool event(QEvent * e);
+    bool event(QEvent * e) override;
     void mousePressEvent (QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent (QMouseEvent *) override;
-    void paintEvent(QPaintEvent *);
-    void tabInserted(int);
-    void tabRemoved(int index);
+    void paintEvent(QPaintEvent *) override;
+    void tabInserted(int) override;
+    void tabRemoved(int index) override;
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
     void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
 
-    QSize tabSizeHint(int index) const;
+    QSize tabSizeHint(int index) const override;
 
     void interruptTabMoving(int index);
 

@@ -60,7 +60,7 @@
                                     `<h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>` +
                                 '</div>' +
                                 '<div id="box-open-acts" class="lst-tools">'+
-                                    `<button id="btn-openlocal" l10n>${_lang.btnBrowse}</button>` +
+                                    `<button id="btn-openlocal" class="btn btn--primary" l10n>${_lang.btnBrowse}</button>` +
                                 '</div>' +
                             '</div>'+
                         '</div>'+

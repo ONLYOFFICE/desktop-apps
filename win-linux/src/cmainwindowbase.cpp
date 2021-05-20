@@ -123,3 +123,8 @@ void CMainWindowBase::captureMouse(int)
     ReleaseCapture();
 #endif
 }
+
+void CMainWindowBase::applyTheme(const std::wstring& name)
+{
+    mainPanel()->applyTheme(name);
+}

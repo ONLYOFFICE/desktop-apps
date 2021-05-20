@@ -209,7 +209,11 @@
         
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
-        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value:[NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]]; // Use onlyoffice iso ¯\_(ツ)_/¯
+
+        NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
+        if ( !ui_lang ) ui_lang = [NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]; // Use onlyoffice iso ¯\_(ツ)_/¯
+
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: ui_lang];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
         if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
@@ -685,13 +689,13 @@
 
     switch (type) {
         case ASCTabViewTypeDocument:
-            headerColor = [NSColor brendDocumentEditor];
+            headerColor = [NSColor themedDocumentEditor];
             break;
         case ASCTabViewTypeSpreadsheet:
-            headerColor = [NSColor brendSpreadsheetEditor];
+            headerColor = [NSColor themedSpreadsheetEditor];
             break;
         case ASCTabViewTypePresentation:
-            headerColor = [NSColor brendPresentationEditor];
+            headerColor = [NSColor themedPresentationEditor];
             break;
         default:
             break;
@@ -1461,12 +1465,43 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-    pCommand->put_Command(L"app:ready");
+    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
+    if ( !uiLang )
+        uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+
+    NSDictionary * json_langs = @{
+        @"locale_skip": @{
+            @"current": uiLang,
+            @"langs": @{
+                @"en": @"English",
+                @"ru": @"Русский",
+                @"de": @"Deutsch",
+                @"fr": @"Français",
+                @"es": @"Español",
+                @"it": @"Italiano",
+                @"pl": @"Polski",
+                @"pt-BR": @"Português Brasileiro",
+                @"zh-CN": @"中文"
+            }
+        },
+        @"uitheme": uiTheme
+    };
+
+    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+    pCommand->put_Command(L"settings:init");
+    pCommand->put_Param([[json_langs jsonString] stdwstring]);
+
     NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
     pEvent->m_pData = pCommand;
-    
+    pEvent->AddRef();
+
+    [self.cefStartPageView apply:pEvent];
+
+    pCommand->put_Command(L"app:ready");
+    pCommand->put_Param(L"");
+
     [self.cefStartPageView apply:pEvent];
     
     [self onOpenAppLink];
