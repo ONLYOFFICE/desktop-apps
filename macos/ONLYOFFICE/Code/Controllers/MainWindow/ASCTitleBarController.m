@@ -158,6 +158,11 @@ static float kASCWindowMinTitleWidth = 0;
                                                  name:CEFEventNameLogin
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChangedUITheme:)
+                                                 name:ASCEventNameChangedUITheme
+                                               object:nil];
+
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
@@ -183,6 +188,12 @@ static float kASCWindowMinTitleWidth = 0;
             portalButtonCell.textColor          = kColorRGBA(255, 255, 255, 0.0);
             portalButtonCell.textActiveColor    = kColorRGBA(255, 255, 255, 0.0);
             portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
+        }
+
+        if ( [NSApplication isUIThemeDark] ) {
+            portalButtonCell.bgActiveColor      = UIColorFromRGB(0x333333);
+
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         }
     }
 
@@ -314,6 +325,31 @@ static float kASCWindowMinTitleWidth = 0;
     }
 }
 
+-(void)onChangedUITheme:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        NSString * theme = params[@"uitheme"];
+
+        ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
+        if ( [theme isEqualToString:uiThemeDark] ) {
+            portalButtonCell.bgActiveColor      = UIColorFromRGB(0x333333);
+
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        } else {
+            if ( @available(macOS 10.13, *) )
+                portalButtonCell.bgActiveColor = [NSColor colorNamed:@"tab-portal-activeColor"];
+            else portalButtonCell.bgActiveColor = kColorRGBA(255, 255, 255, 1.0);
+
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+        }
+
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            [tab setType:tab.type];
+            [self.tabsControl updateTab:tab];
+        }
+    }
+}
+
 #pragma mark -
 #pragma mark Actions
 - (void)setupCustomPopover:(SFBPopover *)popover {
@@ -393,17 +429,16 @@ static float kASCWindowMinTitleWidth = 0;
 - (void)tabs:(ASCTabsControl *)control didSelectTab:(ASCTabView *)tab {  
     if (tab) {
         [self.portalButton setState:NSControlStateValueOff];
+
+        if ( [NSApplication isSystemDarkMode] )
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     } else {
         [self.portalButton setState:NSControlStateValueOn];
-    }
 
-    if ([NSApplication isDarkMode]) {
-        [self.portalButton setImage:(self.portalButton.state == NSControlStateValueOn)
-         ? [NSImage imageNamed:@"logo-tab-dark"]
-         : [NSImage imageNamed:@"logo-tab-light"]
-        ];
-    } else {
-        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+        if ( [NSApplication isUIThemeDark] )
+            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     }
 }
 

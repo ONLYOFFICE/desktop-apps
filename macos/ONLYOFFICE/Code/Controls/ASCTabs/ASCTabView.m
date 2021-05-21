@@ -117,7 +117,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                ]
     ];
 
-    if ([NSApplication isDarkMode]) {
+    if ([NSApplication isSystemDarkMode]) {
         _icons[ASCTabViewTypePortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
     }
 
@@ -221,24 +221,24 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         }
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewTypeDocument) {
-        tabViewCell.activeColor = [NSColor brendDocumentEditor];
-        tabViewCell.clickColor  = [NSColor brendDocumentEditor];
+        tabViewCell.activeColor = [NSColor themedDocumentEditor];
+        tabViewCell.clickColor  = [NSColor themedDocumentEditor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
     } else if (type == ASCTabViewTypeSpreadsheet) {
-        tabViewCell.activeColor = [NSColor brendSpreadsheetEditor];
-        tabViewCell.clickColor  = [NSColor brendSpreadsheetEditor];
+        tabViewCell.activeColor = [NSColor themedSpreadsheetEditor];
+        tabViewCell.clickColor  = [NSColor themedSpreadsheetEditor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
     } else if (type == ASCTabViewTypePresentation) {
-        tabViewCell.activeColor = [NSColor brendPresentationEditor];
-        tabViewCell.clickColor  = [NSColor brendPresentationEditor];
+        tabViewCell.activeColor = [NSColor themedPresentationEditor];
+        tabViewCell.clickColor  = [NSColor themedPresentationEditor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {

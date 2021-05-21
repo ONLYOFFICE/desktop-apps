@@ -595,6 +595,11 @@ public:
                                 } else {
                                     [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
                                 }
+                                
+                                if (NSString * langId = json[@"langid"]) {
+                                    [[NSUserDefaults standardUserDefaults] setObject:langId forKey:ASCUserUILanguage];
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
+                                }
 
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
@@ -612,6 +617,18 @@ public:
                                     if ([docopenMode isEqualToString:@"view"]) {
                                         [params addObject:[NSString stringWithFormat:@"mode=%@", @"view"]];
                                     }
+                                }
+
+                                if (NSString * uiTheme = json[@"uitheme"]) {
+                                    if ( [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] != uiTheme ) {
+                                        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
+
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+                                                                                            object:nil
+                                                                                          userInfo: @{@"uitheme": uiTheme}];
+                                    }
+
+                                    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
                                 }
 
                                 std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];

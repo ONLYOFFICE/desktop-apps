@@ -159,18 +159,18 @@ CSingleWindowBase::CSingleWindowBase(QRect& rect)
     }
 }
 
-void CSingleWindowBase::setScreenScalingFactor(int f)
+void CSingleWindowBase::setScreenScalingFactor(double f)
 {
     if ( m_dpiRatio != f ) {
         if ( isCustomWindowStyle() ) {
-            QSize small_btn_size(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f);
+            QSize small_btn_size(int(TOOLBTN_WIDTH * f), int(TOOLBTN_HEIGHT*f));
 
             m_buttonMinimize->setFixedSize(small_btn_size);
             m_buttonMaximize->setFixedSize(small_btn_size);
             m_buttonClose->setFixedSize(small_btn_size);
 
-            m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * f);
-            m_boxTitleBtns->layout()->setSpacing(1 * f);
+            m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * f));
+            m_boxTitleBtns->layout()->setSpacing(int(1 * f));
         }
 
 //        onScreenScalingFactor(f);
@@ -285,7 +285,7 @@ void CSingleWindowBase::onExitSizeMove()
 
 }
 
-void CSingleWindowBase::onDpiChanged(int, int)
+void CSingleWindowBase::onDpiChanged(double, double)
 {
 }
 
@@ -294,7 +294,7 @@ QPushButton * CSingleWindowBase::createToolButton(QWidget * parent)
     QPushButton * btn = new QPushButton(parent);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
-    btn->setFixedSize(QSize(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio));
+    btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio)));
 
     return btn;
 }

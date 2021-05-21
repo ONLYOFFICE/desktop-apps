@@ -34,5 +34,6 @@ var params = (function() {
 
 var ui_theme_name = params.uitheme || localStorage.getItem("ui-theme");
 if ( !!ui_theme_name ) {
-    document.body.classList.add(ui_theme_name);
+    const theme_type = ui_theme_name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
+    document.body.classList.add(ui_theme_name, theme_type);
 }

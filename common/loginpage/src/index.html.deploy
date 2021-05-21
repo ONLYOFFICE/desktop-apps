@@ -106,13 +106,22 @@
               <div class="tool-quick-menu">
                 <h3 class="createnew" l10n>Create new</h3>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:docx" l10n>DOCUMENT</a>
+                  <a action="new:docx">
+                    <i class="icon img-el"></i>
+                    <span class="text" l10n>DOCUMENT</span>
+                  </a>
                 </li>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:xlsx" l10n>SPREADSHEET</a>
+                  <a action="new:xlsx">
+                    <i class="icon img-el"></i>
+                    <span class="text" l10n>SPREADSHEET</span>
+                  </a>
                 </li>
                 <li class="menu-item">
-                  <a class="img-before-el" action="new:pptx" l10n>PRESENTATION</a>
+                  <a action="new:pptx">
+                    <i class="icon img-el"></i>
+                    <span class="text" l10n>PRESENTATION</span>
+                  </a>
                 </li>
               </div>
               <li class="menu-item separator"></li>
@@ -123,10 +132,15 @@
     </div>
 
     <div class="injected-svg">
-    <inline src="../res/img/logo_nextcloud.svg" />
-    <inline src="../res/img/logo_onlyoffice.svg" />
-    <inline src="../res/img/logo_owncloud.svg" />
-    <inline src="../res/img/icon_portals.svg" />
+    <inline src="../res/img/connect1.svg" />
+    <inline src="../res/img/connect2.svg" />
+    <inline src="../res/img/connect3.svg" />
+    <inline src="../res/img/connect1_dark.svg" />
+    <inline src="../res/img/connect2_dark.svg" />
+    <inline src="../res/img/connect3_dark.svg" />
+    <inline src="../res/img/welcome.svg" />
+    <inline src="../res/img/welcome_dark.svg" />
+    <inline src="../res/img/logo.svg" />
     </div>
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>

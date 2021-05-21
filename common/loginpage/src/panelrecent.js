@@ -99,7 +99,7 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
                           <td class="row-cell cicon">
-                            <i class="icon img-before-el ${info.type=='folder'?'folder':`img-format ${info.format}`}" />
+                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>

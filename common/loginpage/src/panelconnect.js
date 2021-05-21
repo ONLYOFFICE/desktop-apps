@@ -40,6 +40,15 @@
     window.config.portals.checklist = sdk.externalClouds();
     window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
 
+    if ( window.config.portals.checklist ) {
+        let _providers = {};
+        window.config.portals.checklist.forEach(item => {
+            _providers[item.provider] = item;
+        });
+
+        window.config.portals.providers = _providers;
+    }
+
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
         args.action = 
@@ -65,17 +74,23 @@
                                     <div class='carousel__slide'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide1Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect1' data-src='connect1'>
+                                        </svg>
                                     </div>
                                     <div class='carousel__slide'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide2Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide2Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect2' data-src='connect2'>
+                                        </svg>
                                     </div>
                                     <div class='carousel__slide active'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide3Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide3Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect3' data-src='connect3'>
+                                        </svg>
                                     </div>
                                 </figure>
                                 <nav class='carousel__scrolls'>
@@ -199,7 +214,12 @@
             var model = data;
             if (/\:open/.test(action)) {
                 // model.logged ?
-                    sdk.command("portal:open", JSON.stringify({portal: model.path, provider:model.provider}));
+                    const _entrypage = !window.config.portals.providers[model.provider] ? '/' :
+                                            window.config.portals.providers[model.provider].startPage;
+                    sdk.command("portal:open", JSON.stringify({
+                        portal: model.path,
+                        provider: model.provider,
+                        entrypage: _entrypage}));
                         // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
@@ -218,6 +238,10 @@
                 onclose: opts => {
                     if ( opts ) {
                         opts.type = 'outer';
+
+                        const _pm = config.portals.checklist.find(e => e.provider == opts.provider);
+                        opts.entrypage = !_pm ? '/' : _pm.startPage;
+
                         sdk.execCommand("auth:outer", JSON.stringify(opts));
                     }
 
@@ -587,11 +611,21 @@
                 .on('click', e => {
                     _scrollCarousel(e.target.getAttribute('value'));
                 });
+
+            _on_theme_changed(localStorage.getItem('ui-theme'));
         };
 
         function _on_lang_changed(ol,nl) {
             $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
         };
+
+        function _on_theme_changed(name) {
+            $('.carousel__slide__img > use').each((i, el) => {
+                if ( name == 'theme-dark' )
+                    el.setAttribute('xlink:href', `#${el.dataset.src}-dark`);
+                else el.setAttribute('xlink:href', `#${el.dataset.src}-light`);
+            });
+        }
 
         return {
             init: function() {
@@ -622,6 +656,9 @@
                     } else
                     if (/^settings\:/.test(cmd)) {
                         _on_settings.call(this, cmd, param);
+                    } else
+                    if (cmd == 'uitheme:changed') {
+                        _on_theme_changed(param);
                     }
                 });
 

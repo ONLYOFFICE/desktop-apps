@@ -53,6 +53,7 @@ using namespace std;
 
 #ifdef Q_OS_WIN
 static DWORD win_ver_major{0};
+//static const int win_ver_major = QOperatingSystemVersion::current().majorVersion();
 using VectorShellItems = vector<IShellItem *>;
 
 auto itemsFromItemArray(IShellItemArray * items)

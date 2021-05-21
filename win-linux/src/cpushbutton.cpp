@@ -39,11 +39,11 @@
 
 #include <QDebug>
 
-CPushButton::CPushButton(uchar scaling)
+CPushButton::CPushButton(double scaling)
     : CPushButton(Q_NULLPTR, scaling)
 {}
 
-CPushButton::CPushButton(QWidget *parent, uchar scaling)
+CPushButton::CPushButton(QWidget *parent, double scaling)
     : QPushButton(parent)
     , _movie(Q_NULLPTR)
     , _dpi_ratio(scaling)
@@ -174,7 +174,7 @@ void CPushButton::paintEvent(QPaintEvent * e)
     option.icon = QIcon();
     p.drawControl(QStyle::CE_PushButton, option);
 
-    p.drawItemPixmap( QRect(QPoint(0, 5*_dpi_ratio), option.iconSize),
+    p.drawItemPixmap( QRect(QPoint(0, int(5*_dpi_ratio)), option.iconSize),
                         Qt::AlignLeft | Qt::AlignVCenter, _movie->currentPixmap() );
 }
 
@@ -185,7 +185,7 @@ void CPushButton::onAnimationFinished()
     }
 }
 
-void CPushButton::setScaling(uchar s)
+void CPushButton::setScaling(double s)
 {
     _dpi_ratio = s;
 

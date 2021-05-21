@@ -21,39 +21,45 @@ button {
         border: 1px solid @border-regular-control;
         background-color: @background-button;
 
-        &:hover:not(:disabled) {
-            border-color: @highlight-button-hover;
-            background-color: @highlight-button-hover;
-        }
-
-        &:active {
-            border-color: @highlight-button-pressed;
-            background-color: @highlight-button-pressed;
-        }
-
         &.btn--landing {
             background-color: @background-accent-button;
             border: 0 none;
-
-            &:hover {
-                background-color: @highlight-accent-button-hover;
-            }
-
-            &:active {
-                background-color: @highlight-accent-button-pressed;
-            }
         }
 
         &.btn--primary {
             background-color: @background-primary-button;
             border: 0 none;
+        }
 
+        &:not(.dropdown-toggle) {
             &:hover:not(:disabled) {
-                background-color: @highlight-primary-button-hover;
+                border-color: @highlight-button-hover;
+                background-color: @highlight-button-hover;
             }
 
             &:active {
-                background-color: @highlight-primary-button-pressed;
+                border-color: @highlight-button-pressed;
+                background-color: @highlight-button-pressed;
+            }
+
+            &.btn--landing {
+                &:hover {
+                    background-color: @highlight-accent-button-hover;
+                }
+
+                &:active {
+                    background-color: @highlight-accent-button-pressed;
+                }
+            }
+
+            &.btn--primary {
+                &:hover:not(:disabled) {
+                    background-color: @highlight-primary-button-hover;
+                }
+
+                &:active:not(:disabled) {
+                    background-color: @highlight-primary-button-pressed;
+                }
             }
         }
     }
@@ -276,6 +282,10 @@ input[type="radio"] {
         .filter-option {
             display: flex;
             align-items: center;
+
+            &:focus {
+                outline: @border-control-focus solid 1px;
+            }
         }
     }
 }
@@ -322,10 +332,12 @@ input[type="radio"] {
     }
 
     > .active > a {
-        background-color: @highlight-button-hover;
+        background-color: @highlight-button-pressed;
+        color: @text-normal-pressed;
 
         &:hover, &:focus {
-            background-color: @highlight-button-hover;
+            background-color: @highlight-button-pressed;
+            color: @text-normal-pressed;
         }
     }
 

@@ -53,7 +53,7 @@
 
         let _html = `<div ${args.id} class='action-panel ${args.action}'>
                         <div id='box-settings'>
-                            <div class='flexbox'>
+                            <div class='flexbox content-box'>
                                 <h3 class='table-caption' l10n>${_lang.actSettings}</h3>
                                 <section class='settings-items'>
                                     <div class='settings-field'>
@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                        <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
+                                        <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'></label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'>
@@ -110,6 +110,7 @@
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'>
                                                     <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
+                                                    <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
                                                     <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
                                                 </select>
                                             </section>
@@ -156,6 +157,17 @@
             $btnApply.disable(false);
         };
 
+        function _apply_theme(name) {
+            if ( !$("body").hasClass(name) ) {
+                const _type = name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
+                const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
+                document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
+
+                localStorage.setItem('ui-theme', name);
+                CommonEvents.fire('theme:changed', [name]);
+            }
+        };
+
         const _validate_user_name = name => {
             // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
 
@@ -163,7 +175,7 @@
             *  we use chrome ver 49 on win xp,
             *  that version has no support for unicode in regexp
             */
-            if (/windows nt 5/i.test(navigator.appVersion)) return true;
+            if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) return true;
             else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"\\.\\- ]+$', 'iu')).test(name)
         };
 
@@ -200,6 +212,8 @@
                 if ( $optsUITheme ) {
                     _new_settings.uitheme = $optsUITheme.val();
                     $optsUITheme.selectpicker('refresh');
+
+                    _apply_theme(_new_settings.uitheme);
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -281,17 +295,18 @@
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
 
-                            $('#caption-restart', $panel).show();
+                            // $('#caption-restart', $panel).show();
                         }
 
                         if ( !!opts.uitheme ) {
-                            opts.uitheme == 'canuse' && (opts.uitheme = 'light');
+                            opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
                             ($optsUITheme = ($('#opts-ui-theme', $panel).show().find('select')))
                             .val(opts.uitheme)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
 
+                            _apply_theme(opts.uitheme);
                         }
                     }
                 } else
@@ -307,6 +322,14 @@
                         $combo.on('change', _on_autoupdate_change.bind(this));
                     }
                 }
+            } else
+            if (/uitheme:changed/.test(cmd)) {
+                if ( !!$optsUITheme ) {
+                    $optsUITheme.val(param)
+                    $optsUITheme.selectpicker('refresh');
+                }
+
+                _apply_theme(param);
             }
         };
 

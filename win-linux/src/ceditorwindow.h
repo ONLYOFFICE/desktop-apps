@@ -64,6 +64,7 @@ public:
     bool closed() const;
     AscEditorType editorType() const;
 
+    void applyTheme(const std::wstring&);
     void setReporterMode(bool);
 private:
     QString m_css;
@@ -83,9 +84,9 @@ protected:
     void onSizeEvent(int) override;
     void onMoveEvent(const QRect&) override;
     void onExitSizeMove() override;
-    void onDpiChanged(int,int) override;
+    void onDpiChanged(double,double) override;
 
-    void setScreenScalingFactor(int) override;
+    void setScreenScalingFactor(double) override;
     int calcTitleCaptionWidth() override;
 
 private slots:

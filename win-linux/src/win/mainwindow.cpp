@@ -95,7 +95,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 
-    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+    QSize _window_min_size(int(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio));
     if ( _window_rect.width() < _window_min_size.width() )
         _window_rect.setWidth(_window_min_size.width());
 
@@ -124,7 +124,8 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = WINDOW_CLASS_NAME;
-    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+//    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -134,6 +135,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( FAILED( RegisterClassExW( &wcx ) ) )
         throw std::runtime_error( "Couldn't register window class" );
 
+    m_moveNormalRect = _window_rect;
     hWnd = CreateWindow( WINDOW_CLASS_NAME, QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                             _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
     if ( !hWnd )
@@ -147,7 +149,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
-    m_pMainPanel->applyTheme(AscAppManager::theme());
 
 //    SetWindowPos(HWND(m_pWinPanel->winId()), NULL, 0, 0, _window_rect.width(), _window_rect.height(), SWP_FRAMECHANGED);
 
@@ -198,7 +199,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
     {
     case WM_DPICHANGED:
         if ( !WindowHelper::isLeftButtonPressed() ) {
-            uint dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
             if ( dpi_ratio != window->m_dpiRatio ) {
                 window->m_dpiRatio = dpi_ratio;
@@ -269,7 +270,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             return 0;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+            window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
             break;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_MOVE ) {
@@ -415,7 +416,7 @@ qDebug() << "WM_CLOSE";
             } else {
                 if ( IsWindowVisible(hWnd) ) {
                     if ( WindowHelper::isLeftButtonPressed() ) {
-                        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+                        double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
                         if ( dpi_ratio != window->m_dpiRatio )
                             window->setScreenScalingFactor(dpi_ratio);
                     }
@@ -466,9 +467,7 @@ qDebug() << "WM_CLOSE";
 
         int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
         uchar dpi_ratio = _scr_num;
-#else
-        int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-#endif
+
         if ( dpi_ratio != window->m_dpiRatio ) {
             if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
                 window->setScreenScalingFactor(dpi_ratio);
@@ -479,6 +478,9 @@ qDebug() << "WM_CLOSE";
 
             window->adjustGeometry();
         }
+#else
+        window->updateScaling();
+#endif
 
         break;
     }
@@ -495,9 +497,9 @@ qDebug() << "WM_CLOSE";
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+        ::SetDCPenColor(hDC, AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder));
 
-        HBRUSH hBrush = ::CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
@@ -702,7 +704,7 @@ void CMainWindow::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio;
+        border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,
@@ -717,14 +719,14 @@ void CMainWindow::adjustGeometry()
     DeleteObject(hRgn);
 }
 
-void CMainWindow::setScreenScalingFactor(int factor)
+void CMainWindow::setScreenScalingFactor(double factor)
 {
     skipsizing = true;
 
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
-        bool increase = factor > m_dpiRatio;
+        double change_factor = factor / m_dpiRatio;
         m_dpiRatio = factor;
 
         m_pMainPanel->setStyleSheet(css);
@@ -736,8 +738,8 @@ void CMainWindow::setScreenScalingFactor(int factor)
                 MONITORINFO info{sizeof(MONITORINFO)};
                 GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-                m_moveNormalRect = increase ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
-                                                QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
+                int dest_width_change = int(m_moveNormalRect.width() * (1 - change_factor));
+                m_moveNormalRect = QRect{m_moveNormalRect.translated(dest_width_change/2,0).topLeft(), m_moveNormalRect.size() * change_factor};
 
                 wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
                 wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
@@ -746,9 +748,9 @@ void CMainWindow::setScreenScalingFactor(int factor)
 
                 SetWindowPlacement(hWnd, &wp);
             } else {
-                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
-                    dest_rect = increase ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
-                                                QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
+                int dest_width_change = int(source_rect.width() * (1 - change_factor));
+                QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
 
                 SetWindowPos(hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
@@ -806,6 +808,8 @@ void CMainWindow::slot_mainPageReady()
     if ( osvi.dwMajorVersion > 5 ) {
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
+        const std::wstring argname{L"--updates-appcast-url"};
+        QString _appcast_url = !InputArgs::contains(argname) ? URL_APPCAST_UPDATES : QString::fromStdWString(InputArgs::argument_value(argname));
         static bool _init = false;
         if ( !_init ) {
             _init = true;
@@ -820,7 +824,7 @@ void CMainWindow::slot_mainPageReady()
             win_sparkle_set_app_details(QString(VER_COMPANYNAME_STR).toStdWString().c_str(),
                                             _prod_name.toStdWString().c_str(),
                                             QString(VER_FILEVERSION_STR).toStdWString().c_str());
-            win_sparkle_set_appcast_url(URL_APPCAST_UPDATES);
+            win_sparkle_set_appcast_url(_appcast_url.toStdString().c_str());
             win_sparkle_set_registry_path(QString("Software\\%1\\%2").arg(REG_GROUP_KEY).arg(REG_APP_NAME).toLatin1());
 
             win_sparkle_set_did_find_update_callback(&CMainWindow::updateFound);
@@ -831,7 +835,7 @@ void CMainWindow::slot_mainPageReady()
         }
 
         AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        CLogger::log(QString("updates is on: ") + URL_APPCAST_UPDATES);
+        CLogger::log("updates is on: " + _appcast_url);
 
 #define RATE_MS_DAY 3600*24
 #define RATE_MS_WEEK RATE_MS_DAY*7
@@ -1004,4 +1008,22 @@ void CMainWindow::bringToTop() const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CMainWindowBase::applyTheme(theme);
+
+    RedrawWindow(hWnd, nullptr, nullptr, RDW_INVALIDATE);
+}
+
+void CMainWindow::updateScaling()
+{
+    double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+    if ( dpi_ratio != m_dpiRatio ) {
+        if ( !WindowHelper::isWindowSystemDocked(hWnd) ) {
+            setScreenScalingFactor(dpi_ratio);
+        } else {
+            m_dpiRatio = dpi_ratio;
+            refresh_window_scaling_factor(this);
+        }
+
+        adjustGeometry();
+    }
 }

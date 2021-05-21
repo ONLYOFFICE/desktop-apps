@@ -55,6 +55,9 @@
 + (NSColor *) brendDocumentEditor;
 + (NSColor *) brendSpreadsheetEditor;
 + (NSColor *) brendPresentationEditor;
++ (NSColor *) themedDocumentEditor;
++ (NSColor *) themedSpreadsheetEditor;
++ (NSColor *) themedPresentationEditor;
 @end
 
 @interface NSColor (Extensions)

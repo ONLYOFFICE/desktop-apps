@@ -55,7 +55,7 @@
                         <section class="center-box">
                           <h3 style="margin-top:0;" l10n>${_lang.welWelcome}</h3>
                           <h4 class="text-description" l10n>${_lang.welDescr}</h4>
-                          <img class="img-welcome">
+                          <imagewelcome>
                           <div class="tools-connect">
                             <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                             <section class="link-connect">
@@ -84,6 +84,9 @@
         init: function() {
             baseController.prototype.init.apply(this, arguments);
 
+            const is_dark_theme = localStorage.getItem('ui-theme') == 'theme-dark';
+            const img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
+            this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
             return this;
         }

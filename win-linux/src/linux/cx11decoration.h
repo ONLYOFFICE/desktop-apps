@@ -67,8 +67,8 @@ public:
 
     int m_nDirection;
 protected:
-    int dpi_ratio = 1;
-    void onDpiChanged(int);
+    double dpi_ratio = 1;
+    void onDpiChanged(double);
 
 private:
     QWidget * m_window;

@@ -64,7 +64,7 @@ public:
 //    void updateProgress();
 //    void cancelAll();
 
-    void updateScaling(int);
+    void updateScaling(double) override;
 
 protected:
     QWidget * addFile(const QString&, int);
@@ -74,7 +74,7 @@ protected:
     void updateProgress(MapItem, void *);
     QString getFileName(const QString&) const;
 
-    void applyScaling(int);
+    void applyScaling(double);
     void resizeEvent(QResizeEvent *);
 
 private:

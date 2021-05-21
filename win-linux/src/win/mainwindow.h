@@ -73,6 +73,7 @@ public:
     void removeMaximumSize();
     void adjustGeometry();
     void applyTheme(const std::wstring&) override;
+    void updateScaling() override;
 
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
@@ -92,7 +93,7 @@ public:
 
 private:
     void captureMouse(int tabindex) override;
-    void setScreenScalingFactor(int);
+    void setScreenScalingFactor(double);
     void doClose();
 
     void slot_windowChangeState(Qt::WindowState);
@@ -124,7 +125,7 @@ private:
     WindowBase::CWindowGeometry minimumSize;
     WindowBase::CWindowGeometry maximumSize;
 
-    int m_dpiRatio;
+    double m_dpiRatio = 1;
     HWND m_modalHwnd;
 
     QRect m_moveNormalRect;
