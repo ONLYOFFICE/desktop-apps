@@ -102,6 +102,7 @@ public:
     auto current() -> std::wstring;
     auto setCurrent(const std::wstring&) -> void;
     auto isCurrent(const std::wstring& name) -> bool;
+    auto isCurrentDark() -> bool;
 
 private:
     class CThemesPrivate;

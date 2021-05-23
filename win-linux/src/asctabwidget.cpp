@@ -150,6 +150,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isDarkTheme(AscAppManager::themes().isCurrentDark())
     , m_tabIconSize(11, 11)
 {
     CTabBar * tabs = new CTabBar(this);
