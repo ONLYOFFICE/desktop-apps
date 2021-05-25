@@ -683,8 +683,11 @@ void CMainWindow::adjustGeometry()
         LONG lTestW = 640,
              lTestH = 480;
 
+        QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
+        double _screen_dpi_ratio = _screen->logicalDotsPerInch() / 96;
+
         RECT wrect{0,0,lTestW,lTestH};
-        WindowHelper::adjustWindowRect(hWnd, m_dpiRatio, &wrect);
+        WindowHelper::adjustWindowRect(hWnd, _screen_dpi_ratio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
