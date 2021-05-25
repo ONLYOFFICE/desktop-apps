@@ -419,6 +419,29 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
     return wid->devicePixelRatio();
 }
 
+QScreen * Utils::screenAt(const QPoint& pt)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    return QApplication::screenAt(pt);
+#else
+    QVarLengthArray<const QScreen *, 8> _cached_screens;
+    for (const QScreen *screen : QApplication::screens()) {
+        if (_cached_screens.contains(screen))
+            continue;
+
+        for (QScreen *sibling : screen->virtualSiblings()) {
+            QRect r = sibling->geometry();
+            if (sibling->geometry().contains(pt))
+                return sibling;
+
+            _cached_screens.append(sibling);
+        }
+    }
+
+    return nullptr;
+#endif
+}
+
 /*
 QByteArray Utils::getAppStylesheets(int scale)
 {
