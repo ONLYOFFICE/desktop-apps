@@ -104,7 +104,7 @@ QTabBar QToolButton,
 QTabBar[scroll=var2] QToolButton::left-arrow,
 QTabBar QToolButton::left-arrow {
     border-image: url(:/tabbar/icons/scrolltab_ln_1.5x.png) 0;
-    border-width:16px 0 12px 2px;
+    border-width:12px 2px 12px 2px;
 }
 
 QTabBar QToolButton::left-arrow:disabled {
@@ -123,7 +123,8 @@ QTabBar[scroll=var2] QToolButton::right-arrow,
 QTabBar QToolButton::right-arrow {
     border-image: url(:/tabbar/icons/scrolltab_rn_1.5x.png) 0;
     /*border-width:12px;*/
-    border-width:16px 0 16px 26px;
+    border-width:12px 2px 12px 24px;
+    width:12px;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
@@ -139,7 +140,7 @@ QTabBar QToolButton::right-arrow:pressed {
 
 QTabBar[scroll=var2]::scroller,
 QTabBar::scroller {
-    width:36px;
+    width:48px;
 }
 
 QTabBar QToolButton[class=tab-close]{
