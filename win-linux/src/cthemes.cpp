@@ -72,6 +72,11 @@ auto CThemes::isCurrentDark() -> bool
     return m_priv->current == NSThemeDark::theme_id;
 }
 
+auto CThemes::isThemeDark(const std::wstring& name) -> bool
+{
+    return name == NSThemeDark::theme_id;
+}
+
 auto CThemes::color(ColorRole r) -> QColor
 {
     return color(current(), r);
