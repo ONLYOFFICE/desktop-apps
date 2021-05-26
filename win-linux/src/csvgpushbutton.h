@@ -43,11 +43,14 @@ public:
     void setIcon(const QByteArray&);
     void setIcon(const QString& file, const QString& node = QString());
     void setIconSize(const QSize&);
+    void setIconOpacity(const QColor& normal);
     void setDisabled(bool);
 
 private:
     QByteArray m_svglayout;
     QString m_svgnode;
+    QColor m_opacitynormal,
+            m_opacitydisabled;
 
     void updateIcon();
     using QPushButton::setDisabled;

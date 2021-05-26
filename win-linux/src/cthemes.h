@@ -25,6 +25,7 @@ namespace NSThemeLight {
     static const std::wstring color_tab_simple_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#a5a5a5";
 
+    static const QColor button_normal_opacity = QColor(255,255,255,255);
     static const std::wstring color_logo = L"dark";
 }
 
@@ -46,6 +47,7 @@ namespace NSThemeClassicLight {
     static const std::wstring color_tab_simple_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#a5a5a5";
 
+    static const QColor button_normal_opacity = QColor(255,255,255,255);
     static const std::wstring color_logo = L"dark";
 }
 
@@ -70,6 +72,7 @@ namespace NSThemeDark {
     static const std::wstring color_tab_simple_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#505050";
 
+    static const QColor button_normal_opacity = QColor(255,255,255,200);
     static const std::wstring color_logo = L"light";
 }
 
