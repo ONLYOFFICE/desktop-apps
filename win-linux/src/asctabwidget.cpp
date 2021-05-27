@@ -61,10 +61,13 @@
 
 using namespace std;
 
-const QString g_dark_theme_stylesheet = "#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}"
+const QString g_dark_theme_stylesheet =
+    "#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}"
     "#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:selected {background-color: #404040;}"
     "#mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}"
-    "#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}";
+    "#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}"
+    "#mainPanel[uitheme=theme-classic-light] QTabBar::tab {border-right-color:#cbcbcb;}"
+    "#mainPanel[uitheme=theme-light] QTabBar::tab {border-right-color:#dfdfdf;}";
 
 
 /*
