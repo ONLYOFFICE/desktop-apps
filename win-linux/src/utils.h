@@ -107,6 +107,7 @@ namespace WindowHelper {
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
 #endif
 
+    auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> QWidget *;
 }

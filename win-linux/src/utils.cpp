@@ -686,6 +686,16 @@ namespace WindowHelper {
     }
 #endif
 
+    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
+    {
+        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
+        QSize _window_min_size{minsize};
+        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
+            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
+
+        return _window_min_size;
+    }
+
     auto isLeftButtonPressed() -> bool {
 #ifdef Q_OS_LINUX
         return check_button_state(Qt::LeftButton);
