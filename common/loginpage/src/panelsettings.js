@@ -377,6 +377,10 @@
                 ($optsLang = $panel.find('.settings-field-lang')).hide();
                 $optsLang.find('select').on('change', _on_lang_change.bind(this));
 
+                $('select.combobox').on('rendered.bs.select', e => {
+                    $(e.target).next().removeAttr('title');
+                });
+
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
                 return this;
             }
