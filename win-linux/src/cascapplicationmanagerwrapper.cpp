@@ -214,7 +214,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #ifdef __OS_WIN_XP
                 sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
 #else
-                sendCommandTo(ptr, L"uitheme:changed", themes().current());
+                // TODO: unlock for ver 6.4 because bug 50589
+//                sendCommandTo(ptr, L"uitheme:changed", themes().current());
 #endif
             }
             return true;
