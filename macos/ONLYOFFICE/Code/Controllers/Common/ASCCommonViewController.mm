@@ -1469,7 +1469,7 @@
     if ( !uiLang )
         uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-light";
 
     NSDictionary * json_langs = @{
         @"locale_skip": @{
