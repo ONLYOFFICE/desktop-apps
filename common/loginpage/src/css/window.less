@@ -221,7 +221,32 @@ dialog {
     display: none;
 }
 
+@keyframes rotation {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .img-loader {
-    content: data-uri('loader_16.gif');
+    content: data-uri('../res/img/spinner-dark.png');
     display: none;
+    margin-right: 10px;
+    animation: 0.8s rotation infinite linear;
+    width: 20px;
+    height: 20px;
+
+    .pixel-ratio__2 &,
+    .pixel-ratio__1_5 & {
+        content: data-uri('../res/img/spinner-dark@2x.png');
+    }
+}
+
+.theme-type-dark {
+    .img-loader {
+        content: data-uri('../res/img/spinner-light.png');
+    }
 }

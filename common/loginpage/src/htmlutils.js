@@ -1,9 +1,16 @@
 
 function checkScaling() {
-    var str_mq_150 = "screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.9), " +
-        "screen and (min-resolution: 1.5dppx) and (max-resolution: 1.9dppx)";
+    const str_mq_150 = `screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.9),
+                        screen and (min-resolution: 1.5dppx) and (max-resolution: 1.9dppx)`;
     if ( window.matchMedia(str_mq_150).matches ) {
         document.body.classList.add('pixel-ratio__1_5');
+    }
+
+    const str_mq_200 = `screen and (-webkit-min-device-pixel-ratio: 2),
+                        screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi)`;
+
+    if ( window.matchMedia(str_mq_200).matches ) {
+        document.body.classList.add('pixel-ratio__2');
     }
 
     if ( !window.matchMedia("screen and (-webkit-device-pixel-ratio: 1.5)," +
