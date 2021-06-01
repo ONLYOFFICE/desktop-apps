@@ -69,6 +69,7 @@ static NSString * const kRegistrationPortalUrl              = @"kRegistrationPor
 
 // UI Theme id
 static NSString * const uiThemeLight                      = @"theme-light";
+static NSString * const uiThemeClassicLight               = @"theme-classic-light";
 static NSString * const uiThemeDark                       = @"theme-dark";
 
 // Custom schemes
