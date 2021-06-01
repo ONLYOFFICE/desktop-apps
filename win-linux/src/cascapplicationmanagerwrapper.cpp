@@ -696,6 +696,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     const wstring prefix{L"--"};
     std::vector<std::wstring> arg_check_list{L"--review",L"--view",L"--edit"};
+    std::vector<COpenOptions> list_failed;
 //    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
     bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-window") != std::end(vargs);
     for (const auto& arg: vargs) {
@@ -716,9 +717,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             }else
             if ( check_param(arg, L"--new" ) ) {
                 open_opts.srctype = etNewFile;
-                open_opts.format = arg.rfind(L"cell") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
-                                    arg.rfind(L"slide") != wstring::npos ? open_opts.format = AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
-                            /*if ( line.rfind(L"word") != wstring::npos )*/ open_opts.format = AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
+                open_opts.format = arg.rfind(L"cell") != wstring::npos ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                                    arg.rfind(L"slide") != wstring::npos ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                            /*if ( line.rfind(L"word") != wstring::npos )*/ AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
 
                 open_opts.name = AscAppManager::newFileName(open_opts.format);
             } else continue;
@@ -731,19 +732,29 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if (open_opts.srctype == etUndefined) {
             if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
+                open_opts.srctype = etLocalFile;
 #ifdef Q_OS_WIN
-                if (_waccess(open_opts.wurl.c_str(), 0) == 0) {
-                    auto c = open_opts.wurl.rfind(L"\\");
-                    if ( c == std::wstring::npos )
-                        c = open_opts.wurl.rfind(L"/");
+                int _error = _waccess(open_opts.wurl.c_str(), 0);
+                auto _c_pos = open_opts.wurl.rfind(L"\\");
+                if ( _c_pos == std::wstring::npos )
+                    _c_pos = open_opts.wurl.rfind(L"/");
 #else
-                if (access(U_TO_UTF8(open_opts.wurl).c_str(), F_OK) == 0) {
-                    auto c = open_opts.wurl.rfind(QString(QDir::separator()).toStdWString());
+                int _error = access(U_TO_UTF8(open_opts.wurl).c_str(), F_OK);
+                auto _c_pos = open_opts.wurl.rfind(QString(QDir::separator()).toStdWString());
 #endif
-                    if ( c != std::wstring::npos )
-                        open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++c));
+                if ( _error == 0 ) {
+                    _error = CCefViewEditor::GetFileFormat(open_opts.wurl) == 0 ? EBADF : 0;
+                }
 
-                    open_opts.srctype = etLocalFile;
+                if ( _error == 0 ) {
+                    if ( _c_pos != std::wstring::npos )
+                        open_opts.name = QString::fromStdWString(open_opts.wurl.substr(++_c_pos));
+
+//                    open_opts.srctype = etLocalFile;
+                } else
+                if ( _error == EBADF && !open_in_new_window ) {
+                    list_failed.push_back({open_opts});
+                    continue;
                 } else {
                     /* file doesn't exists */
                     open_opts.srctype = etNewFile;
@@ -773,6 +784,22 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
                 _app.mainWindow()->attachEditor(panel);
             }
+        }
+    }
+
+    if ( !list_failed.empty() && !open_in_new_window ) {
+        if ( !_app.m_pMainWindow ) {
+            _app.m_pMainWindow = prepareMainWindow();
+
+            GET_REGISTRY_USER(reg_user);
+            _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+        }
+
+        for ( auto & o : list_failed ) {
+            COpenOptions opts{o};
+            opts.url = QString::fromStdWString(opts.wurl);
+
+            _app.m_pMainWindow->mainPanel()->doOpenLocalFile(opts);
         }
     }
 }

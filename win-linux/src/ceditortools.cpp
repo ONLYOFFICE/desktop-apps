@@ -200,7 +200,7 @@ namespace CEditorTools
                            (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
             if ( opts.srctype == etNewFile )
-                data->setContentType(AscEditorType(opts.format));
+                data->setContentType(editorTypeFromFormat(opts.format));
 
             if ( !data->isLocal() ) {
                 QRegularExpression re("ascdesktop:\\/\\/compare");
