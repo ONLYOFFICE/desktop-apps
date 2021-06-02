@@ -1310,6 +1310,7 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
     CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
 //    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
     _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextNormal));
+    _tabbar.setUIThemeType(!m_isDarkTheme);
     _tabbar.style()->polish(&_tabbar);
     style()->polish(this);
 }
