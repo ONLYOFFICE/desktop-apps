@@ -91,7 +91,7 @@
                     }
 
                     if ( !c.icons.themeDark ) {
-                        c.icons.themeDark = {...c.icons.themeLight};
+                        c.icons.themeDark = Object.assign(c.icons.themeLight);
                     }
                 }
             }
