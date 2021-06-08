@@ -46,3 +46,8 @@ QLabel[class=msg-icon][type=msg-confirm] {
     height: 33px;
     font-size: 17px;
 }
+
+QPushButton {
+    outline: 0 none;
+}
+
