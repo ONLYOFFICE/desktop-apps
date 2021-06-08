@@ -24,6 +24,7 @@ button {
         &.btn--landing {
             background-color: @background-accent-button;
             border: 0 none;
+            color: @text-contrast-background;
         }
 
         &.btn--primary {
@@ -266,7 +267,7 @@ input[type="radio"] {
 
     .btn {
         background-color: @background-normal;
-        border: 1px solid @border-regular-control;
+        border: @scaled-one-px solid @border-regular-control;
         color: @text-normal;
         padding-left: 15px;
 
@@ -318,6 +319,7 @@ input[type="radio"] {
 */
 .dropdown-menu {
     background-color: @background-normal;
+    border: @scaled-one-px solid @border-regular-control;
 
     li > a {
         cursor: pointer;
@@ -347,6 +349,7 @@ input[type="radio"] {
 
         &:hover {
             cursor: default;
+            color: @text-normal;
         }
     }
 }
@@ -358,7 +361,7 @@ input[type="radio"] {
 
 .tbox {
     color: @text-normal;
-    border: 1px solid @border-regular-control;
+    border: @scaled-one-px solid @border-regular-control;
     width: 100%;
     outline: 0;
     background: @background-normal;

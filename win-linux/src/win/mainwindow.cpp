@@ -67,9 +67,6 @@ using namespace std::placeholders;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
-typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-AdjustWindowRectExForDpiW dpi_adjustWindowRectEx = nullptr;
-
 auto refresh_window_scaling_factor(CMainWindow * window) -> void {
     QString css{AscAppManager::getWindowStylesheets(window->m_dpiRatio)};
 
@@ -159,10 +156,6 @@ CMainWindow::CMainWindow(QRect& rect) :
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     m_pWinPanel->show();
-
-    HMODULE _lib = ::LoadLibrary(L"user32.dll");
-    dpi_adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
-    FreeLibrary(_lib);
 }
 
 CMainWindow::~CMainWindow()
@@ -690,8 +683,11 @@ void CMainWindow::adjustGeometry()
         LONG lTestW = 640,
              lTestH = 480;
 
+        QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
+        double _screen_dpi_ratio = _screen->logicalDotsPerInch() / 96;
+
         RECT wrect{0,0,lTestW,lTestH};
-        WindowHelper::adjustWindowRect(hWnd, m_dpiRatio, &wrect);
+        WindowHelper::adjustWindowRect(hWnd, _screen_dpi_ratio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;

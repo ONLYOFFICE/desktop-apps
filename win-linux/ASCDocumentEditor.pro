@@ -18,7 +18,7 @@ SOURCES += \
     src/prop/utils.cpp
 
 RC_FILE = $$PWD/version.rc
-DEFINES += _GLIBCXX_USE_CXX11_ABI=0
+#DEFINES += _GLIBCXX_USE_CXX11_ABI=0
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 
 message($$PLATFORM_BUILD)

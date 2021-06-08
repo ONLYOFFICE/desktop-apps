@@ -242,7 +242,24 @@ QPushButton#toolButtonDownload::menu-indicator {
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton:pressed {
     background-color: #606060;
 }
-/**************************/
+
+/***********************************/
+/* classic light theme definitions */
+/***********************************/
+
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {
+    border-right-color:#cbcbcb;
+}
+
+/***********************************/
+/*     light theme definitions     */
+/***********************************/
+
+#mainPanel[uitheme=theme-light] QPushButton#toolButtonMain {
+    border-right-color:#dfdfdf;
+}
+
+/***********************************/
 
 QTabBar {
     font-size: 11px;

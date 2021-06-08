@@ -419,6 +419,29 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
     return wid->devicePixelRatio();
 }
 
+QScreen * Utils::screenAt(const QPoint& pt)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    return QApplication::screenAt(pt);
+#else
+    QVarLengthArray<const QScreen *, 8> _cached_screens;
+    for (const QScreen *screen : QApplication::screens()) {
+        if (_cached_screens.contains(screen))
+            continue;
+
+        for (QScreen *sibling : screen->virtualSiblings()) {
+            QRect r = sibling->geometry();
+            if (sibling->geometry().contains(pt))
+                return sibling;
+
+            _cached_screens.append(sibling);
+        }
+    }
+
+    return nullptr;
+#endif
+}
+
 /*
 QByteArray Utils::getAppStylesheets(int scale)
 {
@@ -662,6 +685,16 @@ namespace WindowHelper {
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
     }
 #endif
+
+    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
+    {
+        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
+        QSize _window_min_size{minsize};
+        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
+            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
+
+        return _window_min_size;
+    }
 
     auto isLeftButtonPressed() -> bool {
 #ifdef Q_OS_LINUX

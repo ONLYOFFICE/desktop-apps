@@ -94,7 +94,9 @@ const QString g_css =
         "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
+        "#mainPanel[uitheme=theme-dark] #iconuser,"
+        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}";
 
 auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
     std::wstring c;
@@ -190,6 +192,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
+        btn->setIconOpacity(AscAppManager::themes().isCurrentDark() ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
 
         m_mapTitleButtons[action] = btn;
 
@@ -324,9 +327,16 @@ public:
             window->m_css = prepare_editor_css(panel()->data()->contentType(), theme);
 
             if ( window->m_pMainPanel ) {
+                window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+
                 QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
                 css.append(window->m_css);
                 window->m_pMainPanel->setStyleSheet(css);
+            }
+
+            for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
+                CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
+                btn->setIconOpacity(AscAppManager::themes().isThemeDark(theme) ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
             }
 
 #ifdef Q_OS_WIN

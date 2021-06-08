@@ -10,7 +10,13 @@
     "editorPage" : "/apps/onlyoffice/",
     "cryptoSupport" : "true",
     "icons": {
-        "connectionsList": "./assets/listicon.svg",
-        "buttonLogo": "./assets/buttonlogo.svg"
+        "themeLight":{
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
     }
 }

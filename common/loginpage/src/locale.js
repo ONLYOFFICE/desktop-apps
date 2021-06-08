@@ -364,7 +364,7 @@ l10n.ru = {
     ,settOptScalingAuto: 'Авто'
     ,settUITheme: 'Тема интерфейса'
     ,settOptThemeLight: 'Светлая'
-    ,settOptThemeClassicLight: 'Светлая классическая'
+    ,settOptThemeClassicLight: 'Классическая светлая'
     ,settOptThemeDark: 'Темная'
     ,aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
@@ -628,7 +628,7 @@ l10n.fr = {
     ,settOptCheckWeek: 'Chaque semaine'
     ,settUITheme: 'Thème d’interface'
     ,settOptThemeLight: 'Clair'
-    ,settOptThemeClassicLight: 'Clair classique'
+    ,settOptThemeClassicLight: 'Classique clair'
     ,settOptThemeDark: 'Sombre'
     ,aboutProFeaturesAvailable: 'Avec un accès aux outils professionnels'
 };
@@ -712,7 +712,7 @@ l10n.es = {
     ,settShowEncryptOpts: 'Prueba de cifrado de extremo a extremo'
     ,settUITheme: 'Tema de interfaz'
     ,settOptThemeLight: 'Claro'
-    ,settOptThemeClassicLight: 'Claro clásico'
+    ,settOptThemeClassicLight: 'Clásico claro'
     ,settOptThemeDark: 'Oscuro'
     ,aboutProFeaturesAvailable: 'Con acceso a las características profesionales'
 };
@@ -796,7 +796,7 @@ l10n.pt_BR = {
     ,settShowEncryptOpts: 'Teste a criptografia de ponta a ponta'
     ,settUITheme: 'Tema de interface'
     ,settOptThemeLight: 'Claro'
-    ,settOptThemeClassicLight: 'Claro clássico'
+    ,settOptThemeClassicLight: 'Clássico claro'
     ,settOptThemeDark: 'Escuro'
     ,aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
 }
