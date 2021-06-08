@@ -57,11 +57,11 @@ window.DialogConnect = function(params) {
                                     <p id="auth-error" class="msg-error">asd</p>
                                     <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox dlg--option" placeholder="${utils.Lang.pshPortal}" value="">
                                 </div>
-                                <div style="height:10px;"></div>
+                                <div style="height:12px;"></div>
                                 <div class="lr-flex">
                                     <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
                                     <span />
-                                    <div>
+                                    <div class="lr-flex">
                                         <img class="img-loader">
                                         <button id="btn-next" l10n class="btn btn--landing">${utils.Lang.btnConnect}</button>
                                     </div>

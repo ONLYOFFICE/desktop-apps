@@ -65,6 +65,7 @@ public:
     };
     void changeTabTheme(int, TabTheme);
     void setTabTheme(int, TabTheme);
+    void setUIThemeType(bool islight);
 
 protected:
     bool event(QEvent * e) override;
@@ -91,6 +92,7 @@ private:
     int  m_overIndex = -1;
     int  m_current = -1;
     bool m_active = false;
+    bool m_isUIThemeDark = false;
     QString m_activeColor = "none";
 
 signals:

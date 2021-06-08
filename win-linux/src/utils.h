@@ -69,6 +69,7 @@ public:
     static double getScreenDpiRatio(const QPoint&);
     static double getScreenDpiRatioByHWND(int);
     static double getScreenDpiRatioByWidget(QWidget*);
+    static QScreen * screenAt(const QPoint&);
     static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
     static bool setAppUserModelId(const QString&);
@@ -106,6 +107,7 @@ namespace WindowHelper {
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
 #endif
 
+    auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> QWidget *;
 }

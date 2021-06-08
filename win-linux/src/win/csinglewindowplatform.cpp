@@ -37,6 +37,7 @@
 #include <windowsx.h>
 #include "cascapplicationmanagerwrapper.h"
 
+#include <QScreen>
 #include <functional>
 
 #define CAPTURED_WINDOW_CURSOR_OFFSET_X     180
@@ -486,8 +487,11 @@ void CSingleWindowPlatform::adjustGeometry()
         LONG lTestW = 640,
              lTestH = 480;
 
+        QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
+        double _screen_dpi_ratio = _screen->logicalDotsPerInch() / 96;
+
         RECT wrect{0,0,lTestW,lTestH};
-        WindowHelper::adjustWindowRect(m_hWnd, m_dpiRatio, &wrect);
+        WindowHelper::adjustWindowRect(m_hWnd, _screen_dpi_ratio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
