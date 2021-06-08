@@ -111,7 +111,11 @@ private:
     int m_modalresult;
 
     void modal();
+#if defined(_WIN32)
     void onScreenScaling() override;
+#else
+    void onScreenScaling();
+#endif
 
     friend class CMessagePrivateIntf;
     std::unique_ptr<CMessagePrivateIntf> m_priv;
