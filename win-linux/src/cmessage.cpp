@@ -116,8 +116,10 @@ public:
     CMessage * m_mess = nullptr;
     std::vector<QPushButton *> buttons;
     QPushButton * defaultButton = nullptr;
+    QWidget * focusWidget = nullptr;
     double dpiRatio = 1;
     QMetaObject::Connection focusConnection;
+    bool isWindowActive = false;
 };
 
 #if defined(Q_OS_WIN)
@@ -219,9 +221,13 @@ CMessage::CMessage(QWidget * p)
         m_centralWidget->setProperty("scaling", "1.5x");
     }
 
-    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget *, QWidget *to){
-        if ( !to ) {
-            m_priv->firstButton()->setFocus(Qt::FocusReason::TabFocusReason);
+    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget * from, QWidget *to){
+        if ( m_priv->isWindowActive ) {
+            if ( !to ) {
+                m_priv->focusWidget ?
+                    m_priv->focusWidget->setFocus(Qt::FocusReason::TabFocusReason) :
+                    m_priv->firstButton()->setFocus(Qt::FocusReason::TabFocusReason);
+            }
         } else {
         }
     });
@@ -382,10 +388,11 @@ void CMessage::modal()
     HWND _focused_handle = nullptr;
     if ( m_priv->defaultButton ) {
         _focused_handle = (HWND)m_priv->defaultButton->winId();
-        QTimer::singleShot(100, m_centralWidget, [&]{
-            for (auto * btn: m_priv->buttons) {
-                btn->setAutoDefault(true);
-            }
+        QTimer::singleShot(50, m_centralWidget, [&]{
+            if ( !AscAppManager::themes().isCurrentDark() )
+                for (auto * btn: m_priv->buttons) {
+                    btn->setAutoDefault(true);
+                }
 
             m_priv->defaultButton->setFocus();
         });
@@ -444,3 +451,21 @@ void CMessage::onScreenScaling()
     }
 #endif
 }
+
+#if defined(_WIN32)
+void CMessage::onWindowActivate(bool activate)
+{
+    if ( activate ) {
+        if ( m_priv->focusWidget ) {
+            m_centralWidget->activateWindow();
+            QTimer::singleShot(0, m_centralWidget, [&]{
+                m_priv->focusWidget->setFocus(Qt::FocusReason::MouseFocusReason);
+            });
+        }
+    } else {
+        m_priv->focusWidget = QApplication::focusWidget();
+    }
+
+    m_priv->isWindowActive = activate;
+}
+#endif

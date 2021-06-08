@@ -49,6 +49,7 @@ public:
 
     HWND handle();
     virtual void onScreenScaling();
+    virtual void onWindowActivate(bool);
 
 protected:
     HWND    m_hSelf,

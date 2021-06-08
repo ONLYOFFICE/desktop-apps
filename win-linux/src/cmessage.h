@@ -101,6 +101,7 @@ public:
 private:
 #if defined(_WIN32)
     using CWinWindow::modal;
+    void onWindowActivate(bool) override;
 #endif
 
     QWidget * m_boxButtons = nullptr;

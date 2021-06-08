@@ -38,6 +38,13 @@
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
+    case WM_ACTIVATE:
+        {
+            CWinWindow * window = reinterpret_cast<CWinWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+            if ( window )
+                window->onWindowActivate(LOWORD(wParam) != WA_INACTIVE);
+        }
+        break;
     case WM_CHAR:
         if (wParam == VK_ESCAPE) {
             PostMessage(hWnd, WM_CLOSE, 0, 0);
@@ -169,6 +176,10 @@ void CWinWindow::center()
 void CWinWindow::onScreenScaling()
 {
 
+}
+
+void CWinWindow::onWindowActivate(bool)
+{
 }
 
 HWND CWinWindow::handle()
