@@ -153,6 +153,7 @@ CMessage::CMessage(QWidget * p)
 #else
     setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
+    layout()->setContentsMargins(0, 0, 0, 0);
 
     m_centralWidget = new QWidget;
     layout()->addWidget(m_centralWidget);
