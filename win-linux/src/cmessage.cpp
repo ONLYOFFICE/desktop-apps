@@ -44,11 +44,13 @@
 
 #include "defines.h"
 #include "utils.h"
-#include "linux/cx11decoration.h"
 #include "cascapplicationmanagerwrapper.h"
+
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"
+#else
+# include "linux/cx11decoration.h"
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -135,6 +137,7 @@ CMessage::CMessage(HWND p)
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
 #endif
+    , m_boxButtons(new QWidget)
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
     , m_modalresult(MODAL_RESULT_CANCEL)
@@ -181,7 +184,6 @@ CMessage::CMessage(QWidget * p)
 
     QPushButton * btn_ok = new QPushButton(tr("&OK"));
     btn_ok->setAutoDefault(true);
-    m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
     m_boxButtons->layout()->addWidget(btn_ok);
     m_boxButtons->layout()->setContentsMargins(0,int(10*m_priv->dpiRatio),0,0);

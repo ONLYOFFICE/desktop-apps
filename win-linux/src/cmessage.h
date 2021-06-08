@@ -72,7 +72,7 @@ public:
              CMessage(QWidget *, CMessageOpts::moButtons);
 #endif
 
-    ~CMessage();
+    ~CMessage() override;
 
     void setButtons(std::initializer_list<QString>);
     void setButtons(CMessageOpts::moButtons);
@@ -99,14 +99,18 @@ public:
 #endif
 
 private:
-    QWidget * m_boxButtons;
+#if defined(_WIN32)
+    using CWinWindow::modal;
+#endif
+
+    QWidget * m_boxButtons = nullptr;
     QWidget * m_centralWidget;
     QLabel * m_message,
            * m_typeIcon;
     int m_modalresult;
 
     void modal();
-    void onScreenScaling();
+    void onScreenScaling() override;
 
     friend class CMessagePrivateIntf;
     std::unique_ptr<CMessagePrivateIntf> m_priv;
