@@ -100,6 +100,10 @@
             _clouds = [];
         }
 
+        _clouds.findProvider = provider => {
+            return _clouds.find(i => i.provider == provider)
+        }
+
         return _clouds;
     };
 
