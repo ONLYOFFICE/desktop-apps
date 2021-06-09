@@ -425,7 +425,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="53"/>
         <source>Licensed under</source>
-        <translation>Лицензированно по</translation>
+        <translation>Лицензировано по</translation>
     </message>
 </context>
 <context>
