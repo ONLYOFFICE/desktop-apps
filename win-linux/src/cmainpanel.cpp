@@ -1301,6 +1301,9 @@ void CMainPanel::updateScaling(double dpiratio)
 
 //    m_pTabs->setTabIcons(icons);
     m_pTabs->reloadTabIcons();
+
+    if ( m_mainWindowState == Qt::WindowMaximized )
+        RecalculatePlaces();
 }
 
 void CMainPanel::setScreenScalingFactor(double s)
