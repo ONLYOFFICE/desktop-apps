@@ -28,6 +28,7 @@
         <file alias="checkbox_1.5x.png">res/icons/checkbox@1.5x.png</file>
         <file alias="checkbox_2x.png">res/icons/checkbox@2x.png</file>
         <file>res/icons/arrow_down.png</file>
+        <file alias="arrow_down_dark.png">res/icons/arrow_down_dark.png</file>
         <file alias="arrow_down_1.5x.png">res/icons/arrow_down@1.5x.png</file>
         <file alias="arrow_down_2x.png">res/icons/arrow_down@2x.png</file>
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
