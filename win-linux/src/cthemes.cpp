@@ -3,6 +3,8 @@
 #include "defines.h"
 
 #include <QSettings>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QDebug>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
@@ -123,4 +125,22 @@ auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
     }
 
     return L"";
+}
+
+auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
+{
+    size_t pos = wjson.find(L"name\":");                // check if json in params
+    if ( pos != std::wstring::npos ) {
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject obj = jdoc.object();
+
+            return obj.contains("name") ? obj["name"].toString().toStdWString() : NSThemeClassicLight::theme_id;
+        }
+    }
+
+    return wjson;
 }

@@ -327,8 +327,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
         } else
-        if ( !(cmd.find(L"theme:changed") == std::wstring::npos) ) {
-            applyTheme(pData->get_Param());
+        if ( !(cmd.find(L"uitheme:changed") == std::wstring::npos) ) {
+            applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {

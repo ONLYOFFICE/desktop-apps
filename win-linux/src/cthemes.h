@@ -103,6 +103,7 @@ public:
     auto setCurrent(const std::wstring&) -> void;
     auto isCurrent(const std::wstring& name) -> bool;
 
+    auto parseThemeName(const std::wstring&) -> std::wstring;
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;
