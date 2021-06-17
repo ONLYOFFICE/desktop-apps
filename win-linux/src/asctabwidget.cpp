@@ -572,8 +572,8 @@ void CAscTabWidget::updateTabIcon(int index)
                     break;
                 default:
                     tab_type = etUndefined;
-                    active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSimpleActiveBackground));
-                    tab_theme = CTabBar::LightTab;
+                    active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabDefaultActiveBackground));
+                    tab_theme = AscAppManager::themes().isColorDark(active_tab_color) ? CTabBar::DarkTab : CTabBar::LightTab;
                     break;
                 }
             }
@@ -588,9 +588,9 @@ void CAscTabWidget::updateTabIcon(int index)
                 tabbar.setActiveTabColor(active_tab_color);
 //                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
 
-                if ( tab_type == etPortal || tab_type == etNewPortal || tab_type == etUndefined )
-                    tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTabSimpleActiveText));
-                else tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTextPressed));
+                tabbar.setTabTextColor(QPalette::Active,  AscAppManager::themes().isColorDark(active_tab_color) ?
+                                           AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTextPressed) :
+                                            AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTabSimpleActiveText));
 
             }
         }
