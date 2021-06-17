@@ -938,6 +938,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     }
 
     updateTabIcon(tabIndexByView(id));
+    tabBar()->style()->polish(tabBar());
 }
 
 void CAscTabWidget::setEditorOptions(int id, const wstring& option)
