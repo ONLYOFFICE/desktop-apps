@@ -227,7 +227,8 @@ public:
             window->m_labelTitle->setText(APP_TITLE);
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(QRgb(WINDOW_BACKGROUND_COLOR));
+            window->setWindowBackgroundColor(
+                        QColor(QString::fromStdWString(AscAppManager::themes().value(CThemes::ColorRole::ecrWindowBackground))));
 #endif
         }
     }
