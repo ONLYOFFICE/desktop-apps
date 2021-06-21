@@ -147,7 +147,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     layoutBtns->addWidget(label);
 
     // Main
-    m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
+    m_pButtonMain = new CSVGPushButton(centralWidget);
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
