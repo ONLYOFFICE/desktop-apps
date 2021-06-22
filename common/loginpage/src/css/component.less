@@ -90,6 +90,37 @@ button {
 @color2: #3197EE;
 @rb-height: 18px;
 
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: 0;
+        left: 0;
+        border: @scaled-one-px solid @border-regular-control;
+        border-radius: 3px;
+        background-color: @background-normal;
+    }
+
+    &:checked:after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid @text-normal;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 3px;
+        left: 7px;
+    }
+}
+
 input[type="radio"] {
     position: absolute;
     opacity: 0;
