@@ -45,12 +45,14 @@ public:
     void setIconSize(const QSize&);
     void setIconOpacity(const QColor& normal);
     void setDisabled(bool);
+    void setUseStateOpacity(bool);
 
 private:
     QByteArray m_svglayout;
     QString m_svgnode;
     QColor m_opacitynormal,
             m_opacitydisabled;
+    bool m_usestateopacity = false;
 
     void updateIcon();
     using QPushButton::setDisabled;

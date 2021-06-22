@@ -84,14 +84,6 @@
                                             </section>
                                         </div>
                                     </div>
-                                    <!-- temporary elements section -->
-                                    <div class='settings-field' style='display:none;'>
-                                        <section class='switch-labeled hbox' id='sett-box-preview-mode'>
-                                            <input type="checkbox" name="onoffswitch" class="checkbox" id="sett-preview-mode">
-                                            <label for="sett-preview-mode" class='sett__caption' l10n>${_lang.settOpenMode}</label>
-                                        </section>
-                                    </div>
-                                    <!-- end section -->
                                     <div class='settings-field' id="opts-checkupdate" style='display:none;'>
                                         <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
                                         <div class='sett--label-lift-top hbox'>
@@ -116,6 +108,14 @@
                                             </section>
                                         </div>
                                     </div>
+                                    <!-- temporary elements section -->
+                                    <div class='settings-field' style='display:none;'>
+                                        <section class='switch-labeled hbox' id='sett-box-preview-mode'>
+                                            <input type="checkbox" class="checkbox" id="sett-preview-mode">
+                                            <label for="sett-preview-mode" class='sett__caption' l10n>${_lang.settOpenMode}</label>
+                                        </section>
+                                    </div>
+                                    <!-- end section -->
                                 </section>
                                 <div class="lst-tools">
                                     <button class="btn btn--primary" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>

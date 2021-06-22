@@ -94,15 +94,8 @@ void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    std::wstring prefix{AscAppManager::themes().value(CThemes::ColorRole::ecrLogoColor)};
-    QString logo_name = QString(":/logo_%1%2.png")
-            .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
-//    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
-    QPixmap pixmap(logo_name);
-    m_pButtonMain->setText(QString());
-    m_pButtonMain->setIcon(QIcon(pixmap));
-    m_pButtonMain->setIconSize(pixmap.size());
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
 void CMainPanelImpl::applyTheme(const std::wstring& theme)
@@ -110,14 +103,8 @@ void CMainPanelImpl::applyTheme(const std::wstring& theme)
     CMainPanel::applyTheme(theme);
 
     double dpiratio = scaling();
-    std::wstring prefix{AscAppManager::themes().value(theme, CThemes::ColorRole::ecrLogoColor)};
-    QString logo_name = QString(":/logo_%1%2.png")
-            .arg(QString::fromStdWString(prefix))
-            .arg(dpiratio > 1.55 ? "@2x" : dpiratio > 1.1 ? "@1.5x" : "");
-    QPixmap pixmap(logo_name);
-    m_pButtonMain->setText(QString());
-    m_pButtonMain->setIcon(QIcon(pixmap));
-    m_pButtonMain->setIconSize(pixmap.size());
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
 void CMainPanelImpl::onLocalOptions(const QString& json)
