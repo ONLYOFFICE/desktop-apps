@@ -831,7 +831,17 @@ void CAscApplicationManagerWrapper::startApp()
     }
 #endif
 
-    handleInputCmd(InputArgs::arguments());
+    std::vector<std::wstring> in_args{InputArgs::arguments()};
+    bool open_in_new_window = std::find(in_args.begin(), in_args.end(), L"--force-use-window") != std::end(in_args);
+    bool files_in_args = std::find_if(in_args.begin(), in_args.end(),
+                                     [](const std::wstring& arg){
+                                            return arg.rfind(L"--", 0);
+                                        }) != std::end(in_args);
+    if ( !files_in_args && open_in_new_window ) {
+        in_args.push_back(L"--new:word");
+    }
+
+    handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
 //        _app.m_private->createStartPanel();
 
