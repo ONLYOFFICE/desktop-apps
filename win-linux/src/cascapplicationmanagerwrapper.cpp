@@ -1004,7 +1004,7 @@ void CAscApplicationManagerWrapper::closeMainWindow()
     APP_CAST(_app)
 
     if ( _app.m_pMainWindow ) {
-        if ( false && !_app.m_vecEditors.empty() ) {
+        if ( /*false &&*/ !_app.m_vecEditors.empty() ) {
             CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
             switch (m.warning(tr("Do you want to close all editor windows?"))) {
