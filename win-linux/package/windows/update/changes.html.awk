@@ -2,12 +2,12 @@ BEGIN {
 	if (Lang == "") Lang = ENVIRON["LANG"];
 	if (Lang == "en_US.UTF-8") {
 		Title = ChangesProductTitle " Release Notes";
-		ReleaseDate = strftime("%b %e, %Y", Timestamp, "0");
+		ReleaseDate = strftime("%B %e, %Y", Timestamp, "0");
 		More = "and a little more...";
 	}
 	else if (Lang == "ru_RU.UTF-8") {
 		Title = "История изменений " ChangesProductTitle;
-		ReleaseDate = strftime("%e %b %Y", Timestamp, "0");
+		ReleaseDate = strftime("%e %B %Y", Timestamp, "0");
 		More = "и многое другое...";
 	}
 
