@@ -1,0 +1,20 @@
+{
+    "provider": "liferay",
+    "name": "Liferay",
+    "check": {
+        "url": "/o/onlyoffice/status",
+    },
+    "editorPage" : "regex:[?&]p_p_id=onlyoffice_integration_ui_editactionportlet.*",
+    "cryptoSupport" : "true",
+    "icons": {
+        "themeLight":{
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
+    },
+    "startPage": "/group/guest/~/control_panel/manage?p_p_id=com_liferay_document_library_web_portlet_DLAdminPortlet"
+}
