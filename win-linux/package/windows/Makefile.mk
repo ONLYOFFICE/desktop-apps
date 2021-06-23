@@ -27,10 +27,10 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
-BUILD_TIMESTAMP = $(shell date +%s)
 APPCAST := win-linux/package/windows/update/appcast.xml
 CHANGES_EN := win-linux/package/windows/update/changes.html
 CHANGES_RU := win-linux/package/windows/update/changes_ru.html
+CHANGES_DIR := $(BRANDING_DIR)/win-linux/package/windows/update/changes/$(PRODUCT_VERSION)
 DEPLOY_JSON := win-linux/package/windows/deploy.json
 
 EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
@@ -190,19 +190,19 @@ endif
 
 deploy: $(DEPLOY) $(DEPLOY_JSON)
 
-M4_PARAMS += -D M4_COMPANY_NAME="$(COMPANY_NAME)"
-M4_PARAMS += -D M4_PRODUCT_NAME="$(PRODUCT_NAME)"
-M4_PARAMS += -D M4_PACKAGE_VERSION="$(PACKAGE_VERSION)"
-M4_PARAMS += -D M4_BUILD_TIMESTAMP="$(shell date +%s)"
+AWK_PARAMS += -v Version="$(PRODUCT_VERSION)"
+AWK_PARAMS += -v Build="$(BUILD_NUMBER)"
+AWK_PARAMS += -v Timestamp="$(shell date +%s)"
+AWK_PARAMS += -i "$(BRANDING_DIR)/win-linux/package/windows/update/branding.awk"
 
-$(APPCAST):
-	m4 $(M4_PARAMS) $(BRANDING_DIR)/win-linux/package/windows/update/appcast.xml.m4 > $@
+%/appcast.xml: %/appcast.xml.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -f $< > $@
 
-$(CHANGES_EN): L10N=en
-$(CHANGES_RU): L10N=ru
+%/changes.html: %/changes.html.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -f $< "$(CHANGES_DIR)/en.html" > $@
 
-$(CHANGES_EN) $(CHANGES_RU):
-	m4 $(M4_PARAMS) -D L10N="$(L10N)" $(BRANDING_DIR)/win-linux/package/windows/update/changes.html.m4 > $@
-
-% : %.m4
-	m4 $(M4_PARAMS)	$< > $@
+%/changes_ru.html: %/changes.html.awk
+	LANG=ru_RU.UTF-8 \
+	awk $(AWK_PARAMS) -f $< "$(CHANGES_DIR)/ru.html" > $@
