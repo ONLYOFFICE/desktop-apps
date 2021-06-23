@@ -42,6 +42,9 @@ BEGIN {
 	print "            color: #888;";
 	print "            font-size: medium;";
 	print "        }";
+	print "        .more {";
+	print "            margin-bottom: 20px;";
+	print "        }";
 	print "        .version {";
 	print "            border-bottom: 1px solid #cfcfcf;";
 	print "        }";
@@ -68,8 +71,8 @@ BEGINFILE {
 }
 END {
 	if (onlyoffice)
-		print "        <div style=\"margin:0 0 20px 0;\"><a " \
-			"href=\"" ChangesMoreUrl "\" target=\"_blank\">" More "</a></div>";
+		print "        <div class=\"more\"><a href=\"" ChangesMoreUrl "\"" \
+			" target=\"_blank\">" More "</a></div>";
 	print "    </div>";
 	print "</body>";
 	print "</html>";
