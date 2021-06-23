@@ -10,7 +10,6 @@ BEGIN {
 		ReleaseDate = strftime("%e %b %Y", Timestamp, "0");
 		More = "и многое другое...";
 	}
-	Heading = ChangesProductHeading " " Version;
 
 	print "<!DOCTYPE html>";
 	print "<html>";
@@ -52,7 +51,7 @@ BEGIN {
 	print "</head>";
 	print "<body>";
 	print "    <div class=\"version\">";
-	print "        <h1>" Heading \
+	print "        <h1>" ChangesProductHeading " " Version \
 		"<span class=\"releasedate\"> - " ReleaseDate "</span></h1>";
 
 	# if (system("test -r " ARGV[1]) != 0) {
