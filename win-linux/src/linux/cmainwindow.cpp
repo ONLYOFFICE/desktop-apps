@@ -271,7 +271,9 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 
 //        showFullScreen();
     } else {
-        setWindowState(s);
+        if ( s == Qt::WindowMinimized && windowState().testFlag(Qt::WindowMaximized) ) {
+            CX11Decoration::setMinimized();
+        } else setWindowState(s);
 
         switch (s) {
         case Qt::WindowMaximized:
