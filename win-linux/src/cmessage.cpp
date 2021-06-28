@@ -44,11 +44,13 @@
 
 #include "defines.h"
 #include "utils.h"
-#include "linux/cx11decoration.h"
 #include "cascapplicationmanagerwrapper.h"
+
 
 #if defined(_WIN32)
 # include "win/qwinwidget.h"
+#else
+# include "linux/cx11decoration.h"
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -114,8 +116,10 @@ public:
     CMessage * m_mess = nullptr;
     std::vector<QPushButton *> buttons;
     QPushButton * defaultButton = nullptr;
+    QWidget * focusWidget = nullptr;
     double dpiRatio = 1;
     QMetaObject::Connection focusConnection;
+    bool isWindowActive = false;
 };
 
 #if defined(Q_OS_WIN)
@@ -135,6 +139,7 @@ CMessage::CMessage(HWND p)
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
 #endif
+    , m_boxButtons(new QWidget)
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
     , m_modalresult(MODAL_RESULT_CANCEL)
@@ -148,12 +153,14 @@ CMessage::CMessage(QWidget * p)
 #else
     setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
+    layout()->setContentsMargins(0, 0, 0, 0);
 
     m_centralWidget = new QWidget;
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
     m_centralWidget->setObjectName("messageBody");
+    m_centralWidget->setProperty("uitheme", AscAppManager::themes().isCurrentDark() ? "theme-dark" : "theme-light");
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -181,7 +188,6 @@ CMessage::CMessage(QWidget * p)
 
     QPushButton * btn_ok = new QPushButton(tr("&OK"));
     btn_ok->setAutoDefault(true);
-    m_boxButtons = new QWidget;
     m_boxButtons->setLayout(new QHBoxLayout);
     m_boxButtons->layout()->addWidget(btn_ok);
     m_boxButtons->layout()->setContentsMargins(0,int(10*m_priv->dpiRatio),0,0);
@@ -217,9 +223,13 @@ CMessage::CMessage(QWidget * p)
         m_centralWidget->setProperty("scaling", "1.5x");
     }
 
-    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget *, QWidget *to){
-        if ( !to ) {
-            m_priv->firstButton()->setFocus(Qt::FocusReason::TabFocusReason);
+    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget * from, QWidget *to){
+        if ( m_priv->isWindowActive ) {
+            if ( !to ) {
+                m_priv->focusWidget ?
+                    m_priv->focusWidget->setFocus(Qt::FocusReason::TabFocusReason) :
+                    m_priv->firstButton()->setFocus(Qt::FocusReason::TabFocusReason);
+            }
         } else {
         }
     });
@@ -380,10 +390,11 @@ void CMessage::modal()
     HWND _focused_handle = nullptr;
     if ( m_priv->defaultButton ) {
         _focused_handle = (HWND)m_priv->defaultButton->winId();
-        QTimer::singleShot(100, m_centralWidget, [&]{
-            for (auto * btn: m_priv->buttons) {
-                btn->setAutoDefault(true);
-            }
+        QTimer::singleShot(50, m_centralWidget, [&]{
+            if ( !AscAppManager::themes().isCurrentDark() )
+                for (auto * btn: m_priv->buttons) {
+                    btn->setAutoDefault(true);
+                }
 
             m_priv->defaultButton->setFocus();
         });
@@ -442,3 +453,21 @@ void CMessage::onScreenScaling()
     }
 #endif
 }
+
+#if defined(_WIN32)
+void CMessage::onWindowActivate(bool activate)
+{
+    if ( activate ) {
+        if ( m_priv->focusWidget ) {
+            m_centralWidget->activateWindow();
+            QTimer::singleShot(0, m_centralWidget, [&]{
+                m_priv->focusWidget->setFocus(Qt::FocusReason::MouseFocusReason);
+            });
+        }
+    } else {
+        m_priv->focusWidget = QApplication::focusWidget();
+    }
+
+    m_priv->isWindowActive = activate;
+}
+#endif

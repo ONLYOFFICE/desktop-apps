@@ -911,7 +911,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 #endif
 
     /* prevent drawing of focus rectangle on a button */
-    QApplication::setStyle(new CStyleTweaks);
+//    QApplication::setStyle(new CStyleTweaks);
 
     GET_REGISTRY_SYSTEM(reg_system)
     GET_REGISTRY_USER(reg_user)

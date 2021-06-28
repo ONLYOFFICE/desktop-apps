@@ -322,10 +322,13 @@ void CMainWindow::setScreenScalingFactor(double factor)
         double change_factor = factor / m_dpiRatio;
         m_dpiRatio = factor;
 
-        int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-        QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+        if ( !isMaximized() ) {
+            int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+            QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
 
-        setGeometry(dest_rect);
+            setGeometry(dest_rect);
+        }
+
         setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
     }
 }

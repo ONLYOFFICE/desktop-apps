@@ -88,6 +88,12 @@
             const img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
             this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
+
+            window.CommonEvents.on('theme:changed', name => {
+                const is_dark_theme = name == 'theme-dark';
+                $('svg.img-welcome use', this.view.$panel).attr('href', !is_dark_theme ? '#welcome-light' : '#welcome-dark');
+            });
+
             return this;
         }
     });
