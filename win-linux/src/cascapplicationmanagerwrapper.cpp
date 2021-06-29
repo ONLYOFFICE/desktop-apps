@@ -326,8 +326,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
             return true;
         } else
-        if ( !(cmd.find(L"theme:changed") == std::wstring::npos) ) {
-            applyTheme(pData->get_Param());
+        if ( !(cmd.find(L"uitheme:changed") == std::wstring::npos) ) {
+            applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
@@ -857,7 +857,17 @@ void CAscApplicationManagerWrapper::startApp()
     }
 #endif
 
-    handleInputCmd(InputArgs::arguments());
+    std::vector<std::wstring> in_args{InputArgs::arguments()};
+    bool open_in_new_window = std::find(in_args.begin(), in_args.end(), L"--force-use-window") != std::end(in_args);
+    bool files_in_args = std::find_if(in_args.begin(), in_args.end(),
+                                     [](const std::wstring& arg){
+                                            return arg.rfind(L"--", 0);
+                                        }) != std::end(in_args);
+    if ( !files_in_args && open_in_new_window ) {
+        in_args.push_back(L"--new:word");
+    }
+
+    handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
 //        _app.m_private->createStartPanel();
 
@@ -1030,7 +1040,7 @@ void CAscApplicationManagerWrapper::closeMainWindow()
     APP_CAST(_app)
 
     if ( _app.m_pMainWindow ) {
-        if ( false && !_app.m_vecEditors.empty() ) {
+        if ( /*false &&*/ !_app.m_vecEditors.empty() ) {
             CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
             switch (m.warning(tr("Do you want to close all editor windows?"))) {
