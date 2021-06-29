@@ -55,6 +55,11 @@ public:
     virtual void initializeApp() {}
     virtual bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
     virtual void applyStylesheets() {}
+    virtual void addStylesheets(CScalingFactor f, const std::string& s)
+    {
+        m_appmanager.addStylesheets(f, s);
+    }
+
     virtual QCefView * createView(QWidget * parent)
     {
         return new QCefView_Media(parent);

@@ -213,6 +213,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     if ( m_dpiRatio > 1 )
         mainPanel->setProperty("zoom", "1.5x");
 
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 
     if ( isCustomWindowStyle() ) {

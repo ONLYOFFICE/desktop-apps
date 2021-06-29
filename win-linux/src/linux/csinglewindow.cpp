@@ -71,7 +71,7 @@ CSingleWindow::CSingleWindow(const QRect& geometry, const QString& title, QWidge
 
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
-    setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
+    setMinimumSize(WindowHelper::correctWindowMinimumSize(_window_rect, {WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio}));
     setGeometry(_window_rect);
 
     m_pMainPanel = createMainPanel(!CX11Decoration::isDecorated(), title, view);
@@ -264,18 +264,18 @@ void CSingleWindow::setScreenScalingFactor(double factor)
     QString css(AscAppManager::getWindowStylesheets(factor));
 
     if ( !css.isEmpty() ) {
-        QRect _new_rect = geometry();
-        bool increase = factor > m_dpiRatio;
+        double change_factor = factor / m_dpiRatio;
         m_dpiRatio = factor;
 
         m_pMainPanel->setStyleSheet(css);
-        setMinimumSize( WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor );
+        setMinimumSize({0,0});
 
-        if ( increase ) {
-            _new_rect.setSize(_new_rect.size() * 2);
-        } else _new_rect.setSize(_new_rect.size() / 2);
+        QRect _src_rect = geometry();
+        int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+        QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
 
-        setGeometry(_new_rect);
+        setGeometry(_dest_rect);
+        setMinimumSize(WindowHelper::correctWindowMinimumSize(_dest_rect, {WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor}));
     }
 }
 

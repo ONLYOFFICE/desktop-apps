@@ -39,6 +39,8 @@
 
 CSVGPushButton::CSVGPushButton(QWidget * parent)
     : QPushButton(parent)
+    , m_opacitynormal(QColor(255,255,255,255))
+    , m_opacitydisabled(QColor(255,255,255,100))
 {
 
 }
@@ -71,10 +73,22 @@ void CSVGPushButton::setIconSize(const QSize& size)
     updateIcon();
 }
 
+void CSVGPushButton::setIconOpacity(const QColor& c)
+{
+    m_opacitynormal = c;
+    m_usestateopacity = true;
+    updateIcon();
+}
+
 void CSVGPushButton::setDisabled(bool status)
 {
     QPushButton::setDisabled(status);
     updateIcon();
+}
+
+void CSVGPushButton::setUseStateOpacity(bool value)
+{
+    m_usestateopacity = value;
 }
 
 void CSVGPushButton::updateIcon()
@@ -90,11 +104,15 @@ void CSVGPushButton::updateIcon()
         if ( m_svgnode.isEmpty() ) r.render(&painter);
         else r.render(&painter, m_svgnode, r.boundsOnElement(m_svgnode));
 
-        if ( !isEnabled() ) {
+        if ( m_usestateopacity ) {
             painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-            painter.fillRect(pixmap.rect(), QColor(255,255,255,150));
-            painter.end();
+            if ( !isEnabled() ) {
+                painter.fillRect(pixmap.rect(), m_opacitydisabled);
+            } else {
+                painter.fillRect(pixmap.rect(), m_opacitynormal);
+            }
         }
+        painter.end();
 
         QPushButton::setIcon(QIcon(pixmap));
     }

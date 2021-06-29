@@ -57,11 +57,11 @@ window.DialogConnect = function(params) {
                                     <p id="auth-error" class="msg-error">asd</p>
                                     <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox dlg--option" placeholder="${utils.Lang.pshPortal}" value="">
                                 </div>
-                                <div style="height:10px;"></div>
+                                <div style="height:12px;"></div>
                                 <div class="lr-flex">
                                     <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
                                     <span />
-                                    <div>
+                                    <div class="lr-flex">
                                         <img class="img-loader">
                                         <button id="btn-next" l10n class="btn btn--landing">${utils.Lang.btnConnect}</button>
                                     </div>
@@ -142,7 +142,10 @@ window.DialogConnect = function(params) {
 
         let _callback = (obj) => {
             if ( obj ) {
-                if ( obj.status == 'success' ) {
+                if ( obj.status == 'success' || obj.status == 'skipped' ) {
+                    if ( obj.status == 'skipped' )
+                        console.log(`get portal info skipped, ${obj.response.statusText}`);
+
                     _close({
                         portal:protocol+portal,
                         provider:provider
@@ -197,19 +200,24 @@ window.DialogConnect = function(params) {
 
     function _require_portal_info(portal, provider) {
         !provider && (provider = 'onlyoffice');
-        let _info = config.portals.checklist.find(i => i.provider == provider);
-        const _url = _info ? portal + _info.check.url : undefined;
+        const _model = config.portals.checklist.find(i => i.provider == provider);
+        let _url;
+        if ( _model )
+            if ( !!_model.check.url )
+                _url = portal + _model.check.url;
+            else _url = `no check url for ${provider} found`;
+        else _url = `no config for ${provider} found`
 
         return new Promise((resolve, reject) => {
-            if ( !_url )
-                reject({status:'error', response: {statusText:`provider ${provider} is not found`}});
+            if ( !_url.startsWith('http') )
+                resolve({status:'skipped', response: {statusText: _url}});
             else {
                 $.ajax({
                     url: _url,
                     crossOrigin: true,
                     crossDomain: true,
                     timeout: 10000,
-                    headers: _info.check.headers,
+                    headers: _model.check.headers,
                     complete: function(e, status) {
                         if ( status == 'success' ) {
                             try {
