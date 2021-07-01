@@ -640,9 +640,10 @@
 
         function _on_theme_changed(name) {
             $('.carousel__slide__img > use').each((i, el) => {
+                const src = el.getAttribute('data-src');
                 if ( name == 'theme-dark' )
-                    el.setAttribute('xlink:href', `#${el.dataset.src}-dark`);
-                else el.setAttribute('xlink:href', `#${el.dataset.src}-light`);
+                    el.setAttribute('xlink:href', `#${src}-dark`);
+                else el.setAttribute('xlink:href', `#${src}-light`);
             });
         }
 
