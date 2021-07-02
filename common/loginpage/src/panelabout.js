@@ -85,6 +85,10 @@
                         // '</div>'+
                     '</div>';
 
+        if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
+            _html = _html.replace(' href=', ' xlink:href=');
+        }
+
         return _html;
     };
     ViewAbout.prototype.renderpanel = function(template) {
