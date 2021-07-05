@@ -568,6 +568,16 @@
                     if ( opts && opts.portals && opts.portals.auth_use_api ) {
                         _do_connect = _do_login;
                     }
+                } else
+                if (params.includes('\"uitheme\"\:')) {
+                    let opts = JSON.parse(params);
+
+                    if ( !!opts.uitheme ) {
+                        opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
+
+                        // if ( localStorage.getItem('ui-theme') != opts.uitheme )
+                            _on_theme_changed(opts.uitheme);
+                    }
                 }
             }
         };

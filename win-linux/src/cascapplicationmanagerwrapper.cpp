@@ -951,7 +951,9 @@ void CAscApplicationManagerWrapper::initializeApp()
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     QApplication::setFont( mainFont );
 
-    wstring wparams = QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
+    wstring wparams{InputArgs::webapps_params()};
+    if ( !wparams.empty() ) wparams += L"&";
+    wparams += QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
     wstring user_name = Utils::appUserName();
 
     wparams.replace(wparams.find(L"%3"), 2, user_name);
@@ -1414,8 +1416,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         wstring params = QString("lang=%1&username=%3&location=%2")
                             .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 
-        if ( objRoot["docopenmode"].toString() == "view" )
+        if ( objRoot["docopenmode"].toString() == "view" ) {
             params.append(L"&mode=view");
+        }
 
 #ifdef _UPDMODULE
         if ( objRoot.contains("checkupdatesrate") ) {

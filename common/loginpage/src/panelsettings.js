@@ -370,9 +370,9 @@
                     _lock_createnew(true);
                 }
 
-                if ( _open_mode == 'view' ) {
-                    sdk.command("settings:apply", JSON.stringify({docopenmode: _open_mode}));
-                }
+                // if ( _open_mode == 'view' ) {
+                //     sdk.command("settings:apply", JSON.stringify({docopenmode: _open_mode}));
+                // }
 
                 ($optsLang = $panel.find('.settings-field-lang')).hide();
                 $optsLang.find('select').on('change', _on_lang_change.bind(this));
