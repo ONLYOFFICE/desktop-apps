@@ -85,6 +85,9 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
 #endif
 
+    GET_REGISTRY_USER(reg_user);
+    _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
+
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );

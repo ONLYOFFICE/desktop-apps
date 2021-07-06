@@ -48,6 +48,9 @@ public:
 #ifdef Q_OS_WIN
         qApp->installEventFilter(new CAppEventFilter(this));
 #endif
+
+        GET_REGISTRY_USER(reg_user);
+        m_openEditorWindow = reg_user.value("editorWindowMode").toBool();
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
@@ -116,6 +119,11 @@ public:
         return false;
     }
 
+    auto useSingleEditorWindow() -> bool
+    {
+        return m_openEditorWindow;
+    }
+
 protected:
     auto mainWindow() -> CMainWindow * {
         return m_appmanager.m_pMainWindow;
@@ -124,6 +132,7 @@ protected:
 public:
     CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
+    bool m_openEditorWindow = false;
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

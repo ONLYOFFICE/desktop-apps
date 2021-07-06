@@ -312,7 +312,38 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
                 opts.format = objRoot["type"].toInt();
-                mainWindow()->mainPanel()->onLocalFileRecent(opts);
+
+                QRegularExpression re(rePortalName);
+                QRegularExpressionMatch match = re.match(opts.url);
+
+                if ( !match.hasMatch() ) {
+                    QFileInfo _info(opts.url);
+                    if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
+                        CMessage mess(m_pMainWindow->handle(), CMessageOpts::moButtons::mbYesDefNo);
+                        int modal_res = mess.warning(tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
+
+                        if (modal_res == MODAL_RESULT_CUSTOM) {
+                            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
+                        }
+
+                        return true;
+                    }
+                }
+
+                if ( m_private->useSingleEditorWindow() ) {
+                    CTabPanel * panel = CEditorTools::createEditorPanel(opts);
+                    if ( panel ) {
+                        CEditorWindow * editor_win = new CEditorWindow(QRect(), panel);
+                        editor_win->show(false);
+
+                        m_vecEditors.push_back(size_t(editor_win));
+                        sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+
+                        return true;
+                    }
+                } else {
+                    mainWindow()->mainPanel()->onLocalFileRecent(opts);
+                }
             }
 
             return true;
@@ -1438,6 +1469,11 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uitheme") ) {
             applyTheme(objRoot["uitheme"].toString().toStdWString());
+        }
+
+        if ( objRoot.contains("editorwindowmode") ) {
+            m_private->m_openEditorWindow = objRoot["editorwindowmode"].toBool();
+            _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
     } else {
         /* parse settings error */

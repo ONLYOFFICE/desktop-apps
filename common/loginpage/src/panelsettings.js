@@ -108,6 +108,17 @@
                                             </section>
                                         </div>
                                     </div>
+                                    <div class='settings-field' id="opts-launch-mode" style='display1:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settOptLaunchMode}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='intab' l10n>${_lang.settOptLaunchInTab}</option>
+                                                    <option value='inwindow' l10n>${_lang.settOptLaunchInWindow}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                     <!-- temporary elements section -->
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -148,7 +159,8 @@
         let $panel;
         let $optsLang,
             $optsUIScaling,
-            $optsUITheme;
+            $optsUITheme,
+            $optsLaunchMode;
 
         function _set_user_name(name) {
             let me = this;
@@ -214,6 +226,10 @@
                     $optsUITheme.selectpicker('refresh');
 
                     _apply_theme(_new_settings.uitheme);
+                }
+
+                if ( $optsLaunchMode ) {
+                    _new_settings.editorwindowmode = $optsLaunchMode.val() == 'inwindow';
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -307,6 +323,14 @@
                             });
 
                             _apply_theme(opts.uitheme);
+                        }
+
+                        if ( opts.editorwindowmode !== undefined ) {
+                            ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
+                            .val(opts.editorwindowmode ? 'inwindow' : 'intab')
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
                         }
                     }
                 } else

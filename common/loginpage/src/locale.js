@@ -119,6 +119,9 @@ l10n.en = {
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Dark'
     ,aboutProFeaturesAvailable: 'With access to pro features'
+    ,settOptLaunchMode: 'Editor\'s launch mode'
+    ,settOptLaunchInTab: 'In tab'
+    ,settOptLaunchInWindow: 'In window'
 }
 
 l10n.cs = {
