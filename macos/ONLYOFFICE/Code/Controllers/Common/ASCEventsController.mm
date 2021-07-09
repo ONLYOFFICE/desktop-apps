@@ -477,8 +477,9 @@ public:
                                 NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
-                                if ([@[@"asc", @"onlyoffice"] containsObject:provider]) {
-                                    urlPage = [NSURLComponents componentsWithString:[NSString stringWithFormat:@"%@/%@", portal, @"products/files/"]];
+                                NSMutableString * entrypage = [json objectForKey:@"entrypage"];
+                                if ( entrypage ) {
+                                    urlPage.path = [entrypage characterAtIndex:0] == '/' ? entrypage : [NSString stringWithFormat:@"/%@", entrypage];
                                 }
 
                                 NSURLQueryItem *countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
