@@ -242,7 +242,120 @@ QPushButton#toolButtonDownload::menu-indicator {
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton:pressed {
     background-color: #606060;
 }
-/**************************/
+
+
+#mainPanel[uitheme=theme-dark] QPrintDialog,
+    #mainPanel[uitheme=theme-dark] QPrintPropertiesDialog
+{
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QLabel {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton,
+    #mainPanel[uitheme=theme-dark] QPrintDialog QToolButton
+{
+    background-color: #555;
+    color: #d9d9d9;
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton:focus {
+    border: 2px solid rgba(255,255,255,.9);
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QLineEdit {
+    background-color: #404040;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox {
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox::title {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox{
+    background-color: #404040;
+    selection-background-color: #606060;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox QAbstractItemView {
+    background-color: #404040;
+}
+
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QRadioButton,
+    #mainPanel[uitheme=theme-dark] QPrintDialog QCheckBox
+{
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QTabWidget::pane {
+    background-color: #404040;
+    border: 1px solid rgba(255,255,255,.8);
+    position:absolute;
+    top:-1px;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QWidget {
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QTabBar::tab {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QSpinBox,
+    #mainPanel[uitheme=theme-dark] QDoubleSpinBox,
+    #mainPanel[uitheme=theme-dark] QTimeEdit
+{
+    background-color: #404040;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_dark.png) 3 0 0 0 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:disabled,
+    #mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:off
+{
+    border-image: url(:/arrow_down_dark.png) 3 0 0 5 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_dark.png) 0 0 0 0 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow:disabled,
+    #mainPanel[uitheme=theme-dark] QPrintDialog ::down-arrow:off
+{
+    border-image: url(:/arrow_down_dark.png) 0 0 0 5 repeat repeat;
+}
+
+/***********************************/
+/* classic light theme definitions */
+/***********************************/
+
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {
+    border-right-color:#cbcbcb;
+}
+
+/***********************************/
+/*     light theme definitions     */
+/***********************************/
+
+#mainPanel[uitheme=theme-light] QPushButton#toolButtonMain {
+    border-right-color:#dfdfdf;
+}
+
+/***********************************/
 
 QTabBar {
     font-size: 11px;

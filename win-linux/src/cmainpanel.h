@@ -43,6 +43,7 @@
 #include "cpushbutton.h"
 #include "ccefeventstransformer.h"
 #include "cscalingwrapper.h"
+#include "csvgpushbutton.h"
 
 
 struct printdata;
@@ -151,7 +152,7 @@ public slots:
 
 protected:
     CAscTabWidget * m_pTabs;
-    QPushButton*    m_pButtonMain;
+    CSVGPushButton* m_pButtonMain;
     bool            m_isCustomWindow;
 
 private:

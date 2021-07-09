@@ -140,18 +140,21 @@
                     </div>`;
 
         if ( config.portals.checklist.length ) {
-            const provider_button_template = (provider, name, iconpath) => {
-                                                const button_el = `<img class='icon' src='${relpath}/providers/${provider}/${iconpath}'></img>`;
+            const provider_button_template = (provider, name, icons) => {
+                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
+                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
+                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
+                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
                                                 return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
-                                                    ${!!iconpath ? button_el : name}
-                                                </button>`;
+                                                            ${!!icons ? button_el : name}
+                                                        </button>`;
                                             }
 
             _html = $(_html);
             let $box = $('<div />');
             config.portals.checklist.forEach(item => {
-                if ( !!item.icons && !!item.icons.buttonLogo ) {
-                    const btn = provider_button_template(item.provider, item.name, item.icons.buttonLogo);
+                if ( !!item.icons && !!item.icons.themeLight ) {
+                    const btn = provider_button_template(item.provider, item.name, item.icons);
 
                     item.provider != 'onlyoffice' ? $box.append(btn) :
                             _html.find('#box-providers-premium-button').append(btn);
@@ -196,8 +199,14 @@
                             </span>
                         </td>`;
 
+            if ( !!info.themeicons ) {
+                const icon_el = `<img class='icon icon__light' src='${info.themeicons.light}'></img>
+                                    <img class='icon icon__dark' src='${info.themeicons.dark}'></img>`;
+                _row = _row.replace(/<svg.+<\/svg>/, icon_el);
+            } else
             if ( !!info.iconsrc ) {
-                _row = _row.replace(/<svg.+<\/svg>/, `<img class='icon' src='${info.iconsrc}'></img>`);
+                const icon_el = `<img class='icon icon_light' src='${info.iconsrc}'></img>`;
+                _row = _row.replace(/<svg.+<\/svg>/, icon_el);
             }
 
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
@@ -355,8 +364,16 @@
 
                 function _get_icon_scr(provider) {
                     const _model = config.portals.checklist.find(e => (e.provider == provider))
-                    return !!_model && !!_model.icons && !!_model.icons.connectionsList ?
-                                `${relpath}/providers/${_model.provider}/${_model.icons.connectionsList}` : undefined;
+                    return !!_model && !!_model.icons && !!_model.icons.themeLight.connectionsList ?
+                                `${relpath}/providers/${_model.provider}/${_model.icons.themeLight.connectionsList}` : undefined;
+                };
+
+                function _get_theme_icons(provider) {
+                    const _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons ?
+                                { light: `${relpath}/providers/${_model.provider}/${_model.icons.themeLight.connectionsList}`,
+                                    dark: `${relpath}/providers/${_model.provider}/${_model.icons.themeDark.connectionsList}` } : 
+                                undefined;
                 };
 
                 collection.events.changed.attach((collection, model, value) => {
@@ -371,6 +388,7 @@
                                     portal: model.name,
                                     iconid: _create_icon_id(model.provider),
                                     iconsrc: _get_icon_scr(model.provider),
+                                    themeicons: _get_theme_icons(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
                         } else
@@ -387,6 +405,7 @@
                         portal: model.name,
                         iconid: _create_icon_id(model.provider),
                         iconsrc: _get_icon_scr(model.provider),
+                        themeicons: _get_theme_icons(model.provider),
                         user: model.user,
                         email: model.email,
                         elid: model.uid
@@ -549,6 +568,16 @@
                     if ( opts && opts.portals && opts.portals.auth_use_api ) {
                         _do_connect = _do_login;
                     }
+                } else
+                if (params.includes('\"uitheme\"\:')) {
+                    let opts = JSON.parse(params);
+
+                    if ( !!opts.uitheme ) {
+                        opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
+
+                        // if ( localStorage.getItem('ui-theme') != opts.uitheme )
+                            _on_theme_changed(opts.uitheme);
+                    }
                 }
             }
         };
@@ -621,9 +650,10 @@
 
         function _on_theme_changed(name) {
             $('.carousel__slide__img > use').each((i, el) => {
+                const src = el.getAttribute('data-src');
                 if ( name == 'theme-dark' )
-                    el.setAttribute('xlink:href', `#${el.dataset.src}-dark`);
-                else el.setAttribute('xlink:href', `#${el.dataset.src}-light`);
+                    el.setAttribute('xlink:href', `#${src}-dark`);
+                else el.setAttribute('xlink:href', `#${src}-light`);
             });
         }
 

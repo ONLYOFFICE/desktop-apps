@@ -696,6 +696,23 @@ public:
                                                                                              }];
                                 }
                             }
+                        } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
+                            CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                            CCefView * pCefView = appManager->GetViewById(senderId);
+
+                            if (pCefView) {
+                                NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
+
+                                NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                pCommand->put_FrameName(L"frameEditor");
+                                pCommand->put_Command(L"uitheme:changed");
+                                pCommand->put_Param([uiTheme stdwstring]);
+
+                                NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                                pEvent->m_pData = pCommand;
+
+                                pCefView->Apply(pEvent);
+                            }
                         }
 
                         break;

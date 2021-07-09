@@ -100,7 +100,7 @@ int main(int argc, const char * argv[]) {
     // setup ui theme
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ( !uiTheme ) {
-        uiTheme = [NSApplication isSystemDarkMode] ? uiThemeDark : uiThemeLight;
+        uiTheme = [NSApplication isSystemDarkMode] ? uiThemeDark : uiThemeClassicLight;
         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
     }
 

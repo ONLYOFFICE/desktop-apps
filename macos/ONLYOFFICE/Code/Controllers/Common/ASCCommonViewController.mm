@@ -137,6 +137,7 @@
     addObserverFor(CEFEventNameDocumentFragmentBuild, @selector(onCEFDocumentFragmentBuild:));
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
+    addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -1469,7 +1470,7 @@
     if ( !uiLang )
         uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
     NSDictionary * json_langs = @{
         @"locale_skip": @{
@@ -1680,6 +1681,31 @@
         } else if (text && text.length > 0) {
             ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:self];
             [previewController presentTextInfo:text];
+        }
+    }
+}
+
+- (void)onUIThemeChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * params = (NSDictionary *)notification.userInfo;
+        std::wstring theme = [params[@"uitheme"] stdwstring];
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                CCefView * cef = appManager->GetViewById((int)cefView.uuid);
+                if (cef && cef->GetType() == cvwtEditor) {
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"uitheme:changed");
+                    pCommand->put_Param(theme);
+
+                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    [cefView apply:pEvent];
+                }
+            }
         }
     }
 }

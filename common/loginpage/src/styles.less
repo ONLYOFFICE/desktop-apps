@@ -244,6 +244,7 @@ li.menu-item {
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 
     /*background-color: #fff;*/
     &:not(.view--modal) {
@@ -336,6 +337,18 @@ li.menu-item {
             width: 340px;
         }
     }
+
+    .theme-type-dark & {
+        .icon__light {
+            display: none;
+        }
+    }
+
+    .theme-type-light & {
+        .icon__dark {
+            display: none;
+        }
+    }
 }
 
 .text-welcome {
@@ -425,15 +438,15 @@ li.menu-item {
     }
 
     .logout {
-        width: 23px;
-        height: 23px;
+        width: 24px;
+        height: 24px;
         padding: 0;
         opacity: .8;
         background-color: transparent;
 
         .icon {
-            width: 23px;
-            height: 23px;
+            width: 24px;
+            height: 24px;
             background-position: -82px -48px;
         }
 
@@ -446,10 +459,6 @@ li.menu-item {
         .cell-tools > div, td > span {
             display: none;
         }
-    }
-
-    .minor {
-        color: @color-gray;
     }
 
     .icon {
@@ -668,6 +677,7 @@ li.menu-item {
 }
 
 #wrap,
+.tool-menu,
 .action-panel,
 .content-box,
 .table-box {
@@ -758,6 +768,10 @@ li.menu-item {
 
 .welcome {
     position: relative;
+
+    .center-box {
+        width: 100%;
+    }
 }
 
 .welcome, #box-empty-portals {
@@ -1053,6 +1067,7 @@ li.menu-item {
     width: 18px;
     height: 18px;
     margin-right: 10px;
+    margin-left: 0;
 }
 
 #sett-encrypt-switch {

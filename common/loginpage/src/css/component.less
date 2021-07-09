@@ -24,6 +24,7 @@ button {
         &.btn--landing {
             background-color: @background-accent-button;
             border: 0 none;
+            color: @text-contrast-background;
         }
 
         &.btn--primary {
@@ -88,6 +89,37 @@ button {
 @color1: #f4f4f4;
 @color2: #3197EE;
 @rb-height: 18px;
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: 0;
+        left: 0;
+        border: @scaled-one-px solid @border-regular-control;
+        border-radius: 3px;
+        background-color: @background-normal;
+    }
+
+    &:checked:after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid @text-normal;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 3px;
+        left: 7px;
+    }
+}
 
 input[type="radio"] {
     position: absolute;
@@ -266,7 +298,7 @@ input[type="radio"] {
 
     .btn {
         background-color: @background-normal;
-        border: 1px solid @border-regular-control;
+        border: @scaled-one-px solid @border-regular-control;
         color: @text-normal;
         padding-left: 15px;
 
@@ -318,6 +350,7 @@ input[type="radio"] {
 */
 .dropdown-menu {
     background-color: @background-normal;
+    border: @scaled-one-px solid @border-regular-control;
 
     li > a {
         cursor: pointer;
@@ -347,6 +380,7 @@ input[type="radio"] {
 
         &:hover {
             cursor: default;
+            color: @text-normal;
         }
     }
 }
@@ -358,7 +392,7 @@ input[type="radio"] {
 
 .tbox {
     color: @text-normal;
-    border: 1px solid @border-regular-control;
+    border: @scaled-one-px solid @border-regular-control;
     width: 100%;
     outline: 0;
     background: @background-normal;

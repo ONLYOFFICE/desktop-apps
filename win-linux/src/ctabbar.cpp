@@ -581,14 +581,22 @@ void CTabBar::paintEvent(QPaintEvent * event)
 
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
 {
+    int border_width = scaling() > 1 ? 2 : 1;
+
     QRect tabRect(tab.rect);
-    tabRect.adjust(-1, 0, 0, 0);
+    tabRect.adjust(-border_width, 0, 0, 0);
     p->fillRect( tabRect, QBrush(QColor(color)) );
 
     if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::LightTab ) {
-        p->setPen(QColor("#a5a5a5"));
-        p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
-        p->drawLine(tabRect.bottomRight(), tabRect.topRight());
+        if ( !m_isUIThemeDark ) {
+            QPen _pen = p->pen();
+            _pen.setColor(QColor("#a5a5a5"));
+            _pen.setWidth(border_width);
+
+            p->setPen(_pen);
+            p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
+            p->drawLine(tabRect.bottomRight(), tabRect.topRight());
+        }
     }
 }
 
@@ -742,6 +750,11 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
             b->style()->polish(b);
         }
     }
+}
+
+void CTabBar::setUIThemeType(bool islight)
+{
+    m_isUIThemeDark = !islight;
 }
 
 void CTabBar::setActiveTabColor(const QString& color)

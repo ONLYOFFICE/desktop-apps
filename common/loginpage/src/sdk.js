@@ -81,6 +81,24 @@
                     c.provider = c.id;
                 if ( !c.startPage )
                     c.startPage = '/';
+
+                if ( !!c.icons ) {
+                    if ( !c.icons.buttonLogo && c.icons.buttonlogo )
+                        c.icons.buttonLogo = c.icons.buttonlogo;
+                    if ( !c.icons.connectionsList && c.icons.connectionslist )
+                        c.icons.connectionsList = c.icons.connectionslist;
+
+                    if ( !!c.icons.buttonLogo && !c.icons.themeLight ) {
+                        c.icons.themeLight = {
+                            'buttonLogo': c.icons.buttonLogo,
+                            'connectionsList': c.icons.connectionsList
+                        }
+                    }
+
+                    if ( !c.icons.themeDark && c.icons.themeLight ) {
+                        c.icons.themeDark = Object.assign(c.icons.themeLight);
+                    }
+                }
             }
         } else {
             // _clouds = [{ provider: "asc",name: "ONLYOFFICE",check: {url:"/api/2.0/capabilities.json"} }];

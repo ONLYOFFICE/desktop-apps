@@ -61,10 +61,15 @@
 
 using namespace std;
 
-const QString g_dark_theme_stylesheet = "#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}"
+const QString g_dark_theme_stylesheet =
+    "#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}"
     "#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:selected {background-color: #404040;}"
     "#mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}"
-    "#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}";
+    "#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}"
+    "#mainPanel[uitheme=theme-classic-light] QTabBar::tab {border-right-color:#cbcbcb;}"
+    "#mainPanel[uitheme=theme-light] QTabBar::tab {border-right-color:#dfdfdf;}"
+    "#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab {background-color: #404040;}"
+    "#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:hover{background-color: #555;}";
 
 
 /*
@@ -150,6 +155,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
+    , m_isDarkTheme(AscAppManager::themes().isCurrentDark())
     , m_tabIconSize(11, 11)
 {
     CTabBar * tabs = new CTabBar(this);
@@ -932,6 +938,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
     }
 
     updateTabIcon(tabIndexByView(id));
+    tabBar()->style()->polish(tabBar());
 }
 
 void CAscTabWidget::setEditorOptions(int id, const wstring& option)
@@ -1306,6 +1313,7 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
     CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
 //    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
     _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextNormal));
+    _tabbar.setUIThemeType(!m_isDarkTheme);
     _tabbar.style()->polish(&_tabbar);
     style()->polish(this);
 }
