@@ -1,18 +1,12 @@
+BUILD_DIR = win-linux/package/windows
+
 ISCC := iscc
 
-S3_BUCKET ?= repo-doc-onlyoffice-com
-RELEASE_BRANCH ?= unstable
+DESKTOP_EDITORS_EXE += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
+DESKTOP_EDITORS_ZIP += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
 
-DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
-DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
-DESKTOP_EDITORS_UPDATE += win-linux/package/windows/$(PACKAGE_NAME)_update_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
-
-PACKAGES += $(DESKTOP_EDITORS_EXE)
-PACKAGES += $(DESKTOP_EDITORS_ZIP)
-PACKAGES += $(DESKTOP_EDITORS_UPDATE)
-
-VCREDIST13 := win-linux/package/windows/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
-VCREDIST15 := win-linux/package/windows/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
+VCREDIST13 := $(BUILD_DIR)/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
+VCREDIST15 := $(BUILD_DIR)/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
@@ -27,18 +21,24 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
-APPCAST := win-linux/package/windows/update/appcast.xml
-CHANGES_EN := win-linux/package/windows/update/changes.html
-CHANGES_RU := win-linux/package/windows/update/changes_ru.html
-CHANGES_DIR := $(BRANDING_DIR)/win-linux/package/windows/update/changes/$(PRODUCT_VERSION)
-DEPLOY_JSON := win-linux/package/windows/deploy.json
+EXE_UPDATE += $(BUILD_DIR)/update/editors_update_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
+APPCAST := $(BUILD_DIR)/update/appcast.xml
+CHANGES_EN := $(BUILD_DIR)/update/changes.html
+CHANGES_RU := $(BUILD_DIR)/update/changes_ru.html
+CHANGES_DIR := $(BRANDING_DIR)/$(BUILD_DIR)/update/changes/$(PRODUCT_VERSION)
 
-EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
-ZIP_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
-EXE_UPDATE_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_UPDATE))
-APPCAST_URI    := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/appcast_$(PACKAGE_VERSION).xml
-CHANGES_EN_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_$(PACKAGE_VERSION).html
-CHANGES_RU_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_ru_$(PACKAGE_VERSION).html
+PACKAGES += $(DESKTOP_EDITORS_EXE)
+PACKAGES += $(DESKTOP_EDITORS_ZIP)
+WINSPARKLE += $(EXE_UPDATE)
+ifndef _WIN_XP
+ifeq ($(WIN_ARCH), x64)
+WINSPARKLE += $(APPCAST)
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+WINSPARKLE += $(CHANGES_EN)
+endif
+WINSPARKLE += $(CHANGES_RU)
+endif
+endif
 
 ISCC_PARAMS += //Qp
 ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
@@ -61,6 +61,25 @@ ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
 
+.PHONY : clean-package exe zip winsparkle packages
+
+clean-package:
+	rm -fv \
+		$(VCREDIST) \
+		$(BUILD_DIR)/*.exe \
+		$(BUILD_DIR)/*.zip \
+		$(BUILD_DIR)/update/*.exe \
+		$(BUILD_DIR)/update/*.xml \
+		$(BUILD_DIR)/update/*.html
+
+exe: $(DESKTOP_EDITORS_EXE)
+
+zip: $(DESKTOP_EDITORS_ZIP)
+
+winsparkle: $(WINSPARKLE)
+
+packages: $(PACKAGES) $(WINSPARKLE)
+
 $(VCREDIST13):
 	mkdir -p $(dir $(VCREDIST13))
 	$(CURL) $(VCREDIST13) $(VCREDIST13_URL)
@@ -72,124 +91,14 @@ $(VCREDIST15):
 $(DEST_DIR): install
 
 $(DESKTOP_EDITORS_EXE):
-	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) common.iss
+	cd $(BUILD_DIR) && $(ISCC) $(ISCC_PARAMS) common.iss
 
-$(DESKTOP_EDITORS_UPDATE): $(DESKTOP_EDITORS_EXE)
-	cd $(dir $@) && $(ISCC) $(ISCC_PARAMS) //DTARGET_NAME="$(notdir $<)" update_common.iss
+$(EXE_UPDATE): $(DESKTOP_EDITORS_EXE)
+	cd $(BUILD_DIR) && $(ISCC) $(ISCC_PARAMS) //DTARGET_NAME="$(notdir $<)" update_common.iss
 
-win-linux/package/windows/%.zip:
+$(BUILD_DIR)/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
 	
-package: $(PACKAGES)
-#zip: $(DESKTOP_EDITORS_ZIP)
-
-clean-package:
-	rm -fv \
-		$(dir $(DESKTOP_EDITORS_EXE))*.exe \
-		$(dir $(DESKTOP_EDITORS_ZIP))*.zip \
-		$(dir $(DESKTOP_EDITORS_UPDATE))*.exe \
-		$(VCREDIST) \
-		$(APPCAST) \
-		$(CHANGES_EN) \
-		$(CHANGES_RU) \
-		$(DEPLOY_JSON)
-
-deploy-exe: $(DESKTOP_EDITORS_EXE)
-	aws s3 cp --no-progress --acl public-read \
-		$(DESKTOP_EDITORS_EXE) s3://$(S3_BUCKET)/$(EXE_URI)
-
-deploy-exe-update: $(DESKTOP_EDITORS_UPDATE)
-	aws s3 cp --no-progress --acl public-read \
-		$(DESKTOP_EDITORS_UPDATE) s3://$(S3_BUCKET)/$(EXE_UPDATE_URI)
-
-deploy-zip: $(DESKTOP_EDITORS_ZIP)
-	aws s3 cp --no-progress --acl public-read \
-		$(DESKTOP_EDITORS_ZIP) s3://$(S3_BUCKET)/$(ZIP_URI)
-
-deploy-appcast: $(APPCAST) $(CHANGES_EN) $(CHANGES_RU)
-	aws s3 cp --no-progress --acl public-read \
-		$(APPCAST) s3://$(S3_BUCKET)/$(APPCAST_URI)
-
-	aws s3 cp --no-progress --acl public-read \
-		$(CHANGES_EN) s3://$(S3_BUCKET)/$(CHANGES_EN_URI)
-
-	aws s3 cp --no-progress --acl public-read \
-		$(CHANGES_RU) s3://$(S3_BUCKET)/$(CHANGES_RU_URI)
-
-comma := ,
-json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
-
-$(DEPLOY_JSON):
-	echo '{}' > $@
-	$(call json_edit, $@, '. + { \
-		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
-		version:  "$(PRODUCT_VERSION)"$(comma) \
-		build:    "$(BUILD_NUMBER)" \
-	}')
-ifndef _WIN_XP
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows $(WIN_ARCH)"$(comma) \
-		path:     "$(EXE_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows $(WIN_ARCH) update"$(comma) \
-		path:     "$(EXE_UPDATE_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows $(WIN_ARCH) portable"$(comma) \
-		path:     "$(ZIP_URI)" \
-	}]')
-else
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows XP $(WIN_ARCH)"$(comma) \
-		path:     "$(EXE_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows XP $(WIN_ARCH) update"$(comma) \
-		path:     "$(EXE_UPDATE_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "windows"$(comma) \
-		title:    "Windows XP $(WIN_ARCH) portable"$(comma) \
-		path:     "$(ZIP_URI)" \
-	}]')
-endif
-ifndef _WIN_XP
-ifeq ($(WIN_ARCH), x64)
-	$(call json_edit, $@, '.items += [{ \
-		platform: "appcast"$(comma) \
-		title:    "Appcast"$(comma) \
-		path:     "$(APPCAST_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "appcast"$(comma) \
-		title:    "Changes EN"$(comma) \
-		path:     "$(CHANGES_EN_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "appcast"$(comma) \
-		title:    "Changes RU"$(comma) \
-		path:     "$(CHANGES_RU_URI)" \
-	}]')
-endif
-endif
-
-DEPLOY += deploy-exe
-DEPLOY += deploy-exe-update
-DEPLOY += deploy-zip
-ifndef _WIN_XP
-	ifeq ($(WIN_ARCH), x64)
-DEPLOY += deploy-appcast
-	endif
-endif
-
-deploy: $(DEPLOY) $(DEPLOY_JSON)
-
 AWK_PARAMS += -v Version="$(PRODUCT_VERSION)"
 AWK_PARAMS += -v Build="$(BUILD_NUMBER)"
 AWK_PARAMS += -v Timestamp="$(shell date +%s)"
