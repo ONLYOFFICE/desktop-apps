@@ -264,10 +264,10 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 		package.spec
 
 $(DEB): desktopeditor $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b -uc -us
+	cd deb && dpkg-buildpackage -b -uc -us --changes-option=-u.
 
 $(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
-	cd deb-astra && dpkg-buildpackage -b -uc -us
+	cd deb-astra && dpkg-buildpackage -b -uc -us --changes-option=-u.
 
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
