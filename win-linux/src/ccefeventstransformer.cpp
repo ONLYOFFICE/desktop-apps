@@ -57,13 +57,13 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         return;
 
     switch (event->m_nType) {
-    case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
-        CAscCreateTab * pData = (CAscCreateTab *)event->m_pData;
+//    case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
+//        CAscCreateTab * pData = (CAscCreateTab *)event->m_pData;
 
-        QMetaObject::invokeMethod(target, "onCloudDocumentOpen", Qt::QueuedConnection,
-                Q_ARG(std::wstring, pData->get_Url()), Q_ARG(int, pData->get_IdEqual()), Q_ARG(bool, pData->get_Active()));
+//        QMetaObject::invokeMethod(target, "onCloudDocumentOpen", Qt::QueuedConnection,
+//                Q_ARG(std::wstring, pData->get_Url()), Q_ARG(int, pData->get_IdEqual()), Q_ARG(bool, pData->get_Active()));
 
-        break;}
+//        break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_TABEDITORTYPE: {
         CAscTabEditorType * pData = (CAscTabEditorType *)event->m_pData;
