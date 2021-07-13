@@ -36,6 +36,7 @@
 #include <QMainWindow>
 #include "cmainpanel.h"
 #include "cx11decoration.h"
+#include <QLabel>
 
 class CSingleWindow : public QMainWindow, public CX11Decoration
 {
@@ -45,7 +46,8 @@ public:
 
     bool holdView(int id) const;
     QWidget * createMainPanel(bool, const QString&, QWidget *);
-    void setScreenScalingFactor(uchar factor);
+    void setScreenScalingFactor(double factor);
+    void applyTheme(const std::wstring& themeid);
 
     const QWidget * handle() const;
 
@@ -59,10 +61,13 @@ private:
 
 private:
     QWidget * m_pMainPanel;
-    QWidget * m_boxTitle;
-    QPushButton * m_btnMaximize;
+    QWidget * m_boxTitle = nullptr;
+    QPushButton * m_btnMaximize = nullptr,
+                * m_btnMinimize = nullptr,
+                * m_btnClose = nullptr;
+    QLabel * m_labelTitle = nullptr;
 
-    uchar m_dpiRatio;
+    double m_dpiRatio;
 
 signals:
 

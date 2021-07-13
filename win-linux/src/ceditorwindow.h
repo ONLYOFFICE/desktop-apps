@@ -55,7 +55,7 @@ public:
 
     void focus() override;
     bool holdView(int id) const override;
-    bool holdView(const wstring& portal) const;
+    bool holdView(const std::wstring& portal) const;
     void undock(bool maximized = false);
     int closeWindow();
     CTabPanel * mainView() const;
@@ -64,6 +64,7 @@ public:
     bool closed() const;
     AscEditorType editorType() const;
 
+    void applyTheme(const std::wstring&);
     void setReporterMode(bool);
 private:
     QString m_css;
@@ -83,12 +84,13 @@ protected:
     void onSizeEvent(int) override;
     void onMoveEvent(const QRect&) override;
     void onExitSizeMove() override;
-    void onDpiChanged(int,int) override;
+    void onDpiChanged(double,double) override;
 
-    void setScreenScalingFactor(int) override;
+    void setScreenScalingFactor(double) override;
     int calcTitleCaptionWidth() override;
 
-    void onLocalFileSaveAs(void *);
+private slots:
+    void onClickButtonHome();
 
 private:
     friend class CEditorWindowPrivate;

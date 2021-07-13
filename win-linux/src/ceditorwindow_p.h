@@ -81,33 +81,45 @@ const QString g_css =
         "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
         "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"1.5x\"] #toolButtonMinimize,#mainPanel[zoom=\"15x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"1.5x\"] #toolButtonMaximize{padding: 8px 18px 11px;}"
+        "#mainPanel[zoom=\"1.5x\"] #iconuser,"
+        "#mainPanel[zoom=\"1.5x\"] #labelTitle{font-size:18px;}"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.5x.png);}"
+        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.5x.png);}"
         "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
         "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
         "#mainPanel[zoom=\"2x\"] #iconuser,"
         "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}";
+        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
+        "#mainPanel[uitheme=theme-dark] #iconuser,"
+        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}";
 
-auto prepare_editor_css(int type) -> QString {
+auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
+    std::wstring c;
     switch (type) {
-    default: return g_css.arg(WINDOW_BACKGROUND_COLOR);
-    case etDocument: return g_css.arg(TAB_COLOR_DOCUMENT);
-    case etPresentation: return g_css.arg(TAB_COLOR_PRESENTATION);
-    case etSpreadsheet: return g_css.arg(TAB_COLOR_SPREADSHEET);
+    default: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground); break;
+    case etDocument: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive); break;
+    case etPresentation: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive); break;
+    case etSpreadsheet: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive); break;
     }
+
+    return g_css.arg(QString::fromStdWString(c));
 }
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return QColor(TAB_COLOR_DOCUMENT);
-    case etPresentation: return QColor(TAB_COLOR_PRESENTATION);
-    case etSpreadsheet: return QColor(TAB_COLOR_SPREADSHEET);
-#ifdef Q_OS_WIN
-    default: return QRgb(WINDOW_BACKGROUND_COLOR);
-#else
-    default: return QColor(WINDOW_BACKGROUND_COLOR);
-#endif
+    case etDocument: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabWordActive);
+    case etPresentation: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabSlideActive);
+    case etSpreadsheet: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabCellActive);
+//#ifdef Q_OS_WIN
+    default: return AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground);
+//#else
+//    default: return QColor(WINDOW_BACKGROUND_COLOR);
+//#endif
     }
 }
 
@@ -130,7 +142,8 @@ class CEditorWindowPrivate : public CCefEventsGate
         isFullScreen = false;
     QWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
-    QWidget * boxtitlelabel = nullptr;
+    QWidget * boxtitlelabel = nullptr,
+            * leftboxbuttons = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
 
@@ -139,8 +152,36 @@ public:
     bool isReporterMode = false;
 
 public:
-    CEditorWindowPrivate(CEditorWindow * w) : window(w)
-    {}
+    CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
+    ~CEditorWindowPrivate() override {
+         if ( leftboxbuttons )
+             leftboxbuttons->deleteLater();
+    }
+
+    void init(CTabPanel * const p) override {
+        CCefEventsGate::init(p);
+
+        leftboxbuttons = new QWidget;
+        leftboxbuttons->setLayout(new QHBoxLayout);
+        leftboxbuttons->layout()->setSpacing(0);
+        leftboxbuttons->layout()->setMargin(0);
+
+//        if ( false && !InputArgs::contains(L"--single-window-app") )
+        {
+            CSVGPushButton * btnHome = new CSVGPushButton;
+            btnHome->setProperty("class", "normal");
+            btnHome->setProperty("act", "tool");
+            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
+            btnHome->setMouseTracking(true);
+            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
+            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            m_mapTitleButtons["home"] = btnHome;
+
+            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
+            leftboxbuttons->layout()->addWidget(btnHome);
+        }
+    }
 
     QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)
     {
@@ -152,12 +193,16 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
+        btn->setIconOpacity(AscAppManager::themes().isCurrentDark() ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
 
         m_mapTitleButtons[action] = btn;
 
         connect(btn, &QPushButton::clicked, [=]{
-            QJsonObject _json_obj{{"action", action}};
-            AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+            if ( action == "home" ) {
+            } else {
+                QJsonObject _json_obj{{"action", action}};
+                AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+            }
         });
 
         if ( jsonobj.contains("icon") ) {
@@ -173,7 +218,7 @@ public:
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
 
-            window->m_css = {prepare_editor_css(etUndefined)};
+            window->m_css = {prepare_editor_css(etUndefined, AscAppManager::themes().current())};
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
             window->m_pMainPanel->setProperty("window", "simple");
@@ -183,7 +228,8 @@ public:
             window->m_labelTitle->setText(APP_TITLE);
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(QRgb(WINDOW_BACKGROUND_COLOR));
+            window->setWindowBackgroundColor(
+                        QColor(QString::fromStdWString(AscAppManager::themes().value(CThemes::ColorRole::ecrWindowBackground))));
 #endif
         }
     }
@@ -212,18 +258,20 @@ public:
                     _user_width = iconuser->width();
                 }
 
-                // TODO: probably to check m_mapTitleButtons is not good, so need to change checking
-                if ( objRoot.contains("title") && m_mapTitleButtons.empty() ) {
+                if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
                     QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                    QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
 
-                    QPushButton * _btn;
-                    for (int i = _btns.size(); i --> 0; ) {
-                        _btn = cloneEditorHeaderButton(_btns.at(i).toObject());
-                        qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout())->insertWidget(0, _btn);
+                    for (const auto jv: _btns) {
+                        const QJsonObject obj = jv.toObject();
+                        if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
+                            leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
 
                         titleLeftOffset += 40/*_btn->width()*/;
                     }
 
+                    if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+                        _layout->insertWidget(0, leftboxbuttons);
                 }
 
                 // update title caption for elipsis
@@ -270,17 +318,54 @@ public:
         CCefEventsGate::onDocumentType(id, type);
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->m_css = prepare_editor_css(type);
-
-            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
-            css.append(window->m_css);
             window->m_pMainPanel->setProperty("window", "pretty");
-            window->m_pMainPanel->setStyleSheet(css);
+            changeTheme(AscAppManager::themes().current());
+        }
+    }
+
+    void changeTheme(const std::wstring& theme)
+    {
+        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            window->m_css = prepare_editor_css(panel()->data()->contentType(), theme);
+
+            if ( window->m_pMainPanel ) {
+                window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+
+                QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+                css.append(window->m_css);
+                window->m_pMainPanel->setStyleSheet(css);
+            }
+
+            for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
+                CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
+                btn->setIconOpacity(AscAppManager::themes().isThemeDark(theme) ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
+            }
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(editor_color(type));
+            std::wstring background, border;
+            switch (panel()->data()->contentType()) {
+            case etDocument:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive);
+                border = background;
+                break;
+            case etPresentation:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive);
+                border = background;
+                break;
+            case etSpreadsheet:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive);
+                border = background;
+                break;
+            default:
+                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground);
+                border = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBorder);
+            }
+
+            window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
 #endif
         }
+
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
     }
 
     void onDocumentChanged(int id, bool state) override
@@ -413,23 +498,21 @@ public:
     void onEditorAllowedClose(int) override
     {
         AscAppManager::closeEditorWindow(size_t(window));
+
+        CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+        AscAppManager::getInstance().commonEvents().signal(&_event);
     }
 
-    void onLocalFileSaveAs(void * d) override
-    {
-        window->onLocalFileSaveAs(d);
-    }
-
-    void onScreenScalingFactor(int f)
+    void onScreenScalingFactor(double f)
     {
         if ( window->isCustomWindowStyle() ) {
             int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = (titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f; // 4 tool buttons: min+max+close+usericon
+            int diffW = int((titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f); // 4 tool buttons: min+max+close+usericon
 
             if ( iconuser ) {
-                iconuser->setMaximumWidth(200 * f);
-                iconuser->setContentsMargins(12*f,0,12*f,2*f);
-                iconuser->setMaximumWidth(200*f);
+                iconuser->setMaximumWidth(int(200 * f));
+                iconuser->setContentsMargins(int(12*f),0,int(12*f),int(2*f));
+                iconuser->setMaximumWidth(int(200*f));
                 iconuser->adjustSize();
                 diffW -= iconuser->width();
             }
@@ -438,11 +521,11 @@ public:
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
             }
 
-            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*f) :
-                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*f);
+            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
+                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, int(2*f));
 
-            for (auto btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(TOOLBTN_WIDTH*f, TOOLBTN_HEIGHT*f));
+            for (const auto& btn: m_mapTitleButtons) {
+                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
         }
@@ -500,7 +583,7 @@ public:
         onFullScreen(apply);
     }
 
-    void onPortalLogout(wstring wjson) override
+    void onPortalLogout(std::wstring wjson) override
     {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -508,7 +591,7 @@ public:
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString portal = objRoot["portal"].toString();
+            QString portal = objRoot["domain"].toString();
 
             if ( m_panel && !portal.isEmpty() ) {
                 if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
@@ -520,7 +603,7 @@ public:
     void onFileLocation(int, QString param) override
     {
         if ( param == "offline" ) {
-            const wstring& path = m_panel->data()->url();
+            const std::wstring& path = m_panel->data()->url();
             if (!path.empty()) {
                 Utils::openFileLocation(QString::fromStdWString(path));
             } else
@@ -538,8 +621,8 @@ public:
         if ( !iconuser ) {
             iconuser = new CElipsisLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
-            iconuser->setContentsMargins(0,0,0,2 * window->m_dpiRatio);
-            iconuser->setMaximumWidth(200 * window->m_dpiRatio);
+            iconuser->setContentsMargins(0,0,0,int(2 * window->m_dpiRatio));
+            iconuser->setMaximumWidth(int(200 * window->m_dpiRatio));
 //            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
 //            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
         }
@@ -597,7 +680,8 @@ public:
                         }
                     } else {
                         for (const auto& k: _disabled.keys()) {
-                            m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
+                            if ( m_mapTitleButtons.contains(k) )
+                                m_mapTitleButtons[k]->setDisabled(_disabled.value(k).toBool());
                         }
                     }
                 } else
@@ -605,7 +689,8 @@ public:
                     QJsonObject _btns_changed = objRoot["icon:changed"].toObject();
 
                     for (const auto& b: _btns_changed.keys()) {
-                        m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                        if ( m_mapTitleButtons.contains(b) )
+                            m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
                     }
                 }
             }

@@ -51,6 +51,21 @@
     });
 })(jQuery);
 
+/*
+*  @winxpsupport
+*/
++function polyfill_object_entries(){
+    if ( !Object.entries )
+        Object.entries = function(obj){
+            let ownProps = Object.keys(obj),
+                i = ownProps.length,
+            resArray = new Array(i); // preallocate the Array
+
+        while (i--) resArray[i] = [ownProps[i], obj[ownProps[i]]];
+        return resArray;
+    };
+}();
+
 var utils = {};
 window.utils = utils;
 
@@ -253,7 +268,8 @@ utils.fn.extend = function(dest, src) {
 utils.fn.parseRecent = function(arr, out = 'files') {
     var _files_arr = [], _dirs_arr = [];
 
-    var _re_name = /([^\\/]+\.[a-zA-Z0-9]{3,})$/;
+    const _is_win = /Win/.test(navigator.platform);
+    const _re_name = !_is_win ? /([^/]+\.[a-zA-Z0-9]{3,})$/ : /([^\\/]+\.[a-zA-Z0-9]{3,})$/;
     for (let _f_ of arr) {
         let fn = _f_.path;
         if ( _re_name.test(fn) ) {
@@ -278,7 +294,8 @@ utils.fn.parseRecent = function(arr, out = 'files') {
 
     var out_dirs_arr = [];
     for (let _d_ of _dirs_arr) {
-        let name = /([^\\/]+)$/.exec(_d_)[1], parent;
+        let name = (!_is_win ? /([^/]+)$/ : /([^\\/]+)$/).exec(_d_)[1],
+                parent;
         if (!name) {
             name = _d_;
             parent = 'My Computer' /*utils.Lang.textMyComputer*/;

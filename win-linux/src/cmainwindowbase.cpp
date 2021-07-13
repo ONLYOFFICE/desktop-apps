@@ -11,6 +11,11 @@ CMainWindowBase::CMainWindowBase()
 //    });
 }
 
+CMainWindowBase::~CMainWindowBase()
+{
+
+}
+
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
@@ -76,11 +81,11 @@ bool CMainWindowBase::pointInTabs(const QPoint& pt) const
     return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
 }
 
-bool CMainWindowBase::movedByTab()
-{
-    return mainPanel()->tabWidget()->count() == 1 &&
-            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
-}
+//bool CMainWindowBase::movedByTab()
+//{
+//    return mainPanel()->tabWidget()->count() == 1 &&
+//            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
+//}
 
 QWidget * CMainWindowBase::editor(int index)
 {
@@ -97,7 +102,7 @@ int CMainWindowBase::editorsCount() const
     return mainPanel()->tabWidget()->count(cvwtEditor);
 }
 
-int CMainWindowBase::editorsCount(const wstring& portal) const
+int CMainWindowBase::editorsCount(const std::wstring& portal) const
 {
     return mainPanel()->tabWidget()->count(portal, true);
 }
@@ -117,4 +122,9 @@ void CMainWindowBase::captureMouse(int)
 #ifdef Q_OS_WIN
     ReleaseCapture();
 #endif
+}
+
+void CMainWindowBase::applyTheme(const std::wstring& name)
+{
+    mainPanel()->applyTheme(name);
 }

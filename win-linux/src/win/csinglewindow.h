@@ -35,6 +35,7 @@
 
 #include <QRect>
 #include <QPushButton>
+#include <QLabel>
 
 #include "cwindowbase.h"
 #include "cwinpanel.h"
@@ -61,6 +62,8 @@ private:
     QPushButton * m_pButtonMinimize;
     QPushButton * m_pButtonMaximize;
     QPushButton * m_pButtonClose;
+
+    QLabel * m_pLabelTitle = nullptr;
 
     QWidget * createMainPanel(QWidget *, const QString&, bool, QWidget *);
     void recalculatePlaces();
@@ -94,6 +97,7 @@ public:
     int getMaximumWidth();
     void removeMaximumSize();
     void adjustGeometry();
+    void applyTheme(const std::wstring& themeid);
 
     void setScreenScalingFactor(uchar);
     void doClose();

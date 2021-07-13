@@ -307,6 +307,8 @@ CX11Decoration::CX11Decoration(QWidget * w)
     m_nDirection = -1;
 
     need_to_check_motion = guess_window_manager() == WM_KWIN;
+    dpi_ratio = Utils::getScreenDpiRatioByWidget(w);
+    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
 }
 
 CX11Decoration::~CX11Decoration()
@@ -352,7 +354,7 @@ int CX11Decoration::hitTest(int x, int y) const
         return -1;
 
     QRect rect = m_window->rect();
-    int bw = CUSTOM_BORDER_WIDTH, bbw = CUSTOM_BORDER_WIDTH;
+    int bw = m_nBorderSize, bbw = m_nBorderSize;
     int w = rect.width(), h = rect.height();
 
     QRect rc_top_left       = rect.adjusted(0, 0, -(w-bbw), -(h-bbw));
@@ -546,9 +548,10 @@ void CX11Decoration::setMaximized(bool bVal)
     m_bIsMaximized = bVal;
 }
 
-int CX11Decoration::devicePixelRatio()
+void CX11Decoration::onDpiChanged(double f)
 {
-    return gtk_addon::devicePixelRatio();
+    dpi_ratio = f;
+    m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
 }
 
 int CX11Decoration::customWindowBorderWith()

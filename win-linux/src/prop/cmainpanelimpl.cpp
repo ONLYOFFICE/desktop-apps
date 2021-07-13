@@ -43,7 +43,7 @@
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 
-CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, uchar scale)
+CMainPanelImpl::CMainPanelImpl(QWidget *parent, bool isCustomWindow, double scale)
     : CMainPanel(parent, isCustomWindow, scale)
 {
     QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainPanelImpl::refreshAboutVersion, this));
@@ -70,22 +70,41 @@ void CMainPanelImpl::refreshAboutVersion()
         })
     );
 
-    wstring _force_value = AscAppManager::userSettings(L"force-scale");
-    _json_obj["uiscaling"] = _force_value == L"1" ? 100 : _force_value == L"200" ? 200 : 0;
+    std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
+    if ( _force_value == L"1" )
+        _json_obj["uiscaling"] = 100;
+    else
+    if ( _force_value == L"1.5" )
+        _json_obj["uiscaling"] = 150;
+    else
+    if ( _force_value == L"2" )
+        _json_obj["uiscaling"] = 200;
+    else _json_obj["uiscaling"] = 0;
+
+#ifndef __OS_WIN_XP
+    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+#endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
-    if ( InputArgs::contains("--ascdesktop-reveal-app-config") )
+    if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );
 }
 
-void CMainPanelImpl::updateScaling(int dpiratio)
+void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    QPixmap pixmap(dpiratio > 1 ? ":/logo@2x.png" : ":/logo.png");
-    m_pButtonMain->setText(QString());
-    m_pButtonMain->setIcon(QIcon(pixmap));
-    m_pButtonMain->setIconSize(pixmap.size());
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
+}
+
+void CMainPanelImpl::applyTheme(const std::wstring& theme)
+{
+    CMainPanel::applyTheme(theme);
+
+    double dpiratio = scaling();
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
 void CMainPanelImpl::onLocalOptions(const QString& json)

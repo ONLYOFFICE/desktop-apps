@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,6 +44,82 @@
             </objects>
             <point key="canvasLocation" x="-798" y="923"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="v64-Yf-pkc">
+            <objects>
+                <windowController storyboardIdentifier="ASCCertificatePreviewTextWindowController" id="H9P-3f-l2u" customClass="ASCCertificatePreviewTextWindowController" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="uKp-p4-6uB">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="268" y="330" width="500" height="600"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1792" height="1095"/>
+                        <value key="minSize" type="size" width="500" height="600"/>
+                        <view key="contentView" id="91f-Sl-lxG">
+                            <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="H9P-3f-l2u" id="7It-8a-y69"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="uab-JY-Ge0" kind="relationship" relationship="window.shadowedContentViewController" id="lOa-hH-KlQ"/>
+                    </connections>
+                </windowController>
+                <customObject id="hUx-lS-xTN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-712" y="1565"/>
+        </scene>
+        <!--Certificate Preview Text View Controller-->
+        <scene sceneID="1Ge-eE-fgy">
+            <objects>
+                <viewController id="uab-JY-Ge0" customClass="ASCCertificatePreviewTextViewController" sceneMemberID="viewController">
+                    <view key="view" id="1r2-KW-8Lp">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="491"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OI6-cf-NIT">
+                                <rect key="frame" x="20" y="20" width="460" height="451"/>
+                                <clipView key="contentView" drawsBackground="NO" id="NLV-3i-1oj">
+                                    <rect key="frame" x="0.0" y="0.0" width="460" height="451"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="a4z-OB-bKc">
+                                            <rect key="frame" x="0.0" y="0.0" width="460" height="451"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="460" height="451"/>
+                                            <size key="maxSize" width="660" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="k3Y-eN-9vw">
+                                    <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="hIx-vQ-lh1">
+                                    <rect key="frame" x="444" y="0.0" width="16" height="451"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OI6-cf-NIT" secondAttribute="trailing" constant="20" symbolic="YES" id="79o-iO-iEg"/>
+                            <constraint firstAttribute="bottom" secondItem="OI6-cf-NIT" secondAttribute="bottom" constant="20" symbolic="YES" id="7aK-L5-jkt"/>
+                            <constraint firstItem="OI6-cf-NIT" firstAttribute="top" secondItem="1r2-KW-8Lp" secondAttribute="top" constant="20" symbolic="YES" id="JlG-DH-NcS"/>
+                            <constraint firstItem="OI6-cf-NIT" firstAttribute="leading" secondItem="1r2-KW-8Lp" secondAttribute="leading" constant="20" symbolic="YES" id="qyp-Mv-784"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="infoTextView" destination="OI6-cf-NIT" id="dRb-KA-JwT"/>
+                    </connections>
+                </viewController>
+                <customObject id="jfg-ar-Kso" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-712" y="2243.5"/>
+        </scene>
         <!--Document Signature Step Controller-->
         <scene sceneID="Vr8-KE-5We">
             <objects>
@@ -53,7 +129,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QUt-aH-Eqd">
-                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <rect key="frame" x="202" y="13" width="76" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GOU-av-TC1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -73,7 +149,7 @@ Gw
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-open-cert" id="jSF-al-P3A"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yw-aC-Zck">
-                                <rect key="frame" x="86" y="116" width="308" height="17"/>
+                                <rect key="frame" x="87" y="117" width="307" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify the digital signature file for the document." id="2Ck-6y-ygx">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -81,7 +157,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-EZ-yQ7">
-                                <rect key="frame" x="174" y="68" width="132" height="32"/>
+                                <rect key="frame" x="177" y="70" width="126" height="32"/>
                                 <buttonCell key="cell" type="push" title="Load Signature" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="tTF-wa-eJp">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -119,7 +195,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="onD-Rb-T7N">
-                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <rect key="frame" x="202" y="13" width="76" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RbM-Dq-A3K">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -139,7 +215,7 @@ Gw
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-password" id="fSS-MZ-kPB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJu-jw-byw">
-                                <rect key="frame" x="106" y="116" width="269" height="17"/>
+                                <rect key="frame" x="106" y="117" width="269" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the digital signature." id="1Fy-mg-aq9">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -147,10 +223,10 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBE-W1-Uhy">
-                                <rect key="frame" x="140" y="69" width="240" height="32"/>
+                                <rect key="frame" x="140" y="70" width="240" height="32"/>
                                 <subviews>
                                     <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sG4-od-Zca">
-                                        <rect key="frame" x="0.0" y="5" width="200" height="22"/>
+                                        <rect key="frame" x="0.0" y="6" width="200" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="DeU-UC-lQb"/>
                                         </constraints>
@@ -216,7 +292,7 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gM-D1-kWe">
-                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <rect key="frame" x="202" y="13" width="76" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jpH-3g-Gt5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -236,7 +312,7 @@ Gw
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-open-key" id="8se-6C-g2j"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZUq-1c-377">
-                                <rect key="frame" x="101" y="116" width="278" height="17"/>
+                                <rect key="frame" x="101" y="117" width="278" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Specify a private key for the digital signature." id="Tfc-EF-VnS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -244,7 +320,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n8D-70-cwJ">
-                                <rect key="frame" x="164" y="68" width="152" height="32"/>
+                                <rect key="frame" x="167" y="70" width="146" height="32"/>
                                 <buttonCell key="cell" type="push" title="Load a Private Key" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="P3k-kI-w22">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -282,7 +358,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-RY-2Vo">
-                                <rect key="frame" x="199" y="13" width="82" height="32"/>
+                                <rect key="frame" x="202" y="13" width="76" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qZ4-0O-L0G">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -302,7 +378,7 @@ Gw
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="sign-password" id="7x5-PD-SEB"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIs-Qo-Q9D">
-                                <rect key="frame" x="122" y="116" width="237" height="17"/>
+                                <rect key="frame" x="122" y="117" width="237" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Enter the password for the private key." id="1dL-nN-bJI">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -310,10 +386,10 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vd2-XW-sZs">
-                                <rect key="frame" x="140" y="69" width="240" height="32"/>
+                                <rect key="frame" x="140" y="70" width="240" height="32"/>
                                 <subviews>
                                     <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fPT-cb-IZ0">
-                                        <rect key="frame" x="0.0" y="5" width="200" height="22"/>
+                                        <rect key="frame" x="0.0" y="6" width="200" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="5Cn-7O-yls"/>
                                         </constraints>

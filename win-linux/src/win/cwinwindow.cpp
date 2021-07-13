@@ -38,6 +38,13 @@
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message) {
+    case WM_ACTIVATE:
+        {
+            CWinWindow * window = reinterpret_cast<CWinWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+            if ( window )
+                window->onWindowActivate(LOWORD(wParam) != WA_INACTIVE);
+        }
+        break;
     case WM_CHAR:
         if (wParam == VK_ESCAPE) {
             PostMessage(hWnd, WM_CLOSE, 0, 0);
@@ -114,12 +121,16 @@ CWinWindow::CWinWindow(HWND parent, const QString& title)
         throw std::runtime_error("Couldn't register window class");
 }
 
-void CWinWindow::modal()
+void CWinWindow::modal(HWND fh)
 {
-    EnableWindow(m_hParent, FALSE);
-
     ShowWindow(m_hSelf, SW_SHOW);
     UpdateWindow(m_hSelf);
+    SetFocus(m_hSelf);
+
+    if ( fh )
+        SetFocus(fh);
+
+    EnableWindow(m_hParent, FALSE);
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -165,6 +176,10 @@ void CWinWindow::center()
 void CWinWindow::onScreenScaling()
 {
 
+}
+
+void CWinWindow::onWindowActivate(bool)
+{
 }
 
 HWND CWinWindow::handle()

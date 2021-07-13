@@ -2,9 +2,6 @@
 "%@ Help" = "Справка %@";
 
 /* No comment provided by engineer. */
-"%@ Reporter Window" = "%@ окно докладчика";
-
-/* No comment provided by engineer. */
 "About %@" = "О программе %@";
 
 /* No comment provided by engineer. */
@@ -47,10 +44,16 @@
 "Document template" = "Шаблон документа";
 
 /* No comment provided by engineer. */
+"Electronic Publication" = "Электронная книга ePUB";
+
+/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Книга Excel 97-2003";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Книга Excel 2007";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Электронная книга FB2";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Файл \"%@\" не может быть открыт или не существует.";
@@ -65,6 +68,9 @@
 "Hide %@" = "Скрыть %@";
 
 /* No comment provided by engineer. */
+"HTML File" = "Файл HTML";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Если Вы не просмотрите эти документы, все внесенные изменения будут потеряны.";
 
 /* No comment provided by engineer. */
@@ -72,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Пользовательское соглашение";
+
+/* No comment provided by engineer. */
+"MHT File" = "Файл MHT";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket e-book";
@@ -144,6 +153,9 @@
 
 /* No comment provided by engineer. */
 "Presentation template" = "Шаблон презентаци";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Режим докладчика";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Выйти %@";

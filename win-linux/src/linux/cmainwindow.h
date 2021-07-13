@@ -51,13 +51,15 @@ public:
     explicit CMainWindow(const QRect&);
     ~CMainWindow();
 
-    void parseInputArgs(const QStringList&);
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
     void sendSertificate(int viewid);
     QWidget * handle() const;
     void bringToTop() const override;
+    void show(bool maximized);
+    void applyTheme(const std::wstring&) override;
+    void updateScaling() override;
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -71,10 +73,10 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
-    void setScreenScalingFactor(uchar factor);
+    void setScreenScalingFactor(double factor);
 private:
     CMainPanelImpl *   m_pMainPanel;
-    uchar m_dpiRatio = 1;
+    double m_dpiRatio = 1;
 
 signals:
 public slots:

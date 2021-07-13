@@ -1,7 +1,7 @@
 ISCC := iscc
 
 S3_BUCKET ?= repo-doc-onlyoffice-com
-WIN_REPO_DIR := windows
+RELEASE_BRANCH ?= unstable
 
 DESKTOP_EDITORS_EXE += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 DESKTOP_EDITORS_ZIP += win-linux/package/windows/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
@@ -27,7 +27,18 @@ VCREDIST += $(VCREDIST13)
 endif
 VCREDIST += $(VCREDIST15)
 
-INDEX_HTML := win-linux/package/windows/index.html
+APPCAST := win-linux/package/windows/update/appcast.xml
+CHANGES_EN := win-linux/package/windows/update/changes.html
+CHANGES_RU := win-linux/package/windows/update/changes_ru.html
+CHANGES_DIR := $(BRANDING_DIR)/win-linux/package/windows/update/changes/$(PRODUCT_VERSION)
+DEPLOY_JSON := win-linux/package/windows/deploy.json
+
+EXE_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_EXE))
+ZIP_URI        := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_ZIP))
+EXE_UPDATE_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/$(notdir $(DESKTOP_EDITORS_UPDATE))
+APPCAST_URI    := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/appcast_$(PACKAGE_VERSION).xml
+CHANGES_EN_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_$(PACKAGE_VERSION).html
+CHANGES_RU_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/windows/update/changes_ru_$(PACKAGE_VERSION).html
 
 ISCC_PARAMS += //Qp
 ISCC_PARAMS += //D_ARCH=$(ARCHITECTURE)
@@ -38,14 +49,14 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	ISCC_PARAMS += //D_ONLYOFFICE=1
 endif
 ISCC_PARAMS += //D_UPDMODULE=1
-ISCC_PARAMS += //DSCRIPT_CUSTOM_FILES=1
 ISCC_PARAMS += //DsAppVersion=$(PACKAGE_VERSION)
 ISCC_PARAMS += //DsBrandingFolder="$(shell cygpath -a -w $(BRANDING_DIR))"
 ISCC_PARAMS += //DsOutputFileName=$(notdir $(basename $@))
+ISCC_PARAMS += //DDEPLOY_PATH="$(shell cygpath -a -w $(DEST_DIR))"
 ifdef ENABLE_SIGNING
 ISCC_PARAMS += //DENABLE_SIGNING=1
 endif
-ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.verisign.com/scripts/timstamp.dll \$$f"
+ISCC_PARAMS += //S"byparam=signtool.exe sign /v /n $(word 1, $(PUBLISHER_NAME)) /t http://timestamp.digicert.com \$$f"
 
 $(DESKTOP_EDITORS_EXE): $(DEST_DIR) $(VCREDIST)
 $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
@@ -78,35 +89,120 @@ clean-package:
 		$(dir $(DESKTOP_EDITORS_ZIP))*.zip \
 		$(dir $(DESKTOP_EDITORS_UPDATE))*.exe \
 		$(VCREDIST) \
-		$(INDEX_HTML)
+		$(APPCAST) \
+		$(CHANGES_EN) \
+		$(CHANGES_RU) \
+		$(DEPLOY_JSON)
 
-deploy: $(PACKAGES) $(INDEX_HTML)
-	aws s3 cp \
-	$(DESKTOP_EDITORS_EXE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+deploy-exe: $(DESKTOP_EDITORS_EXE)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_EXE) s3://$(S3_BUCKET)/$(EXE_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_ZIP) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read 
+deploy-exe-update: $(DESKTOP_EDITORS_UPDATE)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_UPDATE) s3://$(S3_BUCKET)/$(EXE_UPDATE_URI)
 
-	aws s3 cp \
-	$(DESKTOP_EDITORS_UPDATE) \
-	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-	--acl public-read
+deploy-zip: $(DESKTOP_EDITORS_ZIP)
+	aws s3 cp --no-progress --acl public-read \
+		$(DESKTOP_EDITORS_ZIP) s3://$(S3_BUCKET)/$(ZIP_URI)
 
-#	aws s3 sync \
-#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/ \
-#	s3://$(S3_BUCKET)/$(WIN_REPO_DIR)/$(PACKAGE_NAME)/latest/ \
-#	--acl public-read \
-#	--delete
+deploy-appcast: $(APPCAST) $(CHANGES_EN) $(CHANGES_RU)
+	aws s3 cp --no-progress --acl public-read \
+		$(APPCAST) s3://$(S3_BUCKET)/$(APPCAST_URI)
 
-M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
-M4_PARAMS += -D M4_WIN_ARCH=$(WIN_ARCH)
-M4_PARAMS += -D M4_EXE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_EXE))"
-M4_PARAMS += -D M4_EXE_UPDATE_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_UPDATE))"
-M4_PARAMS += -D M4_ZIP_URI="$(WIN_REPO_DIR)/$(PACKAGE_NAME)/$(PACKAGE_VERSION)/$(notdir $(DESKTOP_EDITORS_ZIP))"
+	aws s3 cp --no-progress --acl public-read \
+		$(CHANGES_EN) s3://$(S3_BUCKET)/$(CHANGES_EN_URI)
 
-% : %.m4
-	m4 $(M4_PARAMS)	$< > $@
+	aws s3 cp --no-progress --acl public-read \
+		$(CHANGES_RU) s3://$(S3_BUCKET)/$(CHANGES_RU_URI)
+
+comma := ,
+json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
+
+$(DEPLOY_JSON):
+	echo '{}' > $@
+	$(call json_edit, $@, '. + { \
+		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
+		version:  "$(PRODUCT_VERSION)"$(comma) \
+		build:    "$(BUILD_NUMBER)" \
+	}')
+ifndef _WIN_XP
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH)"$(comma) \
+		path:     "$(EXE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH) update"$(comma) \
+		path:     "$(EXE_UPDATE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows $(WIN_ARCH) portable"$(comma) \
+		path:     "$(ZIP_URI)" \
+	}]')
+else
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH)"$(comma) \
+		path:     "$(EXE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH) update"$(comma) \
+		path:     "$(EXE_UPDATE_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "windows"$(comma) \
+		title:    "Windows XP $(WIN_ARCH) portable"$(comma) \
+		path:     "$(ZIP_URI)" \
+	}]')
+endif
+ifndef _WIN_XP
+ifeq ($(WIN_ARCH), x64)
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Appcast"$(comma) \
+		path:     "$(APPCAST_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Changes EN"$(comma) \
+		path:     "$(CHANGES_EN_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "appcast"$(comma) \
+		title:    "Changes RU"$(comma) \
+		path:     "$(CHANGES_RU_URI)" \
+	}]')
+endif
+endif
+
+DEPLOY += deploy-exe
+DEPLOY += deploy-exe-update
+DEPLOY += deploy-zip
+ifndef _WIN_XP
+	ifeq ($(WIN_ARCH), x64)
+DEPLOY += deploy-appcast
+	endif
+endif
+
+deploy: $(DEPLOY) $(DEPLOY_JSON)
+
+AWK_PARAMS += -v Version="$(PRODUCT_VERSION)"
+AWK_PARAMS += -v Build="$(BUILD_NUMBER)"
+AWK_PARAMS += -v Timestamp="$(shell date +%s)"
+AWK_PARAMS += -i "$(BRANDING_DIR)/win-linux/package/windows/update/branding.awk"
+
+%/appcast.xml: %/appcast.xml.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -f $< > $@
+
+%/changes.html: %/changes.html.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -f $< "$(CHANGES_DIR)/en.html" > $@
+
+%/changes_ru.html: %/changes.html.awk
+	LANG=ru_RU.UTF-8 \
+	awk $(AWK_PARAMS) -f $< "$(CHANGES_DIR)/ru.html" > $@

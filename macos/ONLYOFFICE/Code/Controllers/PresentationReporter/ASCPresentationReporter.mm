@@ -42,7 +42,9 @@
 #import "mac_application.h"
 #import "NSView+Extensions.h"
 #import "PureLayout.h"
+#import "ASCConstants.h"
 #import "ASCHelper.h"
+#import "ASCCommonViewController.h"
 
 @interface ASCPresentationReporter() <NSWindowDelegate>
 @property (nonatomic) NSStoryboard * storyboard;
@@ -67,14 +69,14 @@
     self = [super init];
     
     if (self) {
-        _storyboard = [NSStoryboard storyboardWithName:@"Presentation-Reporter" bundle:[NSBundle mainBundle]];
+        _storyboard = [NSStoryboard storyboardWithName:StoryboardNameReporter bundle:[NSBundle mainBundle]];
         _isDisplay = false;
     }
     
     return self;
 }
 
-- (void)create:(void *)data {
+- (void)create:(void *)data from:(int)senderId {
     if (_isDisplay || !_storyboard) {
         return;
     }
@@ -83,8 +85,16 @@
     
     if (_controller) {
         _isDisplay = true;
+        
+        NSString * windowTitle = NSLocalizedString(@"Presenter View", nil);
+        
+        if (ASCCommonViewController * viewController = (ASCCommonViewController *)[[[NSApplication sharedApplication] mainWindow] contentViewController]) {
+            if (ASCTabView * tabView = [viewController tabViewWithId:senderId]) {
+                windowTitle = [NSString stringWithFormat:@"%@ - %@", windowTitle, tabView.title];
+            }
+        }
 
-        [_controller.window setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Reporter Window", nil), [ASCHelper appName]]];
+        [_controller.window setTitle:windowTitle];
 
         NSCefView * cefView = [[NSCefView alloc] initWithFrame:CGRectZero];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];

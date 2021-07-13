@@ -38,6 +38,16 @@
 +function(){ 'use strict'
     window.config = { portals: {}};
     window.config.portals.checklist = sdk.externalClouds();
+    window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
+
+    if ( window.config.portals.checklist ) {
+        let _providers = {};
+        window.config.portals.checklist.forEach(item => {
+            _providers[item.provider] = item;
+        });
+
+        window.config.portals.providers = _providers;
+    }
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
@@ -55,7 +65,7 @@
 
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
-        var _html_empty_panel1 =
+        var _html_empty_panel_with_carousel =
                         `<div id="box-empty-portals" class="empty flex-center">
                             <section class="center-box">
                               <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
@@ -64,17 +74,23 @@
                                     <div class='carousel__slide'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide1Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect1' data-src='connect1'>
+                                        </svg>
                                     </div>
                                     <div class='carousel__slide'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide2Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide2Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect2' data-src='connect2'>
+                                        </svg>
                                     </div>
                                     <div class='carousel__slide active'>
                                         <p class='carousel__slide__text title' l10n>${_lang.emptySlide3Title}</p>
                                         <p class='carousel__slide__text descr' l10n>${_lang.emptySlide3Text}</p>
-                                        <img class='carousel__slide__img'>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect3' data-src='connect3'>
+                                        </svg>
                                     </div>
                                 </figure>
                                 <nav class='carousel__scrolls'>
@@ -83,7 +99,7 @@
                                 </nav>
                               </div>
                               <div class="tools-connect">
-                                <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
+                                <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                 <section class="link-connect">
                                   <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
                                 </section>
@@ -91,29 +107,18 @@
                             </section>
                         </div>`;
 
-        var _html_empty_panel =
+        var _html_empty_panel_with_providers =
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
                                     <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
-                                        <div>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='asc'>
-                                                <svg class='icon'><use xlink:href='#logo__asc'></svg>
-                                            </button>
-                                        </div>
-                                        <div style='font-size:0;'>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='nextc'>
-                                                <svg class='icon'><use xlink:href='#logo__nextcloud'></svg>
-                                            </button>
-                                            <button class="btn btn--big btn--light btn--svg login" data-cprov='ownc'>
-                                                <svg class='icon'><use xlink:href='#logo__owncloud'></svg>
-                                            </button>
-                                        </div>
+                                        <div id='box-providers-premium-button' />
+                                        <div id="box-providers-buttons" style='font-size:0;' />
                                     </section>
                                     <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
-                                        <button class="btn primary newportal" l10n>${_lang.btnCreatePortal}</button>
+                                        <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                         <section class="link-connect">
                                             <label l10n>${_lang.textHavePortal}</label><a class="login link" href="#" l10n>${_lang.btnConnect}</a>
                                         </section>
@@ -122,27 +127,42 @@
                             </div>`;
 
         var _html = `<div ${args.id} class="action-panel ${args.action}">
-                      ${config.portals.checklist.length > 1 ? _html_empty_panel : _html_empty_panel1}
+                      ${config.portals.checklist.length > 1 ? _html_empty_panel_with_providers : _html_empty_panel_with_carousel}
                       <div id="box-portals">
                         <div class="flexbox">
                           <h3 class="table-caption" l10n>${_lang.portalListTitle}</h3>
                           <div class="table-box flex-fill"><table class="table-files list"></table></div>
                           <div class="lst-tools">
-                            <button id="btn-addportal" class="btn login" l10n>${_lang.btnAddPortal}</button>
+                            <button id="btn-addportal" class="btn btn--primary login" l10n>${_lang.btnAddPortal}</button>
                           </div>
                         </div>
                       </div>
                     </div>`;
 
-        config.portals.checklist.forEach(item => {
-            if ( !!item.icon && !!item.icon.providerbutton ) {
-                const _re = new RegExp(`data-cprov='${item.id}'[\\s\\S]+?(?=<svg)(<svg.+<\/svg>)`);
-                const _match = _re.exec(_html);
-                if ( _match && !!_match[1] ) {
-                    _html = _html.replace(_match[1], `<img class='icon' src='${item.icon.providerbutton}'></img>`);
+        if ( config.portals.checklist.length ) {
+            const provider_button_template = (provider, name, icons) => {
+                                                const icon_light = icons ? icons.themeLight.buttonLogo : '',
+                                                        icon_dark = icons ? icons.themeDark.buttonLogo : '';
+                                                const button_el = `<img class='icon icon__light' src='${relpath}/providers/${provider}/${icon_light}'></img>
+                                                                    <img class='icon icon__dark' src='${relpath}/providers/${provider}/${icon_dark}'></img>`;
+                                                return `<button class="btn btn--big btn--svg login" data-cprov='${provider}'>
+                                                            ${!!icons ? button_el : name}
+                                                        </button>`;
+                                            }
+
+            _html = $(_html);
+            let $box = $('<div />');
+            config.portals.checklist.forEach(item => {
+                if ( !!item.icons && !!item.icons.themeLight ) {
+                    const btn = provider_button_template(item.provider, item.name, item.icons);
+
+                    item.provider != 'onlyoffice' ? $box.append(btn) :
+                            _html.find('#box-providers-premium-button').append(btn);
                 }
-            }
-        });
+            });
+
+            _html.find('#box-providers-buttons').append($box.children());
+        }
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -173,12 +193,20 @@
                         </td>
                         <td class="cell-tools">
                             <div class="hlayout">
-                              <button class="btn-quick logout img-el" tooltip="${utils.Lang.menuLogout}"></button>
+                                <button class="btn-quick logout" tooltip="${utils.Lang.menuLogout}">
+                                    <i class="icon img-el theme-inverted" />
+                                </button>
                             </span>
                         </td>`;
 
+            if ( !!info.themeicons ) {
+                const icon_el = `<img class='icon icon__light' src='${info.themeicons.light}'></img>
+                                    <img class='icon icon__dark' src='${info.themeicons.dark}'></img>`;
+                _row = _row.replace(/<svg.+<\/svg>/, icon_el);
+            } else
             if ( !!info.iconsrc ) {
-                _row = _row.replace(/<svg.+<\/svg>/, `<img class='icon' src='${info.iconsrc}'></img>`);
+                const icon_el = `<img class='icon icon_light' src='${info.iconsrc}'></img>`;
+                _row = _row.replace(/<svg.+<\/svg>/, icon_el);
             }
 
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
@@ -194,9 +222,14 @@
         function _on_context_menu(menu, action, data) {
             var model = data;
             if (/\:open/.test(action)) {
-                model.logged ?
-                    window.sdk.execCommand("portal:open", JSON.stringify({portal: model.path, provider:model.provider})) :
-                        _do_connect(model);
+                // model.logged ?
+                    const _entrypage = !window.config.portals.providers[model.provider] ? '/' :
+                                            window.config.portals.providers[model.provider].startPage;
+                    sdk.command("portal:open", JSON.stringify({
+                        portal: model.path,
+                        provider: model.provider,
+                        entrypage: _entrypage}));
+                        // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model);
@@ -214,6 +247,10 @@
                 onclose: opts => {
                     if ( opts ) {
                         opts.type = 'outer';
+
+                        const _pm = config.portals.checklist.find(e => e.provider == opts.provider);
+                        opts.entrypage = !_pm ? '/' : _pm.startPage;
+
                         sdk.execCommand("auth:outer", JSON.stringify(opts));
                     }
 
@@ -317,16 +354,26 @@
 
                 function _create_icon_id(provider) {
                     switch ( provider ) {
+                    case 'onlyoffice':
                     case 'asc': return 'icon__asc';
-                    case 'ownc': return 'icon__ownc';
-                    case 'nextc': return 'icon__nextc';
+                    case 'owncloud': return 'icon__ownc';
+                    case 'nextcloud': return 'icon__nextc';
                     default: return 'icon__common';
                     }
                 };
 
                 function _get_icon_scr(provider) {
-                    let _model = config.portals.checklist.find(e => {return e.id == provider;})
-                    return !!_model && !!_model.icon ? _model.icon.connectionlist : undefined;
+                    const _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons && !!_model.icons.themeLight.connectionsList ?
+                                `${relpath}/providers/${_model.provider}/${_model.icons.themeLight.connectionsList}` : undefined;
+                };
+
+                function _get_theme_icons(provider) {
+                    const _model = config.portals.checklist.find(e => (e.provider == provider))
+                    return !!_model && !!_model.icons ?
+                                { light: `${relpath}/providers/${_model.provider}/${_model.icons.themeLight.connectionsList}`,
+                                    dark: `${relpath}/providers/${_model.provider}/${_model.icons.themeDark.connectionsList}` } : 
+                                undefined;
                 };
 
                 collection.events.changed.attach((collection, model, value) => {
@@ -341,6 +388,7 @@
                                     portal: model.name,
                                     iconid: _create_icon_id(model.provider),
                                     iconsrc: _get_icon_scr(model.provider),
+                                    themeicons: _get_theme_icons(model.provider),
                                     user: model.user,
                                     email: model.email}, true)));
                         } else
@@ -357,6 +405,7 @@
                         portal: model.name,
                         iconid: _create_icon_id(model.provider),
                         iconsrc: _get_icon_scr(model.provider),
+                        themeicons: _get_theme_icons(model.provider),
                         user: model.user,
                         email: model.email,
                         elid: model.uid
@@ -373,8 +422,11 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
+                    let _pm = config.portals.checklist.find(e => e.provider == model.provider),
+                        _portal_start_page = '/';
+                    if ( _pm ) _portal_start_page = _pm.startPage;
                     // !model.logged ? _do_connect.call(this, model) :
-                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path}));
+                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path, entrypage:_portal_start_page}));
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -435,13 +487,16 @@
 
             let obj = JSON.parse(info);
             if ( obj ) {
+                // for back compatibility with r7 only
+                obj.provider == 'onlyoffice' && (obj.provider = 'asc');
+
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
                     !obj.email && (obj.email = '');
                     if ( model.email == obj.email ) {
                         if ( !model.get('logged') ) {
                             model.set('logged', true);
-                            if (model.provider != 'asc')
+                            if (model.provider != 'onlyoffice')
                                 _write_portal_cookie(obj.domain);
 
                             if ( model.get('removed') ) {
@@ -472,10 +527,10 @@
 
 
                 let _p;
-                !obj.provider && (obj.provider = 'asc');
-                if ( !config.portals.checklist.find(i => i.id == obj.provider) &&
+                !obj.provider && (obj.provider = 'onlyoffice');
+                if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
                             (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
-                    obj.provider = _p.id;
+                    obj.provider = _p.provider;
 
                 let info = {
                     portal: obj.domain,
@@ -488,7 +543,7 @@
                         (info.portal = info.portal.slice(0,-1));
 
                 PortalsStore.keep(info);
-                if ( obj.provider != 'asc' ) {
+                if ( obj.provider != 'onlyoffice' ) {
                     // sdk.setCookie(info.portal, utils.skipUrlProtocol(info.portal), "/", "asc_auth_key", utils.fn.uuid());
                     _write_portal_cookie(info.portal);
 
@@ -575,11 +630,21 @@
                 .on('click', e => {
                     _scrollCarousel(e.target.getAttribute('value'));
                 });
+
+            _on_theme_changed(localStorage.getItem('ui-theme'));
         };
 
         function _on_lang_changed(ol,nl) {
             $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
         };
+
+        function _on_theme_changed(name) {
+            $('.carousel__slide__img > use').each((i, el) => {
+                if ( name == 'theme-dark' )
+                    el.setAttribute('xlink:href', `#${el.dataset.src}-dark`);
+                else el.setAttribute('xlink:href', `#${el.dataset.src}-light`);
+            });
+        }
 
         return {
             init: function() {
@@ -610,6 +675,9 @@
                     } else
                     if (/^settings\:/.test(cmd)) {
                         _on_settings.call(this, cmd, param);
+                    } else
+                    if (cmd == 'uitheme:changed') {
+                        _on_theme_changed(param);
                     }
                 });
 

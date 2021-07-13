@@ -67,6 +67,7 @@ HEADERS += \
     $$PWD/src/cprintprogress.h \
     $$PWD/src/ccefeventstransformer.h \
     $$PWD/src/cascapplicationmanagerwrapper.h \
+    $$PWD/src/cascapplicationmanagerwrapper_private.h \
     $$PWD/src/ctabbar.h \
     $$PWD/src/casctabdata.h \
     $$PWD/src/utils.h \
@@ -92,7 +93,9 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/csvgpushbutton.h \
-    $$PWD/src/cappupdater.h
+    $$PWD/src/cappupdater.h \
+    $$PWD/src/cappeventfilter.h \
+    $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -128,7 +131,9 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/csvgpushbutton.cpp \
-    $$PWD/src/cappupdater.cpp
+    $$PWD/src/cappupdater.cpp \
+    $$PWD/src/cappeventfilter.cpp \
+    $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
 #    src/casclabel.cpp
 
@@ -159,7 +164,7 @@ core_windows {
 }
 core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
 
-ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
 core_linux {
     QT += network x11extras
@@ -174,6 +179,7 @@ core_linux {
                 $$PWD/src/linux/csinglewindow.h \
                 $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
+
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/gtk_addon.cpp \
@@ -182,8 +188,10 @@ core_linux {
                 $$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
-    HEADERS += $$PWD/src/linux/cdialogopenssl.h
-    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp
+    HEADERS += $$PWD/src/linux/cdialogopenssl.h \
+                $$PWD/src/linux/cdialogcertificateinfo.h
+    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp \
+                $$PWD/src/linux/cdialogcertificateinfo.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk
@@ -247,6 +255,10 @@ core_windows {
             -lrpcrt4
 #            -ldwmapi
 #            -lOpenGL32
+
+    build_xp {
+        DEFINES += __OS_WIN_XP
+    }
 }
 
 core_release:DESTDIR = $$DESTDIR/build

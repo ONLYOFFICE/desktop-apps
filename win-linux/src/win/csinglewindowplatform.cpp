@@ -37,6 +37,7 @@
 #include <windowsx.h>
 #include "cascapplicationmanagerwrapper.h"
 
+#include <QScreen>
 #include <functional>
 
 #define CAPTURED_WINDOW_CURSOR_OFFSET_X     180
@@ -47,7 +48,8 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
-    , m_bgColor(WINDOW_BACKGROUND_COLOR)
+    , m_bgColor(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground))
+    , m_borderColor(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder))
 {
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
@@ -67,7 +69,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     if ( FAILED(RegisterClassEx(&wcx)) )
         throw std::runtime_error( "Couldn't register window class" );
 
-    m_hWnd = CreateWindow(L"SingleWindowClass", title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+    m_hWnd = CreateWindow(WINDOW_EDITOR_CLASS_NAME, title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
                                 rect.x(), rect.y(), rect.width(), rect.height(), 0, 0, hInstance, nullptr);
 
     if ( !m_hWnd )
@@ -105,10 +107,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     switch ( message ) {
     case WM_DPICHANGED:
         if ( !WindowHelper::isLeftButtonPressed() ) {
-            uint dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
             if ( dpi_ratio != window->m_dpiRatio ) {
-                window->onDpiChanged(static_cast<int>(dpi_ratio), static_cast<int>(window->m_dpiRatio));
+                window->onDpiChanged(dpi_ratio, window->m_dpiRatio);
             }
         }
         break;
@@ -127,8 +129,8 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
             if ( WindowHelper::isWindowSystemDocked(hWnd) )
-                window->setMinimumSize(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
-            else window->setMinimumSize(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio);
+                window->setMinimumSize(int(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
+            else window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
 
             break;
         } else
@@ -167,7 +169,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
                     } else
                     if ( top_window ) {
                         top_window = NULL;
-                        if ( hw == AscAppManager::topWindow()->handle() )
+                        if ( AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle() )
                             is_mainwindow_prev = true;
                     }
 
@@ -179,8 +181,10 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_SETFOCUS: {
+        if ( !window->m_closed ) {
 //        window->focusMainPanel();
-        window->focus();
+            window->focus();
+        }
         break;
     }
 
@@ -311,7 +315,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+        ::SetDCPenColor(hDC, window->m_borderColor);
 
         HBRUSH hBrush = ::CreateSolidBrush(window->m_bgColor);
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
@@ -347,6 +351,27 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 //        CAscApplicationManagerWrapper::getInstance().CloseApplication();
 
         break;
+
+    case WM_COPYDATA: {
+        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
+        if (pcds->dwData == 1) {
+            int nArgs;
+            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
+
+            if (szArglist != nullptr) {
+                std::vector<std::wstring> v_inargs;
+                for(int i(1); i < nArgs; i++) {
+                    v_inargs.push_back(szArglist[i]);
+                }
+
+                if ( !v_inargs.empty() ) {
+                    AscAppManager::handleInputCmd(v_inargs);
+                }
+            }
+
+            LocalFree(szArglist);
+        }
+        break;}
 
     case WM_WINDOWPOSCHANGING: { break; }
     default: break;
@@ -437,7 +462,7 @@ void CSingleWindowPlatform::onSizeEvent(int type)
 void CSingleWindowPlatform::onExitSizeMove()
 {
     setMinimumSize(0, 0);
-    int dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+    double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
 
     if ( dpi_ratio != m_dpiRatio ) {
         if ( WindowHelper::isWindowSystemDocked(m_hWnd) )
@@ -462,8 +487,11 @@ void CSingleWindowPlatform::adjustGeometry()
         LONG lTestW = 640,
              lTestH = 480;
 
+        QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
+        double _screen_dpi_ratio = _screen->logicalDotsPerInch() / 96;
+
         RECT wrect{0,0,lTestW,lTestH};
-        WindowHelper::adjustWindowRect(m_hWnd, m_dpiRatio, &wrect);
+        WindowHelper::adjustWindowRect(m_hWnd, _screen_dpi_ratio, &wrect);
 
         if (0 > wrect.left) nMaxOffsetX = -wrect.left;
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
@@ -476,7 +504,7 @@ void CSingleWindowPlatform::adjustGeometry()
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
     } else {
-        border_size = MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio;
+        border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
 
         // TODO: вот тут бордер!!!
         m_pWinPanel->setGeometry(border_size, border_size,
@@ -501,7 +529,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
     ShowWindow(m_hWnd, IsZoomed(m_hWnd) ? SW_RESTORE : SW_MAXIMIZE);
 }
 
-void CSingleWindowPlatform::setScreenScalingFactor(int f)
+void CSingleWindowPlatform::setScreenScalingFactor(double f)
 {
     bool _is_up = f > m_dpiRatio;
     CSingleWindowBase::setScreenScalingFactor(f);
@@ -560,7 +588,22 @@ void CSingleWindowPlatform::setWindowTitle(const QString& title)
 
 void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
 {
-    m_bgColor = RGB(color.red(), color.green(), color.blue());
+    int r, g, b;
+    color.getRgb(&r, &g, &b);
+
+    m_bgColor = RGB(r, g, b);
+    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void CSingleWindowPlatform::setWindowColors(const QColor& background, const QColor& border)
+{
+    int r, g, b;
+    border.getRgb(&r, &g, &b);
+    m_borderColor = RGB(r, g, b);
+
+    background.getRgb(&r, &g, &b);
+    m_bgColor = RGB(r, g, b);
+
     RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 

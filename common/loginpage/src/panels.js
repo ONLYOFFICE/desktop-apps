@@ -48,9 +48,9 @@ $(document).ready(function() {
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"]').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"]').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"]').text(utils.Lang.newPptx);
+    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
+    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
+    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
 
 
     if (!localStorage.welcome) {
@@ -68,6 +68,12 @@ $(document).ready(function() {
     if (!window.LoginDlg) {
         $('.tools-connect').hide();
         hideAction('connect');
+    }
+
+    if (!window.config.portals.checklist) {
+        $('.tools-connect').hide();
+        hideAction('connect');
+        console.log('There are no cloud providers');
     }
 
     if (!utils.inParams.waitingloader)
@@ -131,8 +137,8 @@ function selectAction(action) {
 
 function hideAction(action, hide) {
     var mitem = $('.tool-menu a[action='+action+']').parent();
-    mitem.removeClass('extra')[hide===true?'hide':'show']();
-    $('.action-panel.' + action)[hide===true?'hide':'show']();
+    mitem.removeClass('extra')[hide===false?'show':'hide']();
+    $('.action-panel.' + action)[hide===false?'show':'hide']();
 };
 
 function setLoaderVisible(isvisible, timeout) {

@@ -34,7 +34,7 @@ window.DialogConnect = function(params) {
     "use strict";
 
     !params && (params = {});
-    !params.provider && (params.provider = 'asc');
+    !params.provider && (params.provider = 'onlyoffice');
 
     let $el, $title, $body;
     var _events = { close: params.onclose };
@@ -57,13 +57,13 @@ window.DialogConnect = function(params) {
                                     <p id="auth-error" class="msg-error">asd</p>
                                     <input id="auth-portal" type="text" name="" spellcheck="false" class="tbox dlg--option" placeholder="${utils.Lang.pshPortal}" value="">
                                 </div>
-                                <div style="height:10px;"></div>
+                                <div style="height:12px;"></div>
                                 <div class="lr-flex">
                                     <a class="text-sub link newportal" target="popup" href="javascript:void(0)">${utils.Lang.linkCreatePortal}</a>
                                     <span />
-                                    <div>
+                                    <div class="lr-flex">
                                         <img class="img-loader">
-                                        <button id="btn-next" l10n class="btn primary">${utils.Lang.btnConnect}</button>
+                                        <button id="btn-next" l10n class="btn btn--landing">${utils.Lang.btnConnect}</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,9 @@ window.DialogConnect = function(params) {
         }
 
         var re_wrong_symb = /([\s\r\n\t\\]|%(?!\d{2}))/;
-        if (!portal.length || re_wrong_symb.test(portal)) {
+        if (!portal.length || re_wrong_symb.test(portal) ||
+                !/^(https?:\/\/)?([^@\/\s]{1,63})\/[^\s]*/.test(portal+'/') )
+        {
             _set_error(utils.Lang.errLoginPortal, '#auth-portal');
             return;
         }
@@ -130,7 +132,7 @@ window.DialogConnect = function(params) {
         portal = portal.replace(/\/+$/i, '');
 
         /* skip odd url parts for owncloud */       
-        if ( provider == 'ownc' || provider == 'nextc' ) {
+        if ( provider == 'owncloud' || provider == 'nextcloud' ) {
             portal.endsWith('/index.php/login') && (portal = portal.slice(0,-16));
         }
 
@@ -140,15 +142,19 @@ window.DialogConnect = function(params) {
 
         let _callback = (obj) => {
             if ( obj ) {
-                if ( obj.status == 'success' ) {
+                if ( obj.status == 'success' || obj.status == 'skipped' ) {
+                    if ( obj.status == 'skipped' )
+                        console.log(`get portal info skipped, ${obj.response.statusText}`);
+
                     _close({
                         portal:protocol+portal,
                         provider:provider
                     });
                 } else {
-                    if ( obj.response.status == 404 )
+                    // if ( obj.response.status == 404 || obj.status == 'timeout' ) {
                         _set_error(utils.Lang.errLoginPortal, '#auth-portal');
-                    else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    // } else _set_error((obj.response && obj.response.statusText) || obj.status, '#auth-portal');
+                    console.log(`get portal info status: ${obj.status}, ${!!obj.response ? obj.response.statusText:'no response'}`);
                 }
             }
 
@@ -193,26 +199,43 @@ window.DialogConnect = function(params) {
     };
 
     function _require_portal_info(portal, provider) {
-        !provider && (provider = 'asc');
-        let _info = config.portals.checklist.find(i => i.id == provider);
-        var _url = portal + _info.check.url;
+        !provider && (provider = 'onlyoffice');
+        const _model = config.portals.checklist.find(i => i.provider == provider);
+        let _url;
+        if ( _model )
+            if ( !!_model.check.url )
+                _url = portal + _model.check.url;
+            else _url = `no check url for ${provider} found`;
+        else _url = `no config for ${provider} found`
 
         return new Promise((resolve, reject) => {
-            $.ajax({
-                url: _url,
-                crossOrigin: true,
-                crossDomain: true,
-                timeout: 10000,
-                headers: _info.check.headers,
-                complete: function(e, status) {
-                    status == 'success' ?
-                        resolve({status:status, response:e}) :
+            if ( !_url.startsWith('http') )
+                resolve({status:'skipped', response: {statusText: _url}});
+            else {
+                $.ajax({
+                    url: _url,
+                    crossOrigin: true,
+                    crossDomain: true,
+                    timeout: 10000,
+                    headers: _model.check.headers,
+                    complete: function(e, status) {
+                        if ( status == 'success' ) {
+                            try {
+                                JSON.parse(e.responseText)
+                                resolve({status:status, response:e});
+                            } catch (err) {
+                                e.status = 404;
+                                reject({status:'error', response:e});
+                            }
+                        } else {
+                            reject({status:status, response:e});
+                        }
+                    },
+                    error: function(e, status, error) {
                         reject({status:status, response:e});
-                },
-                error: function(e, status, error) {
-                    reject({status:status, response:e});
-                }
-            });
+                    }
+                });
+            }
         });
     };
 
@@ -230,18 +253,18 @@ window.DialogConnect = function(params) {
 
             let $combo = $el.find('select');
             let _clouds = config.portals.checklist;
-            if ( _clouds.length == 1 && _clouds[0].id == 'asc' ) {
-                $combo.append(`<option value='asc'>onlyoffice</option>`);
+            if ( _clouds.length == 1 && _clouds[0].provider == 'onlyoffice' ) {
+                $combo.append(`<option value='onlyoffice'>onlyoffice</option>`);
                 $combo.parents('.select-field').hide();
             } else {
                 for (let c of _clouds) {
-                    $combo.append(`<option value='${c.id}'>${c.name}</option>`);
+                    $combo.append(`<option value='${c.provider}'>${c.name}</option>`);
                 }
                 $combo.val(params.provider);
 
-                let $newportal = $el.find('.newportal').disable(!(params.provider=='asc'));
+                let $newportal = $el.find('.newportal').disable(!(params.provider=='onlyoffice'));
                 $combo.on('change', e => {
-                    $newportal.disable(!(e.target.value=='asc'));
+                    $newportal.disable(!(e.target.value=='onlyoffice'));
                     _clear_error();
                 });
 

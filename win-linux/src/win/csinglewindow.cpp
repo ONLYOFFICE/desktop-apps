@@ -265,9 +265,9 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, RGB(136, 136, 136));
+        ::SetDCPenColor(hDC, AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder));
 
-        HBRUSH hBrush = ::CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
+        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
@@ -441,6 +441,25 @@ void CSingleWindow::adjustGeometry()
     DeleteObject(hRgn);
 }
 
+void CSingleWindow::applyTheme(const std::wstring& themeid)
+{
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(themeid));
+
+    m_pLabelTitle->style()->polish(m_pLabelTitle);
+
+    m_pButtonMinimize->style()->polish(m_pButtonMinimize);
+    m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+    m_pButtonClose->style()->polish(m_pButtonClose);
+    m_boxTitleBtns->style()->polish(m_boxTitleBtns);
+
+    QWidget * centralwidget = m_pMainPanel->layout()->itemAt(0)->widget();
+    centralwidget->style()->polish(centralwidget);
+
+    m_pMainPanel->style()->polish(m_pMainPanel);
+
+    RedrawWindow(m_hWnd, nullptr, nullptr, RDW_INVALIDATE);
+}
+
 void CSingleWindow::setScreenScalingFactor(uchar factor)
 {
     QString css(AscAppManager::getWindowStylesheets(factor));
@@ -486,12 +505,14 @@ void CSingleWindow::setScreenScalingFactor(uchar factor)
 QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
 {
     QWidget * mainPanel = new QWidget(parent);
-//    mainpanel->setObjectName("mainPanel");
+    mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
 
     QGridLayout * mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing(0);
     mainGridLayout->setMargin(0);
     mainPanel->setLayout(mainGridLayout);
+
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     // Central widget
@@ -506,15 +527,15 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    QLabel * label = new QLabel(title);
-    label->setObjectName("labelAppTitle");
-    label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+    m_pLabelTitle = new QLabel(title);
+    m_pLabelTitle->setObjectName("labelAppTitle");
+    m_pLabelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
     layoutBtns->setContentsMargins(0,0,0,0);
     QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
 
     layoutBtns->setSpacing(1*m_dpiRatio);
-    layoutBtns->addWidget(label);
+    layoutBtns->addWidget(m_pLabelTitle);
 
     if ( custom ) {
         auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
@@ -529,15 +550,15 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
 
         // Minimize
         m_pButtonMinimize = _creatToolButton("toolButtonMinimize", centralWidget);
-        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMinimizeClicked, this));
+        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonMinimizeClicked, this));
 
         // Maximize
         m_pButtonMaximize = _creatToolButton("toolButtonMaximize", centralWidget);
-        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, bind(&CSingleWindow::pushButtonMaximizeClicked, this));
+        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonMaximizeClicked, this));
 
         // Close
         m_pButtonClose = _creatToolButton("toolButtonClose", centralWidget);
-        QObject::connect(m_pButtonClose, &QPushButton::clicked, bind(&CSingleWindow::pushButtonCloseClicked, this));
+        QObject::connect(m_pButtonClose, &QPushButton::clicked, std::bind(&CSingleWindow::pushButtonCloseClicked, this));
 
         layoutBtns->addWidget(m_pButtonMinimize);
         layoutBtns->addWidget(m_pButtonMaximize);
@@ -564,7 +585,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
         gradient.setColorAt(0, QColor("#eee"));
         gradient.setColorAt(1, QColor("#e4e4e4"));
 
-        label->setFixedHeight(0);
+        m_pLabelTitle->setFixedHeight(0);
         m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 

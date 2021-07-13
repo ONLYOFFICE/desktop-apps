@@ -42,6 +42,7 @@
 
 @interface NSApplication (Extensions)
 
-+ (BOOL)isDarkMode;
++ (BOOL)isSystemDarkMode;
++ (BOOL)isUIThemeDark;
 
 @end

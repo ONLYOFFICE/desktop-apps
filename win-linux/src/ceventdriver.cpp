@@ -59,6 +59,9 @@ void CEventDriver::signal(CInAppEventBase * e)
         const CInAppEventModal & _e = static_cast<const CInAppEventModal &>(*e);
         emit onModalDialog(!_e.finished(), _e.handle());
         break; }
+    case CInAppEventBase::CEventType::etEditorClosed:
+        emit onEditorClosed();
+        break;
     default: break;
     }
 }

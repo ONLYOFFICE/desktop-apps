@@ -16,6 +16,7 @@ PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 PACKAGE_EDITION ?= cool
 S3_BUCKET ?= repo-doc-onlyoffice-com
+RELEASE_BRANCH ?= unstable
 
 BRANDING_DIR ?= $(PWD)/branding
 
@@ -58,69 +59,21 @@ APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 
-REPO_NAME := repo
-
-DEB_REPO := $(PWD)/$(REPO_NAME)
-DEB_ASTRA_REPO := $(PWD)/astra-$(REPO_NAME)
-RPM_REPO := $(PWD)/rpm-$(REPO_NAME)
-APT_RPM_REPO := $(PWD)/apt-rpm-$(REPO_NAME)
-URPMI_REPO := $(PWD)/urpmi-$(REPO_NAME)
-
-RPM_REPO_OS_NAME := centos
-
-ifeq ($(PACKAGE_EDITION), cool)
-RPM_REPO_OS_VER := 7
-else
-RPM_REPO_OS_VER := 6
-endif
-RPM_REPO_DIR = $(RPM_REPO_OS_NAME)/$(RPM_REPO_OS_VER)
-
-DEB_REPO_OS_NAME := ubuntu
-
-ifeq ($(PACKAGE_EDITION), cool)
-DEB_REPO_OS_VER := trusty
-else
-DEB_REPO_OS_VER := precise
-endif
-DEB_REPO_DIR = $(DEB_REPO_OS_NAME)/$(DEB_REPO_OS_VER)
-
-DEB_ASTRA_REPO_OS_NAME := astralinux
-DEB_ASTRA_REPO_OS_VER := smolensk
-DEB_ASTRA_REPO_DIR = $(DEB_ASTRA_REPO_OS_NAME)/$(DEB_ASTRA_REPO_OS_VER)
-
-ALT_REPO_OS_NAME = ALTLinux
-
-ifeq ($(PACKAGE_EDITION), cool)
-ALT_REPO_OS_VER = p8
-else
-ALT_REPO_OS_VER = p7
-endif
-ALT_REPO_DIR = $(ALT_REPO_OS_NAME)/$(ALT_REPO_OS_VER)
-
-ROSA_REPO_OS_NAME = rosa
-
-ifeq ($(PACKAGE_EDITION), cool)
-ROSA_REPO_OS_VER = r9
-else
-ROSA_REPO_OS_VER = r8
-endif
-ROSA_REPO_DIR = $(ROSA_REPO_OS_NAME)/$(ROSA_REPO_OS_VER)
-
-OTHER_REPO_OS_NAME = other-linux
-
-ifeq ($(PACKAGE_EDITION), cool)
-OTHER_REPO_OS_VER = modern
-else
-OTHER_REPO_OS_VER = old
-endif
-
-OTHER_REPO_DIR = $(OTHER_REPO_OS_NAME)/$(OTHER_REPO_OS_VER)
-
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
+TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
+
+RPM_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/centos/$(notdir $(RPM))
+APT_RPM_URI   := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/altlinux/$(notdir $(APT_RPM))
+URPMI_URI     := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/rosa/$(notdir $(URPMI))
+DEB_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/ubuntu/$(notdir $(DEB))
+DEB_ASTRA_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/astra/$(notdir $(DEB_ASTRA))
+TAR_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/linux/$(notdir $(TAR))
+
+DEPLOY_JSON = deploy.json
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -184,7 +137,6 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
 endif
 
-TAR := $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
 INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
 #QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
@@ -229,6 +181,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
+RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
 .PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-deb-astra deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
 
@@ -270,14 +223,9 @@ clean:
 		rpm/$(PACKAGE_NAME).spec \
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
-		$(DEB_REPO)\
-		$(DEB_ASTRA_REPO)\
-		$(RPM_REPO)\
-		$(APT_RPM_REPO)\
-		$(URPMI_REPO)\
 		$(INSTALLER)\
 		*.tar.gz\
-		index.html
+		$(DEPLOY_JSON)
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
@@ -352,85 +300,31 @@ $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
 
 deploy-rpm: $(RPM)
-	rm -rfv $(RPM_REPO)
-	mkdir -p $(RPM_REPO)
-
-	cp -rv $(RPM) $(RPM_REPO);
-	createrepo -v $(RPM_REPO);
-
-	aws s3 sync $(RPM_REPO) s3://$(S3_BUCKET)/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(RPM_ARCH)/ --acl public-read --delete
-	aws s3 sync $(RPM_REPO) s3://$(S3_BUCKET)/$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(RPM_ARCH)/ --acl public-read --delete
+	aws s3 cp --no-progress --acl public-read \
+		$(RPM) s3://$(S3_BUCKET)/$(RPM_URI)
 
 deploy-deb: $(DEB)
-	rm -rfv $(DEB_REPO)
-	mkdir -p $(DEB_REPO)
-
-	cp -rv $(DEB) $(DEB_REPO);
-	dpkg-scanpackages -m $(REPO_NAME) /dev/null | gzip -9c > $(DEB_REPO)/Packages.gz
-
-	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
-	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+	aws s3 cp --no-progress --acl public-read \
+		$(DEB) s3://$(S3_BUCKET)/$(DEB_URI)
 
 deploy-deb-astra: $(DEB_ASTRA)
-	rm -rfv $(DEB_ASTRA_REPO)
-	mkdir -p $(DEB_ASTRA_REPO)
-
-	cp -rv $(DEB_ASTRA) $(DEB_ASTRA_REPO);
-	dpkg-scanpackages -m $(DEB_ASTRA_REPO) /dev/null | gzip -9c > $(DEB_ASTRA_REPO)/Packages.gz
-
-	aws s3 sync $(DEB_ASTRA_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
-	aws s3 sync $(DEB_REPO) s3://$(S3_BUCKET)/$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(DEB_ARCH)/$(REPO_NAME) --acl public-read --delete
+	aws s3 cp --no-progress --acl public-read \
+		$(DEB_ASTRA) s3://$(S3_BUCKET)/$(DEB_ASTRA_URI)
 
 deploy-apt-rpm: $(APT_RPM)
-	rm -rfv $(APT_RPM_REPO)
-	mkdir -p $(APT_RPM_REPO)
-	
-	cp -rv $(APT_RPM) $(APT_RPM_REPO);
-	#createrepo -v $(APT_RPM_REPO);
-	
-	#for i in i586 i686 x86_64 noarch; do \
-	#	mkdir -p "$(URPMI_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
-	#done
-
-	#cp -rv $(APT_RPM) $(URPMI_REPO)/$(APT_RPM_ARCH)/RPMS.$(REPO_NAME);
-
-	#genbasedir --topdir=$(URPMI_REPO) $(APT_RPM_ARCH) $(REPO_NAME)
-
-	aws s3 sync $(APT_RPM_REPO) s3://$(S3_BUCKET)/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(APT_RPM_ARCH)/ --acl public-read --delete
-	aws s3 sync $(APT_RPM_REPO) s3://$(S3_BUCKET)/$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(APT_RPM_ARCH)/ --acl public-read --delete
+	aws s3 cp --no-progress --acl public-read \
+		$(APT_RPM) s3://$(S3_BUCKET)/$(APT_RPM_URI)
 
 deploy-urpmi: $(URPMI)
-	rm -rfv $(URPMI_REPO)
-	mkdir -p $(URPMI_REPO)
-
-	
-	cp -rv $(URPMI) $(URPMI_REPO);
-	#createrepo -v $(URPMI_REPO);
-
-	#for i in i586 i686 x86_64 noarch; do \
-	#	mkdir -p "$(URPMI_REPO)/$$i/base" "$(REPO)/$$i/RPMS.$(REPO_NAME)" ; \
-	#done
-
-	#cp -rv $(URPMI) $(URPMI_REPO)/$(URPMI_ARCH)/RPMS.$(REPO_NAME);
-
-	#genbasedir --topdir=$(URPMI_REPO) $(URPMI_ARCH) $(REPO_NAME)
-
-	aws s3 sync $(URPMI_REPO) s3://$(S3_BUCKET)/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(URPMI_ARCH)/ --acl public-read --delete
-	aws s3 sync $(URPMI_REPO) s3://$(S3_BUCKET)/$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/latest/$(URPMI_ARCH)/ --acl public-read --delete
+	aws s3 cp --no-progress --acl public-read \
+		$(URPMI) s3://$(S3_BUCKET)/$(URPMI_URI)
 
 deploy-tar: $(TAR)
-	aws s3 cp $(TAR) s3://$(S3_BUCKET)/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/ --acl public-read
+	aws s3 cp --no-progress --acl public-read \
+		$(TAR) s3://$(S3_BUCKET)/$(TAR_URI)
 
 deploy-installer: $(INSTALLER)
 	aws s3 cp $(INSTALLER) s3://$(S3_BUCKET)/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/ --acl public-read       
-
-M4_PARAMS += -D M4_S3_BUCKET=$(S3_BUCKET)
-M4_PARAMS += -D M4_APT_RPM_URI="$(ALT_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(APT_RPM_ARCH)/$(notdir $(APT_RPM))"
-M4_PARAMS += -D M4_DEB_URI="$(DEB_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB))"
-M4_PARAMS += -D M4_DEB_ASTRA_URI="$(DEB_ASTRA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(DEB_ARCH)/$(REPO_NAME)/$(notdir $(DEB_ASTRA))"
-M4_PARAMS += -D M4_RPM_URI="$(RPM_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(RPM_ARCH)/$(notdir $(RPM))"
-M4_PARAMS += -D M4_TAR_URI="$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/$(notdir $(TAR))"
-M4_PARAMS += -D M4_URPMI_URI="$(ROSA_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(URPMI_ARCH)/$(notdir $(URPMI))"
 
 common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
 common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
@@ -448,14 +342,15 @@ deb/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4
 $(BIN_FILES) $(DESKTOP_FILES) deb/debian/$(PACKAGE_NAME).dirs deb/debian/$(PACKAGE_NAME).install deb/debian/$(PACKAGE_NAME).links :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
 
-deb-astra/debian/changelog : deb/debian/changelog.m4
-deb-astra/debian/control : deb/debian/control.m4
-deb-astra/debian/$(PACKAGE_NAME).dirs : deb/debian/package.dirs.m4
-deb-astra/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
-deb-astra/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4
-deb-astra/debian/postinst : deb/debian/postinst.m4
-deb-astra/debian/postrm : deb/debian/postrm.m4
-deb-astra/debian/prerm : deb/debian/prerm.m4
+deb-astra/debian/changelog : deb/debian/changelog.m4 branding
+deb-astra/debian/control : deb/debian/control.m4 branding
+deb-astra/debian/$(PACKAGE_NAME).dirs : deb/debian/package.dirs.m4 branding
+deb-astra/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4 branding
+deb-astra/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4 branding
+deb-astra/debian/postinst : deb/debian/postinst.m4 branding
+deb-astra/debian/postrm : deb/debian/postrm.m4 branding
+deb-astra/debian/prerm : deb/debian/prerm.m4 branding
+deb-astra/debian/rules.m4 : branding
 
 deb-astra/debian/changelog deb-astra/debian/control deb-astra/debian/$(PACKAGE_NAME).dirs deb-astra/debian/$(PACKAGE_NAME).install deb-astra/debian/$(PACKAGE_NAME).links deb-astra/debian/postinst deb-astra/debian/postrm deb-astra/debian/prerm :
 	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
@@ -469,10 +364,53 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar index.html
+comma := ,
+json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
+
+$(DEPLOY_JSON):
+	echo '{}' > $@
+	$(call json_edit, $@, '. + { \
+		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
+		version:  "$(PRODUCT_VERSION)"$(comma) \
+		build:    "$(BUILD_NUMBER)" \
+	}')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "ubuntu"$(comma) \
+		title:    "Debian 8 9 10$(comma) Ubuntu 14 16 18 20 and derivatives"$(comma) \
+		path:     "$(DEB_URI)" \
+	}]')
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	$(call json_edit, $@, '.items += [{ \
+		platform: "astralinux"$(comma) \
+		title:    "Astra Linux Smolenks 1.6"$(comma) \
+		path:     "$(DEB_ASTRA_URI)" \
+	}]')
+endif
+	$(call json_edit, $@, '.items += [{ \
+		platform: "centos"$(comma) \
+		title:    "Centos 7$(comma) Redhat 7$(comma) Fedora latest and derivatives"$(comma) \
+		path:     "$(RPM_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "altlinux"$(comma) \
+		title:    "Altlinux p8 p9"$(comma) \
+		path:     "$(APT_RPM_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "rosa"$(comma) \
+		title:    "Rosa p8"$(comma) \
+		path:     "$(URPMI_URI)" \
+	}]')
+	$(call json_edit, $@, '.items += [{ \
+		platform: "linux"$(comma) \
+		title:    "Linux portable"$(comma) \
+		path:     "$(TAR_URI)" \
+	}]')
+
+DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 DEPLOY_TARGETS += deploy-deb-astra
 endif
 
-deploy: $(DEPLOY_TARGETS)
+deploy: $(DEPLOY_TARGETS) $(DEPLOY_JSON)
 #deploy-installer

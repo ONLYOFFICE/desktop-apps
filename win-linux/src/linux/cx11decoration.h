@@ -63,10 +63,12 @@ public:
     void setMaximized(bool);
     void raiseWindow();
 
-    static int devicePixelRatio();
     static int customWindowBorderWith();
 
     int m_nDirection;
+protected:
+    double dpi_ratio = 1;
+    void onDpiChanged(double);
 
 private:
     QWidget * m_window;

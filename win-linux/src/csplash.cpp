@@ -32,36 +32,15 @@
 
 
 #include "csplash.h"
+#include "csplash_p.h"
 #include "defines.h"
 #include <QApplication>
 #include <QScreen>
 #include <QSettings>
 #include <QStyle>
 #include "utils.h"
-#include "csplash_p.cpp"
 
 CSplash * _splash;
-
-auto screenAt(const QPoint& pt) -> QScreen * {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    return QApplication::screenAt(pt);
-#else
-    QVarLengthArray<const QScreen *, 8> _cached_screens;
-    for (const QScreen *screen : QApplication::screens()) {
-        if (_cached_screens.contains(screen))
-            continue;
-
-        for (QScreen *sibling : screen->virtualSiblings()) {
-            if (sibling->geometry().contains(pt))
-                return sibling;
-
-            _cached_screens.append(sibling);
-        }
-    }
-
-    return nullptr;
-#endif
-}
 
 CSplash::CSplash(const QPixmap &p, Qt::WindowFlags f)
     : QSplashScreen(p, f)
@@ -84,7 +63,7 @@ void CSplash::showSplash()
         _splash = new CSplash(QPixmap(), Qt::WindowStaysOnTopHint);
 
         if (QApplication::screens().count() > 1) {
-            QScreen * _screen = screenAt(reg_user.value("position").toRect().topLeft());
+            QScreen * _screen = Utils::screenAt(reg_user.value("position").toRect().topLeft());
 
             if ( _screen ) {
                 _splash->move(_screen->geometry().center());
@@ -92,7 +71,7 @@ void CSplash::showSplash()
             }
         }
 
-        uchar _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
+        double _dpi_ratio = Utils::getScreenDpiRatioByHWND(_splash->winId());
 
 //        _splash->setPixmap(_dpi_ratio > 1 ? QPixmap(":/res/icons/splash_2x.png") : QPixmap(":/res/icons/splash.png"));
         _splash->setPixmap(getSplashImage(_dpi_ratio));
@@ -110,7 +89,7 @@ void CSplash::hideSplash()
     }
 }
 
-uint CSplash::startupDpiRatio()
+double CSplash::startupDpiRatio()
 {
     if (_splash) {
         return Utils::getScreenDpiRatioByHWND(_splash->winId());
@@ -120,7 +99,7 @@ uint CSplash::startupDpiRatio()
         if (QApplication::screens().count() > 1) {
             GET_REGISTRY_USER(reg_user)
 
-            QScreen * _screen = screenAt(reg_user.value("position").toRect().topLeft());
+            QScreen * _screen = Utils::screenAt(reg_user.value("position").toRect().topLeft());
             if ( _screen ) {
                 splash.move(_screen->geometry().center());
             }
@@ -128,6 +107,4 @@ uint CSplash::startupDpiRatio()
 
         return Utils::getScreenDpiRatioByHWND(splash.winId());
     }
-
-    return 1;
 }

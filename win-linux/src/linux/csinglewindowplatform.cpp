@@ -36,6 +36,8 @@
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 
+#define EDITOR_WINDOW_MIN_WIDTH     920
+
 class CSingleWindowPlatform::impl {
     CSingleWindowPlatform * m_owner = nullptr;
     WindowHelper::CParentDisable * m_disabler = nullptr;
@@ -72,7 +74,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio);
+    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio}));
 
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
@@ -145,7 +147,7 @@ bool CSingleWindowPlatform::event(QEvent * event)
                 m_buttonMaximize->style()->polish(m_buttonMaximize);
             } else
             if (/*_e_statechange->oldState() == Qt::WindowMaximized &*/ this->windowState() == Qt::WindowNoState) {
-                layout()->setMargin(CX11Decoration::customWindowBorderWith());
+                layout()->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
 
                 m_buttonMaximize->setProperty("class", "normal");
                 m_buttonMaximize->style()->polish(m_buttonMaximize);
@@ -198,21 +200,24 @@ void CSingleWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
-void CSingleWindowPlatform::onScreenScalingFactor(uint f)
+void CSingleWindowPlatform::onScreenScalingFactor(double f)
 {
-    setMinimumSize(MAIN_WINDOW_MIN_WIDTH*f, MAIN_WINDOW_MIN_HEIGHT*f);
+    setMinimumSize(QSize(0,0));
 
-    QRect _new_rect = geometry();
-    if ( f > m_dpiRatio ) {
-        _new_rect.setSize(_new_rect.size() * 2);
-    } else _new_rect.setSize(_new_rect.size() / 2);
+    double change_factor = f / m_dpiRatio;
+    m_dpiRatio = f;
 
-    setGeometry(_new_rect);
+    QRect _src_rect = geometry();
+    int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+    QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+
+    setGeometry(_dest_rect);
+    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f}));
 }
 
 void CSingleWindowPlatform::onExitSizeMove()
 {
-    uchar dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
 
     if ( dpi_ratio != m_dpiRatio )
         setScreenScalingFactor(dpi_ratio);
@@ -227,7 +232,7 @@ void CSingleWindowPlatform::setWindowTitle(const QString& t)
 void CSingleWindowPlatform::captureMouse()
 {
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent(AscAppManager::topWindow(), &_event);
+    QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
 
     setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
 

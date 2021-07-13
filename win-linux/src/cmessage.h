@@ -41,7 +41,9 @@
 
 #include <QLabel>
 #include <QCoreApplication>
+#include <QPushButton>
 #include <initializer_list>
+#include <memory>
 
 namespace CMessageOpts {
     enum class moButtons {
@@ -53,6 +55,8 @@ namespace CMessageOpts {
         mbOkDefCancel
     };
 }
+
+class CMessagePrivateIntf;
 
 #if defined(_WIN32)
 class CMessage : public CWinWindow
@@ -67,6 +71,8 @@ public:
     explicit CMessage(QWidget *);
              CMessage(QWidget *, CMessageOpts::moButtons);
 #endif
+
+    ~CMessage() override;
 
     void setButtons(std::initializer_list<QString>);
     void setButtons(CMessageOpts::moButtons);
@@ -93,16 +99,26 @@ public:
 #endif
 
 private:
-    uchar m_dpiRatio;
-    QWidget * m_boxButtons;
+#if defined(_WIN32)
+    using CWinWindow::modal;
+    void onWindowActivate(bool) override;
+#endif
+
+    QWidget * m_boxButtons = nullptr;
     QWidget * m_centralWidget;
     QLabel * m_message,
            * m_typeIcon;
     int m_modalresult;
 
-
     void modal();
+#if defined(_WIN32)
+    void onScreenScaling() override;
+#else
     void onScreenScaling();
+#endif
+
+    friend class CMessagePrivateIntf;
+    std::unique_ptr<CMessagePrivateIntf> m_priv;
 
     Q_DECLARE_TR_FUNCTIONS(CMessage)
 };

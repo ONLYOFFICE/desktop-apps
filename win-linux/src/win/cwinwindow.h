@@ -42,13 +42,14 @@ public:
     CWinWindow(HWND, const QString&);
     virtual ~CWinWindow(){}
 
-    virtual void modal();
+    virtual void modal(HWND f);
     virtual void close();
     void setSize(int w, int h);
     void center();
 
     HWND handle();
     virtual void onScreenScaling();
+    virtual void onWindowActivate(bool);
 
 protected:
     HWND    m_hSelf,

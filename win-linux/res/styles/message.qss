@@ -13,19 +13,77 @@ QLabel[class=msg-icon][type=msg-info] {
 QLabel[class=msg-icon][type=msg-confirm] {
     background-position: top right;
 }
-#messageBody[hdpi] QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons_2x.png");
+#messageBody[scaling="1.25x"] QLabel[class=msg-icon] {
+    /*background-image: url(":/message_icons_1.25x.png");*/
+}
+#messageBody[scaling="1.5x"] QLabel[class=msg-icon] {
+    background-image: url(":/message_icons_1.5x.png");
+}
+#messageBody[scaling="1.75x"] QLabel[class=msg-icon] {
+    /*background-image: url(":/message_icons_1.75x.png");*/
+}
+#messageBody[scaling="2x"] QLabel[class=msg-icon] {
+    background-image: url(":/message_icons_2x.png");
 }
 #messageBody QLabel[class=msg-report] {
     font-size: 11px;
 }
-#messageBody[hdpi] QLabel[class=msg-report] {
+#messageBody[scaling="1.5x"] QLabel[class=msg-report] {
+    font-size: 17px;
+}
+#messageBody[scaling="2x"] QLabel[class=msg-report] {
     font-size: 22px;
 }
-#messageBody[hdpi] QPushButton {
+#messageBody[scaling="2x"] QPushButton {
     /* border: 2px solid #cbcbcb; */
     /* border-radius:4px; */
     padding:0 40px;
     height: 44px;
     font-size: 22px;
+}
+#messageBody[scaling="1.5x"] QPushButton {
+    padding:0 30px;
+    height: 33px;
+    font-size: 17px;
+}
+
+QPushButton {
+    outline: 0 none;
+}
+
+#messageBody[uitheme=theme-dark] {
+    background-color: #404040;
+    color: rgba(255,255,255,.8);
+}
+
+#messageBody[uitheme=theme-dark] QLabel {
+    color: rgba(255,255,255,.8);
+}
+
+#messageBody[uitheme=theme-dark] QPushButton {
+    background-color: #555;
+    color: #d9d9d9;
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+#messageBody[uitheme=theme-dark][scaling="2x"] QPushButton,
+    #messageBody[uitheme=theme-dark][scaling="1.5x"] QPushButton
+{
+    border: 2px solid rgba(255,255,255,.8);
+}
+
+#messageBody[uitheme=theme-dark] QPushButton:focus {
+    border: 2px solid rgba(255,255,255,.9);
+}
+
+#messageBody[uitheme=theme-dark][scaling="1.5x"] QPushButton:focus {
+    border: 3px solid rgba(255,255,255,.9);
+}
+
+#messageBody[uitheme=theme-dark][scaling="2x"] QPushButton:focus {
+    border: 4px solid rgba(255,255,255,.9);
+}
+
+#messageBody[uitheme=theme-dark] QPushButton:pressed {
+    background-color: #707070;
 }

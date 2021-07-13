@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>ONLYOFFICE Changelog</title>
+        <link>http://download.onlyoffice.com/install/desktop/editors/mac/x86/onlyoffice.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>6.1.1</title>
+            <pubDate>Wed, 27 Jan 2021 22:44:00 +0300</pubDate>
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+            <sparkle:releaseNotesLink>https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/6.1/ReleaseNotes.html</sparkle:releaseNotesLink>
+            <sparkle:releaseNotesLink xml:lang="ru">https://download.onlyoffice.com/install/desktop/editors/mac/updates/onlyoffice/changes/6.1/ReleaseNotesRU.html</sparkle:releaseNotesLink>
+            <enclosure url="https://download.onlyoffice.com/install/desktop/editors/mac/x86/updates/onlyoffice/ONLYOFFICE-x86-6.1.1.zip" sparkle:version="459" sparkle:shortVersionString="6.1.1" length="333140128" type="application/octet-stream" sparkle:edSignature="aGF272Rm5TilFdyCKwk4oXaaSedRiGPSBnRZ1tfLDJktWSGcmntOT4/OHrOgCg5pg9aiNryomaIuPIFjQ0wyAg=="/>
+        </item>
+    </channel>
+</rss>

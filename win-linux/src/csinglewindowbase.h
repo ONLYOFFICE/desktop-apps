@@ -64,7 +64,7 @@ public:
 
     virtual ~CSingleWindowBase();
 
-    virtual void setScreenScalingFactor(int);
+    virtual void setScreenScalingFactor(double);
     virtual bool holdView(int uid) const = 0;
     virtual QWidget * createMainPanel(QWidget * parent, const QString& title);
     virtual const QObject * receiver() = 0;
@@ -77,7 +77,7 @@ public:
     virtual bool isCustomWindowStyle();
 
 protected:
-    int m_dpiRatio;
+    double m_dpiRatio = 1;
 
     QWidget * m_boxTitleBtns = nullptr;
     QWidget * m_pMainPanel = nullptr;
@@ -96,13 +96,13 @@ protected:
     virtual void onMoveEvent(const QRect&) = 0;
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onExitSizeMove();
-    virtual void onDpiChanged(int newfactor, int prevfactor);
+    virtual void onDpiChanged(double newfactor, double prevfactor);
     virtual int calcTitleCaptionWidth();
     virtual void updateTitleCaption();
 
     inline int dpiCorrectValue(int v) const
     {
-        return v * static_cast<int>(m_dpiRatio);
+        return int(v * m_dpiRatio);
     }
 
 private:

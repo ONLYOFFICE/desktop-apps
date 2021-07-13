@@ -67,17 +67,35 @@ static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
 static NSString * const kHelpUrl                            = @"kHelpUrl";
 static NSString * const kRegistrationPortalUrl              = @"kRegistrationPortalUrl";
 
+// UI Theme id
+static NSString * const uiThemeLight                      = @"theme-light";
+static NSString * const uiThemeClassicLight               = @"theme-classic-light";
+static NSString * const uiThemeDark                       = @"theme-dark";
+
+// Custom schemes
+static NSString * const kSchemeApp                          = @"oo-office";
+
 // Analitics
 static NSString * const ASCAnalyticsCategoryApplication     = @"Application";
+
+// Storyboard
+static NSString * const StoryboardNameMain                  = @"Main";
+static NSString * const StoryboardNameReporter              = @"Presentation-Reporter";
+static NSString * const StoryboardNameSign                  = @"Document-Sign";
 
 // Settings
 static NSString * const ASCUserSettingsNamePortalUrl        = @"asc_user_portalUrl";
 static NSString * const ASCUserSettingsNameUserInfo         = @"asc_user_info";
 static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
+static NSString * const ASCUserNameApp                      = @"asc_user_name_app";
+static NSString * const ASCUserUILanguage                   = @"asc_user_ui_lang";
+static NSString * const ASCUserUITheme                      = @"asc_user_ui_theme";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
+static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks";
+static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";
@@ -123,6 +141,7 @@ static NSString * const CEFEventNameEditorAppActionRequest  = @"CEF_editorAppAct
 static NSString * const CEFEventNameEditorOpenFolder        = @"CEF_editorOpenFolder";
 static NSString * const CEFEventNameDocumentFragmentBuild   = @"CEF_documentFragmentBuild";
 static NSString * const CEFEventNameDocumentFragmented      = @"CEF_documentFragmented";
+static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificatePreview";
 
 @interface ASCConstants : NSObject
 

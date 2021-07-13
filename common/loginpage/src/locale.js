@@ -114,6 +114,10 @@ l10n.en = {
     settOptCheckWeek: 'Every week',
     settScaling: 'Interface scaling',
     settOptScalingAuto: 'Auto',
+    ,settUITheme: 'Interface theme'
+    ,settOptThemeLight: 'Light'
+    ,settOptThemeClassicLight: 'Classic Light'
+    ,settOptThemeDark: 'Dark'
     aboutProFeaturesAvailable: 'With access to pro features'
 }
 
@@ -1902,6 +1906,10 @@ l10n.ru = {
     settScaling: 'Масштабирование интерфейса',
     settOptScalingAuto: 'Авто',
     aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
+    ,settUITheme: 'Тема интерфейса'
+    ,settOptThemeLight: 'Светлая'
+    ,settOptThemeClassicLight: 'Классическая светлая'
+    ,settOptThemeDark: 'Темная'
 }
 
 l10n.de = {
@@ -1988,6 +1996,10 @@ l10n.de = {
     settScaling: 'Skalierung der Benutzeroberfläche',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Mit Zugriff auf Profi-Funktionen'
+    ,settUITheme: 'Thema der Benutzeroberfläche'
+    ,settOptThemeLight: 'Hell'
+    ,settOptThemeClassicLight: 'Klassisch Hell'
+    ,settOptThemeDark: 'Dunkel'
 };
 
 l10n.it_IT = {
@@ -2074,6 +2086,10 @@ l10n.it_IT = {
     settScaling: 'Ridimensionamento interfaccia',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Con accesso a funzionalità professionali'
+    ,settUITheme: 'Tema dell\'interfaccia'
+    ,settOptThemeLight: 'Chiaro'
+    ,settOptThemeClassicLight: 'Classic Light'
+    ,settOptThemeDark: 'Scuro'
 };
 
 l10n.fr = {
@@ -2160,6 +2176,10 @@ l10n.fr = {
     settScaling: 'Dimensionnement de l\'interface',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Avec l\'accès aux fonctionnalités avancées'
+    ,settUITheme: 'Thème d’interface'
+    ,settOptThemeLight: 'Clair'
+    ,settOptThemeClassicLight: 'Classique clair'
+    ,settOptThemeDark: 'Sombre'
 };
 
 l10n.es = {
@@ -2242,8 +2262,16 @@ l10n.es = {
     settScaling: "Escalado de interfaz",
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Con acceso a las funciones profesionales'
+    ,settUITheme: 'Tema de interfaz'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Clásico claro'
+    ,settOptThemeDark: 'Oscuro'
 };
 
+    ,settUITheme: 'Tema de interface'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Clássico claro'
+    ,settOptThemeDark: 'Escuro'
 l10n.pl = {
     welWelcome: 'Witaj w ONLYOFFICE Desktop Editiors!',
     welDescr: 'Pracuj nad dokumentami offline lub połącz pakiet ze swoją chmurą: ONLYOFFICE, ownCloud, Nextcloud.',
@@ -3286,19 +3314,25 @@ function translate(str, lang) {
 
 function changelang(lang) {
     let _applytohtml = l => {
-        let newtr = l10n[l];
+        let newtr = Object.assign({}, l10n.en, l10n[l]);
         let elems = Array.from(document.querySelectorAll('[l10n]'));
 
         for (const [key, value] of Object.entries(utils.Lang)) {
-            elems.every(el => {
-                if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
-                    if ( el.innerHTML === value && !!newtr[key] ) {
-                        $(el).text(newtr[key]);
+            if ( !!newtr[key] ) {
+                let _i = -1;
+                elems.every( (el, index) => {
+                    if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {
+                        if ( (el.innerHTML === value || el.innerHTML === l10n.en[key]) ) {
+                            $(el).text(newtr[key]);
+                            _i = index;
+                        }
                     }
-                }
 
-                return true;
-            });
+                    return true;
+                })
+
+                if ( !(_i < 0) ) elems.splice(_i, 1);
+            }
         }
     }
 

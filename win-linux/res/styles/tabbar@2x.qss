@@ -13,3 +13,10 @@ QTabBar::tab-icon{width:15;height:15;}
 
 QTabWidget[active=false] QTabBar::tab:selected {background-color: #f1f1f1;}
 QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #cecece;}
+
+#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}
+#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:selected {background-color: #404040;}
+#mainPanel[uitheme=theme-dark] QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #555;}
+
+#mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}
+#mainPanel[uitheme=theme-dark] QTabBar::tab:hover{background-color: #555;}

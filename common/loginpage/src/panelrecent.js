@@ -95,10 +95,11 @@
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
+            info.crypted == undefined && (info.crypted = false);
 
-            var _tpl = `<tr${id}>
+            var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
                           <td class="row-cell cicon">
-                            <span class="icon ${info.type=='folder'?'img-before-el folder':`img-format ${info.format}`}" />
+                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -217,7 +218,7 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
-                ppmenu.hideItem('files:explore', !model.islocal && !model.dir);
+                ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
@@ -250,6 +251,7 @@
         function _init_ppmenu() {
             ppmenu = new Menu({
                 id: 'pp-menu-files',
+                bottomlimitoffset: 10,
                 items: [{
                     caption: utils.Lang.menuFileOpen,
                     action: 'files:open'
@@ -345,6 +347,11 @@
                     }
 
                     console.log('portal authorized');
+                });
+
+                $('#box-recent .table-box').scroll(e => {
+                    if ( Menu.opened )
+                        Menu.closeAll();
                 });
 
                 return this;

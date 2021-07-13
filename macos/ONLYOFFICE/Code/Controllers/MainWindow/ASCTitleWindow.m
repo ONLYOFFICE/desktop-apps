@@ -47,6 +47,26 @@
 
 @implementation ASCTitleWindow
 
+- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag {
+    self = [super initWithContentRect:contentRect styleMask:style backing:backingStoreType defer:flag];
+    
+    if (self) {
+        [self initialize];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)backingStoreType defer:(BOOL)flag screen:(NSScreen *)screen {
+    self = [super initWithContentRect:contentRect styleMask:style backing:backingStoreType defer:flag screen:screen];
+    
+    if (self) {
+        [self initialize];
+    }
+    
+    return self;
+}
+
 - (NSWindowTitleVisibility)titleVisibility {
     return NSWindowTitleHidden;
 }
@@ -66,6 +86,16 @@
     _dummyTitlebarAccessoryViewController.view = view;
     _dummyTitlebarAccessoryViewController.fullScreenMinHeight = titleBarHeight;
     [self addTitlebarAccessoryViewController:_dummyTitlebarAccessoryViewController];
+}
+
+- (void)initialize {
+    if (@available(macOS 11, *)) {
+        NSToolbar * customToolbar = [NSToolbar new];
+        customToolbar.showsBaselineSeparator = false;
+        self.titlebarAppearsTransparent = true;
+        self.titleVisibility = NSWindowTitleHidden;
+        self.toolbar = customToolbar;
+    }
 }
 
 @end

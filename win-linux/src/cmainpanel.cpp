@@ -90,11 +90,9 @@ public:
     QPrintDialog::PrintRange _print_range;
 };
 
-CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
+CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     : QWidget(parent),
-      CScalingWrapper(dpi_ratio),
-        m_pButtonMinimize(NULL), m_pButtonMaximize(NULL), m_pButtonClose(NULL),
-        m_isMaximized(false)
+      CScalingWrapper(dpi_ratio)
       , m_isCustomWindow(isCustomWindow)
       , m_printData(new printdata)
       , m_mainWindowState(Qt::WindowNoState)
@@ -102,6 +100,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -117,6 +116,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
     m_pTabs->activate(false);
+    m_pTabs->applyUITheme(AscAppManager::themes().current());
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
@@ -124,7 +124,6 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainPanel::onTabsCountChanged, this, _2, _1, -1));
 
-    QSize small_btn_size(28 * dpi_ratio, TOOLBTN_HEIGHT * dpi_ratio);
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
 
 #ifdef __linux__
@@ -143,20 +142,20 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
     label->setObjectName("labelAppTitle");
     label->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-    layoutBtns->setContentsMargins(0,0,4*dpi_ratio,0);
-    layoutBtns->setSpacing(1*dpi_ratio);
+    layoutBtns->setContentsMargins(0,0,int(4*dpi_ratio),0);
+    layoutBtns->setSpacing(int(1*dpi_ratio));
     layoutBtns->addWidget(label);
 
     // Main
-    m_pButtonMain = new QPushButton( tr("FILE"), centralWidget );
+    m_pButtonMain = new CSVGPushButton(centralWidget);
     m_pButtonMain->setObjectName( "toolButtonMain" );
     m_pButtonMain->setProperty("class", "active");
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     if (isCustomWindow) {
-        palette.setColor(QPalette::Background, QColor(TABBAR_BACKGROUND_COLOR));
+//        palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
 
-        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * parent) {
+        auto _creatToolButton = [](const QString& name, QWidget * parent) {
             QPushButton * btn = new QPushButton(parent);
             btn->setObjectName(name);
             btn->setProperty("class", "normal");
@@ -182,12 +181,12 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         layoutBtns->addWidget(m_pButtonClose);
 
 #ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
     } else {
-        m_pButtonMain->setProperty("theme", "light");
+//        m_pButtonMain->setProperty("theme", "light");
 
         QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
@@ -198,44 +197,33 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, uchar dpi_ratio)
         label->setFixedHeight(0);
     }
 
-    m_pTabs->setAutoFillBackground(true);
+//    m_pTabs->setAutoFillBackground(true);
     m_pTabs->setPalette(palette);
-    m_pTabs->applyCustomTheme(isCustomWindow);
-
-    QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
-    pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-    pMainWidget->setObjectName( "mainPanel" );
-    pMainWidget->setHidden(false);
-
-    m_pMainWidget = (QWidget *)pMainWidget;
+    m_pTabs->setCustomWindowParams(isCustomWindow);
     m_pTabs->m_pMainButton = m_pButtonMain;
-    m_pTabs->m_pMainWidget = m_pMainWidget;
-
-//    m_pMainWidget->setVisible(false);
 
     mainGridLayout->addWidget( centralWidget );
 
-    RecalculatePlaces();
-    loadStartPage();
+//    RecalculatePlaces();
+}
 
-//    m_pTabs->addEditor("editor1 editor21", etDocument, L"https://testinfo.teamlab.info");
-//    m_pTabs->addEditor("editor2", etPresentation, L"http://google.com");
-//    m_pTabs->addEditor("editor3", etSpreadsheet, L"http://google.com");
-//    m_pTabs->updateIcons();
+void CMainPanel::attachStartPanel(QCefView * const view)
+{
+    m_pMainWidget = qobject_cast<QWidget *>(view);
+#ifdef __linux
+    view->setMouseTracking(m_pButtonMain->hasMouseTracking());
+#endif
 
-    QString params = QString("lang=%1&username=%3&location=%2")
-                        .arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode());
-    wstring wparams = params.toStdWString();
-    wstring user_name = Utils::appUserName();
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    view->setParent(centralwidget);
 
-    wparams.replace(wparams.find(L"%3"), 2, user_name);
-    AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
+    if ( !m_pTabs->isActiveWidget() )
+        view->show();
 }
 
 void CMainPanel::RecalculatePlaces()
 {
     int cbw = 0;
-    int dpi_ratio = scaling();
 
 #ifdef __linux
     QWidget * cw = findChild<QWidget *>("centralWidget");
@@ -245,8 +233,8 @@ void CMainPanel::RecalculatePlaces()
     int windowW = width(),
         windowH = height(),
 #endif
-        captionH = TITLE_HEIGHT * dpi_ratio,
-        btnMainWidth = BUTTON_MAIN_WIDTH * dpi_ratio;
+        captionH = int(TITLE_HEIGHT * scaling()),
+        btnMainWidth = int(BUTTON_MAIN_WIDTH * scaling());
 
     m_pTabs->setGeometry(cbw, cbw, windowW, windowH);
 
@@ -258,9 +246,11 @@ void CMainPanel::RecalculatePlaces()
     if (contentH < 1)
         contentH = 1;
 
-    m_boxTitleBtns->setFixedSize(docCaptionW, TOOLBTN_HEIGHT * dpi_ratio);
+    m_boxTitleBtns->setFixedSize(docCaptionW, int(TOOLBTN_HEIGHT * scaling()));
     m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setGeometry(cbw, captionH + cbw, windowW, contentH);
 }
 
 #ifdef __linux
@@ -282,7 +272,9 @@ void CMainPanel::setMouseTracking(bool enable)
     m_pButtonClose->setMouseTracking(enable);
     m_pButtonMinimize->setMouseTracking(enable);
     m_pButtonMaximize->setMouseTracking(enable);
-    m_pMainWidget->setMouseTracking(enable);
+
+    if ( m_pMainWidget )
+        m_pMainWidget->setMouseTracking(enable);
 }
 #endif
 
@@ -305,39 +297,6 @@ void CMainPanel::pushButtonCloseClicked()
     emit mainWindowWantToClose();
 }
 
-bool CMainPanel::closeAll()
-{
-    if ( !m_closeAct.isEmpty() ) return false;
-
-    if ( m_pTabs->count() ) {
-        for (int i(m_pTabs->count()); !(--i < 0);) {
-            CTabPanel& _p = *m_pTabs->panel(i);
-            if ( _p.data()->modified() &&
-                    _p.data()->isViewType(cvwtEditor) )
-            {
-                if ( !_p.data()->closed() ) {
-                    int _answer = trySaveDocument(i);
-                    if ( _answer == MODAL_RESULT_NO ) {
-                        m_pTabs->editorCloseRequest(i);
-                        onDocumentSave(_p.cef()->GetId());
-                    } else
-                    if ( _answer == MODAL_RESULT_CANCEL ) {
-                        m_closeAct.clear();
-                        return false;
-                    }
-                }
-            } else {
-                m_pTabs->closeEditorByIndex(i);
-            }
-
-            if ( m_closeAct.isEmpty() )
-                m_closeAct = "window";
-        }
-    }
-
-    return true;
-}
-
 void CMainPanel::onAppCloseRequest()
 {
     onFullScreen(-1, false);
@@ -350,7 +309,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
     if ( m_isCustomWindow ) {
 #ifdef __linux__
-        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith());
+        layout()->setMargin(s == Qt::WindowMaximized ? 0 : CX11Decoration::customWindowBorderWith() * scaling());
 #endif
 
         m_pButtonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
@@ -360,7 +319,7 @@ void CMainPanel::applyMainWindowState(Qt::WindowState s)
 
 void CMainPanel::pushButtonMainClicked()
 {
-    if (m_pTabs->isActive()) {
+    if ( m_pTabs->isActiveWidget() ) {
         m_pTabs->activate(false);
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
@@ -373,7 +332,7 @@ void CMainPanel::pushButtonMainClicked()
 void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 {
     auto _toggle = [=] (bool state) {
-        if (m_pTabs->isActive() == state) {
+        if (m_pTabs->isActiveWidget() == state) {
             if ( state ) {
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
@@ -397,7 +356,7 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
 }
 
 void CMainPanel::focus() {
-    if (m_pTabs->isActive()) {
+    if (m_pTabs->isActiveWidget()) {
         m_pTabs->setFocusedView();
     } else {
         ((QCefView *)m_pMainWidget)->setFocusToCef();
@@ -414,7 +373,7 @@ void CMainPanel::onTabClicked(int index)
 {
     Q_UNUSED(index)
 
-    if (!m_pTabs->isActive()) {
+    if (!m_pTabs->isActiveWidget()) {
         toggleButtonMain(false);
     }
 }
@@ -458,6 +417,9 @@ void CMainPanel::onEditorAllowedClose(int uid)
             }
 
             onTabChanged(m_pTabs->currentIndex());
+
+            CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+            AscAppManager::getInstance().commonEvents().signal(&_event);
         }
     }
 }
@@ -483,8 +445,6 @@ void CMainPanel::onTabChanged(int index)
 
 void CMainPanel::onTabCloseRequest(int index)
 {
-    if ( !m_closeAct.isEmpty() ) return;
-
     onFullScreen(-1, false);
     if ( m_pTabs->isProcessed(index) ) {
         return;
@@ -494,6 +454,39 @@ void CMainPanel::onTabCloseRequest(int index)
             onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
         }
     }
+}
+
+int CMainPanel::tabCloseRequest(int index)
+{
+    if ( m_pTabs->count() ) {
+        if ( index == -1 ) {
+            if ( !m_pTabs->closedByIndex(m_pTabs->currentIndex()) )
+                index = m_pTabs->currentIndex();
+            else {
+                for (int i(0); i < m_pTabs->count(); ++i) {
+                    if ( !m_pTabs->closedByIndex(i) ) {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if ( !(index < 0) && index < m_pTabs->count() ) {
+        onFullScreen(-1, false);
+        if ( !m_pTabs->isProcessed(index) ) {
+            int _result = trySaveDocument(index);
+            if ( _result == MODAL_RESULT_NO ) {
+                m_pTabs->editorCloseRequest(index);
+                onDocumentSave(m_pTabs->panel(index)->cef()->GetId());
+            }
+
+            return _result;
+        }
+    }
+
+    return MODAL_RESULT_CUSTOM;
 }
 
 int CMainPanel::trySaveDocument(int index)
@@ -525,10 +518,8 @@ int CMainPanel::trySaveDocument(int index)
     return modal_res;
 }
 
-void CMainPanel::onPortalLogout(wstring wjson)
+void CMainPanel::onPortalLogout(std::wstring wjson)
 {
-    if (!m_closeAct.isEmpty()) return;
-
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
@@ -552,8 +543,6 @@ void CMainPanel::onPortalLogout(wstring wjson)
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);
                         if ( _answer == MODAL_RESULT_CANCEL) {
-                            m_closeAct.clear();
-
                             AscAppManager::cancelClose();
                             return;
                         }
@@ -589,26 +578,6 @@ void CMainPanel::onCloudDocumentOpen(std::wstring url, int id, bool select)
         }
     }
 }
-
-//void CMainPanel::onLocalFileOpen(const QString& inpath)
-//{
-//#ifdef _WIN32
-//    CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-//#else
-//    CFileDialogWrapper dlg(qobject_cast<QWidget *>(parent()));
-//#endif
-
-//    QString _path = !inpath.isEmpty() && QDir(inpath).exists() ?
-//                        inpath : Utils::lastPath(LOCAL_PATH_OPEN);
-
-//    if (!(_path = dlg.modalOpenSingle(_path)).isEmpty()) {
-//        Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
-
-//        COpenOptions opts = {"", etLocalFile, _path};
-//        opts.wurl = _path.toStdWString();
-//        doOpenLocalFile(opts);
-//    }
-//}
 
 void CMainPanel::doOpenLocalFile(COpenOptions& opts)
 {
@@ -653,7 +622,7 @@ void CMainPanel::onLocalFileRecent(const COpenOptions& opts)
                         tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
 
             if (modal_res == MODAL_RESULT_CUSTOM) {
-                AscAppManager::sendCommandTo(QCEF_CAST(m_pMainWidget), "file:skip", QString::number(opts.id));
+                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
             return;
@@ -688,16 +657,12 @@ void CMainPanel::createLocalFile(const QString& name, int format)
 void CMainPanel::onLocalFilesOpen(void * data)
 {
     CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)data;
-    vector<wstring> vctFiles = pData->get_Files();
+    std::vector<std::wstring> vctFiles = pData->get_Files();
 
     doOpenLocalFiles(&vctFiles);
 
     RELEASEINTERFACE(pData);
 }
-
-
-
-
 
 void CMainPanel::onLocalFileLocation(QString path)
 {
@@ -751,11 +716,11 @@ void CMainPanel::onFileLocation(int uid, QString param)
     }
 }
 
-void CMainPanel::doOpenLocalFiles(const vector<wstring> * vec)
+void CMainPanel::doOpenLocalFiles(const std::vector<std::wstring> * vec)
 {
     if (qApp->activeModalWidget()) return;
 
-    for (wstring wstr : (*vec)) {
+    for (const auto& wstr : (*vec)) {
         COpenOptions opts = {wstr, etLocalFile};
         doOpenLocalFile(opts);
     }
@@ -817,8 +782,13 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 {
 }
 
-void CMainPanel::onWebAppsFeatures(int id, wstring opts)
+void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
+    // TODO: remove in release 6.5, theme id is sended on webapp:entry event
+    int index = m_pTabs->tabIndexByView(id);
+    if ( !(index < 0) )
+        AscAppManager::sendCommandTo(m_pTabs->panel(index)->cef(), L"uitheme:changed", AscAppManager::themes().current());
+
     m_pTabs->setEditorOptions(id, opts);
 }
 
@@ -829,7 +799,8 @@ void CMainPanel::onDocumentReady(int uid)
             refreshAboutVersion();
             emit mainPageReady();
 
-            AscAppManager::sendCommandTo( QCEF_CAST(m_pMainWidget), "app:ready" );
+            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
+            focus(); // TODO: move to app manager
         });
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
@@ -860,9 +831,8 @@ void CMainPanel::onDocumentSave(int id, bool cancel)
                 }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
-            m_closeAct.clear();
 
-            AscAppManager::cancelClose();
+//            AscAppManager::cancelClose();
         }
     }
 }
@@ -902,7 +872,7 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
     if ( !(index < 0) ) {
             int _answer = MODAL_RESULT_NO;
             if ( isfragmented ) {
-                static const bool _skip_user_warning = !InputArgs::contains("--warning-doc-fragmented");
+                static const bool _skip_user_warning = !InputArgs::contains(L"--warning-doc-fragmented");
                 if ( _skip_user_warning ) {
                     m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD));
                     return;
@@ -924,7 +894,6 @@ void CMainPanel::onDocumentFragmented(int id, bool isfragmented)
             }
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
-                m_closeAct.clear();
                 AscAppManager::cancelClose();
             }
     }
@@ -934,8 +903,7 @@ void CMainPanel::onDocumentFragmentedBuild(int vid, int error)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( error == 0 ) {
-//        if ( !m_closeAct.isEmpty() )
-            m_pTabs->closeEditorByIndex(index, false);
+        m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
         AscAppManager::cancelClose();
@@ -967,31 +935,6 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
             if (  _is_local  ) toggleButtonMain(true);
         }
     }
-}
-
-void CMainPanel::loadStartPage()
-{
-    GET_REGISTRY_USER(_reg_user);
-
-    QString data_path;
-#if defined(QT_DEBUG)
-    data_path = _reg_user.value("startpage").value<QString>();
-#endif
-
-    if (data_path.isEmpty())
-        data_path = qApp->applicationDirPath() + "/index.html";
-
-    QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
-
-    QString _portal = _reg_user.value("portal").value<QString>();
-    if (!_portal.isEmpty()) {
-        QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-        additional.append(arg_portal);
-    }
-
-
-    std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-    ((QCefView*)m_pMainWidget)->GetCefView()->load(start_path);
 }
 
 void CMainPanel::goStart()
@@ -1119,51 +1062,6 @@ void CMainPanel::onDocumentPrint(void * opts)
 
 void CMainPanel::onLocalFileSaveAs(void * d)
 {
-    CAscLocalSaveFileDialog * pData = static_cast<CAscLocalSaveFileDialog *>(d);
-
-    QFileInfo info( QString::fromStdWString(pData->get_Path()) );
-    if ( !info.fileName().isEmpty() ) {
-        bool _keep_path = false;
-        QString fullPath;
-        if ( info.exists() ) fullPath = info.absoluteFilePath();
-        else fullPath = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.fileName(), _keep_path = true;
-
-        CFileDialogWrapper dlg(TOP_NATIVE_WINDOW_HANDLE);
-        dlg.setFormats(pData->get_SupportFormats());
-
-        CAscLocalSaveFileDialog * pSaveData = new CAscLocalSaveFileDialog();
-        pSaveData->put_Id(pData->get_Id());
-        pSaveData->put_Path(L"");
-
-        if ( dlg.modalSaveAs(fullPath) ) {
-            if ( _keep_path )
-                Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(fullPath).absoluteDir().absolutePath());
-
-            bool _allowed = true;
-            if ( dlg.getFormat() == AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV ) {
-                CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbOkDefCancel);
-                _allowed =  MODAL_RESULT_CUSTOM == mess.warning(tr("Some data will lost.<br>Continue?"));
-            }
-
-            if ( _allowed ) {
-                pSaveData->put_Path(fullPath.toStdWString());
-                int format = dlg.getFormat() > 0 ? dlg.getFormat() :
-                        AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
-
-                pSaveData->put_FileType(format > -1 ? format : 0);
-            }
-        }
-
-        CAscMenuEvent* pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE_PATH);
-        pEvent->m_pData = pSaveData;
-
-        AscAppManager::getInstance().Apply(pEvent);
-
-//        RELEASEINTERFACE(pData)
-//        RELEASEINTERFACE(pEvent)
-    }
-
-    RELEASEINTERFACE(pData);
 }
 
 void CMainPanel::onFullScreen(int id, bool apply)
@@ -1199,7 +1097,7 @@ void CMainPanel::onKeyDown(void * eventData)
     switch (key) {
     case 'W':
     case VK_F4:
-        if (_is_ctrl && m_pTabs->isActive()) {
+        if ( _is_ctrl && m_pTabs->isActiveWidget() ) {
             onTabCloseRequest(m_pTabs->currentIndex());
         }
         break;
@@ -1209,11 +1107,11 @@ void CMainPanel::onKeyDown(void * eventData)
                 int _new_index = 0;
 
                 if ( _is_shift ) {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index = m_pTabs->currentIndex() - 1; else
                         _new_index = m_pTabs->count() - 1;
                 } else {
-                    if ( m_pTabs->isActive() )
+                    if ( m_pTabs->isActiveWidget() )
                         _new_index =  m_pTabs->currentIndex() + 1;
                 }
 
@@ -1237,9 +1135,10 @@ void CMainPanel::onPortalOpen(QString json)
     if(jerror.error == QJsonParseError::NoError) {
         QJsonObject objRoot = jdoc.object();
 
-        QString _portal = objRoot["portal"].toString();
+        QString _portal = objRoot["portal"].toString(),
+                _entry = objRoot["entrypage"].toString();
         if ( !_portal.isEmpty() ) {
-            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("asc"));
+            int res = m_pTabs->openPortal( _portal, objRoot["provider"].toString("onlyoffice"), _entry);
             if ( !(res < 0) ) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
@@ -1296,8 +1195,8 @@ void CMainPanel::onOutsideAuth(QString json)
         QString _domain = objRoot["portal"].toString();
         int _tab_index = m_pTabs->tabIndexByTitle(Utils::getPortalName(_domain), etPortal);
         if ( _tab_index < 0 ) {
-            QString _sso_service = objRoot["provider"].toString();
-            _tab_index = m_pTabs->addOAuthPortal(_domain, objRoot["type"].toString(), _sso_service);
+            _tab_index = m_pTabs->addOAuthPortal(_domain,
+                                objRoot["type"].toString(), objRoot["provider"].toString(), objRoot["entrypage"].toString());
         }
 
         if ( !(_tab_index < 0) ) {
@@ -1305,6 +1204,34 @@ void CMainPanel::onOutsideAuth(QString json)
             toggleButtonMain(false, true);
         }
     }
+}
+
+void CMainPanel::applyTheme(const std::wstring& theme)
+{
+    this->setProperty("uitheme", QString::fromStdWString(theme));
+
+    for (int i(m_pTabs->count()); !(--i < 0);) {
+        CAscTabData& _doc = *m_pTabs->panel(i)->data();
+        if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
+            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+        }
+    }
+
+//    m_pTabs->style()->polish(m_pTabs);
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if ( m_pButtonMinimize ) {
+        m_pButtonMinimize->style()->polish(m_pButtonMinimize);
+        m_pButtonMaximize->style()->polish(m_pButtonMaximize);
+        m_pButtonClose->style()->polish(m_pButtonClose);
+    }
+
+    m_pTabs->applyUITheme(theme);
+
+    QWidget * centralwidget = layout()->itemAt(0)->widget();
+    centralwidget->style()->polish(centralwidget);
+    style()->polish(this);
+
+    update();
 }
 
 void CMainPanel::setInputFiles(QStringList * list)
@@ -1318,25 +1245,25 @@ QString CMainPanel::getSaveMessage() const
     return tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
-void CMainPanel::updateScaling(int dpiratio)
+void CMainPanel::updateScaling(double dpiratio)
 {
     CScalingWrapper::updateScaling(dpiratio);
 
     QLayout * layoutBtns = m_boxTitleBtns->layout();
-    layoutBtns->setSpacing(1 * dpiratio);
+    layoutBtns->setSpacing(int(1 * dpiratio));
 
     if ( m_isCustomWindow ) {
         layoutBtns->setContentsMargins(0,0,0,0);
 
-        QSize small_btn_size(40*dpiratio, TOOLBTN_HEIGHT*dpiratio);
+        QSize small_btn_size(int(40*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         m_pButtonMinimize->setFixedSize(small_btn_size);
         m_pButtonMaximize->setFixedSize(small_btn_size);
         m_pButtonClose->setFixedSize(small_btn_size);
     }
 
-    m_pButtonMain->setGeometry(0, 0, BUTTON_MAIN_WIDTH * dpiratio, TITLE_HEIGHT * dpiratio);
+    m_pButtonMain->setGeometry(0, 0, int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
 
-    QString _tabs_stylesheets = dpiratio > 1 ? ":/sep-styles/tabbar@2x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = dpiratio > 1.55 ? ":/sep-styles/tabbar@2x" : dpiratio > 1.1 ? ":/sep-styles/tabbar@1.5x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
         _tabs_stylesheets += ".qss";
     } else {
@@ -1351,29 +1278,35 @@ void CMainPanel::updateScaling(int dpiratio)
     m_pTabs->updateScaling(dpiratio);
     styleFile.close();
 
-    std::map<int, std::pair<QString, QString> > icons;
-    if ( dpiratio > 1 ) {
-        icons.insert({
-            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
-            {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
-            {etPresentation, std::make_pair(":/tabbar/icons/pe@2x.png", ":/tabbar/icons/pe@2x.png")},
-            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")},
-            {etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}
-        });
-    } else {
-        icons.insert({
-            {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},
-            {etDocument, std::make_pair(":/tabbar/icons/de.png", ":/tabbar/icons/de.png")},
-            {etPresentation, std::make_pair(":/tabbar/icons/pe.png", ":/tabbar/icons/pe.png")},
-            {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")},
-            {etPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")}
-        });
-    }
+//    std::map<int, std::pair<QString, QString> > icons;
+//    if ( dpiratio > 1 ) {
+//        icons.insert({
+//            {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
+//            {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
+//            {etPresentation, std::make_pair(":/tabbar/icons/pe@2x.png", ":/tabbar/icons/pe@2x.png")},
+//            {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")},
+//            {etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
+//            {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}
+//        });
+//    } else {
+//        icons.insert({
+//            {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},
+//            {etDocument, std::make_pair(":/tabbar/icons/de.png", ":/tabbar/icons/de.png")},
+//            {etPresentation, std::make_pair(":/tabbar/icons/pe.png", ":/tabbar/icons/pe.png")},
+//            {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")},
+//            {etPortal, std::make_pair(":/tabbar/icons/portal_light.png", ":/tabbar/icons/portal.png")},
+//            {etNewPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")}
+//        });
+//    }
 
-    m_pTabs->setTabIcons(icons);
+//    m_pTabs->setTabIcons(icons);
+    m_pTabs->reloadTabIcons();
+
+    if ( m_mainWindowState == Qt::WindowMaximized )
+        RecalculatePlaces();
 }
 
-void CMainPanel::setScreenScalingFactor(uchar s)
+void CMainPanel::setScreenScalingFactor(double s)
 {
     updateScaling(s);
     CScalingWrapper::updateChildScaling(this, s);

@@ -59,7 +59,8 @@
 }
 
 + (NSArray *)videos {
-    return @[@"webm", @"mkv", @"flv", @"ogg", @"avi", @"mov", @"wmv", @"mp4", @"m4v", @"mpg", @"mp2", @"mpeg", @"mpe", @"mpv", @"m2v", @"m4v", @"3gp", @"3g2", @"f4v", @"m2ts", @"mts"];
+    return @[@"webm", @"mkv", @"flv", @"ogg", @"avi", @"mov", @"wmv", @"mp4", @"m4v", @"mpg", @"mp2", @"mpeg",
+             @"mpe", @"mpv", @"m2v", @"m4v", @"3gp", @"3g2", @"f4v", @"m2ts", @"mts"];
 }
 
 + (NSArray *)audios {
@@ -67,15 +68,16 @@
 }
 
 + (NSArray *)documents {
-    return @[@"doc", @"docx", @"odt", @"rtf", @"txt", @"html", @"mht", @"epub", @"pdf", @"djvu", @"xps", @"doctx"];
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx"];
+    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt"];
 }
 
 + (NSArray *)plugins {
@@ -206,8 +208,24 @@
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS): @{
                      @"description" : NSLocalizedString(@"OpenDocument Spreadsheet Template", nil),
                      @"extension"   : @"ots"
-                     }
-             };
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML): @{
+                     @"description" : NSLocalizedString(@"HTML File", nil),
+                     @"extension"   : @"html"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT): @{
+                     @"description" : NSLocalizedString(@"MHT File", nil),
+                     @"extension"   : @"mht"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
+                     @"description" : NSLocalizedString(@"Electronic Publication", nil),
+                     @"extension"   : @"epub"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
+                     @"description" : NSLocalizedString(@"FictionBook File", nil),
+                     @"extension"   : @"fb2"
+             }
+    };
 }
 
 @end

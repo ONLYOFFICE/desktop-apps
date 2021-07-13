@@ -1,28 +1,29 @@
 [
     {
-        "id": "asc",
+        "provider": "asc",
         "name" : "ONLYOFFICE",
         "check" : {
             "url":"/api/2.0/capabilities.json"
         },
         "editorPage" : "/products/files/doceditor.aspx",
+        "startPage": "/Products/Files/",
         "cryptoSupport" : "true"
     },
     {
-        "id": "ownc",
+        "provider": "ownc",
         "name" : "ownCloud",
         "check" : {
             "url": "status.php"
         },
         "editorPage" : "/apps/onlyoffice/",
-        "installLink" : "https://marketplace.owncloud.com/apps/onlyoffice",
+        "startPage": "/",
         "cryptoSupport" : "true"
     },
     {
-        "id": "nextc",
+        "provider": "nextc",
         "name" : "Nextcloud",
         "editorPage" : "/apps/onlyoffice/",
-        "installLink" : "https://apps.nextloud.com/apps/onlyoffice",
+        "startPage": "/",
         "check": {
             "url": "status.php",
             "headers": {

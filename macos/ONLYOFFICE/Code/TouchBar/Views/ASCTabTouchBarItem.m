@@ -125,15 +125,15 @@
         
         switch (_tabInfo.type) {
             case ASCTabTouchBarTypeDocument:
-                self.layer.backgroundColor = [[NSColor brendDocumentEditor] CGColor];
+                self.layer.backgroundColor = [[NSColor themedDocumentEditor] CGColor];
                 [_imageView setImage:[NSImage imageNamed:@"touchbar-tab-document"]];
                 break;
             case ASCTabTouchBarTypeSpreadsheet:
-                self.layer.backgroundColor = [[NSColor brendSpreadsheetEditor] CGColor];
+                self.layer.backgroundColor = [[NSColor themedSpreadsheetEditor] CGColor];
                 [_imageView setImage:[NSImage imageNamed:@"touchbar-tab-spreadsheet"]];
                 break;
             case ASCTabTouchBarTypePresentation:
-                self.layer.backgroundColor = [[NSColor brendPresentationEditor] CGColor];
+                self.layer.backgroundColor = [[NSColor themedPresentationEditor] CGColor];
                 [_imageView setImage:[NSImage imageNamed:@"touchbar-tab-presentation"]];
                 break;
             default:

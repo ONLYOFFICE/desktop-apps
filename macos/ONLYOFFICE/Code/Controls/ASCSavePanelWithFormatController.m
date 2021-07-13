@@ -101,6 +101,10 @@
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.type == %@", @(filterType)];
     
+    if ([_filters count] < 1) {
+        return;
+    }
+    
     NSUInteger index = [_filters indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return [predicate evaluateWithObject:obj];
     }];

@@ -6,22 +6,22 @@ CScalingWrapper::CScalingWrapper(QWidget * parent)
 {
 }
 
-CScalingWrapper::CScalingWrapper(int f)
+CScalingWrapper::CScalingWrapper(double f)
 {
     if ( f > 1 ) m_scaleFactor = f;
 }
 
-void CScalingWrapper::updateScaling(int f)
+void CScalingWrapper::updateScaling(double f)
 {
     m_scaleFactor = f;
 }
 
-int CScalingWrapper::scaling() const
+double CScalingWrapper::scaling() const
 {
     return m_scaleFactor;
 }
 
-void CScalingWrapper::updateChildScaling(const QObject * parent, int factor)
+void CScalingWrapper::updateChildScaling(const QObject * parent, double factor)
 {
     QObjectList _l = parent->children();
     if ( _l.size() ) {
@@ -35,7 +35,7 @@ void CScalingWrapper::updateChildScaling(const QObject * parent, int factor)
     }
 }
 
-int CScalingWrapper::parentScalingFactor(const QObject * parent)
+double CScalingWrapper::parentScalingFactor(const QObject * parent)
 {
     if ( parent ) {
         const CScalingWrapper * _s = dynamic_cast<const CScalingWrapper *>(parent);

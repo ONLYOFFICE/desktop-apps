@@ -42,9 +42,11 @@
 #include "mac_application.h"
 #include "ASCApplicationManager.h"
 #import "NSString+Extensions.h"
+#import "ASCConstants.h"
 #import "ASCHelper.h"
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
+#import "NSApplication+Extensions.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -57,11 +59,6 @@ int main(int argc, const char * argv[]) {
         
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-
-    // disable sign support
-    appManager->m_oSettings.sign_support = false;
-    appManager->m_oSettings.pass_support = true;
-    appManager->m_oSettings.protect_support = true;
 
     // setup common user directory
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
@@ -90,12 +87,25 @@ int main(int argc, const char * argv[]) {
     [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
     
     // setup username
-    NSString * fullName = NSFullUserName();
+    NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];
+    
+    if (fullName == nil) {
+        fullName = NSFullUserName();
+    }
     
     if (fullName) {
         [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];
     }
     
+    // setup ui theme
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    if ( !uiTheme ) {
+        uiTheme = [NSApplication isSystemDarkMode] ? uiThemeDark : uiThemeClassicLight;
+        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
+    }
+
+    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
 

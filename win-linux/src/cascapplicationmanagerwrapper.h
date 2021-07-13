@@ -54,6 +54,7 @@
 #endif
 
 #include "cappupdater.h"
+#include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
@@ -63,8 +64,6 @@ typedef HWND ParentHandle;
 typedef QWidget* ParentHandle;
 #endif
 
-
-using namespace std;
 
 struct sWinTag {
     int     type;
@@ -76,30 +75,41 @@ struct sWinTag {
     }
 };
 
+enum class CScalingFactor
+{
+    SCALING_FACTOR_1,
+    SCALING_FACTOR_1_5,
+    SCALING_FACTOR_2,
+};
+
 class CAscApplicationManagerWrapper;
+class CAscApplicationManagerWrapper_Private;
 typedef CAscApplicationManagerWrapper AscAppManager;
 
 class CAscApplicationManagerWrapper : public QObject, public QAscApplicationManager, CCefEventsTransformer
 {
     Q_OBJECT
+protected:
+    void addStylesheets(CScalingFactor, const std::string&);
 
 private:
-    vector<size_t> m_vecWindows;
-    vector<size_t> m_vecEditors;
-    vector<QString> m_vecStyles;
-    vector<QString> m_vecStyles2x;
+    std::vector<size_t> m_vecEditors;
 
-    map<int, CCefEventsGate *> m_receivers;
-    map<int, CSingleWindow *> m_winsReporter;
+    std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
+
+    std::map<int, CCefEventsGate *> m_receivers;
+    std::map<int, CSingleWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
-    wstring m_closeTarget;
+    std::wstring m_closeTarget;
 
     CWindowsQueue<sWinTag> * m_queueToClose;
     CEventDriver m_eventDriver;
+    CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CAppUpdater> m_updater;
+    std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -114,8 +124,9 @@ private:
     void StartSaveDialog(const std::wstring& sName, unsigned int nId);
     bool processCommonEvent(NSEditorApi::CAscCefMenuEvent *);
     void broadcastEvent(NSEditorApi::CAscCefMenuEvent *);
-    bool applySettings(const wstring& wstrjson);
-    void sendSettings(const wstring& opts);
+    bool applySettings(const std::wstring& wstrjson);
+    void sendSettings(const std::wstring& opts);
+    void applyTheme(const std::wstring&, bool force = false);
 
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
@@ -134,6 +145,7 @@ public slots:
     void onDownloadSaveDialog(const std::wstring& name, uint id);
     void onQueueCloseWindow(const sWinTag&);
     void onFileChecked(const QString&, int, bool);
+    void onEditorWidgetClosed();
 
 
 public:
@@ -144,25 +156,26 @@ public:
 
     static void             startApp();
     static void             initializeApp();
-    static CMainWindow *    createMainWindow(QRect&);
-    static void             closeMainWindow(const size_t);
+    static void             gotoMainWindow();
+    static void             handleInputCmd(const std::vector<std::wstring>&);
+    static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);
 
-    static void             processMainWindowMoving(const size_t, const QPoint&);
     static void             editorWindowMoving(const size_t, const QPoint&);
-    static uint             countMainWindow();
-    static CMainWindow *    topWindow();
+    static CMainWindow *    mainWindow();
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
-    static void             sendCommandTo(CCefView * target, const wstring& cmd, const wstring& args = L"");
-    static wstring          userSettings(const wstring& name);
-    static void             setUserSettings(const wstring& name, const wstring& value);
+    static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
+    static std::wstring     userSettings(const std::wstring& name);
+    static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 
     static void             sendEvent(int type, void * data);
-    static QString          getWindowStylesheets(int);
+    static QString          getWindowStylesheets(double);
+    static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
+    static CThemes &        themes();
 
     static ParentHandle     windowHandleFromId(int id);
 
@@ -172,16 +185,17 @@ public:
     static void             cancelClose();
     static void checkUpdates();
 
-    void manageUndocking(int uid, const std::wstring& action);
-    uint logoutCount(const wstring& portal) const;
-    void Logout(const wstring& portal);
+    uint logoutCount(const std::wstring& portal) const;
+    void Logout(const std::wstring& portal);
     void launchAppClose();
 
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:
-    class CAscApplicationManagerWrapper_Private;
+    friend class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
+
+    CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 };
 
 #endif // QASCAPPLICATIONMANAGER

@@ -67,7 +67,12 @@
         var _lang = utils.Lang;
         let _html = `<div class="flexbox">
                         <div class="box-ver">
-                            <div class="img-el ver-logo ${_opts.logocls}"></div><p></p>
+                            <div class="${_opts.logocls}">
+                                <svg class="ver-logo">
+                                    <use id="idx-ver-logo--light" href="#idx-logo-light" />
+                                    <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
+                                </svg>
+                            </div><p></p>
                             <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}<p></p>

@@ -41,8 +41,8 @@ class CPushButton : public QPushButton
     Q_OBJECT
 
 public:
-    explicit CPushButton(QWidget *parent, uchar scaling);
-    CPushButton(uchar scaling = 1);
+    explicit CPushButton(QWidget *parent, double scaling);
+    CPushButton(double scaling = 1);
     ~CPushButton();
 
     void setAnimatedIcon(QPair<QString, QString>&, bool autostart = false);
@@ -50,7 +50,7 @@ public:
 
     void setEnabled(bool);
     void setVisible(bool visible, bool animation);
-    void setScaling(uchar);
+    void setScaling(double);
     void setFixedSize(const QSize&);
 
 protected:
@@ -61,7 +61,7 @@ private:
     QPropertyAnimation * _animation;
     QPair<QString, QString> _icon;
     QSize _fixed_size;
-    uchar _dpi_ratio;
+    double _dpi_ratio;
 
     void applyAnimatedIcon(const QString&);
 
