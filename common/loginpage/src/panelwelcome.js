@@ -85,7 +85,12 @@
             baseController.prototype.init.apply(this, arguments);
 
             const is_dark_theme = localStorage.getItem('ui-theme') == 'theme-dark';
-            const img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
+            let img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
+
+            if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
+                img = img.replace(' href=', ' xlink:href=');
+            }
+
             this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
 
