@@ -20,6 +20,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/pl.ts \
                 ./langs/ca.ts \
                 ./langs/da.ts \
+                ./langs/el_GR.ts \
                 ./langs/et.ts \
                 ./langs/fi.ts \
                 ./langs/ga.ts \

@@ -50,7 +50,7 @@ window.DialogConnect = function(params) {
                             <div id="panel-portal" class="sl-panel">
                                 <div class='select-field dlg--option'>
                                     <section class='box-cmp-select'>
-                                        <select class='combobox'></select>
+                                        <select class='combobox' data-size='5'></select>
                                     </section>
                                 </div>
                                 <div class="error-box">
