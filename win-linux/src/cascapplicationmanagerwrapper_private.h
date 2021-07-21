@@ -38,6 +38,11 @@
 #include "defines.h"
 #include "clangater.h"
 #include "cappeventfilter.h"
+#include "OfficeFileFormats.h"
+#include "ceditortools.h"
+#include "utils.h"
+#include "cmessage.h"
+
 
 class CAscApplicationManagerWrapper_Private
 {
@@ -48,12 +53,20 @@ public:
 #ifdef Q_OS_WIN
         qApp->installEventFilter(new CAppEventFilter(this));
 #endif
+
+        GET_REGISTRY_USER(reg_user);
+        m_openEditorWindow = reg_user.value("editorWindowMode").toBool();
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
     virtual void initializeApp() {}
-    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
+    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent * event) {
+        if ( detectDocumentOpening(*event) )
+            return true;
+
+        return false;
+    }
     virtual void applyStylesheets() {}
     virtual void addStylesheets(CScalingFactor f, const std::string& s)
     {
@@ -116,6 +129,165 @@ public:
         return false;
     }
 
+    auto preferOpenEditorWindow() -> bool
+    {
+        return m_openEditorWindow;
+    }
+
+    auto detectDocumentOpening(const NSEditorApi::CAscCefMenuEvent& event) -> bool
+    {
+        switch ( event.m_nType ) {
+        case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
+            NSEditorApi::CAscCreateTab & data = *static_cast<NSEditorApi::CAscCreateTab *>(event.m_pData);
+//            data.get_Active();
+
+            COpenOptions opts{data.get_Url()};
+            opts.id = data.get_IdEqual();
+            opts.parent_id = event.m_nSenderId;
+
+            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
+                bringEditorToFront(_v->GetId());
+            } else openDocument(opts);
+
+            return true;
+        }
+        case ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND: {
+            NSEditorApi::CAscExecCommand & data = *static_cast<NSEditorApi::CAscExecCommand *>(event.m_pData);
+            const std::wstring & cmd = data.get_Command();
+
+            if ( cmd.compare(L"open:recent") == 0 ) {
+                QJsonObject objRoot = Utils::parseJson(data.get_Param());
+                if ( !objRoot.isEmpty() ) {
+                    COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                    opts.format = objRoot["type"].toInt();
+                    opts.parent_id = event.m_nSenderId;
+
+                    QRegularExpression re(rePortalName);
+                    QRegularExpressionMatch match = re.match(opts.url);
+
+                    if ( !match.hasMatch() ) {
+                        QFileInfo _info(opts.url);
+                        if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
+                            CMessage mess(m_appmanager.mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefNo);
+                            int modal_res = mess.warning(QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
+
+                            if ( modal_res == MODAL_RESULT_CUSTOM ) {
+                                AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
+                                return true;
+                            }
+                        }
+                    }
+
+                    openDocument(opts);
+                }
+
+                return true;
+            } else
+            if ( cmd.compare(L"open:document") == 0 ) {
+                const std::wstring & _url = data.get_Param();
+                if ( !_url.empty() ) {
+                    CCefView * _view = m_appmanager.GetViewByUrl(_url);
+                    if ( _url.rfind(L"http://",0) == 0 || _url.rfind(L"https://",0) == 0 ) {
+                        COpenOptions opts{_url};
+                        opts.id = _view ? _view->GetId() : -1;
+//                        mainWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
+                    } else {
+//                        /* open local file */
+                    }
+                }
+            } else
+            if ( cmd.compare(L"open:folder") == 0 ) {
+                std::wstring file_path = CEditorTools::getlocalfile(data.get_Param()).toStdWString();
+
+                if ( !file_path.empty() ) {
+                    CCefView * _view = m_appmanager.GetViewByUrl(file_path);
+
+                    if ( _view ) {
+                        bringEditorToFront(_view->GetId());
+                    } else {
+                        COpenOptions opts{file_path, etLocalFile};
+                        opts.parent_id = event.m_nSenderId;
+
+                        openDocument(opts);
+                    }
+                }
+
+                return true;
+            } else
+            if ( cmd.compare(L"create:new") == 0 ) {
+                const std::wstring & format = data.get_Param();
+                int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                            format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                            format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+                COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
+                opts.format = _f;
+                opts.parent_id = event.m_nSenderId;
+
+                openDocument(opts);
+                return true;
+            }
+
+        }
+        }
+        return false;
+    }
+
+    auto bringEditorToFront(int viewid) -> void
+    {
+        CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
+        if ( editor )
+            editor->bringToTop();
+        else m_appmanager.mainWindow()->selectView(viewid);
+    }
+
+    auto windowRectFromViewId(int viewid) -> QRect
+    {
+        if ( !(viewid < 0) ) {
+            CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
+            if ( editor )
+                return editor->geometry();
+            else
+            if ( m_appmanager.mainWindow() && m_appmanager.mainWindow()->holdView(viewid) )
+                return m_appmanager.mainWindow()->windowRect();
+        }
+
+        return QRect();
+    }
+
+    auto openDocument(const COpenOptions& opts) -> bool
+    {
+        CTabPanel * panel = CEditorTools::createEditorPanel(opts);
+        if ( panel ) {
+            CAscTabData * panel_data = panel->data();
+            QRegularExpression re("ascdesktop:\\/\\/compare");
+
+            if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
+                 panel_data->setIsLocal(true);
+                 panel_data->setUrl("");
+            }
+
+            if ( preferOpenEditorWindow() ) {
+                QRect rect = windowRectFromViewId(opts.parent_id);
+                if ( !rect.isEmpty() )
+                    rect.adjust(50,50,50,50);
+
+                CEditorWindow * editor_win = new CEditorWindow(rect, panel);
+                editor_win->show(false);
+
+                m_appmanager.m_vecEditors.push_back(size_t(editor_win));
+                m_appmanager.sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+            } else {
+                mainWindow()->attachEditor(panel);
+            }
+
+            return true;
+        }
+
+        return false;
+
+    }
+
 protected:
     auto mainWindow() -> CMainWindow * {
         return m_appmanager.m_pMainWindow;
@@ -124,6 +296,7 @@ protected:
 public:
     CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
+    bool m_openEditorWindow = false;
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

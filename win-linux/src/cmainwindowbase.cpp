@@ -97,6 +97,13 @@ bool CMainWindowBase::holdView(int id) const
     return mainPanel()->holdUid(id);
 }
 
+void CMainWindowBase::selectView(int viewid) const
+{
+    int _index = mainPanel()->tabWidget()->tabIndexByView(viewid);
+    if ( !(_index < 0) )
+        mainPanel()->tabWidget()->setCurrentIndex(_index);
+}
+
 int CMainWindowBase::editorsCount() const
 {
     return mainPanel()->tabWidget()->count(cvwtEditor);
