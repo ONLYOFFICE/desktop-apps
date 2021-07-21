@@ -1059,7 +1059,7 @@ void CAscApplicationManagerWrapper::closeMainWindow()
     APP_CAST(_app)
 
     if ( _app.m_pMainWindow ) {
-        if ( /*false &&*/ !_app.m_vecEditors.empty() ) {
+        if ( false && !_app.m_vecEditors.empty() ) {
             CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
             m.setButtons({"Close all", "Current only", "Cancel"});
             switch (m.warning(tr("Do you want to close all editor windows?"))) {
@@ -1547,15 +1547,15 @@ bool CAscApplicationManagerWrapper::canAppClose()
         if ( _has_opened_editors ) {
             mainWindow()->bringToTop();
 
-            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//            CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
 //            mess.setButtons({"Yes", "No", "Hide main window"});
-            switch (mess.warning(tr("Close all editors windows?"))) {
-            case MODAL_RESULT_CUSTOM + 0: return true;
-            case MODAL_RESULT_CUSTOM + 2:
+//            switch (mess.warning(tr("Close all editors windows?"))) {
+//            case MODAL_RESULT_CUSTOM + 0: return true;
+//            case MODAL_RESULT_CUSTOM + 2:
                 mainWindow()->hide();
                 return false;
-            default: return false;
-            }
+//            default: return false;
+//            }
         }
     }
 
