@@ -192,9 +192,6 @@ void CAscApplicationManagerWrapper::onCoreEvent(void * e)
 
 bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuEvent * event)
 {
-    if ( m_private->detectDocumentOpening(*event) )
-        return true;
-
     switch ( event->m_nType ) {
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: {
         event->AddRef();

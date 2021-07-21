@@ -61,7 +61,12 @@ public:
     virtual ~CAscApplicationManagerWrapper_Private() {}
 
     virtual void initializeApp() {}
-    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent *) { return false; }
+    virtual bool processEvent(NSEditorApi::CAscCefMenuEvent * event) {
+        if ( detectDocumentOpening(*event) )
+            return true;
+
+        return false;
+    }
     virtual void applyStylesheets() {}
     virtual void addStylesheets(CScalingFactor f, const std::string& s)
     {
@@ -124,7 +129,7 @@ public:
         return false;
     }
 
-    auto preferedEditorWindow() -> bool
+    auto preferOpenEditorWindow() -> bool
     {
         return m_openEditorWindow;
     }
@@ -243,8 +248,8 @@ public:
                  panel_data->setUrl("");
             }
 
-            if ( preferedEditorWindow() ) {
                 CEditorWindow * editor_win = new CEditorWindow(QRect(), panel);
+            if ( preferOpenEditorWindow() ) {
                 editor_win->show(false);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
