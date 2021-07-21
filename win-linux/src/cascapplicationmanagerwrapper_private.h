@@ -143,6 +143,7 @@ public:
 
             COpenOptions opts{data.get_Url()};
             opts.id = data.get_IdEqual();
+            opts.parent_id = event.m_nSenderId;
 
             if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
                 bringEditorToFront(_v->GetId());
@@ -159,6 +160,7 @@ public:
                 if ( !objRoot.isEmpty() ) {
                     COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
+                    opts.parent_id = event.m_nSenderId;
 
                     QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);
@@ -204,6 +206,8 @@ public:
                         bringEditorToFront(_view->GetId());
                     } else {
                         COpenOptions opts{file_path, etLocalFile};
+                        opts.parent_id = event.m_nSenderId;
+
                         openDocument(opts);
                     }
                 }
@@ -218,6 +222,7 @@ public:
 
                 COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
                 opts.format = _f;
+                opts.parent_id = event.m_nSenderId;
 
                 openDocument(opts);
                 return true;
@@ -236,6 +241,20 @@ public:
         else m_appmanager.mainWindow()->selectView(viewid);
     }
 
+    auto windowRectFromViewId(int viewid) -> QRect
+    {
+        if ( !(viewid < 0) ) {
+            CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
+            if ( editor )
+                return editor->geometry();
+            else
+            if ( m_appmanager.mainWindow() && m_appmanager.mainWindow()->holdView(viewid) )
+                return m_appmanager.mainWindow()->windowRect();
+        }
+
+        return QRect();
+    }
+
     auto openDocument(const COpenOptions& opts) -> bool
     {
         CTabPanel * panel = CEditorTools::createEditorPanel(opts);
@@ -248,8 +267,12 @@ public:
                  panel_data->setUrl("");
             }
 
-                CEditorWindow * editor_win = new CEditorWindow(QRect(), panel);
             if ( preferOpenEditorWindow() ) {
+                QRect rect = windowRectFromViewId(opts.parent_id);
+                if ( !rect.isEmpty() )
+                    rect.adjust(50,50,50,50);
+
+                CEditorWindow * editor_win = new CEditorWindow(rect, panel);
                 editor_win->show(false);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
