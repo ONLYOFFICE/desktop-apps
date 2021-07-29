@@ -318,7 +318,12 @@
             // var model = portalCollection.find('name', info);
             // model && model.set('logged', false);
 
-            window.sdk.execCommand('portal:logout', JSON.stringify({domain:model.path}));
+            let info = {domain:model.path};
+            const _provider = config.portals.providers[model.provider];
+            if ( !!_provider.extraLogout )
+                info.extra = _provider.extraLogout;
+
+            window.sdk.execCommand('portal:logout', JSON.stringify(info));
         };
 
         function _update_portals() {

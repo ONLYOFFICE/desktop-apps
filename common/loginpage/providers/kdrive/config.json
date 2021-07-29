@@ -2,6 +2,7 @@
     "provider": "kdrive",
     "name" : "Infomaniak",
     "entryPage": "https://drive.infomaniak.com/app/drive",
+    "extraLogout": "https://infomaniak.com/",
     "editorPage" : "/app/office/",
     "cryptoSupport" : "true",
     "icons": {

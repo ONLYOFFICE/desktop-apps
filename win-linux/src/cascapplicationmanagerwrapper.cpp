@@ -10,6 +10,7 @@
 #include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QProcess>
 #include <algorithm>
 #include <functional>
@@ -1573,6 +1574,12 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
             const wstring& portal = objRoot["domain"].toString().toStdWString();
 
             CAscApplicationManager::Logout(portal);
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto v: a)
+                    CAscApplicationManager::Logout(v.toString().toStdWString());
+            }
+
             sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
 
             int index = mainWindow()->mainPanel()->tabWidget()->tabIndexByUrl(portal);
