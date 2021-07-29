@@ -207,11 +207,17 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //    centralWidget->setObjectName("centralWidget");
 //    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    if ( m_dpiRatio > 1.55 )
+    if ( m_dpiRatio > 1.75 )
         mainPanel->setProperty("zoom", "2x");
     else
-    if ( m_dpiRatio > 1 )
+    if ( m_dpiRatio > 1.5 )
+        mainPanel->setProperty("zoom", "1.75x");
+    else
+    if ( m_dpiRatio > 1.25 )
         mainPanel->setProperty("zoom", "1.5x");
+    else
+    if ( m_dpiRatio > 1 )
+        mainPanel->setProperty("zoom", "1.25x");
 
     mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);

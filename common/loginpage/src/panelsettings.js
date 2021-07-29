@@ -78,7 +78,9 @@
                                                 <select class='combobox'>
                                                     <option value='0' l10n>${_lang.settOptScalingAuto}</option>
                                                     <option value='100'>100%</option>
+                                                    <option value='125'>125%</option>
                                                     <option value='150'>150%</option>
+                                                    <option value='175'>175%</option>
                                                     <option value='200'>200%</option>
                                                 </select>
                                             </section>
