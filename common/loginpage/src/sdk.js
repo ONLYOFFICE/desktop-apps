@@ -99,10 +99,17 @@
                         c.icons.themeDark = Object.assign(c.icons.themeLight);
                     }
                 }
+
+                if ( c.extraLogout && !Array.isArray(c.extraLogout) )
+                    c.extraLogout = [c.extraLogout];
             }
         } else {
             // _clouds = [{ provider: "asc",name: "ONLYOFFICE",check: {url:"/api/2.0/capabilities.json"} }];
             _clouds = [];
+        }
+
+        _clouds.findProvider = provider => {
+            return _clouds.find(i => i.provider == provider)
         }
 
         return _clouds;
