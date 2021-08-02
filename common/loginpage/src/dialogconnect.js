@@ -244,7 +244,7 @@ window.DialogConnect = function(params) {
                     complete: function(e, status) {
                         if ( status == 'success' ) {
                             try {
-                                if ( !_info.entryPage )
+                                if ( !_model.entryPage )
                                     JSON.parse(e.responseText)
 
                                 resolve({status:status, response:e});
