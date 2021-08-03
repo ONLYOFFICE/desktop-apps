@@ -1,9 +1,9 @@
 
 QTabWidget::pane {background-color: #f1f1f1; border:none;}
-QTabWidget::tab-bar {width: auto; height: 42px; left: 168px; }
+QTabWidget::tab-bar {width: auto; height: 49px; left: 196px; }
 
-QTabBar::tab { width:203px; background-color: #f1f1f1; border: 0 none; min-width: 62px; max-width: 203px;
-height: 42px; margin: 0 0 0 0; }
+QTabBar::tab { width:236px; background-color: #f1f1f1; border: 0 none; min-width: 72px; max-width: 236px;
+height: 49px; margin: 0 0 0 0; }
 
 QTabBar::tab {border-right: 2px solid #a5a5a5;}
 QTabBar::tab:hover{background-color: #cecece;}
