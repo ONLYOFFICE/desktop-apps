@@ -477,9 +477,15 @@ public:
                                 NSURLComponents * urlPage = [NSURLComponents componentsWithString:portal];
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
-                                NSMutableString * entrypage = [json objectForKey:@"entrypage"];
+                                NSMutableString * entrypage = [NSMutableString stringWithString:[json objectForKey:@"entrypage"]];
                                 if ( entrypage ) {
-                                    urlPage.path = [entrypage characterAtIndex:0] == '/' ? entrypage : [NSString stringWithFormat:@"/%@", entrypage];
+                                    if ( [entrypage characterAtIndex:0] != '/' )
+                                        [entrypage insertString:@"/" atIndex:0];
+
+                                    if ( urlPage.path )
+                                        [entrypage insertString:urlPage.path atIndex:0];
+
+                                    urlPage.path = entrypage;
                                 }
 
                                 NSURLQueryItem *countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
