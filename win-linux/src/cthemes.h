@@ -23,6 +23,8 @@ namespace NSThemeLight {
     static const std::wstring color_tab_active_background = L"#fff";
     static const std::wstring color_tab_simple_active_background = L"#fff";
     static const std::wstring color_tab_simple_active_text = L"#444";
+    static const std::wstring color_tab_default_active_background = L"#fff";
+    static const std::wstring color_tab_default_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#a5a5a5";
 
     static const QColor button_normal_opacity = QColor(255,255,255,255);
@@ -45,6 +47,8 @@ namespace NSThemeClassicLight {
     static const std::wstring color_tab_active_background = L"#fff";
     static const std::wstring color_tab_simple_active_background = L"#fff";
     static const std::wstring color_tab_simple_active_text = L"#444";
+    static const std::wstring color_tab_default_active_background = L"#fff";
+    static const std::wstring color_tab_default_active_text = L"#444";
     static const std::wstring color_tab_divider = L"#a5a5a5";
 
     static const QColor button_normal_opacity = QColor(255,255,255,255);
@@ -70,6 +74,8 @@ namespace NSThemeDark {
     static const std::wstring color_tab_active_background = L"#333";
     static const std::wstring color_tab_simple_active_background = L"#fff";
     static const std::wstring color_tab_simple_active_text = L"#444";
+    static const std::wstring color_tab_default_active_background = L"#333";
+    static const std::wstring color_tab_default_active_text = L"#fff";
     static const std::wstring color_tab_divider = L"#505050";
 
     static const QColor button_normal_opacity = QColor(255,255,255,200);
@@ -90,6 +96,8 @@ public:
         , ecrTabSlideActive
         , ecrTabSimpleActiveBackground
         , ecrTabSimpleActiveText
+        , ecrTabDefaultActiveBackground
+        , ecrTabDefaultActiveText
     };
 public:
     CThemes();
@@ -108,6 +116,11 @@ public:
     auto isCurrentDark() -> bool;
     auto isThemeDark(const std::wstring& name) -> bool;
 
+    auto isColorDark(ColorRole) -> bool;
+    auto isColorDark(const std::wstring&) -> bool;
+    auto isColorDark(const QString&) -> bool;
+
+    auto parseThemeName(const std::wstring&) -> std::wstring;
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;

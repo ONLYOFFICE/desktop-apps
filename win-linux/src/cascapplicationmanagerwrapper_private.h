@@ -115,7 +115,7 @@ public:
 
         return false;
     }
-    
+
 protected:
     auto mainWindow() -> CMainWindow * {
         return m_appmanager.m_pMainWindow;

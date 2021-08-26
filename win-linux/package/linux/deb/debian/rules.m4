@@ -23,3 +23,6 @@ override_dh_fixperms:
 
 override_dh_shlibdeps:
 	dh_shlibdeps --no-act
+
+override_dh_builddeb:
+	dh_builddeb --destdir=.

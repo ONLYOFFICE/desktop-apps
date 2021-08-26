@@ -61,6 +61,7 @@ public:
     void turnOff();
     bool isDecorated();
     void setMaximized(bool);
+    void setMinimized();
     void raiseWindow();
 
     static int customWindowBorderWith();

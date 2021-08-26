@@ -3,6 +3,9 @@
 #include "defines.h"
 
 #include <QSettings>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QColor>
 #include <QDebug>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
@@ -116,6 +119,8 @@ auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
         case ColorRole::ecrTabSlideActive: return NSThemeDark::color_brand_slide;
         case ColorRole::ecrTabSimpleActiveBackground: return NSThemeDark::color_tab_simple_active_background;
         case ColorRole::ecrTabSimpleActiveText: return NSThemeDark::color_tab_simple_active_text;
+        case ColorRole::ecrTabDefaultActiveBackground: return NSThemeDark::color_tab_default_active_background;
+        case ColorRole::ecrTabDefaultActiveText: return NSThemeDark::color_tab_default_active_text;
         }
     } else {
         switch (r) {
@@ -129,8 +134,48 @@ auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
         case ColorRole::ecrTabSlideActive: return NSThemeLight::color_brand_slide;
         case ColorRole::ecrTabSimpleActiveBackground: return NSThemeLight::color_tab_simple_active_background;
         case ColorRole::ecrTabSimpleActiveText: return NSThemeLight::color_tab_simple_active_text;
+        case ColorRole::ecrTabDefaultActiveBackground: return NSThemeLight::color_tab_default_active_background;
+        case ColorRole::ecrTabDefaultActiveText: return NSThemeLight::color_tab_default_active_text;
         }
     }
 
     return L"";
+}
+
+auto CThemes::isColorDark(ColorRole role) -> bool
+{
+    return isColorDark(value(role));
+}
+
+auto CThemes::isColorDark(const std::wstring& color) -> bool
+{
+    return isColorDark(QString::fromStdWString(color));
+}
+
+auto CThemes::isColorDark(const QString& color) -> bool
+{
+    int r, g, b;
+    QColor(color).getRgb(&r, &g, &b);
+
+    int luma = int(0.2126f * r) + int(0.7152f * g) + int(0.0722f * b);
+
+    return luma < 128;
+}
+
+auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
+{
+    size_t pos = wjson.find(L"name\":");                // check if json in params
+    if ( pos != std::wstring::npos ) {
+        QJsonParseError jerror;
+        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
+        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject obj = jdoc.object();
+
+            return obj.contains("name") ? obj["name"].toString().toStdWString() : NSThemeClassicLight::theme_id;
+        }
+    }
+
+    return wjson;
 }

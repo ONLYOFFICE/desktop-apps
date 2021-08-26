@@ -84,7 +84,8 @@ int main(int argc, const char * argv[]) {
     
     // setup localization
     NSMutableArray * params = [NSMutableArray array];
-    [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+    NSString * langCode = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    [params addObject:[NSString stringWithFormat:@"lang=%@-%@", [langCode lowercaseString], [langCode uppercaseString]]];
     
     // setup username
     NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];
