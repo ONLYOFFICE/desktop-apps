@@ -15,8 +15,6 @@ SUPPORT_MAIL ?= support@onlyoffice.com
 PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 PACKAGE_EDITION ?= cool
-S3_BUCKET ?= repo-doc-onlyoffice-com
-RELEASE_BRANCH ?= unstable
 
 BRANDING_DIR ?= $(PWD)/branding
 
@@ -53,8 +51,8 @@ URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-DEB_PACKAGE_DIR = $(PWD)
-DEB_ASTRA_PACKAGE_DIR = $(PWD)
+DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
+DEB_ASTRA_PACKAGE_DIR = $(DEB_ASTRA_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
@@ -65,15 +63,6 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rp
 DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
-
-RPM_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/centos/$(notdir $(RPM))
-APT_RPM_URI   := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/altlinux/$(notdir $(APT_RPM))
-URPMI_URI     := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/rosa/$(notdir $(URPMI))
-DEB_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/ubuntu/$(notdir $(DEB))
-DEB_ASTRA_URI := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/astra/$(notdir $(DEB_ASTRA))
-TAR_URI       := $(COMPANY_NAME_LOW)/$(RELEASE_BRANCH)/linux/$(notdir $(TAR))
-
-DEPLOY_JSON = deploy.json
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -183,7 +172,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-.PHONY: all clean branding rpm deb deb-astra apt-rpm tar deploy deploy-deb deploy-deb-astra deploy-rpm deploy-apt-rpm deploy-urpmi deploy-tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding packages rpm deb deb-astra apt-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi tar 
 #installer
@@ -202,6 +191,13 @@ urpmi: $(URPMI)
 
 installer: $(INSTALLER)
 
+PACKAGES += deb rpm apt-rpm urpmi tar
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+PACKAGES += deb-astra
+endif
+
+packages: $(PACKAGES)
+
 clean:
 	rm -rfv \
 		common/etc \
@@ -213,8 +209,8 @@ clean:
 		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME)* \
 		$(DEB_PACKAGE_DIR)/*.deb \
 		$(DEB_PACKAGE_DIR)/*.ddeb \
-		$(DEB_PACKAGE_DIR)/*.buildinfo \
-		$(DEB_PACKAGE_DIR)/*.changes \
+		$(DEB_PACKAGE_DIR)/../*.buildinfo \
+		$(DEB_PACKAGE_DIR)/../*.changes \
 		$(DEB_ASTRA_BUILD_DIR) \
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
@@ -224,8 +220,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		$(INSTALLER)\
-		*.tar.gz\
-		$(DEPLOY_JSON)
+		*.tar.gz
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
@@ -269,10 +264,10 @@ $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 		package.spec
 
 $(DEB): desktopeditor $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b -uc -us
+	cd deb && dpkg-buildpackage -b -uc -us --changes-option=-u.
 
 $(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
-	cd deb-astra && dpkg-buildpackage -b -uc -us
+	cd deb-astra && dpkg-buildpackage -b -uc -us --changes-option=-u.
 
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
@@ -298,33 +293,6 @@ endif
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
-
-deploy-rpm: $(RPM)
-	aws s3 cp --no-progress --acl public-read \
-		$(RPM) s3://$(S3_BUCKET)/$(RPM_URI)
-
-deploy-deb: $(DEB)
-	aws s3 cp --no-progress --acl public-read \
-		$(DEB) s3://$(S3_BUCKET)/$(DEB_URI)
-
-deploy-deb-astra: $(DEB_ASTRA)
-	aws s3 cp --no-progress --acl public-read \
-		$(DEB_ASTRA) s3://$(S3_BUCKET)/$(DEB_ASTRA_URI)
-
-deploy-apt-rpm: $(APT_RPM)
-	aws s3 cp --no-progress --acl public-read \
-		$(APT_RPM) s3://$(S3_BUCKET)/$(APT_RPM_URI)
-
-deploy-urpmi: $(URPMI)
-	aws s3 cp --no-progress --acl public-read \
-		$(URPMI) s3://$(S3_BUCKET)/$(URPMI_URI)
-
-deploy-tar: $(TAR)
-	aws s3 cp --no-progress --acl public-read \
-		$(TAR) s3://$(S3_BUCKET)/$(TAR_URI)
-
-deploy-installer: $(INSTALLER)
-	aws s3 cp $(INSTALLER) s3://$(S3_BUCKET)/$(OTHER_REPO_DIR)/$(PACKAGE_NAME)/$(SVN_TAG)/$(PACKAGE_VERSION)/$(TAR_ARCH)/ --acl public-read       
 
 common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
 common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
@@ -363,54 +331,3 @@ $(SYMLINK) :
 
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
-
-comma := ,
-json_edit = cp -f $(1) $(1).tmp; jq $(2) $(1).tmp > $(1); rm -f $(1).tmp
-
-$(DEPLOY_JSON):
-	echo '{}' > $@
-	$(call json_edit, $@, '. + { \
-		product:  "$(PRODUCT_NAME_LOW)"$(comma) \
-		version:  "$(PRODUCT_VERSION)"$(comma) \
-		build:    "$(BUILD_NUMBER)" \
-	}')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "ubuntu"$(comma) \
-		title:    "Debian 8 9 10$(comma) Ubuntu 14 16 18 20 and derivatives"$(comma) \
-		path:     "$(DEB_URI)" \
-	}]')
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	$(call json_edit, $@, '.items += [{ \
-		platform: "astralinux"$(comma) \
-		title:    "Astra Linux Smolenks 1.6"$(comma) \
-		path:     "$(DEB_ASTRA_URI)" \
-	}]')
-endif
-	$(call json_edit, $@, '.items += [{ \
-		platform: "centos"$(comma) \
-		title:    "Centos 7$(comma) Redhat 7$(comma) Fedora latest and derivatives"$(comma) \
-		path:     "$(RPM_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "altlinux"$(comma) \
-		title:    "Altlinux p8 p9"$(comma) \
-		path:     "$(APT_RPM_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "rosa"$(comma) \
-		title:    "Rosa p8"$(comma) \
-		path:     "$(URPMI_URI)" \
-	}]')
-	$(call json_edit, $@, '.items += [{ \
-		platform: "linux"$(comma) \
-		title:    "Linux portable"$(comma) \
-		path:     "$(TAR_URI)" \
-	}]')
-
-DEPLOY_TARGETS += deploy-rpm deploy-deb deploy-apt-rpm deploy-urpmi deploy-tar
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-DEPLOY_TARGETS += deploy-deb-astra
-endif
-
-deploy: $(DEPLOY_TARGETS) $(DEPLOY_JSON)
-#deploy-installer

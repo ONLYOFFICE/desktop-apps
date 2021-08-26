@@ -39,6 +39,7 @@
 
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
+#include <X11/Xutil.h>
 #include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
@@ -94,7 +95,8 @@ namespace {
         "_MOTIF_WM_HINTS",
         "_NET_WM_MOVERESIZE",
         "_NET_SUPPORTING_WM_CHECK",
-        "_NET_WM_NAME"
+        "_NET_WM_NAME",
+        "WM_CHANGE_STATE"
     };
 
     template <typename T, size_t N>
@@ -592,4 +594,18 @@ void CX11Decoration::setCursorPos(int x, int y)
     XSelectInput(xdisplay_, root_window, KeyReleaseMask);
     XWarpPointer(xdisplay_, None, root_window, 0, 0, 0, 0, x, y);
     XFlush(xdisplay_);
+}
+
+void CX11Decoration::setMinimized()
+{
+    XClientMessageEvent ev;
+    ev.type = ClientMessage;
+    ev.window = m_window->winId();
+    ev.message_type = GetAtom("WM_CHANGE_STATE");
+    ev.format = 32;
+    ev.data.l[0] = IconicState;
+
+    Display * xdisplay_ = QX11Info::display();
+    XSendEvent(xdisplay_, RootWindow(xdisplay_, DefaultScreen(xdisplay_)), False,
+                    SubstructureRedirectMask|SubstructureNotifyMask, (XEvent *)&ev);
 }

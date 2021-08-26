@@ -29,7 +29,7 @@
 #define TARGET_NAME                     str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
 
 #ifndef sOutputFileName
-  #define sOutputFileName               str(sPackageName + "_update_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName               str("editors_update_" + sWinArchFull)
 #endif
 
 [Setup]
@@ -52,7 +52,7 @@ DisableReadyPage          =true
 ;DisableWelcomePage        =Yes
 
 DefaultDirName            ={pf}\{#APP_PATH}\update
-OutputDir                 =.\
+OutputDir                 =update
 OutputBaseFileName        ={#sOutputFileName}
 
 Uninstallable             =false
