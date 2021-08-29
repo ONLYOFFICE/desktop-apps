@@ -968,7 +968,9 @@ void CAscApplicationManagerWrapper::initializeApp()
     }
 
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_25, ":styles@1.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_75, ":styles@1.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
 
     _app.m_private->applyStylesheets();
@@ -1347,11 +1349,17 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
-    if ( !(dpifactor < 2) )
+    if ( dpifactor > 1.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
     else
-    if ( !(dpifactor < 1.5) )
+    if ( dpifactor > 1.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_75);
+    else
+    if ( dpifactor > 1.25 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_5);
+    else
+    if ( dpifactor > 1 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_25);
     else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
 }
 
@@ -1434,7 +1442,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             wstring sets;
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
+            case 125: sets = L"1.25"; break;
             case 150: sets = L"1.5"; break;
+            case 175: sets = L"1.75"; break;
             case 200: sets = L"2"; break;
             default: sets = L"default";
             }

@@ -613,7 +613,7 @@ void CAscTabWidget::reloadTabIcons()
     double dpi_ratio = scaling();
 
     m_mapTabIcons.clear();
-    if ( dpi_ratio > 1.5 ) {
+    if ( dpi_ratio > 1.75 ) {
         m_mapTabIcons.insert({
             {etUndefined, std::make_pair(":/tabbar/icons/newdoc@2x.png", ":/tabbar/icons/newdoc@2x.png")},
             {etDocument, std::make_pair(":/tabbar/icons/de@2x.png", ":/tabbar/icons/de@2x.png")},
@@ -627,7 +627,21 @@ void CAscTabWidget::reloadTabIcons()
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
                              {etNewPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")}});
     } else
-    if ( dpi_ratio > 1 ) {
+    if ( dpi_ratio > 1.5 ) {
+        m_mapTabIcons.insert({
+                                 {etUndefined, std::make_pair(":/tabbar/icons/newdoc@1.75x.png", ":/tabbar/icons/newdoc@1.75x.png")},
+                                 {etDocument, std::make_pair(":/tabbar/icons/de@1.75x.png", ":/tabbar/icons/de@1.75x.png")},
+                                 {etPresentation, std::make_pair(":/tabbar/icons/pe@1.75x.png", ":/tabbar/icons/pe@1.75x.png")},
+                                 {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.75x.png", ":/tabbar/icons/se@1.75x.png")}
+                             });
+
+        m_isDarkTheme ?
+                    m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.75x.png", ":/tabbar/icons/portal@1.75x.png")},
+                                          {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.75x.png", ":/tabbar/icons/portal@1.75x.png")}}) :
+                    m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.75x.png", ":/tabbar/icons/portal@1.75x.png")},
+                                          {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.75x.png", ":/tabbar/icons/portal@1.75x.png")}});
+    } else
+    if ( dpi_ratio > 1.25 ) {
         m_mapTabIcons.insert({
             {etUndefined, std::make_pair(":/tabbar/icons/newdoc@1.5x.png", ":/tabbar/icons/newdoc@1.5x.png")},
             {etDocument, std::make_pair(":/tabbar/icons/de@1.5x.png", ":/tabbar/icons/de@1.5x.png")},
@@ -640,6 +654,20 @@ void CAscTabWidget::reloadTabIcons()
                             {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
                              {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}});
+    } else
+    if ( dpi_ratio > 1 ) {
+        m_mapTabIcons.insert({
+                                 {etUndefined, std::make_pair(":/tabbar/icons/newdoc@1.25x.png", ":/tabbar/icons/newdoc@1.25x.png")},
+                                 {etDocument, std::make_pair(":/tabbar/icons/de@1.25x.png", ":/tabbar/icons/de@1.25x.png")},
+                                 {etPresentation, std::make_pair(":/tabbar/icons/pe@1.25x.png", ":/tabbar/icons/pe@1.25x.png")},
+                                 {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.25x.png", ":/tabbar/icons/se@1.25x.png")}
+                             });
+
+        m_isDarkTheme ?
+                    m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.25x.png", ":/tabbar/icons/portal@1.25x.png")},
+                                          {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.25x.png", ":/tabbar/icons/portal@1.25x.png")}}) :
+                    m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.25x.png", ":/tabbar/icons/portal@1.25x.png")},
+                                          {etNewPortal, std::make_pair(":/tabbar/icons/portal@1.25x.png", ":/tabbar/icons/portal@1.25x.png")}});
     } else {
         m_mapTabIcons.insert({
             {etUndefined, std::make_pair(":/tabbar/icons/newdoc.png", ":/tabbar/icons/newdoc.png")},

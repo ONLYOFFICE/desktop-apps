@@ -74,8 +74,14 @@ void CMainPanelImpl::refreshAboutVersion()
     if ( _force_value == L"1" )
         _json_obj["uiscaling"] = 100;
     else
+    if ( _force_value == L"1.25" )
+        _json_obj["uiscaling"] = 125;
+    else
     if ( _force_value == L"1.5" )
         _json_obj["uiscaling"] = 150;
+    else
+    if ( _force_value == L"1.75" )
+        _json_obj["uiscaling"] = 175;
     else
     if ( _force_value == L"2" )
         _json_obj["uiscaling"] = 200;

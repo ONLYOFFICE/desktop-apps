@@ -106,6 +106,12 @@
     <qresource prefix="/styles@1.5x">
         <file alias="styles.qss">res/styles/styles@1.5x.qss</file>
     </qresource>
+    <qresource prefix="/styles@1.25x">
+        <file alias="styles.qss">res/styles/styles@1.25x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@1.75x">
+        <file alias="styles.qss">res/styles/styles@1.75x.qss</file>
+    </qresource>
     <qresource prefix="/styles@2x">
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
     </qresource>
@@ -126,7 +132,9 @@
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
+        <file alias="tabbar@1.25x.qss">res/styles/tabbar@1.25x.qss</file>
         <file alias="tabbar@1.5x.qss">res/styles/tabbar@1.5x.qss</file>
+        <file alias="tabbar@1.75x.qss">res/styles/tabbar@1.75x.qss</file>
         <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
         <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
     </qresource>
