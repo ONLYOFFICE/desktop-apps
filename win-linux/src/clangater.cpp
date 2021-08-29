@@ -124,6 +124,11 @@ private:
         ,{"hu-HU", "Magyar nyelv"}
         ,{"hy-AM", "Հայաստան"}
         ,{"in-ID", "Indonesian"}
+        ,{"no-NO", "Norsk"}
+        ,{"ro-RO", "Romanian"}
+        ,{"sl-SL", "Slovene"}
+        ,{"sv-SE", "Svenska"}
+        ,{"tr-TR", "Türkçe"}
     };
 };
 
