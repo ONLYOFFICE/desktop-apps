@@ -113,6 +113,17 @@ private:
         {"pt-BR", "Português Brasileiro"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
+        ,{"ca-ES", "Catalan"}
+        ,{"da-DK", "Dansk"}
+        ,{"el-GR", "Ελληνικά"}
+        ,{"et-EE", "Eesti"}
+        ,{"fi-FI", "Suomi"}
+        ,{"ga-IE", "Gaeilge"}
+        ,{"hi-IN", "हिन्दी"}
+        ,{"hr-HR", "Hrvatska"}
+        ,{"hu-HU", "Magyar nyelv"}
+        ,{"hy-AM", "Հայաստան"}
+        ,{"in-ID", "Indonesian"}
     };
 };
 

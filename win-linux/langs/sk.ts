@@ -386,7 +386,7 @@
         <location filename="../src/cfiledialog.cpp" line="448"/>
         <location filename="../src/cfiledialog.cpp" line="457"/>
         <source>All Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky obrázky</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="450"/>

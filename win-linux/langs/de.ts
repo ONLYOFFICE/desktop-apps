@@ -45,7 +45,7 @@
         <location filename="../src/asctabwidget.cpp" line="747"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="704"/>
         <source>Document</source>
-        <translation>Öffnung...</translation>
+        <translation>Öffnung</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>Certifacate password:</source>
-        <translation>Kennwort für das Zertifikat</translation>
+        <translation>Kennwort für das Zertifikat:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
-        <translation>Kennwort für den Schlüssel</translation>
+        <translation>Kennwort für den Schlüssel:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
@@ -386,7 +386,7 @@
         <location filename="../src/cfiledialog.cpp" line="448"/>
         <location filename="../src/cfiledialog.cpp" line="457"/>
         <source>All Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Bilder</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="450"/>
@@ -464,7 +464,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenziert unter</translation>
     </message>
 </context>
 <context>

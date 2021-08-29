@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="975"/>
         <source>Presenter View</source>
-        <translation>Zobrazení přednášejícího</translation>
+        <translation>Náhled prezentace</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1010"/>
@@ -45,7 +45,7 @@
         <location filename="../src/asctabwidget.cpp" line="747"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="704"/>
         <source>Document</source>
-        <translation>Otevírání...</translation>
+        <translation>Otevírám...</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>Certifacate password:</source>
-        <translation>Heslo certifikátu</translation>
+        <translation>Heslo certifikátu:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
@@ -386,7 +386,7 @@
         <location filename="../src/cfiledialog.cpp" line="448"/>
         <location filename="../src/cfiledialog.cpp" line="457"/>
         <source>All Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny obrázky</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="450"/>
@@ -464,7 +464,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencováno pod</translation>
     </message>
 </context>
 <context>

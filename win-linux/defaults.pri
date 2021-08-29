@@ -17,7 +17,33 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/pt_BR.ts \
                 ./langs/it_IT.ts \
                 ./langs/zh_CN.ts \
-                ./langs/pl.ts
+                ./langs/pl.ts \
+                ./langs/ca.ts \
+                ./langs/da.ts \
+                ./langs/el_GR.ts \
+                ./langs/et.ts \
+                ./langs/fi.ts \
+                ./langs/ga.ts \
+                ./langs/hi.ts \
+                ./langs/hr.ts \
+                ./langs/hu.ts \
+                ./langs/hy.ts \
+                ./langs/in.ts \
+                ./langs/ja.ts \
+                ./langs/ko.ts \
+                ./langs/lt.ts \
+                ./langs/lv.ts \
+                ./langs/nl.ts \
+                ./langs/no.ts \
+                ./langs/pt_PT.ts \
+                ./langs/ro.ts \
+                ./langs/sl.ts \
+                ./langs/sv.ts \
+                ./langs/tr.ts \
+                ./langs/uk.ts \
+                ./langs/vi.ts \
+                ./langs/zh_HK.ts
+
 
 CORE_ROOT_DIR = $$PWD/../../core
 BASEEDITORS_PATH = $$PWD/../../desktop-sdk/ChromiumBasedEditors

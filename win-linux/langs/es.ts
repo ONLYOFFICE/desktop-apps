@@ -386,7 +386,7 @@
         <location filename="../src/cfiledialog.cpp" line="448"/>
         <location filename="../src/cfiledialog.cpp" line="457"/>
         <source>All Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas las imágenes</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="450"/>
@@ -427,7 +427,7 @@
         <location filename="../src/cmainpanel.cpp" line="594"/>
         <location filename="../src/cmainpanel.cpp" line="638"/>
         <source>File format not supported.</source>
-        <translation>Formato de archivo no es compatible</translation>
+        <translation>Formato de archivo no es compatible.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="622"/>
