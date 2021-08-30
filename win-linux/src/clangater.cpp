@@ -111,8 +111,10 @@ private:
         {"cs-CZ", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
+        ,{"pt-PT", "Portuguese (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
+        ,{"zh-HK", "Chinese (Traditional)"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}
@@ -133,6 +135,11 @@ private:
         ,{"ko-KR", "韓國語"}
         ,{"bg-BG", "Български"}
         ,{"nl-NL", "Nederlands"}
+        ,{"vi-VN", "Tiếng Việt"}
+        ,{"lv-LV", "Latviešu valoda"}
+        ,{"lt-LT", "Lietuvių kalba"}
+        ,{"be-BY", "Беларуская мова"}
+        ,{"uk-UA", "Украї́нська мо́ва"}
     };
 };
 
