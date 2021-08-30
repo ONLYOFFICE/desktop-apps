@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FCBC42671B9D650400405301"
                BuildableName = "ONLYOFFICE.app"
-               BlueprintName = "ONLYOFFICE"
+               BlueprintName = "ONLYOFFICE-x86"
                ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,7 +32,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FCBC42671B9D650400405301"
             BuildableName = "ONLYOFFICE.app"
-            BlueprintName = "ONLYOFFICE"
+            BlueprintName = "ONLYOFFICE-x86"
             ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,7 +55,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FCBC42671B9D650400405301"
             BuildableName = "ONLYOFFICE.app"
-            BlueprintName = "ONLYOFFICE"
+            BlueprintName = "ONLYOFFICE-x86"
             ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FCBC42671B9D650400405301"
             BuildableName = "ONLYOFFICE.app"
-            BlueprintName = "ONLYOFFICE"
+            BlueprintName = "ONLYOFFICE-x86"
             ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
