@@ -7,17 +7,6 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		FC5C4EEA1CF8618F008F5C11 /* Prepare */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = FC5C4EED1CF8618F008F5C11 /* Build configuration list for PBXAggregateTarget "Prepare" */;
-			buildPhases = (
-				FC5C4EEE1CF861A3008F5C11 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = Prepare;
-			productName = Prepare;
-		};
 		FCD2B9111BC64D5F00F54560 /* Localization */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = FCD2B9121BC64D5F00F54560 /* Build configuration list for PBXAggregateTarget "Localization" */;
@@ -1301,9 +1290,6 @@
 						DevelopmentTeam = 2WH24U26GJ;
 						ProvisioningStyle = Manual;
 					};
-					FC5C4EEA1CF8618F008F5C11 = {
-						CreatedOnToolsVersion = 7.3.1;
-					};
 					FCBC42671B9D650400405301 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 2WH24U26GJ;
@@ -1343,7 +1329,6 @@
 				FCBC42671B9D650400405301 /* ONLYOFFICE */,
 				FC0BD683258B63F700C47F95 /* ONLYOFFICE-x86 */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
-				FC5C4EEA1CF8618F008F5C11 /* Prepare */,
 			);
 		};
 /* End PBXProject section */
@@ -1538,19 +1523,6 @@
 			shellScript = "#!/bin/sh\n\n#exit 0\n\nCreateDir() {\nif [ ! -d $1 ]; then\nmkdir -p $1\nelse\nrm -Rf $1\nmkdir -p $1\nfi\n}\n\nBASE_DIR=$(pwd)\nDST_DIR=\"${BASE_DIR}/Vendor/ONLYOFFICE\"\nSRC_BASE_DIR=\"${BASE_DIR}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\n\n# Copy application resources\necho \"Copy application resources\"\nCreateDir \"${DST_DIR}/login\"\ncp -vR \"${SRC_BASE_DIR}/index.html\" \"${DST_DIR}/login/index.html\"\ncp -vR \"${SRC_BASE_DIR}/fonts\" \"${DST_DIR}/login/fonts\"\ncp -vR \"${BASE_DIR}/ONLYOFFICE/Resources/acknowledgments.html\" \"${DST_DIR}/login/acknowledgments.html\"\ncp -vR \"${SRC_BASE_DIR}/providers\" \"${DST_DIR}\"\n\n# Copy editors and convertor\necho \"Copy editors and convertor\"\ncd \"$BASE_DIR\"\ncp -vR \"${SRC_BASE_DIR}/editors\" \"${DST_DIR}\"\ncp -vR \"${SRC_BASE_DIR}/converter\" \"${DST_DIR}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC5C4EEE1CF861A3008F5C11 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "CreateDir() {\n    if [ ! -d $1 ]; then\n        mkdir -p $1\n    fi\n}\n\nBASEDIR=$(pwd)\nCORE_BASE_DIR=\"$BASEDIR\"/../../core\n\n# Prepare binaries\nCreateDir \"$CORE_BASE_DIR\"/build\ncd \"$CORE_BASE_DIR\"/build\nsvn co svn://192.168.3.15/onlyoffice/trunk/build .\ncd \"$BASEDIR\"\n\n";
-		};
 		FCD2B9151BC64D6D00F54560 /* Generate Localizable.strings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1563,7 +1535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "GenLocalized() {\n    rm $1/Localizable.strings\n    find -E . -regex '.*\\.(m|mm)' -exec echo {} \\; -exec genstrings -a -o $1 {} \\;\n}\n\ncd $(pwd)/ONLYOFFICE\n\nGenLocalized Base.lproj\nGenLocalized de.lproj\nGenLocalized fr.lproj\nGenLocalized ru.lproj\nGenLocalized es.lproj";
+			shellScript = "GenLocalized() {\n    rm $1/Localizable.strings\n    find -E . -regex '.*\\.(m|mm)' -exec echo {} \\; -exec genstrings -a -o $1 {} \\;\n}\n\ncd $(pwd)/ONLYOFFICE\n\nGenLocalized Base.lproj\nGenLocalized de.lproj\nGenLocalized fr.lproj\nGenLocalized ru.lproj\nGenLocalized es.lproj\n";
 			showEnvVarsInLog = 0;
 		};
 		FCEC22FD23338C3D0061FFDA /* Increment Build Number */ = {
@@ -1929,7 +1901,6 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1974,7 +1945,6 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1984,20 +1954,6 @@
 				PRODUCT_NAME = ONLYOFFICE;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-			};
-			name = Release;
-		};
-		FC5C4EEB1CF8618F008F5C11 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		FC5C4EEC1CF8618F008F5C11 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -2112,7 +2068,6 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2156,7 +2111,6 @@
 					"$(PROJECT_DIR)/../../build_tools/out/mac_64/onlyoffice/desktopeditors",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 5.6.4;
 				OTHER_CODE_SIGN_FLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2191,15 +2145,6 @@
 			buildConfigurations = (
 				FC0BD6F9258B63F700C47F95 /* Debug */,
 				FC0BD6FA258B63F700C47F95 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FC5C4EED1CF8618F008F5C11 /* Build configuration list for PBXAggregateTarget "Prepare" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FC5C4EEB1CF8618F008F5C11 /* Debug */,
-				FC5C4EEC1CF8618F008F5C11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
