@@ -73,7 +73,7 @@ platform :mac do
 
     desc 'Creates a bump version commit'
     commit_version_bump(
-      message: "[macos] Version bumped to v#{version_number}-#{git_suffix}(#{build_number})",
+      message: "[macos] Version bumped to v#{version_number}(#{build_number})-#{git_suffix}",
       force: true
     )
 
