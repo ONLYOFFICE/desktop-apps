@@ -89,16 +89,19 @@ platform :mac do
 
   # arm64 only
   lane :release_arm do |options|
+    desc 'Build Apple Silicone version'
     common_release(options.merge({ scheme: "ONLYOFFICE-arm", git_suffix: "arm" } ))
   end
 
   # x86_64 only
   lane :release_x86_64 do |options|
+    desc 'Build Intel version'
     common_release(options.merge( { scheme: "ONLYOFFICE-x86", git_suffix: "x86_64" } ))
   end
 
-  # x86_64 only
+  # x86_64 only with v8
   lane :release_v8 do |options|
+    desc 'Build Intel version with v8 engine'
     common_release(options.merge( { scheme: "ONLYOFFICE-v8", git_suffix: "v8" } ))
   end
 
