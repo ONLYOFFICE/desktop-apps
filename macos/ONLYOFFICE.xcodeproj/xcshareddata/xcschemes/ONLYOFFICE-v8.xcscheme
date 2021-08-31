@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FCBC42671B9D650400405301"
+               BlueprintIdentifier = "FC0BD683258B63F700C47F95"
                BuildableName = "ONLYOFFICE.app"
-               BlueprintName = "ONLYOFFICE-x86"
+               BlueprintName = "ONLYOFFICE-v8"
                ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FCBC42671B9D650400405301"
+            BlueprintIdentifier = "FC0BD683258B63F700C47F95"
             BuildableName = "ONLYOFFICE.app"
-            BlueprintName = "ONLYOFFICE-x86"
+            BlueprintName = "ONLYOFFICE-v8"
             ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FCBC42671B9D650400405301"
+            BlueprintIdentifier = "FC0BD683258B63F700C47F95"
             BuildableName = "ONLYOFFICE.app"
-            BlueprintName = "ONLYOFFICE-x86"
+            BlueprintName = "ONLYOFFICE-v8"
             ReferencedContainer = "container:ONLYOFFICE.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
