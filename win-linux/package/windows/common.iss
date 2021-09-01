@@ -111,7 +111,7 @@ Name: el; MessagesFile: compiler:Languages\Greek.isl;   LicenseFile: {#sBranding
 Name: et; MessagesFile: compiler:Languages\Estonian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: fi; MessagesFile: compiler:Languages\Finnish.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: lo; MessagesFile: compiler:Languages\Lao.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: lo; MessagesFile: compiler:Default.isl;           LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: nl; MessagesFile: compiler:Languages\Dutch.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: de; MessagesFile: compiler:Languages\German.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
