@@ -497,7 +497,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>516</string>
+	<string>517</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -514,7 +514,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://download.onlyoffice.com/install/desktop/editors/mac/x86/onlyoffice.xml</string>
+	<string>https://download.onlyoffice.com/install/desktop/editors/mac/v8/onlyoffice.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
