@@ -1451,9 +1451,9 @@
 			productReference = FCB4C73726DD018B0012C20D /* ONLYOFFICE.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FCBC42671B9D650400405301 /* ONLYOFFICE-x86 */ = {
+		FCBC42671B9D650400405301 /* ONLYOFFICE-x86_64 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-x86" */;
+			buildConfigurationList = FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-x86_64" */;
 			buildPhases = (
 				FC5A2D271BABF6E1001ACEB1 /* Copy Library */,
 				FCBC42641B9D650400405301 /* Sources */,
@@ -1467,7 +1467,7 @@
 			);
 			dependencies = (
 			);
-			name = "ONLYOFFICE-x86";
+			name = "ONLYOFFICE-x86_64";
 			productName = ONLYOFFICE;
 			productReference = FCBC42681B9D650400405301 /* ONLYOFFICE.app */;
 			productType = "com.apple.product-type.application";
@@ -1527,7 +1527,7 @@
 			projectRoot = "";
 			targets = (
 				FCB4C6BA26DD018B0012C20D /* ONLYOFFICE-arm */,
-				FCBC42671B9D650400405301 /* ONLYOFFICE-x86 */,
+				FCBC42671B9D650400405301 /* ONLYOFFICE-x86_64 */,
 				FC0BD683258B63F700C47F95 /* ONLYOFFICE-v8 */,
 				FCD2B9111BC64D5F00F54560 /* Localization */,
 			);
@@ -2664,7 +2664,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-x86" */ = {
+		FCBC42881B9D650500405301 /* Build configuration list for PBXNativeTarget "ONLYOFFICE-x86_64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FCBC42891B9D650500405301 /* Debug */,

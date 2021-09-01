@@ -96,7 +96,7 @@ platform :mac do
   # x86_64 only
   lane :release_x86_64 do |options|
     desc 'Build Intel version'
-    common_release(options.merge( { scheme: "ONLYOFFICE-x86", git_suffix: "x86_64" } ))
+    common_release(options.merge( { scheme: "ONLYOFFICE-x86_64", git_suffix: "x86_64" } ))
   end
 
   # x86_64 only with v8
