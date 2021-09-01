@@ -1041,7 +1041,7 @@
 			children = (
 				FCB4C76526DD02640012C20D /* ONLYOFFICE-arm */,
 				FCB4C74F26DD02630012C20D /* ONLYOFFICE-v8 */,
-				FCB4C73826DD02630012C20D /* ONLYOFFICE-x86 */,
+				FCB4C73826DD02630012C20D /* ONLYOFFICE-x86_64 */,
 				5A452E4A257688C700C58E01 /* providers */,
 				BE6251B922BD089100656116 /* dictionaries */,
 				FC081EBC1C325E8400F9881C /* file-formats */,
@@ -1081,7 +1081,7 @@
 			path = Vendor/PFMoveApplication;
 			sourceTree = SOURCE_ROOT;
 		};
-		FCB4C73826DD02630012C20D /* ONLYOFFICE-x86 */ = {
+		FCB4C73826DD02630012C20D /* ONLYOFFICE-x86_64 */ = {
 			isa = PBXGroup;
 			children = (
 				FCB4C73926DD02630012C20D /* EULA.html */,
@@ -1089,7 +1089,7 @@
 				FCB4C73D26DD02630012C20D /* ONLYOFFICE.entitlements */,
 				FCB4C74E26DD02630012C20D /* Info.plist */,
 			);
-			path = "ONLYOFFICE-x86";
+			path = "ONLYOFFICE-x86_64";
 			sourceTree = "<group>";
 		};
 		FCB4C74F26DD02630012C20D /* ONLYOFFICE-v8 */ = {
@@ -2536,7 +2536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "ONLYOFFICE/Resources/ONLYOFFICE-x86/ONLYOFFICE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/ONLYOFFICE.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2557,7 +2557,7 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 				);
-				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86/Info.plist";
+				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2580,7 +2580,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "ONLYOFFICE/Resources/ONLYOFFICE-x86/ONLYOFFICE.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/ONLYOFFICE.entitlements";
 				CODE_SIGN_IDENTITY = "Developer ID Application: Ascensio System SIA (2WH24U26GJ)";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2601,7 +2601,7 @@
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
 				);
-				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86/Info.plist";
+				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
