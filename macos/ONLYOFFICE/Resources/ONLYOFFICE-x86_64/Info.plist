@@ -514,7 +514,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://download.onlyoffice.com/install/desktop/editors/mac/x86/onlyoffice.xml</string>
+	<string>https://download.onlyoffice.com/install/desktop/editors/mac/x86_64/onlyoffice.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
