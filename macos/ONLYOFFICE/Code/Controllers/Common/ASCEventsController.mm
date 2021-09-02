@@ -485,7 +485,13 @@ public:
                                     if ( urlPage.path )
                                         [entrypage insertString:urlPage.path atIndex:0];
 
-                                    urlPage.path = entrypage;
+                                    NSRange pathrange = [entrypage rangeOfString:@"?"];
+                                    if ( pathrange.location != NSNotFound ) {
+                                        urlPage.path = [entrypage substringToIndex:pathrange.location];
+                                        urlPage.query = [entrypage substringFromIndex:pathrange.location+1];
+                                    } else {
+                                        urlPage.path = entrypage;
+                                    }
                                 }
 
                                 NSURLQueryItem *countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
