@@ -276,7 +276,9 @@
                                     countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
                                 }
 
-                                urlPage.queryItems            = @[countryCode, portalAddress];
+                                NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
+                                [qitems addObjectsFromArray:@[countryCode, portalAddress]];
+                                urlPage.queryItems = qitems;
 
                                 [cefView loadWithUrl:[urlPage string]];
                             }
@@ -300,7 +302,9 @@
                 countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[externalDelegate onAppPreferredLanguage]];
             }
 
-            urlPage.queryItems            = @[countryCode, portalAddress];
+            NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
+            [qitems addObjectsFromArray:@[countryCode, portalAddress]];
+            urlPage.queryItems = qitems;
 
             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                 object:nil
