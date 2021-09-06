@@ -126,7 +126,7 @@ Name: sk; MessagesFile: compiler:Languages\Slovak.isl;     LicenseFile: {#sBrand
 Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: vi; MessagesFile: compiler:Default.isl;               LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 
@@ -330,7 +330,7 @@ el.WarningClearAppData =Θέλετε να διαγράψετε τις ρυθμί
 et.WarningClearAppData =Kas sa tahad puhastada kasutaja seaded ja rakenduse salvestatud andmed?
 fi.WarningClearAppData =Haluatko poistaa käyttäjä asetukset ja sovelluksen välimuistin?
 lt.WarningClearAppData =Ar norite išvalyti vartotojo nustatymus ir programos talpyklos duomenis?
-lo.WarningClearAppData ທ່ານຕ້ອງການລຶບລ້າງຂໍ້ມູນການຕັ້ງຄ່າຂອງຜູ້ໃຊ້ແລະຂໍ້ມູນທີ່ເກັບຂໍ້ມູນໄວ້?
+lo.WarningClearAppData =ທ່ານຕ້ອງການລຶບລ້າງຂໍ້ມູນການຕັ້ງຄ່າຂອງຜູ້ໃຊ້ແລະຂໍ້ມູນທີ່ເກັບຂໍ້ມູນໄວ້?
 nl.WarningClearAppData =Wilt u de gebruikersinstellingen en de in de cache opgeslagen gegevens wissen?
 ru.WarningClearAppData =Вы хотите очистить пользовательские настройки и кэш приложения?
 de.WarningClearAppData =Möchten Sie die Benutzereinstellungen und die zwischengespeicherten Daten der Anwendung löschen?
