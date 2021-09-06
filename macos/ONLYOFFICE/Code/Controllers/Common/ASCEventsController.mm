@@ -485,7 +485,13 @@ public:
                                     if ( urlPage.path )
                                         [entrypage insertString:urlPage.path atIndex:0];
 
-                                    urlPage.path = entrypage;
+                                    NSRange pathrange = [entrypage rangeOfString:@"?"];
+                                    if ( pathrange.location != NSNotFound ) {
+                                        urlPage.path = [entrypage substringToIndex:pathrange.location];
+                                        urlPage.query = [entrypage substringFromIndex:pathrange.location+1];
+                                    } else {
+                                        urlPage.path = entrypage;
+                                    }
                                 }
 
                                 NSURLQueryItem *countryCode = [NSURLQueryItem queryItemWithName:@"lang" value:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
@@ -496,7 +502,9 @@ public:
 
                                 NSURLQueryItem *portalAddress = [NSURLQueryItem queryItemWithName:@"desktop" value:@"true"];
 
-                                urlPage.queryItems            = @[countryCode, portalAddress];
+                                NSMutableArray * qitems = urlPage.queryItems ? [NSMutableArray arrayWithArray:urlPage.queryItems] : [[NSMutableArray alloc] init];
+                                [qitems addObjectsFromArray:@[countryCode, portalAddress]];
+                                urlPage.queryItems = qitems;
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
