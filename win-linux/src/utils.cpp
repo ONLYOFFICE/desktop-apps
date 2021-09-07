@@ -418,7 +418,14 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 
     unsigned int nDpiX = 0;
     unsigned int nDpiY = 0;
+
+#ifdef Q_OS_LINUX
+    QDpiChecker * pChecker = (QDpiChecker *)AscAppManager::getInstance().GetDpiChecker();
+    int nResult = pChecker->GetWidgetDpi(wid, &nDpiX, &nDpiY);
+    double dpiApp = pChecker->GetScale(nDpiX, nDpiY);
+#else
     double dpiApp = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)wid->winId(), nDpiX, nDpiY);
+#endif
 
     if ( dpiApp >= 0 ) {
         return choose_scaling(dpiApp);
