@@ -4,37 +4,36 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="975"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
         <source>Presenter View</source>
         <translation>Visualizzazione del presenter</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1010"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1473"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Aggiornamento in corso. Annullare l&apos;aggiornamento e chiudere l&apos;applicazione?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1492"/>
         <source>Close all editors windows?</source>
-        <translation>Tutte le finestre dell&apos;editor verranno chiuse. Vuoi continuare?</translation>
+        <translation type="vanished">Tutte le finestre dell&apos;editor verranno chiuse. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1667"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
         <source>Document%1.docx</source>
         <translation>Documento%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1668"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
         <source>Book%1.xlsx</source>
         <translation>Foglio%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1669"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentazione%1.pptx</translation>
     </message>
@@ -42,8 +41,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="747"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="704"/>
+        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Apertura...</translation>
     </message>
@@ -138,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="175"/>
+        <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="388"/>
+        <location filename="../src/ceditorwindow_p.h" line="400"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Il documento deve essere salvato per continuare.&lt;br&gt;Salvare il documento?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="445"/>
+        <location filename="../src/ceditorwindow_p.h" line="457"/>
         <source>Print Document</source>
         <translation>Stampa Documento</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="598"/>
+        <location filename="../src/ceditorwindow_p.h" line="610"/>
         <source>Document must be saved firstly.</source>
         <translation>Il documento deve essere prima salvato.</translation>
     </message>
@@ -163,7 +162,7 @@
         <translation>%1 è stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="268"/>
+        <location filename="../src/ceditortools.cpp" line="271"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Se continua a salvare in questo formato tutte le caratteristiche tranne il testo saranno perse.&lt;br&gt;Sei sicuro di voler continuare?</translation>
     </message>
@@ -419,9 +418,8 @@
         <translation>%1 è stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="150"/>
         <source>FILE</source>
-        <translation>INIZIA</translation>
+        <translation type="vanished">INIZIA</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="594"/>
@@ -470,37 +468,37 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="182"/>
+        <location filename="../src/cmessage.cpp" line="189"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="281"/>
-        <location filename="../src/cmessage.cpp" line="282"/>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="281"/>
-        <location filename="../src/cmessage.cpp" line="282"/>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
-        <location filename="../src/cmessage.cpp" line="285"/>
-        <location filename="../src/cmessage.cpp" line="286"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="285"/>
-        <location filename="../src/cmessage.cpp" line="286"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -526,6 +524,14 @@
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>Stampa in corso...</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
+        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <translation type="unfinished">%1 non è disponibile. Il file è stato rinominato, spostato o rimosso.&lt;br&gt;Vuoi Rimuoverlo da questa lista?</translation>
     </message>
 </context>
 </TS>

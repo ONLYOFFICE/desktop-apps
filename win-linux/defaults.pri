@@ -31,6 +31,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/in.ts \
                 ./langs/ja.ts \
                 ./langs/ko.ts \
+                ./langs/lo.ts \
                 ./langs/lt.ts \
                 ./langs/lv.ts \
                 ./langs/nl.ts \

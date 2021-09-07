@@ -4,32 +4,36 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
         <source>Presenter View</source>
         <translation>ມຸມມອງຜູ້ນຳສະເໜີ</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1282"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <source>Do you want to close all editor windows?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>ການປັບປຸງ ກຳ ລັງ ດຳ ເນີນຢູ່. ຍົກເລີກການປັບປຸງແລະປິດໃບສະ ໝັກ ບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1300"/>
         <source>Close all editors windows?</source>
-        <translation>ບັນນາທິການທັງ ໝົດ ຈະຖືກປິດ. ທ່ານຕ້ອງການ ດຳ ເນີນການຕໍ່ບໍ?</translation>
+        <translation type="vanished">ບັນນາທິການທັງ ໝົດ ຈະຖືກປິດ. ທ່ານຕ້ອງການ ດຳ ເນີນການຕໍ່ບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1522"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
         <source>Document%1.docx</source>
         <translation>ເອກະສານ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1523"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
         <source>Book%1.xlsx</source>
         <translation>ປື້ມ%1.xlsx%</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1524"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
         <source>Presentation%1.pptx</source>
         <translation>ການນຳສະເໜີ%1.pptx</translation>
     </message>
@@ -37,9 +41,26 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="701"/>
+        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>ກຳລັງເປີດ</translation>
+    </message>
+</context>
+<context>
+    <name>CDialogCertificateInfo</name>
+    <message>
+        <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
+        <source>Certificate Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CDialogCertificateInfo::Intf</name>
+    <message>
+        <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
+        <source>OK</source>
+        <translation type="unfinished">ບໍ່</translation>
     </message>
 </context>
 <context>
@@ -95,12 +116,12 @@
         <translation>ໃສ່ລະຫັດສ່ວນຕົວທີ່ຖືກຕ້ອງ</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="251"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="250"/>
         <source>Key is not supported</source>
         <translation>ກຸນແຈບໍ່ໄດ້ຮັບຮັບຮອງ</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="256"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="255"/>
         <source>Enter key password</source>
         <translation>ໃສ່ລະຫັດຜ່ານ</translation>
     </message>
@@ -116,17 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="315"/>
+        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <source>Open main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow_p.h" line="400"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ເອກະສານຕ້ອງຖືກບັນທຶກເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ່?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="372"/>
+        <location filename="../src/ceditorwindow_p.h" line="457"/>
         <source>Print Document</source>
         <translation>ພິມເອກະສານ</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="527"/>
+        <location filename="../src/ceditorwindow_p.h" line="610"/>
         <source>Document must be saved firstly.</source>
         <translation>ເອກະສານຕ້ອງໄດ້ເກັບໄວ້ກ່ອນ.</translation>
     </message>
@@ -136,7 +162,7 @@
         <translation>%1 ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການບັນທຶກການປ່ຽນແປງບໍ່?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="448"/>
+        <location filename="../src/ceditortools.cpp" line="271"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
@@ -144,229 +170,242 @@
 <context>
     <name>CFileDialogWrapper</name>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="57"/>
+        <location filename="../src/cfiledialog.cpp" line="219"/>
         <source>All files (*.*)</source>
         <translation>ຟາຍທັງ ໝົດ (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="59"/>
+        <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
         <translation>ເອກະສານ DOCX (*.docx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="60"/>
+        <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
         <translation>ແບບແຜນເອກະສານ (*.dotx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="61"/>
+        <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
         <translation>ເອກະສານ DOC (*.doc)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="62"/>
+        <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
         <translation>ເອກະສານ ODT (*.odt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="63"/>
+        <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
         <translation>ແບບເປີດເອກະສານ (*.ott)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="64"/>
+        <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
         <translation>ເອກະສານ RTF (*.rtf)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="65"/>
+        <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
         <translation>ເອກະສານ TXT (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="66"/>
+        <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
         <translation>ເອກະສານ HTML (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="67"/>
+        <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
         <translation>ເອກະສານ MHT (*.mht)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="68"/>
+        <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
         <translation>ເອກະສານ EPUB (*.epub)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="70"/>
+        <location filename="../src/cfiledialog.cpp" line="231"/>
+        <source>FB2 File (*.fb2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="232"/>
+        <source>MOBI File (*.mobi)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>PPTX File (*.pptx)</source>
         <translation>ເອກະສານ PPTX (*.pptx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="71"/>
+        <location filename="../src/cfiledialog.cpp" line="235"/>
         <source>PPT File (*.ppt)</source>
         <translation>ເອກະສານ PPT  (*.ppt)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="72"/>
+        <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>Presentation template (*.potx)</source>
         <translation>່ແບບການນຳສະເໜີ (*.potx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="73"/>
+        <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>ODP File (*.odp)</source>
         <translation>ເອກະສານ ODP (*.odp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="74"/>
+        <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
         <translation>ແບບການນຳສະເໜີ (*.otp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="75"/>
+        <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>PPSX File (*.ppsx)</source>
         <translation>ແຟ້ມເອກະສານ PPSX (*.ppsx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="77"/>
+        <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>XLSX File (*.xlsx)</source>
         <translation>ເອກະສານ XLSX (*.xlsx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="78"/>
+        <location filename="../src/cfiledialog.cpp" line="242"/>
         <source>Spreadsheet template (*.xltx)</source>
         <translation>ແບບສະເປຣດຊີດ (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="79"/>
+        <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLS File (*.xls)</source>
         <translation>ເອກະສານ XLS  (*.xls)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="80"/>
+        <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>ODS File (*.ods)</source>
         <translation>ເອກະສານ ODS  (*.ods)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="81"/>
+        <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
         <translation>ເເບບເປີດຕາຕະລາງ (*.ots)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="82"/>
+        <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>CSV File (*.csv)</source>
         <translation>ເອກະສານ CSV  (*.csv)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="84"/>
+        <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>PDF File (*.pdf)</source>
         <translation>ເອກະສານ PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="85"/>
+        <location filename="../src/cfiledialog.cpp" line="249"/>
         <source>PDFA File (*.pdf)</source>
         <translation>ເອກະສານ(*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="86"/>
+        <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>DJVU File (*.djvu)</source>
         <translation>ເອກະສານDJVU  (*.djvu)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="87"/>
+        <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>XPS File (*.xps)</source>
         <translation>ເອກະສານ XPS (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="133"/>
+        <location filename="../src/cfiledialog.cpp" line="297"/>
         <source>Save As</source>
         <translation>ບັນທຶກເປັນ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="169"/>
+        <location filename="../src/cfiledialog.cpp" line="333"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 ມີຢູ່ແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການປ່ຽນແທນມັນບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="195"/>
+        <location filename="../src/cfiledialog.cpp" line="359"/>
         <source>Word Document</source>
         <translation>ເອກະສານ Word</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="198"/>
+        <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
         <translation>ຕ່ຕະລາງ Excel</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="201"/>
+        <location filename="../src/cfiledialog.cpp" line="365"/>
         <source>PowerPoint Presentation</source>
         <translation>ການນຳສະ ເໜີ PowerPoint</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="204"/>
+        <location filename="../src/cfiledialog.cpp" line="368"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 ເອກະສານ (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="214"/>
-        <location filename="../src/cfiledialog.cpp" line="297"/>
+        <location filename="../src/cfiledialog.cpp" line="378"/>
+        <location filename="../src/cfiledialog.cpp" line="485"/>
         <source>Text documents</source>
         <translation>ຂໍ້ຄວາມເອກະສານ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="215"/>
-        <location filename="../src/cfiledialog.cpp" line="305"/>
+        <location filename="../src/cfiledialog.cpp" line="379"/>
+        <location filename="../src/cfiledialog.cpp" line="493"/>
         <source>Spreadsheets</source>
         <translation>ຕາຕະລາງ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="216"/>
-        <location filename="../src/cfiledialog.cpp" line="313"/>
+        <location filename="../src/cfiledialog.cpp" line="380"/>
+        <location filename="../src/cfiledialog.cpp" line="501"/>
         <source>Presentations</source>
         <translation>ການນຳສະເໜີ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="217"/>
+        <location filename="../src/cfiledialog.cpp" line="381"/>
         <source>Web Page</source>
         <translation>ໜ້າເວບ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="218"/>
+        <location filename="../src/cfiledialog.cpp" line="382"/>
         <source>Text files</source>
         <translation>ແຟ້ມຂໍ້ຄວາມ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="248"/>
-        <location filename="../src/cfiledialog.cpp" line="249"/>
+        <location filename="../src/cfiledialog.cpp" line="408"/>
+        <location filename="../src/cfiledialog.cpp" line="409"/>
+        <location filename="../src/cfiledialog.cpp" line="414"/>
+        <location filename="../src/cfiledialog.cpp" line="434"/>
+        <location filename="../src/cfiledialog.cpp" line="435"/>
         <source>Open Document</source>
         <translation>ເປີດເອກະສານ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="260"/>
-        <location filename="../src/cfiledialog.cpp" line="269"/>
+        <location filename="../src/cfiledialog.cpp" line="448"/>
+        <location filename="../src/cfiledialog.cpp" line="457"/>
         <source>All Images</source>
         <translation>ຮູບພາບທັງ ໝົດ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="262"/>
-        <location filename="../src/cfiledialog.cpp" line="271"/>
+        <location filename="../src/cfiledialog.cpp" line="450"/>
+        <location filename="../src/cfiledialog.cpp" line="459"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="279"/>
-        <location filename="../src/cfiledialog.cpp" line="288"/>
+        <location filename="../src/cfiledialog.cpp" line="467"/>
+        <location filename="../src/cfiledialog.cpp" line="476"/>
         <source>Plugin file (*.plugin)</source>
         <translation>ສຽບຟາຍ (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="328"/>
+        <location filename="../src/cfiledialog.cpp" line="516"/>
         <source>Video file</source>
         <translation>ໄຟລ໌ວິດີໂອ</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="333"/>
+        <location filename="../src/cfiledialog.cpp" line="521"/>
         <source>Audio file</source>
         <translation>ໄຟລ໌ສຽງ</translation>
     </message>
@@ -374,48 +413,46 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1318"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 ໄດ້ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະບັນທຶກການປ່ຽນແປງ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="151"/>
         <source>FILE</source>
-        <translation>ເລີ່ມຕົ້ນ</translation>
+        <translation type="vanished">ເລີ່ມຕົ້ນ</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="625"/>
-        <location filename="../src/cmainpanel.cpp" line="669"/>
+        <location filename="../src/cmainpanel.cpp" line="594"/>
+        <location filename="../src/cmainpanel.cpp" line="638"/>
         <source>File format not supported.</source>
         <translation>ຮູບແບບເອກະສານບໍ່ຮອງຮັບ.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="653"/>
+        <location filename="../src/cmainpanel.cpp" line="622"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="717"/>
+        <location filename="../src/cmainpanel.cpp" line="682"/>
         <source>Document must be saved firstly.</source>
         <translation>ເອກະສານຕ້ອງໄດ້ເກັບໄວ້ກ່ອນ.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1145"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
+        <translation type="vanished">ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1281"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>ສ້າງຈຸດເຊື່ອມຕໍ່</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="873"/>
+        <location filename="../src/cmainpanel.cpp" line="843"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ຕ້ອງເກັບເອກະສານໄວ້ເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1037"/>
+        <location filename="../src/cmainpanel.cpp" line="980"/>
         <source>Print Document</source>
         <translation>ພິມເອກະສານ</translation>
     </message>
@@ -431,37 +468,37 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="143"/>
+        <location filename="../src/cmessage.cpp" line="189"/>
         <source>&amp;OK</source>
         <translation>&amp;ຕົກລົງ</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="217"/>
-        <location filename="../src/cmessage.cpp" line="218"/>
-        <location filename="../src/cmessage.cpp" line="219"/>
-        <location filename="../src/cmessage.cpp" line="220"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>Yes</source>
         <translation>ແມ່ນແລ້ວ</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="217"/>
-        <location filename="../src/cmessage.cpp" line="218"/>
-        <location filename="../src/cmessage.cpp" line="219"/>
-        <location filename="../src/cmessage.cpp" line="220"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>No</source>
         <translation>ບໍ່</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="219"/>
-        <location filename="../src/cmessage.cpp" line="220"/>
-        <location filename="../src/cmessage.cpp" line="221"/>
-        <location filename="../src/cmessage.cpp" line="222"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>Cancel</source>
         <translation>ຍົກເລີກ</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="221"/>
-        <location filename="../src/cmessage.cpp" line="222"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>OK</source>
         <translation>ບໍ່</translation>
     </message>
@@ -487,6 +524,14 @@
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>ກຳລັງພິມ...</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
+        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <translation type="unfinished">ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
     </message>
 </context>
 </TS>
