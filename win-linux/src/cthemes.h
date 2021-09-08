@@ -9,6 +9,7 @@
 
 namespace NSThemeLight {
     static const std::wstring theme_id = L"theme-light";
+    static const std::wstring theme_type = L"light";
 
     static const std::wstring color_brand_word = L"#446995";
     static const std::wstring color_brand_slide = L"#aa5252";
@@ -33,6 +34,7 @@ namespace NSThemeLight {
 
 namespace NSThemeClassicLight {
     static const std::wstring theme_id = L"theme-classic-light";
+    static const std::wstring theme_type = L"light";
 
     static const std::wstring color_brand_word = L"#446995";
     static const std::wstring color_brand_slide = L"#aa5252";
@@ -57,6 +59,7 @@ namespace NSThemeClassicLight {
 
 namespace NSThemeDark {
     static const std::wstring theme_id = L"theme-dark";
+    static const std::wstring theme_type = L"dark";
 
     static const std::wstring color_brand_word = L"#2a2a2a";
     static const std::wstring color_brand_slide = L"#2a2a2a";
