@@ -257,8 +257,6 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
 
         data->setContentType(CEditorTools::editorTypeFromFormat(opts.format));
         data->setChanged(opts.srctype == etRecoveryFile);
-        if ( m_isDarkTheme )
-            data->setFeatures(L"{\"default\":{\"uithemes\":true}}");
 
         pView->setData(data);
         tab_index = addTab(panelwidget, data->title());
@@ -554,7 +552,8 @@ void CAscTabWidget::updateTabIcon(int index)
             CTabBar::TabTheme tab_theme = is_active ? CTabBar::DarkTab : CTabBar::LightTab;
 
             auto _is_editor_supports_theme = [&](int index) {
-                return panel(index)->data()->hasFeature(L"uithemes");
+                CAscTabData& data = *(panel(index)->data());
+                return data.isViewType(cvwtEditor) && (data.features().empty() || data.hasFeature(L"uithemes"));
             };
             std::wstring theme_name{m_isDarkTheme && _is_editor_supports_theme(index) ? AscAppManager::themes().current() : NSThemeLight::theme_id};
 
