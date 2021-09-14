@@ -491,7 +491,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
-        <target>올림/target>
+        <target>올림</target>
         <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
       </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
