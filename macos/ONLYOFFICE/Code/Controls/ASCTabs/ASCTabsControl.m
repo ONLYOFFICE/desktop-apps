@@ -705,7 +705,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 }
 
 - (void)removeTab:(ASCTabView *)tab {
-    [self removeTab:tab selected:YES];
+    [self removeTab:tab selected:tab.state == NSControlStateValueOn];
 }
 
 - (void)removeAllTabs {
