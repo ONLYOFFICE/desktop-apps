@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="utf-16"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="lt">
+    <body>
+      <trans-unit id="1Fy-mg-aq9.title">
+        <source>Enter the password for the digital signature.</source>
+        <target state="translated">Įveskite slaptažodį el. parašui.</target>
+      </trans-unit>
+      <trans-unit id="1dL-nN-bJI.title">
+        <source>Enter the password for the private key.</source>
+        <target state="translated">Įveskite slaptažodį privačiam raktui.</target>
+      </trans-unit>
+      <trans-unit id="2Ck-6y-ygx.title">
+        <source>Specify the digital signature file for the document.</source>
+        <target>Patikslinkite skaitmeninio parašo failą dokumentui.</target>
+      </trans-unit>
+      <trans-unit id="4gA-s8-Lne.placeholderString">
+        <source>Enter Password</source>
+        <target>Įveskite slaptažodį</target>
+      </trans-unit>
+      <trans-unit id="GOU-av-TC1.title">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="P3k-kI-w22.title">
+        <source>Load a Private Key</source>
+        <target>Sukurti privatų raktą</target>
+      </trans-unit>
+      <trans-unit id="RbM-Dq-A3K.title">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="Tfc-EF-VnS.title">
+        <source>Specify a private key for the digital signature.</source>
+        <target>Patikslinkite privatų raktą skaitmeniniui parašui.</target>
+      </trans-unit>
+      <trans-unit id="Zj5-0h-hpW.placeholderString">
+        <source>Enter Password</source>
+        <target>Įveskite slaptažodį</target>
+      </trans-unit>
+      <trans-unit id="jpH-3g-Gt5.title">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="qZ4-0O-L0G.title">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="tTF-wa-eJp.title">
+        <source>Load Signature</source>
+        <target>Krauti parašą</target>
+      </trans-unit>
+      <trans-unit id="%@ Help">
+        <source>%@ Help</source>
+        <target>%@ Pagalba</target>
+      </trans-unit>
+      <trans-unit id="%@ Reporter Window">
+        <source>%@ Reporter Window</source>
+        <target state="translated">%@ Įspėjimo langas</target>
+      </trans-unit>
+      <trans-unit id="About %@">
+        <source>About %@</source>
+        <target>Apie %@</target>
+      </trans-unit>
+      <trans-unit id="Acknowledgments">
+        <source>Acknowledgments</source>
+        <target>Padėka</target>
+      </trans-unit>
+      <trans-unit id="Before signing the document, it must be saved.">
+        <source>Before signing the document, it must be saved.</source>
+        <target>Prieš pasirašant dokumentą, jis turi būti išsaugotas.</target>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="Cannot open file of Digital Signature">
+        <source>Cannot open file of Digital Signature</source>
+        <target>Neįmanoma atidaryti skaitmeninio parašo failo</target>
+      </trans-unit>
+      <trans-unit id="Cannot open file of Private Key">
+        <source>Cannot open file of Private Key</source>
+        <target>Neįmanoma atidaryti privataus rakto failo</target>
+      </trans-unit>
+      <trans-unit id="Cannot open folder of the file location.">
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">Neįmanoma atidaryti failo vietos aplanko.</target>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values">
+        <source>Comma-Separated Values</source>
+        <target>Kableliais atskirtos reikšmės</target>
+      </trans-unit>
+      <trans-unit id="Create portal">
+        <source>Create portal</source>
+        <target>Sukurti portalą</target>
+      </trans-unit>
+      <trans-unit id="Delete and Quit">
+        <source>Delete and Quit</source>
+        <target>Ištrinti ir išeiti</target>
+      </trans-unit>
+      <trans-unit id="DjVu File">
+        <source>DjVu File</source>
+        <target>DjVu failas</target>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>Ar norite išsaugoti dokumento "%@" pakeitimus?</target>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx">
+        <source>Document %ld.docx</source>
+        <target>Dokumentas %ld.docx</target>
+      </trans-unit>
+      <trans-unit id="Document template">
+        <source>Document template</source>
+        <target>Dokumento šablonas</target>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003 Skaičiuoklė</target>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007 Skaičiuoklė</target>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
+        <source>File "%@" can not be open or not exist.</source>
+        <target>Failas "%@" negali būti aitdarytas arba neegzistuoja.</target>
+      </trans-unit>
+      <trans-unit id="File Format:">
+        <source>File Format:</source>
+        <target>Failo formatas:</target>
+      </trans-unit>
+      <trans-unit id="File can not be open.">
+        <source>File can not be open.</source>
+        <target>Failas negali būti atidarytas.</target>
+      </trans-unit>
+      <trans-unit id="Hide %@">
+        <source>Hide %@</source>
+        <target>Slėpti %@</target>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost.">
+        <source>If you don't review your documents, all your changes will be lost.</source>
+        <target>Jei nepatikrinsite dokumentų, visi pakeitimai bus prarasti.</target>
+      </trans-unit>
+      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation.">
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target state="translated">Jei jau esate įsigiję %@, rasite savo aktyvavimo raktą patvirtinime, išsiųstame į jūsų el. paštą.</target>
+      </trans-unit>
+      <trans-unit id="License Agreement">
+        <source>License Agreement</source>
+        <target>Licensijos sutarimas</target>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket el. knyga</target>
+      </trans-unit>
+      <trans-unit id="No">
+        <source>No</source>
+        <target>Ne</target>
+      </trans-unit>
+      <trans-unit id="OK">
+        <source>OK</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file.">
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE negali atidaryti skaitmeninio parašo failo. Bandykite atidaryti kitą failą.</target>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file.">
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE negali atidaryti privataus rakto. Bandykite atidaryti kitą failą.</target>
+      </trans-unit>
+      <trans-unit id="OpenDocument Document Template">
+        <source>OpenDocument Document Template</source>
+        <target>OpenDocument Dokumento Šablonas</target>
+      </trans-unit>
+      <trans-unit id="OpenDocument Presentation Template">
+        <source>OpenDocument Presentation Template</source>
+        <target>OpenDocument Prezentacijos Šablonas</target>
+      </trans-unit>
+      <trans-unit id="OpenDocument Spreadsheet Template">
+        <source>OpenDocument Spreadsheet Template</source>
+        <target>OpenDocument Skaičiuoklės Šablonas</target>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document">
+        <source>OpenOffice Document</source>
+        <target>OpenOffice Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice Prezentacija</target>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet">
+        <source>OpenOffice Spreadsheet</source>
+        <target>OpenOffice Skaičiuoklė</target>
+      </trans-unit>
+      <trans-unit id="Opening">
+        <source>Opening</source>
+        <target>Atidaroma</target>
+      </trans-unit>
+      <trans-unit id="PDF File">
+        <source>PDF File</source>
+        <target>PDF Failas</target>
+      </trans-unit>
+      <trans-unit id="PDF/A File">
+        <source>PDF/A File</source>
+        <target>PDF/A Failas</target>
+      </trans-unit>
+      <trans-unit id="Plain Text">
+        <source>Plain Text</source>
+        <target>Paprastas Tekstas</target>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003 Prezentacija</target>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007 Prezentacija</target>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint Skaidrių Demonstracija</target>
+      </trans-unit>
+      <trans-unit id="Preparing...">
+        <source>Preparing...</source>
+        <target>Ruošiama...</target>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx">
+        <source>Presentation %ld.pptx</source>
+        <target>Prezentacija %ld.pptx</target>
+      </trans-unit>
+      <trans-unit id="Presentation template">
+        <source>Presentation template</source>
+        <target>Prezentacijos šablonas</target>
+      </trans-unit>
+      <trans-unit id="Quit %@">
+        <source>Quit %@</source>
+        <target>Išeiti iš %@</target>
+      </trans-unit>
+      <trans-unit id="Review Changes...">
+        <source>Review Changes...</source>
+        <target>Peržiūrėti pakitimus...</target>
+      </trans-unit>
+      <trans-unit id="Rich Text Document">
+        <source>Rich Text Document</source>
+        <target>Raiškiojo Teksto Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="Save">
+        <source>Save</source>
+        <target>Išsaugoti</target>
+      </trans-unit>
+      <trans-unit id="Save the document?">
+        <source>Save the document?</source>
+        <target>Išsaugoti Dokumentą?</target>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>Skaičiuoklė %ld.xlsx</target>
+      </trans-unit>
+      <trans-unit id="Spreadsheet template">
+        <source>Spreadsheet template</source>
+        <target>Skaičiuoklės šablonas</target>
+      </trans-unit>
+      <trans-unit id="Thank you for evaluating %@!">
+        <source>Thank you for evaluating %@!</source>
+        <target>Ačių, kad įvertinote %@!</target>
+      </trans-unit>
+      <trans-unit id="The document &quot;%@&quot; must be built. Continue?">
+        <source>The document "%@" must be built. Continue?</source>
+        <target>Dokumentas "%@" turi būti sukurtas. Tęsti?</target>
+      </trans-unit>
+      <trans-unit id="To open the file location, it must be saved.">
+        <source>To open the file location, it must be saved.</source>
+        <target>Norint atidaryti failo vietą, jis turi būti išsaugotas.</target>
+      </trans-unit>
+      <trans-unit id="Unconfirmed">
+        <source>Unconfirmed</source>
+        <target>Nepatvirtinta</target>
+      </trans-unit>
+      <trans-unit id="Untitled">
+        <source>Untitled</source>
+        <target>Be pavadinimo</target>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)">
+        <source>Version %1$@ (%2$@)</source>
+        <target>Versija %1$@ (%2$@)</target>
+      </trans-unit>
+      <trans-unit id="Web Page">
+        <source>Web Page</source>
+        <target>Internetinis tinklapis</target>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003 Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document">
+        <source>Word 2007 Document</source>
+        <target>Word 2007 Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification">
+        <source>XML Paper Specification</source>
+        <target state="translated">XML Popieriaus specifikacija</target>
+      </trans-unit>
+      <trans-unit id="Yes">
+        <source>Yes</source>
+        <target>Taip</target>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Jūs turite %1$ld %2$@ dokumentų su nepatvirtintais pakeitimais. Ar norite peržiūrėti šiuos pekeitimus prieš išeinant?</target>
+      </trans-unit>
+      <trans-unit id="You have successfully activated %@.">
+        <source>You have successfully activated %@.</source>
+        <target>Jūs sėkmingai aktyvavote %@.</target>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them.">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target>Jūsų pakeitimai bus prarasti, jei jų neišsaugosite.</target>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount.">
+        <source>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>Jūsų prenumerata baigėsi.
+
+Ši programa veikia neaktuviuoju rėžimu.
+
+Dabar galite pratęsti arba patobulinti jūsų prenumeratą su nuolaida.</target>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you.">
+        <source>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</source>
+        <target>Jūsų prenumerata tuoj baigsis.
+(Liko %d dienų).
+
+Mes jums turime specialų pasiūlymą.</target>
+      </trans-unit>
+      <trans-unit id="new-document">
+        <source>New Document</source>
+        <target>Naujas Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="new-presentation">
+        <source>New Presentation</source>
+        <target>Nauja Prezentacija</target>
+      </trans-unit>
+      <trans-unit id="new-spreadsheet">
+        <source>New Spreadsheet</source>
+        <target>Nauja Skaičiuoklė</target>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
+        <source>%#@days@</source>
+        <target>%#@dienos@</target>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string">
+        <source>%d days are left until the license expiration.</source>
+        <target state="translated">Iki licenzijos galiojimo pabaigos liko %d dienų.</target>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/many:dict/:string">
+        <source>%d days are left until the license expiration.</source>
+        <target state="translated">Iki licenzijos galiojimo pabaigos liko %d dienų.</target>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string">
+        <source>%d day are left until the license expiration.</source>
+        <target state="translated">Iki licenzijos galiojimo pabaigos liko %d dienų.</target>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string">
+        <source>%d days are left until the license expiration.</source>
+        <target state="translated">Iki licenzijos galiojimo pabaigos liko %d dienų.</target>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string">
+        <source>%#@days@</source>
+        <target>%#@dienos@</target>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>Jūs naudojate bandomąją programos versiją.
+Bandomasis laikotarpis baigsis po %d dienų. Po šio laikotarpio jūs negalėsite kurti arba redaguoti dokumentų.</target>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>Jūs naudojate bandomąją programos versiją.
+Bandomasis laikotarpis baigsis po %d dienų. Po šio laikotarpio jūs negalėsite kurti arba redaguoti dokumentų.</target>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string">
+        <source>You are using a trial version of the application.
+The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
+        <target>Jūs naudojate bandomąją programos versiją.
+Bandomasis laikotarpis baigsis po %d dienų. Po šio laikotarpio jūs negalėsite kurti arba redaguoti dokumentų.</target>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>Jūs naudojate bandomąją programos versiją.
+Bandomasis laikotarpis baigsis po %d dienų. Po šio laikotarpio jūs negalėsite kurti arba redaguoti dokumentų.</target>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string">
+        <source>%#@documents@</source>
+        <target>%#@dokumentai@</target>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string">
+        <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Jūs turite %1$ld %2$@ dokumentų su nepatvirtintais pakeitimais. Ar norite peržiūrėti šiuos pekeitimus prieš išeinant?</target>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/many:dict/:string">
+        <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Jūs turite %1$ld %2$@ dokumentų su nepatvirtintais pakeitimais. Ar norite peržiūrėti šiuos pekeitimus prieš išeinant?</target>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string">
+        <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Jūs turite %1$ld %2$@ dokumentų su nepatvirtintais pakeitimais. Ar norite peržiūrėti šiuos pekeitimus prieš išeinant?</target>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string">
+        <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>Jūs turite %1$ld %2$@ dokumentų su nepatvirtintais pakeitimais. Ar norite peržiūrėti šiuos pekeitimus prieš išeinant?</target>
+      </trans-unit>
+      <trans-unit id="1UK-8n-QPP.title">
+        <source>Customize Toolbar…</source>
+        <target>Redaguoti įrankių juostą…</target>
+      </trans-unit>
+      <trans-unit id="1Xt-HY-uBw.title">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="1b7-l0-nxx.title">
+        <source>Find</source>
+        <target>Rasti</target>
+      </trans-unit>
+      <trans-unit id="1tx-W0-xDw.title">
+        <source>Lower</source>
+        <target>Mažinti</target>
+      </trans-unit>
+      <trans-unit id="2h7-ER-AoG.title">
+        <source>Raise</source>
+        <target>Didinti</target>
+      </trans-unit>
+      <trans-unit id="2oI-Rn-ZJC.title">
+        <source>Transformations</source>
+        <target>Tranformacijos</target>
+      </trans-unit>
+      <trans-unit id="3IN-sU-3Bg.title">
+        <source>Spelling</source>
+        <target>Tarimas</target>
+      </trans-unit>
+      <trans-unit id="3Om-Ey-2VK.title">
+        <source>Use Default</source>
+        <target>Naudoti numatytąjį</target>
+      </trans-unit>
+      <trans-unit id="3rS-ZA-NoH.title">
+        <source>Speech</source>
+        <target>Kalba</target>
+      </trans-unit>
+      <trans-unit id="4EN-yA-p0u.title">
+        <source>Find</source>
+        <target>Rasti</target>
+      </trans-unit>
+      <trans-unit id="4et-TX-a4m.title">
+        <source>License Agreement</source>
+        <target>Licenzijos Sutikimas</target>
+      </trans-unit>
+      <trans-unit id="4sb-4s-VLi.title">
+        <source>Quit ONLYOFFICE</source>
+        <target>Išeiti iš ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="5QF-Oa-p0T.title">
+        <source>Edit</source>
+        <target>Redaguoti</target>
+      </trans-unit>
+      <trans-unit id="5Vv-lz-BsD.title">
+        <source>Copy Style</source>
+        <target>Kopijuoti Stilių</target>
+      </trans-unit>
+      <trans-unit id="5kV-Vb-QxS.title">
+        <source>About ONLYOFFICE</source>
+        <target>Apie ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="6dh-zS-Vam.title">
+        <source>Redo</source>
+        <target>Perdaryti</target>
+      </trans-unit>
+      <trans-unit id="8Ga-Cu-VGe.title">
+        <source>License agreement</source>
+        <target>Licenzijos Sutikimas</target>
+      </trans-unit>
+      <trans-unit id="8mr-sm-Yjd.title">
+        <source>Writing Direction</source>
+        <target>Rašymo kryptis</target>
+      </trans-unit>
+      <trans-unit id="9aQ-wl-gjS.title">
+        <source>New</source>
+        <target>Naujas</target>
+      </trans-unit>
+      <trans-unit id="9i7-kj-42B.title">
+        <source>none</source>
+        <target state="translated">jokių</target>
+      </trans-unit>
+      <trans-unit id="9ic-FL-obx.title">
+        <source>Substitutions</source>
+        <target state="translated">Pakeitimai</target>
+      </trans-unit>
+      <trans-unit id="9yt-4B-nSM.title">
+        <source>Smart Copy/Paste</source>
+        <target>Išmanusis Kopijuoti/Įklijuoti</target>
+      </trans-unit>
+      <trans-unit id="46P-cB-AYj.title">
+        <source>Tighten</source>
+        <target state="translated">Sutraukti</target>
+      </trans-unit>
+      <trans-unit id="78Y-hA-62v.title">
+        <source>Correct Spelling Automatically</source>
+        <target>Automatiškai taisyti tarimą</target>
+      </trans-unit>
+      <trans-unit id="AYu-sK-qS6.title">
+        <source>Main Menu</source>
+        <target>Pagr. Meniu</target>
+      </trans-unit>
+      <trans-unit id="BOF-NM-1cW.title">
+        <source>Preferences…</source>
+        <target state="translated">Pasirinkimai…</target>
+      </trans-unit>
+      <trans-unit id="BgM-ve-c93.title">
+        <source>	Left to Right</source>
+        <target>	Iš kairės į dešinę</target>
+      </trans-unit>
+      <trans-unit id="Bw7-FT-i3A.title">
+        <source>Save As…</source>
+        <target>Išsaugoti kaip…</target>
+      </trans-unit>
+      <trans-unit id="CJU-dx-a9l.title">
+        <source>Acknowledgments</source>
+        <target>Padėka</target>
+      </trans-unit>
+      <trans-unit id="DOj-j9-dza.title">
+        <source>Spreadsheet</source>
+        <target>Skaičiuoklė</target>
+      </trans-unit>
+      <trans-unit id="DVo-aG-piG.title">
+        <source>Close</source>
+        <target>Uždaryti</target>
+      </trans-unit>
+      <trans-unit id="Dv1-io-Yv7.title">
+        <source>Spelling and Grammar</source>
+        <target>Tarimas ir gramatika</target>
+      </trans-unit>
+      <trans-unit id="F2S-fz-NVQ.title">
+        <source>Help</source>
+        <target>Pagalba</target>
+      </trans-unit>
+      <trans-unit id="FKE-Sm-Kum.title">
+        <source>Product Help</source>
+        <target>Produkto pagalba</target>
+      </trans-unit>
+      <trans-unit id="Fal-I4-PZk.title">
+        <source>Text</source>
+        <target>Tekstas</target>
+      </trans-unit>
+      <trans-unit id="FeM-D8-WVr.title">
+        <source>Substitutions</source>
+        <target>Pakeitimai</target>
+      </trans-unit>
+      <trans-unit id="FoF-wl-Dxi.title">
+        <source>User Name</source>
+        <target>Vartotojo vardas</target>
+      </trans-unit>
+      <trans-unit id="GB9-OM-e27.title">
+        <source>Bold</source>
+        <target>Ryškus</target>
+      </trans-unit>
+      <trans-unit id="GEO-Iw-cKr.title">
+        <source>Format</source>
+        <target>Formatas</target>
+      </trans-unit>
+      <trans-unit id="GUa-eO-cwY.title">
+        <source>Use Default</source>
+        <target>Naudoti numatytąjį</target>
+      </trans-unit>
+      <trans-unit id="Gi5-1S-RQB.title">
+        <source>Font</source>
+        <target>Šriftas</target>
+      </trans-unit>
+      <trans-unit id="H1b-Si-o9J.title">
+        <source>Writing Direction</source>
+        <target>Rašymo kryptis</target>
+      </trans-unit>
+      <trans-unit id="H8h-7b-M4v.title">
+        <source>View</source>
+        <target>Peržiūrėti</target>
+      </trans-unit>
+      <trans-unit id="HFQ-gK-NFA.title">
+        <source>Text Replacement</source>
+        <target>Teksto pakeitimas</target>
+      </trans-unit>
+      <trans-unit id="HFo-cy-zxI.title">
+        <source>Show Spelling and Grammar</source>
+        <target>Rodyti Tarimą ir Gramatiką</target>
+      </trans-unit>
+      <trans-unit id="HyV-fh-RgO.title">
+        <source>View</source>
+        <target>Licenzijos Sutikimas</target>
+      </trans-unit>
+      <trans-unit id="I0S-gh-46l.title">
+        <source>Subscript</source>
+        <target>Prenumerata</target>
+      </trans-unit>
+      <trans-unit id="IAo-SY-fd9.title">
+        <source>Open…</source>
+        <target>Atidaryti…</target>
+      </trans-unit>
+      <trans-unit id="IQv-IB-iLA.title">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="J5U-5w-g23.title">
+        <source>Justify</source>
+        <target>Pateisinti</target>
+      </trans-unit>
+      <trans-unit id="J7y-lM-qPV.title">
+        <source>Use None</source>
+        <target>Nedaudoti nieko</target>
+      </trans-unit>
+      <trans-unit id="KaW-ft-85H.title">
+        <source>Revert to Saved</source>
+        <target>Grįžti į išsaugotą</target>
+      </trans-unit>
+      <trans-unit id="Kd2-mp-pUS.title">
+        <source>Show All</source>
+        <target>Rodyti viską</target>
+      </trans-unit>
+      <trans-unit id="LE2-aR-0XJ.title">
+        <source>Bring All to Front</source>
+        <target>Patraukti visus į priekį</target>
+      </trans-unit>
+      <trans-unit id="LVM-kO-fVI.title">
+        <source>Paste Ruler</source>
+        <target>Įklijavimo Liniuotė</target>
+      </trans-unit>
+      <trans-unit id="Lbh-J2-qVU.title">
+        <source>	Left to Right</source>
+        <target>	Iš kairės į dešinę</target>
+      </trans-unit>
+      <trans-unit id="MkV-Pr-PK5.title">
+        <source>Copy Ruler</source>
+        <target>Kopijavimo liniuotė</target>
+      </trans-unit>
+      <trans-unit id="NMo-om-nkz.title">
+        <source>Services</source>
+        <target>Paslaugos</target>
+      </trans-unit>
+      <trans-unit id="Nop-cj-93Q.title">
+        <source>	Default</source>
+        <target>	Numatytasis</target>
+      </trans-unit>
+      <trans-unit id="OY7-WF-poV.title">
+        <source>Minimize</source>
+        <target>Sumažinti</target>
+      </trans-unit>
+      <trans-unit id="OaQ-X3-Vso.title">
+        <source>Baseline</source>
+        <target>Pradinis</target>
+      </trans-unit>
+      <trans-unit id="Olw-nP-bQN.title">
+        <source>Hide ONLYOFFICE</source>
+        <target>Slėpti ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="OwM-mh-QMV.title">
+        <source>Find Previous</source>
+        <target>Rasti ankstesniąjį</target>
+      </trans-unit>
+      <trans-unit id="Oyz-dy-DGm.title">
+        <source>Stop Speaking</source>
+        <target>Nustoti kalbėti</target>
+      </trans-unit>
+      <trans-unit id="Ptp-SP-VEL.title">
+        <source>Bigger</source>
+        <target>Padidinti</target>
+      </trans-unit>
+      <trans-unit id="Q5e-8K-NDq.title">
+        <source>Show Fonts</source>
+        <target>Rodyti Šriftus</target>
+      </trans-unit>
+      <trans-unit id="R4o-n2-Eq4.title">
+        <source>Zoom</source>
+        <target>Priartinti</target>
+      </trans-unit>
+      <trans-unit id="RB4-Sm-HuC.title">
+        <source>	Right to Left</source>
+        <target state="translated">	Iš dešinės į kairę</target>
+      </trans-unit>
+      <trans-unit id="Riu-oE-8dj.title">
+        <source>Close</source>
+        <target>Uždaryti</target>
+      </trans-unit>
+      <trans-unit id="Rkd-xb-FRJ.title">
+        <source>none</source>
+        <target state="translated">jokių</target>
+      </trans-unit>
+      <trans-unit id="RmO-tv-UKh.title">
+        <source>Logout</source>
+        <target>Išeiti</target>
+      </trans-unit>
+      <trans-unit id="Rqc-34-cIF.title">
+        <source>Superscript</source>
+        <target state="translated">Viršutinis Indeksas</target>
+      </trans-unit>
+      <trans-unit id="Ruw-6m-B2m.title">
+        <source>Select All</source>
+        <target>Pasirinkti visus</target>
+      </trans-unit>
+      <trans-unit id="S0p-oC-mLd.title">
+        <source>Jump to Selection</source>
+        <target>Pereiti į Parinktis</target>
+      </trans-unit>
+      <trans-unit id="TEm-B8-gsH.title">
+        <source>Document</source>
+        <target>Dokumentas</target>
+      </trans-unit>
+      <trans-unit id="Td7-aD-5lo.title">
+        <source>Window</source>
+        <target>Langas</target>
+      </trans-unit>
+      <trans-unit id="UEZ-Bs-lqG.title">
+        <source>Capitalize</source>
+        <target>Kapitalizuoti</target>
+      </trans-unit>
+      <trans-unit id="VIY-Ag-zcb.title">
+        <source>Center</source>
+        <target>Centras</target>
+      </trans-unit>
+      <trans-unit id="Vdr-fp-XzO.title">
+        <source>Hide Others</source>
+        <target>Slėpti Kitus</target>
+      </trans-unit>
+      <trans-unit id="Vjx-xi-njq.title">
+        <source>Italic</source>
+        <target>Kursyvas</target>
+      </trans-unit>
+      <trans-unit id="W48-6f-4Dl.title">
+        <source>Edit</source>
+        <target>Redaguoti</target>
+      </trans-unit>
+      <trans-unit id="WRG-CD-K1S.title">
+        <source>Underline</source>
+        <target>Pabraukti</target>
+      </trans-unit>
+      <trans-unit id="WeT-3V-zwk.title">
+        <source>Paste and Match Style</source>
+        <target>Įklijuoti ir Pritaikyti Stilių</target>
+      </trans-unit>
+      <trans-unit id="Xz5-n4-O0W.title">
+        <source>Find…</source>
+        <target>Rasti…</target>
+      </trans-unit>
+      <trans-unit id="YEy-JH-Tfz.title">
+        <source>Find and Replace…</source>
+        <target>Rasti ir Pakeisti…</target>
+      </trans-unit>
+      <trans-unit id="YGs-j5-SAR.title">
+        <source>	Default</source>
+        <target>	Numatytasis</target>
+      </trans-unit>
+      <trans-unit id="Ynk-f8-cLZ.title">
+        <source>Start Speaking</source>
+        <target>Pradėti kalbėti</target>
+      </trans-unit>
+      <trans-unit id="ZM1-6Q-yy1.title">
+        <source>Align Left</source>
+        <target>Surikiuoti kairėje</target>
+      </trans-unit>
+      <trans-unit id="ZbA-hc-8PE.title">
+        <source>Version</source>
+        <target>Versija</target>
+      </trans-unit>
+      <trans-unit id="Zsi-3o-ASl.title">
+        <source>Email:</source>
+        <target>El. paštas:</target>
+      </trans-unit>
+      <trans-unit id="ZvO-Gk-QUH.title">
+        <source>Paragraph</source>
+        <target>Pastraipa</target>
+      </trans-unit>
+      <trans-unit id="aTl-1u-JFS.title">
+        <source>Print…</source>
+        <target>Spausdinti…</target>
+      </trans-unit>
+      <trans-unit id="aUF-d1-5bR.title">
+        <source>Window</source>
+        <target>Langas</target>
+      </trans-unit>
+      <trans-unit id="aXa-aM-Jaq.title">
+        <source>Font</source>
+        <target>Šriftas</target>
+      </trans-unit>
+      <trans-unit id="agt-UL-0e3.title">
+        <source>Use Default</source>
+        <target>Naudoti numatytąjį</target>
+      </trans-unit>
+      <trans-unit id="bgn-CT-cEk.title">
+        <source>Show Colors</source>
+        <target>Rodyti Spalvas</target>
+      </trans-unit>
+      <trans-unit id="bib-Uj-vzu.title">
+        <source>File</source>
+        <target>Failas</target>
+      </trans-unit>
+      <trans-unit id="buJ-ug-pKt.title">
+        <source>Use Selection for Find</source>
+        <target>Naudoti Parinktis Paieškai</target>
+      </trans-unit>
+      <trans-unit id="c8a-y6-VQd.title">
+        <source>Transformations</source>
+        <target>Tranformacijos</target>
+      </trans-unit>
+      <trans-unit id="cDB-IK-hbR.title">
+        <source>Use None</source>
+        <target>Nieko nenaudoti</target>
+      </trans-unit>
+      <trans-unit id="cqv-fj-IhA.title">
+        <source>Selection</source>
+        <target>Parinktis</target>
+      </trans-unit>
+      <trans-unit id="cwL-P1-jid.title">
+        <source>Smart Links</source>
+        <target>Išmaniosios nuorados</target>
+      </trans-unit>
+      <trans-unit id="d9M-CD-aMd.title">
+        <source>Make Lower Case</source>
+        <target>Padaryti mažąsias raides</target>
+      </trans-unit>
+      <trans-unit id="d9c-me-L2H.title">
+        <source>Text</source>
+        <target>Tekstas</target>
+      </trans-unit>
+      <trans-unit id="dMs-cI-mzQ.title">
+        <source>File</source>
+        <target>Failas</target>
+      </trans-unit>
+      <trans-unit id="dRJ-4n-Yzg.title">
+        <source>Undo</source>
+        <target>Grįžti</target>
+      </trans-unit>
+      <trans-unit id="gVA-U4-sdL.title">
+        <source>Paste</source>
+        <target>Įklijuoti</target>
+      </trans-unit>
+      <trans-unit id="gm3-6i-EnL.title">
+        <source>File Name</source>
+        <target>Failo Pavadinimas</target>
+      </trans-unit>
+      <trans-unit id="hD5-Cz-ItX.title">
+        <source>New</source>
+        <target>Naujas</target>
+      </trans-unit>
+      <trans-unit id="hQb-2v-fYv.title">
+        <source>Smart Quotes</source>
+        <target>Išmaniosios Citatos</target>
+      </trans-unit>
+      <trans-unit id="hkB-TU-Ps1.title">
+        <source>Presentation</source>
+        <target>Prezentacija</target>
+      </trans-unit>
+      <trans-unit id="hz2-CU-CR7.title">
+        <source>Check Document Now</source>
+        <target>Peržiūrėti dokumentą dabar</target>
+      </trans-unit>
+      <trans-unit id="hz9-B4-Xy5.title">
+        <source>Services</source>
+        <target>Paslaugos</target>
+      </trans-unit>
+      <trans-unit id="i1d-Er-qST.title">
+        <source>Smaller</source>
+        <target>Mažesnis</target>
+      </trans-unit>
+      <trans-unit id="ijk-EB-dga.title">
+        <source>Baseline</source>
+        <target>Pradinis</target>
+      </trans-unit>
+      <trans-unit id="jBQ-r6-VK2.title">
+        <source>Kern</source>
+        <target>Redaguoti tarpus</target>
+      </trans-unit>
+      <trans-unit id="jFq-tB-4Kx.title">
+        <source>	Right to Left</source>
+        <target>	Iš dešinės į kairę</target>
+      </trans-unit>
+      <trans-unit id="jxT-CU-nIS.title">
+        <source>Format</source>
+        <target>Formatas</target>
+      </trans-unit>
+      <trans-unit id="kcg-El-49G.label">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="m0C-e9-0oc.title">
+        <source>Cancel</source>
+        <target>Atšaukti</target>
+      </trans-unit>
+      <trans-unit id="mK6-2p-4JG.title">
+        <source>Check Grammar With Spelling</source>
+        <target>Tikrinti Gramatiką su Tarimu</target>
+      </trans-unit>
+      <trans-unit id="o6e-r0-MWq.title">
+        <source>Ligatures</source>
+        <target>Ligatūros</target>
+      </trans-unit>
+      <trans-unit id="oas-Oc-fiZ.title">
+        <source>Open Recent</source>
+        <target>Atidaryti Anksčiausiąjį</target>
+      </trans-unit>
+      <trans-unit id="ogc-rX-tC1.title">
+        <source>Loosen</source>
+        <target>Atlaisvinti</target>
+      </trans-unit>
+      <trans-unit id="pa3-QI-u2k.title">
+        <source>Delete</source>
+        <target>Ištrinti</target>
+      </trans-unit>
+      <trans-unit id="pxx-59-PXV.title">
+        <source>Save</source>
+        <target>Išsaugoti</target>
+      </trans-unit>
+      <trans-unit id="q09-fT-Sye.title">
+        <source>Find Next</source>
+        <target>Rasti sekantį</target>
+      </trans-unit>
+      <trans-unit id="qIS-W8-SiK.title">
+        <source>Page Setup…</source>
+        <target>Puslapio Nustatymai…</target>
+      </trans-unit>
+      <trans-unit id="rbD-Rh-wIN.title">
+        <source>Check Spelling While Typing</source>
+        <target>Tikrinti tarimą rašant</target>
+      </trans-unit>
+      <trans-unit id="rgM-f4-ycn.title">
+        <source>Smart Dashes</source>
+        <target>Išmanieji brūkšneliai</target>
+      </trans-unit>
+      <trans-unit id="sGd-zc-V0B.title">
+        <source>Copyright info</source>
+        <target>Informacija apie autorių teises</target>
+      </trans-unit>
+      <trans-unit id="snW-S8-Cw5.title">
+        <source>Show Toolbar</source>
+        <target>Rodyti įrankių juostą</target>
+      </trans-unit>
+      <trans-unit id="tRr-pd-1PS.title">
+        <source>Data Detectors</source>
+        <target>Duomenų detektoriai</target>
+      </trans-unit>
+      <trans-unit id="tXI-mr-wws.title">
+        <source>Open Recent</source>
+        <target>Atidaryti Anksčiausiąjį</target>
+      </trans-unit>
+      <trans-unit id="tlD-Oa-oAM.title">
+        <source>Kern</source>
+        <target>Redaguoti tarpus</target>
+      </trans-unit>
+      <trans-unit id="uQy-DD-JDr.title">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="uRl-iY-unG.title">
+        <source>Cut</source>
+        <target>Iškirpti</target>
+      </trans-unit>
+      <trans-unit id="ud7-wC-A79.title">
+        <source>Check for Updates…</source>
+        <target>Tikrinti ar yra Naujinių…</target>
+      </trans-unit>
+      <trans-unit id="vKC-jM-MkH.title">
+        <source>Paste Style</source>
+        <target>Įklijuoti Stilių</target>
+      </trans-unit>
+      <trans-unit id="vLm-3I-IUL.title">
+        <source>Show Ruler</source>
+        <target>Rodyti liniuotę</target>
+      </trans-unit>
+      <trans-unit id="vNY-rz-j42.title">
+        <source>Clear Menu</source>
+        <target>Išvalyti Meniu</target>
+      </trans-unit>
+      <trans-unit id="vmV-6d-7jI.title">
+        <source>Make Upper Case</source>
+        <target state="translated">Sudaryti didžiąsias raides</target>
+      </trans-unit>
+      <trans-unit id="w0m-vy-SC9.title">
+        <source>Ligatures</source>
+        <target>Ligatūros</target>
+      </trans-unit>
+      <trans-unit id="wb2-vD-lq4.title">
+        <source>Align Right</source>
+        <target>Rikiuoti dėšinėje</target>
+      </trans-unit>
+      <trans-unit id="wpe-8d-5DV.title">
+        <source>Text Cell</source>
+        <target>Teksto langelis</target>
+      </trans-unit>
+      <trans-unit id="wpr-3q-Mcd.title">
+        <source>Help</source>
+        <target>Pagalba</target>
+      </trans-unit>
+      <trans-unit id="x3v-GG-iWU.title">
+        <source>Copy</source>
+        <target>Kopijuoti</target>
+      </trans-unit>
+      <trans-unit id="xCO-ey-2lo.title">
+        <source>Product</source>
+        <target>Produktas</target>
+      </trans-unit>
+      <trans-unit id="xQD-1f-W4t.title">
+        <source>Use All</source>
+        <target>Naudoti Visus</target>
+      </trans-unit>
+      <trans-unit id="xrE-MZ-jX0.title">
+        <source>Speech</source>
+        <target>Kalba</target>
+      </trans-unit>
+      <trans-unit id="z6F-FW-3nz.title">
+        <source>Show Substitutions</source>
+        <target>Rodyti pakeitimus</target>
+      </trans-unit>
+      <trans-unit id="zwS-9G-S0N.title">
+        <source>Portal:</source>
+        <target>Portalas:</target>
+      </trans-unit>
+      <trans-unit id="Could not move to Applications folder">
+        <source>Could not move to Applications folder</source>
+        <target state="translated">Neįmanoma perkelti į Programų Aplanką</target>
+      </trans-unit>
+      <trans-unit id="Do Not Move">
+        <source>Do Not Move</source>
+        <target>Nejudėti</target>
+      </trans-unit>
+      <trans-unit id="I can move myself to the Applications folder if you'd like.">
+        <source>I can move myself to the Applications folder if you'd like.</source>
+        <target>Jei norite, galiu save perkelti į Programų Aplanką.</target>
+      </trans-unit>
+      <trans-unit id="Move to Applications Folder">
+        <source>Move to Applications Folder</source>
+        <target>Perkelti į Programų Aplanką</target>
+      </trans-unit>
+      <trans-unit id="Move to Applications folder in your Home folder?">
+        <source>Move to Applications folder in your Home folder?</source>
+        <target>Perkelti į Programų Aplanką Jūsų Home Aplanke?</target>
+      </trans-unit>
+      <trans-unit id="Move to Applications folder?">
+        <source>Move to Applications folder?</source>
+        <target>Perkelti į Programų Aplanką?</target>
+      </trans-unit>
+      <trans-unit id="Note that this will require an administrator password.">
+        <source>Note that this will require an administrator password.</source>
+        <target state="translated">Prisiminkite, kad tai pareikalaus administratoriaus slaptažodžio.</target>
+      </trans-unit>
+      <trans-unit id="This will keep your Downloads folder uncluttered.">
+        <source>This will keep your Downloads folder uncluttered.</source>
+        <target state="translated">Tai neužterš Jūsų Atsisiuntimų Aplanko.</target>
+      </trans-unit>
+      <trans-unit id="Ygx-5K-Hn8.title">
+        <source>Reporter Window</source>
+        <target>Įspėjamasis Langas</target>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target>Autorių teisės 2020 Ascensio Sistemos SIA. Visos teisės saugomos.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
