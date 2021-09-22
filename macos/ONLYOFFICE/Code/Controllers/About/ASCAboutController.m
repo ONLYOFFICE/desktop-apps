@@ -120,8 +120,12 @@
                                           [infoDictionary objectForKey:@"CFBundleShortVersionString"],
                                           [infoDictionary objectForKey:@"CFBundleVersion"]]];
         
-#if _X86_ONLY
+#if _V8_VERSION
         [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
+#elif _X86_64_ONLY
+        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64", [self.versionText stringValue]]];
+#elif _ARM_ONLY
+        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
 #endif
         
         // If has extra features

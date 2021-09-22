@@ -251,7 +251,7 @@ public:
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
-                    iconuser->setToolTip(_user_name);
+                    iconUser()->setToolTip(_user_name);
                     iconuser->setText(_user_name);
 
                     iconuser->adjustSize();
