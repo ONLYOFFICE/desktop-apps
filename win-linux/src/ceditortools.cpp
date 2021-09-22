@@ -210,8 +210,6 @@ namespace CEditorTools
                 }
             }
 
-            if ( AscAppManager::themes().isCurrentDark() )
-                data->setFeatures(L"{\"default\":{\"uithemes\":true}}");
 
             panel->setData(data);
             if ( !rect.isEmpty() )

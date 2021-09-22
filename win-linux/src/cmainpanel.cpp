@@ -1073,6 +1073,11 @@ void CMainPanel::onFullScreen(int id, bool apply)
 
             m_pTabs->setFullScreen(apply, id);
 //            emit mainWindowChangeState(Qt::WindowFullScreen);
+
+            QTimer::singleShot(0, [=]{
+                CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER);
+                AscAppManager::getInstance().GetViewById(id)->Apply(pEvent);
+            });
         }
     } else
     if ( m_mainWindowState == Qt::WindowFullScreen ) {

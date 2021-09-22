@@ -23,10 +23,12 @@ Dotenv.load '.env.secret'
 default_platform :mac
 
 platform :mac do
-  lane :release do |options|
+  lane :common_release do |options|
     build = "build"
-    scheme = "ONLYOFFICE"
-    app = "#{build}/#{scheme}.app"
+    scheme = options[:scheme]
+    app_name = "ONLYOFFICE"
+    app = "#{build}/#{app_name}.app"
+    git_suffix = options[:git_suffix]
 
     desc 'Cleanup'
     sh("rm -rf ../#{build}")
@@ -63,7 +65,7 @@ platform :mac do
 
     desc 'Create DMG image'
     sh("npm install appdmg")
-    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}.dmg")
+    sh("npx appdmg resources/appdmg.json ../#{build}/#{app_name}.dmg")
 
     if options[:skip_git_bump]
       next
@@ -71,13 +73,13 @@ platform :mac do
 
     desc 'Creates a bump version commit'
     commit_version_bump(
-      message: "[macos] Version bumped to v#{version_number}(#{build_number})",
+      message: "[macos] Version bumped to v#{version_number}(#{build_number})-#{git_suffix}",
       force: true
     )
 
     desc 'Create a local tag with the new version'
     add_git_tag(
-      tag: "macos/v#{version_number}-#{build_number}",
+      tag: "macos/v#{version_number}-#{build_number}-#{git_suffix}",
       build_number: build_number
     )
 
@@ -85,68 +87,22 @@ platform :mac do
     push_to_git_remote
   end
 
-  # x86 only
-  lane :release_x86 do |options|
-    build = "build"
-    scheme = "ONLYOFFICE-x86"
-    appName = "ONLYOFFICE"
-    app = "#{build}/#{appName}.app"
+  # arm64 only
+  lane :release_arm do |options|
+    desc 'Build Apple Silicone version'
+    common_release(options.merge({ scheme: "ONLYOFFICE-arm", git_suffix: "arm" } ))
+  end
 
-    desc 'Cleanup'
-    sh("rm -rf ../#{build}")
+  # x86_64 only
+  lane :release_x86_64 do |options|
+    desc 'Build Intel version'
+    common_release(options.merge( { scheme: "ONLYOFFICE-x86_64", git_suffix: "x86_64" } ))
+  end
 
-    desc 'Get the version from plist'
-    version_number = get_info_plist_value(
-      path: "ONLYOFFICE/Resources/#{scheme}/Info.plist",
-      key: "CFBundleShortVersionString"
-    )
-    build_number = get_info_plist_value(
-      path: "ONLYOFFICE/Resources/#{scheme}/Info.plist",
-      key: "CFBundleVersion"
-    )
-
-    desc 'Build for developer id and notarize'
-    gym(
-      scheme: scheme,
-      configuration: 'Release',
-      clean: true,
-      output_directory: build,
-      codesigning_identity: ENV["CODESIGNING_IDENTITY"],
-      export_method: 'developer-id',
-      skip_package_pkg: true
-    )
-
-    notarize(
-      package: app,
-      print_log: true,
-      verbose: true
-    )
-
-    desc 'Prepare zip for delta update'
-    sh("ditto -c -k --rsrc --keepParent #{ENV['PWD']}/#{app} #{ENV['PWD']}/#{build}/#{scheme}-#{version_number}.zip")
-
-    desc 'Create DMG image'
-    sh("npm install appdmg")
-    sh("npx appdmg resources/appdmg.json ../#{build}/#{appName}.dmg")
-
-    if options[:skip_git_bump]
-      next
-    end
-
-    desc 'Creates a bump version commit'
-    commit_version_bump(
-      message: "[macos] Version bumped to v#{version_number}-x86(#{build_number})",
-      force: true
-    )
-
-    desc 'Create a local tag with the new version'
-    add_git_tag(
-      tag: "macos/v#{version_number}-#{build_number}-x86",
-      build_number: build_number
-    )
-
-    # push changes
-    push_to_git_remote
+  # x86_64 only with v8
+  lane :release_v8 do |options|
+    desc 'Build Intel version with v8 engine'
+    common_release(options.merge( { scheme: "ONLYOFFICE-v8", git_suffix: "v8" } ))
   end
 
 end
