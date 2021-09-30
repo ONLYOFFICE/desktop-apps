@@ -128,6 +128,17 @@ Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBran
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: vi; MessagesFile: compiler:Default.isl;               LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hi; MessagesFile: compiler:Languages\Hindi.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 
 [CustomMessages]
@@ -158,6 +169,17 @@ sv.Launch =Starta %1
 tr.Launch =%1 Başlatma
 vi.Launch =Khởi động %1
 zh_CN.Launch =启动%1
+hy_AM.Launch =Գործարկում %1
+hr.Launch =Pokretanje %1
+da.Launch =Start %1
+hi.Launch =लॉन्च %1
+hu.Launch =%1 elindítása
+ga_IE.Launch =Lainseáil %1
+ja.Launch ==%1 を起動
+ko.Launch ==%1 시작
+lv.Launch =Sākt %1
+nn_NO.Launch =Kjør %1
+uk.Launch =Запустити %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
@@ -185,6 +207,17 @@ sv.CreateDesktopIcon =Skapa %1 &ikon på skrivbordet
 tr.CreateDesktopIcon =%1 &masaüstü simgesi oluştur
 vi.CreateDesktopIcon =Tạo %1 &biểu tượng máy tính
 zh_CN.CreateDesktopIcon =创建%1和桌面图标
+hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկերակ
+hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
+da.CreateDesktopIcon =Opret %1 &skrivebordsikon
+hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
+hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
+ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
+ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
+ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
+lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
+nn_NO.CreateDesktopIcon =Opprett %1 &skrivebordsikon
+uk.CreateDesktopIcon =Створити &іконку %1 на робочому столі
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
@@ -212,6 +245,17 @@ sv.InstallAdditionalComponents =Installerar ytterligare systemkomponenter. Var v
 tr.InstallAdditionalComponents =Ek sistem bileşenleri kuruluyor. Lütfen bekleyin...
 vi.InstallAdditionalComponents =Đang cài đặt các  phần hệ thống bổ sung. Xin vui lòng chờ...
 zh_CN.InstallAdditionalComponents =安装其他系统组件。请稍候...
+hy_AM.InstallAdditionalComponents =Համակարգչի լրացուցիչ բաղադրիչների տեղադրում։ Խնդրում ենք սպասել․․․
+hr.InstallAdditionalComponents =Instaliranje dodatnih komponenata sustava. Molimo pričekajte...
+da.InstallAdditionalComponents =Installation af yderligere systemkomponenter. Vent venligst...
+hi.InstallAdditionalComponents =अतिरिक्त सिस्टम तत्वों को इंस्टॉल कर रहा है। कृपया प्रतीक्षा करें...
+hu.InstallAdditionalComponents =További rendszerelemek telepítése zajlik. Kérjük, várjon...
+ga_IE.InstallAdditionalComponents =Comhpháirteanna córais breise a shuiteáil. Fán le do thoil...
+ja.InstallAdditionalComponents =追加のシステムコンポーネントをインストールしています。お待ちください...
+ko.InstallAdditionalComponents =추가 시스템 구성 요소를 설치하는 중입니다. 잠시만 기다려주세요...
+lv.InstallAdditionalComponents =Instalē papildu sistēmas komponentus. Lūdzu, uzgaidiet...
+nn_NO.InstallAdditionalComponents =Installerer flere systemkomponenter. Vennligst vent...
+uk.InstallAdditionalComponents =Інсталюються додаткові компоненти системи. Зачекайте...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 bg.AdditionalTasks =Задачи:
@@ -239,6 +283,17 @@ sv.AdditionalTasks =Uppgifter:
 tr.AdditionalTasks =Görevler:
 vi.AdditionalTasks =Nhiệm vụ:
 zh_CN.AdditionalTasks =任务：
+hy_AM.AdditionalTasks =Առաջադրանքներ
+hr.AdditionalTasks =Zadaci:
+da.AdditionalTasks =Opgaver:
+hi.AdditionalTasks =कार्य:
+hu.AdditionalTasks =Feladatok:
+ga_IE.AdditionalTasks =Tascanna:
+ja.AdditionalTasks =タスク:
+ko.AdditionalTasks =작업:
+lv.AdditionalTasks =Uzdevumi:
+nn_NO.AdditionalTasks =Oppgaver:
+uk.AdditionalTasks =Завдання:
 ;======================================================================================================
 en.Uninstall =Uninstall
 bg.AdditionalTasks =Деинсталиране
@@ -266,6 +321,17 @@ sv.Uninstall =Avinstallera
 tr.Uninstall =Kaldır
 vi.Uninstall =Gỡ cài đặt
 zh_CN.Uninstall =卸载
+hy_AM.Uninstall =Ապատեղադրել
+hr.Uninstall =Deinstaliraj
+da.Uninstall =Afinstaller
+hi.Uninstall =अनइंस्टॉल
+hu.Uninstall =Eltávolítás
+ga_IE.Uninstall =Díshuiteáil
+ja.Uninstall =アンインストール
+ko.Uninstall =삭제
+lv.Uninstall =Atinstalēt
+nn_NO.Uninstall =Avinstaller
+uk.Uninstall =Видалити
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
@@ -293,6 +359,17 @@ sv.WarningWrongArchitecture =Du försöker installera %1-bit-programversionen ö
 tr.WarningWrongArchitecture =Yüklenmiş %2-bit uygulama üzerine %1-bit uygulama yüklemeye çalışıyorsunuz. Lütfen ilk olarak önceki sürümü kaldırın veya kurulum için doğru sürümü indirin.
 vi.WarningWrongArchitecture =Bạn đang cố gắng cài đặt phiên bản ứng dụng %1-bit đè lên phiên bản %2-bit đã được cài đặt. Vui lòng gỡ phiên bản trước hoặc tải phiên bản đúng để cài đặt.
 zh_CN.WarningWrongArchitecture =您正在尝试在已安装的%2-bit版本上安装%1-bit应用版本。请首先卸载之前版本，或下载正确的安装版本。
+hy_AM.WarningWrongArchitecture =Դուք պատրաստվում եք տեղադրել հավելվածի %1-բիթանոց տարբերակը՝ տեղադրված %2-բիթանոց տարբերակի փոխարեն։ Խնդրում ենք նախ ապատեղադրել նախորդ տարբերակը կամ բեռնել ճիշտ տարբերակը՝ տեղադրման համար։
+hr.WarningWrongArchitecture =Pokušavate instalirati %1-bitnu verziju aplikacije preko instalirane %2-bitne verzije. Molimo da najprije deinstalirate prethodnu verziju ili preuzmete ispravnu verziju za instalaciju.
+da.WarningWrongArchitecture =Du prøver at installere %1-bit applikationsversion over den installerede %2-bit version. Venligst afinstaller den tidligere version først eller download den rigtige version for at installere.
+hi.WarningWrongArchitecture =आप इंस्टॉल किए गए %2-बिट संस्करण के ऊपर %1-बिट ऐप्लिकेशन  संस्करण को इंस्टॉल करने का प्रयास कर रहे हैं। कृपया पहले पुराने संस्करण को अनइंस्टॉल करें या इंस्टॉल करने के लिए सही संस्करण को डाउनलोड करें।
+hu.WarningWrongArchitecture =Ön a(z) %1-bites alkalmazást próbálja telepíteni a már telepített %2-bites verzió mellé. Kérjük, előbb távolítsa el az előző verziót, vagy a megfelelő verziót töltse le a telepítéshez.
+ga_IE.WarningWrongArchitecture =Tá tú ag iarraidh a shuiteáil an leagan iarratais 1-giotán ar fud an leagan 2- giotán shuiteáil. Díshuiteáil an leagan roimhe seo ar dtús nó íoslódáil an leagan ceart le haghaidh suiteála.
+ja.WarningWrongArchitecture =すでにインストールされている %2-ビットのバージョンに %1-ビットのアプリのバージョンをインストールしようとしています。初めに前のバージョンをアンインストールするか、正しいバージョンをダウンロードしてください。
+ko.WarningWrongArchitecture =설치되어있는 %2-비트 애플리케이션 버전 위로 %1-비트 버전을 설치하려 합니다. 먼저 이전 버전을 삭제하시거나 설치하고자 하는 정확한 버전을 다운로드해주세요.
+lv.WarningWrongArchitecture =Jūs mēģināt instalēt %1-bitu programmas versiju pāri jau instalētajai %2-bitu versijai. Lūdzu, vispirms atinstalējiet iepriekšējo versiju vai lejuplādējiet pareizo versiju instalēšanai.
+nn_NO.WarningWrongArchitecture =Du forsøker å installere %1-bits-versjonen av programmet over %2-bits-versjonen som er installert. Avinstaller forrige versjon først, eller last ned riktig versjon for installering.
+uk.WarningWrongArchitecture =Ви намагаєтесь інсталювати %1-розрядну версію програми поверх інстальованої %2-розрядної версії. Спочатку видаліть попередню версію або завантажте належну версію для інсталяції.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -321,6 +398,17 @@ sv.UpdateAppRunning=Installationsprogrammet har upptäckt att %1 för närvarand
 tr.UpdateAppRunning=Kurulum %1’in şu anda çalışıyor olduğunu algıladı. %n%nIt otomatik olarak kapatılacak. Devam etmek için Tamam’a veya çıkmak için İptal’e tıklayın.
 vi.UpdateAppRunning=Mục cài đặt đã phát hiện ra rằng %1 đang chạy.%n%nIt sẽ được đóng tự động. Hãy chọn OK để tiếp tục hay Hủy để thoát.
 zh_CN.UpdateAppRunning=安装程序检测到%1当前正在运行。%n%n将自动关闭。单击“确定”继续，或“取消”退出。
+hy_AM.UpdateAppRunning=Կարգավորումը հայտնաբերել է, որ այս պահին աշխատում է %1-ը։ %n%nԱյն ավտոմատ կփակվի։ Խնդրում ենք սեղմել ԼԱՎ՝ շարունակելու համար կամ Չեղարկել՝ դուրս գալու համար։
+hr.UpdateAppRunning=Postavljanje je otkrilo da je %1 trenutno pokrenut.%n%n Zatvorit će se automatski. Kliknite U redu za nastavak ili Odustani za izlaz.
+da.UpdateAppRunning=Setup har registreret at %1 kører i øjeblikket.%n%nIDet vil blive lukket automatisk. Klik OK for at fortsætte eller Annuler for at afslutte.
+hi.UpdateAppRunning=सेटअप ने पता लगाया है कि %1 वर्तमान में चल रहा है।%n%nयह स्वतः ही बंद हो जाएगा। क्लिक करें ओके या जारी रखें पर, या बाहर निकलने के लिए रद्द करें पर।
+hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikusan bezárásra kerül. Folytatáshoz kattintson az OK-ra, kilépéshez kattintson a Mégse gombra.
+ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
+ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
+ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
+lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
+nn_NO.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket.%n%nDen vil lukkes automatisk. Klikk OK for å fortsette, eller Avbryt for å avslutte.
+uk.UpdateAppRunning=Програма інсталяції виявила, що запущено %1.%n%nЦя програма буде закрита автоматично. Натисніть "ОК", щоб продовжити, або "Скасувати", щоб вийти.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
@@ -348,6 +436,17 @@ sv.WarningClearAppData =Vill du rensa användarinställningar och programmets ca
 tr.WarningClearAppData =Kullanıcı ayarlarını veya uygulama önbelleğine alınmış verileri silmek istiyor musunuz?
 vi.WarningClearAppData =Bạn có muốn xóa thiết lập người dùng và dữ liệu được lưu trong bộ nhớ cache của ứng dụng không?
 zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据？
+hy_AM.WarningClearAppData =Ցանկանու՞մ եք ջնջել օգտագործողի կարգավորումները և հավելվածի պահպանված տվյալները։
+hr.WarningClearAppData =Želite li očistiti korisničke postavke i predmemorirane podatke aplikacije?
+da.WarningClearAppData =Vil du rydde brugerinstillingerne og applikationscachede data?
+hi.WarningClearAppData =क्या आप उपयोगकर्ता सेटिंग और ऐप्लिकेशन कैश डाटा को हटाना चाहते हैं?
+hu.WarningClearAppData =Törölni szeretné a felhasználói beállításokat és az alkalmazás gyorsítótárazott adatait?
+ga_IE.WarningClearAppData =Ar mhaith leat na socruithe úsáideora agus sonraí taiscthe feidhmchláir a ghlanadh?
+ja.WarningClearAppData =ユーザー設定とアプリによってキャッシュされたデータを消去しますか?
+ko.WarningClearAppData =사용자 설정 및 애플리케이션 캐시 데이터를 지우시겠습니까?
+lv.WarningClearAppData =Vai vēlaties notīrīt lietotāja iestatījumus un programmas kešatmiņas datus?
+nn_NO.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for programmet?
+uk.WarningClearAppData =Очистити налаштування користувача та кешовані дані програми?
 ;======================================================================================================
 
 
@@ -357,6 +456,17 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
 ;sk.AssociateDescription =Asociovať typy súborov kancelárskych dokumentov %1
 ;ru.AssociateDescription =Ассоциировать типы файлов офисных документов с %1
+;hy_AM.AssociateDescription =Կապակցել office փաստաթղթային ֆայլերը 1%-ի հետ
+;hr.AssociateDescription =Povežite vrste datoteka uredskih dokumenata s 1%
+;da.AssociateDescription =Tilknyt office dokumentfiltyper med %1
+;hi.AssociateDescription =एसोसिएट ऑफिस दस्तावेज़ फ़ाइल प्रकार 1% के साथ
+;hu.AssociateDescription =Dokumentum fájltípus társítása: %1
+;ga_IE.AssociateDescription =Cineálacha comhaid doiciméad oifige comhlachaithe le 1%
+;ja.AssociateDescription =1% とオフィスドキュメントのファイルタイプを関連付ける
+;ko.AssociateDescription =오피스 문서 파일 유형을 1%과 연결합니다
+;lv.AssociateDescription =Saistīt biroja dokumentu tipus ar %1
+;nn_NO.AssociateDescription =Tilknytt filtyper for Office-dokumenter til %1
+;uk.AssociateDescription =Асоціювати типи файлів офісних документів з %1
 
 [Code]
 const
