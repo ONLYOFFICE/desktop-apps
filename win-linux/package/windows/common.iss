@@ -131,7 +131,7 @@ Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFi
 Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hi; MessagesFile: compiler:Languages\Hindi.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
