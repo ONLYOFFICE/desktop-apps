@@ -4,7 +4,7 @@
     "check" : {
         "url":"/api/2.0/capabilities.json"
     },
-    "editorPage" : "/products/files/doceditor.aspx",
+    "editorPage" : "/products/files/doceditor",
     "startPage": "/Products/Files/",
     "cryptoSupport" : "true",
     "icons": {
