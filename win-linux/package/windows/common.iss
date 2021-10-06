@@ -139,6 +139,7 @@ Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrand
 Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 
 [CustomMessages]
@@ -175,11 +176,12 @@ da.Launch =Start %1
 hi.Launch =लॉन्च %1
 hu.Launch =%1 elindítása
 ga_IE.Launch =Lainseáil %1
-ja.Launch ==%1 を起動
-ko.Launch ==%1 시작
+ja.Launch =%1 を起動
+ko.Launch =%1 시작
 lv.Launch =Sākt %1
 nn_NO.Launch =Kjør %1
 uk.Launch =Запустити %1
+be.Launch =Запусціць %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
@@ -211,13 +213,14 @@ hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկե�
 hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
 da.CreateDesktopIcon =Opret %1 &skrivebordsikon
 hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
-hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
+hu.CreateDesktopIcon =%1 &ikon létrehozása az asztalon
 ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
-ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
-ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
+ja.CreateDesktopIcon =%1 &デスクトップアイコンを作成
+ko.CreateDesktopIcon =%1 &데스크탑 아이콘 생성
 lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
 nn_NO.CreateDesktopIcon =Opprett %1 &skrivebordsikon
 uk.CreateDesktopIcon =Створити &іконку %1 на робочому столі
+be.CreateDesktopIcon =Стварыце значок %1 на &працоўным стале
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
@@ -256,6 +259,7 @@ ko.InstallAdditionalComponents =추가 시스템 구성 요소를 설치하는 �
 lv.InstallAdditionalComponents =Instalē papildu sistēmas komponentus. Lūdzu, uzgaidiet...
 nn_NO.InstallAdditionalComponents =Installerer flere systemkomponenter. Vennligst vent...
 uk.InstallAdditionalComponents =Інсталюються додаткові компоненти системи. Зачекайте...
+be.InstallAdditionalComponents =Устаноўка дадатковых кампанентаў сістэмы. Калі ласка пачакай...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 bg.AdditionalTasks =Задачи:
@@ -294,6 +298,7 @@ ko.AdditionalTasks =작업:
 lv.AdditionalTasks =Uzdevumi:
 nn_NO.AdditionalTasks =Oppgaver:
 uk.AdditionalTasks =Завдання:
+be.AdditionalTasks =Задачы:
 ;======================================================================================================
 en.Uninstall =Uninstall
 bg.AdditionalTasks =Деинсталиране
@@ -332,6 +337,7 @@ ko.Uninstall =삭제
 lv.Uninstall =Atinstalēt
 nn_NO.Uninstall =Avinstaller
 uk.Uninstall =Видалити
+be.Uninstall =Выдаліць
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
@@ -370,6 +376,7 @@ ko.WarningWrongArchitecture =설치되어있는 %2-비트 애플리케이션 버
 lv.WarningWrongArchitecture =Jūs mēģināt instalēt %1-bitu programmas versiju pāri jau instalētajai %2-bitu versijai. Lūdzu, vispirms atinstalējiet iepriekšējo versiju vai lejuplādējiet pareizo versiju instalēšanai.
 nn_NO.WarningWrongArchitecture =Du forsøker å installere %1-bits-versjonen av programmet over %2-bits-versjonen som er installert. Avinstaller forrige versjon først, eller last ned riktig versjon for installering.
 uk.WarningWrongArchitecture =Ви намагаєтесь інсталювати %1-розрядну версію програми поверх інстальованої %2-розрядної версії. Спочатку видаліть попередню версію або завантажте належну версію для інсталяції.
+be.WarningWrongArchitecture =Вы спрабуеце ўсталяваць %1-бітную версію прыкладання паверх усталяванай %2-бітнай версіі. Спачатку выдаліце папярэднюю версію або загрузіце правільную версію для ўстаноўкі.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -387,7 +394,7 @@ de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wi
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
 in.UpdateAppRunning=Pengaturan mendeteksi %1 sedang berjalan.%n%nAkan ditutup secara otomatis. Klik OK untuk melanjutkan, atau Batal untuk keluar.
-it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
+it_IT.UpdateAppRunning=Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 pt_PT.UpdateAppRunning=O Setup detetou que %1 está atualmente aberta.%n%nEla será fechada automaticamente. Clique OK para continuar, ou Cancelar para sair.
 pl.UpdateAppRunning=Konfiguracja wykryła , że %1 jest uruchomiona.%n%nZostanie ona automatycznie zamknięta. Kliknij OK, aby kontynuować lub Anuluj, aby wyjść.
@@ -405,10 +412,11 @@ hi.UpdateAppRunning=सेटअप ने पता लगाया है क�
 hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikusan bezárásra kerül. Folytatáshoz kattintson az OK-ra, kilépéshez kattintson a Mégse gombra.
 ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
 ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
-ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
+ko.UpdateAppRunning=%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
 lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
 nn_NO.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket.%n%nDen vil lukkes automatisk. Klikk OK for å fortsette, eller Avbryt for å avslutte.
 uk.UpdateAppRunning=Програма інсталяції виявила, що запущено %1.%n%nЦя програма буде закрита автоматично. Натисніть "ОК", щоб продовжити, або "Скасувати", щоб вийти.
+be.UpdateAppRunning=Налада выявіла, што %1 зараз працуе.%n%nЯно будзе аўтаматычна зачынена. Націсніце OK, каб працягнуць, або Адмяніць, каб выйсці.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
@@ -447,6 +455,7 @@ ko.WarningClearAppData =사용자 설정 및 애플리케이션 캐시 데이터
 lv.WarningClearAppData =Vai vēlaties notīrīt lietotāja iestatījumus un programmas kešatmiņas datus?
 nn_NO.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for programmet?
 uk.WarningClearAppData =Очистити налаштування користувача та кешовані дані програми?
+be.WarningClearAppData =Хочаце ачысціць налады карыстальніка і кэшаваныя даныя прыкладання?
 ;======================================================================================================
 
 
@@ -467,6 +476,7 @@ uk.WarningClearAppData =Очистити налаштування користу
 ;lv.AssociateDescription =Saistīt biroja dokumentu tipus ar %1
 ;nn_NO.AssociateDescription =Tilknytt filtyper for Office-dokumenter til %1
 ;uk.AssociateDescription =Асоціювати типи файлів офісних документів з %1
+;be.AssociateDescription =Звязаць тыпы файлаў дакументаў офіса з %1
 
 [Code]
 const
