@@ -14,11 +14,11 @@ QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
 }
 
 QPushButton#toolButtonMaximize {
-    background-image:url(:/maximize_1.5x.png);
+    background-image:url(:/maximize_1.75x.png);
 }
 
 QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
-    background-image:url(:/minimize-close_1.5x.png);
+    background-image:url(:/minimize-close_1.75x.png);
 }
 
 QPushButton#toolButtonMain {
@@ -40,17 +40,17 @@ QPushButton#toolButtonMain[class=normal],
 QPushButton::menu-indicator {
     width: 18px;
     height: 18px;
-    border-image: url(:/menu-indicator_1.5x.png) 0 0 0 0 repeat repeat;
+    border-image: url(:/menu-indicator_1.75x.png) 0 0 0 0 repeat repeat;
     left: -4px;
     top: -2px;
 }
 
 QPushButton::menu-indicator:disabled {
-    border-image: url(:/menu-indicator_1.5x.png) 0 0 0 15 repeat repeat;
+    border-image: url(:/menu-indicator_1.75x.png) 0 0 0 15 repeat repeat;
 }
 
 QPushButton::menu-indicator:hover {
-    border-image: url(:/menu-indicator_1.5x.png) 0 15 0 0 repeat repeat;
+    border-image: url(:/menu-indicator_1.75x.png) 0 15 0 0 repeat repeat;
 }
 
 QPushButton#toolButtonDownload::menu-indicator {
@@ -63,13 +63,13 @@ QPushButton#toolButtonDownload::menu-indicator {
 /**************************/
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize {
-    background-image:url(:/max_light_1.5x.png);
+    background-image:url(:/max_light_1.75x.png);
 }
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize,
     #mainPanel[uitheme=theme-dark] QPushButton#toolButtonClose
 {
-    background-image:url(:/minclose_light_1.5x.png);
+    background-image:url(:/minclose_light_1.75x.png);
 }
 
 /**************************/
@@ -103,39 +103,39 @@ QTabBar QToolButton,
 
 QTabBar[scroll=var2] QToolButton::left-arrow,
 QTabBar QToolButton::left-arrow {
-    border-image: url(:/tabbar/icons/scrolltab_ln_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_ln_1.75x.png) 0;
     border-width:14px 2px 14px 2px;
 }
 
 QTabBar QToolButton::left-arrow:disabled {
-    border-image: url(:/tabbar/icons/scrolltab_ld_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_ld_1.75x.png) 0;
 }
 
 QTabBar QToolButton::left-arrow:hover {
-    border-image: url(:/tabbar/icons/scrolltab_lh_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_lh_1.75x.png) 0;
 }
 
 QTabBar QToolButton::left-arrow:pressed {
-    border-image: url(:/tabbar/icons/scrolltab_lp_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_lp_1.75x.png) 0;
 }
 
 QTabBar[scroll=var2] QToolButton::right-arrow,
 QTabBar QToolButton::right-arrow {
-    border-image: url(:/tabbar/icons/scrolltab_rn_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_rn_1.75x.png) 0;
     /*border-width:12px;*/
     border-width:14px 2px 14px 28px;
     width:12px;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
-    border-image: url(:/tabbar/icons/scrolltab_rd_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_rd_1.75x.png) 0;
 }
 
 QTabBar QToolButton::right-arrow:hover {
-    border-image: url(:/tabbar/icons/scrolltab_rh_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_rh_1.75x.png) 0;
 }
 QTabBar QToolButton::right-arrow:pressed {
-    border-image: url(:/tabbar/icons/scrolltab_rp_1.5x.png) 0;
+    border-image: url(:/tabbar/icons/scrolltab_rp_1.75x.png) 0;
 }
 
 QTabBar[scroll=var2]::scroller,
@@ -144,10 +144,10 @@ QTabBar::scroller {
 }
 
 QTabBar QToolButton[class=tab-close]{
-    background-image:url(:/tabbar/icons/close_normal_1.5x.png);
+    background-image:url(:/tabbar/icons/close_normal_1.75x.png);
 }
 QTabBar QToolButton[class=tab-close][state=active]{
-    background-image:url(:/tabbar/icons/close_active_1.5x.png);
+    background-image:url(:/tabbar/icons/close_active_1.75x.png);
 }
 QTabBar QToolButton[class=tab-close]:hover{
     border-right:2px solid #fff; /* ??? pixmap offsets on hover for 2px ??? */
@@ -241,11 +241,11 @@ QPrintDialog QRadioButton, QPrintDialog QCheckBox {
 }
 
 QPrintDialog QRadioButton::indicator::unchecked{
-    border-image: url(:/radiobox_1.5x.png) 0 0 0 0 repeat repeat;
+    border-image: url(:/radiobox_1.75x.png) 0 0 0 0 repeat repeat;
 }
 
 QPrintDialog QRadioButton::indicator::checked{
-    border-image: url(:/radiobox_1.5x.png) 20 0 0 0 repeat repeat;
+    border-image: url(:/radiobox_1.75x.png) 20 0 0 0 repeat repeat;
 }
 
 QPrintDialog QCheckBox::indicator{
@@ -254,7 +254,7 @@ QPrintDialog QCheckBox::indicator{
 }
 
 QPrintDialog QCheckBox::indicator::checked{
-    border-image: url(:/checkbox_1.5x.png) 21 0 0 0 repeat repeat;
+    border-image: url(:/checkbox_1.75x.png) 21 0 0 0 repeat repeat;
 }
 
 QPrintDialog QCheckBox::indicator::unchecked{
@@ -274,21 +274,21 @@ QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
 }
 
 QPrintDialog *::up-arrow {
-    border-image: url(:/arrow_down_1.5x.png) 5 0 0 0 repeat repeat;
+    border-image: url(:/arrow_down_1.75x.png) 5 0 0 0 repeat repeat;
     margin-bottom:1px;
 }
 
 QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
-    border-image: url(:/arrow_down_1.5x.png) 5 0 0 8 repeat repeat;
+    border-image: url(:/arrow_down_1.75x.png) 5 0 0 8 repeat repeat;
 }
 
 QPrintDialog *::down-arrow {
-    border-image: url(:/arrow_down_1.5x.png) 0 0 0 0 repeat repeat;
+    border-image: url(:/arrow_down_1.75x.png) 0 0 0 0 repeat repeat;
     margin-top:1px;
 }
 
 QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
-    border-image: url(:/arrow_down_1.5x.png) 0 0 0 8 repeat repeat;
+    border-image: url(:/arrow_down_1.75x.png) 0 0 0 8 repeat repeat;
 }
 
 QPrintDialog QTabWidget::pane{
