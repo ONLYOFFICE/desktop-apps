@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/asctabwidget.cpp" line="780"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Отваряне…</translation>
@@ -162,7 +162,7 @@
         <translation>%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="271"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Ако продължите да запазите в този формат, всички характеристики, освен текста, ще бъдат загубени.&lt;br&gt;Сигурни ли сте, че искате да продължите?</translation>
     </message>
@@ -413,7 +413,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
     </message>
@@ -438,7 +438,7 @@
         <translation type="vanished">Ако продължите да запазите в този формат, всички характеристики, освен текста, ще бъдат загубени.&lt;br&gt;Сигурни ли сте, че искате да продължите?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1185"/>
         <source>Sign Up</source>
         <translation>Създай портал</translation>
     </message>
@@ -528,6 +528,11 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 не е наличен. Може да е преименуван, преместен или изтрит.&lt;br&gt;Искате ли да премахнете файла от списъка?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
+        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

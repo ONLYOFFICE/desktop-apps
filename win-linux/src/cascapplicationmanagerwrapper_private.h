@@ -208,7 +208,11 @@ public:
                         COpenOptions opts{file_path, etLocalFile};
                         opts.parent_id = event.m_nSenderId;
 
-                        openDocument(opts);
+                        if ( !openDocument(opts) ) {
+                            QFileInfo _info(QString::fromStdWString(file_path));
+                            CMessage mess(m_appmanager.mainWindow()->handle());
+                            mess.error(QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
+                        }
                     }
                 }
 

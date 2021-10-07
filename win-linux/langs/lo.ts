@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/asctabwidget.cpp" line="780"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>ກຳລັງເປີດ</translation>
@@ -162,7 +162,7 @@
         <translation>%1 ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການບັນທຶກການປ່ຽນແປງບໍ່?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="271"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
@@ -413,7 +413,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 ໄດ້ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະບັນທຶກການປ່ຽນແປງ?</translation>
     </message>
@@ -442,7 +442,7 @@
         <translation type="vanished">ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1185"/>
         <source>Sign Up</source>
         <translation>ສ້າງຈຸດເຊື່ອມຕໍ່</translation>
     </message>
@@ -532,6 +532,11 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation type="unfinished">ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
+        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

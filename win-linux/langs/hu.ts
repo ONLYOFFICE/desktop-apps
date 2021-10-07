@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/asctabwidget.cpp" line="780"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Megnyitás...</translation>
@@ -142,7 +142,7 @@
         <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="271"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
@@ -443,12 +443,12 @@
         <translation type="vanished">Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1185"/>
         <source>Sign Up</source>
         <translation>Portál létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
@@ -528,6 +528,11 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation type="unfinished">%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&lt;br&gt;Eltávolítja a fájlt a listáról?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
+        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

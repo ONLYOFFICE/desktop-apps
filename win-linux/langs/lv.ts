@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="781"/>
+        <location filename="../src/asctabwidget.cpp" line="780"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Notiek atvēršana...</translation>
@@ -142,7 +142,7 @@
         <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="271"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Ja jūs turpināsiet saglabāt šajā formātā, visas iezīmes zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
@@ -447,12 +447,12 @@
         <translation type="vanished">Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1185"/>
         <source>Sign Up</source>
         <translation>Izveidot portālu</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>
@@ -532,6 +532,11 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation type="unfinished">%1 nav pieejams. Tas varētu būt pārdēvēts, pārvietots vai izdzēsts.&lt;br&gt;Vai jūs vēlaties izņemt failu no saraksta?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
+        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
