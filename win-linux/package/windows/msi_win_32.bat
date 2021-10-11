@@ -1,4 +1,4 @@
-:change to 32-bit
+::change to 32-bit
 %AdvancedInstaller% /edit "DesktopEditors.aip" /AddOsLc -buildname DefaultBuild -arch x86
 
 :synchronization 32-bit folder
