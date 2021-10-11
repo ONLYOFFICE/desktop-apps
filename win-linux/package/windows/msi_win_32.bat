@@ -1,6 +1,3 @@
-:::::::::::::::::::::
-:ONLYOFFICE 32
-:::::::::::::::::::::
 :change to 32-bit
 %AdvancedInstaller% /edit "DesktopEditors.aip" /AddOsLc -buildname DefaultBuild -arch x86
 
