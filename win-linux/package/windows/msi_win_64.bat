@@ -1,1 +1,1 @@
-start DesktopEditors.aip
+%AdvancedInstaller% /build "DesktopEditors.aip"
