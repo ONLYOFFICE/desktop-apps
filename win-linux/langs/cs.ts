@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete zavřít všechna okna editoru?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrobnosti o certifikátu</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Vyberte složku certifikátu...</translation>
+        <translation>vyberte složku certifikátu...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>Vyberte klíčový soubor...</translation>
+        <translation>vyberte klíčový soubor...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít hlavní okno</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2 soubor (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI soubor (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
-        <translation>Sešit Excelu</translation>
+        <translation>Tabulka Excel</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="365"/>
@@ -379,7 +379,7 @@
         <location filename="../src/cfiledialog.cpp" line="434"/>
         <location filename="../src/cfiledialog.cpp" line="435"/>
         <source>Open Document</source>
-        <translation>Open dokument</translation>
+        <translation>Otevřít dokument</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="448"/>
@@ -391,7 +391,7 @@
         <location filename="../src/cfiledialog.cpp" line="450"/>
         <location filename="../src/cfiledialog.cpp" line="459"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="467"/>
@@ -414,7 +414,7 @@
     <name>CMainPanel</name>
     <message>
         <source>FILE</source>
-        <translation type="vanished">SOUBOR</translation>
+        <translation type="vanished">START</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1250"/>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
+        <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>

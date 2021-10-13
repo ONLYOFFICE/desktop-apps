@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hi-IN">
+<TS version="2.1" language="hi_IN">
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>क्या आप सभी संपादन विंडो को बंद करना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणपत्र का विवरण</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">ठीक है</translation>
+        <translation>ठीक है</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>मुख्य विंडो खोलें</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>एफबी2 फ़ाइल (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>मोबी फ़ाइल (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation> के तहत लाइसेंसीकृत</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
+        <translation>%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>

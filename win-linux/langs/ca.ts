@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="780"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
-        <translation>Document</translation>
+        <translation>Obrint...</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">D&apos;accord</translation>
+        <translation>D&apos;accord</translation>
     </message>
 </context>
 <context>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arxiu FB2 (*</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arxiu MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -379,7 +379,7 @@
         <location filename="../src/cfiledialog.cpp" line="434"/>
         <location filename="../src/cfiledialog.cpp" line="435"/>
         <source>Open Document</source>
-        <translation>Open Document</translation>
+        <translation type="unfinished">Open Document</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="448"/>
@@ -425,7 +425,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="622"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&amp;Voleu eliminar el fitxer de la llista?</translation>
+        <translation>%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&lt;br&gt;Voleu eliminar el fitxer de la llista?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="682"/>
@@ -435,7 +435,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="843"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>El document s&apos;ha de guardar per continuar.&amp;Guardar el document?</translation>
+        <translation>El document s&apos;ha de guardar per continuar.&lt;br&gt;Guardar el document?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="980"/>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&amp;Estàs segur que vols continuar?</translation>
+        <translation type="vanished">Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&lt;br&gt;Estàs segur que vols continuar?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1185"/>
@@ -454,7 +454,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 ha estat modificat.&amp;Voleu desar els canvis?</translation>
+        <translation>%1 ha estat modificat.&lt;br&gt;Voleu desar els canvis?</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&amp;Voleu eliminar el fitxer de la llista?</translation>
+        <translation>%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&lt;br&gt;Voleu eliminar el fitxer de la llista?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>

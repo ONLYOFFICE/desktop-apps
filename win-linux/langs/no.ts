@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du å lukke alle redigeringsvinduer?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Sertifikatdetaljer</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne hovedvinduet</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -202,47 +202,47 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF-fil  (*.rtf)</translation>
+        <translation>RTF-fil (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT-fil  (*.txt)</translation>
+        <translation>TXT-fil (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML-fil  (*.html)</translation>
+        <translation>HTML-fil (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>MHT-fil  (*.mht)</translation>
+        <translation>MHT-fil (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>EPUB-fil  (*.epub)</translation>
+        <translation>EPUB-fil (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2-fil (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI-fil (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX-fil  (*.pptx)</translation>
+        <translation>PPTX-fil (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="235"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT-fil  (*.ppt)</translation>
+        <translation>PPT-fil (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP-fil  (*.odp)</translation>
+        <translation>ODP-fil (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
@@ -262,12 +262,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX-fil  (*.ppsx)</translation>
+        <translation>PPSX-fil (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX-fil  (*.xlsx)</translation>
+        <translation>XLSX-fil (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="242"/>
@@ -277,12 +277,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS-fil  (*.xls)</translation>
+        <translation>XLS-fil (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS-fil  (*.ods)</translation>
+        <translation>ODS-fil (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
@@ -292,22 +292,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV-fil  (*.csv)</translation>
+        <translation>CSV-fil (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF-fil  (*.pdf)</translation>
+        <translation>PDF-fil (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="249"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA-fil  (*.pdf)</translation>
+        <translation>PDFA-fil (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU-fil  (*.djvu)</translation>
+        <translation>DJVU-fil (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
@@ -379,7 +379,7 @@
         <location filename="../src/cfiledialog.cpp" line="434"/>
         <location filename="../src/cfiledialog.cpp" line="435"/>
         <source>Open Document</source>
-        <translation>Open Document</translation>
+        <translation>Åpne dokument</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="448"/>
@@ -414,7 +414,7 @@
     <name>CMainPanel</name>
     <message>
         <source>FILE</source>
-        <translation type="vanished">Lydfil</translation>
+        <translation type="vanished">START</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="594"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisensiert under</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 er ikke tilgjengelig. Den kan gis nytt navn, flyttes eller slettes.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
+        <translation>%1 er ikke tilgjengelig. Den kan gis nytt navn, flyttes eller slettes.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
