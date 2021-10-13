@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zamknąć wszystkie okna edytora?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły certyfikatu</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Wybierz plik certyfikatu...</translation>
+        <translation>wybierz plik certyfikatu...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>Wybierz plik klucza...</translation>
+        <translation>wybierz plik klucza...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno główne</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Na licencji</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
+        <translation>%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
     </message>
 </context>
 </TS>

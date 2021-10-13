@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы хотите закрыть все окна редактора?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Сведения о сертификате</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть главное окно</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
-        <translation>Книга Excel</translation>
+        <translation>Таблица  Excel</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="365"/>
@@ -425,7 +425,7 @@
         <location filename="../src/cmainpanel.cpp" line="594"/>
         <location filename="../src/cmainpanel.cpp" line="638"/>
         <source>File format not supported.</source>
-        <translation>Формат файла не поддерживается</translation>
+        <translation>Формат файла не поддерживается.</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="622"/>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 недоступен. Возможно, он был переименован, перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
+        <translation>%1 недоступен. Возможно, он был переименован, перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
     </message>
 </context>
 </TS>

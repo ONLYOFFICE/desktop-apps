@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du at lukke alle editor-vinduer?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="781"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
-        <translation>Dokument</translation>
+        <translation>Åbner...</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Oplysninger om certifikatet</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Vælg certifikatsfil...</translation>
+        <translation>vælg certifikatsfil...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Åbn hovedvindue</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2 Fil (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI Fil (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
-        <translation>Excel Regneark</translation>
+        <translation>Excel-regneark</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="365"/>
@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenseret under</translation>
     </message>
 </context>
 <context>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 er ikke tilgængeligt. Det er måske omdøbt, flyttet eller slettet.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
+        <translation>%1 er ikke tilgængeligt. Det er måske omdøbt, flyttet eller slettet.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
     </message>
 </context>
 </TS>

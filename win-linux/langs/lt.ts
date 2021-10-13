@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar norite uždaryti visus redagavimo langus?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Pažymėjimo Duomenys</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">GERAI</translation>
+        <translation>GERAI</translation>
     </message>
 </context>
 <context>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>Pasirinkti pagrindinį failą...</translation>
+        <translation>pasirinkti pagrindinį failą...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Atidaryti pagrindinį langą </translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2 Failas (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI Failas (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenzijuotas pagal</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
+        <translation>%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
     </message>
 </context>
 </TS>

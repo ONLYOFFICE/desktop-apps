@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>是否关闭所有编辑器窗口</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="781"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
-        <translation>文档</translation>
+        <translation>打开中...</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>证明详情</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">确定</translation>
+        <translation>确定</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>打开主要窗口</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2文件 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI文件 (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
-        <translation>Excel工作簿</translation>
+        <translation>Excel 电子表格</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="365"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>许可来自</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
+        <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
 </context>
 </TS>

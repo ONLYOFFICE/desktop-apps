@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ga-IE">
+<TS version="2.1" language="ga_IE">
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar mhaith leat gach fuinneog eagarthóra a dhúnadh?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="781"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
-        <translation>Opening...</translation>
+        <translation>Ag oscailt...</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonraí an Teastais</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Roghnaigh comhad teastais...</translation>
+        <translation>roghnaigh comhad teastais...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Oscail an phríomhfhuinneog</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comhad MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -414,7 +414,7 @@
     <name>CMainPanel</name>
     <message>
         <source>FILE</source>
-        <translation type="vanished">Tosaigh</translation>
+        <translation type="vanished">TOSAIGH</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="594"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceadúnaithe faoi</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
+        <translation>Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
     </message>
 </context>
 </TS>

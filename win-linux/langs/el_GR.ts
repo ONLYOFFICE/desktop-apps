@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Θέλετε να κλείσετε όλα τα παράθυρα του επεξεργαστή;</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Λεπτομέρειες πιστοποιητικού</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">Εντάξει</translation>
+        <translation>Εντάξει</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Άνοιγμα κύριου παραθύρου</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/ceditorwindow.cpp" line="152"/>
         <source>%1 has been changed. Save changes?</source>
-        <translation>Το %1 έχει τροποποιηθεί.&amp;lt;br&amp;gt;Θέλετε να αποθηκεύσετε τις αλλαγές;</translation>
+        <translation>Το %1 έχει τροποποιηθεί.&lt;br&gt;Θέλετε να αποθηκεύσετε τις αλλαγές;</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="271"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="362"/>
         <source>Excel Workbook</source>
-        <translation>Excel SpreadsheetΥπολογιστικό φύλλο Excel</translation>
+        <translation>Υπολογιστικό φύλλο Excel</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="365"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Με άδεια από</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">Το %1 δεν είναι διαθέσιμο. Μπορεί να έχει μετονομαστεί, μετακινηθεί ή διαγραφεί.&lt;br&gt;Θέλετε να αφαιρέσετε το αρχείο από τη λίστα;</translation>
+        <translation>Το %1 δεν είναι διαθέσιμο. Μπορεί να έχει μετονομαστεί, μετακινηθεί ή διαγραφεί.&lt;br&gt;Θέλετε να αφαιρέσετε το αρχείο από τη λίστα;</translation>
     </message>
 </context>
 </TS>

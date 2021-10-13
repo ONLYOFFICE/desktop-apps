@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko sulkea kaikki editori-ikkunat?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="781"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
-        <translation>Avataan</translation>
+        <translation>Avataan...</translation>
     </message>
 </context>
 <context>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Varmenteen tiedot</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Valitaan sertifikaatti-tiedostoa...</translation>
+        <translation>valitaan sertifikaatti-tiedostoa...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa pääikkuna</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>FB2 Tiedosto (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>MOBI Tiedosto (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisensoitu</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 ei ole saatavilla. Se voi olla nimetty uudelleen, siirretty tai poistettu.&lt;br&gt;Haluatko poistaa tiedoston listalta?</translation>
+        <translation>%1 ei ole saatavilla. Se voi olla nimetty uudelleen, siirretty tai poistettu.&lt;br&gt;Haluatko poistaa tiedoston listalta?</translation>
     </message>
 </context>
 </TS>

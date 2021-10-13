@@ -11,7 +11,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>ທ່ານຕ້ອງການປິດໜ້າຕ່າງທັງໝົດບໍ່?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
@@ -52,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>ລາຍລະອຽດໃບຮັບຮອງ</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">ບໍ່</translation>
+        <translation>ບໍ່</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>ເປີດໜ້າຕ່າງຫຼັກ</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="400"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>ເອກະສານ FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>ເອກະສານ MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation></translation>
+        <translation>ລາຍເຊັນຄວບຄຸມເຖິງ</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
+        <translation>ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
     </message>
 </context>
 </TS>
