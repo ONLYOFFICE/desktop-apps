@@ -1,6 +1,6 @@
 ::if variable isn't defined
 if "%ORG%"=="" (SET ORG=onlyoffice)
-if "%PACKAGE%"==" (SET PACKAGE=DesktopEditors)
+if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
 ::check arch
 if "%PLATFORM%"=="win_32" (SET ARCH=x86)else if "%PLATFORM%"=="win_64"(SET ARCH=x64) else(EXIT)
 
