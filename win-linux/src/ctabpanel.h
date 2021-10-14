@@ -41,6 +41,7 @@ public:
 
     bool prettyTitle() { return m_prettyTitle; }
     void setPrettyTitle(bool v) { m_prettyTitle = v; }
+    void setBackground(const QColor&);
 
 protected:
     void timerEvent(QTimerEvent *event);

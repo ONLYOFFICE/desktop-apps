@@ -1340,4 +1340,9 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
     _tabbar.setUIThemeType(!AscAppManager::themes().current().isDark());
     _tabbar.style()->polish(&_tabbar);
     style()->polish(this);
+
+    QColor back_color = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
+    for (int i(count()); i-- > 0; ) {
+        panel(i)->setBackground(back_color);
+    }
 }
