@@ -993,6 +993,13 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
     AscAppManager::getInstance().applyTheme(themes().current().id(), true);
+
+    QJsonObject jtheme{
+        {"type", _app.m_themes->current().stype()},
+        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+    };
+    QJsonObject _json_obj{{"theme", jtheme}};
+    AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1515,6 +1522,13 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
+
+        QJsonObject jtheme{
+            {"type", _app.m_themes->current().stype()},
+            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+        };
+        QJsonObject _json_obj{{"theme", jtheme}};
+        AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
