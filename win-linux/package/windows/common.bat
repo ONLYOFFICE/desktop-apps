@@ -4,9 +4,9 @@ IF "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
 ::check arch
 IF "%PLATFORM%"=="win_32" (
 SET ARCH=x86
-)else if "%PLATFORM%"=="win_64"(
+)ELSE IF "%PLATFORM%"=="win_64"(
 SET ARCH=x64
-) else(
+) ELSE(
 EXIT
 )
 
