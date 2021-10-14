@@ -992,7 +992,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
-    AscAppManager::getInstance().applyTheme(themes().current(), true);
+    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1510,9 +1510,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
     APP_CAST(_app);
 
     if ( !_app.m_themes->isCurrent(theme) ) {
-        _app.m_themes->setCurrent(theme);
+        const std::wstring old_theme = _app.m_themes->current().id();
+        _app.m_themes->setCurrentTheme(theme);
 
-        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current(), L"&uitheme=" + theme)};
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
         // TODO: remove

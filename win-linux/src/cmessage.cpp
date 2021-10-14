@@ -160,7 +160,7 @@ CMessage::CMessage(QWidget * p)
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
     m_centralWidget->setObjectName("messageBody");
-    m_centralWidget->setProperty("uitheme", AscAppManager::themes().isCurrentDark() ? "theme-dark" : "theme-light");
+    m_centralWidget->setProperty("uitheme", AscAppManager::themes().current().isDark() ? "theme-dark" : "theme-light");
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -391,7 +391,7 @@ void CMessage::modal()
     if ( m_priv->defaultButton ) {
         _focused_handle = (HWND)m_priv->defaultButton->winId();
         QTimer::singleShot(50, m_centralWidget, [&]{
-            if ( !AscAppManager::themes().isCurrentDark() )
+            if ( !AscAppManager::themes().current().isDark() )
                 for (auto * btn: m_priv->buttons) {
                     btn->setAutoDefault(true);
                 }

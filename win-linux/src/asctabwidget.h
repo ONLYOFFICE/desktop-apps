@@ -127,7 +127,6 @@ private:
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle;
-    bool m_isDarkTheme;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
 

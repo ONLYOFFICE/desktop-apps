@@ -88,7 +88,7 @@ void CMainPanelImpl::refreshAboutVersion()
     else _json_obj["uiscaling"] = 0;
 
 #ifndef __OS_WIN_XP
-    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
 #endif
 
     GET_REGISTRY_USER(reg_user);
@@ -103,7 +103,7 @@ void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
@@ -112,7 +112,7 @@ void CMainPanelImpl::applyTheme(const std::wstring& theme)
     CMainPanel::applyTheme(theme);
 
     double dpiratio = scaling();
-    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 

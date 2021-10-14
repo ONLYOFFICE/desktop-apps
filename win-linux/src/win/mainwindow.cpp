@@ -122,7 +122,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = WINDOW_CLASS_NAME;
 //    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
+    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -490,9 +490,9 @@ qDebug() << "WM_CLOSE";
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder));
+        ::SetDCPenColor(hDC, AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder));
 
-        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
+        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);

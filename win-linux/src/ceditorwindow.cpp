@@ -76,7 +76,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     }
 #else
 
-    applyTheme(AscAppManager::themes().current());
+    applyTheme(AscAppManager::themes().current().id());
 
     m_pMainPanel = createMainPanel(m_pWinPanel);
     m_pWinPanel->show();
@@ -219,7 +219,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     if ( m_dpiRatio > 1 )
         mainPanel->setProperty("zoom", "1.25x");
 
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 
     if ( isCustomWindowStyle() ) {

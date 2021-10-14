@@ -155,7 +155,6 @@ CAscTabWidget::CAscTabWidget(QWidget *parent)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
-    , m_isDarkTheme(AscAppManager::themes().isCurrentDark())
     , m_tabIconSize(11, 11)
 {
     CTabBar * tabs = new CTabBar(this);
@@ -555,7 +554,8 @@ void CAscTabWidget::updateTabIcon(int index)
                 CAscTabData& data = *(panel(index)->data());
                 return data.isViewType(cvwtEditor) && (data.features().empty() || data.hasFeature(L"uithemes"));
             };
-            std::wstring theme_name{m_isDarkTheme && _is_editor_supports_theme(index) ? AscAppManager::themes().current() : NSThemeLight::theme_id};
+            const CTheme& ui_theme = AscAppManager::themes().current().isDark() && _is_editor_supports_theme(index) ?
+                                            AscAppManager::themes().current() : AscAppManager::themes().light();
 
             tab_type = pEditor->GetEditorType();
             switch ( tab_type ) {
@@ -564,20 +564,20 @@ void CAscTabWidget::updateTabIcon(int index)
             }
 
             if ( !isActiveWidget() || !(index == currentIndex()) ) {
-                tab_theme = m_isDarkTheme ? CTabBar::DarkTab : CTabBar::LightTab;
+                tab_theme = AscAppManager::themes().current().isDark() ? CTabBar::DarkTab : CTabBar::LightTab;
             } else {
                 switch ( tab_type ) {
-                case etPresentation: active_tab_color = QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSlideActive)); break;
-                case etSpreadsheet: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabCellActive)); break;
-                case etDocument: active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabWordActive)); break;
+                case etPresentation: active_tab_color = QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive)); break;
+                case etSpreadsheet: active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabCellActive)); break;
+                case etDocument: active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive)); break;
                 case etNewPortal:
                 case etPortal:
-                    active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabSimpleActiveBackground));
+                    active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSimpleActiveBackground));
                     tab_theme = CTabBar::LightTab;
                     break;
                 default:
                     tab_type = etUndefined;
-                    active_tab_color =  QString::fromStdWString(AscAppManager::themes().value(theme_name, CThemes::ColorRole::ecrTabDefaultActiveBackground));
+                    active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground));
                     tab_theme = AscAppManager::themes().isColorDark(active_tab_color) ? CTabBar::DarkTab : CTabBar::LightTab;
                     break;
                 }
@@ -594,8 +594,7 @@ void CAscTabWidget::updateTabIcon(int index)
 //                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
 
                 tabbar.setTabTextColor(QPalette::Active,  AscAppManager::themes().isColorDark(active_tab_color) ?
-                                           AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTextPressed) :
-                                            AscAppManager::themes().color(theme_name, CThemes::ColorRole::ecrTabSimpleActiveText));
+                                           ui_theme.color(CTheme::ColorRole::ecrTextPressed) : ui_theme.color(CTheme::ColorRole::ecrTabSimpleActiveText));
 
             }
         }
@@ -620,7 +619,7 @@ void CAscTabWidget::reloadTabIcons()
             {etSpreadsheet, std::make_pair(":/tabbar/icons/se@2x.png", ":/tabbar/icons/se@2x.png")}
         });
 
-        m_isDarkTheme ?
+        AscAppManager::themes().current().isDark() ?
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@2x.png", ":/tabbar/icons/portal@2x.png")},
                             {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@2x.png", ":/tabbar/icons/portal@2x.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@2x.png", ":/tabbar/icons/portal@2x.png")},
@@ -634,7 +633,7 @@ void CAscTabWidget::reloadTabIcons()
                                  {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.75x.png", ":/tabbar/icons/se@1.75x.png")}
                              });
 
-        m_isDarkTheme ?
+        AscAppManager::themes().current().isDark() ?
                     m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.75x.png", ":/tabbar/icons/portal@1.75x.png")},
                                           {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.75x.png", ":/tabbar/icons/portal@1.75x.png")}}) :
                     m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.75x.png", ":/tabbar/icons/portal@1.75x.png")},
@@ -648,7 +647,7 @@ void CAscTabWidget::reloadTabIcons()
             {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.5x.png", ":/tabbar/icons/se@1.5x.png")}
         });
 
-        m_isDarkTheme ?
+        AscAppManager::themes().current().isDark() ?
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
                             {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.5x.png", ":/tabbar/icons/portal@1.5x.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.5x.png", ":/tabbar/icons/portal@1.5x.png")},
@@ -662,7 +661,7 @@ void CAscTabWidget::reloadTabIcons()
                                  {etSpreadsheet, std::make_pair(":/tabbar/icons/se@1.25x.png", ":/tabbar/icons/se@1.25x.png")}
                              });
 
-        m_isDarkTheme ?
+        AscAppManager::themes().current().isDark() ?
                     m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light@1.25x.png", ":/tabbar/icons/portal@1.25x.png")},
                                           {etNewPortal, std::make_pair(":/tabbar/icons/portal_light@1.25x.png", ":/tabbar/icons/portal@1.25x.png")}}) :
                     m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal@1.25x.png", ":/tabbar/icons/portal@1.25x.png")},
@@ -675,7 +674,7 @@ void CAscTabWidget::reloadTabIcons()
             {etSpreadsheet, std::make_pair(":/tabbar/icons/se.png", ":/tabbar/icons/se.png")}
         });
 
-        m_isDarkTheme ?
+        AscAppManager::themes().current().isDark() ?
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light.png", ":/tabbar/icons/portal.png")},
                             {etNewPortal, std::make_pair(":/tabbar/icons/portal_light.png", ":/tabbar/icons/portal.png")}}) :
             m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal.png", ":/tabbar/icons/portal.png")},
@@ -1332,15 +1331,13 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 
 void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
-    m_isDarkTheme = theme == NSThemeDark::theme_id;
-
     reloadTabIcons();
     updateIcons();
 
     CTabBar & _tabbar = *(static_cast<CTabBar *>(tabBar()));
 //    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
-    _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextNormal));
-    _tabbar.setUIThemeType(!m_isDarkTheme);
+    _tabbar.setTabTextColor(QPalette::Inactive, AscAppManager::themes().current().color(CTheme::ColorRole::ecrTextNormal));
+    _tabbar.setUIThemeType(!AscAppManager::themes().current().isDark());
     _tabbar.style()->polish(&_tabbar);
     style()->polish(this);
 }
