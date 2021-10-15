@@ -1,2 +1,2 @@
-SET PLATFORM=win_32
-START common.bat
+set PLATFORM=win_64
+start common.bat
