@@ -118,8 +118,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
         setMouseTracking(true);
 
         QPalette _palette(palette());
-        _palette.setColor(QPalette::Background, AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground));
-        setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().value(CThemes::ColorRole::ecrWindowBorder))));
+        _palette.setColor(QPalette::Background, AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
+        setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder))));
         setAutoFillBackground(true);
         setPalette(_palette);
     }
@@ -412,8 +412,8 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 
     if ( !CX11Decoration::isDecorated() ) {
         QPalette _palette(palette());
-        _palette.setColor(QPalette::Background, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrWindowBackground));
-        setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBorder))));
+        _palette.setColor(QPalette::Background, AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
+        setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder))));
         setAutoFillBackground(true);
         setPalette(_palette);
     }

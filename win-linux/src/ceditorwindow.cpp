@@ -63,7 +63,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
 #ifdef Q_OS_LINUX
     if ( !CX11Decoration::isDecorated() )
-        applyTheme(AscAppManager::themes().current());
+        applyTheme(AscAppManager::themes().current().id());
 
     setObjectName("editorWindow");
     m_pMainPanel = createMainPanel(this);

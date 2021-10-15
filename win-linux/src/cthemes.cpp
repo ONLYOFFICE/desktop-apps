@@ -54,7 +54,7 @@ class CTheme::CThemePrivate {
 public:
     CThemePrivate() {}
 
-    auto fromJsonObject(const QJsonObject& obj) {
+    auto fromJsonObject(const QJsonObject& obj) -> void {
         id = obj.value("id").toString().toStdWString();
         type = obj.value("type").toString() == NSTheme::theme_type_dark ?
                             NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
@@ -113,7 +113,7 @@ public:
         }
     }
 
-    auto setCurrent(const QString& id)
+    auto setCurrent(const QString& id) -> bool
     {
           if ( rc_themes.find(id) != rc_themes.end() ) {
             return current->load(rc_themes.at(id));
@@ -122,7 +122,7 @@ public:
         return false;
     }
 
-    auto getDefault(NSTheme::ThemeType type)
+    auto getDefault(NSTheme::ThemeType type) -> const CTheme *
     {
         if ( type == NSTheme::ThemeType::ttDark ) {
             if ( !dark ) {
