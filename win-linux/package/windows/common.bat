@@ -1,13 +1,13 @@
 ::if variable isn't defined
-IF "%ORG%"=="" (SET ORG=onlyoffice)
-IF "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
+if "%ORG%"=="" (set ORG=onlyoffice)
+if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
 ::check arch
-IF "%PLATFORM%"=="win_32" (
-SET ARCH=x86
-)ELSE IF "%PLATFORM%"=="win_64"(
-SET ARCH=x64
-) ELSE(
-EXIT
+if "%PLATFORM%"=="win_32" (
+set ARCH=x86
+)else if "%PLATFORM%"=="win_64"(
+set ARCH=x64
+) else(
+exit
 )
 
 %AdvancedInstaller% /edit "DesktopEditors.aip" /AddOsLc -buildname DefaultBuild -arch %ARCH%
