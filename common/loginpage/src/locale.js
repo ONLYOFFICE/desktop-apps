@@ -762,7 +762,7 @@ l10n.lt = {
     settCheckUpdates: 'Automatiškai ieškoti naujinių',
     settOptCheckNever: 'Niekada',
     settOptCheckDay: 'Kiekvieną dieną',
-    settOptCheckWeek: 'Kiekvieną savaitę'
+    settOptCheckWeek: 'Kiekvieną savaitę',
     settScaling: 'Sąsajos mąstelio nustatymai',
     settOptScalingAuto: 'Automatinis',
     aboutProFeaturesAvailable: 'Su prieiga prie specialiųjų funkcijų'
@@ -948,7 +948,7 @@ l10n.nl = {
     settCheckUpdates: 'Controleer of er automatisch updates zijn',
     settOptCheckNever: 'Nooit',
     settOptCheckDay: 'Iedere dag',
-    settOptCheckWeek: 'Iedere week'
+    settOptCheckWeek: 'Iedere week',
     settScaling: 'Interface schalen',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Met toegang tot pro functionaliteiten'
@@ -2337,7 +2337,7 @@ l10n.vi = {
     settCheckUpdates: 'Tự động kiểm tra cập nhật',
     settOptCheckNever: 'Không bao giờ',
     settOptCheckDay: 'Hàng ngày',
-    settOptCheckWeek: 'Hàng tuần'
+    settOptCheckWeek: 'Hàng tuần',
     settScaling: 'Chia tỷ lệ giao diện',
     settOptScalingAuto: 'Tự động',
     aboutProFeaturesAvailable: 'Với quyền truy cập vào các tính năng cao cấp'
@@ -2426,7 +2426,7 @@ l10n.zh_CN = {
     setBtnApply: '应用',
     settLanguage: '界面语言',
     settAfterRestart: '选项将于应用程序重启后开始启用',
-    settShowEncryptOpts: '测试端到端加密'
+    settShowEncryptOpts: '测试端到端加密',
     settCheckUpdates: '自动检查更新',
     settOptCheckNever: '从不',
     settOptCheckDay: '每天',
