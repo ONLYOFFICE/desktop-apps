@@ -112,13 +112,13 @@ const QString g_css =
         "#mainPanel[uitheme=theme-dark] #iconuser,"
         "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}";
 
-auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
+auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground); break;
-    case etDocument: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive); break;
-    case etPresentation: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive); break;
-    case etSpreadsheet: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive); break;
+    default: c = theme.value(CTheme::ColorRole::ecrWindowBackground); break;
+    case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
+    case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
     }
 
     return g_css.arg(QString::fromStdWString(c));
@@ -126,11 +126,11 @@ auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabWordActive);
-    case etPresentation: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabSlideActive);
-    case etSpreadsheet: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabCellActive);
+    case etDocument: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabWordActive);
+    case etPresentation: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabSlideActive);
+    case etSpreadsheet: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabCellActive);
 //#ifdef Q_OS_WIN
-    default: return AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground);
+    default: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
 //#else
 //    default: return QColor(WINDOW_BACKGROUND_COLOR);
 //#endif
@@ -207,7 +207,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().isCurrentDark() ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
+        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
 
         m_mapTitleButtons[action] = btn;
 
@@ -242,8 +242,7 @@ public:
             window->m_labelTitle->setText(APP_TITLE);
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(
-                        QColor(QString::fromStdWString(AscAppManager::themes().value(CThemes::ColorRole::ecrWindowBackground))));
+            window->setWindowBackgroundColor(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
 #endif
         }
     }
@@ -333,14 +332,14 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current());
+            changeTheme(AscAppManager::themes().current().id());
         }
     }
 
     void changeTheme(const std::wstring& theme)
     {
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->m_css = prepare_editor_css(panel()->data()->contentType(), theme);
+            window->m_css = prepare_editor_css(panel()->data()->contentType(), AscAppManager::themes().current());
 
             if ( window->m_pMainPanel ) {
                 window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
@@ -352,27 +351,27 @@ public:
 
             for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
                 CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
-                btn->setIconOpacity(AscAppManager::themes().isThemeDark(theme) ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
+                btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             }
 
 #ifdef Q_OS_WIN
             std::wstring background, border;
             switch (panel()->data()->contentType()) {
             case etDocument:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
                 border = background;
                 break;
             case etPresentation:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
                 border = background;
                 break;
             case etSpreadsheet:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
                 border = background;
                 break;
             default:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground);
-                border = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBorder);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
+                border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
             }
 
             window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));

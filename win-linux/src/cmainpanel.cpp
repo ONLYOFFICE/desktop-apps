@@ -100,7 +100,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -116,7 +116,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
     m_pTabs->activate(false);
-    m_pTabs->applyUITheme(AscAppManager::themes().current());
+    m_pTabs->applyUITheme(AscAppManager::themes().current().id());
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
@@ -784,11 +784,6 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 
 void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
-    // TODO: remove in release 6.5, theme id is sended on webapp:entry event
-    int index = m_pTabs->tabIndexByView(id);
-    if ( !(index < 0) )
-        AscAppManager::sendCommandTo(m_pTabs->panel(index)->cef(), L"uitheme:changed", AscAppManager::themes().current());
-
     m_pTabs->setEditorOptions(id, opts);
 }
 

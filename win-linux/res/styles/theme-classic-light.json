@@ -1,0 +1,25 @@
+{
+    "id": "theme-classic-light",
+    "type": "light",
+    "values": {
+        "brand_word": "#446995",
+        "brand_slide": "#aa5252",
+        "brand_cell": "#40865c",
+
+        "window_background": "#f1f1f1",
+        "window_border": "#888",
+
+        "text_normal": "#444",
+        "text_normal_pressed": "#fff",
+
+        "tab_active_background": "#fff",
+        "tab_simple_active_background": "#fff",
+        "tab_simple_active_text": "#444",
+        "tab_default_active_background": "#fff",
+        "tab_default_active_text": "#444",
+        "tab_divider": "#a5a5a5",
+
+        "button_normal_opacity": "rgba(255,255,255,255)",
+        "logo_type": "dark"
+    }
+}

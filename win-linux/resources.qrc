@@ -209,4 +209,9 @@
         <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
         <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
     </qresource>
+    <qresource prefix="/themes">
+        <file alias="theme-light.json">res/styles/theme-light.json</file>
+        <file alias="theme-classic-light.json">res/styles/theme-classic-light.json</file>
+        <file alias="theme-dark.json">res/styles/theme-dark.json</file>
+    </qresource>
 </RCC>
