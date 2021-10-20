@@ -11,15 +11,28 @@
     <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://www.onlyoffice.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx"/>
+    <ROW Property="DJVU_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="DOCX_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="DOC_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="DOTX_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="EPUB_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="FB2_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="HTML_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
+    <ROW Property="ODT_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="OTT_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="PACKAGE_NAME" Value="PACKAGE_NAME"/>
+    <ROW Property="PDFA_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="PDF_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="ProductCode" Value="1029:{14361018-38E1-4A92-A787-78C1A1464AFD} 1031:{14361018-38E1-4A92-A787-78C1A1464AFD} 1033:{14361018-38E1-4A92-A787-78C1A1464AFD} 1036:{14361018-38E1-4A92-A787-78C1A1464AFD} 1041:{14361018-38E1-4A92-A787-78C1A1464AFD} 1046:{14361018-38E1-4A92-A787-78C1A1464AFD} 1049:{14361018-38E1-4A92-A787-78C1A1464AFD} 1060:{14361018-38E1-4A92-A787-78C1A1464AFD} 2070:{14361018-38E1-4A92-A787-78C1A1464AFD} 3082:{14361018-38E1-4A92-A787-78C1A1464AFD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
     <ROW Property="ProductVersion" Value="6.4.0" Type="32"/>
+    <ROW Property="RTF_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="TXT_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="UpgradeCode" Value="{CB49AF5D-4326-45BE-BB4E-E0422BFA64CF}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -31,23 +44,43 @@
     <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
     <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:32-bit Windows versions" ValueLocId="-"/>
+    <ROW Property="XML_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="XPS_CHECKBOX" Value="1" Type="4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="A918597FE054CCCB65ABDBA0AD8F63C" ComponentId="{2ACB3AA4-CD6E-436E-BA9E-E29DA00C9FAD}" Directory_="APPDIR" Attributes="260" KeyPath="A918597FE054CCCB65ABDBA0AD8F63C" Options="2"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="256" KeyPath="DesktopEditors.exe"/>
+    <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="A918597FE054CCCB65ABDBA0AD8F63C" Title="Visual C++ Redistributable for Visual Studio 2015-2019 x86" Description="Visual C++ Redistributable for Visual Studio 2015-2019 x86" Display="3" Level="1" Attributes="0"/>
+    <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="djvu" Feature_Parent="FileTypeAssociations" Title=".djvu" Description="Description" Display="5" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="doc" Feature_Parent="FileTypeAssociations" Title=".doc" Description="Description" Display="7" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="docx" Feature_Parent="FileTypeAssociations" Title=".docx" Description="Description" Display="9" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="dotx" Feature_Parent="FileTypeAssociations" Title=".dotx" Description="Description" Display="11" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="epub" Feature_Parent="FileTypeAssociations" Title=".epub" Description="Description" Display="13" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="fb2" Feature_Parent="FileTypeAssociations" Title=".fb2" Description="Description" Display="15" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="html" Feature_Parent="FileTypeAssociations" Title=".html" Description="Description" Display="17" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="odt" Feature_Parent="FileTypeAssociations" Title=".odt" Description="Description" Display="19" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="ott" Feature_Parent="FileTypeAssociations" Title=".ott" Description="Description" Display="21" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="pdf" Feature_Parent="FileTypeAssociations" Title=".pdf" Description="Description" Display="23" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="pdfa" Feature_Parent="FileTypeAssociations" Title=".pdf/a" Description="Description" Display="25" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="rtf" Feature_Parent="FileTypeAssociations" Title=".rtf" Description="Description" Display="27" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="txt" Feature_Parent="FileTypeAssociations" Title=".txt" Description="Description" Display="29" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="xml" Feature_Parent="FileTypeAssociations" Title=".xml" Description="Description" Display="31" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="xps" Feature_Parent="FileTypeAssociations" Title=".xps" Description="Description" Display="33" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\Desktop\desktop\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Your Application 20\Setup Files" PackageFileName="DekstopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Your Application 20\Setup Files" PackageFileName="DekstopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -64,7 +97,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
-    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="FileAssociationsDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FileAssociationsDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
@@ -76,21 +109,27 @@
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
-    <ROW Action="AI_ConfigureChainer" Description="Configuring prerequisites launcher" DescriptionLocId="ActionText.Description.AI_ConfigureChainer" Template="Configure Launcher" TemplateLocId="ActionText.Template.AI_ConfigureChainer"/>
-    <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="Downloading [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
-    <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
-    <ROW Action="AI_InstallPostPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
-    <ROW Action="AI_InstallPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
-    <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
-  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
-    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
     <ROW Name="dialogpicture.bmp" SourcePath="data\dialogpicture.bmp"/>
-    <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
     <ROW Name="visual_elements_icon_71x71.png" SourcePath="data\visual_elements_icon_71x71.png"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
+    <ROW Property="DJVU_CHECKBOX" Value="1"/>
+    <ROW Property="DOC_CHECKBOX" Value="1"/>
+    <ROW Property="DOCX_CHECKBOX" Value="1"/>
+    <ROW Property="DOTX_CHECKBOX" Value="1"/>
+    <ROW Property="EPUB_CHECKBOX" Value="1"/>
+    <ROW Property="FB2_CHECKBOX" Value="1"/>
+    <ROW Property="HTML_CHECKBOX" Value="1"/>
+    <ROW Property="ODT_CHECKBOX" Value="1"/>
+    <ROW Property="OTT_CHECKBOX" Value="1"/>
+    <ROW Property="PDF_CHECKBOX" Value="1"/>
+    <ROW Property="PDFA_CHECKBOX" Value="1"/>
+    <ROW Property="RTF_CHECKBOX" Value="1"/>
+    <ROW Property="TXT_CHECKBOX" Value="1"/>
+    <ROW Property="XML_CHECKBOX" Value="1"/>
+    <ROW Property="XPS_CHECKBOX" Value="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -155,19 +194,31 @@
     <ROW Dialog_="ExitDialog" Control="Description" Type="Text" X="135" Y="86" Width="220" Height="20" Attributes="196611" Text="Click the &quot;Finish&quot; button to exit the [Wizard]." Order="900" TextLocId="Control.Text.ExitDialog#Description" MsiKey="ExitDialog#Description"/>
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="-125" Y="0" Width="370" Height="234" Attributes="1048577" Text="dialogpicture.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="FileAssociationsDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="BannerBitmap" Type="Bitmap" X="160" Y="0" Width="370" Height="44" Attributes="1048577" Text="visual_elements_icon_71x71.png" Order="400" MsiKey="FileAssociationsDlg#BannerBitmap"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="Text" Type="Text" X="25" Y="53" Width="320" Height="24" Attributes="3" Text="Please select the file types you want to automatically open with [ProductName]:" Order="800" TextLocId="Control.Text.FileAssociationsDlg#Text" MsiKey="FileAssociationsDlg#Text"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select File Associations" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.FileAssociationsDlg#Title" MsiKey="FileAssociationsDlg#Title"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_1" Type="CheckBox" X="50" Y="100" Width="55" Height="11" Attributes="3" Property="DJVU_CHECKBOX" Text=".djvu" Order="1000"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_2" Type="CheckBox" X="50" Y="122" Width="55" Height="11" Attributes="3" Property="DOC_CHECKBOX" Text=".doc" Order="1100"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_3" Type="CheckBox" X="50" Y="144" Width="55" Height="11" Attributes="3" Property="DOCX_CHECKBOX" Text=".docx" Order="1200"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_4" Type="CheckBox" X="50" Y="166" Width="55" Height="11" Attributes="3" Property="DOTX_CHECKBOX" Text=".dotx" Order="1300"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_5" Type="CheckBox" X="50" Y="188" Width="55" Height="11" Attributes="3" Property="EPUB_CHECKBOX" Text=".epub" Order="1400"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_6" Type="CheckBox" X="116" Y="100" Width="55" Height="11" Attributes="3" Property="FB2_CHECKBOX" Text=".fb2" Order="1500"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_7" Type="CheckBox" X="116" Y="122" Width="55" Height="11" Attributes="3" Property="HTML_CHECKBOX" Text=".html" Order="1600"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_8" Type="CheckBox" X="116" Y="144" Width="55" Height="11" Attributes="3" Property="ODT_CHECKBOX" Text=".odt" Order="1700"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_9" Type="CheckBox" X="116" Y="166" Width="55" Height="11" Attributes="3" Property="OTT_CHECKBOX" Text=".ott" Order="1800"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_10" Type="CheckBox" X="116" Y="188" Width="55" Height="11" Attributes="3" Property="PDF_CHECKBOX" Text=".pdf" Order="1900"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_11" Type="CheckBox" X="182" Y="100" Width="55" Height="11" Attributes="3" Property="PDFA_CHECKBOX" Text=".pdf/a" Order="2000"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_12" Type="CheckBox" X="182" Y="122" Width="55" Height="11" Attributes="3" Property="RTF_CHECKBOX" Text=".rtf" Order="2100"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_13" Type="CheckBox" X="182" Y="144" Width="55" Height="11" Attributes="3" Property="TXT_CHECKBOX" Text=".txt" Order="2200"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_14" Type="CheckBox" X="182" Y="166" Width="55" Height="11" Attributes="3" Property="XML_CHECKBOX" Text=".xml" Order="2300"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_15" Type="CheckBox" X="182" Y="188" Width="55" Height="11" Attributes="3" Property="XPS_CHECKBOX" Text=".xps" Order="2400"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="160" Y="0" Width="370" Height="44" Attributes="1048577" Text="visual_elements_icon_71x71.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
     <ROW Dialog_="FilesInUse" Control="List" Type="ListBox" X="20" Y="87" Width="330" Height="130" Attributes="7" Property="FileInUseProcess" Order="800" MsiKey="FilesInUse#List"/>
     <ROW Dialog_="FilesInUse" Control="Description" Type="Text" X="20" Y="23" Width="280" Height="20" Attributes="196611" Text="Some files that need to be updated are currently in use." Order="900" TextLocId="Control.Text.FilesInUse#Description" MsiKey="FilesInUse#Description"/>
     <ROW Dialog_="FilesInUse" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="FilesInUse#BannerLine"/>
-    <ROW Dialog_="FolderDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="600" TextLocId="-" MsiKey="FolderDlg#Cancel" Options="1"/>
-    <ROW Dialog_="FolderDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="700" TextLocId="-" MsiKey="FolderDlg#Back" Options="1"/>
-    <ROW Dialog_="FolderDlg" Control="BannerBitmap" Type="Bitmap" X="160" Y="0" Width="370" Height="44" Attributes="1048577" Text="visual_elements_icon_71x71.png" Help="|" Order="800" HelpLocId="Control.Help.FolderDlg#BannerBitmap" MsiKey="FolderDlg#BannerBitmap"/>
-    <ROW Dialog_="FolderDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select Installation Folder" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.FolderDlg#Title" MsiKey="FolderDlg#Title"/>
-    <ROW Dialog_="FolderDlg" Control="Text" Type="Text" X="25" Y="70" Width="320" Height="40" Attributes="3" Text="To install in this folder, click &quot;[Text_Next]&quot;. To install to a different folder, enter it below or click &quot;Browse&quot;." Order="1000" TextLocId="Control.Text.FolderDlg#Text" MsiKey="FolderDlg#Text"/>
-    <ROW Dialog_="FolderDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="This is the folder where [ProductName] will be installed." Order="1100" TextLocId="Control.Text.FolderDlg#Description" MsiKey="FolderDlg#Description"/>
-    <ROW Dialog_="FolderDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="1200" MsiKey="FolderDlg#BannerLine"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="BannerBitmap" Type="Bitmap" X="160" Y="0" Width="370" Height="44" Attributes="1048577" Text="visual_elements_icon_71x71.png" Order="1000" MsiKey="MaintenanceTypeDlg#BannerBitmap"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="20" Attributes="196611" Text="Select the operation you wish to perform." Order="1200" TextLocId="Control.Text.MaintenanceTypeDlg#Description" MsiKey="MaintenanceTypeDlg#Description"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="ChangeText" Type="Text" X="105" Y="78" Width="230" Height="20" Attributes="3" Text="Allows users to change the way features are installed." Order="1300" TextLocId="Control.Text.MaintenanceTypeDlg#ChangeText" MsiKey="MaintenanceTypeDlg#ChangeText"/>
@@ -221,17 +272,13 @@
     <ROW Dialog_="VerifyRepairDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="The [Wizard] is ready to begin the repair of [ProductName]." Order="800" TextLocId="Control.Text.VerifyRepairDlg#Description" MsiKey="VerifyRepairDlg#Description"/>
     <ROW Dialog_="VerifyRepairDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="900" MsiKey="VerifyRepairDlg#BannerLine"/>
     <ROW Dialog_="WelcomeDlg" Control="Bitmap" Type="Bitmap" X="-125" Y="0" Width="370" Height="234" Attributes="1048577" Text="dialogpicture.bmp" Order="300" MsiKey="WelcomeDlg#Bitmap"/>
-    <ATTRIBUTE name="DeletedRows" value="AdminBrowseDlg#Logo@AdminInstallPointDlg#Logo@BrowseDlg#Logo@CustomizeDlg#Logo@DiskCostDlg#Logo@ExitDialog#ViewReadmeText@FilesInUse#Logo@FolderDlg#Logo@MaintenanceTypeDlg#Logo@MsiRMFilesInUse#Logo@OutOfDiskDlg#Logo@OutOfRbDiskDlg#Logo@ProgressDlg#Logo@VerifyReadyDlg#Logo@VerifyRemoveDlg#Logo@VerifyRepairDlg#Logo"/>
+    <ATTRIBUTE name="DeletedRows" value="AdminBrowseDlg#Logo@AdminInstallPointDlg#Logo@BrowseDlg#Logo@CustomizeDlg#Logo@DiskCostDlg#Logo@ExitDialog#ViewReadmeText@FileAssociationsDlg#Logo@FilesInUse#Logo@MaintenanceTypeDlg#Logo@MsiRMFilesInUse#Logo@OutOfDiskDlg#Logo@OutOfRbDiskDlg#Logo@ProgressDlg#Logo@VerifyReadyDlg#Logo@VerifyRemoveDlg#Logo@VerifyRepairDlg#Logo"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="7"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
-    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
-    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="7"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
     <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
     <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
@@ -249,27 +296,118 @@
     <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
-    <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="301"/>
-    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="102"/>
-    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="101"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="djvu" Condition="DJVU_CHECKBOX" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="djvu" Condition="NOT (DJVU_CHECKBOX)" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DJVU_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;djvu = 3 )" Ordering="4"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DJVU_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;djvu &lt;&gt; 3 )" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DJVU_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !djvu = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;djvu = 3 ) AND AI_EXT_SELECTED ) )" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfRbDiskDlg" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" Ordering="2" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="EnableRollback" Argument="False" Condition="AI_INSTALL AND OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST=&quot;D&quot;" Ordering="3" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="SpawnDialog" Argument="OutOfDiskDlg" Condition="AI_INSTALL AND ( (OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST=&quot;F&quot;) )" Ordering="4" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[AI_ButtonText_Next_Orig]" Argument="[ButtonText_Next]" Condition="AI_INSTALL" Ordering="0" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[ButtonText_Next]" Argument="[[AI_CommitButton]]" Condition="AI_INSTALL" Ordering="1" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[AI_Text_Next_Orig]" Argument="[Text_Next]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_INSTALL" Ordering="2" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_INSTALL" Ordering="3" Options="2"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DJVU_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !djvu &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;djvu &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="doc" Condition="DOC_CHECKBOX" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="doc" Condition="NOT (DOC_CHECKBOX)" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOC_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;doc = 3 )" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOC_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;doc &lt;&gt; 3 )" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOC_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !doc = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;doc = 3 ) AND AI_EXT_SELECTED ) )" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOC_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !doc &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;doc &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="docx" Condition="DOCX_CHECKBOX" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="docx" Condition="NOT (DOCX_CHECKBOX)" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOCX_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;docx = 3 )" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOCX_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;docx &lt;&gt; 3 )" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOCX_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !docx = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;docx = 3 ) AND AI_EXT_SELECTED ) )" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOCX_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !docx &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;docx &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="dotx" Condition="DOTX_CHECKBOX" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="dotx" Condition="NOT (DOTX_CHECKBOX)" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOTX_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;dotx = 3 )" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOTX_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;dotx &lt;&gt; 3 )" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOTX_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !dotx = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;dotx = 3 ) AND AI_EXT_SELECTED ) )" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[DOTX_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !dotx &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;dotx &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="epub" Condition="EPUB_CHECKBOX" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="epub" Condition="NOT (EPUB_CHECKBOX)" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[EPUB_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;epub = 3 )" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[EPUB_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;epub &lt;&gt; 3 )" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[EPUB_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !epub = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;epub = 3 ) AND AI_EXT_SELECTED ) )" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[EPUB_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !epub &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;epub &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="fb2" Condition="FB2_CHECKBOX" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="fb2" Condition="NOT (FB2_CHECKBOX)" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[FB2_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;fb2 = 3 )" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[FB2_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;fb2 &lt;&gt; 3 )" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[FB2_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !fb2 = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;fb2 = 3 ) AND AI_EXT_SELECTED ) )" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[FB2_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !fb2 &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;fb2 &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="html" Condition="HTML_CHECKBOX" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="html" Condition="NOT (HTML_CHECKBOX)" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[HTML_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;html = 3 )" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[HTML_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;html &lt;&gt; 3 )" Ordering="29"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[HTML_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !html = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;html = 3 ) AND AI_EXT_SELECTED ) )" Ordering="30"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[HTML_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !html &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;html &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="31"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="odt" Condition="ODT_CHECKBOX" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="odt" Condition="NOT (ODT_CHECKBOX)" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[ODT_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;odt = 3 )" Ordering="32"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[ODT_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;odt &lt;&gt; 3 )" Ordering="33"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[ODT_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !odt = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;odt = 3 ) AND AI_EXT_SELECTED ) )" Ordering="34"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[ODT_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !odt &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;odt &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="35"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="ott" Condition="OTT_CHECKBOX" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="ott" Condition="NOT (OTT_CHECKBOX)" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[OTT_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;ott = 3 )" Ordering="36"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[OTT_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;ott &lt;&gt; 3 )" Ordering="37"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[OTT_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !ott = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;ott = 3 ) AND AI_EXT_SELECTED ) )" Ordering="38"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[OTT_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !ott &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;ott &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="39"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="pdf" Condition="PDF_CHECKBOX" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="pdf" Condition="NOT (PDF_CHECKBOX)" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDF_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;pdf = 3 )" Ordering="40"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDF_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;pdf &lt;&gt; 3 )" Ordering="41"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDF_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !pdf = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;pdf = 3 ) AND AI_EXT_SELECTED ) )" Ordering="42"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDF_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !pdf &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;pdf &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="43"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="pdfa" Condition="PDFA_CHECKBOX" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="pdfa" Condition="NOT (PDFA_CHECKBOX)" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDFA_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;pdfa = 3 )" Ordering="44"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDFA_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;pdfa &lt;&gt; 3 )" Ordering="45"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDFA_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !pdfa = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;pdfa = 3 ) AND AI_EXT_SELECTED ) )" Ordering="46"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[PDFA_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !pdfa &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;pdfa &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="47"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="rtf" Condition="RTF_CHECKBOX" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="rtf" Condition="NOT (RTF_CHECKBOX)" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[RTF_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;rtf = 3 )" Ordering="48"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[RTF_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;rtf &lt;&gt; 3 )" Ordering="49"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[RTF_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !rtf = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;rtf = 3 ) AND AI_EXT_SELECTED ) )" Ordering="50"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[RTF_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !rtf &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;rtf &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="51"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="txt" Condition="TXT_CHECKBOX" Ordering="29"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="txt" Condition="NOT (TXT_CHECKBOX)" Ordering="30"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[TXT_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;txt = 3 )" Ordering="52"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[TXT_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;txt &lt;&gt; 3 )" Ordering="53"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[TXT_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !txt = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;txt = 3 ) AND AI_EXT_SELECTED ) )" Ordering="54"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[TXT_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !txt &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;txt &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="55"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="xml" Condition="XML_CHECKBOX" Ordering="31"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="xml" Condition="NOT (XML_CHECKBOX)" Ordering="32"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XML_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;xml = 3 )" Ordering="56"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XML_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;xml &lt;&gt; 3 )" Ordering="57"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XML_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !xml = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;xml = 3 ) AND AI_EXT_SELECTED ) )" Ordering="58"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XML_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !xml &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;xml &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="59"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="xps" Condition="XPS_CHECKBOX" Ordering="33"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="xps" Condition="NOT (XPS_CHECKBOX)" Ordering="34"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XPS_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;xps = 3 )" Ordering="60"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XPS_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;xps &lt;&gt; 3 )" Ordering="61"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XPS_CHECKBOX]" Argument="1" Condition="AI_MAINT AND ( ( ( !xps = 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;xps = 3 ) AND AI_EXT_SELECTED ) )" Ordering="62"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[XPS_CHECKBOX]" Argument="{}" Condition="AI_MAINT AND ( ( ( !xps &lt;&gt; 3 ) AND NOT (AI_EXT_SELECTED) ) OR ( ( &amp;xps &lt;&gt; 3 ) AND AI_EXT_SELECTED ) )" Ordering="63"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[AI_EXT_SELECTED]" Argument="1" Condition="AI_MAINT AND NOT (AI_EXT_SELECTED)" Ordering="64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
-    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
-    <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
-    <ROW Action="AI_ConfigureChainer" Type="1" Source="Prereq.dll" Target="ConfigurePrereqLauncher"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
-    <ROW Action="AI_DownloadPrereq" Type="1" Source="Prereq.dll" Target="DownloadPrereq"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
-    <ROW Action="AI_ExtractPrereq" Type="65" Source="Prereq.dll" Target="ExtractPrereq"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
-    <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
-    <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
@@ -277,16 +415,47 @@
     <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
     <ROW Action="ExecuteScriptCode" Type="4134" Target="Script Text" TargetUnformatted="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;Function RegistryExist(Path)&#13;&#10;On Error Resume Next&#13;&#10;&#13;&#10;RegistryPath = objShell.RegRead(Path)&#13;&#10;Err_Number = err.number&#13;&#10;On Error GoTo 0&#13;&#10;&#13;&#10;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;RegistryExist = False&#13;&#10;Else&#13;&#10;&#9;RegistryExist = True&#13;&#10;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;If(RegistryExist(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ONLYOFFICE Desktop Editors_is1\UninstallString&quot;) = True) Then&#13;&#10;RegistryPath = objShell.RegRead(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ONLYOFFICE Desktop Editors_is1\UninstallString&quot;)&#13;&#10;Dim Button &#13;&#10;Button = MsgBox(&quot;The previous version of ONLYOFFICE Desktop Editors detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup.&quot;, 1, &quot;Error&quot;)&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;objShell.Run(RegistryPath)&#13;&#10;&#9;Else &#13;&#10;&#9;WScript.Quit 1&#13;&#10;End If&#13;&#10;End If"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder][ProductName]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]" MultiBuildTarget="DefaultBuild:[DesktopFolder]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiExtComponent">
+    <ROW Extension="doc" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].doc" Feature_="doc" Options="39"/>
+    <ROW Extension="docx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].docx" Feature_="docx" Options="39"/>
+    <ROW Extension="dotx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].dotx" Feature_="dotx" Options="39"/>
+    <ROW Extension="fb2" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].fb2" Feature_="fb2" Options="39"/>
+    <ROW Extension="odt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odt" Feature_="odt" Options="39"/>
+    <ROW Extension="ott" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ott" Feature_="ott" Options="39"/>
+    <ROW Extension="rtf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].rtf" Feature_="rtf" Options="39"/>
+    <ROW Extension="txt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].txt" Feature_="txt" Options="39"/>
+    <ROW Extension="pdf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf" Feature_="pdf" Options="39"/>
+    <ROW Extension="pdf/a" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf/" Feature_="pdfa" Options="39"/>
+    <ROW Extension="html" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].html" Feature_="html" Options="39"/>
+    <ROW Extension="epub" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].epub" Feature_="epub" Options="39"/>
+    <ROW Extension="xps" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xps" Feature_="xps" Options="39"/>
+    <ROW Extension="djvu" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].djvu" Feature_="djvu" Options="39"/>
+    <ROW Extension="xml" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xml" Feature_="xml" Options="39"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="A918597FE054CCCB65ABDBA0AD8F63C" Component_="A918597FE054CCCB65ABDBA0AD8F63C"/>
+    <ROW Feature_="djvu" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="doc" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="docx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="dotx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="epub" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="fb2" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="html" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="odt" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ott" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="pdf" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="pdfa" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="rtf" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="txt" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="MainFeature" Component_="DesktopEditors.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -296,10 +465,6 @@
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="55"/>
     <ROW Action="AI_EnableDebugLog" Sequence="54"/>
-    <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
-    <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
-    <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
-    <ROW Action="AI_AppSearchEx" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -307,15 +472,9 @@
     <ROW Action="AI_DpiContentScale" Sequence="53"/>
     <ROW Action="AI_EnableDebugLog" Sequence="52"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="97"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
     <ROW Action="AI_RestartElevated" Sequence="51" Builds="DefaultBuild"/>
     <ROW Action="ExecuteScriptCode" Sequence="98"/>
-    <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
-    <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
-    <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
-    <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
-    <ROW Action="AI_CleanPrereq" Sequence="1302"/>
-    <ROW Action="AI_AppSearchEx" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
@@ -324,8 +483,24 @@
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiProgIdComponent">
+    <ROW ProgId="[|Manufacturer].[|ProductName].djvu"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].doc"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].docx"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].dotx"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].epub"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].fb2"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].html"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].odt"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].ott"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].pdf"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].pdf/"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].rtf"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].txt"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].xml"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].xps"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
-    <ROW Registry="A918597FE054CCCB65ABDBA0AD8F63C" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="A918597FE054CCCB65ABDBA0AD8F63C" Value="1" Component_="A918597FE054CCCB65ABDBA0AD8F63C"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
@@ -336,12 +511,35 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="A918597FE054CCCB65ABDBA0AD8F63C" DisplayName="Visual C++ Redistributable for Visual Studio 2015-2019 x86" VersionMin="14.26" SetupFileUrl="Prerequisites\Visual C++ Redistributable for Visual Studio 2015-2019\VC_redist.x86.exe" Location="0" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Vista SP1 x86, Windows Server 2008 RTM x86, Windows 7 RTM x86" WinNT64Versions="Windows Vista RTM x64, Windows Vista SP1 x64, Windows Server 2008 RTM x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64" Operator="0" NoUiComLine="/q /norestart" Options="f" TargetName="Visual C++ Redistributable for Visual Studio 2015-2019\VC_redist.x86.exe" Feature="A918597FE054CCCB65ABDBA0AD8F63C"/>
-    <ATTRIBUTE name="PrereqsOrder" value="A918597FE054CCCB65ABDBA0AD8F63C"/>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiVerbComponent">
+    <ROW Extension_="doc" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="doc" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="docx" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="docx" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="dotx" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="dotx" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="fb2" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="fb2" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="odt" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="odt" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="ott" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="ott" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="rtf" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="rtf" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="txt" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="txt" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="pdf" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="pdf/a" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="html" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="html" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="epub" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="epub" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="xps" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="djvu" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="xml" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
+    <ROW Extension_="xml" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
-    <ROW SearchKey="A918597FE054CCCB65ABDBA0AD8F63CSyst" Prereq="A918597FE054CCCB65ABDBA0AD8F63C" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.26.28720" Order="2" Property="PreReqSearch_1_A918597FE054CCCB65AB"/>
-    <ROW SearchKey="A918597FE054CCCB65ABDBA0AD8F63CVers" Prereq="A918597FE054CCCB65ABDBA0AD8F63C" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\14.0\RuntimeMinimum\Version" VerMin="14.26.28720" Order="1" Property="PreReqSearch_A918597FE054CCCB65ABDB"/>
+  <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
+    <ROW Directory_="APPDIR" SourcePath="..\..\..\..\Desktop\desktop\build_tools\out\win_64\onlyoffice\DesktopEditors" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6" FileAddOptions="4"/>
   </COMPONENT>
 </DOCUMENT>
