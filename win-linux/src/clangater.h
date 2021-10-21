@@ -15,6 +15,7 @@ public:
     static CLangater * getInstance();
     static void init();
     static void reloadTranslations(const QString&);
+    static void refreshLangs(const QMap<QString, QString>&);
     static QString getCurrentLangCode();
     static QString getLangName(const QString& code = QString());
     static void addTranslation(const QString& dir, const QString& name);
