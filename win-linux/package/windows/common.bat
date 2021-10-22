@@ -4,6 +4,7 @@ if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
 ::check arch
 if "%PLATFORM%"=="win_32" (
 set ARCH=x86
+%AdvancedInstaller% /edit "DesktopEditors.aip" /SetPackageType x86
 )else if "%PLATFORM%"=="win_64"(
 set ARCH=x64
 ) else(
