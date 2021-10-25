@@ -1052,7 +1052,6 @@ l10n.ru = {
     ,settOptLaunchMode: 'Режим запуска редактора'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
-
 }
 
 l10n.de = {
@@ -2713,6 +2712,13 @@ l10n.ca = {
     settScaling: 'Escala d\'interfície',
     settOptScalingAuto: 'Automatic',
     aboutProFeaturesAvailable: 'Amb accés a les funcions pro'
+    ,settUITheme: 'Tema de la interfície'
+    ,settOptThemeLight: 'Clar'
+    ,settOptThemeClassicLight: 'Clar clàssic'
+    ,settOptThemeDark: 'Fosc'
+    ,settOptLaunchMode: 'Editor inicia el mode'
+    ,settOptLaunchInTab: 'En una pestanya'
+    ,settOptLaunchInWindow: 'En una finestra'
 }
 
 l10n.hr = {
