@@ -4,7 +4,7 @@
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2021" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
-    <ROW Property="AI_PRODUCTNAME_ARP" Value="[ProductName][ProductVersion]"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] "/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
@@ -17,7 +17,23 @@
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://www.onlyoffice.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx"/>
-    <ROW Property="ASSOTIATION_PROP" Value="CheckBox" Type="4"/>
+    <ROW Property="ASSOTIATION_PROP" Value="CheckBox"/>
+    <ROW Property="AiFeatIcodjvu" Value="djvu.exe" Type="8"/>
+    <ROW Property="AiFeatIcodoc" Value="doc.exe" Type="8"/>
+    <ROW Property="AiFeatIcodocx" Value="docx.exe" Type="8"/>
+    <ROW Property="AiFeatIcohtml" Value="html.exe" Type="8"/>
+    <ROW Property="AiFeatIcoodp" Value="odp.exe" Type="8"/>
+    <ROW Property="AiFeatIcoods" Value="ods.exe" Type="8"/>
+    <ROW Property="AiFeatIcoodt" Value="odt.exe" Type="8"/>
+    <ROW Property="AiFeatIcopdf" Value="pdf.exe" Type="8"/>
+    <ROW Property="AiFeatIcopdfa" Value="pdf.exe" Type="8"/>
+    <ROW Property="AiFeatIcoppt" Value="ppt.exe" Type="8"/>
+    <ROW Property="AiFeatIcopptx" Value="pptx.exe" Type="8"/>
+    <ROW Property="AiFeatIcortf" Value="rtf.exe" Type="8"/>
+    <ROW Property="AiFeatIcotxt" Value="txt.exe" Type="8"/>
+    <ROW Property="AiFeatIcoxls" Value="xls.exe" Type="8"/>
+    <ROW Property="AiFeatIcoxlsx" Value="xlsx.exe" Type="8"/>
+    <ROW Property="AiFeatIcoxps" Value="xps.exe" Type="8"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA"/>
@@ -49,32 +65,43 @@
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="256" Condition="VersionNT64" KeyPath="DesktopEditors.exe"/>
+    <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" Condition="VersionNT64" KeyPath="DesktopEditors.exe"/>
     <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="AI64BitFiles" Title="64-bit" Description="64-bit Executables and Libraries" Display="35" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
+    <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="4" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="djvu" Feature_Parent="FileTypeAssociations" Title=".djvu" Description="Description" Display="5" Level="4" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="doc" Feature_Parent="FileTypeAssociations" Title=".doc" Description="Description" Display="7" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="docx" Feature_Parent="FileTypeAssociations" Title=".docx" Description="Description" Display="9" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="dotx" Feature_Parent="FileTypeAssociations" Title=".dotx" Description="Description" Display="11" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="epub" Feature_Parent="FileTypeAssociations" Title=".epub" Description="Description" Display="13" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="fb2" Feature_Parent="FileTypeAssociations" Title=".fb2" Description="Description" Display="15" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="html" Feature_Parent="FileTypeAssociations" Title=".html" Description="Description" Display="17" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="odt" Feature_Parent="FileTypeAssociations" Title=".odt" Description="Description" Display="19" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="ott" Feature_Parent="FileTypeAssociations" Title=".ott" Description="Description" Display="21" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="pdf" Feature_Parent="FileTypeAssociations" Title=".pdf" Description="Description" Display="23" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="pdfa" Feature_Parent="FileTypeAssociations" Title=".pdf/a" Description="Description" Display="25" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="rtf" Feature_Parent="FileTypeAssociations" Title=".rtf" Description="Description" Display="27" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="txt" Feature_Parent="FileTypeAssociations" Title=".txt" Description="Description" Display="29" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="xml" Feature_Parent="FileTypeAssociations" Title=".xml" Description="Description" Display="31" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
-    <ROW Feature="xps" Feature_Parent="FileTypeAssociations" Title=".xps" Description="Description" Display="33" Level="1" Directory_="APPDIR" Attributes="0" Options="27"/>
+    <ROW Feature="csv" Feature_Parent="FileTypeAssociations" Title=".csv" Description="Description" Display="39" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="djvu" Feature_Parent="FileTypeAssociations" Title=".djvu" Description="Description" Display="41" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="doc" Feature_Parent="FileTypeAssociations" Title=".doc" Description="Description" Display="43" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="docx" Feature_Parent="FileTypeAssociations" Title=".docx" Description="Description" Display="45" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="dotx" Feature_Parent="FileTypeAssociations" Title=".dotx" Description="Description" Display="47" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="epub" Feature_Parent="FileTypeAssociations" Title=".epub" Description="Description" Display="49" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="fb2" Feature_Parent="FileTypeAssociations" Title=".fb2" Description="Description" Display="51" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="html" Feature_Parent="FileTypeAssociations" Title=".html" Description="Description" Display="53" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="odp" Feature_Parent="FileTypeAssociations" Title=".odp" Description="Description" Display="55" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="ods" Feature_Parent="FileTypeAssociations" Title=".ods" Description="Description" Display="57" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="odt" Feature_Parent="FileTypeAssociations" Title=".odt" Description="Description" Display="59" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="otp" Feature_Parent="FileTypeAssociations" Title=".otp" Description="Description" Display="61" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="ots" Feature_Parent="FileTypeAssociations" Title=".ots" Description="Description" Display="63" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="ott" Feature_Parent="FileTypeAssociations" Title=".ott" Description="Description" Display="65" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="pdf" Feature_Parent="FileTypeAssociations" Title=".pdf" Description="Description" Display="67" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="pdfa" Feature_Parent="FileTypeAssociations" Title=".pdf/a" Description="Description" Display="69" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="potx" Feature_Parent="FileTypeAssociations" Title=".potx" Description="Description" Display="71" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="ppt" Feature_Parent="FileTypeAssociations" Title=".ppt" Description="Description" Display="73" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="pptx" Feature_Parent="FileTypeAssociations" Title=".pptx" Description="Description" Display="75" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="rtf" Feature_Parent="FileTypeAssociations" Title=".rtf" Description="Description" Display="77" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="txt" Feature_Parent="FileTypeAssociations" Title=".txt" Description="Description" Display="79" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="xls" Feature_Parent="FileTypeAssociations" Title=".xls" Description="Description" Display="81" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="xlsx" Feature_Parent="FileTypeAssociations" Title=".xlsx" Description="Description" Display="83" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="xltx" Feature_Parent="FileTypeAssociations" Title=".xltx" Description="Description" Display="85" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="xml" Feature_Parent="FileTypeAssociations" Title=".xml" Description="Description" Display="87" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
+    <ROW Feature="xps" Feature_Parent="FileTypeAssociations" Title=".xps" Description="Description" Display="89" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
+    <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Your Application 20\Setup Files" PackageFileName="DekstopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" CabsLocation="1" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
@@ -117,8 +144,8 @@
     <ROW Property="ASSOTIATION_PROP" Value="CheckBox"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiConditionComponent">
-    <ROW Feature_="djvu" Level="1" Condition="ASSOTIATION_PROP = TRUE"/>
     <ROW Feature_="AI64BitFiles" Level="0" Condition="NOT VersionNT64"/>
+    <ROW Feature_="FileTypeAssociations" Level="1" Condition="ASSOTIATION_PROP=&quot;CheckBox&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -182,8 +209,6 @@
     <ROW Dialog_="ExitDialog" Control="LaunchProdCheckBox" Type="CheckBox" X="125" Y="146" Width="10" Height="10" Attributes="3" Property="RUNAPPLICATION" Order="800" MsiKey="ExitDialog#LaunchProdCheckBox" Options="1"/>
     <ROW Dialog_="ExitDialog" Control="Description" Type="Text" X="135" Y="86" Width="220" Height="20" Attributes="196611" Text="Click the &quot;Finish&quot; button to exit the [Wizard]." Order="900" TextLocId="Control.Text.ExitDialog#Description" MsiKey="ExitDialog#Description"/>
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
-    <ROW Dialog_="ExitDialog" Control="CheckBox_2" Type="CheckBox" X="125" Y="176" Width="11" Height="13" Attributes="3" Property="ASSOTIATION_PROP" Text="CheckBox" Order="1100"/>
-    <ROW Dialog_="ExitDialog" Control="Text_1" Type="Text" X="141" Y="176" Width="156" Height="11" Attributes="65539" Property="TEXT_1_PROP" Text="Associate files with this program" Order="1200"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
@@ -213,6 +238,25 @@
     <ROW Dialog_="MaintenanceTypeDlg" Control="RemoveText" Type="Text" X="105" Y="176" Width="230" Height="20" Attributes="3" Text="Removes [ProductName] from your computer." Order="1700" TextLocId="Control.Text.MaintenanceTypeDlg#RemoveText" MsiKey="MaintenanceTypeDlg#RemoveText"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="MaintenanceWelcomeDlg#Bitmap"/>
     <ROW Dialog_="MsiRMFilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="300" MsiKey="MsiRMFilesInUse#BannerBitmap"/>
+    <ROW Dialog_="NewDialog" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
+    <ROW Dialog_="NewDialog" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
+    <ROW Dialog_="NewDialog" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
+    <ROW Dialog_="NewDialog" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400"/>
+    <ROW Dialog_="NewDialog" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
+    <ROW Dialog_="NewDialog" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
+    <ROW Dialog_="NewDialog" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="Select the file types this software will associate with" Order="700"/>
+    <ROW Dialog_="NewDialog" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="File type associations" TextStyle="[DlgTitleFont]" Order="800"/>
+    <ROW Dialog_="NewDialog" Control="CheckBox_2" Type="CheckBox" X="38" Y="95" Width="11" Height="13" Attributes="3" Property="ASSOTIATION_PROP" Text="CheckBox" Order="900"/>
+    <ROW Dialog_="NewDialog" Control="Text_1" Type="Text" X="56" Y="95" Width="75" Height="11" Attributes="65539" Property="TEXT_1_PROP" Text="All types" Order="1000"/>
+    <ROW Dialog_="NewDialog_1" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
+    <ROW Dialog_="NewDialog_1" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
+    <ROW Dialog_="NewDialog_1" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
+    <ROW Dialog_="NewDialog_1" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="[BannerBitmap]" Order="400"/>
+    <ROW Dialog_="NewDialog_1" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
+    <ROW Dialog_="NewDialog_1" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
+    <ROW Dialog_="NewDialog_1" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="New Dialog Description..." Order="700"/>
+    <ROW Dialog_="NewDialog_1" Control="Logo" Type="Text" X="4" Y="228" Width="70" Height="12" Attributes="1" Text="Advanced Installer" Order="800"/>
+    <ROW Dialog_="NewDialog_1" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="New Dialog" TextStyle="[DlgTitleFont]" Order="900"/>
     <ROW Dialog_="OutOfDiskDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="200" MsiKey="OutOfDiskDlg#BannerBitmap"/>
     <ROW Dialog_="OutOfDiskDlg" Control="VolumeList" Type="VolumeCostList" X="20" Y="100" Width="330" Height="120" Attributes="393223" Text="{120}{70}{70}{70}{70}" Order="400" TextLocId="Control.Text.OutOfDiskDlg#VolumeList" MsiKey="OutOfDiskDlg#VolumeList"/>
     <ROW Dialog_="OutOfDiskDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Out of Disk Space" TextStyle="[DlgTitleFont]" Order="500" TextLocId="Control.Text.OutOfDiskDlg#Title" MsiKey="OutOfDiskDlg#Title"/>
@@ -283,12 +327,16 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Browse" Event="[_BrowseProperty]" Argument="APPDIR" Condition="1" Ordering="100" MsiKey="FolderDlg#Browse#[_BrowseProperty]#APPDIR#1"/>
     <ROW Dialog_="FolderDlg" Control_="Next" Event="SetTargetPath" Argument="APPDIR" Condition="1" Ordering="200" MsiKey="FolderDlg#Next#SetTargetPath#APPDIR#1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="NewDialog" Condition="AI_INSTALL" Ordering="201"/>
     <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="199"/>
-    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="204"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="NewDialog" Condition="AI_INSTALL" Ordering="204"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="NewDialog" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
+    <ROW Dialog_="NewDialog" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="NewDialog" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="NewDialog_1" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -315,57 +363,89 @@
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
+    <ROW Dialog="NewDialog" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
+    <ROW Dialog="NewDialog_1" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiExtComponent">
-    <ROW Extension="doc" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].doc" Feature_="doc" Options="39"/>
-    <ROW Extension="docx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].docx" Feature_="docx" Options="39"/>
-    <ROW Extension="dotx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].dotx" Feature_="dotx" Options="39"/>
-    <ROW Extension="fb2" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].fb2" Feature_="fb2" Options="39"/>
-    <ROW Extension="odt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odt" Feature_="odt" Options="39"/>
-    <ROW Extension="ott" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ott" Feature_="ott" Options="39"/>
-    <ROW Extension="rtf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].rtf" Feature_="rtf" Options="39"/>
-    <ROW Extension="txt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].txt" Feature_="txt" Options="39"/>
-    <ROW Extension="pdf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf" Feature_="pdf" Options="39"/>
-    <ROW Extension="pdf/a" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf/" Feature_="pdfa" Options="39"/>
-    <ROW Extension="html" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].html" Feature_="html" Options="39"/>
-    <ROW Extension="epub" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].epub" Feature_="epub" Options="39"/>
-    <ROW Extension="xps" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xps" Feature_="xps" Options="39"/>
-    <ROW Extension="djvu" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].djvu" Feature_="djvu" Options="50"/>
-    <ROW Extension="xml" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xml" Feature_="xml" Options="39"/>
-    <ROW Extension="ppt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ppt" Feature_="xps" Options="32"/>
-    <ROW Extension="pptx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pptx" Feature_="xps" Options="32"/>
-    <ROW Extension="potx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].potx" Feature_="xps" Options="32"/>
-    <ROW Extension="odp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odp" Feature_="xps" Options="32"/>
-    <ROW Extension="otp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].otp" Feature_="xps" Options="32"/>
-    <ROW Extension="xls" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xls" Feature_="xps" Options="32"/>
-    <ROW Extension="xlsx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xlsx" Feature_="xps" Options="32"/>
-    <ROW Extension="xltx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xltx" Feature_="xps" Options="32"/>
-    <ROW Extension="ods" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ods" Feature_="xps" Options="32"/>
-    <ROW Extension="ots" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ots" Feature_="xps" Options="32"/>
-    <ROW Extension="csv" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].csv" Feature_="xps" Options="32"/>
+    <ROW Extension="doc" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].doc" Feature_="doc" Options="38"/>
+    <ROW Extension="docx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].docx" Feature_="docx" Options="38"/>
+    <ROW Extension="dotx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].dotx" Feature_="dotx" Options="38"/>
+    <ROW Extension="fb2" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].fb2" Feature_="fb2" Options="38"/>
+    <ROW Extension="odt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odt" Feature_="odt" Options="38"/>
+    <ROW Extension="ott" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ott" Feature_="ott" Options="38"/>
+    <ROW Extension="rtf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].rtf" Feature_="rtf" Options="38"/>
+    <ROW Extension="txt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].txt" Feature_="txt" Options="38"/>
+    <ROW Extension="pdf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf" Feature_="pdf" Options="38"/>
+    <ROW Extension="pdf/a" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf/a" Feature_="pdfa" Options="38"/>
+    <ROW Extension="html" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].html" Feature_="html" Options="38"/>
+    <ROW Extension="epub" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].epub" Feature_="epub" Options="38"/>
+    <ROW Extension="xps" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xps" Feature_="xps" Options="38"/>
+    <ROW Extension="djvu" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].djvu" Feature_="djvu" Options="38"/>
+    <ROW Extension="xml" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xml" Feature_="xml" Options="38"/>
+    <ROW Extension="ppt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ppt" Feature_="ppt" Options="38"/>
+    <ROW Extension="pptx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pptx" Feature_="pptx" Options="38"/>
+    <ROW Extension="potx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].potx" Feature_="potx" Options="38"/>
+    <ROW Extension="odp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odp" Feature_="odp" Options="38"/>
+    <ROW Extension="otp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].otp" Feature_="otp" Options="38"/>
+    <ROW Extension="xls" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xls" Feature_="xls" Options="38"/>
+    <ROW Extension="xlsx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xlsx" Feature_="xlsx" Options="38"/>
+    <ROW Extension="xltx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xltx" Feature_="xltx" Options="38"/>
+    <ROW Extension="ods" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ods" Feature_="ods" Options="38"/>
+    <ROW Extension="ots" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ots" Feature_="ots" Options="38"/>
+    <ROW Extension="csv" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].csv" Feature_="csv" Options="38"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="csv" Component_="DesktopEditors.exe"/>
     <ROW Feature_="djvu" Component_="DesktopEditors.exe"/>
     <ROW Feature_="doc" Component_="DesktopEditors.exe"/>
     <ROW Feature_="docx" Component_="DesktopEditors.exe"/>
     <ROW Feature_="dotx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="epub" Component_="DesktopEditors.exe"/>
     <ROW Feature_="fb2" Component_="DesktopEditors.exe"/>
     <ROW Feature_="html" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="odp" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ods" Component_="DesktopEditors.exe"/>
     <ROW Feature_="odt" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="ott" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="pdf" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="pdfa" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="rtf" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="txt" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
     <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
     <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
     <ROW Feature_="AI64BitFiles" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="otp" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ots" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ott" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="pdf" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="pdfa" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="potx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ppt" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="pptx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="rtf" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="txt" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xls" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xlsx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xltx" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="desktopeditors.exe" SourcePath="..\..\res\icons\desktopeditors.ico" Index="0"/>
+    <ROW Name="djvu.exe" SourcePath="..\..\extras\projicons\res\djvu.ico" Index="0"/>
+    <ROW Name="doc.exe" SourcePath="..\..\extras\projicons\res\doc.ico" Index="0"/>
+    <ROW Name="docx.exe" SourcePath="..\..\extras\projicons\res\docx.ico" Index="0"/>
+    <ROW Name="ext.exe" SourcePath="..\..\extras\projicons\res\csv.ico" Index="0"/>
+    <ROW Name="html.exe" SourcePath="..\..\extras\projicons\res\html.ico" Index="0"/>
+    <ROW Name="odp.exe" SourcePath="..\..\extras\projicons\res\odp.ico" Index="0"/>
+    <ROW Name="ods.exe" SourcePath="..\..\extras\projicons\res\ods.ico" Index="0"/>
+    <ROW Name="odt.exe" SourcePath="..\..\extras\projicons\res\odt.ico" Index="0"/>
+    <ROW Name="pdf.exe" SourcePath="..\..\extras\projicons\res\pdf.ico" Index="0"/>
+    <ROW Name="ppt.exe" SourcePath="..\..\extras\projicons\res\ppt.ico" Index="0"/>
+    <ROW Name="pptx.exe" SourcePath="..\..\extras\projicons\res\pptx.ico" Index="0"/>
+    <ROW Name="rtf.exe" SourcePath="..\..\extras\projicons\res\rtf.ico" Index="0"/>
+    <ROW Name="txt.exe" SourcePath="..\..\extras\projicons\res\txt.ico" Index="0"/>
+    <ROW Name="xls.exe" SourcePath="..\..\extras\projicons\res\xls.ico" Index="0"/>
+    <ROW Name="xlsx.exe" SourcePath="..\..\extras\projicons\res\xlsx.ico" Index="0"/>
+    <ROW Name="xps.exe" SourcePath="..\..\extras\projicons\res\xps.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -396,32 +476,33 @@
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiProgIdComponent">
-    <ROW ProgId="[|Manufacturer].[|ProductName].csv"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].djvu"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].doc"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].docx"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].csv" Icon_="ext.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].djvu" Icon_="djvu.exe" MacDefaultDocType="true"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].doc" Icon_="doc.exe" MacDefaultDocType="true"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].docx" Icon_="docx.exe"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].dotx"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].epub"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].fb2"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].html"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].odp"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ods"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].odt"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].html" Icon_="html.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].odp" Icon_="odp.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].ods" Icon_="ods.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].odt" Icon_="odt.exe"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].otp"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].ots"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].ott"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].pdf"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].pdf" Icon_="pdf.exe"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].pdf/"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].pdf/a" Hidden="true"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].potx"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ppt"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].pptx"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].rtf"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].txt"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xls"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xlsx"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].ppt" Icon_="ppt.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].pptx" Icon_="pptx.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].rtf" Icon_="rtf.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].txt" Icon_="txt.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].xls" Icon_="xls.exe"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].xlsx" Icon_="xlsx.exe"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].xltx"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].xml"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xps"/>
+    <ROW ProgId="[|Manufacturer].[|ProductName].xps" Icon_="xps.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
