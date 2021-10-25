@@ -491,7 +491,6 @@
     <ROW ProgId="[|Manufacturer].[|ProductName].ots"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].ott"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].pdf" Icon_="pdf.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].pdf/"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].pdf/a" Hidden="true"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].potx"/>
     <ROW ProgId="[|Manufacturer].[|ProductName].ppt" Icon_="ppt.exe"/>
