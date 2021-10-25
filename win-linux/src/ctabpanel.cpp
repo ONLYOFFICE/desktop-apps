@@ -41,6 +41,11 @@ CTabPanel::~CTabPanel()
         delete m_pData, m_pData = nullptr;
 }
 
+void CTabPanel::setBackground(const QColor& c)
+{
+    m_pViewer->SetBackgroundCefColor(uchar(c.red()), uchar(c.green()), uchar(c.blue()));
+}
+
 QCefView * CTabPanel::view() const
 {
     return m_pViewer;

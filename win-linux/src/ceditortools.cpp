@@ -167,6 +167,13 @@ namespace CEditorTools
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
     {
+        int _file_format{0};
+        if ( opts.srctype == etLocalFile ) {
+            _file_format = CCefViewEditor::GetFileFormat(opts.wurl);
+            if ( _file_format == 0 )
+                return nullptr;
+        }
+
         CTabPanel * panel = CTabPanel::createEditorPanel();
 
         bool result = true;
@@ -179,7 +186,7 @@ namespace CEditorTools
                 params.append(L"&mode=view");
             }
 
-            result = panel->openLocalFile(opts.wurl, params);
+            panel->openLocalFile(opts.wurl, _file_format, params);
         } else
         if (opts.srctype == etRecoveryFile) {
             result = panel->openRecoverFile(opts.id);

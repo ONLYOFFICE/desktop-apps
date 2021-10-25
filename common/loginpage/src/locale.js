@@ -208,6 +208,13 @@ l10n.bg = {
     settScaling: 'Мащабиране на интерфейса',
     settOptScalingAuto: 'Автоматичен',
     aboutProFeaturesAvailable: 'С достъп до професионални функции'
+    ,settUITheme: 'Тема на интерфейса'
+    ,settOptThemeLight: 'Светъл'
+    ,settOptThemeClassicLight: 'Класически светъл'
+    ,settOptThemeDark: 'Тъмен'
+    ,settOptLaunchMode: 'Режим на стартиране на редактора'
+    ,settOptLaunchInTab: 'В раздела'
+    ,settOptLaunchInWindow: 'В прозореца'
 }
 
 l10n.cs = {
@@ -294,6 +301,13 @@ l10n.cs = {
     settScaling: 'Škálování rozhraní',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'S přístupem k profesionálním funkcím'
+    ,settUITheme: 'Motiv rozhraní'
+    ,settOptThemeLight: 'Světlý'
+    ,settOptThemeClassicLight: 'Klasický světlý'
+    ,settOptThemeDark: 'Tmavý'
+    ,settOptLaunchMode: 'Režimu spuštění editoru'
+    ,settOptLaunchInTab: 'Na kartě'
+    ,settOptLaunchInWindow: 'V okně'
 }
 
 l10n.et = {
@@ -380,6 +394,13 @@ l10n.et = {
     settScaling: 'Liidese skaleerimine',
     settOptScalingAuto: 'Automaatne',
     aboutProFeaturesAvailable: 'Juurdepääs pro funktsioonidele'
+    ,settUITheme: 'Liidese teema'
+    ,settOptThemeLight: 'Hele'
+    ,settOptThemeClassicLight: 'Klassikaline hele'
+    ,settOptThemeDark: 'Tume'
+    ,settOptLaunchMode: 'Toimetaja käivitusrežiim'
+    ,settOptLaunchInTab: 'Vahekaardil'
+    ,settOptLaunchInWindow: 'Eraldi aknas'
 }
 
 l10n.ja = {
@@ -466,6 +487,13 @@ l10n.ja = {
     settScaling: 'インターフェイスのスケーリング',
     settOptScalingAuto: '自動',
     aboutProFeaturesAvailable: 'プロ機能へのアクセス付き'
+    ,settUITheme: 'インターフェーステーマ'
+    ,settOptThemeLight: 'ライト'
+    ,settOptThemeClassicLight: '標準ライト'
+    ,settOptThemeDark: 'ダーク'
+    ,settOptLaunchMode: 'エディター起動モード'
+    ,settOptLaunchInTab: 'タブで'
+    ,settOptLaunchInWindow: 'ウィンドウで'
 }
 
 l10n.ko = {
@@ -552,6 +580,13 @@ l10n.ko = {
     settScaling: '인터페이스 스케일링',
     settOptScalingAuto: '자동',
     aboutProFeaturesAvailable: '프로 기능 액세스로 할 수 있는 것'
+    ,settUITheme: '인터페이스 테마'
+    ,settOptThemeLight: '라이트'
+    ,settOptThemeClassicLight: '클래식 라이트'
+    ,settOptThemeDark: '다크'
+    ,settOptLaunchMode: '편집기 실행 모드'
+    ,settOptLaunchInTab: '탭에서'
+    ,settOptLaunchInWindow: '창에서'
 }
 
 l10n.lo = {
@@ -635,6 +670,16 @@ l10n.lo = {
     settOptCheckNever: 'ບໍ່ເຄີຍ',
     settOptCheckDay: 'ທຸກໆມື້',
     settOptCheckWeek: 'ທຸກໆອາທິດ',
+    settScaling: 'ຂະຫຍາຍຮູບແບບ',
+    settOptScalingAuto: 'ໂອໂຕິ',
+    aboutProFeaturesAvailable: 'ເຂົ້າແບບໂປຣ'
+    ,settUITheme: 'ຮູບແບບ'
+    ,settOptThemeLight: 'ແຈ້ງ'
+    ,settOptThemeClassicLight: 'ແຈ້ງແບບຕົ້ນຕຳລັບ'
+    ,settOptThemeDark: 'ມືດ'
+    ,settOptLaunchMode: 'ຮູບແບບບັນນາທິການ'
+    ,settOptLaunchInTab: 'ໃນຊ່ອງ'
+    ,settOptLaunchInWindow: 'ໃນປ່ອງ'
 }
 
 l10n.lt = {
@@ -717,7 +762,17 @@ l10n.lt = {
     settCheckUpdates: 'Automatiškai ieškoti naujinių',
     settOptCheckNever: 'Niekada',
     settOptCheckDay: 'Kiekvieną dieną',
-    settOptCheckWeek: 'Kiekvieną savaitę'
+    settOptCheckWeek: 'Kiekvieną savaitę',
+    settScaling: 'Sąsajos mąstelio nustatymai',
+    settOptScalingAuto: 'Automatinis',
+    aboutProFeaturesAvailable: 'Su prieiga prie specialiųjų funkcijų'
+    ,settUITheme: 'Sąsajos tema'
+    ,settOptThemeLight: 'Šviesus'
+    ,settOptThemeClassicLight: 'Klasikinis Šviesus'
+    ,settOptThemeDark: 'Tamsus'
+    ,settOptLaunchMode: 'Redaguotojaso paleidimo rėžimas'
+    ,settOptLaunchInTab: 'Skirtuke'
+    ,settOptLaunchInWindow: 'Lange'
 }
 
 l10n.lv = {
@@ -804,6 +859,13 @@ l10n.lv = {
     settScaling: 'Interfeisa mērogošana',
     settOptScalingAuto: 'Automātiski',
     aboutProFeaturesAvailable: 'Ar piekļuvi profesionālajām funkcijām'
+    ,settUITheme: 'Interfeisa tēma'
+    ,settOptThemeLight: 'Gaisma'
+    ,settOptThemeClassicLight: 'Klasiska gaisma'
+    ,settOptThemeDark: 'Tumšs'
+    ,settOptLaunchMode: 'Redaktora palaišanas režīms'
+    ,settOptLaunchInTab: 'Cilnē'
+    ,settOptLaunchInWindow: 'Logā'
 }
 
 l10n.nl = {
@@ -886,86 +948,17 @@ l10n.nl = {
     settCheckUpdates: 'Controleer of er automatisch updates zijn',
     settOptCheckNever: 'Nooit',
     settOptCheckDay: 'Iedere dag',
-    settOptCheckWeek: 'Iedere week'
-}
-
-l10n.sk = {
-    welWelcome: 'Vitajte v ONLYOFFICE Desktop Editore!',
-    welDescr: 'Pracujte na dokumentoch v offline režime alebo sa pripojte k Vášmu cloudu: ONLYOFFICE, ownCloud, Nextcloud.',
-    btnConnect: 'Pripojiť',
-    textHavePortal: 'Už používate cloud?',
-    btnCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
-    btnAddPortal: 'Pridať cloud',
-    btnLogin: 'Prihlásiť sa',
-    btnBrowse: 'Prechádzať',
-    btnNext: 'Nasledujúci',
-    portalEmptyTitle: 'Pripojte sa k Vášmu cloudu',
-    portalEmptyDescr: 'Uchovávajte Dokumenty v cloude a majte k nim prístup kedykoľvek a odkiaľkoľvek. Zdieľajte a spolupracujte na nich. Chatujte vo svojich dokumentoch, pridávajte komentáre alebo ich zdieľajte na posúdenie.',
-    portalEmptyAdv1: 'Ešte nemáte cloud účet? Buďte online so službou ONLYOFFICE Cloud Service a bezplatne vyskúšajte možnosti spolupráce.',
-    portalListTitle: 'Pripojené cloud',
-    textNoFiles: 'Neexistujú žiadne súbory',
-    listRecoveryTitle:'Obnoviť súbory',
-    listRecentFileTitle:'Posledné súbory',
-    listRecentDirTitle:'Posledné zložky',
-    menuFileOpen: 'Otvoriť',
-    menuFileExplore: 'Zobraziť v priečinku',
-    menuRemoveModel: 'Vymazať zo zoznamu',
-    menuClear: 'Vymazať',
-    menuLogout: 'Odhlásiť sa',
-    textMyComputer: 'Môj počítač',
-    textThrough: 'skrz',
-    linkForgotPass: 'Zabudnuté heslo?',
-    linkCreatePortal: 'Vytvoriť ONLYOFFICE cloud',
-    linkResend: 'Zadajte kód znovu',
-    linkChangePhone: 'Zmeňte telefónne číslo',
-    loginTitleStart: 'Pripojiť sa k kancelárie cloud',
-    loginTitleConnectTo: 'Prihlásiť sa $1',
-    loginTitleAssignPhone: 'Zadajte číslo mobilného telefónu',
-    loginTitleApplyCode: 'Potvrďte telefónne číslo',
-    errLogin: 'Nesprávny e-mail alebo heslo',
-    errLoginPortal: 'Skontrolovať adresu URL kancelárie cloud',
-    errLoginEmail: 'Skontrolovať e-mailovú adresu',
-    errLoginServer: 'Nesprávna odpoveď servera počas prihlasovania',
-    errLoginAuth: 'Chyba v informačnom dopyte používateľa',
-    errLoginPass: 'Skontrolovať heslo',
-    errLoginWrongPhone: 'Chybný formát telefónneho čísla',
-    pshPortal: 'Adresa URL kancelárie cloud',
-    pshEmail: 'e-mail',
-    pshPass: 'heslo',
-    pshPhone: 'telefónne číslo',
-    pshCode: 'kód z textovej správy',
-    loginNoteAssignPhone: 'Na dodatočné zabezpečenie ONLYOFFICE cloud je zapnuté dvojfaktorové overenie. Ak chcete pokračovať v práci na kancelárie cloud, zadajte svoje číslo mobilného telefónu. Číslo mobilného telefónu musí byť zadané pomocou medzinárodného formátu s kódom krajiny.',
-    loginNoteApplyCode: 'Dvojfaktorové overenie je povolené. Kód bol odoslaný na číslo $1.',    
-    newDoc: 'DOKUMENT',
-    newXlsx: 'ZOŠIT',
-    newPptx: 'PREZENTÁCIA',
-    actCreateNew: 'Vytvoriť nový',
-    actRecentFiles: 'Posledné súbory',
-    actOpenLocal: 'Otvoriť lokálny súbor',
-    actConnectTo: 'Pripojte cloud',
-    actActivate: 'Aktivovať',
-    actAbout: 'O ONLYOFFICE',
-    actSettings: 'Nastavenia',
-    licKeyHolder: 'vstupný aktivačný kľúč',
-    btnActivate: 'Aktivovať',
-    licGetLicense: 'Získať licenciu',
-    licPanelTitle: 'Zadať licenčný kľúč',
-    licPanelDescr: 'Váš produktový kľúč bol odoslaný na e-mailovú adresu uvedenú pri nákupe.',
-    checkUpdates: 'Skontrolovať aktualizácie',
-    strVersion: 'verzia',
-    emptySlide1Title: 'Zdieľajte a spolupracujte',
-    emptySlide1Text: 'Vyberte medzi Fast alebo Strict módom editácie dokumentov online v reálnom čase, komunikujte vo Vašich dokumentoch, pridávajte alebo zdieľajte komentáre v revíziách.',
-    emptySlide2Title: 'Zobrazte alebo obnovte predchádzajúce verzie',
-    emptySlide2Text: 'Obnovite alebo jednoducho zobrazte predchádzajúce verzie Vašich dokumentov, sledujte zmeny a ich autorov.',
-    emptySlide3Title: 'Uložte dáta do cloud-u',
-    emptySlide3Text: 'Uložte Vaše dokumenty v ONLYOFFICE cloude a pristupujte k nim kedykoľvek, nech ste už kdekoľvek.',
-    settUserName: 'Používateľské meno',
-    settResetUserName: 'Obnoviť pôvodné nastavenia',
-    settOpenMode: 'Otvorte dokument v režime ukážky',
-    setBtnApply: 'Použiť',
-    settLanguage: 'Jazyk rozhrania',
-    settAfterRestart: 'Prejaví sa po reštarte aplikácie',
-    settShowEncryptOpts: 'Skúšajte end-to-end šifrovanie'
+    settOptCheckWeek: 'Iedere week',
+    settScaling: 'Interface schalen',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Met toegang tot pro functionaliteiten'
+    ,settUITheme: 'Interface thema'
+    ,settOptThemeLight: 'Licht'
+    ,settOptThemeClassicLight: 'Klassiek Licht'
+    ,settOptThemeDark: 'Dark'
+    ,settOptLaunchMode: 'Editor startmodus'
+    ,settOptLaunchInTab: 'In tabblad'
+    ,settOptLaunchInWindow: 'In venster'
 }
 
 l10n.ru = {
@@ -1056,6 +1049,10 @@ l10n.ru = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Классическая светлая'
     ,settOptThemeDark: 'Темная'
+    ,settOptLaunchMode: 'Режим запуска редактора'
+    ,settOptLaunchInTab: 'Во вкладке'
+    ,settOptLaunchInWindow: 'В окне'
+
 }
 
 l10n.de = {
@@ -1146,7 +1143,10 @@ l10n.de = {
     ,settOptThemeLight: 'Hell'
     ,settOptThemeClassicLight: 'Klassisch Hell'
     ,settOptThemeDark: 'Dunkel'
-};
+    ,settOptLaunchMode: 'Editor wird geöffnet'
+    ,settOptLaunchInTab: 'in einer Registerkarte'
+    ,settOptLaunchInWindow: 'in einem Fenster'
+}
 
 l10n.it_IT = {
     welWelcome: 'Benvenuti su ONLYOFFICE Desktop Editors!',
@@ -1236,7 +1236,10 @@ l10n.it_IT = {
     ,settOptThemeLight: 'Chiaro'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Scuro'
-};
+    ,settOptLaunchMode: 'Modalità lancio di edito'
+    ,settOptLaunchInTab: 'Nella scheda'
+    ,settOptLaunchInWindow: 'Nella finestra'
+}
 
 l10n.fr = {
     welWelcome: 'Bienvenue sur ONLYOFFICE Desktop Editors !',
@@ -1326,7 +1329,10 @@ l10n.fr = {
     ,settOptThemeLight: 'Clair'
     ,settOptThemeClassicLight: 'Classique clair'
     ,settOptThemeDark: 'Sombre'
-};
+    ,settOptLaunchMode: 'Mode de lancement de l\'éditeur'
+    ,settOptLaunchInTab: 'Dans un onglet'
+    ,settOptLaunchInWindow: 'Dans une fenêtre'
+}
 
 l10n.es = {
     welWelcome: '¡Bienvenido a ONLYOFFICE Desktop Editors!',
@@ -1374,7 +1380,7 @@ l10n.es = {
     pshPhone: 'número de teléfono',
     pshCode: 'código del mensaje de texto',
     loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de nube ONLYOFFICE adicional. Introduzca su número de móvil para continuar el trabajo en el oficina en la nube. El número de móvil debe introducirse usando un formato internacional con el código de país.',
-    loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',    
+    loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',
     newDoc: 'DOCUMENTO',
     newXlsx: 'LIBRO DE EXCEL',
     newPptx: 'PRESENTACIÓN',
@@ -1412,7 +1418,10 @@ l10n.es = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Clásico claro'
     ,settOptThemeDark: 'Oscuro'
-};
+    ,settOptLaunchMode: 'Modo de inicio del editor'
+    ,settOptLaunchInTab: 'En pestaña'
+    ,settOptLaunchInWindow: 'En ventana'
+}
 
 l10n.pl = {
     welWelcome: 'Witaj w ONLYOFFICE Desktop Editiors!',
@@ -1498,6 +1507,13 @@ l10n.pl = {
     settScaling: 'Skalowanie interfejsu',
     settOptScalingAuto: 'Automatycznie',
     aboutProFeaturesAvailable: 'Z dostępem do funkcji pro'
+    ,settUITheme: 'Motyw interfejsu'
+    ,settOptThemeLight: 'Jasny'
+    ,settOptThemeClassicLight: 'Klasyczny'
+    ,settOptThemeDark: 'Ciemny'
+    ,settOptLaunchMode: 'Tryb uruchamiania Edytora'
+    ,settOptLaunchInTab: 'W nowej zakładce'
+    ,settOptLaunchInWindow: 'W nowym oknie'
 }
 
 l10n.pt_BR = {
@@ -1581,6 +1597,13 @@ l10n.pt_BR = {
     settScaling: 'Escalação da interface',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Com acesso a recursos pro'
+    ,settUITheme: 'Tema da interface'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clássico'
+    ,settOptThemeDark: 'Escuro'
+    ,settOptLaunchMode: 'Modo de inicialização do editor'
+    ,settOptLaunchInTab: 'Na guia'
+    ,settOptLaunchInWindow: 'Na janela'
 }
 
 l10n.pt_PT = {
@@ -1667,6 +1690,13 @@ l10n.pt_PT = {
     settScaling: 'Escala da interface',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Com acesso a recursos profissionais'
+    ,settUITheme: 'Tema da Interface'
+    ,settOptThemeLight: 'Claro'
+    ,settOptThemeClassicLight: 'Claro clássico'
+    ,settOptThemeDark: 'Escuro'
+    ,settOptLaunchMode: 'Modo de lançamento do editor'
+    ,settOptLaunchInTab: 'Em separador'
+    ,settOptLaunchInWindow: 'Em janela'
 }
 
 l10n.ro = {
@@ -1753,6 +1783,13 @@ l10n.ro = {
     settScaling: 'Scalare a interfeţei',
     settOptScalingAuto: 'Automat',
     aboutProFeaturesAvailable: 'Cu acces la caracteristicile pro'
+    ,settUITheme: 'Temă interfeței'
+    ,settOptThemeLight: 'Luminos'
+    ,settOptThemeClassicLight: 'Clasic Luminos'
+    ,settOptThemeDark: 'Întunecat'
+    ,settOptLaunchMode: 'Modul de lansare al editorului'
+    ,settOptLaunchInTab: 'În filă'
+    ,settOptLaunchInWindow: 'În fereastră'
 }
 
 l10n.sk = {
@@ -1839,6 +1876,13 @@ l10n.sk = {
     settScaling: 'Zmena mierky rozhrania',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'S prístupom k profesionálnym funkciám'
+    ,settUITheme: 'Téma rozhrania'
+    ,settOptThemeLight: 'Svetlá'
+    ,settOptThemeClassicLight: 'Klasická svetlá'
+    ,settOptThemeDark: 'Temná'
+    ,settOptLaunchMode: 'Režim spustenia editora'
+    ,settOptLaunchInTab: 'V tabuľke'
+    ,settOptLaunchInWindow: 'V okne'
 }
 
 l10n.sl = {
@@ -1925,6 +1969,13 @@ l10n.sl = {
     settScaling: 'Skaliranje vmesnika',
     settOptScalingAuto: 'Samodejno',
     aboutProFeaturesAvailable: 'Z dostopom do pro možnosti'
+    ,settUITheme: 'Tema vmesnika'
+    ,settOptThemeLight: 'Svetla'
+    ,settOptThemeClassicLight: 'Klasična svetla'
+    ,settOptThemeDark: 'Temna'
+    ,settOptLaunchMode: 'Način kosila urednika'
+    ,settOptLaunchInTab: 'V zavihku'
+    ,settOptLaunchInWindow: 'V oknu'
 }
 
 l10n.sv = {
@@ -2011,6 +2062,13 @@ l10n.sv = {
     settScaling: 'Gränssnittsskalning',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Med tillgång till professionella funktioner'
+    ,settUITheme: 'Gränssnittets tema'
+    ,settOptThemeLight: 'Ljust'
+    ,settOptThemeClassicLight: 'Klassiskt ljust'
+    ,settOptThemeDark: 'Mörkt'
+    ,settOptLaunchMode: 'Redigerarens startläge'
+    ,settOptLaunchInTab: 'I flik'
+    ,settOptLaunchInWindow: 'I fönster'
 }
 
 l10n.tr = {
@@ -2097,6 +2155,13 @@ l10n.tr = {
     settScaling: 'Arayüz ölçeklendirme',
     settOptScalingAuto: 'Otomatik',
     aboutProFeaturesAvailable: 'Pro özelliklere erişim ile'
+    ,settUITheme: 'Arayüz teması'
+    ,settOptThemeLight: 'Aydınlık'
+    ,settOptThemeClassicLight: 'Klasik Aydınlık'
+    ,settOptThemeDark: 'Karanlık'
+    ,settOptLaunchMode: 'Editörün açılış modu'
+    ,settOptLaunchInTab: 'Sekmed'
+    ,settOptLaunchInWindow: 'Pencerede'
 }
 
 l10n.uk = {
@@ -2183,6 +2248,13 @@ l10n.uk = {
     settScaling: 'Масштабування інтерфейсу',
     settOptScalingAuto: 'Автоматично',
     aboutProFeaturesAvailable: 'З доступом до професійних можливостей'
+    ,settUITheme: 'Тема інтерфейсу'
+    ,settOptThemeLight: 'Світла'
+    ,settOptThemeClassicLight: 'Класична світла'
+    ,settOptThemeDark: 'Темна'
+    ,settOptLaunchMode: 'Режим запуску редакторів'
+    ,settOptLaunchInTab: 'У вкладці'
+    ,settOptLaunchInWindow: 'У вікні'
 }
 
 l10n.vi = {
@@ -2265,7 +2337,17 @@ l10n.vi = {
     settCheckUpdates: 'Tự động kiểm tra cập nhật',
     settOptCheckNever: 'Không bao giờ',
     settOptCheckDay: 'Hàng ngày',
-    settOptCheckWeek: 'Hàng tuần'
+    settOptCheckWeek: 'Hàng tuần',
+    settScaling: 'Chia tỷ lệ giao diện',
+    settOptScalingAuto: 'Tự động',
+    aboutProFeaturesAvailable: 'Với quyền truy cập vào các tính năng cao cấp'
+    ,settUITheme: 'Chủ đề giao diện'
+    ,settOptThemeLight: 'Sáng'
+    ,settOptThemeClassicLight: 'Sáng truyền thống'
+    ,settOptThemeDark: 'Tối'
+    ,settOptLaunchMode: 'Chế độ khởi chạy của người chỉnh sửa'
+    ,settOptLaunchInTab: 'Trong tab'
+    ,settOptLaunchInWindow: 'Trong window'
 }
 
 l10n.zh_CN = {
@@ -2344,7 +2426,21 @@ l10n.zh_CN = {
     setBtnApply: '应用',
     settLanguage: '界面语言',
     settAfterRestart: '选项将于应用程序重启后开始启用',
-    settShowEncryptOpts: '测试端到端加密'
+    settShowEncryptOpts: '测试端到端加密',
+    settCheckUpdates: '自动检查更新',
+    settOptCheckNever: '从不',
+    settOptCheckDay: '每天',
+    settOptCheckWeek: '每周',
+    settScaling: '界面缩放',
+    settOptScalingAuto: '自动',
+    aboutProFeaturesAvailable: '可访问Pro功能'
+    ,settUITheme: '界面主题'
+    ,settOptThemeLight: '浅色'
+    ,settOptThemeClassicLight: '经典浅色'
+    ,settOptThemeDark: '深色'
+    ,settOptLaunchMode: '编辑器启动模式'
+    ,settOptLaunchInTab: '标签页中'
+    ,settOptLaunchInWindow: '窗口中'
 }
 
 l10n.zh_HK = {
@@ -2431,6 +2527,1122 @@ l10n.zh_HK = {
     settScaling: '接口缩放',
     settOptScalingAuto: '自动',
     aboutProFeaturesAvailable: '可以访问pro功能'
+    ,settUITheme: '介面主題'
+    ,settOptThemeLight: '明亮'
+    ,settOptThemeClassicLight: '經典明亮'
+    ,settOptThemeDark: '黑暗'
+    ,settOptLaunchMode: '編輯者的啟動模式'
+    ,settOptLaunchInTab: '標籤中'
+    ,settOptLaunchInWindow: '視窗中'
+}
+
+l10n.hy = {
+    welWelcome: 'Բարի գալուստ ONLYOFFICE աշխատանքային սեղանի խմբագրիչներ',
+    welDescr: 'Աշխատեք փաստաթղթերի վրա օֆֆլայն կամ միացրեք Ձեր փաթեթը Ձեր ամպին՝ ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Միանալ հիմա',
+    textHavePortal: 'Արդեն օգտագործու՞մ եք ամպ։',
+    btnCreatePortal: 'Ստեղծել ONLYOFFICE ամպ',
+    btnAddPortal: 'Ավելացնել ամպ',
+    btnLogin: 'Մուտք գործել',
+    btnBrowse: 'Զննել',
+    btnNext: 'Հաջորդ',
+    portalEmptyTitle: 'Միանալ Ձեր ամպին',
+    portalEmptyDescr: 'Պահպանեք Ձեր փաստաթղթերը ամպում, և դրանք ցանկացած պահի ցանկացած վայրում հասանելի կլինեն։  Կիսվեք և համագործակցեք դրանց միջոցով։ Զրուցեք Ձեր փաստաթղթի մեջ, ավելացրեք մեկնաբանություններ կամ կիսվեք դրանով՝ կարծիք ստանալու համար։',
+    portalEmptyAdv1: 'Դեռևս չունե՞ք ամպային հաշիվ։ Դարձեք առցանց ONLYOFFICE ամպային ծառայության հետ և <br />անվճար փորձեք համագործակցային հնարավորությունները։',
+    portalListTitle: 'Միացված ամպեր',
+    textNoFiles: 'Ֆայլեր չկան',
+    listRecoveryTitle:'Վերականգնել ֆայլերը',
+    listRecentFileTitle:'Ամենանոր ֆայլերը',
+    listRecentDirTitle:'Ամենանոր թղթապանակները',
+    menuFileOpen: 'Բացել',
+    menuFileExplore: 'Ցույց տալ թղթապանակում',
+    menuRemoveModel: 'Հեռացնել բոլորը ցանկից',
+    menuClear: 'Ջնջել',
+    menuLogout: 'Դուրս գալ',
+    textMyComputer: 'Իմ համակարգիչը',
+    textThrough: 'միջով',
+    linkForgotPass: 'Մոռացե՞լ եք գաղտնաբառը',
+    linkCreatePortal: 'Ստեղծել ONLYOFFICE ամպ',
+    linkResend: 'Կրկին ուղարկել ծածկագիրը',
+    linkChangePhone: 'Փոխել հեռախոսահամարը',
+    loginTitleStart: 'Միանալ ամպային office-ին',
+    loginTitleConnectTo: 'Մտնել $1',
+    loginTitleAssignPhone: 'Մուտքագրել բջջային հեռախոսի համարը',
+    loginTitleApplyCode: 'Հաստատել հեռախոսահամարը',
+    errLogin: 'Սխալ էլ․ հասցե կամ գաղտնաբառ',
+    errLoginPortal: 'Ստուգել ամպային office-ի URL-ն',
+    errLoginEmail: 'Ստուգել էլ․ հասցեն',
+    errLoginServer: 'Սերվերի սխալ պատասխան՝ մուտքի ժամանակ',
+    errLoginAuth: 'Սխալ՝ կապված օգտագործողի տվյալների հարցման հետ',
+    errLoginPass: 'Ստուգել գաղտնաբառը',
+    errLoginWrongPhone: 'Հեռախոսահամարի սխալ ֆորմատ',
+    pshPortal: 'Ամպային office-ի URL',
+    pshEmail: 'էլ․ փոստ',
+    pshPass: 'գաղտնաբառ',
+    pshPhone: 'հեռախոսահամար',
+    pshCode: 'տեքստային հաղորդագրությամբ ուղարկված ծածկագիրը',
+    loginNoteAssignPhone: 'Երկու գործոնով վավերացումն միացված է, որպեսզի ապահովվի ONLYOFFICE ամպի լրացուցիչ անվտանգություն։ Մուտքագրեք Ձեր հեռախոսահամարը, որպեսզի շարունակեք աշխատել ամպային office-ում։ Հեռախոսահամարը պետք է մուտքագրվի երկրի կոդով՝ ըստ միջազգային ֆորմատի։',
+    loginNoteApplyCode: 'Միացված է երկու գործոնով վավերացումը։ Ծածկագիրն ուղարկվել է $1 համարին։',
+    newDoc: 'ՓԱՍՏԱԹՈՒՂԹ',
+    newXlsx: 'ԱՂՅՈՒՍԱԿ',
+    newPptx: 'ՇՆՈՐՀԱՆԴԵՍ',
+    actCreateNew: 'Ստեղծել նորը',
+    actRecentFiles: 'Ամենանոր ֆայլերը',
+    actOpenLocal: 'Բացել լոկալ ֆայլը',
+    actConnectTo: 'Միանալ ամպին',
+    actActivate: 'Ակտիվացնել',
+    actAbout: 'Մասին',
+    actSettings: 'Կարգավորումներ',
+    licKeyHolder: 'մուտքի ակտիվացման ծածկագիր',
+    btnActivate: 'Ակտիվացնել',
+    licGetLicense: 'Ստանալ լիցենզիան հիմա',
+    licPanelTitle: 'Մուտքագրել ապրանքի բանալին',
+    licPanelDescr: 'Ձեր ապրանքի բանալին ուղարկվել է գնման ժամանակ նշված էլ․ հասցեին։',
+    checkUpdates: 'Ստուգել թարմացումները',
+    strVersion: 'տարբերակ',
+    emptySlide1Title: 'Համօգտագործել & համագործակցել',
+    emptySlide1Text: 'Ընտրեք Արագ կամ Իրական ժամանակում արվող համատեղ խմբագրում, զրուցեք Ձեր փաստաթղթի մեջ, ավելացրեք մեկնաբանություններ կամ կիսվեք դրանով՝ կարծիք ստանալու համար։',
+    emptySlide2Title: 'Դիտել կամ վերականգնել նախորդ տարբերակները։',
+    emptySlide2Text: 'Վերականգնել կամ պարզապես դիտել Ձեր փաստաթղթի նախկին տարբերակները, փոփոխություններին (track changes) և դրանց հեղինակներին։',
+    emptySlide3Title: 'Պահպանել ամպում',
+    emptySlide3Text: 'Պահպանեք Ձեր փաստաթղթերը ONLYOFFICE ամպում, և դրանք հասանելի կլինի ցանկացած պահի ցանկացած վայրից։',
+    settUserName: 'Օգտագործողի անուն',
+    settResetUserName: 'Դարձնել լռելյայն',
+    settOpenMode: 'Փաստաթուղթը բացել նախկին ռեժիմով',
+    setBtnApply: 'Կիրարկել',
+    settLanguage: 'Ինտերֆեյսի լեզու',
+    settAfterRestart: 'Ընտրանքի կկիրարկվի հավելվածի վերագործարկումից հետո',
+    settShowEncryptOpts: 'End-to-end ծածկագրման փորձարկում',
+    settCheckUpdates: 'Ավտոմատ կերպով ստուգել թարմացումները',
+    settOptCheckNever: 'Երբեք',
+    settOptCheckDay: 'Ամեն օր',
+    settOptCheckWeek: 'Ամեն շաբաթ',
+    settScaling: 'Ինտերֆեյսի մասշտաբավորում',
+    settOptScalingAuto: 'Ավտոմատ',
+    aboutProFeaturesAvailable: 'Պրոֆեսիոնալ գործառույթների հասանելիությամբ'
+    ,settUITheme: 'Ինտերֆեյսի թեմա'
+    ,settOptThemeLight: 'Բաց'
+    ,settOptThemeClassicLight: 'Դասական բաց'
+    ,settOptThemeDark: 'Մուգ'
+    ,settOptLaunchMode: 'Խմբագրի գործարկման ռեժիմ'
+    ,settOptLaunchInTab: 'Ներդիրում'
+    ,settOptLaunchInWindow: 'Պատուհանում'
+}
+
+l10n.ca = {
+    welWelcome: 'Benvingut/da a ONLYOFFICE Desktop Editors!',
+    welDescr: 'Treballa sense connexió als teus documents o connecta la suite al teu núvol: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Connecta ara',
+    textHavePortal: 'Ja utilitzeu un núvol?',
+    btnCreatePortal: 'Crea un núvol ONLYOFFICE',
+    btnAddPortal: 'Afegeix núvol',
+    btnLogin: 'Entra',
+    btnBrowse: 'Navega',
+    btnNext: 'Següent',
+    portalEmptyTitle: 'Connecta al teu núvol',
+    portalEmptyDescr: 'Emmagatzema els teus documents al núvol i accedeix-hi a qualsevol moment, desde qualsevol lloc. Comparteix i col·labora amb ells. Xateja al teu document, afegeix comentaris o comparteix-los per a la seva revisió.',
+    portalEmptyAdv1: 'Encara no tens un compte de núvol? Entra en línia amb ONLYOFFICE Cloud Service i<br />prova les capacitats col·laboratives de franc.',
+    portalListTitle: 'Núvols connectats',
+    textNoFiles: 'No hi ha arxius',
+    listRecoveryTitle:'Recuperar arxius',
+    listRecentFileTitle:'Arxius recents',
+    listRecentDirTitle:'Carpetes recents',
+    menuFileOpen: 'Obrir',
+    menuFileExplore: 'Mostra a la carpeta',
+    menuRemoveModel: 'Eliminar de la llista',
+    menuClear: 'Neteja',
+    menuLogout: 'Tancar sessió',
+    textMyComputer: 'El meu ordinador',
+    textThrough: 'A través',
+    linkForgotPass: 'Has oblidat la contrasenya?',
+    linkCreatePortal: 'Crea un núvol ONLYOFFICE',
+    linkResend: 'Torneu a enviar el codi',
+    linkChangePhone: 'Canvia el numero de telèfon',
+    loginTitleStart: 'Connecta\'t a l\'office del núvol',
+    loginTitleConnectTo: 'Inicia sessió a $1',
+    loginTitleAssignPhone: 'Introduïu el número de telèfon mòbil',
+    loginTitleApplyCode: 'Confirma el número de telèfon',
+    errLogin: 'Correu electrònic o contrasenya incorrecta',
+    errLoginPortal: 'Comproveu l\'URL de l\'oficina del núvol',
+    errLoginEmail: 'Comproveu l\'adreça de correu electrònic',
+    errLoginServer: 'Resposta del servidor incorrecta durant l\'inici de sessió',
+    errLoginAuth: 'S\'ha produït un error a la consulta d\'informació de l\'usuari',
+    errLoginPass: 'Comproveu la contrasenya',
+    errLoginWrongPhone: 'Format de número de telèfon incorrecte',
+    pshPortal: 'URL de l\'oficina del núvol',
+    pshEmail: 'correu electrònic', 
+    pshPass: 'contrasenya',
+    pshPhone: 'número de telèfon',
+    pshCode: 'codi del missatge de text',
+    loginNoteAssignPhone: 'L\'autenticació de dos factors està habilitada per proporcionar seguretat addicional al núvol de ONLYOFFICE. Introduïu el número de telèfon mòbil per continuar treballant a l\'oficina del núvol. Cal introduir el número de telèfon mòbil mitjançant un format internacional amb codi de país.',
+    loginNoteApplyCode: 'L\'autenticació de dos factors està habilitada. El codi ha estat enviat per missatge de text al número $1',
+    newDoc: 'DOCUMENT',
+    newXlsx: 'FULL DE CÀLCUL',
+    newPptx: 'PRESENTACIÓ',
+    actCreateNew: 'Crear nou',
+    actRecentFiles: 'Arxius recents',
+    actOpenLocal: 'Obre fitxer local',
+    actConnectTo: 'Connecta al núvol',
+    actActivate: 'Activa',
+    actAbout: 'Sobre',
+    actSettings: 'Configuració',
+    licKeyHolder: 'clau d\'activació d\'entrada',
+    btnActivate: 'Activa',
+    licGetLicense: 'Obtenir ara la teva llicencia',
+    licPanelTitle: 'Introduïu la clau de producte',
+    licPanelDescr: 'La vostra clau de producte s\'ha enviat a l\'adreça de correu electrònic especificada durant la compra.',
+    checkUpdates: 'Cercar actualitzacions',
+    strVersion: 'versió',
+    emptySlide1Title: 'Compartir i col·laborar',
+    emptySlide1Text: 'Trieu entre una coedició ràpida o estricta en temps real, xatejar al document, afegir comentaris o compartir per a la seva revisió.',
+    emptySlide2Title: 'Veure o restaurar les versions anteriors',
+    emptySlide2Text: 'Restaureu o només visualitzeu les versions anteriors del document, feu el seguiment dels canvis i els seus autors.',
+    emptySlide3Title: 'Emmagatzema al núvol',
+    emptySlide3Text: 'Emmagatzema els teus documents al núvol ONLYOFFICE i accedeix-hi en qualsevol moment, des de qualsevol lloc.',
+    settUserName: 'Nom d\'usuari',
+    settResetUserName: 'Restableix el valor predeterminat',
+    settOpenMode: 'Obriu el document en mode de previsualització',
+    setBtnApply: 'Aplicar',
+    settLanguage: 'Llenguatge de la interfície',
+    settAfterRestart: 'L\'opció s\'aplicarà després de reiniciar l\'aplicació',
+    settShowEncryptOpts: 'Prova el xifratge de punta a extrem',
+    settCheckUpdates: 'Comproveu les actualitzacions automàticament',
+    settOptCheckNever: 'Mai',
+    settOptCheckDay: 'Cada dia',
+    settOptCheckWeek: 'Cada setmana',
+    settScaling: 'Escala d\'interfície',
+    settOptScalingAuto: 'Automatic',
+    aboutProFeaturesAvailable: 'Amb accés a les funcions pro'
+}
+
+l10n.hr = {
+    welWelcome: 'Dobrodošli u ONLYOFFICE uređivače radne površine!',
+    welDescr: 'Radite na dokumentima izvanmrežno ili povežite paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Povežite sada',
+    textHavePortal: 'Već koristite oblak?',
+    btnCreatePortal: 'Stvorite ONLYOFFICE oblak',
+    btnAddPortal: 'Dodajte oblak',
+    btnLogin: 'Prijava',
+    btnBrowse: 'Pregled',
+    btnNext: 'Sljedeća',
+    portalEmptyTitle: 'Povežite se na svoj oblak',
+    portalEmptyDescr: 'Pohranite svoje dokumente u oblak i pristupite im bilo kad i bilo gdje. Dijelite ih i zajednički radite na njima. Razgovarajte u svom dokumentu, dodajte komentare ili ga podijelite za reviziju.',
+    portalEmptyAdv1: 'Još\nemate svoj račun za oblak? Budite na mreži uz uslugu ONLYOFFICE oblaka i <br />isprobajte suradničke mogućnosti besplatno.',
+    portalListTitle: 'Povezani oblaci',
+    textNoFiles: 'Nema nikakvih datoteka',
+    listRecoveryTitle:'Oporavi datoteke',
+    listRecentFileTitle:'Nedavne datoteke',
+    listRecentDirTitle:'Nedavne mape',
+    menuFileOpen: 'Otvori',
+    menuFileExplore: 'Prikaži u mapi',
+    menuRemoveModel: 'Ukloni s liste',
+    menuClear: 'Očisti',
+    menuLogout: 'Odjava',
+    textMyComputer: 'Moje računalo',
+    textThrough: 'kroz',
+    linkForgotPass: 'Zaboravljena lozinka?',
+    linkCreatePortal: 'Stvorite ONLYOFFICE oblak',
+    linkResend: 'Ponovno pošalji kod',
+    linkChangePhone: 'Promijenite broj telefona',
+    loginTitleStart: 'Povežite se na uredski oblak',
+    loginTitleConnectTo: 'Prijava na $1',
+    loginTitleAssignPhone: 'Unesite broj mobilnog telefona',
+    loginTitleApplyCode: 'Potvrdite broj telefona',
+    errLogin: 'Pogrešna adresa e-pošte ili lozinka',
+    errLoginPortal: 'Provjerite URL uredskog oblaka',
+    errLoginEmail: 'Provjerite adresu e-pošte',
+    errLoginServer: 'Neispravan odgovor poslužitelja tijekom prijave',
+    errLoginAuth: 'Pogreška u podacima korisničkih upita',
+    errLoginPass: 'Provjerite lozinku',
+    errLoginWrongPhone: 'Pogrešan format broja telefona',
+    pshPortal: 'URL uredskog oblaka',
+    pshEmail: 'e-pošta',
+    pshPass: 'lozinka',
+    pshPhone: 'broj telefona',
+    pshCode: 'kod iz tekstualne poruke',
+    loginNoteAssignPhone: 'Dvostruka provjera autentičnosti omogućena je kako bi pružila dodatnu sigurnost u oblaku ONLYOFFICE. Unesite svoj broj mobilnog telefona da biste nastavili raditi u uredskom oblaku. Broj mobilnog telefona treba upisati u međunarodnom formatu s oznakom države.',
+    loginNoteApplyCode: 'Dvostruka provjera autentičnosti je omogućena. Kod je poslan na $1 broj.',
+    newDoc: 'DOKUMENT',
+    newXlsx: 'TABLICA',
+    newPptx: 'PREZENTACIJA',
+    actCreateNew: 'Stvori novo',
+    actRecentFiles: 'Nedavne datoteke',
+    actOpenLocal: 'Otvori lokalnu datoteku',
+    actConnectTo: 'Povežite se s oblakom',
+    actActivate: 'Aktiviraj',
+    actAbout: 'O nama',
+    actSettings: 'Postavke',
+    licKeyHolder: 'ključ za aktivaciju ulaznih podataka',
+    btnActivate: 'Aktiviraj',
+    licGetLicense: 'Nabavi licencu sada',
+    licPanelTitle: 'Unesite ključ proizvoda',
+    licPanelDescr: 'Vaš ključ proizvoda poslan je na adresu e-pošte koju ste naveli tijekom kupnje.',
+    checkUpdates: 'Provjerite ima li ažuriranja',
+    strVersion: 'verzija',
+    emptySlide1Title: 'Dijelite & surađujte',
+    emptySlide1Text: 'Odaberite između brzog ili striktnog zajedničkog uređivanja u stvarnom vremenu, razgovarajte u svom dokumentu, dodajte komentare ili ga podijelite za reviziju.',
+    emptySlide2Title: 'Pregledajte ili oporavite prethodne verzije',
+    emptySlide2Text: 'Oporavite ili pregledajte prethodne verzije dokumenta, pratite promjene i njihove autore.',
+    emptySlide3Title: 'Pohrani na oblak',
+    emptySlide3Text: 'Pohranite svoje dokumente na ONLYOFFICE oblak i pristupite im bilo kada i bilo gdje.',
+    settUserName: 'Korisničko ime',
+    settResetUserName: 'Vrati na zadano',
+    settOpenMode: 'Otvorite dokument u načinu pretpregleda',
+    setBtnApply: 'Primijeni',
+    settLanguage: 'Jezik sučelja',
+    settAfterRestart: 'Opcija će se primijeniti nakon ponovnog pokretanja aplikacije',
+    settShowEncryptOpts: 'Testirajte enkripciju s kraja na kraj',
+    settCheckUpdates: 'Automatski provjerite ima li ažuriranja',
+    settOptCheckNever: 'Nikada',
+    settOptCheckDay: 'Svaki dan',
+    settOptCheckWeek: 'Svaki tjedan',
+    settScaling: 'Skaliranje sučelja',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'S pristupom profesionalnim značajkama'
+    ,settUITheme: 'Tema sučelja'
+    ,settOptThemeLight: 'Svijetla'
+    ,settOptThemeClassicLight: 'Klasična svijetla'
+    ,settOptThemeDark: 'Tamna'
+    ,settOptLaunchMode: 'Način pokretanja uređivača'
+    ,settOptLaunchInTab: 'U kartici'
+    ,settOptLaunchInWindow: 'U prozoru'
+}
+
+l10n.da = {
+    welWelcome: 'Velkommen til ONLYOFFICE Skrivebordseditor!',
+    welDescr: 'Arbejd på dokumenter offline eller forbind pakken til din cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Forbind nu',
+    textHavePortal: 'Bruger du allerede cloud?',
+    btnCreatePortal: 'Opret en ONLYOFFICE cloud',
+    btnAddPortal: 'Tilføj сloud',
+    btnLogin: 'Log ind',
+    btnBrowse: 'Gennemse',
+    btnNext: 'Næste',
+    portalEmptyTitle: 'Forbind til din cloud',
+    portalEmptyDescr: 'Gem dine dokumenter i cloud\'en og hav adgang til dem når som helst, alle steder far. Del og kollaborer dem. Chat i din doc, tilføj kommentarer eller del det for bedømmelse.',
+    portalEmptyAdv1: 'Har du ikke en cloud konto endnu? Gå online med ONLYOFFICE Cloud Service og <br />prøv at kollaborere kapaciteter gratis.',
+    portalListTitle: 'Forbundne clouds',
+    textNoFiles: 'Der er ingen filer',
+    listRecoveryTitle:'Gendan filer',
+    listRecentFileTitle:'Seneste filer',
+    listRecentDirTitle:'Senester mapper',
+    menuFileOpen: 'Åben',
+    menuFileExplore: 'Vis i mappe',
+    menuRemoveModel: 'Fjern fra liste',
+    menuClear: 'Ryd',
+    menuLogout: 'Log ud',
+    textMyComputer: 'Min Computer',
+    textThrough: 'igennem',
+    linkForgotPass: 'Glemt adgangskode?',
+    linkCreatePortal: 'Opret en ONLYOFFICE cloud',
+    linkResend: 'Send koden igen',
+    linkChangePhone: 'Ændre telefonnummer',
+    loginTitleStart: 'Forbind til cloud office',
+    loginTitleConnectTo: 'Log ind til $1',
+    loginTitleAssignPhone: 'Indtast mobiltelefonnummer',
+    loginTitleApplyCode: 'Bekræft telefonnummer',
+    errLogin: 'Forkert email eller adgangskode',
+    errLoginPortal: 'Kontroller cloud office URL',
+    errLoginEmail: 'Kontroller emailaddressen',
+    errLoginServer: 'Log ind godkendelse mislykkedes',
+    errLoginAuth: 'Fej i forespørgsel',
+    errLoginPass: 'Kontroller adgangskoden',
+    errLoginWrongPhone: 'Forkert telefonnummerformat',
+    pshPortal: 'Cloud office URL',
+    pshEmail: 'email',
+    pshPass: 'adgangskode',
+    pshPhone: 'telefonnummer',
+    pshCode: 'kode fra tekstbesked',
+    loginNoteAssignPhone: 'To-faktor-godkendelsen er slået til for at give yderligere ONLYOFFICE cloud sikkerhed. Indtast dit mobiltelefonnummer for at fortsætte med at arbejde i cloud office. Mobiltelefonnummeret skal indtastes ved at bruge en international landekode.',
+    loginNoteApplyCode: 'To-faktor-godkendelsen er slået til. Koden er blevet sendt til $1 nummer.',
+    newDoc: 'DOKUMENT',
+    newXlsx: 'REGNEARK',
+    newPptx: 'PRÆSENTATION',
+    actCreateNew: 'Opret ny',
+    actRecentFiles: 'Seneste filer',
+    actOpenLocal: 'Åben lokal fil',
+    actConnectTo: 'Forbind til cloud',
+    actActivate: 'Aktiver',
+    actAbout: 'Om',
+    actSettings: 'Indstillinger',
+    licKeyHolder: 'indtast aktiveringsnøgle',
+    btnActivate: 'Aktiver',
+    licGetLicense: 'Få licens nu',
+    licPanelTitle: 'Indtast produktnøgle',
+    licPanelDescr: 'Din produktnøgle blev sendt til emailaddressen specificeret under købet.',
+    checkUpdates: 'Tjek for opdateringer',
+    strVersion: 'version',
+    emptySlide1Title: 'Del & kollaborer',
+    emptySlide1Text: 'Vælg mellem Hurtig eller Streng co-redigering i realtid, chat i din doc, tilføj kommentarer eller del det for bedømmelse.',
+    emptySlide2Title: 'Se eller gendan tidligere versioner',
+    emptySlide2Text: 'Gendan eller se tidligere versioner af dit dokument, spor ændringer og deres forfattere.',
+    emptySlide3Title: 'Gem i cloud',
+    emptySlide3Text: 'Gem dine dokumenter i ONLYOFFICE cloud og hav adgang til dem når som helst, alle steder fra.',
+    settUserName: 'Brugernavn',
+    settResetUserName: 'Nulstil til standard',
+    settOpenMode: 'Åben dokument i visningstilstand',
+    setBtnApply: 'Anvend',
+    settLanguage: 'Grænsefladesprog',
+    settAfterRestart: 'Indstillinger vil blive anvendt når applikationen er genstartet',
+    settShowEncryptOpts: 'Test ende-til-ende kryptering',
+    settCheckUpdates: 'Tjek for opdateringer automatisk',
+    settOptCheckNever: 'Aldrig',
+    settOptCheckDay: 'Hver dag',
+    settOptCheckWeek: 'Hver uge',
+    settScaling: 'Interface skalering',
+    settOptScalingAuto: 'Automatisk',
+    aboutProFeaturesAvailable: 'Med adgang til pro funktioner'
+    ,settUITheme: 'Tema for grænseflade'
+    ,settOptThemeLight: 'Lys'
+    ,settOptThemeClassicLight: 'Klassisk lys'
+    ,settOptThemeDark: 'Mørk'
+    ,settOptLaunchMode: 'Editorens starttilstand'
+    ,settOptLaunchInTab: 'I fane'
+    ,settOptLaunchInWindow: 'I vindue'
+}
+
+l10n.fi = {
+    welWelcome: 'Tervetuloa ONLYOFFICE Työpöytä Editoriin!',
+    welDescr: 'Työskentele ilman verkkoyhteyttä tai yhdistä pilveesi: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Yhdistä nyt',
+    textHavePortal: 'Käytätkö jo pilveä?',
+    btnCreatePortal: 'Luo ONLYOFFICE pilvi',
+    btnAddPortal: 'Lisää pilvi',
+    btnLogin: 'Kirjaudu',
+    btnBrowse: 'Selaa',
+    btnNext: 'Seuraava',
+    portalEmptyTitle: 'Yhdistä pilveesi',
+    portalEmptyDescr: 'Tallenna dokumenttisi pilveen ja yhdistä niihin missä ja koska tahansa. Jaa ja tee yhteistyössä. Keskustele dokumentissasi, lisää kommentteja tai jaa se tarkasteltavaksi.',
+    portalEmptyAdv1: 'Eikö sinulla ole vielä pilveä? Ota yhteys verkkoon ONLYOFFICEN pilvipalvelulla ja <br />kokeile yhteistyö-mahdollisuuksia ilmaiseksi.',
+    portalListTitle: 'Yhdistetyt pilvet',
+    textNoFiles: 'Ei tiedostoja',
+    listRecoveryTitle:'Palauta tiedostoja',
+    listRecentFileTitle:'Viimeisimmät tiedostot',
+    listRecentDirTitle:'Viimeisimmät kansiot',
+    menuFileOpen: 'Avaa',
+    menuFileExplore: 'Näytä kansiossa',
+    menuRemoveModel: 'Poista listalta',
+    menuClear: 'Pyyhi',
+    menuLogout: 'Uloskirjaus',
+    textMyComputer: 'Tietokoneeni',
+    textThrough: 'Läpi',
+    linkForgotPass: 'Unohditko salasanan?',
+    linkCreatePortal: 'Luo ONLYOFFICE pilvi',
+    linkResend: 'Lähetä koodi uudestaan',
+    linkChangePhone: 'Vaihda puhelinnumero',
+    loginTitleStart: 'Yhdistä pilvi-officeen',
+    loginTitleConnectTo: 'Kirjaudu $1',
+    loginTitleAssignPhone: 'Syötä mobiilinumero',
+    loginTitleApplyCode: 'Vahvista puhelinnumero',
+    errLogin: 'Väärä salasana tai sähköposti',
+    errLoginPortal: 'Tarkista pilvi-officen URL',
+    errLoginEmail: 'Tarkista sähköpostiosoite',
+    errLoginServer: 'Väärä vastaus palvelimelta kirjautumisen aikana.',
+    errLoginAuth: 'Virhe käyttäjätietojen kyselyssä',
+    errLoginPass: 'Tarkista salasana',
+    errLoginWrongPhone: 'Puhelinnumero on väärässä muodossa',
+    pshPortal: 'Pilvi-officen URL',
+    pshEmail: 'sähköposti',
+    pshPass: 'salasana',
+    pshPhone: 'puhelinnumero',
+    pshCode: 'Tekstiviestin koodi',
+    loginNoteAssignPhone: 'Kaksi-vaiheinen tunnistus on otettu käyttöön, tuomaan lisäturvaa ONLYOFFICEN pilveen. Syötä puhelinnumerosi, jatkaaksesi työskentelyä pilvi-officessa. Puhelinnumero tulee syöttää käyttäen kansainvälistä muotoa maatunnuksella.',
+    loginNoteApplyCode: 'Kaksi-vaiheinen tunnistus on päällä. Koodi on lähetetty tekstiviestinä $1 numeroon.',    
+    newDoc: 'DOKUMENTTI',
+    newXlsx: 'TAULUKKOLASKENTA',
+    newPptx: 'ESITYS',
+    actCreateNew: 'Luo uusi',
+    actRecentFiles: 'Viimeisimmät tiedostot',
+    actOpenLocal: 'Avaa paikallinen tiedosto',
+    actConnectTo: 'Yhdistä pilveen',
+    actActivate: 'Aktivoi',
+    actAbout: 'Tietoja',
+    actSettings: 'Asetukset',
+    licKeyHolder: 'Syötä aktivointiavain',
+    btnActivate: 'Aktivoi',
+    licGetLicense: 'Hanki lisenssi nyt',
+    licPanelTitle: 'Syötä tuoteavain',
+    licPanelDescr: 'Tuoteavaimesi on lähetetty oston aikana annettuun sähköpostiosoitteeseen.',
+    checkUpdates: 'Tarkista päivitykset',
+    strVersion: 'versio',
+    emptySlide1Title: 'Jaa & tee yhteystyötä',
+    emptySlide1Text: 'Valitse joko Nopea tai Täsmällinen reaaliaikainen yhteis-muokkaus, keskustele dokumentissa, lisää kommentteja tai jaa jaa se arvioitavaksi.',
+    emptySlide2Title: 'Katsele tai palauta aiemmpia versioita',
+    emptySlide2Text: 'Palauta tai vain katsele aiemmipia dokumentti verioita, seuraa muutoksia ja niiden tekijöitä.',
+    emptySlide3Title: 'Säilö pilveen',
+    emptySlide3Text: 'Säilö dokumenttisi ONLYOFFICEN pilveen ja käytä niitä million tahansa, missä tahansa.',
+    settUserName: 'Käyttäjänimi',
+    settResetUserName: 'Palauta oletukseksi',
+    settOpenMode: 'Avaa dokumetti esikatseluun',
+    setBtnApply: 'Käytä',
+    settLanguage: 'Käyttöliittymän kieli',
+    settAfterRestart: 'Tämä tulee voimaan sovelluksen uudelleenkäynnistämisen jälkeen',
+    settShowEncryptOpts: 'Testaa kokonaisvaltaista salausta',
+    settCheckUpdates: 'Tarkista päivitykset automaattisesti',
+    settOptCheckNever: 'Ei koskaan',
+    settOptCheckDay: 'Päivittäin',
+    settOptCheckWeek: 'Kerran viikossa',
+    settScaling: 'Liittymän skaalaus',
+    settOptScalingAuto: 'Automaattinen',
+    aboutProFeaturesAvailable: 'Pääsy pro-ominaisuuksiin'
+    ,settUITheme: 'Käyttöliittymän teema'
+    ,settOptThemeLight: 'Vaalea'
+    ,settOptThemeClassicLight: 'Klassinen vaalea'
+    ,settOptThemeDark: 'Tumma'
+    ,settOptLaunchMode: 'Editoinin käynnistystila'
+    ,settOptLaunchInTab: 'Välilehdessä'
+    ,settOptLaunchInWindow: 'Ikkunassa'
+}
+
+l10n.el = {
+    welWelcome: 'Καλώς ήλθατε στο ONLYOFFICE Desktop Editors!',
+    welDescr: 'Εργαστείτε εκτός σύνδεσης με έγγραφα ή συνδέστε τη σουίτα στο cloud σας: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Σύνδεση τώρα',
+    textHavePortal: 'Χρησιμοποιείτε ήδη cloud;',
+    btnCreatePortal: 'Δημιουργήστε ένα ONLYOFFICE cloud',
+    btnAddPortal: 'Προσθήκη сloud',
+    btnLogin: 'Σύνδεση',
+    btnBrowse: 'Περιήγηση',
+    btnNext: 'Επόμενο',
+    portalEmptyTitle: 'Συνδεθείτε στο cloud σας',
+    portalEmptyDescr: 'Αποθηκεύστε τα έγγραφά σας στο cloud και αποκτήστε πρόσβαση σε αυτά ανά πάσα στιγμή και από οπουδήποτε. Μοιραστείτε τα και δουλέψτε με συνεργάτες. Συνομιλήστε στο έγγραφό σας, προσθέστε σχόλια ή μοιραστείτε το για έλεγχο.',
+    portalEmptyAdv1: 'Δεν έχετε λογαριασμό cloud; Συνδεθείτε στο διαδίκτυο με την υπηρεσία ONLYOFFICE Cloud και <br /> δοκιμάστε τις δυνατότητες συνεργασίας δωρεάν.',
+    portalListTitle: 'Συνδεδεμένα clouds',
+    textNoFiles: 'Δεν υπάρχουν αρχεία',
+    listRecoveryTitle:'Ανάκτηση αρχείων',
+    listRecentFileTitle:'Πρόσφατα αρχεία',
+    listRecentDirTitle:'Πρόσφατοι φάκελοι',
+    menuFileOpen: 'Άνοιγμα',
+    menuFileExplore: 'Εμφάνιση στον φάκελο',
+    menuRemoveModel: 'Κατάργηση από λίστα',
+    menuClear: 'Εκκαθάριση',
+    menuLogout: 'Αποσύνδεση',
+    textMyComputer: 'Ο υπολογιστής μου',
+    textThrough: 'δια μέσου',
+    linkForgotPass: 'Ξεχάσατε τον κωδικό πρόσβασης;',
+    linkCreatePortal: 'Δημιουργία ενός ONLYOFFICE cloud',
+    linkResend: 'Επαναποστολή κωδικού',
+    linkChangePhone: 'Αλλαγή αριθμού τηλεφώνου',
+    loginTitleStart: 'Σύνδεση στο cloud office',
+    loginTitleConnectTo: 'Σύνδεση στο $1',
+    loginTitleAssignPhone: 'Εισαγωγή αριθμού κινητού τηλεφώνου',
+    loginTitleApplyCode: 'Επιβεβαίωση αριθμού τηλεφώνου',
+    errLogin: 'Λάθος email ή κωδικός πρόσβασης',
+    errLoginPortal: 'Ελέγξτε την διεύθυνση URL του cloud office',
+    errLoginEmail: 'Ελέγξτε την διεύθυνση email',
+    errLoginServer: 'Εσφαλμένη ανταπόκριση διακομιστή κατά τη σύνδεση',
+    errLoginAuth: 'Σφάλμα ερώτησης πληροφοριών χρήστη',
+    errLoginPass: 'Ελέγξτε τον κωδικό πρόσβασης',
+    errLoginWrongPhone: 'Λάθος μορφή αριθμού τηλεφώνου',
+    pshPortal: 'Cloud office URL',
+    pshEmail: 'email',
+    pshPass: 'κωδικός πρόσβασης',
+    pshPhone: 'αριθμός τηλεφώνου',
+    pshCode: 'κωδικός από μήνυμα κειμένου',
+    loginNoteAssignPhone: 'Ο έλεγχος ταυτότητας δύο παραγόντων είναι ενεργοποιημένος για να παρέχει επιπλέον ασφάλεια στο ONLYOFFICE cloud. Εισαγάγετε τον αριθμό του κινητού σας τηλεφώνου για να συνεχίσετε την εργασία σας στο cloud office. Ο αριθμός κινητού τηλεφώνου πρέπει να εισαχθεί χρησιμοποιώντας μια διεθνή μορφή με κωδικό χώρας.',
+    loginNoteApplyCode: 'Ο έλεγχος ταυτότητας δύο παραγόντων είναι ενεργοποιημένος. Ο κωδικός έχει αποσταλεί στον αριθμό $1.',    
+    newDoc: 'ΕΓΓΡΑΦΟ',
+    newXlsx: 'ΥΠΟΛΟΓΙΣΤΙΚΟ ΦΥΛΛΟ',
+    newPptx: 'ΠΑΡΟΥΣΙΑΣΗ',
+    actCreateNew: 'Δημιουργία νέου',
+    actRecentFiles: 'Πρόσφατα αρχεία',
+    actOpenLocal: 'Άνοιγμα τοπικού αρχείου',
+    actConnectTo: 'Σύνδεση στο cloud',
+    actActivate: 'Ενεργοποίηση',
+    actAbout: 'Σχετικά',
+    actSettings: 'Ρυθμίσεις',
+    licKeyHolder: 'εισαγωγή κλειδιού ενεργοποίησης',
+    btnActivate: 'Ενεργοποίηση',
+    licGetLicense: 'Απόκτηση άδειας χρήσης τώρα',
+    licPanelTitle: 'Εισαγωγή κλειδιού προϊόντος',
+    licPanelDescr: 'Ο κωδικός προϊόντος σας στάλθηκε στη διεύθυνση email που καθορίστηκε κατά την αγορά.',
+    checkUpdates: 'Έλεγχος για ενημερώσεις',
+    strVersion: 'έκδοση',
+    emptySlide1Title: 'Κοινοποίηση & Συνεργασία',
+    emptySlide1Text: 'Επιλέξτε μεταξύ γρήγορης ή αυστηρής συνεπεξεργασίας σε πραγματικό χρόνο, συνομιλήστε στο έγγραφό σας, προσθέστε σχόλια ή μοιραστείτε το για έλεγχο.',
+    emptySlide2Title: 'Προβολή ή επαναφορά προηγούμενων εκδόσεων',
+    emptySlide2Text: 'Επαναφέρετε ή απλώς δείτε προηγούμενες εκδόσεις του εγγράφου σας, παρακολουθήστε τις αλλαγές και τους συντάκτες τους.',
+    emptySlide3Title: 'Αποθήκευση στο cloud',
+    emptySlide3Text: 'Αποθηκεύστε τα έγγραφά σας στο ONLYOFFICE cloud και αποκτήστε πρόσβαση σε αυτά ανά πάσα στιγμή και από οπουδήποτε.',
+    settUserName: 'Όνομα χρήστη',
+    settResetUserName: 'Επαναφορά προεπιλογών',
+    settOpenMode: 'Άνοιγμα εγγράφου σε λειτουργία προεπισκόπησης',
+    setBtnApply: 'Εφαρμογή',
+    settLanguage: 'Γλώσσα περιβάλλοντος εργασίας',
+    settAfterRestart: 'Η ρύθμιση θα εφαρμοστεί μετά την επανεκκίνηση της εφαρμογής',
+    settShowEncryptOpts: 'Δοκιμή κρυπτογράφησης από τερματικό σε τερματικό',
+    settCheckUpdates: 'Αυτόματος έλεγχος για ενημερώσεις',
+    settOptCheckNever: 'Ποτέ',
+    settOptCheckDay: 'Καθημερινά',
+    settOptCheckWeek: 'Εβδομαδιαία',
+    settScaling: 'Κλιμάκωση διεπαφής',
+    settOptScalingAuto: 'Αυτόματο',
+    aboutProFeaturesAvailable: 'Με πρόσβαση σε επαγγελματικά χαρακτηριστικά'
+    ,settUITheme: 'Θέμα διεπαφής'
+    ,settOptThemeLight: 'Ανοιχτόχρωμο'
+    ,settOptThemeClassicLight: 'Κλασικό ανοιχτόχρωμο'
+    ,settOptThemeDark: 'Σκουρόχρωμο'
+    ,settOptLaunchMode: 'Λειτουργία έναρξης επεξεργαστή'
+    ,settOptLaunchInTab: 'Σε καρτέλα'
+    ,settOptLaunchInWindow: 'Σε παράθυρο'
+}
+
+l10n.hi = {
+    welWelcome: 'ओनलीऑफिस डेस्कटॉप एडिटर में आपका स्वागत है!',
+    welDescr: 'दस्तावेज़ों पर ऑफलाइन काम करें या अपने क्लाउड में आपके सूट को कनेक्ट करें: ओनलीऑफिस, ओनक्लाउड, नेक्स्टक्लाउड।',
+    btnConnect: 'अभी कनेक्ट करें',
+    textHavePortal: 'पहले से एक क्लाउड का उपयोग कर रहे हैं?',
+    btnCreatePortal: 'एक ओनलीऑफिस क्लाउड बनाएँ',
+    btnAddPortal: 'क्लाउड जोडें',
+    btnLogin: 'लॉग इन करें',
+    btnBrowse: 'ब्राउज करें',
+    btnNext: 'अगला',
+    portalEmptyTitle: 'अपने क्लाउड से कनेक्ट करें',
+    portalEmptyDescr: 'अपने दस्तावेज़ों को क्लाउड में स्टोर करें और किसी भी समय, कहीं से भी उन तक पहुँचें। उन्हें साझा करें और उन पर सहयोग करें। अपने दस्तावेज़ में चैट करें, कमेंट जोडें या समीक्षा के लिए इसे साझा करें।',
+    portalEmptyAdv1: 'आपका\ अभी तक कोई क्लाउड खाता नहीं है? ओनलीऑफिस की क्लाउड सेवा के साथ ऑनलाइन जाएँ और  <br />सहयोगी क्षमताओं का मुफ़्त में प्रयोग करके देखें।',
+    portalListTitle: 'जुड़े हुए क्लाउड',
+    textNoFiles: 'यहाँ पर कोई फ़ाइलें नहीं हैं',
+    listRecoveryTitle:'फ़ाइलें बरामद करें',
+    listRecentFileTitle:'हालिया फ़ाइलें',
+    listRecentDirTitle:'हालिया फ़ोल्डर',
+    menuFileOpen: 'खोलें',
+    menuFileExplore: 'फ़ोल्डर में दिखाएँ',
+    menuRemoveModel: 'सूची से हटाएँ',
+    menuClear: 'मिटाएँ',
+    menuLogout: 'लॉग आउट करें',
+    textMyComputer: 'मेरा कंप्यूटर',
+    textThrough: 'माध्यम से',
+    linkForgotPass: 'पासवर्ड भूल गए?',
+    linkCreatePortal: 'एक ओनलीऑफिस क्लाउड बनाएँ',
+    linkResend: 'कोड फिर से भेजें',
+    linkChangePhone: 'फ़ोन नंबर बदलें',
+    loginTitleStart: 'क्लाउड ऑफिस से कनेक्ट करें',
+    loginTitleConnectTo: '$1 में लॉग इन करें',
+    loginTitleAssignPhone: 'मोबाइल फ़ोन नंबर दर्ज करें',
+    loginTitleApplyCode: 'फ़ोन नंबर की पुष्टि करें',
+    errLogin: 'गलत ईमेल या पासवर्ड',
+    errLoginPortal: 'क्लाउड ऑफिस के यूआरएल की जाँच करें',
+    errLoginEmail: 'ईमेल पते की जाँच करें',
+    errLoginServer: 'लॉग इन के दौरान सर्वर की गलत प्रतिक्रिया',
+    errLoginAuth: 'उपयोगकर्ता जानकारी के प्रश्न पर त्रुटि',
+    errLoginPass: 'पासवर्ड की जाँच करें',
+    errLoginWrongPhone: 'गलत फ़ोन नंबर प्रारूप',
+    pshPortal: 'क्लाउड ऑफिस यूआरएल',
+    pshEmail: 'ईमेल',
+    pshPass: 'पासवर्ड',
+    pshPhone: 'फ़ोन नंबर',
+    pshCode: 'टेक्स्ट संदेश का कोड',
+    loginNoteAssignPhone: 'अतिरिक्त ओनलीऑफिस क्लाउड सुरक्षा प्रदान करने के लिए दो तरीकों का प्रमाणीकरण सक्षम है। क्लाउड ऑफिस पर काम जारी रखने के लिए अपना मोबाइल फ़ोन नंबर दर्ज करें। मोबाइल फ़ोन नंबर को देश के कोड के साथ अंतर्राष्ट्रीय प्रारूप का उपयोग करते हुए ही दर्ज किया जाना चाहिए।',
+    loginNoteApplyCode: 'दो तरीकों का प्रमाणीकरण सक्षम है। कोड को $1 नंबर पर टेक्स्ट कर दिया गया है।',    
+    newDoc: 'दस्तावेज़',
+    newXlsx: 'स्प्रेडशीट',
+    newPptx: 'प्रस्तुति',
+    actCreateNew: 'नया बनाएँ',
+    actRecentFiles: 'हालिया फ़ाइलें',
+    actOpenLocal: 'लोकल फ़ाइल खोलें',
+    actConnectTo: 'क्लाउड से कनेक्ट करें',
+    actActivate: 'सक्रिय करें',
+    actAbout: 'इसके बारे में',
+    actSettings: 'सेटिंग',
+    licKeyHolder: 'सक्रियण कुंजी डालें',
+    btnActivate: 'सक्रिय करें',
+    licGetLicense: 'अभी लाइसेंस प्राप्त करें',
+    licPanelTitle: 'उत्पाद कुंजी दर्ज करें',
+    licPanelDescr: 'आपकी उत्पाद कुंजी को खरीद के दौरान निर्दिष्ट ईमेल पते पर भेज दिया गया था।',
+    checkUpdates: 'अपडेट की जाँच करें',
+    strVersion: 'संस्करण',
+    emptySlide1Title: 'साझा और सहयोग करें',
+    emptySlide1Text: 'तेज़ या सख्त वास्तविक समय में सह-संपादन करने में से चयन करें, अपने दस्तावेज़ में चैट करें, टिप्पणी जोडें या समीक्षा के लिए इसे साझा करें।',
+    emptySlide2Title: 'देखें या पहले वाले संस्करणों को बहाल करें',
+    emptySlide2Text: 'अपने दस्तावेज़ की समीक्षा करें या सिर्फ इसके पहले वाले संस्करणों को देखें, बदलावों और उनके लेखकों को ट्रेक करें।',
+    emptySlide3Title: 'क्लाउड में स्टोर करें',
+    emptySlide3Text: 'अपने दस्तावेज़ों को ओनलीऑफिस क्लाउड में स्टोर करें और किसी भी समय, कहीं से भी उन तक पहुँचें।',
+    settUserName: 'उपयोगकर्ता का नाम',
+    settResetUserName: 'डिफ़ाल्ट पर रीसेट करें',
+    settOpenMode: 'पूर्वावलोकन मोड में दस्तावेज़ खोलें',
+    setBtnApply: 'लागू करें',
+    settLanguage: 'इंटरफेस भाषा',
+    settAfterRestart: 'ऐप के पुनरारंभ होने पर विकल्प लागू किया जाएगा',
+    settShowEncryptOpts: 'एंड-टू-एंड एन्क्रिप्शन का परीक्षण करें',
+    settCheckUpdates: 'अपडेट की स्वतः जाँच करें',
+    settOptCheckNever: 'कभी नहीं',
+    settOptCheckDay: 'प्रतिदिन',
+    settOptCheckWeek: 'प्रति सप्ताह',
+    settScaling: 'इंटरफ़ेस स्केलिंग',
+    settOptScalingAuto: 'स्वतः',
+    aboutProFeaturesAvailable: 'प्रो सुविधाओं की पहुँच के साथ'
+    ,settUITheme: 'इंटरफेस थीम'
+    ,settOptThemeLight: 'लाइट'
+    ,settOptThemeClassicLight: 'क्लासिक लाइट'
+    ,settOptThemeDark: 'डार्क'
+    ,settOptLaunchMode: 'संपादक का लॉन्च मोड'
+    ,settOptLaunchInTab: 'टैब में'
+    ,settOptLaunchInWindow: 'विंडो में'
+}
+
+l10n.hu = {
+    welWelcome: 'Üdvözöljük az ONLYOFFICE Desktop Editor-ban!',
+    welDescr: 'Dolgozzon offline módon a dokumentumain, vagy rendelje hozzá a programcsomagját a felhőhöz: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Csatlakozás',
+    textHavePortal: 'Már használ felhő-alapú szolgáltatást?',
+    btnCreatePortal: 'ONLYOFFICE felhő létrehozása',
+    btnAddPortal: 'Felhő hozzáadása',
+    btnLogin: 'Bejelentkezés',
+    btnBrowse: 'Böngészés',
+    btnNext: 'Következő',
+    portalEmptyTitle: 'Csatlakozzon a felhőhöz',
+    portalEmptyDescr: 'Tárolja a felhőben a dokumentumait, így bármikor, bárhonnan hozzájuk férhet. Ossza meg őket, dolgozzon együtt másokkal. Csevegjen a dokumentumban, kommenteljen, vagy ossza meg és véleményeztesse.',
+    portalEmptyAdv1: 'Még nincs felhő-alapú felhasználói fiókja? Használja az ONLYOFFICE Cloud Service-t és <br />próbálja ki az ingyenes kollaborációs lehetőségeket.',
+    portalListTitle: 'Csatlakoztatott felhők',
+    textNoFiles: 'Nem találhatók fájlok',
+    listRecoveryTitle:'Fájlok helyreállítása',
+    listRecentFileTitle:'Legutóbbi fájlok',
+    listRecentDirTitle:'Legutóbbi mappák',
+    menuFileOpen: 'Megnyitás',
+    menuFileExplore: 'Megjelenítés mappában',
+    menuRemoveModel: 'Eltávolítás a listáról',
+    menuClear: 'Törlés',
+    menuLogout: 'Kijelentkezés',
+    textMyComputer: 'Sajátgép',
+    textThrough: 'keresztül',
+    linkForgotPass: 'Elfelejtette a jelszavát?',
+    linkCreatePortal: 'Hozzon létre egy ONLYOFFICE felhőt',
+    linkResend: 'Kód újraküldése',
+    linkChangePhone: 'Telefonszám megváltoztatása',
+    loginTitleStart: 'Csatlakozás a felhőhöz',
+    loginTitleConnectTo: 'Bejelentkezés $1-be',
+    loginTitleAssignPhone: 'Mobiltelefonszám megadása',
+    loginTitleApplyCode: 'Telefonszám megerősítése',
+    errLogin: 'Nem megfelelő e-mail cím vagy jelszó',
+    errLoginPortal: 'Ellenőrizze a felhő URL-t',
+    errLoginEmail: 'Ellenőrizze az e-mail címet',
+    errLoginServer: 'Nem megfelelő szerverválasz bejelentkezés közben',
+    errLoginAuth: 'Hiba történt a felhasználói információk lekérése közben',
+    errLoginPass: 'Jelszó ellenőrzése',
+    errLoginWrongPhone: 'Nem megfelelő telefonszám-formátum',
+    pshPortal: 'Felhő URL',
+    pshEmail: 'e-mail',
+    pshPass: 'jelszó',
+    pshPhone: 'telefonszám',
+    pshCode: 'kód a szöveges üzenetből',
+    loginNoteAssignPhone: 'A kétfaktoros hitelesítés engedélyezve lett, hogy az ONLYOFFICE felhő még biztonságosabb lehessen. Adja meg a mobiltelefonszámát, hogy folytatni tudja a munkát a felhőben. A mobiltelefonszámot a nemzetközileg használt formátumban, az országkóddal együtt kell megadni.',
+    loginNoteApplyCode: 'A kétfaktoros hitelesítés engedélyezve lett. A kódot elküldtük a(z) $1 telefonszámra.',
+    newDoc: 'DOKUMENTUM',
+    newXlsx: 'SZÁMOLÓTÁBLA',
+    newPptx: 'BEMUTATÓ',
+    actCreateNew: 'Új létrehozása',
+    actRecentFiles: 'Legutóbbi fájlok',
+    actOpenLocal: 'Helyi fájl megnyitása',
+    actConnectTo: 'Csatlakozás a felhőhöz',
+    actActivate: 'Aktiválás',
+    actAbout: 'Névjegy',
+    actSettings: 'Beállítások',
+    licKeyHolder: 'aktiválási kód megadása',
+    btnActivate: 'Aktiválás',
+    licGetLicense: 'Hozzáférés a licenchez',
+    licPanelTitle: 'Termékkulcs megadása',
+    licPanelDescr: 'A termékkulcsot elküldtük az Ön által a vásárláskor megadott e-mail címre.',
+    checkUpdates: 'Frissítések keresése',
+    strVersion: 'verzió',
+    emptySlide1Title: 'Megosztás & együttműködés',
+    emptySlide1Text: 'Válasszon a Gyors vagy Szigorú valós idejű közös szerkesztés közül, csevegjen a dokumentumban, kommenteljen, vagy ossza meg és véleményeztesse.',
+    emptySlide2Title: 'Előző verziók megtekintése vagy visszaállítása',
+    emptySlide2Text: 'Állítsa vissza vagy csak tekintse meg a dokumentum előző verzióit, kövesse a változtatásokat és azok létrehozóit.',
+    emptySlide3Title: 'Tárolás a felhőben',
+    emptySlide3Text: 'Tárolja a dokumentumait az ONLYOFFICE félhőben, hogy bárhonnan, bármikor hozzájuk férhessen.',
+    settUserName: 'Felhasználónév',
+    settResetUserName: 'Alapértelmezések visszaállítása',
+    settOpenMode: 'Dokumentum megnyitása előnézet módban',
+    setBtnApply: 'Alkalmaz',
+    settLanguage: 'Felület nyelve',
+    settAfterRestart: 'Az opció az alkalmazás újraindítását követően élesítésre kerül',
+    settShowEncryptOpts: 'Végpontok közötti titkosítás kipróbálása',
+    settCheckUpdates: 'Automatikus frissítéskeresés',
+    settOptCheckNever: 'Soha',
+    settOptCheckDay: 'Naponta',
+    settOptCheckWeek: 'Hetente',
+    settScaling: 'Interfész méretezés',
+    settOptScalingAuto: 'Automatikus',
+    aboutProFeaturesAvailable: 'A professzionális funkciók hozzáférésével'
+    ,settUITheme: 'Felület témája'
+    ,settOptThemeLight: 'Világos'
+    ,settOptThemeClassicLight: 'Klasszikus világos'
+    ,settOptThemeDark: 'Sötét'
+    ,settOptLaunchMode: 'Szerkesztő indítómód'
+    ,settOptLaunchInTab: 'Lapon'
+    ,settOptLaunchInWindow: 'Ablakban'
+}
+
+l10n.id = {
+    welWelcome: 'Selamat Datang di ONLYOFFICE Desktop Editors!',
+    welDescr: 'Mengerjakan dokumen secara luring atau menghubungkannya ke cloud Anda: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Hubungkan sekarang',
+    textHavePortal: 'Sudah menggunakan cloud?',
+    btnCreatePortal: 'Buat cloud ONLYOFFICE',
+    btnAddPortal: 'Tambah сloud',
+    btnLogin: 'Masuk',
+    btnBrowse: 'Telusuri',
+    btnNext: 'Selanjutnya',
+    portalEmptyTitle: 'Menghubungkan ke cloud Anda',
+    portalEmptyDescr: 'Simpan dokumen Anda di cloud dan mengaksesnya kapan saja, dari mana saja. Membagikan dan mengkolaborasikannya. Mengobrolkan dokumen Anda, menambahkan komentar atau membagikannya untuk ditinjau.',
+    portalEmptyAdv1: 'Tidak punya akun cloud? Kesempatan terhubung bersama Layanan Cloud ONLYOFFICE dan <br /> mencoba kemampuan kolaboratif secara gratis.',
+    portalListTitle: 'Cloud terhubung',
+    textNoFiles: 'Tidak ada file',
+    listRecoveryTitle:'Pulihkan file',
+    listRecentFileTitle:'File terbaru',
+    listRecentDirTitle:'Folder terbaru',
+    menuFileOpen: 'Buka',
+    menuFileExplore: 'Tampilkan dalam folder',
+    menuRemoveModel: 'Hapus dari daftar',
+    menuClear: 'Bersihkan',
+    menuLogout: 'Keluar',
+    textMyComputer: 'Komputer Saya',
+    textThrough: 'melalui',
+    linkForgotPass: 'Lupa kata sandi?',
+    linkCreatePortal: 'Buat cloud ONLYOFFICE',
+    linkResend: 'Kirim kode lagi',
+    linkChangePhone: 'Ubah nomor telepon',
+    loginTitleStart: 'Menghubungkan ke cloud office',
+    loginTitleConnectTo: 'Masuk ke $1',
+    loginTitleAssignPhone: 'Masukkan nomor ponsel',
+    loginTitleApplyCode: 'Konfirmasi nomor telepon',
+    errLogin: 'Email atau kata sandi salah',
+    errLoginPortal: 'Periksa URL cloud office',
+    errLoginEmail: 'Periksa alamat email',
+    errLoginServer: 'Respons server salah saat masuk',
+    errLoginAuth: 'Galat pada permintaan informasi pengguna',
+    errLoginPass: 'Periksa kata sandi',
+    errLoginWrongPhone: 'Format nomor telepon salah',
+    pshPortal: 'URL cloud office',
+    pshEmail: 'email',
+    pshPass: 'kata sandi',
+    pshPhone: 'nomor telepon',
+    pshCode: 'kode dari pesan teks',
+    loginNoteAssignPhone: 'Autentikasi dua faktor diaktifkan untuk memberikan tambahan keamanan cloud ONLYOFFICE. Masukkan nomor ponsel Anda untuk melanjutkan pekerjaan di cloud office. Nomor ponsel harus dimasukkan menggunakan format internasional beserta kode negara.',
+    loginNoteApplyCode: 'Autentikasi dua faktor diaktifkan. Kode telah dikirim ke nomor $1.',    
+    newDoc: 'DOKUMEN',
+    newXlsx: 'LEMBAR BENTANG',
+    newPptx: 'PRESENTASI',
+    actCreateNew: 'Buat baru',
+    actRecentFiles: 'File terbaru',
+    actOpenLocal: 'Buka file lokal',
+    actConnectTo: 'Hubungkan ke cloud',
+    actActivate: 'Aktivasi',
+    actAbout: 'Tentang',
+    actSettings: 'Pengaturan',
+    licKeyHolder: 'masukkan kunci aktivasi',
+    btnActivate: 'Aktivasi',
+    licGetLicense: 'Dapatkan lisensi sekarang',
+    licPanelTitle: 'Masukkan kunci produk',
+    licPanelDescr: 'Kunci produk Anda dikirim ke alamat email yang telah ditentukan selama pembelian.',
+    checkUpdates: 'Periksa pembaruan',
+    strVersion: 'versi',
+    emptySlide1Title: 'Berbagi & berkolaborasi',
+    emptySlide1Text: 'Pilih antara pengeditan bersama mode Fast atau Strict secara real time, mengobrolkan dokumen Anda, menambahkan komentar atau membagikannya untuk ditinjau.',
+    emptySlide2Title: 'Tampilan atau pulihkan versi sebelumnya',
+    emptySlide2Text: 'Pulihkan atau hanya menampilkan versi dokumen Anda sebelumnya, melacak perubahan, dan pembuatnya.',
+    emptySlide3Title: 'Simpan di cloud',
+    emptySlide3Text: 'Simpan dokumen Anda di cloud ONLYOFFICE dan mengaksesnya kapan saja, dari mana saja.',
+    settUserName: 'Nama Pengguna',
+    settResetUserName: 'Reset ke default',
+    settOpenMode: 'Buka dokumen dalam mode pratinjau',
+    setBtnApply: 'Terapkan',
+    settLanguage: 'Bahasa tampilan',
+    settAfterRestart: 'Opsi akan diterapkan setelah memulai ulang app',
+    settShowEncryptOpts: 'Tes enkripsi end-to-end',
+    settCheckUpdates: 'Periksa pembaruan secara otomatis',
+    settOptCheckNever: 'Tidak pernah',
+    settOptCheckDay: 'Setiap hari',
+    settOptCheckWeek: 'Setiap minggu',
+    settScaling: 'Penskalaan antarmuka',
+    settOptScalingAuto: 'Otomatis',
+    aboutProFeaturesAvailable: 'Dengan akses ke fitur pro'
+    ,settUITheme: 'Tema Interface'
+    ,settOptThemeLight: 'Cerah'
+    ,settOptThemeClassicLight: 'Cerah klasik'
+    ,settOptThemeDark: 'Gelap'
+    ,settOptLaunchMode: 'Mode peluncuran editor'
+    ,settOptLaunchInTab: 'Di tab'
+    ,settOptLaunchInWindow: 'Di jendela'
+}
+
+l10n.ga = {
+    welWelcome: 'Fáilte chuig ONLYOFFICE Eagarthóirí Deisce!',
+    welDescr: 'Oibrigh ar dhoiciméid as líne nó ceangail an tsraith le do scamall: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Déan teagmháil anois',
+    textHavePortal: 'Úsáid scamall cheana?',
+    btnCreatePortal: 'Cruthaigh scamall ONLYOFFICE',
+    btnAddPortal: 'Cuir scamall leis',
+    btnLogin: 'Logáil isteach',
+    btnBrowse: 'Brabhsáil',
+    btnNext: 'Ar aghaidh',
+    portalEmptyTitle: 'Ceangail le do scamall',
+    portalEmptyDescr: 'Déan do chuid doiciméad a stóráil sa scamall agus rochtain a fháil orthu am ar bith, ó áit ar bith. Déan iad a roinnt agus comhoibriú orthu. Comhrá i do doc, cuir tuairimí leis nó déan é a roinnt le haghaidh athbhreithnithe.',
+    portalEmptyAdv1: 'Nach bhfuil cuntas scamall agat fós? Téigh ar líne le ONLYOFFICE Cloud Service agus <br /> bain triail as cumais chomhoibritheacha saor in aisce.',
+    portalListTitle: 'Scamaill nasctha',
+    textNoFiles: 'Níl aon chomhaid ann',
+    listRecoveryTitle:'Comhaid a aisghabháil',
+    listRecentFileTitle:'Comhaid le déanaí',
+    listRecentDirTitle:'Fillteáin le déanaí',
+    menuFileOpen: 'Oscail',
+    menuFileExplore: 'Taispeáin san fhillteán',
+    menuRemoveModel: 'Bain den liosta',
+    menuClear: 'Glan',
+    menuLogout: 'Logáil amach',
+    textMyComputer: 'Mo Ríomhaire',
+    textThrough: 'Trí',
+    linkForgotPass: 'Dearmad ar pasfhocal?',
+    linkCreatePortal: 'Cruthaigh scamall ONLYOFFICE',
+    linkResend: 'Seol an cód arís',
+    linkChangePhone: 'Change phone number',
+    loginTitleStart: 'Ceangail le hoifig scamall',
+    loginTitleConnectTo: 'Logáil isteach ar $1',
+    loginTitleAssignPhone: 'Iontráil uimhir fón póca',
+    loginTitleApplyCode: 'Deimhnigh uimhir theileafóin',
+    errLogin: 'R-phost nó pasfhocal mícheart',
+    errLoginPortal: 'Seiceáil URL na hoifige scamall',
+    errLoginEmail: 'Seiceáil an seoladh ríomhphoist',
+    errLoginServer: 'Freagra mícheart freastalaí le linn logála isteach',
+    errLoginAuth: 'Earráid maidir le ceist faisnéise úsáideora',
+    errLoginPass: 'Seiceáil an focal faire',
+    errLoginWrongPhone: 'Formáid mícheart uimhir theileafóin',
+    pshPortal: 'URL na hoifige scamall',
+    pshEmail: 'ríomhphoist',
+    pshPass: 'pasfhocal',
+    pshPhone: 'uimhir theileafóin',
+    pshCode: 'cód ón teachtaireacht téacs',
+    loginNoteAssignPhone: 'Cumasaítear an fíordheimhniú dhá fhachtóir chun slándáil scamall ONLYOFFICE a sholáthar. Cuir isteach d’uimhir fón póca chun leanúint ar aghaidh ag obair ar an oifig scamall. Ní mór uimhir fón póca a iontráil ag úsáid formáid idirnáisiúnta le cód tíre.',
+    loginNoteApplyCode: 'Cumasaítear an fíordheimhniú dhá fhachtóir. Cuireadh téacs chuig an gcód go huimhir $ 1.',    
+    newDoc: 'doiciméad',
+    newXlsx: 'scarbhileog',
+    newPptx: 'cur i láthair',
+    actCreateNew: 'nua a chruthú',
+    actRecentFiles: 'Comhaid le déanaí',
+    actOpenLocal: 'Oscail comhad áitiúil',
+    actConnectTo: 'Ceangail le scamall',
+    actActivate: 'Gníomhachtaigh',
+    actAbout: 'Faoi',
+    actSettings: 'Socruithe',
+    licKeyHolder: 'eochair gníomhachtaithe ionchuir',
+    btnActivate: 'Gníomhachtaigh',
+    licGetLicense: 'Faigh ceadúnas anois',
+    licPanelTitle: 'Iontráil eochair táirge',
+    licPanelDescr: 'Cuireadh eochair do tháirge chuig an seoladh ríomhphoist a sonraíodh le linn an cheannaigh.',
+    checkUpdates: 'Seiceáil do nuashrónaithe',
+    strVersion: 'leagan',
+    emptySlide1Title: 'Comhroinn & comhoibriú',
+    emptySlide1Text: 'Roghnaigh idir comh-eagarthóireacht fhíor-ama tapa nó dian, comhrá i do doc, cuir tuairimí leis nó roinn é le haghaidh athbhreithnithe.',
+    emptySlide2Title: 'Féach ar leaganacha roimhe seo nó iad a athshlánú',
+    emptySlide2Text: 'Athchóirigh nó díreach féach ar leaganacha roimhe seo de do dhoiciméad, rianaigh athruithe agus a n-údair.',
+    emptySlide3Title: 'Stóráil sa scamall',
+    emptySlide3Text: 'Déan do chuid doiciméad a stóráil sa scamall ONLYOFFICE agus rochtain a fháil orthu am ar bith, ó áit ar bith.',
+    settUserName: 'Ainm Úsáideora',
+    settResetUserName: 'Athshocraigh go réamhshocraithe',
+    settOpenMode: 'Doiciméad oscailte i mód réamhamhairc',
+    setBtnApply: 'Cuir i bhfeidhm',
+    settLanguage: 'Teanga comhéadain',
+    settAfterRestart: 'Cuirfear rogha i bhfeidhm tar éis atosú an aip',
+    settShowEncryptOpts: 'Criptiú deireadh go deireadh a thástáil',
+    settCheckUpdates: 'Seiceáil le haghaidh nuashonruithe go huathoibríoch',
+    settOptCheckNever: 'Riamh',
+    settOptCheckDay: 'Gach lá',
+    settOptCheckWeek: 'Gach seachtain',
+    settScaling: 'Scálú comhéadain',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Le rochtain ar ghnéithe pro'
+    ,settUITheme: 'Téama Comhéadain'
+    ,settOptThemeLight: 'Solas'
+    ,settOptThemeClassicLight: 'Solas Clasaiceach'
+    ,settOptThemeDark: 'Dorcha'
+    ,settOptLaunchMode: 'Mód Seoladh an Eagarthóra'
+    ,settOptLaunchInTab: 'Sa chluaisín'
+    ,settOptLaunchInWindow: 'I bhfuinneog'
+}
+
+l10n.no = {
+    welWelcome: 'Velkommen til ONLYOFFICE redigeringsprogrammer for PC!',
+    welDescr: 'Arbeid med dokumenter offline eller koble suiten til din skykonto: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Koble til nå',
+    textHavePortal: 'Bruker du allerede en sky?',
+    btnCreatePortal: 'Lag en ONLYOFFICE-sky',
+    btnAddPortal: 'Legg til sky',
+    btnLogin: 'Logg inn',
+    btnBrowse: 'Bla gjennom',
+    btnNext: 'Neste',
+    portalEmptyTitle: 'Koble til skyen din',
+    portalEmptyDescr: 'Lagre dokumentene i skyen og få tilgang til dem når som helst, hvor som helst. Del dem og kollaborer med andre. Skriv meldinger til andre i dokumentet ditt, legg til kommentarer eller del det for gjennomgang.',
+    portalEmptyAdv1: 'Har du ikke konto enda? Koble deg til nettet med ONLYOFFICE skytjeneste og <br />prøv samarbeidsfunksjonene gratis.',
+    portalListTitle: 'Tilknyttede skyer',
+    textNoFiles: 'Det er ingen filer',
+    listRecoveryTitle:'Gjenopprett filer',
+    listRecentFileTitle:'Nylig brukte filer',
+    listRecentDirTitle:'Nylig brukte mapper',
+    menuFileOpen: 'Åpne',
+    menuFileExplore: 'Vis i mappe',
+    menuRemoveModel: 'Fjern fra liste',
+    menuClear: 'Tøm',
+    menuLogout: 'Logg ut',
+    textMyComputer: 'Min datamaskin',
+    textThrough: 'gjennom',
+    linkForgotPass: 'Glemt passord?',
+    linkCreatePortal: 'Sett opp en ONLYOFFICE-sky',
+    linkResend: 'Send koden på nytt',
+    linkChangePhone: 'Endre telefnonummer',
+    loginTitleStart: 'Koble deg til sky-kontoret',
+    loginTitleConnectTo: 'Logg inn på $1',
+    loginTitleAssignPhone: 'Skriv inn telefonnummer',
+    loginTitleApplyCode: 'Bekreft telefonnummer',
+    errLogin: 'Feil e-post eller passord',
+    errLoginPortal: 'Kontroller nettadressen for sky-kontoret',
+    errLoginEmail: 'Kontroller e-postadressen',
+    errLoginServer: 'Feil server-respons ved innlogging',
+    errLoginAuth: 'Feil ved forespørsel om brukerinformasjon',
+    errLoginPass: 'Kontroller passordet',
+    errLoginWrongPhone: 'Feil format for telefonnummer',
+    pshPortal: 'Nettadresse for sky-kontor',
+    pshEmail: 'e-post',
+    pshPass: 'passord',
+    pshPhone: 'telefonnumer',
+    pshCode: 'kode fra tekstmelding',
+    loginNoteAssignPhone: 'To-faktor-godkjenning er aktivert for å gi ekstra skysikkerhet for ONLYOFFICE. Skriv inn mobilnummeret ditt for å fortsette å arbeide på skykontoret. Mobiltnummer må angis med et internasjonalt format med landskode.',
+    loginNoteApplyCode: 'To-faktor-godkjenning er aktivert. Koden er sendt til nummeret $1.',    
+    newDoc: 'DOKUMENT',
+    newXlsx: 'REGNEARK',
+    newPptx: 'PRESENTASJON',
+    actCreateNew: 'Opprett ny',
+    actRecentFiles: 'Nylig brukte filer',
+    actOpenLocal: 'Åpne lokal fil',
+    actConnectTo: 'Koble til skyen',
+    actActivate: 'Aktiver',
+    actAbout: 'Om',
+    actSettings: 'Innstillinger',
+    licKeyHolder: 'angi aktiveringsnøkkel',
+    btnActivate: 'Aktiver',
+    licGetLicense: 'Hent lisens nå',
+    licPanelTitle: 'Angi produktnøkkel',
+    licPanelDescr: 'Produktnøkkelen din ble sendt til e-postadressen som ble spesifisert ved kjøpet.',
+    checkUpdates: 'Se etter oppdateringer',
+    strVersion: 'versjon',
+    emptySlide1Title: 'Del og kollaborer',
+    emptySlide1Text: 'Velg mellom rask eller streng samredigering i sanntid, chat i dokumentet ditt, legg til kommentarer eller del det for gjennomgang.',
+    emptySlide2Title: 'Vis eller gjenopprett tidligere versjoner',
+    emptySlide2Text: 'Gjennopprett eller vis kun tidligere versjoner av dokumentet ditt, spor endringer og deres opphavspersoner.',
+    emptySlide3Title: 'Lagre i skyen',
+    emptySlide3Text: 'Lagre dokumentene dine i ONLYOFFICE-skyen og få tilgang til dem når som helst, fra hvor som helst.',
+    settUserName: 'Brukernavn',
+    settResetUserName: 'Tilbakestill til standard',
+    settOpenMode: 'Åpne dokumentet i forhåndsvisningsmodus',
+    setBtnApply: 'Bruk',
+    settLanguage: 'Brukergrensesnittspråk',
+    settAfterRestart: 'Valget blir tatt i bruk når du starter appen på nytt',
+    settShowEncryptOpts: 'Test ende til ende-kryptering',
+    settCheckUpdates: 'Se etter oppdateringer automatisk',
+    settOptCheckNever: 'Aldri',
+    settOptCheckDay: 'Hver dag',
+    settOptCheckWeek: 'Hver uke',
+    settScaling: 'Grensesnitt-skalering',
+    settOptScalingAuto: 'Auto',
+    aboutProFeaturesAvailable: 'Med tilgang til pro-funksjoner'
+    ,settUITheme: 'Grensesnittema'
+    ,settOptThemeLight: 'Lyst'
+    ,settOptThemeClassicLight: 'Klassisk lyst'
+    ,settOptThemeDark: 'Mørskt'
+    ,settOptLaunchMode: 'Startmodus for redigering'
+    ,settOptLaunchInTab: 'I fanegruppe'
+    ,settOptLaunchInWindow: 'I vindu'
+}
+
+l10n.be = {
+    welWelcome: 'Запрашаем у ONLYOFFICE Desktop Editors!',
+    welDescr: 'Працуйце з дакументамі ў аўтаномным рэжыме або падключыце пакет да воблака: ONLYOFFICE, ownCloud, Nextcloud.',
+    btnConnect: 'Падключыць зараз',
+    textHavePortal: 'Ужо выкарыстоўваеце воблака?',
+    btnCreatePortal: 'Стварыць воблака ONLYOFFICE',
+    btnAddPortal: 'Дадаць воблака',
+    btnLogin: 'Увайсці',
+    btnBrowse: 'Праглядзець',
+    btnNext: 'Далей',
+    portalEmptyTitle: 'Падключыцца да свайго воблака',
+    portalEmptyDescr: 'Захавайце свае дакументы ў воблаку і атрымайце да іх доступ у любы час і з любога месца. Дзяліцеся імі і супрацоўнічайце ў іх. Размаўляйце ў сваім дакуменце, дадавайце каментары або дзяліцеся ім для прагляду.',
+    portalEmptyAdv1: 'У вас яшчэ няма ўліковага запісу ў воблаку? Выйдзіце ў Інтэрнэт з дапамогай ONLYOFFICE Cloud Service і <br/> паспрабуйце магчымасці сумеснай працы бясплатна.',
+    portalListTitle: 'Падлучаныя воблакі',
+    textNoFiles: 'Файлаў няма',
+    listRecoveryTitle:'Аднавіць файлы',
+    listRecentFileTitle:'Апошнія файлы',
+    listRecentDirTitle:'Апошнія папкі',
+    menuFileOpen: 'Адкрыць',
+    menuFileExplore: 'Паказаць у папцы',
+    menuRemoveModel: 'Выдаліць са спісу',
+    menuClear: 'Ачысціць',
+    menuLogout: 'Выйсці',
+    textMyComputer: 'Мой кампутар',
+    textThrough: 'праз',
+    linkForgotPass: 'Забыліся пароль?',
+    linkCreatePortal: 'Стварыць воблака ONLYOFFICE',
+    linkResend: 'Адправіць код яшчэ раз',
+    linkChangePhone: 'Змяніць нумар тэлефона',
+    loginTitleStart: 'Падключыцца да воблачнага офіса',
+    loginTitleConnectTo: 'Увайсці ў $1',
+    loginTitleAssignPhone: 'Увядзіце нумар мабільнага тэлефона',
+    loginTitleApplyCode: 'Пацвердзіце нумар тэлефона',
+    errLogin: 'Няправільны адрас электроннай пошты або пароль',
+    errLoginPortal: 'Праверце URL адрас воблачнага офіса',
+    errLoginEmail: 'Праверце адрас электроннай пошты',
+    errLoginServer: 'Няправільны адказ сервера падчас уваходу ў сістэму',
+    errLoginAuth: 'Памылка ў запытанні інфармацыі карыстальніка',
+    errLoginPass: 'Праверце пароль',
+    errLoginWrongPhone: 'Няправільны фармат нумара тэлефона',
+    pshPortal: 'URL воблачнага офіса',
+    pshEmail: 'электронная пошта',
+    pshPass: 'пароль',
+    pshPhone: 'нумар тэлефона',
+    pshCode: 'код з тэкставага паведамлення',
+    loginNoteAssignPhone: 'Двухфактарная аўтэнтыфікацыя ўключана, каб забяспечыць дадатковую бяспеку ONLYOFFICE. Каб працягнуць працу ў воблачным офісе, увядзіце нумар мабільнага тэлефона. Нумар мабільнага тэлефона павінен быць уведзены ў міжнародным фармаце з кодам краіны.',
+    loginNoteApplyCode: 'Двухфактарная аўтэнтыфікацыя ўключана. Код адпраўлены тэкставым паведамленнем на нумар $1.',    
+    newDoc: 'ДАКУМЕНТ',
+    newXlsx: 'ТАБЛІЦА',
+    newPptx: 'ПРЭЗЕНТАЦЫЯ',
+    actCreateNew: 'Стварыць новы',
+    actRecentFiles: 'Апошнія файлы',
+    actOpenLocal: 'Адкрыць лакальны файл',
+    actConnectTo: 'Падключыцца да воблака',
+    actActivate: 'Актываваць',
+    actAbout: 'Пра',
+    actSettings: 'Налады',
+    licKeyHolder: 'ключ актывацыі ўводу',
+    btnActivate: 'Актываваць',
+    licGetLicense: 'Атрымаць ліцэнзію зараз',
+    licPanelTitle: 'Увядзіце ключ прадукту',
+    licPanelDescr: 'Ваш ключ прадукту быў адпраўлены на адрас электроннай пошты, указаны падчас пакупкі.',
+    checkUpdates: 'Праверыць наяўнасць абнаўленняў',
+    strVersion: 'версія',
+    emptySlide1Title: 'Падзяліцца & супрацоўнічаць',
+    emptySlide1Text: 'Выбірайце паміж Хуткім або Строгім сумесным рэдагаваннем у рэжыме рэальнага часу, размаўляйце ў дакуменце, дадавайце каментары або дзяліцеся ім для прагляду.',
+    emptySlide2Title: 'Праглядзець або аднавіць папярэднія версіі',
+    emptySlide2Text: 'Аднавіць або проста прагледзець папярэднія версіі дакумента, сачыць за зменамі і іх аўтарамі.',
+    emptySlide3Title: 'Захаваць у воблаку',
+    emptySlide3Text: 'Захоўвайце свае дакументы ў воблаку ONLYOFFICE і атрымайце да іх доступ у любы час і з любога месца.',
+    settUserName: 'Імя карыстальніка',
+    settResetUserName: 'Скінуць па змаўчанні',
+    settOpenMode: 'Адкрыць дакумент у рэжыме прагляду',
+    setBtnApply: 'Застасаваць',
+    settLanguage: 'Мова інтэрфейсу',
+    settAfterRestart: 'Параметр будзе застасаваны пасля перазапуску праграмы',
+    settShowEncryptOpts: 'Праверце шыфраванне end-to-end',
+    settCheckUpdates: 'Аўтаматычна правяраць наяўнасць абнаўленняў',
+    settOptCheckNever: 'Ніколі',
+    settOptCheckDay: 'Кожны дзень',
+    settOptCheckWeek: 'Кожны тыдзень',
+    settScaling: 'Маштабаванне інтэрфейсу',
+    settOptScalingAuto: 'Аўтаматычны',
+    aboutProFeaturesAvailable: 'З доступам да прафесійных функцый'
+    ,settUITheme: 'Тэма інтэрфейсу'
+    ,settOptThemeLight: 'Светлая'
+    ,settOptThemeClassicLight: 'Класічная светлая'
+    ,settOptThemeDark: 'Цемная'
+    ,settOptLaunchMode: 'Рэжым запуску'
+    ,settOptLaunchInTab: 'Ва ўкладцы'
+    ,settOptLaunchInWindow: 'У акне'
 }
 
 function loadLocale(lang) {

@@ -4,37 +4,36 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="975"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
         <source>Presenter View</source>
         <translation>Widok Prezentera</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1010"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
         <source>Do you want to close all editor windows?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zamknąć wszystkie okna edytora?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1473"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Aktualizacja jest w toku. Anuluj aktualizację i zamknij aplikację?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1492"/>
         <source>Close all editors windows?</source>
-        <translation>Wszystkie okna edytora zostaną zamknięte. Czy chcesz kontynuować?</translation>
+        <translation type="vanished">Wszystkie okna edytora zostaną zamknięte. Czy chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1667"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1668"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
         <source>Book%1.xlsx</source>
         <translation>Skoroszyt%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1669"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacja%1.pptx</translation>
     </message>
@@ -42,8 +41,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="747"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="704"/>
+        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Otwieranie...</translation>
     </message>
@@ -53,7 +52,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="35"/>
         <source>Certificate Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły certyfikatu</translation>
     </message>
 </context>
 <context>
@@ -61,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -74,7 +73,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>Wybierz plik certyfikatu...</translation>
+        <translation>wybierz plik certyfikatu...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -84,7 +83,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>Wybierz plik klucza...</translation>
+        <translation>wybierz plik klucza...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -138,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="175"/>
+        <location filename="../src/ceditorwindow_p.h" line="178"/>
         <source>Open main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno główne</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="388"/>
+        <location filename="../src/ceditorwindow_p.h" line="400"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument musi być zapisany, aby kontynuować.&lt;br&gt;Zapisać dokument?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="445"/>
+        <location filename="../src/ceditorwindow_p.h" line="457"/>
         <source>Print Document</source>
         <translation>Drukuj dokument</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="598"/>
+        <location filename="../src/ceditorwindow_p.h" line="610"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musi być najpierw zapisany.</translation>
     </message>
@@ -163,7 +162,7 @@
         <translation>%1 został zmieniony.&lt;br&gt;Czy chcesz zapisać zmiany?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="268"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Jeśli będziesz kontynuować zapisywanie w tym formacie, wszystkie funkcje z wyjątkiem tekstu zostaną utracone.&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
     </message>
@@ -228,12 +227,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
@@ -414,9 +413,8 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="150"/>
         <source>FILE</source>
-        <translation>ROZPOCZNIJ</translation>
+        <translation type="vanished">ROZPOCZNIJ</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="594"/>
@@ -449,12 +447,12 @@
         <translation type="vanished">Jeśli będziesz kontynuować zapisywanie w tym formacie, wszystkie funkcje z wyjątkiem tekstu zostaną utracone.&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1185"/>
         <source>Sign Up</source>
         <translation>Utwórz pakiet w chmurze</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1250"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 został zmieniony.&lt;br&gt;Czy chcesz zapisać zmiany?</translation>
     </message>
@@ -464,43 +462,43 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation type="unfinished"></translation>
+        <translation>Na licencji</translation>
     </message>
 </context>
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/cmessage.cpp" line="182"/>
+        <location filename="../src/cmessage.cpp" line="189"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="281"/>
-        <location filename="../src/cmessage.cpp" line="282"/>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>Yes</source>
         <translation>Tak</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="281"/>
-        <location filename="../src/cmessage.cpp" line="282"/>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
+        <location filename="../src/cmessage.cpp" line="291"/>
+        <location filename="../src/cmessage.cpp" line="292"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
         <source>No</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="283"/>
-        <location filename="../src/cmessage.cpp" line="284"/>
-        <location filename="../src/cmessage.cpp" line="285"/>
-        <location filename="../src/cmessage.cpp" line="286"/>
+        <location filename="../src/cmessage.cpp" line="293"/>
+        <location filename="../src/cmessage.cpp" line="294"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="285"/>
-        <location filename="../src/cmessage.cpp" line="286"/>
+        <location filename="../src/cmessage.cpp" line="295"/>
+        <location filename="../src/cmessage.cpp" line="296"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -526,6 +524,19 @@
         <location filename="../src/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>Drukowanie...</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
+        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <translation>%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
+        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
