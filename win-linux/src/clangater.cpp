@@ -121,6 +121,7 @@ private:
         ,{"et-EE", "Eesti"}
         ,{"fi-FI", "Suomi"}
         ,{"ga-IE", "Gaeilge"}
+        ,{"gl-ES", "Galego"}
         ,{"hi-IN", "हिन्दी"}
         ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", "Magyar nyelv"}

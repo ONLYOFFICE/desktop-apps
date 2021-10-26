@@ -160,6 +160,7 @@
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
     </qresource>
     <qresource prefix="/i18n">
+        <file alias="be-BY.qm">langs/be.qm</file>
         <file alias="bg-BG.qm">langs/bg.qm</file>
         <file alias="ca-ES.qm">langs/ca.qm</file>
         <file alias="cs-CZ.qm">langs/cs.qm</file>
@@ -172,6 +173,7 @@
         <file alias="fi-FI.qm">langs/fi.qm</file>
         <file alias="fr-FR.qm">langs/fr.qm</file>
         <file alias="ga-IE.qm">langs/ga.qm</file>
+        <file alias="gl-ES.qm">langs/gl.qm</file>
         <file alias="hi-IN.qm">langs/hi.qm</file>
         <file alias="hr-HR.qm">langs/hr.qm</file>
         <file alias="hu-HU.qm">langs/hu.qm</file>

@@ -18,6 +18,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/it_IT.ts \
                 ./langs/zh_CN.ts \
                 ./langs/pl.ts \
+                ./langs/be.ts \
                 ./langs/bg.ts \
                 ./langs/ca.ts \
                 ./langs/da.ts \
@@ -25,6 +26,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/et.ts \
                 ./langs/fi.ts \
                 ./langs/ga.ts \
+                ./langs/gl.ts \
                 ./langs/hi.ts \
                 ./langs/hr.ts \
                 ./langs/hu.ts \
