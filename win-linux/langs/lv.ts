@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1042"/>
         <source>Presenter View</source>
         <translation>Prezentētāja Skats</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1077"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Vai vēlaties aizvērt visus redaktora logus?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1562"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Šobrīd notiek atjaunināšana. Atcelt atjaunināšānu un aizvērt aplikāciju?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Visi rediģēšanas logi tiks aizvērti. Vai jūs vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1762"/>
         <source>Document%1.docx</source>
         <translation>Dokuments%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1763"/>
         <source>Book%1.xlsx</source>
         <translation>Grāmata%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1764"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentācija%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Notiek atvēršana...</translation>
@@ -147,22 +147,22 @@
         <translation>Ja jūs turpināsiet saglabāt šajā formātā, visas iezīmes zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Atvērt galveno logu</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation> Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Izprintēt dokumentu</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokuments vispirms jāsaglabā.</translation>
     </message>
@@ -433,12 +433,12 @@
         <translation>Vispirms dokuments jāsaglabā.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Izprintēt dokumentu</translation>
     </message>
@@ -447,12 +447,12 @@
         <translation type="vanished">Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Izveidot portālu</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>

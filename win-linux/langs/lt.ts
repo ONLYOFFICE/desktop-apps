@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1042"/>
         <source>Presenter View</source>
         <translation>Peržiūros rėžimas</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1077"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Ar norite uždaryti visus redagavimo langus?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1562"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Vyksta atnaujinimas. Atšaukti atnaujinimą ir uždaryti programą?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Visi redagavimo langai bus uždaryti. Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1762"/>
         <source>Document%1.docx</source>
         <translation>Documentas%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1763"/>
         <source>Book%1.xlsx</source>
         <translation>Knyga%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1764"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacija%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Atidaroma...</translation>
@@ -147,22 +147,22 @@
         <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Atidaryti pagrindinį langą </translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Spausdinti dokumentą</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentas pirma turi būti išsaugotas.</translation>
     </message>
@@ -433,12 +433,12 @@
         <translation>Dokumentas pirma turi būti išsaugotas.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Spausdinti dokumentą</translation>
     </message>
@@ -447,12 +447,12 @@
         <translation type="vanished">Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Sukurti portalą</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 buvo pakeistas.&lt;br&gt;Ar norite išsaugoti pakeitimus?</translation>
     </message>

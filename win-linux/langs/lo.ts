@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1042"/>
         <source>Presenter View</source>
         <translation>ມຸມມອງຜູ້ນຳສະເໜີ</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1077"/>
         <source>Do you want to close all editor windows?</source>
         <translation>ທ່ານຕ້ອງການປິດໜ້າຕ່າງທັງໝົດບໍ່?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1562"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>ການປັບປຸງ ກຳ ລັງ ດຳ ເນີນຢູ່. ຍົກເລີກການປັບປຸງແລະປິດໃບສະ ໝັກ ບໍ?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">ບັນນາທິການທັງ ໝົດ ຈະຖືກປິດ. ທ່ານຕ້ອງການ ດຳ ເນີນການຕໍ່ບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1762"/>
         <source>Document%1.docx</source>
         <translation>ເອກະສານ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1763"/>
         <source>Book%1.xlsx</source>
         <translation>ປື້ມ%1.xlsx%</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1764"/>
         <source>Presentation%1.pptx</source>
         <translation>ການນຳສະເໜີ%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>ກຳລັງເປີດ</translation>
@@ -137,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>ເປີດໜ້າຕ່າງຫຼັກ</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ເອກະສານຕ້ອງຖືກບັນທຶກເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ່?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>ພິມເອກະສານ</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>ເອກະສານຕ້ອງໄດ້ເກັບໄວ້ກ່ອນ.</translation>
     </message>
@@ -413,7 +413,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 ໄດ້ຖືກແກ້ໄຂແລ້ວ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະບັນທຶກການປ່ຽນແປງ?</translation>
     </message>
@@ -442,17 +442,17 @@
         <translation type="vanished">ຖ້າທ່ານສືບຕໍ່ບັນທຶກໃນຮູບແບບນີ້ທຸກລັກສະນະຍົກເວັ້ນຂໍ້ຄວາມຈະຫາຍໄປ.&lt;br&gt;ທ່ານແນ່ໃຈບໍ່ວ່າທ່ານຕ້ອງການ ດຳ ເນີນຕໍ່ໄປ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>ສ້າງຈຸດເຊື່ອມຕໍ່</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ຕ້ອງເກັບເອກະສານໄວ້ເພື່ອສືບຕໍ່.&lt;br&gt;ບັນທຶກເອກະສານບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>ພິມເອກະສານ</translation>
     </message>
