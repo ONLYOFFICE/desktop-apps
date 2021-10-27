@@ -559,6 +559,10 @@
                 } else {
                     _update_portals.call(this);
                 }
+
+                if ( $('.action-panel').filter('.welcome').is(':visible') ) {
+                    window.selectAction('connect');
+                }
             }
         };
 
