@@ -166,7 +166,6 @@
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
-    <ROW Name="banner.png_1" SourcePath="..\..\..\..\..\Users\Egor.Bespalov\desktop-apps\win-linux\package\windows\data\banner.png"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="ASSOTIATION_PROP" Value="CheckBox"/>
@@ -265,7 +264,7 @@
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
     <ROW Dialog_="FileAssociationsDlg" Control="FileAssociationsDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png_1" Order="400" MsiKey="FileAssociationsDlg#BannerBitmap"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FileAssociationsDlg#BannerBitmap"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Description" Type="Text" X="24" Y="16" Width="280" Height="30" Attributes="196611" Text="Select the extensions you want associated with [ProductName]" Order="700" TextLocId="Control.Text.FileAssociationsDlg#Description" MsiKey="FileAssociationsDlg#Description"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Text" Type="Text" X="25" Y="70" Width="320" Height="15" Attributes="3" Text="Please select the file types you want to automatically open with [ProductName]:" Order="800" TextLocId="Control.Text.FileAssociationsDlg#Text" MsiKey="FileAssociationsDlg#Text"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select File Associations" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.FileAssociationsDlg#Title" MsiKey="FileAssociationsDlg#Title"/>
@@ -383,7 +382,7 @@
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
-    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="7"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
     <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
     <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
@@ -403,16 +402,16 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Browse" Event="[_BrowseProperty]" Argument="APPDIR" Condition="1" Ordering="100" MsiKey="FolderDlg#Browse#[_BrowseProperty]#APPDIR#1"/>
     <ROW Dialog_="FolderDlg" Control_="Next" Event="SetTargetPath" Argument="APPDIR" Condition="1" Ordering="200" MsiKey="FolderDlg#Next#SetTargetPath#APPDIR#1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="201"/>
     <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="199"/>
-    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="204"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="204"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="NewDialog" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="AddLocal" Argument="csv" Condition="CSV_CHECKBOX" Ordering="2"/>
-    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="FileAssociationsDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Next" Event="Remove" Argument="csv" Condition="NOT (CSV_CHECKBOX)" Ordering="3"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[CSV_CHECKBOX]" Argument="1" Condition="AI_INSTALL AND ( &amp;csv = 3 )" Ordering="0"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[CSV_CHECKBOX]" Argument="{}" Condition="AI_INSTALL AND ( &amp;csv &lt;&gt; 3 )" Ordering="1"/>
