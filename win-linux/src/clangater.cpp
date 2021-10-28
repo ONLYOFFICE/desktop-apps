@@ -248,6 +248,11 @@ void CLangater::reloadTranslations(const QString& lang)
     }
 }
 
+void CLangater::refreshLangs(const QMap<QString,QString>& map)
+{
+    getInstance()->m_intf->m_langs = {map};
+}
+
 QString CLangater::getCurrentLangCode()
 {
     return getInstance()->m_lang;

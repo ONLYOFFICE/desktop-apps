@@ -492,9 +492,6 @@
 
             let obj = JSON.parse(info);
             if ( obj ) {
-                // for back compatibility with r7 only
-                obj.provider == 'onlyoffice' && (obj.provider = 'asc');
-
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
                     !obj.email && (obj.email = '');
