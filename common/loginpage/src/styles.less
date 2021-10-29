@@ -168,6 +168,8 @@ h4 {
     }
 
     > li {
+        @new-doc-icon-width: 36px;
+
         &.menu-item{
             padding: 5px 20px 5px 0;
             a {
@@ -180,7 +182,7 @@ h4 {
             line-height: 48px;
 
             .icon {
-                width: 36px;
+                width: @new-doc-icon-width;
                 height: 48px;
                 display: block;
                 margin-right: 19px;
@@ -199,6 +201,12 @@ h4 {
             }
         }
 
+        a[action='new:oform'] {
+            .icon {
+                background-position-x: -3 * @new-doc-icon-width;
+            }
+        }
+
         &.disabled {
             opacity: 0.6;
             a {
@@ -211,7 +219,7 @@ h4 {
 .img-el, .img-before-el:before {
     background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@1.25x.png') 1.25x,
         data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@1.75x.png') 1.75x, data-uri('sprite@2x.png') 2x) no-repeat;
-    background-size: 142px auto;
+    background-size: 144px auto;
 }
 
 .img-el {

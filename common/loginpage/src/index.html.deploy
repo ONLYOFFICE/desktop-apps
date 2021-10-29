@@ -123,6 +123,12 @@
                     <span class="text" l10n>PRESENTATION</span>
                   </a>
                 </li>
+                <li class="menu-item">
+                  <a action="new:oform">
+                    <i class="icon img-el"></i>
+                    <span class="text" l10n>MASTER FORM</span>
+                  </a>
+                </li>
               </div>
               <li class="menu-item separator"></li>
             </div>

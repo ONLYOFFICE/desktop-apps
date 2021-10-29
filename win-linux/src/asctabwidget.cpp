@@ -569,6 +569,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 switch ( tab_type ) {
                 case etPresentation: active_tab_color = QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive)); break;
                 case etSpreadsheet: active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabCellActive)); break;
+                case 3:
                 case etDocument: active_tab_color =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive)); break;
                 case etNewPortal:
                 case etPortal:
