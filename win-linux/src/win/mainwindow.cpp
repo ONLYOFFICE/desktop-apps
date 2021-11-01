@@ -793,6 +793,8 @@ void CMainWindow::slot_mainPageReady()
     CSplash::hideSplash();
 
 #ifdef _UPDMODULE
+    GET_REGISTRY_SYSTEM(reg_system)
+
     OSVERSIONINFO osvi;
 
     ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
@@ -801,7 +803,7 @@ void CMainWindow::slot_mainPageReady()
     GetVersionEx(&osvi);
 
     // skip updates for XP
-    if ( osvi.dwMajorVersion > 5 ) {
+    if ( osvi.dwMajorVersion > 5 && reg_system.value("CheckForUpdates", true).toBool() ) {
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
         const std::wstring argname{L"--updates-appcast-url"};
