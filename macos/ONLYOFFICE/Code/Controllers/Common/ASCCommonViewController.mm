@@ -1175,6 +1175,8 @@
             allowedFileTypes = [ASCConstants spreadsheets];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterPresentation]) {
             allowedFileTypes = [ASCConstants presentations];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterCsvTxt]) {
+            allowedFileTypes = [ASCConstants csvtxt];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
             NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];
