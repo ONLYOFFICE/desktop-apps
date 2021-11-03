@@ -110,7 +110,7 @@
                                             </section>
                                         </div>
                                     </div>
-                                    <div class='settings-field' id="opts-launch-mode" style='display1:none;'>
+                                    <div class='settings-field' id="opts-launch-mode" style='display:none;'>
                                         <label class='sett__caption' l10n>${_lang.settOptLaunchMode}</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
