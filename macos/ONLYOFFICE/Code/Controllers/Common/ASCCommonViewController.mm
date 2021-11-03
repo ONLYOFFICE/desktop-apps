@@ -769,8 +769,8 @@
 - (void)requestSaveChangesForTab:(ASCTabView *)tab {
     if (tab && tab.changed) {
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
-        [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)];
         [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
         [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"Do you want to save the changes made to the document \"%@\"?", nil), tab.title]];
         [alert setInformativeText:NSLocalizedString(@"Your changes will be lost if you don’t save them.", nil)];
@@ -1451,7 +1451,7 @@
 
     NSAlert *alert = [NSAlert new];
     [alert addButtonWithTitle:NSLocalizedString(@"Save", nil)];
-    [[alert addButtonWithTitle:NSLocalizedString(@"No", nil)] setKeyEquivalent:@"\e"];
+    [[alert addButtonWithTitle:NSLocalizedString(@"Don't Save", nil)] setKeyEquivalent:@"\e"];
     [alert setMessageText:NSLocalizedString(@"Before signing the document, it must be saved.", nil)];
     [alert setInformativeText:NSLocalizedString(@"Save the document?", nil)];
     [alert setAlertStyle:NSAlertStyleWarning];
