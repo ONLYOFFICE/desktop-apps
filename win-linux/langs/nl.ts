@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1054"/>
         <source>Presenter View</source>
         <translation>Presentatieweergave</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1089"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Wilt u alle editor vensters sluiten?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1574"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Update is gaande. De update annuleren en de applicatie afsluiten?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Alle bewerkingsvensters worden gesloten. Wilt u doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1774"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1775"/>
         <source>Book%1.xlsx</source>
         <translation>Boek%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1776"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentatie%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Openen...</translation>
@@ -142,27 +142,27 @@
         <translation>%1 is aangepast.&lt;br&gt;Wilt u de veranderingen opslaan?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/ceditortools.cpp" line="282"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Hoofdvenster openen</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>The Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Het document moet eerst worden opgeslagen.</translation>
     </message>
@@ -429,12 +429,12 @@
         <translation>Het document moet eerst worden opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
@@ -443,12 +443,12 @@
         <translation type="vanished">Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Portaal aanmaken</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 is aangepast.&lt;br&gt;Wilt u de veranderingen opslaan?</translation>
     </message>
@@ -533,6 +533,16 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All supported files (*.txt *.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished">Alle bestanden (*.*)</translation>
     </message>
 </context>
 </TS>
