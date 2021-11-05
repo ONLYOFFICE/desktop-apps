@@ -620,6 +620,7 @@ void CAscTabWidget::reloadTabIcons()
         {etUndefined, std::make_pair(QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix), QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix))},
         {etDocument, std::make_pair(QString(":/tabbar/icons/de%1.png").arg(ratio_suffix), QString(":/tabbar/icons/de%1.png").arg(ratio_suffix))},
         {etPresentation, std::make_pair(QString(":/tabbar/icons/pe%1.png").arg(ratio_suffix), QString(":/tabbar/icons/pe%1.png").arg(ratio_suffix))},
+        {etDocumentMasterForm, std::make_pair(QString(":/tabbar/icons/docxf%1.png").arg(ratio_suffix), QString(":/tabbar/icons/docxf%1.png").arg(ratio_suffix))},
         {etSpreadsheet, std::make_pair(QString(":/tabbar/icons/se%1.png").arg(ratio_suffix), QString(":/tabbar/icons/se%1.png").arg(ratio_suffix))}
     });
 

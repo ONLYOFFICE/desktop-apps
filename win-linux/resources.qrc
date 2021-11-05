@@ -105,6 +105,11 @@
         <file alias="de@1.5x.png">res/icons/tabbar/tabicon_de_normal_1.5x.png</file>
         <file alias="de@1.75x.png">res/icons/tabbar/tabicon_de_normal_1.75x.png</file>
         <file alias="de@2x.png">res/icons/tabbar/tabicon_de_normal_2x.png</file>
+        <file alias="docxf.png">res/icons/tabbar/tabicon_docxf_normal.png</file>
+        <file alias="docxf@1.25x.png">res/icons/tabbar/tabicon_docxf_normal_1.25x.png</file>
+        <file alias="docxf@1.5x.png">res/icons/tabbar/tabicon_docxf_normal_1.5x.png</file>
+        <file alias="docxf@1.75x.png">res/icons/tabbar/tabicon_docxf_normal_1.75x.png</file>
+        <file alias="docxf@2x.png">res/icons/tabbar/tabicon_docxf_normal_2x.png</file>
         <file alias="pe.png">res/icons/tabbar/tabicon_pe_normal.png</file>
         <file alias="pe@1.25x.png">res/icons/tabbar/tabicon_pe_normal_1.25x.png</file>
         <file alias="pe@1.5x.png">res/icons/tabbar/tabicon_pe_normal_1.5x.png</file>
