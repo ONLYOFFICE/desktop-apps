@@ -98,7 +98,7 @@ namespace CEditorTools
             CFileDialogWrapper dialog(parent);
 
             CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(event->m_pData);
-            QString _filter = QString::fromStdWString(pData->get_Filter());
+            const QString _filter = QString::fromStdWString(pData->get_Filter());
             QStringList _list;
 
             if ( _filter == "plugin" ) {
@@ -120,6 +120,12 @@ namespace CEditorTools
             } else
             if ( _filter == "video" || _filter == "audio" ) {
                 _list = dialog.modalOpenMedia(_filter, Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
+            } else
+            if ( _filter == "csv/txt" ) {
+                QString _sel_filter;
+                const QString _txt_filter = QObject::tr("All supported files (*.txt *.csv)") + ";;" + QObject::tr("All files (*.*)");
+
+                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());

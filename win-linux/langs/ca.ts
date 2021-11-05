@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1054"/>
         <source>Presenter View</source>
         <translation>Vista del presentador</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1089"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Voleu tancar totes les finestres de l&apos;editor?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1574"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>L&apos;actualització està en curs. Cancel·lar l’actualització i tancar l’aplicació?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Totes les finestres de l&apos;editor es tancaran. Vols continuar?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1774"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1775"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1776"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Obrint...</translation>
@@ -142,27 +142,27 @@
         <translation>%1 ha estat modificat.&lt;br&gt;Voleu desar els canvis?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/ceditortools.cpp" line="282"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&lt;br&gt;Estàs segur que vols continuar?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Obre la finstra principal</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>El document s&apos;ha de desar per a continuar.&lt;br&gt;Desar el document?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Imprimir el document</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>El document s&apos;ha de desar abans.</translation>
     </message>
@@ -433,12 +433,12 @@
         <translation>El document s&apos;ha de desar abans.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>El document s&apos;ha de guardar per continuar.&lt;br&gt;Guardar el document?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Imprimir el document</translation>
     </message>
@@ -447,12 +447,12 @@
         <translation type="vanished">Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&lt;br&gt;Estàs segur que vols continuar?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Crear portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 ha estat modificat.&lt;br&gt;Voleu desar els canvis?</translation>
     </message>
@@ -537,6 +537,16 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>El fitxer %1 no es  pot obrir o no existeix.</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All supported files (*.txt *.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished">Tots els arxius (*.*)</translation>
     </message>
 </context>
 </TS>

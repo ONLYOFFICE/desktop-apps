@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1054"/>
         <source>Presenter View</source>
         <translation>Előadói nézet</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1089"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Be akarja zárni az összes szerkesztőablakot?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1574"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>A frissítés folyamatban van. Megszakítja a frissítést és bezárja az alkalmazást?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Minden szerkesztőablak bezárásra kerül. Folytatja a műveletet?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1774"/>
         <source>Document%1.docx</source>
         <translation>Dokumentum%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1775"/>
         <source>Book%1.xlsx</source>
         <translation>Munkafüzet%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1776"/>
         <source>Presentation%1.pptx</source>
         <translation>Bemutató%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Megnyitás...</translation>
@@ -142,27 +142,27 @@
         <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/ceditortools.cpp" line="282"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Főablak megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Dokumentum nyomtatása</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Előbb mentenie kell a dokumentumot.</translation>
     </message>
@@ -429,12 +429,12 @@
         <translation>Előbb mentenie kell a dokumentumot.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Dokumentum nyomtatása</translation>
     </message>
@@ -443,12 +443,12 @@
         <translation type="vanished">Amennyiben ebben a formátumban szeretné menteni, a szövegen kívül minden funkciót elveszít.&lt;br&gt;Biztos, hogy folytatja?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Portál létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
@@ -533,6 +533,16 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All supported files (*.txt *.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished">Minden fájltípus (*.*)</translation>
     </message>
 </context>
 </TS>
