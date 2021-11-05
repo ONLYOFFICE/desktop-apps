@@ -140,6 +140,9 @@ Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBran
 Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
+[LangOptions]
+lo.LanguageName=ພາສາລາວ
+ga_IE.LanguageName=Gaeilge
 
 [CustomMessages]
 ;======================================================================================================
