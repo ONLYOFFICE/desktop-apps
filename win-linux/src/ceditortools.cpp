@@ -235,6 +235,9 @@ namespace CEditorTools
     }
 
     auto editorTypeFromFormat(int format) -> AscEditorType {
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
+            return etDocumentMasterForm;
+        } else
         if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
                 format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
                     format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )

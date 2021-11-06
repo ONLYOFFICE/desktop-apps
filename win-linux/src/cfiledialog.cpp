@@ -230,6 +230,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]  = tr("OFORM Document (*.oform)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]  = tr("DOCXF Document (*.docxf)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
@@ -375,7 +377,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
         _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
-                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.epub *.djv *.djvu);;" +
+                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.epub *.djv *.djvu *.docxf *.oform);;" +
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
                     tr("Web Page") + " (*.html *.htm *.mht);;" +
