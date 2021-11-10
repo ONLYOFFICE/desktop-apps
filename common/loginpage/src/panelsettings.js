@@ -232,6 +232,7 @@
 
                 if ( $optsLaunchMode ) {
                     _new_settings.editorwindowmode = $optsLaunchMode.val() == 'inwindow';
+                    $optsLaunchMode.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
