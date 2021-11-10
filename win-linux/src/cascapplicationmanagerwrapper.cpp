@@ -216,7 +216,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
 #else
                 // TODO: unlock for ver 6.4 because bug 50589
-//                sendCommandTo(ptr, L"uitheme:changed", themes().current());
+                // TODO: unlock for back compatibility with ver 6.4 on portals
+                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
             }
             return true;
