@@ -733,6 +733,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !(c < 0) )
                     open_opts.wurl = arg.substr(++c);
 
+                open_in_new_window = true;
                 open_opts.mode = i == 0 ? COpenOptions::eOpenMode::review :
                                     i == 1 ? COpenOptions::eOpenMode::view : COpenOptions::eOpenMode::edit;
             }else
@@ -883,7 +884,8 @@ void CAscApplicationManagerWrapper::startApp()
     bool open_in_new_window = std::find(in_args.begin(), in_args.end(), L"--force-use-window") != std::end(in_args);
     bool files_in_args = std::find_if(in_args.begin(), in_args.end(),
                                      [](const std::wstring& arg){
-                                            return arg.rfind(L"--", 0);
+                                            return (arg.rfind(L"--review", 0) != std::string::npos) || (arg.rfind(L"--view", 0) != std::string::npos) ||
+                                                        (arg.rfind(L"--edit", 0) != std::string::npos) || arg.rfind(L"--", 0 == std::string::npos);
                                         }) != std::end(in_args);
     if ( !files_in_args && open_in_new_window ) {
         in_args.push_back(L"--new:word");
