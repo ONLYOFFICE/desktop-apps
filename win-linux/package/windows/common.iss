@@ -30,6 +30,14 @@
   #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
 #endif
 
+#ifndef sDataFolder
+  #define sDataFolder               "\win-linux\package\windows\data\"
+#endif
+
+#ifndef sFullPathData
+    #define sFullPathData               sBrandingFolder + sDataFolder
+#endif
+
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
 #if FileExists(sBrandingFile)
   #include sBrandingFile
