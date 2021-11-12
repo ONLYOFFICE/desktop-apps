@@ -93,8 +93,8 @@ SignTool                  =byparam $p
 #endif
 
 SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
-WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture_*.bmp 
-WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon_*.bmp
+WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp 
+WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
 [Languages]
 #ifdef _ONLYOFFICE
