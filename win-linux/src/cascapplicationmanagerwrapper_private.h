@@ -173,8 +173,9 @@ public:
 
                             if ( modal_res == MODAL_RESULT_CUSTOM ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
-                                return true;
                             }
+
+                            return true;
                         }
                     }
 
