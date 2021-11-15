@@ -119,9 +119,9 @@ l10n.en = {
     ,settOptThemeLight: 'Light'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor\'s launch mode'
-    ,settOptLaunchInTab: 'In tab'
-    ,settOptLaunchInWindow: 'In window'
+    ,settOptLaunchMode: 'Open file'
+    ,settOptLaunchInTab: 'In its own tab'
+    ,settOptLaunchInWindow: 'In its own window'
 }
 
 l10n.bg = {
@@ -212,7 +212,7 @@ l10n.bg = {
     ,settOptThemeLight: 'Светъл'
     ,settOptThemeClassicLight: 'Класически светъл'
     ,settOptThemeDark: 'Тъмен'
-    ,settOptLaunchMode: 'Режим на стартиране на редактора'
+    ,settOptLaunchMode: 'Отвори файл'
     ,settOptLaunchInTab: 'В раздела'
     ,settOptLaunchInWindow: 'В прозореца'
 }
@@ -305,7 +305,7 @@ l10n.cs = {
     ,settOptThemeLight: 'Světlý'
     ,settOptThemeClassicLight: 'Klasický světlý'
     ,settOptThemeDark: 'Tmavý'
-    ,settOptLaunchMode: 'Režimu spuštění editoru'
+    ,settOptLaunchMode: 'Otevřít soubor'
     ,settOptLaunchInTab: 'Na kartě'
     ,settOptLaunchInWindow: 'V okně'
 }
@@ -398,7 +398,7 @@ l10n.et = {
     ,settOptThemeLight: 'Hele'
     ,settOptThemeClassicLight: 'Klassikaline hele'
     ,settOptThemeDark: 'Tume'
-    ,settOptLaunchMode: 'Toimetaja käivitusrežiim'
+    ,settOptLaunchMode: 'Ava fail'
     ,settOptLaunchInTab: 'Vahekaardil'
     ,settOptLaunchInWindow: 'Eraldi aknas'
 }
@@ -491,7 +491,7 @@ l10n.ja = {
     ,settOptThemeLight: 'ライト'
     ,settOptThemeClassicLight: '標準ライト'
     ,settOptThemeDark: 'ダーク'
-    ,settOptLaunchMode: 'エディター起動モード'
+    ,settOptLaunchMode: 'ファイルを開く'
     ,settOptLaunchInTab: 'タブで'
     ,settOptLaunchInWindow: 'ウィンドウで'
 }
@@ -584,7 +584,7 @@ l10n.ko = {
     ,settOptThemeLight: '라이트'
     ,settOptThemeClassicLight: '클래식 라이트'
     ,settOptThemeDark: '다크'
-    ,settOptLaunchMode: '편집기 실행 모드'
+    ,settOptLaunchMode: '파일 열기'
     ,settOptLaunchInTab: '탭에서'
     ,settOptLaunchInWindow: '창에서'
 }
@@ -677,7 +677,7 @@ l10n.lo = {
     ,settOptThemeLight: 'ແຈ້ງ'
     ,settOptThemeClassicLight: 'ແຈ້ງແບບຕົ້ນຕຳລັບ'
     ,settOptThemeDark: 'ມືດ'
-    ,settOptLaunchMode: 'ຮູບແບບບັນນາທິການ'
+    ,settOptLaunchMode: 'ເປີດແຟ້ມທ'
     ,settOptLaunchInTab: 'ໃນຊ່ອງ'
     ,settOptLaunchInWindow: 'ໃນປ່ອງ'
 }
@@ -770,7 +770,7 @@ l10n.lt = {
     ,settOptThemeLight: 'Šviesus'
     ,settOptThemeClassicLight: 'Klasikinis Šviesus'
     ,settOptThemeDark: 'Tamsus'
-    ,settOptLaunchMode: 'Redaguotojaso paleidimo rėžimas'
+    ,settOptLaunchMode: 'Atidayti failą'
     ,settOptLaunchInTab: 'Skirtuke'
     ,settOptLaunchInWindow: 'Lange'
 }
@@ -863,7 +863,7 @@ l10n.lv = {
     ,settOptThemeLight: 'Gaisma'
     ,settOptThemeClassicLight: 'Klasiska gaisma'
     ,settOptThemeDark: 'Tumšs'
-    ,settOptLaunchMode: 'Redaktora palaišanas režīms'
+    ,settOptLaunchMode: 'Atvērt failu'
     ,settOptLaunchInTab: 'Cilnē'
     ,settOptLaunchInWindow: 'Logā'
 }
@@ -956,7 +956,7 @@ l10n.nl = {
     ,settOptThemeLight: 'Licht'
     ,settOptThemeClassicLight: 'Klassiek Licht'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor startmodus'
+    ,settOptLaunchMode: 'Open bestand'
     ,settOptLaunchInTab: 'In tabblad'
     ,settOptLaunchInWindow: 'In venster'
 }
@@ -1049,7 +1049,7 @@ l10n.ru = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Классическая светлая'
     ,settOptThemeDark: 'Темная'
-    ,settOptLaunchMode: 'Режим запуска редактора'
+    ,settOptLaunchMode: 'Открыть файл'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
 
@@ -1143,7 +1143,7 @@ l10n.de = {
     ,settOptThemeLight: 'Hell'
     ,settOptThemeClassicLight: 'Klassisch Hell'
     ,settOptThemeDark: 'Dunkel'
-    ,settOptLaunchMode: 'Editor wird geöffnet'
+    ,settOptLaunchMode: 'Datei öffnen'
     ,settOptLaunchInTab: 'in einer Registerkarte'
     ,settOptLaunchInWindow: 'in einem Fenster'
 }
@@ -1236,7 +1236,7 @@ l10n.it_IT = {
     ,settOptThemeLight: 'Chiaro'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Scuro'
-    ,settOptLaunchMode: 'Modalità lancio di edito'
+    ,settOptLaunchMode: 'Apri file'
     ,settOptLaunchInTab: 'Nella scheda'
     ,settOptLaunchInWindow: 'Nella finestra'
 }
@@ -1329,7 +1329,7 @@ l10n.fr = {
     ,settOptThemeLight: 'Clair'
     ,settOptThemeClassicLight: 'Classique clair'
     ,settOptThemeDark: 'Sombre'
-    ,settOptLaunchMode: 'Mode de lancement de l\'éditeur'
+    ,settOptLaunchMode: 'Ouvrir fichier'
     ,settOptLaunchInTab: 'Dans un onglet'
     ,settOptLaunchInWindow: 'Dans une fenêtre'
 }
@@ -1418,7 +1418,7 @@ l10n.es = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Clásico claro'
     ,settOptThemeDark: 'Oscuro'
-    ,settOptLaunchMode: 'Modo de inicio del editor'
+    ,settOptLaunchMode: 'Abrir archivo'
     ,settOptLaunchInTab: 'En pestaña'
     ,settOptLaunchInWindow: 'En ventana'
 }
@@ -1511,7 +1511,7 @@ l10n.pl = {
     ,settOptThemeLight: 'Jasny'
     ,settOptThemeClassicLight: 'Klasyczny'
     ,settOptThemeDark: 'Ciemny'
-    ,settOptLaunchMode: 'Tryb uruchamiania Edytora'
+    ,settOptLaunchMode: 'Otwórz plik'
     ,settOptLaunchInTab: 'W nowej zakładce'
     ,settOptLaunchInWindow: 'W nowym oknie'
 }
@@ -1601,7 +1601,7 @@ l10n.pt_BR = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de inicialização do editor'
+    ,settOptLaunchMode: 'Abrir arquivo'
     ,settOptLaunchInTab: 'Na guia'
     ,settOptLaunchInWindow: 'Na janela'
 }
@@ -1694,7 +1694,7 @@ l10n.pt_PT = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lançamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Em separador'
     ,settOptLaunchInWindow: 'Em janela'
 }
@@ -1787,7 +1787,7 @@ l10n.ro = {
     ,settOptThemeLight: 'Luminos'
     ,settOptThemeClassicLight: 'Clasic Luminos'
     ,settOptThemeDark: 'Întunecat'
-    ,settOptLaunchMode: 'Modul de lansare al editorului'
+    ,settOptLaunchMode: 'Deschidere fișie'
     ,settOptLaunchInTab: 'În filă'
     ,settOptLaunchInWindow: 'În fereastră'
 }
@@ -1880,7 +1880,7 @@ l10n.sk = {
     ,settOptThemeLight: 'Svetlá'
     ,settOptThemeClassicLight: 'Klasická svetlá'
     ,settOptThemeDark: 'Temná'
-    ,settOptLaunchMode: 'Režim spustenia editora'
+    ,settOptLaunchMode: 'Otvoriť súbor'
     ,settOptLaunchInTab: 'V tabuľke'
     ,settOptLaunchInWindow: 'V okne'
 }
@@ -1973,7 +1973,7 @@ l10n.sl = {
     ,settOptThemeLight: 'Svetla'
     ,settOptThemeClassicLight: 'Klasična svetla'
     ,settOptThemeDark: 'Temna'
-    ,settOptLaunchMode: 'Način kosila urednika'
+    ,settOptLaunchMode: 'Odpri datoteko'
     ,settOptLaunchInTab: 'V zavihku'
     ,settOptLaunchInWindow: 'V oknu'
 }
@@ -2066,7 +2066,7 @@ l10n.sv = {
     ,settOptThemeLight: 'Ljust'
     ,settOptThemeClassicLight: 'Klassiskt ljust'
     ,settOptThemeDark: 'Mörkt'
-    ,settOptLaunchMode: 'Redigerarens startläge'
+    ,settOptLaunchMode: 'Öppna fil'
     ,settOptLaunchInTab: 'I flik'
     ,settOptLaunchInWindow: 'I fönster'
 }
@@ -2159,7 +2159,7 @@ l10n.tr = {
     ,settOptThemeLight: 'Aydınlık'
     ,settOptThemeClassicLight: 'Klasik Aydınlık'
     ,settOptThemeDark: 'Karanlık'
-    ,settOptLaunchMode: 'Editörün açılış modu'
+    ,settOptLaunchMode: 'Dosya aç'
     ,settOptLaunchInTab: 'Sekmed'
     ,settOptLaunchInWindow: 'Pencerede'
 }
@@ -2252,7 +2252,7 @@ l10n.uk = {
     ,settOptThemeLight: 'Світла'
     ,settOptThemeClassicLight: 'Класична світла'
     ,settOptThemeDark: 'Темна'
-    ,settOptLaunchMode: 'Режим запуску редакторів'
+    ,settOptLaunchMode: 'Відкрити файл'
     ,settOptLaunchInTab: 'У вкладці'
     ,settOptLaunchInWindow: 'У вікні'
 }
@@ -2345,7 +2345,7 @@ l10n.vi = {
     ,settOptThemeLight: 'Sáng'
     ,settOptThemeClassicLight: 'Sáng truyền thống'
     ,settOptThemeDark: 'Tối'
-    ,settOptLaunchMode: 'Chế độ khởi chạy của người chỉnh sửa'
+    ,settOptLaunchMode: 'Mở tập tin'
     ,settOptLaunchInTab: 'Trong tab'
     ,settOptLaunchInWindow: 'Trong window'
 }
@@ -2438,7 +2438,7 @@ l10n.zh_CN = {
     ,settOptThemeLight: '浅色'
     ,settOptThemeClassicLight: '经典浅色'
     ,settOptThemeDark: '深色'
-    ,settOptLaunchMode: '编辑器启动模式'
+    ,settOptLaunchMode: '打开文件'
     ,settOptLaunchInTab: '标签页中'
     ,settOptLaunchInWindow: '窗口中'
 }
@@ -2531,7 +2531,7 @@ l10n.zh_HK = {
     ,settOptThemeLight: '明亮'
     ,settOptThemeClassicLight: '經典明亮'
     ,settOptThemeDark: '黑暗'
-    ,settOptLaunchMode: '編輯者的啟動模式'
+    ,settOptLaunchMode: '開啟檔案'
     ,settOptLaunchInTab: '標籤中'
     ,settOptLaunchInWindow: '視窗中'
 }
@@ -2624,7 +2624,7 @@ l10n.hy = {
     ,settOptThemeLight: 'Բաց'
     ,settOptThemeClassicLight: 'Դասական բաց'
     ,settOptThemeDark: 'Մուգ'
-    ,settOptLaunchMode: 'Խմբագրի գործարկման ռեժիմ'
+    ,settOptLaunchMode: 'Բացել ֆայլը'
     ,settOptLaunchInTab: 'Ներդիրում'
     ,settOptLaunchInWindow: 'Պատուհանում'
 }
@@ -2717,7 +2717,7 @@ l10n.ca = {
     ,settOptThemeLight: 'Llum'
     ,settOptThemeClassicLight: 'Llum Clássico'
     ,settOptThemeDark: 'Fosc'
-    ,settOptLaunchMode: 'Mode de llançament de l\'editor'
+    ,settOptLaunchMode: 'Obre fitxer'
     ,settOptLaunchInTab: 'A la pestanya'
     ,settOptLaunchInWindow: 'A la finestra'
 }
@@ -2810,7 +2810,7 @@ l10n.hr = {
     ,settOptThemeLight: 'Svijetla'
     ,settOptThemeClassicLight: 'Klasična svijetla'
     ,settOptThemeDark: 'Tamna'
-    ,settOptLaunchMode: 'Način pokretanja uređivača'
+    ,settOptLaunchMode: 'Otvori datoteku'
     ,settOptLaunchInTab: 'U kartici'
     ,settOptLaunchInWindow: 'U prozoru'
 }
@@ -2903,7 +2903,7 @@ l10n.da = {
     ,settOptThemeLight: 'Lys'
     ,settOptThemeClassicLight: 'Klassisk lys'
     ,settOptThemeDark: 'Mørk'
-    ,settOptLaunchMode: 'Editorens starttilstand'
+    ,settOptLaunchMode: 'Åben fil'
     ,settOptLaunchInTab: 'I fane'
     ,settOptLaunchInWindow: 'I vindue'
 }
@@ -2996,7 +2996,7 @@ l10n.fi = {
     ,settOptThemeLight: 'Vaalea'
     ,settOptThemeClassicLight: 'Klassinen vaalea'
     ,settOptThemeDark: 'Tumma'
-    ,settOptLaunchMode: 'Editoinin käynnistystila'
+    ,settOptLaunchMode: 'Avaa tiedosto'
     ,settOptLaunchInTab: 'Välilehdessä'
     ,settOptLaunchInWindow: 'Ikkunassa'
 }
@@ -3089,7 +3089,7 @@ l10n.el = {
     ,settOptThemeLight: 'Ανοιχτόχρωμο'
     ,settOptThemeClassicLight: 'Κλασικό ανοιχτόχρωμο'
     ,settOptThemeDark: 'Σκουρόχρωμο'
-    ,settOptLaunchMode: 'Λειτουργία έναρξης επεξεργαστή'
+    ,settOptLaunchMode: 'Άνοιγμα αρχείου'
     ,settOptLaunchInTab: 'Σε καρτέλα'
     ,settOptLaunchInWindow: 'Σε παράθυρο'
 }
@@ -3182,7 +3182,7 @@ l10n.hi = {
     ,settOptThemeLight: 'लाइट'
     ,settOptThemeClassicLight: 'क्लासिक लाइट'
     ,settOptThemeDark: 'डार्क'
-    ,settOptLaunchMode: 'संपादक का लॉन्च मोड'
+    ,settOptLaunchMode: 'फ़ाइल खोलें'
     ,settOptLaunchInTab: 'टैब में'
     ,settOptLaunchInWindow: 'विंडो में'
 }
@@ -3275,7 +3275,7 @@ l10n.hu = {
     ,settOptThemeLight: 'Világos'
     ,settOptThemeClassicLight: 'Klasszikus világos'
     ,settOptThemeDark: 'Sötét'
-    ,settOptLaunchMode: 'Szerkesztő indítómód'
+    ,settOptLaunchMode: 'Fájl megnyitása'
     ,settOptLaunchInTab: 'Lapon'
     ,settOptLaunchInWindow: 'Ablakban'
 }
@@ -3368,7 +3368,7 @@ l10n.id = {
     ,settOptThemeLight: 'Cerah'
     ,settOptThemeClassicLight: 'Cerah klasik'
     ,settOptThemeDark: 'Gelap'
-    ,settOptLaunchMode: 'Mode peluncuran editor'
+    ,settOptLaunchMode: 'Buka file'
     ,settOptLaunchInTab: 'Di tab'
     ,settOptLaunchInWindow: 'Di jendela'
 }
@@ -3461,7 +3461,7 @@ l10n.ga = {
     ,settOptThemeLight: 'Solas'
     ,settOptThemeClassicLight: 'Solas Clasaiceach'
     ,settOptThemeDark: 'Dorcha'
-    ,settOptLaunchMode: 'Mód Seoladh an Eagarthóra'
+    ,settOptLaunchMode: 'Oscail comhad'
     ,settOptLaunchInTab: 'Sa chluaisín'
     ,settOptLaunchInWindow: 'I bhfuinneog'
 }
@@ -3554,7 +3554,7 @@ l10n.no = {
     ,settOptThemeLight: 'Lyst'
     ,settOptThemeClassicLight: 'Klassisk lyst'
     ,settOptThemeDark: 'Mørskt'
-    ,settOptLaunchMode: 'Startmodus for redigering'
+    ,settOptLaunchMode: 'Åpne fil'
     ,settOptLaunchInTab: 'I fanegruppe'
     ,settOptLaunchInWindow: 'I vindu'
 }
@@ -3647,7 +3647,7 @@ l10n.be = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Класічная светлая'
     ,settOptThemeDark: 'Цемная'
-    ,settOptLaunchMode: 'Рэжым запуску'
+    ,settOptLaunchMode: 'Адкрыць файл'
     ,settOptLaunchInTab: 'Ва ўкладцы'
     ,settOptLaunchInWindow: 'У акне'
 }
@@ -3740,7 +3740,7 @@ l10n.gl = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clásico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lanzamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Na lapela'
     ,settOptLaunchInWindow: 'Na xanela'
 }
