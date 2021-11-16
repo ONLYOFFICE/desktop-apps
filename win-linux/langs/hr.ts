@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1054"/>
         <source>Presenter View</source>
         <translation>Prikaz prezentatora</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1089"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Da li želite zatvoriti sve prozore uređivača?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1574"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>U tijeku je ažuriranje. Želite li otkazati ažuriranje i zatvoriti aplikaciju?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Svi prozori uređivača bit će zatvoreni. Želite li nastaviti?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1774"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1775"/>
         <source>Book%1.xlsx</source>
         <translation>Knjiga%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1776"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacija%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Otvaranje...</translation>
@@ -142,27 +142,27 @@
         <translation>%1 je izmijenjen.&lt;br&gt;Želite li spremiti promjene?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/ceditortools.cpp" line="282"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Ako nastavite spremanje u ovom formatu, izgubiti će se sve značajke osim teksta.&lt;br&gt;Jeste li sigurni da želite nastaviti?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Otvori glavni prozor</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument se mora spremiti za nastavak.&lt;br&gt;Želite li spremiti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Ispis dokumenta</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument se najprije mora spremiti.</translation>
     </message>
@@ -429,12 +429,12 @@
         <translation>Dokument se najprije mora spremiti.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Da biste mogli nastaviti dokument se mora spremiti.&lt;br&gt;Želite li spremiti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Ispis dokumenta</translation>
     </message>
@@ -443,12 +443,12 @@
         <translation type="vanished">Ako nastavite spremanje u ovom formatu, izgubiti će se sve značajke osim teksta.&lt;br&gt;Jeste li sigurni da želite nastaviti?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Stvorite portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 je izmijenjen.&lt;br&gt;Želite li spremiti promjene?</translation>
     </message>
@@ -533,6 +533,16 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All supported files (*.txt *.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished">Sve datoteke (*.*)</translation>
     </message>
 </context>
 </TS>

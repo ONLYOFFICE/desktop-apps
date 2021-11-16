@@ -4,17 +4,17 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1035"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1054"/>
         <source>Presenter View</source>
         <translation>Amharc an Láithreora</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1070"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1089"/>
         <source>Do you want to close all editor windows?</source>
         <translation>Ar mhaith leat gach fuinneog eagarthóra a dhúnadh?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1547"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1574"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Tá nuashonrú ar siúl. An nuashonrú a chealú agus an feidhmchlár a dhúnadh?</translation>
     </message>
@@ -23,17 +23,17 @@
         <translation type="vanished">Dúnfar na fuinneoga eagarthóra go léir. Ar mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1747"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1774"/>
         <source>Document%1.docx</source>
         <translation>Doiciméad%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1748"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1775"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1749"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1776"/>
         <source>Presentation%1.pptx</source>
         <translation>Cur i láthair%1.pptx</translation>
     </message>
@@ -41,7 +41,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="780"/>
+        <location filename="../src/asctabwidget.cpp" line="779"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="724"/>
         <source>Document</source>
         <translation>Ag oscailt...</translation>
@@ -142,27 +142,27 @@
         <translation>Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/ceditortools.cpp" line="282"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&lt;br&gt; An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="178"/>
+        <location filename="../src/ceditorwindow_p.h" line="192"/>
         <source>Open main window</source>
         <translation>Oscail an phríomhfhuinneog</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="400"/>
+        <location filename="../src/ceditorwindow_p.h" line="413"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Caithfear an doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="457"/>
+        <location filename="../src/ceditorwindow_p.h" line="470"/>
         <source>Print Document</source>
         <translation>Doiciméad a phriontáil</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="610"/>
+        <location filename="../src/ceditorwindow_p.h" line="623"/>
         <source>Document must be saved firstly.</source>
         <translation>Caithfear an doiciméad a shábháil ar dtús.</translation>
     </message>
@@ -433,12 +433,12 @@
         <translation>Caithfear an doiciméad a shábháil ar dtús.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="843"/>
+        <location filename="../src/cmainpanel.cpp" line="838"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Caithfear doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="980"/>
+        <location filename="../src/cmainpanel.cpp" line="975"/>
         <source>Print Document</source>
         <translation>Doiciméad a phriontáil</translation>
     </message>
@@ -447,12 +447,12 @@
         <translation type="vanished">Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&lt;br&gt;An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1185"/>
+        <location filename="../src/cmainpanel.cpp" line="1180"/>
         <source>Sign Up</source>
         <translation>Cruthaigh tairseach</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1250"/>
+        <location filename="../src/cmainpanel.cpp" line="1245"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
     </message>
@@ -537,6 +537,16 @@
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="214"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All supported files (*.txt *.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="126"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished">Gach comhad (*.*)</translation>
     </message>
 </context>
 </TS>

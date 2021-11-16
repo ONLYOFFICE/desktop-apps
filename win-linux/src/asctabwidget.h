@@ -127,7 +127,6 @@ private:
     size_params m_widthParams,
                 m_defWidthParams;
     bool m_isCustomStyle;
-    bool m_isDarkTheme;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
 
@@ -159,9 +158,9 @@ public:
 
     void updateScaling(double) override;
 protected:
-    void resizeEvent(QResizeEvent* e);
-    void tabInserted(int index);
-    void tabRemoved(int index);
+    void resizeEvent(QResizeEvent* e) override;
+    void tabInserted(int index) override;
+    void tabRemoved(int index) override;
     void closeEditor(int, bool, bool);
 
 public:

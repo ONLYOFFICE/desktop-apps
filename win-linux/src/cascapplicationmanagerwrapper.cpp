@@ -216,7 +216,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"lockthemes", true}}).toStdWString());
 #else
                 // TODO: unlock for ver 6.4 because bug 50589
-//                sendCommandTo(ptr, L"uitheme:changed", themes().current());
+                // TODO: unlock for back compatibility with ver 6.4 on portals
+                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
             }
             return true;
@@ -732,6 +733,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !(c < 0) )
                     open_opts.wurl = arg.substr(++c);
 
+                open_in_new_window = true;
                 open_opts.mode = i == 0 ? COpenOptions::eOpenMode::review :
                                     i == 1 ? COpenOptions::eOpenMode::view : COpenOptions::eOpenMode::edit;
             }else
@@ -739,6 +741,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 open_opts.srctype = etNewFile;
                 open_opts.format = arg.rfind(L"cell") != wstring::npos ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
                                     arg.rfind(L"slide") != wstring::npos ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX :
+                                    arg.rfind(L"form") != wstring::npos ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
                             /*if ( line.rfind(L"word") != wstring::npos )*/ AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX;
 
                 open_opts.name = AscAppManager::newFileName(open_opts.format);
@@ -881,7 +884,8 @@ void CAscApplicationManagerWrapper::startApp()
     bool open_in_new_window = std::find(in_args.begin(), in_args.end(), L"--force-use-window") != std::end(in_args);
     bool files_in_args = std::find_if(in_args.begin(), in_args.end(),
                                      [](const std::wstring& arg){
-                                            return arg.rfind(L"--", 0);
+                                            return (arg.rfind(L"--review", 0) != std::string::npos) || (arg.rfind(L"--view", 0) != std::string::npos) ||
+                                                        (arg.rfind(L"--edit", 0) != std::string::npos) || arg.rfind(L"--", 0 == std::string::npos);
                                         }) != std::end(in_args);
     if ( !files_in_args && open_in_new_window ) {
         in_args.push_back(L"--new:word");
@@ -992,7 +996,14 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
-    AscAppManager::getInstance().applyTheme(themes().current(), true);
+    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
+
+    QJsonObject jtheme{
+        {"type", _app.m_themes->current().stype()},
+        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+    };
+    QJsonObject _json_obj{{"theme", jtheme}};
+    AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1510,10 +1521,18 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
     APP_CAST(_app);
 
     if ( !_app.m_themes->isCurrent(theme) ) {
-        _app.m_themes->setCurrent(theme);
+        const std::wstring old_theme = _app.m_themes->current().id();
+        _app.m_themes->setCurrentTheme(theme);
 
-        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current(), L"&uitheme=" + theme)};
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
+
+        QJsonObject jtheme{
+            {"type", _app.m_themes->current().stype()},
+            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+        };
+        QJsonObject _json_obj{{"theme", jtheme}};
+        AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
@@ -1745,6 +1764,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
 
     switch ( format ) {
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF:       return tr("Document%1.docx").arg(++docx_count) + "f";
     case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX:     return tr("Book%1.xlsx").arg(++xlsx_count);
     case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                                         return "Document.asc";

@@ -81,6 +81,7 @@ l10n.en = {
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATION',
+    newForm: 'MASTER FORM',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
@@ -762,7 +763,7 @@ l10n.lt = {
     settCheckUpdates: 'Automatiškai ieškoti naujinių',
     settOptCheckNever: 'Niekada',
     settOptCheckDay: 'Kiekvieną dieną',
-    settOptCheckWeek: 'Kiekvieną savaitę'
+    settOptCheckWeek: 'Kiekvieną savaitę',
     settScaling: 'Sąsajos mąstelio nustatymai',
     settOptScalingAuto: 'Automatinis',
     aboutProFeaturesAvailable: 'Su prieiga prie specialiųjų funkcijų'
@@ -948,7 +949,7 @@ l10n.nl = {
     settCheckUpdates: 'Controleer of er automatisch updates zijn',
     settOptCheckNever: 'Nooit',
     settOptCheckDay: 'Iedere dag',
-    settOptCheckWeek: 'Iedere week'
+    settOptCheckWeek: 'Iedere week',
     settScaling: 'Interface schalen',
     settOptScalingAuto: 'Auto',
     aboutProFeaturesAvailable: 'Met toegang tot pro functionaliteiten'
@@ -1052,7 +1053,6 @@ l10n.ru = {
     ,settOptLaunchMode: 'Режим запуска редактора'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
-
 }
 
 l10n.de = {
@@ -2337,7 +2337,7 @@ l10n.vi = {
     settCheckUpdates: 'Tự động kiểm tra cập nhật',
     settOptCheckNever: 'Không bao giờ',
     settOptCheckDay: 'Hàng ngày',
-    settOptCheckWeek: 'Hàng tuần'
+    settOptCheckWeek: 'Hàng tuần',
     settScaling: 'Chia tỷ lệ giao diện',
     settOptScalingAuto: 'Tự động',
     aboutProFeaturesAvailable: 'Với quyền truy cập vào các tính năng cao cấp'
@@ -2426,7 +2426,7 @@ l10n.zh_CN = {
     setBtnApply: '应用',
     settLanguage: '界面语言',
     settAfterRestart: '选项将于应用程序重启后开始启用',
-    settShowEncryptOpts: '测试端到端加密'
+    settShowEncryptOpts: '测试端到端加密',
     settCheckUpdates: '自动检查更新',
     settOptCheckNever: '从不',
     settOptCheckDay: '每天',
@@ -2713,6 +2713,13 @@ l10n.ca = {
     settScaling: 'Escala d\'interfície',
     settOptScalingAuto: 'Automatic',
     aboutProFeaturesAvailable: 'Amb accés a les funcions pro'
+    ,settUITheme: 'Tema de la interfície'
+    ,settOptThemeLight: 'Clar'
+    ,settOptThemeClassicLight: 'Clar clàssic'
+    ,settOptThemeDark: 'Fosc'
+    ,settOptLaunchMode: 'Editor inicia el mode'
+    ,settOptLaunchInTab: 'En una pestanya'
+    ,settOptLaunchInWindow: 'En una finestra'
 }
 
 l10n.hr = {

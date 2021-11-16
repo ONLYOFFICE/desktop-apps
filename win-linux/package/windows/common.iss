@@ -93,8 +93,8 @@ SignTool                  =byparam $p
 #endif
 
 SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
-WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture.bmp
-WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon.bmp
+WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
+WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
 [Languages]
 #ifdef _ONLYOFFICE
@@ -142,6 +142,9 @@ Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBr
 Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
+[LangOptions]
+lo.LanguageName=ພາສາລາວ
+ga_IE.LanguageName=Gaeilge
 
 [CustomMessages]
 ;======================================================================================================

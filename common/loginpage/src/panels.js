@@ -51,6 +51,7 @@ $(document).ready(function() {
     $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
     $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
+    $('a[action="new:form"] > .text').text(utils.Lang.newOform);
 
 
     if (!localStorage.welcome) {
@@ -165,6 +166,7 @@ function onNewFileClick(e) {
     case 'new:docx': t = 'word'; break;
     case 'new:xlsx': t = 'cell'; break;
     case 'new:pptx': t = 'slide'; break;
+    case 'new:form': t = 'form'; break;
     default: break;
     }
 

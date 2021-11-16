@@ -6,25 +6,254 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QColor>
+#include <QFile>
+#include <QRegularExpression>
 #include <QDebug>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
+#define THEME_DEFAULT_DARK_ID "theme-dark"
+#define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
+
+namespace NSTheme {
+    static const QString theme_type_dark = "dark";
+    static const QString theme_type_light = "light";
+
+    enum class ThemeType {
+        ttDark,
+        ttLight
+    };
+
+    static const std::map<CTheme::ColorRole, QString> map_names = {
+            {CTheme::ColorRole::ecrTabWordActive, "brand_word"},
+            {CTheme::ColorRole::ecrTabSlideActive, "brand_slide"},
+            {CTheme::ColorRole::ecrTabCellActive, "brand_cell"},
+
+            {CTheme::ColorRole::ecrWindowBackground, "window_background"},
+            {CTheme::ColorRole::ecrWindowBorder, "window_border"},
+
+            {CTheme::ColorRole::ecrTextNormal, "text_normal"},
+            {CTheme::ColorRole::ecrTextPressed, "text_normal_pressed"},
+
+    //      {  "tab_active_background": "#fff",
+            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab_simple_active_background"},
+            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab_simple_active_text"},
+            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab_default_active_background"},
+            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab_default_active_text"},
+    //      {  "tab_divider": "#a5a5a5",
+
+            {CTheme::ColorRole::ecrButtonNormalOpacity, "button_normal_opacity"},
+            {CTheme::ColorRole::ecrLogoColor, "logo"}
+        };
+}
+
+/*
+ * CThemePrivate
+*/
+class CTheme::CThemePrivate {
+public:
+    CThemePrivate() {}
+
+    auto fromJsonObject(const QJsonObject& obj) -> void {
+        id = obj.value("id").toString().toStdWString();
+        type = obj.value("type").toString() == NSTheme::theme_type_dark ?
+                            NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
+        jsonValues = obj.value("values").toObject();
+    }
+
+    std::wstring id;
+    std::wstring wstype;
+    NSTheme::ThemeType type;
+
+    QJsonObject jsonValues;
+};
+
+/*
+ * CThemes private class
+*/
 
 class CThemes::CThemesPrivate {
 public:
     CThemesPrivate(CThemes * p)
         : parent(*p)
     {
-        support_ids = { NSThemeLight::theme_id,
-                        NSThemeClassicLight::theme_id,
-                        NSThemeDark::theme_id };
+        rc_themes = {
+            {"theme-light", ":/themes/theme-light.json"},
+            {"theme-classic-light", ":/themes/theme-classic-light.json"},
+            {"theme-dark", ":/themes/theme-dark.json"},
+        };
+
+        GET_REGISTRY_USER(_reg_user);
+        QString user_theme = _reg_user.value(REGISTRY_THEME_KEY).toString();
+#ifdef Q_OS_WIN
+//        if ( _reg_user.contains(REGISTRY_THEME_KEY) )
+//            user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_DEFAULT_LIGHT_ID).toString();
+//        else {
+//            QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+//            user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+//        }
+        if ( user_theme.isEmpty() ) {
+            QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+            user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+        }
+#else
+        if ( user_theme.isEmpty() ) {
+            user_theme = THEME_DEFAULT_LIGHT_ID;
+        }
+#endif
+
+        current = new CTheme(rc_themes.at(user_theme));
+    }
+
+    ~CThemesPrivate()
+    {
+        if ( current ) {
+            delete current;
+            current = nullptr;
+        }
+    }
+
+    auto setCurrent(const QString& id) -> bool
+    {
+          if ( rc_themes.find(id) != rc_themes.end() ) {
+            return current->load(rc_themes.at(id));
+        }
+
+        return false;
+    }
+
+    auto getDefault(NSTheme::ThemeType type) -> const CTheme *
+    {
+        if ( type == NSTheme::ThemeType::ttDark ) {
+            if ( !dark ) {
+                dark = new CTheme;
+                dark->load(rc_themes[THEME_DEFAULT_DARK_ID]);
+            }
+
+            return dark;
+        } else {
+            if ( !light ) {
+                light = new CTheme;
+                light->load(rc_themes[THEME_DEFAULT_LIGHT_ID]);
+            }
+
+            return light;
+        }
     }
 
     CThemes & parent;
-    std::wstring current = L"";
-    std::vector<std::wstring> support_ids;
+    std::map<QString, QString> rc_themes;
+
+    CTheme * current = nullptr;
+    CTheme * dark = nullptr;
+    CTheme * light = nullptr;
 };
+
+/*
+ * CTheme
+*/
+
+CTheme::CTheme(const QString& path)
+    : m_priv(new CTheme::CThemePrivate)
+{
+    if ( !path.isEmpty() )
+        load(path);
+}
+
+CTheme::~CTheme()
+{
+    if ( m_priv ) {
+        delete m_priv;
+        m_priv = nullptr;
+    }
+}
+
+auto CTheme::load(const QString& path) -> bool
+{
+    QFile _file(path);
+    if ( _file.open(QIODevice::ReadOnly) ) {
+        QJsonParseError jerror;
+
+        QJsonDocument jdoc = QJsonDocument::fromJson(_file.readAll(), &jerror);
+        if( jerror.error == QJsonParseError::NoError ) {
+            m_priv->fromJsonObject(jdoc.object());
+            return true;
+        }
+    }
+
+    return false;
+}
+
+auto CTheme::id() const -> std::wstring
+{
+    return m_priv->id;
+}
+
+auto CTheme::stype() const -> QString
+{
+    return m_priv->type == NSTheme::ThemeType::ttDark ?
+                NSTheme::theme_type_dark : NSTheme::theme_type_light;
+}
+
+auto CTheme::value(ColorRole r) const -> std::wstring
+{
+    if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
+        if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) )
+            return m_priv->jsonValues.value(NSTheme::map_names.at(r)).toString().toStdWString();
+    }
+
+    return L"";
+}
+
+auto CTheme::color(ColorRole role) const -> QColor
+{
+    QString v = QSTRING_FROM_WSTR(value(role));
+    if ( !v.isEmpty() ) {
+        if ( v.startsWith("rgba") ) {
+            QRegularExpression re("\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})");
+            QRegularExpressionMatch match = re.match(v);
+            if ( match.hasMatch() ) {
+                const uint r = match.captured(1).toUInt(),
+                            g = match.captured(2).toUInt(),
+                            b = match.captured(3).toUInt(),
+                            a = match.captured(4).toUInt();
+                v = QString("#%1%2%3%4").arg(a, 2, 16, QLatin1Char('0'))
+                                            .arg(r, 2, 16, QLatin1Char('0'))
+                                            .arg(g, 2, 16, QLatin1Char('0'))
+                                            .arg(b, 2, 16, QLatin1Char('0'));
+
+                // keep normalized color
+                m_priv->jsonValues[NSTheme::map_names.at(role)] = v;
+            }
+        }
+
+        return QColor(v);
+    }
+
+    return QColor();
+}
+
+#ifdef Q_OS_WIN
+auto CTheme::colorRef(ColorRole role) const -> COLORREF
+{
+    int r, g, b;
+    color(role).getRgb(&r, &g, &b);
+
+    return RGB(r,g,b);
+}
+#endif
+
+auto CTheme::isDark() const -> bool
+{
+    return m_priv->type == NSTheme::ThemeType::ttDark;
+}
+
+/**/
+
+CThemes::CThemes()
+    : m_priv(new CThemes::CThemesPrivate(this))
+{
+}
 
 CThemes::~CThemes()
 {
@@ -34,117 +263,32 @@ CThemes::~CThemes()
     }
 }
 
-CThemes::CThemes()
-    : m_priv(new CThemes::CThemesPrivate(this))
+auto CThemes::current() -> const CTheme &
 {
-    GET_REGISTRY_USER(_reg_user);
-#ifdef Q_OS_WIN
-    if ( _reg_user.contains(REGISTRY_THEME_KEY) )
-        m_priv->current = _reg_user.value(REGISTRY_THEME_KEY, QString::fromStdWString(NSThemeClassicLight::theme_id)).toString().toStdWString();
-    else {
-        QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-        m_priv->current = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? NSThemeDark::theme_id : NSThemeClassicLight::theme_id;
-    }
-#else
-    m_priv->current = _reg_user.value(REGISTRY_THEME_KEY, QString::fromStdWString(NSThemeClassicLight::theme_id)).toString().toStdWString();
-#endif
+    return *(m_priv->current);
 }
 
-auto CThemes::current() -> std::wstring
+auto CThemes::dark() -> const CTheme&
 {
-    return m_priv->current;
+    return *m_priv->getDefault(NSTheme::ThemeType::ttDark);
 }
 
-auto CThemes::setCurrent(const std::wstring& name) -> void
+auto CThemes::light() -> const CTheme&
 {
-    if ( !isCurrent(name) ) {
+    return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
+}
+
+auto CThemes::setCurrentTheme(const std::wstring& name) -> void
+{
+    if ( !isCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
         GET_REGISTRY_USER(_reg_user);
         _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
-
-        m_priv->current = name;
     }
 }
 
 auto CThemes::isCurrent(const std::wstring& name) -> bool
 {
-    return m_priv->current == name;
-}
-
-auto CThemes::isCurrentDark() -> bool
-{
-    return m_priv->current == NSThemeDark::theme_id;
-}
-
-auto CThemes::isThemeDark(const std::wstring& name) -> bool
-{
-    return name == NSThemeDark::theme_id;
-}
-
-auto CThemes::color(ColorRole r) -> QColor
-{
-    return color(current(), r);
-}
-
-auto CThemes::color(const std::wstring& theme, ColorRole r) -> QColor
-{
-    return QColor(QSTRING_FROM_WSTR(value(theme, r)));
-}
-
-#ifdef Q_OS_WIN
-auto CThemes::colorRef(ColorRole role) -> COLORREF
-{
-    int r, g, b;
-    color(role).getRgb(&r, &g, &b);
-
-    return RGB(r,g,b);
-}
-#endif
-
-auto CThemes::value(ColorRole r) -> std::wstring
-{
-    return value(m_priv->current, r);
-}
-
-auto CThemes::value(const std::wstring& theme, ColorRole r) -> std::wstring
-{
-    if ( theme == NSThemeDark::theme_id ) {
-        switch (r) {
-        case ColorRole::ecrWindowBackground: return NSThemeDark::color_window_background;
-        case ColorRole::ecrWindowBorder: return NSThemeDark::color_window_border;
-        case ColorRole::ecrTextNormal: return NSThemeDark::color_text_normal;
-        case ColorRole::ecrTextPressed: return NSThemeDark::color_text_normal_pressed;
-        case ColorRole::ecrLogoColor: return NSThemeDark::color_logo;
-        case ColorRole::ecrTabWordActive: return NSThemeDark::color_brand_word;
-        case ColorRole::ecrTabCellActive: return NSThemeDark::color_brand_cell;
-        case ColorRole::ecrTabSlideActive: return NSThemeDark::color_brand_slide;
-        case ColorRole::ecrTabSimpleActiveBackground: return NSThemeDark::color_tab_simple_active_background;
-        case ColorRole::ecrTabSimpleActiveText: return NSThemeDark::color_tab_simple_active_text;
-        case ColorRole::ecrTabDefaultActiveBackground: return NSThemeDark::color_tab_default_active_background;
-        case ColorRole::ecrTabDefaultActiveText: return NSThemeDark::color_tab_default_active_text;
-        }
-    } else {
-        switch (r) {
-        case ColorRole::ecrWindowBackground: return NSThemeLight::color_window_background;
-        case ColorRole::ecrWindowBorder: return NSThemeLight::color_window_border;
-        case ColorRole::ecrTextNormal: return NSThemeLight::color_text_normal;
-        case ColorRole::ecrTextPressed: return NSThemeLight::color_text_normal_pressed;
-        case ColorRole::ecrLogoColor: return NSThemeLight::color_logo;
-        case ColorRole::ecrTabWordActive: return NSThemeLight::color_brand_word;
-        case ColorRole::ecrTabCellActive: return NSThemeLight::color_brand_cell;
-        case ColorRole::ecrTabSlideActive: return NSThemeLight::color_brand_slide;
-        case ColorRole::ecrTabSimpleActiveBackground: return NSThemeLight::color_tab_simple_active_background;
-        case ColorRole::ecrTabSimpleActiveText: return NSThemeLight::color_tab_simple_active_text;
-        case ColorRole::ecrTabDefaultActiveBackground: return NSThemeLight::color_tab_default_active_background;
-        case ColorRole::ecrTabDefaultActiveText: return NSThemeLight::color_tab_default_active_text;
-        }
-    }
-
-    return L"";
-}
-
-auto CThemes::isColorDark(ColorRole role) -> bool
-{
-    return isColorDark(value(role));
+    return m_priv->current->id() == name;
 }
 
 auto CThemes::isColorDark(const std::wstring& color) -> bool
@@ -173,7 +317,7 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject obj = jdoc.object();
 
-            return obj.contains("name") ? obj["name"].toString().toStdWString() : NSThemeClassicLight::theme_id;
+            return obj.contains("name") ? obj["name"].toString().toStdWString() : QString(THEME_DEFAULT_LIGHT_ID).toStdWString();
         }
     }
 

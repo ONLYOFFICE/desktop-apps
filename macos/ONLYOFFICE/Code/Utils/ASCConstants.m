@@ -84,6 +84,10 @@
     return @[@"plugin"];
 }
 
++ (NSArray *)csvtxt {
+    return @[@"csv", @"txt"];
+}
+
 + (NSString *)appInfo:(NSString *)key {
     id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
