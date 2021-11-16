@@ -81,7 +81,7 @@ l10n.en = {
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATION',
-    newForm: 'MASTER FORM',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
@@ -120,9 +120,9 @@ l10n.en = {
     ,settOptThemeLight: 'Light'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor\'s launch mode'
-    ,settOptLaunchInTab: 'In tab'
-    ,settOptLaunchInWindow: 'In window'
+    ,settOptLaunchMode: 'Open file'
+    ,settOptLaunchInTab: 'In its own tab'
+    ,settOptLaunchInWindow: 'In its own window'
 }
 
 l10n.bg = {
@@ -175,6 +175,7 @@ l10n.bg = {
     newDoc: 'ДОКУМЕНТ',
     newXlsx: 'ЕЛЕКТРОННА ТАБЛИЦА',
     newPptx: 'ПРЕЗЕНТАЦИЯ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Създай нов',
     actRecentFiles: 'Последни файлове',
     actOpenLocal: 'Отвори локален файл',
@@ -213,7 +214,7 @@ l10n.bg = {
     ,settOptThemeLight: 'Светъл'
     ,settOptThemeClassicLight: 'Класически светъл'
     ,settOptThemeDark: 'Тъмен'
-    ,settOptLaunchMode: 'Режим на стартиране на редактора'
+    ,settOptLaunchMode: 'Отвори файл'
     ,settOptLaunchInTab: 'В раздела'
     ,settOptLaunchInWindow: 'В прозореца'
 }
@@ -268,6 +269,7 @@ l10n.cs = {
     newDoc: 'DOKUMENT',
     newXlsx: 'SEŠIT',
     newPptx: 'PREZENTACE',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',
@@ -306,7 +308,7 @@ l10n.cs = {
     ,settOptThemeLight: 'Světlý'
     ,settOptThemeClassicLight: 'Klasický světlý'
     ,settOptThemeDark: 'Tmavý'
-    ,settOptLaunchMode: 'Režimu spuštění editoru'
+    ,settOptLaunchMode: 'Otevřít soubor'
     ,settOptLaunchInTab: 'Na kartě'
     ,settOptLaunchInWindow: 'V okně'
 }
@@ -361,6 +363,7 @@ l10n.et = {
     newDoc: 'DOKUMENT',
     newXlsx: 'ARVUTUSTABEL',
     newPptx: 'ESITLUS',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Loo uus',
     actRecentFiles: 'Hiljutised failid',
     actOpenLocal: 'Ava kohalik fail',
@@ -399,7 +402,7 @@ l10n.et = {
     ,settOptThemeLight: 'Hele'
     ,settOptThemeClassicLight: 'Klassikaline hele'
     ,settOptThemeDark: 'Tume'
-    ,settOptLaunchMode: 'Toimetaja käivitusrežiim'
+    ,settOptLaunchMode: 'Ava fail'
     ,settOptLaunchInTab: 'Vahekaardil'
     ,settOptLaunchInWindow: 'Eraldi aknas'
 }
@@ -454,6 +457,7 @@ l10n.ja = {
     newDoc: 'ドキュメント',
     newXlsx: 'スプレッドシート',
     newPptx: 'プレゼンテーション',
+    newForm: 'マスター フォーム',
     actCreateNew: '新規作成',
     actRecentFiles: '最近のファイル',
     actOpenLocal: 'ローカルファイルを開く',
@@ -492,7 +496,7 @@ l10n.ja = {
     ,settOptThemeLight: 'ライト'
     ,settOptThemeClassicLight: '標準ライト'
     ,settOptThemeDark: 'ダーク'
-    ,settOptLaunchMode: 'エディター起動モード'
+    ,settOptLaunchMode: 'ファイルを開く'
     ,settOptLaunchInTab: 'タブで'
     ,settOptLaunchInWindow: 'ウィンドウで'
 }
@@ -547,6 +551,7 @@ l10n.ko = {
     newDoc: '문서',
     newXlsx: '스프레드시트',
     newPptx: '프레젠테이션',
+    newForm: 'FORM MASTER',
     actCreateNew: '신규 생성',
     actRecentFiles: '최근 파일',
     actOpenLocal: '로컬 파일 열기',
@@ -585,7 +590,7 @@ l10n.ko = {
     ,settOptThemeLight: '라이트'
     ,settOptThemeClassicLight: '클래식 라이트'
     ,settOptThemeDark: '다크'
-    ,settOptLaunchMode: '편집기 실행 모드'
+    ,settOptLaunchMode: '파일 열기'
     ,settOptLaunchInTab: '탭에서'
     ,settOptLaunchInWindow: '창에서'
 }
@@ -640,6 +645,7 @@ l10n.lo = {
     newDoc: 'ເອກະສານ',
     newXlsx: 'ສ້າງເພິີມ ໃໝ່',
     newPptx: 'ການນຳສະເໜີ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'ສ້າງໃໝ່',
     actRecentFiles: 'ໄຟລ໌ຫຼ້າສຸດ',
     actOpenLocal: 'ເປີດແຟ້ມທ້ອງຖິ່ນ',
@@ -678,7 +684,7 @@ l10n.lo = {
     ,settOptThemeLight: 'ແຈ້ງ'
     ,settOptThemeClassicLight: 'ແຈ້ງແບບຕົ້ນຕຳລັບ'
     ,settOptThemeDark: 'ມືດ'
-    ,settOptLaunchMode: 'ຮູບແບບບັນນາທິການ'
+    ,settOptLaunchMode: 'ເປີດແຟ້ມທ'
     ,settOptLaunchInTab: 'ໃນຊ່ອງ'
     ,settOptLaunchInWindow: 'ໃນປ່ອງ'
 }
@@ -733,6 +739,7 @@ l10n.lt = {
     newDoc: 'DOKUMENTAS',
     newXlsx: 'SKAIČIUOKLĖ',
     newPptx: 'PREZENTACIJA',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Sukurti naują',
     actRecentFiles: 'Naujausi failai',
     actOpenLocal: 'Atidayti vietinį failą',
@@ -771,7 +778,7 @@ l10n.lt = {
     ,settOptThemeLight: 'Šviesus'
     ,settOptThemeClassicLight: 'Klasikinis Šviesus'
     ,settOptThemeDark: 'Tamsus'
-    ,settOptLaunchMode: 'Redaguotojaso paleidimo rėžimas'
+    ,settOptLaunchMode: 'Atidayti failą'
     ,settOptLaunchInTab: 'Skirtuke'
     ,settOptLaunchInWindow: 'Lange'
 }
@@ -826,6 +833,7 @@ l10n.lv = {
     newDoc: 'DOKUMENTS',
     newXlsx: 'IZKLĀJLAPA',
     newPptx: 'PREZENTĀCIJA',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Izveidot jaunu',
     actRecentFiles: 'Pēdējie faili',
     actOpenLocal: 'Atvērt lokālu failu',
@@ -864,7 +872,7 @@ l10n.lv = {
     ,settOptThemeLight: 'Gaisma'
     ,settOptThemeClassicLight: 'Klasiska gaisma'
     ,settOptThemeDark: 'Tumšs'
-    ,settOptLaunchMode: 'Redaktora palaišanas režīms'
+    ,settOptLaunchMode: 'Atvērt failu'
     ,settOptLaunchInTab: 'Cilnē'
     ,settOptLaunchInWindow: 'Logā'
 }
@@ -919,6 +927,7 @@ l10n.nl = {
     newDoc: 'DOCUMENT',
     newXlsx: 'SPREADSHEET',
     newPptx: 'PRESENTATIE',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Maak nieuwe aan',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open lokaal bestand',
@@ -957,7 +966,7 @@ l10n.nl = {
     ,settOptThemeLight: 'Licht'
     ,settOptThemeClassicLight: 'Klassiek Licht'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor startmodus'
+    ,settOptLaunchMode: 'Open bestand'
     ,settOptLaunchInTab: 'In tabblad'
     ,settOptLaunchInWindow: 'In venster'
 }
@@ -1012,6 +1021,7 @@ l10n.ru = {
     newDoc: 'Документ',
     newXlsx: 'Таблица',
     newPptx: 'Презентация',
+    newForm: 'Мастер-форма',
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
@@ -1050,7 +1060,7 @@ l10n.ru = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Классическая светлая'
     ,settOptThemeDark: 'Темная'
-    ,settOptLaunchMode: 'Режим запуска редактора'
+    ,settOptLaunchMode: 'Открыть файл'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
 }
@@ -1105,6 +1115,7 @@ l10n.de = {
     newDoc: 'DOKUMENT',
     newXlsx: 'ARBEITSMAPPE',
     newPptx: 'PRÄSENTATION',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
@@ -1143,7 +1154,7 @@ l10n.de = {
     ,settOptThemeLight: 'Hell'
     ,settOptThemeClassicLight: 'Klassisch Hell'
     ,settOptThemeDark: 'Dunkel'
-    ,settOptLaunchMode: 'Editor wird geöffnet'
+    ,settOptLaunchMode: 'Datei öffnen'
     ,settOptLaunchInTab: 'in einer Registerkarte'
     ,settOptLaunchInWindow: 'in einem Fenster'
 }
@@ -1198,6 +1209,7 @@ l10n.it_IT = {
     newDoc: 'DOCUMENTO',
     newXlsx: 'FOGLIO DI CALCOLO',
     newPptx: 'PRESENTAZIONE',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',
@@ -1236,7 +1248,7 @@ l10n.it_IT = {
     ,settOptThemeLight: 'Chiaro'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Scuro'
-    ,settOptLaunchMode: 'Modalità lancio di edito'
+    ,settOptLaunchMode: 'Apri file'
     ,settOptLaunchInTab: 'Nella scheda'
     ,settOptLaunchInWindow: 'Nella finestra'
 }
@@ -1291,6 +1303,7 @@ l10n.fr = {
     newDoc: 'DOCUMENT',
     newXlsx: 'CLASSEUR',
     newPptx: 'PRESENTATION',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',
@@ -1329,7 +1342,7 @@ l10n.fr = {
     ,settOptThemeLight: 'Clair'
     ,settOptThemeClassicLight: 'Classique clair'
     ,settOptThemeDark: 'Sombre'
-    ,settOptLaunchMode: 'Mode de lancement de l\'éditeur'
+    ,settOptLaunchMode: 'Ouvrir fichier'
     ,settOptLaunchInTab: 'Dans un onglet'
     ,settOptLaunchInWindow: 'Dans une fenêtre'
 }
@@ -1384,6 +1397,7 @@ l10n.es = {
     newDoc: 'DOCUMENTO',
     newXlsx: 'LIBRO DE EXCEL',
     newPptx: 'PRESENTACIÓN',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
@@ -1418,7 +1432,7 @@ l10n.es = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Clásico claro'
     ,settOptThemeDark: 'Oscuro'
-    ,settOptLaunchMode: 'Modo de inicio del editor'
+    ,settOptLaunchMode: 'Abrir archivo'
     ,settOptLaunchInTab: 'En pestaña'
     ,settOptLaunchInWindow: 'En ventana'
 }
@@ -1472,7 +1486,8 @@ l10n.pl = {
     loginNoteApplyCode: 'Uwierzytelnianie dwuskładnikowe zostało aktywowane. Kod został wysłany na numer $1',
     newDoc: 'DOKUMENT',
     newXlsx: 'ARKUSZ KALKULACYJNY',
-    newPptx: 'PREZENTACJA ',
+    newPptx: 'PREZENTACJA',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Utwórz nowy',
     actRecentFiles: 'Ostatnie pliki',
     actOpenLocal: 'Otwórz plik lokalny',
@@ -1511,7 +1526,7 @@ l10n.pl = {
     ,settOptThemeLight: 'Jasny'
     ,settOptThemeClassicLight: 'Klasyczny'
     ,settOptThemeDark: 'Ciemny'
-    ,settOptLaunchMode: 'Tryb uruchamiania Edytora'
+    ,settOptLaunchMode: 'Otwórz plik'
     ,settOptLaunchInTab: 'W nowej zakładce'
     ,settOptLaunchInWindow: 'W nowym oknie'
 }
@@ -1566,6 +1581,7 @@ l10n.pt_BR = {
     newDoc: 'DOCUMENTO',
     newXlsx: 'PLANILHA',
     newPptx: 'APRESENTAÇÃO',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Arquivos recentes',
     actOpenLocal: 'Abrir arquivo local',
@@ -1601,7 +1617,7 @@ l10n.pt_BR = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de inicialização do editor'
+    ,settOptLaunchMode: 'Abrir arquivo'
     ,settOptLaunchInTab: 'Na guia'
     ,settOptLaunchInWindow: 'Na janela'
 }
@@ -1656,6 +1672,7 @@ l10n.pt_PT = {
     newDoc: 'DOCUMENTO',
     newXlsx: 'FOLHA DE CÁLCULO',
     newPptx: 'APRESENTAÇÃO',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Ficheiros Recentes',
     actOpenLocal: 'Abrir ficheiro local',
@@ -1694,7 +1711,7 @@ l10n.pt_PT = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lançamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Em separador'
     ,settOptLaunchInWindow: 'Em janela'
 }
@@ -1749,6 +1766,7 @@ l10n.ro = {
     newDoc: 'DOCUMENT',
     newXlsx: 'FOAIE DE CALCUL',
     newPptx: 'PREZENTARE',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Creare nou',
     actRecentFiles: 'Fișierele recente',
     actOpenLocal: 'Deschidere fișier local',
@@ -1787,7 +1805,7 @@ l10n.ro = {
     ,settOptThemeLight: 'Luminos'
     ,settOptThemeClassicLight: 'Clasic Luminos'
     ,settOptThemeDark: 'Întunecat'
-    ,settOptLaunchMode: 'Modul de lansare al editorului'
+    ,settOptLaunchMode: 'Deschidere fișie'
     ,settOptLaunchInTab: 'În filă'
     ,settOptLaunchInWindow: 'În fereastră'
 }
@@ -1842,6 +1860,7 @@ l10n.sk = {
     newDoc: 'DOKUMENT',
     newXlsx: 'TABUĽKA',
     newPptx: 'PREZENTÁCIA',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Nedávne súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',
@@ -1880,7 +1899,7 @@ l10n.sk = {
     ,settOptThemeLight: 'Svetlá'
     ,settOptThemeClassicLight: 'Klasická svetlá'
     ,settOptThemeDark: 'Temná'
-    ,settOptLaunchMode: 'Režim spustenia editora'
+    ,settOptLaunchMode: 'Otvoriť súbor'
     ,settOptLaunchInTab: 'V tabuľke'
     ,settOptLaunchInWindow: 'V okne'
 }
@@ -1935,6 +1954,7 @@ l10n.sl = {
     newDoc: 'DOKUMENT',
     newXlsx: 'PREGLEDNICA',
     newPptx: 'PREDSTAVITEV',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Ustvari nov',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Odpri lokalno datoteko',
@@ -1973,7 +1993,7 @@ l10n.sl = {
     ,settOptThemeLight: 'Svetla'
     ,settOptThemeClassicLight: 'Klasična svetla'
     ,settOptThemeDark: 'Temna'
-    ,settOptLaunchMode: 'Način kosila urednika'
+    ,settOptLaunchMode: 'Odpri datoteko'
     ,settOptLaunchInTab: 'V zavihku'
     ,settOptLaunchInWindow: 'V oknu'
 }
@@ -2028,6 +2048,7 @@ l10n.sv = {
     newDoc: 'DOKUMENT',
     newXlsx: 'KALKYLBLAD',
     newPptx: 'PRESENTATION',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Skapa ny',
     actRecentFiles: 'Senaste filer',
     actOpenLocal: 'Öppna lokal fil',
@@ -2066,7 +2087,7 @@ l10n.sv = {
     ,settOptThemeLight: 'Ljust'
     ,settOptThemeClassicLight: 'Klassiskt ljust'
     ,settOptThemeDark: 'Mörkt'
-    ,settOptLaunchMode: 'Redigerarens startläge'
+    ,settOptLaunchMode: 'Öppna fil'
     ,settOptLaunchInTab: 'I flik'
     ,settOptLaunchInWindow: 'I fönster'
 }
@@ -2121,6 +2142,7 @@ l10n.tr = {
     newDoc: 'BELGE',
     newXlsx: 'TABLO',
     newPptx: 'SUNUM',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Yeni oluştur',
     actRecentFiles: 'Son dosyalar',
     actOpenLocal: 'Yerel dosya aç',
@@ -2159,7 +2181,7 @@ l10n.tr = {
     ,settOptThemeLight: 'Aydınlık'
     ,settOptThemeClassicLight: 'Klasik Aydınlık'
     ,settOptThemeDark: 'Karanlık'
-    ,settOptLaunchMode: 'Editörün açılış modu'
+    ,settOptLaunchMode: 'Dosya aç'
     ,settOptLaunchInTab: 'Sekmed'
     ,settOptLaunchInWindow: 'Pencerede'
 }
@@ -2214,6 +2236,7 @@ l10n.uk = {
     newDoc: 'ДОКУМЕНТ',
     newXlsx: 'ЕЛЕКТРОННА ТАБЛИЦЯ',
     newPptx: 'ПРЕЗЕНТАЦІЯ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Створити',
     actRecentFiles: 'Останні файли',
     actOpenLocal: 'Відкрити локальний файл',
@@ -2252,7 +2275,7 @@ l10n.uk = {
     ,settOptThemeLight: 'Світла'
     ,settOptThemeClassicLight: 'Класична світла'
     ,settOptThemeDark: 'Темна'
-    ,settOptLaunchMode: 'Режим запуску редакторів'
+    ,settOptLaunchMode: 'Відкрити файл'
     ,settOptLaunchInTab: 'У вкладці'
     ,settOptLaunchInWindow: 'У вікні'
 }
@@ -2307,6 +2330,7 @@ l10n.vi = {
     newDoc: 'VĂN BẢN',
     newXlsx: 'BẢNG TÍNH',
     newPptx: 'TRÌNH CHIẾU',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Tạo mới',
     actRecentFiles: 'Những tập tin gần đây',
     actOpenLocal: 'Mở tập tin cục bộ',
@@ -2345,7 +2369,7 @@ l10n.vi = {
     ,settOptThemeLight: 'Sáng'
     ,settOptThemeClassicLight: 'Sáng truyền thống'
     ,settOptThemeDark: 'Tối'
-    ,settOptLaunchMode: 'Chế độ khởi chạy của người chỉnh sửa'
+    ,settOptLaunchMode: 'Mở tập tin'
     ,settOptLaunchInTab: 'Trong tab'
     ,settOptLaunchInWindow: 'Trong window'
 }
@@ -2400,6 +2424,7 @@ l10n.zh_CN = {
     newDoc: '文档',
     newXlsx: '电子表格',
     newPptx: '演示文稿',
+    newForm: '主表格',
     actCreateNew: '新建',
     actRecentFiles: '最近使用的文件',
     actOpenLocal: '打开本地文件',
@@ -2438,7 +2463,7 @@ l10n.zh_CN = {
     ,settOptThemeLight: '浅色'
     ,settOptThemeClassicLight: '经典浅色'
     ,settOptThemeDark: '深色'
-    ,settOptLaunchMode: '编辑器启动模式'
+    ,settOptLaunchMode: '打开文件'
     ,settOptLaunchInTab: '标签页中'
     ,settOptLaunchInWindow: '窗口中'
 }
@@ -2493,6 +2518,7 @@ l10n.zh_HK = {
     newDoc: '文件',
     newXlsx: '試算表',
     newPptx: '簡報',
+    newForm: 'FORM MASTER',
     actCreateNew: '新增',
     actRecentFiles: '最近使用過的檔案',
     actOpenLocal: '開啟本機檔案',
@@ -2531,7 +2557,7 @@ l10n.zh_HK = {
     ,settOptThemeLight: '明亮'
     ,settOptThemeClassicLight: '經典明亮'
     ,settOptThemeDark: '黑暗'
-    ,settOptLaunchMode: '編輯者的啟動模式'
+    ,settOptLaunchMode: '開啟檔案'
     ,settOptLaunchInTab: '標籤中'
     ,settOptLaunchInWindow: '視窗中'
 }
@@ -2586,6 +2612,7 @@ l10n.hy = {
     newDoc: 'ՓԱՍՏԱԹՈՒՂԹ',
     newXlsx: 'ԱՂՅՈՒՍԱԿ',
     newPptx: 'ՇՆՈՐՀԱՆԴԵՍ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Ստեղծել նորը',
     actRecentFiles: 'Ամենանոր ֆայլերը',
     actOpenLocal: 'Բացել լոկալ ֆայլը',
@@ -2624,7 +2651,7 @@ l10n.hy = {
     ,settOptThemeLight: 'Բաց'
     ,settOptThemeClassicLight: 'Դասական բաց'
     ,settOptThemeDark: 'Մուգ'
-    ,settOptLaunchMode: 'Խմբագրի գործարկման ռեժիմ'
+    ,settOptLaunchMode: 'Բացել ֆայլը'
     ,settOptLaunchInTab: 'Ներդիրում'
     ,settOptLaunchInWindow: 'Պատուհանում'
 }
@@ -2679,6 +2706,7 @@ l10n.ca = {
     newDoc: 'DOCUMENT',
     newXlsx: 'FULL DE CÀLCUL',
     newPptx: 'PRESENTACIÓ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Crear nou',
     actRecentFiles: 'Arxius recents',
     actOpenLocal: 'Obre fitxer local',
@@ -2717,7 +2745,7 @@ l10n.ca = {
     ,settOptThemeLight: 'Clar'
     ,settOptThemeClassicLight: 'Clar clàssic'
     ,settOptThemeDark: 'Fosc'
-    ,settOptLaunchMode: 'Editor inicia el mode'
+    ,settOptLaunchMode: 'Obre fitxer'
     ,settOptLaunchInTab: 'En una pestanya'
     ,settOptLaunchInWindow: 'En una finestra'
 }
@@ -2772,6 +2800,7 @@ l10n.hr = {
     newDoc: 'DOKUMENT',
     newXlsx: 'TABLICA',
     newPptx: 'PREZENTACIJA',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Stvori novo',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Otvori lokalnu datoteku',
@@ -2810,7 +2839,7 @@ l10n.hr = {
     ,settOptThemeLight: 'Svijetla'
     ,settOptThemeClassicLight: 'Klasična svijetla'
     ,settOptThemeDark: 'Tamna'
-    ,settOptLaunchMode: 'Način pokretanja uređivača'
+    ,settOptLaunchMode: 'Otvori datoteku'
     ,settOptLaunchInTab: 'U kartici'
     ,settOptLaunchInWindow: 'U prozoru'
 }
@@ -2865,6 +2894,7 @@ l10n.da = {
     newDoc: 'DOKUMENT',
     newXlsx: 'REGNEARK',
     newPptx: 'PRÆSENTATION',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Opret ny',
     actRecentFiles: 'Seneste filer',
     actOpenLocal: 'Åben lokal fil',
@@ -2903,7 +2933,7 @@ l10n.da = {
     ,settOptThemeLight: 'Lys'
     ,settOptThemeClassicLight: 'Klassisk lys'
     ,settOptThemeDark: 'Mørk'
-    ,settOptLaunchMode: 'Editorens starttilstand'
+    ,settOptLaunchMode: 'Åben fil'
     ,settOptLaunchInTab: 'I fane'
     ,settOptLaunchInWindow: 'I vindue'
 }
@@ -2958,6 +2988,7 @@ l10n.fi = {
     newDoc: 'DOKUMENTTI',
     newXlsx: 'TAULUKKOLASKENTA',
     newPptx: 'ESITYS',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Luo uusi',
     actRecentFiles: 'Viimeisimmät tiedostot',
     actOpenLocal: 'Avaa paikallinen tiedosto',
@@ -2996,7 +3027,7 @@ l10n.fi = {
     ,settOptThemeLight: 'Vaalea'
     ,settOptThemeClassicLight: 'Klassinen vaalea'
     ,settOptThemeDark: 'Tumma'
-    ,settOptLaunchMode: 'Editoinin käynnistystila'
+    ,settOptLaunchMode: 'Avaa tiedosto'
     ,settOptLaunchInTab: 'Välilehdessä'
     ,settOptLaunchInWindow: 'Ikkunassa'
 }
@@ -3051,6 +3082,7 @@ l10n.el = {
     newDoc: 'ΕΓΓΡΑΦΟ',
     newXlsx: 'ΥΠΟΛΟΓΙΣΤΙΚΟ ΦΥΛΛΟ',
     newPptx: 'ΠΑΡΟΥΣΙΑΣΗ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Δημιουργία νέου',
     actRecentFiles: 'Πρόσφατα αρχεία',
     actOpenLocal: 'Άνοιγμα τοπικού αρχείου',
@@ -3089,7 +3121,7 @@ l10n.el = {
     ,settOptThemeLight: 'Ανοιχτόχρωμο'
     ,settOptThemeClassicLight: 'Κλασικό ανοιχτόχρωμο'
     ,settOptThemeDark: 'Σκουρόχρωμο'
-    ,settOptLaunchMode: 'Λειτουργία έναρξης επεξεργαστή'
+    ,settOptLaunchMode: 'Άνοιγμα αρχείου'
     ,settOptLaunchInTab: 'Σε καρτέλα'
     ,settOptLaunchInWindow: 'Σε παράθυρο'
 }
@@ -3144,6 +3176,7 @@ l10n.hi = {
     newDoc: 'दस्तावेज़',
     newXlsx: 'स्प्रेडशीट',
     newPptx: 'प्रस्तुति',
+    newForm: 'FORM MASTER',
     actCreateNew: 'नया बनाएँ',
     actRecentFiles: 'हालिया फ़ाइलें',
     actOpenLocal: 'लोकल फ़ाइल खोलें',
@@ -3182,7 +3215,7 @@ l10n.hi = {
     ,settOptThemeLight: 'लाइट'
     ,settOptThemeClassicLight: 'क्लासिक लाइट'
     ,settOptThemeDark: 'डार्क'
-    ,settOptLaunchMode: 'संपादक का लॉन्च मोड'
+    ,settOptLaunchMode: 'फ़ाइल खोलें'
     ,settOptLaunchInTab: 'टैब में'
     ,settOptLaunchInWindow: 'विंडो में'
 }
@@ -3237,6 +3270,7 @@ l10n.hu = {
     newDoc: 'DOKUMENTUM',
     newXlsx: 'SZÁMOLÓTÁBLA',
     newPptx: 'BEMUTATÓ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Új létrehozása',
     actRecentFiles: 'Legutóbbi fájlok',
     actOpenLocal: 'Helyi fájl megnyitása',
@@ -3275,7 +3309,7 @@ l10n.hu = {
     ,settOptThemeLight: 'Világos'
     ,settOptThemeClassicLight: 'Klasszikus világos'
     ,settOptThemeDark: 'Sötét'
-    ,settOptLaunchMode: 'Szerkesztő indítómód'
+    ,settOptLaunchMode: 'Fájl megnyitása'
     ,settOptLaunchInTab: 'Lapon'
     ,settOptLaunchInWindow: 'Ablakban'
 }
@@ -3330,6 +3364,7 @@ l10n.id = {
     newDoc: 'DOKUMEN',
     newXlsx: 'LEMBAR BENTANG',
     newPptx: 'PRESENTASI',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Buat baru',
     actRecentFiles: 'File terbaru',
     actOpenLocal: 'Buka file lokal',
@@ -3368,7 +3403,7 @@ l10n.id = {
     ,settOptThemeLight: 'Cerah'
     ,settOptThemeClassicLight: 'Cerah klasik'
     ,settOptThemeDark: 'Gelap'
-    ,settOptLaunchMode: 'Mode peluncuran editor'
+    ,settOptLaunchMode: 'Buka file'
     ,settOptLaunchInTab: 'Di tab'
     ,settOptLaunchInWindow: 'Di jendela'
 }
@@ -3423,6 +3458,7 @@ l10n.ga = {
     newDoc: 'doiciméad',
     newXlsx: 'scarbhileog',
     newPptx: 'cur i láthair',
+    newForm: 'FORM MASTER',
     actCreateNew: 'nua a chruthú',
     actRecentFiles: 'Comhaid le déanaí',
     actOpenLocal: 'Oscail comhad áitiúil',
@@ -3461,7 +3497,7 @@ l10n.ga = {
     ,settOptThemeLight: 'Solas'
     ,settOptThemeClassicLight: 'Solas Clasaiceach'
     ,settOptThemeDark: 'Dorcha'
-    ,settOptLaunchMode: 'Mód Seoladh an Eagarthóra'
+    ,settOptLaunchMode: 'Oscail comhad'
     ,settOptLaunchInTab: 'Sa chluaisín'
     ,settOptLaunchInWindow: 'I bhfuinneog'
 }
@@ -3516,6 +3552,7 @@ l10n.no = {
     newDoc: 'DOKUMENT',
     newXlsx: 'REGNEARK',
     newPptx: 'PRESENTASJON',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Opprett ny',
     actRecentFiles: 'Nylig brukte filer',
     actOpenLocal: 'Åpne lokal fil',
@@ -3554,7 +3591,7 @@ l10n.no = {
     ,settOptThemeLight: 'Lyst'
     ,settOptThemeClassicLight: 'Klassisk lyst'
     ,settOptThemeDark: 'Mørskt'
-    ,settOptLaunchMode: 'Startmodus for redigering'
+    ,settOptLaunchMode: 'Åpne fil'
     ,settOptLaunchInTab: 'I fanegruppe'
     ,settOptLaunchInWindow: 'I vindu'
 }
@@ -3609,6 +3646,7 @@ l10n.be = {
     newDoc: 'ДАКУМЕНТ',
     newXlsx: 'ТАБЛІЦА',
     newPptx: 'ПРЭЗЕНТАЦЫЯ',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Стварыць новы',
     actRecentFiles: 'Апошнія файлы',
     actOpenLocal: 'Адкрыць лакальны файл',
@@ -3647,7 +3685,7 @@ l10n.be = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Класічная светлая'
     ,settOptThemeDark: 'Цемная'
-    ,settOptLaunchMode: 'Рэжым запуску'
+    ,settOptLaunchMode: 'Адкрыць файл'
     ,settOptLaunchInTab: 'Ва ўкладцы'
     ,settOptLaunchInWindow: 'У акне'
 }
@@ -3702,6 +3740,7 @@ l10n.gl = {
     newDoc: 'DOCUMENTO',
     newXlsx: 'FOLLA DE CÁLCULO',
     newPptx: 'PRESENTACIÓN',
+    newForm: 'FORM MASTER',
     actCreateNew: 'Crear novo',
     actRecentFiles: 'Ficheiros recentes',
     actOpenLocal: 'Abrir ficheiro local',
@@ -3740,7 +3779,7 @@ l10n.gl = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clásico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lanzamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Na lapela'
     ,settOptLaunchInWindow: 'Na xanela'
 }
