@@ -42,6 +42,8 @@ ko.AssociateDescription =오피스 문서 파일 유형을 {#ASSC_APP_NAME}과 �
 lv.AssociateDescription =Saistīt biroja dokumentu tipus ar {#ASSC_APP_NAME}
 nn_NO.AssociateDescription =Tilknytt filtyper for Office-dokumenter til {#ASSC_APP_NAME}}
 uk.AssociateDescription =Асоціювати типи файлів офісних документів з {#ASSC_APP_NAME}
+be.AssociateDescription =Звязаць тыпы файлаў дакументаў офіса з {#ASSC_APP_NAME}
+gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 bg.AssociateCaption =Свързвания на файлове
@@ -80,6 +82,8 @@ ko.AssociateCaption =파일 연결
 lv.AssociateCaption =Apvienotie faili
 nn_NO.AssociateCaption =Filtilknytninger
 uk.AssociateCaption =Асоціації файлів
+be.AssociateCaption =Асацыяцыя файлаў
+gl.AssociateCaption =Asociacións do ficheiro
 
 en.AssociateDont =Do not associate
 ca.AssociateDont =No associar
@@ -118,6 +122,8 @@ ko.AssociateDont =연결 안함
 lv.AssociateDont =Nesaistīt
 nn_NO.AssociateDont =Ikke tilknytt
 uk.AssociateDont =Не асоціювати
+be.AssociateDont =Не звязваць
+gl.AssociateDont =Non asociar
 
 en.AssociateAll =Associate all
 bg.AssociateAll =Свържи всички
@@ -156,6 +162,8 @@ ko.AssociateAll =모두 연결
 lv.AssociateAll =Saistīt visu
 nn_NO.AssociateAll =Tilknytt alle
 uk.AssociateAll =Асоціювати всі
+be.AssociateAll =Звязаць усе
+gl.AssociateAll =Asociar todo
 
 en.AssociateSel =Associate selected
 bg.AssociateSel =Свържи избраните
@@ -194,6 +202,8 @@ ko.AssociateSel =선택된 파일 연결
 lv.AssociateSel =Apvienojums atlasīts
 nn_NO.AssociateSel =Tilknytning valgt
 uk.AssociateSel =Асоціювати вибрані
+be.AssociateSel =Звязаць выбраныя
+gl.AssociateSel =Asociación seleccionada
 
 en.AssociateAudio =File types
 bg.AssociateAudio =Типове файлове
@@ -232,6 +242,8 @@ ko.AssociateAudio =파일 유형
 lv.AssociateAudio =Failu tipi
 nn_NO.AssociateAudio =Filtyper
 uk.AssociateAudio =Типи файлів
+be.AssociateAudio =Тыпы файлаў
+gl.AssociateAudio =Tipos de ficheiros
 
 en.extMSWord =Microsoft Word Document
 bg.extMSWord =Microsoft Word документ
@@ -270,6 +282,8 @@ ko.extMSWord =Microsoft Word Document (마이크로소프트 워드 문서)
 lv.extMSWord =Microsoft Word Dokuments
 nn_NO.extMSWord =Microsoft Word-dokument
 uk.extMSWord =Документ Microsoft Word
+be.extMSWord =Дакумент Microsoft Word
+gl.extMSWord =Documentos de Microsoft Word
 
 en.extMSExcel =Microsoft Excel Workbook
 bg.extMSExcel =Microsoft Excel работна книга
@@ -308,6 +322,8 @@ ko.extMSExcel =Microsoft Excel Workbook (마이크로소프트 엑셀 워크북)
 lv.extMSExcel =Microsoft Excel Darbgrāmata
 nn_NO.extMSExcel =Microsoft Excel-arbeidsbok
 uk.extMSExcel =Книга Microsoft Excel
+be.extMSExcel =Рабочы сшытак Microsoft Excel
+gl.extMSExcel =Caderno de traballo do Microsoft Excel
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 bg.extMSPresentation =Microsoft PowerPoint презентация
@@ -346,6 +362,9 @@ ko.extMSPresentation =Microsoft PowerPoint Presentation (마이크로소프트 �
 lv.extMSPresentation =Microsoft PowerPoint Prezentācija
 nn_NO.extMSPresentation =Microsoft PowerPoint-presentasjon
 uk.extMSPresentation =Презентація Microsoft PowerPoint
+be.extMSPresentation =Прэзентацыя Microsoft PowerPoint
+gl.extMSPresentation =Presentación de PowerPoint de Microsoft
+
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 bg.extMSSlideshow =Microsoft PowerPoint слайдшоу
@@ -384,6 +403,8 @@ ko.extMSSlideshow =Microsoft PowerPoint Slideshow (마이크로소포트 파워�
 lv.extMSSlideshow =Microsoft PowerPoint Slaidrāde
 nn_NO.extMSSlideshow =Microsoft PowerPoint-lysbildefremvisning
 uk.extMSSlideshow =Показ слайдів Microsoft PowerPoint
+be.extMSSlideshow =Слайд-шоў Microsoft PowerPoint
+gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 
 en.extODT =OpenDocument Text Document
 bg.extODT =OpenDocument текстов документ
@@ -422,6 +443,8 @@ ko.extODT =OpenDocument Text Document (오픈도큐먼트 텍스트 문서)
 lv.extODT =OpenDocument Teksta Dokuments
 nn_NO.extODT =OpenDocument-tekstdokument
 uk.extODT =Текстовий документ OpenDocument
+be.extODT =Тэкставы дакумент OpenDocument
+gl.extODT =Documento de texto OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 bg.extODS =OpenDocument електронна таблица
@@ -460,6 +483,8 @@ ko.extODS =OpenDocument Spreadsheet (오픈도큐먼트 스프레드시트)
 lv.extODS =OpenDocument Izklājlapa
 nn_NO.extODS =OpenDocument-regneark
 uk.extODS =Електронна таблиця OpenDocument
+be.extODS =Табліца OpenDocument
+gl.extODS =Folla de cálculo de OpenDocument
 
 en.extODP =OpenDocument Presentation
 bg.extODP =OpenDocument презентация
@@ -498,6 +523,8 @@ ko.extODP =OpenDocument Presentation (오픈도큐먼트 프레젠테이션)
 lv.extODP =OpenDocument Prezentācija
 nn_NO.extODP =OpenDocument-presentasjon
 uk.extODP =Презентація OpenDocument
+be.extODP =Прэзентацыя OpenDocument
+gl.extODP =Presentación de OpenDocument
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
@@ -536,6 +563,8 @@ ko.defprogAppDescription=문서 편집 및 공동 작업을 위한 무료 데스
 lv.defprogAppDescription=Bezmaksas biroja komplekts dokumentu rediģēšanai un sadarbībai
 nn_NO.defprogAppDescription=Gratis office-pakke til PC for dokumentredigering og samarbeid med andre
 uk.defprogAppDescription=Безкоштовний пакет настільних офісних програм для редагування документів та спільної роботи
+be.defprogAppDescription=Бясплатны настольны офісны пакет для рэдагавання дакументаў і сумеснай працы
+gl.defprogAppDescription=Suite ofimática de escritorio gratuíta para a edición e colaboración de documentos
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 bg.warnWin10FileAssociationDesc=За да свържете файловете с приложението, отворете следния прозорец, след като инсталацията приключи:
@@ -574,6 +603,8 @@ ko.warnWin10FileAssociationDesc=해당 파일을 해당 애플리케이션과 �
 lv.warnWin10FileAssociationDesc=Lai asociētu failus ar programmu, pēc instalēšanas pabeigšanas atveriet šo logu:
 nn_NO.warnWin10FileAssociationDesc=For å tilknytte filene til programmet, åpne det påfølgende vinduet etter at installasjonen er fullført:
 uk.warnWin10FileAssociationDesc=Щоб асоціювати файли з програмою, після завершення інсталяції відкрийте таке вікно:
+be.warnWin10FileAssociationDesc=Каб звязаць файлы з прыкладаннем, пасля завяршэння ўстаноўкі адкрыйце наступнае акно:
+gl.warnWin10FileAssociationDesc=Para asociar os ficheiros co aplicativo, abra a seguinte xanela despois de completar a instalación:
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 bg.warnWin10FileAssociationPath=Настройки> Приложения> Приложение по подразбиране
@@ -612,6 +643,8 @@ ko.warnWin10FileAssociationPath=설정 > 앱 > 기본 앱
 lv.warnWin10FileAssociationPath=Iestatījumi > Programmas > Noklusējuma programmas
 nn_NO.warnWin10FileAssociationPath=Innstillinger > Apper > Standard-apper
 uk.warnWin10FileAssociationPath=Налаштування > Програми > Програми за замовчуванням
+be.warnWin10FileAssociationPath=Налады> Прыкладанні> Прыкладанні па змаўчанні
+gl.warnWin10FileAssociationPath=Configuración> Aplicativos> Aplicativos por defecto
 
 en.runOpenDefaultApps=Open Default apps
 bg.runOpenDefaultApps=Отвори приложения по подразбиране
@@ -650,6 +683,8 @@ ko.runOpenDefaultApps=기본 앱 열기
 lv.runOpenDefaultApps=Atvērt Noklusējuma programmas
 nn_NO.runOpenDefaultApps=Åpne standard-apper
 uk.runOpenDefaultApps=Відкрити програми за замовчуванням
+be.runOpenDefaultApps=Адкрыць прыкладанні па змаўчанні
+gl.runOpenDefaultApps=Abrir aplicativos por defecto
 
 [Run]
 Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
