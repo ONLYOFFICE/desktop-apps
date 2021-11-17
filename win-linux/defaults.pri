@@ -45,6 +45,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/tr.ts \
                 ./langs/uk.ts \
                 ./langs/vi.ts \
+                ./langs/be.ts \
                 ./langs/zh_HK.ts
 
 
