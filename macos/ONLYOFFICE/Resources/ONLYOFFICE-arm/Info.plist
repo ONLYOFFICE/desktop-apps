@@ -519,5 +519,7 @@
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>banner</string>
 </dict>
 </plist>
