@@ -1075,12 +1075,12 @@ void CAscApplicationManagerWrapper::closeMainWindow()
     APP_CAST(_app)
 
     if ( _app.m_pMainWindow ) {
-        if ( false && !_app.m_vecEditors.empty() ) {
-            CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-            m.setButtons({"Close all", "Current only", "Cancel"});
-            switch (m.warning(tr("Do you want to close all editor windows?"))) {
-            case MODAL_RESULT_CUSTOM + 0: break;
-            case MODAL_RESULT_CUSTOM + 1:
+        if ( !_app.m_vecEditors.empty() ) {
+//            CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//            m.setButtons({"Close all", "Current only", "Cancel"});
+//            switch (m.warning(tr("Do you want to close all editor windows?"))) {
+//            case MODAL_RESULT_CUSTOM + 0: break;
+//            case MODAL_RESULT_CUSTOM + 1:
                 if ( mainWindow()->mainPanel()->tabWidget()->count() ) {
                     _app.m_closeTarget = L"main";
                     QTimer::singleShot(0, []{
@@ -1091,8 +1091,8 @@ void CAscApplicationManagerWrapper::closeMainWindow()
                     mainWindow()->hide();
                 }
                 return;
-            default: return;
-            }
+//            default: return;
+//            }
         }
 
         if ( _app.m_closeTarget.empty() ) {
