@@ -519,7 +519,13 @@
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
-	<key>NSUserNotificationAlertStyle</key>
-	<string>banner</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 </dict>
 </plist>
