@@ -111,20 +111,20 @@ private:
         {"cs-CZ", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
-        ,{"pt-PT", "Portuguese (Portugal)"}
+//        ,{"pt-PT", "Portuguese (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
-        ,{"zh-HK", "Chinese (Traditional)"}
+//        ,{"zh-HK", "Chinese (Traditional)"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}
-        ,{"et-EE", "Eesti"}
+//        ,{"et-EE", "Eesti"}
         ,{"fi-FI", "Suomi"}
-        ,{"ga-IE", "Gaeilge"}
-        ,{"hi-IN", "हिन्दी"}
-        ,{"hr-HR", "Hrvatska"}
+//        ,{"ga-IE", "Gaeilge"}
+//        ,{"hi-IN", "हिन्दी"}
+//        ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", "Magyar nyelv"}
-        ,{"hy-AM", "Հայաստան"}
+//        ,{"hy-AM", "Հայաստան"}
         ,{"in-ID", "Indonesian"}
         ,{"no-NO", "Norsk"}
         ,{"ro-RO", "Romanian"}
@@ -137,7 +137,7 @@ private:
         ,{"nl-NL", "Nederlands"}
         ,{"vi-VN", "Tiếng Việt"}
         ,{"lv-LV", "Latviešu valoda"}
-        ,{"lt-LT", "Lietuvių kalba"}
+//        ,{"lt-LT", "Lietuvių kalba"}
         ,{"be-BY", "Беларуская мова"}
         ,{"uk-UA", "Украї́нська мо́ва"}
         ,{"lo-LA", "ພາສາລາວ"}
