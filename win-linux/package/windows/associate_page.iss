@@ -757,6 +757,8 @@ begin
   AudioExts[13] := 'PDF';
   AudioExts[14] := 'DJVU';
   AudioExts[15] := 'XPS';
+  AudioExts[16] := 'OFORM';
+  AudioExts[17] := 'DOCXF';
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
 
@@ -764,21 +766,23 @@ begin
 
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extMSWord}')          + ':' + '11';
   ExtensionRegistryInfo[1]  := prefix + 'Document.12:'  + ExpandConstant('{cm:extMSWord}')          + ':' + '7';
-  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '16';
+  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extMSExcel}')         + ':' + '18';+
   ExtensionRegistryInfo[3]  := prefix + 'Sheet.12:'     + ExpandConstant('{cm:extMSExcel}')         + ':' + '10';
   ExtensionRegistryInfo[4]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extMSPresentation}')  + ':' + '1';
   ExtensionRegistryInfo[5]  := prefix + 'Show.12:'      + ExpandConstant('{cm:extMSPresentation}')  + ':' + '9';
   ExtensionRegistryInfo[6]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '2';
   ExtensionRegistryInfo[7]  := prefix + 'SlideShow.12:' + ExpandConstant('{cm:extMSSlideshow}')     + ':' + '8';
-  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '12';
-  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '17';
+  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '14';+
+  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '19';+
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
-  ExtensionRegistryInfo[11] := prefix + 'Rtf:'                                                      + ':' + '13';
+  ExtensionRegistryInfo[11] := prefix + 'Rtf:'                                                      + ':' + '15';+
   //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '14';
-  ExtensionRegistryInfo[12] := prefix + 'Csv:'                                                      + ':' + '18';
+  ExtensionRegistryInfo[12] := prefix + 'Csv:'                                                      + ':' + '20';+
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'                                                      + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'                                                     + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'                                                      + ':' + '6';
+  ExtensionRegistryInfo[16] := prefix + 'Docxf:'                                                    + ':' + '12';
+  ExtensionRegistryInfo[17] := prefix + 'Oform:'                                                    + ':' + '13';
 end;
 
 procedure ChlbAudioClickCheck(Sender: TObject);
