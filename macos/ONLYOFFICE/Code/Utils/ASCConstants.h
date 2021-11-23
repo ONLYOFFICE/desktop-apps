@@ -60,7 +60,8 @@ typedef NS_ENUM(int, ASCTabActionType) {
 typedef NS_ENUM(int, CEFDocumentType) {
     CEFDocumentDocument = 0,
     CEFDocumentSpreadsheet = 2,
-    CEFDocumentPresentation = 1
+    CEFDocumentPresentation = 1,
+    CEFDocumentForm = 3,
 };
 
 static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";

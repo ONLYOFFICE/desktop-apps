@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
+		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
@@ -403,6 +405,8 @@
 
 /* Begin PBXFileReference section */
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
+		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
+		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
@@ -782,6 +786,8 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5AB20F61274D360A003732A0 /* file-oform.icns */,
+				5AB20F5D274D35F2003732A0 /* file-docxf.icns */,
 				FCA3F3062570EC9500DCAB12 /* file-epub.icns */,
 				FCA3F3022570EC9500DCAB12 /* file-fb2.icns */,
 				FCA3F2FD2570EC9400DCAB12 /* file-fobs.icns */,
@@ -1545,9 +1551,9 @@
 				FC0BD6CA258B63F700C47F95 /* file-fb2.icns in Resources */,
 				FC0BD6CB258B63F700C47F95 /* file-epub.icns in Resources */,
 				FC0BD6CC258B63F700C47F95 /* file-htm.icns in Resources */,
+				5AB20F64274D360A003732A0 /* file-oform.icns in Resources */,
 				FC0BD6CD258B63F700C47F95 /* file-odt.icns in Resources */,
 				FC0BD6CE258B63F700C47F95 /* file-rtf.icns in Resources */,
-				FCB4C78126DD029C0012C20D /* Info.plist in Resources */,
 				FC0BD6CF258B63F700C47F95 /* file-odp.icns in Resources */,
 				FC0BD6D0258B63F700C47F95 /* file-pdf.icns in Resources */,
 				FC0BD6D1258B63F700C47F95 /* file-mht.icns in Resources */,
@@ -1570,6 +1576,7 @@
 				FC0BD6E2258B63F700C47F95 /* converter in Resources */,
 				FC0BD6E3258B63F700C47F95 /* file-ods.icns in Resources */,
 				FC0BD6E4258B63F700C47F95 /* Images.xcassets in Resources */,
+				5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FC0BD6E5258B63F700C47F95 /* Localizable.strings in Resources */,
 				FC0BD6E6258B63F700C47F95 /* Localizable.stringsdict in Resources */,
 				FC0BD6E7258B63F700C47F95 /* file-ppt.icns in Resources */,
@@ -1595,9 +1602,9 @@
 				FCB4C70626DD018B0012C20D /* file-fb2.icns in Resources */,
 				FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */,
 				FCB4C70826DD018B0012C20D /* file-htm.icns in Resources */,
+				5AB20F62274D360A003732A0 /* file-oform.icns in Resources */,
 				FCB4C70926DD018B0012C20D /* file-odt.icns in Resources */,
 				FCB4C70A26DD018B0012C20D /* file-rtf.icns in Resources */,
-				FCB4C77E26DD02830012C20D /* Info.plist in Resources */,
 				FCB4C70B26DD018B0012C20D /* file-odp.icns in Resources */,
 				FCB4C70C26DD018B0012C20D /* file-pdf.icns in Resources */,
 				FCB4C70D26DD018B0012C20D /* file-mht.icns in Resources */,
@@ -1620,6 +1627,7 @@
 				FCB4C71E26DD018B0012C20D /* converter in Resources */,
 				FCB4C71F26DD018B0012C20D /* file-ods.icns in Resources */,
 				FCB4C72026DD018B0012C20D /* Images.xcassets in Resources */,
+				5AB20F5E274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FCB4C72126DD018B0012C20D /* Localizable.strings in Resources */,
 				FCB4C72226DD018B0012C20D /* Localizable.stringsdict in Resources */,
 				FCB4C72326DD018B0012C20D /* file-ppt.icns in Resources */,
@@ -1645,9 +1653,9 @@
 				FCA3F30C2570EC9500DCAB12 /* file-fb2.icns in Resources */,
 				FCA3F3102570EC9500DCAB12 /* file-epub.icns in Resources */,
 				FCA3F30F2570EC9500DCAB12 /* file-htm.icns in Resources */,
+				5AB20F63274D360A003732A0 /* file-oform.icns in Resources */,
 				FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */,
 				FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */,
-				FCB4C78426DD02A80012C20D /* Info.plist in Resources */,
 				FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */,
 				FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */,
 				FCA3F30E2570EC9500DCAB12 /* file-mht.icns in Resources */,
@@ -1670,6 +1678,7 @@
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
 				FC98AF201E94E16A00718A12 /* file-ods.icns in Resources */,
 				FCBC42761B9D650500405301 /* Images.xcassets in Resources */,
+				5AB20F5F274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FCFC000D1BC54ACC00939341 /* Localizable.strings in Resources */,
 				FCD2B9181BC64F0C00F54560 /* Localizable.stringsdict in Resources */,
 				FC98AF2F1E94E16A00718A12 /* file-ppt.icns in Resources */,

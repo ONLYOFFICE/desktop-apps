@@ -1786,6 +1786,9 @@
                     case CEFDocumentPresentation:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter];
                         break;
+                    case CEFDocumentForm:
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docxf", nil), ++documentNameCounter];
+                        break;
                 }
                 
                 [cefView createFileWithName:docName type:docType];

@@ -68,8 +68,8 @@
 }
 
 + (NSArray *)documents {
-    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
-             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2"];
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2", @"oform"];
 }
 
 + (NSArray *)spreadsheets {
@@ -228,6 +228,14 @@
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
                      @"description" : NSLocalizedString(@"FictionBook File", nil),
                      @"extension"   : @"fb2"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF): @{
+                     @"description" : NSLocalizedString(@"DOCXF File", nil),
+                     @"extension"   : @"docxf"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM): @{
+                     @"description" : NSLocalizedString(@"OFORM File", nil),
+                     @"extension"   : @"oform"
              }
     };
 }
