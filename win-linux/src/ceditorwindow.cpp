@@ -347,7 +347,11 @@ void CEditorWindow::setScreenScalingFactor(double newfactor)
 {
     CSingleWindowPlatform::setScreenScalingFactor(newfactor);
 
-    m_pMainPanel->setProperty("zoom", newfactor > 1 ? "2x": "1x");
+    if ( newfactor > 1.75 ) m_pMainPanel->setProperty("zoom", "2x"); else
+    if ( newfactor > 1.5 ) m_pMainPanel->setProperty("zoom", "1.75x"); else
+    if ( newfactor > 1.25 ) m_pMainPanel->setProperty("zoom", "1.5x"); else
+    if ( newfactor > 1 ) m_pMainPanel->setProperty("zoom", "1.25x");
+    else m_pMainPanel->setProperty("zoom", "1");
 
     QString css(AscAppManager::getWindowStylesheets(newfactor));
     css.append(m_css);

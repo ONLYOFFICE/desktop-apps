@@ -75,6 +75,7 @@ public:
     virtual void bringToTop() = 0;
     virtual void focus() = 0;
     virtual bool isCustomWindowStyle();
+    virtual void updateScaling();
 
 protected:
     double m_dpiRatio = 1;
