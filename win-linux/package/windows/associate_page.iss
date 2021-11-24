@@ -737,7 +737,7 @@ procedure initExtensions;
 var
   prefix: string;
 begin
-  SetArrayLength(AudioExts, 16);
+  SetArrayLength(AudioExts, 18);
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
   AudioExts[0]  := 'DOC';
