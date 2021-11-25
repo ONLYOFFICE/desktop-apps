@@ -295,7 +295,7 @@ void CEditorWindow::onMinimizeEvent()
 
 void CEditorWindow::onClickButtonHome()
 {
-    AscAppManager::gotoMainWindow();
+    AscAppManager::gotoMainWindow(size_t(this));
 }
 
 void CEditorWindow::onMaximizeEvent()

@@ -87,6 +87,22 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
 {
     QObject::disconnect(m_modalSlotConnection);
 
+    if ( !AscAppManager::mainWindow() || !AscAppManager::mainWindow()->isVisible() ) {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(m_hWnd, &wp)) {
+            GET_REGISTRY_USER(reg_user)
+            wp.showCmd == SW_MAXIMIZE ?
+                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+
+            QRect windowRect;
+            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+            windowRect.adjust(0,0,-1,-1);
+
+            reg_user.setValue("position", windowRect);
+        }
+    }
+
     m_closed = true;
     DestroyWindow(m_hWnd);
 

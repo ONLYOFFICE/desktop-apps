@@ -76,6 +76,7 @@ public:
     virtual void focus() = 0;
     virtual bool isCustomWindowStyle();
     virtual void updateScaling();
+    virtual double scaling() const;
 
 protected:
     double m_dpiRatio = 1;

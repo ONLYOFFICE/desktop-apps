@@ -659,11 +659,13 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
     return new CAscApplicationManagerWrapper;
 }
 
-auto prepareMainWindow() -> CMainWindow * {
+auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
     APP_CAST(_app);
     GET_REGISTRY_USER(reg_user);
 
-    QRect _start_rect = reg_user.value("position").toRect();
+    QRect _start_rect{r};
+    if ( r.isEmpty() )
+        _start_rect = reg_user.value("position").toRect();
 
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
     _startPanel->Create(&_app, cvwtSimple);
@@ -701,6 +703,7 @@ auto prepareMainWindow() -> CMainWindow * {
 void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& vargs)
 {
     APP_CAST(_app);
+    GET_REGISTRY_USER(reg_user);
 
     auto check_param = [] (const wstring& line, const wstring& param) {
         return line.find(param) == 0;
@@ -714,6 +717,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         return -1;
     };
+
+    QRect _start_rect = reg_user.value("position").toRect();
 
     const wstring prefix{L"--"};
     std::vector<std::wstring> arg_check_list{L"--review",L"--view",L"--edit"};
@@ -792,16 +797,14 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
         if ( panel ) {
             if ( open_in_new_window ) {
-                CEditorWindow * editor_win = new CEditorWindow(QRect(), panel);
+                CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
                 editor_win->show(false);
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = prepareMainWindow();
-
-                    GET_REGISTRY_USER(reg_user);
+                    _app.m_pMainWindow = prepareMainWindow(_start_rect);
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
@@ -812,9 +815,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
-            _app.m_pMainWindow = prepareMainWindow();
-
-            GET_REGISTRY_USER(reg_user);
+            _app.m_pMainWindow = prepareMainWindow(_start_rect);
             _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
         }
 
@@ -1036,7 +1037,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
 
     if ( QApplication::desktop()->screenCount() > 1 ) {
         int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-        QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);        
+        QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
         int _srcDpiRatio = Utils::getScreenDpiRatio(_scrRect.topLeft());
 
         _windowRect.setSize(QSize(1000,700)*_srcDpiRatio);
@@ -1054,14 +1055,20 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
     return reporterWindow;
 }
 
-void CAscApplicationManagerWrapper::gotoMainWindow()
+void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
 {
     APP_CAST(_app)
 
     if ( !_app.m_pMainWindow ) {
         GET_REGISTRY_USER(reg_user)
 
-        _app.m_pMainWindow = prepareMainWindow();
+        QRect _start_rect;
+        if ( src ) {
+            const CEditorWindow & _editor = *reinterpret_cast<CEditorWindow *>(src);
+            _start_rect = _editor.geometry().translated(QPoint(50,50) * _editor.scaling());
+        }
+
+        _app.m_pMainWindow = prepareMainWindow(_start_rect);
         _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
     }
 
@@ -1232,7 +1239,7 @@ namespace Drop {
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
         CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
-        if ( main_window ) {
+        if ( main_window && main_window->isVisible() ) {
             drop_handle = handle;
 
             static QPoint last_cursor_pos;
