@@ -1473,6 +1473,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
             setUserSettings(L"force-scale", sets);
             m_pMainWindow->updateScaling();
+
+            CEditorWindow * _editor = nullptr;
+            foreach ( auto const& e, m_vecEditors ) {
+                _editor = reinterpret_cast<CEditorWindow *>(e);
+                _editor->updateScaling();
+            }
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")
