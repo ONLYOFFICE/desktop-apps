@@ -100,8 +100,19 @@ bool CMainWindowBase::holdView(int id) const
 void CMainWindowBase::selectView(int viewid) const
 {
     int _index = mainPanel()->tabWidget()->tabIndexByView(viewid);
-    if ( !(_index < 0) )
+    if ( !(_index < 0) ) {
         mainPanel()->tabWidget()->setCurrentIndex(_index);
+        mainPanel()->toggleButtonMain(false);
+    }
+}
+
+void CMainWindowBase::selectView(const QString& url) const
+{
+    int _index = mainPanel()->tabWidget()->tabIndexByUrl(url);
+    if ( !(_index < 0) ) {
+        mainPanel()->tabWidget()->setCurrentIndex(_index);
+        mainPanel()->toggleButtonMain(false);
+    }
 }
 
 int CMainWindowBase::editorsCount() const

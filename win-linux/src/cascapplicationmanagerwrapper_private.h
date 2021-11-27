@@ -158,7 +158,11 @@ public:
             if ( cmd.compare(L"open:recent") == 0 ) {
                 QJsonObject objRoot = Utils::parseJson(data.get_Param());
                 if ( !objRoot.isEmpty() ) {
-                    COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                    QString _path = objRoot["path"].toString();
+                    if ( bringEditorToFront( _path ) )
+                        return true;
+
+                    COpenOptions opts{_path.toStdWString(), etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
 
@@ -245,6 +249,38 @@ public:
         if ( editor )
             editor->bringToTop();
         else m_appmanager.mainWindow()->selectView(viewid);
+    }
+
+    auto bringEditorToFront(const QString& url) -> bool
+    {
+        CEditorWindow * _editor = nullptr;
+        CCefView * _view = m_appmanager.GetViewByUrl(url.toStdWString());
+        if ( _view ) {
+            int _view_id = _view->GetId();
+
+            if ( mainWindow()->mainPanel()->holdUid(_view_id) ) {
+                mainWindow()->bringToTop();
+                mainWindow()->selectView(_view_id);
+                return true;
+            } else
+                _editor = m_appmanager.editorWindowFromViewId(_view_id);
+        } else {
+            QString _n_url = Utils::replaceBackslash(url);
+
+            if ( mainWindow()->mainPanel()->holdUrl(_n_url, etLocalFile) ) {
+                mainWindow()->bringToTop();
+                mainWindow()->selectView(_n_url);
+                return true;
+            } else
+                _editor = m_appmanager.editorWindowFromUrl(_n_url);
+        }
+
+        if ( _editor ) {
+            _editor->bringToTop();
+            return true;
+        }
+
+        return false;
     }
 
     auto windowRectFromViewId(int viewid) -> QRect
