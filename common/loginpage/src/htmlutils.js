@@ -11,9 +11,17 @@ function checkScaling() {
     };
 
     for (var c in matches) {
-        if ( window.matchMedia(matches[c]).matches ) {
+        const media_query_list = window.matchMedia(matches[c]);
+        media_query_list.addEventListener('change', function(cls, e) {
+            if ( e.matches ) {
+                document.body.className = document.body.className.replace(/pixel-ratio__[\d_]+/gi, '').trim();
+                document.body.classList.add(cls);
+            }
+        }.bind(this, c));
+
+        if ( media_query_list.matches ) {
             document.body.classList.add(c);
-            break;
+            // break;
         }
     }
 }

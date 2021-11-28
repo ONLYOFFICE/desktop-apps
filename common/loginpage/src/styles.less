@@ -293,7 +293,7 @@ li.menu-item {
     > li.menu-item.separator {
         flex-grow: 1;
 
-        @minus-one-px: calc(-1px / var(--pixel-ratio, 1));
+        @minus-one-px: calc(-1 * @scaled-one-px);
         box-shadow: inset 0 @minus-one-px 0 0 @border-divider;
     }
 }
