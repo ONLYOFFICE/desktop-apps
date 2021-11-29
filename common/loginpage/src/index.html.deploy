@@ -123,7 +123,7 @@
                     <span class="text" l10n>PRESENTATION</span>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item" style="padding-bottom:0;">
                   <a action="new:form">
                     <i class="icon img-el"></i>
                     <span class="text" l10n>MASTER FORM</span>
