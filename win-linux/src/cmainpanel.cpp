@@ -909,7 +909,7 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( !(index < 0) ) {
-        if ( args.contains(QRegExp("action\\\":\\\"close")) ) {
+        if ( args.contains(QRegExp("action\\\":\\\"file:exit")) ) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
 

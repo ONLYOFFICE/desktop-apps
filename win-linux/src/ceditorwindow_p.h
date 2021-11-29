@@ -302,7 +302,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QRegExp("action\\\":\\\"close")) ) {
+        if ( json.contains(QRegExp("action\\\":\\\"file:exit")) ) {
             window->closeWindow();
         }
     }

@@ -201,7 +201,10 @@ public:
                     }
                 }
             } else
-            if ( cmd.compare(L"open:folder") == 0 ) {
+            if ( cmd.compare(L"open:folder") == 0 ||
+                    (!(cmd.find(L"editor:event") == std::wstring::npos) &&
+                     !(data.get_Param().find(L"file:open") == std::wstring::npos)) )
+            {
                 std::wstring file_path = CEditorTools::getlocalfile(data.get_Param()).toStdWString();
 
                 if ( !file_path.empty() ) {
