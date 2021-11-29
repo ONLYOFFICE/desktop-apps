@@ -134,6 +134,9 @@ Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFi
 
 [CustomMessages]
 ;======================================================================================================
+en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
+ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' что бы удалить ей, или 'Отменить' что бы выйти из программы инсталляции.
+;======================================================================================================
 en.Launch =Launch %1
 bg.Launch =Пускане %1
 ca.Launch =Llança %1
