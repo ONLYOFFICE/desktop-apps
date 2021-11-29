@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="18.7" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="18.8.1" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_CURRENT_YEAR" Value="2021" ValueLocId="-"/>
@@ -66,7 +66,7 @@
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="TXT_CHECKBOX" Value="1" Type="4"/>
-    <ROW Property="UpgradeCode" Value="{CB49AF5D-4326-45BE-BB4E-E0422BFA64CF}"/>
+    <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
@@ -92,6 +92,8 @@
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" Condition="VersionNT64" KeyPath="DesktopEditors.exe"/>
+    <ROW Component="NewValueCheckForUpdates" ComponentId="{E9660E71-E436-4C3C-8B4B-A324DB1BF250}" Directory_="APPDIR" Attributes="260" KeyPath="NewValueCheckForUpdates"/>
+    <ROW Component="ONLYOFFICE" ComponentId="{4C21A9BD-4E3F-4373-B2DE-6CCFD5818EB6}" Directory_="APPDIR" Attributes="260" KeyPath="ONLYOFFICE"/>
     <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -657,6 +659,8 @@
     <ROW Feature_="xltx" Component_="DesktopEditors.exe"/>
     <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
     <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="MainFeature" Component_="ONLYOFFICE"/>
+    <ROW Feature_="MainFeature" Component_="NewValueCheckForUpdates"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="desktopeditors.exe" SourcePath="..\..\res\icons\desktopeditors.ico" Index="0"/>
@@ -744,8 +748,10 @@
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="NewValueCheckForUpdates" Root="-1" Key="Software\ONLYOFFICE\DesktopEditors" Name="CheckForUpdates" Value="#0" Component_="NewValueCheckForUpdates" VirtualValue="#"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="ONLYOFFICE" Root="-1" Key="Software\ONLYOFFICE" Name="+" Component_="ONLYOFFICE"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
