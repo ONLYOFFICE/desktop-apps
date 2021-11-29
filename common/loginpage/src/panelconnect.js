@@ -491,7 +491,7 @@
             };
 
             let obj = JSON.parse(info);
-            if ( obj ) {
+            if ( obj && !!obj.displayName ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
                     !obj.email && (obj.email = '');
