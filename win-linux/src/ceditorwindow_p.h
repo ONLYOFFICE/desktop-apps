@@ -748,6 +748,19 @@ public:
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
         qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout())->insertWidget(1, boxtitlelabel);
     }
+
+    auto ffWindowCustomize() -> void {
+        {
+            QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
+            if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+                _layout->insertWidget(0, leftboxbuttons);
+        }
+
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+            _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+        }
+    }
 };
 
 #endif // CEDITORWINDOW_P_H

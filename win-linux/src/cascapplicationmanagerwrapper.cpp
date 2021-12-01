@@ -219,6 +219,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 // TODO: unlock for back compatibility with ver 6.4 on portals
                 sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
+                if ( editorWindowFromViewId(event->get_SenderId()) ) {
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
+                }
             }
             return true;
         } else
@@ -801,7 +804,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 editor_win->show(false);
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
-                sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+                sendCommandTo(panel->cef(), L"window:features",
+                              Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
                     _app.m_pMainWindow = prepareMainWindow(_start_rect);
@@ -1234,7 +1238,8 @@ namespace Drop {
             CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
-            AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", 0}}).toStdWString());
+            AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
+                      Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
             CAscApplicationManagerWrapper::mainWindow()->bringToTop();
         }
     }
@@ -1422,7 +1427,8 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
-                        sendCommandTo(_editor->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+                        sendCommandTo(_editor->cef(), L"window:features",
+                                Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
                     }
 //                });
             }

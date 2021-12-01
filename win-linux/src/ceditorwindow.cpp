@@ -88,6 +88,11 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
+    QFileInfo i{QString::fromStdWString(panel->data()->url())};
+    if ( i.suffix() == "oform" ) {
+        d_ptr->ffWindowCustomize();
+    }
+
 //    QObject::connect(d_ptr.get()->buttonDock(), &QPushButton::clicked, [=]{
 //        if ( !d_ptr->isReporterMode ) {
 //            CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
