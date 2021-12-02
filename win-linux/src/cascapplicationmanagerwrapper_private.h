@@ -205,7 +205,7 @@ public:
                     (!(cmd.find(L"editor:event") == std::wstring::npos) &&
                      !(data.get_Param().find(L"file:open") == std::wstring::npos)) )
             {
-                std::wstring file_path = CEditorTools::getlocalfile(data.get_Param()).toStdWString();
+                std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
                     CCefView * _view = m_appmanager.GetViewByUrl(file_path);
