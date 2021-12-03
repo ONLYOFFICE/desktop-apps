@@ -113,10 +113,11 @@ endif
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
 	$(AIC) //edit DesktopEditors.aip //NewSync APPDIR "$(shell cygpath -w $(DEST_DIR))" -existingfiles delete; \
+	$(AIC) //edit DesktopEditors.aip //UpdateFile APPDIR\\DesktopEditors.exe "$(shell cygpath -w $(DEST_DIR))\\DesktopEditors.exe"; \
 	$(AIC) //edit DesktopEditors.aip //SetVersion $(PACKAGE_VERSION); \
 	$(AIC) //edit DesktopEditors.aip //SetOutputLocation -buildname DefaultBuild -path "$(shell cygpath -a -w $(BUILD_DIR))"; \
 	$(AIC) //edit DesktopEditors.aip //SetPackageName "$(notdir $(DESKTOP_EDITORS_MSI))" -buildname DefaultBuild; \
-	$(AIC) //rebuild DesktopEditors.aip
+	$(AIC) //rebuild DesktopEditors.aip -buildslist DefaultBuild
 
 $(BUILD_DIR)/%.zip:
 	7z a -y $@ $(DEST_DIR)/*
