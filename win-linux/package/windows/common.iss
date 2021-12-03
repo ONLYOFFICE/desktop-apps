@@ -133,7 +133,7 @@ Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFi
 Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -144,7 +144,7 @@ Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBra
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
-ga_IE.LanguageName=Gaeilge
+;ga_IE.LanguageName=Gaeilge
 
 [CustomMessages]
 ;======================================================================================================
@@ -179,7 +179,7 @@ zh_CN.Launch =启动%1
 da.Launch =Start %1
 ;hi.Launch =लॉन्च %1
 hu.Launch =%1 elindítása
-ga_IE.Launch =Lainseáil %1
+;ga_IE.Launch =Lainseáil %1
 ja.Launch ==%1 を起動
 ko.Launch ==%1 시작
 lv.Launch =Sākt %1
@@ -219,7 +219,7 @@ zh_CN.CreateDesktopIcon =创建%1和桌面图标
 da.CreateDesktopIcon =Opret %1 &skrivebordsikon
 ;hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
 hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
-ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
+;ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
 ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
 ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
 lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
@@ -259,7 +259,7 @@ zh_CN.InstallAdditionalComponents =安装其他系统组件。请稍候...
 da.InstallAdditionalComponents =Installation af yderligere systemkomponenter. Vent venligst...
 ;hi.InstallAdditionalComponents =अतिरिक्त सिस्टम तत्वों को इंस्टॉल कर रहा है। कृपया प्रतीक्षा करें...
 hu.InstallAdditionalComponents =További rendszerelemek telepítése zajlik. Kérjük, várjon...
-ga_IE.InstallAdditionalComponents =Comhpháirteanna córais breise a shuiteáil. Fán le do thoil...
+;ga_IE.InstallAdditionalComponents =Comhpháirteanna córais breise a shuiteáil. Fán le do thoil...
 ja.InstallAdditionalComponents =追加のシステムコンポーネントをインストールしています。お待ちください...
 ko.InstallAdditionalComponents =추가 시스템 구성 요소를 설치하는 중입니다. 잠시만 기다려주세요...
 lv.InstallAdditionalComponents =Instalē papildu sistēmas komponentus. Lūdzu, uzgaidiet...
@@ -299,7 +299,7 @@ zh_CN.AdditionalTasks =任务：
 da.AdditionalTasks =Opgaver:
 ;hi.AdditionalTasks =कार्य:
 hu.AdditionalTasks =Feladatok:
-ga_IE.AdditionalTasks =Tascanna:
+;ga_IE.AdditionalTasks =Tascanna:
 ja.AdditionalTasks =タスク:
 ko.AdditionalTasks =작업:
 lv.AdditionalTasks =Uzdevumi:
@@ -339,7 +339,7 @@ zh_CN.Uninstall =卸载
 da.Uninstall =Afinstaller
 ;hi.Uninstall =अनइंस्टॉल
 hu.Uninstall =Eltávolítás
-ga_IE.Uninstall =Díshuiteáil
+;ga_IE.Uninstall =Díshuiteáil
 ja.Uninstall =アンインストール
 ko.Uninstall =삭제
 lv.Uninstall =Atinstalēt
@@ -379,7 +379,7 @@ zh_CN.WarningWrongArchitecture =您正在尝试在已安装的%2-bit版本上安
 da.WarningWrongArchitecture =Du prøver at installere %1-bit applikationsversion over den installerede %2-bit version. Venligst afinstaller den tidligere version først eller download den rigtige version for at installere.
 ;hi.WarningWrongArchitecture =आप इंस्टॉल किए गए %2-बिट संस्करण के ऊपर %1-बिट ऐप्लिकेशन  संस्करण को इंस्टॉल करने का प्रयास कर रहे हैं। कृपया पहले पुराने संस्करण को अनइंस्टॉल करें या इंस्टॉल करने के लिए सही संस्करण को डाउनलोड करें।
 hu.WarningWrongArchitecture =Ön a(z) %1-bites alkalmazást próbálja telepíteni a már telepített %2-bites verzió mellé. Kérjük, előbb távolítsa el az előző verziót, vagy a megfelelő verziót töltse le a telepítéshez.
-ga_IE.WarningWrongArchitecture =Tá tú ag iarraidh a shuiteáil an leagan iarratais 1-giotán ar fud an leagan 2- giotán shuiteáil. Díshuiteáil an leagan roimhe seo ar dtús nó íoslódáil an leagan ceart le haghaidh suiteála.
+;ga_IE.WarningWrongArchitecture =Tá tú ag iarraidh a shuiteáil an leagan iarratais 1-giotán ar fud an leagan 2- giotán shuiteáil. Díshuiteáil an leagan roimhe seo ar dtús nó íoslódáil an leagan ceart le haghaidh suiteála.
 ja.WarningWrongArchitecture =すでにインストールされている %2-ビットのバージョンに %1-ビットのアプリのバージョンをインストールしようとしています。初めに前のバージョンをアンインストールするか、正しいバージョンをダウンロードしてください。
 ko.WarningWrongArchitecture =설치되어있는 %2-비트 애플리케이션 버전 위로 %1-비트 버전을 설치하려 합니다. 먼저 이전 버전을 삭제하시거나 설치하고자 하는 정확한 버전을 다운로드해주세요.
 lv.WarningWrongArchitecture =Jūs mēģināt instalēt %1-bitu programmas versiju pāri jau instalētajai %2-bitu versijai. Lūdzu, vispirms atinstalējiet iepriekšējo versiju vai lejuplādējiet pareizo versiju instalēšanai.
@@ -420,7 +420,7 @@ zh_CN.UpdateAppRunning=安装程序检测到%1当前正在运行。%n%n将自动
 da.UpdateAppRunning=Setup har registreret at %1 kører i øjeblikket.%n%nIDet vil blive lukket automatisk. Klik OK for at fortsætte eller Annuler for at afslutte.
 ;hi.UpdateAppRunning=सेटअप ने पता लगाया है कि %1 वर्तमान में चल रहा है।%n%nयह स्वतः ही बंद हो जाएगा। क्लिक करें ओके या जारी रखें पर, या बाहर निकलने के लिए रद्द करें पर।
 hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikusan bezárásra kerül. Folytatáshoz kattintson az OK-ra, kilépéshez kattintson a Mégse gombra.
-ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
+;ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
 ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
 ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
 lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
@@ -460,7 +460,7 @@ zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据�
 da.WarningClearAppData =Vil du rydde brugerinstillingerne og applikationscachede data?
 ;hi.WarningClearAppData =क्या आप उपयोगकर्ता सेटिंग और ऐप्लिकेशन कैश डाटा को हटाना चाहते हैं?
 hu.WarningClearAppData =Törölni szeretné a felhasználói beállításokat és az alkalmazás gyorsítótárazott adatait?
-ga_IE.WarningClearAppData =Ar mhaith leat na socruithe úsáideora agus sonraí taiscthe feidhmchláir a ghlanadh?
+;ga_IE.WarningClearAppData =Ar mhaith leat na socruithe úsáideora agus sonraí taiscthe feidhmchláir a ghlanadh?
 ja.WarningClearAppData =ユーザー設定とアプリによってキャッシュされたデータを消去しますか?
 ko.WarningClearAppData =사용자 설정 및 애플리케이션 캐시 데이터를 지우시겠습니까?
 lv.WarningClearAppData =Vai vēlaties notīrīt lietotāja iestatījumus un programmas kešatmiņas datus?
