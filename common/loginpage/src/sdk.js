@@ -108,6 +108,7 @@
             _clouds = [];
         }
 
+        // TODO: for back compatibility. remove after 7.0 release
         _clouds.findProvider = provider => {
             return _clouds.find(i => i.provider == provider)
         }

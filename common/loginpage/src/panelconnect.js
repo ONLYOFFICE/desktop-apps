@@ -36,18 +36,24 @@
 */
 
 +function(){ 'use strict'
-    window.config = { portals: {}};
-    window.config.portals.checklist = sdk.externalClouds();
     window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
+    window.config = { portals: {
+        update: function() {
+            config.portals.checklist = sdk.externalClouds();
 
-    if ( window.config.portals.checklist ) {
-        let _providers = {};
-        window.config.portals.checklist.forEach(item => {
-            _providers[item.provider] = item;
-        });
+            if ( config.portals.checklist ) {
+                let _providers = {};
+                config.portals.checklist.forEach(item => {
+                    _providers[item.provider] = item;
+                });
 
-        window.config.portals.providers = _providers;
-    }
+                config.portals.providers = _providers;
+                config.portals.providers.find = name => config.portals.providers[name];
+            }
+        }
+    }};
+
+    config.portals.update();
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
@@ -319,8 +325,8 @@
             // model && model.set('logged', false);
 
             let info = {domain:model.path};
-            const _provider = config.portals.providers[model.provider];
-            if ( !!_provider.extraLogout )
+            const _provider = config.portals.providers.find(model.provider);
+            if ( _provider && !!_provider.extraLogout )
                 info.extra = _provider.extraLogout;
 
             window.sdk.execCommand('portal:logout', JSON.stringify(info));
