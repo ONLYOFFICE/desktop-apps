@@ -1538,9 +1538,17 @@
         if (viewId && data) {
             NSString * action = data[@"action"];
 
-            if (action && [action isEqualToString:@"close"]) {
-                if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
-                    [self.tabsControl removeTab:tab selected:NO];
+            if ( action ) {
+                if ( [action isEqualToString:@"file:close"] ) {
+                    if (ASCTabView * tab = [self.tabsControl tabWithUUID:viewId]) {
+                        [self.tabsControl removeTab:tab selected:NO];
+                    }
+                } else
+                if ( [action isEqualToString:@"file:open"] ){
+                    NSNotification * notification = [NSNotification notificationWithName: CEFEventNameOpenLocalFile
+                                                                         object: nil
+                                                                       userInfo: @{@"directory":@""}];
+                    [self onCEFOnOpenLocalFile: notification];
                 }
             }
         }
