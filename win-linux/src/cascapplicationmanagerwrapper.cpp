@@ -1007,7 +1007,11 @@ void CAscApplicationManagerWrapper::initializeApp()
         {"type", _app.m_themes->current().stype()},
         {"id", QString::fromStdWString(_app.m_themes->current().id())}
     };
+#ifdef __OS_WIN_XP
+    QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
+#else
     QJsonObject _json_obj{{"theme", jtheme}};
+#endif
     AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
@@ -1554,7 +1558,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             {"type", _app.m_themes->current().stype()},
             {"id", QString::fromStdWString(_app.m_themes->current().id())}
         };
+#ifdef __OS_WIN_XP
+        QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
+#else
         QJsonObject _json_obj{{"theme", jtheme}};
+#endif
         AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 
         // TODO: remove
