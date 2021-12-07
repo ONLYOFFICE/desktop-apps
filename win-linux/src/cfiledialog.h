@@ -56,7 +56,7 @@ public:
 #endif
     ~CFileDialogWrapper();
 
-    bool    modalSaveAs(QString&);
+    bool    modalSaveAs(QString&, int selected = -1);
 
 //    QString modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR);
     QStringList modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR, bool multi = false);

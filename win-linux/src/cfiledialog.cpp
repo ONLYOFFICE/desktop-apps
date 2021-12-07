@@ -258,10 +258,13 @@ CFileDialogWrapper::~CFileDialogWrapper()
 
 }
 
-bool CFileDialogWrapper::modalSaveAs(QString& fileName)
+bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 {
 //    QString filter = tr("All files (*.*)"), ext_in;
     QString _filters, _sel_filter, _ext;
+
+    if ( !(selected < 0) && m_mapFilters.contains(selected) )
+        _sel_filter = m_mapFilters[selected];
 
     QFileInfo info(fileName);
     _ext = info.suffix();
@@ -271,14 +274,16 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         _filters = m_filters;
 
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
-            _sel_filter = reFilter.cap(1);
+            if ( _sel_filter.isEmpty() )
+                _sel_filter = reFilter.cap(1);
         } else {
             fileName = info.absolutePath() + QDir::separator() + info.fileName();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 
-        _sel_filter = getFilter(_ext);
+        if ( _sel_filter.isEmpty() )
+            _sel_filter = getFilter(_ext);
         _filters.append(";;" + _sel_filter);
     }
 
