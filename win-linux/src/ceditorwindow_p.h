@@ -320,9 +320,11 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->setWindowTitle(m_panel->data()->title());
-            window->m_boxTitleBtns->repaint();
+        window->setWindowTitle(m_panel->data()->title());
+        window->m_boxTitleBtns->repaint();
+
+        if ( !canExtendTitle() || !window->isCustomWindowStyle() ) {
+            window->m_labelTitle->setText(APP_TITLE);
         }
     }
 
