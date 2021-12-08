@@ -110,6 +110,11 @@ ifeq ($(WIN_ARCH),x86)
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //SetPackageType x86
 endif
+ifdef ENABLE_SIGNING
+	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //SetDigitalCertificateFile -file "$(CODESIGN_CERT_PATH)" -password "$(CODESIGN_CERT_PWD)"; \
+	$(AIC) //edit DesktopEditors.aip //SetSig
+endif
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
 	$(AIC) //edit DesktopEditors.aip //NewSync APPDIR "$(shell cygpath -w $(DEST_DIR))" -existingfiles delete; \
