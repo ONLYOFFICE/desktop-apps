@@ -165,6 +165,7 @@ public:
                     COpenOptions opts{_path.toStdWString(), etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
+                    opts.name = objRoot["name"].toString();
 
                     QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);

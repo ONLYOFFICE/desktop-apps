@@ -210,6 +210,7 @@ function openFile(from, model) {
         } else {
             const params = {
                     id: model.fileid,
+                    name: model.name,
                     path: model.path,
                     type: model.type
                 };
