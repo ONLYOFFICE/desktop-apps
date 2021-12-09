@@ -72,6 +72,8 @@ public:
     QStringList modalOpenPresentations(const QString&, bool multi = false);
     QStringList modalOpenMedia(const QString& type, const QString& path, bool multi = false);
 
+    QString selectFolder(const QString& folder);
+
     void    setFormats(std::vector<int>&);
     int     getFormat();
 

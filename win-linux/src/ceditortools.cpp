@@ -171,6 +171,19 @@ namespace CEditorTools
         return _path;
     }
 
+    std::wstring getFolder(const std::wstring& path, int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = AscAppManager::mainWindow()->handle();
+
+        QString sel_path = path.empty() ? QString::fromStdWString(path) : Utils::lastPath(LOCAL_PATH_OPEN);
+
+        CFileDialogWrapper dlg(parent);
+        return dlg.selectFolder(sel_path).toStdWString();
+    }
+
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
     {
         int _file_format{0};

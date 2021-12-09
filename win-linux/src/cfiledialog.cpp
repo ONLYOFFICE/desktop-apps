@@ -533,6 +533,22 @@ QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QStrin
     return modalOpen(path, filter, &selected, multi);
 }
 
+QString CFileDialogWrapper::selectFolder(const QString& folder)
+{
+    QWidget * _parent =
+#ifdef _WIN32
+                        this;
+#else
+# ifdef FILEDIALOG_DONT_USE_MODAL
+                        NULL;
+# else
+                        (QWidget *)parent();
+# endif
+#endif
+
+    return QFileDialog::getExistingDirectory(_parent, "", folder);
+}
+
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)
 {
     m_filters.clear();
