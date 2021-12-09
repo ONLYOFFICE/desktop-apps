@@ -634,13 +634,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CAscLocalOpenDirectoryDialog * data = static_cast<CAscLocalOpenDirectoryDialog *>(event->m_pData);
         std::wstring path = CEditorTools::getFolder(data->get_Path(), event->get_SenderId());
 
-        CAscLocalOpenDirectoryDialog * pout = new CAscLocalOpenDirectoryDialog;
-        pout->put_Path(path);
+        data->put_Path(path);
+        event->AddRef();
 
-        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENDIRECTORY_DIALOG);
-        pEvent->m_pData = pout;
-
-        AscAppManager::getInstance().Apply(pEvent);
+        AscAppManager::getInstance().Apply(event);
         return true; }
 
     default: break;
