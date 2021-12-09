@@ -190,6 +190,7 @@ public:
             btnHome->setMouseTracking(true);
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
 
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
@@ -240,6 +241,9 @@ public:
 
             iconUser()->hide();
             window->m_labelTitle->setText(APP_TITLE);
+
+            CSVGPushButton * btn = m_mapTitleButtons["home"];
+            btn->setFillDark(!AscAppManager::themes().current().isDark());
 
 #ifdef Q_OS_WIN
             window->setWindowBackgroundColor(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
@@ -691,7 +695,8 @@ public:
                         bool _is_disabled = _disabled["all"].toBool();
 
                         for (auto& btn: m_mapTitleButtons) {
-                            btn->setDisabled(_is_disabled);
+                            if ( m_mapTitleButtons["home"] != btn )
+                                btn->setDisabled(_is_disabled);
                         }
                     } else {
                         for (const auto& k: _disabled.keys()) {
@@ -736,7 +741,8 @@ public:
     }
 
     auto customizeTitleLabel() -> void {
-        window->m_boxTitleBtns->layout()->removeWidget(window->m_labelTitle);
+        QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
+        _layout->removeWidget(window->m_labelTitle);
 
         boxtitlelabel = new QWidget;
         boxtitlelabel->setLayout(new QHBoxLayout);
@@ -748,16 +754,13 @@ public:
         }
 
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
-        qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout())->insertWidget(1, boxtitlelabel);
+        _layout->insertWidget(1, boxtitlelabel);
+
+        if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+            _layout->insertWidget(0, leftboxbuttons);
     }
 
     auto ffWindowCustomize() -> void {
-        {
-            QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
-            if ( _layout->itemAt(0)->widget() != leftboxbuttons )
-                _layout->insertWidget(0, leftboxbuttons);
-        }
-
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
