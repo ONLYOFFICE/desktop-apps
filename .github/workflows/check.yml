@@ -7,39 +7,63 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup aspell
         run: sudo apt-get -y update && sudo apt-get -y install aspell aspell-en aspell-ru
-      - name: Run spellchecker for Windows changelogs
+      - name: Run spellchecker for English Windows changelogs
+        continue-on-error: true
         run: |
-          echo "::group::English"
           for d in win-linux/package/windows/update/changes/*/ ; do
-            echo "Checking ${d}en.html"
-            SPELLCHECK_OUT=$(cat ${d}en.html \
-              | aspell --lang=en --encoding=utf-8 \
-                --mode=html --personal=./.aspell.en.pws list)
-            echo $SPELLCHECK_OUT
+            if [ -f ${d}en.html ]; then
+              echo "Checking ${d}en.html"
+              SPELLCHECK_OUT=$(cat ${d}en.html \
+                | aspell --lang=en --encoding=utf-8 \
+                  --mode=html --personal=./.aspell.en.pws list)
+              if [[ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]]; then
+                echo $SPELLCHECK_OUT
+                exit 1
+              fi
+            fi
           done
-          echo "::group::Russian"
-          for d in win-linux/package/windows/update/changes/*/ ; do
-            echo "Checking ${d}ru.html"
-            SPELLCHECK_OUT=$(cat ${d}ru.html \
-              | aspell --lang=ru --encoding=utf-8 \
-                --mode=html --personal=./.aspell.ru.pws list)
-            echo $SPELLCHECK_OUT
-          done
-      - name: Run spellchecker for macOS changelogs
+      - name: Run spellchecker for Russian Windows changelogs
+        continue-on-error: true
         run: |
-          echo "::group::English"
-          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            echo "Checking ${d}ReleaseNotes.html"
-            SPELLCHECK_OUT=$(cat ${d}ReleaseNotes.html \
-              | aspell --lang=en --encoding=utf-8 \
-                --mode=html --personal=./.aspell.en.pws list)
-            echo $SPELLCHECK_OUT
+          for d in win-linux/package/windows/update/changes/*/ ; do
+            if [ -f ${d}ru.html ]; then
+              echo "Checking ${d}ru.html"
+              SPELLCHECK_OUT=$(cat ${d}ru.html \
+                | aspell --lang=ru --encoding=utf-8 \
+                  --mode=html --personal=./.aspell.ru.pws list)
+              if [[ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]]; then
+                echo $SPELLCHECK_OUT
+                exit 1
+              fi
+            fi
           done
-          echo "::group::Russian"
+      - name: Run spellchecker for English macOS changelogs
+        continue-on-error: true
+        run: |
           for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            echo "Checking ${d}ReleaseNotesRU.html"
-            SPELLCHECK_OUT=$(cat ${d}ReleaseNotesRU.html \
-              | aspell --lang=ru --encoding=utf-8 \
-                --mode=html --personal=./.aspell.ru.pws list)
-            echo $SPELLCHECK_OUT
+            if [ -f ${d}ReleaseNotes.html ]; then
+              echo "Checking ${d}ReleaseNotes.html"
+              SPELLCHECK_OUT=$(cat ${d}ReleaseNotes.html \
+                | aspell --lang=en --encoding=utf-8 \
+                  --mode=html --personal=./.aspell.en.pws list)
+              if [[ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]]; then
+                echo $SPELLCHECK_OUT
+                exit 1
+              fi
+            fi
+          done
+      - name: Run spellchecker for Russian macOS changelogs
+        continue-on-error: true
+        run: |
+          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
+            if [ -f ${d}ReleaseNotesRU.html ]; then
+              SPELLCHECK_OUT=$(cat ${d}ReleaseNotesRU.html \
+                | aspell --lang=ru --encoding=utf-8 \
+                  --mode=html --personal=./.aspell.ru.pws list)
+              echo "Checking ${d}ReleaseNotesRU.html"
+              if [[ $(echo -n $SPELLCHECK_OUT | wc -c) -ne 0 ]]; then
+                echo $SPELLCHECK_OUT
+                exit 1
+              fi
+            fi
           done
