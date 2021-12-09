@@ -5,27 +5,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: setup aspell
+      - name: Setup aspell
         run: sudo apt-get -y update && sudo apt-get -y install aspell aspell-en aspell-ru
-      - name: run spellchecker
+      - name: Run spellchecker for Windows changelogs
         run: |
-          echo "::group::Windows EN"
+          echo "::group::English"
           for d in win-linux/package/windows/update/changes/*/ ; do
-            echo ${d}en.html
-            cat ${d}en.html | aspell --lang=en --encoding=utf-8 --mode=html list
+            echo "Checking ${d}en.html"
+            SPELLCHECK_OUT=$(cat ${d}en.html \
+              | aspell --lang=en --encoding=utf-8 \
+                --mode=html --personal=./.aspell.en.pws list)
+            echo $SPELLCHECK_OUT
           done
-          echo "::group::Windows RU"
+          echo "::group::Russian"
           for d in win-linux/package/windows/update/changes/*/ ; do
-            echo ${d}ru.html
-            cat ${d}ru.html | aspell --lang=ru --encoding=utf-8 --mode=html list
+            echo "Checking ${d}ru.html"
+            SPELLCHECK_OUT=$(cat ${d}ru.html \
+              | aspell --lang=ru --encoding=utf-8 \
+                --mode=html --personal=./.aspell.ru.pws list)
+            echo $SPELLCHECK_OUT
           done
-          echo "::group::macOS EN"
+      - name: Run spellchecker for macOS changelogs
+        run: |
+          echo "::group::English"
           for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            echo ${d}ReleaseNotes.html
-            cat ${d}ReleaseNotes.html | aspell --lang=en --encoding=utf-8 --mode=html list
+            echo "Checking ${d}ReleaseNotes.html"
+            SPELLCHECK_OUT=$(cat ${d}ReleaseNotes.html \
+              | aspell --lang=en --encoding=utf-8 \
+                --mode=html --personal=./.aspell.en.pws list)
+            echo $SPELLCHECK_OUT
           done
-          echo "::group::macOS RU"
+          echo "::group::Russian"
           for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
-            echo ${d}ReleaseNotesRU.html
-            cat ${d}ReleaseNotesRU.html | aspell --lang=ru --encoding=utf-8 --mode=html list
+            echo "Checking ${d}ReleaseNotesRU.html"
+            SPELLCHECK_OUT=$(cat ${d}ReleaseNotesRU.html \
+              | aspell --lang=ru --encoding=utf-8 \
+                --mode=html --personal=./.aspell.ru.pws list)
+            echo $SPELLCHECK_OUT
           done
