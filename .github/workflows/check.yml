@@ -1,0 +1,31 @@
+name: check
+on: push
+jobs:
+  spellchecker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup aspell
+        run: sudo apt-get -y update && sudo apt-get -y install aspell aspell-en aspell-ru
+      - name: run spellchecker
+        run: |
+          echo "::group::Windows EN"
+          for d in win-linux/package/windows/update/changes/*/ ; do
+            echo ${d}en.html
+            cat ${d}en.html | aspell --lang=en --encoding=utf-8 --mode=html list
+          done
+          echo "::group::Windows RU"
+          for d in win-linux/package/windows/update/changes/*/ ; do
+            echo ${d}ru.html
+            cat ${d}ru.html | aspell --lang=ru --encoding=utf-8 --mode=html list
+          done
+          echo "::group::macOS EN"
+          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
+            echo ${d}ReleaseNotes.html
+            cat ${d}ReleaseNotes.html | aspell --lang=en --encoding=utf-8 --mode=html list
+          done
+          echo "::group::macOS RU"
+          for d in macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/*/ ; do
+            echo ${d}ReleaseNotesRU.html
+            cat ${d}ReleaseNotesRU.html | aspell --lang=ru --encoding=utf-8 --mode=html list
+          done
