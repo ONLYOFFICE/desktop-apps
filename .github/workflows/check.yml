@@ -1,5 +1,9 @@
 name: check
-on: push
+on:
+  push:
+    paths:
+      - 'win-linux/package/windows/update/changes/**'
+      - 'macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/**'
 jobs:
   spellchecker:
     runs-on: ubuntu-latest
