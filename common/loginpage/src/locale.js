@@ -3082,7 +3082,7 @@ l10n.el = {
     newDoc: 'Εγγραφο',
     newXlsx: 'Υπολογιστικο φυλλο',
     newPptx: 'Παρουσιαση',
-    newForm: 'Form template',
+    newForm: 'Πρότυπο φόρμας',
     actCreateNew: 'Δημιουργία νέου',
     actRecentFiles: 'Πρόσφατα αρχεία',
     actOpenLocal: 'Άνοιγμα τοπικού αρχείου',
