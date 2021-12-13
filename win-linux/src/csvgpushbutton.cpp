@@ -105,7 +105,6 @@ void CSVGPushButton::setFillDark(bool dark)
 
 void CSVGPushButton::updateIcon()
 {
-    qDebug() << "update svg button" << m_usestateopacity;
     if ( !m_svglayout.isEmpty() ) {
         QImage img(iconSize(), QImage::Format_ARGB32);
         img.fill(Qt::transparent);
