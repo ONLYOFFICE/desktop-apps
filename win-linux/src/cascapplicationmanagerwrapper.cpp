@@ -640,6 +640,25 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         AscAppManager::getInstance().Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
+        CAscKeyboardDown * data = static_cast<CAscKeyboardDown *>(event->m_pData);
+
+        switch ( data->get_KeyCode() ) {
+        case VK_F4:
+            if ( data->get_IsAlt() ) {
+                CEditorWindow * editor = editorWindowFromViewId(event->get_SenderId());
+                if ( editor ) {
+                    editor->closeWindow();
+                    return true;
+                } else
+                if ( mainWindow()->holdView(event->get_SenderId()) ) {
+                     closeMainWindow();
+                     return true;
+                }
+            }
+        }
+    }
+
     default: break;
     }
 
