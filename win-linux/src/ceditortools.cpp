@@ -171,6 +171,19 @@ namespace CEditorTools
         return _path;
     }
 
+    std::wstring getFolder(const std::wstring& path, int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = AscAppManager::mainWindow()->handle();
+
+        QString sel_path = path.empty() ? QString::fromStdWString(path) : Utils::lastPath(LOCAL_PATH_OPEN);
+
+        CFileDialogWrapper dlg(parent);
+        return dlg.selectFolder(sel_path).toStdWString();
+    }
+
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
     {
         int _file_format{0};
@@ -273,7 +286,8 @@ namespace CEditorTools
             pSaveData->put_Id(pData->get_Id());
             pSaveData->put_Path(L"");
 
-            if ( dlg.modalSaveAs(_full_path) ) {
+            int selected = info.suffix() == "docxf" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM : -1;
+            if ( dlg.modalSaveAs(_full_path, selected) ) {
                 if ( _keep_path )
                     Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
 

@@ -630,6 +630,16 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         CEditorTools::processLocalFileSaveAs(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENDIRECTORY_DIALOG: {
+        CAscLocalOpenDirectoryDialog * data = static_cast<CAscLocalOpenDirectoryDialog *>(event->m_pData);
+        std::wstring path = CEditorTools::getFolder(data->get_Path(), event->get_SenderId());
+
+        data->put_Path(path);
+        event->AddRef();
+
+        AscAppManager::getInstance().Apply(event);
+        return true; }
+
     default: break;
     }
 
@@ -1007,7 +1017,11 @@ void CAscApplicationManagerWrapper::initializeApp()
         {"type", _app.m_themes->current().stype()},
         {"id", QString::fromStdWString(_app.m_themes->current().id())}
     };
+#ifdef __OS_WIN_XP
+    QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
+#else
     QJsonObject _json_obj{{"theme", jtheme}};
+#endif
     AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
@@ -1554,7 +1568,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
             {"type", _app.m_themes->current().stype()},
             {"id", QString::fromStdWString(_app.m_themes->current().id())}
         };
+#ifdef __OS_WIN_XP
+        QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
+#else
         QJsonObject _json_obj{{"theme", jtheme}};
+#endif
         AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 
         // TODO: remove
