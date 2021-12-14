@@ -65,8 +65,6 @@
 #include "shlobj.h"
 
 #else
-#define VK_F4 0x73
-#define VK_TAB 0x09
 #define gTopWinId this
 #include "linux/cx11decoration.h"
 #endif
