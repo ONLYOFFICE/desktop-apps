@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1046"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1085"/>
         <source>Presenter View</source>
         <translation>Прагляд спікера</translation>
     </message>
@@ -13,7 +13,7 @@
         <translation type="vanished">Хочаце зачыніць усе вокны рэдактара?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1566"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1627"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Ідзе абнаўленне. Адмяніць абнаўленне і закрыць прыкладанне?</translation>
     </message>
@@ -22,18 +22,18 @@
         <translation type="vanished">Усе вокны рэдактара будуць зачыненыя. Вы хочаце працягнуць?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1766"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1767"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1827"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1828"/>
         <source>Document%1.docx</source>
         <translation>Дакумент%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1768"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1829"/>
         <source>Book%1.xlsx</source>
         <translation>Кніга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1769"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1830"/>
         <source>Presentation%1.pptx</source>
         <translation>Прэзентацыя%1.pptx</translation>
     </message>
@@ -42,7 +42,7 @@
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/asctabwidget.cpp" line="729"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="725"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="763"/>
         <source>Document</source>
         <translation>Адкрываецца...</translation>
     </message>
@@ -142,27 +142,27 @@
         <translation>Адкрыць галоўнае акно</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="413"/>
+        <location filename="../src/ceditorwindow_p.h" line="421"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="470"/>
+        <location filename="../src/ceditorwindow_p.h" line="478"/>
         <source>Print Document</source>
         <translation>Раздрукаваць дакумент</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="623"/>
+        <location filename="../src/ceditorwindow_p.h" line="631"/>
         <source>Document must be saved firstly.</source>
         <translation>Спачатку трэба захаваць дакумент.</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="152"/>
+        <location filename="../src/ceditorwindow.cpp" line="159"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1  быў зменены.&lt;br&gt;Хочаце захаваць змены?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="285"/>
+        <location filename="../src/ceditortools.cpp" line="299"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
     </message>
@@ -325,97 +325,112 @@
         <translation>Файл XPS (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="299"/>
+        <location filename="../src/cfiledialog.cpp" line="255"/>
+        <source>Zip Archive (*.zip)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="256"/>
+        <source>JPG Image (*.jpg, *.jpeg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="257"/>
+        <source>PNG Image (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cfiledialog.cpp" line="308"/>
         <source>Save As</source>
         <translation>Захаваць як</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="335"/>
+        <location filename="../src/cfiledialog.cpp" line="344"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 існуе.&lt;br&gt;Вы хочаце яго замяніць?</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="361"/>
+        <location filename="../src/cfiledialog.cpp" line="370"/>
         <source>Word Document</source>
         <translation>Дакумент Word</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="364"/>
+        <location filename="../src/cfiledialog.cpp" line="373"/>
         <source>Excel Workbook</source>
         <translation>Табліца Excel</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="367"/>
+        <location filename="../src/cfiledialog.cpp" line="376"/>
         <source>PowerPoint Presentation</source>
         <translation>Прэзентацыя Powerpoint</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="370"/>
+        <location filename="../src/cfiledialog.cpp" line="379"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Файл (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="380"/>
-        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="389"/>
+        <location filename="../src/cfiledialog.cpp" line="496"/>
         <source>Text documents</source>
         <translation>Тэкставыя дакументы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="381"/>
-        <location filename="../src/cfiledialog.cpp" line="495"/>
+        <location filename="../src/cfiledialog.cpp" line="390"/>
+        <location filename="../src/cfiledialog.cpp" line="504"/>
         <source>Spreadsheets</source>
         <translation>Табліцы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="382"/>
-        <location filename="../src/cfiledialog.cpp" line="503"/>
+        <location filename="../src/cfiledialog.cpp" line="391"/>
+        <location filename="../src/cfiledialog.cpp" line="512"/>
         <source>Presentations</source>
         <translation>Прэзентацыі</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="383"/>
+        <location filename="../src/cfiledialog.cpp" line="392"/>
         <source>Web Page</source>
         <translation>Вэб-старонка</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="384"/>
+        <location filename="../src/cfiledialog.cpp" line="393"/>
         <source>Text files</source>
         <translation>Тэкставыя файлы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="410"/>
-        <location filename="../src/cfiledialog.cpp" line="411"/>
-        <location filename="../src/cfiledialog.cpp" line="416"/>
-        <location filename="../src/cfiledialog.cpp" line="436"/>
-        <location filename="../src/cfiledialog.cpp" line="437"/>
+        <location filename="../src/cfiledialog.cpp" line="419"/>
+        <location filename="../src/cfiledialog.cpp" line="420"/>
+        <location filename="../src/cfiledialog.cpp" line="425"/>
+        <location filename="../src/cfiledialog.cpp" line="445"/>
+        <location filename="../src/cfiledialog.cpp" line="446"/>
         <source>Open Document</source>
         <translation>Адкрыць дакумент</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="450"/>
         <location filename="../src/cfiledialog.cpp" line="459"/>
+        <location filename="../src/cfiledialog.cpp" line="468"/>
         <source>All Images</source>
         <translation>Усе выявы</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="452"/>
         <location filename="../src/cfiledialog.cpp" line="461"/>
+        <location filename="../src/cfiledialog.cpp" line="470"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="469"/>
         <location filename="../src/cfiledialog.cpp" line="478"/>
+        <location filename="../src/cfiledialog.cpp" line="487"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Файл убудовы (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="518"/>
+        <location filename="../src/cfiledialog.cpp" line="527"/>
         <source>Video file</source>
         <translation>Відэафайл</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="523"/>
+        <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Audio file</source>
         <translation>Аўдыефайл</translation>
     </message>
@@ -423,23 +438,23 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1245"/>
+        <location filename="../src/cmainpanel.cpp" line="1243"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 быў зменены.&lt;br&gt;Хочаце захаваць змены?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="594"/>
-        <location filename="../src/cmainpanel.cpp" line="638"/>
+        <location filename="../src/cmainpanel.cpp" line="592"/>
+        <location filename="../src/cmainpanel.cpp" line="636"/>
         <source>File format not supported.</source>
         <translation>Фармат файла не падтрымліваецца</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="622"/>
+        <location filename="../src/cmainpanel.cpp" line="620"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="682"/>
+        <location filename="../src/cmainpanel.cpp" line="680"/>
         <source>Document must be saved firstly.</source>
         <translation>Спачатку трэба захаваць дакумент.</translation>
     </message>
@@ -448,17 +463,17 @@
         <translation type="vanished">Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1180"/>
+        <location filename="../src/cmainpanel.cpp" line="1178"/>
         <source>Sign Up</source>
         <translation>Стварыць партал:</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="838"/>
+        <location filename="../src/cmainpanel.cpp" line="836"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="975"/>
+        <location filename="../src/cmainpanel.cpp" line="973"/>
         <source>Print Document</source>
         <translation>Раздрукаваць дакумент</translation>
     </message>
@@ -479,32 +494,32 @@
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="291"/>
-        <location filename="../src/cmessage.cpp" line="292"/>
-        <location filename="../src/cmessage.cpp" line="293"/>
-        <location filename="../src/cmessage.cpp" line="294"/>
+        <location filename="../src/cmessage.cpp" line="297"/>
+        <location filename="../src/cmessage.cpp" line="298"/>
+        <location filename="../src/cmessage.cpp" line="299"/>
+        <location filename="../src/cmessage.cpp" line="300"/>
         <source>Yes</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="291"/>
-        <location filename="../src/cmessage.cpp" line="292"/>
-        <location filename="../src/cmessage.cpp" line="293"/>
-        <location filename="../src/cmessage.cpp" line="294"/>
+        <location filename="../src/cmessage.cpp" line="297"/>
+        <location filename="../src/cmessage.cpp" line="298"/>
+        <location filename="../src/cmessage.cpp" line="299"/>
+        <location filename="../src/cmessage.cpp" line="300"/>
         <source>No</source>
         <translation>Не</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="293"/>
-        <location filename="../src/cmessage.cpp" line="294"/>
-        <location filename="../src/cmessage.cpp" line="295"/>
-        <location filename="../src/cmessage.cpp" line="296"/>
+        <location filename="../src/cmessage.cpp" line="299"/>
+        <location filename="../src/cmessage.cpp" line="300"/>
+        <location filename="../src/cmessage.cpp" line="301"/>
+        <location filename="../src/cmessage.cpp" line="302"/>
         <source>Cancel</source>
         <translation>Адмяніць</translation>
     </message>
     <message>
-        <location filename="../src/cmessage.cpp" line="295"/>
-        <location filename="../src/cmessage.cpp" line="296"/>
+        <location filename="../src/cmessage.cpp" line="301"/>
+        <location filename="../src/cmessage.cpp" line="302"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -535,12 +550,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="172"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="215"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
     </message>
