@@ -675,6 +675,10 @@ public:
     {
         panel()->data()->setFeatures(f);
 
+        if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
+             ffWindowCustomize();
+        }
+
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
         }
@@ -720,7 +724,8 @@ public:
     bool canExtendTitle() const
     {
         if ( m_panel->data()->features().empty() ) return true;
-        else  return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
+        else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
+        else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {

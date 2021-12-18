@@ -210,6 +210,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         std::wstring const & cmd = pData->get_Command();
 
         if ( !(cmd.find(L"webapps:entry") == std::wstring::npos) ) {
+            int sid = event->get_SenderId();
             CCefView * ptr = GetViewById(event->get_SenderId());
             if ( ptr ) {
 #ifdef __OS_WIN_XP
@@ -219,6 +220,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 // TODO: unlock for back compatibility with ver 6.4 on portals
                 sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
+
+                if ( !((pData->get_Param()).find(L"fillform") == std::wstring::npos) ) {
+                    if ( m_receivers.find(sid) != m_receivers.end() )
+                        m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
+                }
+
                 if ( editorWindowFromViewId(event->get_SenderId()) ) {
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
                 }

@@ -89,7 +89,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
     QFileInfo i{QString::fromStdWString(panel->data()->url())};
-    if ( i.suffix() == "oform" ) {
+    if ( i.suffix() == "oform" || panel->data()->hasFeature(L"uitype\":\"fillform") ) {
         d_ptr->ffWindowCustomize();
     }
 
