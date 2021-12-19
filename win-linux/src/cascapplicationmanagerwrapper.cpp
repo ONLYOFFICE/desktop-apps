@@ -833,6 +833,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 continue;
         }
 
+        // TODO: remove for ver 7.2. skip single window for --review flag without --forse-use-window
+        if ( open_in_new_window )
+            open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+        //
+
         CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
         if ( panel ) {
             if ( open_in_new_window ) {
