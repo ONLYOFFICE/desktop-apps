@@ -3812,6 +3812,12 @@ function changelang(lang) {
 
         for (const [key, value] of Object.entries(utils.Lang)) {
             if ( !!newtr[key] ) {
+                const _node = document.querySelectorAll(`[l10n=${key}]`)
+                if ( _node.length ) {
+                    _node[0].innerHTML = newtr[key];
+                    continue;
+                }
+
                 let _i = -1;
                 elems.every( (el, index) => {
                     if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {

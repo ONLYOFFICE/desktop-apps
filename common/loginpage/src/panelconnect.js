@@ -117,12 +117,12 @@
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
-                                    <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
+                                    <h4 class='text-description' style='margin-bottom:50px;' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
                                         <div id='box-providers-premium-button' />
                                         <div id="box-providers-buttons" style='font-size:0;' />
                                     </section>
-                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
+                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
                                         <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                         <section class="link-connect">

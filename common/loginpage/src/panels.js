@@ -51,7 +51,7 @@ $(document).ready(function() {
     $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
     $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
-    $('a[action="new:form"] > .text').text(utils.Lang.newOform);
+    $('a[action="new:form"] > .text').text(utils.Lang.newForm);
 
 
     if (!localStorage.welcome) {
