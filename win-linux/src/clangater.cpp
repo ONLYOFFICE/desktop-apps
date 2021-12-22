@@ -97,6 +97,18 @@ public:
         m_dirs.insert(std::end(m_dirs), std::begin(l), std::end(l));
     }
 
+    QString findCloseLang(const QString& n) {
+        QMap<QString, QString>::iterator i = m_langs.begin();
+        while ( i != m_langs.end() ) {
+            if ( i.key().startsWith(n) )
+                return i.key();
+
+            ++i;
+        }
+
+        return "";
+    }
+
 private:
     std::list<QTranslator *> m_list;
     std::list<QString> m_dirs;
@@ -208,9 +220,12 @@ void CLangater::init()
     };
 
     bool _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
-    if ( !_exist && _lang.length() == 2 )
-            _lang.append("-" + _lang.toUpper()),
-                    _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+    if ( !_exist && _lang.length() == 2 ) {
+        QString _close_lang = getInstance()->m_intf->findCloseLang(_lang);
+        if ( !_close_lang.isEmpty() )
+            _lang = _close_lang,
+            _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
+    }
 
     if ( !_exist ) {
         if ( _lang.at(2) == '-' ) _lang.replace(2, 1, '_'); else
