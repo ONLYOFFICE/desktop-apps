@@ -230,12 +230,20 @@
                      @"extension"   : @"fb2"
              },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF): @{
-                     @"description" : NSLocalizedString(@"DOCXF File", nil),
+                     @"description" : NSLocalizedString(@"ONLYOFFICE Document Form Template", nil),
                      @"extension"   : @"docxf"
              },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM): @{
-                     @"description" : NSLocalizedString(@"OFORM File", nil),
+                     @"description" : NSLocalizedString(@"ONLYOFFICE Fillable Online Form", nil),
                      @"extension"   : @"oform"
+             },
+             @(AVS_OFFICESTUDIO_FILE_IMAGE_PNG): @{
+                     @"description" : NSLocalizedString(@"PNG Image", nil),
+                     @"extension"   : @"png"
+             },
+             @(AVS_OFFICESTUDIO_FILE_IMAGE_JPG): @{
+                     @"description" : NSLocalizedString(@"JPG Image", nil),
+                     @"extension"   : @[@"jpg", @"jpeg"]
              }
     };
 }
