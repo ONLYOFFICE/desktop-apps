@@ -318,7 +318,7 @@ public:
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"fileType": @(pData->get_FileType()),
-                                                                                     @"suppertFormats" : supportFormats,
+                                                                                     @"supportedFormats" : supportFormats,
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()]
                                                                                      }];
                         break;

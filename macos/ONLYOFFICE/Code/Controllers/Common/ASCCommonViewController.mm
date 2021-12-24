@@ -579,7 +579,7 @@
         NSDictionary * params   = tab.params;
         NSString * path         = params[@"path"];
         NSString * viewId       = params[@"viewId"];
-        NSArray * formats       = params[@"suppertFormats"];
+        NSArray * formats       = params[@"supportedFormats"];
         
         [self.tabsControl selectTab:tab];
         
