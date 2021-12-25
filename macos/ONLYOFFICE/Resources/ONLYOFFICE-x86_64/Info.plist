@@ -476,7 +476,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-docxf</string>
 			<key>CFBundleTypeName</key>
-			<string>DOCXF File</string>
+			<string>ONLYOFFICE Document Form Template</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
@@ -488,7 +488,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>file-oform</string>
 			<key>CFBundleTypeName</key>
-			<string>OFORM File</string>
+			<string>ONLYOFFICE Fillable Online Form</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
