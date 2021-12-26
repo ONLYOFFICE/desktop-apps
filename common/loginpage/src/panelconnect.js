@@ -228,14 +228,12 @@
         function _on_context_menu(menu, action, data) {
             var model = data;
             if (/\:open/.test(action)) {
-                // model.logged ?
-                    const _entrypage = !window.config.portals.providers[model.provider] ? '/' :
-                                            window.config.portals.providers[model.provider].startPage;
-                    sdk.command("portal:open", JSON.stringify({
-                        portal: model.path,
+                const _provider_cfg = config.portals.providers[model.provider];
+                const _entrypage = !_provider_cfg ? '/' : _provider_cfg.startPage;
+                sdk.command("portal:open", JSON.stringify({
+                        portal: !_provider_cfg || !_provider_cfg.entryPage ? model.path : _provider_cfg.entryPage,
                         provider: model.provider,
                         entrypage: _entrypage}));
-                        // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model);
@@ -433,11 +431,7 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
-                    let _pm = config.portals.checklist.find(e => e.provider == model.provider),
-                        _portal_start_page = '/';
-                    if ( _pm ) _portal_start_page = _pm.startPage;
-                    // !model.logged ? _do_connect.call(this, model) :
-                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path, entrypage:_portal_start_page}));
+                    _on_context_menu(undefined, 'portal:open', model);
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
