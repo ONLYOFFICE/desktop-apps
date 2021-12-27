@@ -243,7 +243,7 @@
              },
              @(AVS_OFFICESTUDIO_FILE_IMAGE_JPG): @{
                      @"description" : NSLocalizedString(@"JPG Image", nil),
-                     @"extension"   : @[@"jpg", @"jpeg"]
+                     @"extension"   : @"jpg"
              }
     };
 }
