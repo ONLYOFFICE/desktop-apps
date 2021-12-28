@@ -137,7 +137,7 @@ private:
 //        ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", "Magyar nyelv"}
 //        ,{"hy-AM", "Հայաստան"}
-        ,{"in-ID", "Indonesian"}
+        ,{"id-ID", "Indonesian"}
         ,{"no-NO", "Norsk"}
         ,{"ro-RO", "Romanian"}
         ,{"sl-SL", "Slovene"}

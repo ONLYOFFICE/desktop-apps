@@ -118,7 +118,7 @@ Name: fr; MessagesFile: compiler:Languages\French.isl;     LicenseFile: {#sBrand
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: in; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: pl; MessagesFile: compiler:Languages\Polish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ro; MessagesFile: compiler:Languages\Romanian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -162,7 +162,7 @@ ru.Launch =Запустить %1
 de.Launch =%1 starten
 fr.Launch =Lancer %1
 es.Launch =Ejecutar %1
-in.Launch =Luncurkan %1
+id.Launch =Luncurkan %1
 it_IT.Launch =Eseguire %1
 pt_BR.Launch =Lance o %1
 ;pt_PT.Launch =Iniciar %1
@@ -202,7 +202,7 @@ ru.CreateDesktopIcon =Создать иконку %1 на &рабочем сто
 de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
 fr.CreateDesktopIcon =Créer l'icône du bureau pour %1
 es.CreateDesktopIcon =Crear %1 &icono en el escritorio
-in.CreateDesktopIcon =Buat &ikon desktop %1
+id.CreateDesktopIcon =Buat &ikon desktop %1
 it_IT.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
 ;pt_PT.CreateDesktopIcon =Criar um ícone de %1 &desktop
@@ -242,7 +242,7 @@ ru.InstallAdditionalComponents =Установка дополнительных 
 de.InstallAdditionalComponents =Installation zusätzlicher Systemkomponenten. Bitte warten...
 fr.InstallAdditionalComponents =L'installation des composants supplémentaires du système. Attendez...
 es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
-in.InstallAdditionalComponents =Menginstal komponen tambahan sistem. Mohon tunggu...
+id.InstallAdditionalComponents =Menginstal komponen tambahan sistem. Mohon tunggu...
 it_IT.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
 ;pt_PT.InstallAdditionalComponents =A instalar mais componentes do sistema. Por favor aguarde...
@@ -281,7 +281,7 @@ nl.AdditionalTasks =Taken:
 ru.AdditionalTasks =Задачи:
 de.AdditionalTasks =Aufgaben:
 fr.AdditionalTasks =Tâches:
-in.AdditionalTasks =Tugas:
+id.AdditionalTasks =Tugas:
 es.AdditionalTasks =Tareas:
 it_IT.AdditionalTasks =Attività:
 pt_BR.AdditionalTasks =Tarefas:
@@ -322,7 +322,7 @@ ru.Uninstall =Удаление
 de.Uninstall =Deinstallieren
 fr.Uninstall =Desinstaller
 es.Uninstall =Desinstalar
-in.Uninstall =Uninstal
+id.Uninstall =Uninstal
 it_IT.Uninstall =Disinstalla
 pt_BR.Uninstall =Desinstalar
 ;pt_PT.Uninstall =Desinstalar
@@ -362,7 +362,7 @@ ru.WarningWrongArchitecture =Вы устанавливаете %1-битную �
 de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
 fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
 es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
-in.WarningWrongArchitecture =Anda mencoba menginstal aplikasi versi %1-bit yang sudah terinstal versi %2-bit. Silakan uninstal terlebih dahulu versi sebelumnya atau unduh versi instalasi yang benar.
+id.WarningWrongArchitecture =Anda mencoba menginstal aplikasi versi %1-bit yang sudah terinstal versi %2-bit. Silakan uninstal terlebih dahulu versi sebelumnya atau unduh versi instalasi yang benar.
 it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'applicazione %1-bit sulla versione %2-bit installata. Si prega di disinstallare prima la versione precedente o scaricare la versione corretta per l'installazione.
 pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
 ;pt_PT.WarningWrongArchitecture =Está a tentar instalar a versão de %1-bites por cima da versão de %2-bites que já está instalada. Por favor desinstale primeiro a versão anterior ou faça o download da versão correta para instalar.
@@ -403,7 +403,7 @@ ru.UpdateAppRunning=Обнаружен запущенный экземпляр %
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
-in.UpdateAppRunning=Pengaturan mendeteksi %1 sedang berjalan.%n%nAkan ditutup secara otomatis. Klik OK untuk melanjutkan, atau Batal untuk keluar.
+id.UpdateAppRunning=Pengaturan mendeteksi %1 sedang berjalan.%n%nAkan ditutup secara otomatis. Klik OK untuk melanjutkan, atau Batal untuk keluar.
 it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
 ;pt_PT.UpdateAppRunning=O Setup detetou que %1 está atualmente aberta.%n%nEla será fechada automaticamente. Clique OK para continuar, ou Cancelar para sair.
@@ -443,7 +443,7 @@ ru.WarningClearAppData =Вы хотите очистить пользовате�
 de.WarningClearAppData =Möchten Sie die Benutzereinstellungen und die zwischengespeicherten Daten der Anwendung löschen?
 fr.WarningClearAppData =Voulez-vous effacer les paramètres utilisateur et les données en cache de l'application ?
 es.WarningClearAppData =¿Desea eliminar los ajustes de usuario y datos en caché de la aplicación?
-in.WarningClearAppData =Apakah Anda ingin menghapus pengaturan pengguna dan data cache aplikasi?
+id.WarningClearAppData =Apakah Anda ingin menghapus pengaturan pengguna dan data cache aplikasi?
 it_IT.WarningClearAppData =Vuoi cancellare le impostazioni utente e i dati memorizzati nella cache dell’applicazione?
 pt_BR.WarningClearAppData =Você deseja limpar as definições de usuário e dados salvos do programa?
 ;pt_PT.WarningClearAppData =Quer apagar as definições de utilizador e os dados de cache da aplicação?
