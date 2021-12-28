@@ -110,10 +110,9 @@ ifeq ($(WIN_ARCH),x86)
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //SetPackageType x86
 endif
-ifdef ENABLE_SIGNING
+ifneq ($(ENABLE_SIGNING), 1)
 	cd $(BUILD_DIR); \
-	$(AIC) //edit DesktopEditors.aip //SetDigitalCertificateFile -file "$(CODESIGN_CERT_PATH)" -password "$(CODESIGN_CERT_PWD)"; \
-	$(AIC) //edit DesktopEditors.aip //SetSig
+	$(AIC) //edit DesktopEditors.aip //ResetSig
 endif
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
