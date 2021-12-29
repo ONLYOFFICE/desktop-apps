@@ -1343,6 +1343,12 @@
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
 
             appManager->Logout([url stdwstring]);
+            if ( json[@"extra"] != nil ) {
+                NSArray * urls = [json valueForKey:@"extra"];
+                for ( NSString * u in urls ) {
+                    appManager->Logout([u stdwstring]);
+                }
+            }
 
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"portal:logout");
