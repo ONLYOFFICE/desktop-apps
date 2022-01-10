@@ -4,6 +4,7 @@ on:
     paths:
       - 'win-linux/package/windows/update/changes/**'
       - 'macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/**'
+      - '.aspell.*.pws'
 jobs:
   spellchecker:
     runs-on: ubuntu-latest
