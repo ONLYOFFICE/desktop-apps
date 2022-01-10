@@ -1,9 +1,11 @@
 name: check
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'win-linux/package/windows/update/changes/**'
       - 'macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/**'
+      - '.aspell.*.pws'
 jobs:
   spellchecker:
     runs-on: ubuntu-latest
