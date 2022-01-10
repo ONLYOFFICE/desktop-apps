@@ -1,5 +1,6 @@
 name: check
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'win-linux/package/windows/update/changes/**'
