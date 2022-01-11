@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, ASCDocumentType) {
     ASCDocumentTypeDocument,
     ASCDocumentTypePresentation,
     ASCDocumentTypeSpreadsheet,
+    ASCDocumentTypeForm,
     ASCDocumentTypeUnknown = NSUIntegerMax
 };
 

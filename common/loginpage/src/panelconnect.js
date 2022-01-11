@@ -36,18 +36,24 @@
 */
 
 +function(){ 'use strict'
-    window.config = { portals: {}};
-    window.config.portals.checklist = sdk.externalClouds();
     window.relpath = !/mac os/i.test(navigator.userAgent) ? '.' : '..';
+    window.config = { portals: {
+        update: function() {
+            config.portals.checklist = sdk.externalClouds();
 
-    if ( window.config.portals.checklist ) {
-        let _providers = {};
-        window.config.portals.checklist.forEach(item => {
-            _providers[item.provider] = item;
-        });
+            if ( config.portals.checklist ) {
+                let _providers = {};
+                config.portals.checklist.forEach(item => {
+                    _providers[item.provider] = item;
+                });
 
-        window.config.portals.providers = _providers;
-    }
+                config.portals.providers = _providers;
+                config.portals.providers.find = name => config.portals.providers[name];
+            }
+        }
+    }};
+
+    config.portals.update();
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';
@@ -111,12 +117,12 @@
                             `<div id="box-empty-portals" class="empty flex-center">
                                 <section id='connect-empty-var-2'>
                                     <h3 class="empty-title" style="margin:0;" l10n>${_lang.portalEmptyTitle}</h3>
-                                    <h4 class='text-description' style='margin-bottom:50px;' l10n>${_lang.portalEmptyDescr}</h4>
+                                    <h4 class='text-description' style='margin-bottom:50px;' l10n='portalEmptyDescr'>${_lang.portalEmptyDescr}</h4>
                                     <section class='tools-connect2'>
                                         <div id='box-providers-premium-button' />
                                         <div id="box-providers-buttons" style='font-size:0;' />
                                     </section>
-                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n>${_lang.portalEmptyAdv1}</h4>
+                                    <h4 class='text-description separate-top' style='margin-bottom:8px;' l10n='portalEmptyAdv1'>${_lang.portalEmptyAdv1}</h4>
                                     <div class="tools-connect">
                                         <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
                                         <section class="link-connect">
@@ -222,14 +228,12 @@
         function _on_context_menu(menu, action, data) {
             var model = data;
             if (/\:open/.test(action)) {
-                // model.logged ?
-                    const _entrypage = !window.config.portals.providers[model.provider] ? '/' :
-                                            window.config.portals.providers[model.provider].startPage;
-                    sdk.command("portal:open", JSON.stringify({
-                        portal: model.path,
+                const _provider_cfg = config.portals.providers[model.provider];
+                const _entrypage = !_provider_cfg ? '/' : _provider_cfg.startPage;
+                sdk.command("portal:open", JSON.stringify({
+                        portal: !_provider_cfg || !_provider_cfg.entryPage ? model.path : _provider_cfg.entryPage,
                         provider: model.provider,
                         entrypage: _entrypage}));
-                        // _do_connect(model);
             } else
             if (/\:logout/.test(action)) {
                 _do_logout.call(this, model);
@@ -319,8 +323,8 @@
             // model && model.set('logged', false);
 
             let info = {domain:model.path};
-            const _provider = config.portals.providers[model.provider];
-            if ( !!_provider.extraLogout )
+            const _provider = config.portals.providers.find(model.provider);
+            if ( _provider && !!_provider.extraLogout )
                 info.extra = _provider.extraLogout;
 
             window.sdk.execCommand('portal:logout', JSON.stringify(info));
@@ -427,11 +431,7 @@
                 });
 
                 collection.events.click.attach((collection, model)=>{
-                    let _pm = config.portals.checklist.find(e => e.provider == model.provider),
-                        _portal_start_page = '/';
-                    if ( _pm ) _portal_start_page = _pm.startPage;
-                    // !model.logged ? _do_connect.call(this, model) :
-                        sdk.command("portal:open", JSON.stringify({provider:model.provider, portal:model.path, entrypage:_portal_start_page}));
+                    _on_context_menu(undefined, 'portal:open', model);
                 });
 
                 collection.events.contextmenu.attach((collection, model, e)=>{
@@ -491,7 +491,7 @@
             };
 
             let obj = JSON.parse(info);
-            if ( obj ) {
+            if ( obj && !!obj.displayName ) {
                 var model = collection.find('name', utils.skipUrlProtocol(obj.domain));
                 if ( model ) {
                     !obj.email && (obj.email = '');
@@ -555,6 +555,10 @@
                     }
                 } else {
                     _update_portals.call(this);
+                }
+
+                if ( $('.action-panel').filter('.welcome').is(':visible') ) {
+                    window.selectAction('connect');
                 }
             }
         };

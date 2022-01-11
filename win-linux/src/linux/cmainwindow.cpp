@@ -289,7 +289,7 @@ void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 
 void CMainWindow::slot_windowClose()
 {
-    if (windowState() != Qt::WindowFullScreen) {
+    if (windowState() != Qt::WindowFullScreen && isVisible()) {
         GET_REGISTRY_USER(reg_user)
         reg_user.setValue("position", normalGeometry());
         reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));

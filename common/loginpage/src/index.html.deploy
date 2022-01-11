@@ -123,6 +123,12 @@
                     <span class="text" l10n>PRESENTATION</span>
                   </a>
                 </li>
+                <li class="menu-item" style="padding-bottom:0;">
+                  <a action="new:form">
+                    <i class="icon img-el"></i>
+                    <span class="text" l10n>MASTER FORM</span>
+                  </a>
+                </li>
               </div>
               <li class="menu-item separator"></li>
             </div>
@@ -142,6 +148,8 @@
     <inline src="../res/img/welcome_dark.svg" />
     <inline src="../res/img/logo.svg" />
     </div>
+
+    <script type="text/javascript" replace="yes" src="locale/in.js"></script>
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>

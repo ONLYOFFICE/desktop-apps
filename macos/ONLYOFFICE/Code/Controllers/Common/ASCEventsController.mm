@@ -670,8 +670,10 @@ public:
                                 docType = ASCDocumentTypeSpreadsheet;
                             } else if ([nsParam isEqualToString:@"slide"]) {
                                 docType = ASCDocumentTypePresentation;
+                            } else if ([nsParam isEqualToString:@"form"]) {
+                                docType = ASCDocumentTypeForm;
                             }
-                            
+
                             if (docType != ASCDocumentTypeUnknown) {
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil

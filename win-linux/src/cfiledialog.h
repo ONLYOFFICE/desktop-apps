@@ -56,7 +56,7 @@ public:
 #endif
     ~CFileDialogWrapper();
 
-    bool    modalSaveAs(QString&);
+    bool    modalSaveAs(QString&, int selected = -1);
 
 //    QString modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR);
     QStringList modalOpen(const QString&, const QString& filter = QString(), QString * selectedFilter = Q_NULLPTR, bool multi = false);
@@ -71,6 +71,8 @@ public:
     QStringList modalOpenSpreadsheets(const QString&, bool multi = false);
     QStringList modalOpenPresentations(const QString&, bool multi = false);
     QStringList modalOpenMedia(const QString& type, const QString& path, bool multi = false);
+
+    QString selectFolder(const QString& folder);
 
     void    setFormats(std::vector<int>&);
     int     getFormat();

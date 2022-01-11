@@ -172,6 +172,11 @@ bool CSingleWindowPlatform::event(QEvent * event)
         onMoveEvent(QRect(_e->pos(), QSize(1,1)));
     } else
     if ( event->type() == QEvent::Close ) {
+        if ( !AscAppManager::mainWindow() || !AscAppManager::mainWindow()->isVisible() ) {
+            GET_REGISTRY_USER(reg_user);
+            reg_user.setValue("position", normalGeometry());
+        }
+
         onCloseEvent();
         event->ignore();
         return false;

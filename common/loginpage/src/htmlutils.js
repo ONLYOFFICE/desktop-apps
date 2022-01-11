@@ -11,9 +11,17 @@ function checkScaling() {
     };
 
     for (var c in matches) {
-        if ( window.matchMedia(matches[c]).matches ) {
+        const media_query_list = window.matchMedia(matches[c]);
+        media_query_list.addEventListener('change', function(cls, e) {
+            if ( e.matches ) {
+                document.body.className = document.body.className.replace(/pixel-ratio__[\d_]+/gi, '').trim();
+                document.body.classList.add(cls);
+            }
+        }.bind(this, c));
+
+        if ( media_query_list.matches ) {
             document.body.classList.add(c);
-            break;
+            // break;
         }
     }
 }
@@ -36,6 +44,9 @@ var params = (function() {
 
 var ui_theme_name = params.uitheme || localStorage.getItem("ui-theme");
 if ( !!ui_theme_name ) {
+    if ( /^{".+"}$/.test(ui_theme_name) )
+        ui_theme_name = /id\":\"([\w\d_-]+)/.exec(ui_theme_name)[1];
+
     const theme_type = ui_theme_name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
     document.body.classList.add(ui_theme_name, theme_type);
 }

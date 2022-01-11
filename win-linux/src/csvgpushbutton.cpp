@@ -91,6 +91,18 @@ void CSVGPushButton::setUseStateOpacity(bool value)
     m_usestateopacity = value;
 }
 
+void CSVGPushButton::setFillDark(bool dark)
+{
+    if ( dark )
+        m_opacitynormal = QColor(0,0,0,200),
+        m_opacitydisabled = QColor(0,0,0,100);
+    else
+        m_opacitynormal = QColor(255,255,255,255),
+        m_opacitydisabled = QColor(255,255,255,100);
+
+    updateIcon();
+}
+
 void CSVGPushButton::updateIcon()
 {
     if ( !m_svglayout.isEmpty() ) {
