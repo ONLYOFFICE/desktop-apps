@@ -22,6 +22,12 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
+		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
+		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
+		5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
+		5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
+		5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		BE6251BA22BD089100656116 /* dictionaries in Resources */ = {isa = PBXBuildFile; fileRef = BE6251B922BD089100656116 /* dictionaries */; };
 		FC09073E1C1855A400D9E881 /* editors in Resources */ = {isa = PBXBuildFile; fileRef = FC09073D1C1855A400D9E881 /* editors */; };
 		FC0907411C186A7A00D9E881 /* converter in Resources */ = {isa = PBXBuildFile; fileRef = FC0907401C186A7A00D9E881 /* converter */; };
@@ -319,13 +325,10 @@
 		FCB4C73126DD018B0012C20D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCB4C77C26DD02750012C20D /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C76626DD02640012C20D /* EULA.html */; };
 		FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C76826DD02640012C20D /* InfoPlist.strings */; };
-		FCB4C77E26DD02830012C20D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C77B26DD02640012C20D /* Info.plist */; };
 		FCB4C77F26DD02960012C20D /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C75026DD02630012C20D /* EULA.html */; };
 		FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C75226DD02630012C20D /* InfoPlist.strings */; };
-		FCB4C78126DD029C0012C20D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C76426DD02640012C20D /* Info.plist */; };
 		FCB4C78226DD02A40012C20D /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C73926DD02630012C20D /* EULA.html */; };
 		FCB4C78326DD02A40012C20D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C73B26DD02630012C20D /* InfoPlist.strings */; };
-		FCB4C78426DD02A80012C20D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C74E26DD02630012C20D /* Info.plist */; };
 		FCB4C78B26DE3CBB0012C20D /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB4C78926DE3CBB0012C20D /* libooxmlsignature.dylib */; };
 		FCB4C78D26DE3CBB0012C20D /* libascdocumentscore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB4C78A26DE3CBB0012C20D /* libascdocumentscore.dylib */; };
 		FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCBC426E1B9D650400405301 /* AppDelegate.mm */; };
@@ -403,6 +406,8 @@
 
 /* Begin PBXFileReference section */
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
+		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
+		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
@@ -782,6 +787,8 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5AB20F61274D360A003732A0 /* file-oform.icns */,
+				5AB20F5D274D35F2003732A0 /* file-docxf.icns */,
 				FCA3F3062570EC9500DCAB12 /* file-epub.icns */,
 				FCA3F3022570EC9500DCAB12 /* file-fb2.icns */,
 				FCA3F2FD2570EC9400DCAB12 /* file-fobs.icns */,
@@ -1539,6 +1546,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */,
 				FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */,
 				FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */,
 				FCB4C77F26DD02960012C20D /* EULA.html in Resources */,
@@ -1547,7 +1555,6 @@
 				FC0BD6CC258B63F700C47F95 /* file-htm.icns in Resources */,
 				FC0BD6CD258B63F700C47F95 /* file-odt.icns in Resources */,
 				FC0BD6CE258B63F700C47F95 /* file-rtf.icns in Resources */,
-				FCB4C78126DD029C0012C20D /* Info.plist in Resources */,
 				FC0BD6CF258B63F700C47F95 /* file-odp.icns in Resources */,
 				FC0BD6D0258B63F700C47F95 /* file-pdf.icns in Resources */,
 				FC0BD6D1258B63F700C47F95 /* file-mht.icns in Resources */,
@@ -1570,6 +1577,7 @@
 				FC0BD6E2258B63F700C47F95 /* converter in Resources */,
 				FC0BD6E3258B63F700C47F95 /* file-ods.icns in Resources */,
 				FC0BD6E4258B63F700C47F95 /* Images.xcassets in Resources */,
+				5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */,
 				FC0BD6E5258B63F700C47F95 /* Localizable.strings in Resources */,
 				FC0BD6E6258B63F700C47F95 /* Localizable.stringsdict in Resources */,
 				FC0BD6E7258B63F700C47F95 /* file-ppt.icns in Resources */,
@@ -1589,15 +1597,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */,
 				FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */,
 				FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */,
 				FCB4C77C26DD02750012C20D /* EULA.html in Resources */,
 				FCB4C70626DD018B0012C20D /* file-fb2.icns in Resources */,
 				FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */,
 				FCB4C70826DD018B0012C20D /* file-htm.icns in Resources */,
+				5AB20F62274D360A003732A0 /* file-oform.icns in Resources */,
 				FCB4C70926DD018B0012C20D /* file-odt.icns in Resources */,
 				FCB4C70A26DD018B0012C20D /* file-rtf.icns in Resources */,
-				FCB4C77E26DD02830012C20D /* Info.plist in Resources */,
 				FCB4C70B26DD018B0012C20D /* file-odp.icns in Resources */,
 				FCB4C70C26DD018B0012C20D /* file-pdf.icns in Resources */,
 				FCB4C70D26DD018B0012C20D /* file-mht.icns in Resources */,
@@ -1639,6 +1648,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */,
+				5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */,
 				FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */,
 				FCB4C78326DD02A40012C20D /* InfoPlist.strings in Resources */,
 				FCB4C78226DD02A40012C20D /* EULA.html in Resources */,
@@ -1647,7 +1658,6 @@
 				FCA3F30F2570EC9500DCAB12 /* file-htm.icns in Resources */,
 				FC98AF231E94E16A00718A12 /* file-odt.icns in Resources */,
 				FC98AF351E94E16A00718A12 /* file-rtf.icns in Resources */,
-				FCB4C78426DD02A80012C20D /* Info.plist in Resources */,
 				FC98AF1D1E94E16A00718A12 /* file-odp.icns in Resources */,
 				FC98AF261E94E16A00718A12 /* file-pdf.icns in Resources */,
 				FCA3F30E2570EC9500DCAB12 /* file-mht.icns in Resources */,

@@ -44,6 +44,9 @@
 "Document template" = "Шаблон документа";
 
 /* No comment provided by engineer. */
+"Don't Save" = "Не сохранять";
+
+/* No comment provided by engineer. */
 "Electronic Publication" = "Электронная книга ePUB";
 
 /* No comment provided by engineer. */
@@ -171,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Save the document?" = "Сохранить документ?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Детали подписи";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Книга %ld.xlsx";

@@ -95,8 +95,8 @@ SignTool                  =byparam $p
 #endif
 
 SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
-WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture.bmp
-WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon.bmp
+WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
+WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
 [Languages]
 #ifdef _ONLYOFFICE
@@ -110,17 +110,17 @@ Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl;   LicenseFile: {#sBran
 Name: ca; MessagesFile: compiler:Languages\Catalan.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: cs; MessagesFile: compiler:Languages\Czech.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: el; MessagesFile: compiler:Languages\Greek.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: et; MessagesFile: compiler:Languages\Estonian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: et; MessagesFile: compiler:Languages\Estonian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: fi; MessagesFile: compiler:Languages\Finnish.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lo; MessagesFile: compiler:Default.isl;           LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: nl; MessagesFile: compiler:Languages\Dutch.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: de; MessagesFile: compiler:Languages\German.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: fr; MessagesFile: compiler:Languages\French.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: es; MessagesFile: compiler:Languages\Spanish.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: in; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: pl; MessagesFile: compiler:Languages\Polish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ro; MessagesFile: compiler:Languages\Romanian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -130,12 +130,12 @@ Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBran
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -144,6 +144,9 @@ Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBr
 Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
+[LangOptions]
+lo.LanguageName=ພາສາລາວ
+;ga_IE.LanguageName=Gaeilge
 
 [CustomMessages]
 ;======================================================================================================
@@ -155,19 +158,19 @@ bg.Launch =Пускане %1
 ca.Launch =Llança %1
 cs.Launch =Spuštění %1
 el.Launch =Εκκίνηση %
-et.Launch =Käivita %1
+;et.Launch =Käivita %1
 fi.Launch =Käynnistys %1
-lt.Launch =Paleisti %1
+;lt.Launch =Paleisti %1
 lo.Launch =ເປິດຕົວ %1
 nl.Launch =Start %1
 ru.Launch =Запустить %1
 de.Launch =%1 starten
 fr.Launch =Lancer %1
 es.Launch =Ejecutar %1
-in.Launch =Luncurkan %1
+id.Launch =Luncurkan %1
 it_IT.Launch =Eseguire %1
 pt_BR.Launch =Lance o %1
-pt_PT.Launch =Iniciar %1
+;pt_PT.Launch =Iniciar %1
 pl.Launch =Uruchom %1
 ro.Launch =Lansare %1
 sk.Launch =Zahájiť %1
@@ -176,12 +179,12 @@ sv.Launch =Starta %1
 tr.Launch =%1 Başlatma
 vi.Launch =Khởi động %1
 zh_CN.Launch =启动%1
-hy_AM.Launch =Գործարկում %1
-hr.Launch =Pokretanje %1
+;hy_AM.Launch =Գործարկում %1
+;hr.Launch =Pokretanje %1
 da.Launch =Start %1
-hi.Launch =लॉन्च %1
+;hi.Launch =लॉन्च %1
 hu.Launch =%1 elindítása
-ga_IE.Launch =Lainseáil %1
+;ga_IE.Launch =Lainseáil %1
 ja.Launch ==%1 を起動
 ko.Launch ==%1 시작
 lv.Launch =Sākt %1
@@ -195,19 +198,19 @@ bg.CreateDesktopIcon =Създаване на %1 &икона на работни
 ca.CreateDesktopIcon =Crea una icona d'escriptori per a %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
 el.CreateDesktopIcon =Δημιουργία %1 &εικονίδιο επιφάνειας εργασίας
-et.CreateDesktopIcon =Loo %1 & töölaua ikoon
+;et.CreateDesktopIcon =Loo %1 & töölaua ikoon
 fi.CreateDesktopIcon =Luo %1 &työpöydän kuvake
-lt.CreateDesktopIcon =Sukurti %1 &darbalaukio piktogramą
+;lt.CreateDesktopIcon =Sukurti %1 &darbalaukio piktogramą
 lo.CreateDesktopIcon =ສ້າງຮູບສັນຍາລັກ %1 &ໄອຄອນໜ້າຈໍ
 nl.CreateDesktopIcon =Maak %1 &desktop icoon aan
 ru.CreateDesktopIcon =Создать иконку %1 на &рабочем столе
 de.CreateDesktopIcon =%1 &Desktop-Icon erstellen
 fr.CreateDesktopIcon =Créer l'icône du bureau pour %1
 es.CreateDesktopIcon =Crear %1 &icono en el escritorio
-in.CreateDesktopIcon =Buat &ikon desktop %1
+id.CreateDesktopIcon =Buat &ikon desktop %1
 it_IT.CreateDesktopIcon =Creare un collegamento %1 sul &desktop
 pt_BR.CreateDesktopIcon =Criar ícone de &desktop do %1
-pt_PT.CreateDesktopIcon =Criar um ícone de %1 &desktop
+;pt_PT.CreateDesktopIcon =Criar um ícone de %1 &desktop
 pl.CreateDesktopIcon =Stwórz %1 oraz ikonę pulpitu
 ro.CreateDesktopIcon =Adãugarea %1 &pictogramelor de pe desktop
 sk.CreateDesktopIcon =Vytvoriť %1 ikonu na &pracovnej ploche
@@ -216,12 +219,12 @@ sv.CreateDesktopIcon =Skapa %1 &ikon på skrivbordet
 tr.CreateDesktopIcon =%1 &masaüstü simgesi oluştur
 vi.CreateDesktopIcon =Tạo %1 &biểu tượng máy tính
 zh_CN.CreateDesktopIcon =创建%1和桌面图标
-hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկերակ
-hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
+;hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկերակ
+;hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
 da.CreateDesktopIcon =Opret %1 &skrivebordsikon
-hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
+;hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
 hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
-ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
+;ga_IE.CreateDesktopIcon =Deilbhín deisce a chruthú
 ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
 ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
 lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
@@ -235,19 +238,19 @@ ca.InstallAdditionalComponents =Instal·lació de components de sistema addicion
 bg.InstallAdditionalComponents =Инсталиране на допълнителни системни компоненти. Моля, изчакайте...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
 el.InstallAdditionalComponents =Εγκατάσταση πρόσθετων στοιχείων συστήματος. Παρακαλούμε περιμένετε...
-et.InstallAdditionalComponents =Laeb alla süsteemi lisa komponente. Palun oota...
+;et.InstallAdditionalComponents =Laeb alla süsteemi lisa komponente. Palun oota...
 fi.InstallAdditionalComponents =Asennetaan valinnaisia systemin osia. Ole hyvä ja odota...
-lt.InstallAdditionalComponents =Diegiami papildomi sistemos komponentai. Prašome palaukti...
+;lt.InstallAdditionalComponents =Diegiami papildomi sistemos komponentai. Prašome palaukti...
 lo.InstallAdditionalComponents =ຕິດຕັ້ງສ່ວນປະກອບຂອງລະບົບເພີ່ມເຕີມ. ກະລຸນາລໍຖ້າ...
 nl.InstallAdditionalComponents =Installeren van extra systeemcomponenten. Moment a.u.b...
 ru.InstallAdditionalComponents =Установка дополнительных системных компонентов. Пожалуйста, подождите...
 de.InstallAdditionalComponents =Installation zusätzlicher Systemkomponenten. Bitte warten...
 fr.InstallAdditionalComponents =L'installation des composants supplémentaires du système. Attendez...
 es.InstallAdditionalComponents =Instalando componentes adicionales del sistema. Por favor espere...
-in.InstallAdditionalComponents =Menginstal komponen tambahan sistem. Mohon tunggu...
+id.InstallAdditionalComponents =Menginstal komponen tambahan sistem. Mohon tunggu...
 it_IT.InstallAdditionalComponents =Installazione dei componenti addizionali del sistema. Per favore, attendi...
 pt_BR.InstallAdditionalComponents =Instalando componentes do sistema adicional. Aguarde...
-pt_PT.InstallAdditionalComponents =A instalar mais componentes do sistema. Por favor aguarde...
+;pt_PT.InstallAdditionalComponents =A instalar mais componentes do sistema. Por favor aguarde...
 pl.InstallAdditionalComponents =Instalacja dodatkowych elementów systemu. Proszę czekać...
 ro.InstallAdditionalComponents =Instalarea componentelor suplimentare sistem. Vã rugãm așteptați...
 sk.InstallAdditionalComponents =Inštalujú sa ďalšie komponenty systému. Čakajte prosím...
@@ -256,12 +259,12 @@ sv.InstallAdditionalComponents =Installerar ytterligare systemkomponenter. Var v
 tr.InstallAdditionalComponents =Ek sistem bileşenleri kuruluyor. Lütfen bekleyin...
 vi.InstallAdditionalComponents =Đang cài đặt các  phần hệ thống bổ sung. Xin vui lòng chờ...
 zh_CN.InstallAdditionalComponents =安装其他系统组件。请稍候...
-hy_AM.InstallAdditionalComponents =Համակարգչի լրացուցիչ բաղադրիչների տեղադրում։ Խնդրում ենք սպասել․․․
-hr.InstallAdditionalComponents =Instaliranje dodatnih komponenata sustava. Molimo pričekajte...
+;hy_AM.InstallAdditionalComponents =Համակարգչի լրացուցիչ բաղադրիչների տեղադրում։ Խնդրում ենք սպասել․․․
+;hr.InstallAdditionalComponents =Instaliranje dodatnih komponenata sustava. Molimo pričekajte...
 da.InstallAdditionalComponents =Installation af yderligere systemkomponenter. Vent venligst...
-hi.InstallAdditionalComponents =अतिरिक्त सिस्टम तत्वों को इंस्टॉल कर रहा है। कृपया प्रतीक्षा करें...
+;hi.InstallAdditionalComponents =अतिरिक्त सिस्टम तत्वों को इंस्टॉल कर रहा है। कृपया प्रतीक्षा करें...
 hu.InstallAdditionalComponents =További rendszerelemek telepítése zajlik. Kérjük, várjon...
-ga_IE.InstallAdditionalComponents =Comhpháirteanna córais breise a shuiteáil. Fán le do thoil...
+;ga_IE.InstallAdditionalComponents =Comhpháirteanna córais breise a shuiteáil. Fán le do thoil...
 ja.InstallAdditionalComponents =追加のシステムコンポーネントをインストールしています。お待ちください...
 ko.InstallAdditionalComponents =추가 시스템 구성 요소를 설치하는 중입니다. 잠시만 기다려주세요...
 lv.InstallAdditionalComponents =Instalē papildu sistēmas komponentus. Lūdzu, uzgaidiet...
@@ -275,19 +278,19 @@ bg.AdditionalTasks =Задачи:
 ca.AdditionalTasks =Tasques:
 cs.AdditionalTasks =Úkoly:
 el.AdditionalTasks =Εργασίες:
-et.AdditionalTasks =Ülesanded:
+;et.AdditionalTasks =Ülesanded:
 fi.AdditionalTasks =Tasks:
-lt.AdditionalTasks =Užduotys:
+;lt.AdditionalTasks =Užduotys:
 lo.AdditionalTasks =ໜ້າວຽກ:
 nl.AdditionalTasks =Taken:
 ru.AdditionalTasks =Задачи:
 de.AdditionalTasks =Aufgaben:
 fr.AdditionalTasks =Tâches:
-in.AdditionalTasks =Tugas:
+id.AdditionalTasks =Tugas:
 es.AdditionalTasks =Tareas:
 it_IT.AdditionalTasks =Attività:
 pt_BR.AdditionalTasks =Tarefas:
-pt_PT.AdditionalTasks =Tarefas:
+;pt_PT.AdditionalTasks =Tarefas:
 pl.AdditionalTasks =Zadania:
 ro.AdditionalTasks =Sarcini:
 sk.AdditionalTasks =Úlohy:
@@ -296,12 +299,12 @@ sv.AdditionalTasks =Uppgifter:
 tr.AdditionalTasks =Görevler:
 vi.AdditionalTasks =Nhiệm vụ:
 zh_CN.AdditionalTasks =任务：
-hy_AM.AdditionalTasks =Առաջադրանքներ
-hr.AdditionalTasks =Zadaci:
+;hy_AM.AdditionalTasks =Առաջադրանքներ
+;hr.AdditionalTasks =Zadaci:
 da.AdditionalTasks =Opgaver:
-hi.AdditionalTasks =कार्य:
+;hi.AdditionalTasks =कार्य:
 hu.AdditionalTasks =Feladatok:
-ga_IE.AdditionalTasks =Tascanna:
+;ga_IE.AdditionalTasks =Tascanna:
 ja.AdditionalTasks =タスク:
 ko.AdditionalTasks =작업:
 lv.AdditionalTasks =Uzdevumi:
@@ -315,19 +318,19 @@ bg.AdditionalTasks =Деинсталиране
 ca.AdditionalTasks =Desinstal·lar
 cs.Uninstall =Odinstalovat
 el.Uninstall =Απεγκατάσταση
-et.Uninstall =Lae maha
+;et.Uninstall =Lae maha
 fi.Uninstall =Poista asennus
-lt.Uninstall =Išinstaliuoti
+;lt.Uninstall =Išinstaliuoti
 lo.Uninstall =ຖອນການຕິດຕັ້ງ
 nl.Uninstall =Verwijderen
 ru.Uninstall =Удаление
 de.Uninstall =Deinstallieren
 fr.Uninstall =Desinstaller
 es.Uninstall =Desinstalar
-in.Uninstall =Uninstal
+id.Uninstall =Uninstal
 it_IT.Uninstall =Disinstalla
 pt_BR.Uninstall =Desinstalar
-pt_PT.Uninstall =Desinstalar
+;pt_PT.Uninstall =Desinstalar
 pl.Uninstall =Odinstaluj
 ro.Uninstall =Dezinstalarea
 sk.Uninstall =Odinštalovať
@@ -336,12 +339,12 @@ sv.Uninstall =Avinstallera
 tr.Uninstall =Kaldır
 vi.Uninstall =Gỡ cài đặt
 zh_CN.Uninstall =卸载
-hy_AM.Uninstall =Ապատեղադրել
-hr.Uninstall =Deinstaliraj
+;hy_AM.Uninstall =Ապատեղադրել
+;hr.Uninstall =Deinstaliraj
 da.Uninstall =Afinstaller
-hi.Uninstall =अनइंस्टॉल
+;hi.Uninstall =अनइंस्टॉल
 hu.Uninstall =Eltávolítás
-ga_IE.Uninstall =Díshuiteáil
+;ga_IE.Uninstall =Díshuiteáil
 ja.Uninstall =アンインストール
 ko.Uninstall =삭제
 lv.Uninstall =Atinstalēt
@@ -355,19 +358,19 @@ bg.WarningWrongArchitecture =Опитвате се да инсталирате %
 ca.WarningWrongArchitecture =Estau provant a instal·lar la versió de l'aplicació %1-bit amb la versió %2-bit instal·lada. Si us plau, desintaleu primer la versió anterior o descarregeu la versió correcta per a la instal·lació.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
 el.WarningWrongArchitecture =Προσπαθείτε να εγκαταστήσετε την έκδοση εφαρμογής %1-bit έναντι της εγκατεστημένης έκδοσης %2-bit. Παρακαλούμε απεγκαταστήστε πρώτα την προηγούμενη έκδοση ή κατεβάστε τη σωστή έκδοση για εγκατάσταση.
-et.WarningWrongArchitecture =Sa proovid alla laadida %1-bit rakenduse versiooni, mitte %2-bit versiooni, mis on juba alla laetud. Palun lae maha eelnev versioon enne või lae alla õige versioon.
+;et.WarningWrongArchitecture =Sa proovid alla laadida %1-bit rakenduse versiooni, mitte %2-bit versiooni, mis on juba alla laetud. Palun lae maha eelnev versioon enne või lae alla õige versioon.
 fi.WarningWrongArchitecture =Yrität asentaa %1-bittistä versiota %2-bittisen version päälle. Ole hyvä ja poista aiemman asennettu versio ensin tai lataa oikea versio asennettavaksi.
-lt.WarningWrongArchitecture =Jūs bandote įdiegti %1-bitų programos versiją vietoj %2-bitų instaliuotos versijos. Pirmiausia pašalinkite ankstesnę versiją arba atsisiųskitė tinkamą versiją diegimui.
+;lt.WarningWrongArchitecture =Jūs bandote įdiegti %1-bitų programos versiją vietoj %2-bitų instaliuotos versijos. Pirmiausia pašalinkite ankstesnę versiją arba atsisiųskitė tinkamą versiją diegimui.
 lo.WarningWrongArchitecture =ທ່ານ ກຳ ລັງພະຍາຍາມຕິດຕັ້ງເວີຊັນ application 1-bit ໃນເວີຊັນ% 2-bit ທີ່ຕິດຕັ້ງໄວ້. ກະລຸນາຖອນການຕິດຕັ້ງລຸ້ນກ່ອນກ່ອນອື່ນ ໝົດ ຫຼືດາວໂຫລດເວີຊັນທີ່ຖືກຕ້ອງເພື່ອຕິດຕັ້ງ.
 nl.WarningWrongArchitecture =U probeert de %1-bits applicatieversie te installeren over de geïnstalleerde %2-bits versie. Verwijder eerst de vorige versie of download de juiste versie voor de installatie.
 ru.WarningWrongArchitecture =Вы устанавливаете %1-битную версию приложения на уже установленную %2-битную. Пожалуйста, удалите предыдущую версию приложения или скачайте подходящую.
 de.WarningWrongArchitecture =Sie versuchen die %1-Bit-Version der Anwendung über die %2-Bit-Version, die schon installiert ist, zu installieren. Entfernen Sie bitte die Vorgängerversion zuerst oder laden Sie die richtige Version für die Installation herunter.
 fr.WarningWrongArchitecture =Vous essayez d'installer la version %1-bit sur la version %2-bit déjà installée. Veuillez désinstaller l'ancienne version d'abord ou télécharger la version correcte à installer.
 es.WarningWrongArchitecture =Usted está tratando de instalar la versión de la aplicación de %1 bits sobre la versión de %2 bits instalada. Por favor, desinstale la versión anterior primero o descargue la versión correcta para la instalación.
-in.WarningWrongArchitecture =Anda mencoba menginstal aplikasi versi %1-bit yang sudah terinstal versi %2-bit. Silakan uninstal terlebih dahulu versi sebelumnya atau unduh versi instalasi yang benar.
+id.WarningWrongArchitecture =Anda mencoba menginstal aplikasi versi %1-bit yang sudah terinstal versi %2-bit. Silakan uninstal terlebih dahulu versi sebelumnya atau unduh versi instalasi yang benar.
 it_IT.WarningWrongArchitecture =Stai provando ad installare la versione dell'applicazione %1-bit sulla versione %2-bit installata. Si prega di disinstallare prima la versione precedente o scaricare la versione corretta per l'installazione.
 pt_BR.WarningWrongArchitecture =Você está tentando instalar a versão do aplicativo de %1 bits por cima da versão de %2 bits instalada. Desinstale primeiro a versão anterior ou baixe a versão correta para instalação.
-pt_PT.WarningWrongArchitecture =Está a tentar instalar a versão de %1-bites por cima da versão de %2-bites que já está instalada. Por favor desinstale primeiro a versão anterior ou faça o download da versão correta para instalar.
+;pt_PT.WarningWrongArchitecture =Está a tentar instalar a versão de %1-bites por cima da versão de %2-bites que já está instalada. Por favor desinstale primeiro a versão anterior ou faça o download da versão correta para instalar.
 pl.WarningWrongArchitecture =Próbujesz zainstalować %1-bitową wersję aplikacji na %2-bitowej wersji zainstalowanej. Odinstaluj najpierw poprzednią wersję lub pobierz odpowiednią wersję dla instalacji.
 ro.WarningWrongArchitecture =Încercați sã instalați o versiune a aplicației pe %1 biți pe deasupra versiunei deja instalate pe%2 biți. Mai întâi, dezinstalați versiunea anterioarã sau încãrcați versiunea portivitã.
 sk.WarningWrongArchitecture =Pokúšate sa nainštalovať %1-bitovú verziu aplikácie cez nainštalovanú %2-bitovú verziu. Najskôr odinštalujte predchádzajúcu verziu alebo stiahnite správnu verziu na inštaláciu.
@@ -376,12 +379,12 @@ sv.WarningWrongArchitecture =Du försöker installera %1-bit-programversionen ö
 tr.WarningWrongArchitecture =Yüklenmiş %2-bit uygulama üzerine %1-bit uygulama yüklemeye çalışıyorsunuz. Lütfen ilk olarak önceki sürümü kaldırın veya kurulum için doğru sürümü indirin.
 vi.WarningWrongArchitecture =Bạn đang cố gắng cài đặt phiên bản ứng dụng %1-bit đè lên phiên bản %2-bit đã được cài đặt. Vui lòng gỡ phiên bản trước hoặc tải phiên bản đúng để cài đặt.
 zh_CN.WarningWrongArchitecture =您正在尝试在已安装的%2-bit版本上安装%1-bit应用版本。请首先卸载之前版本，或下载正确的安装版本。
-hy_AM.WarningWrongArchitecture =Դուք պատրաստվում եք տեղադրել հավելվածի %1-բիթանոց տարբերակը՝ տեղադրված %2-բիթանոց տարբերակի փոխարեն։ Խնդրում ենք նախ ապատեղադրել նախորդ տարբերակը կամ բեռնել ճիշտ տարբերակը՝ տեղադրման համար։
-hr.WarningWrongArchitecture =Pokušavate instalirati %1-bitnu verziju aplikacije preko instalirane %2-bitne verzije. Molimo da najprije deinstalirate prethodnu verziju ili preuzmete ispravnu verziju za instalaciju.
+;hy_AM.WarningWrongArchitecture =Դուք պատրաստվում եք տեղադրել հավելվածի %1-բիթանոց տարբերակը՝ տեղադրված %2-բիթանոց տարբերակի փոխարեն։ Խնդրում ենք նախ ապատեղադրել նախորդ տարբերակը կամ բեռնել ճիշտ տարբերակը՝ տեղադրման համար։
+;hr.WarningWrongArchitecture =Pokušavate instalirati %1-bitnu verziju aplikacije preko instalirane %2-bitne verzije. Molimo da najprije deinstalirate prethodnu verziju ili preuzmete ispravnu verziju za instalaciju.
 da.WarningWrongArchitecture =Du prøver at installere %1-bit applikationsversion over den installerede %2-bit version. Venligst afinstaller den tidligere version først eller download den rigtige version for at installere.
-hi.WarningWrongArchitecture =आप इंस्टॉल किए गए %2-बिट संस्करण के ऊपर %1-बिट ऐप्लिकेशन  संस्करण को इंस्टॉल करने का प्रयास कर रहे हैं। कृपया पहले पुराने संस्करण को अनइंस्टॉल करें या इंस्टॉल करने के लिए सही संस्करण को डाउनलोड करें।
+;hi.WarningWrongArchitecture =आप इंस्टॉल किए गए %2-बिट संस्करण के ऊपर %1-बिट ऐप्लिकेशन  संस्करण को इंस्टॉल करने का प्रयास कर रहे हैं। कृपया पहले पुराने संस्करण को अनइंस्टॉल करें या इंस्टॉल करने के लिए सही संस्करण को डाउनलोड करें।
 hu.WarningWrongArchitecture =Ön a(z) %1-bites alkalmazást próbálja telepíteni a már telepített %2-bites verzió mellé. Kérjük, előbb távolítsa el az előző verziót, vagy a megfelelő verziót töltse le a telepítéshez.
-ga_IE.WarningWrongArchitecture =Tá tú ag iarraidh a shuiteáil an leagan iarratais 1-giotán ar fud an leagan 2- giotán shuiteáil. Díshuiteáil an leagan roimhe seo ar dtús nó íoslódáil an leagan ceart le haghaidh suiteála.
+;ga_IE.WarningWrongArchitecture =Tá tú ag iarraidh a shuiteáil an leagan iarratais 1-giotán ar fud an leagan 2- giotán shuiteáil. Díshuiteáil an leagan roimhe seo ar dtús nó íoslódáil an leagan ceart le haghaidh suiteála.
 ja.WarningWrongArchitecture =すでにインストールされている %2-ビットのバージョンに %1-ビットのアプリのバージョンをインストールしようとしています。初めに前のバージョンをアンインストールするか、正しいバージョンをダウンロードしてください。
 ko.WarningWrongArchitecture =설치되어있는 %2-비트 애플리케이션 버전 위로 %1-비트 버전을 설치하려 합니다. 먼저 이전 버전을 삭제하시거나 설치하고자 하는 정확한 버전을 다운로드해주세요.
 lv.WarningWrongArchitecture =Jūs mēģināt instalēt %1-bitu programmas versiju pāri jau instalētajai %2-bitu versijai. Lūdzu, vispirms atinstalējiet iepriekšējo versiju vai lejuplādējiet pareizo versiju instalēšanai.
@@ -396,19 +399,19 @@ bg.UpdateAppRunning=Настройката установи, че %1 в моме
 ca.UpdateAppRunning=La configuració ha detectat que actualment s'està executant %1.%n%n Es tancarà automàticament. Feu clic a D'acord per continuar o Cancel·la per sortir.
 cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
 el.UpdateAppRunning=Η εγκατάσταση έχει εντοπίσει ότι το %1 εκτελείται αυτήν τη στιγμή. Κάντε κλικ στο Εντάξει για συνέχεια ή στο Άκυρο για έξοδο.
-et.UpdateAppRunning=Süsteem on tuvastanud, et %1 töötab praegu. See suletakse automaatselt. Vajuta OK, et jätkata või Tühista, et katkestada.
+;et.UpdateAppRunning=Süsteem on tuvastanud, et %1 töötab praegu. See suletakse automaatselt. Vajuta OK, et jätkata või Tühista, et katkestada.
 fi.UpdateAppRunning=Asennus havaitsi, että %1 on käynnissä.%n%nSe suljetaan automaattisesti. Klikkaa OK jatkaaksesi tai Peruuta poistuaksesi asennuksesta.
-lt.UpdateAppRunning=Sąranka nustatė, kad šiuo metu veikia %1.%n%nTai bus uždaroma automatiškai. Spustelkite GERAI jei norite tęsti, arba Atšaukti, jei norite išeiti.
+;lt.UpdateAppRunning=Sąranka nustatė, kad šiuo metu veikia %1.%n%nTai bus uždaroma automatiškai. Spustelkite GERAI jei norite tęsti, arba Atšaukti, jei norite išeiti.
 lo.UpdateAppRunning=ການຕັ້ງຄ່າໄດ້ກວດພົບວ່າ% 1 ກຳລັງໃຊ້ງານຢູ່.% n% n ມັນຈະຖືກປິດໂດຍອັດຕະໂນມັດ. ກົດ OK ເພື່ອສືບຕໍ່, ຫຼືຍົກເລີກເພື່ອອອກຈາກ.
 nl.UpdateAppRunning=Setup heeft vastgesteld dat %1 momenteel loopt.%n%nHet wordt automatisch gesloten. Klik op OK om door te gaan, of op Annuleren om af te sluiten.
 ru.UpdateAppRunning=Обнаружен запущенный экземпляр %1.%n%nДля обновления он будет автоматически закрыт. Нажмите «OK», чтобы продолжить, или «Отмена», чтобы выйти.
 de.UpdateAppRunning=Setup hat festgestellt, dass es aktuell %1 läuft. %n%nEs wird automatisch geschlossen. Klicken Sie zum Fortfahren auf OK oder auf Abbrechen zum Beenden des Programms.
 fr.UpdateAppRunning=L'installation a détecté que %1 est en cours d'exécution. %n%nIl sera fermé automatiquement. Cliquez sur OK pour continuer, ou Annuler pour quitter le programme.
 es.UpdateAppRunning=Programa de instalación ha detectado que actualmente %1 está funcionando.%n%nSe cerrará  automáticamente. Haga clic en OK para continuar o Cerrar para salir.
-in.UpdateAppRunning=Pengaturan mendeteksi %1 sedang berjalan.%n%nAkan ditutup secara otomatis. Klik OK untuk melanjutkan, atau Batal untuk keluar.
+id.UpdateAppRunning=Pengaturan mendeteksi %1 sedang berjalan.%n%nAkan ditutup secara otomatis. Klik OK untuk melanjutkan, atau Batal untuk keluar.
 it_IT.UpdateAppRunning= Il programma di installazione ha rilevato che% 1 è attualmente in esecuzione.%n%nVerrà chiuso automaticamente. Fare clic su OK per continuare o su Annulla per uscire.
 pt_BR.UpdateAppRunning=A configuração detectou que %1 está atualmente em execução.%n%nEla será fechada automaticamente. Clique em OK para continuar ou em Cancelar para sair.
-pt_PT.UpdateAppRunning=O Setup detetou que %1 está atualmente aberta.%n%nEla será fechada automaticamente. Clique OK para continuar, ou Cancelar para sair.
+;pt_PT.UpdateAppRunning=O Setup detetou que %1 está atualmente aberta.%n%nEla será fechada automaticamente. Clique OK para continuar, ou Cancelar para sair.
 pl.UpdateAppRunning=Konfiguracja wykryła , że %1 jest uruchomiona.%n%nZostanie ona automatycznie zamknięta. Kliknij OK, aby kontynuować lub Anuluj, aby wyjść.
 ro.UpdateAppRunning=Programul de instalare a detectat cã %1 ruleazã acum.%n%nAplicatia va fi inchisa automat. Apãsați OK dacã doriți sã continuați, sau apãsați Revicare dacã doriți sã ieșiți..
 sk.UpdateAppRunning=Inštalátor zistil, že %1 je momentálne spustený.%n%nBude automaticky zatvorený. Pokračujte kliknutím na tlačidlo OK, zrušte akciu kliknutím na tlačidlo exit.
@@ -417,12 +420,12 @@ sv.UpdateAppRunning=Installationsprogrammet har upptäckt att %1 för närvarand
 tr.UpdateAppRunning=Kurulum %1’in şu anda çalışıyor olduğunu algıladı. %n%nIt otomatik olarak kapatılacak. Devam etmek için Tamam’a veya çıkmak için İptal’e tıklayın.
 vi.UpdateAppRunning=Mục cài đặt đã phát hiện ra rằng %1 đang chạy.%n%nIt sẽ được đóng tự động. Hãy chọn OK để tiếp tục hay Hủy để thoát.
 zh_CN.UpdateAppRunning=安装程序检测到%1当前正在运行。%n%n将自动关闭。单击“确定”继续，或“取消”退出。
-hy_AM.UpdateAppRunning=Կարգավորումը հայտնաբերել է, որ այս պահին աշխատում է %1-ը։ %n%nԱյն ավտոմատ կփակվի։ Խնդրում ենք սեղմել ԼԱՎ՝ շարունակելու համար կամ Չեղարկել՝ դուրս գալու համար։
-hr.UpdateAppRunning=Postavljanje je otkrilo da je %1 trenutno pokrenut.%n%n Zatvorit će se automatski. Kliknite U redu za nastavak ili Odustani za izlaz.
+;hy_AM.UpdateAppRunning=Կարգավորումը հայտնաբերել է, որ այս պահին աշխատում է %1-ը։ %n%nԱյն ավտոմատ կփակվի։ Խնդրում ենք սեղմել ԼԱՎ՝ շարունակելու համար կամ Չեղարկել՝ դուրս գալու համար։
+;hr.UpdateAppRunning=Postavljanje je otkrilo da je %1 trenutno pokrenut.%n%n Zatvorit će se automatski. Kliknite U redu za nastavak ili Odustani za izlaz.
 da.UpdateAppRunning=Setup har registreret at %1 kører i øjeblikket.%n%nIDet vil blive lukket automatisk. Klik OK for at fortsætte eller Annuler for at afslutte.
-hi.UpdateAppRunning=सेटअप ने पता लगाया है कि %1 वर्तमान में चल रहा है।%n%nयह स्वतः ही बंद हो जाएगा। क्लिक करें ओके या जारी रखें पर, या बाहर निकलने के लिए रद्द करें पर।
+;hi.UpdateAppRunning=सेटअप ने पता लगाया है कि %1 वर्तमान में चल रहा है।%n%nयह स्वतः ही बंद हो जाएगा। क्लिक करें ओके या जारी रखें पर, या बाहर निकलने के लिए रद्द करें पर।
 hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikusan bezárásra kerül. Folytatáshoz kattintson az OK-ra, kilépéshez kattintson a Mégse gombra.
-ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
+;ga_IE.UpdateAppRunning=Tá sé aimsithe ag an socrú go bhfuil %1 ag rith faoi láthair. Dúnfar é go huathoibríoch. Cliceáil OK chun leanúint ar aghaidh, nó Cealaigh chun imeacht.
 ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
 ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
 lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
@@ -436,19 +439,19 @@ bg.WarningClearAppData =Искате ли да изчистите потреби
 ca.WarningClearAppData =Voleu esborrar la configuració de l'usuari i les dades de la memòria cau de l'aplicació?
 cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
 el.WarningClearAppData =Θέλετε να διαγράψετε τις ρυθμίσεις χρήστη και τα δεδομένα cache της εφαρμογής;
-et.WarningClearAppData =Kas sa tahad puhastada kasutaja seaded ja rakenduse salvestatud andmed?
+;et.WarningClearAppData =Kas sa tahad puhastada kasutaja seaded ja rakenduse salvestatud andmed?
 fi.WarningClearAppData =Haluatko poistaa käyttäjä asetukset ja sovelluksen välimuistin?
-lt.WarningClearAppData =Ar norite išvalyti vartotojo nustatymus ir programos talpyklos duomenis?
+;lt.WarningClearAppData =Ar norite išvalyti vartotojo nustatymus ir programos talpyklos duomenis?
 lo.WarningClearAppData =ທ່ານຕ້ອງການລຶບລ້າງຂໍ້ມູນການຕັ້ງຄ່າຂອງຜູ້ໃຊ້ແລະຂໍ້ມູນທີ່ເກັບຂໍ້ມູນໄວ້?
 nl.WarningClearAppData =Wilt u de gebruikersinstellingen en de in de cache opgeslagen gegevens wissen?
 ru.WarningClearAppData =Вы хотите очистить пользовательские настройки и кэш приложения?
 de.WarningClearAppData =Möchten Sie die Benutzereinstellungen und die zwischengespeicherten Daten der Anwendung löschen?
 fr.WarningClearAppData =Voulez-vous effacer les paramètres utilisateur et les données en cache de l'application ?
 es.WarningClearAppData =¿Desea eliminar los ajustes de usuario y datos en caché de la aplicación?
-in.WarningClearAppData =Apakah Anda ingin menghapus pengaturan pengguna dan data cache aplikasi?
+id.WarningClearAppData =Apakah Anda ingin menghapus pengaturan pengguna dan data cache aplikasi?
 it_IT.WarningClearAppData =Vuoi cancellare le impostazioni utente e i dati memorizzati nella cache dell’applicazione?
 pt_BR.WarningClearAppData =Você deseja limpar as definições de usuário e dados salvos do programa?
-pt_PT.WarningClearAppData =Quer apagar as definições de utilizador e os dados de cache da aplicação?
+;pt_PT.WarningClearAppData =Quer apagar as definições de utilizador e os dados de cache da aplicação?
 pl.WarningClearAppData =Czy chcesz usunąć ustawienia użytkownika oraz dane pamięci podręcznej aplikacji?
 ro.WarningClearAppData =Doriți sã mergeţi setãrile personale și sã goliți memoria cache?
 sk.WarningClearAppData =Chcete vymazať nastavenia používateľa a údaje uložené v pamäti aplikácie?
@@ -457,12 +460,12 @@ sv.WarningClearAppData =Vill du rensa användarinställningar och programmets ca
 tr.WarningClearAppData =Kullanıcı ayarlarını veya uygulama önbelleğine alınmış verileri silmek istiyor musunuz?
 vi.WarningClearAppData =Bạn có muốn xóa thiết lập người dùng và dữ liệu được lưu trong bộ nhớ cache của ứng dụng không?
 zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据？
-hy_AM.WarningClearAppData =Ցանկանու՞մ եք ջնջել օգտագործողի կարգավորումները և հավելվածի պահպանված տվյալները։
-hr.WarningClearAppData =Želite li očistiti korisničke postavke i predmemorirane podatke aplikacije?
+;hy_AM.WarningClearAppData =Ցանկանու՞մ եք ջնջել օգտագործողի կարգավորումները և հավելվածի պահպանված տվյալները։
+;hr.WarningClearAppData =Želite li očistiti korisničke postavke i predmemorirane podatke aplikacije?
 da.WarningClearAppData =Vil du rydde brugerinstillingerne og applikationscachede data?
-hi.WarningClearAppData =क्या आप उपयोगकर्ता सेटिंग और ऐप्लिकेशन कैश डाटा को हटाना चाहते हैं?
+;hi.WarningClearAppData =क्या आप उपयोगकर्ता सेटिंग और ऐप्लिकेशन कैश डाटा को हटाना चाहते हैं?
 hu.WarningClearAppData =Törölni szeretné a felhasználói beállításokat és az alkalmazás gyorsítótárazott adatait?
-ga_IE.WarningClearAppData =Ar mhaith leat na socruithe úsáideora agus sonraí taiscthe feidhmchláir a ghlanadh?
+;ga_IE.WarningClearAppData =Ar mhaith leat na socruithe úsáideora agus sonraí taiscthe feidhmchláir a ghlanadh?
 ja.WarningClearAppData =ユーザー設定とアプリによってキャッシュされたデータを消去しますか?
 ko.WarningClearAppData =사용자 설정 및 애플리케이션 캐시 데이터를 지우시겠습니까?
 lv.WarningClearAppData =Vai vēlaties notīrīt lietotāja iestatījumus un programmas kešatmiņas datus?

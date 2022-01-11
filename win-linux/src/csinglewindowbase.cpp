@@ -179,6 +179,16 @@ void CSingleWindowBase::setScreenScalingFactor(double f)
     }
 }
 
+void CSingleWindowBase::updateScaling()
+{
+    onExitSizeMove();
+}
+
+double CSingleWindowBase::scaling() const
+{
+    return m_dpiRatio;
+}
+
 void CSingleWindowBase::setWindowTitle(const QString& title)
 {
     if ( m_labelTitle ) {

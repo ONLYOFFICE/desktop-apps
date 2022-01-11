@@ -683,7 +683,13 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
         double dpi_ratio = scaling();
 
         ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
-        int top_offset = dpi_ratio < 2 ? dpi_ratio < 1.5 ? 1 : 2 : 4;
+        int top_offset{1};
+        if (dpi_ratio < 1.25) top_offset = 1; else
+        if (dpi_ratio < 1.5) top_offset = 2; else
+        if (dpi_ratio < 1.75) top_offset = 2; else
+        if (dpi_ratio < 2) top_offset = 3; else
+            top_offset = 4;
+
         i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
         i->setFixedSize(_iconSize.width() + int(8 * dpi_ratio), iconSize().height() + int(4 * dpi_ratio));
 

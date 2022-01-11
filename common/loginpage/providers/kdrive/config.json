@@ -1,12 +1,12 @@
 {
     "provider": "kdrive",
-    "name" : "Infomaniak",
+    "name": "infomaniak kDrive",
     "entryPage": "https://drive.infomaniak.com/app/drive",
     "extraLogout": "https://infomaniak.com/",
-    "editorPage" : "/app/office/",
-    "cryptoSupport" : "true",
+    "editorPage": "/app/office/",
+    "cryptoSupport": "true",
     "icons": {
-        "themeLight":{
+        "themeLight": {
             "connectionsList": "./assets/listicon.svg",
             "buttonLogo": "./assets/buttonlogo.svg"
         },

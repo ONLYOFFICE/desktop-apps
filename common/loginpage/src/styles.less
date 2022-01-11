@@ -161,13 +161,15 @@ h4 {
 
 .tool-quick-menu {
     border-bottom: @scaled-one-px solid @border-divider;
-    padding: 0 0 30px 27px;
+    padding: 0 0 28px 27px;
 
     h3 {
         margin: 40px 0 12px;
     }
 
     > li {
+        @new-doc-icon-width: 36px;
+
         &.menu-item{
             padding: 5px 20px 5px 0;
             a {
@@ -180,7 +182,7 @@ h4 {
             line-height: 48px;
 
             .icon {
-                width: 36px;
+                width: @new-doc-icon-width;
                 height: 48px;
                 display: block;
                 margin-right: 19px;
@@ -196,6 +198,12 @@ h4 {
         a[action='new:pptx'] {
             .icon {
                 background-position-x:-72px;
+            }
+        }
+
+        a[action='new:form'] {
+            .icon {
+                background-position-x: -3 * @new-doc-icon-width;
             }
         }
 
@@ -257,7 +265,7 @@ li.menu-item {
 
     > li.menu-item {
         &:not(.separator):not(:last-of-type) {
-            border-bottom: @scaled-one-px solid @border-divider;
+            /*border-bottom: @scaled-one-px solid @border-divider;*/
         }
     }
 
@@ -285,8 +293,8 @@ li.menu-item {
     > li.menu-item.separator {
         flex-grow: 1;
 
-        @minus-one-px: calc(-1px / var(--pixel-ratio, 1));
-        box-shadow: inset 0 @minus-one-px 0 0 @border-divider;
+        /*@minus-one-px: calc(-1 * @scaled-one-px);*/
+        /*box-shadow: inset 0 @minus-one-px 0 0 @border-divider;*/
     }
 }
 
@@ -451,7 +459,7 @@ li.menu-item {
         .icon {
             width: 24px;
             height: 24px;
-            background-position: -86px -48px;
+            background-position: -88px -48px;
         }
 
         &:hover {
@@ -543,8 +551,8 @@ li.menu-item {
     }
 
     .cicon {
-        padding: 0 0 0 11px;
-        width: 46px;
+        padding: 0 0 0 16px;
+        width: 55px;
     }
 
     .icon {
@@ -612,48 +620,12 @@ li.menu-item {
         &.xps {
             .format-from-index(16);
         }
-        &.xml {
-            .format-from-index(17);
-        }
-        &.mht {
-            .format-from-index(18);
-        }
-        &.epub {
-            .format-from-index(19);
-        }
-        &.fb2 {
-            .format-from-index(20);
-        }
-        &.dotx {
-            .format-from-index(21);
-        }
-        &.xltx {
-            .format-from-index(22);
-        }
-        &.potx {
-            .format-from-index(23);
-        }
-        &.ott {
-            .format-from-index(24);
-        }
-        &.ots {
-            .format-from-index(25);
-        }
-        &.otp {
-            .format-from-index(26);
-        }
-        &.pps {
-            .format-from-index(27);
-        }
-        &.ppsx {
-            .format-from-index(28);
-        }
 
         &.folder {
             height: 24px;
             width: 28px;
             margin-left: -2px;
-            background-position: -58px -48px;
+            background-position: -60px -48px;
         }
     }
 
@@ -722,6 +694,7 @@ li.menu-item {
 .tool-menu,
 .action-panel,
 .content-box,
+.dropdown-menu .inner,
 .table-box {
     &::-webkit-scrollbar-track {
         background-color: @background-normal;

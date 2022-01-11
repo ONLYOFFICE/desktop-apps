@@ -158,7 +158,7 @@ public:
 
     static void             startApp();
     static void             initializeApp();
-    static void             gotoMainWindow();
+    static void             gotoMainWindow(size_t pw = 0);
     static void             handleInputCmd(const std::vector<std::wstring>&);
     static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);

@@ -107,7 +107,7 @@ window.DialogConnect = function(params) {
             portal = $body.find('#auth-portal').val(),
             protocol = 'https://';
 
-        const model = config.portals.checklist.findProvider(provider);
+        const model = config.portals.providers.find(provider);
         if ( !!model && model.entryPage ) {
             _close({
                 portal: model.entryPage,
@@ -183,7 +183,7 @@ window.DialogConnect = function(params) {
     };
 
     function _on_combo_provider_change(e) {
-        const item = config.portals.checklist.findProvider(e.target.value);
+        const item = config.portals.providers.find(e.target.value);
         if ( !!item ) {
             const $portal = $body.find('#auth-portal');
             if ( item.entryPage ) {

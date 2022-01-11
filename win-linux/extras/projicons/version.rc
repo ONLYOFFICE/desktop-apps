@@ -17,6 +17,8 @@ ICON16      ICON    DISCARDABLE "./res/docx.ico"
 ICON17      ICON    DISCARDABLE "./res/ppsx.ico"
 ICON18      ICON    DISCARDABLE "./res/pptx.ico"
 ICON19      ICON    DISCARDABLE "./res/xlsx.ico"
+ICON20      ICON    DISCARDABLE "./res/oform.ico"
+ICON21      ICON    DISCARDABLE "./res/docxf.ico"
 
 #include <windows.h>
 # pragma code_page(65001)
