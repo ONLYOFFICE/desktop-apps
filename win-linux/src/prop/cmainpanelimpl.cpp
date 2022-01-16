@@ -59,6 +59,7 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["appname"]    = WINDOW_NAME;
     _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
+    _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "app:version", Utils::stringifyJson(_json_obj));
 

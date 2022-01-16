@@ -76,7 +76,8 @@
                             <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}<p></p>
-                            <a class="ver-checkupdate link" draggable='false' href="#" l10n>${_lang.checkUpdates}</a><p />
+                            <a class="ver-checkupdate link" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
+                            <a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a><p />
                             <div class="ver-copyright">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
                         </div>`+
@@ -137,10 +138,14 @@
                         } 
 
                         this.view.renderpanel(this.view.paneltemplate(args));
-                        this.view.$panel.find('.ver-checkupdate').on('click', (e) => {
-                            window.sdk.execCommand('update', 'check');
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+                        $label.on('click', (e) => {
+                            window.sdk.execCommand('update', $label.data('state'));
                         });
-                        this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
+                        $label[this.updates===true?'show':'hide']();
+                        if ( args.opts ) {
+                            this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
+                        }
 
                         if ( !!_features && _features.length )
                             _on_features_avalable.call(this, _features);
@@ -150,6 +155,16 @@
 
                         if ( this.view ) {
                             this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                        }
+                    } else
+                    if (/^updates:checking/.test(cmd)) {
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+                        const opts = JSON.parse(param);
+                        if ( opts.version == 'no' ) {
+                            $label.text(utils.Lang.updateNoUpdates);
+                        } else {
+                            $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
+                            $label.data('state', 'download');
                         }
                     }
                 });

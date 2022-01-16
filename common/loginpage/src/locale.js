@@ -122,6 +122,9 @@ l10n.en = {
     ,settOptLaunchMode: 'Editor\'s launch mode'
     ,settOptLaunchInTab: 'In tab'
     ,settOptLaunchInWindow: 'In window'
+    ,aboutChangelog: 'Changelog'
+    ,updateNoUpdates: 'App is up to date'
+    ,updateAvialable: 'Version $1 is available. Click to download.'
 }
 
 l10n.bg = {
