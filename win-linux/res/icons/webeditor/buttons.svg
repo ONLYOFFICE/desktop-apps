@@ -29,7 +29,7 @@
         <path d="M10.645,7.625c1.965,0,3.863,0.777,5.15,2.033L18,7.625V14h-6.406l2.09-2.219 c-0.845-1.277-2.313-2.215-3.989-2.215c-2.461,0-5.405,1.78-5.694,4.119C4.399,10.291,7.034,7.625,10.645,7.625z"/>
     </svg>
     <svg id="svg-btn-home" width="20" height="20" fill="none">
-        <path d="M1 9L10 3L19 9" stroke="#fff"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 9H5V15H8V11V10H12V11V15H15V9H16V16H15H12H11V11H9V16H8H5H4V9Z" fill="#fff"/>
+       <path fill-rule="evenodd" clip-rule="evenodd" d="M7 11H7.5H11.5H12V11.5V16H11V12H8V16H7V11.5V11Z" fill="#fff"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.50319 2.38794L9.79153 2.59147L18.2915 8.59147L17.7148 9.40844L16.0003 8.19815V15.4998V15.9998H15.5003H12.0004V14.9998H15.0003V7.49227L9.50319 3.61198L4.00026 7.49639V14.9998H7.00041V15.9998H3.50026H3.00026V15.4998V8.20228L1.29153 9.40844L0.714844 8.59147L9.21484 2.59147L9.50319 2.38794Z" fill="black"/>
     </svg>
 </svg>

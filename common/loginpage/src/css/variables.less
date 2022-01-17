@@ -1,9 +1,23 @@
 
 :root {
+    .pixel-ratio__1_25 {
+        --pixel-ratio: 1.25;
+
+        @one-px: (1px / 1.25);
+        --scaled-one-px: @one-px;
+    }
+
     .pixel-ratio__1_5 {
         --pixel-ratio: 1.5;
 
         @one-px: (1px / 1.5);
+        --scaled-one-px: @one-px;
+    }
+
+    .pixel-ratio__1_75 {
+        --pixel-ratio: 1.75;
+
+        @one-px: (1px / 1.75);
         --scaled-one-px: @one-px;
     }
 }

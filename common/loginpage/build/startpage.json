@@ -40,6 +40,12 @@
                         "*.js"
                     ],
                     "dest": "../deploy/"
+                },
+                {
+                    "expand": true,
+                    "cwd": "../locale",
+                    "src": ["*.js"],
+                    "dest": "../deploy/locale"
                 }
             ]
         },

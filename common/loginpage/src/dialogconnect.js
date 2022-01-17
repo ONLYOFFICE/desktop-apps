@@ -50,7 +50,7 @@ window.DialogConnect = function(params) {
                             <div id="panel-portal" class="sl-panel">
                                 <div class='select-field dlg--option'>
                                     <section class='box-cmp-select'>
-                                        <select class='combobox'></select>
+                                        <select class='combobox' data-size='5'></select>
                                     </section>
                                 </div>
                                 <div class="error-box">
@@ -106,6 +106,15 @@ window.DialogConnect = function(params) {
         let provider = $body.find('select').val(),
             portal = $body.find('#auth-portal').val(),
             protocol = 'https://';
+
+        const model = config.portals.providers.find(provider);
+        if ( !!model && model.entryPage ) {
+            _close({
+                portal: model.entryPage,
+                provider:provider
+            });
+            return
+        }
 
         if (/^\s|\s$/.test(portal)) {
             portal = portal.trim();
@@ -173,6 +182,20 @@ window.DialogConnect = function(params) {
         ).then( _callback, _callback );
     };
 
+    function _on_combo_provider_change(e) {
+        const item = config.portals.providers.find(e.target.value);
+        if ( !!item ) {
+            const $portal = $body.find('#auth-portal');
+            if ( item.entryPage ) {
+                $portal[0].disabled = true;
+                $portal.val(item.entryPage)
+            } else {
+                $portal[0].disabled = false;
+                $portal.val("")
+            }
+        }
+    }
+
     function _bind_events() {
         $body.on('keypress', '.tbox', 
             function(e) {
@@ -221,7 +244,9 @@ window.DialogConnect = function(params) {
                     complete: function(e, status) {
                         if ( status == 'success' ) {
                             try {
-                                JSON.parse(e.responseText)
+                                if ( !_model.entryPage )
+                                    JSON.parse(e.responseText)
+
                                 resolve({status:status, response:e});
                             } catch (err) {
                                 e.status = 404;
@@ -269,6 +294,8 @@ window.DialogConnect = function(params) {
                 });
 
                 $combo.selectpicker();
+                $combo.on('change', _on_combo_provider_change.bind(this));
+                $combo.trigger('change');
             }
             
             let $portal = $body.find('#auth-portal');

@@ -374,12 +374,21 @@ QString Utils::stringifyJson(const QJsonObject& obj)
     return QJsonDocument(obj).toJson(QJsonDocument::Compact);
 }
 
+inline double choose_scaling(double s)
+{
+    if ( s > 1.75 ) return 2;
+    else if ( s > 1.5 ) return 1.75;
+    else if ( s > 1.25 ) return 1.5;
+    else if ( s > 1 ) return 1.25;
+    else return 1;
+}
+
 double Utils::getScreenDpiRatio(int scrnum)
 {
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
     double nScale = AscAppManager::getInstance().GetMonitorScaleByIndex(scrnum, _dpi_x, _dpi_y);
-    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
+    return choose_scaling(nScale);
 }
 
 double Utils::getScreenDpiRatio(const QPoint& pt)
@@ -399,7 +408,7 @@ double Utils::getScreenDpiRatioByHWND(int hwnd)
     unsigned int _dpi_x = 0;
     unsigned int _dpi_y = 0;
     double nScale = AscAppManager::getInstance().GetMonitorScaleByWindow((WindowHandleId)hwnd, _dpi_x, _dpi_y);
-    return nScale > 1.5 ? 2 : nScale > 1 ? 1.5 : 1;
+    return choose_scaling(nScale);
 }
 
 double Utils::getScreenDpiRatioByWidget(QWidget* wid)
@@ -419,8 +428,7 @@ double Utils::getScreenDpiRatioByWidget(QWidget* wid)
 #endif
 
     if ( dpiApp >= 0 ) {
-        // пока только 1, 1.5 или 2
-        return dpiApp > 1.5 ? 2 : dpiApp > 1 ? 1.5 : 1;
+        return choose_scaling(dpiApp);
     }
 
     return wid->devicePixelRatio();

@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
+        <source>Enter the password for the digital signature.</source>
+        <target state="translated">輸入數位簽章密碼。</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note>
+      </trans-unit>
+      <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
+        <source>Enter the password for the private key.</source>
+        <target state="translated">輸入私密金鑰密碼。</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
+      </trans-unit>
+      <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
+        <source>Specify the digital signature file for the document.</source>
+        <target state="translated">指定文件的數位簽章檔案。</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note>
+      </trans-unit>
+      <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
+        <source>Enter Password</source>
+        <target>輸入密碼</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
+      </trans-unit>
+      <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note>
+      </trans-unit>
+      <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
+        <source>Load a Private Key</source>
+        <target>載入私密金鑰</target>
+        <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note>
+      </trans-unit>
+      <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note>
+      </trans-unit>
+      <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
+        <source>Specify a private key for the digital signature.</source>
+        <target state="translated">指定數位簽章的私密金鑰。</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
+      </trans-unit>
+      <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
+        <source>Enter Password</source>
+        <target>輸入密碼</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note>
+      </trans-unit>
+      <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note>
+      </trans-unit>
+      <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note>
+      </trans-unit>
+      <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
+        <source>Load Signature</source>
+        <target>載入簽章</target>
+        <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="%@ Help" xml:space="preserve">
+        <source>%@ Help</source>
+        <target>%@ 說明</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Reporter Window" xml:space="preserve">
+        <source>%@ Reporter Window</source>
+        <target state="translated">%@ 報告者視窗</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="About %@" xml:space="preserve">
+        <source>About %@</source>
+        <target>關於 %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Acknowledgments" xml:space="preserve">
+        <source>Acknowledgments</source>
+        <target>版權聲明</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
+        <source>Before signing the document, it must be saved.</source>
+        <target state="translated">簽署文件以前，必須先儲存文件。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
+        <source>Cannot open file of Digital Signature</source>
+        <target state="translated">無法開啟數位簽章的檔案</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
+        <source>Cannot open file of Private Key</source>
+        <target state="translated">無法開啟私密金鑰的檔案</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">無法開啟檔案位址的資料夾。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Comma-Separated Values" xml:space="preserve">
+        <source>Comma-Separated Values</source>
+        <target>逗點分隔值</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Create portal" xml:space="preserve">
+        <source>Create portal</source>
+        <target state="translated">創造入口</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delete and Quit" xml:space="preserve">
+        <source>Delete and Quit</source>
+        <target>刪除並結束</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="DjVu File" xml:space="preserve">
+        <source>DjVu File</source>
+        <target>DjVu 檔案</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
+        <source>Do you want to save the changes made to the document "%@"?</source>
+        <target>您要儲存文件 "%@" 已做的變更嗎嗎？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document %ld.docx" xml:space="preserve">
+        <source>Document %ld.docx</source>
+        <target>文件 %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Document template" xml:space="preserve">
+        <source>Document template</source>
+        <target state="translated">文件範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
+        <source>Excel 97-2003 Spreadsheet</source>
+        <target>Excel 97-2003 試算表</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
+        <source>Excel 2007 Spreadsheet</source>
+        <target>Excel 2007 試算表</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
+        <source>File "%@" can not be open or not exist.</source>
+        <target state="translated">檔案 "%@" 無法開啟或不存在。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File Format:" xml:space="preserve">
+        <source>File Format:</source>
+        <target>檔案格式​​:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="File can not be open." xml:space="preserve">
+        <source>File can not be open.</source>
+        <target state="translated">檔案無法開啟。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hide %@" xml:space="preserve">
+        <source>Hide %@</source>
+        <target>隱藏 %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
+        <source>If you don't review your documents, all your changes will be lost.</source>
+        <target state="translated">如您不檢閱您的文件，您所做的所有變更將會遺失。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
+        <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
+        <target>如您已購買 %@，您會在電子郵件確認信中取得您的啟用金鑰。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="License Agreement" xml:space="preserve">
+        <source>License Agreement</source>
+        <target>授權合約</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Mobipocket e-book" xml:space="preserve">
+        <source>Mobipocket e-book</source>
+        <target>Mobipocket 電子書</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No" xml:space="preserve">
+        <source>No</source>
+        <target>否</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>好</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">無法開啟數位簽章的檔案，嘗試開啟另一個檔案。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenDocument Document Template" xml:space="preserve">
+        <source>OpenDocument Document Template</source>
+        <target state="translated">OpenDocument 文件範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
+        <source>OpenDocument Presentation Template</source>
+        <target state="translated">OpenDocument 簡報範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
+        <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">OpenDocument試算表範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Document" xml:space="preserve">
+        <source>OpenOffice Document</source>
+        <target>OpenOffice 文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Presentation" xml:space="preserve">
+        <source>OpenOffice Presentation</source>
+        <target>OpenOffice 簡報</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
+        <source>OpenOffice Spreadsheet</source>
+        <target>OpenOffice 試算表</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Opening" xml:space="preserve">
+        <source>Opening</source>
+        <target>正在開啟</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF File" xml:space="preserve">
+        <source>PDF File</source>
+        <target>PDF 文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PDF/A File" xml:space="preserve">
+        <source>PDF/A File</source>
+        <target state="translated">PDF/單一檔案</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Plain Text" xml:space="preserve">
+        <source>Plain Text</source>
+        <target>純文字</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
+        <source>PowerPoint 97-2003 Presentation</source>
+        <target>PowerPoint 97-2003 簡報</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
+        <source>PowerPoint 2007 Presentation</source>
+        <target>PowerPoint 2007 簡報</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+        <source>PowerPoint Slide Show</source>
+        <target>PowerPoint 投影片</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Preparing..." xml:space="preserve">
+        <source>Preparing...</source>
+        <target>準備中...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
+        <source>Presentation %ld.pptx</source>
+        <target>簡報 %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Presentation template" xml:space="preserve">
+        <source>Presentation template</source>
+        <target state="translated">簡報範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quit %@" xml:space="preserve">
+        <source>Quit %@</source>
+        <target>結束 %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Review Changes..." xml:space="preserve">
+        <source>Review Changes...</source>
+        <target>檢閱變更...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Rich Text Document" xml:space="preserve">
+        <source>Rich Text Document</source>
+        <target>RTF 文字文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <target state="translated">儲存</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Save the document?" xml:space="preserve">
+        <source>Save the document?</source>
+        <target state="translated">儲存文件？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
+        <source>Spreadsheet %ld.xlsx</source>
+        <target>試算表 %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Spreadsheet template" xml:space="preserve">
+        <source>Spreadsheet template</source>
+        <target state="translated">試算表範本</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
+        <source>Thank you for evaluating %@!</source>
+        <target>謝謝您評估 %@！</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
+        <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">必須建立 "%@" 文件。 繼續嗎？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
+        <source>To open the file location, it must be saved.</source>
+        <target state="translated">必須先完成儲存後，再開啟檔案位址。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Unconfirmed" xml:space="preserve">
+        <source>Unconfirmed</source>
+        <target>未確認</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Untitled" xml:space="preserve">
+        <source>Untitled</source>
+        <target>未命名</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Version %@ (%@)" xml:space="preserve">
+        <source>Version %1$@ (%2$@)</source>
+        <target state="translated">版本 %1$@ (%2$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Web Page" xml:space="preserve">
+        <source>Web Page</source>
+        <target>網頁</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 97-2003 Document" xml:space="preserve">
+        <source>Word 97-2003 Document</source>
+        <target>Word 97-2003 文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Word 2007 Document" xml:space="preserve">
+        <source>Word 2007 Document</source>
+        <target>Word 2007 文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="XML Paper Specification" xml:space="preserve">
+        <source>XML Paper Specification</source>
+        <target>XML 文件規格</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Yes" xml:space="preserve">
+        <source>Yes</source>
+        <target>是</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
+        <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>您有 %1$ld %2$@ 份文件有未確認的變更，您要在結束前檢閱這些變更嗎？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="You have successfully activated %@." xml:space="preserve">
+        <source>You have successfully activated %@.</source>
+        <target state="translated">您已成功啟用 %@。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
+        <source>Your changes will be lost if you don’t save them.</source>
+        <target state="translated">如不儲存變更，您的變更將遺失。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+        <source>Your subscription has expired.
+
+The program works in the non-activated mode.
+
+Now you can prolong or upgrade your subscription with a discount.</source>
+        <target>您的訂閱已過期。
+
+此程式目前以未啟用的模式運作。
+
+現在，您可享有延長或升級訂閱的優惠。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
+        <source>Your subscription is about to expire
+(%d days left).
+
+We have a special offer for you.</source>
+        <target>您的訂閱即將到期
+(剩下 %d 天)。
+
+我們為您提供一項特別優惠。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-document" xml:space="preserve">
+        <source>New Document</source>
+        <target state="translated">新文件</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-presentation" xml:space="preserve">
+        <source>New Presentation</source>
+        <target state="translated">新簡報</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-spreadsheet" xml:space="preserve">
+        <source>New Spreadsheet</source>
+        <target state="translated">新試算表</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@days@</source>
+        <target>%#@天@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
+        <source>%d days are left until the license expiration.</source>
+        <target state="translated">授權還有 %d 天到期。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@days@</source>
+        <target>%#@天@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+        <source>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
+        <target>您目前正在使用應用程式的試用版。
+試用版將在 %d 天後到期，之後，您將無法建立和編輯文件。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+        <source>%#@documents@</source>
+        <target>%#@文件@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
+        <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
+        <target>您的文件 %ld %@ 有未確認的變更，您要在結束前檢閱這些變更嗎？</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
+        <source>Customize Toolbar…</source>
+        <target>自訂工具列…</target>
+        <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
+      </trans-unit>
+      <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
+      <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
+        <source>Find</source>
+        <target>尋找</target>
+        <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
+      </trans-unit>
+      <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
+        <source>Lower</source>
+        <target>降低</target>
+        <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
+      </trans-unit>
+      <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
+        <source>Raise</source>
+        <target>提高</target>
+        <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
+      </trans-unit>
+      <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
+        <source>Transformations</source>
+        <target>轉換</target>
+        <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
+      <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
+        <source>Spelling</source>
+        <target>拼字</target>
+        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
+      </trans-unit>
+      <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
+        <source>Use Default</source>
+        <target>使用預設值</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
+      </trans-unit>
+      <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
+        <source>Speech</source>
+        <target>語音</target>
+        <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
+      </trans-unit>
+      <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
+        <source>Find</source>
+        <target>尋找</target>
+        <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
+      </trans-unit>
+      <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
+        <source>License Agreement</source>
+        <target>授權合約</target>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
+      <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
+        <source>Quit ONLYOFFICE</source>
+        <target>結束 ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
+      <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
+        <source>Edit</source>
+        <target>編輯</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
+      </trans-unit>
+      <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
+        <source>Copy Style</source>
+        <target>複製樣式</target>
+        <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
+      </trans-unit>
+      <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
+        <source>About ONLYOFFICE</source>
+        <target>關於 ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
+      <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
+        <source>Redo</source>
+        <target>重做</target>
+        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
+      </trans-unit>
+      <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
+        <source>License agreement</source>
+        <target>授權合約</target>
+        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
+      </trans-unit>
+      <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
+        <source>Writing Direction</source>
+        <target>書寫方向</target>
+        <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
+      </trans-unit>
+      <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
+        <source>New</source>
+        <target>新增</target>
+        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
+      </trans-unit>
+      <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
+        <source>none</source>
+        <target>無</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
+      </trans-unit>
+      <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
+        <source>Substitutions</source>
+        <target>替代</target>
+        <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
+      </trans-unit>
+      <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
+        <source>Smart Copy/Paste</source>
+        <target>智慧型複製/貼上</target>
+        <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
+      </trans-unit>
+      <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
+        <source>Tighten</source>
+        <target>緊縮</target>
+        <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
+      </trans-unit>
+      <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
+        <source>Correct Spelling Automatically</source>
+        <target>自動更正拼字</target>
+        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
+      </trans-unit>
+      <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
+        <source>Main Menu</source>
+        <target>主功能表</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
+      <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
+        <source>Preferences…</source>
+        <target>偏好設定…</target>
+        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
+      </trans-unit>
+      <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
+        <source>	Left to Right</source>
+        <target>	從左至右</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
+      </trans-unit>
+      <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
+        <source>Save As…</source>
+        <target>另存新檔…</target>
+        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
+      <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
+        <source>Acknowledgments</source>
+        <target>版權聲明</target>
+        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
+      </trans-unit>
+      <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
+        <source>Spreadsheet</source>
+        <target>試算表</target>
+        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
+      </trans-unit>
+      <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
+        <source>Close</source>
+        <target>關閉</target>
+        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
+      </trans-unit>
+      <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
+        <source>Spelling and Grammar</source>
+        <target>拼字和文法檢查</target>
+        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
+      </trans-unit>
+      <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
+        <source>Help</source>
+        <target>說明</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
+      <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
+        <source>Product Help</source>
+        <target>產品說明</target>
+        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
+      </trans-unit>
+      <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
+        <source>Text</source>
+        <target>文字</target>
+        <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
+      </trans-unit>
+      <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
+        <source>Substitutions</source>
+        <target>替代</target>
+        <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
+      </trans-unit>
+      <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
+        <source>User Name</source>
+        <target>使用者名稱</target>
+        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
+      </trans-unit>
+      <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
+        <source>Bold</source>
+        <target>粗體</target>
+        <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
+      </trans-unit>
+      <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
+        <source>Format</source>
+        <target>格式</target>
+        <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
+      </trans-unit>
+      <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
+        <source>Use Default</source>
+        <target>使用預設值</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
+      </trans-unit>
+      <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
+        <source>Font</source>
+        <target>字型</target>
+        <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
+      </trans-unit>
+      <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
+        <source>Writing Direction</source>
+        <target>書寫方向</target>
+        <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note>
+      </trans-unit>
+      <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
+        <source>View</source>
+        <target>檢視</target>
+        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
+      </trans-unit>
+      <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
+        <source>Text Replacement</source>
+        <target>文字取代</target>
+        <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
+      </trans-unit>
+      <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
+        <source>Show Spelling and Grammar</source>
+        <target>顯示拼字和文法檢查</target>
+        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
+      </trans-unit>
+      <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
+        <source>View</source>
+        <target>檢視</target>
+        <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
+      </trans-unit>
+      <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
+        <source>Subscript</source>
+        <target>下標</target>
+        <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
+      </trans-unit>
+      <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
+        <source>Open…</source>
+        <target>開啓…</target>
+        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
+      <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
+      </trans-unit>
+      <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
+        <source>Justify</source>
+        <target>左右對齊</target>
+        <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
+      </trans-unit>
+      <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
+        <source>Use None</source>
+        <target>皆不使用</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
+      </trans-unit>
+      <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
+        <source>Revert to Saved</source>
+        <target>還原成已儲存的版本</target>
+        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
+      </trans-unit>
+      <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
+        <source>Show All</source>
+        <target>全部顯示</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
+      <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
+        <source>Bring All to Front</source>
+        <target>全部移到最上層</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
+      <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
+        <source>Paste Ruler</source>
+        <target>貼上尺規</target>
+        <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
+      </trans-unit>
+      <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
+        <source>	Left to Right</source>
+        <target>	從左至右</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
+      </trans-unit>
+      <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
+        <source>Copy Ruler</source>
+        <target>複製尺規</target>
+        <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
+      </trans-unit>
+      <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
+        <source>Services</source>
+        <target>服務</target>
+        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
+      </trans-unit>
+      <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
+        <source>	Default</source>
+        <target>	預設</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
+      </trans-unit>
+      <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
+        <source>Minimize</source>
+        <target>最小化</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
+      <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
+        <source>Baseline</source>
+        <target>基準線</target>
+        <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
+      </trans-unit>
+      <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
+        <source>Hide ONLYOFFICE</source>
+        <target>隱藏 ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
+      <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
+        <source>Find Previous</source>
+        <target>尋找上一個</target>
+        <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
+      </trans-unit>
+      <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
+        <source>Stop Speaking</source>
+        <target>停止語音</target>
+        <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
+      </trans-unit>
+      <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
+        <source>Bigger</source>
+        <target>放大</target>
+        <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note>
+      </trans-unit>
+      <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
+        <source>Show Fonts</source>
+        <target>顯示字型</target>
+        <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
+      </trans-unit>
+      <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
+        <source>Zoom</source>
+        <target>縮放</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
+      <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
+        <source>	Right to Left</source>
+        <target>	從左至右</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
+      </trans-unit>
+      <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
+        <source>Close</source>
+        <target>關閉</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
+      </trans-unit>
+      <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
+        <source>none</source>
+        <target>無</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
+      </trans-unit>
+      <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
+        <source>Logout</source>
+        <target>登出</target>
+        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
+      </trans-unit>
+      <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
+        <source>Superscript</source>
+        <target>上標</target>
+        <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
+      </trans-unit>
+      <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
+        <source>Select All</source>
+        <target>選擇全部</target>
+        <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
+      </trans-unit>
+      <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
+        <source>Jump to Selection</source>
+        <target>跳至選取範圍</target>
+        <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
+      </trans-unit>
+      <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
+        <source>Document</source>
+        <target>文件</target>
+        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
+      </trans-unit>
+      <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
+        <source>Window</source>
+        <target>視窗</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
+      <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
+        <source>Capitalize</source>
+        <target>字首大寫</target>
+        <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
+      </trans-unit>
+      <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
+        <source>Center</source>
+        <target>置中</target>
+        <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
+      </trans-unit>
+      <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
+        <source>Hide Others</source>
+        <target>隱藏其他</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
+      <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
+        <source>Italic</source>
+        <target>斜體</target>
+        <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note>
+      </trans-unit>
+      <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
+        <source>Edit</source>
+        <target>編輯</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
+      </trans-unit>
+      <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
+        <source>Underline</source>
+        <target>底線</target>
+        <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
+      </trans-unit>
+      <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
+        <source>Paste and Match Style</source>
+        <target>貼上並符合樣式</target>
+        <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
+      </trans-unit>
+      <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
+        <source>Find…</source>
+        <target>尋找…</target>
+        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
+      </trans-unit>
+      <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
+        <source>Find and Replace…</source>
+        <target>尋找並取代…</target>
+        <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
+      </trans-unit>
+      <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
+        <source>	Default</source>
+        <target>	預設</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
+      </trans-unit>
+      <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
+        <source>Start Speaking</source>
+        <target>開始語音</target>
+        <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
+      </trans-unit>
+      <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
+        <source>Align Left</source>
+        <target>靠左對齊</target>
+        <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
+      </trans-unit>
+      <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
+        <source>Version</source>
+        <target>版本</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
+      </trans-unit>
+      <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
+        <source>Email:</source>
+        <target>電子郵件:</target>
+        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
+      </trans-unit>
+      <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
+        <source>Paragraph</source>
+        <target>段落</target>
+        <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note>
+      </trans-unit>
+      <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
+        <source>Print…</source>
+        <target>列印…</target>
+        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
+      </trans-unit>
+      <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
+        <source>Window</source>
+        <target>視窗</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
+      <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
+        <source>Font</source>
+        <target>字型</target>
+        <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
+      </trans-unit>
+      <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
+        <source>Use Default</source>
+        <target>使用預設值</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
+      </trans-unit>
+      <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
+        <source>Show Colors</source>
+        <target>顯示顏色</target>
+        <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note>
+      </trans-unit>
+      <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
+        <source>File</source>
+        <target>檔案</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
+      <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
+        <source>Use Selection for Find</source>
+        <target>使用所選範圍尋找</target>
+        <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note>
+      </trans-unit>
+      <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
+        <source>Transformations</source>
+        <target>轉換</target>
+        <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
+      </trans-unit>
+      <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
+        <source>Use None</source>
+        <target>皆不使用</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
+      <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
+        <source>Selection</source>
+        <target>選取</target>
+        <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note>
+      </trans-unit>
+      <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
+        <source>Smart Links</source>
+        <target>智慧連結</target>
+        <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note>
+      </trans-unit>
+      <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
+        <source>Make Lower Case</source>
+        <target>使用小寫</target>
+        <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
+      </trans-unit>
+      <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
+        <source>Text</source>
+        <target>文字</target>
+        <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
+      </trans-unit>
+      <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
+        <source>File</source>
+        <target>檔案</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
+      <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
+        <source>Undo</source>
+        <target>復原</target>
+        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
+      <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
+        <source>Paste</source>
+        <target>貼上</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
+      </trans-unit>
+      <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
+        <source>File Name</source>
+        <target>檔案名稱</target>
+        <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
+      </trans-unit>
+      <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
+        <source>New</source>
+        <target>新增</target>
+        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
+      </trans-unit>
+      <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
+        <source>Smart Quotes</source>
+        <target>智慧引號</target>
+        <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
+      </trans-unit>
+      <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
+        <source>Presentation</source>
+        <target>簡報</target>
+        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
+      </trans-unit>
+      <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
+        <source>Check Document Now</source>
+        <target>立即檢查文件</target>
+        <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
+      </trans-unit>
+      <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
+        <source>Services</source>
+        <target>服務</target>
+        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
+      </trans-unit>
+      <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
+        <source>Smaller</source>
+        <target>縮小</target>
+        <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note>
+      </trans-unit>
+      <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
+        <source>Baseline</source>
+        <target>基準線</target>
+        <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
+      </trans-unit>
+      <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
+        <source>Kern</source>
+        <target>微調</target>
+        <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
+      </trans-unit>
+      <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
+        <source>	Right to Left</source>
+        <target>	從左至右</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
+      </trans-unit>
+      <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
+        <source>Format</source>
+        <target>格式</target>
+        <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note>
+      </trans-unit>
+      <trans-unit id="kcg-El-49G.label" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
+      <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
+      </trans-unit>
+      <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
+        <source>Check Grammar With Spelling</source>
+        <target>拼字和文法檢查</target>
+        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
+      <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
+        <source>Ligatures</source>
+        <target>連字</target>
+        <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
+      </trans-unit>
+      <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
+        <source>Open Recent</source>
+        <target>開啟最近的檔案</target>
+        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
+      </trans-unit>
+      <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
+        <source>Loosen</source>
+        <target>加寬</target>
+        <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
+      <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
+        <source>Delete</source>
+        <target>刪除</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
+      </trans-unit>
+      <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
+        <source>Save</source>
+        <target>儲存</target>
+        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
+      <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
+        <source>Find Next</source>
+        <target>尋找下一個</target>
+        <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
+      </trans-unit>
+      <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
+        <source>Page Setup…</source>
+        <target>頁面設定…</target>
+        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
+      <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
+        <source>Check Spelling While Typing</source>
+        <target>輸入時檢查拼字</target>
+        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
+      </trans-unit>
+      <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
+        <source>Smart Dashes</source>
+        <target>智慧虛線</target>
+        <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
+      </trans-unit>
+      <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
+        <source>Copyright info</source>
+        <target>版權資訊</target>
+        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
+      </trans-unit>
+      <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
+        <source>Show Toolbar</source>
+        <target>顯示工具列</target>
+        <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
+      </trans-unit>
+      <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
+        <source>Data Detectors</source>
+        <target>資料檢驗</target>
+        <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note>
+      </trans-unit>
+      <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
+        <source>Open Recent</source>
+        <target>開啟最近的檔案</target>
+        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
+      </trans-unit>
+      <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
+        <source>Kern</source>
+        <target>微調</target>
+        <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
+      <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
+      <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
+        <source>Cut</source>
+        <target>剪下</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
+      </trans-unit>
+      <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
+        <source>Check for Updates…</source>
+        <target>檢查更新…</target>
+        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
+      </trans-unit>
+      <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
+        <source>Paste Style</source>
+        <target>貼上樣式</target>
+        <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
+      </trans-unit>
+      <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
+        <source>Show Ruler</source>
+        <target>顯示尺規</target>
+        <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
+      </trans-unit>
+      <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
+        <source>Clear Menu</source>
+        <target>清除功能表</target>
+        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
+      </trans-unit>
+      <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
+        <source>Make Upper Case</source>
+        <target>使用大寫</target>
+        <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
+      </trans-unit>
+      <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
+        <source>Ligatures</source>
+        <target>連字</target>
+        <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
+      </trans-unit>
+      <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
+        <source>Align Right</source>
+        <target>靠右對齊</target>
+        <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
+      </trans-unit>
+      <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
+        <source>Text Cell</source>
+        <target>文字輸入格</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
+      </trans-unit>
+      <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
+        <source>Help</source>
+        <target>說明</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
+      <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
+        <source>Copy</source>
+        <target>複製</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
+      <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
+        <source>Product</source>
+        <target>產品</target>
+        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
+      </trans-unit>
+      <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
+        <source>Use All</source>
+        <target>使用全部</target>
+        <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
+      </trans-unit>
+      <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
+        <source>Speech</source>
+        <target>語音</target>
+        <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
+      </trans-unit>
+      <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
+        <source>Show Substitutions</source>
+        <target>顯示替代項目</target>
+        <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
+      </trans-unit>
+      <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
+        <source>Portal:</source>
+        <target>入口:</target>
+        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="Could not move to Applications folder" xml:space="preserve">
+        <source>Could not move to Applications folder</source>
+        <target>無法移至應用程式資料夾</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Do Not Move" xml:space="preserve">
+        <source>Do Not Move</source>
+        <target>請勿移動</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
+        <source>I can move myself to the Applications folder if you'd like.</source>
+        <target>如您希望的話，我可以把自己移至應用程式資料夾。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to Applications Folder" xml:space="preserve">
+        <source>Move to Applications Folder</source>
+        <target>移至應用程式資料夾</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
+        <source>Move to Applications folder in your Home folder?</source>
+        <target>移至主資料夾中的應用程式資料夾？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Move to Applications folder?" xml:space="preserve">
+        <source>Move to Applications folder?</source>
+        <target>移至應用程式資料夾？</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
+        <source>Note that this will require an administrator password.</source>
+        <target>請注意，這會需要系統管理員密碼。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
+        <source>This will keep your Downloads folder uncluttered.</source>
+        <target>這可以讓您的下載資料夾保持整齊。</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
+        <source>Reporter Window</source>
+        <target>回報者視窗</target>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="zh-Hant" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">著作權 © 2020 Ascensio System SIA. 版權所有。</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

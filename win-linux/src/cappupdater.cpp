@@ -43,7 +43,7 @@
 #include "defines.h"
 #include "version.h"
 
-#include "FileDownloader/FileDownloader.h"
+#include "Network/FileTransporter/include/FileTransporter.h"
 #include "../DesktopEditor/common/File.h"
 
 #include "cascapplicationmanagerwrapper.h"
@@ -90,7 +90,7 @@ namespace {
                 return;
             }
 
-            std::shared_ptr<CFileDownloader> _downloader = std::make_shared<CFileDownloader>(m_url, false);
+            std::shared_ptr<NSNetwork::NSFileTransport::CFileDownloader> _downloader = std::make_shared<NSNetwork::NSFileTransport::CFileDownloader>(m_url, false);
 
 //            _downloader->SetEvent_OnComplete(bind(&CThreadProc::callback_download_complete, this, _1));
 #ifdef Q_OS_WIN

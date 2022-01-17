@@ -65,8 +65,6 @@
 #include "shlobj.h"
 
 #else
-#define VK_F4 0x73
-#define VK_TAB 0x09
 #define gTopWinId this
 #include "linux/cx11decoration.h"
 #endif
@@ -100,7 +98,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
 
     QGridLayout *mainGridLayout = new QGridLayout();
     mainGridLayout->setSpacing( 0 );
@@ -116,7 +114,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     m_pTabs = new CAscTabWidget(centralWidget);
     m_pTabs->setGeometry(0, 0, centralWidget->width(), centralWidget->height());
     m_pTabs->activate(false);
-    m_pTabs->applyUITheme(AscAppManager::themes().current());
+    m_pTabs->applyUITheme(AscAppManager::themes().current().id());
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(m_pTabs, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(m_pTabs, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
@@ -784,11 +782,6 @@ void CMainPanel::onEditorConfig(int, std::wstring cfg)
 
 void CMainPanel::onWebAppsFeatures(int id, std::wstring opts)
 {
-    // TODO: remove in release 6.5, theme id is sended on webapp:entry event
-    int index = m_pTabs->tabIndexByView(id);
-    if ( !(index < 0) )
-        AscAppManager::sendCommandTo(m_pTabs->panel(index)->cef(), L"uitheme:changed", AscAppManager::themes().current());
-
     m_pTabs->setEditorOptions(id, opts);
 }
 
@@ -914,7 +907,7 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( !(index < 0) ) {
-        if ( args.contains(QRegExp("action\\\":\\\"close")) ) {
+        if ( args.contains(QRegExp("action\\\":\\\"file:close")) ) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
 
@@ -1268,7 +1261,10 @@ void CMainPanel::updateScaling(double dpiratio)
 
     m_pButtonMain->setGeometry(0, 0, int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
 
-    QString _tabs_stylesheets = dpiratio > 1.55 ? ":/sep-styles/tabbar@2x" : dpiratio > 1.1 ? ":/sep-styles/tabbar@1.5x" : ":/sep-styles/tabbar";
+    QString _tabs_stylesheets = dpiratio > 1.75 ? ":/sep-styles/tabbar@2x" :
+                                    dpiratio > 1.5 ? ":/sep-styles/tabbar@1.75x" :
+                                    dpiratio > 1.25 ? ":/sep-styles/tabbar@1.5x" :
+                                    dpiratio > 1 ? ":/sep-styles/tabbar@1.25x" : ":/sep-styles/tabbar";
     if ( m_isCustomWindow ) {
         _tabs_stylesheets += ".qss";
     } else {

@@ -81,6 +81,13 @@ const QString g_css =
         "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
         "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
+        "#mainPanel[zoom=\"1.25x\"] #toolButtonMinimize,#mainPanel[zoom=\"125x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"1.25x\"] #toolButtonMaximize{padding: 6px 15px 9px;}"
+        "#mainPanel[zoom=\"1.25x\"] #iconuser,"
+        "#mainPanel[zoom=\"1.25x\"] #labelTitle{font-size:15px;}"
+        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.25x.png);}"
+        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.25x.png);}"
         "#mainPanel[zoom=\"1.5x\"] #toolButtonMinimize,#mainPanel[zoom=\"15x\"] #toolButtonClose,"
         "#mainPanel[zoom=\"1.5x\"] #toolButtonMaximize{padding: 8px 18px 11px;}"
         "#mainPanel[zoom=\"1.5x\"] #iconuser,"
@@ -88,6 +95,13 @@ const QString g_css =
         "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.5x.png);}"
         "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.5x.png);}"
+        "#mainPanel[zoom=\"1.75x\"] #toolButtonMinimize,#mainPanel[zoom=\"175x\"] #toolButtonClose,"
+        "#mainPanel[zoom=\"1.75x\"] #toolButtonMaximize{padding: 9px 21px 12px;}"
+        "#mainPanel[zoom=\"1.75x\"] #iconuser,"
+        "#mainPanel[zoom=\"1.75x\"] #labelTitle{font-size:21px;}"
+        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMinimize,"
+        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.75x.png);}"
+        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.75x.png);}"
         "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
         "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
         "#mainPanel[zoom=\"2x\"] #iconuser,"
@@ -98,13 +112,13 @@ const QString g_css =
         "#mainPanel[uitheme=theme-dark] #iconuser,"
         "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}";
 
-auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
+auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground); break;
-    case etDocument: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive); break;
-    case etPresentation: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive); break;
-    case etSpreadsheet: c = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive); break;
+    default: c = theme.value(CTheme::ColorRole::ecrWindowBackground); break;
+    case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
+    case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
     }
 
     return g_css.arg(QString::fromStdWString(c));
@@ -112,11 +126,11 @@ auto prepare_editor_css(int type, const std::wstring& theme) -> QString {
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabWordActive);
-    case etPresentation: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabSlideActive);
-    case etSpreadsheet: return AscAppManager::themes().color(CThemes::ColorRole::ecrTabCellActive);
+    case etDocument: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabWordActive);
+    case etPresentation: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabSlideActive);
+    case etSpreadsheet: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabCellActive);
 //#ifdef Q_OS_WIN
-    default: return AscAppManager::themes().color(CThemes::ColorRole::ecrWindowBackground);
+    default: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
 //#else
 //    default: return QColor(WINDOW_BACKGROUND_COLOR);
 //#endif
@@ -166,7 +180,8 @@ public:
         leftboxbuttons->layout()->setSpacing(0);
         leftboxbuttons->layout()->setMargin(0);
 
-        if ( false && !InputArgs::contains(L"--single-window-app") ) {
+//        if ( false && !InputArgs::contains(L"--single-window-app") )
+        {
             CSVGPushButton * btnHome = new CSVGPushButton;
             btnHome->setProperty("class", "normal");
             btnHome->setProperty("act", "tool");
@@ -175,6 +190,7 @@ public:
             btnHome->setMouseTracking(true);
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
 
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
@@ -192,7 +208,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().isCurrentDark() ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
+        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
 
         m_mapTitleButtons[action] = btn;
 
@@ -226,9 +242,11 @@ public:
             iconUser()->hide();
             window->m_labelTitle->setText(APP_TITLE);
 
+            CSVGPushButton * btn = m_mapTitleButtons["home"];
+            btn->setFillDark(!AscAppManager::themes().current().isDark());
+
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(
-                        QColor(QString::fromStdWString(AscAppManager::themes().value(CThemes::ColorRole::ecrWindowBackground))));
+            window->setWindowBackgroundColor(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
 #endif
         }
     }
@@ -288,7 +306,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QRegExp("action\\\":\\\"close")) ) {
+        if ( json.contains(QRegExp("action\\\":\\\"file:close")) ) {
             window->closeWindow();
         }
     }
@@ -306,9 +324,11 @@ public:
     {
         CCefEventsGate::onDocumentName(data);
 
-        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->setWindowTitle(m_panel->data()->title());
-            window->m_boxTitleBtns->repaint();
+        window->setWindowTitle(m_panel->data()->title());
+        window->m_boxTitleBtns->repaint();
+
+        if ( !canExtendTitle() || !window->isCustomWindowStyle() ) {
+            window->m_labelTitle->setText(APP_TITLE);
         }
     }
 
@@ -318,14 +338,14 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current());
+            changeTheme(AscAppManager::themes().current().id());
         }
     }
 
     void changeTheme(const std::wstring& theme)
     {
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->m_css = prepare_editor_css(panel()->data()->contentType(), theme);
+            window->m_css = prepare_editor_css(panel()->data()->contentType(), AscAppManager::themes().current());
 
             if ( window->m_pMainPanel ) {
                 window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
@@ -337,27 +357,27 @@ public:
 
             for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
                 CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
-                btn->setIconOpacity(AscAppManager::themes().isThemeDark(theme) ? NSThemeDark::button_normal_opacity : NSThemeLight::button_normal_opacity);
+                btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             }
 
 #ifdef Q_OS_WIN
             std::wstring background, border;
             switch (panel()->data()->contentType()) {
             case etDocument:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabWordActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
                 border = background;
                 break;
             case etPresentation:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabSlideActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
                 border = background;
                 break;
             case etSpreadsheet:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrTabCellActive);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
                 border = background;
                 break;
             default:
-                background = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBackground);
-                border = AscAppManager::themes().value(theme, CThemes::ColorRole::ecrWindowBorder);
+                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
+                border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
             }
 
             window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
@@ -655,6 +675,10 @@ public:
     {
         panel()->data()->setFeatures(f);
 
+        if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
+             ffWindowCustomize();
+        }
+
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
         }
@@ -675,7 +699,8 @@ public:
                         bool _is_disabled = _disabled["all"].toBool();
 
                         for (auto& btn: m_mapTitleButtons) {
-                            btn->setDisabled(_is_disabled);
+                            if ( m_mapTitleButtons["home"] != btn )
+                                btn->setDisabled(_is_disabled);
                         }
                     } else {
                         for (const auto& k: _disabled.keys()) {
@@ -699,7 +724,8 @@ public:
     bool canExtendTitle() const
     {
         if ( m_panel->data()->features().empty() ) return true;
-        else  return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
+        else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
+        else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
@@ -720,7 +746,8 @@ public:
     }
 
     auto customizeTitleLabel() -> void {
-        window->m_boxTitleBtns->layout()->removeWidget(window->m_labelTitle);
+        QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
+        _layout->removeWidget(window->m_labelTitle);
 
         boxtitlelabel = new QWidget;
         boxtitlelabel->setLayout(new QHBoxLayout);
@@ -732,7 +759,17 @@ public:
         }
 
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
-        qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout())->insertWidget(1, boxtitlelabel);
+        _layout->insertWidget(1, boxtitlelabel);
+
+        if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+            _layout->insertWidget(0, leftboxbuttons);
+    }
+
+    auto ffWindowCustomize() -> void {
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+            _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+        }
     }
 };
 

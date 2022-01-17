@@ -122,7 +122,7 @@ CMainWindow::CMainWindow(QRect& rect) :
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = WINDOW_CLASS_NAME;
 //    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
+    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
     wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );
 
     QIcon icon = Utils::appIcon();
@@ -162,18 +162,20 @@ CMainWindow::~CMainWindow()
 {
     closed = true;
 
-    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-    if (GetWindowPlacement(hWnd, &wp)) {
-        GET_REGISTRY_USER(reg_user)
-        wp.showCmd == SW_MAXIMIZE ?
-                    reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+    if ( isVisible() ) {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(hWnd, &wp)) {
+            GET_REGISTRY_USER(reg_user)
+            wp.showCmd == SW_MAXIMIZE ?
+                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
 
-        QRect windowRect;
-        windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
-        windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
-        windowRect.adjust(0,0,-1,-1);
+            QRect windowRect;
+            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+            windowRect.adjust(0,0,-1,-1);
 
-        reg_user.setValue("position", windowRect);
+            reg_user.setValue("position", windowRect);
+        }
     }
 
     hide();
@@ -490,9 +492,9 @@ qDebug() << "WM_CLOSE";
         PAINTSTRUCT ps;
         HDC hDC = ::BeginPaint(hWnd, &ps);
         HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBorder));
+        ::SetDCPenColor(hDC, AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder));
 
-        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().colorRef(CThemes::ColorRole::ecrWindowBackground));
+        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
         HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
 
         ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);

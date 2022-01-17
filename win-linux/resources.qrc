@@ -7,92 +7,141 @@
         <file>res/icons/tab_close_hover.png</file>
         <file>res/icons/tab_close_hover_2x.png</file>
         <file>res/icons/message_icons.png</file>
+        <file alias="message_icons_1.25x.png">res/icons/message_icons@1.25x.png</file>
         <file alias="message_icons_1.5x.png">res/icons/message_icons@1.5x.png</file>
+        <file alias="message_icons_1.75x.png">res/icons/message_icons@1.75x.png</file>
         <file alias="message_icons_2x.png">res/icons/message_icons@2x.png</file>
         <file>res/icons/downloading.gif</file>
         <file>res/icons/downloading_2x.gif</file>
         <file>res/icons/minimize-close.png</file>
+        <file alias="minimize-close_1.25x.png">res/icons/minimize-close@1.25x.png</file>
         <file alias="minimize-close_1.5x.png">res/icons/minimize-close@1.5x.png</file>
+        <file alias="minimize-close_1.75x.png">res/icons/minimize-close@1.75x.png</file>
         <file alias="minimize-close_2x.png">res/icons/minimize-close@2x.png</file>
         <file>res/icons/maximize.png</file>
+        <file alias="maximize_1.25x.png">res/icons/maximize@1.25x.png</file>
         <file alias="maximize_1.5x.png">res/icons/maximize@1.5x.png</file>
+        <file alias="maximize_1.75x.png">res/icons/maximize@1.75x.png</file>
         <file alias="maximize_2x.png">res/icons/maximize@2x.png</file>
         <file>res/icons/menu-indicator.png</file>
         <file>res/icons/menu-indicator-dark.png</file>
+        <file alias="menu-indicator_1.25x.png">res/icons/menu-indicator@1.5x.png</file>
         <file alias="menu-indicator_1.5x.png">res/icons/menu-indicator@1.5x.png</file>
+        <file alias="menu-indicator_1.75x.png">res/icons/menu-indicator@1.5x.png</file>
         <file alias="menu-indicator_2x.png">res/icons/menu-indicator@2x.png</file>
         <file>res/icons/radiobox.png</file>
+        <file alias="radiobox_1.25x.png">res/icons/radiobox@1.25x.png</file>
         <file alias="radiobox_1.5x.png">res/icons/radiobox@1.5x.png</file>
+        <file alias="radiobox_1.75x.png">res/icons/radiobox@1.75x.png</file>
         <file alias="radiobox_2x.png">res/icons/radiobox@2x.png</file>
         <file>res/icons/checkbox.png</file>
+        <file alias="checkbox_1.25x.png">res/icons/checkbox@1.25x.png</file>
         <file alias="checkbox_1.5x.png">res/icons/checkbox@1.5x.png</file>
+        <file alias="checkbox_1.75x.png">res/icons/checkbox@1.75x.png</file>
         <file alias="checkbox_2x.png">res/icons/checkbox@2x.png</file>
         <file>res/icons/arrow_down.png</file>
         <file alias="arrow_down_dark.png">res/icons/arrow_down_dark.png</file>
+        <file alias="arrow_down_1.25x.png">res/icons/arrow_down@1.25x.png</file>
         <file alias="arrow_down_1.5x.png">res/icons/arrow_down@1.5x.png</file>
+        <file alias="arrow_down_1.75x.png">res/icons/arrow_down@1.75x.png</file>
         <file alias="arrow_down_2x.png">res/icons/arrow_down@2x.png</file>
         <file alias="app.ico">res/icons/desktopeditors.ico</file>
         <file>res/icons/splash.svg</file>
         <file alias="logo.svg">res/icons/logo.svg</file>
         <file alias="max_light.png">res/icons/maximize_light.png</file>
+        <file alias="max_light_1.25x.png">res/icons/maximize_light@1.25x.png</file>
         <file alias="max_light_1.5x.png">res/icons/maximize_light@1.5x.png</file>
+        <file alias="max_light_1.75x.png">res/icons/maximize_light@1.75x.png</file>
         <file alias="max_light_2x.png">res/icons/maximize_light@2x.png</file>
         <file alias="minclose_light.png">res/icons/minimize-close_light.png</file>
+        <file alias="minclose_light_1.25x.png">res/icons/minimize-close_light@1.25x.png</file>
         <file alias="minclose_light_1.5x.png">res/icons/minimize-close_light@1.5x.png</file>
+        <file alias="minclose_light_1.75x.png">res/icons/minimize-close_light@1.75x.png</file>
         <file alias="minclose_light_2x.png">res/icons/minimize-close_light@2x.png</file>
-        <file alias="dock.png">res/icons/dock.png</file>
-        <file alias="dock_2x.png">res/icons/dock@2x.png</file>
-        <file alias="user.png">res/icons/user.png</file>
-        <file alias="user_2x.png">res/icons/user@2x.png</file>
     </qresource>
     <qresource prefix="/tabbar/icons">
         <file alias="scrolltab_lp.png">res/icons/tabbar/changetab_left_active.png</file>
+        <file alias="scrolltab_lp_1.25x.png">res/icons/tabbar/changetab_left_active@1.25x.png</file>
         <file alias="scrolltab_lp_1.5x.png">res/icons/tabbar/changetab_left_active@1.5x.png</file>
+        <file alias="scrolltab_lp_1.75x.png">res/icons/tabbar/changetab_left_active@1.75x.png</file>
         <file alias="scrolltab_lp_2x.png">res/icons/tabbar/changetab_left_active@2x.png</file>
         <file alias="scrolltab_ld.png">res/icons/tabbar/changetab_left_disabled.png</file>
+        <file alias="scrolltab_ld_1.25x.png">res/icons/tabbar/changetab_left_disabled@1.25x.png</file>
         <file alias="scrolltab_ld_1.5x.png">res/icons/tabbar/changetab_left_disabled@1.5x.png</file>
+        <file alias="scrolltab_ld_1.75x.png">res/icons/tabbar/changetab_left_disabled@1.75x.png</file>
         <file alias="scrolltab_ld_2x.png">res/icons/tabbar/changetab_left_disabled@2x.png</file>
         <file alias="scrolltab_lh.png">res/icons/tabbar/changetab_left_hover.png</file>
+        <file alias="scrolltab_lh_1.25x.png">res/icons/tabbar/changetab_left_hover@1.25x.png</file>
         <file alias="scrolltab_lh_1.5x.png">res/icons/tabbar/changetab_left_hover@1.5x.png</file>
+        <file alias="scrolltab_lh_1.75x.png">res/icons/tabbar/changetab_left_hover@1.75x.png</file>
         <file alias="scrolltab_lh_2x.png">res/icons/tabbar/changetab_left_hover@2x.png</file>
         <file alias="scrolltab_ln.png">res/icons/tabbar/changetab_left_normal.png</file>
+        <file alias="scrolltab_ln_1.25x.png">res/icons/tabbar/changetab_left_normal@1.25x.png</file>
         <file alias="scrolltab_ln_1.5x.png">res/icons/tabbar/changetab_left_normal@1.5x.png</file>
+        <file alias="scrolltab_ln_1.75x.png">res/icons/tabbar/changetab_left_normal@1.75x.png</file>
         <file alias="scrolltab_ln_2x.png">res/icons/tabbar/changetab_left_normal@2x.png</file>
         <file alias="scrolltab_rp.png">res/icons/tabbar/changetab_right_active.png</file>
+        <file alias="scrolltab_rp_1.25x.png">res/icons/tabbar/changetab_right_active@1.25x.png</file>
         <file alias="scrolltab_rp_1.5x.png">res/icons/tabbar/changetab_right_active@1.5x.png</file>
+        <file alias="scrolltab_rp_1.75x.png">res/icons/tabbar/changetab_right_active@1.75x.png</file>
         <file alias="scrolltab_rp_2x.png">res/icons/tabbar/changetab_right_active@2x.png</file>
         <file alias="scrolltab_rd.png">res/icons/tabbar/changetab_right_disabled.png</file>
+        <file alias="scrolltab_rd_1.25x.png">res/icons/tabbar/changetab_right_disabled@1.25x.png</file>
         <file alias="scrolltab_rd_1.5x.png">res/icons/tabbar/changetab_right_disabled@1.5x.png</file>
+        <file alias="scrolltab_rd_1.75x.png">res/icons/tabbar/changetab_right_disabled@1.75x.png</file>
         <file alias="scrolltab_rd_2x.png">res/icons/tabbar/changetab_right_disabled@2x.png</file>
         <file alias="scrolltab_rh.png">res/icons/tabbar/changetab_right_hover.png</file>
+        <file alias="scrolltab_rh_1.25x.png">res/icons/tabbar/changetab_right_hover@1.25x.png</file>
         <file alias="scrolltab_rh_1.5x.png">res/icons/tabbar/changetab_right_hover@1.5x.png</file>
+        <file alias="scrolltab_rh_1.75x.png">res/icons/tabbar/changetab_right_hover@1.75x.png</file>
         <file alias="scrolltab_rh_2x.png">res/icons/tabbar/changetab_right_hover@2x.png</file>
         <file alias="scrolltab_rn.png">res/icons/tabbar/changetab_right_normal.png</file>
+        <file alias="scrolltab_rn_1.25x.png">res/icons/tabbar/changetab_right_normal@1.25x.png</file>
         <file alias="scrolltab_rn_1.5x.png">res/icons/tabbar/changetab_right_normal@1.5x.png</file>
+        <file alias="scrolltab_rn_1.75x.png">res/icons/tabbar/changetab_right_normal@1.75x.png</file>
         <file alias="scrolltab_rn_2x.png">res/icons/tabbar/changetab_right_normal@2x.png</file>
         <file alias="de.png">res/icons/tabbar/tabicon_de_normal.png</file>
+        <file alias="de@1.25x.png">res/icons/tabbar/tabicon_de_normal_1.25x.png</file>
         <file alias="de@1.5x.png">res/icons/tabbar/tabicon_de_normal_1.5x.png</file>
+        <file alias="de@1.75x.png">res/icons/tabbar/tabicon_de_normal_1.75x.png</file>
         <file alias="de@2x.png">res/icons/tabbar/tabicon_de_normal_2x.png</file>
+        <file alias="docxf.png">res/icons/tabbar/tabicon_docxf_normal.png</file>
+        <file alias="docxf@1.25x.png">res/icons/tabbar/tabicon_docxf_normal_1.25x.png</file>
+        <file alias="docxf@1.5x.png">res/icons/tabbar/tabicon_docxf_normal_1.5x.png</file>
+        <file alias="docxf@1.75x.png">res/icons/tabbar/tabicon_docxf_normal_1.75x.png</file>
+        <file alias="docxf@2x.png">res/icons/tabbar/tabicon_docxf_normal_2x.png</file>
         <file alias="pe.png">res/icons/tabbar/tabicon_pe_normal.png</file>
+        <file alias="pe@1.25x.png">res/icons/tabbar/tabicon_pe_normal_1.25x.png</file>
         <file alias="pe@1.5x.png">res/icons/tabbar/tabicon_pe_normal_1.5x.png</file>
+        <file alias="pe@1.75x.png">res/icons/tabbar/tabicon_pe_normal_1.75x.png</file>
         <file alias="pe@2x.png">res/icons/tabbar/tabicon_pe_normal_2x.png</file>
         <file alias="se.png">res/icons/tabbar/tabicon_se_normal.png</file>
+        <file alias="se@1.25x.png">res/icons/tabbar/tabicon_se_normal_1.25x.png</file>
         <file alias="se@1.5x.png">res/icons/tabbar/tabicon_se_normal_1.5x.png</file>
+        <file alias="se@1.75x.png">res/icons/tabbar/tabicon_se_normal_1.75x.png</file>
         <file alias="se@2x.png">res/icons/tabbar/tabicon_se_normal_2x.png</file>
         <file alias="portal.png">res/icons/tabbar/portal.png</file>
+        <file alias="portal@1.25x.png">res/icons/tabbar/portal@1.25x.png</file>
         <file alias="portal@1.5x.png">res/icons/tabbar/portal@1.5x.png</file>
+        <file alias="portal@1.75x.png">res/icons/tabbar/portal@1.75x.png</file>
         <file alias="portal@2x.png">res/icons/tabbar/portal@2x.png</file>
         <file alias="portal_light.png">res/icons/tabbar/portal_light.png</file>
+        <file alias="portal_light@1.25x.png">res/icons/tabbar/portal_light@1.25x.png</file>
         <file alias="portal_light@1.5x.png">res/icons/tabbar/portal_light@1.5x.png</file>
+        <file alias="portal_light@1.75x.png">res/icons/tabbar/portal_light@1.75x.png</file>
         <file alias="portal_light@2x.png">res/icons/tabbar/portal_light@2x.png</file>
         <file alias="newdoc.png">res/icons/tabbar/tabicon_undefined.png</file>
         <file alias="newdoc@2x.png">res/icons/tabbar/tabicon_undefined_2x.png</file>
         <file alias="loader.svg">res/icons/tabbar/loading.svg</file>
         <file alias="close_normal.png">res/icons/tabbar/tab_close_dark.png</file>
+        <file alias="close_normal_1.25x.png">res/icons/tabbar/tab_close_dark@1.25x.png</file>
         <file alias="close_normal_1.5x.png">res/icons/tabbar/tab_close_dark@1.5x.png</file>
+        <file alias="close_normal_1.75x.png">res/icons/tabbar/tab_close_dark@1.75x.png</file>
         <file alias="close_normal_2x.png">res/icons/tabbar/tab_close_dark@2x.png</file>
         <file alias="close_active.png">res/icons/tabbar/tab_close_light.png</file>
+        <file alias="close_active_1.75x.png">res/icons/tabbar/tab_close_light@1.75x.png</file>
         <file alias="close_active_1.5x.png">res/icons/tabbar/tab_close_light@1.5x.png</file>
+        <file alias="close_active_1.25x.png">res/icons/tabbar/tab_close_light@1.25x.png</file>
         <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light@2x.png</file>
     </qresource>
     <qresource prefix="/title/icons">
@@ -106,28 +155,70 @@
     <qresource prefix="/styles@1.5x">
         <file alias="styles.qss">res/styles/styles@1.5x.qss</file>
     </qresource>
+    <qresource prefix="/styles@1.25x">
+        <file alias="styles.qss">res/styles/styles@1.25x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@1.75x">
+        <file alias="styles.qss">res/styles/styles@1.75x.qss</file>
+    </qresource>
     <qresource prefix="/styles@2x">
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
     </qresource>
     <qresource prefix="/i18n">
-        <file alias="en-EN.qm">langs/en.qm</file>
-        <file alias="ru-RU.qm">langs/ru.qm</file>
-        <file alias="es-ES.qm">langs/es.qm</file>
-        <file alias="fr-FR.qm">langs/fr.qm</file>
-        <file alias="de-DE.qm">langs/de.qm</file>
+        <file alias="be-BY.qm">langs/be.qm</file>
+        <file alias="bg-BG.qm">langs/bg.qm</file>
+        <file alias="ca-ES.qm">langs/ca.qm</file>
         <file alias="cs-CZ.qm">langs/cs.qm</file>
-        <file alias="sk-SK.qm">langs/sk.qm</file>
-        <file alias="pt-BR.qm">langs/pt_BR.qm</file>
+        <file alias="da-DK.qm">langs/de.qm</file>
+        <file alias="de-DE.qm">langs/de.qm</file>
+        <file alias="el-GR.qm">langs/el_GR.qm</file>
+        <file alias="en-EN.qm">langs/en.qm</file>
+        <file alias="es-ES.qm">langs/es.qm</file>
+        <file alias="et-EE.qm">langs/et.qm</file>
+        <file alias="fi-FI.qm">langs/fi.qm</file>
+        <file alias="fr-FR.qm">langs/fr.qm</file>
+        <file alias="ga-IE.qm">langs/ga.qm</file>
+        <file alias="gl-ES.qm">langs/gl.qm</file>
+        <file alias="hi-IN.qm">langs/hi.qm</file>
+        <file alias="hr-HR.qm">langs/hr.qm</file>
+        <file alias="hu-HU.qm">langs/hu.qm</file>
+        <file alias="hy-AM.qm">langs/hy.qm</file>
+        <file alias="id-ID.qm">langs/in.qm</file>
         <file alias="it-IT.qm">langs/it_IT.qm</file>
+        <file alias="ja-JP.qm">langs/ja.qm</file>
+        <file alias="ko-KR.qm">langs/ko.qm</file>
+        <file alias="lo-LA.qm">langs/lo.qm</file>
+        <file alias="lt-LT.qm">langs/lt.qm</file>
+        <file alias="lv-LV.qm">langs/lv.qm</file>
+        <file alias="nl-NL.qm">langs/nl.qm</file>
+        <file alias="no-NO.qm">langs/no.qm</file>
         <file alias="pl-PL.qm">langs/pl.qm</file>
+        <file alias="pt-BR.qm">langs/pt_BR.qm</file>
+        <file alias="pt-PT.qm">langs/pt_PT.qm</file>
+        <file alias="ro-RO.qm">langs/ro.qm</file>
+        <file alias="ru-RU.qm">langs/ru.qm</file>
+        <file alias="sk-SK.qm">langs/sk.qm</file>
+        <file alias="sl-SL.qm">langs/sl.qm</file>
+        <file alias="sv-SE.qm">langs/sv.qm</file>
+        <file alias="tr-TR.qm">langs/tr.qm</file>
+        <file alias="uk-UA.qm">langs/uk.qm</file>
+        <file alias="vi-VN.qm">langs/vi.qm</file>
         <file alias="zh-CN.qm">langs/zh_CN.qm</file>
+        <file alias="zh-HK.qm">langs/zh_HK.qm</file>
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
+        <file alias="tabbar@1.25x.qss">res/styles/tabbar@1.25x.qss</file>
         <file alias="tabbar@1.5x.qss">res/styles/tabbar@1.5x.qss</file>
+        <file alias="tabbar@1.75x.qss">res/styles/tabbar@1.75x.qss</file>
         <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
         <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
+    </qresource>
+    <qresource prefix="/themes">
+        <file alias="theme-light.json">res/styles/theme-light.json</file>
+        <file alias="theme-classic-light.json">res/styles/theme-classic-light.json</file>
+        <file alias="theme-dark.json">res/styles/theme-dark.json</file>
     </qresource>
 </RCC>

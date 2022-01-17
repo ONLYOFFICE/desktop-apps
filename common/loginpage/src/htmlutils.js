@@ -1,25 +1,28 @@
 
 function checkScaling() {
-    const str_mq_150 = `screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.9),
-                        screen and (min-resolution: 1.5dppx) and (max-resolution: 1.9dppx)`;
-    if ( window.matchMedia(str_mq_150).matches ) {
-        document.body.classList.add('pixel-ratio__1_5');
-    }
+    const matches = {
+        'pixel-ratio__1_25': `screen and (-webkit-min-device-pixel-ratio: 1.25) and (-webkit-max-device-pixel-ratio: 1.49),
+                                screen and (min-resolution: 1.25dppx) and (max-resolution: 1.49dppx)`,
+        'pixel-ratio__1_5': `screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.74),
+                                screen and (min-resolution: 1.5dppx) and (max-resolution: 1.74dppx)`,
+        'pixel-ratio__1_75': `screen and (-webkit-min-device-pixel-ratio: 1.75) and (-webkit-max-device-pixel-ratio: 1.99),
+                                screen and (min-resolution: 1.75dppx) and (max-resolution: 1.99dppx)`,
+        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi)`
+    };
 
-    const str_mq_200 = `screen and (-webkit-min-device-pixel-ratio: 2),
-                        screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi)`;
+    for (var c in matches) {
+        const media_query_list = window.matchMedia(matches[c]);
+        media_query_list.addEventListener('change', function(cls, e) {
+            if ( e.matches ) {
+                document.body.className = document.body.className.replace(/pixel-ratio__[\d_]+/gi, '').trim();
+                document.body.classList.add(cls);
+            }
+        }.bind(this, c));
 
-    if ( window.matchMedia(str_mq_200).matches ) {
-        document.body.classList.add('pixel-ratio__2');
-    }
-
-    if ( !window.matchMedia("screen and (-webkit-device-pixel-ratio: 1.5)," +
-                            "screen and (-webkit-device-pixel-ratio: 1)," +
-                            "screen and (-webkit-device-pixel-ratio: 2)").matches )
-    {
-        // don't add zoom for mobile devices
-        if (!(/android|avantgo|playbook|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent || navigator.vendor || window.opera)))
-            document.getElementsByTagName('html')[0].setAttribute('style', 'zoom: ' + (1 / window.devicePixelRatio) + ';');
+        if ( media_query_list.matches ) {
+            document.body.classList.add(c);
+            // break;
+        }
     }
 }
 
@@ -41,6 +44,9 @@ var params = (function() {
 
 var ui_theme_name = params.uitheme || localStorage.getItem("ui-theme");
 if ( !!ui_theme_name ) {
+    if ( /^{".+"}$/.test(ui_theme_name) )
+        ui_theme_name = /id\":\"([\w\d_-]+)/.exec(ui_theme_name)[1];
+
     const theme_type = ui_theme_name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
     document.body.classList.add(ui_theme_name, theme_type);
 }

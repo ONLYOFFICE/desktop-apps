@@ -68,8 +68,8 @@
 }
 
 + (NSArray *)documents {
-    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"fodt", @"wps", @"wpt",
-             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2"];
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2", @"oform"];
 }
 
 + (NSArray *)spreadsheets {
@@ -82,6 +82,10 @@
 
 + (NSArray *)plugins {
     return @[@"plugin"];
+}
+
++ (NSArray *)csvtxt {
+    return @[@"csv", @"txt"];
 }
 
 + (NSString *)appInfo:(NSString *)key {
@@ -224,6 +228,22 @@
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
                      @"description" : NSLocalizedString(@"FictionBook File", nil),
                      @"extension"   : @"fb2"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF): @{
+                     @"description" : NSLocalizedString(@"ONLYOFFICE Document Form Template", nil),
+                     @"extension"   : @"docxf"
+             },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM): @{
+                     @"description" : NSLocalizedString(@"ONLYOFFICE Fillable Online Form", nil),
+                     @"extension"   : @"oform"
+             },
+             @(AVS_OFFICESTUDIO_FILE_IMAGE_PNG): @{
+                     @"description" : NSLocalizedString(@"PNG Image", nil),
+                     @"extension"   : @"png"
+             },
+             @(AVS_OFFICESTUDIO_FILE_IMAGE_JPG): @{
+                     @"description" : NSLocalizedString(@"JPG Image", nil),
+                     @"extension"   : @"jpg"
              }
     };
 }

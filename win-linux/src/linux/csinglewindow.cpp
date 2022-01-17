@@ -96,7 +96,7 @@ QWidget * CSingleWindow::createMainPanel(bool custom, const QString& title, QWid
 {
     QWidget * mainPanel = new QWidget;
     mainPanel->setObjectName("mainPanel");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current()));
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     QVBoxLayout * _layout = new QVBoxLayout(mainPanel);

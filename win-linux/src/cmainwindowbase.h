@@ -20,6 +20,8 @@ public:
 //    virtual bool movedByTab();
     virtual QWidget * editor(int index);
     virtual bool holdView(int id) const;
+    virtual void selectView(int id) const;
+    virtual void selectView(const QString& url) const;
     virtual int editorsCount() const;
     virtual int editorsCount(const std::wstring& portal) const;
     virtual QString documentName(int vid);

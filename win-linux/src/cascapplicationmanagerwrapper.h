@@ -78,7 +78,9 @@ struct sWinTag {
 enum class CScalingFactor
 {
     SCALING_FACTOR_1,
+    SCALING_FACTOR_1_25,
     SCALING_FACTOR_1_5,
+    SCALING_FACTOR_1_75,
     SCALING_FACTOR_2,
 };
 
@@ -156,7 +158,7 @@ public:
 
     static void             startApp();
     static void             initializeApp();
-    static void             gotoMainWindow();
+    static void             gotoMainWindow(size_t pw = 0);
     static void             handleInputCmd(const std::vector<std::wstring>&);
     static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);

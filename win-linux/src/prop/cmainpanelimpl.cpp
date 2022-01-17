@@ -74,16 +74,25 @@ void CMainPanelImpl::refreshAboutVersion()
     if ( _force_value == L"1" )
         _json_obj["uiscaling"] = 100;
     else
+    if ( _force_value == L"1.25" )
+        _json_obj["uiscaling"] = 125;
+    else
     if ( _force_value == L"1.5" )
         _json_obj["uiscaling"] = 150;
+    else
+    if ( _force_value == L"1.75" )
+        _json_obj["uiscaling"] = 175;
     else
     if ( _force_value == L"2" )
         _json_obj["uiscaling"] = 200;
     else _json_obj["uiscaling"] = 0;
 
 #ifndef __OS_WIN_XP
-    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current());
+    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
 #endif
+
+    GET_REGISTRY_USER(reg_user);
+    _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
@@ -94,7 +103,7 @@ void CMainPanelImpl::updateScaling(double dpiratio)
 {
     CMainPanel::updateScaling(dpiratio);
 
-    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
@@ -103,7 +112,7 @@ void CMainPanelImpl::applyTheme(const std::wstring& theme)
     CMainPanel::applyTheme(theme);
 
     double dpiratio = scaling();
-    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().isCurrentDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(":/logo.svg", AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(QSize(85,20)*dpiratio);
 }
 
