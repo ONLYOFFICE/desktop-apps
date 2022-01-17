@@ -166,6 +166,7 @@
                             $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
                             $label.data('state', 'download');
                         }
+                        $label.show();
                     }
                 });
 
