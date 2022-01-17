@@ -60,7 +60,8 @@ typedef NS_ENUM(int, ASCTabActionType) {
 typedef NS_ENUM(int, CEFDocumentType) {
     CEFDocumentDocument = 0,
     CEFDocumentSpreadsheet = 2,
-    CEFDocumentPresentation = 1
+    CEFDocumentPresentation = 1,
+    CEFDocumentForm = 3,
 };
 
 static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
@@ -105,6 +106,7 @@ static NSString * const CEFOpenFileFilterSpreadsheet        = @"cell";
 static NSString * const CEFOpenFileFilterPresentation       = @"slide";
 static NSString * const CEFOpenFileFilterVideo              = @"video";
 static NSString * const CEFOpenFileFilterAudio              = @"audio";
+static NSString * const CEFOpenFileFilterCsvTxt             = @"csv/txt";
 
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
@@ -156,6 +158,7 @@ static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificateP
 + (NSArray *)spreadsheets;
 + (NSArray *)presentations;
 + (NSArray *)plugins;
++ (NSArray *)csvtxt;
 
 + (NSString *)appInfo:(NSString *)key;
 + (NSDictionary *)ascFormatsInfo;

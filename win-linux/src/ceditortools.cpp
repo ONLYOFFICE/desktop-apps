@@ -98,7 +98,7 @@ namespace CEditorTools
             CFileDialogWrapper dialog(parent);
 
             CAscLocalOpenFileDialog * pData = static_cast<CAscLocalOpenFileDialog *>(event->m_pData);
-            QString _filter = QString::fromStdWString(pData->get_Filter());
+            const QString _filter = QString::fromStdWString(pData->get_Filter());
             QStringList _list;
 
             if ( _filter == "plugin" ) {
@@ -120,6 +120,12 @@ namespace CEditorTools
             } else
             if ( _filter == "video" || _filter == "audio" ) {
                 _list = dialog.modalOpenMedia(_filter, Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
+            } else
+            if ( _filter == "csv/txt" ) {
+                QString _sel_filter;
+                const QString _txt_filter = QObject::tr("All supported files (*.txt *.csv)") + ";;" + QObject::tr("All files (*.*)");
+
+                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
@@ -163,6 +169,19 @@ namespace CEditorTools
         }
 
         return _path;
+    }
+
+    std::wstring getFolder(const std::wstring& path, int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = AscAppManager::mainWindow()->handle();
+
+        QString sel_path = path.empty() ? QString::fromStdWString(path) : Utils::lastPath(LOCAL_PATH_OPEN);
+
+        CFileDialogWrapper dlg(parent);
+        return dlg.selectFolder(sel_path).toStdWString();
     }
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
@@ -229,6 +248,9 @@ namespace CEditorTools
     }
 
     auto editorTypeFromFormat(int format) -> AscEditorType {
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
+            return etDocumentMasterForm;
+        } else
         if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
                 format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
                     format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
@@ -264,7 +286,8 @@ namespace CEditorTools
             pSaveData->put_Id(pData->get_Id());
             pSaveData->put_Path(L"");
 
-            if ( dlg.modalSaveAs(_full_path) ) {
+            int selected = info.suffix() == "docxf" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM : -1;
+            if ( dlg.modalSaveAs(_full_path, selected) ) {
                 if ( _keep_path )
                     Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
 

@@ -162,7 +162,7 @@ module.exports = function(grunt) {
                     }]
             });
 
-            grunt.config('clean.files', ['../deploy/*.js','../deploy/*.css']);
+            grunt.config('clean.files', ['../deploy/*.js','../deploy/*.css','../deploy/locale']);
             grunt.task.run('replace:insert-css', 'clean');
         }
     });

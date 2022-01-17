@@ -230,6 +230,8 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]  = tr("OFORM Document (*.oform)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]  = tr("DOCXF Document (*.docxf)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
@@ -249,6 +251,9 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
+
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -256,10 +261,13 @@ CFileDialogWrapper::~CFileDialogWrapper()
 
 }
 
-bool CFileDialogWrapper::modalSaveAs(QString& fileName)
+bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 {
 //    QString filter = tr("All files (*.*)"), ext_in;
     QString _filters, _sel_filter, _ext;
+
+    if ( !(selected < 0) && m_mapFilters.contains(selected) )
+        _sel_filter = m_mapFilters[selected];
 
     QFileInfo info(fileName);
     _ext = info.suffix();
@@ -269,14 +277,16 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName)
         _filters = m_filters;
 
         if ( !(reFilter.indexIn(m_filters) < 0) ) {
-            _sel_filter = reFilter.cap(1);
+            if ( _sel_filter.isEmpty() )
+                _sel_filter = reFilter.cap(1);
         } else {
             fileName = info.absolutePath() + QDir::separator() + info.fileName();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
 
-        _sel_filter = getFilter(_ext);
+        if ( _sel_filter.isEmpty() )
+            _sel_filter = getFilter(_ext);
         _filters.append(";;" + _sel_filter);
     }
 
@@ -375,7 +385,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
         _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
-                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.epub *.djv *.djvu);;" +
+                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.epub *.djv *.djvu *.docxf *.oform);;" +
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
                     tr("Web Page") + " (*.html *.htm *.mht);;" +
@@ -524,6 +534,22 @@ QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QStrin
 
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" + selected + ";;" + extra;
     return modalOpen(path, filter, &selected, multi);
+}
+
+QString CFileDialogWrapper::selectFolder(const QString& folder)
+{
+    QWidget * _parent =
+#ifdef _WIN32
+                        this;
+#else
+# ifdef FILEDIALOG_DONT_USE_MODAL
+                        NULL;
+# else
+                        (QWidget *)parent();
+# endif
+#endif
+
+    return QFileDialog::getExistingDirectory(_parent, "", folder);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)

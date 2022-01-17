@@ -468,6 +468,34 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>docxf</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-docxf</string>
+			<key>CFBundleTypeName</key>
+			<string>ONLYOFFICE Document Form Template</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>oform</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-oform</string>
+			<key>CFBundleTypeName</key>
+			<string>ONLYOFFICE Fillable Online Form</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -482,7 +510,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.4.2</string>
+	<string>7.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -497,7 +525,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>518</string>
+	<string>531</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -507,10 +535,18 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 Ascensio System SIA. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>

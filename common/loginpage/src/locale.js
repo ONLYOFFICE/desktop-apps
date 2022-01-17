@@ -78,9 +78,10 @@ l10n.en = {
     pshCode: 'code from text message',
     loginNoteAssignPhone: 'The two-factor authentication is enabled to provide additional ONLYOFFICE cloud security. Enter your mobile phone number to continue work on the cloud office. Mobile phone number must be entered using an international format with country code.',
     loginNoteApplyCode: 'The two-factor authentication is enabled. The code has been texted to $1 number.',    
-    newDoc: 'DOCUMENT',
-    newXlsx: 'SPREADSHEET',
-    newPptx: 'PRESENTATION',
+    newDoc: 'Document',
+    newXlsx: 'Spreadsheet',
+    newPptx: 'Presentation',
+    newForm: 'Form template',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
@@ -119,9 +120,9 @@ l10n.en = {
     ,settOptThemeLight: 'Light'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor\'s launch mode'
-    ,settOptLaunchInTab: 'In tab'
-    ,settOptLaunchInWindow: 'In window'
+    ,settOptLaunchMode: 'Open file'
+    ,settOptLaunchInTab: 'In its own tab'
+    ,settOptLaunchInWindow: 'In its own window'
     ,aboutChangelog: 'Changelog'
     ,updateNoUpdates: 'App is up to date'
     ,updateAvialable: 'Version $1 is available. Click to download.'
@@ -174,9 +175,10 @@ l10n.bg = {
     pshCode: 'код от текстово съобщение',
     loginNoteAssignPhone: 'Двуфакторното удостоверяване е разрешено, за да осигури допълнителна облачна сигурност ONLYOFFICE. Въведете номера на мобилния си телефон, за да продължите работата в облачния офис. Номерът на мобилния телефон трябва да бъде въведен в международен формат с код на държавата.',
     loginNoteApplyCode: 'Двуфакторното удостоверяване е разрешено. Кодът е изпратен до $1 номер.',
-    newDoc: 'ДОКУМЕНТ',
-    newXlsx: 'ЕЛЕКТРОННА ТАБЛИЦА',
-    newPptx: 'ПРЕЗЕНТАЦИЯ',
+    newDoc: 'Документ',
+    newXlsx: 'Електронна таблица',
+    newPptx: 'Презентация',
+    newForm: 'Шаблон на формуляр',
     actCreateNew: 'Създай нов',
     actRecentFiles: 'Последни файлове',
     actOpenLocal: 'Отвори локален файл',
@@ -215,7 +217,7 @@ l10n.bg = {
     ,settOptThemeLight: 'Светъл'
     ,settOptThemeClassicLight: 'Класически светъл'
     ,settOptThemeDark: 'Тъмен'
-    ,settOptLaunchMode: 'Режим на стартиране на редактора'
+    ,settOptLaunchMode: 'Отвори файл'
     ,settOptLaunchInTab: 'В раздела'
     ,settOptLaunchInWindow: 'В прозореца'
 }
@@ -267,9 +269,10 @@ l10n.cs = {
     pshCode: 'kód z textové zprávy',
     loginNoteAssignPhone: 'K zajištění další bezpečnosti ONLYOFFICE cloud je zapnuto dvoufaktorové ověřování. Zadejte své číslo mobilního telefonu, abyste mohli pokračovat v práci na kanceláře cloud. Číslo mobilního telefonu musí být zadáno pomocí mezinárodního formátu s kódem země.',
     loginNoteApplyCode: 'Je povolena dvoufaktorová autentizace. Kód byl odeslán na číslo $1.',    
-    newDoc: 'DOKUMENT',
-    newXlsx: 'SEŠIT',
-    newPptx: 'PREZENTACE',
+    newDoc: 'Dokument',
+    newXlsx: 'Sešit',
+    newPptx: 'Prezentace',
+    newForm: 'Šablona formuláře',
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',
@@ -308,7 +311,7 @@ l10n.cs = {
     ,settOptThemeLight: 'Světlý'
     ,settOptThemeClassicLight: 'Klasický světlý'
     ,settOptThemeDark: 'Tmavý'
-    ,settOptLaunchMode: 'Režimu spuštění editoru'
+    ,settOptLaunchMode: 'Otevřít soubor'
     ,settOptLaunchInTab: 'Na kartě'
     ,settOptLaunchInWindow: 'V okně'
 }
@@ -360,9 +363,10 @@ l10n.et = {
     pshCode: 'sõnumi kood',
     loginNoteAssignPhone: 'Kaheosaline identifitseerimine on kinnitatud, et anda lisakaitset ONLYOFFICE pilve turvalisuse jaoks. Sisesta oma telefoninumber, et jätkata tööd oma pilve kontoris. Telefoni number tuleb lisada kasutades rahvusvahelist formaati koos riigikoodiga.',
     loginNoteApplyCode: 'Kaheosaline identifitseerimine on kinnitatud. Kood on saadetud $1 numbrile.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'ARVUTUSTABEL',
-    newPptx: 'ESITLUS',
+    newDoc: 'Dokument',
+    newXlsx: 'Arvutustabel',
+    newPptx: 'Esitlus',
+    newForm: 'Vormi mall',
     actCreateNew: 'Loo uus',
     actRecentFiles: 'Hiljutised failid',
     actOpenLocal: 'Ava kohalik fail',
@@ -401,7 +405,7 @@ l10n.et = {
     ,settOptThemeLight: 'Hele'
     ,settOptThemeClassicLight: 'Klassikaline hele'
     ,settOptThemeDark: 'Tume'
-    ,settOptLaunchMode: 'Toimetaja käivitusrežiim'
+    ,settOptLaunchMode: 'Ava fail'
     ,settOptLaunchInTab: 'Vahekaardil'
     ,settOptLaunchInWindow: 'Eraldi aknas'
 }
@@ -456,6 +460,7 @@ l10n.ja = {
     newDoc: 'ドキュメント',
     newXlsx: 'スプレッドシート',
     newPptx: 'プレゼンテーション',
+    newForm: 'フォーム テンプレート',
     actCreateNew: '新規作成',
     actRecentFiles: '最近のファイル',
     actOpenLocal: 'ローカルファイルを開く',
@@ -494,7 +499,7 @@ l10n.ja = {
     ,settOptThemeLight: 'ライト'
     ,settOptThemeClassicLight: '標準ライト'
     ,settOptThemeDark: 'ダーク'
-    ,settOptLaunchMode: 'エディター起動モード'
+    ,settOptLaunchMode: 'ファイルを開く'
     ,settOptLaunchInTab: 'タブで'
     ,settOptLaunchInWindow: 'ウィンドウで'
 }
@@ -549,6 +554,7 @@ l10n.ko = {
     newDoc: '문서',
     newXlsx: '스프레드시트',
     newPptx: '프레젠테이션',
+    newForm: '양식 템플릿',
     actCreateNew: '신규 생성',
     actRecentFiles: '최근 파일',
     actOpenLocal: '로컬 파일 열기',
@@ -587,7 +593,7 @@ l10n.ko = {
     ,settOptThemeLight: '라이트'
     ,settOptThemeClassicLight: '클래식 라이트'
     ,settOptThemeDark: '다크'
-    ,settOptLaunchMode: '편집기 실행 모드'
+    ,settOptLaunchMode: '파일 열기'
     ,settOptLaunchInTab: '탭에서'
     ,settOptLaunchInWindow: '창에서'
 }
@@ -632,7 +638,7 @@ l10n.lo = {
     errLoginAuth: 'ຜິດພາດກ່ຽວກັບການສອບຖາມຂໍ້ມູນຜູ້ໃຊ້',
     errLoginPass: 'ກວດເບິ່ງລະຫັດຜ່ານ',
     errLoginWrongPhone: 'ຮູບແບບເບີໂທລະສັບທີ່ບໍ່ຖືກຕ້ອງ',
-    pshPortal: 'Cloud  URL',
+    pshPortal: 'Cloud URL',
     pshEmail: 'ອີເມວ',
     pshPass: 'ລະຫັດຜ່ານ',
     pshPhone: 'ເບີໂທລະສັບ',
@@ -642,6 +648,7 @@ l10n.lo = {
     newDoc: 'ເອກະສານ',
     newXlsx: 'ສ້າງເພິີມ ໃໝ່',
     newPptx: 'ການນຳສະເໜີ',
+    newForm: 'ແບບຟອມ',
     actCreateNew: 'ສ້າງໃໝ່',
     actRecentFiles: 'ໄຟລ໌ຫຼ້າສຸດ',
     actOpenLocal: 'ເປີດແຟ້ມທ້ອງຖິ່ນ',
@@ -661,7 +668,7 @@ l10n.lo = {
     emptySlide2Title: 'ບິ່ງຫຼືຟື້ນຟູລຸ້ນກ່ອນ',
     emptySlide2Text: 'ຟື້ນຟູຫຼືພຽງແຕ່ເບິ່ງສະບັບກ່ອນຂອງເອກະສານຂອງທ່ານ, ຕິດຕາມການປ່ຽນແປງແລະຜູ້ຂຽນຂອງພວກເຂົາ.',
     emptySlide3Title: 'ເກັບໄວ້ໃນ cloud',
-    emptySlide3Text: 'Store your documents in the ONLYOFFICE cloud and access them any time, from anywhere.',
+    emptySlide3Text: 'ເກັບຮັກສາເອກະສານຂອງທ່ານໃນ ONLYOFFICE cloud ແລະເຂົ້າເຖິງໄດ້ທຸກເວລາ, ຈາກທຸກບ່ອນ.',
     settUserName: 'ຊື່ຜູ້ໃຊ້',
     settResetUserName: 'ຕັ້ງຄ່າເປັນຄ່າເລີ່ມຕົ້ນ',
     settOpenMode: 'ເປີດເອກະສານໃນຮູບແບບການສະແດງຕົວຢ່າງ',
@@ -680,7 +687,7 @@ l10n.lo = {
     ,settOptThemeLight: 'ແຈ້ງ'
     ,settOptThemeClassicLight: 'ແຈ້ງແບບຕົ້ນຕຳລັບ'
     ,settOptThemeDark: 'ມືດ'
-    ,settOptLaunchMode: 'ຮູບແບບບັນນາທິການ'
+    ,settOptLaunchMode: 'ເປີດແຟ້ມທ'
     ,settOptLaunchInTab: 'ໃນຊ່ອງ'
     ,settOptLaunchInWindow: 'ໃນປ່ອງ'
 }
@@ -732,9 +739,10 @@ l10n.lt = {
     pshCode: 'Teksto žinutės kodas',
     loginNoteAssignPhone: 'Dviejų veiksnių autentifikavimas įgalintas, kad būtų užtikrinta papildoma ONLYOFFICE "cloud" sauga. Įveskite savo tel. numerį, kad galėtumėte tęsti darbą "cloud" ofise. Mobiliojo tel. numeris turi būti įvestas tarptautiniu formatu su šalies kodu.',
     loginNoteApplyCode: 'Dviejų veiksnių autentifikavimas įgalintas. Kodas nusiųstas į $1 numerį.',
-    newDoc: 'DOKUMENTAS',
-    newXlsx: 'SKAIČIUOKLĖ',
-    newPptx: 'PREZENTACIJA',
+    newDoc: 'Dokumentas',
+    newXlsx: 'Skaičiuoklė',
+    newPptx: 'Prezentacija',
+    newForm: 'Anketos šablonas',
     actCreateNew: 'Sukurti naują',
     actRecentFiles: 'Naujausi failai',
     actOpenLocal: 'Atidayti vietinį failą',
@@ -773,7 +781,7 @@ l10n.lt = {
     ,settOptThemeLight: 'Šviesus'
     ,settOptThemeClassicLight: 'Klasikinis Šviesus'
     ,settOptThemeDark: 'Tamsus'
-    ,settOptLaunchMode: 'Redaguotojaso paleidimo rėžimas'
+    ,settOptLaunchMode: 'Atidayti failą'
     ,settOptLaunchInTab: 'Skirtuke'
     ,settOptLaunchInWindow: 'Lange'
 }
@@ -825,9 +833,10 @@ l10n.lv = {
     pshCode: 'īsziņas kods',
     loginNoteAssignPhone: 'Divpakāpju autentifikācija ir iespējota papildu drošības sniegšanai ONLYOFFICE mākonim. Ievadiet savu telefona numuru, lai turpinātu strādāt mākoņa birojā. Mobilā telefona numuram jābūt ievadītam, izmantojot starptautisko formātu ar valsts kodu.',
     loginNoteApplyCode: 'Divpakāpju autentifikācija ir iespējota. Kods tika nosūtīts uz $1 numuru',
-    newDoc: 'DOKUMENTS',
-    newXlsx: 'IZKLĀJLAPA',
-    newPptx: 'PREZENTĀCIJA',
+    newDoc: 'Dokuments',
+    newXlsx: 'Izklājlapa',
+    newPptx: 'Prezentācija',
+    newForm: 'Veidlapas veidne',
     actCreateNew: 'Izveidot jaunu',
     actRecentFiles: 'Pēdējie faili',
     actOpenLocal: 'Atvērt lokālu failu',
@@ -866,7 +875,7 @@ l10n.lv = {
     ,settOptThemeLight: 'Gaisma'
     ,settOptThemeClassicLight: 'Klasiska gaisma'
     ,settOptThemeDark: 'Tumšs'
-    ,settOptLaunchMode: 'Redaktora palaišanas režīms'
+    ,settOptLaunchMode: 'Atvērt failu'
     ,settOptLaunchInTab: 'Cilnē'
     ,settOptLaunchInWindow: 'Logā'
 }
@@ -918,11 +927,12 @@ l10n.nl = {
     pshCode: 'code van sms-bericht',
     loginNoteAssignPhone: 'De twee-factor authenticatie is ingeschakeld om extra ONLYOFFICE cloud-beveiliging te bieden. Voer uw mobiele telefoonnummer in om verder te werken aan het cloud office. Het mobiele telefoonnummer moet worden ingevoerd in een internationaal formaat met landcode.',
     loginNoteApplyCode: 'De twee-factor authenticatie is ingeschakeld. De code is ge-sms\'t naar $1 nummer.',
-    newDoc: 'DOCUMENT',
-    newXlsx: 'SPREADSHEET',
-    newPptx: 'PRESENTATIE',
+    newDoc: 'Document',
+    newXlsx: 'Spreadsheet',
+    newPptx: 'Presentatie',
+    newForm: 'Formulier sjabloon',
     actCreateNew: 'Maak nieuwe aan',
-    actRecentFiles: 'Recent files',
+    actRecentFiles: 'Recente bestanden',
     actOpenLocal: 'Open lokaal bestand',
     actConnectTo: 'Verbinding maken met cloud',
     actActivate: 'Activeren',
@@ -959,7 +969,7 @@ l10n.nl = {
     ,settOptThemeLight: 'Licht'
     ,settOptThemeClassicLight: 'Klassiek Licht'
     ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Editor startmodus'
+    ,settOptLaunchMode: 'Open bestand'
     ,settOptLaunchInTab: 'In tabblad'
     ,settOptLaunchInWindow: 'In venster'
 }
@@ -1014,6 +1024,7 @@ l10n.ru = {
     newDoc: 'Документ',
     newXlsx: 'Таблица',
     newPptx: 'Презентация',
+    newForm: 'Шаблон формы',
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
@@ -1052,10 +1063,9 @@ l10n.ru = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Классическая светлая'
     ,settOptThemeDark: 'Темная'
-    ,settOptLaunchMode: 'Режим запуска редактора'
+    ,settOptLaunchMode: 'Открыть файл'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
-
 }
 
 l10n.de = {
@@ -1105,9 +1115,10 @@ l10n.de = {
     pshCode: 'Code aus der Textnachricht',
     loginNoteAssignPhone: 'Die Zwei-Faktor-Authentifizierung ermöglicht zusätzliche ONLYOFFICE Cloud Sicherheit. Geben Sie Ihre Handynummer ein, um die Arbeit am Cloud-Büro fortzusetzen. Die Handynummer muss in einem internationalen Format mit Ländervorwahl eingegeben werden.',
     loginNoteApplyCode: 'Die Zwei-Faktor-Authentifizierung ist aktiviert. Der Code wurde an $1-Nummer gesendet.',    
-    newDoc: 'DOKUMENT',
-    newXlsx: 'ARBEITSMAPPE',
-    newPptx: 'PRÄSENTATION',
+    newDoc: 'Dokument',
+    newXlsx: 'Arbeitsmappe',
+    newPptx: 'Präsentation',
+    newForm: 'Formularvorlage',
     actCreateNew: 'Neu erstellen',
     actRecentFiles: 'Neueste Dateien',
     actOpenLocal: 'Lokale Datei öffnen',
@@ -1146,7 +1157,7 @@ l10n.de = {
     ,settOptThemeLight: 'Hell'
     ,settOptThemeClassicLight: 'Klassisch Hell'
     ,settOptThemeDark: 'Dunkel'
-    ,settOptLaunchMode: 'Editor wird geöffnet'
+    ,settOptLaunchMode: 'Datei öffnen'
     ,settOptLaunchInTab: 'in einer Registerkarte'
     ,settOptLaunchInWindow: 'in einem Fenster'
 }
@@ -1197,10 +1208,11 @@ l10n.it_IT = {
     pshPhone: 'numero di telefono',
     pshCode: 'codice dal messaggio di testo',
     loginNoteAssignPhone: 'L\'autenticazione a due fattori è abilitata per fornire ulteriore sicurezza del ONLYOFFICE cloud. Inserisci il tuo numero di cellulare per continuare a lavorare sul ufficio cloud. Il numero di cellulare deve essere inserito utilizzando un formato internazionale con prefisso internazionale.',
-    loginNoteApplyCode: 'L\'autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',    
-    newDoc: 'DOCUMENTO',
-    newXlsx: 'FOGLIO DI CALCOLO',
-    newPptx: 'PRESENTAZIONE',
+    loginNoteApplyCode: 'L\'autenticazione a due fattori è abilitata. Il codice è stato inviato al numero $1.',
+    newDoc: 'Documento',
+    newXlsx: 'Foglio di calcolo',
+    newPptx: 'Presentazione',
+    newForm: 'Modello di modulo',
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',
@@ -1239,7 +1251,7 @@ l10n.it_IT = {
     ,settOptThemeLight: 'Chiaro'
     ,settOptThemeClassicLight: 'Classic Light'
     ,settOptThemeDark: 'Scuro'
-    ,settOptLaunchMode: 'Modalità lancio di edito'
+    ,settOptLaunchMode: 'Apri file'
     ,settOptLaunchInTab: 'Nella scheda'
     ,settOptLaunchInWindow: 'Nella finestra'
 }
@@ -1291,9 +1303,10 @@ l10n.fr = {
     pshCode: 'code reçu par SMS',
     loginNoteAssignPhone: 'L\'authentification à deux facteurs est activée pour fournir une sécurité de ONLYOFFICE cloud supplémentaire. Entrez votre numéro de téléphone portable pour continuer à travailler sur le bureau cloud. Le numéro de téléphone portable doit être entré en utilisant un format international avec le code du pays.',
     loginNoteApplyCode: 'L\'authentification à deux facteurs est activée. Le code a été envoyé au $1.',    
-    newDoc: 'DOCUMENT',
-    newXlsx: 'CLASSEUR',
-    newPptx: 'PRESENTATION',
+    newDoc: 'Document',
+    newXlsx: 'Classeur',
+    newPptx: 'Presentation',
+    newForm: 'Modèle de formulaire',
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',
@@ -1332,7 +1345,7 @@ l10n.fr = {
     ,settOptThemeLight: 'Clair'
     ,settOptThemeClassicLight: 'Classique clair'
     ,settOptThemeDark: 'Sombre'
-    ,settOptLaunchMode: 'Mode de lancement de l\'éditeur'
+    ,settOptLaunchMode: 'Ouvrir fichier'
     ,settOptLaunchInTab: 'Dans un onglet'
     ,settOptLaunchInWindow: 'Dans une fenêtre'
 }
@@ -1384,9 +1397,10 @@ l10n.es = {
     pshCode: 'código del mensaje de texto',
     loginNoteAssignPhone: 'La autentificación de dos factores es activada para proporcionar la seguridad de nube ONLYOFFICE adicional. Introduzca su número de móvil para continuar el trabajo en el oficina en la nube. El número de móvil debe introducirse usando un formato internacional con el código de país.',
     loginNoteApplyCode: 'La autentificación de dos factores es activada. El código se ha enviado como mensaje de texto al número $1.',
-    newDoc: 'DOCUMENTO',
-    newXlsx: 'LIBRO DE EXCEL',
-    newPptx: 'PRESENTACIÓN',
+    newDoc: 'Documento',
+    newXlsx: 'Libro de Excel',
+    newPptx: 'Presentación',
+    newForm: 'Plantilla de formulario',
     actCreateNew: 'Nuevo',
     actRecentFiles: 'Archivos recientes',
     actOpenLocal: 'Abrir archivo local',
@@ -1421,7 +1435,7 @@ l10n.es = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Clásico claro'
     ,settOptThemeDark: 'Oscuro'
-    ,settOptLaunchMode: 'Modo de inicio del editor'
+    ,settOptLaunchMode: 'Abrir archivo'
     ,settOptLaunchInTab: 'En pestaña'
     ,settOptLaunchInWindow: 'En ventana'
 }
@@ -1473,9 +1487,10 @@ l10n.pl = {
     pshCode: 'kod z wiadomości tekstowej',
     loginNoteAssignPhone: 'Uwierzytelnianie dwuskładnikowe jest włączone, aby zapewnić dodatkową ochronę w chmurze ONLYOFFICE Wpisz swój numer telefonu komórkowego, aby kontynuować pracę w chmurze. Numer telefonu komórkowego musi być wpisany w formacie międzynarodowym z uwzględnieniem kodu kraju.',
     loginNoteApplyCode: 'Uwierzytelnianie dwuskładnikowe zostało aktywowane. Kod został wysłany na numer $1',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'ARKUSZ KALKULACYJNY',
-    newPptx: 'PREZENTACJA ',
+    newDoc: 'Dokument',
+    newXlsx: 'Arkusz Kalkulacyjny',
+    newPptx: 'Prezentacja',
+    newForm: 'Szablon formularza',
     actCreateNew: 'Utwórz nowy',
     actRecentFiles: 'Ostatnie pliki',
     actOpenLocal: 'Otwórz plik lokalny',
@@ -1514,7 +1529,7 @@ l10n.pl = {
     ,settOptThemeLight: 'Jasny'
     ,settOptThemeClassicLight: 'Klasyczny'
     ,settOptThemeDark: 'Ciemny'
-    ,settOptLaunchMode: 'Tryb uruchamiania Edytora'
+    ,settOptLaunchMode: 'Otwórz plik'
     ,settOptLaunchInTab: 'W nowej zakładce'
     ,settOptLaunchInWindow: 'W nowym oknie'
 }
@@ -1566,9 +1581,10 @@ l10n.pt_BR = {
     pshCode: 'código da mensagem de texto',
     loginNoteAssignPhone: 'A autenticação de dois fatores está habilitada para fornecer segurança adicional ao nuvem do ONLYOFFICE. Insira o seu número de celular para continuar trabalhando no escritório na nuvem. O número de telefone deve ser inserido usando um formato internacional com o código do país.',
     loginNoteApplyCode: 'A autenticação de dois fatores está habilitada. O código foi enviado por mensagem de texto para o número $1.',
-    newDoc: 'DOCUMENTO',
-    newXlsx: 'PLANILHA',
-    newPptx: 'APRESENTAÇÃO',
+    newDoc: 'Documento',
+    newXlsx: 'Planilha',
+    newPptx: 'Apresentação',
+    newForm: 'Modelo de formulário',
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Arquivos recentes',
     actOpenLocal: 'Abrir arquivo local',
@@ -1604,7 +1620,7 @@ l10n.pt_BR = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de inicialização do editor'
+    ,settOptLaunchMode: 'Abrir arquivo'
     ,settOptLaunchInTab: 'Na guia'
     ,settOptLaunchInWindow: 'Na janela'
 }
@@ -1656,9 +1672,10 @@ l10n.pt_PT = {
     pshCode: 'código da SMS enviada para o seu telemóvel',
     loginNoteAssignPhone: 'A autenticação de dois-fatores está ativada para garantir ainda mais segurança à sua cloud na ONLYOFFICE. Insira o seu número de telemóvel para continuar a trabalhar no escritório em cloud. O número de telemóvel tem de ser inserido utilizando um formato internacional com o código do país.',
     loginNoteApplyCode: 'A autenticação de dois-fatores está ativada. O código foi enviado para o $1 número.',
-    newDoc: 'DOCUMENTO',
-    newXlsx: 'FOLHA DE CÁLCULO',
-    newPptx: 'APRESENTAÇÃO',
+    newDoc: 'Documento',
+    newXlsx: 'Folha de cálculo',
+    newPptx: 'Apresentação',
+    newForm: 'Modelo de formulário',
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Ficheiros Recentes',
     actOpenLocal: 'Abrir ficheiro local',
@@ -1697,7 +1714,7 @@ l10n.pt_PT = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clássico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lançamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Em separador'
     ,settOptLaunchInWindow: 'Em janela'
 }
@@ -1749,9 +1766,10 @@ l10n.ro = {
     pshCode: 'codul din mesaj text',
     loginNoteAssignPhone: 'Autentificarea cu doi factori este activatã ca o mãsurã suplimentarã de securitate pentru ONLYOFFICE cloud. Intra-i numãrul de telefon dvs vă sã puteţi continua lucrul în oficiul cloud. Numãrul de telefon mobil trebuie introdus în format internaþional cu prefixul de țarã.',
     loginNoteApplyCode: 'Autentificarea cu doi factori activatã. codul de verificare trimis prin SMS cãtre numãrul de telefon $1.',
-    newDoc: 'DOCUMENT',
-    newXlsx: 'FOAIE DE CALCUL',
-    newPptx: 'PREZENTARE',
+    newDoc: 'Document',
+    newXlsx: 'Foaie de calcul',
+    newPptx: 'Prezentare',
+    newForm: 'Șablon formă',
     actCreateNew: 'Creare nou',
     actRecentFiles: 'Fișierele recente',
     actOpenLocal: 'Deschidere fișier local',
@@ -1790,7 +1808,7 @@ l10n.ro = {
     ,settOptThemeLight: 'Luminos'
     ,settOptThemeClassicLight: 'Clasic Luminos'
     ,settOptThemeDark: 'Întunecat'
-    ,settOptLaunchMode: 'Modul de lansare al editorului'
+    ,settOptLaunchMode: 'Deschidere fișie'
     ,settOptLaunchInTab: 'În filă'
     ,settOptLaunchInWindow: 'În fereastră'
 }
@@ -1842,9 +1860,10 @@ l10n.sk = {
     pshCode: 'kód z textovej správy',
     loginNoteAssignPhone: 'Dvojfaktorová autentifikácia je povolená, aby sa zabezpečila zvýšená bezpečnosť ONLYOFFICE cloudu. Ak chcete pokračovať v práci v cloude, zadajte číslo svojho mobilného telefónu. Číslo mobilného telefónu musí byť zadané v medzinárodnom formáte s kódom krajiny.',
     loginNoteApplyCode: 'Dvojfaktorová autentifikácia je povolená. Kód bol odoslaný na číslo $ 1.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'TABUĽKA',
-    newPptx: 'PREZENTÁCIA',
+    newDoc: 'Dokument',
+    newXlsx: 'Tabuľka',
+    newPptx: 'Prezentácia',
+    newForm: 'Šablóna formulára',
     actCreateNew: 'Vytvoriť nový',
     actRecentFiles: 'Nedávne súbory',
     actOpenLocal: 'Otvoriť lokálny súbor',
@@ -1883,7 +1902,7 @@ l10n.sk = {
     ,settOptThemeLight: 'Svetlá'
     ,settOptThemeClassicLight: 'Klasická svetlá'
     ,settOptThemeDark: 'Temná'
-    ,settOptLaunchMode: 'Režim spustenia editora'
+    ,settOptLaunchMode: 'Otvoriť súbor'
     ,settOptLaunchInTab: 'V tabuľke'
     ,settOptLaunchInWindow: 'V okne'
 }
@@ -1935,9 +1954,10 @@ l10n.sl = {
     pshCode: 'koda tekstovnega sporočila',
     loginNoteAssignPhone: 'Omogočena je avtentikacija z dvojnim preverjanjem za dodatno varnost ONLYOFFICE oblaka. Vnesite vašo mobilno telefonsko številko za nadaljevanje z delom v oblaku. Mobilna telefonska številka mora biti vnešena v mednarodnem formatu s kodo države.',
     loginNoteApplyCode: 'Omogočena je avtentikacija z dvojnim preverjanjem. Koda je bila poslana naštevilko $1.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'PREGLEDNICA',
-    newPptx: 'PREDSTAVITEV',
+    newDoc: 'Dokument',
+    newXlsx: 'Preglednica',
+    newPptx: 'Predstavitev',
+    newForm: 'Predloga obrazca',
     actCreateNew: 'Ustvari nov',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Odpri lokalno datoteko',
@@ -1976,7 +1996,7 @@ l10n.sl = {
     ,settOptThemeLight: 'Svetla'
     ,settOptThemeClassicLight: 'Klasična svetla'
     ,settOptThemeDark: 'Temna'
-    ,settOptLaunchMode: 'Način kosila urednika'
+    ,settOptLaunchMode: 'Odpri datoteko'
     ,settOptLaunchInTab: 'V zavihku'
     ,settOptLaunchInWindow: 'V oknu'
 }
@@ -2028,9 +2048,10 @@ l10n.sv = {
     pshCode: 'kod från SMS',
     loginNoteAssignPhone: 'Tvåfaktorautentiseringen är aktiverad för att förse ytterligare ONLYOFFICE-molnsäkerhet. Ange ditt mobilnummer för att fortsätta arbeta med molnkontoret. Mobilnummer måste anges i ett internationellt format med landskod.',
     loginNoteApplyCode: 'Tvåfaktorautentiseringen är aktiverad. Koden har skickats till nummer $1.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'KALKYLBLAD',
-    newPptx: 'PRESENTATION',
+    newDoc: 'Dokument',
+    newXlsx: 'Kalkylblad',
+    newPptx: 'Presentation',
+    newForm: 'Formulärmall',
     actCreateNew: 'Skapa ny',
     actRecentFiles: 'Senaste filer',
     actOpenLocal: 'Öppna lokal fil',
@@ -2069,7 +2090,7 @@ l10n.sv = {
     ,settOptThemeLight: 'Ljust'
     ,settOptThemeClassicLight: 'Klassiskt ljust'
     ,settOptThemeDark: 'Mörkt'
-    ,settOptLaunchMode: 'Redigerarens startläge'
+    ,settOptLaunchMode: 'Öppna fil'
     ,settOptLaunchInTab: 'I flik'
     ,settOptLaunchInWindow: 'I fönster'
 }
@@ -2121,9 +2142,10 @@ l10n.tr = {
     pshCode: 'Kısa mesaj kodu',
     loginNoteAssignPhone: 'İki faktörlü kimlik doğrulama, ek bir ONLYOFFICE bulut güvenliği sağlamak için etkinleştirildi. Bulut ofis üzerinde çalışmaya devam etmek için cep telefonu numaranızı girin. Cep telefonu numarası, ülke kodu ile birlikte uluslararası format kullanılarak girilmelidir.',
     loginNoteApplyCode: 'İki faktörlü kimlik doğrulama etkinleştirildi. Doğrulama kodu bu numaraya gönderildi: $1.',
-    newDoc: 'BELGE',
-    newXlsx: 'TABLO',
-    newPptx: 'SUNUM',
+    newDoc: 'Belge',
+    newXlsx: 'Tablo',
+    newPptx: 'Sunum',
+    newForm: 'Form şablonu',
     actCreateNew: 'Yeni oluştur',
     actRecentFiles: 'Son dosyalar',
     actOpenLocal: 'Yerel dosya aç',
@@ -2162,7 +2184,7 @@ l10n.tr = {
     ,settOptThemeLight: 'Aydınlık'
     ,settOptThemeClassicLight: 'Klasik Aydınlık'
     ,settOptThemeDark: 'Karanlık'
-    ,settOptLaunchMode: 'Editörün açılış modu'
+    ,settOptLaunchMode: 'Dosya aç'
     ,settOptLaunchInTab: 'Sekmed'
     ,settOptLaunchInWindow: 'Pencerede'
 }
@@ -2214,9 +2236,10 @@ l10n.uk = {
     pshCode: 'код з текстового повідомлення',
     loginNoteAssignPhone: 'Для додаткової безпеки хмари ONLYOFFICE увімкнено двохфакторну автентифікацію. Введіть ваш номер мобільного телефону, щоб продовжити роботу в хмарному офісі. Номер мобільного телефону має бути введений у міжнародному форматі з кодом країни.',
     loginNoteApplyCode: 'Увімкнено двохфакторну автентифікацію. Код відправлено на номер $1.',
-    newDoc: 'ДОКУМЕНТ',
-    newXlsx: 'ЕЛЕКТРОННА ТАБЛИЦЯ',
-    newPptx: 'ПРЕЗЕНТАЦІЯ',
+    newDoc: 'Документ',
+    newXlsx: 'Електронна таблиця',
+    newPptx: 'Презентація',
+    newForm: 'Шаблон форми',
     actCreateNew: 'Створити',
     actRecentFiles: 'Останні файли',
     actOpenLocal: 'Відкрити локальний файл',
@@ -2255,7 +2278,7 @@ l10n.uk = {
     ,settOptThemeLight: 'Світла'
     ,settOptThemeClassicLight: 'Класична світла'
     ,settOptThemeDark: 'Темна'
-    ,settOptLaunchMode: 'Режим запуску редакторів'
+    ,settOptLaunchMode: 'Відкрити файл'
     ,settOptLaunchInTab: 'У вкладці'
     ,settOptLaunchInWindow: 'У вікні'
 }
@@ -2307,9 +2330,10 @@ l10n.vi = {
     pshCode: 'mã từ tin nhắn',
     loginNoteAssignPhone: 'Xác thực hai yếu tố được kích hoạt để tăng tính bảo mật cho đám mây ONLYOFFICE. Hãy nhập số điện thoại di động của bạn để tiếp tục làm việc trên văn phòng đám mây. Số điện thoại di động phải được nhập theo định dạng quốc tế với mã quốc gia.',
     loginNoteApplyCode: 'Xác thực hai bước đã được kích hoạt. Mã đã được gửi đến số $1.',
-    newDoc: 'VĂN BẢN',
-    newXlsx: 'BẢNG TÍNH',
-    newPptx: 'TRÌNH CHIẾU',
+    newDoc: 'Văn bản',
+    newXlsx: 'Bảng tính',
+    newPptx: 'Trình chiếu',
+    newForm: 'Mẫu biểu mẫu',
     actCreateNew: 'Tạo mới',
     actRecentFiles: 'Những tập tin gần đây',
     actOpenLocal: 'Mở tập tin cục bộ',
@@ -2348,7 +2372,7 @@ l10n.vi = {
     ,settOptThemeLight: 'Sáng'
     ,settOptThemeClassicLight: 'Sáng truyền thống'
     ,settOptThemeDark: 'Tối'
-    ,settOptLaunchMode: 'Chế độ khởi chạy của người chỉnh sửa'
+    ,settOptLaunchMode: 'Mở tập tin'
     ,settOptLaunchInTab: 'Trong tab'
     ,settOptLaunchInWindow: 'Trong window'
 }
@@ -2403,6 +2427,7 @@ l10n.zh_CN = {
     newDoc: '文档',
     newXlsx: '电子表格',
     newPptx: '演示文稿',
+    newForm: '表单模板',
     actCreateNew: '新建',
     actRecentFiles: '最近使用的文件',
     actOpenLocal: '打开本地文件',
@@ -2441,7 +2466,7 @@ l10n.zh_CN = {
     ,settOptThemeLight: '浅色'
     ,settOptThemeClassicLight: '经典浅色'
     ,settOptThemeDark: '深色'
-    ,settOptLaunchMode: '编辑器启动模式'
+    ,settOptLaunchMode: '打开文件'
     ,settOptLaunchInTab: '标签页中'
     ,settOptLaunchInWindow: '窗口中'
 }
@@ -2496,6 +2521,7 @@ l10n.zh_HK = {
     newDoc: '文件',
     newXlsx: '試算表',
     newPptx: '簡報',
+    newForm: 'Form template',
     actCreateNew: '新增',
     actRecentFiles: '最近使用過的檔案',
     actOpenLocal: '開啟本機檔案',
@@ -2534,7 +2560,7 @@ l10n.zh_HK = {
     ,settOptThemeLight: '明亮'
     ,settOptThemeClassicLight: '經典明亮'
     ,settOptThemeDark: '黑暗'
-    ,settOptLaunchMode: '編輯者的啟動模式'
+    ,settOptLaunchMode: '開啟檔案'
     ,settOptLaunchInTab: '標籤中'
     ,settOptLaunchInWindow: '視窗中'
 }
@@ -2589,6 +2615,7 @@ l10n.hy = {
     newDoc: 'ՓԱՍՏԱԹՈՒՂԹ',
     newXlsx: 'ԱՂՅՈՒՍԱԿ',
     newPptx: 'ՇՆՈՐՀԱՆԴԵՍ',
+    newForm: 'Ձևանմուշ',
     actCreateNew: 'Ստեղծել նորը',
     actRecentFiles: 'Ամենանոր ֆայլերը',
     actOpenLocal: 'Բացել լոկալ ֆայլը',
@@ -2627,7 +2654,7 @@ l10n.hy = {
     ,settOptThemeLight: 'Բաց'
     ,settOptThemeClassicLight: 'Դասական բաց'
     ,settOptThemeDark: 'Մուգ'
-    ,settOptLaunchMode: 'Խմբագրի գործարկման ռեժիմ'
+    ,settOptLaunchMode: 'Բացել ֆայլը'
     ,settOptLaunchInTab: 'Ներդիրում'
     ,settOptLaunchInWindow: 'Պատուհանում'
 }
@@ -2679,9 +2706,10 @@ l10n.ca = {
     pshCode: 'codi del missatge de text',
     loginNoteAssignPhone: 'L\'autenticació de dos factors està habilitada per proporcionar seguretat addicional al núvol de ONLYOFFICE. Introduïu el número de telèfon mòbil per continuar treballant a l\'oficina del núvol. Cal introduir el número de telèfon mòbil mitjançant un format internacional amb codi de país.',
     loginNoteApplyCode: 'L\'autenticació de dos factors està habilitada. El codi ha estat enviat per missatge de text al número $1',
-    newDoc: 'DOCUMENT',
-    newXlsx: 'FULL DE CÀLCUL',
-    newPptx: 'PRESENTACIÓ',
+    newDoc: 'Document',
+    newXlsx: 'Full de càlcul',
+    newPptx: 'Presentació',
+    newForm: 'Plantilla de formulari',
     actCreateNew: 'Crear nou',
     actRecentFiles: 'Arxius recents',
     actOpenLocal: 'Obre fitxer local',
@@ -2717,12 +2745,12 @@ l10n.ca = {
     settOptScalingAuto: 'Automatic',
     aboutProFeaturesAvailable: 'Amb accés a les funcions pro'
     ,settUITheme: 'Tema de la interfície'
-    ,settOptThemeLight: 'Llum'
-    ,settOptThemeClassicLight: 'Llum Clássico'
+    ,settOptThemeLight: 'Clar'
+    ,settOptThemeClassicLight: 'Clar clàssic'
     ,settOptThemeDark: 'Fosc'
-    ,settOptLaunchMode: 'Mode de llançament de l\'editor'
-    ,settOptLaunchInTab: 'A la pestanya'
-    ,settOptLaunchInWindow: 'A la finestra'
+    ,settOptLaunchMode: 'Obre fitxer'
+    ,settOptLaunchInTab: 'En una pestanya'
+    ,settOptLaunchInWindow: 'En una finestra'
 }
 
 l10n.hr = {
@@ -2772,9 +2800,10 @@ l10n.hr = {
     pshCode: 'kod iz tekstualne poruke',
     loginNoteAssignPhone: 'Dvostruka provjera autentičnosti omogućena je kako bi pružila dodatnu sigurnost u oblaku ONLYOFFICE. Unesite svoj broj mobilnog telefona da biste nastavili raditi u uredskom oblaku. Broj mobilnog telefona treba upisati u međunarodnom formatu s oznakom države.',
     loginNoteApplyCode: 'Dvostruka provjera autentičnosti je omogućena. Kod je poslan na $1 broj.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'TABLICA',
-    newPptx: 'PREZENTACIJA',
+    newDoc: 'Dokument',
+    newXlsx: 'Tablica',
+    newPptx: 'Prezentacija',
+    newForm: 'Predložak obrasca',
     actCreateNew: 'Stvori novo',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Otvori lokalnu datoteku',
@@ -2813,7 +2842,7 @@ l10n.hr = {
     ,settOptThemeLight: 'Svijetla'
     ,settOptThemeClassicLight: 'Klasična svijetla'
     ,settOptThemeDark: 'Tamna'
-    ,settOptLaunchMode: 'Način pokretanja uređivača'
+    ,settOptLaunchMode: 'Otvori datoteku'
     ,settOptLaunchInTab: 'U kartici'
     ,settOptLaunchInWindow: 'U prozoru'
 }
@@ -2865,9 +2894,10 @@ l10n.da = {
     pshCode: 'kode fra tekstbesked',
     loginNoteAssignPhone: 'To-faktor-godkendelsen er slået til for at give yderligere ONLYOFFICE cloud sikkerhed. Indtast dit mobiltelefonnummer for at fortsætte med at arbejde i cloud office. Mobiltelefonnummeret skal indtastes ved at bruge en international landekode.',
     loginNoteApplyCode: 'To-faktor-godkendelsen er slået til. Koden er blevet sendt til $1 nummer.',
-    newDoc: 'DOKUMENT',
-    newXlsx: 'REGNEARK',
-    newPptx: 'PRÆSENTATION',
+    newDoc: 'Dokument',
+    newXlsx: 'Regneark',
+    newPptx: 'Præsentation',
+    newForm: 'Formularskabelon',
     actCreateNew: 'Opret ny',
     actRecentFiles: 'Seneste filer',
     actOpenLocal: 'Åben lokal fil',
@@ -2906,7 +2936,7 @@ l10n.da = {
     ,settOptThemeLight: 'Lys'
     ,settOptThemeClassicLight: 'Klassisk lys'
     ,settOptThemeDark: 'Mørk'
-    ,settOptLaunchMode: 'Editorens starttilstand'
+    ,settOptLaunchMode: 'Åben fil'
     ,settOptLaunchInTab: 'I fane'
     ,settOptLaunchInWindow: 'I vindue'
 }
@@ -2958,9 +2988,10 @@ l10n.fi = {
     pshCode: 'Tekstiviestin koodi',
     loginNoteAssignPhone: 'Kaksi-vaiheinen tunnistus on otettu käyttöön, tuomaan lisäturvaa ONLYOFFICEN pilveen. Syötä puhelinnumerosi, jatkaaksesi työskentelyä pilvi-officessa. Puhelinnumero tulee syöttää käyttäen kansainvälistä muotoa maatunnuksella.',
     loginNoteApplyCode: 'Kaksi-vaiheinen tunnistus on päällä. Koodi on lähetetty tekstiviestinä $1 numeroon.',    
-    newDoc: 'DOKUMENTTI',
-    newXlsx: 'TAULUKKOLASKENTA',
-    newPptx: 'ESITYS',
+    newDoc: 'Dokumentti',
+    newXlsx: 'Taulukkolaskenta',
+    newPptx: 'Esitys',
+    newForm: 'Lomakemalli',
     actCreateNew: 'Luo uusi',
     actRecentFiles: 'Viimeisimmät tiedostot',
     actOpenLocal: 'Avaa paikallinen tiedosto',
@@ -2999,7 +3030,7 @@ l10n.fi = {
     ,settOptThemeLight: 'Vaalea'
     ,settOptThemeClassicLight: 'Klassinen vaalea'
     ,settOptThemeDark: 'Tumma'
-    ,settOptLaunchMode: 'Editoinin käynnistystila'
+    ,settOptLaunchMode: 'Avaa tiedosto'
     ,settOptLaunchInTab: 'Välilehdessä'
     ,settOptLaunchInWindow: 'Ikkunassa'
 }
@@ -3051,9 +3082,10 @@ l10n.el = {
     pshCode: 'κωδικός από μήνυμα κειμένου',
     loginNoteAssignPhone: 'Ο έλεγχος ταυτότητας δύο παραγόντων είναι ενεργοποιημένος για να παρέχει επιπλέον ασφάλεια στο ONLYOFFICE cloud. Εισαγάγετε τον αριθμό του κινητού σας τηλεφώνου για να συνεχίσετε την εργασία σας στο cloud office. Ο αριθμός κινητού τηλεφώνου πρέπει να εισαχθεί χρησιμοποιώντας μια διεθνή μορφή με κωδικό χώρας.',
     loginNoteApplyCode: 'Ο έλεγχος ταυτότητας δύο παραγόντων είναι ενεργοποιημένος. Ο κωδικός έχει αποσταλεί στον αριθμό $1.',    
-    newDoc: 'ΕΓΓΡΑΦΟ',
-    newXlsx: 'ΥΠΟΛΟΓΙΣΤΙΚΟ ΦΥΛΛΟ',
-    newPptx: 'ΠΑΡΟΥΣΙΑΣΗ',
+    newDoc: 'Εγγραφο',
+    newXlsx: 'Υπολογιστικο φυλλο',
+    newPptx: 'Παρουσιαση',
+    newForm: 'Πρότυπο φόρμας',
     actCreateNew: 'Δημιουργία νέου',
     actRecentFiles: 'Πρόσφατα αρχεία',
     actOpenLocal: 'Άνοιγμα τοπικού αρχείου',
@@ -3092,7 +3124,7 @@ l10n.el = {
     ,settOptThemeLight: 'Ανοιχτόχρωμο'
     ,settOptThemeClassicLight: 'Κλασικό ανοιχτόχρωμο'
     ,settOptThemeDark: 'Σκουρόχρωμο'
-    ,settOptLaunchMode: 'Λειτουργία έναρξης επεξεργαστή'
+    ,settOptLaunchMode: 'Άνοιγμα αρχείου'
     ,settOptLaunchInTab: 'Σε καρτέλα'
     ,settOptLaunchInWindow: 'Σε παράθυρο'
 }
@@ -3147,6 +3179,7 @@ l10n.hi = {
     newDoc: 'दस्तावेज़',
     newXlsx: 'स्प्रेडशीट',
     newPptx: 'प्रस्तुति',
+    newForm: 'फॉर्म टेम्पलेट',
     actCreateNew: 'नया बनाएँ',
     actRecentFiles: 'हालिया फ़ाइलें',
     actOpenLocal: 'लोकल फ़ाइल खोलें',
@@ -3185,7 +3218,7 @@ l10n.hi = {
     ,settOptThemeLight: 'लाइट'
     ,settOptThemeClassicLight: 'क्लासिक लाइट'
     ,settOptThemeDark: 'डार्क'
-    ,settOptLaunchMode: 'संपादक का लॉन्च मोड'
+    ,settOptLaunchMode: 'फ़ाइल खोलें'
     ,settOptLaunchInTab: 'टैब में'
     ,settOptLaunchInWindow: 'विंडो में'
 }
@@ -3237,9 +3270,10 @@ l10n.hu = {
     pshCode: 'kód a szöveges üzenetből',
     loginNoteAssignPhone: 'A kétfaktoros hitelesítés engedélyezve lett, hogy az ONLYOFFICE felhő még biztonságosabb lehessen. Adja meg a mobiltelefonszámát, hogy folytatni tudja a munkát a felhőben. A mobiltelefonszámot a nemzetközileg használt formátumban, az országkóddal együtt kell megadni.',
     loginNoteApplyCode: 'A kétfaktoros hitelesítés engedélyezve lett. A kódot elküldtük a(z) $1 telefonszámra.',
-    newDoc: 'DOKUMENTUM',
-    newXlsx: 'SZÁMOLÓTÁBLA',
-    newPptx: 'BEMUTATÓ',
+    newDoc: 'Dokumentum',
+    newXlsx: 'Számolótábla',
+    newPptx: 'Bemutató',
+    newForm: 'Űrlapsablon',
     actCreateNew: 'Új létrehozása',
     actRecentFiles: 'Legutóbbi fájlok',
     actOpenLocal: 'Helyi fájl megnyitása',
@@ -3278,7 +3312,7 @@ l10n.hu = {
     ,settOptThemeLight: 'Világos'
     ,settOptThemeClassicLight: 'Klasszikus világos'
     ,settOptThemeDark: 'Sötét'
-    ,settOptLaunchMode: 'Szerkesztő indítómód'
+    ,settOptLaunchMode: 'Fájl megnyitása'
     ,settOptLaunchInTab: 'Lapon'
     ,settOptLaunchInWindow: 'Ablakban'
 }
@@ -3330,9 +3364,10 @@ l10n.id = {
     pshCode: 'kode dari pesan teks',
     loginNoteAssignPhone: 'Autentikasi dua faktor diaktifkan untuk memberikan tambahan keamanan cloud ONLYOFFICE. Masukkan nomor ponsel Anda untuk melanjutkan pekerjaan di cloud office. Nomor ponsel harus dimasukkan menggunakan format internasional beserta kode negara.',
     loginNoteApplyCode: 'Autentikasi dua faktor diaktifkan. Kode telah dikirim ke nomor $1.',    
-    newDoc: 'DOKUMEN',
-    newXlsx: 'LEMBAR BENTANG',
-    newPptx: 'PRESENTASI',
+    newDoc: 'Dokumen',
+    newXlsx: 'Lembar bentang',
+    newPptx: 'Presentasi',
+    newForm: 'Templat formulir',
     actCreateNew: 'Buat baru',
     actRecentFiles: 'File terbaru',
     actOpenLocal: 'Buka file lokal',
@@ -3371,7 +3406,7 @@ l10n.id = {
     ,settOptThemeLight: 'Cerah'
     ,settOptThemeClassicLight: 'Cerah klasik'
     ,settOptThemeDark: 'Gelap'
-    ,settOptLaunchMode: 'Mode peluncuran editor'
+    ,settOptLaunchMode: 'Buka file'
     ,settOptLaunchInTab: 'Di tab'
     ,settOptLaunchInWindow: 'Di jendela'
 }
@@ -3423,9 +3458,10 @@ l10n.ga = {
     pshCode: 'cód ón teachtaireacht téacs',
     loginNoteAssignPhone: 'Cumasaítear an fíordheimhniú dhá fhachtóir chun slándáil scamall ONLYOFFICE a sholáthar. Cuir isteach d’uimhir fón póca chun leanúint ar aghaidh ag obair ar an oifig scamall. Ní mór uimhir fón póca a iontráil ag úsáid formáid idirnáisiúnta le cód tíre.',
     loginNoteApplyCode: 'Cumasaítear an fíordheimhniú dhá fhachtóir. Cuireadh téacs chuig an gcód go huimhir $ 1.',    
-    newDoc: 'doiciméad',
-    newXlsx: 'scarbhileog',
-    newPptx: 'cur i láthair',
+    newDoc: 'Doiciméad',
+    newXlsx: 'Scarbhileog',
+    newPptx: 'Cur i láthair',
+    newForm: 'Modelo de formulario',
     actCreateNew: 'nua a chruthú',
     actRecentFiles: 'Comhaid le déanaí',
     actOpenLocal: 'Oscail comhad áitiúil',
@@ -3464,7 +3500,7 @@ l10n.ga = {
     ,settOptThemeLight: 'Solas'
     ,settOptThemeClassicLight: 'Solas Clasaiceach'
     ,settOptThemeDark: 'Dorcha'
-    ,settOptLaunchMode: 'Mód Seoladh an Eagarthóra'
+    ,settOptLaunchMode: 'Oscail comhad'
     ,settOptLaunchInTab: 'Sa chluaisín'
     ,settOptLaunchInWindow: 'I bhfuinneog'
 }
@@ -3516,9 +3552,10 @@ l10n.no = {
     pshCode: 'kode fra tekstmelding',
     loginNoteAssignPhone: 'To-faktor-godkjenning er aktivert for å gi ekstra skysikkerhet for ONLYOFFICE. Skriv inn mobilnummeret ditt for å fortsette å arbeide på skykontoret. Mobiltnummer må angis med et internasjonalt format med landskode.',
     loginNoteApplyCode: 'To-faktor-godkjenning er aktivert. Koden er sendt til nummeret $1.',    
-    newDoc: 'DOKUMENT',
-    newXlsx: 'REGNEARK',
-    newPptx: 'PRESENTASJON',
+    newDoc: 'Dokument',
+    newXlsx: 'Regneark',
+    newPptx: 'Presentasjon',
+    newForm: 'Skjemamal',
     actCreateNew: 'Opprett ny',
     actRecentFiles: 'Nylig brukte filer',
     actOpenLocal: 'Åpne lokal fil',
@@ -3557,7 +3594,7 @@ l10n.no = {
     ,settOptThemeLight: 'Lyst'
     ,settOptThemeClassicLight: 'Klassisk lyst'
     ,settOptThemeDark: 'Mørskt'
-    ,settOptLaunchMode: 'Startmodus for redigering'
+    ,settOptLaunchMode: 'Åpne fil'
     ,settOptLaunchInTab: 'I fanegruppe'
     ,settOptLaunchInWindow: 'I vindu'
 }
@@ -3609,9 +3646,10 @@ l10n.be = {
     pshCode: 'код з тэкставага паведамлення',
     loginNoteAssignPhone: 'Двухфактарная аўтэнтыфікацыя ўключана, каб забяспечыць дадатковую бяспеку ONLYOFFICE. Каб працягнуць працу ў воблачным офісе, увядзіце нумар мабільнага тэлефона. Нумар мабільнага тэлефона павінен быць уведзены ў міжнародным фармаце з кодам краіны.',
     loginNoteApplyCode: 'Двухфактарная аўтэнтыфікацыя ўключана. Код адпраўлены тэкставым паведамленнем на нумар $1.',    
-    newDoc: 'ДАКУМЕНТ',
-    newXlsx: 'ТАБЛІЦА',
-    newPptx: 'ПРЭЗЕНТАЦЫЯ',
+    newDoc: 'Дакумент',
+    newXlsx: 'Табліца',
+    newPptx: 'Прэзентацыя',
+    newForm: 'Шаблон формы',
     actCreateNew: 'Стварыць новы',
     actRecentFiles: 'Апошнія файлы',
     actOpenLocal: 'Адкрыць лакальны файл',
@@ -3650,7 +3688,7 @@ l10n.be = {
     ,settOptThemeLight: 'Светлая'
     ,settOptThemeClassicLight: 'Класічная светлая'
     ,settOptThemeDark: 'Цемная'
-    ,settOptLaunchMode: 'Рэжым запуску'
+    ,settOptLaunchMode: 'Адкрыць файл'
     ,settOptLaunchInTab: 'Ва ўкладцы'
     ,settOptLaunchInWindow: 'У акне'
 }
@@ -3702,9 +3740,10 @@ l10n.gl = {
     pshCode: 'código da mensaxe de texto',
     loginNoteAssignPhone: 'A autenticación de dous factores está habilitada para proporcionar seguridade adicional na nube ONLYOFFICE. Insira o seu número de teléfono móbil para continuar traballando na oficina na nube. O número de teléfono móbil debe introducirse cun formato internacional co código do país.',
     loginNoteApplyCode: 'A autentificación de dous factores está habilitada. O código enviouse ao número $1.',
-    newDoc: 'DOCUMENTO',
-    newXlsx: 'FOLLA DE CÁLCULO',
-    newPptx: 'PRESENTACIÓN',
+    newDoc: 'Documento',
+    newXlsx: 'Folla de cálculo',
+    newPptx: 'Presentación',
+    newForm: 'Modelo de formulario',
     actCreateNew: 'Crear novo',
     actRecentFiles: 'Ficheiros recentes',
     actOpenLocal: 'Abrir ficheiro local',
@@ -3743,7 +3782,7 @@ l10n.gl = {
     ,settOptThemeLight: 'Claro'
     ,settOptThemeClassicLight: 'Claro clásico'
     ,settOptThemeDark: 'Escuro'
-    ,settOptLaunchMode: 'Modo de lanzamento do editor'
+    ,settOptLaunchMode: 'Abrir ficheiro'
     ,settOptLaunchInTab: 'Na lapela'
     ,settOptLaunchInWindow: 'Na xanela'
 }
@@ -3776,6 +3815,12 @@ function changelang(lang) {
 
         for (const [key, value] of Object.entries(utils.Lang)) {
             if ( !!newtr[key] ) {
+                const _node = document.querySelectorAll(`[l10n=${key}]`)
+                if ( _node.length ) {
+                    _node[0].innerHTML = newtr[key];
+                    continue;
+                }
+
                 let _i = -1;
                 elems.every( (el, index) => {
                     if (el.innerHTML.length && !/<[^>]+>/.test(el.innerHTML)) {

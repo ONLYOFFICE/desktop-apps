@@ -65,8 +65,6 @@
 #include "shlobj.h"
 
 #else
-#define VK_F4 0x73
-#define VK_TAB 0x09
 #define gTopWinId this
 #include "linux/cx11decoration.h"
 #endif
@@ -909,7 +907,7 @@ void CMainPanel::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if ( !(index < 0) ) {
-        if ( args.contains(QRegExp("action\\\":\\\"close")) ) {
+        if ( args.contains(QRegExp("action\\\":\\\"file:close")) ) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
 

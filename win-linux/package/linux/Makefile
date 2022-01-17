@@ -286,6 +286,8 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 $(TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR)
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	mkdir -p common/opt/desktopeditors/app
+	cp $(DESKTOP_FILES) common/opt/desktopeditors/app
 	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors
 else
 	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors mediaviewer

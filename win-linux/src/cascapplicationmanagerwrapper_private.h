@@ -158,9 +158,14 @@ public:
             if ( cmd.compare(L"open:recent") == 0 ) {
                 QJsonObject objRoot = Utils::parseJson(data.get_Param());
                 if ( !objRoot.isEmpty() ) {
-                    COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                    QString _path = objRoot["path"].toString();
+                    if ( bringEditorToFront( _path ) )
+                        return true;
+
+                    COpenOptions opts{_path.toStdWString(), etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
+                    opts.name = objRoot["name"].toString();
 
                     QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);
@@ -173,8 +178,9 @@ public:
 
                             if ( modal_res == MODAL_RESULT_CUSTOM ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
-                                return true;
                             }
+
+                            return true;
                         }
                     }
 
@@ -196,8 +202,11 @@ public:
                     }
                 }
             } else
-            if ( cmd.compare(L"open:folder") == 0 ) {
-                std::wstring file_path = CEditorTools::getlocalfile(data.get_Param()).toStdWString();
+            if ( cmd.compare(L"open:folder") == 0 ||
+                    (!(cmd.find(L"editor:event") == std::wstring::npos) &&
+                     !(data.get_Param().find(L"file:open") == std::wstring::npos)) )
+            {
+                std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
                     CCefView * _view = m_appmanager.GetViewByUrl(file_path);
@@ -222,6 +231,7 @@ public:
                 const std::wstring & format = data.get_Param();
                 int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                             format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                            format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
                             format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
 
                 COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
@@ -243,6 +253,38 @@ public:
         if ( editor )
             editor->bringToTop();
         else m_appmanager.mainWindow()->selectView(viewid);
+    }
+
+    auto bringEditorToFront(const QString& url) -> bool
+    {
+        CEditorWindow * _editor = nullptr;
+        CCefView * _view = m_appmanager.GetViewByUrl(url.toStdWString());
+        if ( _view ) {
+            int _view_id = _view->GetId();
+
+            if ( mainWindow()->mainPanel()->holdUid(_view_id) ) {
+                mainWindow()->bringToTop();
+                mainWindow()->selectView(_view_id);
+                return true;
+            } else
+                _editor = m_appmanager.editorWindowFromViewId(_view_id);
+        } else {
+            QString _n_url = Utils::replaceBackslash(url);
+
+            if ( mainWindow()->mainPanel()->holdUrl(_n_url, etLocalFile) ) {
+                mainWindow()->bringToTop();
+                mainWindow()->selectView(_n_url);
+                return true;
+            } else
+                _editor = m_appmanager.editorWindowFromUrl(_n_url);
+        }
+
+        if ( _editor ) {
+            _editor->bringToTop();
+            return true;
+        }
+
+        return false;
     }
 
     auto windowRectFromViewId(int viewid) -> QRect
@@ -280,7 +322,8 @@ public:
                 editor_win->show(false);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
-                m_appmanager.sendCommandTo(panel->cef(), L"window:features", Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT}}).toStdWString());
+                m_appmanager.sendCommandTo(panel->cef(), L"window:features",
+                        Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 mainWindow()->attachEditor(panel);
             }

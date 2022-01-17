@@ -87,6 +87,22 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
 {
     QObject::disconnect(m_modalSlotConnection);
 
+    if ( !AscAppManager::mainWindow() || !AscAppManager::mainWindow()->isVisible() ) {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(m_hWnd, &wp)) {
+            GET_REGISTRY_USER(reg_user)
+            wp.showCmd == SW_MAXIMIZE ?
+                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+
+            QRect windowRect;
+            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+            windowRect.adjust(0,0,-1,-1);
+
+            reg_user.setValue("position", windowRect);
+        }
+    }
+
     m_closed = true;
     DestroyWindow(m_hWnd);
 
@@ -531,7 +547,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
 
 void CSingleWindowPlatform::setScreenScalingFactor(double f)
 {
-    bool _is_up = f > m_dpiRatio;
+    double change_factor = f / m_dpiRatio;
     CSingleWindowBase::setScreenScalingFactor(f);
 
     if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
@@ -539,12 +555,13 @@ void CSingleWindowPlatform::setScreenScalingFactor(double f)
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(m_hWnd, &wp) ) {
+
             if ( wp.showCmd == SW_MAXIMIZE ) {
                 MONITORINFO info{sizeof(MONITORINFO)};
                 GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
-                m_moveNormalRect = _is_up ? QRect{m_moveNormalRect.topLeft() * 2, m_moveNormalRect.size() * 2} :
-                                                QRect{m_moveNormalRect.topLeft() / 2, m_moveNormalRect.size() / 2};
+                int dest_width_change = int(m_moveNormalRect.width() * (1 - change_factor));
+                m_moveNormalRect = QRect{m_moveNormalRect.translated(dest_width_change/2,0).topLeft(), m_moveNormalRect.size() * change_factor};
 
                 wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
                 wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
@@ -553,9 +570,9 @@ void CSingleWindowPlatform::setScreenScalingFactor(double f)
 
                 SetWindowPlacement(m_hWnd, &wp);
             } else {
-                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)},
-                    dest_rect = _is_up ? QRect{source_rect.translated(-source_rect.width()/2,0).topLeft(), source_rect.size()*2} :
-                                                QRect{source_rect.translated(source_rect.width()/4,0).topLeft(), source_rect.size()/2};
+                QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
+                int dest_width_change = int(source_rect.width() * (1 - change_factor));
+                QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
 
                 SetWindowPos(m_hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
             }
