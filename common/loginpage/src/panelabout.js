@@ -167,6 +167,21 @@
                             $label.data('state', 'download');
                         }
                         $label.show();
+                    } else
+                    if (/updates:download/.test(cmd)) {
+                        const opts = JSON.parse(param);
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+
+                        if ( opts.progress == 'done' ) {
+                            $label.text(`Downloading finished. Click to restart`);
+                            $label.data('state', 'install');
+                        } else
+                        if ( opts.progress == 'aborted' ) {
+                            $label.text(`Downloading canceled`);
+                        } else {
+                            $label.text(`Downloading ${opts.progress}%. Click to abort`);
+                            $label.data('state', 'abort');
+                        }
                     }
                 });
 
