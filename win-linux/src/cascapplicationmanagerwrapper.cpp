@@ -1532,6 +1532,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             }
         }
 
+        if ( objRoot.contains("spellcheckdetect") ) {
+            setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
+        }
+
         wstring params = QString("lang=%1&username=%3&location=%2")
                             .arg(_lang_id, Utils::systemLocationCode(), QUrl::toPercentEncoding(_user_newname)).toStdWString();
 

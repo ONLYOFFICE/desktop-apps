@@ -123,6 +123,8 @@ l10n.en = {
     ,settOptLaunchMode: 'Open file'
     ,settOptLaunchInTab: 'In its own tab'
     ,settOptLaunchInWindow: 'In its own window'
+    ,settSpellcheckDetection: 'Spelling language detection'
+    ,settOptDisabled: 'Disabled'
 }
 
 l10n.bg = {
