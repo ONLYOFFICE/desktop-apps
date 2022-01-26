@@ -176,93 +176,93 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
-        <source>DOCX Document (*.docx)</source>
-        <translation>Documento DOCX (*.docx)</translation>
+        <source>Office Open XML Document (*.docx)</source>
+        <translation>Documento Open Office XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
-        <source>Document template (*.dotx)</source>
-        <translation>Modello documento (*.dotx)</translation>
+        <source>Word Open XML Document Template (*.dotx)</source>
+        <translation>Modello documento Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
-        <source>DOC Document (*.doc)</source>
-        <translation>Documento DOC (*.doc)</translation>
+        <source>Word 97-2003 Document (*.doc)</source>
+        <translation>Documento Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
-        <source>ODT Document (*.odt)</source>
-        <translation>Documento ODT (*.odt)</translation>
+        <source>OpenDocument Text File (*.odt)</source>
+        <translation>File di testo di OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
-        <source>OpenDocument Document template (*.ott)</source>
+        <source>OpenDocument Document Template (*.ott)</source>
         <translation>Modello documento OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
-        <source>RTF File (*.rtf)</source>
-        <translation>Documento RTF (*.rtf)</translation>
+        <source>Rich Text Format File (*.rtf)</source>
+        <translation>File di formato di testo ricco (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
-        <source>TXT File (*.txt)</source>
-        <translation>Documento File di testo (*.txt)</translation>
+        <source>Plain Text File (*.txt)</source>
+        <translation>File di testo semplice (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
-        <source>HTML File (*.html)</source>
-        <translation>File HTML (*.html)</translation>
+        <source>HyperText Markup Language File (*.html)</source>
+        <translation>File del linguaggio di markup HyperText(*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
-        <source>MHT File (*.mht)</source>
-        <translation>File MHT (*.mht)</translation>
+        <source>Web Page Archive File (*.mht)</source>
+        <translation>File di archivio della pagina web (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
-        <source>EPUB File (*.epub)</source>
-        <translation>File EPUB (*.epub)</translation>
+        <source>Electronic Publication File (*.epub)</source>
+        <translation>File di pubblicazione elettronica (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
-        <source>FB2 File (*.fb2)</source>
-        <translation>File FB2 (*.fb2)</translation>
+        <source>FictionBook 2 File (*.fb2)</source>
+        <translation>File FictionBook 2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
-        <source>MOBI File (*.mobi)</source>
-        <translation>File MOBI (*.mobi)</translation>
+        <source>Mobipocket File (*.mobi)</source>
+        <translation>File Mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
-        <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <source>ONLYOFFICE Fillable Online Form (*.oform)</source>
+        <translation>Modulo online compilabile ONLYOFFICE (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
-        <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <source>ONLYOFFICE Fillable Online Form (*.docxf)</source>
+        <translation>Modello di modulo ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
-        <source>PPTX File (*.pptx)</source>
-        <translation>File PPTX (*.pptx)</translation>
+        <source>Office Open XML Presentation (*.pptx)</source>
+        <translation>Presentazione Open Office XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
-        <source>PPT File (*.ppt)</source>
-        <translation>File PPT (*.ppt)</translation>
+        <source>PowerPoint 97-2003 Presentation (*.ppt)</source>
+        <translation>Presentazione PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
-        <source>Presentation template (*.potx)</source>
-        <translation>Modello Presentazione (*.potx)</translation>
+        <source>PowerPoint Open XML Presentation Template (*.potx)</source>
+        <translation>Modello Presentazione PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
-        <source>ODP File (*.odp)</source>
-        <translation>File ODP (*.odp)</translation>
+        <source>OpenDocument Presentation (*.odp)</source>
+        <translation>Presentazione di OpenDocument (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -271,28 +271,28 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
-        <source>PPSX File (*.ppsx)</source>
-        <translation>File PPSX (*.ppsx)</translation>
+        <source>Office Open XML Slide Show (*.ppsx)</source>
+        <translation>Proiezione di diapositive Open Office XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
-        <source>XLSX File (*.xlsx)</source>
-        <translation>File XLSX (*.xlsx)</translation>
+        <source>Office Open XML Spreadsheet (*.xlsx)</source>
+        <translation>Foglio di calcolo Open Office XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
-        <source>Spreadsheet template (*.xltx)</source>
-        <translation>Modello Foglio di calcolo (*.xltx)</translation>
+        <source>Excel Open XML Spreadsheet Template (*.xltx)</source>
+        <translation>Modello Foglio di calcolo Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
-        <source>XLS File (*.xls)</source>
-        <translation>File XLS (*.xls)</translation>
+        <source>Excel 97-2003 Spreadsheet (*.xls)</source>
+        <translation>Foglio di calcolo Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
-        <source>ODS File (*.ods)</source>
-        <translation>File ODS (*.ods)</translation>
+        <source>OpenDocument Spreadsheet (*.ods)</source>
+        <translation>Foglio di calcolo OpenDocument (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -301,43 +301,43 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
-        <source>CSV File (*.csv)</source>
-        <translation>File CSV (*.csv)</translation>
+        <source>Comma Separated Values (*.csv)</source>
+        <translation>Valori Separati da Virgola (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
-        <source>PDF File (*.pdf)</source>
-        <translation>File PDF (*.pdf)</translation>
+        <source>Portable Document (*.pdf)</source>
+        <translation>Documento portatile (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
-        <source>PDFA File (*.pdf)</source>
-        <translation>File PDFA (*.pdf)</translation>
+        <source>Portable Document / A (*.pdf)</source>
+        <translation>Documento portatile / A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
-        <source>DJVU File (*.djvu)</source>
-        <translation>File DJVU (*.djvu)</translation>
+        <source>Digital Document (*.djvu)</source>
+        <translation>Documento Digitale (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
-        <source>XPS File (*.xps)</source>
-        <translation>File XPS (*.xps)</translation>
+        <source>OpenXPS Document (*.xps)</source>
+        <translation>Documento OpenXPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivio ZIP (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine JPG (*.jpg, *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -416,7 +416,7 @@
         <location filename="../src/cfiledialog.cpp" line="461"/>
         <location filename="../src/cfiledialog.cpp" line="470"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
-        <translation></translation>
+        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="478"/>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="620"/>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <source>%1 doesn&apos;t exist!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 non è disponibile. Il file è stato rinominato, spostato o rimosso.&lt;br&gt;Vuoi Rimuoverlo da questa lista?</translation>
     </message>
     <message>
@@ -555,23 +555,23 @@
     <name>QObject</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <source>%1 doesn&apos;t exist!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 non è disponibile. Il file è stato rinominato, spostato o rimosso.&lt;br&gt;Vuoi Rimuoverlo da questa lista?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
-        <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <source>File %1 cannot be opened or doesn&apos;t exist.</source>
+        <translation>Il file %1 non può essere aperto o non esiste.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i file supportati (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Tutti i file (*.*)</translation>
+        <translation>Tutti i file (*.*)</translation>
     </message>
 </context>
 </TS>
